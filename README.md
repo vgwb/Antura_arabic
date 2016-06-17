@@ -1,6 +1,5 @@
-Edu App for Syria
+Edu App for Syria - Antura and the Letters
+by CGL / VGWB / Wixel
 =================
 Unity3D project
-build with version 5.3.4
-
-docs are /Assets/_docs/README.md 
+build with version 5.3.5
