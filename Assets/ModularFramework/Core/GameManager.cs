@@ -36,7 +36,6 @@ namespace ModularFramework.Core {
         public ModuleManager Modules = new ModuleManager();
         [HideInInspector]
         protected GameSettings ActualSubGame = new GameSettings();
-        public Transform UIContainer;
         /// <summary>
         /// Prevent multiple setup.
         /// Setted to true after first setup.

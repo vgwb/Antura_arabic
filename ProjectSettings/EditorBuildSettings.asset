@@ -6,4 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_app/main.unity
+    path: Assets/_app/Scenes/Antura_Home.unity
+  - enabled: 1
+    path: Assets/_app/Scenes/Antura_Init.unity
+  - enabled: 1
+    path: Assets/_app/Scenes/Antura_MainMap.unity
+  - enabled: 1
+    path: Assets/_app/Scenes/Antura_ProfileSelect.unity
+  - enabled: 1
+    path: Assets/_games/Balloons/Balloons_Game.unity
