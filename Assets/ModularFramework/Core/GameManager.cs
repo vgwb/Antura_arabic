@@ -42,6 +42,12 @@ namespace ModularFramework.Core {
         /// </summary>
         bool setuped = false;
 
+        #region Events
+        public delegate void GameEvent(IGameplayInfo _gameplayInfo);
+
+        //public static event GameEvent LevelSet;
+        #endregion
+
         #region ShortCuts properties
 
         public UIModule UIModule {

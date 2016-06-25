@@ -35,6 +35,7 @@ namespace ModularFramework.Core {
         public SceneModule SceneModule = new SceneModule();
         public PlayerProfileModule PlayerProfile = new PlayerProfileModule() { MultipleProfileSupported = true };
         public DataModule DataModule = new DataModule();
+        public GameplayModule GameplayModule = new GameplayModule();
         // For Test
         public DummyModule DummyModule = new DummyModule();
 
