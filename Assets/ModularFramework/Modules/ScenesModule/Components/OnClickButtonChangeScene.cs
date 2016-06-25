@@ -21,8 +21,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using ModularFramework.Core;
+using ModularFramework.Modules;
 
-namespace ModularFramework.Modules {
+namespace ModularFramework.Components {
 
     /// <summary>
     /// This component monitoring UnityEngine.UI.Button click if button exist or react to click over mesh and loading scene using SceneModule loaded in system.
@@ -43,7 +44,7 @@ namespace ModularFramework.Modules {
             OnClick();
         }
 
-        public void OnClick() {
+        public virtual void OnClick() {
             string sceneTypeName = getSelectedSceneName();
             string gameId = getSelectedGameID();
 
@@ -55,23 +56,23 @@ namespace ModularFramework.Modules {
         }
 
         #region For Editor and click...
-        public bool CheckIfSceneExist() {
+        protected bool CheckIfSceneExist() {
             return GameManager.Instance.Modules.SceneModule.CheckIfSceneExist(getSelectedSceneName(), getSelectedGameID());
         }
 
-        string getSelectedSceneName() {
+        protected string getSelectedSceneName() {
             return SceneTypeToLoad == SceneType.Custom
                         ? SceneNameCustom
                         : GameManager.Instance.Modules.SceneModule.GetSufixSceneNameByType(SceneTypeToLoad);
         }
 
-        string getSelectedGameID() {
+        protected string getSelectedGameID() {
             return ActualGame == false
                         ? GameId
                         : GameManager.Instance.GetActualGame().GameID;
         }
 
-        string getFullSelectedSceneName() {
+        protected string getFullSelectedSceneName() {
             return GameManager.Instance.Modules.SceneModule.GetSceneName(getSelectedSceneName(), getSelectedGameID());
         }
         #endregion
