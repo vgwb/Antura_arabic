@@ -13,6 +13,8 @@ public class Antura_Arm_Movement : MonoBehaviour
     void OnEnable()
     {
 
+
+
         Sequence mySequence = DOTween.Sequence();
         mySequence.AppendInterval(Delay)
                   .Append(transform.DOLocalRotate(DestinationAngle, Duration, (FastBeyod360 ? RotateMode.FastBeyond360 : RotateMode.Fast)))

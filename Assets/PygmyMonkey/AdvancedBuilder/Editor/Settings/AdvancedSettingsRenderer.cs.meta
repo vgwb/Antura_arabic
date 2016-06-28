@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7b52abb7ca1c746c6bd7fb433127e486
+labels:
+- build
+- report
+- tool
+- version
+- platform
+- automatic
+- automatically
+- batch
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

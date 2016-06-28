@@ -10,7 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: CGL
-  productName: Antura and the Letters
+  productName: Antura TEST
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 0
@@ -89,8 +89,8 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.cgl.ea4s
-  bundleVersion: 1.0
+  bundleIdentifier: com.krur.anturatest
+  bundleVersion: 0.0.1
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
@@ -336,26 +336,26 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols:
-    1: DOTWEEN_TMP
-    2: DOTWEEN_TMP
-    4: DOTWEEN_TMP
-    5: DOTWEEN_TMP
-    6: DOTWEEN_TMP
-    7: DOTWEEN_TMP
-    9: DOTWEEN_TMP
-    13: DOTWEEN_TMP
-    14: DOTWEEN_TMP
-    15: DOTWEEN_TMP
-    16: DOTWEEN_TMP
-    17: DOTWEEN_TMP
-    18: DOTWEEN_TMP
-    19: DOTWEEN_TMP
-    20: DOTWEEN_TMP
-    21: DOTWEEN_TMP
-    22: DOTWEEN_TMP
-    23: DOTWEEN_TMP
-    24: DOTWEEN_TMP
-    25: DOTWEEN_TMP
+    1: RT_TEST;PT_IOS
+    2: RT_TEST;PT_IOS
+    4: RT_TEST;PT_IOS
+    5: RT_TEST;PT_IOS
+    6: RT_TEST;PT_IOS
+    7: RT_TEST;PT_IOS
+    9: RT_TEST;PT_IOS
+    13: RT_TEST;PT_IOS
+    14: RT_TEST;PT_IOS
+    15: RT_TEST;PT_IOS
+    16: RT_TEST;PT_IOS
+    17: RT_TEST;PT_IOS
+    18: RT_TEST;PT_IOS
+    19: RT_TEST;PT_IOS
+    20: RT_TEST;PT_IOS
+    21: RT_TEST;PT_IOS
+    22: RT_TEST;PT_IOS
+    23: RT_TEST;PT_IOS
+    24: RT_TEST;PT_IOS
+    25: RT_TEST;PT_IOS
   metroPackageName: EA4S
   metroPackageVersion: 
   metroCertificatePath: 
