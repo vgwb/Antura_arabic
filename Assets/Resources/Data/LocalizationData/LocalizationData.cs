@@ -74,10 +74,10 @@ namespace Google2u
 	public sealed class LocalizationData : IGoogle2uDB
 	{
 		public enum rowIds {
-			IGNORE, select_profile, select_your_profile, profile_name, select, delete, delete_all, create, close, progression_rate, ignore, main_map
+			IGNORE, select_profile, select_your_profile, profile_name, select, delete, delete_all, create, close, progression_rate, back_to_home, pause, ignore, main_map
 		};
 		public string [] rowNames = {
-			"IGNORE", "select_profile", "select_your_profile", "profile_name", "select", "delete", "delete_all", "create", "close", "progression_rate", "ignore", "main_map"
+			"IGNORE", "select_profile", "select_your_profile", "profile_name", "select", "delete", "delete_all", "create", "close", "progression_rate", "back_to_home", "pause", "ignore", "main_map"
 		};
 		public System.Collections.Generic.List<LocalizationDataRow> Rows = new System.Collections.Generic.List<LocalizationDataRow>();
 
@@ -104,6 +104,8 @@ namespace Google2u
 			Rows.Add( new LocalizationDataRow("create", "Create", "Crea"));
 			Rows.Add( new LocalizationDataRow("close", "Close", "Chiudi"));
 			Rows.Add( new LocalizationDataRow("progression_rate", "Level", "Livello"));
+			Rows.Add( new LocalizationDataRow("back_to_home", "Back To Home", "Torna alla Home"));
+			Rows.Add( new LocalizationDataRow("pause", "Pause", "Pausa"));
 			Rows.Add( new LocalizationDataRow("ignore", "", ""));
 			Rows.Add( new LocalizationDataRow("main_map", "Main Map", "Mappa Principale"));
 		}

@@ -25,11 +25,14 @@ namespace CGL.Antura {
         #endregion
 
         public void GameplayResult(IGameplayResult _result) {
-            throw new NotImplementedException();
+            AnturaGameplayResult result = _result as AnturaGameplayResult;
+            AnturaGameplayInfo gameplayInfo = result.GameplayInfo as AnturaGameplayInfo;
+
+            Debug.LogFormat("End {0} gameplay result : {1} with {2} star/s.", gameplayInfo.GameId, result.PositiveResult, result.Stars);
         }
 
         public void GameplayStart(IGameplayInfo _gameplayInfo) {
-            throw new NotImplementedException();
+            ActualGameplayInfo = _gameplayInfo;
         }
     }
 
@@ -38,13 +41,18 @@ namespace CGL.Antura {
     /// </summary>
     public class AnturaGameplayResult : IGameplayResult {
         public IGameplayInfo GameplayInfo { get; set; }
+        public bool PositiveResult;
+        public int Stars;
     }
 
+    [Serializable]
     /// <summary>
     /// Gameplay info class data structure.
     /// </summary>
     public class AnturaGameplayInfo : IGameplayInfo {
         public string GameId;
+        public int minNumberOfLettersOnField = 5;
+        public int MaxNumberOfLettersOnField = 10;
     }
 }
         

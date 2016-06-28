@@ -1,20 +1,28 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using ModularFramework.Core;
 using ModularFramework.Components;
 
 namespace CGL.Antura.Components {
+    public class OnClickStartGame : MonoBehaviour {
+        /// <summary>
+        /// Gameplay info.
+        /// </summary>
+        public AnturaGameplayInfo GameplayInfo;
 
-    public class OnClickStartGame : OnClickButtonChangeScene {
-        public override void OnClick() {
-            string sceneTypeName = getSelectedSceneName();
-            string gameId = getSelectedGameID();
+        void Start() {
+            if (gameObject.GetComponent<Button>())
+                gameObject.GetComponent<Button>().onClick.AddListener(OnClick);
+        }
 
-            if (!CheckIfSceneExist())
-                Debug.LogError("Scene attempt to load not found. Check Build settings.");
+        public void OnMouseDown() {
+            OnClick();
+        }
 
-            string sceneName = getFullSelectedSceneName();
-            GameManager.Instance.Modules.GameplayModule.ActualGameplayInfo = new AnturaGameplayInfo() { GameId = gameId };
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
+        public void OnClick() {
+            GameManager.Instance.Modules.GameplayModule.GameplayStart(GameplayInfo);
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GameplayInfo.GameId + "_Game");
         }
     }
 }
+
