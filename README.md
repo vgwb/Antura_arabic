@@ -1,4 +1,3 @@
-Edu App for Syria
 EA4S - Antura and the Letters
 =================
 
