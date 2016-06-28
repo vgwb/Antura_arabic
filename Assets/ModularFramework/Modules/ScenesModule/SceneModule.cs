@@ -151,6 +151,12 @@ namespace ModularFramework.Modules {
             return string.Format("{0}_{1}", _gameId, _sceneTypeName);
         }
 
+        /// <summary>
+        /// Return true if scene exist
+        /// </summary>
+        /// <param name="_sceneTypeName">Scene Type</param>
+        /// <param name="_gameId">GameId</param>
+        /// <returns></returns>
         public bool CheckIfSceneExist(string _sceneTypeName, string _gameId) {
             UnityEngine.SceneManagement.Scene s = UnityEngine.SceneManagement.SceneManager.GetSceneByName(GetSceneName(_sceneTypeName, _gameId));
             if (s != null)
