@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: S Alarm Clock
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Skybox Antura
+  m_Shader: {fileID: 4800000, guid: e32cae2a5bbfb41888ef2ba8391ab87d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 1000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -127,6 +127,30 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _Intensity
+        second: 1.03
+      data:
+        first:
+          name: _Exponent
+        second: 1.23
+      data:
+        first:
+          name: _DirectionYaw
+        second: 180
+      data:
+        first:
+          name: _DirectionPitch
+        second: 74
+      data:
+        first:
+          name: _UpVectorPitch
+        second: -24.46
+      data:
+        first:
+          name: _UpVectorYaw
+        second: 53.8
     m_Colors:
       data:
         first:
@@ -135,4 +159,20 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.3637543, g: 0.6592232, b: 0.85294116, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Color2
+        second: {r: 1, g: 1, b: 1, a: 0}
+      data:
+        first:
+          name: _Color1
+        second: {r: 0.9558824, g: 0.9351482, b: 0.7801687, a: 0}
+      data:
+        first:
+          name: _Direction
+        second: {r: -0.00000008403617, g: 0.2756374, b: -0.9612617, a: 0}
+      data:
+        first:
+          name: _UpVector
+        second: {r: -0.33412823, g: 0.91025054, b: -0.24454492, a: 0}
