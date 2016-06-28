@@ -5,6 +5,11 @@ by CGL / VGWB / Wixel
 
 the full Unity3D project
 
+## IMPORTANT NOTE ##
+
+this project contains some commercial plugin that will not be distributed in the final (open source) version.
+Please don't share this project to anybody who is not in the active CGL/VGWB/Wixel teams.
+
 
 ## Build Instructions ##
 
