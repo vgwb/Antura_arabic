@@ -117,6 +117,8 @@ PlayerSettings:
     m_Bits: 238
   iPhoneSdkVersion: 988
   iPhoneTargetOSVersion: 22
+  tvOSSdkVersion: 0
+  tvOSTargetOSVersion: 900
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -196,6 +198,7 @@ PlayerSettings:
   wiiUSystemHeapSize: 128
   wiiUTVStartupScreen: {fileID: 0}
   wiiUGamePadStartupScreen: {fileID: 0}
+  wiiUDrcBufferDisabled: 0
   wiiUProfilerLibPath: 
   actionOnDotNetUnhandledException: 1
   enableInternalProfiler: 0
@@ -263,6 +266,7 @@ PlayerSettings:
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
   ps4Passcode: 5PN2qmWqBlQ9wQj99nsQzldVI5ZuGXbE
+  ps4UseDebugIl2cppLibs: 0
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -328,9 +332,30 @@ PlayerSettings:
   psp2UseLibLocation: 0
   psp2InfoBarOnStartup: 0
   psp2InfoBarColor: 0
+  psp2UseDebugIl2cppLibs: 0
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: DOTWEEN_TMP
+    2: DOTWEEN_TMP
+    4: DOTWEEN_TMP
+    5: DOTWEEN_TMP
+    6: DOTWEEN_TMP
+    7: DOTWEEN_TMP
+    9: DOTWEEN_TMP
+    13: DOTWEEN_TMP
+    14: DOTWEEN_TMP
+    15: DOTWEEN_TMP
+    16: DOTWEEN_TMP
+    17: DOTWEEN_TMP
+    18: DOTWEEN_TMP
+    19: DOTWEEN_TMP
+    20: DOTWEEN_TMP
+    21: DOTWEEN_TMP
+    22: DOTWEEN_TMP
+    23: DOTWEEN_TMP
+    24: DOTWEEN_TMP
+    25: DOTWEEN_TMP
   metroPackageName: EA4S
   metroPackageVersion: 
   metroCertificatePath: 
