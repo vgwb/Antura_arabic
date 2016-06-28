@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c1a3e738ae6c943aaac0fc7c8d0a25b3
+labels:
+- build
+- report
+- tool
+- version
+- platform
+- automatic
+- automatically
+- batch
+timeCreated: 1456324276
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
