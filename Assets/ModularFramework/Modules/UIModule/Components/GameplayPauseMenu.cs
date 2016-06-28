@@ -17,21 +17,26 @@
 *   You should have received a copy of the GNU Lesser General Public
 *   License along with this library.
 * -------------------------------------------------------------- */
-using ModularFramework.Core;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
+using UniRx;
+using ModularFramework.Core;
+using ModularFramework.Modules;
 
-/// <summary>
-/// UI Manager Componet.
-/// </summary>
-namespace ModularFramework.Modules {
+namespace ModularFramework.Components {
 
-    public class UIManager : MonoBehaviour {
+    [AddComponentMenu("Modular Framework/UIModule/GameplayPauseMenu")]
+    public class GameplayPauseMenu : UIContainer {
 
-        // Use this for initialization
-        void Start() {
-            //DontDestroyOnLoad(this);
+        public override void OnEnable() {
+            base.OnEnable();
+            //this.ObserveEveryValueChanged(x => x.xx).Subscribe(_ => {
+            //    Callback();
+            //});
         }
-
     }
 }
+
+
+

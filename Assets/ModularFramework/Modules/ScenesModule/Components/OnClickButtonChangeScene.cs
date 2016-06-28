@@ -45,20 +45,12 @@ namespace ModularFramework.Components {
         }
 
         public virtual void OnClick() {
-            string sceneTypeName = getSelectedSceneName();
-            string gameId = getSelectedGameID();
-
-            if (!CheckIfSceneExist())
-                Debug.LogError("Scene attempt to load not found. Check Build settings.");
 
             string sceneName = getFullSelectedSceneName();
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(sceneName);
         }
 
         #region For Editor and click...
-        protected bool CheckIfSceneExist() {
-            return GameManager.Instance.Modules.SceneModule.CheckIfSceneExist(getSelectedSceneName(), getSelectedGameID());
-        }
 
         protected string getSelectedSceneName() {
             return SceneTypeToLoad == SceneType.Custom

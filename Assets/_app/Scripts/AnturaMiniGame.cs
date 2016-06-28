@@ -6,14 +6,22 @@ using ModularFramework.Modules;
 namespace CGL.Antura {
 
     public abstract class AnturaMiniGame : SubGame {
-
+        public bool UseTestGameplayInfo;
         public AnturaGameplayInfo GameplayInfo;
-
         void Start() {
-            GameplayInfo = AnturaGameManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
+            if (!UseTestGameplayInfo)
+                GameplayInfo = AnturaGameManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
+            else // manual set on framework for test session
+                AnturaGameManager.Instance.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
             ReadyForGameplay();
         }
 
-        protected virtual void ReadyForGameplay() { }
+        /// <summary>
+        /// Invoked at the end of the minigame scene loading and passing the necessary parameters to the gameplay session.
+        /// </summary>
+        /// <param name="_gameplayInfo"></param>
+        protected virtual void ReadyForGameplay() {
+            Debug.LogFormat("Gameplay {0} ready with data: {1}", GameplayInfo.GameId, GameplayInfo);
+        }
     }
 }

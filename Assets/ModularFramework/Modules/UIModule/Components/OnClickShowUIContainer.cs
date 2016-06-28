@@ -7,7 +7,7 @@ namespace ModularFramework.Modules {
     public class OnClickShowUIContainer : MonoBehaviour {
 
         public string UIContainerName;
-        OpenUIContainerSettings Settings;
+        OpenUIContainerSettings Settings = null;
 
         void Awake() {
             if (gameObject.GetComponent<Button>())

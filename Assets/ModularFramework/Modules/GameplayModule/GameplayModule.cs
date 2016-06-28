@@ -19,8 +19,6 @@ namespace ModularFramework.Modules {
         public IGameplayModule ConcreteModuleImplementation { get; set; }
         public IModuleSettings Settings { get; set; }
 
-
-
         /// <summary>
         /// Module Setup.
         /// </summary>
@@ -75,5 +73,7 @@ namespace ModularFramework.Modules {
     /// <summary>
     /// Interface for gameplay info data.
     /// </summary>
-    public interface IGameplayInfo { }
+    public interface IGameplayInfo {
+
+    }
 }
