@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/Scenes/Antura_Home.unity
   - enabled: 1
-    path: Assets/_app/Scenes/Antura_Init.unity
+    path: Assets/_app/Antura_Start.unity
   - enabled: 1
     path: Assets/_app/Scenes/Antura_MainMap.unity
   - enabled: 1
     path: Assets/_app/Scenes/Antura_ProfileSelect.unity
   - enabled: 1
-    path: Assets/_games/Balloons/Balloons_Game.unity
+    path: Assets/_games/Balloons/game_Balloons.unity
