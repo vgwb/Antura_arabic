@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: S Alarm Clock
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: tree-greenblue
+  m_Shader: {fileID: 4800000, guid: a9dc5a9967eb64d5aab466022c8714a4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -102,7 +102,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.5
+        second: 0.11
       data:
         first:
           name: _BumpScale
@@ -127,6 +127,10 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _UseMetallicMap
+        second: 0
     m_Colors:
       data:
         first:
@@ -135,4 +139,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.3637543, g: 0.6592232, b: 0.85294116, a: 1}
+        second: {r: 0.2551903, g: 0.43382353, b: 0.33628982, a: 1}
