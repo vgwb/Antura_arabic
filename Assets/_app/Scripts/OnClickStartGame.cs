@@ -21,7 +21,7 @@ namespace CGL.Antura.Components {
 
         public void OnClick() {
             GameManager.Instance.Modules.GameplayModule.GameplayStart(GameplayInfo);
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GameplayInfo.GameId + "_Game");
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_" + GameplayInfo.GameId);
         }
     }
 }

@@ -89,7 +89,7 @@ namespace ModularFramework.Modules {
                 case States.hide:
                     break;
                 case States.hiding:
-                    rectTransform.anchoredPosition = new Vector2(0, Screen.height);
+                    rectTransform.anchoredPosition = new Vector2(0, Screen.height * 2);
                     State = States.hide;
                     break;
                 case States.show:
