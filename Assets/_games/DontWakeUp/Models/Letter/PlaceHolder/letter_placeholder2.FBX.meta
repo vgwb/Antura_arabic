@@ -87,7 +87,7 @@ ModelImporter:
     - serializedVersion: 16
       name: idle
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: 2
       lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
@@ -176,7 +176,7 @@ ModelImporter:
       name: hold
       takeName: Take 001
       firstFrame: 22
-      lastFrame: 50
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -263,8 +263,8 @@ ModelImporter:
     - serializedVersion: 16
       name: walk
       takeName: Take 001
-      firstFrame: 51
-      lastFrame: 85
+      firstFrame: 52
+      lastFrame: 84
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -351,8 +351,8 @@ ModelImporter:
     - serializedVersion: 16
       name: run
       takeName: Take 001
-      firstFrame: 85
-      lastFrame: 106
+      firstFrame: 86
+      lastFrame: 103
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

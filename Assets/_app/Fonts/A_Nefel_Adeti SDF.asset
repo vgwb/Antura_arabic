@@ -1,16 +1,16 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &2138500
+--- !u!21 &2141604
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: A_Nefel_Adeti SDF Material
-  m_Shader: {fileID: 4800000, guid: cafd18099dfc0114896e0a8b277b81b6, type: 3}
+  m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2841474}
+          m_Texture: {fileID: 2876400}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -46,13 +46,6 @@ Material:
       data:
         first:
           name: _Cube
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -97,7 +90,7 @@ Material:
       data:
         first:
           name: _GlowOffset
-        second: 0
+        second: 0.77
       data:
         first:
           name: _GlowInner
@@ -109,7 +102,7 @@ Material:
       data:
         first:
           name: _GlowPower
-        second: 0.75
+        second: 0
       data:
         first:
           name: _WeightNormal
@@ -168,38 +161,6 @@ Material:
         second: 0
       data:
         first:
-          name: _UnderlayOffsetX
-        second: 0
-      data:
-        first:
-          name: _UnderlayOffsetY
-        second: 0
-      data:
-        first:
-          name: _UnderlayDilate
-        second: 0
-      data:
-        first:
-          name: _UnderlaySoftness
-        second: 0
-      data:
-        first:
-          name: _MaskSoftnessX
-        second: 0
-      data:
-        first:
-          name: _MaskSoftnessY
-        second: 0
-      data:
-        first:
-          name: _Bevel
-        second: 0.5
-      data:
-        first:
-          name: _LightAngle
-        second: 3.1416
-      data:
-        first:
           name: _FaceUVSpeedX
         second: 0
       data:
@@ -216,6 +177,10 @@ Material:
         second: 0
       data:
         first:
+          name: _Bevel
+        second: 0.5
+      data:
+        first:
           name: _BevelOffset
         second: 0
       data:
@@ -230,6 +195,10 @@ Material:
         first:
           name: _BevelRoundness
         second: 0
+      data:
+        first:
+          name: _LightAngle
+        second: 3.1416
       data:
         first:
           name: _SpecularPower
@@ -256,13 +225,29 @@ Material:
         second: 0
       data:
         first:
-          name: _DiffusePower
-        second: 1
-    m_Colors:
+          name: _UnderlayOffsetX
+        second: 0
       data:
         first:
-          name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _UnderlayOffsetY
+        second: 0
+      data:
+        first:
+          name: _UnderlayDilate
+        second: 0
+      data:
+        first:
+          name: _UnderlaySoftness
+        second: 0
+      data:
+        first:
+          name: _MaskSoftnessX
+        second: 0
+      data:
+        first:
+          name: _MaskSoftnessY
+        second: 0
+    m_Colors:
       data:
         first:
           name: _ClipRect
@@ -274,23 +259,11 @@ Material:
       data:
         first:
           name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0.97794116, g: 0.97794116, b: 0.97794116, a: 1}
       data:
         first:
           name: _GlowColor
-        second: {r: 0, g: 1, b: 0, a: 0.5}
-      data:
-        first:
-          name: _UnderlayColor
-        second: {r: 0, g: 0, b: 0, a: 0.5}
-      data:
-        first:
-          name: _MaskCoord
-        second: {r: 0, g: 0, b: 10000, a: 10000}
-      data:
-        first:
-          name: _EnvMatrixRotation
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: 1, g: 1, b: 1, a: 0.5}
       data:
         first:
           name: _SpecularColor
@@ -303,7 +276,19 @@ Material:
         first:
           name: _ReflectOutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
---- !u!28 &2841474
+      data:
+        first:
+          name: _EnvMatrixRotation
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _UnderlayColor
+        second: {r: 0, g: 0, b: 0, a: 0.5}
+      data:
+        first:
+          name: _MaskCoord
+        second: {r: 0, g: 0, b: 10000, a: 10000}
+--- !u!28 &2876400
 Texture2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -345,10 +330,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
-  m_Name: A_Nefel_Adeti SDF_old
+  m_Name: A_Nefel_Adeti SDF
   m_EditorClassIdentifier: 
-  hashCode: -1967454927
-  material: {fileID: 2138500}
+  hashCode: -1381396439
+  material: {fileID: 2141604}
   materialHashCode: 853624962
   fontAssetType: 1
   m_fontInfo:
@@ -370,7 +355,7 @@ MonoBehaviour:
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
-  atlas: {fileID: 2841474}
+  atlas: {fileID: 2876400}
   m_glyphInfoList:
   - id: 1548
     x: 394
