@@ -1,6 +1,6 @@
 ﻿using Google2u;
 
-namespace Test_00 {
+namespace CGL.Antura {
     public class LetterData {
         public string Key;
         public string Isolated_Unicode;

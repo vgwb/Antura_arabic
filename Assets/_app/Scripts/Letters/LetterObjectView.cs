@@ -3,12 +3,12 @@ using System.Collections;
 using TMPro;
 using System.Text.RegularExpressions;
 
-namespace Test_00 {
-    public class LetterObject : MonoBehaviour {
+namespace CGL.Antura {
+    public class LetterObjectView : MonoBehaviour {
         public float MergedElementsDistance = 1;
 
-        public LetterObject RightLetter = null;
-        public LetterObject LeftLetter = null;
+        public LetterObjectView RightLetter = null;
+        public LetterObjectView LeftLetter = null;
 
         public LetterData Data;
         public bool IsMerged;
@@ -50,13 +50,13 @@ namespace Test_00 {
         }
 
         public void propagateSetLetterForPosition() {
-            LetterObject nextLeft = LeftLetter;
+            LetterObjectView nextLeft = LeftLetter;
             while (nextLeft != null) {
                 nextLeft.SetLetterForPosition();
                 nextLeft = nextLeft.LeftLetter;
             }
 
-            LetterObject nextRight = RightLetter;
+            LetterObjectView nextRight = RightLetter;
             while (nextRight != null) {
                 nextRight.SetLetterForPosition();
                 nextRight = nextRight.LeftLetter;
@@ -89,7 +89,7 @@ namespace Test_00 {
 
         #region Triggers
         void OnTriggerEnter(Collider other) {
-            LetterObject otherL = other.GetComponent<LetterObject>();
+            LetterObjectView otherL = other.GetComponent<LetterObjectView>();
             if (otherL == null)
                 return;
 
@@ -103,7 +103,7 @@ namespace Test_00 {
         }
 
         void OnTriggerExit(Collider other) {
-            LetterObject otherL = other.GetComponent<LetterObject>();
+            LetterObjectView otherL = other.GetComponent<LetterObjectView>();
             if (otherL == null)
                 return;
 
