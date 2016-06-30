@@ -770,8 +770,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146258}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 0.17, y: 2.8591643e-17, z: -5.3}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalPosition: {x: 0.034, y: -0.020000003, z: -3.2600005}
+  m_LocalScale: {x: 0.14000002, y: 0.14000002, z: 0.14000002}
   m_Children:
   - {fileID: 424076}
   - {fileID: 462052}
@@ -947,7 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 8
-  Target: {fileID: 0}
+  WayPointPrefab: {fileID: 100402, guid: 814a5c36a1b8911439465fe1a3c22075, type: 2}
 --- !u!114 &11436734
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,41 +13,51 @@ namespace CGL.Antura {
         public LetterData Data;
         public bool IsMerged;
 
+        NavMeshAgent agent;
+
         #region View
         public TMP_Text Lable;
         #endregion
 
         public void Init(LetterData _data) {
+            // Navigation
+            /*
+            agent = GetComponent<NavMeshAgent>();
+            if (!agent)
+                gameObject.AddComponent<NavMeshAgent>();
+            agent.enabled = false;
+            */
+
             GetComponent<Collider>().isTrigger = false;
             Data = _data;
             Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(_data.Isolated_Unicode);
             IsMerged = false;
         }
 
-        void OnMouseDrag() {
-            if (IsMerged)
-                return;
-            Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-            Vector3 objPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, -Camera.main.transform.position.z));
+        //void OnMouseDrag() {
+        //    if (IsMerged)
+        //        return;
+        //    Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        //    Vector3 objPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, -Camera.main.transform.position.z));
 
-            transform.localPosition = new Vector3(objPosition.x, objPosition.y, transform.localPosition.z);
-            GetComponent<Collider>().isTrigger = true;
-        }
+        //    transform.localPosition = new Vector3(objPosition.x, objPosition.y, transform.localPosition.z);
+        //    GetComponent<Collider>().isTrigger = true;
+        //}
 
-        void OnMouseUp() {
-            GetComponent<Collider>().isTrigger = false;
-            if (RightLetter != null || LeftLetter != null) {
-                IsMerged = true;
-                SetLetterForPosition();
-                propagateSetLetterForPosition();
-            }
+        //void OnMouseUp() {
+        //    GetComponent<Collider>().isTrigger = false;
+        //    if (RightLetter != null || LeftLetter != null) {
+        //        IsMerged = true;
+        //        SetLetterForPosition();
+        //        propagateSetLetterForPosition();
+        //    }
 
-            if (RightLetter != null) {
-                transform.position = RightLetter.transform.position + new Vector3(-MergedElementsDistance, 0, 0);
-            } else if (LeftLetter != null) {
-                transform.position = LeftLetter.transform.position + new Vector3(MergedElementsDistance, 0, 0);
-            }
-        }
+        //    if (RightLetter != null) {
+        //        transform.position = RightLetter.transform.position + new Vector3(-MergedElementsDistance, 0, 0);
+        //    } else if (LeftLetter != null) {
+        //        transform.position = LeftLetter.transform.position + new Vector3(MergedElementsDistance, 0, 0);
+        //    }
+        //}
 
         public void propagateSetLetterForPosition() {
             LetterObjectView nextLeft = LeftLetter;
@@ -87,34 +97,34 @@ namespace CGL.Antura {
             }
         }
 
-        #region Triggers
-        void OnTriggerEnter(Collider other) {
-            LetterObjectView otherL = other.GetComponent<LetterObjectView>();
-            if (otherL == null)
-                return;
+        //#region Triggers
+        //void OnTriggerEnter(Collider other) {
+        //    LetterObjectView otherL = other.GetComponent<LetterObjectView>();
+        //    if (otherL == null)
+        //        return;
 
-            if (transform.position.x < otherL.transform.position.x) {
-                RightLetter = otherL;
-                otherL.LeftLetter = this;
-            } else { 
-                LeftLetter = otherL;
-                otherL.RightLetter = this;
-            }
-        }
+        //    if (transform.position.x < otherL.transform.position.x) {
+        //        RightLetter = otherL;
+        //        otherL.LeftLetter = this;
+        //    } else { 
+        //        LeftLetter = otherL;
+        //        otherL.RightLetter = this;
+        //    }
+        //}
 
-        void OnTriggerExit(Collider other) {
-            LetterObjectView otherL = other.GetComponent<LetterObjectView>();
-            if (otherL == null)
-                return;
+        //void OnTriggerExit(Collider other) {
+        //    LetterObjectView otherL = other.GetComponent<LetterObjectView>();
+        //    if (otherL == null)
+        //        return;
 
-            if (otherL == RightLetter) { 
-                RightLetter = null;
-                otherL.LeftLetter = null;
-            } else if (otherL == LeftLetter) { 
-                LeftLetter = null;
-                otherL.RightLetter = null;
-            }
-        }
-        #endregion
+        //    if (otherL == RightLetter) { 
+        //        RightLetter = null;
+        //        otherL.LeftLetter = null;
+        //    } else if (otherL == LeftLetter) { 
+        //        LeftLetter = null;
+        //        otherL.RightLetter = null;
+        //    }
+        //}
+        //#endregion
     }
 }

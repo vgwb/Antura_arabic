@@ -8,10 +8,11 @@ namespace CGL.Antura {
 
         public float Speed;
 
+        public GameObject WayPointPrefab;
         /// <summary>
         /// Target.
         /// </summary>
-        public Transform Target;
+        Transform Target;
         
         NavMeshAgent agent;
 
@@ -19,8 +20,12 @@ namespace CGL.Antura {
         public override void OnStartBehaviour() {
             base.OnStartBehaviour();
 
-
             agent = GetComponent<NavMeshAgent>();
+            if (!Target) { 
+                Target = Instantiate<Transform>(WayPointPrefab.transform);
+                Target.SetParent(transform.parent, false);
+                Target.position = transform.position;
+            }
             agent.SetDestination(Target.position);
 
             /// <summary>
@@ -31,6 +36,7 @@ namespace CGL.Antura {
                     agent.SetDestination(Target.position);
                 }
             }).AddTo(this);
+
             /// <summary>
             /// Monitoring Speed
             /// </summary>
@@ -51,6 +57,7 @@ namespace CGL.Antura {
         }
 
         #endregion
+
         void OnDrawGizmos() {
             if (Target != null) {
                 Gizmos.color = Color.yellow;
@@ -58,12 +65,10 @@ namespace CGL.Antura {
             }
         }
 
-
-
-        void ReplaceWaypoint() {
+        void RepositioningWaypoint() {
             Vector3 randomValidPosition;
             //RandomPoint(Target.position, 10f, out randomValidPosition);
-            RandomPoint(Target.position, 15f, out randomValidPosition);
+            RandomPointInWalkableArea(Target.position, 15f, out randomValidPosition);
             Target.position = randomValidPosition;
             agent.SetDestination(Target.position);
         }
@@ -75,7 +80,7 @@ namespace CGL.Antura {
         /// <param name="_range"></param>
         /// <param name="_result"></param>
         /// <returns></returns>
-        bool RandomPoint(Vector3 _center, float _range, out Vector3 _result) {
+        bool RandomPointInWalkableArea(Vector3 _center, float _range, out Vector3 _result) {
             for (int i = 0; i < 30; i++) {
                 Vector3 randomPoint = _center + Random.insideUnitSphere * (_range + Random.Range(-_range/2f, _range / 2f));
                 NavMeshHit hit;
@@ -93,7 +98,7 @@ namespace CGL.Antura {
         //void OnTriggerEnter(Collider other) {
             if(Target && other != Target.GetComponent<Collider>())
                 return;
-            ReplaceWaypoint();
+            RepositioningWaypoint();
         }
         #endregion
 
