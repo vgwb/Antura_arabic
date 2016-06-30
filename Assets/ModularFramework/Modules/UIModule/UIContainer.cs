@@ -84,7 +84,7 @@ namespace ModularFramework.Modules {
         /// </summary>
         /// <param name="_newState"></param>
         /// <param name="_oldStates"></param>
-        void OnStateChanged(States _newState, States _oldStates) {
+        protected virtual void OnStateChanged(States _newState, States _oldStates) {
             switch (_newState) {
                 case States.hide:
                     break;

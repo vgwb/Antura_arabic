@@ -103,7 +103,7 @@ namespace CGL.Antura.DTest
                 int menuBtIndex = Array.IndexOf(menuBts, bt);
                 switch (menuBtIndex) {
                 case 0: // Exit
-                    // TODO
+                    OpenMenu(false);
                     break;
                 case 1: // Restart
                     // TODO
