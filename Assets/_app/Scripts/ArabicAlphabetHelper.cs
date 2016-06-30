@@ -31,11 +31,15 @@ namespace CGL.Antura {
         /// Return list of letter data for any letter of param word.
         /// </summary>
         /// <param name="_word"></param>
+        /// <param name="_vocabulary"></param>
+        /// <param name="_revertOrder">Return in list position 0 most right letter in input string and last the most left.</param>
         /// <returns></returns>
-        public static List<LetterData> LetterDataListFromWord(string _word, List<LetterData> _vocabulary){
+        public static List<LetterData> LetterDataListFromWord(string _word, List<LetterData> _vocabulary, bool _revertOrder = false){
             List<LetterData> returnList = new List<LetterData>();
 
             char[] chars = _word.ToCharArray();
+            if(_revertOrder)
+                Array.Reverse(chars);
             for (int i = 0; i < chars.Length; i++) {
                 char ch = chars[i];
                 string unicodeString = GetHexaUnicodeFromChar(ch);
@@ -47,11 +51,13 @@ namespace CGL.Antura {
         }
 
         /// <summary>
-        /// 
+        /// Return last field.
         /// </summary>
         /// <param name="_word"></param>
+        /// <param name="_vocabulary"></param>
+        /// <param name="_revertOrder"></param>
         /// <returns></returns>
-        public static string ParseWord(string _word, List<LetterData> _vocabulary) {
+        public static string ParseWord(string _word, List<LetterData> _vocabulary, bool _revertOrder = false) {
             string returnString = string.Empty;
             List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
             if (letters.Count == 1)

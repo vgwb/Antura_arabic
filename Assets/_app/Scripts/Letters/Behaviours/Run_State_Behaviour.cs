@@ -23,7 +23,7 @@ namespace CGL.Antura {
             agent = GetComponent<NavMeshAgent>();
             if (!Target) { 
                 Target = Instantiate<Transform>(WayPointPrefab.transform);
-                Target.SetParent(transform.parent, false);
+                Target.SetParent(transform.parent, true);
                 Target.position = transform.position;
             }
             agent.SetDestination(Target.position);
