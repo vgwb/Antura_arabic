@@ -262,7 +262,7 @@ MonoBehaviour:
       name: 
       customDefines: 
       scenePathList:
-      - Assets\_tests\Stefano\environment.unity
+      - Assets\_games\FastCrowd\game_FastCrowd.unity
       isEnabled: 1
       openBuildFolder: 1
       appendProject: 0
@@ -307,4 +307,4 @@ MonoBehaviour:
       shouldAutoRunPlayer: 0
       wsaBuildAndRunDeployTarget: 0
     configurationIndex: 0
-    selectedConfigurationIndex: 0
+    selectedConfigurationIndex: -1
