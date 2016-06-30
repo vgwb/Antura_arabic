@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Test_00 {
+namespace CGL.Antura {
     public static class ArabicAlphabetHelper {
 
         /// <summary>
