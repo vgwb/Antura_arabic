@@ -2248,6 +2248,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 817268811}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &854602070 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 180732, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
+  m_PrefabInternal: {fileID: 425066649}
+--- !u!114 &854602075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 854602070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c332baa536bf0d340a2e9879602e31f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameplayInfo:
+    GameId: FastCrowd
+    minNumberOfLettersOnField: 5
+    MaxNumberOfLettersOnField: 10
 --- !u!1 &872909828
 GameObject:
   m_ObjectHideFlags: 0
