@@ -1198,6 +1198,7 @@ GameObject:
   - 222: {fileID: 22282120}
   - 114: {fileID: 11462754}
   - 114: {fileID: 11459138}
+  - 114: {fileID: 11476600}
   m_Layer: 5
   m_Name: BT Restart
   m_TagString: Untagged
@@ -4642,6 +4643,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalizedText_ID: close
+--- !u!114 &11476600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c332baa536bf0d340a2e9879602e31f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameplayInfo:
+    GameId: FastCrowd
+    minNumberOfLettersOnField: 5
+    MaxNumberOfLettersOnField: 10
 --- !u!114 &11477004
 MonoBehaviour:
   m_ObjectHideFlags: 1
