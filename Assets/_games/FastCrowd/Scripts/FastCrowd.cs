@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using CGL.Antura;
+using ModularFramework.Core;
 using ModularFramework.Helpers;
 using Google2u;
 
@@ -8,13 +9,17 @@ namespace CGL.Antura.FastCrowd {
 
     public class FastCrowd : AnturaMiniGame {
 
+        new public static FastCrowd Instance {
+            get { return SubGame.Instance as FastCrowd; }
+        }
+
         [Header("Letters Env")]
         public LetterObjectView LetterPref;
         public Transform TerrainTrans;
 
         [Header("Drop Area")] 
         public DropSingleArea DropSingleAreaPref;
-        public Transform DropAreaContainerTrans;
+        public DropContainer DropAreaContainer;
 
         [Header("Gameplay")]
         public int MinLettersOnField = 10;
@@ -49,6 +54,8 @@ namespace CGL.Antura.FastCrowd {
                 // TODO: the selection is curiously only between the letters of the word... to be checked.
                 letterObjectView.Init(AnturaGameManager.Instance.Letters.GetRandomElement());
             }
+
+            DropAreaContainer.SetupDone();
         }
 
         /// <summary>
@@ -57,9 +64,10 @@ namespace CGL.Antura.FastCrowd {
         /// <param name="_letterData"></param>
         void PlaceDropAreaElement(LetterData _letterData, int position) {
             DropSingleArea dropSingleArea = Instantiate(DropSingleAreaPref);
-            dropSingleArea.transform.SetParent(DropAreaContainerTrans, false);
+            dropSingleArea.transform.SetParent(DropAreaContainer.transform, false);
             dropSingleArea.transform.position = dropSingleArea.transform.position + new Vector3(-2f * position, 0, 0);
-            dropSingleArea.Init(_letterData);
+            dropSingleArea.Init(_letterData, DropAreaContainer);
+            
         }
 
 

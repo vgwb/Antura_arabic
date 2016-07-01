@@ -20,9 +20,10 @@
 using UnityEngine;
 using System.Collections;
 using UniRx;
+using ModularFramework.Core;
 
 namespace ModularFramework.Core {
-    public abstract class SubGame : MonoBehaviour {
+    public abstract class SubGame : Singleton<SubGame> {
         public string GameId;
 
     }

@@ -1024,6 +1024,7 @@ MonoBehaviour:
   RightLetter: {fileID: 0}
   LeftLetter: {fileID: 0}
   IsMerged: 0
+  ActualDropArea: {fileID: 0}
   Lable: {fileID: 11453994}
 --- !u!114 &11479954
 MonoBehaviour:
