@@ -8,7 +8,11 @@ namespace CGL.Antura {
 
     public class LetterObject {
 
-        LetterData Data;
+        public LetterData Data;
+
+        public LetterObject(LetterData _data) {
+            Data = _data;
+        }
 
         #region States
 

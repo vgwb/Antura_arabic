@@ -948,7 +948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11409102, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11409102, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_materialDirty
@@ -1943,8 +1943,10 @@ MonoBehaviour:
     GameId: FastCrowd
     minNumberOfLettersOnField: 5
     MaxNumberOfLettersOnField: 10
-  LetterPrefab: {fileID: 11468656, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
-  Terrain: {fileID: 872909832}
+  LetterPref: {fileID: 11468656, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
+  TerrainTrans: {fileID: 872909832}
+  DropSingleAreaPref: {fileID: 11418370, guid: 469dceb07ab03144297faf399a707df6, type: 2}
+  DropAreaContainerTrans: {fileID: 1599871826}
   MinLettersOnField: 10
 --- !u!4 &577714064
 Transform:
@@ -3827,6 +3829,34 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
   m_PrefabInternal: {fileID: 1396736191}
+--- !u!1 &1599871825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1599871826}
+  m_Layer: 0
+  m_Name: DropAreaContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599871826
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1599871825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: -27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1001 &1646814948
 Prefab:
   m_ObjectHideFlags: 0

@@ -1,23 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 namespace CGL.Antura {
+    [RequireComponent(typeof(LetterObjectView))]
     /// <summary>
     /// Manage player drag behaviour.
     /// </summary>
     public class Hangable : MonoBehaviour {
 
         bool OnDrag = false;
-
         Transform tmpTarget;
+        LetterObjectView letterView;
+
+        void Start() {
+            letterView = GetComponent<LetterObjectView>();
+        }
 
         void OnMouseDown() {
             OnDrag = true;
             gameObject.GetComponent<Animator>().Play("hold");
+            letterView.Model.State = LetterObjectState.Grab_State;
         }
 
         void OnMouseUp() {
             OnDrag = false;
             gameObject.GetComponent<Animator>().Play("run");
+            letterView.Model.State = LetterObjectState.Run_State;
         }
 
         void Update() {
