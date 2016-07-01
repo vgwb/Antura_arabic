@@ -5,7 +5,14 @@ using System;
 namespace CGL.Antura {
     public class BaseBehaviour : MonoBehaviour, IBehaviour {
 
+        public LetterObject Model;
+
         void OnEnable() {
+            
+        }
+
+        public void StartBehaviour(LetterObject _model) {
+            Model = _model;
             OnStartBehaviour();
         }
 

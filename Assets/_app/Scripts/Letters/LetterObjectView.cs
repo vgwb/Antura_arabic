@@ -127,5 +127,17 @@ namespace CGL.Antura {
         //    }
         //}
         //#endregion
+
+        void OnTriggerStay(Collider other) {
+            DropSingleArea dropArea = other.GetComponent<DropSingleArea>();
+            if (dropArea) {
+                if (Model.State == LetterObjectState.Grab_State) {
+                    Debug.Log("Test");
+                } else if (Model.State == LetterObjectState.Run_State) {
+                    Debug.Log("ReleaseLettera");
+                }
+                
+            }
+        }
     }
 }
