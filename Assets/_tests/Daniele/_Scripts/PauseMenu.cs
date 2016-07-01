@@ -105,11 +105,12 @@ namespace CGL.Antura.DTest
                 case 0: // Exit
                     OpenMenu(false);
                     break;
-                case 1: // Restart
+                case 1: // Music on/off
                     // TODO
                     break;
-                case 2: // Music on/off
-                    // TODO
+                case 2: // Restart
+                        
+                    OpenMenu(false);
                     break;
                 case 3: // Resume
                     OpenMenu(false);
