@@ -8,9 +8,15 @@ namespace CGL.Antura.FastCrowd {
 
     public class FastCrowd : AnturaMiniGame {
 
-        public LetterObjectView LetterPrefab;
-        public Transform Terrain;
+        [Header("Letters Env")]
+        public LetterObjectView LetterPref;
+        public Transform TerrainTrans;
 
+        [Header("Drop Area")] 
+        public DropSingleArea DropSingleAreaPref;
+        public Transform DropAreaContainerTrans;
+
+        [Header("Gameplay")]
         public int MinLettersOnField = 10;
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
 
@@ -23,23 +29,41 @@ namespace CGL.Antura.FastCrowd {
             string word = words.Instance.Rows.GetRandomElement()._word;
             List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AnturaGameManager.Instance.Letters);
 
+            int count = 0;
+            // Letter from db filtered by some parameters
             foreach (LetterData letterData in gameLetters) {
-                LetterObjectView letterObjectView = Instantiate(LetterPrefab);
-                letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // ???
-                letterObjectView.transform.SetParent(Terrain, true);
+                LetterObjectView letterObjectView = Instantiate(LetterPref);
+                letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
+                letterObjectView.transform.SetParent(TerrainTrans, true);
                 letterObjectView.Init(letterData);
+                PlaceDropAreaElement(letterData, count);
+                count++;
             }
 
-            /// Add other random letters
+            // Add other random letters
             int OtherLettersCount = MinLettersOnField - gameLetters.Count;
             for (int i = 0; i < OtherLettersCount; i++) {
-                LetterObjectView letterObjectView = Instantiate(LetterPrefab);
-                letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // ???
-                letterObjectView.transform.SetParent(Terrain, true);
+                LetterObjectView letterObjectView = Instantiate(LetterPref);
+                letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
+                letterObjectView.transform.SetParent(TerrainTrans, true);
+                // TODO: the selection is curiously only between the letters of the word... to be checked.
                 letterObjectView.Init(AnturaGameManager.Instance.Letters.GetRandomElement());
             }
+
+            
+
         }
 
+        /// <summary>
+        /// Place drop object area in drop object area container.
+        /// </summary>
+        /// <param name="_letterData"></param>
+        void PlaceDropAreaElement(LetterData _letterData, int position) {
+            DropSingleArea dropSingleArea = Instantiate(DropSingleAreaPref);
+            dropSingleArea.transform.SetParent(DropAreaContainerTrans, false);
+            dropSingleArea.transform.position = dropSingleArea.transform.position + new Vector3(-1.8f * position, 0, 0);
+            dropSingleArea.Init(_letterData);
+        }
 
 
     }

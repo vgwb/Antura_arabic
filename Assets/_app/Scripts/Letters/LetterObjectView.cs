@@ -10,7 +10,8 @@ namespace CGL.Antura {
         public LetterObjectView RightLetter = null;
         public LetterObjectView LeftLetter = null;
 
-        public LetterData Data;
+        public LetterObject Model;
+        //public LetterData Data;
         public bool IsMerged;
 
         NavMeshAgent agent;
@@ -28,11 +29,10 @@ namespace CGL.Antura {
             agent.enabled = false;
             */
             //GetComponent<Collider>().isTrigger = false;
-            Debug.Log("1: " + Lable.text);
-            Data = _data;
-            Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(_data.Isolated_Unicode);
+            Model = new LetterObject(_data);
+            //Data = _data;
+            Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Isolated_Unicode);
             IsMerged = false;
-            Debug.Log("2: " + Lable.text);
         }
 
         //void OnMouseDrag() {
@@ -76,25 +76,25 @@ namespace CGL.Antura {
 
         public void SetLetterForPosition() {
             IsMerged = true;
-            if (Data == null)
+            if (Model.Data == null)
                 // No data in db.
                 return;
             if (RightLetter == null && LeftLetter == null) {
                 // Isolate
-                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
+                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Isolated_Unicode);
                 return;
             }else
             if (RightLetter != null && LeftLetter == null) {
                 // Initial
-                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Initial_Unicode);
+                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Initial_Unicode);
             }else
             if (RightLetter == null && LeftLetter != null) {
                 // Final
-                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Final_Unicode);
+                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Final_Unicode);
             } else
             if (RightLetter != null && LeftLetter != null) {
                 // Median
-                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Medial_Unicode);
+                Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Medial_Unicode);
             }
         }
 

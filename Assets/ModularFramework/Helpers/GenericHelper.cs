@@ -17,7 +17,7 @@
 *   You should have received a copy of the GNU Lesser General Public
 *   License along with this library.
 * -------------------------------------------------------------- */
-using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace ModularFramework.Helpers {
@@ -33,7 +33,7 @@ namespace ModularFramework.Helpers {
         /// <param name="_thisList"></param>
         /// <returns></returns>
         public static T GetRandomElement<T>(this List<T> _thisList) {
-            return _thisList[new Random().Next(_thisList.Count)];
+            return _thisList[Random.Range(0, _thisList.Count-1)];
         }
 
         #endregion
