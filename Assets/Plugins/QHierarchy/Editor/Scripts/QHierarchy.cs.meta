@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: baee1b3609dcc354895983769e02281f
+labels:
+- Hierarchy
+- Visibility
+- Lock
+- Unlock
+- Icon
+- Error
+- Advanced
+- Tree
+- QHierarchy
+- Show
+- Hide
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - visibilityOnIcon: {fileID: 2800000, guid: 17f7c0a2158528b4cb6613a9d0e4d275, type: 3}
+  - visibilityOffIcon: {fileID: 2800000, guid: 5e24d85812a899b4fa28e6320709d644, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
