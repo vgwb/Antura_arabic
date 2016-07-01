@@ -8,7 +8,7 @@ namespace CGL.Antura {
         public LetterObject Model;
 
         void OnEnable() {
-            
+            OnStartBehaviour();
         }
 
         public void StartBehaviour(LetterObject _model) {

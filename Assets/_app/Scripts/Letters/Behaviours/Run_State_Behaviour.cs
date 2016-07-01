@@ -98,13 +98,13 @@ namespace CGL.Antura {
             //void OnTriggerEnter(Collider other) {
             if (agent && Target && other != Target.GetComponent<Collider>()) {
 
-            } else { 
-                
-                float casual = Random.Range(0f, 1f);
-                if (casual > 0.3)
-                    RepositioningWaypoint();
-                else
-                    Debug.Log("Hidle");
+            } else {
+                RepositioningWaypoint();
+                //float casual = Random.Range(0f, 1f);
+                //if (casual > 0.3)
+                    
+                //else
+                //    Debug.Log("Hidle");
             }
         }
         #endregion
