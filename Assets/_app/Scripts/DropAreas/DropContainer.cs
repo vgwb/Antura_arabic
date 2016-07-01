@@ -16,8 +16,13 @@ namespace CGL.Antura {
         }
 
         public void NextArea() {
-            if (actualAreaIndex < Aree.Count)
+            if (actualAreaIndex < Aree.Count -1)
                 actualAreaIndex++;
+            else { 
+                // TODO: quick and dirty -> change soon as possible.
+                AnturaGameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
+                Debug.Log("Win");
+            }
             activateActualArea();
         }
 

@@ -40,7 +40,26 @@ namespace CGL.Antura {
             /// Monitoring Model property XXX value changes.
             /// </summary>
             this.transform.ObserveEveryValueChanged(x => dropState).Subscribe(_ => {
-                Debug.Log("Dropstate: " + dropState);
+
+                switch (dropState) {
+                    case DropState.off:
+                        if (ActualDropArea) { 
+                            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
+                            ActualDropArea = null;
+                        }
+                        break;
+                    case DropState.check_ok:
+                        if(ActualDropArea)
+                            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.green;
+                        break;
+                    case DropState.check_ko:
+                        if(ActualDropArea)
+                            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.red;
+                        break;
+                    default:
+                        break;
+                }
+
             });
 
         }
@@ -160,13 +179,16 @@ namespace CGL.Antura {
             if (ActualDropArea == other.GetComponent<DropSingleArea>()) {
                 dropState = DropState.off;
             }
-            ActualDropArea = null;
+            
         }
 
         void OnMouseUp() {
             if (dropState == DropState.check_ok) {
                 ActualDropArea.DropContain.NextArea();
                 GameObject.Destroy(gameObject);
+            } else {
+                if(ActualDropArea)
+                    ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
             }
         }
 
