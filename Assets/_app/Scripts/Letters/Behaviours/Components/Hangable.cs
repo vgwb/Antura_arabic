@@ -19,6 +19,10 @@ namespace CGL.Antura {
             OnDrag = true;
             gameObject.GetComponent<Animator>().Play("hold");
             letterView.Model.State = LetterObjectState.Grab_State;
+            // Audio
+            AudioSource audio = FastCrowd.FastCrowd.Instance.GetComponent<AudioSource>();
+            audio.clip = Instantiate<AudioClip>(Resources.Load("Audio/Vox/Letters/Names/VOX_Letters_" + GetComponent<LetterObjectView>().Model.Data.Key) as AudioClip);
+            audio.Play();
         }
 
         void OnMouseUp() {
