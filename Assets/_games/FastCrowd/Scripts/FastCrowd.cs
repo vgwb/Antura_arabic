@@ -49,9 +49,6 @@ namespace CGL.Antura.FastCrowd {
                 // TODO: the selection is curiously only between the letters of the word... to be checked.
                 letterObjectView.Init(AnturaGameManager.Instance.Letters.GetRandomElement());
             }
-
-            
-
         }
 
         /// <summary>
@@ -61,7 +58,7 @@ namespace CGL.Antura.FastCrowd {
         void PlaceDropAreaElement(LetterData _letterData, int position) {
             DropSingleArea dropSingleArea = Instantiate(DropSingleAreaPref);
             dropSingleArea.transform.SetParent(DropAreaContainerTrans, false);
-            dropSingleArea.transform.position = dropSingleArea.transform.position + new Vector3(-1.8f * position, 0, 0);
+            dropSingleArea.transform.position = dropSingleArea.transform.position + new Vector3(-2f * position, 0, 0);
             dropSingleArea.Init(_letterData);
         }
 
