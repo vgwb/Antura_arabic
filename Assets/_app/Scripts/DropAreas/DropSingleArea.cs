@@ -55,8 +55,5 @@ namespace CGL.Antura {
             enabled,
             disabled,
         }
-
-
-
     }
 }

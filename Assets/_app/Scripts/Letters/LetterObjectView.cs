@@ -185,6 +185,11 @@ namespace CGL.Antura {
         void OnMouseUp() {
             if (dropState == DropState.check_ok) {
                 ActualDropArea.DropContain.NextArea();
+                // Audio - quick and dirty
+                AudioSource audio = FastCrowd.FastCrowd.Instance.GetComponent<AudioSource>();
+                audio.clip = Instantiate<AudioClip>(Resources.Load("Audio/Vox/Letters/Names/VOX_Letters_" + Model.Data.Key) as AudioClip);
+                audio.Play();
+
                 GameObject.Destroy(gameObject);
             } else {
                 if(ActualDropArea)
