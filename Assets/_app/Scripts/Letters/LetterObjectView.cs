@@ -27,11 +27,12 @@ namespace CGL.Antura {
                 gameObject.AddComponent<NavMeshAgent>();
             agent.enabled = false;
             */
-
-            GetComponent<Collider>().isTrigger = false;
+            //GetComponent<Collider>().isTrigger = false;
+            Debug.Log("1: " + Lable.text);
             Data = _data;
             Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(_data.Isolated_Unicode);
             IsMerged = false;
+            Debug.Log("2: " + Lable.text);
         }
 
         //void OnMouseDrag() {

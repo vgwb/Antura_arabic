@@ -8,51 +8,27 @@ namespace CGL.Antura {
 
         bool OnDrag = false;
 
+        Transform tmpTarget;
+
         void OnMouseDown() {
             OnDrag = true;
+            gameObject.GetComponent<Animator>().Play("hold");
         }
 
         void OnMouseUp() {
             OnDrag = false;
+            gameObject.GetComponent<Animator>().Play("run");
         }
 
         void Update() {
             if (OnDrag) {
-                //if (!Terrain)
-                //    return;
-
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, 1000)) {
+                if (Physics.Raycast(ray, out hit, 100)) {
                     transform.position = hit.point;
                 }
-
-                //RaycastHit hit;
-                //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                
-                //if (Terrain.Raycast(ray, out hit, Mathf.Infinity)) {
-                //    transform.position = hit.point;
-                //}
             }
         }
-
         
-
-
-        /// <summary>
-        /// On drag state.
-        /// </summary>
-        //void OnMouseDrag() {
-
-        //        Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
-        //        Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
-        //        transform.position = worldPos;
-
-
-        //        //Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-        //        //Vector3 objPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, -Camera.main.transform.position.z));
-        //        ////transform.localPosition = new Vector3(objPosition.x, objPosition.y, transform.localPosition.z);
-        //        //transform.localPosition = new Vector3(objPosition.x, transform.localPosition.y, objPosition.z);
-        //    }
     }
 }
