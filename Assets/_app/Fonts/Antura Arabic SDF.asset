@@ -122,15 +122,15 @@ Material:
       data:
         first:
           name: _GlowOffset
-        second: 0
+        second: 0.23
       data:
         first:
           name: _GlowPower
-        second: 0.75
+        second: 0.377
       data:
         first:
           name: _GlowOuter
-        second: 0.05
+        second: 0
       data:
         first:
           name: _MaskSoftnessX
@@ -190,7 +190,7 @@ Material:
       data:
         first:
           name: _GlowInner
-        second: 0.05
+        second: 0
       data:
         first:
           name: _FaceUVSpeedX
@@ -271,7 +271,7 @@ Material:
       data:
         first:
           name: _GlowColor
-        second: {r: 0, g: 1, b: 0, a: 0.5}
+        second: {r: 1, g: 1, b: 1, a: 0.5}
       data:
         first:
           name: _MaskCoord
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_fontInfo:
     Name: A_Nefel_Adeti
     PointSize: 92
-    Scale: 0
+    Scale: 1
     CharacterCount: 340
     LineHeight: 137.4375
     Baseline: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
     SubSize: 0.5
     Underline: -35.879997
     UnderlineThickness: 4.508
-    TabWidth: 0
+    TabWidth: 224.375
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -360,10 +360,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 1029
-    width: 0
-    height: 0
+    width: 22.4375
+    height: 137.4375
     xOffset: 0
-    yOffset: 0
+    yOffset: 91.4375
     xAdvance: 22.4375
   - id: 33
     x: 256
