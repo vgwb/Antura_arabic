@@ -5,6 +5,8 @@ using System;
 namespace CGL.Antura {
     public static class ArabicAlphabetHelper {
 
+
+
         /// <summary>
         /// Return single letter string start from unicode hexa code.
         /// </summary>

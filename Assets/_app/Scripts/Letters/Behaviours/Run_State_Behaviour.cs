@@ -12,7 +12,7 @@ namespace CGL.Antura {
         /// <summary>
         /// Target.
         /// </summary>
-        Transform Target;
+        public Transform Target;
         
         NavMeshAgent agent;
 
@@ -95,10 +95,12 @@ namespace CGL.Antura {
 
         #region collisions
         void OnTriggerStay(Collider other) {
-        //void OnTriggerEnter(Collider other) {
-            if(Target && other != Target.GetComponent<Collider>())
-                return;
-            RepositioningWaypoint();
+            //void OnTriggerEnter(Collider other) {
+            if (agent && Target && other != Target.GetComponent<Collider>()) {
+
+            } else { 
+                RepositioningWaypoint();
+            }
         }
         #endregion
 
