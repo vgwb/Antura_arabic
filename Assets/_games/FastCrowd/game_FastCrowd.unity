@@ -948,7 +948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11409102, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11409102, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_materialDirty
@@ -1106,10 +1106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd999d1b2cf94a45a5b0a47ce074bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supportHDRTextures: 1
-  supportDX11: 0
-  isSupported: 1
   redChannel:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -1125,6 +1123,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   greenChannel:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0.07821808
@@ -1140,6 +1139,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   blueChannel:
+    serializedVersion: 2
     m_Curve:
     - time: 0.009803922
       value: 0.2017937
@@ -1156,6 +1156,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   useDepthCorrection: 0
   zCurve:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -1171,6 +1172,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   depthRedChannel:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -1186,6 +1188,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   depthGreenChannel:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -1201,6 +1204,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   depthBlueChannel:
+    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -1215,24 +1219,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ccMaterial: {fileID: 0}
-  ccDepthMaterial: {fileID: 0}
-  selectiveCcMaterial: {fileID: 0}
-  rgbChannelTex: {fileID: 0}
-  rgbDepthChannelTex: {fileID: 0}
-  zCurveTex: {fileID: 0}
   saturation: 0.84
   selectiveCc: 1
-  selectiveFromColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  selectiveToColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  selectiveFromColor: {r: 1, g: 1, b: 1, a: 1}
+  selectiveToColor: {r: 1, g: 1, b: 1, a: 1}
   mode: 0
   updateTextures: 1
   colorCorrectionCurvesShader: {fileID: 4800000, guid: 62bcade1028c24ca1a39760ed84b9487,
@@ -1241,7 +1231,6 @@ MonoBehaviour:
     type: 3}
   colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544,
     type: 3}
-  updateTexturesOnStartup: 0
 --- !u!114 &441890352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,9 +1242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6d4281e5d7cd44d8c6e38bc2c1b8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supportHDRTextures: 1
-  supportDX11: 0
-  isSupported: 1
   mode: 0
   intensity: 0.193
   chromaticAberration: 0
@@ -1268,9 +1254,6 @@ MonoBehaviour:
   separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
   chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
     type: 3}
-  m_VignetteMaterial: {fileID: 0}
-  m_SeparableBlurMaterial: {fileID: 0}
-  m_ChromAberrationMaterial: {fileID: 0}
 --- !u!114 &441890353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,9 +1265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd70d448b18cfbc46af26466f752332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supportHDRTextures: 1
-  supportDX11: 0
-  isSupported: 1
   visualizeFocus: 0
   focalLength: 20
   focalSize: 0.12
@@ -1297,17 +1277,12 @@ MonoBehaviour:
   nearBlur: 0
   foregroundOverlap: 1
   dofHdrShader: {fileID: 4800000, guid: acd613035ff3e455e8abf23fdc8c8c24, type: 3}
-  dofHdrMaterial: {fileID: 0}
   dx11BokehShader: {fileID: 4800000, guid: d8e82664aa8686642a424c88ab10164a, type: 3}
-  dx11bokehMaterial: {fileID: 0}
   dx11BokehThreshold: 0.5
   dx11SpawnHeuristic: 0.0875
   dx11BokehTexture: {fileID: 2800000, guid: a4cdca73d61814d33ac1587f6c163bca, type: 3}
   dx11BokehScale: 1.2
   dx11BokehIntensity: 2.5
-  focalDistance01: 10
-  internalBlurWidth: 1
-  cachedCamera: {fileID: 0}
 --- !u!114 &441890354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,17 +1294,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  supportHDRTextures: 1
-  supportDX11: 0
-  isSupported: 1
   threshold: 0.154
   intensity: 0.15
   blurSize: 1
-  resolution: 0
   blurIterations: 1
   blurType: 0
   fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
-  fastBloomMaterial: {fileID: 0}
 --- !u!114 &441890355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1349,8 +1319,6 @@ MonoBehaviour:
   yMaxLimit: 80
   distanceMin: 10
   distanceMax: 95.6
-  x: 0
-  y: 0
   autoMovement: 0
   autoSpeedX: 0.05
   autoSpeedY: 0.1
@@ -1951,6 +1919,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 577714064}
   - 114: {fileID: 577714063}
+  - 82: {fileID: 577714065}
   m_Layer: 0
   m_Name: FastCrowd
   m_TagString: Untagged
@@ -1969,11 +1938,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0291c533aac2cc14280973018f39a4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TypeName>k__BackingField: 
-  GameId: 4661737443726f7764
+  GameId: FastCrowd
   UseTestGameplayInfo: 1
   GameplayInfo:
-    GameId: 4661737443726f7764
+    GameId: FastCrowd
     minNumberOfLettersOnField: 5
     MaxNumberOfLettersOnField: 10
   LetterPref: {fileID: 11468656, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
@@ -1995,6 +1963,80 @@ Transform:
   - {fileID: 1652430858}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &577714065
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577714062}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &648127174 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
@@ -2257,7 +2299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameplayInfo:
-    GameId: 4661737443726f7764
+    GameId: FastCrowd
     minNumberOfLettersOnField: 5
     MaxNumberOfLettersOnField: 10
 --- !u!1 &872909828
@@ -3235,19 +3277,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
@@ -3907,7 +3949,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Aree: []
-  actualAreaIndex: 0
 --- !u!1001 &1646814948
 Prefab:
   m_ObjectHideFlags: 0
