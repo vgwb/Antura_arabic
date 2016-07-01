@@ -2,6 +2,7 @@
 using System.Collections;
 using TMPro;
 using System.Text.RegularExpressions;
+using UniRx;
 
 namespace CGL.Antura {
     public class LetterObjectView : MonoBehaviour {
@@ -11,9 +12,10 @@ namespace CGL.Antura {
         public LetterObjectView LeftLetter = null;
 
         public LetterObject Model;
-        //public LetterData Data;
+        
         public bool IsMerged;
-
+        public DropSingleArea ActualDropArea;
+        DropState dropState = DropState.off;
         NavMeshAgent agent;
 
         #region View
@@ -30,11 +32,20 @@ namespace CGL.Antura {
             */
             //GetComponent<Collider>().isTrigger = false;
             Model = new LetterObject(_data);
-            //Data = _data;
             Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Isolated_Unicode);
             IsMerged = false;
+
+
+            /// <summary>
+            /// Monitoring Model property XXX value changes.
+            /// </summary>
+            this.transform.ObserveEveryValueChanged(x => dropState).Subscribe(_ => {
+                Debug.Log("Dropstate: " + dropState);
+            });
+
         }
 
+        #region 
         //void OnMouseDrag() {
         //    if (IsMerged)
         //        return;
@@ -127,17 +138,42 @@ namespace CGL.Antura {
         //    }
         //}
         //#endregion
+        #endregion
 
         void OnTriggerStay(Collider other) {
-            DropSingleArea dropArea = other.GetComponent<DropSingleArea>();
-            if (dropArea) {
+            ActualDropArea = other.GetComponent<DropSingleArea>();
+            if (ActualDropArea) {
                 if (Model.State == LetterObjectState.Grab_State) {
-                    Debug.Log("Test");
+                    if (ActualDropArea.Data == Model.Data)
+                        dropState = DropState.check_ok;
+                    else
+                        dropState = DropState.check_ko;
                 } else if (Model.State == LetterObjectState.Run_State) {
                     Debug.Log("ReleaseLettera");
+                } else {
+                    
                 }
-                
             }
+        }
+
+        void OnTriggerExit(Collider other) {
+            if (ActualDropArea == other.GetComponent<DropSingleArea>()) {
+                dropState = DropState.off;
+            }
+            ActualDropArea = null;
+        }
+
+        void OnMouseUp() {
+            if (dropState == DropState.check_ok) {
+                ActualDropArea.DropContain.NextArea();
+                GameObject.Destroy(gameObject);
+            }
+        }
+
+        public enum DropState {
+            off, // Not checkable
+            check_ok, // right matching preview
+            check_ko, // wrong matching preview
         }
     }
 }

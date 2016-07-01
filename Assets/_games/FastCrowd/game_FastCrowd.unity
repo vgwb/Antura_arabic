@@ -948,7 +948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11409102, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11409102, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_materialDirty
@@ -1946,7 +1946,7 @@ MonoBehaviour:
   LetterPref: {fileID: 11468656, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
   TerrainTrans: {fileID: 872909832}
   DropSingleAreaPref: {fileID: 11418370, guid: 469dceb07ab03144297faf399a707df6, type: 2}
-  DropAreaContainerTrans: {fileID: 1599871826}
+  DropAreaContainer: {fileID: 1599871827}
   MinLettersOnField: 10
 --- !u!4 &577714064
 Transform:
@@ -3202,19 +3202,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.6885094
+      value: -0.68850946
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607113
+      value: 0.040607117
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.71819454
+      value: 0.7181946
       objectReference: {fileID: 0}
     - target: {fileID: 483126, guid: 3eec9e65c259afa4f8f4ab10f00e489a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220874
+      value: 0.09220875
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
@@ -3837,6 +3837,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1599871826}
+  - 114: {fileID: 1599871827}
   m_Layer: 0
   m_Name: DropAreaContainer
   m_TagString: Untagged
@@ -3857,6 +3858,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
+--- !u!114 &1599871827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1599871825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165f7075dce7c904da2f5ea2ece33a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Aree: []
 --- !u!1001 &1646814948
 Prefab:
   m_ObjectHideFlags: 0
@@ -3965,7 +3978,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0989882a47e7b4a9485420869dbc74bb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 462e9bd13f32041098fe186f5e58d7dd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
