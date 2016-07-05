@@ -30,6 +30,10 @@ public class BalloonTopController : MonoBehaviour
         {
             Pop();
         }
+        else
+        {
+            animator.SetTrigger("Tap");
+        }
     }
 
     public void Pop()
