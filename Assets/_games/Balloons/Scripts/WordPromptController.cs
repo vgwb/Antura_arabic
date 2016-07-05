@@ -12,7 +12,7 @@ public class WordPromptController : MonoBehaviour
     [HideInInspector]
     public List<LetterPromptController> IdleLetterPrompts
     {
-        get { return new List<LetterPromptController>(letterPrompts).FindAll(prompt => prompt.State == LetterPromptController.PromptState.IDLE); }
+        get { return new List<LetterPromptController>(letterPrompts).FindAll(prompt => prompt.isActiveAndEnabled && prompt.State == LetterPromptController.PromptState.IDLE); }
     }
 
 
@@ -22,8 +22,6 @@ public class WordPromptController : MonoBehaviour
         {
             letterPrompts[i].gameObject.SetActive(true);
             letterPrompts[i].Init(wordLetters[i]);
-
-            Debug.Log("Prompt: " + i);
         }
     }
 
