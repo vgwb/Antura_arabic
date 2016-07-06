@@ -7,7 +7,7 @@ namespace CGL.Antura.WanderingLetters {
     public class WanderingLetters : AnturaMiniGame {
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
-            Debug.LogFormat("Start {0} gameplay : {1} ", GameId, GameplayInfo);
+            Debug.LogFormat("Start {0} gameplay : {1} ", GameplayInfo.GameId, GameplayInfo);
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace CGL.Antura.WanderingLetters {
 
             AnturaGameManager.Instance.Modules.GameplayModule.GameplayResult(
                     new AnturaGameplayResult() {
-                        GameplayInfo = new AnturaGameplayInfo() { GameId = this.GameId },
+                        GameplayInfo = new AnturaGameplayInfo() { GameId = this.GameplayInfo.GameId },
                         Stars = _stars,
                         PositiveResult = positiveResult
                     }

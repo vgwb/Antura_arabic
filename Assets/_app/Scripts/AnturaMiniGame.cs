@@ -6,8 +6,11 @@ using ModularFramework.Modules;
 namespace CGL.Antura {
 
     public abstract class AnturaMiniGame : SubGame {
+        /// <summary>
+        /// If true 
+        /// </summary>
         public bool UseTestGameplayInfo;
-        public AnturaGameplayInfo GameplayInfo;
+        public AnturaGameplayInfo GameplayInfo = new AnturaGameplayInfo();
         void Start() {
             if (!UseTestGameplayInfo)
                 GameplayInfo = AnturaGameManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
@@ -21,7 +24,7 @@ namespace CGL.Antura {
         /// </summary>
         /// <param name="_gameplayInfo"></param>
         protected virtual void ReadyForGameplay() {
-            Debug.LogFormat("Gameplay {0} ready with data: {1}", GameplayInfo.GameId, GameplayInfo);
+            //Debug.LogFormat("Gameplay {0} ready with data: {1}", GameplayInfo.GameId, GameplayInfo);
         }
     }
 }

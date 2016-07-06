@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using System.Text.RegularExpressions;
 using UniRx;
+using Panda;
 
 namespace CGL.Antura {
     public class LetterObjectView : MonoBehaviour {
@@ -17,6 +18,8 @@ namespace CGL.Antura {
         public DropSingleArea ActualDropArea;
         DropState dropState = DropState.off;
         NavMeshAgent agent;
+
+
 
         #region View
         public TMP_Text Lable;

@@ -24,7 +24,6 @@ using ModularFramework.Core;
 
 namespace ModularFramework.Core {
     public abstract class SubGame : Singleton<SubGame> {
-        public string GameId;
 
     }
 }
