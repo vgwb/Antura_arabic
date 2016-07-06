@@ -1,0 +1,29 @@
+tree("Root")
+	Parallel
+		repeat mute tree("Idle")
+		repeat mute tree("LookingToTarget")
+
+// -------------------------
+// Behaviours States		
+// -------------------------
+tree("Idle")
+	Sequence
+		SetAnimation("Idle")
+		Wait(2.0)
+		tree("Run")
+
+tree("Run")
+	Sequence
+		SetAnimation("Run")
+		Wait(20000.0)
+		tree("Hold")
+
+tree("Hold")
+	Sequence
+		SetAnimation("Hold")
+		Wait(2.0)
+// -------------------------
+
+tree("LookingToTarget")
+	while IsLookingToTarget 
+		LookAtTarget()

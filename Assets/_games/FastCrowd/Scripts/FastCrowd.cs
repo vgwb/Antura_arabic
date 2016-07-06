@@ -4,14 +4,22 @@ using CGL.Antura;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using Google2u;
+using System;
+using ModularFramework.Modules;
 
 namespace CGL.Antura.FastCrowd {
 
     public class FastCrowd : AnturaMiniGame {
 
+        [Header("Gameplay Info and Config section")]
+        #region Overrides
+
+        new public FastCrowdGameplayInfo GameplayInfo;
+
         new public static FastCrowd Instance {
             get { return SubGame.Instance as FastCrowd; }
         }
+        #endregion
 
         [Header("Letters Env")]
         public LetterObjectView LetterPref;
@@ -28,6 +36,8 @@ namespace CGL.Antura.FastCrowd {
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
             // put here start logic
+            Debug.LogFormat("Game {0} ready!", GameplayInfo.GameId);
+
 
             // Get letters and word
             // TODO: Only for pre-alpha. This logic must be in Antura app logic.
@@ -71,5 +81,13 @@ namespace CGL.Antura.FastCrowd {
         }
 
 
+    }
+
+    /// <summary>
+    /// Gameplay info class data structure.
+    /// </summary>
+    [Serializable]
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
+        public float Time = 10;
     }
 }

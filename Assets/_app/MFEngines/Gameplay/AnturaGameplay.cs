@@ -45,14 +45,11 @@ namespace CGL.Antura {
         public int Stars;
     }
 
-    [Serializable]
     /// <summary>
     /// Gameplay info class data structure.
     /// </summary>
     public class AnturaGameplayInfo : IGameplayInfo {
         public string GameId;
-        public int minNumberOfLettersOnField = 5;
-        public int MaxNumberOfLettersOnField = 10;
     }
 }
         
