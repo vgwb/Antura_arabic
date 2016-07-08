@@ -4,6 +4,7 @@ using System.Collections;
 using Panda;
 using DG.Tweening;
 using UniRx;
+using ModularFramework.Helpers;
 
 namespace CGL.Antura {
     public class LetterBehaviour : MonoBehaviour {
@@ -60,17 +61,20 @@ namespace CGL.Antura {
         }
         #endregion
 
-        #region common
+        #region States
+        float runtimeWaitTime = 0;
         [Task]
         public void HoldState(string _stateName) {
             switch (_stateName) {
                 case "Idle":
-                    Wait(Settings.IdleDuration);
-                    //Task.current.Succeed();
+                    if(Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.IdleDuration, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
                     break;
                 case "Walk":
-                    Wait(Settings.WalkDuration);
-                    //Task.current.Succeed();
+                    if (Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.WalkDuration, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
                     break;
                 default:
                     
@@ -114,7 +118,7 @@ namespace CGL.Antura {
             [Range(0, 10)]
             public float NotLookAtTargetDuration = 1;
 
-            [Header("LookAtTarget behaviour settings")]
+            [Header("Behaviour variation settings")]
             [Range(0, 6)]
             public float DurationRandomDelta = 2;
             [Range(1, 10)]

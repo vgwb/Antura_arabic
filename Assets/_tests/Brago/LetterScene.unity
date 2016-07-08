@@ -5058,6 +5058,18 @@ Prefab:
       propertyPath: LookAtTargetDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11430078, guid: 04d7a7dc7bbbd924eac035e8246d2980, type: 2}
+      propertyPath: Settings.IdleDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430078, guid: 04d7a7dc7bbbd924eac035e8246d2980, type: 2}
+      propertyPath: Settings.WalkDuration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430078, guid: 04d7a7dc7bbbd924eac035e8246d2980, type: 2}
+      propertyPath: Settings.DurationRandomDelta
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04d7a7dc7bbbd924eac035e8246d2980, type: 2}
   m_IsPrefabParent: 0
