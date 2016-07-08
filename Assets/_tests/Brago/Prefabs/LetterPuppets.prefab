@@ -802,6 +802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda11838f0def444b8e431ef4d345809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Settings:
+    LookAtTargetDuration: 1
+    NotLookAtTargetDuration: 1
   Target: {fileID: 0}
   WorldUpForT: {x: 0, y: 1, z: 0}
   RotateBonesTransform: {fileID: 436112}
@@ -821,7 +824,7 @@ MonoBehaviour:
   scripts:
   - {fileID: 4900000, guid: 3bcf394d6d5f99d47a24e4fddf26380f, type: 3}
   autoReset: 1
-  tickOn: 1
+  tickOn: 0
   sourceInfos:
   - isFoldout: 1
     breakPoints: 
