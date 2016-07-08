@@ -9,13 +9,19 @@ tree("Root")
 tree("Idle")
 	Sequence
 		SetAnimation("Idle")
+		//Wait(2.0)
+		HoldState("Idle")
+		tree("Walk")
+
+tree("Walk")
+	Sequence
+		SetAnimation("Walk")
 		Wait(2.0)
-		tree("Run")
 
 tree("Run")
 	Sequence
 		SetAnimation("Run")
-		Wait(20000.0)
+		Wait(2.0)
 		tree("Hold")
 
 tree("Hold")
@@ -27,3 +33,4 @@ tree("Hold")
 tree("LookingToTarget")
 	while IsLookingToTarget 
 		LookAtTarget()
+

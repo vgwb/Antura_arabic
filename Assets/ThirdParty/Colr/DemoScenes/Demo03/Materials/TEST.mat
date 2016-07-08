@@ -100,26 +100,6 @@ Material:
         second: 0.5
       data:
         first:
-          name: _GradientYStartPos
-        second: 54.76
-      data:
-        first:
-          name: _GradientHeight
-        second: 25.42
-      data:
-        first:
-          name: _AmbientPower
-        second: 0
-      data:
-        first:
-          name: _LightmapPower
-        second: 1
-      data:
-        first:
-          name: _ShadowPower
-        second: 1
-      data:
-        first:
           name: _Metallic
         second: 0
       data:
@@ -154,6 +134,26 @@ Material:
         first:
           name: _Mode
         second: 0
+      data:
+        first:
+          name: _GradientYStartPos
+        second: 54.76
+      data:
+        first:
+          name: _GradientHeight
+        second: 25.42
+      data:
+        first:
+          name: _AmbientPower
+        second: 0
+      data:
+        first:
+          name: _LightmapPower
+        second: 1
+      data:
+        first:
+          name: _ShadowPower
+        second: 1
       data:
         first:
           name: _UseLightMap

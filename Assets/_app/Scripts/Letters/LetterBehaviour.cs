@@ -1,98 +1,114 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using Panda;
 using DG.Tweening;
+using UniRx;
 
-public class LetterBehaviour : MonoBehaviour {
+namespace CGL.Antura {
+    public class LetterBehaviour : MonoBehaviour {
 
-    #region public properties
+        #region public properties
+        public BehaviourSettings Settings;
+        #endregion
 
-    #endregion
+        #region runtime variables
+        [Task]
+        public bool IsLookingToTarget() {
+            return Target != null;
+        }
 
-    #region runtime variables
-    [Task]
-    public bool IsLookingToTarget() {
-        return Target != null;
-    }
+        public Transform Target = null;
 
-    public Transform Target = null;
+        /// <summary>
+        /// Animator
+        /// </summary>
+        public Animator Anim {
+            get {
+                if (!anim)
+                    anim = GetComponent<Animator>();
+                return anim;
+            }
+            set { anim = value; }
+        }
+        private Animator anim;
+        #endregion
 
+        #region Tasks
 
+        #region Animation
+        /// <summary>
+        /// Play anim with name as param.
+        /// </summary>
+        /// <param name="_animationName"></param>
+        [Task]
+        public void SetAnimation(string _animationName) {
+            Anim.Play(_animationName);
+            Task.current.Succeed();
+        }
+        #endregion
 
+        #region LookAt
+        public Vector3 WorldUpForT = new Vector3(0, 1, 0);
+        public Transform RotateBonesTransform;
+        public float TimeRotation = 0.4f;
 
-    /// <summary>
-    /// Animator
-    /// </summary>
-    public Animator Anim {
-        get {
-            if (!anim)
-                anim = GetComponent<Animator>();
-            return anim;
-        } 
-        set { anim = value; }
-    }
-    private Animator anim;
-    #endregion
+        [Task]
+        public void LookAtTarget() {
+            RotateBonesTransform.DOLookAt(-Target.position, TimeRotation);
+            Task.current.Succeed();
+        }
+        #endregion
 
-    #region Tasks
-    [Task]
-    public void SetAnimation(string _animationName) {
-        Anim.Play(_animationName);
-        Task.current.Succeed();
-    }
-    #endregion
+        #region common
+        [Task]
+        public void HoldState(string _stateName) {
+            switch (_stateName) {
+                case "Idle":
+                    Wait(5);
+                    Task.current.Succeed();
+                    break;
+                default:
+                    Task.current.Succeed();
+                    break;
+            }
+        }
 
-    public Vector3 WorldUpForT = new Vector3(0,1,0);
-    public Transform RotateBonesTransform;
-    public float TimeRotation = 0.4f;
+        
+        public void Wait(float duration) {
+            var task = Task.current;
+            if (task.isStarting) {
+                task.item = Time.time;
+            }
 
-    //void LateUpdate() {
-    //    if (IsLookingToTarget) { 
-    //        RotateBonesTransform.DOLookAt(-Target.position, TimeRotation);
-    //    }
-    //}
+            float elapsedTime = Time.time - (float)Task.current.item;
 
-    [Task]
-    public void LookAtTarget() {
-        RotateBonesTransform.DOLookAt(-Target.position, TimeRotation);
-        Task.current.Succeed();
-    }
+            float tta = duration - elapsedTime;
+            if (tta < 0.0f) tta = 0.0f;
 
-    //[Task]
-    //public void LookAtTarget() {
-    //    Transform targetTransform = RotateBonesTransform;
-    //    Vector3 targetPosition = -Target.position;
+            if (Task.isInspected)
+                task.debugInfo = string.Format("t-{0:0.000}", tta);
 
-    //    var targetDelta = (targetPosition - targetTransform.position);
-    //    var targetDir = targetDelta.normalized;
+            if (elapsedTime >= duration) {
+                task.debugInfo = "t-0.000";
+                task.Succeed();
+            }
+        }
+        #endregion
 
-    //    if (targetDelta.magnitude > 0.2f) {
+        #endregion
 
+        /// <summary>
+        /// Define variables for behaviours variations.
+        /// </summary>
+        [Serializable]
+        public class BehaviourSettings {
+            [Header("LookAtTarget behaviour settings")]
+            [Range(1, 10)]
+            public float LookAtTargetDuration = 1;
+            [Range(0, 10)]
+            public float NotLookAtTargetDuration = 1;
+        }
 
-    //        Vector3 axis = Vector3.up * Mathf.Sign(Vector3.Cross(targetTransform.forward, targetDir).y);
-
-    //        var rot = Quaternion.AngleAxis(TimeRotation * Time.deltaTime, axis);
-    //        targetTransform.rotation = rot * targetTransform.rotation;
-
-    //        Vector3 newAxis = Vector3.up * Mathf.Sign(Vector3.Cross(targetTransform.forward, targetDir).y);
-
-    //        float dot = Vector3.Dot(axis, newAxis);
-
-    //        if (dot < 0.01f) {// We overshooted the target
-    //            var snapRot = Quaternion.FromToRotation(targetTransform.forward, targetDir);
-    //            targetTransform.rotation = snapRot * targetTransform.rotation;
-    //            Task.current.Succeed();
-    //        }
-
-    //        var straighUp = Quaternion.FromToRotation(targetTransform.up, Vector3.up);
-    //        targetTransform.rotation = straighUp * targetTransform.rotation;
-    //    } else {
-    //        Task.current.Succeed();
-    //    }
-
-    //    if (Task.isInspected)
-    //        Task.current.debugInfo = string.Format("angle={0}", Vector3.Angle(targetDir, targetTransform.forward));
-
-
-    //}
+}
 }
