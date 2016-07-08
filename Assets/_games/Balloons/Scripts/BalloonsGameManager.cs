@@ -117,7 +117,7 @@ public class BalloonsGameManager: MonoBehaviour
                 randomLetter = AnturaGameManager.Instance.Letters.GetRandomElement();
             } while (wordLetters.Contains(randomLetter));
 
-            balloonLetter.GetComponent<LetterObjectView>().Init(randomLetter);
+            balloonLetter.Init(randomLetter);
             balloons.Add(balloonController);
         }
 
@@ -132,7 +132,7 @@ public class BalloonsGameManager: MonoBehaviour
                 positions.Add(position);
                 var balloonLetter = balloons[position].GetComponent<BalloonController>().letter;
                 balloonLetter.associatedPromptIndex = i;
-                balloonLetter.GetComponent<LetterObjectView>().Init(wordLetters[i]);
+                balloonLetter.Init(wordLetters[i]);
                 balloonLetter.isRequired = true;
             }
             else
