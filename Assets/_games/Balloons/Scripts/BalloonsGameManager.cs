@@ -19,6 +19,9 @@ public class BalloonsGameManager: MonoBehaviour
     public GameObject retryButton;
 
     [HideInInspector]
+    public Plane inputPlane;
+
+    [HideInInspector]
     public List<BalloonController> balloons;
 
     private string word;
@@ -42,6 +45,7 @@ public class BalloonsGameManager: MonoBehaviour
     void Start()
     {
         PrepareRound();
+        inputPlane = new Plane(Vector3.back, Vector3.zero);
     }
 
     void PrepareRound()
@@ -78,7 +82,7 @@ public class BalloonsGameManager: MonoBehaviour
                 randomLetter = AnturaGameManager.Instance.Letters.GetRandomElement();
             } while (wordLetters.Contains(randomLetter));
 
-            balloonLetter.GetComponent<LetterObjectView>().Init(randomLetter);
+            balloonLetter.Init(randomLetter);
             balloons.Add(balloonController);
         }
 
@@ -93,7 +97,7 @@ public class BalloonsGameManager: MonoBehaviour
                 positions.Add(position);
                 var balloonLetter = balloons[position].GetComponent<BalloonController>().letter;
                 balloonLetter.associatedPromptIndex = i;
-                balloonLetter.GetComponent<LetterObjectView>().Init(wordLetters[i]);
+                balloonLetter.Init(wordLetters[i]);
                 balloonLetter.isRequired = true;
             }
             else
