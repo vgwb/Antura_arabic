@@ -9,6 +9,8 @@ public class BalloonController : MonoBehaviour
     public float floatDistance; //e.g. 1.5f
     [Range(0, 1)]
     public float floatRandomness; // e.g. 0.25f
+    [Range(0, 10)]
+    public float dragSpeed; //e.g. 2f
     [Range(1, 10)]
     public int tapsNeeded; // e.g. 3
 
@@ -17,12 +19,12 @@ public class BalloonController : MonoBehaviour
     public LetterController letter;
 
     private int floatDirection = 1;
-    private Vector3 startPosition;
+    private Vector3 basePosition;
 
 
     void Start()
     {
-        startPosition = transform.localPosition;
+        basePosition = transform.position;
         RandomizeFloating();
     }
 
@@ -39,8 +41,13 @@ public class BalloonController : MonoBehaviour
 
     void Float()
     {
-        transform.localPosition = startPosition + floatDistance * Mathf.Sin(floatSpeed * Time.time) * Vector3.up;
+        transform.position = basePosition + floatDistance * Mathf.Sin(floatSpeed * Time.time) * Vector3.up;
         floatDirection *= -1;
+    }
+
+    public void MoveHorizontally(float x)
+    {
+        basePosition.x = Mathf.Lerp(basePosition.x, x, dragSpeed * Time.deltaTime);
     }
 
     public void Pop()
