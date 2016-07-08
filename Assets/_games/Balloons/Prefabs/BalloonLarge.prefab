@@ -357,7 +357,6 @@ GameObject:
   - 95: {fileID: 9527232}
   - 65: {fileID: 6585870}
   - 54: {fileID: 5406330}
-  - 114: {fileID: 11404036}
   - 114: {fileID: 11483862}
   m_Layer: 0
   m_Name: Letter
@@ -1019,10 +1018,10 @@ BoxCollider:
   m_GameObject: {fileID: 168956}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 6, z: 6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.5, y: 3.5, z: 1.5}
+  m_Center: {x: 1.25, y: -2.65, z: 0}
 --- !u!82 &8288916
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1131,23 +1130,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11404036
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MergedElementsDistance: 1
-  RightLetter: {fileID: 0}
-  LeftLetter: {fileID: 0}
-  IsMerged: 0
-  ActualDropArea: {fileID: 0}
-  Lable: {fileID: 11449350}
 --- !u!114 &11405096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1182,6 +1164,7 @@ MonoBehaviour:
   floatSpeed: 1
   floatDistance: 1.5
   floatRandomness: 0.25
+  dragSpeed: 2
   tapsNeeded: 3
   balloonTop: {fileID: 11468150}
   rope: {fileID: 165358}
@@ -1321,9 +1304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b32c91621bd3404781d0d3d2b2ded7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentBalloon: {fileID: 11435562}
   drop: 0
   associatedPromptIndex: 0
   isRequired: 0
+  LetterView: {fileID: 11449350}
 --- !u!135 &13566872
 SphereCollider:
   m_ObjectHideFlags: 1
