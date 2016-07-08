@@ -24,6 +24,16 @@ namespace ModularFramework.Helpers {
 
     public static class GenericHelper {
 
+        /// <summary>
+        /// Return random float value around _value parameter + or - _variation.
+        /// </summary>
+        /// <param name="_value"></param>
+        /// <param name="_variation"></param>
+        /// <returns></returns>
+        public static float GetValueWithRandomVariation(float _value, float _variation) {
+            return Random.Range(_value - _variation, _value + _variation);
+        }
+
         #region extensions
 
         /// <summary>
