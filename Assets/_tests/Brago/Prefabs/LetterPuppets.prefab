@@ -805,6 +805,9 @@ MonoBehaviour:
   Settings:
     LookAtTargetDuration: 1
     NotLookAtTargetDuration: 1
+    DurationRandomDelta: 2
+    IdleDuration: 2
+    WalkDuration: 3
   Target: {fileID: 0}
   WorldUpForT: {x: 0, y: 1, z: 0}
   RotateBonesTransform: {fileID: 436112}

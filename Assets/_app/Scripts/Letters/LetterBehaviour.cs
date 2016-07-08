@@ -65,10 +65,15 @@ namespace CGL.Antura {
         public void HoldState(string _stateName) {
             switch (_stateName) {
                 case "Idle":
-                    Wait(5);
-                    Task.current.Succeed();
+                    Wait(Settings.IdleDuration);
+                    //Task.current.Succeed();
+                    break;
+                case "Walk":
+                    Wait(Settings.WalkDuration);
+                    //Task.current.Succeed();
                     break;
                 default:
+                    
                     Task.current.Succeed();
                     break;
             }
@@ -108,6 +113,15 @@ namespace CGL.Antura {
             public float LookAtTargetDuration = 1;
             [Range(0, 10)]
             public float NotLookAtTargetDuration = 1;
+
+            [Header("LookAtTarget behaviour settings")]
+            [Range(0, 6)]
+            public float DurationRandomDelta = 2;
+            [Range(1, 10)]
+            public float IdleDuration = 5;
+            [Range(0, 10)]
+            public float WalkDuration = 2;
+            
         }
 
 }

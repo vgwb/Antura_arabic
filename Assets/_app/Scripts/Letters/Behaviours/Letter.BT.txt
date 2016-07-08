@@ -16,7 +16,7 @@ tree("Idle")
 tree("Walk")
 	Sequence
 		SetAnimation("Walk")
-		Wait(2.0)
+		HoldState("Walk")
 
 tree("Run")
 	Sequence
