@@ -21,10 +21,7 @@ public class LetterController : MonoBehaviour
 
     void Start()
     {
-//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//        var result = BalloonsGameManager.instance.inputPlane.Raycast(ray, out cameraDistance);
-//
-//        Debug.Log(result + " " + cameraDistance);
+        cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
     }
 
     void Update()
@@ -48,15 +45,8 @@ public class LetterController : MonoBehaviour
 
     void OnMouseDrag()
     {
-//        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//        BalloonsGameManager.instance.inputPlane.Raycast(ray, out cameraDistance);
-//        var point = ray.GetPoint(cameraDistance);
-//
-////        mousePosition = Input.mousePosition;
-////        mousePosition.z = point.z;
-
         mousePosition = Input.mousePosition;
-        mousePosition.z = 30f;
+        mousePosition.z = cameraDistance;
 
         parentBalloon.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
     }
