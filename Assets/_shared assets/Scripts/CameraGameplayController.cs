@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameDontWakeUp : MonoBehaviour {
+public class CameraGameplayController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
