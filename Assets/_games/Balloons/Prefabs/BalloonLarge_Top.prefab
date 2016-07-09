@@ -186,7 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  balloonCollider: {fileID: 13594264}
+  balloonTopCollider: {fileID: 13594264}
+  balloonTopRenderer: {fileID: 0}
 --- !u!135 &13594264
 SphereCollider:
   m_ObjectHideFlags: 1

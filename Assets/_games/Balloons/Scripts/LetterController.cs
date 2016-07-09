@@ -4,50 +4,52 @@ using System.Collections.Generic;
 using EA4S;
 using TMPro;
 
-public class LetterController : MonoBehaviour
+namespace Balloons
 {
-
-    public BalloonController parentBalloon;
-    public bool drop;
-    public LetterData letter;
-    public int associatedPromptIndex;
-    public bool isRequired;
-    public LetterObject LetterModel;
-    public TMP_Text LetterView;
-
-    private Vector3 mousePosition = new Vector3();
-    private float cameraDistance;
-
-
-    void Start()
+    public class LetterController : MonoBehaviour
     {
-        cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
-    }
+        public BalloonController parentBalloon;
+        public bool drop;
+        public LetterData letter;
+        public int associatedPromptIndex;
+        public bool isRequired;
+        public LetterObject LetterModel;
+        public TMP_Text LetterView;
 
-    void Update()
-    {
-        if (drop)
+        private Vector3 mousePosition = new Vector3();
+        private float cameraDistance;
+
+
+        void Start()
         {
-            transform.Translate(Vector3.down * Time.deltaTime * 50f);
+            cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
         }
 
-        if (transform.position.y < -10)
+        void Update()
         {
-            Destroy(gameObject);
+            if (drop)
+            {
+                transform.Translate(Vector3.down * Time.deltaTime * 50f);
+            }
+
+            if (transform.position.y < -10)
+            {
+                Destroy(gameObject);
+            }
         }
-    }
 
-    public void Init(LetterData _data)
-    {
-        LetterModel = new LetterObject(_data);
-        LetterView.text = ArabicAlphabetHelper.GetLetterFromUnicode(LetterModel.Data.Isolated_Unicode);
-    }
+        public void Init(LetterData _data)
+        {
+            LetterModel = new LetterObject(_data);
+            LetterView.text = ArabicAlphabetHelper.GetLetterFromUnicode(LetterModel.Data.Isolated_Unicode);
+        }
 
-    void OnMouseDrag()
-    {
-        mousePosition = Input.mousePosition;
-        mousePosition.z = cameraDistance;
+        void OnMouseDrag()
+        {
+            mousePosition = Input.mousePosition;
+            mousePosition.z = cameraDistance;
 
-        parentBalloon.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
+            parentBalloon.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
+        }
     }
 }

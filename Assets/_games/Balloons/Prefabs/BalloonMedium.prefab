@@ -1166,8 +1166,8 @@ MonoBehaviour:
   floatRandomness: 0.25
   dragSpeed: 2
   tapsNeeded: 2
-  balloonTop: {fileID: 11430154}
-  rope: {fileID: 162122}
+  variations: []
+  activeBalloonCount: 0
   letter: {fileID: 11443880}
 --- !u!114 &11430154
 MonoBehaviour:
@@ -1181,7 +1181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 11426346}
-  balloonCollider: {fileID: 13555446}
+  rope: {fileID: 0}
+  balloonTopCollider: {fileID: 13555446}
+  balloonTopRenderer: {fileID: 2375996}
 --- !u!114 &11443880
 MonoBehaviour:
   m_ObjectHideFlags: 1
