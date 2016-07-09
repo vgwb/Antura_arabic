@@ -21,18 +21,20 @@ tree("Idle")
 			
 
 tree("Walk")
-	Sequence
-		SetAnimation("Walk")
-		SetNavigation("Walk")
-		HoldState("Walk")
-		//tree("TurnFrontOfCamera")
+	while
+		not OnDrag
+		Sequence
+			SetAnimation("Walk")
+			SetNavigation("Walk")
+			HoldState("Walk")
+			//tree("TurnFrontOfCamera")
 
 tree("Hold")
 	while
 		OnDrag
 		Parallel
 			SetAnimation("Hold")
-			SetNavigation("Walk")
+			SetNavigation("Hold")
 			//TurnAllFrontOfTarget()
 
 tree("Run")
@@ -50,7 +52,16 @@ tree("TurnFrontOfCamera")
 
 // -------------------------
 
+// tree("LookingToTarget")
+//	while IsLookingToTarget 
+//		LookAtTarget()
+
 tree("LookingToTarget")
-	while IsLookingToTarget 
-		LookAtTarget()
+	Race
+		while 
+			DoLookTarget 
+			LookAtTarget()
+		while 
+			not DoLookTarget 
+			LookAtForward()
 

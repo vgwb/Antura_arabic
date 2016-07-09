@@ -27,7 +27,11 @@ namespace CGL.Antura {
                     break;
                 case "Walk":
                     RepositioningWaypoint();
+                    agent.speed = 3.5f;
                     agent.Resume();
+                    break;
+                case "Hold":
+                    agent.SetDestination(new Vector3(0, 9, -33));
                     break;
                 default:
                     break;

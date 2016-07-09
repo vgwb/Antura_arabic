@@ -12,7 +12,7 @@ namespace EA4S
     {
         [Task]
         public bool OnDrag = false;
-        LetterObjectView letterView;
+        LetterObjectView letterView = null;
 
         void Start() {
             letterView = GetComponent<LetterObjectView>();

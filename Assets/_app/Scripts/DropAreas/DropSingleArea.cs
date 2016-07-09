@@ -40,11 +40,11 @@ namespace EA4S {
             switch (AreaState) {
                 case State.enabled:
                     GetComponent<Collider>().enabled = true;
-                    transform.position = enabledPos;
+                    GetComponent<MeshRenderer>().materials[0].color = Color.yellow;
                     break;
                 case State.disabled:
                     GetComponent<Collider>().enabled = false;
-                    transform.position = disabledPos;
+                    GetComponent<MeshRenderer>().materials[0].color = Color.gray;
                     break;
                 default:
                     break;

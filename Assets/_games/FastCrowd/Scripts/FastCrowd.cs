@@ -52,7 +52,7 @@ namespace EA4S.FastCrowd
             // Letter from db filtered by some parameters
             foreach (LetterData letterData in gameLetters) {
                 LetterObjectView letterObjectView = Instantiate(LetterPref);
-                letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
+                //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 letterObjectView.Init(letterData);
                 PlaceDropAreaElement(letterData, count);
@@ -63,7 +63,7 @@ namespace EA4S.FastCrowd
             int OtherLettersCount = MinLettersOnField - gameLetters.Count;
             for (int i = 0; i < OtherLettersCount; i++) {
                 LetterObjectView letterObjectView = Instantiate(LetterPref);
-                letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
+                //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 // TODO: the selection is curiously only between the letters of the word... to be checked.
                 letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement());
