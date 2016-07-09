@@ -4,7 +4,7 @@ using ModularFramework.Core;
 using ModularFramework.Modules;
 using Google2u;
 
-namespace CGL.Antura {
+namespace EA4S {
 
     public class LetterObject {
 

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using CGL.Antura;
+using EA4S;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using Google2u;
 using System;
 using ModularFramework.Modules;
 
-namespace CGL.Antura.FastCrowd
+namespace EA4S.MiniGame.DontWakeUp
 {
 
     public class GameDontWakeUp : AnturaMiniGame
