@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace CGL.Antura {
+
+namespace EA4S
+{
     [RequireComponent(typeof(LetterObjectView))]
     /// <summary>
     /// Manage player drag behaviour.
     /// </summary>
-    public class Hangable : MonoBehaviour {
+    public class Hangable : MonoBehaviour
+    {
 
         bool OnDrag = false;
         Transform tmpTarget;
@@ -20,7 +23,7 @@ namespace CGL.Antura {
             gameObject.GetComponent<Animator>().Play("hold");
             letterView.Model.State = LetterObjectState.Grab_State;
             // Audio - quick and dirty
-            AudioSource audio = FastCrowd.FastCrowd.Instance.GetComponent<AudioSource>();
+            AudioSource audio = MiniGame.FastCrowd.FastCrowd.Instance.GetComponent<AudioSource>();
             audio.clip = Instantiate<AudioClip>(Resources.Load("Audio/Vox/Letters/Names/VOX_Letters_" + GetComponent<LetterObjectView>().Model.Data.Key) as AudioClip);
             audio.Play();
         }

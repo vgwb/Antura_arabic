@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using CGL.Antura;
+using EA4S;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using Google2u;
 using System;
 using ModularFramework.Modules;
 
-namespace CGL.Antura.FastCrowd {
+namespace EA4S.MiniGame.FastCrowd
+{
 
-    public class FastCrowd : AnturaMiniGame {
+    public class FastCrowd : AnturaMiniGame
+    {
 
         [Header("Gameplay Info and Config section")]
         #region Overrides
 
         new public FastCrowdGameplayInfo GameplayInfo;
 
-        new public static FastCrowd Instance {
+        new public static FastCrowd Instance
+        {
             get { return SubGame.Instance as FastCrowd; }
         }
+
         #endregion
 
         [Header("Letters Env")]
@@ -87,7 +91,8 @@ namespace CGL.Antura.FastCrowd {
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo
+    {
         public float Time = 10;
     }
 }

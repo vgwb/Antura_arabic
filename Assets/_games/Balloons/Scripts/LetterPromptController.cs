@@ -5,7 +5,7 @@ using ModularFramework.Core;
 using ModularFramework.Helpers;
 using Google2u;
 using TMPro;
-using CGL.Antura;
+using EA4S;
 
 public class LetterPromptController : MonoBehaviour
 {
