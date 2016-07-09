@@ -19,7 +19,7 @@ public class BalloonsGameManager: MonoBehaviour
     public GameObject retryButton;
     public Animator countdownAnimator;
     public AudioSource music;
-    public TimerManager timer;
+    public Balloons.TimerManager timer;
 
     [HideInInspector]
     public List<BalloonController> balloons;
