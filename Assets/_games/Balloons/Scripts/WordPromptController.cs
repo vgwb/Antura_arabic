@@ -5,32 +5,35 @@ using ModularFramework.Core;
 using ModularFramework.Helpers;
 using CGL.Antura;
 
-public class WordPromptController : MonoBehaviour
+namespace Balloons
 {
-    public LetterPromptController[] letterPrompts;
-
-    [HideInInspector]
-    public List<LetterPromptController> IdleLetterPrompts
+    public class WordPromptController : MonoBehaviour
     {
-        get { return new List<LetterPromptController>(letterPrompts).FindAll(prompt => prompt.isActiveAndEnabled && prompt.State == LetterPromptController.PromptState.IDLE); }
-    }
+        public LetterPromptController[] letterPrompts;
 
-
-    public void DisplayWord(List<LetterData> wordLetters)
-    {
-        for (int i = 0; i < wordLetters.Count; i++)
+        [HideInInspector]
+        public List<LetterPromptController> IdleLetterPrompts
         {
-            letterPrompts[i].gameObject.SetActive(true);
-            letterPrompts[i].Init(wordLetters[i]);
+            get { return new List<LetterPromptController>(letterPrompts).FindAll(prompt => prompt.isActiveAndEnabled && prompt.State == LetterPromptController.PromptState.IDLE); }
         }
-    }
 
-    public void Reset()
-    {
-        foreach (var prompt in letterPrompts)
+
+        public void DisplayWord(List<LetterData> wordLetters)
         {
-            prompt.State = LetterPromptController.PromptState.IDLE;
-            prompt.gameObject.SetActive(false);
+            for (int i = 0; i < wordLetters.Count; i++)
+            {
+                letterPrompts[i].gameObject.SetActive(true);
+                letterPrompts[i].Init(wordLetters[i]);
+            }
+        }
+
+        public void Reset()
+        {
+            foreach (var prompt in letterPrompts)
+            {
+                prompt.State = LetterPromptController.PromptState.IDLE;
+                prompt.gameObject.SetActive(false);
+            }
         }
     }
 }

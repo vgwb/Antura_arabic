@@ -748,7 +748,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116628}
-  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
+  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: 349.52292, y: 224.35536, z: 185.02641}
@@ -1166,8 +1166,8 @@ MonoBehaviour:
   floatRandomness: 0.25
   dragSpeed: 2
   tapsNeeded: 3
-  balloonTop: {fileID: 11468150}
-  rope: {fileID: 165358}
+  variations: []
+  activeBalloonCount: 0
   letter: {fileID: 11483862}
 --- !u!114 &11449350
 MonoBehaviour:
@@ -1292,7 +1292,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 11435562}
-  balloonCollider: {fileID: 13566872}
+  rope: {fileID: 0}
+  balloonTopCollider: {fileID: 13566872}
+  balloonTopRenderer: {fileID: 2340996}
 --- !u!114 &11483862
 MonoBehaviour:
   m_ObjectHideFlags: 1

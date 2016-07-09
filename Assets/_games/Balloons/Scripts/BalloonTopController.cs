@@ -1,51 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BalloonTopController : MonoBehaviour
+namespace Balloons
 {
-    public BalloonController parent;
-    public Collider balloonCollider;
-
-    private Rigidbody body;
-    private Animator animator;
-    private AudioSource popAudio;
-    private int taps = 0;
-
-    void Start()
+    public class BalloonTopController : MonoBehaviour
     {
-        body = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
-        popAudio = GetComponent<AudioSource>();
-    }
+        public BalloonController parent;
+        public GameObject rope;
+        public Collider balloonTopCollider;
+        public Renderer balloonTopRenderer;
 
-    public void OnMouseDown()
-    {
-        TapAction();
-    }
+        private Animator animator;
+        private AudioSource popAudio;
+        private int taps = 0;
 
-    void TapAction()
-    {
-        taps++;
-        if (taps >= parent.tapsNeeded)
+        void Start()
         {
-            Pop();
+            animator = GetComponent<Animator>();
+            popAudio = GetComponent<AudioSource>();
         }
-        else
+
+        public void OnMouseDown()
         {
-            animator.SetTrigger("Tap");
+            TapAction();
+        }
+
+        void TapAction()
+        {
+            taps++;
+            if (taps >= parent.tapsNeeded)
+            {
+                Pop();
+            }
+            else
+            {
+                animator.SetTrigger("Tap");
+            }
+        }
+
+        public void Pop()
+        {
+            balloonTopCollider.enabled = false;
+            rope.SetActive(false);
+            parent.Pop();
+            popAudio.Play();
+            animator.SetBool("Pop", true);
+        }
+
+        public void SetColor(Color color)
+        {
+            Debug.Log("COLOR");
+            balloonTopRenderer.material.color = color;
         }
     }
-
-    public void Pop()
-    {
-        balloonCollider.enabled = false;
-        parent.Pop();
-        popAudio.Play();
-        animator.SetBool("Pop", true);
-    }
-
-    //    void Shrink()
-    //    {
-    //        transform.localScale = new Vector3(transform.localScale.x - 0.25f, transform.localScale.y - 0.25f, transform.localScale.z - 0.25f);
-    //    }
 }
