@@ -65,6 +65,9 @@ namespace EA4S {
             }
         }
 
+        /// <summary>
+        /// Repositioning waypoint.
+        /// </summary>
         void RepositioningWaypoint() {
             Vector3 randomValidPosition;
             //RandomPoint(Target.position, 10f, out randomValidPosition);
