@@ -33,6 +33,11 @@ tree("Hold")
 // -------------------------
 
 tree("LookingToTarget")
-	while IsLookingToTarget 
-		LookAtTarget()
+	Race
+		while 
+			DoLookTarget 
+			LookAtTarget()
+		while 
+			not DoLookTarget 
+			LookAtForward()
 
