@@ -14,8 +14,6 @@ namespace EA4S {
         #endregion
 
         #region runtime variables
-
-
         
 
         /// <summary>
@@ -61,17 +59,23 @@ namespace EA4S {
         #region LookAt
         [Header("Look at Target runtime variables")]
         public Transform Target = null;
+        Transform cachedTarget = null;
         public Vector3 WorldUpForT = new Vector3(0, 1, 0);
         public Transform RotateBonesTransform;
         public float TimeRotation = 0.4f;
+        /// <summary>
+        /// Flag indicate if lettera must look at target (if target != null).
+        /// </summary>
+        [Task]
+        public bool DoLookTarget = false;
 
         /// <summary>
         /// True if Target != null.
         /// </summary>
         /// <returns></returns>
         [Task]
-        public bool IsLookingToTarget() {
-            return Target != null;
+        public bool IsTarget() {
+            return Target;
         }
 
         /// <summary>
@@ -79,7 +83,15 @@ namespace EA4S {
         /// </summary>
         [Task]
         public void LookAtTarget() {
-            RotateBonesTransform.DOLookAt(-Target.position, TimeRotation);
+            if(DoLookTarget)
+                RotateBonesTransform.DOLookAt(-Target.position, TimeRotation);
+            Task.current.Succeed();
+        }
+
+        [Task]
+        public void LookAtForward() {
+            // TODO: improve -> verify if trasform already look forward. 
+            RotateBonesTransform.DOLookAt(Target.position + Vector3.forward, TimeRotation);
             Task.current.Succeed();
         }
         #endregion
