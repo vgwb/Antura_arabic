@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -50,8 +50,8 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 3
     m_Resolution: 2
@@ -609,7 +609,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_transform
@@ -629,7 +629,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_fontScale
@@ -872,7 +872,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_transform
@@ -892,7 +892,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_fontScale
@@ -1507,7 +1507,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_transform
@@ -1527,7 +1527,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_fontScale
@@ -1824,6 +1824,8 @@ MonoBehaviour:
   music: {fileID: 508411712}
   timer: {fileID: 962712818}
   balloons: []
+  word: 
+  fullMusicVolume: 0
 --- !u!4 &508411711
 Transform:
   m_ObjectHideFlags: 0
@@ -2581,7 +2583,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_transform
@@ -2601,7 +2603,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_fontScale
@@ -2781,8 +2783,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd999d1b2cf94a45a5b0a47ce074bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supportHDRTextures: 1
+  supportDX11: 0
+  isSupported: 1
   redChannel:
-    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -2798,7 +2802,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   greenChannel:
-    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0.07821808
@@ -2814,7 +2817,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   blueChannel:
-    serializedVersion: 2
     m_Curve:
     - time: 0.009803922
       value: 0.2017937
@@ -2831,7 +2833,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   useDepthCorrection: 0
   zCurve:
-    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -2847,7 +2848,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   depthRedChannel:
-    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -2863,7 +2863,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   depthGreenChannel:
-    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -2879,7 +2878,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   depthBlueChannel:
-    serializedVersion: 2
     m_Curve:
     - time: 0
       value: 0
@@ -2894,10 +2892,24 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  ccMaterial: {fileID: 0}
+  ccDepthMaterial: {fileID: 0}
+  selectiveCcMaterial: {fileID: 0}
+  rgbChannelTex: {fileID: 0}
+  rgbDepthChannelTex: {fileID: 0}
+  zCurveTex: {fileID: 0}
   saturation: 0.84
   selectiveCc: 1
-  selectiveFromColor: {r: 1, g: 1, b: 1, a: 1}
-  selectiveToColor: {r: 1, g: 1, b: 1, a: 1}
+  selectiveFromColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  selectiveToColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   mode: 0
   updateTextures: 1
   colorCorrectionCurvesShader: {fileID: 4800000, guid: 62bcade1028c24ca1a39760ed84b9487,
@@ -2906,6 +2918,7 @@ MonoBehaviour:
     type: 3}
   colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544,
     type: 3}
+  updateTexturesOnStartup: 0
 --- !u!114 &922306409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2917,6 +2930,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6d4281e5d7cd44d8c6e38bc2c1b8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supportHDRTextures: 1
+  supportDX11: 0
+  isSupported: 1
   mode: 0
   intensity: 0.193
   chromaticAberration: 0
@@ -2929,6 +2945,9 @@ MonoBehaviour:
   separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
   chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
     type: 3}
+  m_VignetteMaterial: {fileID: 0}
+  m_SeparableBlurMaterial: {fileID: 0}
+  m_ChromAberrationMaterial: {fileID: 0}
 --- !u!114 &922306410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2940,6 +2959,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd70d448b18cfbc46af26466f752332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supportHDRTextures: 1
+  supportDX11: 0
+  isSupported: 1
   visualizeFocus: 0
   focalLength: 20
   focalSize: 0.12
@@ -2952,12 +2974,17 @@ MonoBehaviour:
   nearBlur: 0
   foregroundOverlap: 1
   dofHdrShader: {fileID: 4800000, guid: acd613035ff3e455e8abf23fdc8c8c24, type: 3}
+  dofHdrMaterial: {fileID: 0}
   dx11BokehShader: {fileID: 4800000, guid: d8e82664aa8686642a424c88ab10164a, type: 3}
+  dx11bokehMaterial: {fileID: 0}
   dx11BokehThreshold: 0.5
   dx11SpawnHeuristic: 0.0875
   dx11BokehTexture: {fileID: 2800000, guid: a4cdca73d61814d33ac1587f6c163bca, type: 3}
   dx11BokehScale: 1.2
   dx11BokehIntensity: 2.5
+  focalDistance01: 10
+  internalBlurWidth: 1
+  cachedCamera: {fileID: 0}
 --- !u!114 &922306411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2969,12 +2996,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supportHDRTextures: 1
+  supportDX11: 0
+  isSupported: 1
   threshold: 0.154
   intensity: 0.15
   blurSize: 1
+  resolution: 0
   blurIterations: 1
   blurType: 0
   fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
+  fastBloomMaterial: {fileID: 0}
 --- !u!114 &922306412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2994,6 +3026,8 @@ MonoBehaviour:
   yMaxLimit: 80
   distanceMin: 10
   distanceMax: 95.6
+  x: 0
+  y: 0
   autoMovement: 0
   autoSpeedX: 0.05
   autoSpeedY: 0.1
@@ -3343,6 +3377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 30
   timerText: {fileID: 962712816}
+  isRunning: 0
+  timeRemaining: 0
 --- !u!1001 &1047981428
 Prefab:
   m_ObjectHideFlags: 0
@@ -3457,7 +3493,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_transform
@@ -3477,7 +3513,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_fontScale
@@ -4673,7 +4709,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_transform
@@ -4693,7 +4729,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11461514, guid: c35f8b043314d4ca1bdedc0913a3db38, type: 2}
       propertyPath: m_fontScale
@@ -4863,19 +4899,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 459180, guid: 1712b34b6ffeb46858926a2e0dc2a690, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 459180, guid: 1712b34b6ffeb46858926a2e0dc2a690, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 459180, guid: 1712b34b6ffeb46858926a2e0dc2a690, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 459180, guid: 1712b34b6ffeb46858926a2e0dc2a690, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 3353746, guid: 1712b34b6ffeb46858926a2e0dc2a690, type: 2}
       propertyPath: m_Mesh
@@ -5525,19 +5561,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 487414, guid: 82fe58faf6d2246bda7feafdbab1e92e, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 487414, guid: 82fe58faf6d2246bda7feafdbab1e92e, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 487414, guid: 82fe58faf6d2246bda7feafdbab1e92e, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 487414, guid: 82fe58faf6d2246bda7feafdbab1e92e, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 192064, guid: 82fe58faf6d2246bda7feafdbab1e92e, type: 2}
       propertyPath: m_IsActive
@@ -5846,19 +5882,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 466602, guid: ed8a0c46042ab4d8d9ed36becf115eee, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 466602, guid: ed8a0c46042ab4d8d9ed36becf115eee, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 466602, guid: ed8a0c46042ab4d8d9ed36becf115eee, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 466602, guid: ed8a0c46042ab4d8d9ed36becf115eee, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 148578, guid: ed8a0c46042ab4d8d9ed36becf115eee, type: 2}
       propertyPath: m_IsActive

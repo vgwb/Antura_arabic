@@ -19,7 +19,7 @@ public class BalloonsGameManager: MonoBehaviour
     public GameObject retryButton;
     public Animator countdownAnimator;
     public AudioSource music;
-    public TimerManager timer;
+    public Balloons.TimerManager timer;
 
     [HideInInspector]
     public List<BalloonController> balloons;
@@ -145,7 +145,7 @@ public class BalloonsGameManager: MonoBehaviour
     public void CheckRemainingBalloons()
     {
         int idlePromptsCount = wordPrompt.IdleLetterPrompts.Count;
-        bool promptAllWrong = idlePromptsCount == 0;
+        // bool promptAllWrong = idlePromptsCount == 0;
         bool randomBalloonsExist = balloons.Exists(balloon => balloon.letter.isRequired == false);
         bool requiredBalloonsExist = balloons.Exists(balloon => balloon.letter.isRequired == true);
 
