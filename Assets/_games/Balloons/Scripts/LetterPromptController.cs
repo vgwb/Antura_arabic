@@ -7,64 +7,56 @@ using Google2u;
 using TMPro;
 using CGL.Antura;
 
-public class LetterPromptController : MonoBehaviour
+namespace Balloons
 {
-    public TMP_Text LetterLabel;
-    public LetterData Data;
-    //public DropContainer DropContain;
-
-    //Vector3 enabledPos, disabledPos;
-
-    public void Init(LetterData _letterData)
+    public class LetterPromptController : MonoBehaviour
     {
-        //DropContain = _dropContainer;
-        //DropContain.Aree.Add(this);
-        //enabledPos = transform.position;
-        //disabledPos = enabledPos + new Vector3(0, -0.8f, 0);
-        Data = _letterData;
-        LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
-    }
+        public TMP_Text LetterLabel;
+        public LetterData Data;
 
-
-    public enum PromptState
-    {
-        IDLE,
-        CORRECT,
-        WRONG
-    }
-
-    private PromptState _state;
-    public PromptState State
-    {
-        get { return _state; }
-        set
+        public enum PromptState
         {
-            if (_state != value)
+            IDLE,
+            CORRECT,
+            WRONG
+        }
+        private PromptState _state;
+        public PromptState State
+        {
+            get { return _state; }
+            set
             {
-                _state = value;
-                OnStateChanged();
+                if (_state != value)
+                {
+                    _state = value;
+                    OnStateChanged();
+                }
+            }
+        }
+
+
+        public void Init(LetterData _letterData)
+        {
+            Data = _letterData;
+            LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
+        }
+
+        void OnStateChanged()
+        {
+            switch (State)
+            {
+                case PromptState.IDLE:
+                    GetComponent<Renderer>().materials[0].color = Color.white;
+                    break;
+                case PromptState.CORRECT:
+                    GetComponent<Renderer>().materials[0].color = Color.green;
+                    break;
+                case PromptState.WRONG:
+                    GetComponent<Renderer>().materials[0].color = Color.red;
+                    break;
+                default:
+                    break;
             }
         }
     }
-
-    void OnStateChanged()
-    {
-        switch (State)
-        {
-            case PromptState.IDLE:
-                GetComponent<Renderer>().materials[0].color = Color.white;
-                break;
-            case PromptState.CORRECT:
-                GetComponent<Renderer>().materials[0].color = Color.green;
-                break;
-            case PromptState.WRONG:
-                GetComponent<Renderer>().materials[0].color = Color.red;
-                break;
-            default:
-                break;
-        }
-    }
-
-
 }
-

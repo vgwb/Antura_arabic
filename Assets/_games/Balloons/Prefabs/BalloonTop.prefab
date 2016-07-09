@@ -12,11 +12,11 @@ GameObject:
   - 135: {fileID: 13594264}
   - 23: {fileID: 2323014}
   - 54: {fileID: 5497292}
-  - 114: {fileID: 11461294}
-  - 95: {fileID: 9595900}
-  - 82: {fileID: 8223596}
+  - 114: {fileID: 11442682}
+  - 95: {fileID: 9566240}
+  - 82: {fileID: 8229290}
   m_Layer: 0
-  m_Name: BalloonMedium_Top
+  m_Name: BalloonTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 186104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 14, z: 0}
-  m_LocalScale: {x: 2.5, y: 3.5, z: 2.5}
+  m_LocalScale: {x: 3, y: 4, z: 3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0801c205acecb497fa2db78807715923, type: 2}
+  - {fileID: 2100000, guid: 0f7a2bd4c725242ee98655ae9f562903, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -83,7 +83,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &8223596
+--- !u!82 &8229290
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -157,7 +157,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &9595900
+--- !u!95 &9566240
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -174,7 +174,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11461294
+--- !u!114 &11442682
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -186,8 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  balloonTopCollider: {fileID: 0}
-  balloonTopRenderer: {fileID: 0}
+  balloonCollider: {fileID: 13594264}
 --- !u!135 &13594264
 SphereCollider:
   m_ObjectHideFlags: 1
