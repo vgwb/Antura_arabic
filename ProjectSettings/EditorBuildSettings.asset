@@ -8,11 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/Antura_Start.unity
   - enabled: 1
-    path: Assets/_app/Scenes/Antura_Home.unity
+    path: Assets/_app/_scenes/Antura_Home.unity
   - enabled: 1
-    path: Assets/_app/Scenes/Antura_MainMap.unity
+    path: Assets/_app/_scenes/Antura_MainMap.unity
   - enabled: 1
-    path: Assets/_app/Scenes/Antura_ProfileSelect.unity
+    path: Assets/_app/_scenes/Antura_ProfileSelect.unity
+  - enabled: 1
+    path: Assets/_app/_scenes/Wheel.unity
   - enabled: 1
     path: Assets/_games/DontWakeUp/game_DontWakeUp.unity
   - enabled: 1

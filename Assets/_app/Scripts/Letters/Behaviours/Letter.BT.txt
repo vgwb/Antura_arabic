@@ -51,11 +51,6 @@ tree("TurnFrontOfCamera")
 // -------------------------
 
 tree("LookingToTarget")
-	Race
-		while 
-			DoLookTarget 
-			LookAtTarget()
-		while 
-			not DoLookTarget 
-			LookAtForward()
+	while IsLookingToTarget 
+		LookAtTarget()
 

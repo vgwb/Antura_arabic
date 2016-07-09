@@ -889,7 +889,6 @@ MonoBehaviour:
   RotateBonesTransform: {fileID: 436112}
   RotateAllBodyTransform: {fileID: 481938}
   TimeRotation: 0.4
-  DoLookTarget: 0
 --- !u!114 &11432562
 MonoBehaviour:
   m_ObjectHideFlags: 1
