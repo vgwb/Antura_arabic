@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 439588}
   - 114: {fileID: 11457164}
+  - 114: {fileID: 11485920}
   m_Layer: 0
   m_Name: hit
   m_TagString: Untagged
@@ -356,6 +357,7 @@ MonoBehaviour:
       _data: []
   _eventList:
   - _UnSet_
+  - SFX/hit
   profiler:
     totalMS: 0
     recordedMS: 0
@@ -365,8 +367,8 @@ MonoBehaviour:
     msPerCall: 0
     timesPerFrame: 0
   _logHistorySize: 0
-  _eventMenuListFoldout: 0
-  _eventListFoldout: 0
+  _eventMenuListFoldout: 1
+  _eventListFoldout: 1
   _forceQueueAllEvents: 0
   _eventSequencer:
     _sequenceEntries:
@@ -452,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numVirtualizationEvents: 100
-  _maxInstances: 1
+  _maxInstances: 2
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
@@ -461,7 +463,7 @@ MonoBehaviour:
   _mute: 0
   _overrideParentPitch: 0
   _pitch: 1
-  _pitchRandomization: 0
+  _pitchRandomization: 0.4983076
   _override2DProperties: 0
   _pan2D: 0
   _pan2DRandomization: 0
@@ -652,6 +654,39 @@ MonoBehaviour:
   _musicTimeSignatures: []
   _fabricEditorPath: Assets/Resources/Fabric
   _onApplicationPauseBehavior: 0
+--- !u!114 &11485920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventName: SFX/hit
+  _eventID: 0
+  _overrideEventTriggerAction: 0
+  _overrideParameters:
+    _overrideIncomingEventAction: 0
+    _incomingEventAction: 0
+    _overrideEventAction: 0
+    _type: 0
+    _floatParameter: 1
+    _stringParameter: 
+    _switchPresetData:
+      _sourcePreset: 
+      _targetPreset: 
+    _dspParameterData:
+      _dspType: 0
+      _parameter: 
+      _value: 0
+      _time: 0
+      _curve: 0.5
+    _transitionToSnapshotData:
+      _snapshot: 
+      _timeToReach: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
