@@ -5,7 +5,7 @@ using ModularFramework.Modules;
 
 namespace EA4S.WanderingLetters
 {
-    public class WanderingLetters : AnturaMiniGame
+    public class WanderingLetters : MiniGameBase
     {
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
@@ -21,7 +21,7 @@ namespace EA4S.WanderingLetters
             if (_stars > 0)
                 positiveResult = true;
 
-            AnturaGameManager.Instance.Modules.GameplayModule.GameplayResult(
+            AppManager.Instance.Modules.GameplayModule.GameplayResult(
                 new AnturaGameplayResult()
                 {
                     GameplayInfo = new AnturaGameplayInfo() { GameId = this.GameplayInfo.GameId },

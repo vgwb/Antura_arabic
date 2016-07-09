@@ -7,10 +7,10 @@ using Google2u;
 using System;
 using ModularFramework.Modules;
 
-namespace EA4S.MiniGame.DontWakeUp
+namespace EA4S.DontWakeUp
 {
 
-    public class GameDontWakeUp : AnturaMiniGame
+    public class GameDontWakeUp : MiniGameBase
     {
 
         [Header("Gameplay Info and Config section")]

@@ -83,7 +83,7 @@ public class BalloonsGameManager: MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         word = Google2u.words.Instance.Rows.GetRandomElement()._word;
-        wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AnturaGameManager.Instance.Letters);
+        wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
         Debug.Log(word + " Length: " + word.Length);
 
         wordPrompt.DisplayWord(wordLetters);
@@ -114,7 +114,7 @@ public class BalloonsGameManager: MonoBehaviour
             LetterData randomLetter;
             do
             {
-                randomLetter = AnturaGameManager.Instance.Letters.GetRandomElement();
+                randomLetter = AppManager.Instance.Letters.GetRandomElement();
             } while (wordLetters.Contains(randomLetter));
 
             balloonLetter.Init(randomLetter);

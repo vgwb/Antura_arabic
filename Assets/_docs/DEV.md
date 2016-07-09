@@ -1,6 +1,16 @@
 EA4S - Antura and the Letters - DEV NOTES
 =================
 
+# Namespaces
+
+all App and Shared scripts are under namespace **EA4S**
+
+all minigames have their own namespace, like: **EA4S.FastCrowd**
+
+
+
+
+
 # Font assets
 ## Antura Arabic SDF
 this is the main arabic Font  
