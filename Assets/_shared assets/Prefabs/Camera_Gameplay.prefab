@@ -269,21 +269,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 183850}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a7230292f31240fa938686786a7ad04, type: 3}
+  m_Script: {fileID: 11500000, guid: 847e0eeb80b76e84c97095da159759a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  distance: 43.8
-  xSpeed: -5.7
-  ySpeed: 19.4
-  yMinLimit: -20
-  yMaxLimit: 80
-  distanceMin: 10
-  distanceMax: 95.6
-  autoMovement: 0
-  autoSpeedX: 0.05
-  autoSpeedY: 0.1
-  autoSpeedDistance: -0.1
+  ModuleActivationState: 0
 --- !u!114 &11489782
 MonoBehaviour:
   m_ObjectHideFlags: 1
