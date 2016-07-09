@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CGL.Antura.DTest
+namespace EA4S
 {
     public class PauseMenu : MonoBehaviour
     {

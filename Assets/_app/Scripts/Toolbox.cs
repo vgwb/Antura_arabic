@@ -3,8 +3,10 @@ using System.Collections;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
-namespace CGL.Antura {
-    public class Toolbox : MonoBehaviour {
+namespace EA4S
+{
+    public class Toolbox : MonoBehaviour
+    {
 
         /// <summary>
         /// Manual implementation for gameplay result.
@@ -15,15 +17,16 @@ namespace CGL.Antura {
             if (_stars > 0)
                 positiveResult = true;
 
-            AnturaGameplayInfo gameInfo = AnturaGameManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
+            AnturaGameplayInfo gameInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
 
-            AnturaGameManager.Instance.Modules.GameplayModule.GameplayResult(
-                    new AnturaGameplayResult() {
+            AppManager.Instance.Modules.GameplayModule.GameplayResult(
+                new AnturaGameplayResult()
+                {
                         
-                        GameplayInfo = new AnturaGameplayInfo() { GameId = gameInfo.GameId },
-                        Stars = _stars,
-                        PositiveResult = positiveResult
-                    }
+                    GameplayInfo = new AnturaGameplayInfo() { GameId = gameInfo.GameId },
+                    Stars = _stars,
+                    PositiveResult = positiveResult
+                }
             );
         }
     }

@@ -5,8 +5,10 @@ using System.Text.RegularExpressions;
 using UniRx;
 using Panda;
 
-namespace CGL.Antura {
-    public class LetterObjectView : MonoBehaviour {
+namespace EA4S
+{
+    public class LetterObjectView : MonoBehaviour
+    {
         public float MergedElementsDistance = 1;
 
         public LetterObjectView RightLetter = null;
@@ -22,7 +24,9 @@ namespace CGL.Antura {
 
 
         #region View
+
         public TMP_Text Lable;
+
         #endregion
 
         public void Init(LetterData _data) {
@@ -42,32 +46,34 @@ namespace CGL.Antura {
             /// <summary>
             /// Monitoring Model property XXX value changes.
             /// </summary>
-            this.transform.ObserveEveryValueChanged(x => dropState).Subscribe(_ => {
+            this.transform.ObserveEveryValueChanged(x => dropState).Subscribe(_ =>
+                {
 
-                switch (dropState) {
-                    case DropState.off:
-                        if (ActualDropArea) { 
-                            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
-                            ActualDropArea = null;
-                        }
-                        break;
-                    case DropState.check_ok:
-                        if(ActualDropArea)
-                            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.green;
-                        break;
-                    case DropState.check_ko:
-                        if(ActualDropArea)
-                            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.red;
-                        break;
-                    default:
-                        break;
-                }
+                    switch (dropState) {
+                        case DropState.off:
+                            if (ActualDropArea) { 
+                                ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
+                                ActualDropArea = null;
+                            }
+                            break;
+                        case DropState.check_ok:
+                            if (ActualDropArea)
+                                ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.green;
+                            break;
+                        case DropState.check_ko:
+                            if (ActualDropArea)
+                                ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.red;
+                            break;
+                        default:
+                            break;
+                    }
 
-            });
+                });
 
         }
 
-        #region 
+        #region
+
         //void OnMouseDrag() {
         //    if (IsMerged)
         //        return;
@@ -116,16 +122,13 @@ namespace CGL.Antura {
                 // Isolate
                 Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Isolated_Unicode);
                 return;
-            }else
-            if (RightLetter != null && LeftLetter == null) {
+            } else if (RightLetter != null && LeftLetter == null) {
                 // Initial
                 Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Initial_Unicode);
-            }else
-            if (RightLetter == null && LeftLetter != null) {
+            } else if (RightLetter == null && LeftLetter != null) {
                 // Final
                 Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Final_Unicode);
-            } else
-            if (RightLetter != null && LeftLetter != null) {
+            } else if (RightLetter != null && LeftLetter != null) {
                 // Median
                 Lable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Model.Data.Medial_Unicode);
             }
@@ -140,7 +143,7 @@ namespace CGL.Antura {
         //    if (transform.position.x < otherL.transform.position.x) {
         //        RightLetter = otherL;
         //        otherL.LeftLetter = this;
-        //    } else { 
+        //    } else {
         //        LeftLetter = otherL;
         //        otherL.RightLetter = this;
         //    }
@@ -151,15 +154,16 @@ namespace CGL.Antura {
         //    if (otherL == null)
         //        return;
 
-        //    if (otherL == RightLetter) { 
+        //    if (otherL == RightLetter) {
         //        RightLetter = null;
         //        otherL.LeftLetter = null;
-        //    } else if (otherL == LeftLetter) { 
+        //    } else if (otherL == LeftLetter) {
         //        LeftLetter = null;
         //        otherL.RightLetter = null;
         //    }
         //}
         //#endregion
+
         #endregion
 
         void OnTriggerStay(Collider other) {
@@ -182,7 +186,7 @@ namespace CGL.Antura {
             if (ActualDropArea == other.GetComponent<DropSingleArea>()) {
                 dropState = DropState.off;
             }
-            
+
         }
 
         void OnMouseUp() {
@@ -195,15 +199,18 @@ namespace CGL.Antura {
 
                 GameObject.Destroy(gameObject);
             } else {
-                if(ActualDropArea)
+                if (ActualDropArea)
                     ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
             }
         }
 
         public enum DropState {
-            off, // Not checkable
-            check_ok, // right matching preview
-            check_ko, // wrong matching preview
+            off,
+            // Not checkable
+            check_ok,
+            // right matching preview
+            check_ko,
+            // wrong matching preview
         }
     }
 }

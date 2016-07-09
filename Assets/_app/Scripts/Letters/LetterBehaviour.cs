@@ -6,7 +6,7 @@ using DG.Tweening;
 using UniRx;
 using ModularFramework.Helpers;
 
-namespace CGL.Antura {
+namespace EA4S {
     public class LetterBehaviour : MonoBehaviour {
 
         #region public properties
@@ -14,12 +14,9 @@ namespace CGL.Antura {
         #endregion
 
         #region runtime variables
-        [Task]
-        public bool IsLookingToTarget() {
-            return Target != null;
-        }
 
-        public Transform Target = null;
+
+        
 
         /// <summary>
         /// Animator
@@ -44,16 +41,42 @@ namespace CGL.Antura {
         /// <param name="_animationName"></param>
         [Task]
         public void SetAnimation(string _animationName) {
-            Anim.Play(_animationName);
+            // Anim.Play(_animationName);
+            switch (_animationName) {
+                case "Idle":
+                    Anim.SetInteger("State", 0);
+                    break;
+                case "Walk":
+                    Anim.SetInteger("State", 1);
+                    break;
+                default:
+                    Debug.Log("Animation not found");
+                    break;
+            }
+            
             Task.current.Succeed();
         }
         #endregion
 
         #region LookAt
+        [Header("Look at Target runtime variables")]
+        public Transform Target = null;
         public Vector3 WorldUpForT = new Vector3(0, 1, 0);
         public Transform RotateBonesTransform;
         public float TimeRotation = 0.4f;
 
+        /// <summary>
+        /// True if Target != null.
+        /// </summary>
+        /// <returns></returns>
+        [Task]
+        public bool IsLookingToTarget() {
+            return Target != null;
+        }
+
+        /// <summary>
+        /// Do look at target action.
+        /// </summary>
         [Task]
         public void LookAtTarget() {
             RotateBonesTransform.DOLookAt(-Target.position, TimeRotation);
@@ -83,7 +106,32 @@ namespace CGL.Antura {
             }
         }
 
-        
+        [Task]
+        public void HoldLookAtCamera(string _stateName) {
+            switch (_stateName) {
+                case "Look":
+                    if (Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.LookAtTargetDuration, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
+                    break;
+                case "NoLook":
+                    if (Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.NoLookAtTargetDuration, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
+                    break;
+                default:
+
+                    Task.current.Succeed();
+                    break;
+            }
+        }
+        #endregion
+
+        #region Common
+        /// <summary>
+        /// Wait base task.
+        /// </summary>
+        /// <param name="duration"></param>
         public void Wait(float duration) {
             var task = Task.current;
             if (task.isStarting) {
@@ -113,10 +161,12 @@ namespace CGL.Antura {
         [Serializable]
         public class BehaviourSettings {
             [Header("LookAtTarget behaviour settings")]
+            [Range(0, 5)]
+            public float LookAtTargetRandomDelta = 0.5f;
             [Range(1, 10)]
-            public float LookAtTargetDuration = 1;
+            public float LookAtTargetDuration = 2;
             [Range(0, 10)]
-            public float NotLookAtTargetDuration = 1;
+            public float NoLookAtTargetDuration = 4;
 
             [Header("Behaviour variation settings")]
             [Range(0, 6)]
@@ -125,7 +175,6 @@ namespace CGL.Antura {
             public float IdleDuration = 5;
             [Range(0, 10)]
             public float WalkDuration = 2;
-            
         }
 
 }

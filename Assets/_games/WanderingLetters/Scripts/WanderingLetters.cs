@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-using CGL.Antura;
+using EA4S;
 using ModularFramework.Modules;
 
-namespace CGL.Antura.WanderingLetters {
-    public class WanderingLetters : AnturaMiniGame {
+namespace EA4S.WanderingLetters
+{
+    public class WanderingLetters : MiniGameBase
+    {
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
             Debug.LogFormat("Start {0} gameplay : {1} ", GameplayInfo.GameId, GameplayInfo);
@@ -19,12 +21,13 @@ namespace CGL.Antura.WanderingLetters {
             if (_stars > 0)
                 positiveResult = true;
 
-            AnturaGameManager.Instance.Modules.GameplayModule.GameplayResult(
-                    new AnturaGameplayResult() {
-                        GameplayInfo = new AnturaGameplayInfo() { GameId = this.GameplayInfo.GameId },
-                        Stars = _stars,
-                        PositiveResult = positiveResult
-                    }
+            AppManager.Instance.Modules.GameplayModule.GameplayResult(
+                new AnturaGameplayResult()
+                {
+                    GameplayInfo = new AnturaGameplayInfo() { GameId = this.GameplayInfo.GameId },
+                    Stars = _stars,
+                    PositiveResult = positiveResult
+                }
             );
         }
     }

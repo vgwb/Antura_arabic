@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System;
-using CGL.Antura;
+using EA4S;
 
-namespace CGL.Antura.WanderingLetters {
+namespace EA4S {
     [Serializable]
     public class WanderingLettersGameplayInfo : AnturaGameplayInfo {
 

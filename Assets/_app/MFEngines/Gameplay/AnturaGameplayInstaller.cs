@@ -2,7 +2,7 @@
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
-namespace CGL.Antura {
+namespace EA4S {
 
     public class AnturaGameplayInstaller : ModuleInstaller<IGameplayModule> {
         public AnturaGameplayInstallerSettings settings;

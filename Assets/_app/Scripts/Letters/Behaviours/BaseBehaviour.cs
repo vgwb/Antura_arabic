@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace CGL.Antura {
+namespace EA4S {
     public class BaseBehaviour : MonoBehaviour, IBehaviour {
 
         public LetterObject Model;

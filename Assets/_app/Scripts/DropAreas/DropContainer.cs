@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace CGL.Antura {
+namespace EA4S {
 
     public class DropContainer : MonoBehaviour {
 
@@ -20,7 +20,7 @@ namespace CGL.Antura {
                 actualAreaIndex++;
             else { 
                 // TODO: quick and dirty -> change soon as possible.
-                AnturaGameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
+                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
                 Debug.Log("Win");
             }
             activateActualArea();

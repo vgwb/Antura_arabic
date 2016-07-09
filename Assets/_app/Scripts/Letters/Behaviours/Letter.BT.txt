@@ -9,6 +9,7 @@ tree("Root")
 tree("Idle")
 	Sequence
 		SetAnimation("Idle")
+		SetNavigation("Idle")
 		//Wait(2.0)
 		HoldState("Idle")
 		tree("Walk")
@@ -16,6 +17,7 @@ tree("Idle")
 tree("Walk")
 	Sequence
 		SetAnimation("Walk")
+		SetNavigation("Walk")
 		HoldState("Walk")
 
 tree("Run")
