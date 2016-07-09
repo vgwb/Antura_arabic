@@ -1,24 +1,39 @@
 tree("Root")
-	Parallel
-		repeat mute tree("Idle")
-		repeat mute tree("LookingToTarget")
+	Fallback
+		tree("Hold")
+		tree("Idle")
+		// tree("LookingToTarget")
 
 // -------------------------
 // Behaviours States		
 // -------------------------
 tree("Idle")
-	Sequence
-		SetAnimation("Idle")
-		SetNavigation("Idle")
-		//Wait(2.0)
-		HoldState("Idle")
-		tree("Walk")
+	while
+		sequence
+			not OnDrag
+			not OnDrag
+		Sequence
+			SetAnimation("Idle")
+			SetNavigation("Stop")
+			//Wait(2.0)
+			HoldState("Idle")
+			tree("Walk")
+			
 
 tree("Walk")
 	Sequence
 		SetAnimation("Walk")
 		SetNavigation("Walk")
 		HoldState("Walk")
+		//tree("TurnFrontOfCamera")
+
+tree("Hold")
+	while
+		OnDrag
+		Parallel
+			SetAnimation("Hold")
+			SetNavigation("Walk")
+			//TurnAllFrontOfTarget()
 
 tree("Run")
 	Sequence
@@ -26,10 +41,13 @@ tree("Run")
 		Wait(2.0)
 		tree("Hold")
 
-tree("Hold")
+tree("TurnFrontOfCamera")
 	Sequence
-		SetAnimation("Hold")
-		Wait(2.0)
+		SetAnimation("Walk")
+		SetNavigation("Stop")
+		TurnAllFrontOfTarget()
+		HoldState("TurnFrontOfCamera")
+
 // -------------------------
 
 tree("LookingToTarget")
