@@ -6,14 +6,14 @@ public class BalloonTopController : MonoBehaviour
     public BalloonController parent;
     public Collider balloonCollider;
 
-    private Rigidbody body;
+    //private Rigidbody body;
     private Animator animator;
     private AudioSource popAudio;
     private int taps = 0;
 
     void Start()
     {
-        body = GetComponent<Rigidbody>();
+        //body = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         popAudio = GetComponent<AudioSource>();
     }
