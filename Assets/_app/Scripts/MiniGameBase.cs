@@ -3,19 +3,22 @@ using System.Collections;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
-namespace EA4S {
+namespace EA4S
+{
 
-    public abstract class AnturaMiniGame : SubGame {
+    public abstract class MiniGameBase : SubGame
+    {
         /// <summary>
         /// If true 
         /// </summary>
         public bool UseTestGameplayInfo;
         public AnturaGameplayInfo GameplayInfo = new AnturaGameplayInfo();
+
         void Start() {
             if (!UseTestGameplayInfo)
-                GameplayInfo = AnturaGameManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
+                GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
             else // manual set on framework for test session
-                AnturaGameManager.Instance.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
+                AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
             ReadyForGameplay();
         }
 
