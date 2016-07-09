@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 using Google2u;
-using CGL.Antura;
+using EA4S;
 
 public class AnturaGameManager : GameManager {
 

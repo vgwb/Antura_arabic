@@ -3,7 +3,7 @@ using System.Collections;
 using Google2u;
 using TMPro;
 
-namespace CGL.Antura {
+namespace EA4S {
     public class DropSingleArea : MonoBehaviour {
 
         public TMP_Text LetterLable;

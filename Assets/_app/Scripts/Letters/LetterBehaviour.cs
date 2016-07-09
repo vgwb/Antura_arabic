@@ -6,7 +6,7 @@ using DG.Tweening;
 using UniRx;
 using ModularFramework.Helpers;
 
-namespace CGL.Antura {
+namespace EA4S {
     public class LetterBehaviour : MonoBehaviour {
 
         #region public properties

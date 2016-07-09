@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using ModularFramework.Core;
 using ModularFramework.Components;
 
-namespace CGL.Antura.Components {
+namespace EA4S {
     public class OnClickStartGame : MonoBehaviour {
         /// <summary>
         /// Gameplay info.
