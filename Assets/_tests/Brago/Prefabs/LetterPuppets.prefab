@@ -871,7 +871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isInspected: 1
   scripts:
-  - {fileID: 4900000, guid: 3bcf394d6d5f99d47a24e4fddf26380f, type: 3}
+  - {fileID: 0}
   autoReset: 1
   tickOn: 0
   sourceInfos:

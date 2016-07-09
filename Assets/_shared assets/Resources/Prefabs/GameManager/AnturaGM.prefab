@@ -3162,7 +3162,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 188774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 281bf285c26ed8b4d814ca2d7cf0e35b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4055498e9231945739feb8dd395084b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GameSettings:
@@ -3170,8 +3170,12 @@ MonoBehaviour:
     GameName: Antura
   MultiGame: 0
   Games:
-  - GameID: Baloons
-    GameName: Baloons
+  - GameID: FastCrowd
+    GameName: FastCrowd
+  - GameID: DontWakeUp
+    GameName: DontWakeUp
+  - GameID: Balloons
+    GameName: Balloons
   Modules:
     LocalizationDataPath: 
 --- !u!114 &11432040
@@ -4654,10 +4658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c332baa536bf0d340a2e9879602e31f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameplayInfo:
-    GameId: FastCrowd
-    minNumberOfLettersOnField: 5
-    MaxNumberOfLettersOnField: 10
 --- !u!114 &11477004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6686,9 +6686,9 @@ RectTransform:
   m_Father: {fileID: 22428494}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 20}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &22417732
 RectTransform:
@@ -6741,9 +6741,9 @@ RectTransform:
   m_Father: {fileID: 22428494}
   m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: -17}
+  m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!224 &22421636
 RectTransform:
@@ -6838,10 +6838,10 @@ RectTransform:
   - {fileID: 22425414}
   m_Father: {fileID: 22442998}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 267.65, y: -75}
-  m_SizeDelta: {x: 535.3, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22423724
 RectTransform:
@@ -8017,9 +8017,9 @@ RectTransform:
   m_Father: {fileID: 22428494}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: -17}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22493524
 RectTransform:
