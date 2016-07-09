@@ -7,10 +7,10 @@ using Google2u;
 using System;
 using ModularFramework.Modules;
 
-namespace EA4S.MiniGame.FastCrowd
+namespace EA4S.FastCrowd
 {
 
-    public class FastCrowd : AnturaMiniGame
+    public class FastCrowd : MiniGameBase
     {
 
         [Header("Gameplay Info and Config section")]
@@ -46,7 +46,7 @@ namespace EA4S.MiniGame.FastCrowd
             // Get letters and word
             // TODO: Only for pre-alpha. This logic must be in Antura app logic.
             string word = words.Instance.Rows.GetRandomElement()._word;
-            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AnturaGameManager.Instance.Letters);
+            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
 
             int count = 0;
             // Letter from db filtered by some parameters
@@ -66,7 +66,7 @@ namespace EA4S.MiniGame.FastCrowd
                 letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 // TODO: the selection is curiously only between the letters of the word... to be checked.
-                letterObjectView.Init(AnturaGameManager.Instance.Letters.GetRandomElement());
+                letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement());
             }
 
             DropAreaContainer.SetupDone();

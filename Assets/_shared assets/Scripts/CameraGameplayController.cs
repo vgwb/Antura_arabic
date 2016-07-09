@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S.Shared
+namespace EA4S
 {
     public class CameraGameplayController : MonoBehaviour
     {
