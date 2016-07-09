@@ -3,7 +3,7 @@ using System.Collections;
 using UniRx;
 
 
-namespace CGL.Antura {
+namespace EA4S {
     public class Run_State_Behaviour : BaseBehaviour {
 
         public float Speed;
@@ -65,6 +65,9 @@ namespace CGL.Antura {
             }
         }
 
+        /// <summary>
+        /// Repositioning waypoint.
+        /// </summary>
         void RepositioningWaypoint() {
             Vector3 randomValidPosition;
             //RandomPoint(Target.position, 10f, out randomValidPosition);

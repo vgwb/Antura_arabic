@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace CGL.Antura {
+
+namespace EA4S
+{
     [RequireComponent(typeof(LetterObjectView))]
     /// <summary>
     /// Manage player drag behaviour.
     /// </summary>
-    public class Hangable : MonoBehaviour {
+    public class Hangable : MonoBehaviour
+    {
 
         bool OnDrag = false;
         Transform tmpTarget;

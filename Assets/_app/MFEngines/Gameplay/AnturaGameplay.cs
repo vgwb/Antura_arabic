@@ -4,7 +4,7 @@ using ModularFramework.Core;
 using ModularFramework.Modules;
 using System;
 
-namespace CGL.Antura {
+namespace EA4S {
     /// <summary>
     /// Concrete implementation for module type GameplayModule.
     /// </summary>
