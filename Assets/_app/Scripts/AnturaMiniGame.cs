@@ -3,7 +3,7 @@ using System.Collections;
 using ModularFramework.Core;
 using ModularFramework.Modules;
 
-namespace CGL.Antura {
+namespace EA4S {
 
     public abstract class AnturaMiniGame : SubGame {
         /// <summary>

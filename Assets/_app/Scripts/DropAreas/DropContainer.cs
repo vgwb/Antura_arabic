@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace CGL.Antura {
+namespace EA4S {
 
     public class DropContainer : MonoBehaviour {
 
