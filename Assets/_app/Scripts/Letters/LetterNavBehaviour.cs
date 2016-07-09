@@ -20,8 +20,10 @@ namespace CGL.Antura {
         [Task]
         public void SetNavigation(string _stateName) {
             switch (_stateName) {
-                case "Idle":
-                    agent.Stop();
+                case "Stop":
+                    if (agent) {
+                        agent.Stop();
+                    }
                     break;
                 case "Walk":
                     RepositioningWaypoint();
@@ -85,7 +87,6 @@ namespace CGL.Antura {
 
             } else {
                 RepositioningWaypoint();
-                Debug.Log("Collision");
             }
         }
         #endregion

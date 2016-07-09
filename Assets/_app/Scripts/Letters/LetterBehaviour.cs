@@ -47,6 +47,12 @@ namespace EA4S {
                 case "Walk":
                     Anim.SetInteger("State", 1);
                     break;
+                case "Run":
+                    Anim.SetInteger("State", 2);
+                    break;
+                case "Hold":
+                    Anim.SetInteger("State", 3);
+                    break;
                 default:
                     Debug.Log("Animation not found");
                     break;
@@ -59,9 +65,10 @@ namespace EA4S {
         #region LookAt
         [Header("Look at Target runtime variables")]
         public Transform Target = null;
-        Transform cachedTarget = null;
-        public Vector3 WorldUpForT = new Vector3(0, 1, 0);
+        public Transform LookForwardTransform = null;
+        public Vector3 WorldUpForTarget = new Vector3(0, 1, 0);
         public Transform RotateBonesTransform;
+        public Transform RotateAllBodyTransform;
         public float TimeRotation = 0.4f;
         /// <summary>
         /// Flag indicate if lettera must look at target (if target != null).
@@ -83,17 +90,28 @@ namespace EA4S {
         /// </summary>
         [Task]
         public void LookAtTarget() {
-            if(DoLookTarget)
-                RotateBonesTransform.DOLookAt(-Target.position, TimeRotation);
+            if (DoLookTarget)
+                RotateBonesTransform.DOLookAt(-Target.position, TimeRotation, AxisConstraint.Y, WorldUpForTarget);
             Task.current.Succeed();
         }
 
         [Task]
         public void LookAtForward() {
             // TODO: improve -> verify if trasform already look forward. 
-            RotateBonesTransform.DOLookAt(Target.position + Vector3.forward, TimeRotation);
+            RotateBonesTransform.DOLookAt(LookForwardTransform.position, TimeRotation, AxisConstraint.Y, WorldUpForTarget);
             Task.current.Succeed();
         }
+
+        /// <summary>
+        /// Turn all the body in front of camera.
+        /// </summary>
+        [Task]
+        public void TurnAllFrontOfTarget() {
+            if (DoLookTarget)
+                RotateAllBodyTransform.DOLookAt(-Target.position, TimeRotation, AxisConstraint.Y, WorldUpForTarget);
+            Task.current.Succeed();
+        }
+
         #endregion
 
         #region States
@@ -109,6 +127,11 @@ namespace EA4S {
                 case "Walk":
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.WalkDuration, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
+                    break;
+                case "TurnFrontOfCamera":
+                    if (Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(0.4f, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 default:

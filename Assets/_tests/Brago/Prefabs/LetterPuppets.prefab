@@ -321,6 +321,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &193354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 439724}
+  m_Layer: 0
+  m_Name: ForwardTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &195174
 GameObject:
   m_ObjectHideFlags: 1
@@ -367,6 +382,7 @@ GameObject:
   - 114: {fileID: 11426122}
   - 54: {fileID: 5499206}
   - 65: {fileID: 6597768}
+  - 114: {fileID: 11450264}
   m_Layer: 0
   m_Name: LetterPuppets
   m_TagString: Untagged
@@ -613,6 +629,19 @@ Transform:
   - {fileID: 434664}
   m_Father: {fileID: 436112}
   m_RootOrder: 0
+--- !u!4 &439724
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 481938}
+  m_RootOrder: 1
 --- !u!4 &463282
 Transform:
   m_ObjectHideFlags: 1
@@ -667,6 +696,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
   - {fileID: 434162}
+  - {fileID: 439724}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &488964
@@ -854,8 +884,10 @@ MonoBehaviour:
     IdleDuration: 1.5
     WalkDuration: 4
   Target: {fileID: 0}
-  WorldUpForT: {x: 0, y: 1, z: 0}
+  LookForwardTransform: {fileID: 439724}
+  WorldUpForTarget: {x: 0, y: 1, z: 0}
   RotateBonesTransform: {fileID: 436112}
+  RotateAllBodyTransform: {fileID: 481938}
   TimeRotation: 0.4
   DoLookTarget: 0
 --- !u!114 &11432562
@@ -871,9 +903,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isInspected: 1
   scripts:
-  - {fileID: 0}
+  - {fileID: 4900000, guid: 3bcf394d6d5f99d47a24e4fddf26380f, type: 3}
   autoReset: 1
-  tickOn: 0
+  tickOn: 1
   sourceInfos:
   - isFoldout: 1
     breakPoints: 
@@ -991,6 +1023,18 @@ MonoBehaviour:
   m_maskType: 0
   m_lineLength: 0
   m_anchor: 10
+--- !u!114 &11450264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18c5be521578c34689ac9a69742c743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDrag: 0
 --- !u!114 &11459950
 MonoBehaviour:
   m_ObjectHideFlags: 1
