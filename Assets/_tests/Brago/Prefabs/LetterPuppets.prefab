@@ -850,8 +850,8 @@ MonoBehaviour:
     LookAtTargetRandomDelta: 0.5
     LookAtTargetDuration: 1
     NoLookAtTargetDuration: 4
-    DurationRandomDelta: 1
-    IdleDuration: 3
+    DurationRandomDelta: 1.5
+    IdleDuration: 1.5
     WalkDuration: 4
   Target: {fileID: 0}
   WorldUpForT: {x: 0, y: 1, z: 0}
