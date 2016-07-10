@@ -11,6 +11,13 @@ public class MyLetter : MonoBehaviour
 
     private bool playerSelected = false;
 
+    void OnCollisionStay(Collision collisionInfo) {
+        foreach (ContactPoint contact in collisionInfo.contacts) {
+            Debug.DrawRay(contact.point, contact.normal * 10, Color.white);
+        }
+    }
+
+
     //
     //    // This stores the layers we want the raycast to hit (make sure this GameObject's layer is included!)
     //    public LayerMask LayerMask = UnityEngine.Physics.DefaultRaycastLayers;

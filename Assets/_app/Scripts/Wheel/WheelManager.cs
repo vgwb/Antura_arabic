@@ -61,7 +61,7 @@ namespace EA4S
 //                 .PrependInterval(1)
 //                  .Insert(0, transform.DOScale(new Vector3(3,3,3), mySequence.Duration()));
 //            
-            Tween BobiBobi = Popup.GetComponent<RectTransform>().DOPunchScale(new Vector2(0.2f, 0.2f), 1.0f, 5, 1f)
+            Popup.GetComponent<RectTransform>().DOPunchScale(new Vector2(0.2f, 0.2f), 1.0f, 5, 1f)
                 .SetLoops(0).SetUpdate(true).SetAutoKill(true)
                 .SetEase(Ease.InOutQuad).Play();
         }
