@@ -30,14 +30,14 @@ namespace EA4S {
 
         void activateActualArea() {
             for (int i = 0; i < Aree.Count; i++) {
-                Aree[i].AreaState = DropSingleArea.State.disabled;
+                Aree[i].SetDisbled();
                 Aree[i].transform.position = new Vector3(Aree[i].transform.position.x - (6 * i),
                                                         0.1f, 
                                                         Aree[i].transform.position.z);
                 Debug.Log("");
             }
             if (actualAreaIndex < Aree.Count)
-                Aree[actualAreaIndex].AreaState = DropSingleArea.State.enabled;
+                Aree[actualAreaIndex].SetEnabled();
         }
 
         /// <summary>

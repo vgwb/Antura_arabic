@@ -1,7 +1,14 @@
 tree("Root")
-	Fallback
-		tree("Hold")
-		tree("Idle")
+	parallel
+		mute tree("Hold")
+		while not OnDrag
+			random
+				tree("Walk")
+				tree("Idle")
+			
+
+//	Fallback
+//		tree("Idle")
 		// tree("LookingToTarget")
 
 // -------------------------
@@ -9,16 +16,17 @@ tree("Root")
 // -------------------------
 tree("Idle")
 	while
-		sequence
-			not OnDrag
-			not OnDrag
-		Sequence
-			SetAnimation("Idle")
-			SetNavigation("Stop")
-			//Wait(2.0)
-			HoldState("Idle")
-			tree("Walk")
-			
+		mute 
+			Sequence
+				not OnDrag
+				not OnDrag
+		mute 
+			Sequence
+				SetAnimation("Idle")
+				SetNavigation("Stop")
+				//Wait(2.0)
+				HoldState("Idle")
+				Succeed
 
 tree("Walk")
 	while
@@ -27,15 +35,51 @@ tree("Walk")
 			SetAnimation("Walk")
 			SetNavigation("Walk")
 			HoldState("Walk")
+			Succeed
 			//tree("TurnFrontOfCamera")
 
 tree("Hold")
-	while
-		OnDrag
-		Parallel
-			SetAnimation("Hold")
-			SetNavigation("Hold")
+	race
+		Sequence
+			not OnDrag
+			ToBeRelease
+			tree("Release")
+		Sequence
+			OnDrag
+			// -------------------------------------------- //	
+			// Hang State Collision + match control
+			// -------------------------------------------- //	
+			Sequence
+				OnDrag
+				Parallel
+					SetAnimation("Hold")
+					SetNavigation("Hold")
+					Race
+						Sequence
+							IsCollidingWithArea	
+							IsMatching 
+							SetMatchState(true)
+
+						Sequence
+							IsCollidingWithArea
+							not IsMatching 
+							SetMatchState(false)
+				Succeed
+			// -------------------------------------------- //
+
+		// If not Dragging call Release
+//		Sequence
+//			not OnDrag
+//			tree("Release")
+		// -------------------------------------------- //
+
+
 			//TurnAllFrontOfTarget()
+tree("Release")
+	Sequence
+		Release
+		// UnSetMatchState
+		Succeed
 
 tree("Run")
 	Sequence
