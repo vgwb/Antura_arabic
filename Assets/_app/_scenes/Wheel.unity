@@ -2316,9 +2316,9 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: -213}
+  m_AnchoredPosition: {x: 4.699951, y: -192.97516}
   m_SizeDelta: {x: 700, y: 1335}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.501, y: 0.515}
 --- !u!114 &847852690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2364,14 +2364,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotating: 0
-  initialSpeed: 300
+  initialSpeed: 1200
 --- !u!58 &847852693
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 847852688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

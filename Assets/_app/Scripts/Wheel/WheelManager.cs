@@ -60,7 +60,7 @@ namespace EA4S
         }
 
         void ShakePopup() {
-            Tween BobiBobi = Popup.GetComponent<RectTransform>().DOPunchScale(new Vector2(1.0f, 1.0f), 0.8f, 5, 1f)
+            Tween BobiBobi = Popup.GetComponent<RectTransform>().DOPunchScale(new Vector2(0.2f, 0.2f), 1.0f, 5, 1f)
                 .SetLoops(0).SetUpdate(true).SetAutoKill(true)
                 .SetEase(Ease.InOutQuad).Play();
 
