@@ -5,7 +5,8 @@ namespace EA4S
 {
     public class WheelController : MonoBehaviour
     {
-        bool isRotating;
+        [HideInInspector]
+        public bool isRotating;
 
         public float initialSpeed;
         float currentSpeed;
@@ -16,15 +17,31 @@ namespace EA4S
         Vector3 rotationEuler;
 
         protected virtual void OnEnable() {
-            Lean.LeanTouch.OnFingerTap += OnFingerTap;
+            // Hook into the OnSwipe event
+            Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
+            // Lean.LeanTouch.OnFingerTap += OnFingerTap;
         }
 
         protected virtual void OnDisable() {
-            Lean.LeanTouch.OnFingerTap -= OnFingerTap;
+            // Unhook into the OnSwipe event
+            Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+            // Lean.LeanTouch.OnFingerTap -= OnFingerTap;
+        }
+
+        public void OnFingerSwipe(Lean.LeanFinger finger) {
+            var swipe = finger.SwipeDelta;
+            if (swipe.y > Mathf.Abs(swipe.x)) {
+                StartWheel();
+            } else {
+                Debug.Log("SWIPE UP YOU MUST!");
+            }
         }
 
         public void OnFingerTap(Lean.LeanFinger finger) {
-            // Does the prefab exist?
+            StartWheel();
+        }
+
+        void StartWheel() {
             if (isRotating == false) {
                 //Debug.Log("ROTATE");
                 isRotating = true;
@@ -32,7 +49,6 @@ namespace EA4S
                 WheelManager.Instance.OnWheelStart();
 
             }
-      
         }
 
 
@@ -47,9 +63,6 @@ namespace EA4S
                     isRotating = false;
                     WheelManager.Instance.OnWheelStopped();
                 }
-
-                //To convert Quaternion -> Euler, use eulerAngles
-                //print(transform.rotation.eulerAngles);
             }
         }
 
