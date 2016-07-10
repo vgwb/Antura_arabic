@@ -10,6 +10,8 @@ namespace EA4S
         public float initialSpeed;
         float currentSpeed;
 
+        const float brakeForce = 0.98f;
+        const float minimalSpeed2Stop = 4f;
 
         public GameObject TouchParticles;
         Vector3 rotationEuler;
@@ -42,12 +44,12 @@ namespace EA4S
 
         void Update() {
             if (isRotating) {
-                rotationEuler += Vector3.forward * currentSpeed * Time.deltaTime; //increment 30 degrees every second
+                rotationEuler += Vector3.forward * currentSpeed * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(rotationEuler);
 
-                currentSpeed = currentSpeed * 0.99f;
+                currentSpeed = currentSpeed * brakeForce;
 
-                if (currentSpeed < 3.00f) {
+                if (currentSpeed < minimalSpeed2Stop) {
                     isRotating = false;
                     WheelManager.Instance.OnWheenStopped();
                 }
