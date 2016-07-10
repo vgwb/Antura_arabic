@@ -10,15 +10,20 @@ using ModularFramework.Modules;
 namespace EA4S.DontWakeUp
 {
 
+    [Serializable]
+    public class GameDontWakeUpGameplayInfo : AnturaGameplayInfo
+    {
+        public float Time = 10;
+    }
+
+   
     public class GameDontWakeUp : MiniGameBase
     {
-
         [Header("Gameplay Info and Config section")]
         #region Overrides
-
         new public GameDontWakeUpGameplayInfo GameplayInfo;
 
-        new public static GameDontWakeUp Instance
+        new public static GameDontWakeUp I
         {
             get { return SubGame.Instance as GameDontWakeUp; }
         }
@@ -29,12 +34,4 @@ namespace EA4S.DontWakeUp
 
     }
 
-    /// <summary>
-    /// Gameplay info class data structure.
-    /// </summary>
-    [Serializable]
-    public class GameDontWakeUpGameplayInfo : AnturaGameplayInfo
-    {
-        public float Time = 10;
-    }
 }
