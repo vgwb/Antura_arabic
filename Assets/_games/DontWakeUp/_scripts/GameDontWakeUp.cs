@@ -9,8 +9,6 @@ using ModularFramework.Modules;
 
 namespace EA4S.DontWakeUp
 {
-
-
    
     public class GameDontWakeUp : MiniGameBase
     {
@@ -25,6 +23,21 @@ namespace EA4S.DontWakeUp
 
         #endregion
 
+        int currentRound;
+        public GameObject[] CameraPositions;
+
+        void Start() {
+
+
+
+
+        }
+
+
+        public void ChangeCamera() {
+            currentRound = (currentRound + 1) % 3;
+            CameraGameplayController.I.GoToPosition(CameraPositions[currentRound].transform.position, CameraPositions[currentRound].transform.rotation);
+        }
 
 
     }
