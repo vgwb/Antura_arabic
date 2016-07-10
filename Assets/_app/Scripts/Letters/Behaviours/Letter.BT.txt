@@ -2,9 +2,10 @@ tree("Root")
 	parallel
 		mute tree("Hold")
 		while not OnDrag
-			random
-				tree("Walk")
+			random(0.5, 0.4, 0.1)
 				tree("Idle")
+				tree("Walk")
+				tree("Run")
 			
 
 //	Fallback
@@ -29,7 +30,7 @@ tree("Idle")
 				Succeed
 
 tree("Walk")
-	while
+	Sequence
 		not OnDrag
 		Sequence
 			SetAnimation("Walk")
@@ -77,13 +78,14 @@ tree("Hold")
 			//TurnAllFrontOfTarget()
 tree("Release")
 	Sequence
+		//UnSetMatchState
 		Release
-		// UnSetMatchState
 		Succeed
 
 tree("Run")
 	Sequence
 		SetAnimation("Run")
+		SetNavigation("Run")
 		Wait(2.0)
 		tree("Hold")
 

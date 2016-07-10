@@ -63,17 +63,27 @@ namespace EA4S.FastCrowd
 
             // Add other random letters
             int OtherLettersCount = MinLettersOnField - gameLetters.Count;
-            //for (int i = 0; i < OtherLettersCount; i++) {
-            //    LetterObjectView letterObjectView = Instantiate(LetterPref);
-            //    //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
-            //    letterObjectView.transform.SetParent(TerrainTrans, true);
-            //    Vector3 newPosition = Vector3.zero;
-            //    GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
-            //    // TODO: the selection is curiously only between the letters of the word... to be checked.
-            //    letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement());
-            //}
+            for (int i = 0; i < OtherLettersCount; i++) {
+                LetterObjectView letterObjectView = Instantiate(LetterPref);
+                //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
+                letterObjectView.transform.SetParent(TerrainTrans, true);
+                Vector3 newPosition = Vector3.zero;
+                GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
+                // TODO: the selection is curiously only between the letters of the word... to be checked.
+                letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement());
+            }
 
             DropAreaContainer.SetupDone();
+
+            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+        }
+
+        /// <summary>
+        /// Called when the time is over.
+        /// </summary>
+        /// <param name="_time"></param>
+        private void GameplayTimer_OnTimeOver(float _time) {
+            Debug.Log("Time is over");
         }
 
         /// <summary>
@@ -88,7 +98,16 @@ namespace EA4S.FastCrowd
             
         }
 
+        #region events subscription
+        void OnEnable() {
+            GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
+        }
+        void OnDisable() {
+            GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
+        }
 
+
+        #endregion
     }
 
     /// <summary>
@@ -97,6 +116,6 @@ namespace EA4S.FastCrowd
     [Serializable]
     public class FastCrowdGameplayInfo : AnturaGameplayInfo
     {
-        public float Time = 10;
+        public float PlayTime = 10;
     }
 }

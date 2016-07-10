@@ -95,11 +95,11 @@ namespace EA4S {
                     GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.gray);
                     break;
                 case State.matching:
-                    Debug.Log("matching");
+                    // Matching preview right
                     GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.green);
                     break;
                 case State.matching_wrong:
-                    Debug.Log("matching_wrong");
+                    // Matching preview wrong
                     GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.red);
                     break;
                 default:
