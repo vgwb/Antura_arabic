@@ -42,7 +42,11 @@ namespace EA4S
             //GameIcon.SetActive(false);
         }
 
-        public void OnWheenStopped() {
+        public void OnWheelStart() {
+            TutorialArrow.SetActive(false);
+        }
+
+        public void OnWheelStopped() {
             GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
             //GameIcon.SetActive(true);
         }
