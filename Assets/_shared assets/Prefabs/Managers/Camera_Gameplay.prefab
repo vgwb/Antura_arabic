@@ -13,7 +13,6 @@ GameObject:
   - 92: {fileID: 9235330}
   - 124: {fileID: 12437416}
   - 81: {fileID: 8173350}
-  - 114: {fileID: 11439404}
   - 114: {fileID: 11403390}
   - 114: {fileID: 11407226}
   - 114: {fileID: 11433158}
@@ -261,18 +260,6 @@ MonoBehaviour:
     type: 3}
   colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544,
     type: 3}
---- !u!114 &11439404
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183850}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847e0eeb80b76e84c97095da159759a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ModuleActivationState: 0
 --- !u!114 &11489782
 MonoBehaviour:
   m_ObjectHideFlags: 1
