@@ -13,7 +13,6 @@ namespace EA4S
         const float brakeForce = 0.98f;
         const float minimalSpeed2Stop = 4f;
 
-        public GameObject TouchParticles;
         Vector3 rotationEuler;
 
         protected virtual void OnEnable() {
@@ -26,17 +25,12 @@ namespace EA4S
 
         public void OnFingerTap(Lean.LeanFinger finger) {
             // Does the prefab exist?
-            if (TouchParticles != null) {
+            if (isRotating == false) {
                 //Debug.Log("ROTATE");
                 isRotating = true;
                 currentSpeed = initialSpeed;
-                // Clone the prefab, and place it where the finger was tapped
-                var position = finger.GetWorldPosition(50.0f);
-                var rotation = Quaternion.identity;
-                var clone = (GameObject)Instantiate(TouchParticles, position, rotation);
+                WheelManager.Instance.OnWheelStart();
 
-                // Make sure the prefab gets destroyed after some time
-                Destroy(clone, 2.0f);
             }
       
         }
@@ -51,7 +45,7 @@ namespace EA4S
 
                 if (currentSpeed < minimalSpeed2Stop) {
                     isRotating = false;
-                    WheelManager.Instance.OnWheenStopped();
+                    WheelManager.Instance.OnWheelStopped();
                 }
 
                 //To convert Quaternion -> Euler, use eulerAngles
