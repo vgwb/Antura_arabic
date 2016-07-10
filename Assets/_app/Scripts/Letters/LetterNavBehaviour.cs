@@ -3,6 +3,9 @@ using System.Collections;
 using Panda;
 
 namespace EA4S {
+    /// <summary>
+    /// Add AI Nav logic to letter puppet object.
+    /// </summary>
     [RequireComponent(typeof(NavMeshAgent))]
     public class LetterNavBehaviour : MonoBehaviour {
         public GameObject WayPointPrefab;
@@ -31,11 +34,17 @@ namespace EA4S {
                     agent.Resume();
                     break;
                 case "Hold":
-                    agent.SetDestination(new Vector3(0, 9, -33));
+                    agent.SetDestination(new Vector3(0, 0.2f, -19));
+                    agent.Resume();
                     break;
                 case "Run":
                     RepositioningWaypoint();
                     agent.speed = 10f;
+                    agent.Resume();
+                    break;
+                case "Ninja":
+                    RepositioningWaypoint();
+                    agent.speed = 3.5f;
                     agent.Resume();
                     break;
                 default:

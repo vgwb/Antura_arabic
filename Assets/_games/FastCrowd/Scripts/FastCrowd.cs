@@ -56,7 +56,7 @@ namespace EA4S.FastCrowd
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 Vector3 newPosition = Vector3.zero;
                 GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
-                letterObjectView.Init(letterData);
+                letterObjectView.Init(letterData,GameplayInfo.BehaviourSettings);
                 PlaceDropAreaElement(letterData, count);
                 count++;
             }
@@ -70,7 +70,7 @@ namespace EA4S.FastCrowd
                 Vector3 newPosition = Vector3.zero;
                 GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
                 // TODO: the selection is curiously only between the letters of the word... to be checked.
-                letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement());
+                letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), GameplayInfo.BehaviourSettings);
             }
 
             DropAreaContainer.SetupDone();
@@ -117,5 +117,6 @@ namespace EA4S.FastCrowd
     public class FastCrowdGameplayInfo : AnturaGameplayInfo
     {
         public float PlayTime = 10;
+        public LetterBehaviour.BehaviourSettings BehaviourSettings = new LetterBehaviour.BehaviourSettings();
     }
 }

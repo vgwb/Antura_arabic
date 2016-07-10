@@ -2,10 +2,11 @@ tree("Root")
 	parallel
 		mute tree("Hold")
 		while not OnDrag
-			random(0.5, 0.4, 0.1)
+			random(0.5, 0.3, 0.2, 0.1)
 				tree("Idle")
 				tree("Walk")
 				tree("Run")
+				tree("Ninja")
 			
 
 //	Fallback
@@ -86,8 +87,18 @@ tree("Run")
 	Sequence
 		SetAnimation("Run")
 		SetNavigation("Run")
-		Wait(2.0)
-		tree("Hold")
+		HoldState("Ninja")
+		Succeed
+
+tree("Ninja")
+	Sequence
+		not OnDrag
+		Sequence
+			SetAnimation("Ninja")
+			SetNavigation("Ninja")
+			HoldState("Ninja")
+			Succeed
+			//tree("TurnFrontOfCamera")
 
 tree("TurnFrontOfCamera")
 	Sequence
