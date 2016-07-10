@@ -33,6 +33,11 @@ namespace EA4S {
                 case "Hold":
                     agent.SetDestination(new Vector3(0, 9, -33));
                     break;
+                case "Run":
+                    RepositioningWaypoint();
+                    agent.speed = 10f;
+                    agent.Resume();
+                    break;
                 default:
                     break;
             }
