@@ -5,55 +5,64 @@ namespace EA4S
 {
     public class WheelController : MonoBehaviour
     {
-        bool isRotating;
+        [HideInInspector]
+        public bool isRotating;
 
         public float initialSpeed;
         float currentSpeed;
 
+        const float brakeForce = 0.98f;
+        const float minimalSpeed2Stop = 4f;
 
-        public GameObject TouchParticles;
         Vector3 rotationEuler;
 
         protected virtual void OnEnable() {
-            Lean.LeanTouch.OnFingerTap += OnFingerTap;
+            // Hook into the OnSwipe event
+            Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
+            // Lean.LeanTouch.OnFingerTap += OnFingerTap;
         }
 
         protected virtual void OnDisable() {
-            Lean.LeanTouch.OnFingerTap -= OnFingerTap;
+            // Unhook into the OnSwipe event
+            Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+            // Lean.LeanTouch.OnFingerTap -= OnFingerTap;
+        }
+
+        public void OnFingerSwipe(Lean.LeanFinger finger) {
+            var swipe = finger.SwipeDelta;
+            if (swipe.y > Mathf.Abs(swipe.x)) {
+                StartWheel();
+            } else {
+                Debug.Log("SWIPE UP YOU MUST!");
+            }
         }
 
         public void OnFingerTap(Lean.LeanFinger finger) {
-            // Does the prefab exist?
-            if (TouchParticles != null) {
+            StartWheel();
+        }
+
+        void StartWheel() {
+            if (isRotating == false) {
                 //Debug.Log("ROTATE");
                 isRotating = true;
                 currentSpeed = initialSpeed;
-                // Clone the prefab, and place it where the finger was tapped
-                var position = finger.GetWorldPosition(50.0f);
-                var rotation = Quaternion.identity;
-                var clone = (GameObject)Instantiate(TouchParticles, position, rotation);
+                WheelManager.Instance.OnWheelStart();
 
-                // Make sure the prefab gets destroyed after some time
-                Destroy(clone, 2.0f);
             }
-      
         }
 
 
         void Update() {
             if (isRotating) {
-                rotationEuler += Vector3.forward * currentSpeed * Time.deltaTime; //increment 30 degrees every second
+                rotationEuler += Vector3.forward * currentSpeed * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(rotationEuler);
 
-                currentSpeed = currentSpeed * 0.99f;
+                currentSpeed = currentSpeed * brakeForce;
 
-                if (currentSpeed < 3.00f) {
+                if (currentSpeed < minimalSpeed2Stop) {
                     isRotating = false;
-                    WheelManager.Instance.OnWheenStopped();
+                    WheelManager.Instance.OnWheelStopped();
                 }
-
-                //To convert Quaternion -> Euler, use eulerAngles
-                //print(transform.rotation.eulerAngles);
             }
         }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventLogFilterEventActions: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   _displayEventMonitorSceneInfo: 1
-  _displayAudioClipWaveform: 1
+  _displayAudioClipWaveform: 0
   _playmodePersistance: 0
   _audioAssetImporter: 0
   _maxRandomization3DDistance: 1000
