@@ -1,13 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.DeAudio;
 
 namespace EA4S
 {
-    public static class AudioManager
+    public class AudioManager : MonoBehaviour
     {
+        public static AudioManager I;
+
+        DeAudioClipData Music1;
+        DeAudioClipData Hit;
+
+
         static System.Action OnNotifyEndAudio;
 
-        public static void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject) {
+        void Awake() {
+            I = this;
+        }
+
+
+        public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject) {
             // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
             if (info != null) {
                 if (type == Fabric.EventNotificationType.OnAudioComponentStopped) {
@@ -19,24 +31,30 @@ namespace EA4S
             }
         }
 
-        public static void PlaySound(string eventName) {
+        public void PlayMusic(string eventName) {
+            Fabric.EventManager.Instance.PostEvent("MusicTrigger");
+            Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
+        }
+
+
+        public void PlaySound(string eventName) {
             Fabric.EventManager.Instance.PostEvent(eventName);
         }
 
-        public static void PlaySound(string eventName, System.Action callback) {
+        public void PlaySound(string eventName, System.Action callback) {
             OnNotifyEndAudio = callback;
             Fabric.EventManager.Instance.PostEventNotify(eventName, NotifyEndAudio);
         }
 
-        public static void PlaySound(string eventName, GameObject GO) {
+        public void PlaySound(string eventName, GameObject GO) {
             Fabric.EventManager.Instance.PostEvent(eventName, GO);
         }
 
-        public static void StopSound(string n) {
+        public void StopSound(string n) {
             Fabric.EventManager.Instance.PostEvent(n, Fabric.EventAction.StopAll);
         }
 
-        public static void FadeOutMusic(string n) {
+        public void FadeOutMusic(string n) {
             Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
             if (component != null) {
                 component.FadeOut(0.1f, 0.5f);
