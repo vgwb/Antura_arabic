@@ -212,5 +212,6 @@ namespace EA4S {
             public float WalkDuration = 2;
         }
 
-}
+
+    }
 }

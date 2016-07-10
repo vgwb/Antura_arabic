@@ -5,10 +5,11 @@ using System.Text.RegularExpressions;
 using UniRx;
 using Panda;
 
-namespace EA4S
-{
-    public class LetterObjectView : MonoBehaviour
-    {
+namespace EA4S {
+    /// <summary>
+    /// View object for letter puppets.
+    /// </summary>
+    public class LetterObjectView : MonoBehaviour {
         public float MergedElementsDistance = 1;
 
         public LetterObjectView RightLetter = null;
@@ -49,24 +50,24 @@ namespace EA4S
             this.transform.ObserveEveryValueChanged(x => dropState).Subscribe(_ =>
                 {
 
-                    switch (dropState) {
-                        case DropState.off:
-                            if (ActualDropArea) { 
-                                ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
-                                ActualDropArea = null;
-                            }
-                            break;
-                        case DropState.check_ok:
-                            if (ActualDropArea)
-                                ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.green;
-                            break;
-                        case DropState.check_ko:
-                            if (ActualDropArea)
-                                ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.red;
-                            break;
-                        default:
-                            break;
-                    }
+                    //switch (dropState) {
+                    //    case DropState.off:
+                    //        if (ActualDropArea) { 
+                    //            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
+                    //            ActualDropArea = null;
+                    //        }
+                    //        break;
+                    //    case DropState.check_ok:
+                    //        if (ActualDropArea)
+                    //            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.green;
+                    //        break;
+                    //    case DropState.check_ko:
+                    //        if (ActualDropArea)
+                    //            ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.red;
+                    //        break;
+                    //    default:
+                    //        break;
+                    //}
 
                 });
 
@@ -183,25 +184,25 @@ namespace EA4S
         }
 
         void OnTriggerExit(Collider other) {
-            if (ActualDropArea == other.GetComponent<DropSingleArea>()) {
-                dropState = DropState.off;
-            }
+            //if (ActualDropArea == other.GetComponent<DropSingleArea>()) {
+            //    dropState = DropState.off;
+            //}
 
         }
 
         void OnMouseUp() {
-            if (dropState == DropState.check_ok) {
-                ActualDropArea.DropContain.NextArea();
-                // Audio - quick and dirty
-                AudioSource audio = FastCrowd.FastCrowd.Instance.GetComponent<AudioSource>();
-                audio.clip = Instantiate<AudioClip>(Resources.Load("Audio/Vox/Letters/Names/VOX_Letters_" + Model.Data.Key) as AudioClip);
-                audio.Play();
+            //if (dropState == DropState.check_ok) {
+            //    ActualDropArea.DropContain.NextArea();
+            //    // Audio - quick and dirty
+            //    AudioSource audio = FastCrowd.FastCrowd.Instance.GetComponent<AudioSource>();
+            //    audio.clip = Instantiate<AudioClip>(Resources.Load("Audio/Vox/Letters/Names/VOX_Letters_" + Model.Data.Key) as AudioClip);
+            //    audio.Play();
 
-                GameObject.Destroy(gameObject);
-            } else {
-                if (ActualDropArea)
-                    ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
-            }
+            //    GameObject.Destroy(gameObject);
+            //} else {
+            //    if (ActualDropArea)
+            //        ActualDropArea.GetComponent<Renderer>().materials[0].color = Color.white;
+            //}
         }
 
         public enum DropState {

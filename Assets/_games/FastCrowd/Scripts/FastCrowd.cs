@@ -54,6 +54,8 @@ namespace EA4S.FastCrowd
                 LetterObjectView letterObjectView = Instantiate(LetterPref);
                 //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
+                Vector3 newPosition = Vector3.zero;
+                GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
                 letterObjectView.Init(letterData);
                 PlaceDropAreaElement(letterData, count);
                 count++;
@@ -61,13 +63,15 @@ namespace EA4S.FastCrowd
 
             // Add other random letters
             int OtherLettersCount = MinLettersOnField - gameLetters.Count;
-            for (int i = 0; i < OtherLettersCount; i++) {
-                LetterObjectView letterObjectView = Instantiate(LetterPref);
-                //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
-                letterObjectView.transform.SetParent(TerrainTrans, true);
-                // TODO: the selection is curiously only between the letters of the word... to be checked.
-                letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement());
-            }
+            //for (int i = 0; i < OtherLettersCount; i++) {
+            //    LetterObjectView letterObjectView = Instantiate(LetterPref);
+            //    //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
+            //    letterObjectView.transform.SetParent(TerrainTrans, true);
+            //    Vector3 newPosition = Vector3.zero;
+            //    GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
+            //    // TODO: the selection is curiously only between the letters of the word... to be checked.
+            //    letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement());
+            //}
 
             DropAreaContainer.SetupDone();
         }

@@ -2,8 +2,7 @@
 using System.Collections;
 using Panda;
 
-namespace EA4S
-{
+namespace EA4S {
     [RequireComponent(typeof(LetterObjectView))]
     /// <summary>
     /// Manage player drag behaviour.
@@ -18,6 +17,9 @@ namespace EA4S
             letterView = GetComponent<LetterObjectView>();
         }
 
+        [Task]
+        public bool ToBeRelease = false;
+
         void OnMouseDown() {
             OnDrag = true;
             
@@ -31,6 +33,7 @@ namespace EA4S
 
         void OnMouseUp() {
             OnDrag = false;
+            ToBeRelease = true;
             //gameObject.GetComponent<Animator>().Play("run");
             //letterView.Model.State = LetterObjectState.Run_State;
         }

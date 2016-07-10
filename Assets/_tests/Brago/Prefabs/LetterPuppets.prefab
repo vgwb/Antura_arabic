@@ -401,6 +401,7 @@ GameObject:
   - 54: {fileID: 5499206}
   - 65: {fileID: 6597768}
   - 114: {fileID: 11450264}
+  - 114: {fileID: 11426754}
   m_Layer: 0
   m_Name: LetterPuppets
   m_TagString: Untagged
@@ -891,7 +892,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 6, z: 6}
+  m_Size: {x: 4, y: 6, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &9503570
 Animator:
@@ -942,6 +943,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WayPointPrefab: {fileID: 100402, guid: 47233fdcbec51bb4d9682ca9adafa6b6, type: 2}
+--- !u!114 &11426754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7965d969dce14244fa4b1614205ab665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11430078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1112,6 +1124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnDrag: 0
+  ToBeRelease: 0
 --- !u!114 &11459950
 MonoBehaviour:
   m_ObjectHideFlags: 1
