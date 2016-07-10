@@ -880,11 +880,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11409102, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 132008, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 199848, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: m_IsActive
@@ -1526,6 +1526,15 @@ MonoBehaviour:
   GameplayInfo:
     GameId: 4661737443726f7764
     PlayTime: 10
+    BehaviourSettings:
+      LookAtTargetRandomDelta: 0.5
+      LookAtTargetDuration: 2
+      NoLookAtTargetDuration: 4
+      DurationRandomDelta: 2
+      IdleDuration: 5
+      WalkDuration: 2
+      RunDuration: 2
+      NinjaDuration: 10
   LetterPref: {fileID: 11459950, guid: 04d7a7dc7bbbd924eac035e8246d2980, type: 2}
   TerrainTrans: {fileID: 911876767}
   DropSingleAreaPref: {fileID: 11485852, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
@@ -4004,7 +4013,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  timerText: {fileID: 0}
 --- !u!114 &1688102983
 MonoBehaviour:
   m_ObjectHideFlags: 0

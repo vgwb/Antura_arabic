@@ -53,6 +53,9 @@ namespace EA4S {
                 case "Hold":
                     Anim.SetInteger("State", 3);
                     break;
+                case "Ninja":
+                    Anim.SetInteger("State", 4);
+                    break;
                 default:
                     Debug.Log("Animation not found");
                     break;
@@ -116,6 +119,10 @@ namespace EA4S {
 
         #region States
         float runtimeWaitTime = 0;
+        /// <summary>
+        /// Stay in actual game for specific duration time.
+        /// </summary>
+        /// <param name="_stateName"></param>
         [Task]
         public void HoldState(string _stateName) {
             switch (_stateName) {
@@ -127,6 +134,16 @@ namespace EA4S {
                 case "Walk":
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.WalkDuration, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
+                    break;
+                case "Run":
+                    if (Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.RunDuration, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
+                    break;
+                case "Ninja":
+                    if (Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.NinjaDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "TurnFrontOfCamera":
@@ -210,6 +227,10 @@ namespace EA4S {
             public float IdleDuration = 5;
             [Range(0, 10)]
             public float WalkDuration = 2;
+            [Range(0, 10)]
+            public float RunDuration = 2;
+            [Range(0, 10)]
+            public float NinjaDuration = 2;
         }
 
 

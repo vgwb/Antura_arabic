@@ -30,6 +30,11 @@ namespace EA4S {
 
         #endregion
 
+        public void Init(LetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride) {
+            Init(_data);
+            GetComponent<LetterBehaviour>().Settings = _behaviourSettingsOverride;
+        }
+
         public void Init(LetterData _data) {
             // Navigation
             /*
