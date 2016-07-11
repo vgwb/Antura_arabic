@@ -86,6 +86,16 @@ namespace EA4S.FastCrowd
             DropAreaContainer.SetupDone();
         }
 
+        void sceneClean() {
+            DropAreaContainer.clean();
+            foreach (LetterObjectView item in TerrainTrans.GetComponentsInChildren<LetterObjectView>()) {
+                GameObject.Destroy(item.gameObject);
+            }
+            foreach (DropSingleArea item in DropAreaContainer.GetComponentsInChildren<DropSingleArea>()) {
+                GameObject.Destroy(item.gameObject);
+            }
+        }
+
         /// <summary>
         /// Place drop object area in drop object area container.
         /// </summary>
@@ -116,6 +126,8 @@ namespace EA4S.FastCrowd
             CompletedWords.Add(ActualWord);
             ActualWord = string.Empty;
             // Recall gameplayBlockSetup
+            sceneClean();
+            gameplayBlockSetup();
         }
         #endregion
 

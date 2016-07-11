@@ -1526,6 +1526,7 @@ MonoBehaviour:
   GameplayInfo:
     GameId: 4661737443726f7764
     PlayTime: 90
+    NumbOfWrongLettersNoise: 3
     BehaviourSettings:
       LookAtTargetRandomDelta: 0.5
       LookAtTargetDuration: 2
@@ -1540,6 +1541,8 @@ MonoBehaviour:
   DropSingleAreaPref: {fileID: 11485852, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
   DropAreaContainer: {fileID: 1599871827}
   MinLettersOnField: 10
+  ActualWord: 
+  CompletedWords: []
 --- !u!4 &577714064
 Transform:
   m_ObjectHideFlags: 0

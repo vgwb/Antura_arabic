@@ -77,7 +77,13 @@ namespace EA4S {
             wayPoint.position = randomValidPosition;
             agent.SetDestination(wayPoint.position);
         }
-        
+
+        void OnDestroy() {
+            if (!wayPoint)
+                return;
+            GameObject.Destroy(wayPoint.gameObject);
+        }
+
         #endregion
 
         #region Collisions
