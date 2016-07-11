@@ -36,17 +36,29 @@ namespace EA4S.FastCrowd
         [Header("Gameplay")]
         public int MinLettersOnField = 10;
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
+        public string ActualWord;
+        public List<string> CompletedWords = new List<string>();
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
             // put here start logic
             Debug.LogFormat("Game {0} ready!", GameplayInfo.GameId);
 
+            // Gameplay Settings Override
 
+            gameplayBlockSetup();
+
+            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void gameplayBlockSetup() {
             // Get letters and word
             // TODO: Only for pre-alpha. This logic must be in Antura app logic.
-            string word = words.Instance.Rows.GetRandomElement()._word;
-            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
+            ActualWord = words.Instance.Rows.GetRandomElement()._word;
+            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord, AppManager.Instance.Letters);
 
             int count = 0;
             // Letter from db filtered by some parameters
@@ -56,14 +68,13 @@ namespace EA4S.FastCrowd
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 Vector3 newPosition = Vector3.zero;
                 GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
-                letterObjectView.Init(letterData,GameplayInfo.BehaviourSettings);
+                letterObjectView.Init(letterData, GameplayInfo.BehaviourSettings);
                 PlaceDropAreaElement(letterData, count);
                 count++;
             }
 
             // Add other random letters
-            int OtherLettersCount = MinLettersOnField - gameLetters.Count;
-            for (int i = 0; i < OtherLettersCount; i++) {
+            for (int i = 0; i < GameplayInfo.NumbOfWrongLettersNoise; i++) {
                 LetterObjectView letterObjectView = Instantiate(LetterPref);
                 //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
@@ -72,18 +83,7 @@ namespace EA4S.FastCrowd
                 // TODO: the selection is curiously only between the letters of the word... to be checked.
                 letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), GameplayInfo.BehaviourSettings);
             }
-
             DropAreaContainer.SetupDone();
-
-            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
-        }
-
-        /// <summary>
-        /// Called when the time is over.
-        /// </summary>
-        /// <param name="_time"></param>
-        private void GameplayTimer_OnTimeOver(float _time) {
-            Debug.Log("Time is over");
         }
 
         /// <summary>
@@ -93,19 +93,42 @@ namespace EA4S.FastCrowd
         void PlaceDropAreaElement(LetterData _letterData, int position) {
             DropSingleArea dropSingleArea = Instantiate(DropSingleAreaPref);
             dropSingleArea.transform.SetParent(DropAreaContainer.transform, false);
-            dropSingleArea.transform.position = dropSingleArea.transform.position + new Vector3(-2f * position, 0, 0);
+            dropSingleArea.transform.position = Camera.main.transform.position;
             dropSingleArea.Init(_letterData, DropAreaContainer);
             
         }
 
-        #region events subscription
-        void OnEnable() {
-            GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
-        }
-        void OnDisable() {
-            GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
+        #region event subscription delegates
+        /// <summary>
+        /// Called when the time is over.
+        /// </summary>
+        /// <param name="_time"></param>
+        private void GameplayTimer_OnTimeOver(float _time) {
+            Debug.Log("Time is over");
+            // Open stars evaluation
         }
 
+        /// <summary>
+        /// Called when objective block is completed (entire word).
+        /// </summary>
+        private void DropContainer_OnObjectiveBlockCompleted() {
+            Debug.Log("Word completed: " + ActualWord);
+            CompletedWords.Add(ActualWord);
+            ActualWord = string.Empty;
+            // Recall gameplayBlockSetup
+        }
+        #endregion
+
+        #region events subscription
+        void OnEnable() {
+            DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
+            GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
+        }
+
+        void OnDisable() {
+            DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
+            GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
+        }
 
         #endregion
     }
@@ -117,6 +140,8 @@ namespace EA4S.FastCrowd
     public class FastCrowdGameplayInfo : AnturaGameplayInfo
     {
         public float PlayTime = 10;
+        [Range(0, 6)]
+        public int NumbOfWrongLettersNoise = 3;
         public LetterBehaviour.BehaviourSettings BehaviourSettings = new LetterBehaviour.BehaviourSettings();
     }
 }

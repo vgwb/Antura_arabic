@@ -16,8 +16,6 @@ namespace EA4S {
         public void Init(LetterData _letterData, DropContainer _dropContainer) {
             DropContain = _dropContainer;
             DropContain.Aree.Add(this);
-            enabledPos = transform.position;
-            disabledPos = enabledPos + new Vector3(0, -0.8f, 0);
             Data = _letterData;
             LetterLable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
             AreaState = State.disabled;

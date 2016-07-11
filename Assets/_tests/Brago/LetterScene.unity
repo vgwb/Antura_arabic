@@ -1525,7 +1525,7 @@ MonoBehaviour:
   UseTestGameplayInfo: 1
   GameplayInfo:
     GameId: 4661737443726f7764
-    PlayTime: 10
+    PlayTime: 90
     BehaviourSettings:
       LookAtTargetRandomDelta: 0.5
       LookAtTargetDuration: 2

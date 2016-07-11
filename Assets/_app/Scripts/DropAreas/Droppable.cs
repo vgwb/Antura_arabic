@@ -63,17 +63,32 @@ namespace EA4S {
         public void Release() {
             GetComponent<Hangable>().ToBeRelease = false;
             if (isMatching) {
-                // Release OK
-                GameObject.Destroy(gameObject);
+                if (OnRightMatch != null)
+                    OnRightMatch(thisLetterView);
+                //GameObject.Destroy(gameObject);
             } else {
-                // Release Wrong letter/word
+                if (OnWrongMatch != null)
+                    OnWrongMatch(thisLetterView);
             }
 
             Task.current.Complete(true);
         }
-
-
         #endregion
+
+        #region events
+        public delegate void DropEvent(LetterObjectView _letterView);
+
+        /// <summary>
+        /// Happens whene wrong letter/word is dropped on active market.
+        /// </summary>
+        public static event DropEvent OnWrongMatch;
+
+        /// <summary>
+        /// Happens whene wrong letter/word is dropped on active market.
+        /// </summary>
+        public static event DropEvent OnRightMatch;
+        #endregion
+
         #region trigger
         void OnTriggerEnter(Collider other) {
             DropSingleArea da = other.GetComponent<DropSingleArea>();
