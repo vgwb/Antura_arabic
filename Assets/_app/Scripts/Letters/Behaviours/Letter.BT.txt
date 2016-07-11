@@ -2,7 +2,7 @@ tree("Root")
 	parallel
 		mute tree("Hold")
 		while not OnDrag
-			random(0.5, 0.3, 0.2, 0.1)
+			random(0.4, 0.4, 0.2, 0.1)
 				tree("Idle")
 				tree("Walk")
 				tree("Run")

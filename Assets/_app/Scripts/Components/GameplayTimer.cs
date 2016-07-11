@@ -31,6 +31,8 @@ namespace EA4S {
         /// </summary>
         /// <param name="_time"></param>
         public void StartTimer(float _time) {
+            if (OnStartTimer != null)
+                OnStartTimer(_time);
             ResetTimer(_time);
             StartTimer();
         }
