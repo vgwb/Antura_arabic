@@ -11,11 +11,21 @@ public class MyLetter : MonoBehaviour
 
     private bool playerSelected = false;
 
-    void OnCollisionStay(Collision collisionInfo) {
-        foreach (ContactPoint contact in collisionInfo.contacts) {
-            Debug.DrawRay(contact.point, contact.normal * 10, Color.white);
-        }
+    //    void OnCollisionStay(Collision collisionInfo) {
+    //        foreach (ContactPoint contact in collisionInfo.contacts) {
+    //            Debug.DrawRay(contact.point, contact.normal * 10, Color.white);
+    //        }
+    //    }
+    //
+    void OnTriggerStay(Collider other) {
+        Debug.Log("triggero " + other.gameObject.name);
     }
+
+    void OnTriggerExit(Collider other) {
+
+    }
+
+
 
 
     //
