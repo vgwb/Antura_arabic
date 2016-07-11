@@ -10,7 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: CGL
-  productName: Antura TEST
+  productName: Antura and the Letters
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 0
@@ -26,7 +26,7 @@ PlayerSettings:
   m_MobileMTRendering: 0
   m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: 1
-  androidShowActivityIndicatorOnLoading: -1
+  androidShowActivityIndicatorOnLoading: 0
   iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 0
@@ -91,7 +91,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.krur.anturatest
+  bundleIdentifier: com.vgwb.ea4s
   bundleVersion: 0.0.1
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -100,7 +100,7 @@ PlayerSettings:
   virtualRealitySupported: 0
   productGUID: 05932e2eb20d844f7a1516a9b065c5d7
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 9
+  AndroidMinSdkVersion: 14
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2
@@ -177,7 +177,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 196cfd2f41fc3454084127feb81eab61, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
