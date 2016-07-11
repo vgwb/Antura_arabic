@@ -12,6 +12,10 @@ namespace EA4S.FastCrowd
 
     public class FastCrowd : MiniGameBase
     {
+        // quick solution for timeover
+        public Transform StarUI;
+
+
 
         [Header("Gameplay Info and Config section")]
         #region Overrides
@@ -116,6 +120,7 @@ namespace EA4S.FastCrowd
         private void GameplayTimer_OnTimeOver(float _time) {
             Debug.Log("Time is over");
             // Open stars evaluation
+            StarUI.gameObject.SetActive(true);
         }
 
         /// <summary>
