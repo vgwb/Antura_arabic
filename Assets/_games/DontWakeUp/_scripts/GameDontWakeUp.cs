@@ -26,6 +26,10 @@ namespace EA4S.DontWakeUp
         int currentRound;
         public GameObject[] CameraPositions;
 
+        public DangerMeter dangering;
+
+        public GameObject StarSystems;
+
         void Start() {
 
 
@@ -33,6 +37,16 @@ namespace EA4S.DontWakeUp
 
         }
 
+        public void Won() {
+            
+            StarSystems.SetActive(true);
+        }
+
+        public void FinishedLevel(int quale) {
+            if (quale != currentRound) {
+                ChangeCamera();
+            }
+        }
 
         public void ChangeCamera() {
             currentRound = (currentRound + 1) % 3;
