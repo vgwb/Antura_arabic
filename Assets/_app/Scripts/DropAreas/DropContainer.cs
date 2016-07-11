@@ -15,41 +15,60 @@ namespace EA4S {
         /// Setup done. Set first as active.
         /// </summary>
         public void SetupDone() {
+            
             actualAreaIndex = 0;
             dropAreaSetPosition();
         }
 
-        public void NextArea() {
-            if (actualAreaIndex < Aree.Count -1)
-                actualAreaIndex++;
-            else {
-                actualAreaIndex++;
-                if (OnObjectiveBlockCompleted != null)
-                    OnObjectiveBlockCompleted();
+        public void clean() {
+            foreach (var item in Aree) {
+                GameObject.Destroy(item.gameObject);
             }
-            dropAreaSetPosition();
+            Aree.Clear();
+        }
+
+        public void NextArea() {
+            if (actualAreaIndex < Aree.Count - 1) { 
+                actualAreaIndex++;
+                dropAreaSetPosition();
+            } else {
+                actualAreaIndex++;
+                dropAreaSetPosition(delegate () {
+                    Debug.Log("set pos done");
+                    //DOTween.Clear();
+                    if (OnObjectiveBlockCompleted != null)
+                        OnObjectiveBlockCompleted();
+                });
+
+
+                //if (OnObjectiveBlockCompleted != null)
+                //    OnObjectiveBlockCompleted();
+            }
+
         }
 
         /// <summary>
         /// Set area positions with animation.
         /// </summary>
-        void dropAreaSetPosition() {
+        void dropAreaSetPosition(TweenCallback _callback = null) {
             for (int i = 0; i < Aree.Count; i++) {
                 if (actualAreaIndex == i) { 
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.ActivePos, delegate () { });
+                    positionigAreaDropElement(Aree[i], DropAreaPositions.ActivePos);
                     Aree[i].SetEnabled();
                 } else if (actualAreaIndex > i) {
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.CompletedPos, delegate () { });
+                    positionigAreaDropElement(Aree[i], DropAreaPositions.CompletedPos, delegate () {
+                        if (_callback != null)
+                            _callback();
+                    });
                     Aree[i].SetDisbled();
                 } else if (actualAreaIndex +1 == i) {
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextPos, delegate () { });
+                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextPos);
                     Aree[i].SetDisbled();
                 } else {
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextsPos, delegate () { });
+                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextsPos /*, delegate () { }*/ );
                     Aree[i].SetDisbled();
                 }
             }
-
         }
 
         #region events
@@ -76,6 +95,10 @@ namespace EA4S {
             Droppable.OnRightMatch -= Droppable_OnRightMatch;
             Droppable.OnWrongMatch -= Droppable_OnWrongMatch;
         }
+
+        void OnDestroy() {
+            
+        }
         #endregion
 
         #region results events delegates
@@ -92,7 +115,7 @@ namespace EA4S {
         #endregion
 
         #region Tween Animations
-        void positionigAreaDropElement(DropSingleArea _dropArea, DropAreaPositions _position, TweenCallback _callback) {
+        void positionigAreaDropElement(DropSingleArea _dropArea, DropAreaPositions _position, TweenCallback _callback = null) {
             float durantion = 0.4f;
             Sequence _sequence = DOTween.Sequence();
             bool needFade = false;
@@ -101,17 +124,20 @@ namespace EA4S {
                 needFade = true;
 
             // - Actual elimination
+            _dropArea.transform.DOLocalRotate(getRotation(_position), durantion);
             _sequence.Append(_dropArea.transform.DOLocalMove(getPosition(_position), durantion)).OnComplete(delegate () {
                 if (needFade) {
                     _sequence.Append(_dropArea.GetComponent<MeshRenderer>().materials[0].DOFade(0, durantion));
                     _sequence.Append(_dropArea.LetterLable.transform.DOLocalMove(new Vector3(getPosition(_position).x, -2, getPosition(_position).z), durantion));
                     // pro only
                     // sequence.Append(Aree[actualAreaIndex].LetterLable.DOFade(0, 0.4f));
+                    if (_callback != null) _callback();
                 }
-                _callback();
-            }).OnStart(delegate () {
-                _sequence.Append(_dropArea.transform.DOLocalRotate(getRotation(_position), durantion));
+
             });
+            //.OnStart(delegate () {
+            //    _sequence.Append(_dropArea.transform.DOLocalRotate(getRotation(_position), durantion));
+            //});
         }
 
         /// <summary>
