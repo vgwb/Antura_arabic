@@ -9,8 +9,6 @@ using ModularFramework.Modules;
 
 namespace EA4S.DontWakeUp
 {
-
-
    
     public class GameDontWakeUp : MiniGameBase
     {
@@ -25,6 +23,35 @@ namespace EA4S.DontWakeUp
 
         #endregion
 
+        int currentRound;
+        public GameObject[] CameraPositions;
+
+        public DangerMeter dangering;
+
+        public GameObject StarSystems;
+
+        void Start() {
+
+
+
+
+        }
+
+        public void Won() {
+            
+            StarSystems.SetActive(true);
+        }
+
+        public void FinishedLevel(int quale) {
+            if (quale != currentRound) {
+                ChangeCamera();
+            }
+        }
+
+        public void ChangeCamera() {
+            currentRound = (currentRound + 1) % 3;
+            CameraGameplayController.I.GoToPosition(CameraPositions[currentRound].transform.position, CameraPositions[currentRound].transform.rotation);
+        }
 
 
     }
