@@ -11,13 +11,14 @@ namespace EA4S {
     public static class Logger {
 
         static string Filename = "AnturaLog.csv";
-        public static string sessionID = "0000000000";
+        public static string SessionID = "0000000000";
         static string buffer = string.Empty;
         
 
         public static void Log(string _area, string _context, string _action, string _data) {
             LogData data = new LogData() {
-                TimeInSeconds = Time.time.ToString(),
+                SessionId = SessionID,
+                TimeInSeconds = DateTime.Now.Ticks.ToString(),
                 Timestamp = DateTime.Now.ToString("yyyyMMdd-HHmmss"),
                 Area = _area,
                 Context = _context,
@@ -25,7 +26,6 @@ namespace EA4S {
                 RawData = _data,
             };
             buffer += data;
-            
         }
 
         public static void Save() {
@@ -73,7 +73,7 @@ namespace EA4S {
 
 
         public override string ToString() {
-            return string.Format("{0},{1},{2},{3},{4},{5}" + Environment.NewLine,
+            return string.Format("{0},{1},{2},{3},{4},{5},{6}" + Environment.NewLine,
                 SessionId,
                 TimeInSeconds,
                 Timestamp,

@@ -39,8 +39,6 @@ namespace EA4S {
                     if (OnObjectiveBlockCompleted != null)
                         OnObjectiveBlockCompleted();
                 });
-
-
                 //if (OnObjectiveBlockCompleted != null)
                 //    OnObjectiveBlockCompleted();
             }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 using Panda;
 
 namespace EA4S {
@@ -12,6 +13,7 @@ namespace EA4S {
         NavMeshAgent agent;
         Transform wayPoint;
         Vector3 LookAtCameraPosition = new Vector3(0, 0.2f, -19);
+        bool lookAtCamera = false;
 
         void Start() {
             agent = GetComponent<NavMeshAgent>();
@@ -20,38 +22,48 @@ namespace EA4S {
             wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
         }
 
+        void setLookAtCamera() {
+            agent.Stop();
+            if (!wayPoint)
+                return;
+            wayPoint.position = LookAtCameraPosition;
+            agent.SetDestination(LookAtCameraPosition);
+            agent.Resume();
+        }
+
+
         #region Tasks
         [Task]
         public void SetNavigation(string _stateName) {
             switch (_stateName) {
                 case "Stop":
-                    agent.SetDestination(LookAtCameraPosition);
-                    agent.speed = 0.1f;
-                    agent.angularSpeed = 900;
-                    agent.Resume();
+                    agent.Stop();
+                    if(lookAtCamera)
+                        transform.DOLookAt(LookAtCameraPosition, 0.2f);
+                    lookAtCamera = !lookAtCamera;
                     break;
                 case "Walk":
                     RepositioningWaypoint();
                     agent.speed = 3.5f;
-                    agent.angularSpeed = 200;
                     agent.Resume();
                     break;
                 case "Hold":
-                    agent.SetDestination(LookAtCameraPosition);
-                    agent.angularSpeed = 200;
+                    setLookAtCamera();
                     agent.speed = 3.5f;
                     agent.Resume();
                     break;
                 case "Run":
-                    RepositioningWaypoint();
-                    agent.angularSpeed = 200;
+                    if (lookAtCamera)
+                        setLookAtCamera();
+                    else
+                        RepositioningWaypoint();
+                    lookAtCamera = !lookAtCamera;
                     agent.speed = 10f;
                     agent.Resume();
                     break;
                 case "Ninja":
                     RepositioningWaypoint();
-                    agent.angularSpeed = 200;
-                    agent.speed = 3.5f;
+                    agent.speed = 3f;
                     agent.Resume();
                     break;
                 default:
