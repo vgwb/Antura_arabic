@@ -73,7 +73,8 @@ namespace EA4S.FastCrowd
                 //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 Vector3 newPosition = Vector3.zero;
-                GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
+                GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 20f, out newPosition);
+                letterObjectView.transform.position = newPosition;
                 letterObjectView.Init(letterData, GameplayInfo.BehaviourSettings);
                 PlaceDropAreaElement(letterData, count);
                 count++;
@@ -85,8 +86,8 @@ namespace EA4S.FastCrowd
                 //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 Vector3 newPosition = Vector3.zero;
-                GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 100f, out newPosition);
-                // TODO: the selection is curiously only between the letters of the word... to be checked.
+                GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 20f, out newPosition);
+                letterObjectView.transform.position = newPosition;
                 letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), GameplayInfo.BehaviourSettings);
             }
             DropAreaContainer.SetupDone();

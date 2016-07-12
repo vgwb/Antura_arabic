@@ -83,7 +83,7 @@ namespace ModularFramework.Core {
 
         void Start() {
             DontDestroyOnLoad(this);
-            //Assert.IsTrue(!string.IsNullOrEmpty(GameSettings.GameID), "Main Game ID Can not be null or empty");
+            // Assert.IsTrue(!string.IsNullOrEmpty(GameSettings.GameID), "Main Game ID Can not be null or empty");
         }
         #endregion
 
