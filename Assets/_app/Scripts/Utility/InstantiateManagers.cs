@@ -6,13 +6,13 @@ namespace EA4S
 {
     public class InstantiateManagers : MonoBehaviour
     {
-        public GameObject FabricAudioManager;
+        public GameObject AudioManager;
         public GameObject EventsManager;
         public GameObject TouchManager;
 
         void Awake() {
-            if (FindObjectOfType(typeof(Fabric.EventManager)) == null) {
-                Instantiate(FabricAudioManager);
+            if (FindObjectOfType(typeof(AudioManager)) == null) {
+                Instantiate(AudioManager);
             }
 
             if (FindObjectOfType(typeof(EventSystem)) == null) {
