@@ -1737,11 +1737,11 @@ MonoBehaviour:
       LookAtTargetRandomDelta: 0.5
       LookAtTargetDuration: 2
       NoLookAtTargetDuration: 4
-      DurationRandomDelta: 2
-      IdleDuration: 5
+      DurationRandomDelta: 1
+      IdleDuration: 2.5
       WalkDuration: 2
       RunDuration: 2
-      NinjaDuration: 10
+      NinjaDuration: 3.57
   LetterPref: {fileID: 11459950, guid: 04d7a7dc7bbbd924eac035e8246d2980, type: 2}
   TerrainTrans: {fileID: 911876767}
   DropSingleAreaPref: {fileID: 11485852, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}

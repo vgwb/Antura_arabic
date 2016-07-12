@@ -46,18 +46,7 @@ namespace EA4S.FastCrowd
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
             // put here start logic
-
-            Debug.LogFormat("Game {0} ready!", GameplayInfo.GameId);
             Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
-            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
-            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
-            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
-            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
-            Logger.Log("minigame", "fastcrowd", "SADSADASDSAD", GameplayInfo.PlayTime.ToString());
-            Logger.Log("minigasdsssame", "fastsadascrowd", "staasdsadart", "sadsad");
-            Logger.Save();
-
-            Logger.Log("minigame", "fastcrowd", "Seconda bufferizzazione", GameplayInfo.PlayTime.ToString());
             Logger.Save();
 
 
@@ -91,7 +80,7 @@ namespace EA4S.FastCrowd
             }
 
             // Add other random letters
-            for (int i = 0; i < GameplayInfo.NumbOfWrongLettersNoise; i++) {
+            for (int i = 0; i < (CompletedWords.Count < GameplayInfo.MaxNumbOfWrongLettersNoise ? CompletedWords.Count : GameplayInfo.MaxNumbOfWrongLettersNoise); i++) {
                 LetterObjectView letterObjectView = Instantiate(LetterPref);
                 //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
@@ -167,11 +156,16 @@ namespace EA4S.FastCrowd
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo
-    {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
+
+        [Tooltip("Play session duration in seconds.")]
         public float PlayTime = 10;
-        [Range(0, 6)]
-        public int NumbOfWrongLettersNoise = 3;
+
+        [Tooltip("Max number of addictional letter besides the word letters. First stage start with 0 addictional letters and every stage add 1 letter until max value reached.")]
+        [Range(0, 9)]
+        public int MaxNumbOfWrongLettersNoise = 3;
+
         public LetterBehaviour.BehaviourSettings BehaviourSettings = new LetterBehaviour.BehaviourSettings();
+
     }
 }
