@@ -17,19 +17,11 @@ namespace EA4S {
 
         void Start() {
             agent = GetComponent<NavMeshAgent>();
-            //wayPoint = new GameObject().transform;
-            //wayPoint.gameObject.AddComponent<BoxCollider>().size = new Vector3(2,2,2);
             wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
+
         }
 
-        void setLookAtCamera() {
-            agent.Stop();
-            if (!wayPoint)
-                return;
-            wayPoint.position = LookAtCameraPosition;
-            agent.SetDestination(LookAtCameraPosition);
-            agent.Resume();
-        }
+
 
 
         #region Tasks
@@ -95,6 +87,18 @@ namespace EA4S {
             GameplayHelper.RandomPointInWalkableArea(wayPoint.position, 15f, out randomValidPosition);
             wayPoint.position = randomValidPosition;
             agent.SetDestination(wayPoint.position);
+        }
+
+        /// <summary>
+        /// Set waypoint to look in camera direction.
+        /// </summary>
+        void setLookAtCamera() {
+            agent.Stop();
+            if (!wayPoint)
+                return;
+            wayPoint.position = LookAtCameraPosition;
+            agent.SetDestination(LookAtCameraPosition);
+            agent.Resume();
         }
 
         void OnDestroy() {

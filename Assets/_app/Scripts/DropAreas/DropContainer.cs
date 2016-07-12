@@ -34,15 +34,10 @@ namespace EA4S {
             } else {
                 actualAreaIndex++;
                 dropAreaSetPosition(delegate () {
-                    Debug.Log("set pos done");
-                    //DOTween.Clear();
                     if (OnObjectiveBlockCompleted != null)
                         OnObjectiveBlockCompleted();
                 });
-                //if (OnObjectiveBlockCompleted != null)
-                //    OnObjectiveBlockCompleted();
             }
-
         }
 
         /// <summary>
@@ -66,7 +61,7 @@ namespace EA4S {
                     positionigAreaDropElement(Aree[i], DropAreaPositions.NextPos);
                     Aree[i].SetDisbled();
                 } else {
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextsPos /*, delegate () { }*/ );
+                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextsPos);
                     Aree[i].SetDisbled();
                 }
             }
