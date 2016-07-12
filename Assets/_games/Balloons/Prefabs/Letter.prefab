@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b32c91621bd3404781d0d3d2b2ded7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentBalloon: {fileID: 0}
+  parentFloatingLetter: {fileID: 0}
   drop: 0
   associatedPromptIndex: 0
   isRequired: 0

@@ -5,6 +5,6 @@ namespace Balloons
 {
     public class BalloonVariation : MonoBehaviour
     {
-        public BalloonTopController[] balloonTops;
+        public BalloonController[] balloonTops;
     }
 }
