@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Balloons
 {
-    public class FloatingLetter : MonoBehaviour
+    public class FloatingLetterController : MonoBehaviour
     {
         [Range(0, 10)]
         public float floatSpeed;
