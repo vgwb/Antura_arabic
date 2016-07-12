@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
-public class PopupWindowController : MonoBehaviour {
+public class PopupWindowController : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
+    public static PopupWindowController I;
+    public GameObject TitleGO;
+    public GameObject DrawingImageGO;
+    public GameObject WordTextGO;
+    public GameObject ButtonGO;
+
+    void Start() {
+        I = this;
+    }
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
