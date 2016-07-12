@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24777957ec9d44649061dab714daf90, type: 3}
   m_Name: AppParameters
   m_EditorClassIdentifier: 
-  m_releaseType: 
-  m_platformType: 
-  m_distributionPlatform: 
-  m_platformArchitecture: 
-  m_textureCompression: 
-  m_productName: 
-  m_bundleIdentifier: 
-  m_bundleVersion: 
+  m_releaseType: test
+  m_platformType: Android
+  m_distributionPlatform: GooglePlay
+  m_platformArchitecture: FAT
+  m_textureCompression: Generic
+  m_productName: Antura Test
+  m_bundleIdentifier: org.vgwb.ea4s_test
+  m_bundleVersion: 0.0.4
