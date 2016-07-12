@@ -22,7 +22,6 @@ namespace EA4S {
 
         void OnMouseDown() {
             OnDrag = true;
-            
             //gameObject.GetComponent<Animator>().Play("hold");
             //letterView.Model.State = LetterObjectState.Grab_State;
             //// Audio - quick and dirty
