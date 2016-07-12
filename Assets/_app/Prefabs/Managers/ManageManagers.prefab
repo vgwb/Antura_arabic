@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb4974aced744d51934c58f484a150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FabricAudioManager: {fileID: 113176, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
+  AudioManager: {fileID: 113176, guid: 8d2a6e676863b4658a06be3b5a745eca, type: 2}
   EventsManager: {fileID: 157592, guid: 79a617bc66d4648f8bd1e58c7a6f3213, type: 2}
   TouchManager: {fileID: 146898, guid: 6a2e78cf593284ef881cad68b7e43060, type: 2}
 --- !u!1001 &100100000
