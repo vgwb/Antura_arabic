@@ -1732,7 +1732,7 @@ MonoBehaviour:
   GameplayInfo:
     GameId: 4661737443726f7764
     PlayTime: 90
-    NumbOfWrongLettersNoise: 3
+    MaxNumbOfWrongLettersNoise: 3
     BehaviourSettings:
       LookAtTargetRandomDelta: 0.5
       LookAtTargetDuration: 2

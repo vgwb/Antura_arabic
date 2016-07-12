@@ -9,7 +9,7 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-
+        new public AppSettings GameSettings = new AppSettings();
         new public static AppManager Instance
         {
             get { return GameManager.Instance as AppManager; }
@@ -17,7 +17,7 @@ namespace EA4S
 
         public List<LetterData> Letters = new List<LetterData>();
 
-
+         
         protected override void GameSetup() {
             base.GameSetup();
             AdditionalSetup();
@@ -39,5 +39,14 @@ namespace EA4S
                 Letters.Add(new LetterData(rowName, letRow));
             }
         }
+    }
+
+    /// <summary>
+    /// Game Setting Extension class.
+    /// </summary>
+    [System.Serializable]
+    public class AppSettings : GameSettings {
+        // Add here more GameSettings
+        public int varForStefano = 0;
     }
 }
