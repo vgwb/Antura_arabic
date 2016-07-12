@@ -11,6 +11,7 @@ namespace EA4S {
         public GameObject WayPointPrefab;
         NavMeshAgent agent;
         Transform wayPoint;
+        Vector3 LookAtCameraPosition = new Vector3(0, 0.2f, -19);
 
         void Start() {
             agent = GetComponent<NavMeshAgent>();
@@ -24,26 +25,32 @@ namespace EA4S {
         public void SetNavigation(string _stateName) {
             switch (_stateName) {
                 case "Stop":
-                    if (agent) {
-                        agent.Stop();
-                    }
+                    agent.SetDestination(LookAtCameraPosition);
+                    agent.speed = 0.1f;
+                    agent.angularSpeed = 900;
+                    agent.Resume();
                     break;
                 case "Walk":
                     RepositioningWaypoint();
                     agent.speed = 3.5f;
+                    agent.angularSpeed = 200;
                     agent.Resume();
                     break;
                 case "Hold":
-                    agent.SetDestination(new Vector3(0, 0.2f, -19));
+                    agent.SetDestination(LookAtCameraPosition);
+                    agent.angularSpeed = 200;
+                    agent.speed = 3.5f;
                     agent.Resume();
                     break;
                 case "Run":
                     RepositioningWaypoint();
+                    agent.angularSpeed = 200;
                     agent.speed = 10f;
                     agent.Resume();
                     break;
                 case "Ninja":
                     RepositioningWaypoint();
+                    agent.angularSpeed = 200;
                     agent.speed = 3.5f;
                     agent.Resume();
                     break;
