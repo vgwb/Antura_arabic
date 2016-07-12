@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11418916}
   - 114: {fileID: 11482288}
   m_Layer: 5
-  m_Name: TextMeshPro Text
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ GameObject:
   - 114: {fileID: 11464942}
   - 114: {fileID: 11469860}
   m_Layer: 5
-  m_Name: Button Play
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,6 +148,7 @@ GameObject:
   - 224: {fileID: 22402530}
   - 222: {fileID: 22277398}
   - 114: {fileID: 11446880}
+  - 225: {fileID: 22547656}
   m_Layer: 5
   m_Name: PopupWindow
   m_TagString: Untagged
@@ -308,6 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bbd1d6a0caa4305b172d6573c7b700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TitleGO: {fileID: 127528}
+  DrawingImageGO: {fileID: 169214}
+  WordTextGO: {fileID: 158266}
+  ButtonGO: {fileID: 132048}
 --- !u!114 &11464942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,7 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.959}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -810,6 +815,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &22547656
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196856}
+  m_Enabled: 1
+  m_Alpha: 0.85
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
