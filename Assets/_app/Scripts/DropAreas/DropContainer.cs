@@ -53,11 +53,14 @@ namespace EA4S {
                 if (actualAreaIndex == i) { 
                     positionigAreaDropElement(Aree[i], DropAreaPositions.ActivePos);
                     Aree[i].SetEnabled();
-                } else if (actualAreaIndex > i) {
+                } else if (actualAreaIndex > i && i == Aree.Count - 1) { // for final one
                     positionigAreaDropElement(Aree[i], DropAreaPositions.CompletedPos, delegate () {
-                        if (_callback != null /*&& i == Aree.Count - 1*/)
+                        if (_callback != null)
                             _callback();
                     });
+                    Aree[i].SetDisbled();
+                } else if (actualAreaIndex > i) {
+                    positionigAreaDropElement(Aree[i], DropAreaPositions.CompletedPos);
                     Aree[i].SetDisbled();
                 } else if (actualAreaIndex +1 == i) {
                     positionigAreaDropElement(Aree[i], DropAreaPositions.NextPos);
