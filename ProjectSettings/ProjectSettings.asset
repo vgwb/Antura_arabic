@@ -10,7 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: CGL
-  productName: Antura and the Letters
+  productName: Antura Test
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 0
@@ -91,15 +91,15 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.vgwb.ea4s
-  bundleVersion: 0.0.1
+  bundleIdentifier: org.vgwb.ea4s_test
+  bundleVersion: 0.0.4
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 05932e2eb20d844f7a1516a9b065c5d7
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 1010004
   AndroidMinSdkVersion: 14
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -340,26 +340,26 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols:
-    1: RT_TEST;PT_IOS
-    2: RT_TEST;PT_IOS
-    4: RT_TEST;PT_IOS
-    5: RT_TEST;PT_IOS
-    6: RT_TEST;PT_IOS
-    7: RT_TEST;PT_IOS
-    9: RT_TEST;PT_IOS
-    13: RT_TEST;PT_IOS
-    14: RT_TEST;PT_IOS
-    15: RT_TEST;PT_IOS
-    16: RT_TEST;PT_IOS
-    17: RT_TEST;PT_IOS
-    18: RT_TEST;PT_IOS
-    19: RT_TEST;PT_IOS
-    20: RT_TEST;PT_IOS
-    21: RT_TEST;PT_IOS
-    22: RT_TEST;PT_IOS
-    23: RT_TEST;PT_IOS
-    24: RT_TEST;PT_IOS
-    25: RT_TEST;PT_IOS
+    1: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    2: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    4: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    5: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    6: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    7: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    9: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    13: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    14: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    15: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    16: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    17: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    18: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    19: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    20: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    21: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    22: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    23: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    24: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
+    25: RT_TEST;PT_ANDROID;DP_GOOGLE_PLAY;PA_FAT;TC_GENERIC
   metroPackageName: EA4S
   metroPackageVersion: 
   metroCertificatePath: 
