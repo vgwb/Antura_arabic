@@ -43,7 +43,11 @@ namespace EA4S {
                     lookAtCamera = !lookAtCamera;
                     break;
                 case "Walk":
-                    RepositioningWaypoint();
+                    if (lookAtCamera)
+                        setLookAtCamera();
+                    else
+                        RepositioningWaypoint();
+                    lookAtCamera = !lookAtCamera;
                     agent.speed = 3.5f;
                     agent.Resume();
                     break;
@@ -53,11 +57,7 @@ namespace EA4S {
                     agent.Resume();
                     break;
                 case "Run":
-                    if (lookAtCamera)
-                        setLookAtCamera();
-                    else
-                        RepositioningWaypoint();
-                    lookAtCamera = !lookAtCamera;
+                    RepositioningWaypoint();
                     agent.speed = 10f;
                     agent.Resume();
                     break;

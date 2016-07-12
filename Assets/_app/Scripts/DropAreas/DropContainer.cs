@@ -55,7 +55,7 @@ namespace EA4S {
                     Aree[i].SetEnabled();
                 } else if (actualAreaIndex > i) {
                     positionigAreaDropElement(Aree[i], DropAreaPositions.CompletedPos, delegate () {
-                        if (_callback != null)
+                        if (_callback != null /*&& i == Aree.Count - 1*/)
                             _callback();
                     });
                     Aree[i].SetDisbled();
@@ -67,6 +67,7 @@ namespace EA4S {
                     Aree[i].SetDisbled();
                 }
             }
+
         }
 
         #region events
@@ -113,6 +114,12 @@ namespace EA4S {
         #endregion
 
         #region Tween Animations
+        /// <summary>
+        /// Perform movement of "wheel" of letters to find, and change the position to a "next one".
+        /// </summary>
+        /// <param name="_dropArea"></param>
+        /// <param name="_position"></param>
+        /// <param name="_callback"></param>
         void positionigAreaDropElement(DropSingleArea _dropArea, DropAreaPositions _position, TweenCallback _callback = null) {
             float durantion = 0.4f;
             Sequence _sequence = DOTween.Sequence();
@@ -129,13 +136,9 @@ namespace EA4S {
                     _sequence.Append(_dropArea.LetterLable.transform.DOLocalMove(new Vector3(getPosition(_position).x, -2, getPosition(_position).z), durantion));
                     // pro only
                     // sequence.Append(Aree[actualAreaIndex].LetterLable.DOFade(0, 0.4f));
-                    if (_callback != null) _callback();
                 }
-
+                if (_callback != null) _callback();
             });
-            //.OnStart(delegate () {
-            //    _sequence.Append(_dropArea.transform.DOLocalRotate(getRotation(_position), durantion));
-            //});
         }
 
         /// <summary>
