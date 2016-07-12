@@ -8,7 +8,7 @@ namespace Balloons
 {
     public class LetterController : MonoBehaviour
     {
-        public BalloonController parentBalloon;
+        public FloatingLetterController parentFloatingLetter;
         public bool drop;
         public LetterData letter;
         public int associatedPromptIndex;
@@ -49,7 +49,7 @@ namespace Balloons
             mousePosition = Input.mousePosition;
             mousePosition.z = cameraDistance;
 
-            parentBalloon.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
+            parentFloatingLetter.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
         }
     }
 }
