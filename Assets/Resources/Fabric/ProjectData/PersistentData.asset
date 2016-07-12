@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 927041872, guid: e63091ca6420aef40badd679c391c90a, type: 3}
   m_Name: PersistentData
   m_EditorClassIdentifier: 
-  _eventLogFilterEventActions: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  _eventLogFilterEventActions: 01010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   _displayEventMonitorSceneInfo: 1
   _displayAudioClipWaveform: 0
   _playmodePersistance: 0

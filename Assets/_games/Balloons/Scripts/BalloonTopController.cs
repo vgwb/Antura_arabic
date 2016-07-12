@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using EA4S;
 
 namespace Balloons
 {
@@ -14,41 +15,34 @@ namespace Balloons
         private AudioSource popAudio;
         private int taps = 0;
 
-        void Start()
-        {
+        void Start() {
             animator = GetComponent<Animator>();
             popAudio = GetComponent<AudioSource>();
         }
 
-        public void OnMouseDown()
-        {
+        public void OnMouseDown() {
             TapAction();
         }
 
-        void TapAction()
-        {
+        void TapAction() {
             taps++;
-            if (taps >= parent.tapsNeeded)
-            {
+            if (taps >= parent.tapsNeeded) {
                 Pop();
-            }
-            else
-            {
+            } else {
                 animator.SetTrigger("Tap");
             }
         }
 
-        public void Pop()
-        {
+        public void Pop() {
             balloonTopCollider.enabled = false;
             rope.SetActive(false);
             parent.Pop();
+            AudioManager.I.PlaySound("Sfx/BalloonPop");
             popAudio.Play();
             animator.SetBool("Pop", true);
         }
 
-        public void SetColor(Color color)
-        {
+        public void SetColor(Color color) {
             Debug.Log("COLOR");
             balloonTopRenderer.material.color = color;
         }

@@ -90,7 +90,7 @@ namespace EA4S
 
                     labelText.text = ArabicFixer.Fix(gameData[currentGameIndex].Title, false, false);
                     GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
-                    AudioManager.I.PlaySound("SFX/hit");
+                    AudioManager.I.PlaySound("Sfx/hit");
                     //AudioManager.I.PlayHit();
                 }
             }
