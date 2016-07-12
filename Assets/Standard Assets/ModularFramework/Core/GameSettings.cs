@@ -24,7 +24,6 @@ using ModularFramework.Modules;
 
 namespace ModularFramework.Core {
 
-    [Serializable]
     public class GameSettings : IGameSettings {
         public string GameID;
         public string GameName;
