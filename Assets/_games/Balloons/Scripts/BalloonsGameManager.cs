@@ -13,7 +13,7 @@ namespace Balloons
     {
         public WordPromptController wordPrompt;
         public GameObject balloonPrefab;
-        public Transform[] balloonLocations;
+        public Transform[] floatingLetterLocations;
         public Canvas resultsCanvas;
         public Text resultsText;
         public GameObject nextButton;
@@ -24,7 +24,7 @@ namespace Balloons
         public Color[] balloonColors;
 
         [HideInInspector]
-        public List<BalloonController> balloons;
+        public List<FloatingLetterController> balloons;
 
         private string word;
         private List<LetterData> wordLetters;
@@ -67,15 +67,15 @@ namespace Balloons
             timer.ResetTimer();
             wordPrompt.Reset();
             resultsCanvas.gameObject.SetActive(false);
-            DestroyBalloons();
+            DestroyAllBalloons();
         }
 
         private void BeginGameplay()
         {
-            StartCoroutine(BeginRound_Coroutine());
+            StartCoroutine(BeginGameplay_Coroutine());
         }
 
-        private IEnumerator BeginRound_Coroutine()
+        private IEnumerator BeginGameplay_Coroutine()
         {
             AnimateCountdown("3");
             yield return new WaitForSeconds(1f);
@@ -84,11 +84,7 @@ namespace Balloons
             AnimateCountdown("1");
             yield return new WaitForSeconds(1f);
 
-            word = Google2u.words.Instance.Rows.GetRandomElement()._word;
-            wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
-            Debug.Log(word + " Length: " + word.Length);
-
-            wordPrompt.DisplayWord(wordLetters);
+            SetNewWord();
             CreateBalloons();
 
             timer.StartTimer();
@@ -101,15 +97,24 @@ namespace Balloons
             countdownAnimator.SetTrigger("Count");
         }
 
+        private void SetNewWord()
+        {
+            word = Google2u.words.Instance.Rows.GetRandomElement()._word;
+            wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
+            wordPrompt.DisplayWord(wordLetters);
+
+            Debug.Log(word + " Length: " + word.Length);
+        }
+
         private void CreateBalloons()
         {
             // Create balloons
-            for (int i = 0; i < balloonLocations.Length; i++)
+            for (int i = 0; i < floatingLetterLocations.Length; i++)
             {
                 var balloon = Instantiate(balloonPrefab);
-                balloon.transform.SetParent(balloonLocations[i]);
+                balloon.transform.SetParent(floatingLetterLocations[i]);
                 balloon.transform.localPosition = Vector3.zero;
-                var balloonController = balloon.GetComponent<BalloonController>();
+                var balloonController = balloon.GetComponent<FloatingLetterController>();
 
                 balloonController.SetActiveVariation(Random.Range(0, balloonController.variations.Length));
 
@@ -143,7 +148,7 @@ namespace Balloons
                 if (!positions.Contains(position))
                 {
                     positions.Add(position);
-                    var balloonLetter = balloons[position].GetComponent<BalloonController>().letter;
+                    var balloonLetter = balloons[position].GetComponent<FloatingLetterController>().letter;
                     balloonLetter.associatedPromptIndex = i;
                     balloonLetter.Init(wordLetters[i]);
                     balloonLetter.isRequired = true;
@@ -155,7 +160,17 @@ namespace Balloons
             }
         }
 
-        public void CheckRemainingBalloons()
+        public void OnPoppedGroup()
+        {
+            CheckRemainingBalloons();
+        }
+
+        public void OnPoppedRequired(int promptIndex)
+        {
+            wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
+        }
+
+        private void CheckRemainingBalloons()
         {
             int idlePromptsCount = wordPrompt.IdleLetterPrompts.Count;
             bool randomBalloonsExist = balloons.Exists(balloon => balloon.letter.isRequired == false);
@@ -168,8 +183,6 @@ namespace Balloons
             }
             else if (!randomBalloonsExist)
             {
-                Debug.Log("IDLE: " + idlePromptsCount + " LETTERS: " + wordLetters.Count);
-
                 Result result;
                 if (idlePromptsCount == wordLetters.Count)
                 {
@@ -199,7 +212,7 @@ namespace Balloons
             }
         }
 
-        private void DestroyBalloons()
+        private void DestroyAllBalloons()
         {
             for (int i = 0; i < balloons.Count; i++)
             {
@@ -208,7 +221,7 @@ namespace Balloons
             balloons.Clear();
         }
 
-        private void DestroyRandomBalloons()
+        private void DestroyUnrequiredBalloons()
         {
             for (int i = 0; i < balloons.Count; i++)
             {
@@ -229,7 +242,7 @@ namespace Balloons
             }
             else
             {
-                CheckRemainingBalloons();
+                OnPoppedGroup();
             }
         }
 
@@ -265,11 +278,6 @@ namespace Balloons
                 default:
                     break;
             }
-        }
-
-        public void OnPoppedRequired(int promptIndex)
-        {
-            wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
         }
     }
 }
