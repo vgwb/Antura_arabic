@@ -46,7 +46,20 @@ namespace EA4S.FastCrowd
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
             // put here start logic
+
             Debug.LogFormat("Game {0} ready!", GameplayInfo.GameId);
+            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            Logger.Log("minigame", "fastcrowd", "SADSADASDSAD", GameplayInfo.PlayTime.ToString());
+            Logger.Log("minigasdsssame", "fastsadascrowd", "staasdsadart", "sadsad");
+            Logger.Save();
+
+            Logger.Log("minigame", "fastcrowd", "Seconda bufferizzazione", GameplayInfo.PlayTime.ToString());
+            Logger.Save();
+
 
             // Gameplay Settings Override
 

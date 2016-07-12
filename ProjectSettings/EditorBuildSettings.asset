@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_games/FastCrowd/game_FastCrowd.unity
+  - enabled: 1
     path: Assets/_app/Antura_Start.unity
   - enabled: 1
     path: Assets/_app/_scenes/Antura_Home.unity
@@ -17,7 +19,5 @@ EditorBuildSettings:
     path: Assets/_app/_scenes/Wheel.unity
   - enabled: 1
     path: Assets/_games/DontWakeUp/game_DontWakeUp.unity
-  - enabled: 1
-    path: Assets/_games/FastCrowd/game_FastCrowd_old.unity
   - enabled: 1
     path: Assets/_games/Balloons/game_Balloons.unity
