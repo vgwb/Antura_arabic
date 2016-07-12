@@ -64,7 +64,7 @@ GameObject:
   - 222: {fileID: 22289534}
   - 114: {fileID: 11465406}
   m_Layer: 5
-  m_Name: bg word
+  m_Name: word container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ GameObject:
   - 222: {fileID: 22289868}
   - 114: {fileID: 11412756}
   m_Layer: 5
-  m_Name: bg drawing
+  m_Name: drawing container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TitleGO: {fileID: 127528}
+  DrawingContainerGO: {fileID: 146600}
   DrawingImageGO: {fileID: 169214}
+  WordContainerGO: {fileID: 136642}
   WordTextGO: {fileID: 158266}
   ButtonGO: {fileID: 132048}
 --- !u!114 &11464942
@@ -432,7 +434,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11473836}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11446880}
+        m_MethodName: OnPressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11473258
