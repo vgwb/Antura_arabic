@@ -10,6 +10,7 @@ namespace EA4S
     public class AppManager : GameManager
     {
         new public AppSettings GameSettings = new AppSettings();
+
         new public static AppManager Instance
         {
             get { return GameManager.Instance as AppManager; }
@@ -45,8 +46,9 @@ namespace EA4S
     /// Game Setting Extension class.
     /// </summary>
     [System.Serializable]
-    public class AppSettings : GameSettings {
-        // Add here more GameSettings
-        public int varForStefano = 0;
+    public class AppSettings : GameSettings
+    {
+        public bool DoLogPlayerBehaviour;
+        public bool HighQualityGfx;
     }
 }
