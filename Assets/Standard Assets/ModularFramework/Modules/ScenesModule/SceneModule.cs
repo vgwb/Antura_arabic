@@ -148,7 +148,7 @@ namespace ModularFramework.Modules {
         /// <param name="_gameId"></param>
         /// <returns></returns>
         public string GetSceneName(string _sceneTypeName, string _gameId) {
-            return string.Format("{0}_{1}", _gameId, _sceneTypeName);
+            return string.Format("{1}{0}{2}", (_sceneTypeName == string.Empty || _gameId == string.Empty) ? string.Empty : "_", _gameId, _sceneTypeName);
         }
 
         #endregion

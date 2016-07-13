@@ -12,10 +12,12 @@ namespace EA4S.FastCrowd
 
     public class FastCrowd : MiniGameBase
     {
-        // quick solution for timeover
-        public Transform StarUI;
-        public ActionFeedbackComponent ActionFeedback; 
 
+
+        [Header("Star Rewards")]
+        public int ThresholdStar1 = 3;
+        public int ThresholdStar2 = 6;
+        public int ThresholdStar3 = 9;
 
         [Header("Gameplay Info and Config section")]
         #region Overrides
@@ -42,6 +44,10 @@ namespace EA4S.FastCrowd
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
         public string ActualWord;
         public List<string> CompletedWords = new List<string>();
+
+        [Header("Manager Settings")]
+        public StarFlowers StarUI;
+        public ActionFeedbackComponent ActionFeedback;
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
@@ -123,9 +129,16 @@ namespace EA4S.FastCrowd
         /// </summary>
         /// <param name="_time"></param>
         private void GameplayTimer_OnTimeOver(float _time) {
-            Debug.Log("Time is over");
             // Open stars evaluation
-            StarUI.gameObject.SetActive(true);
+            if (CompletedWords.Count >= ThresholdStar1 && CompletedWords.Count < ThresholdStar2) {
+                StarUI.Show(1);
+            } else if (CompletedWords.Count >= ThresholdStar2 && CompletedWords.Count < ThresholdStar3) {
+                StarUI.Show(2);
+            } else if (CompletedWords.Count > ThresholdStar3) {
+                StarUI.Show(3);
+            } else {
+                StarUI.Show(0);
+            }
         }
 
         /// <summary>
