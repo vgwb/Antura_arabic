@@ -11,9 +11,7 @@ namespace EA4S
         public Image Flower1, Flower2, Flower3, Japan1, Japan2, Bbackground;
 
         void Awake() {
-
-
-            //gameObject.SetActive(false);
+            GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             foreach (Image img in GetComponentsInChildren<Image>()) {
                 img.DOFade(0, 0);
             }

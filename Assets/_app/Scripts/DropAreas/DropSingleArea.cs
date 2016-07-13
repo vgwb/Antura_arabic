@@ -98,7 +98,7 @@ namespace EA4S {
                     break;
                 case State.matching_wrong:
                     // Matching preview wrong
-                    GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", Color.red);
+                    GetComponent<MeshRenderer>().materials[0].SetColor("_EmissionColor", new Color(248,0,0));
                     break;
                 default:
                     break;
