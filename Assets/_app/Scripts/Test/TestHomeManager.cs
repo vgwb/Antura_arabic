@@ -5,8 +5,6 @@ using System.Collections;
 public class TestHomeManager : MonoBehaviour
 {
 
-
-
     void Start() {
 	
     }

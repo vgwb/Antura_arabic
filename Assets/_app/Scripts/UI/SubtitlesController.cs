@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SubtitlesController : MonoBehaviour {
+public class SubtitlesController : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
+    public GameObject Backgroud;
+    public GameObject TextGO;
+
+    // Use this for initialization
+    void Start() {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
+
+
+    public void DisplayText(string text) {
+        
+    }
 }

@@ -23,16 +23,19 @@ namespace EA4S.DontWakeUp
 
         #endregion
 
+        [Header("My vars")]
+        MinigameState currentState;
         int currentRound;
         public GameObject[] CameraPositions;
-
         public DangerMeter dangering;
-
         public GameObject StarSystems;
+        public GameObject Subtitles;
+        public GameObject PopupWindow;
 
         wordsRow currentWord;
 
         void Start() {
+            currentState = MinigameState.Initializing;
             AppManager.Instance.InitDataAI();
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
         }
