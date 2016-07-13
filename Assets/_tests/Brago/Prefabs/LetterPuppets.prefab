@@ -1004,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInspected: 1
+  _isInspected: 0
   scripts:
   - {fileID: 4900000, guid: 3bcf394d6d5f99d47a24e4fddf26380f, type: 3}
   autoReset: 1
@@ -1241,10 +1241,10 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128436}
-  m_LocalRotation: {x: -0.00000022351738, y: 1, z: -0.00000007450581, w: -0.0000004023313}
+  m_LocalRotation: {x: 0, y: 0, z: 0.00000032584137, w: -1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 180.00009, z: -360}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -360}
   m_Children: []
   m_Father: {fileID: 436112}
   m_RootOrder: 1
