@@ -10,9 +10,7 @@ using ModularFramework.Modules;
 namespace EA4S.FastCrowd
 {
 
-    public class FastCrowd : MiniGameBase
-    {
-
+    public class FastCrowd : MiniGameBase {
 
         [Header("Star Rewards")]
         public int ThresholdStar1 = 3;
