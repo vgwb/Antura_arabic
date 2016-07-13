@@ -14,7 +14,7 @@ namespace EA4S.FastCrowd
     {
         // quick solution for timeover
         public Transform StarUI;
-
+        public ActionFeedbackComponent ActionFeedback; 
 
 
         [Header("Gameplay Info and Config section")]
@@ -140,6 +140,20 @@ namespace EA4S.FastCrowd
             gameplayBlockSetup();
         }
 
+        /// <summary>
+        /// Risen on letter or world match.
+        /// </summary>
+        private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
+            ActionFeedback.Show(false);
+        }
+
+        /// <summary>
+        /// Risen on letter or world match.
+        /// </summary>
+        private void Droppable_OnRightMatch(LetterObjectView _letterView) {
+            ActionFeedback.Show(true);
+        }
+
         #endregion
 
         #region events subscription
@@ -147,11 +161,17 @@ namespace EA4S.FastCrowd
         void OnEnable() {
             DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
+
+            Droppable.OnRightMatch += Droppable_OnRightMatch;
+            Droppable.OnWrongMatch += Droppable_OnWrongMatch;
         }
 
         void OnDisable() {
             DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
+
+            Droppable.OnRightMatch -= Droppable_OnRightMatch;
+            Droppable.OnWrongMatch -= Droppable_OnWrongMatch;
         }
 
         #endregion

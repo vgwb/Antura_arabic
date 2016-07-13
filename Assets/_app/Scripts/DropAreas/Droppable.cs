@@ -63,11 +63,11 @@ namespace EA4S {
         public void Release() {
             GetComponent<Hangable>().ToBeRelease = false;
             if (isMatching) {
-                if (OnRightMatch != null)
+                if (OnRightMatch != null && IsCollidingWithArea())
                     OnRightMatch(thisLetterView);
                 //GameObject.Destroy(gameObject);
             } else {
-                if (OnWrongMatch != null)
+                if (OnWrongMatch != null && IsCollidingWithArea())
                     OnWrongMatch(thisLetterView);
             }
 
