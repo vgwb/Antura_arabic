@@ -51,6 +51,14 @@ namespace EA4S
             Fabric.EventManager.Instance.PostEvent(eventName, GO);
         }
 
+        public void PlayLetter(string wordId) {
+            Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + wordId);
+        }
+
+        public void PlayWord(string wordId) {
+            Fabric.EventManager.Instance.PostEvent("VOX/Words/" + wordId);
+        }
+
         public void StopSound(string n) {
             Fabric.EventManager.Instance.PostEvent(n, Fabric.EventAction.StopAll);
         }

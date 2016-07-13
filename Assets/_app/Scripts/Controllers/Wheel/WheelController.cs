@@ -30,7 +30,7 @@ namespace EA4S
 
         public void OnFingerSwipe(Lean.LeanFinger finger) {
             var swipe = finger.SwipeDelta;
-            if (swipe.y > Mathf.Abs(swipe.x)) {
+            if (swipe.y < -Mathf.Abs(swipe.x)) {
                 StartWheel();
             } else {
                 Debug.Log("SWIPE UP YOU MUST!");
@@ -45,16 +45,15 @@ namespace EA4S
             if (isRotating == false) {
                 //Debug.Log("ROTATE");
                 isRotating = true;
-                currentSpeed = initialSpeed;
+                currentSpeed = initialSpeed + Random.Range(-200, 200);
                 WheelManager.Instance.OnWheelStart();
-
             }
         }
 
 
         void Update() {
             if (isRotating) {
-                rotationEuler += Vector3.forward * currentSpeed * Time.deltaTime;
+                rotationEuler -= Vector3.forward * currentSpeed * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(rotationEuler);
 
                 currentSpeed = currentSpeed * brakeForce;

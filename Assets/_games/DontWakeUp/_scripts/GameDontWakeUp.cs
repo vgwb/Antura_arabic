@@ -38,6 +38,10 @@ namespace EA4S.DontWakeUp
             currentState = MinigameState.Initializing;
             AppManager.Instance.InitDataAI();
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
+            Debug.Log("word chosen: " + currentWord._id);
+
+            AudioManager.I.PlayWord(currentWord._id);
+
         }
 
         public void Won() {

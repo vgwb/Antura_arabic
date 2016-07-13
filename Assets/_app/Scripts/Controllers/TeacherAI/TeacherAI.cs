@@ -8,9 +8,18 @@ namespace EA4S
 {
     public class TeacherAI
     {
+        string[] bodyPartsWords;
+
 
         public TeacherAI() {
             Debug.Log("AI exists");
+
+
+            bodyPartsWords = new []
+            {
+                "mouth", "tooth", "eye", "nose", "ear", "head", "hand", "foot", "belly", "hair", "face", "tongue", "chest"
+            };
+
         }
 
         public List<MinigameData> GimmeGoodMinigames() {
@@ -18,8 +27,8 @@ namespace EA4S
         }
 
         public wordsRow GimmeAGoodWord() {
-            return words.Instance.Rows.GetRandomElement();
-
+            int index = Random.Range(0, bodyPartsWords.Length - 1);
+            return words.Instance.GetRow(bodyPartsWords[index]);
         }
 
     }
