@@ -15,7 +15,16 @@ namespace Balloons
         public bool isRequired;
         public LetterObject LetterModel;
         public TMP_Text LetterView;
+        [Range(0, 5)] //e.g. 1f
+        public float spinSpeed;
+        [Range(0, 360)] //e.g. 90f
+        public float spinAngle;
+        [Range(0, 5)] //e.g. 0.25f
+        public float spinRandomnessFactor;
 
+        private float spinDirection = 1f;
+        private float randomOffset = 0f;
+        private Vector3 baseRotation;
         private Vector3 mousePosition = new Vector3();
         private float cameraDistance;
         private bool drop;
@@ -24,11 +33,15 @@ namespace Balloons
         void Start()
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
+            baseRotation = transform.rotation.eulerAngles;
+            RandomizeSpin();
             RandomizeAnimation();
         }
 
         void Update()
         {
+            Spin();
+
             if (drop)
             {
                 transform.Translate(Vector3.down * Time.deltaTime * 50f);
@@ -54,10 +67,23 @@ namespace Balloons
             parentFloatingLetter.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
         }
 
+        private void RandomizeSpin()
+        {
+            randomOffset = Random.Range(0, 2 * Mathf.PI);
+            spinSpeed += Random.Range(-spinRandomnessFactor * spinSpeed, spinRandomnessFactor * spinSpeed);
+            spinAngle += Random.Range(-spinRandomnessFactor * spinAngle, spinRandomnessFactor * spinAngle);
+            spinDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
+        }
+
         private void RandomizeAnimation()
         {
             animator.speed *= Random.Range(0.75f, 1.25f);
             animator.SetFloat("Offset", Random.Range(0f, BalloonsGameManager.instance.letterAnimationLength));
+        }
+
+        public void Spin()
+        {
+            transform.rotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
         }
 
         public void Drop()

@@ -30,7 +30,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &111756
 GameObject:
   m_ObjectHideFlags: 1
@@ -1034,7 +1034,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121888}
-  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
+  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: 349.52292, y: 224.35536, z: 185.02641}
@@ -1308,7 +1308,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 3.75, z: 0}
+  m_LocalPosition: {x: -3, y: 3.7, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1410,7 +1410,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150378}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -0.32864857, y: -0.9792404, z: 0}
+  m_LocalPosition: {x: -0.1, y: -1.25, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -1623,7 +1623,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 3.75, z: 0}
+  m_LocalPosition: {x: 2.9, y: 3.65, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2961,6 +2961,9 @@ MonoBehaviour:
   associatedPromptIndex: 0
   isRequired: 0
   LetterView: {fileID: 11475294}
+  spinSpeed: 1
+  spinAngle: 80
+  spinRandomnessFactor: 0.15
 --- !u!114 &11463564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3003,7 +3006,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatSpeed: 1
   floatDistance: 1.5
-  floatRandomness: 0.25
+  floatRandomnessFactor: 0.25
+  distanceRandomnessMargin: 2.5
   dragSpeed: 2
   tapsNeeded: 1
   variations:
