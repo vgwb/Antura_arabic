@@ -983,7 +983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentFloatingLetter: {fileID: 0}
-  drop: 0
+  animator: {fileID: 9557006}
   associatedPromptIndex: 0
   isRequired: 0
   LetterView: {fileID: 11440426}

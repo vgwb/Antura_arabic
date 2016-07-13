@@ -21,10 +21,16 @@ namespace Balloons
         public Animator countdownAnimator;
         public AudioSource music;
         public TimerManager timer;
+        public AnimationClip balloonPopAnimation;
         public Color[] balloonColors;
+
 
         [HideInInspector]
         public List<FloatingLetterController> balloons;
+        [HideInInspector]
+        public float letterDropDelay;
+        [HideInInspector]
+        public float letterAnimationLength = 0.367f;
 
         private string word;
         private List<LetterData> wordLetters;
@@ -48,6 +54,7 @@ namespace Balloons
         void Start()
         {
             Random.seed = System.DateTime.Now.GetHashCode();
+            letterDropDelay = balloonPopAnimation.length;
             fullMusicVolume = music.volume;
             ResetScene();
             BeginGameplay();
@@ -124,7 +131,6 @@ namespace Balloons
                 // Set random balloon colors
                 for (int j = 0; j < balloonTops.Length; j++)
                 {
-                    Debug.Log("TRYING TO COLOR!");
                     balloonTops[j].SetColor(balloonColors[Random.Range(0, balloonColors.Length)]);
                 }
 
@@ -207,7 +213,7 @@ namespace Balloons
             {
                 foreach (var balloonTop in balloons[i].ActiveVariation.balloonTops)
                 {
-                    balloonTop.balloonTopCollider.enabled = false;
+                    balloonTop.balloonCollider.enabled = false;
                 }
             }
         }
