@@ -32,6 +32,7 @@ namespace EA4S
         }
 
         public void PlayMusic(string eventName) {
+
             Fabric.EventManager.Instance.PostEvent("MusicTrigger");
             Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
         }
