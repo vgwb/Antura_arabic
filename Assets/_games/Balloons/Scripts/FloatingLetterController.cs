@@ -61,12 +61,14 @@ namespace Balloons
         {
             floatSpeed += Random.Range(-floatRandomness * floatSpeed, floatRandomness * floatSpeed);
             floatDistance += Random.Range(-floatRandomness * floatDistance, floatRandomness * floatDistance);
+            floatDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
+
+            Debug.Log(floatSpeed + ", " + floatDistance + ", " + floatDirection);
         }
 
         void Float()
         {
-            transform.position = basePosition + floatDistance * Mathf.Sin(floatSpeed * Time.time) * Vector3.up;
-            floatDirection *= -1;
+            transform.position = basePosition + floatDirection * floatDistance * Mathf.Sin(floatSpeed * Time.time) * Vector3.up;
         }
 
         public void MoveHorizontally(float x)
@@ -96,7 +98,7 @@ namespace Balloons
                     BalloonsGameManager.instance.OnPoppedRequired(letter.associatedPromptIndex);
                 }
                 letter.transform.SetParent(null);
-                letter.drop = true;
+                letter.Drop();
                 BalloonsGameManager.instance.balloons.Remove(this);
                 BalloonsGameManager.instance.OnPoppedGroup();
                 Destroy(gameObject, 3f);
