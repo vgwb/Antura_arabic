@@ -30,8 +30,18 @@ namespace EA4S {
 
         public static void Save() {
             if (!File.Exists(getPath())) {
-                File.Create(getPath());
-                File.WriteAllText(getPath(), buffer);
+                FileStream fs = File.Create(getPath());
+                fs.Close();
+                // First row
+                File.WriteAllText(getPath(), new LogData() {
+                    SessionId = "SessionId",
+                    TimeInSeconds = "Ticks",
+                    Timestamp = "Timestamp",
+                    Area = "Area",
+                    Context = "Context",
+                    Action = "Action",
+                    RawData = "RawData"
+                }.ToString() + buffer);
             } else {
                 File.AppendAllText(getPath(), buffer);
             }

@@ -106,13 +106,14 @@ namespace EA4S {
 
         #region results events delegates 
         private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
-
+            AudioManager.I.PlaySound("Sfx/WrongLetter");
         }
 
         /// <summary>
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
+            AudioManager.I.PlaySound("Sfx/RightLetter");
             NextArea();
         }
         #endregion
