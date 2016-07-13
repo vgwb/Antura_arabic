@@ -15,6 +15,7 @@ namespace EA4S
         public static WheelManager Instance;
         public WheelController WheelCntrl;
 
+        int numberOfGames;
         public GameObject Popup;
         public GameObject GameIcon;
 
@@ -38,6 +39,7 @@ namespace EA4S
         void Start() {
             AppManager.Instance.InitDataAI();
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
+            numberOfGames = gameData.Count;
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -49,7 +51,7 @@ namespace EA4S
 
         public void OnPopuplicked() {
             if (isGameSelected) {
-                SceneManager.LoadScene("game_DontWakeUp");
+                SceneManager.LoadScene(gameData[currentGameIndex].SceneName);
             }
         }
 
@@ -82,7 +84,7 @@ namespace EA4S
         public void OnRadiusTrigger(int number, Color _color) {
             if (WheelCntrl.isRotating) {
                 if (number != currentGameIndex) {
-                    currentGameIndex = (number % 4);
+                    currentGameIndex = (number % numberOfGames);
                     //Debug.Log("OnRadiusTrigger" + currentSector);
 
                     PopupImage.color = _color;
