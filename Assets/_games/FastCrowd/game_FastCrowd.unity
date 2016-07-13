@@ -1280,9 +1280,6 @@ MonoBehaviour:
   KoImage: {fileID: 1581408680}
   ShowPos: {x: 0, y: 150}
   HidePos: {x: 0, y: -150}
-  show: 0
-  feedback: 0
-  rt: {fileID: 0}
 --- !u!1001 &373051740
 Prefab:
   m_ObjectHideFlags: 0
@@ -1743,6 +1740,64 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 499005099}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &542223227
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.10000032
+      objectReference: {fileID: 0}
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 459002, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3392646, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 22477746, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22477746, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22477746, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &542524052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,7 +2181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0291c533aac2cc14280973018f39a4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TypeName>k__BackingField: 
   UseTestGameplayInfo: 1
   ThresholdStar1: 3
   ThresholdStar2: 6
@@ -5244,7 +5298,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Aree: []
-  actualAreaIndex: 0
 --- !u!1001 &1646814948
 Prefab:
   m_ObjectHideFlags: 0
@@ -5528,11 +5581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8527eaad1df72644b8ecc44b172634b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TypeName>k__BackingField: 
   time: 0
-  timerText: {fileID: 0}
-  isRunning: 0
-  timeRemaining: 0
 --- !u!114 &1688102983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5962,10 +6011,6 @@ MonoBehaviour:
   PauseMenuContainer: {fileID: 1493534320}
   MenuBg: {fileID: 839789238}
   AnturaFace: {fileID: 606001741}
-  btPause: {fileID: 0}
-  menuBts: []
-  timeScaleAtMenuOpen: 1
-  <IsMenuOpen>k__BackingField: 0
 --- !u!1 &1844178095
 GameObject:
   m_ObjectHideFlags: 0
