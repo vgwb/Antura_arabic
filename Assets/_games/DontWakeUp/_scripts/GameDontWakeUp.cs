@@ -23,12 +23,13 @@ namespace EA4S.DontWakeUp
 
         #endregion
 
+        [Header("My vars")]
         int currentRound;
         public GameObject[] CameraPositions;
-
         public DangerMeter dangering;
-
         public GameObject StarSystems;
+        public GameObject Subtitles;
+        public GameObject PopupWindow;
 
         wordsRow currentWord;
 
