@@ -987,6 +987,9 @@ MonoBehaviour:
   associatedPromptIndex: 0
   isRequired: 0
   LetterView: {fileID: 11440426}
+  spinSpeed: 1
+  spinAngle: 80
+  spinRandomnessFactor: 0.15
 --- !u!114 &11494130
 MonoBehaviour:
   m_ObjectHideFlags: 1

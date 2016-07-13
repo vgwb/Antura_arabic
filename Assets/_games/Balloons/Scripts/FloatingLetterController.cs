@@ -5,21 +5,24 @@ namespace Balloons
 {
     public class FloatingLetterController : MonoBehaviour
     {
-        [Range(0, 10)]
+        [Range(0, 10)] //e.g. 1f
         public float floatSpeed;
-        //e.g. 1f
-        [Range(0, 10)]
+
+        [Range(0, 10)] //e.g. 1.5f
         public float floatDistance;
-        //e.g. 1.5f
-        [Range(0, 1)]
-        public float floatRandomness;
-        // e.g. 0.25f
-        [Range(0, 10)]
+
+        [Range(0, 1)] // e.g. 0.25f
+        public float floatRandomnessFactor;
+
+        [Range(0, 10)] //e.g. 3f
+        public float distanceRandomnessMargin;
+
+        [Range(0, 10)] //e.g. 2f
         public float dragSpeed;
-        //e.g. 2f
-        [Range(1, 10)]
+
+        [Range(1, 10)] // e.g. 1
         public int tapsNeeded;
-        // e.g. 3
+
 
         public BalloonVariation[] variations;
 
@@ -43,12 +46,14 @@ namespace Balloons
         public LetterController letter;
 
         private int floatDirection = 1;
+        private float randomOffset = 0f;
         private Vector3 basePosition;
 
 
         void Start()
         {
             basePosition = transform.position;
+            RandomizePosition();
             RandomizeFloating();
         }
 
@@ -57,18 +62,22 @@ namespace Balloons
             Float();
         }
 
+        void RandomizePosition()
+        {
+            basePosition = basePosition + Random.Range(-distanceRandomnessMargin, distanceRandomnessMargin) * Vector3.up;
+        }
+
         void RandomizeFloating()
         {
-            floatSpeed += Random.Range(-floatRandomness * floatSpeed, floatRandomness * floatSpeed);
-            floatDistance += Random.Range(-floatRandomness * floatDistance, floatRandomness * floatDistance);
+            randomOffset = Random.Range(0, 2 * Mathf.PI);
+            floatSpeed += Random.Range(-floatRandomnessFactor * floatSpeed, floatRandomnessFactor * floatSpeed);
+            floatDistance += Random.Range(-floatRandomnessFactor * floatDistance, floatRandomnessFactor * floatDistance);
             floatDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
-
-            Debug.Log(floatSpeed + ", " + floatDistance + ", " + floatDirection);
         }
 
         void Float()
         {
-            transform.position = basePosition + floatDirection * floatDistance * Mathf.Sin(floatSpeed * Time.time) * Vector3.up;
+            transform.position = basePosition + floatDirection * floatDistance * Mathf.Sin(floatSpeed * Time.time + randomOffset) * Vector3.up;
         }
 
         public void MoveHorizontally(float x)
