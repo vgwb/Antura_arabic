@@ -571,7 +571,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!1 &1083731723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,48 +1036,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1443273317}
---- !u!1001 &1541464264
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 471388, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 14adebc0efd7c4c72b7487a778ed2338, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1555303177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,19 +1191,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4055498e9231945739feb8dd395084b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MultiGame: 0
+  Modules:
+    LocalizationDataPath: 
   GameSettings:
     GameID: Antura
     GameName: Antura
-  MultiGame: 0
-  Games:
-  - GameID: FastCrowd
-    GameName: FastCrowd
-  - GameID: DontWakeUp
-    GameName: DontWakeUp
-  - GameID: Balloons
-    GameName: Balloons
-  Modules:
-    LocalizationDataPath: 
+    DoLogPlayerBehaviour: 0
+    HighQualityGfx: 0
 --- !u!4 &1573464517
 Transform:
   m_ObjectHideFlags: 0
@@ -1258,7 +1211,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &1607976867
 GameObject:
   m_ObjectHideFlags: 0
