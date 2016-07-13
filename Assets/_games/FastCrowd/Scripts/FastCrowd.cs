@@ -46,6 +46,7 @@ namespace EA4S.FastCrowd
         [Header("Manager Settings")]
         public StarFlowers StarUI;
         public ActionFeedbackComponent ActionFeedback;
+        public PopupMissionComponent PopupMission;
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
@@ -69,6 +70,7 @@ namespace EA4S.FastCrowd
         void gameplayBlockSetup() {
             // Get letters and word
             ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord()._word;
+            PopupMission.Show(ActualWord, false);
             List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord, AppManager.Instance.Letters);
 
             int count = 0;
@@ -145,10 +147,12 @@ namespace EA4S.FastCrowd
         private void DropContainer_OnObjectiveBlockCompleted() {
             Debug.Log("Word completed: " + ActualWord);
             CompletedWords.Add(ActualWord);
-            ActualWord = string.Empty;
-            // Recall gameplayBlockSetup
-            sceneClean();
-            gameplayBlockSetup();
+            PopupMission.Show(ActualWord, true, delegate() {
+                ActualWord = string.Empty;
+                // Recall gameplayBlockSetup
+                sceneClean();
+                gameplayBlockSetup();
+            });
         }
 
         /// <summary>

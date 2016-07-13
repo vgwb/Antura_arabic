@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &44526674
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1149,7 +1149,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u0644\u0639\u0631\u0628\u064A\u0629"
-  m_isRightToLeft: 0
+  m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_sharedMaterial: {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_fontSharedMaterials: []
@@ -1212,9 +1212,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_uvOffset: {x: 0, y: 0}
   m_uvLineOffset: 0
@@ -2577,9 +2577,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 1
-  ThresholdStar1: 2
-  ThresholdStar2: 6
-  ThresholdStar3: 9
+  ThresholdStar1: 1
+  ThresholdStar2: 3
+  ThresholdStar3: 6
   GameplayInfo:
     GameId: 343636313733373434333732366637373634
     PlayTime: 90
@@ -2602,6 +2602,7 @@ MonoBehaviour:
   CompletedWords: []
   StarUI: {fileID: 1582961424}
   ActionFeedback: {fileID: 352729440}
+  PopupMission: {fileID: 1980208699}
 --- !u!4 &577714064
 Transform:
   m_ObjectHideFlags: 0
@@ -7306,7 +7307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1980208696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7329,7 +7330,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -24.99997}
+  m_AnchoredPosition: {x: 0.000030517578, y: -1189}
   m_SizeDelta: {x: -100, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1980208697
@@ -7362,6 +7363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640511c927382cb4fa8b064db8cf59d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CompletedCheck: {fileID: 935854134}
+  WordLable: {fileID: 238297155}
 --- !u!1 &2007942419
 GameObject:
   m_ObjectHideFlags: 0
