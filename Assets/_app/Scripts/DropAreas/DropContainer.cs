@@ -7,6 +7,7 @@ namespace EA4S {
     public class DropContainer : MonoBehaviour {
 
         public List<DropSingleArea> Aree;
+        
         int actualAreaIndex = 0;
 
         enum DropAreaPositions { ActivePos, NextPos, NextsPos, CompletedPos }
@@ -98,7 +99,7 @@ namespace EA4S {
         }
         #endregion
 
-        #region results events delegates
+        #region results events delegates 
         private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
 
         }

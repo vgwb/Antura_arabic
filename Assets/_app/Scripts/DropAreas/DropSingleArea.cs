@@ -105,7 +105,6 @@ namespace EA4S {
             }
         }
 
-        
 
         public enum State {
             isnull,
