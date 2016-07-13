@@ -7,9 +7,8 @@ namespace Balloons
     public class BalloonController : MonoBehaviour
     {
         public FloatingLetterController parentFloatingLetter;
-        public GameObject rope;
-        public Collider balloonTopCollider;
-        public Renderer balloonTopRenderer;
+        public Collider balloonCollider;
+        public Renderer balloonRenderer;
 
         private Animator animator;
         private AudioSource popAudio;
@@ -34,8 +33,7 @@ namespace Balloons
         }
 
         public void Pop() {
-            balloonTopCollider.enabled = false;
-            rope.SetActive(false);
+            balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
             AudioManager.I.PlaySound("Sfx/BalloonPop");
             popAudio.Play();
@@ -43,8 +41,7 @@ namespace Balloons
         }
 
         public void SetColor(Color color) {
-            Debug.Log("COLOR");
-            balloonTopRenderer.material.color = color;
+            balloonRenderer.material.color = color;
         }
     }
 }
