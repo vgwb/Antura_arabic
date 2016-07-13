@@ -9,7 +9,7 @@ namespace Balloons
     public class LetterController : MonoBehaviour
     {
         public FloatingLetterController parentFloatingLetter;
-        public bool drop;
+        public Animator animator;
         public LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
@@ -18,11 +18,13 @@ namespace Balloons
 
         private Vector3 mousePosition = new Vector3();
         private float cameraDistance;
+        private bool drop;
 
 
         void Start()
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
+            RandomizeAnimation();
         }
 
         void Update()
@@ -50,6 +52,23 @@ namespace Balloons
             mousePosition.z = cameraDistance;
 
             parentFloatingLetter.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
+        }
+
+        private void RandomizeAnimation()
+        {
+            animator.speed *= Random.Range(0.75f, 1.25f);
+            animator.SetFloat("Offset", Random.Range(0f, BalloonsGameManager.instance.letterAnimationLength));
+        }
+
+        public void Drop()
+        {
+            StartCoroutine(Drop_Coroutine(BalloonsGameManager.instance.letterDropDelay)); 
+        }
+
+        private IEnumerator Drop_Coroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            drop = true;
         }
     }
 }
