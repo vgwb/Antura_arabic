@@ -11,10 +11,10 @@ namespace EA4S
         public Database() {
             Debug.Log("Init Database()");
             
-            gameData.Add(new MinigameData("fastcrowd", "الحشد سريع", "Fast Crowd", true));
-            gameData.Add(new MinigameData("dontwakeup", "لا يستيقظون", "Don't Wake Up", true));
-            gameData.Add(new MinigameData("balloons", "بالونات", "Balloons", true));
-            gameData.Add(new MinigameData("pianowoof", "بيانو", "Piano Woof", true));
+            gameData.Add(new MinigameData("fastcrowd", "الحشد سريع", "Fast Crowd", "game_FastCrowd", true));
+            gameData.Add(new MinigameData("dontwakeup", "لا يستيقظون", "Don't Wake Up", "game_DontWakeUp", true));
+            gameData.Add(new MinigameData("balloons", "بالونات", "Balloons", "game_Balloons", true));
+            //gameData.Add(new MinigameData("pianowoof", "بيانو", "Piano Woof", "", true));
         }
 
     }

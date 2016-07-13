@@ -9,11 +9,13 @@ namespace EA4S
         public string Title;
         public string EnglishTitle;
         public bool Available;
+        public string SceneName;
 
-        public MinigameData(string code, string title, string englishTitle, bool available) {
+        public MinigameData(string code, string title, string englishTitle, string sceneName, bool available) {
             Code = code;
             Title = title;
             EnglishTitle = englishTitle;
+            SceneName = sceneName;
             Available = available;
         }
 
