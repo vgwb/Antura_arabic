@@ -30,11 +30,11 @@ namespace EA4S.DontWakeUp
 
         public GameObject StarSystems;
 
+        wordsRow currentWord;
+
         void Start() {
-
-
-
-
+            AppManager.Instance.InitDataAI();
+            currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
         }
 
         public void Won() {

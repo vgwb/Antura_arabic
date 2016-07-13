@@ -21,8 +21,6 @@ namespace EA4S
         public GameObject TutorialArrow;
         public GameObject GameTitle;
 
-        public List<MinigameData> gameData = new List<MinigameData>();
-
         int currentGameIndex;
         Image PopupImage;
 
@@ -31,19 +29,20 @@ namespace EA4S
 
         bool isGameSelected;
 
+        List<MinigameData> gameData = new List<MinigameData>();
+
         void Awake() {
             Instance = this;
+        }
+
+        void Start() {
+            AppManager.Instance.InitDataAI();
+            gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
+
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
             labelText = GameTitle.GetComponent<TextMeshProUGUI>();
 
-            gameData.Add(new MinigameData("fastcrowd", "الحشد سريع", "Fast Crowd", true));
-            gameData.Add(new MinigameData("dontwakeup", "لا يستيقظون", "Don't Wake Up", true));
-            gameData.Add(new MinigameData("balloons", "بالونات", "Balloons", true));
-            gameData.Add(new MinigameData("pianowoof", "بيانو", "Piano Woof", true));
-        }
-
-        void Start() {
             isGameSelected = false;
             AudioManager.I.PlayMusic("Music1");
         }

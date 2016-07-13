@@ -18,7 +18,20 @@ namespace EA4S
 
         public List<LetterData> Letters = new List<LetterData>();
 
-         
+        public TeacherAI Teacher;
+        public Database DB;
+
+        public string IExist() {
+            return "AppManager Exists";
+        }
+
+        public void InitDataAI() {
+            if (DB == null)
+                DB = new Database();
+            if (Teacher == null)
+                Teacher = new TeacherAI();
+        }
+
         protected override void GameSetup() {
             base.GameSetup();
             AdditionalSetup();

@@ -45,6 +45,8 @@ namespace EA4S.FastCrowd
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
+            AppManager.Instance.InitDataAI();
+
             // put here start logic
             Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
             Logger.Save();
@@ -62,8 +64,7 @@ namespace EA4S.FastCrowd
         /// </summary>
         void gameplayBlockSetup() {
             // Get letters and word
-            // TODO: Only for pre-alpha. This logic must be in Antura app logic.
-            ActualWord = words.Instance.Rows.GetRandomElement()._word;
+            ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord()._word;
             List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord, AppManager.Instance.Letters);
 
             int count = 0;
@@ -116,6 +117,7 @@ namespace EA4S.FastCrowd
         }
 
         #region event subscription delegates
+
         /// <summary>
         /// Called when the time is over.
         /// </summary>
@@ -137,9 +139,11 @@ namespace EA4S.FastCrowd
             sceneClean();
             gameplayBlockSetup();
         }
+
         #endregion
 
         #region events subscription
+
         void OnEnable() {
             DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
@@ -157,7 +161,8 @@ namespace EA4S.FastCrowd
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo
+    {
 
         [Tooltip("Play session duration in seconds.")]
         public float PlayTime = 10;

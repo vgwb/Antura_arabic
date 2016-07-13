@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TeacherAI : MonoBehaviour {
+public class SubtitlesController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
