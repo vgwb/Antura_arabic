@@ -31,13 +31,18 @@ namespace EA4S {
         public void NextArea() {
             if (actualAreaIndex < Aree.Count - 1) { 
                 actualAreaIndex++;
-                dropAreaSetPosition();
+                DOTween.Sequence().InsertCallback(1, delegate () {
+                    dropAreaSetPosition();
+                });
             } else {
                 actualAreaIndex++;
-                dropAreaSetPosition(delegate () {
-                    if (OnObjectiveBlockCompleted != null)
-                        OnObjectiveBlockCompleted();
+                DOTween.Sequence().InsertCallback(1, delegate () {
+                    dropAreaSetPosition(delegate () {
+                        if (OnObjectiveBlockCompleted != null)
+                            OnObjectiveBlockCompleted();
+                    });
                 });
+                
             }
         }
 
