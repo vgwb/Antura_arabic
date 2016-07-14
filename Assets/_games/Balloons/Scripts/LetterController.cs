@@ -10,6 +10,7 @@ namespace Balloons
     {
         public FloatingLetterController parentFloatingLetter;
         public Animator animator;
+        public Collider letterCollider;
         public LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
@@ -61,6 +62,11 @@ namespace Balloons
             LetterView.text = ArabicAlphabetHelper.GetLetterFromUnicode(LetterModel.Data.Isolated_Unicode);
         }
 
+        void OnMouseDown()
+        {
+            SpeakLetter();
+        }
+
         void OnMouseDrag()
         {
             mousePosition = Input.mousePosition;
@@ -83,7 +89,13 @@ namespace Balloons
             animator.SetFloat("Offset", Random.Range(0f, BalloonsGameManager.instance.letterAnimationLength));
         }
 
-        public void Spin()
+        private void SpeakLetter()
+        {
+            
+            AudioManager.I.PlayLetter(LetterModel.Data.Key);
+        }
+
+        private void Spin()
         {
             transform.rotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
         }
@@ -96,8 +108,13 @@ namespace Balloons
         private IEnumerator Drop_Coroutine(float delay)
         {
             yield return new WaitForSeconds(delay);
-            AudioManager.I.PlaySfx(Sfx.Hit);
+            AudioManager.I.PlaySfx(Sfx.LetterAngry);
             drop = true;
+        }
+
+        public void DisableCollider()
+        {
+            letterCollider.enabled = false;
         }
     }
 }

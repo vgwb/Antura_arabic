@@ -862,7 +862,7 @@ GameObject:
   - 114: {fileID: 322097509}
   - 114: {fileID: 322097508}
   m_Layer: 5
-  m_Name: NextRoundCanvas
+  m_Name: RoundResultCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordPrompt: {fileID: 1144538341}
-  balloonPrefab: {fileID: 111690, guid: edf0b39500b0d4feab6468093368450c, type: 2}
+  floatingLetterPrefab: {fileID: 111690, guid: edf0b39500b0d4feab6468093368450c, type: 2}
   floatingLetterLocations:
   - {fileID: 65899381}
   - {fileID: 505506011}
@@ -1554,20 +1554,23 @@ MonoBehaviour:
   - {fileID: 1605924862}
   - {fileID: 684511584}
   - {fileID: 1432992646}
-  nextRoundCanvas: {fileID: 322097510}
-  nextRoundText: {fileID: 783130852}
+  hudCanvas: {fileID: 820499488}
+  roundNumberText: {fileID: 672977593}
+  roundResultCanvas: {fileID: 322097510}
+  roundResultText: {fileID: 783130852}
   endGameCanvas: {fileID: 1295776640}
   starFlowers: {fileID: 1698026068}
   countdownAnimator: {fileID: 1321913917}
   timer: {fileID: 962712818}
   balloonPopAnimation: {fileID: 7400000, guid: c36accc0bd5aa46238a22c4e903c607e, type: 2}
   numberOfRounds: 6
+  lives: 0
   balloonColors:
   - {r: 1, g: 0.19607842, b: 0.19607842, a: 1}
   - {r: 0.19607843, g: 1, b: 0.19607843, a: 1}
   - {r: 0.19607843, g: 0.49803922, b: 1, a: 1}
   - {r: 1, g: 1, b: 0.19607842, a: 1}
-  balloons: []
+  floatingLetters: []
   letterDropDelay: 0
   letterAnimationLength: 0.367
 --- !u!4 &508411711
@@ -1689,6 +1692,95 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cccbd53b3e7bb4f5d93c0b3622ea395a, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &672977589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 672977590}
+  - 222: {fileID: 672977594}
+  - 114: {fileID: 672977593}
+  - 114: {fileID: 672977592}
+  m_Layer: 5
+  m_Name: RoundNumberText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &672977590
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672977589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 820499489}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -64.00006}
+  m_SizeDelta: {x: 200, y: 128}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &672977592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672977589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &672977593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672977589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.7568628, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 687dcec43b2f746efa5a1ceaf3ba0276, type: 3}
+    m_FontSize: 75
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 7
+    m_MaxSize: 75
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '#0'
+--- !u!222 &672977594
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672977589}
 --- !u!1 &684511583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,7 +1956,7 @@ GameObject:
   - 222: {fileID: 783130853}
   - 114: {fileID: 783130852}
   m_Layer: 5
-  m_Name: NextRoundText
+  m_Name: RoundResultText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2176,6 +2268,7 @@ RectTransform:
   m_Children:
   - {fileID: 1321913913}
   - {fileID: 962712814}
+  - {fileID: 672977590}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
