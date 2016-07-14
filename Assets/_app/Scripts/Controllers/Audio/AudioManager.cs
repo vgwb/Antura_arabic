@@ -128,7 +128,7 @@ namespace EA4S
             var eventName = "";
             switch (sfx) {
                 case Sfx.Hit:
-                    eventName = "Hit";
+                    eventName = "Sfx/Hit";
                     break;
                 case Sfx.DangerClock:
                     eventName = "Sfx/DangerClock";
