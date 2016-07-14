@@ -90,6 +90,14 @@ namespace EA4S.DontWakeUp
             StarSystems.GetComponent<StarFlowers>().Show(0);
         }
 
+        public void LostAlarm() {
+            currentState = MinigameState.Ended;
+            myLetter.SetActive(false);
+            currentLevelController.DoAlarmEverything();
+
+            Invoke("Lost", 2);
+        }
+
         public void FinishedLevel(bool success) {
             if (success) {
                 currentState = MinigameState.Paused;

@@ -12,8 +12,7 @@ namespace EA4S
 
 
         public TeacherAI() {
-            Debug.Log("AI exists");
-
+            // Debug.Log("AI exists");
 
             bodyPartsWords = new []
             {
