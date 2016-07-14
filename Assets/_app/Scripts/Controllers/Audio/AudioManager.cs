@@ -45,15 +45,16 @@ namespace EA4S
             var eventName = "";
             switch (music) {
                 case Music.MainTheme:
-                    eventName = "music1";
+                    eventName = "Music1";
                     break;
                 case Music.Relax:
-                    eventName = "music2";
+                    eventName = "Music2";
                     break;
             }
 
-            Fabric.EventManager.Instance.PostEvent("MusicTrigger");
             Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
+            Fabric.EventManager.Instance.PostEvent("MusicTrigger");
+            //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
         }
 
         public void PlaySfx(Sfx sfx) {

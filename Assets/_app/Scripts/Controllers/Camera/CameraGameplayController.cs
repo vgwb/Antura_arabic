@@ -7,6 +7,7 @@ namespace EA4S
     public class CameraGameplayController : MonoBehaviour
     {
         public static CameraGameplayController I;
+        public GameObject CallbackManager;
 
         void Awake() {
             I = this;
@@ -29,7 +30,7 @@ namespace EA4S
         }
 
         void MovementCompleted() {
-
+            CallbackManager.SendMessage("CameraReady");
         }
 
     }
