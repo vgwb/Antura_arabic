@@ -6502,6 +6502,7 @@ GameObject:
   - 222: {fileID: 1760487898}
   - 114: {fileID: 1760487897}
   - 114: {fileID: 1760487896}
+  - 114: {fileID: 1760487899}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -6613,6 +6614,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1760487894}
+--- !u!114 &1760487899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760487894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805c80b22665fef4f81362639a419c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SfxOnClick: 1
 --- !u!4 &1768471470 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 6663cf4aeaa0b164badd97f2ac95f06d, type: 3}

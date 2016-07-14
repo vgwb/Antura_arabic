@@ -63,6 +63,7 @@ namespace EA4S.FastCrowd
             gameplayBlockSetup();
 
             GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+            AudioManager.I.PlayMusic(Music.MainTheme);
         }
 
         /// <summary>
@@ -172,6 +173,7 @@ namespace EA4S.FastCrowd
         /// </summary>
         private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
             ActionFeedback.Show(false);
+            AudioManager.I.PlayLetter("LivingLetters/Angry");
         }
 
         /// <summary>
@@ -179,6 +181,7 @@ namespace EA4S.FastCrowd
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
             ActionFeedback.Show(true);
+
         }
 
         #endregion

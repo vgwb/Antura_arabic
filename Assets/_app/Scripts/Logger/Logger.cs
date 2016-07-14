@@ -60,7 +60,7 @@ namespace EA4S {
         private static string getPath() {
 #if UNITY_EDITOR
             //return @"c:\tmp\" + Filename;
-            return Application.dataPath + "/" + Filename;
+            return Application.persistentDataPath + "/" + Filename;
 #elif UNITY_ANDROID
             return Application.persistentDataPath +"/"+ Filename;
 #elif UNITY_IPHONE
