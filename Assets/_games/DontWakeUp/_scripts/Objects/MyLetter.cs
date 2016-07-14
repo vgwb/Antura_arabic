@@ -17,6 +17,8 @@ namespace EA4S.DontWakeUp
         bool draggingStarted;
         bool overDestinationMarker;
 
+        bool colliding;
+
         //    void OnCollisionStay(Collision collisionInfo) {
         //        foreach (ContactPoint contact in collisionInfo.contacts) {
         //            Debug.DrawRay(contact.point, contact.normal * 10, Color.white);
@@ -52,6 +54,7 @@ namespace EA4S.DontWakeUp
         void OnTriggerEnter(Collider other) {
             //Debug.Log("OnTriggerEnter " + other.gameObject.name);
             // GameDontWakeUp.Instance.dangering.InDanger(false);
+            colliding = true;
         }
 
         void OnTriggerStay(Collider other) {
@@ -78,6 +81,8 @@ namespace EA4S.DontWakeUp
             if (other.gameObject.tag == "Marker") {
                 overDestinationMarker = false;
             }
+
+            colliding = false;
         }
 
 
@@ -147,7 +152,9 @@ namespace EA4S.DontWakeUp
                 }
 
                 if (Input.GetMouseButton(0) && dragging) {
+                    //if (!colliding) {
                     MoveOnFloor();
+                    //}
                 }
 
                 if (Input.GetMouseButtonUp(0)) {
