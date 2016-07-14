@@ -40,8 +40,8 @@ namespace EA4S.FastCrowd {
         [Header("Gameplay")]
         public int MinLettersOnField = 10;
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
-        public string ActualWord;
-        public List<string> CompletedWords = new List<string>();
+        public wordsRow ActualWord;
+        public List<wordsRow> CompletedWords = new List<wordsRow>();
 
         [Header("Manager Settings")]
         public StarFlowers StarUI;
@@ -71,17 +71,17 @@ namespace EA4S.FastCrowd {
         /// </summary>
         void gameplayBlockSetup() {
             // Get letters and word
-            ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord()._word;
-            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord);
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord);
-            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord, AppManager.Instance.Letters);
+            ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord();
+            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord._id);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
+            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord._word, AppManager.Instance.Letters);
 
             // popup info 
             string sepLetters = string.Empty;
             foreach (var item in gameLetters) {
                 sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Initial_Unicode) + " ";
             }
-            PopupMission.Show(string.Format("{0} : {1}", ArabicFixer.Fix(ActualWord, false, false), sepLetters)
+            PopupMission.Show(string.Format("{0} : {1}", ArabicFixer.Fix(ActualWord._word, false, false), sepLetters)
                 , false);
 
             int count = 0;
@@ -160,17 +160,19 @@ namespace EA4S.FastCrowd {
             LoggerEA4S.Log("minigame", "fastcrowd", "endScoreStars", starCount.ToString());
             StarUI.Show(starCount);
             LoggerEA4S.Save();
+            AudioManager.I.PlayMusic(Music.Relax);
         }
 
         /// <summary>
         /// Called when objective block is completed (entire word).
         /// </summary>
         private void DropContainer_OnObjectiveBlockCompleted() {
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
             LoggerEA4S.Save();
+            AudioManager.I.PlayWord(ActualWord._id);
             CompletedWords.Add(ActualWord);
-            PopupMission.Show(ActualWord, true, delegate() {
-                ActualWord = string.Empty;
+            PopupMission.Show(ActualWord._word, true, delegate() {
+                ActualWord = null;
                 // Recall gameplayBlockSetup
                 sceneClean();
                 gameplayBlockSetup();
@@ -183,7 +185,7 @@ namespace EA4S.FastCrowd {
         private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
             LoggerEA4S.Log("minigame", "fastcrowd", "badLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(false);
-            AudioManager.I.PlayLetter("LivingLetters/Angry");
+            AudioManager.I.PlaySound("LivingLetters/Angry");
         }
 
         /// <summary>
