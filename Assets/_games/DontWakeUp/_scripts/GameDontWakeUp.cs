@@ -80,12 +80,14 @@ namespace EA4S.DontWakeUp
 
         public void Won() {
             currentState = MinigameState.Ended;
+            AudioManager.I.StopSound("Dog/Snoring");
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(3);
         }
 
         public void Lost() {
             currentState = MinigameState.Ended;
+            AudioManager.I.StopSound("Dog/Snoring");
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(0);
         }
