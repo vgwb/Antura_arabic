@@ -26,19 +26,31 @@ namespace EA4S.DontWakeUp
         [Header("My vars")]
         MinigameState currentState;
         int currentRound;
-        public GameObject[] CameraPositions;
+        LevelController currentLevelController;
+        public GameObject[] Levels;
         public DangerMeter dangering;
         public GameObject StarSystems;
         public GameObject Subtitles;
         public GameObject PopupWindow;
 
-        wordsRow currentWord;
+        public wordsRow currentWord;
 
         void Start() {
             currentState = MinigameState.Initializing;
+            currentRound = 1;
             AppManager.Instance.InitDataAI();
+
+            SetupLevel();
+        }
+
+        public void SetupLevel() {
+            currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
+ 
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
             Debug.Log("word chosen: " + currentWord._id);
+
+            currentLevelController.SetWord();
+
 
             AudioManager.I.PlayWord(currentWord._id);
 
@@ -57,7 +69,8 @@ namespace EA4S.DontWakeUp
 
         public void ChangeCamera() {
             currentRound = (currentRound + 1) % 3;
-            CameraGameplayController.I.GoToPosition(CameraPositions[currentRound].transform.position, CameraPositions[currentRound].transform.rotation);
+            currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
+            CameraGameplayController.I.GoToPosition(currentLevelController.LevelCamera.transform.position, currentLevelController.LevelCamera.transform.rotation);
         }
 
 
