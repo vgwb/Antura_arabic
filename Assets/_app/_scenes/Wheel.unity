@@ -2319,7 +2319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotating: 0
-  initialSpeed: 1200
+  initialSpeed: 1000
 --- !u!58 &847852693
 CircleCollider2D:
   m_ObjectHideFlags: 0
