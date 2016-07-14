@@ -7,7 +7,7 @@ namespace EA4S {
     public class DropContainer : MonoBehaviour {
 
         public List<DropSingleArea> Aree;
-        
+
         int actualAreaIndex = 0;
 
         enum DropAreaPositions { ActivePos, NextPos, NextsPos, CompletedPos }
@@ -28,9 +28,18 @@ namespace EA4S {
             Aree.Clear();
         }
 
+        /// <summary>
+        /// Return actual active DropSingleArea.
+        /// </summary>
+        /// <returns></returns>
+        public DropSingleArea GetActualDropArea() {
+            return Aree[actualAreaIndex];
+        }
+
         public void NextArea() {
             if (actualAreaIndex < Aree.Count - 1) { 
                 actualAreaIndex++;
+                LoggerEA4S.Log("minigame", "fastcrowd", "newLetter", Aree[actualAreaIndex].Data.Key);
                 DOTween.Sequence().InsertCallback(1, delegate () {
                     dropAreaSetPosition();
                 });
