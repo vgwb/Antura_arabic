@@ -61,6 +61,7 @@ namespace EA4S.DontWakeUp
  
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
             Debug.Log("word chosen: " + currentWord._id);
+            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord._word);
 
             currentLevelController.SetWord();
             myLetter.SetActive(true);
@@ -83,6 +84,8 @@ namespace EA4S.DontWakeUp
             AudioManager.I.StopSound("Dog/Snoring");
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(3);
+            LoggerEA4S.Log("minigame", "dontwakeup", "Won", "");
+            LoggerEA4S.Save();
         }
 
         public void Lost() {
@@ -90,6 +93,8 @@ namespace EA4S.DontWakeUp
             AudioManager.I.StopSound("Dog/Snoring");
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(0);
+            LoggerEA4S.Log("minigame", "dontwakeup", "Lost", "");
+            LoggerEA4S.Save();
         }
 
         public void LostAlarm() {
@@ -105,6 +110,7 @@ namespace EA4S.DontWakeUp
                 currentState = MinigameState.Paused;
                 myLetter.SetActive(false);
                 if (currentRound < 3) {
+                    LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
                     Levels[currentRound - 1].SetActive(false);
                     currentRound = currentRound + 1;
                     Levels[currentRound - 1].SetActive(true);
