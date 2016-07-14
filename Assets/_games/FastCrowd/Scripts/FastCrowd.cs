@@ -8,8 +8,7 @@ using System;
 using ModularFramework.Modules;
 using ArabicSupport;
 
-namespace EA4S.FastCrowd
-{
+namespace EA4S.FastCrowd {
 
     public class FastCrowd : MiniGameBase {
 
@@ -52,8 +51,9 @@ namespace EA4S.FastCrowd
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
             AppManager.Instance.InitDataAI();
-
             // put here start logic
+
+            // LOG: Start //
             LoggerEA4S.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
             LoggerEA4S.Save();
 
@@ -72,6 +72,8 @@ namespace EA4S.FastCrowd
         void gameplayBlockSetup() {
             // Get letters and word
             ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord()._word;
+            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord);
             List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord, AppManager.Instance.Letters);
 
             // popup info 
@@ -142,23 +144,30 @@ namespace EA4S.FastCrowd
         /// </summary>
         /// <param name="_time"></param>
         private void GameplayTimer_OnTimeOver(float _time) {
+            LoggerEA4S.Log("minigame", "fastcrowd", "completedWords", CompletedWords.Count.ToString());
+            int starCount = 0;
             // Open stars evaluation
             if (CompletedWords.Count >= ThresholdStar1 && CompletedWords.Count < ThresholdStar2) {
-                StarUI.Show(1);
+                starCount = 1;
             } else if (CompletedWords.Count >= ThresholdStar2 && CompletedWords.Count < ThresholdStar3) {
-                StarUI.Show(2);
+                starCount = 2;
             } else if (CompletedWords.Count > ThresholdStar3) {
-                StarUI.Show(3);
+                starCount = 3;
             } else {
-                StarUI.Show(0);
+                starCount = 0;
             }
+
+            LoggerEA4S.Log("minigame", "fastcrowd", "endScoreStars", starCount.ToString());
+            StarUI.Show(starCount);
+            LoggerEA4S.Save();
         }
 
         /// <summary>
         /// Called when objective block is completed (entire word).
         /// </summary>
         private void DropContainer_OnObjectiveBlockCompleted() {
-            Debug.Log("Word completed: " + ActualWord);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord);
+            LoggerEA4S.Save();
             CompletedWords.Add(ActualWord);
             PopupMission.Show(ActualWord, true, delegate() {
                 ActualWord = string.Empty;
@@ -172,6 +181,7 @@ namespace EA4S.FastCrowd
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
+            LoggerEA4S.Log("minigame", "fastcrowd", "badLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(false);
             AudioManager.I.PlayLetter("LivingLetters/Angry");
         }
@@ -180,8 +190,28 @@ namespace EA4S.FastCrowd
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
+            LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(true);
 
+        }
+
+        /// <summary>
+        /// Hang catch.
+        /// </summary>
+        /// <param name="_letterView"></param>
+        private void Hangable_OnLetterHangOn(LetterObjectView _letterView) {
+            if(_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key)
+                LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterHold", _letterView.Model.Data.Key);
+            else
+                LoggerEA4S.Log("minigame", "fastcrowd", "badLetterHold", _letterView.Model.Data.Key);
+        }
+
+        /// <summary>
+        /// Hang relese.
+        /// </summary>
+        /// <param name="_letterView"></param>
+        private void Hangable_OnLetterHangOff(LetterObjectView _letterView) {
+            
         }
 
         #endregion
@@ -194,6 +224,9 @@ namespace EA4S.FastCrowd
 
             Droppable.OnRightMatch += Droppable_OnRightMatch;
             Droppable.OnWrongMatch += Droppable_OnWrongMatch;
+
+            Hangable.OnLetterHangOn += Hangable_OnLetterHangOn;
+            Hangable.OnLetterHangOff += Hangable_OnLetterHangOff;
         }
 
         void OnDisable() {
@@ -202,6 +235,9 @@ namespace EA4S.FastCrowd
 
             Droppable.OnRightMatch -= Droppable_OnRightMatch;
             Droppable.OnWrongMatch -= Droppable_OnWrongMatch;
+
+            Hangable.OnLetterHangOn -= Hangable_OnLetterHangOn;
+            Hangable.OnLetterHangOff -= Hangable_OnLetterHangOff;
         }
 
         #endregion

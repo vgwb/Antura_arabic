@@ -22,19 +22,15 @@ namespace EA4S {
 
         void OnMouseDown() {
             OnDrag = true;
-            //gameObject.GetComponent<Animator>().Play("hold");
-            //letterView.Model.State = LetterObjectState.Grab_State;
-            //// Audio - quick and dirty
-            //AudioSource audio = FastCrowd.FastCrowd.Instance.GetComponent<AudioSource>();
-            //audio.clip = Instantiate<AudioClip>(Resources.Load("Audio/Vox/Letters/Names/VOX_Letters_" + GetComponent<LetterObjectView>().Model.Data.Key) as AudioClip);
-            //audio.Play();
+            if (OnLetterHangOff != null)
+                OnLetterHangOff(letterView);
         }
 
         void OnMouseUp() {
             OnDrag = false;
             ToBeRelease = true;
-            //gameObject.GetComponent<Animator>().Play("run");
-            //letterView.Model.State = LetterObjectState.Run_State;
+            if (OnLetterHangOn != null)
+                OnLetterHangOn(letterView);
         }
 
         void Update() {
@@ -46,6 +42,20 @@ namespace EA4S {
                 }
             }
         }
-        
+
+        #region events
+        public delegate void HangAction(LetterObjectView _letterView);
+
+        /// <summary>
+        /// Start hang.
+        /// </summary>
+        public static event HangAction OnLetterHangOn;
+
+        /// <summary>
+        /// End hang.
+        /// </summary>
+        public static event HangAction OnLetterHangOff;
+        #endregion
+
     }
 }

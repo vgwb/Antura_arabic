@@ -21,6 +21,8 @@ namespace EA4S
         public TeacherAI Teacher;
         public Database DB;
 
+        public const string AppVersion = "0.1.0";
+
         public string IExist() {
             return "AppManager Exists";
         }
@@ -32,8 +34,9 @@ namespace EA4S
                 Teacher = new TeacherAI();
         }
 
-        protected override void GameSetup() {
+        protected override void GameSetup() { 
             base.GameSetup();
+
             AdditionalSetup();
 
             CachingLetterData();
