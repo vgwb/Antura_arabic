@@ -15,11 +15,13 @@ namespace Balloons
         public bool isRequired;
         public LetterObject LetterModel;
         public TMP_Text LetterView;
-        [Range(0, 5)] //e.g. 1f
+
+        [Header("Letter Parameters")]
+        [Range(0, 5)] [Tooltip("e.g.: 1")]
         public float spinSpeed;
-        [Range(0, 360)] //e.g. 90f
+        [Range(0, 360)] [Tooltip("e.g.: 90")]
         public float spinAngle;
-        [Range(0, 5)] //e.g. 0.25f
+        [Range(0, 5)] [Tooltip("e.g.: 0.25")]
         public float spinRandomnessFactor;
 
         private float spinDirection = 1f;
