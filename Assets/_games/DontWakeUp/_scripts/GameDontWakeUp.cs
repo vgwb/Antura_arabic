@@ -46,8 +46,8 @@ namespace EA4S.DontWakeUp
             currentRound = 1;
             AppManager.Instance.InitDataAI();
 
-            Logger.Log("minigame", "dontwakeup", "start", "");
-            Logger.Save();
+            LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
+            LoggerEA4S.Save();
 
             SetupLevel();
 
