@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: AppParameters
   m_EditorClassIdentifier: 
   m_releaseType: test
-  m_platformType: Android
-  m_distributionPlatform: GooglePlay
-  m_platformArchitecture: FAT
-  m_textureCompression: Generic
+  m_platformType: iOS
+  m_distributionPlatform: Default
+  m_platformArchitecture: 
+  m_textureCompression: Default
   m_productName: Antura Test
-  m_bundleIdentifier: org.vgwb.ea4s_test
-  m_bundleVersion: 0.0.4
+  m_bundleIdentifier: org.vgwb.ea4s
+  m_bundleVersion: 0.0.5

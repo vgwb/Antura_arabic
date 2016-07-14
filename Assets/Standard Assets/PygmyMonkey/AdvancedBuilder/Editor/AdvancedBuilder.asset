@@ -21,7 +21,7 @@ MonoBehaviour:
       productName: Antura
     - isActive: 1
       name: test
-      bundleIdentifier: org.vgwb.ea4s_test
+      bundleIdentifier: org.vgwb.ea4s
       productName: Antura Test
   m_platforms:
     m_plateformAndroid:
@@ -315,7 +315,7 @@ MonoBehaviour:
     - releaseType:
         isActive: 1
         name: test
-        bundleIdentifier: org.vgwb.ea4s_test
+        bundleIdentifier: org.vgwb.ea4s
         productName: Antura Test
       platformType: 0
       distributionPlatform:
@@ -348,7 +348,7 @@ MonoBehaviour:
     - releaseType:
         isActive: 1
         name: test
-        bundleIdentifier: org.vgwb.ea4s_test
+        bundleIdentifier: org.vgwb.ea4s
         productName: Antura Test
       platformType: 1
       distributionPlatform:
@@ -366,10 +366,11 @@ MonoBehaviour:
       customDefines: 
       scenePathList:
       - Assets\_app\_scenes\test_Home.unity
+      - Assets\_app\_scenes\Wheel.unity
       - Assets\_games\FastCrowd\game_FastCrowd.unity
       - Assets\_games\DontWakeUp\game_DontWakeUp.unity
       - Assets\_games\Balloons\game_Balloons.unity
-      isEnabled: 0
+      isEnabled: 1
       openBuildFolder: 1
       appendProject: 0
       isDevelopmentBuild: 0
@@ -378,4 +379,4 @@ MonoBehaviour:
       shouldAutoRunPlayer: 0
       wsaBuildAndRunDeployTarget: 0
     configurationIndex: 0
-    selectedConfigurationIndex: -1
+    selectedConfigurationIndex: 3
