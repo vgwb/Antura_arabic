@@ -38,19 +38,19 @@ namespace EA4S {
             CompletedCheck.rectTransform.DOScale(6, 0);
             CompletedCheck.DOFade(0, 0);
             // Animation sequence
-            sequence = DOTween.Sequence(); 
+            sequence = DOTween.Sequence().SetUpdate(true);
             tParms = new TweenParams()
                 .SetEase(Ease.InOutBack);
             timeScaleAtMenuOpen = Time.timeScale;
-            //Time.timeScale = 0; // not working
-            //sequence.timeScale = 1;
-            sequence.Append(GetComponent<RectTransform>().DOAnchorPos(ShowPosition, 0.2f).SetAs(tParms));
+            Time.timeScale = 0; // not working
+            sequence.Append(GetComponent<RectTransform>().DOAnchorPos(ShowPosition, 0.3f).SetAs(tParms));
             if (_completed) {
                 InfoLable.text = "Word Completed!";
-                sequence.Insert(0.2f, CompletedCheck.DOFade(1, 0.2f));
-                sequence.InsertCallback(0.1f, delegate () {
-                    sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms));
-                });
+                sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
+                sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms));
+                //sequence.InsertCallback(0.1f, delegate () {
+                //    .SetUpdate(true);
+                //});
             } else {
                 InfoLable.text = "New Word!";
             }
@@ -68,14 +68,17 @@ namespace EA4S {
             Close(sequence, tParms, pendingCallback);
         }
 
+        /// <summary>
+        /// Close popup with actal sequence and callback.
+        /// </summary>
+        /// <param name="_sequence"></param>
+        /// <param name="_tParms"></param>
+        /// <param name="_callback"></param>
         void Close(Sequence _sequence, TweenParams _tParms, TweenCallback _callback) {
+            Time.timeScale = 1;
             _sequence.Append(GetComponent<RectTransform>().DOAnchorPos(HidePosition, 0.15f).SetAs(_tParms));
             if (_callback != null)
                 _callback();
-        }
-
-        public void Boh() {
-            Debug.Log("Boh");
         }
 
         void OnDestroy() {
