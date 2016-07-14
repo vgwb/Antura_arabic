@@ -96,6 +96,7 @@ namespace Balloons
         private IEnumerator Drop_Coroutine(float delay)
         {
             yield return new WaitForSeconds(delay);
+            AudioManager.I.PlaySfx(Sfx.Hit);
             drop = true;
         }
     }

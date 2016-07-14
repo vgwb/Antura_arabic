@@ -19,7 +19,6 @@ namespace Balloons
         public Canvas endGameCanvas;
         public StarFlowers starFlowers;
         public Animator countdownAnimator;
-        public AudioSource music;
         public TimerManager timer;
         public AnimationClip balloonPopAnimation;
 
@@ -39,7 +38,6 @@ namespace Balloons
         private string word;
         private List<LetterData> wordLetters;
         private int currentRoundNumber = 0;
-        private float fullMusicVolume;
 
         private enum Result
         {
@@ -59,7 +57,6 @@ namespace Balloons
         {
             Random.seed = System.DateTime.Now.GetHashCode();
             letterDropDelay = balloonPopAnimation.length;
-            fullMusicVolume = music.volume;
             ResetScene();
             BeginGameplay();
         }
@@ -85,6 +82,7 @@ namespace Balloons
 
         private void EndRound(Result result)
         {
+            AudioManager.I.StopMusic();
             DisableBalloons();
             ShowResults(result);
         }
@@ -98,8 +96,6 @@ namespace Balloons
 
         private void ResetScene()
         {
-            music.Stop();
-            music.volume = fullMusicVolume;
             timer.StopTimer();
             timer.ResetTimer();
             wordPrompt.Reset();
@@ -125,7 +121,7 @@ namespace Balloons
             CreateBalloons();
 
             timer.StartTimer();
-            music.Play();
+            AudioManager.I.PlayMusic(Music.MainTheme);
         }
 
         private void AnimateCountdown(string text)
@@ -282,7 +278,6 @@ namespace Balloons
 
         private void ShowResults(Result result)
         {
-            music.volume = 0.25f * music.volume;
             timer.StopTimer();
 
             nextRoundCanvas.gameObject.SetActive(true);
