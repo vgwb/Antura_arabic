@@ -29,7 +29,7 @@ namespace Balloons
             private set
             {
                 _activeVariation = value;
-                activeBalloonCount = _activeVariation.balloonTops.Length;
+                activeBalloonCount = _activeVariation.balloons.Length;
             }
         }
 
@@ -87,8 +87,7 @@ namespace Balloons
             ActiveVariation = variations[index];
             ActiveVariation.gameObject.SetActive(true);
         }
-
-
+            
         public void Pop()
         {
             activeBalloonCount--;
@@ -101,10 +100,20 @@ namespace Balloons
                 }
                 letter.transform.SetParent(null);
                 letter.Drop();
-                BalloonsGameManager.instance.balloons.Remove(this);
+                BalloonsGameManager.instance.floatingLetters.Remove(this);
                 BalloonsGameManager.instance.OnDropped();
                 Destroy(gameObject, 3f);
             }
+        }
+
+        public void Disable()
+        {
+            for (int i = 0; i < ActiveVariation.balloons.Length; i++)
+            {
+                ActiveVariation.balloons[i].DisableCollider();
+            }
+            letter.DisableCollider();
+
         }
 
     }
