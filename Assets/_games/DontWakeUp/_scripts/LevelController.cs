@@ -6,10 +6,9 @@ namespace EA4S.DontWakeUp
     public class LevelController : MonoBehaviour
     {
         public GameObject LevelCamera;
-        public GameObject LevelLettera;
-        public GameObject LevelDestination;
+        public GameObject Marker1;
+        public GameObject Marker2;
 
-        // Use this for initialization
         void Start() {
 	
         }

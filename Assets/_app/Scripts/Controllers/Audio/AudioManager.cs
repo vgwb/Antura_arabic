@@ -4,6 +4,15 @@ using DG.DeAudio;
 
 namespace EA4S
 {
+    public enum Music {
+        MainTheme,
+        Relax
+    }
+
+    public enum Sfx {
+        Hit
+    }
+
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager I;
@@ -31,12 +40,31 @@ namespace EA4S
             }
         }
 
-        public void PlayMusic(string eventName) {
+        public void PlayMusic(Music music) {
+            var eventName = "";
+            switch (music) {
+                case Music.MainTheme:
+                    eventName = "music1";
+                    break;
+                case Music.Relax:
+                    eventName = "music2";
+                    break;
+            }
 
             Fabric.EventManager.Instance.PostEvent("MusicTrigger");
             Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
         }
 
+        public void PlaySfx(Sfx sfx) {
+            var eventName = "";
+            switch (sfx) {
+                case Sfx.Hit:
+                    eventName = "Hit";
+                    break;
+            }
+
+            PlaySound(eventName);
+        }
 
         public void PlaySound(string eventName) {
             Fabric.EventManager.Instance.PostEvent(eventName);
