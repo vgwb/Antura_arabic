@@ -71,7 +71,7 @@ namespace EA4S.DontWakeUp
             AudioManager.I.PlaySound("Dog/Snoring");
 
             PopupWindow.SetActive(true);
-            PopupWindow.GetComponent<PopupWindowController>().Init("Carefully drag this word", currentWord._id);
+            PopupWindow.GetComponent<PopupWindowController>().Init("Carefully drag this word", currentWord._id, currentWord._word);
         }
 
         public void PopupPressedContinue() {
