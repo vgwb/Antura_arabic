@@ -17,7 +17,7 @@ namespace EA4S
 
             bodyPartsWords = new []
             {
-                "mouth", "tooth", "eye", "nose", "ear", "head", "hand", "foot", "belly", "hair", "face", "tongue", "chest"
+                "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
             };
 
         }
