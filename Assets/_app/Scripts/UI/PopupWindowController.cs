@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using ArabicSupport;
@@ -21,9 +22,10 @@ namespace EA4S
             I = this;
         }
 
-        public void Init(string introText, string word) {
+        public void Init(string introText, string wordCode, string arabicWord) {
+            AudioManager.I.PlaySfx(Sfx.UIPopup);
             SetTitle(introText);
-            SetWord(word);
+            SetWord(wordCode, arabicWord);
             
         }
 
@@ -31,10 +33,10 @@ namespace EA4S
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
         }
 
-        public void SetWord(string word) {
+        public void SetWord(string wordCode, string arabicWord) {
             // here set both word and drawing 
-
-            WordTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(word, false, false);
+            WordTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(arabicWord, false, false);
+            DrawingImageGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
 
         }
 
