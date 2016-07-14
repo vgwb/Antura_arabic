@@ -6,6 +6,8 @@ namespace EA4S.DontWakeUp
     public class MyLetter : MonoBehaviour
     {
 
+        public GameObject LetterDrawing;
+
         public EA4S.SplineTrailRenderer trailReference;
         public string groundLayerName = "Terrain";
         public string playerLayerName = "Default";
@@ -27,6 +29,11 @@ namespace EA4S.DontWakeUp
         //                GameDontWakeUp.Instance.Won();
         //            }
         //        }
+
+        public void Init(string wordCode) {
+            Debug.Log("MyLetter Init " + wordCode);
+            LetterDrawing.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
+        }
 
         void OnTriggerStay(Collider other) {
             //Debug.Log("triggero " + other.gameObject.name);
