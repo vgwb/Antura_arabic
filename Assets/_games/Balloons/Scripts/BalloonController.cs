@@ -14,25 +14,33 @@ namespace Balloons
         private AudioSource popAudio;
         private int taps = 0;
 
-        void Start() {
+
+        void Start()
+        {
             animator = GetComponent<Animator>();
             popAudio = GetComponent<AudioSource>();
         }
 
-        public void OnMouseDown() {
+        public void OnMouseDown()
+        {
             TapAction();
         }
 
-        void TapAction() {
+        void TapAction()
+        {
             taps++;
-            if (taps >= parentFloatingLetter.tapsNeeded) {
+            if (taps >= parentFloatingLetter.tapsNeeded)
+            {
                 Pop();
-            } else {
+            }
+            else
+            {
                 animator.SetTrigger("Tap");
             }
         }
 
-        public void Pop() {
+        public void Pop()
+        {
             balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
             AudioManager.I.PlaySound("Sfx/BalloonPop");
@@ -40,7 +48,8 @@ namespace Balloons
             animator.SetBool("Pop", true);
         }
 
-        public void SetColor(Color color) {
+        public void SetColor(Color color)
+        {
             balloonRenderer.material.color = color;
         }
     }

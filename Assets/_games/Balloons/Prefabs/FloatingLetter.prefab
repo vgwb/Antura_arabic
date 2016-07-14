@@ -3004,18 +3004,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e364d8972a721437dbc387abb1dbe703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  variations:
+  - {fileID: 11449986}
+  - {fileID: 11449922}
+  - {fileID: 11463580}
+  letter: {fileID: 11461410}
   floatSpeed: 1
   floatDistance: 1.5
   floatRandomnessFactor: 0.25
   distanceRandomnessMargin: 2.5
   dragSpeed: 2
   tapsNeeded: 1
-  variations:
-  - {fileID: 11449986}
-  - {fileID: 11449922}
-  - {fileID: 11463580}
   activeBalloonCount: 0
-  letter: {fileID: 11461410}
 --- !u!114 &11470240
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2543,7 +2543,18 @@ MonoBehaviour:
   DropSingleAreaPref: {fileID: 11485852, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
   DropAreaContainer: {fileID: 1599871827}
   MinLettersOnField: 10
-  ActualWord: 
+  ActualWord:
+    _id: 
+    _kind: 
+    _category: 
+    _stage: 
+    _english: 
+    _word: 
+    _letters: 
+    _transliteration: 
+    _difficulty_level: 
+    _number_of_letter: 
+    _group: 
   CompletedWords: []
   StarUI: {fileID: 1582961424}
   ActionFeedback: {fileID: 352729440}
@@ -6625,7 +6636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805c80b22665fef4f81362639a419c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxOnClick: 1
+  SfxOnClick: 2
 --- !u!4 &1768471470 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 6663cf4aeaa0b164badd97f2ac95f06d, type: 3}

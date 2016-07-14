@@ -5,28 +5,22 @@ namespace Balloons
 {
     public class FloatingLetterController : MonoBehaviour
     {
-        [Range(0, 10)] //e.g. 1f
-        public float floatSpeed;
-
-        [Range(0, 10)] //e.g. 1.5f
-        public float floatDistance;
-
-        [Range(0, 1)] // e.g. 0.25f
-        public float floatRandomnessFactor;
-
-        [Range(0, 10)] //e.g. 3f
-        public float distanceRandomnessMargin;
-
-        [Range(0, 10)] //e.g. 2f
-        public float dragSpeed;
-
-        [Range(1, 10)] // e.g. 1
-        public int tapsNeeded;
-
-
         public BalloonVariation[] variations;
+        public LetterController letter;
 
-        private BalloonVariation _activeVariation;
+        [Header("Floating Letter Parameters")]
+        [Range(0, 10)] [Tooltip("e.g.: 1")]
+        public float floatSpeed;
+        [Range(0, 10)] [Tooltip("e.g.: 1.5")]
+        public float floatDistance;
+        [Range(0, 1)] [Tooltip("e.g.: 0.25")]
+        public float floatRandomnessFactor;
+        [Range(0, 10)] [Tooltip("e.g.: 3")]
+        public float distanceRandomnessMargin;
+        [Range(0, 10)] [Tooltip("e.g.: 2")]
+        public float dragSpeed;
+        [Range(1, 10)] [Tooltip("e.g.: 1")]
+        public int tapsNeeded;
 
         [HideInInspector]
         public BalloonVariation ActiveVariation
@@ -39,11 +33,10 @@ namespace Balloons
             }
         }
 
+        private BalloonVariation _activeVariation;
 
         [HideInInspector]
         public int activeBalloonCount;
-
-        public LetterController letter;
 
         private int floatDirection = 1;
         private float randomOffset = 0f;
@@ -104,12 +97,12 @@ namespace Balloons
             {
                 if (letter.isRequired)
                 {
-                    BalloonsGameManager.instance.OnPoppedRequired(letter.associatedPromptIndex);
+                    BalloonsGameManager.instance.OnDroppedRequired(letter.associatedPromptIndex);
                 }
                 letter.transform.SetParent(null);
                 letter.Drop();
                 BalloonsGameManager.instance.balloons.Remove(this);
-                BalloonsGameManager.instance.OnPoppedGroup();
+                BalloonsGameManager.instance.OnDropped();
                 Destroy(gameObject, 3f);
             }
         }

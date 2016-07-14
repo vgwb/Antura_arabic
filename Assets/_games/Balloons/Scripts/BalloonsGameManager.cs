@@ -14,16 +14,18 @@ namespace Balloons
         public WordPromptController wordPrompt;
         public GameObject balloonPrefab;
         public Transform[] floatingLetterLocations;
-        public Canvas resultsCanvas;
-        public Text resultsText;
-        public GameObject nextButton;
-        public GameObject retryButton;
+        public Canvas nextRoundCanvas;
+        public Text nextRoundText;
+        public Canvas endGameCanvas;
+        public StarFlowers starFlowers;
         public Animator countdownAnimator;
         public AudioSource music;
         public TimerManager timer;
         public AnimationClip balloonPopAnimation;
-        public Color[] balloonColors;
 
+        [Header("Game Parameters")] [Tooltip("e.g.: 6")]
+        public int numberOfRounds;
+        public Color[] balloonColors;
 
         [HideInInspector]
         public List<FloatingLetterController> balloons;
@@ -32,11 +34,12 @@ namespace Balloons
         [HideInInspector]
         public float letterAnimationLength = 0.367f;
 
+        public static BalloonsGameManager instance;
+
         private string word;
         private List<LetterData> wordLetters;
+        private int currentRoundNumber = 0;
         private float fullMusicVolume;
-
-        public static BalloonsGameManager instance;
 
         private enum Result
         {
@@ -45,6 +48,7 @@ namespace Balloons
             CLEAR,
             TRYAGAIN
         }
+
 
         void Awake()
         {
@@ -60,10 +64,36 @@ namespace Balloons
             BeginGameplay();
         }
 
+        public void Play()
+        {
+            currentRoundNumber++;
+            if (currentRoundNumber < numberOfRounds)
+            {
+                StartNewRound();
+            }
+            else
+            {
+                EndGame();
+            }
+        }
+
         public void StartNewRound()
         {
             ResetScene();
             BeginGameplay();
+        }
+
+        private void EndRound(Result result)
+        {
+            DisableBalloons();
+            ShowResults(result);
+        }
+
+        private void EndGame()
+        {
+            ResetScene();
+            endGameCanvas.gameObject.SetActive(true);
+            starFlowers.Show(3);
         }
 
         private void ResetScene()
@@ -73,7 +103,7 @@ namespace Balloons
             timer.StopTimer();
             timer.ResetTimer();
             wordPrompt.Reset();
-            resultsCanvas.gameObject.SetActive(false);
+            nextRoundCanvas.gameObject.SetActive(false);
             DestroyAllBalloons();
         }
 
@@ -166,12 +196,12 @@ namespace Balloons
             }
         }
 
-        public void OnPoppedGroup()
+        public void OnDropped()
         {
             CheckRemainingBalloons();
         }
 
-        public void OnPoppedRequired(int promptIndex)
+        public void OnDroppedRequired(int promptIndex)
         {
             wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
         }
@@ -184,8 +214,7 @@ namespace Balloons
 
             if (!requiredBalloonsExist)
             {
-                ShowResults(Result.TRYAGAIN);
-                DisableBalloons();
+                EndRound(Result.TRYAGAIN);
             }
             else if (!randomBalloonsExist)
             {
@@ -202,8 +231,7 @@ namespace Balloons
                 {
                     result = Result.CLEAR;
                 }
-                ShowResults(result);
-                DisableBalloons();
+                EndRound(result);
             }
         }
 
@@ -244,11 +272,11 @@ namespace Balloons
 
             if (randomBalloonsExist)
             {
-                ShowResults(Result.TRYAGAIN);
+                EndRound(Result.TRYAGAIN);
             }
             else
             {
-                OnPoppedGroup();
+                OnDropped();
             }
         }
 
@@ -257,29 +285,21 @@ namespace Balloons
             music.volume = 0.25f * music.volume;
             timer.StopTimer();
 
-            resultsCanvas.gameObject.SetActive(true);
+            nextRoundCanvas.gameObject.SetActive(true);
 
             switch (result)
             {
                 case Result.PERFECT:
-                    resultsText.text = "PERFECT! (3 Stars)";
-                    nextButton.SetActive(true);
-                    retryButton.SetActive(false);
+                    nextRoundText.text = "★ ★ ★";
                     break;
                 case Result.GOOD:
-                    resultsText.text = "GOOD! (2 Stars)";
-                    nextButton.SetActive(true);
-                    retryButton.SetActive(false);
+                    nextRoundText.text = "★ ★";
                     break;
                 case Result.CLEAR:
-                    resultsText.text = "CLEAR! (1 Star)";
-                    nextButton.SetActive(true);
-                    retryButton.SetActive(false);
+                    nextRoundText.text = "★";
                     break;
                 case Result.TRYAGAIN:
-                    resultsText.text = "TRY AGAIN";
-                    nextButton.SetActive(false);
-                    retryButton.SetActive(true);
+                    nextRoundText.text = ":(";
                     break;
                 default:
                     break;
