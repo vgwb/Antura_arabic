@@ -1,21 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
-public class AlarmClock : MonoBehaviour
+namespace EA4S
 {
+    public class AlarmClock : MonoBehaviour
+    {
 
-    // Use this for initialization
-    void Start() {
+        // Use this for initialization
+        void AlarmOn() {
+            transform.DOShakePosition(3).Play();
+            AudioManager.I.PlaySfx(Sfx.AlarmClock);
+        }
 	
-    }
+        // Update is called once per frame
+        void Update() {
 	
-    // Update is called once per frame
-    void Update() {
-	
-    }
+        }
 
-    void OnMouseDown() {
-        Debug.Log("OnMouseDown o nAlarmClock");
-        //EA4S.DontWakeUp.GameDontWakeUp.Instance.ChangeCamera();
+        void OnMouseDown() {
+            Debug.Log("OnMouseDown o nAlarmClock");
+            //EA4S.DontWakeUp.GameDontWakeUp.Instance.ChangeCamera();
+        }
     }
 }

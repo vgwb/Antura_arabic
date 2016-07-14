@@ -2522,7 +2522,7 @@ MonoBehaviour:
   _pan2DRandomization: 0
   _override3DProperties: 0
   _priority: 128
-  _panLevel: 1
+  _panLevel: 0
   _spreadLevel: 0
   _dopplerLevel: 1
   _maxDistance: 500
@@ -2590,7 +2590,7 @@ MonoBehaviour:
   _pan2DRandomization: 0
   _override3DProperties: 0
   _priority: 128
-  _panLevel: 1
+  _panLevel: 0
   _spreadLevel: 0
   _dopplerLevel: 1
   _maxDistance: 500
@@ -8268,7 +8268,7 @@ MonoBehaviour:
   _pan2DRandomization: 0
   _override3DProperties: 0
   _priority: 128
-  _panLevel: 1
+  _panLevel: 0
   _spreadLevel: 0
   _dopplerLevel: 1
   _maxDistance: 500
@@ -9088,7 +9088,7 @@ MonoBehaviour:
   _pan2DRandomization: 0
   _override3DProperties: 0
   _priority: 128
-  _panLevel: 1
+  _panLevel: 0
   _spreadLevel: 0
   _dopplerLevel: 1
   _maxDistance: 500
@@ -10586,7 +10586,7 @@ MonoBehaviour:
   _pan2DRandomization: 0
   _override3DProperties: 0
   _priority: 128
-  _panLevel: 1
+  _panLevel: 0
   _spreadLevel: 0
   _dopplerLevel: 1
   _maxDistance: 500
