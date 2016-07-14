@@ -12,6 +12,11 @@ namespace EA4S.DontWakeUp
    
     public class GameDontWakeUp : MiniGameBase
     {
+        [Header("Star Rewards")]
+        public int ThresholdStar1 = 3;
+        public int ThresholdStar2 = 6;
+        public int ThresholdStar3 = 9;
+
         [Header("Gameplay Info and Config section")]
         #region Overrides
         new public GameDontWakeUpGameplayInfo GameplayInfo;
@@ -40,7 +45,14 @@ namespace EA4S.DontWakeUp
             currentRound = 1;
             AppManager.Instance.InitDataAI();
 
+            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            Logger.Save();
+
             SetupLevel();
+
+            // GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+
+            AudioManager.I.PlayMusic(Music.Relax);
         }
 
         public void SetupLevel() {
@@ -79,7 +91,8 @@ namespace EA4S.DontWakeUp
     [Serializable]
     public class GameDontWakeUpGameplayInfo : AnturaGameplayInfo
     {
-        public float Time = 10;
+        [Tooltip("Play session duration in seconds.")]
+        public float PlayTime = 10;
     }
 
 

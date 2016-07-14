@@ -46,7 +46,7 @@ namespace EA4S
             labelText = GameTitle.GetComponent<TextMeshProUGUI>();
 
             isGameSelected = false;
-            AudioManager.I.PlayMusic("Music1");
+            AudioManager.I.PlayMusic(Music.MainTheme);
         }
 
         public void OnPopuplicked() {
@@ -74,7 +74,7 @@ namespace EA4S
 
         public void OnWheelStopped() {
             GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
-            AudioManager.I.PlayMusic("Music2");
+            AudioManager.I.PlayMusic(Music.Relax);
             isGameSelected = true;
             ShakePopup();
             // AudioManager.I.PlayMusic2();

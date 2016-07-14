@@ -2,8 +2,7 @@
 
 namespace EA4S
 {
-
-    enum MinigameState {
+    public enum MinigameState {
         Initializing,
         Playing,
         Paused,

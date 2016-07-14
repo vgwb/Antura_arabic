@@ -7,11 +7,14 @@ public class SubtitlesController : MonoBehaviour
     public GameObject Backgroud;
     public GameObject TextGO;
 
-    // Use this for initialization
+
     void Start() {
 	
     }
 
+    void OnEnable() {
+
+    }
 
     public void DisplayText(string text) {
         
