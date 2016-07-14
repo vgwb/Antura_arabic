@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - WayPoints
-  - Destination
+  - Marker
   - Obstacle
+  - Destination
   layers:
   - Default
   - TransparentFX

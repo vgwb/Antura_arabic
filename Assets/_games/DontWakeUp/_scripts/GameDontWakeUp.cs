@@ -29,11 +29,12 @@ namespace EA4S.DontWakeUp
         #endregion
 
         [Header("My vars")]
-        MinigameState currentState;
-        int currentRound;
+        public MinigameState currentState;
+        public int currentRound;
         LevelController currentLevelController;
         public GameObject[] Levels;
         public DangerMeter dangering;
+        public GameObject myLetter;
         public GameObject StarSystems;
         public GameObject Subtitles;
         public GameObject PopupWindow;
@@ -45,42 +46,76 @@ namespace EA4S.DontWakeUp
             currentRound = 1;
             AppManager.Instance.InitDataAI();
 
-            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            Logger.Log("minigame", "dontwakeup", "start", "");
             Logger.Save();
 
             SetupLevel();
-
-            // GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
 
             AudioManager.I.PlayMusic(Music.Relax);
         }
 
         public void SetupLevel() {
+            currentState = MinigameState.Popup;
+
             currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
  
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
             Debug.Log("word chosen: " + currentWord._id);
 
             currentLevelController.SetWord();
-
+            myLetter.SetActive(true);
+            myLetter.GetComponent<MyLetter>().Init(currentWord._id);
+            myLetter.transform.position = currentLevelController.GetStartPosition().position;
 
             AudioManager.I.PlayWord(currentWord._id);
+            AudioManager.I.PlaySound("Dog/Snoring");
 
+            PopupWindow.SetActive(true);
+            PopupWindow.GetComponent<PopupWindowController>().Init("Carefully drag this word", currentWord._id);
+        }
+
+        public void PopupPressedContinue() {
+            currentState = MinigameState.Playing;
         }
 
         public void Won() {
-            
+            currentState = MinigameState.Ended;
             StarSystems.SetActive(true);
+            StarSystems.GetComponent<StarFlowers>().Show(3);
         }
 
-        public void FinishedLevel() {
-            currentState = MinigameState.Paused;
-            // ChangeCamera();
+        public void Lost() {
+            currentState = MinigameState.Ended;
+            StarSystems.SetActive(true);
+            StarSystems.GetComponent<StarFlowers>().Show(0);
+        }
+
+        public void FinishedLevel(bool success) {
+            if (success) {
+                currentState = MinigameState.Paused;
+                myLetter.SetActive(false);
+                if (currentRound < 3) {
+                    Levels[currentRound - 1].SetActive(false);
+                    currentRound = currentRound + 1;
+                    Levels[currentRound - 1].SetActive(true);
+                    currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
+                    ChangeCamera();
+                } else {
+                    Won();
+                }
+            } else {
+                Lost();
+                // ChangeCamera();
+            }
+        }
+
+        // called by callback in camera
+        public void CameraReady() {
+            SetupLevel();
         }
 
         public void ChangeCamera() {
-            currentRound = (currentRound + 1) % 3;
-            currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
+           
             CameraGameplayController.I.GoToPosition(currentLevelController.LevelCamera.transform.position, currentLevelController.LevelCamera.transform.rotation);
         }
 

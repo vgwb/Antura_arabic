@@ -13,7 +13,9 @@ namespace EA4S.DontWakeUp
         public string playerLayerName = "Default";
         public Vector3 trailOffset = new Vector3(0, 0.02f, 0);
 
-        private bool playerSelected = false;
+        private bool dragging = false;
+        bool draggingStarted;
+        bool overDestinationMarker;
 
         //    void OnCollisionStay(Collision collisionInfo) {
         //        foreach (ContactPoint contact in collisionInfo.contacts) {
@@ -32,11 +34,23 @@ namespace EA4S.DontWakeUp
 
         public void Init(string wordCode) {
             Debug.Log("MyLetter Init " + wordCode);
+            draggingStarted = false;
+            overDestinationMarker = false;
             LetterDrawing.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
+            trailReference.Clear();
         }
 
+        void CheckWin() {
+            if (overDestinationMarker) {
+                GameDontWakeUp.Instance.FinishedLevel(true);
+            } else {
+                GameDontWakeUp.Instance.FinishedLevel(false);
+            }
+        }
+
+
         void OnTriggerEnter(Collider other) {
-            Debug.Log("OnTriggerEnter " + other.gameObject.name);
+            //Debug.Log("OnTriggerEnter " + other.gameObject.name);
             // GameDontWakeUp.Instance.dangering.InDanger(false);
         }
 
@@ -46,15 +60,24 @@ namespace EA4S.DontWakeUp
                 GameDontWakeUp.Instance.dangering.InDanger(true);
             }
 
-            if (other.gameObject.tag == "Destination") {
-
-                GameDontWakeUp.Instance.FinishedLevel();
+            if (other.gameObject.tag == "Marker") {
+                if (other.gameObject.GetComponent<Marker>().Type == MarkerType.Goal) {
+                    overDestinationMarker = true;
+                } else {
+                    overDestinationMarker = false;
+                }
+            } else {
+                overDestinationMarker = false;
             }
-
         }
 
         void OnTriggerExit(Collider other) {
-            GameDontWakeUp.Instance.dangering.InDanger(false);
+            if (other.gameObject.tag == "Obstacle") {
+                GameDontWakeUp.Instance.dangering.InDanger(false);
+            }
+            if (other.gameObject.tag == "Marker") {
+                overDestinationMarker = false;
+            }
         }
 
 
@@ -108,27 +131,35 @@ namespace EA4S.DontWakeUp
 
 
         void Update() {
-            if (Input.GetMouseButtonDown(0)) {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                if (Input.GetMouseButtonDown(0)) {
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
 
-                if (Physics.Raycast(ray, out hit, float.MaxValue, LayerNameToIntMask(playerLayerName))) {
-                    playerSelected = true;
-                    MoveOnFloor();
-                    trailReference.Clear();
+                    if (Physics.Raycast(ray, out hit, float.MaxValue, LayerNameToIntMask(playerLayerName))) {
+                        dragging = true;
+                        draggingStarted = true;
+                        MoveOnFloor();
+                        trailReference.Clear();
+                    }
+                } else if (Input.GetMouseButtonUp(0)) {
+                    dragging = false;
                 }
-            } else if (Input.GetMouseButtonUp(0)) {
-                playerSelected = false;
-            }
 
-            if (Input.GetMouseButton(0) && playerSelected) {
-                MoveOnFloor();
-            }
+                if (Input.GetMouseButton(0) && dragging) {
+                    MoveOnFloor();
+                }
 
-            if (Input.GetMouseButtonUp(0)) {
-                playerSelected = false;
+                if (Input.GetMouseButtonUp(0)) {
+                    dragging = false;
+                    if (draggingStarted) {
+                        CheckWin();
+                    }
+                }
             }
         }
+
+
 
         void MoveOnFloor() {
             RaycastHit hit;
