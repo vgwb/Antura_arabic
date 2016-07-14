@@ -70,13 +70,13 @@ namespace EA4S
 
         public void OnWheelStart() {
             TutorialArrow.SetActive(false);
-            AudioManager.I.PlaySound("SFX/WheelStart");
+            AudioManager.I.PlaySfx(Sfx.WheelStart);
 
             //AudioManager.I.PlayMusic("Music2");
         }
 
         public void OnWheelStopped() {
-            AudioManager.I.StopSound("SFX/WheelStart");
+            AudioManager.I.StopSfx(Sfx.WheelStart);
             GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
             AudioManager.I.PlayMusic(Music.Relax);
             isGameSelected = true;
@@ -95,7 +95,7 @@ namespace EA4S
 
                     labelText.text = ArabicFixer.Fix(gameData[currentGameIndex].Title, false, false);
                     GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
-                    AudioManager.I.PlaySound("SFX/WheelTick");
+                    AudioManager.I.PlaySfx(Sfx.WheelTick);
                     //AudioManager.I.PlayHit();
                 }
             }

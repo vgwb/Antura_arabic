@@ -11119,10 +11119,10 @@ MonoBehaviour:
   _maxDistance: 500
   _minDistance: 1
   _rolloffMode: 0
-  _overrideFadeProperties: 0
+  _overrideFadeProperties: 1
   _fadeInTime: 0
   _fadeInCurve: 0.5
-  _fadeOutTime: 0
+  _fadeOutTime: 2
   _fadeOutCurve: 0.5
   _reverbZoneMix: 1
   _overrideBypassProperties: 0
@@ -11161,7 +11161,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _useLoopMarkers: 1
