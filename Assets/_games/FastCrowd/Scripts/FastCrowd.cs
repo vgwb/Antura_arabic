@@ -54,8 +54,8 @@ namespace EA4S.FastCrowd
             AppManager.Instance.InitDataAI();
 
             // put here start logic
-            Logger.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
-            Logger.Save();
+            LoggerEA4S.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            LoggerEA4S.Save();
 
 
             // Gameplay Settings Override

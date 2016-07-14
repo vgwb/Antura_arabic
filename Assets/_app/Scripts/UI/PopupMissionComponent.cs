@@ -48,11 +48,8 @@ namespace EA4S {
                 InfoLable.text = "Word Completed!";
                 sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
                 sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms)).OnComplete(delegate() {
-                    AudioManager.I.PlaySfx(Sfx.UIPopup);
+                    AudioManager.I.PlaySfx(Sfx.Hit);
                 });
-                //sequence.InsertCallback(0.1f, delegate () {
-                //    .SetUpdate(true);
-                //});
             } else {
                 InfoLable.text = "New Word!";
             }
