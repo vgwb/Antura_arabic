@@ -15,6 +15,9 @@ namespace EA4S
         Hit,
         UIPopup,
         UIButtonClick,
+        UIPauseIn,
+        UIPauseOut,
+        CameraMovement,
         AlarmClock,
         LetterAngry,
         LetterHappy,
@@ -78,13 +81,22 @@ namespace EA4S
                     eventName = "Hit";
                     break;
                 case Sfx.UIPopup:
-                    eventName = "SFX/UI/Popup";
+                    eventName = "Sfx/UI/Popup";
                     break;
                 case Sfx.UIButtonClick:
-                    eventName = "SFX/UI/Button/In";
+                    eventName = "Sfx/UI/Button";
+                    break;
+                case Sfx.UIPauseIn:
+                    eventName = "Sfx/UI/PauseIn";
+                    break;
+                case Sfx.UIPauseOut:
+                    eventName = "Sfx/UI/PauseOut";
+                    break;
+                case Sfx.CameraMovement:
+                    eventName = "Sfx/CameraMovement";
                     break;
                 case Sfx.AlarmClock:
-                    eventName = "SFX/Alarm/Clock/LP";
+                    eventName = "Sfx/AlarmClock";
                     break;
                 case Sfx.LetterAngry:
                     eventName = "LivingLetter/Angry";
