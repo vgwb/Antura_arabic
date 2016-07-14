@@ -41,6 +41,7 @@ namespace EA4S
         }
 
         public void OnPressButton() {
+            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             Manager.SendMessage("PopupPressedContinue");
             gameObject.SetActive(false);
         }
