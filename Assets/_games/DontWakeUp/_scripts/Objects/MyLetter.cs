@@ -55,13 +55,18 @@ namespace EA4S.DontWakeUp
             //Debug.Log("OnTriggerEnter " + other.gameObject.name);
             // GameDontWakeUp.Instance.dangering.InDanger(false);
             colliding = true;
+            if (other.gameObject.tag == "Obstacle") {
+                GameDontWakeUp.Instance.dangering.InDanger(true);
+                AudioManager.I.PlaySfx(Sfx.DangerClock);
+            }
+
         }
 
         void OnTriggerStay(Collider other) {
             //Debug.Log("triggero " + other.gameObject.name);
-            if (other.gameObject.tag == "Obstacle") {
-                GameDontWakeUp.Instance.dangering.InDanger(true);
-            }
+//            if (other.gameObject.tag == "Obstacle") {
+//                GameDontWakeUp.Instance.dangering.InDanger(true);
+//            }
 
             if (other.gameObject.tag == "Marker") {
                 if (other.gameObject.GetComponent<Marker>().Type == MarkerType.Goal) {
@@ -77,6 +82,8 @@ namespace EA4S.DontWakeUp
         void OnTriggerExit(Collider other) {
             if (other.gameObject.tag == "Obstacle") {
                 GameDontWakeUp.Instance.dangering.InDanger(false);
+                AudioManager.I.StopSfx(Sfx.DangerClock);
+
             }
             if (other.gameObject.tag == "Marker") {
                 overDestinationMarker = false;

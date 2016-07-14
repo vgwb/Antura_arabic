@@ -37,6 +37,7 @@ namespace EA4S.DontWakeUp
 
         public void InDanger(bool status) {
             inDanger = status;
+
         }
 
     }
