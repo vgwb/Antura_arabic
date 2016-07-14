@@ -2531,7 +2531,7 @@ MonoBehaviour:
   ThresholdStar3: 6
   GameplayInfo:
     GameId: 343636313733373434333732366637373634
-    PlayTime: 15
+    PlayTime: 90
     MaxNumbOfWrongLettersNoise: 3
     BehaviourSettings:
       LookAtTargetRandomDelta: 0.5
