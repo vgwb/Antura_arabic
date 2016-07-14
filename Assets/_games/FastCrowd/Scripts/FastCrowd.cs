@@ -80,9 +80,9 @@ namespace EA4S.FastCrowd {
             // popup info 
             string sepLetters = string.Empty;
             foreach (var item in gameLetters) {
-                sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Initial_Unicode) + " ";
+                sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
             }
-            PopupMission.Show(string.Format("{0} : {1}", ArabicFixer.Fix(ActualWord._word, false, false), sepLetters)
+            PopupMission.Show(string.Format("{0} : {1}", ArabicAlphabetHelper.ParseWord(ActualWord._word, AppManager.Instance.Letters) , sepLetters)
                 , false);
 
             int count = 0;
