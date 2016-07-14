@@ -9,16 +9,14 @@ namespace Balloons
         public FloatingLetterController parentFloatingLetter;
         public Collider balloonCollider;
         public Renderer balloonRenderer;
+        public Animator animator;
 
-        private Animator animator;
-        private AudioSource popAudio;
         private int taps = 0;
 
 
         void Start()
         {
             animator = GetComponent<Animator>();
-            popAudio = GetComponent<AudioSource>();
         }
 
         public void OnMouseDown()
@@ -43,8 +41,7 @@ namespace Balloons
         {
             balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
-            AudioManager.I.PlaySound("Sfx/BalloonPop");
-            popAudio.Play();
+            AudioManager.I.PlaySfx(Sfx.BaloonPop);
             animator.SetBool("Pop", true);
         }
 
