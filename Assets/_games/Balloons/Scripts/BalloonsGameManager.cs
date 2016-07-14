@@ -14,8 +14,10 @@ namespace Balloons
         public WordPromptController wordPrompt;
         public GameObject balloonPrefab;
         public Transform[] floatingLetterLocations;
-        public Canvas resultsCanvas;
-        public Text resultsText;
+        public Canvas nextRoundCanvas;
+        public Text nextRoundText;
+        public Canvas endGameCanvas;
+        public StarFlowers starFlowers;
         public Animator countdownAnimator;
         public AudioSource music;
         public TimerManager timer;
@@ -64,6 +66,7 @@ namespace Balloons
 
         public void Play()
         {
+            currentRoundNumber++;
             if (currentRoundNumber < numberOfRounds)
             {
                 StartNewRound();
@@ -76,7 +79,6 @@ namespace Balloons
 
         public void StartNewRound()
         {
-            currentRoundNumber++;
             ResetScene();
             BeginGameplay();
         }
@@ -89,7 +91,9 @@ namespace Balloons
 
         private void EndGame()
         {
-            // to-do
+            ResetScene();
+            endGameCanvas.gameObject.SetActive(true);
+            starFlowers.Show(3);
         }
 
         private void ResetScene()
@@ -99,7 +103,7 @@ namespace Balloons
             timer.StopTimer();
             timer.ResetTimer();
             wordPrompt.Reset();
-            resultsCanvas.gameObject.SetActive(false);
+            nextRoundCanvas.gameObject.SetActive(false);
             DestroyAllBalloons();
         }
 
@@ -281,21 +285,21 @@ namespace Balloons
             music.volume = 0.25f * music.volume;
             timer.StopTimer();
 
-            resultsCanvas.gameObject.SetActive(true);
+            nextRoundCanvas.gameObject.SetActive(true);
 
             switch (result)
             {
                 case Result.PERFECT:
-                    resultsText.text = "★ ★ ★";
+                    nextRoundText.text = "★ ★ ★";
                     break;
                 case Result.GOOD:
-                    resultsText.text = "★ ★";
+                    nextRoundText.text = "★ ★";
                     break;
                 case Result.CLEAR:
-                    resultsText.text = "★";
+                    nextRoundText.text = "★";
                     break;
                 case Result.TRYAGAIN:
-                    resultsText.text = ":(";
+                    nextRoundText.text = ":(";
                     break;
                 default:
                     break;
