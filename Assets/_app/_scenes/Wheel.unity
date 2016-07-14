@@ -533,15 +533,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11478940, guid: 7ce3c911716b8487c92dad499ca3133c, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11478940, guid: 7ce3c911716b8487c92dad499ca3133c, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22432800, guid: 7ce3c911716b8487c92dad499ca3133c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478940, guid: 7ce3c911716b8487c92dad499ca3133c, type: 2}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478940, guid: 7ce3c911716b8487c92dad499ca3133c, type: 2}
+      propertyPath: m_enableAutoSizing
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ce3c911716b8487c92dad499ca3133c, type: 2}
@@ -2790,7 +2798,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1048341171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2846,10 +2854,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 80
+  m_fontSize: 70
   m_fontSizeBase: 70
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 50
   m_fontSizeMax: 80
   m_fontStyle: 0
