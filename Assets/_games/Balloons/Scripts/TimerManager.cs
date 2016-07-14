@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using EA4S;
 
 namespace Balloons
 {
@@ -11,19 +12,30 @@ namespace Balloons
         public Text timerText;
 
         private bool isRunning;
+        private bool playedSfx;
         private float timeRemaining;
 
         void Update()
         {
-            if (isRunning && timeRemaining > 0f)
+            if (isRunning)
             {
-                timeRemaining -= Time.deltaTime;
-                DisplayTime();
+                if (timeRemaining > 0f)
+                {
+                    timeRemaining -= Time.deltaTime;
+                    DisplayTime();
+                }
+                if (!playedSfx && timeRemaining < 5f)
+                {
+                    AudioManager.I.PlaySfx(Sfx.DangerClock);
+                    playedSfx = true;
+                }
+                if (timeRemaining < 1f)
+                {
+                    StopTimer();
+                    BalloonsGameManager.instance.OnTimeUp();
+                }
             }
-            if (timeRemaining < 1f)
-            {
-                BalloonsGameManager.instance.OnTimeUp();
-            }
+
         }
 
         public void StartTimer()
@@ -34,6 +46,8 @@ namespace Balloons
         public void StopTimer()
         {
             isRunning = false;
+            playedSfx = false;
+            AudioManager.I.StopSfx(Sfx.DangerClock);
         }
 
         public void ResetTimer()

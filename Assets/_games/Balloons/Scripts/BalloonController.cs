@@ -36,13 +36,18 @@ namespace Balloons
                 animator.SetTrigger("Tap");
             }
         }
-
+            
         public void Pop()
         {
             balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
             AudioManager.I.PlaySfx(Sfx.BaloonPop);
             animator.SetBool("Pop", true);
+        }
+
+        public void DisableCollider()
+        {
+            balloonCollider.enabled = false;
         }
 
         public void SetColor(Color color)
