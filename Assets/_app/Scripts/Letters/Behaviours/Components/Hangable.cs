@@ -22,15 +22,15 @@ namespace EA4S {
 
         void OnMouseDown() {
             OnDrag = true;
-            if (OnLetterHangOff != null)
-                OnLetterHangOff(letterView);
+            if (OnLetterHangOn != null)
+                OnLetterHangOn(letterView);
         }
 
         void OnMouseUp() {
             OnDrag = false;
             ToBeRelease = true;
-            if (OnLetterHangOn != null)
-                OnLetterHangOn(letterView);
+            if (OnLetterHangOff != null)
+                OnLetterHangOff(letterView);
         }
 
         void Update() {
