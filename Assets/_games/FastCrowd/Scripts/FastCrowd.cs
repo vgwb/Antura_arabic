@@ -6,6 +6,7 @@ using ModularFramework.Helpers;
 using Google2u;
 using System;
 using ModularFramework.Modules;
+using ArabicSupport;
 
 namespace EA4S.FastCrowd
 {
@@ -70,8 +71,15 @@ namespace EA4S.FastCrowd
         void gameplayBlockSetup() {
             // Get letters and word
             ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord()._word;
-            PopupMission.Show(ActualWord, false);
             List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord, AppManager.Instance.Letters);
+
+            // popup info 
+            string sepLetters = string.Empty;
+            foreach (var item in gameLetters) {
+                sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Initial_Unicode) + " ";
+            }
+            PopupMission.Show(string.Format("{0} : {1}", ArabicFixer.Fix(ActualWord, false, false), sepLetters)
+                , false);
 
             int count = 0;
             // Letter from db filtered by some parameters
@@ -98,6 +106,10 @@ namespace EA4S.FastCrowd
                 letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), GameplayInfo.BehaviourSettings);
             }
             DropAreaContainer.SetupDone();
+        }
+
+        private void LetterDataListFromWord(object _word, object _vocabulary) {
+            throw new NotImplementedException();
         }
 
         void sceneClean() {
