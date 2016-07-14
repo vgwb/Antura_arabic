@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: bb0a6eb94d311d243aaac119d1801a6c
+timeCreated: 1467718898
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: anturoLow
+    100002: bits
+    100004: collar
+    100006: //RootNode
+    100008: group6
+    100010: group7
+    100012: pCube10
+    100014: pCube10 1
+    100016: pCube11
+    100018: pCube11 1
+    100020: pCube12
+    100022: pCube12 1
+    100024: pCube13
+    100026: pCube8
+    100028: pCube9
+    100030: pCube9 1
+    100032: spikes
+    100034: Object
+    100036: Object002
+    100038: Object004
+    100040: Object006
+    100042: Object008
+    100044: Object010
+    100046: Object012
+    100048: Object014
+    100050: Object016
+    100052: Object019
+    100054: Object021
+    100056: Object023
+    100058: pCube7
+    100060: eyes
+    100062: eyes001
+    100064: eyes002
+    100066: eyes003
+    100068: anturo
+    100070: anturoSkinned
+    100072: backAnkle_L
+    100074: backAnkle_R
+    100076: backHip_L
+    100078: backHip_R
+    100080: backKnee_L
+    100082: backKnee_R
+    100084: backRump_L
+    100086: backRump_R
+    100088: backToes_L
+    100090: backToes_R
+    100092: Chest_M
+    100094: DeformationSystem
+    100096: Ear0_L
+    100098: Ear0_R
+    100100: Ear1_L
+    100102: Ear1_R
+    100104: Ear2_L
+    100106: Ear2_R
+    100108: Ear3_L
+    100110: Ear3_R
+    100112: frontAnkle_L
+    100114: frontAnkle_R
+    100116: frontHip_L
+    100118: frontHip_R
+    100120: frontKnee_L
+    100122: frontKnee_R
+    100124: frontRump_L
+    100126: frontRump_R
+    100128: frontToes_L
+    100130: frontToes_R
+    100132: furBits
+    100134: Geometry
+    100136: Head_M
+    100138: Jaw_M
+    100140: Main
+    100142: Neck_M
+    100144: Object001
+    100146: Root_M
+    100148: Spine1_M
+    100150: spriteEyes
+    100152: Tail0_M
+    100154: Tail1_M
+    100156: Tail2_M
+    100158: Tail3_M
+    400000: anturoLow
+    400002: bits
+    400004: collar
+    400006: //RootNode
+    400008: group6
+    400010: group7
+    400012: pCube10
+    400014: pCube10 1
+    400016: pCube11
+    400018: pCube11 1
+    400020: pCube12
+    400022: pCube12 1
+    400024: pCube13
+    400026: pCube8
+    400028: pCube9
+    400030: pCube9 1
+    400032: spikes
+    400034: Object
+    400036: Object002
+    400038: Object004
+    400040: Object006
+    400042: Object008
+    400044: Object010
+    400046: Object012
+    400048: Object014
+    400050: Object016
+    400052: Object019
+    400054: Object021
+    400056: Object023
+    400058: pCube7
+    400060: eyes
+    400062: eyes001
+    400064: eyes002
+    400066: eyes003
+    400068: anturo
+    400070: anturoSkinned
+    400072: backAnkle_L
+    400074: backAnkle_R
+    400076: backHip_L
+    400078: backHip_R
+    400080: backKnee_L
+    400082: backKnee_R
+    400084: backRump_L
+    400086: backRump_R
+    400088: backToes_L
+    400090: backToes_R
+    400092: Chest_M
+    400094: DeformationSystem
+    400096: Ear0_L
+    400098: Ear0_R
+    400100: Ear1_L
+    400102: Ear1_R
+    400104: Ear2_L
+    400106: Ear2_R
+    400108: Ear3_L
+    400110: Ear3_R
+    400112: frontAnkle_L
+    400114: frontAnkle_R
+    400116: frontHip_L
+    400118: frontHip_R
+    400120: frontKnee_L
+    400122: frontKnee_R
+    400124: frontRump_L
+    400126: frontRump_R
+    400128: frontToes_L
+    400130: frontToes_R
+    400132: furBits
+    400134: Geometry
+    400136: Head_M
+    400138: Jaw_M
+    400140: Main
+    400142: Neck_M
+    400144: Object001
+    400146: Root_M
+    400148: Spine1_M
+    400150: spriteEyes
+    400152: Tail0_M
+    400154: Tail1_M
+    400156: Tail2_M
+    400158: Tail3_M
+    2300000: anturoLow
+    2300002: bits
+    2300004: collar
+    2300006: pCube10
+    2300008: pCube10 1
+    2300010: pCube11
+    2300012: pCube11 1
+    2300014: pCube12
+    2300016: pCube12 1
+    2300018: pCube13
+    2300020: pCube8
+    2300022: pCube9
+    2300024: pCube9 1
+    2300026: Object
+    2300028: Object002
+    2300030: Object004
+    2300032: Object006
+    2300034: Object008
+    2300036: Object010
+    2300038: Object012
+    2300040: Object014
+    2300042: Object016
+    2300044: Object019
+    2300046: Object021
+    2300048: Object023
+    2300050: pCube7
+    2300052: eyes
+    2300054: eyes001
+    2300056: eyes002
+    2300058: eyes003
+    2300060: Object001
+    2300062: spriteEyes
+    3300000: anturoLow
+    3300002: bits
+    3300004: collar
+    3300006: pCube10
+    3300008: pCube10 1
+    3300010: pCube11
+    3300012: pCube11 1
+    3300014: pCube12
+    3300016: pCube12 1
+    3300018: pCube13
+    3300020: pCube8
+    3300022: pCube9
+    3300024: pCube9 1
+    3300026: Object
+    3300028: Object002
+    3300030: Object004
+    3300032: Object006
+    3300034: Object008
+    3300036: Object010
+    3300038: Object012
+    3300040: Object014
+    3300042: Object016
+    3300044: Object019
+    3300046: Object021
+    3300048: Object023
+    3300050: pCube7
+    3300052: eyes
+    3300054: eyes001
+    3300056: eyes002
+    3300058: eyes003
+    3300060: Object001
+    3300062: spriteEyes
+    4300000: bits
+    4300002: anturoLow
+    4300004: pCube8
+    4300006: pCube13
+    4300008: pCube9
+    4300010: pCube10
+    4300012: pCube11
+    4300014: pCube12
+    4300016: pCube9
+    4300018: pCube10
+    4300020: pCube11
+    4300022: pCube12
+    4300024: collar
+    4300026: pCube7
+    4300028: Object
+    4300030: Object002
+    4300032: Object004
+    4300034: Object006
+    4300036: Object008
+    4300038: Object010
+    4300040: Object012
+    4300042: Object014
+    4300044: Object016
+    4300046: Object019
+    4300048: Object021
+    4300050: Object023
+    4300052: eyes
+    4300054: eyes001
+    4300056: eyes002
+    4300058: eyes003
+    4300060: anturo
+    4300062: furBits
+    4300064: spriteEyes
+    4300066: Object001
+    9500000: //RootNode
+    13700000: anturo
+    13700002: furBits
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Root_M
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: c416bca87ddf18d42acf6bc98741a14f,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

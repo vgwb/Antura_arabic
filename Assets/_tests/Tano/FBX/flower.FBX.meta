@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: 513582818715c8b48bcb7cd75ba86e27
+timeCreated: 1467890709
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: IK Chain001
+    100004: Star
+    100006: star middle flower
+    100008: Star_base_root
+    100010: Star_bones_center
+    100012: Star_Head_002
+    100014: Star_Head_01
+    100016: star_L01
+    100018: Star_L02
+    100020: star_LB01
+    100022: star_LB02
+    100024: Star_leaf_BL002
+    100026: Star_leaf_BL01
+    100028: Star_leaf_BR002
+    100030: Star_leaf_BR01
+    100032: Star_leaf_TL002
+    100034: Star_leaf_TL01
+    100036: Star_leaf_TR002
+    100038: Star_leaf_TR01
+    100040: Star_line002
+    100042: Star_line003
+    100044: Star_line004
+    100046: Star_line005
+    100048: Star_line01
+    100050: star_R002
+    100052: star_R01
+    100054: star_RB002
+    100056: star_RB01
+    400000: //RootNode
+    400002: IK Chain001
+    400004: Star
+    400006: star middle flower
+    400008: Star_base_root
+    400010: Star_bones_center
+    400012: Star_Head_002
+    400014: Star_Head_01
+    400016: star_L01
+    400018: Star_L02
+    400020: star_LB01
+    400022: star_LB02
+    400024: Star_leaf_BL002
+    400026: Star_leaf_BL01
+    400028: Star_leaf_BR002
+    400030: Star_leaf_BR01
+    400032: Star_leaf_TL002
+    400034: Star_leaf_TL01
+    400036: Star_leaf_TR002
+    400038: Star_leaf_TR01
+    400040: Star_line002
+    400042: Star_line003
+    400044: Star_line004
+    400046: Star_line005
+    400048: Star_line01
+    400050: star_R002
+    400052: star_R01
+    400054: star_RB002
+    400056: star_RB01
+    4300000: Star
+    7400000: Star_open
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Star
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Star_open
+      takeName: Take 001
+      firstFrame: 5
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain001
+        weight: 1
+      - path: Star
+        weight: 1
+      - path: Star_base_root
+        weight: 1
+      - path: Star_base_root/Star_leaf_BL01
+        weight: 1
+      - path: Star_base_root/Star_leaf_BL01/Star_leaf_BL002
+        weight: 1
+      - path: Star_base_root/Star_leaf_BR01
+        weight: 1
+      - path: Star_base_root/Star_leaf_BR01/Star_leaf_BR002
+        weight: 1
+      - path: Star_base_root/Star_leaf_TL01
+        weight: 1
+      - path: Star_base_root/Star_leaf_TL01/Star_leaf_TL002
+        weight: 1
+      - path: Star_base_root/Star_leaf_TR01
+        weight: 1
+      - path: Star_base_root/Star_leaf_TR01/Star_leaf_TR002
+        weight: 1
+      - path: Star_base_root/Star_line01
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/Star_Head_01
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/Star_Head_01/Star_Head_002
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_L01
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_L01/Star_L02
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_LB01
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_LB01/star_LB02
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_R01
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_R01/star_R002
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_RB01
+        weight: 1
+      - path: Star_base_root/Star_line01/Star_line002/Star_line003/Star_line004/Star_line005/Star_bones_center/star
+          middle flower/star_RB01/star_RB002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 3
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 0
+    normalImportMode: 0
+    tangentImportMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
