@@ -18,6 +18,10 @@ namespace EA4S.DontWakeUp
             BroadcastMessage("Init", wordCode, SendMessageOptions.DontRequireReceiver);
         }
 
+        public void DoAlarmEverything() {
+            BroadcastMessage("AlarmOn", SendMessageOptions.DontRequireReceiver);
+        }
+
         public Transform GetStartPosition() {
             if (Marker1.GetComponent<Marker>().Type == MarkerType.Start) {
                 return Marker1.transform;

@@ -11,7 +11,8 @@ namespace EA4S
 
     public enum Sfx {
         Hit,
-        UIPopup
+        UIPopup,
+        AlarmClock
     }
 
     public class AudioManager : MonoBehaviour
@@ -66,6 +67,9 @@ namespace EA4S
                 case Sfx.UIPopup:
                     eventName = "SFX/UI/Popup";
                     break;
+                case Sfx.AlarmClock:
+                    eventName = "SFX/Alarm/Clock/LP";
+                    break;   
             }
 
             PlaySound(eventName);
