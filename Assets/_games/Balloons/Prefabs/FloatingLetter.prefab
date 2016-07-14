@@ -2467,7 +2467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0873ac86bd87143d5b3850a960653df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonTops:
+  balloons:
   - {fileID: 11470240}
   - {fileID: 11463564}
 --- !u!114 &11449986
@@ -2481,7 +2481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0873ac86bd87143d5b3850a960653df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonTops:
+  balloons:
   - {fileID: 11428028}
 --- !u!114 &11456976
 MonoBehaviour:
@@ -2511,6 +2511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentFloatingLetter: {fileID: 11465656}
   animator: {fileID: 9559400}
+  letterCollider: {fileID: 6517084}
   associatedPromptIndex: 0
   isRequired: 0
   LetterView: {fileID: 11475294}
@@ -2543,7 +2544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0873ac86bd87143d5b3850a960653df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balloonTops:
+  balloons:
   - {fileID: 11471368}
   - {fileID: 11435412}
   - {fileID: 11456976}
