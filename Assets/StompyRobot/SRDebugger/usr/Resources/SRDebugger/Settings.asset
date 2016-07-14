@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isEnabled: 1
   _autoLoad: 1
-  _defaultTab: 0
+  _defaultTab: 1
   _triggerEnableMode: 0
   _triggerBehaviour: 0
   _enableKeyboardShortcuts: 1
