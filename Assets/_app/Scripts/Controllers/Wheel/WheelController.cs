@@ -11,7 +11,7 @@ namespace EA4S
         public float initialSpeed;
         float currentSpeed;
 
-        const float brakeForce = 0.98f;
+        const float brakeForce = 0.96f;
         const float minimalSpeed2Stop = 4f;
 
         Vector3 rotationEuler;
