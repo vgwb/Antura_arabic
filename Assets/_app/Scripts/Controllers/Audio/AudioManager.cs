@@ -6,14 +6,21 @@ namespace EA4S
 {
     public enum Music {
         MainTheme,
-        Relax
+        Relax,
+        Theme3,
+        Theme4
     }
 
     public enum Sfx {
         Hit,
         UIPopup,
-        AlarmClock
+        UIButtonClick,
+        AlarmClock,
+        LetterAngry,
+        LetterHappy,
+        LetterSad
     }
+
 
     public class AudioManager : MonoBehaviour
     {
@@ -51,6 +58,12 @@ namespace EA4S
                 case Music.Relax:
                     eventName = "Music2";
                     break;
+                case Music.Theme3:
+                    eventName = "Music3";
+                    break;
+                case Music.Theme4:
+                    eventName = "Music4";
+                    break;
             }
 
             Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
@@ -67,9 +80,21 @@ namespace EA4S
                 case Sfx.UIPopup:
                     eventName = "SFX/UI/Popup";
                     break;
+                case Sfx.UIButtonClick:
+                    eventName = "SFX/UI/Button/In";
+                    break;
                 case Sfx.AlarmClock:
                     eventName = "SFX/Alarm/Clock/LP";
-                    break;   
+                    break;
+                case Sfx.LetterAngry:
+                    eventName = "LivingLetter/Angry";
+                    break;  
+                case Sfx.LetterHappy:
+                    eventName = "LivingLetter/Happy";
+                    break;  
+                case Sfx.LetterSad:
+                    eventName = "LivingLetter/Sad";
+                    break;  
             }
 
             PlaySound(eventName);
