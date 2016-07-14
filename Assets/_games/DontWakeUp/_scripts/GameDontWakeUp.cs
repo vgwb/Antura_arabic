@@ -82,6 +82,7 @@ namespace EA4S.DontWakeUp
         public void Won() {
             currentState = MinigameState.Ended;
             AudioManager.I.StopSound("Dog/Snoring");
+            AudioManager.I.PlaySfx(Sfx.Win);
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(3);
             LoggerEA4S.Log("minigame", "dontwakeup", "Won", "");
@@ -90,7 +91,8 @@ namespace EA4S.DontWakeUp
 
         public void Lost() {
             currentState = MinigameState.Ended;
-            AudioManager.I.StopSound("Dog/Snoring");
+           
+            AudioManager.I.PlaySfx(Sfx.Lose);
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(0);
             LoggerEA4S.Log("minigame", "dontwakeup", "Lost", "");
@@ -98,11 +100,13 @@ namespace EA4S.DontWakeUp
         }
 
         public void LostAlarm() {
-            currentState = MinigameState.Ended;
-            myLetter.SetActive(false);
-            currentLevelController.DoAlarmEverything();
-
-            Invoke("Lost", 2);
+            if (currentState != MinigameState.Ended) {
+                currentState = MinigameState.Ended;
+                myLetter.SetActive(false);
+                currentLevelController.DoAlarmEverything();
+                AudioManager.I.StopSound("Dog/Snoring");
+                Invoke("Lost", 2);
+            }
         }
 
         public void FinishedLevel(bool success) {

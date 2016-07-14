@@ -14,6 +14,9 @@ namespace EA4S
     public enum Sfx {
         Hit,
         BaloonPop,
+        DangerClock,
+        Win,
+        Lose,
         UIPopup,
         UIButtonClick,
         UIPauseIn,
@@ -126,6 +129,15 @@ namespace EA4S
             switch (sfx) {
                 case Sfx.Hit:
                     eventName = "Hit";
+                    break;
+                case Sfx.DangerClock:
+                    eventName = "Sfx/DangerClock";
+                    break;
+                case Sfx.Win:
+                    eventName = "Sfx/Win";
+                    break;
+                case Sfx.Lose:
+                    eventName = "Sfx/Lose";
                     break;
                 case Sfx.BaloonPop:
                     eventName = "Sfx/BalloonPop";
