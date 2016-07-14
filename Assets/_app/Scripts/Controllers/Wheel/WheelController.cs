@@ -7,7 +7,7 @@ namespace EA4S
     {
         [HideInInspector]
         public bool isRotating;
-
+        bool isQuiteStopped;
         public float initialSpeed;
         float currentSpeed;
 
@@ -45,6 +45,7 @@ namespace EA4S
             if (isRotating == false) {
                 //Debug.Log("ROTATE");
                 isRotating = true;
+                isQuiteStopped = false;
                 currentSpeed = initialSpeed + Random.Range(-200, 200);
                 WheelManager.Instance.OnWheelStart();
             }
@@ -57,6 +58,11 @@ namespace EA4S
                 transform.rotation = Quaternion.Euler(rotationEuler);
 
                 currentSpeed = currentSpeed * brakeForce;
+
+                if (currentSpeed < 200f && !isQuiteStopped) {
+                    AudioManager.I.StopSfx(Sfx.WheelStart);
+                    isQuiteStopped = true;
+                }
 
                 if (currentSpeed < minimalSpeed2Stop) {
                     isRotating = false;

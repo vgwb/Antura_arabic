@@ -23,8 +23,7 @@ namespace EA4S
         Sequence openMenuTween;
         Tween anturaBobTween;
 
-        void Start()
-        {
+        void Start() {
             btPause = CgPause.GetComponentInChildren<Button>();
             menuBts = PauseMenuContainer.GetComponentsInChildren<Button>(true);
 
@@ -34,11 +33,13 @@ namespace EA4S
             // Tweens - menu
             CanvasGroup[] cgButtons = new[] { CgExit, CgRestart, CgMusic, CgResume };
             openMenuTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .OnPlay(() => {
+                .OnPlay(() =>
+                {
                     PauseMenuContainer.SetActive(true);
                     anturaBobTween.Restart();
                 })
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     PauseMenuContainer.SetActive(false);
                     anturaBobTween.Rewind();
                 });
@@ -57,65 +58,65 @@ namespace EA4S
             PauseMenuContainer.SetActive(false);
 
             // Listeners
-            btPause.onClick.AddListener(()=> OnClick(btPause));
+            btPause.onClick.AddListener(() => OnClick(btPause));
             foreach (Button bt in menuBts) {
                 Button b = bt; // Redeclare to fix Unity's foreach issue with delegates
-                b.onClick.AddListener(()=> OnClick(b));
+                b.onClick.AddListener(() => OnClick(b));
             }
         }
 
-        void OnDestroy()
-        {
+        void OnDestroy() {
             openMenuTween.Kill();
             anturaBobTween.Kill();
             btPause.onClick.RemoveAllListeners();
-            foreach (Button bt in menuBts) bt.onClick.RemoveAllListeners();
+            foreach (Button bt in menuBts)
+                bt.onClick.RemoveAllListeners();
         }
 
         /// <summary>
         /// Opens or closes the pause menu
         /// </summary>
         /// <param name="_open">If TRUE opens, otherwise closes</param>
-        public void OpenMenu(bool _open)
-        {
+        public void OpenMenu(bool _open) {
             IsMenuOpen = _open;
             if (_open) {
                 timeScaleAtMenuOpen = Time.timeScale;
                 Time.timeScale = 0;
                 openMenuTween.timeScale = 1;
                 openMenuTween.PlayForward();
+                AudioManager.I.PlaySfx(Sfx.UIPauseIn);
             } else {
                 Time.timeScale = timeScaleAtMenuOpen;
                 openMenuTween.timeScale = 2; // Speed up tween when going backwards
                 openMenuTween.PlayBackwards();
+                AudioManager.I.PlaySfx(Sfx.UIPauseOut);
             }
         }
 
         /// <summary>
         /// Callback for button clicks
         /// </summary>
-        void OnClick(Button bt)
-        {
+        void OnClick(Button bt) {
 
             if (bt == btPause) {
                 OpenMenu(!IsMenuOpen);
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
                 int menuBtIndex = Array.IndexOf(menuBts, bt);
                 switch (menuBtIndex) {
-                case 0: // Exit
-                    OpenMenu(false);
-                    break;
-                case 1: // Music on/off
+                    case 0: // Exit
+                        OpenMenu(false);
+                        break;
+                    case 1: // Music on/off
                     // TODO
-                    break;
-                case 2: // Restart
+                        break;
+                    case 2: // Restart
                         
-                    OpenMenu(false);
-                    break;
-                case 3: // Resume
-                    OpenMenu(false);
+                        OpenMenu(false);
+                        break;
+                    case 3: // Resume
+                        OpenMenu(false);
                     // TODO
-                    break;
+                        break;
                 }
             }
         }

@@ -7,7 +7,7 @@ public class TestHomeManager : MonoBehaviour
 {
 
     void Start() {
-	
+        AudioManager.I.PlayMusic(Music.Theme3);
     }
 
     public void StartTest() {
