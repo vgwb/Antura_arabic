@@ -16,6 +16,6 @@ public class AlarmClock : MonoBehaviour
 
     void OnMouseDown() {
         Debug.Log("OnMouseDown o nAlarmClock");
-        EA4S.DontWakeUp.GameDontWakeUp.Instance.ChangeCamera();
+        //EA4S.DontWakeUp.GameDontWakeUp.Instance.ChangeCamera();
     }
 }

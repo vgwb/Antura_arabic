@@ -26,15 +26,15 @@ namespace EA4S.DontWakeUp
             switch (Type) {
                 case MarkerType.Start:
                     GetComponent<BoxCollider>().enabled = false;
-                    TextGO.SetActive(true);
-                    TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(GameDontWakeUp.Instance.currentWord._word, false, false);
-                    DrawingGO.SetActive(false);
-                    break;
-                case MarkerType.Goal:
-                    GetComponent<BoxCollider>().enabled = true;
                     DrawingGO.SetActive(true);
                     DrawingGO.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
                     TextGO.SetActive(false);
+                    break;
+                case MarkerType.Goal:
+                    GetComponent<BoxCollider>().enabled = true;
+                    TextGO.SetActive(true);
+                    TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(GameDontWakeUp.Instance.currentWord._word, false, false);
+                    DrawingGO.SetActive(false);
                     break;
             }
 
