@@ -56,6 +56,7 @@ namespace EA4S
         }
 
         void ShakePopup() {
+            AudioManager.I.PlaySfx(Sfx.UIPopup);
 //            Sequence mySequence = DOTween.Sequence();
 //            mySequence.Append(transform.DOMoveX(45, 1))
 //                .Append(transform.DORotate(new Vector3(0,180,0), 1))
@@ -69,10 +70,13 @@ namespace EA4S
 
         public void OnWheelStart() {
             TutorialArrow.SetActive(false);
+            AudioManager.I.PlaySound("SFX/WheelStart");
+
             //AudioManager.I.PlayMusic("Music2");
         }
 
         public void OnWheelStopped() {
+            AudioManager.I.StopSound("SFX/WheelStart");
             GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
             AudioManager.I.PlayMusic(Music.Relax);
             isGameSelected = true;
@@ -91,7 +95,7 @@ namespace EA4S
 
                     labelText.text = ArabicFixer.Fix(gameData[currentGameIndex].Title, false, false);
                     GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
-                    AudioManager.I.PlaySound("Sfx/hit");
+                    AudioManager.I.PlaySound("SFX/WheelTick");
                     //AudioManager.I.PlayHit();
                 }
             }

@@ -35,25 +35,20 @@ namespace EA4S.DontWakeUp
             LetterDrawing.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
         }
 
+        void OnTriggerEnter(Collider other) {
+            Debug.Log("OnTriggerEnter " + other.gameObject.name);
+            // GameDontWakeUp.Instance.dangering.InDanger(false);
+        }
+
         void OnTriggerStay(Collider other) {
             //Debug.Log("triggero " + other.gameObject.name);
             if (other.gameObject.tag == "Obstacle") {
                 GameDontWakeUp.Instance.dangering.InDanger(true);
             }
 
-//            Debug.Log("triggero WON 2" + other.gameObject.name);
-            if (other.gameObject.name == "Destination Marker 1") {
+            if (other.gameObject.tag == "Destination") {
 
-                GameDontWakeUp.Instance.FinishedLevel(1);
-            }
-            if (other.gameObject.name == "Destination Marker 2") {
-
-                GameDontWakeUp.Instance.FinishedLevel(2);
-            }
-
-            if (other.gameObject.name == "DestinationFinal") {
-
-                GameDontWakeUp.Instance.Won();
+                GameDontWakeUp.Instance.FinishedLevel();
             }
 
         }
