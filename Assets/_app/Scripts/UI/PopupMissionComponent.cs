@@ -9,6 +9,8 @@ namespace EA4S {
 
         public Image CompletedCheck;
         public TextMeshProUGUI WordLable;
+        [Tooltip("Auto close popup after seconds indicated. If -1 autoclose is disabled and appear close button for that.")]
+        public float AutoCloseTime = -1;
 
         Vector2 HidePosition;
         Vector2 ShowPosition;
@@ -24,6 +26,7 @@ namespace EA4S {
         }
 
         public void Show(string _word, bool _completed, TweenCallback _callback = null) {
+            //AudioManager.I.PlaySfx(Sfx.UIPopup);
             // Preset for animation
             WordLable.text = _word;
             CompletedCheck.rectTransform.DOScale(6, 0);
