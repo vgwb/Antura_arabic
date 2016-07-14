@@ -908,6 +908,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &157390
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 474360}
+  - 114: {fileID: 11411288}
+  - 114: {fileID: 11439240}
+  m_Layer: 0
+  m_Name: CameraMovement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &159162
 GameObject:
   m_ObjectHideFlags: 1
@@ -2209,6 +2226,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 498528}
   m_RootOrder: 3
+--- !u!4 &474360
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 496478}
+  m_RootOrder: 4
 --- !u!4 &475048
 Transform:
   m_ObjectHideFlags: 1
@@ -2424,6 +2454,7 @@ Transform:
   - {fileID: 452696}
   - {fileID: 429634}
   - {fileID: 411784}
+  - {fileID: 474360}
   m_Father: {fileID: 404554}
   m_RootOrder: 1
 --- !u!4 &497166
@@ -3553,6 +3584,94 @@ MonoBehaviour:
   _syncWithMusicTime: 0
   _markers: []
   _regions: []
+--- !u!114 &11411288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -71199202, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numVirtualizationEvents: 100
+  _maxInstances: 1
+  _stealingBehaviour: 3
+  _minimumPlaybackInterval: 0
+  _overrideParentVolume: 0
+  _volume: 1
+  _volumeRandomization: 0
+  _mute: 0
+  _overrideParentPitch: 0
+  _pitch: 1
+  _pitchRandomization: 0
+  _override2DProperties: 0
+  _pan2D: 0
+  _pan2DRandomization: 0
+  _override3DProperties: 0
+  _priority: 128
+  _panLevel: 1
+  _spreadLevel: 0
+  _dopplerLevel: 1
+  _maxDistance: 500
+  _minDistance: 1
+  _rolloffMode: 0
+  _overrideFadeProperties: 0
+  _fadeInTime: 0
+  _fadeInCurve: 0.5
+  _fadeOutTime: 0
+  _fadeOutCurve: 0.5
+  _reverbZoneMix: 1
+  _overrideBypassProperties: 0
+  _bypassEffects: 0
+  _bypassListenerEffects: 0
+  _bypassReverbZones: 0
+  _overrideAudioMixerGroup: 0
+  _audioMixerGroup: {fileID: 0}
+  _notifyParentComponent: 0
+  _audioBusName: 
+  _overrideAudioBus: 0
+  _overrideMusicTimeSettings: 0
+  _musicTimeSettingsIndex: -1
+  _musicTempo: -1
+  _musicTimeSignatureLower: 0
+  _musicTimeSignatureUpper: 0
+  _probability: 100
+  _multipleInstancesPerGameObject: 0
+  _componentVirtualization: 0
+  _overrideVolumeThreshold: 0
+  _volumeThreshold: 1
+  _virtualizationBehavior: 1
+  _RTPManager:
+    _parameters: []
+    _reference: {fileID: 0}
+  Guid: 
+  _componentHolder: {fileID: 0}
+  _onEventNotifyEventName: 
+  _audioClip: {fileID: 8300000, guid: 0cef4a4a4d8424573a2938fb3f7cfe29, type: 3}
+  _audioClipHandle:
+    _audioClipPath: 
+    _useAudioClipPath: 1
+  _dynamicAudioClipLoading: 0
+  _dynamicAudioClipUnloadDelay: 0
+  _dynamicAsyncAudioClipLoading: 0
+  _audioClipAssetPath: 0
+  _delay: 0
+  _delayInBeats: 0
+  _loop: 0
+  _numLoops: -1
+  _loopMarkersLoaded: 0
+  _useLoopMarkers: 1
+  _dontPlay: 0
+  _dontStopOnDestroy: 0
+  _ignoreVirtualization: 0
+  _randomizePosition: 0
+  _randomizeMinPosition: 0
+  _randomizeMaxPosition: 10
+  _syncWithMusicTime: 0
+  _markers: []
+  _regions: []
 --- !u!114 &11411554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3720,7 +3839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numVirtualizationEvents: 100
   _maxInstances: 1
-  _stealingBehaviour: 0
+  _stealingBehaviour: 3
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
   _volume: 1
@@ -3761,7 +3880,7 @@ MonoBehaviour:
   _musicTimeSignatureLower: 0
   _musicTimeSignatureUpper: 0
   _probability: 100
-  _multipleInstancesPerGameObject: 1
+  _multipleInstancesPerGameObject: 0
   _componentVirtualization: 0
   _overrideVolumeThreshold: 0
   _volumeThreshold: 1
@@ -5313,15 +5432,15 @@ MonoBehaviour:
   - Music/Music3
   - Music/Music4
   - MusicTrigger
-  - SFX/Alarm/Clock/LP
+  - Sfx/AlarmClock
   - Sfx/BalloonPop
   - Sfx/hit
-  - SFX/UI/Button/In
-  - SFX/UI/Pause/In
-  - SFX/UI/Pause/Out
-  - SFX/UI/Popup
-  - SFX/WheelStart
-  - SFX/WheelTick
+  - Sfx/UI/Button
+  - Sfx/UI/PauseIn
+  - Sfx/UI/PauseOut
+  - Sfx/UI/Popup
+  - Sfx/WheelStart
+  - Sfx/WheelTick
   - VOX/Letters/ain
   - VOX/Letters/alef
   - VOX/Letters/beh
@@ -5367,6 +5486,7 @@ MonoBehaviour:
   - VOX/Words/nose
   - VOX/Words/tongue
   - VOX/Words/tooth
+  - Sfx/CameraMovement
   profiler:
     totalMS: 0
     recordedMS: 0
@@ -6201,6 +6321,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f042f9bb26c4a7c8d6d8ba0769b11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11439240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventName: Sfx/CameraMovement
+  _eventID: 0
+  _overrideEventTriggerAction: 0
+  _overrideParameters:
+    _overrideIncomingEventAction: 0
+    _incomingEventAction: 0
+    _overrideEventAction: 0
+    _type: 0
+    _floatParameter: 1
+    _stringParameter: 
+    _switchPresetData:
+      _sourcePreset: 
+      _targetPreset: 
+    _dspParameterData:
+      _dspType: 0
+      _parameter: 
+      _value: 0
+      _time: 0
+      _curve: 0.5
+    _transitionToSnapshotData:
+      _snapshot: 
+      _timeToReach: 0
 --- !u!114 &11439494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6212,7 +6365,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: SFX/UI/Pause/In
+  _eventName: Sfx/UI/PauseIn
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -6520,7 +6673,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: SFX/UI/Button/In
+  _eventName: Sfx/UI/Button
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -7125,7 +7278,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: SFX/WheelStart
+  _eventName: Sfx/WheelStart
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -7246,7 +7399,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: SFX/UI/Popup
+  _eventName: Sfx/UI/Popup
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -8261,7 +8414,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: SFX/Alarm/Clock/LP
+  _eventName: Sfx/AlarmClock
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -10946,7 +11099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numVirtualizationEvents: 100
   _maxInstances: 1
-  _stealingBehaviour: 0
+  _stealingBehaviour: 3
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
   _volume: 0.2818383
@@ -10987,7 +11140,7 @@ MonoBehaviour:
   _musicTimeSignatureLower: 0
   _musicTimeSignatureUpper: 0
   _probability: 100
-  _multipleInstancesPerGameObject: 1
+  _multipleInstancesPerGameObject: 0
   _componentVirtualization: 0
   _overrideVolumeThreshold: 0
   _volumeThreshold: 1
@@ -11032,7 +11185,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: SFX/UI/Pause/Out
+  _eventName: Sfx/UI/PauseOut
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -11241,7 +11394,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: SFX/WheelTick
+  _eventName: Sfx/WheelTick
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:

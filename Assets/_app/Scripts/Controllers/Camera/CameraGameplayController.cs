@@ -22,6 +22,7 @@ namespace EA4S
         }
 
         public void GoToPosition(Vector3 newPosition, Quaternion newRotation) {
+            AudioManager.I.PlaySfx(Sfx.CameraMovement);
 
             DOTween.Sequence()
                 .Append(transform.DOLocalMove(newPosition, 2.0f))
