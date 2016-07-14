@@ -72,6 +72,7 @@ namespace EA4S.FastCrowd {
         void gameplayBlockSetup() {
             // Get letters and word
             ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord();
+            AudioManager.I.PlayWord(ActualWord._id);
             LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord._id);
             LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
             List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord._word, AppManager.Instance.Letters);
@@ -185,7 +186,7 @@ namespace EA4S.FastCrowd {
         private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
             LoggerEA4S.Log("minigame", "fastcrowd", "badLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(false);
-            AudioManager.I.PlaySound("LivingLetters/Angry");
+            AudioManager.I.PlaySfx(Sfx.LetterSad);
         }
 
         /// <summary>
@@ -194,7 +195,7 @@ namespace EA4S.FastCrowd {
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
             LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(true);
-
+            AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
         }
 
         /// <summary>
@@ -202,10 +203,13 @@ namespace EA4S.FastCrowd {
         /// </summary>
         /// <param name="_letterView"></param>
         private void Hangable_OnLetterHangOn(LetterObjectView _letterView) {
-            if(_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key)
+            if (_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key) {
                 LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterHold", _letterView.Model.Data.Key);
-            else
+                AudioManager.I.PlaySfx(Sfx.LetterHappy);
+            } else {
                 LoggerEA4S.Log("minigame", "fastcrowd", "badLetterHold", _letterView.Model.Data.Key);
+                AudioManager.I.PlaySfx(Sfx.LetterAngry);
+            }
         }
 
         /// <summary>
