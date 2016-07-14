@@ -13,6 +13,7 @@ namespace EA4S
 
     public enum Sfx {
         Hit,
+        BaloonPop,
         UIPopup,
         UIButtonClick,
         UIPauseIn,
@@ -125,6 +126,9 @@ namespace EA4S
             switch (sfx) {
                 case Sfx.Hit:
                     eventName = "Hit";
+                    break;
+                case Sfx.BaloonPop:
+                    eventName = "Sfx/BalloonPop";
                     break;
                 case Sfx.UIPopup:
                     eventName = "Sfx/UI/Popup";
