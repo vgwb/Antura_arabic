@@ -73,10 +73,9 @@ namespace EA4S.DontWakeUp
             StarSystems.SetActive(true);
         }
 
-        public void FinishedLevel(int quale) {
-            if (quale != currentRound) {
-                ChangeCamera();
-            }
+        public void FinishedLevel() {
+            currentState = MinigameState.Paused;
+            // ChangeCamera();
         }
 
         public void ChangeCamera() {

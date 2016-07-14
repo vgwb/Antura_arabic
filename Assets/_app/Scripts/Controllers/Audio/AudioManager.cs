@@ -10,7 +10,8 @@ namespace EA4S
     }
 
     public enum Sfx {
-        Hit
+        Hit,
+        UIPopup
     }
 
     public class AudioManager : MonoBehaviour
@@ -60,6 +61,9 @@ namespace EA4S
             switch (sfx) {
                 case Sfx.Hit:
                     eventName = "Hit";
+                    break;
+                case Sfx.UIPopup:
+                    eventName = "SFX/UI/Popup";
                     break;
             }
 
