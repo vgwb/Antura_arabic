@@ -8,7 +8,7 @@ using System.IO;
 using System;
 
 namespace EA4S {
-    public static class Logger {
+    public static class LoggerEA4S {
 
         static string Filename = "AnturaLog.csv";
         public static string SessionID = "0000000000";
