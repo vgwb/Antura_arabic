@@ -146,13 +146,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127528}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce6e49fa5c3fe4d65ba8553977228fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: "\u062B\u0645 \u0631\u0627\u0646\u062F\u0648\u0645 \u0648\u0631\u062F \u0625\u0646
-    \u0627\u0644\u0639\u0631\u0628\u064A\u0629"
+  text: 
   isUI: 1
 --- !u!114 &11422906
 MonoBehaviour:
@@ -174,7 +173,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u0644\u0639\u0631\u0628\u064A\u0629"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_sharedMaterial: {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_fontSharedMaterials: []
@@ -472,7 +471,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u062B\u0645 \u0631\u0627\u0646\u062F\u0648\u0645 \u0648\u0631\u062F \u0625\u0646
     \u0627\u0644\u0639\u0631\u0628\u064A\u0629"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_sharedMaterial: {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_fontSharedMaterials: []
@@ -684,7 +683,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 127528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
