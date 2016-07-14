@@ -432,7 +432,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 42.0327, y: -13.448199, z: 2.968}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!108 &68431029
 Light:
   m_ObjectHideFlags: 0
@@ -551,7 +551,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 136152, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
@@ -720,9 +720,9 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_uvOffset: {x: 0, y: 0}
   m_uvLineOffset: 0
@@ -2531,7 +2531,7 @@ MonoBehaviour:
   ThresholdStar3: 6
   GameplayInfo:
     GameId: 343636313733373434333732366637373634
-    PlayTime: 90
+    PlayTime: 15
     MaxNumbOfWrongLettersNoise: 3
     BehaviourSettings:
       LookAtTargetRandomDelta: 0.5
