@@ -94,14 +94,10 @@ namespace Balloons
 
             if (activeBalloonCount == 0)
             {
-                if (letter.isRequired)
-                {
-                    BalloonsGameManager.instance.OnDroppedRequired(letter.associatedPromptIndex);
-                }
+                BalloonsGameManager.instance.OnDropped(letter.isRequired, letter.associatedPromptIndex, letter.LetterModel.Data.Key);
                 letter.transform.SetParent(null);
                 letter.Drop();
                 BalloonsGameManager.instance.floatingLetters.Remove(this);
-                BalloonsGameManager.instance.OnDropped();
                 Destroy(gameObject, 3f);
             }
         }
