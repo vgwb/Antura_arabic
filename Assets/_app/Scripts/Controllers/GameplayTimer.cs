@@ -2,12 +2,15 @@
 using UnityEngine.UI;
 using System.Collections;
 using ModularFramework.Core;
+using TMPro;
 
-namespace EA4S {
-    public class GameplayTimer : Singleton<GameplayTimer> {
+namespace EA4S
+{
+    public class GameplayTimer : Singleton<GameplayTimer>
+    {
         [Range(10, 300)]
         public float time;
-        private Text timerText;
+        private TextMeshProUGUI timerText;
 
         private bool isRunning;
         private float timeRemaining;
@@ -68,16 +71,18 @@ namespace EA4S {
 
         public void DisplayTime() {
             if (!timerText)
-                timerText = GetComponent<Text>();
+                timerText = GetComponent<TextMeshProUGUI>();
             var text = Mathf.Floor(timeRemaining).ToString();
             timerText.text = text;
         }
 
         #region events
+
         public delegate void TimerEvent(float _time);
 
         public static event TimerEvent OnStartTimer;
         public static event TimerEvent OnTimeOver;
+
         #endregion
     }
 }
