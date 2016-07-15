@@ -136,6 +136,7 @@ namespace Balloons
 
         private IEnumerator BeginGameplay_Coroutine() {
             timer.DisplayTime();
+            countdownAnimator.gameObject.SetActive(true);
 
             AnimateCountdown("3");
             yield return new WaitForSeconds(1f);
@@ -143,6 +144,8 @@ namespace Balloons
             yield return new WaitForSeconds(1f);
             AnimateCountdown("1");
             yield return new WaitForSeconds(1f);
+
+            countdownAnimator.gameObject.SetActive(false);
 
             SetNewWord();
             CreateBalloons(currentRound);
