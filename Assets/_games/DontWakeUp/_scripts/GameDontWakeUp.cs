@@ -80,6 +80,8 @@ namespace EA4S.DontWakeUp
         }
 
         public void Won() {
+            AudioManager.I.StopSfx(Sfx.DangerClock); // to-do: temporary fix?
+
             currentState = MinigameState.Ended;
             AudioManager.I.StopSound("Dog/Snoring");
             AudioManager.I.PlaySfx(Sfx.Win);
@@ -90,6 +92,8 @@ namespace EA4S.DontWakeUp
         }
 
         public void Lost() {
+            AudioManager.I.StopSfx(Sfx.DangerClock); // to-do: temporary fix?
+
             currentState = MinigameState.Ended;
            
             AudioManager.I.PlaySfx(Sfx.Lose);

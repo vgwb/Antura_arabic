@@ -37,6 +37,8 @@ namespace EA4S
         }
 
         void Start() {
+            AudioManager.I.StopSfx(Sfx.DangerClock); // to-do: temporary fix?
+
             AppManager.Instance.InitDataAI();
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
