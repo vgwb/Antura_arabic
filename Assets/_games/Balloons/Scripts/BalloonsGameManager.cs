@@ -39,6 +39,7 @@ namespace Balloons
 
         public static BalloonsGameManager instance;
 
+        private Google2u.wordsRow wordData;
         private string word;
         private List<LetterData> wordLetters;
         private int currentRound = 0;
@@ -64,6 +65,8 @@ namespace Balloons
             Random.seed = System.DateTime.Now.GetHashCode();
             remainingLives = lives;
             letterDropDelay = balloonPopAnimation.length;
+            AppManager.Instance.InitDataAI();
+
             Play();
         }
 
@@ -84,6 +87,9 @@ namespace Balloons
         {
             ResetScene();
             BeginGameplay();
+
+            LoggerEA4S.Log("minigame", "Balloons", "start", timer.time.ToString());
+            LoggerEA4S.Save();
         }
 
         private void EndRound(Result result)
@@ -92,6 +98,9 @@ namespace Balloons
             DisableFloatingLetters();
             timer.StopTimer();
             ProcessRoundResult(result);
+
+            LoggerEA4S.Log("minigame", "Balloons", "wordFinished", wordData._id);
+            LoggerEA4S.Save();
         }
 
         private void EndGame()
@@ -120,6 +129,10 @@ namespace Balloons
                 numberOfStars = 3;
             }
                 
+            LoggerEA4S.Log("minigame", "Balloons", "completedWords", correctWords.ToString());
+            LoggerEA4S.Log("minigame", "Balloons", "endScoreStars", numberOfStars.ToString());
+            LoggerEA4S.Save();
+
             starFlowers.Show(numberOfStars);
         }
 
@@ -162,10 +175,16 @@ namespace Balloons
 
         private void SetNewWord()
         {
-            word = Google2u.words.Instance.Rows.GetRandomElement()._word;
+            //word = Google2u.words.Instance.Rows.GetRandomElement()._word;
+            wordData = AppManager.Instance.Teacher.GimmeAGoodWord();
+            word = wordData._word;
             wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
             wordPrompt.DisplayWord(wordLetters);
 
+            AudioManager.I.PlayWord(wordData._id);
+
+            LoggerEA4S.Log("minigame", "Balloons", "newWord", wordData._id);
+            LoggerEA4S.Save();
             Debug.Log(word + " Length: " + word.Length);
         }
 
@@ -226,8 +245,18 @@ namespace Balloons
             }
         }
 
-        public void OnDropped()
+        public void OnDropped(bool isRequired = false, int promptIndex = -1, string letterKey = "")
         {
+            if (isRequired)
+            {
+                LoggerEA4S.Log("minigame", "Balloons", "goodLetterExplode", letterKey);
+                OnDroppedRequired(promptIndex);
+            }
+            else
+            {
+                LoggerEA4S.Log("minigame", "Balloons", "badLetterExplode", letterKey);
+            }
+
             CheckRemainingBalloons();
         }
 
