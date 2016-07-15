@@ -17,7 +17,8 @@ namespace Balloons
         public Canvas hudCanvas;
         public Text roundNumberText;
         public Canvas roundResultCanvas;
-        public Text roundResultText;
+        public Image roundWinImage;
+        public Image roundLoseImage;
         public Canvas endGameCanvas;
         public StarFlowers starFlowers;
         public Animator countdownAnimator;
@@ -69,7 +70,7 @@ namespace Balloons
         public void Play()
         {
             currentRound++;
-            if (currentRound < numberOfRounds)
+            if (currentRound <= numberOfRounds)
             {
                 StartNewRound();
             }
@@ -87,7 +88,7 @@ namespace Balloons
 
         private void EndRound(Result result)
         {
-            AudioManager.I.StopMusic();
+            AudioManager.I.PlayMusic(Music.Relax);
             DisableFloatingLetters();
             timer.StopTimer();
             ProcessRoundResult(result);
@@ -147,7 +148,7 @@ namespace Balloons
             yield return new WaitForSeconds(1f);
 
             SetNewWord();
-            CreateBalloons();
+            CreateBalloons(currentRound);
 
             timer.StartTimer();
             AudioManager.I.PlayMusic(Music.MainTheme);
@@ -168,10 +169,13 @@ namespace Balloons
             Debug.Log(word + " Length: " + word.Length);
         }
 
-        private void CreateBalloons()
+        private void CreateBalloons(int numberOfExtraLetters)
         {
+            var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
+
+
             // Create Floating Letters
-            for (int i = 0; i < floatingLetterLocations.Length; i++)
+            for (int i = 0; i < numberOfLetters; i++)
             {
                 var instance = Instantiate(floatingLetterPrefab);
                 instance.transform.SetParent(floatingLetterLocations[i]);
@@ -312,36 +316,41 @@ namespace Balloons
 
         private void ProcessRoundResult(Result result)
         {
+            bool win = false;
+
             switch (result)
             {
                 case Result.PERFECT:
                     correctWords++;
-                    DisplayRoundResult(":)");
-                    AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                    win = true;
+                    AudioManager.I.PlaySfx(Sfx.Win);
                     break;
                 case Result.GOOD:
                     correctWords++;
-                    DisplayRoundResult("★ ★");
-                    AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                    win = true;
+                    AudioManager.I.PlaySfx(Sfx.Win);
                     break;
                 case Result.CLEAR:
                     correctWords++;
-                    DisplayRoundResult("★");
-                    AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                    win = true;
+                    AudioManager.I.PlaySfx(Sfx.Win);
                     break;
                 case Result.FAIL:
-                    DisplayRoundResult(":(");
-                    AudioManager.I.PlaySfx(Sfx.LetterSad);
+                    win = false;
+                    AudioManager.I.PlaySfx(Sfx.Lose);
                     break;
                 default:
                     break;
             }
+
+            DisplayRoundResult(win);
         }
 
-        private void DisplayRoundResult(string resultText)
+        private void DisplayRoundResult(bool win)
         {
             roundResultCanvas.gameObject.SetActive(true);
-            roundResultText.text = resultText;
+            roundWinImage.gameObject.SetActive(win);
+            roundLoseImage.gameObject.SetActive(!win);
         }
     }
 }
