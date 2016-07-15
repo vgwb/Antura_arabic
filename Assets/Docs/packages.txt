@@ -1,13 +1,18 @@
 Installed Packages
-=================
+==================
 
+## REQUIRED
+- Fabric 2.2.6p1 (COMMERCIAL but FREE < 100K)
 - DOTween - 1.1.135 - FREE
 - G2U - 2.1.9 - COMMERCIAL
 - JsonDotNet - COMMERCIAL
+- LeanTouch - 1.0.8 - FREE
 - Panda Behaviour 1.3.0 - FREE
 - Text Mesh Pro - 0.1.54 Beta 3 - COMMERCIAL
 - UniRX - 5.2.0
 
-## Editor / Utilities
+## Editor / Optional / Utilities
 - Advanced Builder - 1.4.4 - COMMERCIAL
 - QHierarchy - 2.19 - COMMERCIAL
+- Rainbow Folders - 0.3 - FREE
+- SRDebugger - 1.4.9 (COMMERCIAL - OPTIONAL)
