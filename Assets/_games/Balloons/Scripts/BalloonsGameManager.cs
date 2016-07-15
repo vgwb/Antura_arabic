@@ -154,6 +154,8 @@ namespace Balloons
 
         private IEnumerator BeginGameplay_Coroutine()
         {
+            timer.DisplayTime();
+
             AnimateCountdown("3");
             yield return new WaitForSeconds(1f);
             AnimateCountdown("2");
