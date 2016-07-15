@@ -280,8 +280,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u0631\u0627\u0633"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da5eafbab6c98b54396e7f8c26ffa3e2, type: 2}
-  m_sharedMaterial: {fileID: 2141604, guid: da5eafbab6c98b54396e7f8c26ffa3e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
+  m_sharedMaterial: {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

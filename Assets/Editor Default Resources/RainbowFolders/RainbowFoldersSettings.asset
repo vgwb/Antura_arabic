@@ -16,6 +16,14 @@ MonoBehaviour:
     Type: 1
     SmallIcon: {fileID: 2800000, guid: 0b7e8970cd9b4d548883dc5b4f4997c0, type: 3}
     LargeIcon: {fileID: 2800000, guid: ca744735eea12d84b8369b456104295c, type: 3}
+  - Key: Assets/_app
+    Type: 1
+    SmallIcon: {fileID: 2800000, guid: 0b7e8970cd9b4d548883dc5b4f4997c0, type: 3}
+    LargeIcon: {fileID: 2800000, guid: ca744735eea12d84b8369b456104295c, type: 3}
+  - Key: Assets/Resources
+    Type: 1
+    SmallIcon: {fileID: 2800000, guid: 0b7e8970cd9b4d548883dc5b4f4997c0, type: 3}
+    LargeIcon: {fileID: 2800000, guid: ca744735eea12d84b8369b456104295c, type: 3}
   - Key: Assets/_games/DontWakeUp
     Type: 1
     SmallIcon: {fileID: 2800000, guid: e4d497fd8f72b5241b762a7ed649ee83, type: 3}
@@ -36,19 +44,11 @@ MonoBehaviour:
     Type: 1
     SmallIcon: {fileID: 2800000, guid: d7aa3931d4836f94ea17a3b67c2754b7, type: 3}
     LargeIcon: {fileID: 2800000, guid: 8033ba50d6a678f41bf129dd6a31ee12, type: 3}
-  - Key: Assets/_app
-    Type: 1
-    SmallIcon: {fileID: 2800000, guid: 1395baad88220534f9a77e6e628f04c3, type: 3}
-    LargeIcon: {fileID: 2800000, guid: 30971d38931ab5c4ea6ac4124bebfac4, type: 3}
-  - Key: Assets/RainbowFolders/Examples/Colors/08. Bondi Blue
-    Type: 1
-    SmallIcon: {fileID: 2800000, guid: 6ecc649ba46fa2c448d60a663be30ffd, type: 3}
-    LargeIcon: {fileID: 2800000, guid: 7ce51c638aeaa3840ab61c4a4af3885b, type: 3}
   - Key: Assets/RainbowFolders/Examples/Colors/09. Blue
     Type: 1
     SmallIcon: {fileID: 2800000, guid: 191188601401d7f4ca9105e13b350e00, type: 3}
     LargeIcon: {fileID: 2800000, guid: b5aa5103c69828e42a9ff77db820f2a6, type: 3}
-  - Key: Assets/_tests/Stefano
-    Type: 1
-    SmallIcon: {fileID: 2800000, guid: 6afa87a5a70f8e54a82e85637cec0904, type: 3}
-    LargeIcon: {fileID: 2800000, guid: b84c63ef648173140b8fa6c05aef2768, type: 3}
+  - Key: _scripts
+    Type: 0
+    SmallIcon: {fileID: 2800000, guid: 1395baad88220534f9a77e6e628f04c3, type: 3}
+    LargeIcon: {fileID: 2800000, guid: 30971d38931ab5c4ea6ac4124bebfac4, type: 3}
