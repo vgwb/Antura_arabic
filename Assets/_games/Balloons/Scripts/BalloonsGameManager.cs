@@ -24,6 +24,7 @@ namespace Balloons
         public Animator countdownAnimator;
         public TimerManager timer;
         public AnimationClip balloonPopAnimation;
+        public GameObject runningAntura;
 
         [Header("Game Parameters")] [Tooltip("e.g.: 6")]
         public int numberOfRounds;
@@ -162,6 +163,8 @@ namespace Balloons
 
             SetNewWord();
             CreateBalloons(currentRound);
+
+            runningAntura.SetActive(true);
 
             timer.StartTimer();
             AudioManager.I.PlayMusic(Music.MainTheme);
