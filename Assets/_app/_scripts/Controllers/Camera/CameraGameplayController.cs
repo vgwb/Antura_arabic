@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using DG.Tweening;
+using UnityStandardAssets.ImageEffects;
 
 namespace EA4S
 {
@@ -14,11 +16,13 @@ namespace EA4S
         }
 
         void Start() {
-	
+            EnableFX(AppManager.Instance.GameSettings.HighQualityGfx);
         }
 
-        void Update() {
-	
+        public void EnableFX(bool status) {
+            Debug.Log("CameraGameplayController EnableFX " + status);
+            gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
+            gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
         }
 
         public void GoToPosition(Vector3 newPosition, Quaternion newRotation) {
