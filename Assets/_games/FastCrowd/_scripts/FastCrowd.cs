@@ -71,7 +71,10 @@ namespace EA4S.FastCrowd {
         /// </summary>
         void gameplayBlockSetup() {
             // Get letters and word
-            ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord();
+            // Fix - https://trello.com/c/oDz6iosQ
+            do {
+                ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord();
+            } while (CompletedWords.Contains(ActualWord));
             AudioManager.I.PlayWord(ActualWord._id);
             LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord._id);
             LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
