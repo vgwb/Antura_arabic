@@ -56,6 +56,12 @@ namespace EA4S
                 Letters.Add(new LetterData(rowName, letRow));
             }
         }
+
+        public void ToggleQualitygfx() {
+            GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
+            CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
+        }
+
     }
 
     /// <summary>

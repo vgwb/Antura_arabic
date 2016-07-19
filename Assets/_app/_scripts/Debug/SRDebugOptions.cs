@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using EA4S;
 
 public partial class SROptions
 {
@@ -24,6 +25,13 @@ public partial class SROptions
     public void Balloons() {
         //Debug.Log("Clearing PlayerPrefs");
         SceneManager.LoadScene("game_Balloons");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Quality")]
+    public void ToggleQuality() {
+        //Debug.Log("Clearing PlayerPrefs");
+        AppManager.Instance.ToggleQualitygfx();
         SRDebug.Instance.HideDebugPanel();
     }
 }
