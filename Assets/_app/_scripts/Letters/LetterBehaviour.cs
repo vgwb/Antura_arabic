@@ -151,8 +151,12 @@ namespace EA4S {
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(0.4f, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
+                case "GoOut":
+                    if (Task.current.isStarting)
+                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(1.0f, Settings.DurationRandomDelta);
+                    Wait(runtimeWaitTime);
+                    break;
                 default:
-                    
                     Task.current.Succeed();
                     break;
             }

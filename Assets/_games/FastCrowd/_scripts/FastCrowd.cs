@@ -74,7 +74,7 @@ namespace EA4S.FastCrowd {
             // Fix - https://trello.com/c/oDz6iosQ
             do {
                 ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord();
-            } while (CompletedWords.Contains(ActualWord));
+            } while (CompletedWords.Contains(ActualWord) && CompletedWords.Count < 12);
             AudioManager.I.PlayWord(ActualWord._id);
             LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord._id);
             LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
@@ -196,6 +196,8 @@ namespace EA4S.FastCrowd {
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
+            // respawn letter on fixed spawn point.
+            _letterView.transform.position = new Vector3(0, 0, 26.7f);
             LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(true);
             AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
@@ -256,8 +258,7 @@ namespace EA4S.FastCrowd {
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo
-    {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
 
         [Tooltip("Play session duration in seconds.")]
         public float PlayTime = 10;

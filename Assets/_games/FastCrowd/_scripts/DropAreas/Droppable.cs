@@ -45,6 +45,8 @@ namespace EA4S {
         /// <param name="_state"></param>
         [Task]
         public void SetMatchState(bool _state) {
+            if (!dropAreaActive)
+                return;
             if (_state)
                 dropAreaActive.SetMatching();
             else

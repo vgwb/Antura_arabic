@@ -1,104 +1,91 @@
 tree("Root")
-	parallel
-		mute tree("Hold")
-		while not OnDrag
-			random(0.4, 0.4, 0.2, 0.1)
-				tree("Idle")
-				tree("Walk")
-				tree("Run")
-				tree("Ninja")
-			
-
-//	Fallback
-//		tree("Idle")
-		// tree("LookingToTarget")
+	fallback 
+		tree("Hold")
+		tree("Release")
+		random(0.4, 0.4, 0.2, 0.1)
+			tree("Idle")
+			tree("Walk")
+			tree("Run")
+			tree("Ninja")
 
 // -------------------------
 // Behaviours States		
 // -------------------------
 tree("Idle")
 	while
-		mute 
-			Sequence
-				not OnDrag
-				not OnDrag
-		mute 
-			Sequence
-				SetAnimation("Idle")
-				SetNavigation("Stop")
-				//Wait(2.0)
-				HoldState("Idle")
-				Succeed
+		not OnDrag
+		Sequence
+			SetAnimation("Idle")
+			SetNavigation("Stop")
+			HoldState("Idle")
+			Succeed
 
 tree("Walk")
-	Sequence
+	while
 		not OnDrag
 		Sequence
 			SetAnimation("Walk")
 			SetNavigation("Walk")
 			HoldState("Walk")
 			Succeed
-			//tree("TurnFrontOfCamera")
-
-tree("Hold")
-	race
-		Sequence
-			not OnDrag
-			ToBeRelease
-			tree("Release")
-		Sequence
-			OnDrag
-			// -------------------------------------------- //	
-			// Hang State Collision + match control
-			// -------------------------------------------- //	
-			Sequence
-				OnDrag
-				Parallel
-					SetAnimation("Hold")
-					SetNavigation("Hold")
-					Race
-						Sequence
-							IsCollidingWithArea	
-							IsMatching 
-							SetMatchState(true)
-
-						Sequence
-							IsCollidingWithArea
-							not IsMatching 
-							SetMatchState(false)
-				Succeed
-			// -------------------------------------------- //
-
-		// If not Dragging call Release
-//		Sequence
-//			not OnDrag
-//			tree("Release")
-		// -------------------------------------------- //
-
-
-			//TurnAllFrontOfTarget()
-tree("Release")
-	Sequence
-		//UnSetMatchState
-		Release
-		Succeed
 
 tree("Run")
-	Sequence
-		SetAnimation("Run")
-		SetNavigation("Run")
-		HoldState("Ninja")
-		Succeed
+	while
+		not OnDrag
+		Sequence
+			SetAnimation("Run")
+			SetNavigation("Run")
+			HoldState("Ninja")
+			Succeed
 
 tree("Ninja")
-	Sequence
+	while
 		not OnDrag
 		Sequence
 			SetAnimation("Ninja")
 			SetNavigation("Ninja")
 			HoldState("Ninja")
 			Succeed
-			//tree("TurnFrontOfCamera")
+
+// -------------------------------------------- //	
+// Hang State Collision + match control
+// -------------------------------------------- //
+tree("Hold")
+	Sequence
+		while 
+			OnDrag
+			Parallel
+				SetAnimation("Hold")
+				SetNavigation("Hold")
+				Race
+					Sequence
+						IsCollidingWithArea	
+						IsMatching 
+						SetMatchState(true)
+					Sequence
+						IsCollidingWithArea
+						not IsMatching 
+						SetMatchState(false)
+				Succeed
+// -------------------------------------------- //
+
+
+//TurnAllFrontOfTarget()
+tree("Release")
+	Sequence
+		not OnDrag
+		ToBeRelease
+		//UnSetMatchState
+		tree("GoOut")
+		//Succeed
+
+tree("GoOut")
+	Sequence
+		Release
+//		SetAnimation("Run")
+//		SetNavigation("GoOut")
+//		HoldState("GoOut")
+		Succeed
 
 tree("TurnFrontOfCamera")
 	Sequence

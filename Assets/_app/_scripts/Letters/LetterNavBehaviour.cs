@@ -21,9 +21,6 @@ namespace EA4S {
 
         }
 
-
-
-
         #region Tasks
         [Task]
         public void SetNavigation(string _stateName) {
@@ -58,6 +55,13 @@ namespace EA4S {
                     agent.speed = 3f;
                     agent.Resume();
                     break;
+                case "GoOut":
+                    agent.Stop();
+                    transform.position = new Vector3(18, 0, 35);
+                    agent.Resume();
+                    agent.speed = 10f;
+                    agent.Resume();
+                    break;
                 default:
                     break;
             }
@@ -79,12 +83,12 @@ namespace EA4S {
         /// <summary>
         /// Repositioning waypoint.
         /// </summary>
-        void RepositioningWaypoint() {
+        void RepositioningWaypoint(int _areaMask = 1) {
             if (!wayPoint)
                 return;
             Vector3 randomValidPosition;
             //RandomPoint(Target.position, 10f, out randomValidPosition);
-            GameplayHelper.RandomPointInWalkableArea(wayPoint.position, 15f, out randomValidPosition);
+            GameplayHelper.RandomPointInWalkableArea(wayPoint.position, 15f, out randomValidPosition, _areaMask);
             wayPoint.position = randomValidPosition;
             agent.SetDestination(wayPoint.position);
         }
