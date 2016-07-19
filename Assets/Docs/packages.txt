@@ -3,7 +3,7 @@ Installed Packages
 
 ## REQUIRED
 - Fabric 2.2.6p1 (COMMERCIAL but FREE < 100K)
-- DOTween - 1.1.135 - FREE
+- DOTween - 1.1.310 - FREE
 - G2U - 2.1.9 - COMMERCIAL
 - JsonDotNet - COMMERCIAL
 - LeanTouch - 1.0.8 - FREE
