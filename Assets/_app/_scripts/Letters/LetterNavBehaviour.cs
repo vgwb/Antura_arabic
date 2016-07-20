@@ -13,6 +13,8 @@ namespace EA4S {
         NavMeshAgent agent;
         Transform wayPoint;
         Vector3 LookAtCameraPosition = new Vector3(0, 0.2f, -19);
+        public Vector3 HidePositionRight = new Vector3(25, 0, -20);
+        public Vector3 HidePositionLeft = new Vector3(-25, 0, -20);
         bool lookAtCamera = false;
 
         void Start() {
@@ -55,12 +57,11 @@ namespace EA4S {
                     agent.speed = 3f;
                     agent.Resume();
                     break;
-                case "GoOut":
-                    agent.Stop();
-                    transform.position = new Vector3(18, 0, 35);
-                    agent.Resume();
-                    agent.speed = 10f;
-                    agent.Resume();
+                case "GoOut": 
+                    agent.Stop(); 
+                    agent.transform.position = HidePositionLeft;
+                    //agent.Resume();
+                    //agent.speed = 10f;
                     break;
                 default:
                     break;

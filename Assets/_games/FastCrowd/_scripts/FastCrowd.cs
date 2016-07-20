@@ -220,7 +220,7 @@ namespace EA4S.FastCrowd {
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
             // respawn letter on fixed spawn point.
-            _letterView.transform.position = new Vector3(0, 0, 26.7f);
+            //_letterView.transform.position = new Vector3(0, 0, 26.7f);
             LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(true);
             AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
