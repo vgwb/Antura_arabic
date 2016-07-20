@@ -7,10 +7,15 @@ using Google2u;
 using System;
 using ModularFramework.Modules;
 using ArabicSupport;
+using UniRx;
 
 namespace EA4S.FastCrowd {
 
     public class FastCrowd : MiniGameBase {
+
+        public bool IsAnturaMoment = false;
+
+        #region GameSettings
 
         [Header("Star Rewards")]
         public int ThresholdStar1 = 3;
@@ -48,6 +53,8 @@ namespace EA4S.FastCrowd {
         public ActionFeedbackComponent ActionFeedback;
         public PopupMissionComponent PopupMission;
 
+        #endregion
+
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
             AppManager.Instance.InitDataAI();
@@ -62,8 +69,24 @@ namespace EA4S.FastCrowd {
 
             gameplayBlockSetup();
 
-            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
-            AudioManager.I.PlayMusic(Music.MainTheme);
+            //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
+                new List<GameplayTimer.CustomEventData>() {
+                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = 80 },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = 68 },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = 35 },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = 22 },
+                }
+                );
+
+            /// <summary>
+            /// Timer event subscribe.
+            /// </summary>
+            GameplayTimer.Instance.ObserveEveryValueChanged(x => x.time).Subscribe(_ => {
+            
+            });
+
+            AudioManager.I.PlayMusic(Music.Theme3);
         }
 
         /// <summary>
@@ -225,6 +248,27 @@ namespace EA4S.FastCrowd {
             
         }
 
+        /// <summary>
+        /// Timer custom events delegates.
+        /// </summary>
+        /// <param name="_data"></param>
+        private void GameplayTimer_OnCustomEvent(GameplayTimer.CustomEventData _data) {
+            //Debug.LogFormat("Custom Event {0} at {1} sec.", _data.Name, _data.Time);
+            switch (_data.Name) {
+                case "AnturaStart":
+                    IsAnturaMoment = true;
+                    AudioManager.I.PlayMusic(Music.MainTheme);
+                    break;
+                case "AnturaEnd":
+                    IsAnturaMoment = false;
+                    AudioManager.I.PlayMusic(Music.Theme3);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
         #endregion
 
         #region events subscription
@@ -232,6 +276,7 @@ namespace EA4S.FastCrowd {
         void OnEnable() {
             DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
+            GameplayTimer.OnCustomEvent += GameplayTimer_OnCustomEvent;
 
             Droppable.OnRightMatch += Droppable_OnRightMatch;
             Droppable.OnWrongMatch += Droppable_OnWrongMatch;
@@ -240,9 +285,12 @@ namespace EA4S.FastCrowd {
             Hangable.OnLetterHangOff += Hangable_OnLetterHangOff;
         }
 
+
+
         void OnDisable() {
             DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
+            GameplayTimer.OnCustomEvent -= GameplayTimer_OnCustomEvent;
 
             Droppable.OnRightMatch -= Droppable_OnRightMatch;
             Droppable.OnWrongMatch -= Droppable_OnWrongMatch;

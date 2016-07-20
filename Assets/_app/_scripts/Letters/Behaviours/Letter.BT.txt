@@ -1,5 +1,6 @@
 tree("Root")
 	fallback 
+		tree("AnturaTime")
 		tree("Hold")
 		tree("Release")
 		random(0.4, 0.4, 0.2, 0.1)
@@ -47,6 +48,8 @@ tree("Ninja")
 			HoldState("Ninja")
 			Succeed
 
+
+
 // -------------------------------------------- //	
 // Hang State Collision + match control
 // -------------------------------------------- //
@@ -68,6 +71,17 @@ tree("Hold")
 						SetMatchState(false)
 				Succeed
 // -------------------------------------------- //
+
+tree("AnturaTime")
+	Sequence
+		IsAnturaMoment
+		SetAnimation("Terrified")
+		SetNavigation("Run")
+		while
+			Sequence
+				not OnDrag
+				IsAnturaMoment
+			Running
 
 
 //TurnAllFrontOfTarget()
