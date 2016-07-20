@@ -15,17 +15,20 @@ namespace Balloons
         public WordPromptController wordPrompt;
         public GameObject floatingLetterPrefab;
         public Transform[] floatingLetterLocations;
-        public Canvas hudCanvas;
-        public TextMeshProUGUI roundNumberText;
-        public Canvas roundResultCanvas;
-        public Image roundWinImage;
-        public Image roundLoseImage;
-        public Canvas endGameCanvas;
-        public StarFlowers starFlowers;
-        public Animator countdownAnimator;
-        public TimerManager timer;
         public AnimationClip balloonPopAnimation;
         public GameObject runningAntura;
+        public Canvas hudCanvas;
+        public Canvas roundStartCanvas;
+        public Canvas roundResultCanvas;
+        public Canvas endGameCanvas;
+        public TextMeshProUGUI roundNumberText;
+        public TimerManager timer;
+        public Animator countdownAnimator;
+        public PopupWindowController roundStartPopup;
+        public Image roundWinImage;
+        public Image roundLoseImage;
+        public StarFlowers starFlowers;
+
 
         [Header("Game Parameters")] [Tooltip("e.g.: 6")]
         public int numberOfRounds;
@@ -72,6 +75,19 @@ namespace Balloons
             Play();
         }
 
+        public void OnRoundStartPressed()
+        {
+            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            roundStartCanvas.gameObject.SetActive(false);
+            BeginGameplay();
+        }
+
+        public void OnRoundResultPressed()
+        {
+            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            Play();
+        }
+
         public void Play()
         {
             currentRound++;
@@ -88,10 +104,9 @@ namespace Balloons
         public void StartNewRound()
         {
             ResetScene();
-            BeginGameplay();
-
-            LoggerEA4S.Log("minigame", "Balloons", "start", timer.time.ToString());
-            LoggerEA4S.Save();
+            SetNewWord();
+            roundStartCanvas.gameObject.SetActive(true);
+            roundStartPopup.Init("Pop the letters that don't form the word", wordData._id, wordData._word);
         }
 
         private void EndRound(Result result)
@@ -108,6 +123,7 @@ namespace Balloons
         private void EndGame()
         {
             ResetScene();
+
             hudCanvas.gameObject.SetActive(false);
             roundResultCanvas.gameObject.SetActive(false);
             endGameCanvas.gameObject.SetActive(true);
@@ -150,6 +166,19 @@ namespace Balloons
 
         private void BeginGameplay()
         {
+            timer.DisplayTime();
+            CreateBalloons(currentRound);
+            runningAntura.SetActive(true);
+            timer.StartTimer();
+            AudioManager.I.PlayMusic(Music.MainTheme);
+
+            LoggerEA4S.Log("minigame", "Balloons", "start", timer.time.ToString());
+            LoggerEA4S.Save();
+        }
+
+        /*
+        private void BeginGameplay()
+        {
             StartCoroutine(BeginGameplay_Coroutine());
         }
 
@@ -166,14 +195,12 @@ namespace Balloons
             yield return new WaitForSeconds(1f);
             countdownAnimator.gameObject.SetActive(false);
 
-            SetNewWord();
             CreateBalloons(currentRound);
-
             runningAntura.SetActive(true);
-
             timer.StartTimer();
             AudioManager.I.PlayMusic(Music.MainTheme);
         }
+        */
 
         private void AnimateCountdown(string text)
         {
