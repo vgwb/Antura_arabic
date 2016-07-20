@@ -47,6 +47,16 @@ namespace EA4S {
 
         #region Tasks
 
+        #region properties
+        [Task]
+        public bool IsOut = false;
+
+        [Task]
+        public void SetIsOut(bool _isOut) {
+            IsOut = _isOut;
+        }
+        #endregion
+
         #region Animation
         /// <summary>
         /// Play anim with name as param.

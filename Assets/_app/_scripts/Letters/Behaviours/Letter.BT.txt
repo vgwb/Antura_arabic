@@ -14,7 +14,9 @@ tree("Root")
 // -------------------------
 tree("Idle")
 	while
-		not OnDrag
+		Sequence
+			not IsOut
+			not OnDrag
 		Sequence
 			SetAnimation("Idle")
 			SetNavigation("Stop")
@@ -23,7 +25,9 @@ tree("Idle")
 
 tree("Walk")
 	while
-		not OnDrag
+		Sequence
+			not IsOut
+			not OnDrag
 		Sequence
 			SetAnimation("Walk")
 			SetNavigation("Walk")
@@ -32,7 +36,9 @@ tree("Walk")
 
 tree("Run")
 	while
-		not OnDrag
+		Sequence
+			not IsOut
+			not OnDrag
 		Sequence
 			SetAnimation("Run")
 			SetNavigation("Run")
@@ -41,7 +47,9 @@ tree("Run")
 
 tree("Ninja")
 	while
-		not OnDrag
+		Sequence
+			not IsOut
+			not OnDrag
 		Sequence
 			SetAnimation("Ninja")
 			SetNavigation("Ninja")
@@ -56,7 +64,9 @@ tree("Ninja")
 tree("Hold")
 	Sequence
 		while 
-			OnDrag
+			Sequence
+				not IsOut
+				OnDrag
 			Parallel
 				SetAnimation("Hold")
 				SetNavigation("Hold")
@@ -95,11 +105,14 @@ tree("Release")
 
 tree("GoOut")
 	Sequence
-		Release
-//		SetAnimation("Run")
-//		SetNavigation("GoOut")
-//		HoldState("GoOut")
-		Succeed
+		IsMatching
+		Sequence
+			Release
+	//		SetAnimation("Run")
+			SetNavigation("GoOut")
+			SetIsOut(true)
+	//		HoldState("GoOut")
+			Succeed
 
 tree("TurnFrontOfCamera")
 	Sequence

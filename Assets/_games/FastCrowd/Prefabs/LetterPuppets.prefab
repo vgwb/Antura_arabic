@@ -1189,6 +1189,7 @@ MonoBehaviour:
     RunDuration: 2
     NinjaDuration: 2
   exclamationMark: {fileID: 491318}
+  IsOut: 0
   Target: {fileID: 0}
   LookForwardTransform: {fileID: 439724}
   WorldUpForTarget: {x: 0, y: 1, z: 0}
@@ -1208,6 +1209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WayPointPrefab: {fileID: 100402, guid: 47233fdcbec51bb4d9682ca9adafa6b6, type: 2}
+  HidePositionRight: {x: 25, y: 0, z: -20}
+  HidePositionLeft: {x: -25, y: 0, z: -20}
 --- !u!114 &11493902
 MonoBehaviour:
   m_ObjectHideFlags: 1
