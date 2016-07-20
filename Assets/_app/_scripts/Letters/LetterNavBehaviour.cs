@@ -22,7 +22,7 @@ namespace EA4S {
         }
 
         #region Tasks
-        [Task]
+        [Task] 
         public void SetNavigation(string _stateName) {
             switch (_stateName) {
                 case "Stop":
@@ -66,6 +66,11 @@ namespace EA4S {
                     break;
             }
             Task.current.Succeed();
+        }
+
+        [Task]
+        public bool IsAnturaMoment() {
+            return FastCrowd.FastCrowd.Instance.IsAnturaMoment;
         }
         #endregion
 

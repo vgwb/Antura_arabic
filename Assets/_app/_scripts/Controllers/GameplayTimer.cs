@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 using ModularFramework.Core;
 using TMPro;
 
@@ -8,13 +8,31 @@ namespace EA4S
 {
     public class GameplayTimer : Singleton<GameplayTimer>
     {
+        #region Settings
         [Range(10, 300)]
         public float time;
         private TextMeshProUGUI timerText;
+        #endregion
+
+        #region Runtime variables
+        /// <summary>
+        /// 
+        /// </summary>
+        protected int ActualTime {
+            get { return actualTime; }
+            set { if (actualTime != (int)timeRemaining)
+                    timeChanged((int)timeRemaining);
+                actualTime = (int)timeRemaining; }
+        }
+        private int actualTime;
+        
 
         private bool isRunning;
         private float timeRemaining;
+        protected List<CustomEventData> CustomEvents;
+        #endregion
 
+        #region timer update
         void Update() {
             if (!isRunning)
                 return;
@@ -28,16 +46,20 @@ namespace EA4S
             }
             DisplayTime();
         }
+        #endregion
 
+        #region Timer functionalities
         /// <summary>
         /// Start timer with time count by param.
         /// </summary>
         /// <param name="_time"></param>
-        public void StartTimer(float _time) {
+        public void StartTimer(float _time, List<CustomEventData> _customEvents = null) {
             if (OnStartTimer != null)
                 OnStartTimer(_time);
             ResetTimer(_time);
             StartTimer();
+            if (_customEvents != null)
+                CustomEvents = _customEvents;
         }
 
         /// <summary>
@@ -72,17 +94,44 @@ namespace EA4S
         public void DisplayTime() {
             if (!timerText)
                 timerText = GetComponent<TextMeshProUGUI>();
-            var text = Mathf.Floor(timeRemaining).ToString();
+            ActualTime = (int)timeRemaining;
+            var text = ActualTime.ToString(); //Mathf.Floor(timeRemaining).ToString();
             timerText.text = text;
         }
+        #endregion
 
         #region events
 
         public delegate void TimerEvent(float _time);
+        public delegate void CustomTimerEvent(CustomEventData _data);
 
         public static event TimerEvent OnStartTimer;
         public static event TimerEvent OnTimeOver;
+        public static event CustomTimerEvent OnCustomEvent;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_eventData"></param>
+        public void RegisterCustomEvent(CustomEventData _eventData) {
+            CustomEvents.Add(_eventData);
+        }
+
+        public struct CustomEventData {
+            public string Name;
+            public int Time;
+        }
+
+        /// <summary>
+        /// Called every value change of int value of timer.
+        /// </summary>
+        /// <param name="_time"></param>
+        void timeChanged(int _time) {
+            foreach (var ev in CustomEvents.FindAll(e => e.Time == _time)) {
+                if (OnCustomEvent != null)
+                    OnCustomEvent(ev);
+            }
+        }
         #endregion
     }
 }
