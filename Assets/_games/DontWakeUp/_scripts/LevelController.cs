@@ -22,6 +22,10 @@ namespace EA4S.DontWakeUp
             BroadcastMessage("AlarmOn", SendMessageOptions.DontRequireReceiver);
         }
 
+        public void DoAlarmOff() {
+            BroadcastMessage("AlarmOff", SendMessageOptions.DontRequireReceiver);
+        }
+
         public Transform GetStartPosition() {
             if (Marker1.GetComponent<Marker>().Type == MarkerType.Start) {
                 return Marker1.transform;

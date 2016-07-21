@@ -9,7 +9,7 @@ namespace EA4S
         public List<MinigameData> gameData = new List<MinigameData>();
 
         public Database() {
-            Debug.Log("Init Database()");
+            // Debug.Log("Init Database()");
             
             gameData.Add(new MinigameData("fastcrowd", "الحشد سريع", "Fast Crowd", "game_FastCrowd", true));
             gameData.Add(new MinigameData("dontwakeup", "لا يستيقظون", "Don't Wake Up", "game_DontWakeUp", true));

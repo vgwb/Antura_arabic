@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using TMPro;
 using ArabicSupport;
@@ -11,22 +12,26 @@ namespace EA4S
 
         public static PopupWindowController I;
 
-        public GameObject Manager;
-
         public GameObject TitleGO;
         public GameObject DrawingImageGO;
         public GameObject WordTextGO;
         public GameObject ButtonGO;
+
+        Action currentCallback;
 
         void Start() {
             I = this;
         }
 
         public void Init(string introText, string wordCode, string arabicWord) {
+            Init(null, introText, wordCode, arabicWord);
+        }
+
+        public void Init(Action callback, string introText, string wordCode, string arabicWord) {
+            currentCallback = callback;
             AudioManager.I.PlaySfx(Sfx.UIPopup);
             SetTitle(introText);
             SetWord(wordCode, arabicWord);
-            
         }
 
         public void SetTitle(string text) {
@@ -42,8 +47,8 @@ namespace EA4S
 
         public void OnPressButton() {
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-            Manager.SendMessage("PopupPressedContinue");
             gameObject.SetActive(false);
+            currentCallback();
         }
     }
 }
