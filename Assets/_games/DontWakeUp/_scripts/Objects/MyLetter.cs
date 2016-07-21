@@ -42,7 +42,7 @@ namespace EA4S.DontWakeUp
             trailReference.Clear();
         }
 
-        void CheckWin() {
+        void LetterDropped() {
             if (overDestinationMarker) {
                 GameDontWakeUp.Instance.RoundWon();
             } else {
@@ -52,7 +52,7 @@ namespace EA4S.DontWakeUp
 
 
         void OnTriggerEnter(Collider other) {
-            //Debug.Log("OnTriggerEnter " + other.gameObject.name);
+            Debug.Log("OnTriggerEnter " + other.gameObject.name);
             // GameDontWakeUp.Instance.dangering.InDanger(false);
             colliding = true;
             if (other.gameObject.tag == "Obstacle") {
@@ -62,27 +62,28 @@ namespace EA4S.DontWakeUp
         }
 
         void OnTriggerStay(Collider other) {
-            //Debug.Log("triggero " + other.gameObject.name);
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                Debug.Log("OnTriggerStay " + other.gameObject.name);
 //            if (other.gameObject.tag == "Obstacle") {
 //                GameDontWakeUp.Instance.dangering.InDanger(true);
 //            }
 
-            if (other.gameObject.tag == "Marker") {
-                if (other.gameObject.GetComponent<Marker>().Type == MarkerType.Goal) {
-                    overDestinationMarker = true;
+                if (other.gameObject.tag == "Marker") {
+                    if (other.gameObject.GetComponent<Marker>().Type == MarkerType.Goal) {
+                        overDestinationMarker = true;
+                    } else {
+                        overDestinationMarker = false;
+                    }
                 } else {
                     overDestinationMarker = false;
                 }
-            } else {
-                overDestinationMarker = false;
             }
         }
 
         void OnTriggerExit(Collider other) {
+            Debug.Log("OnTriggerExit " + other.gameObject.name);
             if (other.gameObject.tag == "Obstacle") {
                 GameDontWakeUp.Instance.InDanger(false);
-
-
             }
             if (other.gameObject.tag == "Marker") {
                 overDestinationMarker = false;
@@ -166,7 +167,7 @@ namespace EA4S.DontWakeUp
                 if (Input.GetMouseButtonUp(0)) {
                     dragging = false;
                     if (draggingStarted) {
-                        CheckWin();
+                        LetterDropped();
                     }
                 }
             }
