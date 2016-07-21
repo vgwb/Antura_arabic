@@ -50,7 +50,7 @@ namespace EA4S.DontWakeUp
         public WordFlexibleContainer LivesContainer;
         public GameObject NextButtonGO;
 
-        public wordsRow currentWord;
+        public WordData currentWord;
 
         int RoundsTotal;
 
@@ -116,18 +116,18 @@ namespace EA4S.DontWakeUp
             UpdateLivesContainer();
 
             currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
-            currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
+            currentWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
             // Debug.Log("word chosen: " + currentWord._id);
-            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord._word);
+            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
 
             currentLevelController.SetWord();
             myLetter.SetActive(true);
-            myLetter.GetComponent<MyLetter>().Init(currentWord._id);
+            myLetter.GetComponent<MyLetter>().Init(currentWord.Key);
             myLetter.transform.position = currentLevelController.GetStartPosition().position;
-            AudioManager.I.PlayWord(currentWord._id);
+            AudioManager.I.PlayWord(currentWord.Key);
 
             PopupWindow.SetActive(true);
-            PopupWindow.GetComponent<PopupWindowController>().Init(ClickedNext, "Carefully drag this word", currentWord._id, currentWord._word);
+            PopupWindow.GetComponent<PopupWindowController>().Init(ClickedNext, "Carefully drag this word", currentWord.Key, currentWord.Word);
             SubtitlesController.I.DisplaySentence("init round");
         }
 

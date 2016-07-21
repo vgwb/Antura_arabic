@@ -33,7 +33,7 @@ namespace EA4S.DontWakeUp
                 case MarkerType.Goal:
                     GetComponent<BoxCollider>().enabled = true;
                     TextGO.SetActive(true);
-                    TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(GameDontWakeUp.Instance.currentWord._word, false, false);
+                    TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(GameDontWakeUp.Instance.currentWord.Word, false, false);
                     DrawingGO.SetActive(false);
                     break;
             }

@@ -44,7 +44,7 @@ namespace Balloons
 
         public static BalloonsGameManager instance;
 
-        private Google2u.wordsRow wordData;
+        private WordData wordData;
         private string word;
         private List<LetterData> wordLetters;
         private int currentRound = 0;
@@ -106,17 +106,17 @@ namespace Balloons
             ResetScene();
             SetNewWord();
             roundStartCanvas.gameObject.SetActive(true);
-            roundStartPopup.Init("Pop the letters that don't form the word", wordData._id, wordData._word);
+            roundStartPopup.Init("Pop the letters that don't form the word", wordData.Key, wordData.Word);
         }
 
-        private void EndRound(Result result)
+        private void EndRound(Result result) 
         {
             AudioManager.I.PlayMusic(Music.Relax);
             DisableFloatingLetters();
             timer.StopTimer();
             ProcessRoundResult(result);
 
-            LoggerEA4S.Log("minigame", "Balloons", "wordFinished", wordData._id);
+            LoggerEA4S.Log("minigame", "Balloons", "wordFinished", wordData.Key);
             LoggerEA4S.Save();
         }
 
@@ -211,14 +211,14 @@ namespace Balloons
         private void SetNewWord()
         {
             //word = Google2u.words.Instance.Rows.GetRandomElement()._word;
-            wordData = AppManager.Instance.Teacher.GimmeAGoodWord();
-            word = wordData._word;
+            wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            word = wordData.Word;
             wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
             wordPrompt.DisplayWord(wordLetters);
 
-            AudioManager.I.PlayWord(wordData._id);
+            AudioManager.I.PlayWord(wordData.Key);
 
-            LoggerEA4S.Log("minigame", "Balloons", "newWord", wordData._id);
+            LoggerEA4S.Log("minigame", "Balloons", "newWord", wordData.Key);
             LoggerEA4S.Save();
             Debug.Log(word + " Length: " + word.Length);
         }
