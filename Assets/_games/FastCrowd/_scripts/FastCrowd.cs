@@ -43,8 +43,8 @@ namespace EA4S.FastCrowd {
         [Header("Gameplay")]
         public int MinLettersOnField = 10;
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
-        public wordsRow ActualWord;
-        public List<wordsRow> CompletedWords = new List<wordsRow>();
+        public WordData ActualWord;
+        public List<WordData> CompletedWords = new List<WordData>();
 
         [Header("Manager Settings")]
         public StarFlowers StarUI;
@@ -98,21 +98,18 @@ namespace EA4S.FastCrowd {
         /// </summary>
         void gameplayBlockSetup() {
             // Get letters and word
-            // Fix - https://trello.com/c/oDz6iosQ
-            do {
-                ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord();
-            } while (CompletedWords.Contains(ActualWord) && CompletedWords.Count < 12);
-            AudioManager.I.PlayWord(ActualWord._id);
-            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord._id);
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
-            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord._word, AppManager.Instance.Letters);
+            ActualWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            AudioManager.I.PlayWord(ActualWord.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord.Key);
+            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord.Word, AppManager.Instance.Letters);
 
             // popup info 
             string sepLetters = string.Empty;
             foreach (var item in gameLetters) {
                 sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
             }
-            PopupMission.Show(string.Format("{0} : {1}", ArabicAlphabetHelper.ParseWord(ActualWord._word, AppManager.Instance.Letters) , sepLetters)
+            PopupMission.Show(string.Format("{0} : {1}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters) , sepLetters)
                 , false);
 
             int count = 0;
@@ -200,11 +197,11 @@ namespace EA4S.FastCrowd {
         /// Called when objective block is completed (entire word).
         /// </summary>
         private void DropContainer_OnObjectiveBlockCompleted() {
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord.Key);
             LoggerEA4S.Save();
-            AudioManager.I.PlayWord(ActualWord._id);
+            AudioManager.I.PlayWord(ActualWord.Key);
             CompletedWords.Add(ActualWord);
-            PopupMission.Show(ActualWord._word, true, delegate() {
+            PopupMission.Show(ActualWord.Word, true, delegate() {
                 ActualWord = null;
                 // Recall gameplayBlockSetup
                 sceneClean();
