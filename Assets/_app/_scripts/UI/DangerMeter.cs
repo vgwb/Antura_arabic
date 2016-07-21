@@ -8,36 +8,15 @@ namespace EA4S.DontWakeUp
     {
 
         float intensity;
-        public float speed = 10f;
-        bool inDanger;
         public CanvasGroup dangerCanvas;
 
-        // Use this for initialization
         void Start() {
             intensity = 0f;
         }
-	
-        // Update is called once per frame
-        void Update() {
-            if (inDanger) {
-                intensity = intensity + speed * Time.deltaTime;
-                if (intensity > 1f) {
-                    intensity = 1f;
-                    GameDontWakeUp.Instance.LostAlarm();
-                }
-            
-            } else {
-                intensity = intensity - speed * Time.deltaTime;
-                if (intensity < 0)
-                    intensity = 0;
-            }
 
+        public void SetIntensity(float newIntensity) {
+            intensity = Mathf.Clamp(newIntensity, 0f, 1f);
             dangerCanvas.alpha = intensity;
-        }
-
-        public void InDanger(bool status) {
-            inDanger = status;
-
         }
 
     }

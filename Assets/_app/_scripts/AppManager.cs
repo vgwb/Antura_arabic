@@ -40,6 +40,8 @@ namespace EA4S
             AdditionalSetup();
 
             CachingLetterData();
+
+            GameSettings.HighQualityGfx = true;
         }
 
         void AdditionalSetup() {

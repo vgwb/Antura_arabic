@@ -35,7 +35,7 @@ namespace EA4S.DontWakeUp
         //        }
 
         public void Init(string wordCode) {
-            Debug.Log("MyLetter Init " + wordCode);
+            // Debug.Log("MyLetter Init " + wordCode);
             draggingStarted = false;
             overDestinationMarker = false;
             LetterDrawing.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
@@ -44,9 +44,9 @@ namespace EA4S.DontWakeUp
 
         void CheckWin() {
             if (overDestinationMarker) {
-                GameDontWakeUp.Instance.FinishedLevel(true);
+                GameDontWakeUp.Instance.RoundWon();
             } else {
-                GameDontWakeUp.Instance.FinishedLevel(false);
+                GameDontWakeUp.Instance.RoundLost(How2Die.Fall);
             }
         }
 
@@ -56,8 +56,7 @@ namespace EA4S.DontWakeUp
             // GameDontWakeUp.Instance.dangering.InDanger(false);
             colliding = true;
             if (other.gameObject.tag == "Obstacle") {
-                GameDontWakeUp.Instance.dangering.InDanger(true);
-                AudioManager.I.PlaySfx(Sfx.DangerClock);
+                GameDontWakeUp.Instance.InDanger(true);
             }
 
         }
@@ -81,8 +80,8 @@ namespace EA4S.DontWakeUp
 
         void OnTriggerExit(Collider other) {
             if (other.gameObject.tag == "Obstacle") {
-                GameDontWakeUp.Instance.dangering.InDanger(false);
-                AudioManager.I.StopSfx(Sfx.DangerClock);
+                GameDontWakeUp.Instance.InDanger(false);
+
 
             }
             if (other.gameObject.tag == "Marker") {
