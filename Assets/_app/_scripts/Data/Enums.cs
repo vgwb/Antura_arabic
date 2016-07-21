@@ -4,10 +4,14 @@ namespace EA4S
 {
     public enum MinigameState {
         Initializing,
-        Popup,
+        GameIntro,
+        RoundIntro,
         Playing,
         Paused,
-        Ended
+        RoundEnd,
+        GameEnd,
+        Result,
+        Award
     }
 
 }
