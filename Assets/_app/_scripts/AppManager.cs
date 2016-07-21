@@ -9,12 +9,14 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
+        #region Overrides
         new public AppSettings GameSettings = new AppSettings();
 
         new public static AppManager Instance
         {
             get { return GameManager.Instance as AppManager; }
         }
+        #endregion
 
         public List<LetterData> Letters = new List<LetterData>();
 
@@ -73,4 +75,5 @@ namespace EA4S
         public bool DoLogPlayerBehaviour;
         public bool HighQualityGfx;
     }
+
 }

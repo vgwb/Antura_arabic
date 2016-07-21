@@ -289,8 +289,6 @@ namespace EA4S.FastCrowd {
             Hangable.OnLetterHangOff += Hangable_OnLetterHangOff;
         }
 
-
-
         void OnDisable() {
             DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
