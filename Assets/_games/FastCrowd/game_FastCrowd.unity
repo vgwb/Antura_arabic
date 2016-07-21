@@ -3026,12 +3026,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 1
-  IsAnturaMoment: 0
   ThresholdStar1: 1
   ThresholdStar2: 3
   ThresholdStar3: 6
   GameplayInfo:
-    GameId: 343636313733373434333732366637373634
+    GameId: fastcrowd
     PlayTime: 90
     MaxNumbOfWrongLettersNoise: 3
     BehaviourSettings:
@@ -3064,6 +3063,7 @@ MonoBehaviour:
   StarUI: {fileID: 1582961424}
   ActionFeedback: {fileID: 352729440}
   PopupMission: {fileID: 1980208699}
+  IsAnturaMoment: 0
 --- !u!4 &577714064
 Transform:
   m_ObjectHideFlags: 0
