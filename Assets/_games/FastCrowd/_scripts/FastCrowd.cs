@@ -54,6 +54,7 @@ namespace EA4S.FastCrowd {
         #endregion
 
         #region Runtime Variables
+        public TMPro.TextMeshProUGUI RightWordsCounter;
         public bool IsAnturaMoment = false;
         #endregion
 
@@ -201,6 +202,8 @@ namespace EA4S.FastCrowd {
             LoggerEA4S.Save();
             AudioManager.I.PlayWord(ActualWord.Key);
             CompletedWords.Add(ActualWord);
+            if (RightWordsCounter)
+                RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
             PopupMission.Show(ActualWord.Word, true, delegate() {
                 ActualWord = null;
                 // Recall gameplayBlockSetup
