@@ -13,8 +13,6 @@ namespace EA4S.FastCrowd {
 
     public class FastCrowd : MiniGameBase {
 
-        public bool IsAnturaMoment = false;
-
         #region GameSettings
 
         [Header("Star Rewards")]
@@ -54,6 +52,12 @@ namespace EA4S.FastCrowd {
         public PopupMissionComponent PopupMission;
 
         #endregion
+
+        #region Runtime Variables
+        public bool IsAnturaMoment = false;
+        #endregion
+
+        #region Setup and initialization
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
@@ -164,6 +168,8 @@ namespace EA4S.FastCrowd {
             
         }
 
+        #endregion
+
         #region event subscription delegates
 
         /// <summary>
@@ -219,8 +225,6 @@ namespace EA4S.FastCrowd {
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
-            // respawn letter on fixed spawn point.
-            //_letterView.transform.position = new Vector3(0, 0, 26.7f);
             LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(true);
             AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
@@ -300,7 +304,18 @@ namespace EA4S.FastCrowd {
         }
 
         #endregion
+
+        #region events
+        public delegate void ObjectiveSetup(WordData _wordData);
+
+        /// <summary>
+        /// Called every time a new word objective is created.
+        /// </summary>
+        public static event ObjectiveSetup OnNewWordObjective;
+        #endregion
     }
+
+    #region AnturaGameplayInfo
 
     /// <summary>
     /// Gameplay info class data structure.
@@ -318,4 +333,6 @@ namespace EA4S.FastCrowd {
         public LetterBehaviour.BehaviourSettings BehaviourSettings = new LetterBehaviour.BehaviourSettings();
 
     }
+
+    #endregion
 }
