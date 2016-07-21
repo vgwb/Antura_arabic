@@ -18,8 +18,19 @@ namespace EA4S
         }
         #endregion
 
-        public List<LetterData> Letters = new List<LetterData>();
+        #region TMP
 
+        /// <summary>
+        /// Tmp var to store actual gameplay word already used.
+        /// </summary>
+        public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
+
+        public string ActualGame = string.Empty;
+
+        #endregion
+
+        public List<LetterData> Letters = new List<LetterData>();
+        
         public TeacherAI Teacher;
         public Database DB;
 
@@ -64,6 +75,11 @@ namespace EA4S
         public void ToggleQualitygfx() {
             GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
             CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
+        }
+
+        public void OnMinigameStart() {
+            // reset for already used word.
+            ActualGameplayWordAlreadyUsed = new List<WordData>();
         }
 
     }
