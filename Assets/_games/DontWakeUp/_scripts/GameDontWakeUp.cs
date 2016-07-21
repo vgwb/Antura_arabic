@@ -48,6 +48,7 @@ namespace EA4S.DontWakeUp
         public GameObject Subtitles;
         public GameObject PopupWindow;
         public WordFlexibleContainer LivesContainer;
+        public GameObject NextButtonGO;
 
         public wordsRow currentWord;
 
@@ -58,67 +59,103 @@ namespace EA4S.DontWakeUp
             RoundsTotal = Levels.Length;
             currentRound = 1;
             LivesLeft = 3;
-            UpdateLivesContainer();
-
             AppManager.Instance.InitDataAI();
 
             LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             LoggerEA4S.Save();
 
-            SetupLevel();
             AudioManager.I.PlayMusic(Music.Relax);
+            AudioManager.I.PlaySound("Dog/Snoring");
+
+            GameIntro();
         }
 
-        public void SetupLevel() {
+        public void CloseScene() {
+            StopSceneSounds();
+        }
+
+        void StopSceneSounds() {
+            AudioManager.I.StopSfx(Sfx.DangerClock);
+            AudioManager.I.StopSound("Dog/Snoring");
+        }
+
+        void GameIntro() {
+            currentState = MinigameState.GameIntro;
+            SubtitlesController.I.DisplaySentence("game_dontwake_intro1");
+            NextButtonGO.SetActive(true);
+        }
+
+        public void GameIntroFinished() {
+            SubtitlesController.I.DisplaySentence("");
+            InitRound();
+        }
+
+        public void ClickedNext() {
+            Debug.Log("ClickedNext()");
+            switch (currentState) {
+                case MinigameState.RoundIntro:
+                    SubtitlesController.I.DisplaySentence("");
+                    NextButtonGO.SetActive(false);
+                    currentState = MinigameState.Playing;
+                    break;
+                case MinigameState.GameIntro:
+                    GameIntroFinished();
+                    break;
+                case MinigameState.RoundEnd:
+                    currentLevelController.DoAlarmOff();
+                    SubtitlesController.I.DisplaySentence("");
+                    NextButtonGO.SetActive(false);
+                    InitRound();
+                    break;
+            }
+        }
+
+        public void InitRound() {
             currentState = MinigameState.RoundIntro;
 
-            SubtitlesController.I.DisplayText("init round");
+            UpdateLivesContainer();
 
             currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
- 
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWord();
-            Debug.Log("word chosen: " + currentWord._id);
+            // Debug.Log("word chosen: " + currentWord._id);
             LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord._word);
 
             currentLevelController.SetWord();
             myLetter.SetActive(true);
             myLetter.GetComponent<MyLetter>().Init(currentWord._id);
             myLetter.transform.position = currentLevelController.GetStartPosition().position;
-
             AudioManager.I.PlayWord(currentWord._id);
-            AudioManager.I.PlaySound("Dog/Snoring");
 
             PopupWindow.SetActive(true);
-            PopupWindow.GetComponent<PopupWindowController>().Init("Carefully drag this word", currentWord._id, currentWord._word);
-        }
-
-        public void PopupPressedContinue() {
-            currentState = MinigameState.Playing;
+            PopupWindow.GetComponent<PopupWindowController>().Init(ClickedNext, "Carefully drag this word", currentWord._id, currentWord._word);
+            SubtitlesController.I.DisplaySentence("init round");
         }
 
         public void RoundLost(How2Die how) {
             if (currentState != MinigameState.RoundEnd) {
                 currentState = MinigameState.RoundEnd;
-
-                AudioManager.I.PlaySfx(Sfx.Lose);
+                resetDanger();
+                myLetter.SetActive(false);
 
                 switch (how) {
                     case How2Die.TouchedAlarm:
-                        myLetter.SetActive(false);
                         currentLevelController.DoAlarmEverything();
-                        AudioManager.I.StopSound("Dog/Snoring");
-                        Invoke("RoundLostEnded", 2);
-                        break;
-                    default:
-                        RoundLostEnded();
                         break;
                 }
+
+                RoundLostEnded();
             }
         }
 
         void RoundLostEnded() {
-            if (LivesLeft > 0) {
-                SetupLevel();
+            AudioManager.I.StopSfx(Sfx.DangerClock);
+            AudioManager.I.PlaySfx(Sfx.Lose);
+
+            if (LivesLeft > 1) {
+                LivesLeft = LivesLeft - 1;
+
+                SubtitlesController.I.DisplaySentence("game_result_retry");
+                NextButtonGO.SetActive(true);
             } else {
                 GameLost();
             }
@@ -135,10 +172,9 @@ namespace EA4S.DontWakeUp
         }
 
         public void GameWon() {
-            AudioManager.I.StopSfx(Sfx.DangerClock); // to-do: temporary fix?
-
             currentState = MinigameState.GameEnd;
-            AudioManager.I.StopSound("Dog/Snoring");
+            StopSceneSounds();
+
             AudioManager.I.PlaySfx(Sfx.Win);
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(3);
@@ -147,10 +183,8 @@ namespace EA4S.DontWakeUp
         }
 
         public void GameLost() {
-            AudioManager.I.StopSfx(Sfx.DangerClock); // to-do: temporary fix?
-
             currentState = MinigameState.GameEnd;
-            AudioManager.I.StopSound("Dog/Snoring");
+            StopSceneSounds();
 
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(0);
@@ -169,7 +203,7 @@ namespace EA4S.DontWakeUp
             
         // called by callback in camera
         public void CameraReady() {
-            SetupLevel();
+            InitRound();
         }
 
         public void ChangeCamera() {
@@ -185,19 +219,24 @@ namespace EA4S.DontWakeUp
 
 
         void Update() {
-            if (inDanger) {
-                dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
-                if (dangerIntensity > 1f) {
-                    dangerIntensity = 1f;
-                    RoundLost(How2Die.TouchedAlarm);
+//            if (Input.GetMouseButtonDown(0)) {
+//                ClickedAnything();
+//            }
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                if (inDanger) {
+                    dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
+                    if (dangerIntensity > 1f) {
+                        dangerIntensity = 1f;
+                        RoundLost(How2Die.TouchedAlarm);
+                    }
+                } else {
+                    dangerIntensity = dangerIntensity - dangeringSpeed * Time.deltaTime;
+                    if (dangerIntensity < 0)
+                        dangerIntensity = 0;
                 }
-            } else {
-                dangerIntensity = dangerIntensity - dangeringSpeed * Time.deltaTime;
-                if (dangerIntensity < 0)
-                    dangerIntensity = 0;
-            }
 
-            dangering.SetIntensity(dangerIntensity);
+                dangering.SetIntensity(dangerIntensity);
+            }
         }
 
         public void InDanger(bool status) {
@@ -207,6 +246,11 @@ namespace EA4S.DontWakeUp
             } else {
                 AudioManager.I.StopSfx(Sfx.DangerClock);
             }
+        }
+
+        void resetDanger() {
+            InDanger(false);
+            dangerIntensity = 0;
         }
 
     }
