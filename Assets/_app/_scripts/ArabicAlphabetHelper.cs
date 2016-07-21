@@ -5,8 +5,6 @@ using System;
 namespace EA4S {
     public static class ArabicAlphabetHelper {
 
-
-
         /// <summary>
         /// Return single letter string start from unicode hexa code.
         /// </summary>
