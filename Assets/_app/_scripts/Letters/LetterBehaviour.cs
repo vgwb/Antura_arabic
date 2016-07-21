@@ -54,6 +54,7 @@ namespace EA4S {
         [Task]
         public void SetIsOut(bool _isOut) {
             IsOut = _isOut;
+            Task.current.Succeed();
         }
         #endregion
 
@@ -248,6 +249,8 @@ namespace EA4S {
 
         #endregion
 
+        #region BehaviourSettings
+
         /// <summary>
         /// Define variables for behaviours variations.
         /// </summary>
@@ -274,6 +277,6 @@ namespace EA4S {
             public float NinjaDuration = 2;
         }
 
-
+        #endregion
     }
 }

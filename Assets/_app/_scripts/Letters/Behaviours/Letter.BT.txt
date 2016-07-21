@@ -84,6 +84,8 @@ tree("Hold")
 
 tree("AnturaTime")
 	Sequence
+		not IsOut
+		not OnDrag
 		IsAnturaMoment
 		SetAnimation("Terrified")
 		SetNavigation("Run")
@@ -105,14 +107,16 @@ tree("Release")
 
 tree("GoOut")
 	Sequence
-		IsMatching
 		Sequence
-			Release
-	//		SetAnimation("Run")
-			SetNavigation("GoOut")
-			SetIsOut(true)
-	//		HoldState("GoOut")
-			Succeed
+			ToBeRelease
+			IsMatching
+			Sequence
+				Release
+		//		SetAnimation("Run")
+				SetNavigation("GoOut")
+				SetIsOut(true)
+		//		HoldState("GoOut")
+				Succeed
 
 tree("TurnFrontOfCamera")
 	Sequence
