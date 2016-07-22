@@ -12,6 +12,7 @@ namespace Balloons
 {
     public class BalloonsGameManager: MonoBehaviour
     {
+        [Header("References")]
         public WordPromptController wordPrompt;
         public GameObject floatingLetterPrefab;
         public Transform[] floatingLetterLocations;
@@ -29,6 +30,11 @@ namespace Balloons
         public Image roundLoseImage;
         public StarFlowers starFlowers;
 
+        [Header("Stage")]
+        public float minX;
+        public float maxX;
+        public float minY;
+        public float maxY;
 
         [Header("Game Parameters")] [Tooltip("e.g.: 6")]
         public int numberOfRounds;
@@ -227,7 +233,6 @@ namespace Balloons
         {
             var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
 
-
             // Create Floating Letters
             for (int i = 0; i < numberOfLetters; i++)
             {
@@ -239,8 +244,8 @@ namespace Balloons
 
                 floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
 
-                var balloons = floatingLetter.ActiveVariation.balloons;
-                var letter = floatingLetter.letter;
+                var balloons = floatingLetter.Balloons;
+                var letter = floatingLetter.Letter;
 
                 // Set random balloon colors
                 for (int j = 0; j < balloons.Length; j++)
@@ -268,7 +273,7 @@ namespace Balloons
                 if (!requiredLetterIndices.Contains(index))
                 {
                     requiredLetterIndices.Add(index);
-                    var letter = floatingLetters[index].GetComponent<FloatingLetterController>().letter;
+                    var letter = floatingLetters[index].GetComponent<FloatingLetterController>().Letter;
                     letter.associatedPromptIndex = i;
                     letter.Init(wordLetters[i]);
                     letter.isRequired = true;
@@ -280,8 +285,22 @@ namespace Balloons
             }
         }
 
-        public void OnDropped(bool isRequired = false, int promptIndex = -1, string letterKey = "")
+        public void OnDropped(LetterController letter = null)
         {
+            bool isRequired = false;
+            int promptIndex = -1;
+            string letterKey = "";
+
+            if (letter != null)
+            {
+                isRequired = letter.isRequired;
+                promptIndex = letter.associatedPromptIndex;
+                if (letter.LetterModel != null && letter.LetterModel.Data != null && !string.IsNullOrEmpty(letter.LetterModel.Data.Key))
+                {
+                    letterKey = letter.LetterModel.Data.Key;
+                }
+            }
+
             if (isRequired)
             {
                 LoggerEA4S.Log("minigame", "Balloons", "goodLetterExplode", letterKey);
@@ -310,8 +329,8 @@ namespace Balloons
         private void CheckRemainingBalloons()
         {
             int idlePromptsCount = wordPrompt.IdleLetterPrompts.Count;
-            bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.letter.isRequired == false);
-            bool requiredBalloonsExist = floatingLetters.Exists(balloon => balloon.letter.isRequired == true);
+            bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.Letter.isRequired == false);
+            bool requiredBalloonsExist = floatingLetters.Exists(balloon => balloon.Letter.isRequired == true);
 
             if (!requiredBalloonsExist)
             {
@@ -357,7 +376,7 @@ namespace Balloons
         {
             for (int i = 0; i < floatingLetters.Count; i++)
             {
-                if (!floatingLetters[i].letter.isRequired)
+                if (!floatingLetters[i].Letter.isRequired)
                 {
                     Destroy(floatingLetters[i]);
                 }
@@ -366,7 +385,7 @@ namespace Balloons
 
         public void OnTimeUp()
         {
-            bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.letter.isRequired == false);
+            bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.Letter.isRequired == false);
 
             if (randomBalloonsExist)
             {

@@ -11,6 +11,7 @@ namespace Balloons
         public FloatingLetterController parentFloatingLetter;
         public Animator animator;
         public Collider letterCollider;
+        public Rigidbody body;
         public LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
@@ -45,10 +46,11 @@ namespace Balloons
         {
             Spin();
 
-            if (drop)
-            {
-                transform.Translate(Vector3.down * Time.deltaTime * 50f);
-            }
+//            if (drop)
+//            {
+//                // Drop using Transform
+//                transform.Translate(Vector3.down * Time.deltaTime * 50f);
+//            }
 
             if (transform.position.y < -10)
             {
@@ -65,6 +67,11 @@ namespace Balloons
         void OnMouseDown()
         {
             SpeakLetter();
+
+            mousePosition = Input.mousePosition;
+            mousePosition.z = cameraDistance;
+
+            parentFloatingLetter.MouseOffset = parentFloatingLetter.transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
         }
 
         void OnMouseDrag()
@@ -72,7 +79,7 @@ namespace Balloons
             mousePosition = Input.mousePosition;
             mousePosition.z = cameraDistance;
 
-            parentFloatingLetter.MoveHorizontally(Camera.main.ScreenToWorldPoint(mousePosition).x);
+            parentFloatingLetter.Drag(Camera.main.ScreenToWorldPoint(mousePosition));
         }
 
         private void RandomizeSpin()
@@ -91,12 +98,15 @@ namespace Balloons
 
         private void SpeakLetter()
         {
-            
-            AudioManager.I.PlayLetter(LetterModel.Data.Key);
+            if (LetterModel != null && LetterModel.Data != null && LetterModel.Data.Key != null)
+            {
+                AudioManager.I.PlayLetter(LetterModel.Data.Key);
+            }
         }
 
         private void Spin()
         {
+            // Spin using Transform Rotation
             transform.rotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
         }
 
@@ -109,7 +119,9 @@ namespace Balloons
         {
             yield return new WaitForSeconds(delay);
             AudioManager.I.PlaySfx(Sfx.LetterAngry);
-            drop = true;
+            //drop = true;
+            var dropSpeed = 2500f;
+            body.AddForce(Vector3.down * dropSpeed);
         }
 
         public void DisableCollider()
