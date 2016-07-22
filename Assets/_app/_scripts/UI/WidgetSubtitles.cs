@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using ArabicSupport;
 
 namespace EA4S
 {

@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using TMPro;
 
-namespace EA4S { 
+namespace EA4S
+{
 
-    public class WordComposer : MonoBehaviour {
+    public class WordComposer : MonoBehaviour
+    {
 
-        TextMeshProUGUI WordLable;
+        WordFlexibleContainer WordLabel;
         List<LetterData> CompletedLetters = new List<LetterData>();
 
-	    // Use this for initialization
-	    void Start () {
-            WordLable = GetComponent<WordFlexibleContainer>().Label;
+        void Start() {
+            WordLabel = GetComponent<WordFlexibleContainer>();
             UpdateWord();
         }
-	
+
         #region API
+
         /// <summary>
         /// 
         /// </summary>
@@ -24,8 +25,8 @@ namespace EA4S {
             foreach (LetterData letter in CompletedLetters) {
                 word += letter.Isolated;
             }
-            word = ArabicAlphabetHelper.ParseWord(word,AppManager.Instance.Letters);
-            WordLable.text = word;
+            word = ArabicAlphabetHelper.ParseWord(word, AppManager.Instance.Letters);
+            WordLabel.SetText(word, false);
         }
 
         #endregion
@@ -50,7 +51,7 @@ namespace EA4S {
             DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
             Droppable.OnRightMatch += Droppable_OnRightMatch;
         }
-        
+
         void OnDisable() {
             DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
             Droppable.OnRightMatch -= Droppable_OnRightMatch;

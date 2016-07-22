@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TMPro;
+using ArabicSupport;
 
 public class WordFlexibleContainer : MonoBehaviour
 {
@@ -11,8 +12,12 @@ public class WordFlexibleContainer : MonoBehaviour
 	
     }
 
-    public void SetText(string label) {
-        Label.text = label;
+    public void SetText(string text, bool useArabicFixer) {
+        if (useArabicFixer) {
+            Label.text = ArabicFixer.Fix(text, false, false);
+        } else {
+            Label.text = text;
+        }
     }
 
 }

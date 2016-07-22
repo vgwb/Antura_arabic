@@ -217,7 +217,7 @@ namespace EA4S.DontWakeUp
 
 
         void UpdateLivesContainer() {
-            LivesContainer.SetText(LivesLeft.ToString());
+            LivesContainer.SetText(LivesLeft.ToString(), false);
         }
 
 
