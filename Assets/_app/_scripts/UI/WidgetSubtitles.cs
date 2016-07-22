@@ -24,6 +24,7 @@ namespace EA4S
 
         void Start() {
             TextUI = TextGO.GetComponent<TextMeshProUGUI>();
+            DisplayText("");
         }
 
         void OnEnable() {

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using EA4S;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
-using Google2u;
 using System;
 using ModularFramework.Modules;
 using ArabicSupport;
 using UniRx;
+using EA4S;
 
 namespace EA4S.FastCrowd
 {
@@ -79,13 +79,12 @@ namespace EA4S.FastCrowd
             gameplayBlockSetup();
 
             //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+            var AnturaTimea = UnityEngine.Random.Range(30, 50);
             GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
                 new List<GameplayTimer.CustomEventData>()
                 {
-                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = 80 },
-                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = 68 },
-                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = 35 },
-                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = 22 },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea + 10 }
                 }
             );
 
