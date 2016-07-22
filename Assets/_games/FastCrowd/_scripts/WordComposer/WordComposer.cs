@@ -6,19 +6,15 @@ namespace EA4S {
 
     public class WordComposer : MonoBehaviour {
 
-        public TextMeshProUGUI WordLable;
+        TextMeshProUGUI WordLable;
         List<LetterData> CompletedLetters = new List<LetterData>();
 
 	    // Use this for initialization
 	    void Start () {
+            WordLable = GetComponent<WordFlexibleContainer>().Label;
             UpdateWord();
         }
 	
-	    // Update is called once per frame
-	    void Update () {
-	
-	    }
-
         #region API
         /// <summary>
         /// 
