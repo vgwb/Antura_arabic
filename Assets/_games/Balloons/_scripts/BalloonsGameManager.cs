@@ -24,7 +24,7 @@ namespace Balloons
         public TextMeshProUGUI roundNumberText;
         public TimerManager timer;
         public Animator countdownAnimator;
-        public PopupWindowController roundStartPopup;
+        public WidgetPopupWindow roundStartPopup;
         public Image roundWinImage;
         public Image roundLoseImage;
         public StarFlowers starFlowers;
@@ -51,8 +51,7 @@ namespace Balloons
         private int remainingLives;
         private int correctWords = 0;
 
-        private enum Result
-        {
+        private enum Result {
             PERFECT,
             GOOD,
             CLEAR,
@@ -60,13 +59,11 @@ namespace Balloons
         }
 
 
-        void Awake()
-        {
+        void Awake() {
             instance = this;
         }
 
-        void Start()
-        {
+        void Start() {
             Random.seed = System.DateTime.Now.GetHashCode();
             remainingLives = lives;
             letterDropDelay = balloonPopAnimation.length;
@@ -75,42 +72,34 @@ namespace Balloons
             Play();
         }
 
-        public void OnRoundStartPressed()
-        {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+        public void OnRoundStartPressed() {
+            // AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             roundStartCanvas.gameObject.SetActive(false);
             BeginGameplay();
         }
 
-        public void OnRoundResultPressed()
-        {
+        public void OnRoundResultPressed() {
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             Play();
         }
 
-        public void Play()
-        {
+        public void Play() {
             currentRound++;
-            if (currentRound <= numberOfRounds)
-            {
+            if (currentRound <= numberOfRounds) {
                 StartNewRound();
-            }
-            else
-            {
+            } else {
                 EndGame();
             }
         }
 
-        public void StartNewRound()
-        {
+        public void StartNewRound() {
             ResetScene();
             SetNewWord();
             roundStartCanvas.gameObject.SetActive(true);
-            roundStartPopup.Init("Pop the letters that don't form the word", wordData.Key, wordData.Word);
+            roundStartPopup.Init(OnRoundStartPressed, "Pop the letters that don't form the word", wordData.Key, wordData.Word);
         }
 
-        private void EndRound(Result result) 
-        {
+        private void EndRound(Result result) {
             AudioManager.I.PlayMusic(Music.Relax);
             DisableFloatingLetters();
             timer.StopTimer();
@@ -120,8 +109,7 @@ namespace Balloons
             LoggerEA4S.Save();
         }
 
-        private void EndGame()
-        {
+        private void EndGame() {
             ResetScene();
 
             hudCanvas.gameObject.SetActive(false);
@@ -130,20 +118,13 @@ namespace Balloons
 
             int numberOfStars = 0;
 
-            if (correctWords <= 0)
-            {
+            if (correctWords <= 0) {
                 numberOfStars = 0;
-            }
-            else if ((float)correctWords / numberOfRounds < 0.5f)
-            {
+            } else if ((float)correctWords / numberOfRounds < 0.5f) {
                 numberOfStars = 1;
-            }
-            else if (correctWords < numberOfRounds)
-            {
+            } else if (correctWords < numberOfRounds) {
                 numberOfStars = 2;
-            }
-            else
-            {
+            } else {
                 numberOfStars = 3;
             }
                 
@@ -154,8 +135,7 @@ namespace Balloons
             starFlowers.Show(numberOfStars);
         }
 
-        private void ResetScene()
-        {
+        private void ResetScene() {
             timer.StopTimer();
             timer.ResetTimer();
             wordPrompt.Reset();
@@ -164,8 +144,7 @@ namespace Balloons
             DestroyAllBalloons();
         }
 
-        private void BeginGameplay()
-        {
+        private void BeginGameplay() {
             timer.DisplayTime();
             CreateBalloons(currentRound);
             runningAntura.SetActive(true);
@@ -202,14 +181,12 @@ namespace Balloons
         }
         */
 
-        private void AnimateCountdown(string text)
-        {
+        private void AnimateCountdown(string text) {
             countdownAnimator.gameObject.GetComponent<TextMeshProUGUI>().text = text;
             countdownAnimator.SetTrigger("Count");
         }
 
-        private void SetNewWord()
-        {
+        private void SetNewWord() {
             //word = Google2u.words.Instance.Rows.GetRandomElement()._word;
             wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
             word = wordData.Word;
@@ -223,14 +200,12 @@ namespace Balloons
             Debug.Log(word + " Length: " + word.Length);
         }
 
-        private void CreateBalloons(int numberOfExtraLetters)
-        {
+        private void CreateBalloons(int numberOfExtraLetters) {
             var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
 
 
             // Create Floating Letters
-            for (int i = 0; i < numberOfLetters; i++)
-            {
+            for (int i = 0; i < numberOfLetters; i++) {
                 var instance = Instantiate(floatingLetterPrefab);
                 instance.transform.SetParent(floatingLetterLocations[i]);
                 instance.transform.localPosition = Vector3.zero;
@@ -243,15 +218,13 @@ namespace Balloons
                 var letter = floatingLetter.letter;
 
                 // Set random balloon colors
-                for (int j = 0; j < balloons.Length; j++)
-                {
+                for (int j = 0; j < balloons.Length; j++) {
                     balloons[j].SetColor(balloonColors[Random.Range(0, balloonColors.Length)]);
                 }
 
                 // Get a random letter that is not a required letter
                 LetterData randomLetter;
-                do
-                {
+                do {
                     randomLetter = AppManager.Instance.Letters.GetRandomElement();
                 } while (wordLetters.Contains(randomLetter));
                 letter.Init(randomLetter);
@@ -261,129 +234,97 @@ namespace Balloons
 
             // Assign required letters
             List<int> requiredLetterIndices = new List<int>();
-            for (int i = 0; i < wordLetters.Count; i++)
-            {
+            for (int i = 0; i < wordLetters.Count; i++) {
                 var index = Random.Range(0, floatingLetters.Count);
 
-                if (!requiredLetterIndices.Contains(index))
-                {
+                if (!requiredLetterIndices.Contains(index)) {
                     requiredLetterIndices.Add(index);
                     var letter = floatingLetters[index].GetComponent<FloatingLetterController>().letter;
                     letter.associatedPromptIndex = i;
                     letter.Init(wordLetters[i]);
                     letter.isRequired = true;
-                }
-                else
-                {
+                } else {
                     i--;
                 }
             }
         }
 
-        public void OnDropped(bool isRequired = false, int promptIndex = -1, string letterKey = "")
-        {
-            if (isRequired)
-            {
+        public void OnDropped(bool isRequired = false, int promptIndex = -1, string letterKey = "") {
+            if (isRequired) {
                 LoggerEA4S.Log("minigame", "Balloons", "goodLetterExplode", letterKey);
                 OnDroppedRequired(promptIndex);
-            }
-            else
-            {
+            } else {
                 LoggerEA4S.Log("minigame", "Balloons", "badLetterExplode", letterKey);
             }
 
             CheckRemainingBalloons();
         }
 
-        public void OnDroppedRequired(int promptIndex)
-        {
+        public void OnDroppedRequired(int promptIndex) {
             remainingLives--;
             wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
             AudioManager.I.PlaySfx(Sfx.LetterSad);
 
-            if (remainingLives <= 0)
-            {
+            if (remainingLives <= 0) {
                 EndRound(Result.FAIL);
             }
         }
 
-        private void CheckRemainingBalloons()
-        {
+        private void CheckRemainingBalloons() {
             int idlePromptsCount = wordPrompt.IdleLetterPrompts.Count;
             bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.letter.isRequired == false);
             bool requiredBalloonsExist = floatingLetters.Exists(balloon => balloon.letter.isRequired == true);
 
-            if (!requiredBalloonsExist)
-            {
+            if (!requiredBalloonsExist) {
                 EndRound(Result.FAIL);
-            }
-            else if (!randomBalloonsExist)
-            {
+            } else if (!randomBalloonsExist) {
                 Result result;
-                if (idlePromptsCount == wordLetters.Count)
-                {
+                if (idlePromptsCount == wordLetters.Count) {
                     result = Result.PERFECT;
-                }
-                else if (idlePromptsCount >= 2)
-                {
+                } else if (idlePromptsCount >= 2) {
                     result = Result.GOOD;
-                }
-                else
-                {
+                } else {
                     result = Result.CLEAR;
                 }
                 EndRound(result);
             }
         }
 
-        private void DisableFloatingLetters()
-        {
-            for (int i = 0; i < floatingLetters.Count; i++)
-            {
+        private void DisableFloatingLetters() {
+            for (int i = 0; i < floatingLetters.Count; i++) {
                 floatingLetters[i].Disable();
             }
         }
 
-        private void DestroyAllBalloons()
-        {
-            for (int i = 0; i < floatingLetters.Count; i++)
-            {
+        private void DestroyAllBalloons() {
+            for (int i = 0; i < floatingLetters.Count; i++) {
                 Destroy(floatingLetters[i].gameObject);
             }
             floatingLetters.Clear();
         }
 
-        private void DestroyUnrequiredBalloons()
-        {
-            for (int i = 0; i < floatingLetters.Count; i++)
-            {
-                if (!floatingLetters[i].letter.isRequired)
-                {
+        private void DestroyUnrequiredBalloons() {
+            for (int i = 0; i < floatingLetters.Count; i++) {
+                if (!floatingLetters[i].letter.isRequired) {
                     Destroy(floatingLetters[i]);
                 }
             }
         }
 
-        public void OnTimeUp()
-        {
+        public void OnTimeUp() {
             bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.letter.isRequired == false);
 
-            if (randomBalloonsExist)
-            {
+            if (randomBalloonsExist) {
                 EndRound(Result.FAIL);
-            }
-            else
-            {
+            } else {
                 OnDropped();
             }
         }
 
-        private void ProcessRoundResult(Result result)
-        {
+        private void ProcessRoundResult(Result result) {
             bool win = false;
 
-            switch (result)
-            {
+            switch (result) {
                 case Result.PERFECT:
                     correctWords++;
                     win = true;
@@ -410,8 +351,7 @@ namespace Balloons
             DisplayRoundResult(win);
         }
 
-        private void DisplayRoundResult(bool win)
-        {
+        private void DisplayRoundResult(bool win) {
             roundResultCanvas.gameObject.SetActive(true);
             roundWinImage.gameObject.SetActive(win);
             roundLoseImage.gameObject.SetActive(!win);

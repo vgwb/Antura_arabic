@@ -25,7 +25,12 @@ namespace EA4S
             gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
         }
 
-        public void GoToPosition(Vector3 newPosition, Quaternion newRotation) {
+        public void SetToPosition(Vector3 newPosition, Quaternion newRotation) {
+            transform.position = newPosition;
+            transform.rotation = newRotation;
+        }
+
+        public void MoveToPosition(Vector3 newPosition, Quaternion newRotation) {
             AudioManager.I.PlaySfx(Sfx.CameraMovement);
 
             DOTween.Sequence()

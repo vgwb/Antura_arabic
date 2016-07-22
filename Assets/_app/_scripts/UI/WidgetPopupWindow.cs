@@ -7,11 +7,12 @@ using ArabicSupport;
 
 namespace EA4S
 {
-    public class PopupWindowController : MonoBehaviour
+    public class WidgetPopupWindow : MonoBehaviour
     {
 
-        public static PopupWindowController I;
+        public static WidgetPopupWindow I;
 
+        public GameObject Window;
         public GameObject TitleGO;
         public GameObject DrawingImageGO;
         public GameObject WordTextGO;
@@ -19,7 +20,7 @@ namespace EA4S
 
         Action currentCallback;
 
-        void Start() {
+        void Awake() {
             I = this;
         }
 
@@ -29,9 +30,17 @@ namespace EA4S
 
         public void Init(Action callback, string introText, string wordCode, string arabicWord) {
             currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
             AudioManager.I.PlaySfx(Sfx.UIPopup);
             SetTitle(introText);
             SetWord(wordCode, arabicWord);
+            Window.SetActive(true);
+        }
+
+        public void Close() {
+            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            Window.SetActive(false);
         }
 
         public void SetTitle(string text) {
@@ -46,8 +55,7 @@ namespace EA4S
         }
 
         public void OnPressButton() {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-            gameObject.SetActive(false);
+            Close();
             currentCallback();
         }
     }
