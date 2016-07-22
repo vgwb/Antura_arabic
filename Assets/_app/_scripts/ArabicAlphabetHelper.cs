@@ -5,8 +5,6 @@ using System;
 namespace EA4S {
     public static class ArabicAlphabetHelper {
 
-
-
         /// <summary>
         /// Return single letter string start from unicode hexa code.
         /// </summary>
@@ -63,7 +61,7 @@ namespace EA4S {
             string returnString = string.Empty;
             List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
             if (letters.Count == 1)
-                return returnString = letters[0].Isolated;
+                return returnString = ArabicAlphabetHelper.GetLetterFromUnicode(letters[0].Isolated_Unicode);
             for (int i = 0; i < letters.Count; i++) {
                 LetterData let = letters[i];
                 if (let != null) {

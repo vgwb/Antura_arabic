@@ -13,6 +13,8 @@ namespace EA4S {
         NavMeshAgent agent;
         Transform wayPoint;
         Vector3 LookAtCameraPosition = new Vector3(0, 0.2f, -19);
+        public Vector3 HidePositionRight = new Vector3(25, 0, -20);
+        public Vector3 HidePositionLeft = new Vector3(-25, 0, -20);
         bool lookAtCamera = false;
 
         void Start() {
@@ -22,7 +24,7 @@ namespace EA4S {
         }
 
         #region Tasks
-        [Task]
+        [Task] 
         public void SetNavigation(string _stateName) {
             switch (_stateName) {
                 case "Stop":
@@ -55,17 +57,21 @@ namespace EA4S {
                     agent.speed = 3f;
                     agent.Resume();
                     break;
-                case "GoOut":
-                    agent.Stop();
-                    transform.position = new Vector3(18, 0, 35);
-                    agent.Resume();
-                    agent.speed = 10f;
-                    agent.Resume();
+                case "GoOut": 
+                    agent.Stop(); 
+                    agent.transform.position = HidePositionLeft;
+                    //agent.Resume();
+                    //agent.speed = 10f;
                     break;
                 default:
                     break;
             }
             Task.current.Succeed();
+        }
+
+        [Task]
+        public bool IsAnturaMoment() {
+            return FastCrowd.FastCrowd.Instance.IsAnturaMoment;
         }
         #endregion
 
@@ -116,12 +122,16 @@ namespace EA4S {
         #region Collisions
         void OnTriggerEnter(Collider other) {
             //void OnTriggerEnter(Collider other) {
-            if (agent && wayPoint && other != wayPoint.GetComponent<Collider>()) {
-
-            } else {
+            if (!agent)
+                return;
+            if (wayPoint && other == wayPoint.GetComponent<Collider>()) {
                 RepositioningWaypoint();
+            } else if(wayPoint && other.GetComponent<AnturaController>()) {
+                wayPoint.position = -wayPoint.position;
             }
         }
-        #endregion
-    }
+
+
+            #endregion
+        }
 }

@@ -89,10 +89,10 @@ namespace Google2u
 	public sealed class Languages : IGoogle2uDB
 	{
 		public enum rowIds {
-			EN, IT
+			EN, AR, IT
 		};
 		public string [] rowNames = {
-			"EN", "IT"
+			"EN", "AR", "IT"
 		};
 		public System.Collections.Generic.List<LanguagesRow> Rows = new System.Collections.Generic.List<LanguagesRow>();
 
@@ -110,7 +110,8 @@ namespace Google2u
 		private Languages()
 		{
 			Rows.Add( new LanguagesRow("EN", "EN", "English", "TRUE"));
-			Rows.Add( new LanguagesRow("IT", "IT", "Italian", "TRUE"));
+			Rows.Add( new LanguagesRow("AR", "AR", "Arabic", "TRUE"));
+			Rows.Add( new LanguagesRow("IT", "IT", "Italian", "FALSE"));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{

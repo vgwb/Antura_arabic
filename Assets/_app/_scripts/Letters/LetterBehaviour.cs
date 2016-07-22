@@ -11,10 +11,13 @@ namespace EA4S {
 
         #region public properties
         public BehaviourSettings Settings;
+
+        [Header("GO Elements")]
+        public Transform exclamationMark;
+        private Sequence sequenceExclamationMark;
         #endregion
 
         #region runtime variables
-        
 
         /// <summary>
         /// Animator
@@ -30,7 +33,30 @@ namespace EA4S {
         private Animator anim;
         #endregion
 
+        void Start() {
+            sequenceExclamationMark = DOTween.Sequence();
+            sequenceExclamationMark.SetLoops(-1);
+            //exclamationMark.transform.localScale = Vector3.zero;
+            if (exclamationMark) {
+                // Sequence
+                sequenceExclamationMark.Append(exclamationMark.DOShakePosition(0.9f));
+                //sequenceExclamationMark.AppendInterval(0.5f);
+                sequenceExclamationMark.Pause();
+            }
+        }
+
         #region Tasks
+
+        #region properties
+        [Task]
+        public bool IsOut = false;
+
+        [Task]
+        public void SetIsOut(bool _isOut) {
+            IsOut = _isOut;
+            Task.current.Succeed();
+        }
+        #endregion
 
         #region Animation
         /// <summary>
@@ -39,7 +65,14 @@ namespace EA4S {
         /// <param name="_animationName"></param>
         [Task]
         public void SetAnimation(string _animationName) {
-            // Anim.Play(_animationName);
+            if (exclamationMark) {
+                //exclamationMark.transform.localScale = Vector3.zero;
+                if (sequenceExclamationMark.IsPlaying()) {
+                    sequenceExclamationMark.Pause();
+                    exclamationMark.DOScale(0, 0.3f);
+                }
+            }
+
             switch (_animationName) {
                 case "Idle":
                     Anim.SetInteger("State", 0);
@@ -55,6 +88,11 @@ namespace EA4S {
                     break;
                 case "Ninja":
                     Anim.SetInteger("State", 4);
+                    break;
+                case "Terrified":
+                    Anim.SetInteger("State", 2);
+                    exclamationMark.DOScale(1, 0.3f);
+                    sequenceExclamationMark.Play();
                     break;
                 default:
                     Debug.Log("Animation not found");
@@ -211,6 +249,8 @@ namespace EA4S {
 
         #endregion
 
+        #region BehaviourSettings
+
         /// <summary>
         /// Define variables for behaviours variations.
         /// </summary>
@@ -237,6 +277,6 @@ namespace EA4S {
             public float NinjaDuration = 2;
         }
 
-
+        #endregion
     }
 }

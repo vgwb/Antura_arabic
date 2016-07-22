@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ArabicSupport;
+using TMPro;
 
 namespace EA4S.DontWakeUp
 {
     public class MyLetter : MonoBehaviour
     {
 
-        public GameObject LetterDrawing;
+        public GameObject DrawingGO;
+        public GameObject TextGO;
+        TextMeshProUGUI TextWord;
+
+        public float SpeedLimit;
 
         public EA4S.SplineTrailRenderer trailReference;
         public string groundLayerName = "Terrain";
@@ -18,6 +24,12 @@ namespace EA4S.DontWakeUp
         bool overDestinationMarker;
 
         bool colliding;
+
+        Vector3 mouseDelta = Vector3.zero;
+        Vector3 lastMousePosition = Vector3.zero;
+
+        bool inOverSpeed;
+
 
         //    void OnCollisionStay(Collision collisionInfo) {
         //        foreach (ContactPoint contact in collisionInfo.contacts) {
@@ -34,62 +46,81 @@ namespace EA4S.DontWakeUp
         //            }
         //        }
 
+        void Start() {
+            TextGO.SetActive(false);
+            DrawingGO.SetActive(false);
+        }
+
         public void Init(string wordCode) {
-            Debug.Log("MyLetter Init " + wordCode);
+            // Debug.Log("MyLetter Init " + wordCode);
             draggingStarted = false;
             overDestinationMarker = false;
-            LetterDrawing.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
+            DrawingGO.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
+            DrawingGO.SetActive(false);
+            TextGO.SetActive(true);
+            TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(GameDontWakeUp.Instance.currentWord.Word, false, false);
+
             trailReference.Clear();
         }
 
-        void CheckWin() {
+        void LetterDropped() {
             if (overDestinationMarker) {
-                GameDontWakeUp.Instance.FinishedLevel(true);
+                GameDontWakeUp.Instance.RoundWon();
             } else {
-                GameDontWakeUp.Instance.FinishedLevel(false);
+                GameDontWakeUp.Instance.RoundLost(How2Die.Fall);
             }
         }
 
 
         void OnTriggerEnter(Collider other) {
-            //Debug.Log("OnTriggerEnter " + other.gameObject.name);
-            // GameDontWakeUp.Instance.dangering.InDanger(false);
-            colliding = true;
-            if (other.gameObject.tag == "Obstacle") {
-                GameDontWakeUp.Instance.dangering.InDanger(true);
-                AudioManager.I.PlaySfx(Sfx.DangerClock);
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                Debug.Log("OnTriggerEnter " + other.gameObject.name);
+                // GameDontWakeUp.Instance.dangering.InDanger(false);
+                colliding = true;
+                if (other.gameObject.tag == "Alert") {
+                    if (other.gameObject.name.Contains("alarm")) {
+                        GameDontWakeUp.Instance.InDanger(true, How2Die.TouchedAlarm);
+                    } else {
+                        GameDontWakeUp.Instance.InDanger(true, How2Die.TouchedDog);
+                    }
+                }
+                if (other.gameObject.tag == "Obstacle") {
+                    GameDontWakeUp.Instance.RoundLost(How2Die.TouchedDog);
+                }
             }
-
         }
 
         void OnTriggerStay(Collider other) {
-            //Debug.Log("triggero " + other.gameObject.name);
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                //Debug.Log("OnTriggerStay " + other.gameObject.name);
 //            if (other.gameObject.tag == "Obstacle") {
 //                GameDontWakeUp.Instance.dangering.InDanger(true);
 //            }
 
-            if (other.gameObject.tag == "Marker") {
-                if (other.gameObject.GetComponent<Marker>().Type == MarkerType.Goal) {
-                    overDestinationMarker = true;
+                if (other.gameObject.tag == "Marker") {
+                    if (other.gameObject.GetComponent<Marker>().Type == MarkerType.Goal) {
+                        overDestinationMarker = true;
+                    } else {
+                        overDestinationMarker = false;
+                    }
                 } else {
                     overDestinationMarker = false;
                 }
-            } else {
-                overDestinationMarker = false;
             }
         }
 
         void OnTriggerExit(Collider other) {
-            if (other.gameObject.tag == "Obstacle") {
-                GameDontWakeUp.Instance.dangering.InDanger(false);
-                AudioManager.I.StopSfx(Sfx.DangerClock);
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                Debug.Log("OnTriggerExit " + other.gameObject.name);
+                if (other.gameObject.tag == "Alert") {
+                    GameDontWakeUp.Instance.InDanger(false, How2Die.Null);
+                }
+                if (other.gameObject.tag == "Marker") {
+                    overDestinationMarker = false;
+                }
 
+                colliding = false;
             }
-            if (other.gameObject.tag == "Marker") {
-                overDestinationMarker = false;
-            }
-
-            colliding = false;
         }
 
 
@@ -167,7 +198,7 @@ namespace EA4S.DontWakeUp
                 if (Input.GetMouseButtonUp(0)) {
                     dragging = false;
                     if (draggingStarted) {
-                        CheckWin();
+                        LetterDropped();
                     }
                 }
             }
@@ -182,6 +213,20 @@ namespace EA4S.DontWakeUp
                 trailReference.transform.position = hit.point + trailOffset;
 
                 transform.position = hit.point + trailOffset;
+
+                mouseDelta = Input.mousePosition - lastMousePosition;
+                lastMousePosition = Input.mousePosition;
+
+                //Debug.Log(mouseDelta.magnitude);
+                if (mouseDelta.magnitude > SpeedLimit) {
+                    inOverSpeed = true;
+                    GameDontWakeUp.Instance.InDanger(true, How2Die.TooFast);
+                } else {
+                    if (inOverSpeed) {
+                        inOverSpeed = false;
+                        GameDontWakeUp.Instance.InDanger(false, How2Die.Null);
+                    }
+                }
 
             }
         }

@@ -116,7 +116,7 @@ GameObject:
   - 114: {fileID: 11490834}
   m_Layer: 9
   m_Name: clock_alarm
-  m_TagString: Obstacle
+  m_TagString: Alert
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,7 +426,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.9690723, y: 5.8018136, z: 3.0661037}
+  m_Size: {x: 3.9690723, y: 5.3, z: 3.0661037}
   m_Center: {x: 0.28430408, y: 3.5259447, z: 0.20016302}
 --- !u!114 &11443138
 MonoBehaviour:
@@ -442,6 +442,7 @@ MonoBehaviour:
   Delay: 0
   Duration: 60
   DestinationAngle: {x: 0, y: 0, z: -90}
+  DestinationPosition: {x: 0, y: 0, z: 0}
   FastBeyod360: 0
 --- !u!114 &11454726
 MonoBehaviour:
@@ -457,6 +458,7 @@ MonoBehaviour:
   Delay: 0
   Duration: 30
   DestinationAngle: {x: 0, y: 0, z: 90}
+  DestinationPosition: {x: 0, y: 0, z: 0}
   FastBeyod360: 0
 --- !u!114 &11490834
 MonoBehaviour:
