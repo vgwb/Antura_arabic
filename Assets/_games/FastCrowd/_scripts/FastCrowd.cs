@@ -9,9 +9,11 @@ using ModularFramework.Modules;
 using ArabicSupport;
 using UniRx;
 
-namespace EA4S.FastCrowd {
+namespace EA4S.FastCrowd
+{
 
-    public class FastCrowd : MiniGameBase {
+    public class FastCrowd : MiniGameBase
+    {
 
         #region GameSettings
 
@@ -54,8 +56,10 @@ namespace EA4S.FastCrowd {
         #endregion
 
         #region Runtime Variables
+
         public TMPro.TextMeshProUGUI RightWordsCounter;
         public bool IsAnturaMoment = false;
+
         #endregion
 
         #region Setup and initialization
@@ -76,20 +80,22 @@ namespace EA4S.FastCrowd {
 
             //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
             GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
-                new List<GameplayTimer.CustomEventData>() {
+                new List<GameplayTimer.CustomEventData>()
+                {
                     new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = 80 },
                     new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = 68 },
                     new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = 35 },
                     new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = 22 },
                 }
-                );
+            );
 
             /// <summary>
             /// Timer event subscribe.
             /// </summary>
-            GameplayTimer.Instance.ObserveEveryValueChanged(x => x.time).Subscribe(_ => {
+            GameplayTimer.Instance.ObserveEveryValueChanged(x => x.time).Subscribe(_ =>
+                {
             
-            });
+                });
 
             AudioManager.I.PlayMusic(Music.Theme3);
         }
@@ -110,7 +116,7 @@ namespace EA4S.FastCrowd {
             foreach (var item in gameLetters) {
                 sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
             }
-            PopupMission.Show(string.Format("{0} ({1})", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters) , sepLetters)
+            PopupMission.Show(string.Format("{1} - {0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters)
                 , ActualWord, false);
 
             int count = 0;
@@ -204,12 +210,13 @@ namespace EA4S.FastCrowd {
             CompletedWords.Add(ActualWord);
             if (RightWordsCounter)
                 RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
-            PopupMission.Show(ActualWord.Word, ActualWord, true, delegate() {
-                ActualWord = null;
-                // Recall gameplayBlockSetup
-                sceneClean();
-                gameplayBlockSetup();
-            });
+            PopupMission.Show(ActualWord.Word, ActualWord, true, delegate()
+                {
+                    ActualWord = null;
+                    // Recall gameplayBlockSetup
+                    sceneClean();
+                    gameplayBlockSetup();
+                });
         }
 
         /// <summary>
@@ -304,12 +311,14 @@ namespace EA4S.FastCrowd {
         #endregion
 
         #region events
+
         public delegate void ObjectiveSetup(WordData _wordData);
 
         /// <summary>
         /// Called every time a new word objective is created.
         /// </summary>
         public static event ObjectiveSetup OnNewWordObjective;
+
         #endregion
     }
 
@@ -319,7 +328,8 @@ namespace EA4S.FastCrowd {
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo
+    {
 
         [Tooltip("Play session duration in seconds.")]
         public float PlayTime = 10;
