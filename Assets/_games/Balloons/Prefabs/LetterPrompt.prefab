@@ -162,6 +162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LetterLable: {fileID: 11461514}
   DropContain: {fileID: 0}
+  enabledPos: {x: 0, y: 0, z: 0}
+  disabledPos: {x: 0, y: 0, z: 0}
+  areaState: 0
 --- !u!114 &11418902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LetterLabel: {fileID: 11461514}
+  _state: 0
 --- !u!114 &11426538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +194,8 @@ MonoBehaviour:
   LeftLetter: {fileID: 0}
   IsMerged: 0
   ActualDropArea: {fileID: 0}
+  dropState: 0
+  agent: {fileID: 0}
   Lable: {fileID: 11461514}
 --- !u!114 &11461514
 MonoBehaviour:

@@ -4808,6 +4808,12 @@ MonoBehaviour:
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
+  spinDirection: 1
+  randomOffset: 0
+  baseRotation: {x: 0, y: 0, z: 0}
+  mousePosition: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  drop: 0
 --- !u!114 &11428028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4823,6 +4829,12 @@ MonoBehaviour:
   balloonCollider: {fileID: 13613586}
   balloonRenderer: {fileID: 2385388}
   animator: {fileID: 9563648}
+  taps: 0
+  adjustMiddleBalloon: 0
+  adjustedLocalPosition: {x: 0, y: 3.5, z: 0}
+  adjustmentDuration: 3
+  adjustmentProgress: 0
+  adjustmentProgressRatio: 0
 --- !u!114 &11435412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4838,6 +4850,12 @@ MonoBehaviour:
   balloonCollider: {fileID: 13611882}
   balloonRenderer: {fileID: 2320242}
   animator: {fileID: 9595800}
+  taps: 0
+  adjustMiddleBalloon: 0
+  adjustedLocalPosition: {x: 0, y: 3.5, z: 0}
+  adjustmentDuration: 3
+  adjustmentProgress: 0
+  adjustmentProgressRatio: 0
 --- !u!114 &11449922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4993,6 +5011,12 @@ MonoBehaviour:
   balloonCollider: {fileID: 13605448}
   balloonRenderer: {fileID: 2381328}
   animator: {fileID: 9599448}
+  taps: 0
+  adjustMiddleBalloon: 0
+  adjustedLocalPosition: {x: 0, y: 3.5, z: 0}
+  adjustmentDuration: 3
+  adjustmentProgress: 0
+  adjustmentProgressRatio: 0
 --- !u!114 &11461410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5014,6 +5038,12 @@ MonoBehaviour:
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
+  spinDirection: 1
+  randomOffset: 0
+  baseRotation: {x: 0, y: 0, z: 0}
+  mousePosition: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  drop: 0
 --- !u!114 &11463564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5029,6 +5059,12 @@ MonoBehaviour:
   balloonCollider: {fileID: 13608092}
   balloonRenderer: {fileID: 2367942}
   animator: {fileID: 9583300}
+  taps: 0
+  adjustMiddleBalloon: 0
+  adjustedLocalPosition: {x: 0, y: 3.5, z: 0}
+  adjustmentDuration: 3
+  adjustmentProgress: 0
+  adjustmentProgressRatio: 0
 --- !u!114 &11463580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5068,7 +5104,13 @@ MonoBehaviour:
   distanceRandomnessMargin: 2.5
   dragSpeed: 2
   tapsNeeded: 1
+  _activeVariation: {fileID: 0}
+  _mouseOffset: {x: 0, y: 0, z: 0}
   activeBalloonCount: 0
+  floatDirection: 1
+  randomOffset: 0
+  basePosition: {x: 0, y: 0, z: 0}
+  clampedPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &11470240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5084,6 +5126,12 @@ MonoBehaviour:
   balloonCollider: {fileID: 13657414}
   balloonRenderer: {fileID: 2339936}
   animator: {fileID: 9509830}
+  taps: 0
+  adjustMiddleBalloon: 0
+  adjustedLocalPosition: {x: 0, y: 3.5, z: 0}
+  adjustmentDuration: 3
+  adjustmentProgress: 0
+  adjustmentProgressRatio: 0
 --- !u!114 &11470372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5119,6 +5167,12 @@ MonoBehaviour:
   balloonCollider: {fileID: 13674230}
   balloonRenderer: {fileID: 2345872}
   animator: {fileID: 9521856}
+  taps: 0
+  adjustMiddleBalloon: 0
+  adjustedLocalPosition: {x: 0, y: 3.5, z: 0}
+  adjustmentDuration: 3
+  adjustmentProgress: 0
+  adjustmentProgressRatio: 0
 --- !u!114 &11474592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5271,6 +5325,12 @@ MonoBehaviour:
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
+  spinDirection: 1
+  randomOffset: 0
+  baseRotation: {x: 0, y: 0, z: 0}
+  mousePosition: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  drop: 0
 --- !u!136 &13605448
 CapsuleCollider:
   m_ObjectHideFlags: 1
