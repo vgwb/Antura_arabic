@@ -122,12 +122,16 @@ namespace EA4S {
         #region Collisions
         void OnTriggerEnter(Collider other) {
             //void OnTriggerEnter(Collider other) {
-            if (agent && wayPoint && other != wayPoint.GetComponent<Collider>()) {
-
-            } else {
+            if (!agent)
+                return;
+            if (wayPoint && other == wayPoint.GetComponent<Collider>()) {
                 RepositioningWaypoint();
+            } else if(wayPoint && other.GetComponent<AnturaController>()) {
+                wayPoint.position = -wayPoint.position;
             }
         }
-        #endregion
-    }
+
+
+            #endregion
+        }
 }
