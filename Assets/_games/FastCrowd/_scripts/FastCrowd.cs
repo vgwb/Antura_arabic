@@ -84,7 +84,7 @@ namespace EA4S.FastCrowd
                 new List<GameplayTimer.CustomEventData>()
                 {
                     new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
-                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea + 10 }
+                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
                 }
             );
 
