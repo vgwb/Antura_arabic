@@ -15,7 +15,7 @@ namespace EA4S
 
         void AlarmOn() {
             Debug.Log("AlarmClock.AlarmOn()");
-            transform.DOShakePosition(3).Play();
+            transform.DOShakePosition(5).Play();
             AudioManager.I.PlaySfx(Sfx.AlarmClock);
         }
 

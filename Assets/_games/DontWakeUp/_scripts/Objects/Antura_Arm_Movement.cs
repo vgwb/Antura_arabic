@@ -8,6 +8,7 @@ public class Antura_Arm_Movement : MonoBehaviour
     public float Delay;
     public float Duration;
     public Vector3 DestinationAngle;
+    public Vector3 DestinationPosition;
     public bool FastBeyod360;
 
     void OnEnable() {
@@ -15,7 +16,8 @@ public class Antura_Arm_Movement : MonoBehaviour
         Sequence mySequence = DOTween.Sequence();
         mySequence.AppendInterval(Delay)
             .Append(transform.DOLocalRotate(DestinationAngle, Duration, (FastBeyod360 ? RotateMode.FastBeyond360 : RotateMode.Fast)))
-            .SetRelative(true).SetLoops(-1, LoopType.Yoyo);
+            .Join(transform.DOLocalMove(DestinationPosition, Duration))
+            .SetRelative(true).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
 
         //DOLocalRotate(Vector3 to, float duration, RotateMode mode);
 

@@ -39,7 +39,7 @@ namespace EA4S.DontWakeUp
         LevelController currentLevelController;
         public GameObject[] Levels;
         public DangerMeter dangering;
-        float dangeringSpeed = 1f;
+        float dangeringSpeed = 0.8f;
         bool inDanger;
         float dangerIntensity;
 
@@ -140,6 +140,10 @@ namespace EA4S.DontWakeUp
                 switch (how) {
                     case How2Die.TouchedAlarm:
                         currentLevelController.DoAlarmEverything();
+                        WidgetSubtitles.I.DisplaySentence("do not touch the alarms!");
+                        break;
+                    case How2Die.TouchedDog:
+                        WidgetSubtitles.I.DisplaySentence("do not touch Antura!");
                         break;
                 }
 
@@ -154,7 +158,7 @@ namespace EA4S.DontWakeUp
             if (LivesLeft > 1) {
                 LivesLeft = LivesLeft - 1;
 
-                WidgetSubtitles.I.DisplaySentence("game_result_retry");
+                //WidgetSubtitles.I.DisplaySentence("game_result_retry");
                 WidgetNextButton.I.Show(ClickedNext);
             } else {
                 GameLost();

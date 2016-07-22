@@ -8,6 +8,7 @@ TagManager:
   - Marker
   - Obstacle
   - Destination
+  - Alert
   layers:
   - Default
   - TransparentFX
