@@ -110,8 +110,8 @@ namespace EA4S.FastCrowd {
             foreach (var item in gameLetters) {
                 sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
             }
-            PopupMission.Show(string.Format("{0} : {1}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters) , sepLetters)
-                , false);
+            PopupMission.Show(string.Format("{0} ({1})", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters) , sepLetters)
+                , ActualWord, false);
 
             int count = 0;
             // Letter from db filtered by some parameters
@@ -204,7 +204,7 @@ namespace EA4S.FastCrowd {
             CompletedWords.Add(ActualWord);
             if (RightWordsCounter)
                 RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
-            PopupMission.Show(ActualWord.Word, true, delegate() {
+            PopupMission.Show(ActualWord.Word, ActualWord, true, delegate() {
                 ActualWord = null;
                 // Recall gameplayBlockSetup
                 sceneClean();

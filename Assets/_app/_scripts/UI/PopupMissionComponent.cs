@@ -10,6 +10,7 @@ namespace EA4S {
         public Image CompletedCheck;
         public TextMeshProUGUI InfoLable;
         public TextMeshProUGUI WordLable;
+        public Image WordDraw;
         public Button ContinueButton;
         [Tooltip("Auto close popup after seconds indicated. If -1 autoclose is disabled and appear close button for that.")]
         public float AutoCloseTime = -1;
@@ -24,14 +25,14 @@ namespace EA4S {
         float timeScaleAtMenuOpen = 1;
         
 
-        void Start() {
+        void Start() { 
             HidePosition = new Vector2(0, -750);
             ShowPosition = new Vector2(0, 0);
             GetComponent<RectTransform>().anchoredPosition = HidePosition;
             //ContinueButton.gameObject.SetActive(AutoCloseTime < 0);
-        }
+        } 
 
-        public void Show(string _word, bool _completed, TweenCallback _callback = null) {
+        public void Show(string _word, WordData _wordData, bool _completed, TweenCallback _callback = null) {
             AudioManager.I.PlaySfx(Sfx.UIPopup);
             // Preset for animation
             WordLable.text = _word;
@@ -53,6 +54,7 @@ namespace EA4S {
             } else {
                 InfoLable.text = "New Word!";
             }
+            WordDraw.sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + _wordData.Key);
             if (AutoCloseTime >= 0) {
                 sequence.InsertCallback(AutoCloseTime, delegate { Close(sequence, tParms, _callback); });
             } else {
