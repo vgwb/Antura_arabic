@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ArabicSupport;
+using TMPro;
 
 namespace EA4S.DontWakeUp
 {
     public class MyLetter : MonoBehaviour
     {
 
-        public GameObject LetterDrawing;
+        public GameObject DrawingGO;
+        public GameObject TextGO;
+        TextMeshProUGUI TextWord;
 
         public float SpeedLimit;
 
@@ -42,11 +46,20 @@ namespace EA4S.DontWakeUp
         //            }
         //        }
 
+        void Start() {
+            TextGO.SetActive(false);
+            DrawingGO.SetActive(false);
+        }
+
         public void Init(string wordCode) {
             // Debug.Log("MyLetter Init " + wordCode);
             draggingStarted = false;
             overDestinationMarker = false;
-            LetterDrawing.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
+            DrawingGO.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
+            DrawingGO.SetActive(false);
+            TextGO.SetActive(true);
+            TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(GameDontWakeUp.Instance.currentWord.Word, false, false);
+
             trailReference.Clear();
         }
 
@@ -65,7 +78,11 @@ namespace EA4S.DontWakeUp
                 // GameDontWakeUp.Instance.dangering.InDanger(false);
                 colliding = true;
                 if (other.gameObject.tag == "Alert") {
-                    GameDontWakeUp.Instance.InDanger(true);
+                    if (other.gameObject.name.Contains("alarm")) {
+                        GameDontWakeUp.Instance.InDanger(true, How2Die.TouchedAlarm);
+                    } else {
+                        GameDontWakeUp.Instance.InDanger(true, How2Die.TouchedDog);
+                    }
                 }
                 if (other.gameObject.tag == "Obstacle") {
                     GameDontWakeUp.Instance.RoundLost(How2Die.TouchedDog);
@@ -96,7 +113,7 @@ namespace EA4S.DontWakeUp
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 Debug.Log("OnTriggerExit " + other.gameObject.name);
                 if (other.gameObject.tag == "Alert") {
-                    GameDontWakeUp.Instance.InDanger(false);
+                    GameDontWakeUp.Instance.InDanger(false, How2Die.Null);
                 }
                 if (other.gameObject.tag == "Marker") {
                     overDestinationMarker = false;
@@ -203,11 +220,11 @@ namespace EA4S.DontWakeUp
                 //Debug.Log(mouseDelta.magnitude);
                 if (mouseDelta.magnitude > SpeedLimit) {
                     inOverSpeed = true;
-                    GameDontWakeUp.Instance.InDanger(true);
+                    GameDontWakeUp.Instance.InDanger(true, How2Die.TooFast);
                 } else {
                     if (inOverSpeed) {
                         inOverSpeed = false;
-                        GameDontWakeUp.Instance.InDanger(false);
+                        GameDontWakeUp.Instance.InDanger(false, How2Die.Null);
                     }
                 }
 
