@@ -1,7 +1,7 @@
 tree("Root")
 	fallback 
-		tree("AnturaTime")
 		tree("Hold")
+		tree("AnturaTime")
 		tree("Release")
 		random(0.4, 0.4, 0.2, 0.1)
 			tree("Idle")
@@ -101,14 +101,18 @@ tree("Release")
 	Sequence
 		not OnDrag
 		ToBeRelease
-		//UnSetMatchState
-		tree("GoOut")
-		//Succeed
+		fallback
+			Sequence
+				IsMatching
+				tree("GoOut")
+			Sequence
+				Not IsMatching
+				Release
 
 tree("GoOut")
 	Sequence
+		ToBeRelease
 		Sequence
-			ToBeRelease
 			IsMatching
 			Sequence
 				Release
@@ -117,6 +121,8 @@ tree("GoOut")
 				SetIsOut(true)
 		//		HoldState("GoOut")
 				Succeed
+
+
 
 tree("TurnFrontOfCamera")
 	Sequence

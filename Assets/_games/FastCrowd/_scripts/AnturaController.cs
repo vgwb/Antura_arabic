@@ -39,6 +39,14 @@ namespace EA4S {
             }
         }
 
+        void OnTriggerStay(Collider other) {
+            if (!agent)
+                return;
+            if (wayPoint && other == wayPoint.GetComponent<Collider>() && IsAnturaTime) {
+                RepositioningWaypoint();
+            }
+        }
+
         void RepositioningWaypoint(int _areaMask = 1) {
             if (!wayPoint)
                 return;
