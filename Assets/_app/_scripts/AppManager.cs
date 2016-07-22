@@ -9,15 +9,28 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
+        #region Overrides
         new public AppSettings GameSettings = new AppSettings();
 
         new public static AppManager Instance
         {
             get { return GameManager.Instance as AppManager; }
         }
+        #endregion
+
+        #region TMP
+
+        /// <summary>
+        /// Tmp var to store actual gameplay word already used.
+        /// </summary>
+        public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
+
+        public string ActualGame = string.Empty;
+
+        #endregion
 
         public List<LetterData> Letters = new List<LetterData>();
-
+        
         public TeacherAI Teacher;
         public Database DB;
 
@@ -40,6 +53,8 @@ namespace EA4S
             AdditionalSetup();
 
             CachingLetterData();
+
+            GameSettings.HighQualityGfx = true;
         }
 
         void AdditionalSetup() {
@@ -62,6 +77,11 @@ namespace EA4S
             CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
         }
 
+        public void OnMinigameStart() {
+            // reset for already used word.
+            ActualGameplayWordAlreadyUsed = new List<WordData>();
+        }
+
     }
 
     /// <summary>
@@ -73,4 +93,5 @@ namespace EA4S
         public bool DoLogPlayerBehaviour;
         public bool HighQualityGfx;
     }
+
 }

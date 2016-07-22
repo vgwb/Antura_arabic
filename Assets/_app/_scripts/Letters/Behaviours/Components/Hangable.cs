@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Panda;
+using Lean;
 
 namespace EA4S {
     [RequireComponent(typeof(LetterObjectView))]
@@ -9,6 +10,8 @@ namespace EA4S {
     /// </summary>
     public class Hangable : MonoBehaviour
     {
+        #region tasks
+
         [Task]
         public bool OnDrag = false;
         LetterObjectView letterView = null;
@@ -19,6 +22,10 @@ namespace EA4S {
 
         [Task]
         public bool ToBeRelease = false;
+
+        #endregion
+
+        #region input
 
         void OnMouseDown() {
             OnDrag = true;
@@ -33,6 +40,8 @@ namespace EA4S {
                 OnLetterHangOff(letterView);
         }
 
+        #endregion
+
         void Update() {
             if (OnDrag) {
                 RaycastHit hit;
@@ -42,6 +51,29 @@ namespace EA4S {
                 }
             }
         }
+
+        #region event subscriptions
+
+        void OnEnable() {
+            // Hook events
+            //Lean.LeanTouch.OnFingerDown += OnFingerDown;
+            //Lean.LeanTouch.OnFingerSet += OnFingerSet;
+            //Lean.LeanTouch.OnFingerUp += OnFingerUp;
+            //Lean.LeanTouch.OnFingerDrag += OnFingerDrag;
+            //Lean.LeanTouch.OnFingerTap += OnFingerTap;
+            //Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
+            //Lean.LeanTouch.OnFingerHeldDown += OnFingerHeldDown;
+            //Lean.LeanTouch.OnFingerHeldSet += OnFingerHeld;
+            //Lean.LeanTouch.OnFingerHeldUp += OnFingerHeldUp;
+            //Lean.LeanTouch.OnMultiTap += OnMultiTap;
+            //Lean.LeanTouch.OnDrag += OnDrag;
+
+        }
+
+        void OnDisable() {
+        }
+
+        #endregion
 
         #region events
         public delegate void HangAction(LetterObjectView _letterView);

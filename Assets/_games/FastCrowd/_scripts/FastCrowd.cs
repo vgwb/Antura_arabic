@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using EA4S;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
-using Google2u;
 using System;
 using ModularFramework.Modules;
 using ArabicSupport;
+using UniRx;
+using EA4S;
 
-namespace EA4S.FastCrowd {
+namespace EA4S.FastCrowd
+{
 
-    public class FastCrowd : MiniGameBase {
+    public class FastCrowd : MiniGameBase
+    {
+
+        #region GameSettings
 
         [Header("Star Rewards")]
         public int ThresholdStar1 = 3;
@@ -40,13 +45,24 @@ namespace EA4S.FastCrowd {
         [Header("Gameplay")]
         public int MinLettersOnField = 10;
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
-        public wordsRow ActualWord;
-        public List<wordsRow> CompletedWords = new List<wordsRow>();
+        public WordData ActualWord;
+        public List<WordData> CompletedWords = new List<WordData>();
 
         [Header("Manager Settings")]
         public StarFlowers StarUI;
         public ActionFeedbackComponent ActionFeedback;
         public PopupMissionComponent PopupMission;
+
+        #endregion
+
+        #region Runtime Variables
+
+        public TMPro.TextMeshProUGUI RightWordsCounter;
+        public bool IsAnturaMoment = false;
+
+        #endregion
+
+        #region Setup and initialization
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
@@ -62,8 +78,25 @@ namespace EA4S.FastCrowd {
 
             gameplayBlockSetup();
 
-            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
-            AudioManager.I.PlayMusic(Music.MainTheme);
+            //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+            var AnturaTimea = UnityEngine.Random.Range(30, 50);
+            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
+                new List<GameplayTimer.CustomEventData>()
+                {
+                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
+                }
+            );
+
+            /// <summary>
+            /// Timer event subscribe.
+            /// </summary>
+            GameplayTimer.Instance.ObserveEveryValueChanged(x => x.time).Subscribe(_ =>
+                {
+            
+                });
+
+            AudioManager.I.PlayMusic(Music.Theme3);
         }
 
         /// <summary>
@@ -71,22 +104,19 @@ namespace EA4S.FastCrowd {
         /// </summary>
         void gameplayBlockSetup() {
             // Get letters and word
-            // Fix - https://trello.com/c/oDz6iosQ
-            do {
-                ActualWord = AppManager.Instance.Teacher.GimmeAGoodWord();
-            } while (CompletedWords.Contains(ActualWord) && CompletedWords.Count < 12);
-            AudioManager.I.PlayWord(ActualWord._id);
-            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord._id);
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
-            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord._word, AppManager.Instance.Letters);
+            ActualWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            AudioManager.I.PlayWord(ActualWord.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord.Key);
+            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord.Word, AppManager.Instance.Letters);
 
             // popup info 
             string sepLetters = string.Empty;
             foreach (var item in gameLetters) {
                 sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
             }
-            PopupMission.Show(string.Format("{0} : {1}", ArabicAlphabetHelper.ParseWord(ActualWord._word, AppManager.Instance.Letters) , sepLetters)
-                , false);
+            PopupMission.Show(string.Format("{1} - {0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters)
+                , ActualWord, false);
 
             int count = 0;
             // Letter from db filtered by some parameters
@@ -141,6 +171,8 @@ namespace EA4S.FastCrowd {
             
         }
 
+        #endregion
+
         #region event subscription delegates
 
         /// <summary>
@@ -171,16 +203,19 @@ namespace EA4S.FastCrowd {
         /// Called when objective block is completed (entire word).
         /// </summary>
         private void DropContainer_OnObjectiveBlockCompleted() {
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord._id);
+            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord.Key);
             LoggerEA4S.Save();
-            AudioManager.I.PlayWord(ActualWord._id);
+            AudioManager.I.PlayWord(ActualWord.Key);
             CompletedWords.Add(ActualWord);
-            PopupMission.Show(ActualWord._word, true, delegate() {
-                ActualWord = null;
-                // Recall gameplayBlockSetup
-                sceneClean();
-                gameplayBlockSetup();
-            });
+            if (RightWordsCounter)
+                RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
+            PopupMission.Show(ActualWord.Word, ActualWord, true, delegate()
+                {
+                    ActualWord = null;
+                    // Recall gameplayBlockSetup
+                    sceneClean();
+                    gameplayBlockSetup();
+                });
         }
 
         /// <summary>
@@ -196,8 +231,6 @@ namespace EA4S.FastCrowd {
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
-            // respawn letter on fixed spawn point.
-            _letterView.transform.position = new Vector3(0, 0, 26.7f);
             LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(true);
             AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
@@ -225,6 +258,27 @@ namespace EA4S.FastCrowd {
             
         }
 
+        /// <summary>
+        /// Timer custom events delegates.
+        /// </summary>
+        /// <param name="_data"></param>
+        private void GameplayTimer_OnCustomEvent(GameplayTimer.CustomEventData _data) {
+            //Debug.LogFormat("Custom Event {0} at {1} sec.", _data.Name, _data.Time);
+            switch (_data.Name) {
+                case "AnturaStart":
+                    IsAnturaMoment = true;
+                    AudioManager.I.PlayMusic(Music.MainTheme);
+                    break;
+                case "AnturaEnd":
+                    IsAnturaMoment = false;
+                    AudioManager.I.PlayMusic(Music.Theme3);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
         #endregion
 
         #region events subscription
@@ -232,6 +286,7 @@ namespace EA4S.FastCrowd {
         void OnEnable() {
             DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
+            GameplayTimer.OnCustomEvent += GameplayTimer_OnCustomEvent;
 
             Droppable.OnRightMatch += Droppable_OnRightMatch;
             Droppable.OnWrongMatch += Droppable_OnWrongMatch;
@@ -243,6 +298,7 @@ namespace EA4S.FastCrowd {
         void OnDisable() {
             DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
+            GameplayTimer.OnCustomEvent -= GameplayTimer_OnCustomEvent;
 
             Droppable.OnRightMatch -= Droppable_OnRightMatch;
             Droppable.OnWrongMatch -= Droppable_OnWrongMatch;
@@ -252,13 +308,27 @@ namespace EA4S.FastCrowd {
         }
 
         #endregion
+
+        #region events
+
+        public delegate void ObjectiveSetup(WordData _wordData);
+
+        /// <summary>
+        /// Called every time a new word objective is created.
+        /// </summary>
+        public static event ObjectiveSetup OnNewWordObjective;
+
+        #endregion
     }
+
+    #region AnturaGameplayInfo
 
     /// <summary>
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo
+    {
 
         [Tooltip("Play session duration in seconds.")]
         public float PlayTime = 10;
@@ -270,4 +340,6 @@ namespace EA4S.FastCrowd {
         public LetterBehaviour.BehaviourSettings BehaviourSettings = new LetterBehaviour.BehaviourSettings();
 
     }
+
+    #endregion
 }

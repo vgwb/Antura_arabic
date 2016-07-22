@@ -13,13 +13,17 @@ namespace EA4S.DontWakeUp
 	
         }
 
-        public void SetWord() {
-            string wordCode = GameDontWakeUp.Instance.currentWord._id;
+        public void SetWord() { 
+            string wordCode = GameDontWakeUp.Instance.currentWord.Key; 
             BroadcastMessage("Init", wordCode, SendMessageOptions.DontRequireReceiver);
         }
 
         public void DoAlarmEverything() {
             BroadcastMessage("AlarmOn", SendMessageOptions.DontRequireReceiver);
+        }
+
+        public void DoAlarmOff() {
+            BroadcastMessage("AlarmOff", SendMessageOptions.DontRequireReceiver);
         }
 
         public Transform GetStartPosition() {

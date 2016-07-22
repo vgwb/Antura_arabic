@@ -19,6 +19,7 @@ namespace EA4S
                 GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
             else // manual set on framework for test session
                 AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
+            AppManager.Instance.OnMinigameStart();
             ReadyForGameplay();
         }
 

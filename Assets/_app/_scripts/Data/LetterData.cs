@@ -1,6 +1,7 @@
 ﻿using Google2u;
 
 namespace EA4S {
+
     public class LetterData {
         public string Key;
         public string Isolated_Unicode;

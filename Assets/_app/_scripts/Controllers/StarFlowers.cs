@@ -18,7 +18,7 @@ namespace EA4S
         }
 
         public void Show(int _stars) {
-            
+            this.gameObject.SetActive(true);
             // Reset zone
             Vector2 f1pos = Flower1.rectTransform.anchoredPosition;
             Flower1.rectTransform.anchoredPosition = new Vector2(f1pos.x, -f1pos.y);

@@ -67,13 +67,12 @@ namespace EA4S {
             if (isMatching) {
                 if (OnRightMatch != null && IsCollidingWithArea())
                     OnRightMatch(thisLetterView);
-                //GameObject.Destroy(gameObject);
             } else {
                 if (OnWrongMatch != null && IsCollidingWithArea())
                     OnWrongMatch(thisLetterView);
             }
 
-            Task.current.Complete(true);
+            Task.current.Succeed();
         }
         #endregion
 
