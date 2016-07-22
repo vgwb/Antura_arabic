@@ -12,8 +12,7 @@ using EA4S;
 namespace EA4S.FastCrowd
 {
 
-    public class FastCrowd : MiniGameBase
-    {
+    public class FastCrowd : MiniGameBase {
 
         #region GameSettings
 
