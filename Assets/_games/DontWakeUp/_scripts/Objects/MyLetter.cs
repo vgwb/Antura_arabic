@@ -8,6 +8,8 @@ namespace EA4S.DontWakeUp
 
         public GameObject LetterDrawing;
 
+        public float SpeedLimit;
+
         public EA4S.SplineTrailRenderer trailReference;
         public string groundLayerName = "Terrain";
         public string playerLayerName = "Default";
@@ -18,6 +20,12 @@ namespace EA4S.DontWakeUp
         bool overDestinationMarker;
 
         bool colliding;
+
+        Vector3 mouseDelta = Vector3.zero;
+        Vector3 lastMousePosition = Vector3.zero;
+
+        bool inOverSpeed;
+
 
         //    void OnCollisionStay(Collision collisionInfo) {
         //        foreach (ContactPoint contact in collisionInfo.contacts) {
@@ -56,8 +64,11 @@ namespace EA4S.DontWakeUp
                 Debug.Log("OnTriggerEnter " + other.gameObject.name);
                 // GameDontWakeUp.Instance.dangering.InDanger(false);
                 colliding = true;
-                if (other.gameObject.tag == "Obstacle") {
+                if (other.gameObject.tag == "Alert") {
                     GameDontWakeUp.Instance.InDanger(true);
+                }
+                if (other.gameObject.tag == "Obstacle") {
+                    GameDontWakeUp.Instance.RoundLost(How2Die.TouchedDog);
                 }
             }
         }
@@ -84,7 +95,7 @@ namespace EA4S.DontWakeUp
         void OnTriggerExit(Collider other) {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 Debug.Log("OnTriggerExit " + other.gameObject.name);
-                if (other.gameObject.tag == "Obstacle") {
+                if (other.gameObject.tag == "Alert") {
                     GameDontWakeUp.Instance.InDanger(false);
                 }
                 if (other.gameObject.tag == "Marker") {
@@ -185,6 +196,20 @@ namespace EA4S.DontWakeUp
                 trailReference.transform.position = hit.point + trailOffset;
 
                 transform.position = hit.point + trailOffset;
+
+                mouseDelta = Input.mousePosition - lastMousePosition;
+                lastMousePosition = Input.mousePosition;
+
+                //Debug.Log(mouseDelta.magnitude);
+                if (mouseDelta.magnitude > SpeedLimit) {
+                    inOverSpeed = true;
+                    GameDontWakeUp.Instance.InDanger(true);
+                } else {
+                    if (inOverSpeed) {
+                        inOverSpeed = false;
+                        GameDontWakeUp.Instance.InDanger(false);
+                    }
+                }
 
             }
         }
