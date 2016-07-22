@@ -689,6 +689,12 @@ MonoBehaviour:
   floatDistance: 1.5
   spinSpeed: 1
   spinAngle: 80
+  basePosition: {x: 0, y: 0, z: 0}
+  baseLocalPosition: {x: 0, y: 0, z: 0}
+  baseRotation: {x: 0, y: 0, z: 0}
+  baseLocalRotation: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!4 &167486260 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2e31327feaaf7401f881759116a4a04f, type: 3}
@@ -1227,7 +1233,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22402530, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22402530, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -1275,19 +1281,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11482288, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11482288, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11422906, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11422906, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 196856, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_IsActive
@@ -2078,13 +2084,41 @@ MonoBehaviour:
   numberOfRounds: 6
   lives: 0
   balloonColors:
-  - {r: 1, g: 0.19607842, b: 0.19607842, a: 1}
-  - {r: 0.19607843, g: 1, b: 0.19607843, a: 1}
-  - {r: 0.19607843, g: 0.49803922, b: 1, a: 1}
-  - {r: 1, g: 1, b: 0.19607842, a: 1}
+  - r: 1
+    g: 0.19607842
+    b: 0.19607842
+    a: 1
+  - r: 0.19607843
+    g: 1
+    b: 0.19607843
+    a: 1
+  - r: 0.19607843
+    g: 0.49803922
+    b: 1
+    a: 1
+  - r: 1
+    g: 1
+    b: 0.19607842
+    a: 1
   floatingLetters: []
   letterDropDelay: 0
   letterAnimationLength: 0.367
+  wordData:
+    _id: 
+    _kind: 
+    _category: 
+    _stage: 
+    _english: 
+    _word: 
+    _letters: 
+    _transliteration: 
+    _difficulty_level: 
+    _number_of_letter: 
+    _group: 
+  word: 
+  currentRound: 0
+  remainingLives: 0
+  correctWords: 0
 --- !u!4 &508411711
 Transform:
   m_ObjectHideFlags: 0
@@ -2132,6 +2166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModuleActivationState: 0
+  settings: {}
 --- !u!114 &512341145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,6 +2195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModuleActivationState: 0
+  settings: {}
 --- !u!114 &512341147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2200,12 +2236,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4055498e9231945739feb8dd395084b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <TypeName>k__BackingField: 
   MultiGame: 0
   Modules:
     LocalizationDataPath: 
+  setuped: 0
   GameSettings:
-    GameID: Antura
-    GameName: Antura
+    GameID: 416e74757261
+    GameName: 416e74757261
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
 --- !u!4 &512341150
@@ -3049,6 +3087,12 @@ MonoBehaviour:
   floatDistance: 1.5
   spinSpeed: 1
   spinAngle: 80
+  basePosition: {x: 0, y: 0, z: 0}
+  baseLocalPosition: {x: 0, y: 0, z: 0}
+  baseRotation: {x: 0, y: 0, z: 0}
+  baseLocalRotation: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &881590369
 Prefab:
   m_ObjectHideFlags: 0
@@ -3755,6 +3799,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 30
   timerText: {fileID: 962712816}
+  isRunning: 0
+  playedSfx: 0
+  timeRemaining: 0
 --- !u!1001 &1047981428
 Prefab:
   m_ObjectHideFlags: 0
@@ -4088,6 +4135,12 @@ MonoBehaviour:
   floatDistance: 1.5
   spinSpeed: 1
   spinAngle: 80
+  basePosition: {x: 0, y: 0, z: 0}
+  baseLocalPosition: {x: 0, y: 0, z: 0}
+  baseRotation: {x: 0, y: 0, z: 0}
+  baseLocalRotation: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!23 &1048098928
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4211,6 +4264,12 @@ MonoBehaviour:
   floatDistance: 1.5
   spinSpeed: 1
   spinAngle: 80
+  basePosition: {x: 0, y: 0, z: 0}
+  baseLocalPosition: {x: 0, y: 0, z: 0}
+  baseRotation: {x: 0, y: 0, z: 0}
+  baseLocalRotation: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!54 &1063469491
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4929,6 +4988,12 @@ MonoBehaviour:
   floatDistance: 1.5
   spinSpeed: 1
   spinAngle: 80
+  basePosition: {x: 0, y: 0, z: 0}
+  baseLocalPosition: {x: 0, y: 0, z: 0}
+  baseRotation: {x: 0, y: 0, z: 0}
+  baseLocalRotation: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1256875493
 GameObject:
   m_ObjectHideFlags: 0
@@ -6447,6 +6512,12 @@ MonoBehaviour:
   floatDistance: 1.5
   spinSpeed: 1
   spinAngle: 80
+  basePosition: {x: 0, y: 0, z: 0}
+  baseLocalPosition: {x: 0, y: 0, z: 0}
+  baseRotation: {x: 0, y: 0, z: 0}
+  baseLocalRotation: {x: 0, y: 0, z: 0}
+  cameraDistance: 0
+  mousePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1605924861
 GameObject:
   m_ObjectHideFlags: 0
@@ -7091,6 +7162,30 @@ Prefab:
     - target: {fileID: 111690, guid: edf0b39500b0d4feab6468093368450c, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11456976, guid: edf0b39500b0d4feab6468093368450c, type: 2}
+      propertyPath: adjustmentDuration
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435412, guid: edf0b39500b0d4feab6468093368450c, type: 2}
+      propertyPath: adjustmentDuration
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11471368, guid: edf0b39500b0d4feab6468093368450c, type: 2}
+      propertyPath: adjustmentDuration
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428028, guid: edf0b39500b0d4feab6468093368450c, type: 2}
+      propertyPath: adjustmentDuration
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463564, guid: edf0b39500b0d4feab6468093368450c, type: 2}
+      propertyPath: adjustmentDuration
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470240, guid: edf0b39500b0d4feab6468093368450c, type: 2}
+      propertyPath: adjustmentDuration
+      value: 7.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edf0b39500b0d4feab6468093368450c, type: 2}
