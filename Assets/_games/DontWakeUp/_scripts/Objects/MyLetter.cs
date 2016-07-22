@@ -52,18 +52,19 @@ namespace EA4S.DontWakeUp
 
 
         void OnTriggerEnter(Collider other) {
-            Debug.Log("OnTriggerEnter " + other.gameObject.name);
-            // GameDontWakeUp.Instance.dangering.InDanger(false);
-            colliding = true;
-            if (other.gameObject.tag == "Obstacle") {
-                GameDontWakeUp.Instance.InDanger(true);
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                Debug.Log("OnTriggerEnter " + other.gameObject.name);
+                // GameDontWakeUp.Instance.dangering.InDanger(false);
+                colliding = true;
+                if (other.gameObject.tag == "Obstacle") {
+                    GameDontWakeUp.Instance.InDanger(true);
+                }
             }
-
         }
 
         void OnTriggerStay(Collider other) {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
-                Debug.Log("OnTriggerStay " + other.gameObject.name);
+                //Debug.Log("OnTriggerStay " + other.gameObject.name);
 //            if (other.gameObject.tag == "Obstacle") {
 //                GameDontWakeUp.Instance.dangering.InDanger(true);
 //            }
@@ -81,15 +82,17 @@ namespace EA4S.DontWakeUp
         }
 
         void OnTriggerExit(Collider other) {
-            Debug.Log("OnTriggerExit " + other.gameObject.name);
-            if (other.gameObject.tag == "Obstacle") {
-                GameDontWakeUp.Instance.InDanger(false);
-            }
-            if (other.gameObject.tag == "Marker") {
-                overDestinationMarker = false;
-            }
+            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+                Debug.Log("OnTriggerExit " + other.gameObject.name);
+                if (other.gameObject.tag == "Obstacle") {
+                    GameDontWakeUp.Instance.InDanger(false);
+                }
+                if (other.gameObject.tag == "Marker") {
+                    overDestinationMarker = false;
+                }
 
-            colliding = false;
+                colliding = false;
+            }
         }
 
 

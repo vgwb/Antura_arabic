@@ -19,9 +19,6 @@ namespace EA4S.DontWakeUp
 
     public class GameDontWakeUp : MiniGameBase
     {
-        [Header("Star Rewards")]
-        public int LivesLeft;
-
         [Header("Gameplay Info and Config section")]
         #region Overrides
         new public GameDontWakeUpGameplayInfo GameplayInfo;
@@ -33,22 +30,22 @@ namespace EA4S.DontWakeUp
 
         #endregion
 
-        [Header("My vars")]
+        [Header("Don't Wake Up vars")]
         public MinigameState currentState;
+        public int LivesLeft;
+
         public int currentRound;
+        int currentLevel;
         LevelController currentLevelController;
         public GameObject[] Levels;
         public DangerMeter dangering;
-        float dangeringSpeed = 10f;
+        float dangeringSpeed = 1f;
         bool inDanger;
         float dangerIntensity;
 
         public GameObject myLetter;
         public GameObject StarSystems;
-        public GameObject Subtitles;
-        public GameObject PopupWindow;
         public WordFlexibleContainer LivesContainer;
-        public GameObject NextButtonGO;
 
         public WordData currentWord;
 
@@ -58,6 +55,7 @@ namespace EA4S.DontWakeUp
             currentState = MinigameState.Initializing;
             RoundsTotal = Levels.Length;
             currentRound = 1;
+            currentLevel = 1;
             LivesLeft = 3;
             AppManager.Instance.InitDataAI();
 
@@ -81,12 +79,12 @@ namespace EA4S.DontWakeUp
 
         void GameIntro() {
             currentState = MinigameState.GameIntro;
-            SubtitlesController.I.DisplaySentence("game_dontwake_intro1");
-            NextButtonGO.SetActive(true);
+            WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
+            WidgetNextButton.I.Show(ClickedNext);
         }
 
         public void GameIntroFinished() {
-            SubtitlesController.I.DisplaySentence("");
+            WidgetSubtitles.I.DisplaySentence("");
             InitRound();
         }
 
@@ -94,8 +92,7 @@ namespace EA4S.DontWakeUp
             Debug.Log("ClickedNext()");
             switch (currentState) {
                 case MinigameState.RoundIntro:
-                    SubtitlesController.I.DisplaySentence("");
-                    NextButtonGO.SetActive(false);
+                    WidgetSubtitles.I.DisplaySentence("");
                     currentState = MinigameState.Playing;
                     break;
                 case MinigameState.GameIntro:
@@ -103,8 +100,7 @@ namespace EA4S.DontWakeUp
                     break;
                 case MinigameState.RoundEnd:
                     currentLevelController.DoAlarmOff();
-                    SubtitlesController.I.DisplaySentence("");
-                    NextButtonGO.SetActive(false);
+                    WidgetSubtitles.I.DisplaySentence("");
                     InitRound();
                     break;
             }
@@ -114,21 +110,25 @@ namespace EA4S.DontWakeUp
             currentState = MinigameState.RoundIntro;
 
             UpdateLivesContainer();
+            SetupLevel();
 
-            currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
-            currentWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
-            // Debug.Log("word chosen: " + currentWord._id);
-            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
-
-            currentLevelController.SetWord();
             myLetter.SetActive(true);
             myLetter.GetComponent<MyLetter>().Init(currentWord.Key);
             myLetter.transform.position = currentLevelController.GetStartPosition().position;
             AudioManager.I.PlayWord(currentWord.Key);
 
-            PopupWindow.SetActive(true);
-            PopupWindow.GetComponent<PopupWindowController>().Init(ClickedNext, "Carefully drag this word", currentWord.Key, currentWord.Word);
-            SubtitlesController.I.DisplaySentence("init round");
+            WidgetPopupWindow.I.Init(ClickedNext, "Carefully drag this word", currentWord.Key, currentWord.Word);
+            WidgetSubtitles.I.DisplaySentence("init round");
+        }
+
+        void SetupLevel() {
+            currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
+            currentWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            // Debug.Log("word chosen: " + currentWord._id);
+            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
+
+            currentLevelController.SetWord();
+            ChangeCamera(false);
         }
 
         public void RoundLost(How2Die how) {
@@ -154,8 +154,8 @@ namespace EA4S.DontWakeUp
             if (LivesLeft > 1) {
                 LivesLeft = LivesLeft - 1;
 
-                SubtitlesController.I.DisplaySentence("game_result_retry");
-                NextButtonGO.SetActive(true);
+                WidgetSubtitles.I.DisplaySentence("game_result_retry");
+                WidgetNextButton.I.Show(ClickedNext);
             } else {
                 GameLost();
             }
@@ -194,11 +194,12 @@ namespace EA4S.DontWakeUp
 
         void GoToNextRound() {
             LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
-            Levels[currentRound - 1].SetActive(false);
+            Levels[currentLevel - 1].SetActive(false);
             currentRound = currentRound + 1;
-            Levels[currentRound - 1].SetActive(true);
-            currentLevelController = Levels[currentRound - 1].GetComponent<LevelController>();
-            ChangeCamera();
+            currentLevel = currentRound;
+            Levels[currentLevel - 1].SetActive(true);
+            currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
+            ChangeCamera(true);
         }
             
         // called by callback in camera
@@ -206,9 +207,12 @@ namespace EA4S.DontWakeUp
             InitRound();
         }
 
-        public void ChangeCamera() {
-           
-            CameraGameplayController.I.GoToPosition(currentLevelController.LevelCamera.transform.position, currentLevelController.LevelCamera.transform.rotation);
+        public void ChangeCamera(bool animated) {
+            if (animated) {
+                CameraGameplayController.I.MoveToPosition(currentLevelController.LevelCamera.transform.position, currentLevelController.LevelCamera.transform.rotation);
+            } else {
+                CameraGameplayController.I.SetToPosition(currentLevelController.LevelCamera.transform.position, currentLevelController.LevelCamera.transform.rotation);
+            }
         }
 
 

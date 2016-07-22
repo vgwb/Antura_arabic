@@ -45,7 +45,7 @@ GameObject:
   - 222: {fileID: 22273728}
   - 114: {fileID: 11492274}
   m_Layer: 5
-  m_Name: Subtitles
+  m_Name: WidgetSubtitles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
