@@ -1,8 +1,8 @@
 tree("Root")
 	fallback 
 		tree("Hold")
-		tree("AnturaTime")
 		tree("Release")
+		tree("AnturaTime")
 		random(0.4, 0.4, 0.2, 0.1)
 			tree("Idle")
 			tree("Walk")
