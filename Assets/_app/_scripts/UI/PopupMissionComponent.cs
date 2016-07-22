@@ -65,7 +65,6 @@ namespace EA4S {
         }
 
         public void Close() {
-            Debug.Log("Close");
             Close(sequence, tParms, pendingCallback);
         }
 
