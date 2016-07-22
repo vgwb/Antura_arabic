@@ -25,7 +25,7 @@ namespace Balloons
         public TextMeshProUGUI roundNumberText;
         public TimerManager timer;
         public Animator countdownAnimator;
-        public PopupWindowController roundStartPopup;
+        public WidgetPopupWindow roundStartPopup;
         public Image roundWinImage;
         public Image roundLoseImage;
         public StarFlowers starFlowers;
@@ -113,6 +113,7 @@ namespace Balloons
             SetNewWord();
             roundStartCanvas.gameObject.SetActive(true);
             roundStartPopup.Init("Pop the letters that don't form the word", wordData.Key, wordData.Word);
+            roundStartPopup.ButtonGO.SetActive(true);
         }
 
         private void EndRound(Result result)
@@ -217,7 +218,7 @@ namespace Balloons
         private void SetNewWord()
         {
             //word = Google2u.words.Instance.Rows.GetRandomElement()._word;
-            wordData = AppManager.Instance.Teacher.GimmeAGoodWord();
+            wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
             word = wordData.Word;
             wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
             wordPrompt.DisplayWord(wordLetters);
