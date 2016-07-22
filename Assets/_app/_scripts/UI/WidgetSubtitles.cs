@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using ArabicSupport;
+using Google2u;
 
 namespace EA4S
 {
@@ -52,10 +53,16 @@ namespace EA4S
         
         }
 
-        void DisplayText(string text) {
-            if (text != "") {
+        void DisplayText(string textID) {
+            if (textID != "") {
                 Background.SetActive(true);
-                TextUI.text = text;
+
+                LocalizationDataRow row = LocalizationData.Instance.GetRow(textID);
+                if (row == null) {
+                    TextUI.text = textID;
+                } else {
+                    TextUI.text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+                }
             } else {
                 TextUI.text = "";
                 Background.SetActive(false);
