@@ -12,7 +12,8 @@ namespace EA4S {
         public GameObject WayPointPrefab;
         NavMeshAgent agent;
         Transform wayPoint;
-        Vector3 LookAtCameraPosition = new Vector3(0, 0.2f, -19);
+        public Transform LockCameraPH;
+        Vector3 LookAtCameraPosition = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
         public Vector3 HidePositionRight = new Vector3(25, 0, -20);
         public Vector3 HidePositionLeft = new Vector3(-25, 0, -20);
         bool lookAtCamera = false;
@@ -20,7 +21,6 @@ namespace EA4S {
         void Start() {
             agent = GetComponent<NavMeshAgent>();
             wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
-
         }
 
         #region Tasks
@@ -30,7 +30,7 @@ namespace EA4S {
                 case "Stop":
                     agent.Stop();
                     if(lookAtCamera)
-                        transform.DOLookAt(LookAtCameraPosition, 0.2f);
+                        transform.DOLookAt(LookAtCameraPosition, 0.1f);
                     lookAtCamera = !lookAtCamera;
                     break;
                 case "Walk":
@@ -43,7 +43,7 @@ namespace EA4S {
                     agent.Resume();
                     break;
                 case "Hold":
-                    setLookAtCamera();
+                    transform.DOLookAt(LookAtCameraPosition, 0.1f);
                     agent.speed = 3.5f;
                     agent.Resume();
                     break;
