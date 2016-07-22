@@ -10,6 +10,7 @@ using ModularFramework.Modules;
 namespace EA4S.DontWakeUp
 {
     public enum How2Die {
+        Null,
         TouchedDog,
         TouchedAlarm,
         TooFast,
@@ -42,6 +43,7 @@ namespace EA4S.DontWakeUp
         float dangeringSpeed = 0.8f;
         bool inDanger;
         float dangerIntensity;
+        How2Die dangerCause;
 
         public GameObject myLetter;
         public GameObject StarSystems;
@@ -145,6 +147,12 @@ namespace EA4S.DontWakeUp
                     case How2Die.TouchedDog:
                         WidgetSubtitles.I.DisplaySentence("do not touch Antura!");
                         break;
+                    case How2Die.TooFast:
+                        WidgetSubtitles.I.DisplaySentence("don't go too fast!");
+                        break;
+                    case How2Die.Fall:
+                        WidgetSubtitles.I.DisplaySentence("don't fall!");
+                        break;
                 }
 
                 RoundLostEnded();
@@ -232,11 +240,18 @@ namespace EA4S.DontWakeUp
 //            }
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 if (inDanger) {
-                    dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
+                    if (dangerCause == How2Die.TooFast) {
+                        // toofast danger speed in faster!
+                        dangerIntensity = dangerIntensity + dangeringSpeed * 2 * Time.deltaTime;
+                    } else {
+                        dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
+                    }
+
                     if (dangerIntensity > 1f) {
                         dangerIntensity = 1f;
-                        RoundLost(How2Die.TouchedAlarm);
+                        RoundLost(dangerCause);
                     }
+
                 } else {
                     dangerIntensity = dangerIntensity - dangeringSpeed * Time.deltaTime;
                     if (dangerIntensity < 0)
@@ -247,8 +262,9 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        public void InDanger(bool status) {
+        public void InDanger(bool status, How2Die cause) {
             inDanger = status;
+            dangerCause = cause;
             if (inDanger) {
                 AudioManager.I.PlaySfx(Sfx.DangerClock);
             } else {
@@ -257,7 +273,7 @@ namespace EA4S.DontWakeUp
         }
 
         void resetDanger() {
-            InDanger(false);
+            InDanger(false, How2Die.Null);
             dangerIntensity = 0;
         }
 
