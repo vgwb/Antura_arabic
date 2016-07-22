@@ -15,7 +15,7 @@ namespace EA4S {
             agent = GetComponentInChildren<NavMeshAgent>();
             wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
             wayPoint.name = "AnturaWP";
-
+            wayPoint.position = new Vector3(-18, 0, -10);
             agent.SetDestination(HidePosition);
         }
 
@@ -44,8 +44,10 @@ namespace EA4S {
                 return;
             Vector3 randomValidPosition;
             //RandomPoint(Target.position, 10f, out randomValidPosition);
-            GameplayHelper.RandomPointInWalkableArea(transform.position, 30f, out randomValidPosition, _areaMask);
-            wayPoint.position = randomValidPosition;
+            do {
+                GameplayHelper.RandomPointInWalkableArea(transform.position, 30f, out randomValidPosition, _areaMask);
+                wayPoint.position = randomValidPosition;
+            } while (randomValidPosition == Vector3.zero);
             agent.SetDestination(wayPoint.position);
         }
 
