@@ -248,10 +248,26 @@ namespace Balloons
                 var balloons = floatingLetter.Balloons;
                 var letter = floatingLetter.Letter;
 
-                // Set random balloon colors
+                // Set random balloon colors without repetition if possible
+                var usedColorIndexes = new List<int>();
                 for (int j = 0; j < balloons.Length; j++)
                 {
-                    balloons[j].SetColor(balloonColors[Random.Range(0, balloonColors.Length)]);
+                    int randomColorIndex; 
+
+                    if (balloons.Length <= balloonColors.Length)
+                    {
+                        do
+                        {
+                            randomColorIndex = Random.Range(0, balloonColors.Length);
+                        } while(usedColorIndexes.Contains(randomColorIndex));
+                    }
+                    else
+                    {
+                        randomColorIndex = Random.Range(0, balloonColors.Length);
+                    }
+
+                    usedColorIndexes.Add(randomColorIndex);
+                    balloons[j].SetColor(balloonColors[randomColorIndex]);
                 }
 
                 // Get a random letter that is not a required letter
@@ -432,6 +448,14 @@ namespace Balloons
 
         private void DisplayRoundResult(bool win)
         {
+            StartCoroutine(DisplayRoundResult_Coroutine(win));
+        }
+
+        private IEnumerator DisplayRoundResult_Coroutine(bool win)
+        {
+            float delay = 0.5f;
+            yield return new WaitForSeconds(delay);
+
             roundResultCanvas.gameObject.SetActive(true);
             roundWinImage.gameObject.SetActive(win);
             roundLoseImage.gameObject.SetActive(!win);
