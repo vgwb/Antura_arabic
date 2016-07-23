@@ -19,11 +19,18 @@ namespace Balloons
         public float floatRandomnessFactor;
         [Range(0, 10)] [Tooltip("e.g.: 3")]
         public float distanceRandomnessMargin;
+        [Range(0, 10)] [Tooltip("e.g.: 1")]
+        public float waftSpeed;
+        [Range(0, 10)] [Tooltip("e.g.: 1")]
+        public float waftWrappingMargin;
         [Range(0, 10)] [Tooltip("e.g.: 2")]
         public float dragSpeed;
         [Range(1, 10)] [Tooltip("e.g.: 1")]
         public int tapsNeeded;
-
+        [Range(0, 100f)] [Tooltip("e.g.: 5")]
+        public float explosionRadius;
+        [Range(0, 100f)] [Tooltip("e.g.: 10")]
+        public float explosionPower;
 
         [HideInInspector]
         public LetterController Letter
@@ -67,6 +74,8 @@ namespace Balloons
         private float randomOffset = 0f;
         private Vector3 basePosition;
         private Vector3 clampedPosition = new Vector3();
+        private Vector3 floatVelocity = new Vector3();
+        private Vector3 waftVelocity = new Vector3();
 
 
         void Awake()
@@ -79,11 +88,28 @@ namespace Balloons
             basePosition = transform.position;
             RandomizePosition();
             RandomizeFloating();
+            waftVelocity.x = waftSpeed;
         }
 
         void Update()
         {
             Float();
+            Waft();
+        }
+
+        public void SetActiveVariation(int index)
+        {
+            if (index < 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < variations.Length; i++)
+            {
+                variations[i].gameObject.SetActive(false);
+            }
+            ActiveVariation = variations[index];
+            ActiveVariation.gameObject.SetActive(true);
         }
 
         void RandomizePosition()
@@ -102,10 +128,23 @@ namespace Balloons
         void Float()
         {
             // Float using Rigidbody velocity
-            body.velocity = floatDirection * floatDistance * Mathf.Sin(floatSpeed * Time.time + randomOffset) * Vector3.up;
+            //floatVelocity = floatDirection * floatDistance * Mathf.Sin(floatSpeed * Time.time + randomOffset) * Vector3.up;
+            floatVelocity.Set(body.velocity.x, floatDirection * floatDistance * Mathf.Sin(floatSpeed * Time.time + randomOffset), body.velocity.z);
+            body.velocity = floatVelocity;
 
             // Float using Transform position
             //transform.position = basePosition + floatDirection * floatDistance * Mathf.Sin(floatSpeed * Time.time + randomOffset) * Vector3.up;
+        }
+
+        public void Waft()
+        {
+            waftVelocity.Set(waftSpeed, body.velocity.y, body.velocity.z);
+
+            body.velocity = waftVelocity;
+            if (body.transform.position.x > BalloonsGameManager.instance.maxX + waftWrappingMargin)
+            {
+                body.transform.position = new Vector3(BalloonsGameManager.instance.minX - waftWrappingMargin, body.transform.position.y, body.transform.position.z);
+            }
         }
 
         public void Drag(Vector3 dragPosition)
@@ -117,6 +156,81 @@ namespace Balloons
 
             // Drag using Rigidbody Position
             //body.MovePosition(ClampPositionToStage(dragPosition + MouseOffset));
+        }
+
+        public void Pop()
+        {
+            activeBalloonCount--;
+            CreateExplosion();
+
+            if (Balloons.Length == 3)
+            {
+                if (Balloons[0] != null && Balloons[0].balloonCollider.enabled == true)
+                {
+                    Balloons[0].AdjustMiddleBalloon();
+                }
+            }
+
+            if (activeBalloonCount <= 0)
+            {
+                Letter.transform.SetParent(null);
+                Letter.Drop();
+                BalloonsGameManager.instance.floatingLetters.Remove(this);
+                BalloonsGameManager.instance.OnDropped(Letter);
+                Destroy(gameObject, 3f);
+            }
+        }
+
+        private void CreateExplosion()
+        {
+            Vector3 explosionPosition = transform.position;
+            //Collider[] colliders = Physics.OverlapSphere(explosionPosition, explosionRadius);
+            var affectedObjects = BalloonsGameManager.instance.floatingLetters.FindAll(floatingLetter => floatingLetter.transform.position.x > transform.position.x - explosionRadius && floatingLetter.transform.position.x < transform.position.x + explosionRadius);
+
+            for (int i = 0; i < affectedObjects.Count; i++)
+            {
+                var hit = affectedObjects[i];
+
+                if (hit != null && hit.transform != null)
+                {
+                    var distance = (hit.transform.position - explosionPosition).magnitude;
+                    if (hit == this)
+                    {
+                        continue;
+                    }
+
+                    var direction = (hit.transform.position - explosionPosition).normalized;
+                    var displacement = (direction * explosionPower) * (explosionRadius - distance);
+                    displacement.z = 0f;
+
+                    Knockback(hit.transform, displacement);
+                }
+            }
+        }
+
+        private void Knockback(Transform hitTransform, Vector3 displacement)
+        {
+            StartCoroutine(Knockback_Coroutine(hitTransform, displacement));
+        }
+
+        private IEnumerator Knockback_Coroutine(Transform hitTransform, Vector3 displacement)
+        {
+            float duration = 0.5f;
+            float progress = 0f;
+            float percentage = 0f;
+
+            var initialPosition = hitTransform.position;
+            var finalPosition = hitTransform.position + displacement;
+
+            while (progress < duration && hitTransform != null && hitTransform.transform != null)
+            {
+                hitTransform.position = ClampPositionToStage(Vector3.Lerp(initialPosition, finalPosition, percentage));
+                progress += Time.deltaTime;
+                percentage = progress / duration;
+                percentage = Mathf.Sin(percentage * Mathf.PI * 0.5f);
+
+                yield return null;
+            }
         }
 
         public Vector3 ClampPositionToStage(Vector3 unclampedPosition)
@@ -136,71 +250,6 @@ namespace Balloons
             return clampedPosition;
         }
 
-        public void SetActiveVariation(int index)
-        {
-            if (index < 0)
-            {
-                return;
-            }
-
-            for (int i = 0; i < variations.Length; i++)
-            {
-                variations[i].gameObject.SetActive(false);
-            }
-            ActiveVariation = variations[index];
-            ActiveVariation.gameObject.SetActive(true);
-        }
-
-        public void Pop()
-        {
-            activeBalloonCount--;
-
-            if (Balloons.Length == 3)
-            {
-                if (Balloons[0] != null && Balloons[0].balloonCollider.enabled == true)
-                {
-                    Balloons[0].AdjustMiddleBalloon();
-                }
-            }
-
-            if (activeBalloonCount <= 0)
-            {
-                Debug.Log("Pop 2");
-                Letter.transform.SetParent(null);
-                Letter.Drop();
-                BalloonsGameManager.instance.floatingLetters.Remove(this);
-                BalloonsGameManager.instance.OnDropped(Letter);
-                Destroy(gameObject, 3f);
-            }
-        }
-
-        public void Explosion()
-        {
-            Debug.Log("BOOM!");
-
-            float radius = 10f;
-            float power = 20f;
-            float upwardsModifier = 3f;
-
-            Vector3 explosionPosition = transform.position + 2f * Vector3.up;
-            Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
-            foreach (Collider hit in colliders)
-            {
-                if (hit.gameObject.GetComponent<FloatingLetterController>() != null)
-                {
-                    Debug.Log("Hit: " + hit.gameObject.name);
-                    Rigidbody hitBody = hit.GetComponent<Rigidbody>();
-
-                    if (hitBody != null)
-                    {
-                        Debug.Log("Thrusting " + hit.gameObject.name + "!");
-                        hitBody.AddExplosionForce(power, explosionPosition, radius, upwardsModifier);
-                    }
-                }
-
-            }
-        }
-
         public void Disable()
         {
             for (int i = 0; i < Balloons.Length; i++)
@@ -210,6 +259,5 @@ namespace Balloons
             Letter.DisableCollider();
 
         }
-
     }
 }
