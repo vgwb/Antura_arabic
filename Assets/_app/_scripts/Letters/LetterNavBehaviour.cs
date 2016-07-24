@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using ModularFramework.Helpers;
+using System.Collections.Generic;
 using DG.Tweening;
 using Panda;
 
@@ -14,9 +15,9 @@ namespace EA4S {
         Transform wayPoint;
         public Transform LockCameraPH;
         Vector3 LookAtCameraPosition = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
-        public Vector3 HidePositionRight = new Vector3(25, 0, -20);
-        public Vector3 HidePositionLeft = new Vector3(-25, 0, -20);
-        bool lookAtCamera = false;
+        public Vector3 HidePositionRight = new Vector3(17, 0.2f, -11);
+        public Vector3 HidePositionLeft = new Vector3(-17, 0.2f, -11);
+        bool lookAtCamera = false; 
 
         void Start() {
             agent = GetComponent<NavMeshAgent>();
@@ -62,6 +63,13 @@ namespace EA4S {
                     agent.transform.position = HidePositionLeft;
                     //agent.Resume();
                     //agent.speed = 10f;
+                    break;
+                case "BumpOut":
+                    agent.ResetPath();
+                    Vector3 newDestination = new List<Vector3>() { HidePositionRight, HidePositionLeft }.GetRandomElement();
+                    agent.SetDestination(-newDestination);
+                    agent.speed = 10f; 
+                    //agent.Resume();
                     break;
                 default:
                     break;

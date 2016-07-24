@@ -107,22 +107,25 @@ tree("Release")
 				tree("GoOut")
 			Sequence
 				Not IsMatching
-				Release
+				tree("BumpOut")
 
 tree("GoOut")
 	Sequence
-		ToBeRelease
-		Sequence
-			IsMatching
-			Sequence
-				Release
-		//		SetAnimation("Run")
-				SetNavigation("GoOut")
-				SetIsOut(true)
-		//		HoldState("GoOut")
-				Succeed
+		Release
+//		SetAnimation("Run")
+		SetNavigation("GoOut")
+		SetIsOut(true)
+//		HoldState("GoOut")
+		Succeed
 
-
+//-- Bumped out ----------//	
+tree("BumpOut")
+	Sequence
+		Release
+		SetAnimation("Run")
+		SetNavigation("BumpOut")
+		Succeed
+		HoldState("BumpOut")
 
 tree("TurnFrontOfCamera")
 	Sequence

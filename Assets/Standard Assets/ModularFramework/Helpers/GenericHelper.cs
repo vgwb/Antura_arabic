@@ -43,7 +43,7 @@ namespace ModularFramework.Helpers {
         /// <param name="_thisList"></param>
         /// <returns></returns>
         public static T GetRandomElement<T>(this List<T> _thisList) {
-            return _thisList[Random.Range(0, _thisList.Count-1)];
+            return _thisList[Random.Range(0, _thisList.Count)];
         }
 
         #endregion
