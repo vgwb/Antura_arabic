@@ -16,9 +16,10 @@ namespace Balloons
         // Middle balloon adjustment for Triple Balloon Variation
         private bool adjustMiddleBalloon = false;
         private Vector3 adjustedLocalPosition = new Vector3(0f, 3.5f, 0f);
-        private float adjustmentDuration = 7.5f;
-        private float adjustmentProgress;
-        private float adjustmentProgressRatio;
+        private float adjustDuration = 7.5f;
+        private float adjustProgress;
+        private float adjustProgressPercentage;
+
 
         void Start()
         {
@@ -29,11 +30,11 @@ namespace Balloons
         {
             if (adjustMiddleBalloon)
             {
-                if (adjustmentProgress < adjustmentDuration)
+                if (adjustProgress < adjustDuration)
                 {
-                    transform.localPosition = Vector3.Lerp(transform.localPosition, adjustedLocalPosition, adjustmentProgressRatio);
-                    adjustmentProgress += Time.deltaTime;
-                    adjustmentProgressRatio = adjustmentProgress / adjustmentDuration;
+                    transform.localPosition = Vector3.Lerp(transform.localPosition, adjustedLocalPosition, adjustProgressPercentage);
+                    adjustProgress += Time.deltaTime;
+                    adjustProgressPercentage = adjustProgress / adjustDuration;
                 }
                 else
                 {
@@ -70,8 +71,8 @@ namespace Balloons
 
         public void AdjustMiddleBalloon()
         {
-            adjustmentProgress = 0f;
-            adjustmentProgressRatio = 0f;
+            adjustProgress = 0f;
+            adjustProgressPercentage = 0f;
             adjustMiddleBalloon = true;
         }
 

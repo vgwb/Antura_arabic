@@ -5066,8 +5066,12 @@ MonoBehaviour:
   floatDistance: 1.5
   floatRandomnessFactor: 0.25
   distanceRandomnessMargin: 2.5
+  waftSpeed: 4
+  waftWrappingMargin: 7.5
   dragSpeed: 2
   tapsNeeded: 1
+  explosionRadius: 9.5
+  explosionPower: 1
   activeBalloonCount: 0
 --- !u!114 &11470240
 MonoBehaviour:
