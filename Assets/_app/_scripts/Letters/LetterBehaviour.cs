@@ -191,7 +191,7 @@ namespace EA4S {
                     break;
                 case "GoOut":
                     if (Task.current.isStarting)
-                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(1.0f, Settings.DurationRandomDelta);
+                        runtimeWaitTime = 3.0f;
                     Wait(runtimeWaitTime);
                     break;
                 case "BumpOut":

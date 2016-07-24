@@ -115,7 +115,7 @@ tree("GoOut")
 //		SetAnimation("Run")
 		SetNavigation("GoOut")
 		SetIsOut(true)
-//		HoldState("GoOut")
+		HoldState("GoOut")
 		Succeed
 
 //-- Bumped out ----------//	

@@ -58,16 +58,20 @@ namespace EA4S {
                     agent.speed = 3f;
                     agent.Resume();
                     break;
-                case "GoOut": 
-                    agent.Stop(); 
-                    agent.transform.position = HidePositionLeft;
+                case "GoOut":
+                    agent.enabled = false;
+                    agent.transform.DOMove(HidePositionRight, 2).SetDelay(1).OnComplete(delegate {
+                        agent.transform.position = HidePositionRight;
+                    });
+                    
+                    
                     //agent.Resume();
                     //agent.speed = 10f;
                     break;
                 case "BumpOut":
                     agent.ResetPath();
                     Vector3 newDestination = new List<Vector3>() { HidePositionRight, HidePositionLeft }.GetRandomElement();
-                    agent.SetDestination(-newDestination);
+                    agent.SetDestination(newDestination);
                     agent.speed = 10f; 
                     //agent.Resume();
                     break;
