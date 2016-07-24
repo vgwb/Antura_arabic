@@ -22,6 +22,11 @@ EA4S - Antura and the Letters
 #### Balloons ####
 
 - added intro popup with image word
+- overhauled physics: 
+-- more natural rope hanging
+-- smoother letter dragging
+-- balloons explode and radiate force to knockback nearby ones
+-- balloons are in constant wafting motion
 
 
 #### General ####
