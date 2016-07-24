@@ -1209,8 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WayPointPrefab: {fileID: 100402, guid: 47233fdcbec51bb4d9682ca9adafa6b6, type: 2}
-  HidePositionRight: {x: 25, y: 0, z: -20}
-  HidePositionLeft: {x: -25, y: 0, z: -20}
+  LockCameraPH: {fileID: 0}
 --- !u!114 &11493902
 MonoBehaviour:
   m_ObjectHideFlags: 1
