@@ -40,7 +40,7 @@ namespace EA4S.DontWakeUp
         LevelController currentLevelController;
         public GameObject[] Levels;
         public DangerMeter dangering;
-        float dangeringSpeed = 0.8f;
+        float dangeringSpeed = 1.0f;
         bool inDanger;
         float dangerIntensity;
         How2Die dangerCause;
@@ -242,7 +242,7 @@ namespace EA4S.DontWakeUp
                 if (inDanger) {
                     if (dangerCause == How2Die.TooFast) {
                         // toofast danger speed in faster!
-                        dangerIntensity = dangerIntensity + dangeringSpeed * 2 * Time.deltaTime;
+                        dangerIntensity = dangerIntensity + dangeringSpeed * 1 * Time.deltaTime;
                     } else {
                         dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
                     }
