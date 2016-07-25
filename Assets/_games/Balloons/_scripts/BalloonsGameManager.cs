@@ -10,7 +10,7 @@ using TMPro;
 
 namespace Balloons
 {
-    public class BalloonsGameManager: MonoBehaviour
+    public class BalloonsGameManager: MiniGameBase
     {
         [Header("References")]
         public WordPromptController wordPrompt;
