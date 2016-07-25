@@ -3,6 +3,9 @@ EA4S - Antura and the Letters
 
 ## 2016-07-25 - Build  ##
 
+#### General ####
+- updated some arabic unicodes for a wrong letter
+
 #### Don't Wake Up ####
 - made it a bit easier (speed limit and collision sharpening)
 - changed the Danger SFX
