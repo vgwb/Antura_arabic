@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Core;
@@ -9,8 +10,7 @@ using ArabicSupport;
 using UniRx;
 using EA4S;
 
-namespace EA4S.FastCrowd
-{
+namespace EA4S.FastCrowd {
 
     public class FastCrowd : MiniGameBase {
 
@@ -51,6 +51,7 @@ namespace EA4S.FastCrowd
         public StarFlowers StarUI;
         public ActionFeedbackComponent ActionFeedback;
         public PopupMissionComponent PopupMission;
+        public Button TutorialNextStepButton;
 
         #endregion
 
@@ -58,6 +59,8 @@ namespace EA4S.FastCrowd
 
         public TMPro.TextMeshProUGUI RightWordsCounter;
         public bool IsAnturaMoment = false;
+
+        int tutorialState = 3;
 
         #endregion
 
@@ -71,32 +74,10 @@ namespace EA4S.FastCrowd
             // LOG: Start //
             LoggerEA4S.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
             LoggerEA4S.Save();
-
-
-            // Gameplay Settings Override
-
-            gameplayBlockSetup();
-
-            //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
-            var AnturaTimea = UnityEngine.Random.Range(30, 50);
-            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
-                new List<GameplayTimer.CustomEventData>()
-                {
-                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
-                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
-                }
-            );
-
-            /// <summary>
-            /// Timer event subscribe.
-            /// </summary>
-            GameplayTimer.Instance.ObserveEveryValueChanged(x => x.time).Subscribe(_ =>
-                {
             
-                });
-
-            AudioManager.I.PlayMusic(Music.Theme3);
         }
+
+
 
         /// <summary>
         /// 
@@ -173,26 +154,76 @@ namespace EA4S.FastCrowd
         #endregion
 
         #region event subscription delegates
+        /// <summary>
+        /// Called when tutorial state changes.
+        /// </summary>
+        void OnTutorialStateChanged() {
+            switch (tutorialState) {
+                case 3:
+                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro1");
+                    TutorialNextStepButton.gameObject.SetActive(true);
+                    break;
+                case 2:
+                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro2");
+                    TutorialNextStepButton.gameObject.SetActive(true);
+                    break;
+                case 1:
+                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3");
+                    TutorialNextStepButton.gameObject.SetActive(true);
+                    break;
+                default:
+                    // play
+                    WidgetSubtitles.I.DisplaySentence(string.Empty);
+                    TutorialNextStepButton.gameObject.SetActive(false);
+                    // Env Setup.
+                    gameplayBlockSetup();
+
+                    //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+                    var AnturaTimea = UnityEngine.Random.Range(30, 50);
+                    GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
+                        new List<GameplayTimer.CustomEventData>()
+                        {
+                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
+                        }
+                    );
+
+                    AudioManager.I.PlayMusic(Music.Theme3);
+                    break;
+            }
+        }
+
+        void TutorialNextStep() {
+            tutorialState--;
+        }
+
 
         /// <summary>
         /// Called when the time is over.
         /// </summary>
         /// <param name="_time"></param>
         private void GameplayTimer_OnTimeOver(float _time) {
+            TutorialNextStepButton.gameObject.SetActive(true);
+
             LoggerEA4S.Log("minigame", "fastcrowd", "completedWords", CompletedWords.Count.ToString());
             int starCount = 0;
             // Open stars evaluation
             if (CompletedWords.Count >= ThresholdStar1 && CompletedWords.Count < ThresholdStar2) {
                 starCount = 1;
+                WidgetSubtitles.I.DisplaySentence("game_result_fair");
             } else if (CompletedWords.Count >= ThresholdStar2 && CompletedWords.Count < ThresholdStar3) {
                 starCount = 2;
+                WidgetSubtitles.I.DisplaySentence("game_result_good");
             } else if (CompletedWords.Count > ThresholdStar3) {
                 starCount = 3;
+                WidgetSubtitles.I.DisplaySentence("game_result_great");
             } else {
                 starCount = 0;
+                WidgetSubtitles.I.DisplaySentence("game_result_retry");
             }
 
             LoggerEA4S.Log("minigame", "fastcrowd", "endScoreStars", starCount.ToString());
+            
             StarUI.Show(starCount);
             LoggerEA4S.Save();
             AudioManager.I.PlayMusic(Music.Relax);
@@ -292,6 +323,17 @@ namespace EA4S.FastCrowd
 
             Hangable.OnLetterHangOn += Hangable_OnLetterHangOn;
             Hangable.OnLetterHangOff += Hangable_OnLetterHangOff;
+
+
+            /// <summary>
+            /// Monitoring Model property XXX value changes.
+            /// </summary>
+            this.transform.ObserveEveryValueChanged(x => tutorialState).Subscribe(_ => {
+                OnTutorialStateChanged();
+            }).AddTo(this);
+
+            /// Tutorial button 
+            TutorialNextStepButton.onClick.AddListener(() => TutorialNextStep());
         }
 
         void OnDisable() {
@@ -304,6 +346,8 @@ namespace EA4S.FastCrowd
 
             Hangable.OnLetterHangOn -= Hangable_OnLetterHangOn;
             Hangable.OnLetterHangOff -= Hangable_OnLetterHangOff;
+
+            TutorialNextStepButton.onClick.RemoveAllListeners();
         }
 
         #endregion
@@ -326,8 +370,7 @@ namespace EA4S.FastCrowd
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo
-    {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
 
         [Tooltip("Play session duration in seconds.")]
         public float PlayTime = 10;

@@ -65,7 +65,7 @@ namespace EA4S {
         /// <param name="_animationName"></param>
         [Task]
         public void SetAnimation(string _animationName) {
-            if (exclamationMark) {
+            if (exclamationMark && sequenceExclamationMark != null) {
                 //exclamationMark.transform.localScale = Vector3.zero;
                 if (sequenceExclamationMark.IsPlaying()) {
                     sequenceExclamationMark.Pause();

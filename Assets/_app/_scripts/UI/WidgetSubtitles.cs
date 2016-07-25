@@ -32,6 +32,10 @@ namespace EA4S
 
         }
 
+        /// <summary>
+        /// Acivate view elements if SentenceId != "" and display sentence.
+        /// </summary>
+        /// <param name="SentenceId"></param>
         public void DisplaySentence(string SentenceId) {
             currentCallback = null;
             DisplayText(SentenceId);
