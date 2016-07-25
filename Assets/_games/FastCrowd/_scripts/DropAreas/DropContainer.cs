@@ -47,8 +47,11 @@ namespace EA4S {
                 actualAreaIndex++;
                 DOTween.Sequence().InsertCallback(1, delegate () {
                     dropAreaSetPosition(delegate () {
-                        if (OnObjectiveBlockCompleted != null)
-                            OnObjectiveBlockCompleted();
+                        DOTween.Sequence().InsertCallback(2, delegate () {
+                            if (OnObjectiveBlockCompleted != null)
+                                OnObjectiveBlockCompleted();
+                        });
+                        
                     });
                 });
                 
