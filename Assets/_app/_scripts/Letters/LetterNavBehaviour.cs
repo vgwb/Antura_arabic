@@ -27,6 +27,8 @@ namespace EA4S {
         #region Tasks
         [Task] 
         public void SetNavigation(string _stateName) {
+            if (!agent)
+                return;
             switch (_stateName) {
                 case "Stop":
                     agent.Stop();
@@ -44,9 +46,12 @@ namespace EA4S {
                     agent.Resume();
                     break;
                 case "Hold":
-                    transform.DOLookAt(LookAtCameraPosition, 0.1f);
+                    agent.Stop();
+                    transform.DOLookAt(LookAtCameraPosition, 0.1f).OnComplete(delegate {
+                        transform.LookAt(LookAtCameraPosition);
+                    });
                     agent.speed = 3.5f;
-                    agent.Resume();
+                    //agent.Resume();
                     break;
                 case "Run":
                     RepositioningWaypoint();
@@ -73,7 +78,7 @@ namespace EA4S {
                     Vector3 newDestination = new List<Vector3>() { HidePositionRight, HidePositionLeft }.GetRandomElement();
                     agent.SetDestination(newDestination);
                     agent.speed = 10f; 
-                    //agent.Resume();
+                    agent.Resume();
                     break;
                 default:
                     break;
