@@ -3,6 +3,10 @@ EA4S - Antura and the Letters
 
 ## 2016-07-25 - Build  ##
 
+#### Don't Wake Up ####
+- made it a bit easier (speed limit and collision sharpening)
+- changed the Danger SFX
+
 #### Balloons ####
 
 - changed balloons explosion sound effect
