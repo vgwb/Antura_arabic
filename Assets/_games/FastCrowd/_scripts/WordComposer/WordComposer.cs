@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
+using System.Collections;
 
 namespace EA4S
 {
 
-    public class WordComposer : MonoBehaviour
-    {
+    public class WordComposer : MonoBehaviour {
 
         WordFlexibleContainer WordLabel;
         List<LetterData> CompletedLetters = new List<LetterData>();
@@ -34,7 +35,13 @@ namespace EA4S
         #region event subscription delegates
 
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
+            StartCoroutine(AddLetter(_letterView, 1.5f));
+        }
+
+        IEnumerator AddLetter(LetterObjectView _letterView, float _delay) {
+            yield return new WaitForSeconds(_delay);
             CompletedLetters.Add(_letterView.Model.Data);
+            transform.DOShakeScale(1.5f);
             UpdateWord();
         }
 
