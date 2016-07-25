@@ -50,6 +50,7 @@ namespace EA4S
                 AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<WordData>();
 
             WordData returnWord = returnList.GetRandomElement();
+            Debug.Log("Word: " + returnWord.Key);
             AppManager.Instance.ActualGameplayWordAlreadyUsed.Add(returnWord);
             return returnWord;
         }
