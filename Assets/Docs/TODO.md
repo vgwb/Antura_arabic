@@ -11,7 +11,7 @@ EA4S - Antura and the Letters
 - add all audio sentences
 - add home
 - add mood scene
-- Assessment scene
+- Assestment scene
 - Rewards scenes
 
 #### Don't Wake Up ####

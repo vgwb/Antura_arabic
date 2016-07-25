@@ -1,6 +1,12 @@
 EA4S - Antura and the Letters
 =================
 
+## 2016-07-25 - Build  ##
+
+#### Balloons ####
+
+- changed balloons explosion sound effect
+
 
 ## 2016-07-22 - Build 28 ##
 
