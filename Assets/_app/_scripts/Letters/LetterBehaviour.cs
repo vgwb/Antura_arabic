@@ -271,15 +271,15 @@ namespace EA4S {
 
             [Header("Behaviour variation settings")]
             [Range(0, 6)]
-            public float DurationRandomDelta = 2;
+            public float DurationRandomDelta = 1;
             [Range(1, 10)]
-            public float IdleDuration = 5;
+            public float IdleDuration = 2.5f;
             [Range(0, 10)]
             public float WalkDuration = 2;
             [Range(0, 10)]
             public float RunDuration = 2;
             [Range(0, 10)]
-            public float NinjaDuration = 2;
+            public float NinjaDuration = 3;
         }
 
         #endregion

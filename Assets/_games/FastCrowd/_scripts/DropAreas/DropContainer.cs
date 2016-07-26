@@ -39,7 +39,8 @@ namespace EA4S {
         public void NextArea() {
             if (actualAreaIndex < Aree.Count - 1) { 
                 actualAreaIndex++;
-                LoggerEA4S.Log("minigame", "fastcrowd", "newLetter", Aree[actualAreaIndex].Data.Key);
+                // TODO: move to FastCrowd domain
+                LoggerEA4S.Log("minigame", "fastcrowd" + FastCrowd.FastCrowd.Instance.VariationPrefix, "newLetter", Aree[actualAreaIndex].Data.Key);
                 DOTween.Sequence().InsertCallback(1, delegate () {
                     dropAreaSetPosition();
                 });

@@ -8,12 +8,23 @@ namespace EA4S {
     public class PopupMissionComponent : MonoBehaviour {
 
         public Image CompletedCheck;
-        public TextMeshProUGUI InfoLable;
-        public TextMeshProUGUI WordLable;
-        public Image WordDraw;
+        public TextMeshProUGUI TitleLable;
+        public TextMeshProUGUI MainLable;
+        public Image Draw;
         public Button ContinueButton;
-        [Tooltip("Auto close popup after seconds indicated. If -1 autoclose is disabled and appear close button for that.")]
-        public float AutoCloseTime = -1;
+
+        public class Data {
+            public string Title;
+            public string MainTextToDisplay;
+            public Sprite DrawSprite;
+            public PopupType Type;
+            /// <summary>
+            /// Auto close popup after seconds indicated. If -1 autoclose is disabled and appear close button for that.
+            /// </summary>
+            public float AutoCloseTime = -1;
+        }
+
+        public enum PopupType { New_Mission, Mission_Completed }
 
         Vector2 HidePosition;
         Vector2 ShowPosition;
@@ -32,10 +43,10 @@ namespace EA4S {
             //ContinueButton.gameObject.SetActive(AutoCloseTime < 0);
         } 
 
-        public void Show(string _word, WordData _wordData, bool _completed, TweenCallback _callback = null) {
+        public void Show(Data _data, TweenCallback _callback = null) {
             AudioManager.I.PlaySfx(Sfx.UIPopup);
+            MainLable.text = _data.MainTextToDisplay;
             // Preset for animation
-            WordLable.text = _word;
             CompletedCheck.rectTransform.DOScale(6, 0);
             CompletedCheck.DOFade(0, 0);
             // Animation sequence
@@ -45,18 +56,24 @@ namespace EA4S {
             timeScaleAtMenuOpen = Time.timeScale;
             Time.timeScale = 0; // not working
             sequence.Append(GetComponent<RectTransform>().DOAnchorPos(ShowPosition, 0.3f).SetAs(tParms));
-            if (_completed) {
-                InfoLable.text = "Word Completed!";
+            TitleLable.text = _data.Title;
+            // Complete check animation.
+            if (_data.Type == PopupType.Mission_Completed) {
                 sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
                 sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms)).OnComplete(delegate() {
                     AudioManager.I.PlaySfx(Sfx.Hit);
                 });
-            } else {
-                InfoLable.text = "New Word!";
             }
-            WordDraw.sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + _wordData.Key);
-            if (AutoCloseTime >= 0) {
-                sequence.InsertCallback(AutoCloseTime, delegate { Close(sequence, tParms, _callback); });
+            // Draw
+            if (_data.DrawSprite) {
+                Draw.gameObject.SetActive(true);
+                Draw.sprite = _data.DrawSprite;
+            } else {
+                Draw.gameObject.SetActive(false);
+            }
+            // Autoclose
+            if (_data.AutoCloseTime >= 0) {
+                sequence.InsertCallback(_data.AutoCloseTime, delegate { Close(sequence, tParms, _callback); });
             } else {
                 pendingCallback = null; // reset
                 if (_callback != null)
