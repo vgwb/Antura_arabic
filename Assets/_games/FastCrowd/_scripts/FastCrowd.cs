@@ -62,19 +62,26 @@ namespace EA4S.FastCrowd {
 
         int tutorialState = 3;
 
+        [HideInInspector]
+        public string VariationPrefix = string.Empty;
+
         #endregion
 
         #region Setup and initialization
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
+            GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as FastCrowdGameplayInfo;
+            if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words)
+                VariationPrefix = "-2";
+
             AppManager.Instance.InitDataAI();
             // put here start logic
 
             // LOG: Start //
-            LoggerEA4S.Log("minigame", "fastcrowd", "start", GameplayInfo.PlayTime.ToString());
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "start", GameplayInfo.PlayTime.ToString());
             LoggerEA4S.Save();
-            
+            AudioManager.I.PlayMusic(Music.Relax);
         }
 
 
@@ -86,17 +93,30 @@ namespace EA4S.FastCrowd {
             // Get letters and word
             ActualWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
             AudioManager.I.PlayWord(ActualWord.Key);
-            LoggerEA4S.Log("minigame", "fastcrowd", "newWord", ActualWord.Key);
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "newWord", ActualWord.Key);
             List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord.Word, AppManager.Instance.Letters);
 
             // popup info 
-            string sepLetters = string.Empty;
-            foreach (var item in gameLetters) {
-                sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
+            // Separated letters
+            if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
+                string sepLetters = string.Empty;
+                foreach (var item in gameLetters) {
+                    sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
+                }
+                PopupMission.Show(new PopupMissionComponent.Data() {
+                    Title = string.Format("Find the word {0}!", CompletedWords.Count + 1),
+                    MainTextToDisplay = string.Format("{1} - {0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
+                    Type = PopupMissionComponent.PopupType.New_Mission,
+                    DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                });
+            } else {
+                PopupMission.Show(new PopupMissionComponent.Data() {
+                    Title = string.Format("Find the word {0}!", CompletedWords.Count + 1),
+                    MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), CompletedWords.Count + 1),
+                    Type = PopupMissionComponent.PopupType.New_Mission,
+                    DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                });
             }
-            PopupMission.Show(string.Format("{1} - {0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters)
-                , ActualWord, false);
 
             int count = 0;
             // Letter from db filtered by some parameters
@@ -205,7 +225,7 @@ namespace EA4S.FastCrowd {
         private void GameplayTimer_OnTimeOver(float _time) {
             TutorialNextStepButton.gameObject.SetActive(true);
 
-            LoggerEA4S.Log("minigame", "fastcrowd", "completedWords", CompletedWords.Count.ToString());
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "completedWords", CompletedWords.Count.ToString());
             int starCount = 0;
             // Open stars evaluation
             if (CompletedWords.Count >= ThresholdStar1 && CompletedWords.Count < ThresholdStar2) {
@@ -222,7 +242,7 @@ namespace EA4S.FastCrowd {
                 WidgetSubtitles.I.DisplaySentence("game_result_retry");
             }
 
-            LoggerEA4S.Log("minigame", "fastcrowd", "endScoreStars", starCount.ToString());
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "endScoreStars", starCount.ToString());
             
             StarUI.Show(starCount);
             LoggerEA4S.Save();
@@ -233,26 +253,31 @@ namespace EA4S.FastCrowd {
         /// Called when objective block is completed (entire word).
         /// </summary>
         private void DropContainer_OnObjectiveBlockCompleted() {
-            LoggerEA4S.Log("minigame", "fastcrowd", "wordFinished", ActualWord.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "wordFinished", ActualWord.Key);
             LoggerEA4S.Save();
             AudioManager.I.PlayWord(ActualWord.Key);
             CompletedWords.Add(ActualWord);
             if (RightWordsCounter)
                 RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
-            PopupMission.Show(ActualWord.Word, ActualWord, true, delegate()
-                {
-                    ActualWord = null;
-                    // Recall gameplayBlockSetup
-                    sceneClean();
-                    gameplayBlockSetup();
-                });
+            PopupMission.Show(new PopupMissionComponent.Data() {
+                                Title = string.Format("Word {0} Completed!", CompletedWords.Count + 1),
+                                MainTextToDisplay = ActualWord.Word,
+                                Type = PopupMissionComponent.PopupType.Mission_Completed,
+                                DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                            }
+                            , delegate() {
+                                ActualWord = null;
+                                // Recall gameplayBlockSetup
+                                sceneClean();
+                                gameplayBlockSetup();
+                            } );
         }
 
         /// <summary>
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
-            LoggerEA4S.Log("minigame", "fastcrowd", "badLetterDrop", _letterView.Model.Data.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "badLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(false);
             AudioManager.I.PlaySfx(Sfx.LetterSad);
         }
@@ -261,7 +286,7 @@ namespace EA4S.FastCrowd {
         /// Risen on letter or world match.
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
-            LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterDrop", _letterView.Model.Data.Key);
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "goodLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(true);
             AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
         }
@@ -272,10 +297,10 @@ namespace EA4S.FastCrowd {
         /// <param name="_letterView"></param>
         private void Hangable_OnLetterHangOn(LetterObjectView _letterView) {
             if (_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key) {
-                LoggerEA4S.Log("minigame", "fastcrowd", "goodLetterHold", _letterView.Model.Data.Key);
+                LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "goodLetterHold", _letterView.Model.Data.Key);
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
             } else {
-                LoggerEA4S.Log("minigame", "fastcrowd", "badLetterHold", _letterView.Model.Data.Key);
+                LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "badLetterHold", _letterView.Model.Data.Key);
                 AudioManager.I.PlaySfx(Sfx.LetterAngry);
             }
         }
@@ -372,8 +397,12 @@ namespace EA4S.FastCrowd {
     [Serializable]
     public class FastCrowdGameplayInfo : AnturaGameplayInfo {
 
+        [Tooltip("Game Variant")]
+        public GameVariant Variant = GameVariant.living_letters;
+        public enum GameVariant { living_letters, living_words }
+
         [Tooltip("Play session duration in seconds.")]
-        public float PlayTime = 10;
+        public float PlayTime = 90;
 
         [Tooltip("Max number of addictional letter besides the word letters. First stage start with 0 addictional letters and every stage add 1 letter until max value reached.")]
         [Range(0, 9)]
