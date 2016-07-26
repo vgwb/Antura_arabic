@@ -21,6 +21,8 @@ namespace EA4S
                 AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
             AppManager.Instance.OnMinigameStart();
             ReadyForGameplay();
+            if (OnReadyForGameplayDone != null)
+                OnReadyForGameplayDone(GameplayInfo);
         }
 
         /// <summary>
@@ -30,5 +32,16 @@ namespace EA4S
         protected virtual void ReadyForGameplay() {
             //Debug.LogFormat("Gameplay {0} ready with data: {1}", GameplayInfo.GameId, GameplayInfo);
         }
+
+        #region events
+
+        public delegate void SubGameEvent(IGameplayInfo _gameplayInfo);
+
+        /// <summary>
+        /// Called after OnReadyForGameplay event in sub game.
+        /// </summary>
+        public static event SubGameEvent OnReadyForGameplayDone;
+
+        #endregion
     }
 }

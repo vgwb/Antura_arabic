@@ -61,7 +61,7 @@ namespace EA4S {
             if (_data.Type == PopupType.Mission_Completed) {
                 sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
                 sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms)).OnComplete(delegate() {
-                    AudioManager.I.PlaySfx(Sfx.Hit);
+                    AudioManager.I.PlaySfx(Sfx.Win);
                 });
             }
             // Draw
