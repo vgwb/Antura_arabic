@@ -201,11 +201,11 @@ namespace Google2u
 	{
 		public enum rowIds {
 			alef, beh, teh, the, jeem, hah, khah, dal, thal, reh, zay, seen, sheen, sad, dad, tah, zah, ain, ghain
-			, feh, qaf, kaf, lam, meem, noon, heh, waw, yeh, fathah, kasrah, dammah, maddah, hamza, waw_diph, yeh_diph
+			, feh, qaf, kaf, lam, meem, noon, heh, waw, yeh//, fathah, kasrah, dammah, maddah, hamza, waw_diph, yeh_diph
 		};
 		public string [] rowNames = {
 			"alef", "beh", "teh", "the", "jeem", "hah", "khah", "dal", "thal", "reh", "zay", "seen", "sheen", "sad", "dad", "tah", "zah", "ain", "ghain"
-			, "feh", "qaf", "kaf", "lam", "meem", "noon", "heh", "waw", "yeh", "fathah", "kasrah", "dammah", "maddah", "hamza", "waw_diph", "yeh_diph"
+			, "feh", "qaf", "kaf", "lam", "meem", "noon", "heh", "waw", "yeh"//, "fathah", "kasrah", "dammah", "maddah", "hamza", "waw_diph", "yeh_diph"
 		};
 		public System.Collections.Generic.List<lettersRow> Rows = new System.Collections.Generic.List<lettersRow>();
 
@@ -222,7 +222,7 @@ namespace Google2u
 
 		private letters()
 		{
-			Rows.Add( new lettersRow("alef", "1", "alif", "letter", "long vowel", "", "", "aa", "ا", "ا", "ﺎ        ", "ﺎ\t", "FE8D", "FE8D", "FE8E", "FE8E", ""));
+			Rows.Add( new lettersRow("alef", "1", "alif", "letter", "long vowel", "", "", "aa", "ا", "ا", "ﺎ", "ﺎ", "FE8D", "FE8D", "FE8E", "FE8E", ""));
 			Rows.Add( new lettersRow("beh", "2", "bā’", "letter", "cons", "", "moon", "b", "ب‎", "بـ‎", "ـبـ‎", "ـب‎", "0628", "FE91", "FE92", "FE90", ""));
 			Rows.Add( new lettersRow("teh", "3", "tā’", "letter", "cons", "", "sun", "t", "ت‎", "تـ‎", "ـتـ‎", "ـت‎", "062A", "FE97", "FE98", "FE96", ""));
 			Rows.Add( new lettersRow("the", "4", "thā’", "letter", "cons", "", "sun", "th", "ث‎", "ثـ‎", "ـثـ‎", "ـث‎", "062B", "FE9B", "FE9C", "FE9A", ""));
@@ -250,13 +250,13 @@ namespace Google2u
 			Rows.Add( new lettersRow("heh", "26", "hā’", "letter", "cons", "", "moon", "h", "ه‎", "هـ‎", "ـهـ‎", "ـه‎", "0647", "FEEB", "FEEC", "FEEA", ""));
 			Rows.Add( new lettersRow("waw", "27", "wāw", "letter", "long vowel", "", "", "w, uu", "و‎", "و‎", "ـو‎", "ـو‎", "0648", "0648", "FEEE", "FEEE", ""));
 			Rows.Add( new lettersRow("yeh", "28", "yā’", "letter", "long vowel", "", "", "y, ii", "ي‎", "يـ‎", "ـيـ‎", "ـي", "064A", "FEF3", "FEF4", "FEF2", ""));
-			Rows.Add( new lettersRow("fathah", "", "fatḥah", "symbol", "diacritic symbol", "", "", "a", "ـَ", "", "", "", "", "", "", "", "5"));
-			Rows.Add( new lettersRow("kasrah", "", "kasrah", "symbol", "diacritic symbol", "", "", "i", "ـِ", "", "", "", "", "", "", "", "5"));
-			Rows.Add( new lettersRow("dammah", "", "ḍammah", "symbol", "diacritic symbol", "", "", "u", "ـُ", "", "", "", "", "", "", "", "5"));
-			Rows.Add( new lettersRow("maddah", "", "maddah", "symbol", "variation", "applied just on long vowel", "", "muted", "ـٓ", "", "", "", "", "", "", "", "5"));
-			Rows.Add( new lettersRow("hamza", "", "hamza", "symbol", "variation", "applied just on long vowel", "", "", "", "", "", "", "", "", "", "", ""));
-			Rows.Add( new lettersRow("waw_diph", "", "wāw diph", "diphtong", "", "variation wāw", "", "", "", "", "", "", "", "", "", "", ""));
-			Rows.Add( new lettersRow("yeh_diph", "", "yā’ diph", "diphtong", "", "variation of yā’", "", "", "", "", "", "", "", "", "", "", ""));
+			//Rows.Add( new lettersRow("fathah", "", "fatḥah", "symbol", "diacritic symbol", "", "", "a", "ـَ", "", "", "", "", "", "", "", "5"));
+			//Rows.Add( new lettersRow("kasrah", "", "kasrah", "symbol", "diacritic symbol", "", "", "i", "ـِ", "", "", "", "", "", "", "", "5"));
+			//Rows.Add( new lettersRow("dammah", "", "ḍammah", "symbol", "diacritic symbol", "", "", "u", "ـُ", "", "", "", "", "", "", "", "5"));
+			//Rows.Add( new lettersRow("maddah", "", "maddah", "symbol", "variation", "applied just on long vowel", "", "muted", "ـٓ", "", "", "", "", "", "", "", "5"));
+			//Rows.Add( new lettersRow("hamza", "", "hamza", "symbol", "variation", "applied just on long vowel", "", "", "", "", "", "", "", "", "", "", ""));
+			//Rows.Add( new lettersRow("waw_diph", "", "wāw diph", "diphtong", "", "variation wāw", "", "", "", "", "", "", "", "", "", "", ""));
+			//Rows.Add( new lettersRow("yeh_diph", "", "yā’ diph", "diphtong", "", "variation of yā’", "", "", "", "", "", "", "", "", "", "", ""));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{
