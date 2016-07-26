@@ -1,6 +1,18 @@
 EA4S - Antura and the Letters
 =================
 
+## 2016-07-26 - Build #35 ##
+
+#### General ####
+- Fix arabic letters DB bug that causes some crash during gameplay.
+
+#### Fast Crowd ####
+- improved Antura moment.
+- improved right letter relase animations and effects.
+- textual tutorial on start.
+- added word draw on mission feedback popup.
+- fix release letter during Antura moment bug.
+
 ## 2016-07-25 - Build  ##
 
 #### General ####
