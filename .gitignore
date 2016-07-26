@@ -21,3 +21,6 @@ Icon7
 []Bb]uilds/
 LocalTemp/
 LocalTemp.meta
+
+# private g2u logon settings
+**/g2uPrefs.bin*
