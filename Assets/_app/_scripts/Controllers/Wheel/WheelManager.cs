@@ -53,7 +53,13 @@ namespace EA4S
 
         public void OnPopuplicked() {
             if (isGameSelected) {
-                SceneManager.LoadScene(gameData[currentGameIndex].SceneName);
+                if (gameData[currentGameIndex].Code == "fastcrowd") {
+                    FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
+                    gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
+                    AppManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
+                }
+                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(gameData[currentGameIndex].SceneName);
+                //SceneManager.LoadScene(gameData[currentGameIndex].SceneName);
             }
         }
 
