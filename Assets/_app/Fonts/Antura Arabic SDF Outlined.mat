@@ -85,15 +85,15 @@ Material:
       data:
         first:
           name: _FaceDilate
-        second: 0
+        second: 0.43
       data:
         first:
           name: _OutlineWidth
-        second: 0.182
+        second: 0.381
       data:
         first:
           name: _OutlineSoftness
-        second: 0
+        second: 0.211
       data:
         first:
           name: _GlowOffset
@@ -125,15 +125,15 @@ Material:
       data:
         first:
           name: _ScaleRatioA
-        second: 0.8333333
+        second: 0.8153946
       data:
         first:
           name: _ScaleRatioB
-        second: 0.8333333
+        second: 0.475
       data:
         first:
           name: _ScaleRatioC
-        second: 0.8333333
+        second: 0.475
       data:
         first:
           name: _TextureWidth
@@ -266,7 +266,7 @@ Material:
       data:
         first:
           name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0.9607844, g: 0.9215687, b: 0.79215693, a: 1}
       data:
         first:
           name: _GlowColor

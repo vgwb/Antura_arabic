@@ -8,11 +8,23 @@ namespace EA4S
     /// </summary>
     public class DTester : MonoBehaviour
     {
+#if UNITY_EDITOR
         void Update()
         {
+            // SceneTransitioner - SPACE to show/hide
             if (Input.GetKeyDown(KeyCode.Space)) {
                 SceneTransitioner.Show(!SceneTransitioner.IsShown);
             }
+
+            // Subtitles - T to show text, SHIFT+T to show keeper text, CTRL/CMD+T to close
+            if (WidgetSubtitles.I != null) {
+                if (Input.GetKeyDown(KeyCode.T)) {
+                    if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand)) {
+                        WidgetSubtitles.I.Close();
+                    } else WidgetSubtitles.I.DisplaySentence("من فضلك، حاول اصطياد البعض منها. من فضلك، حاول التقاطها.", 2, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+                }
+            }
         }
+#endif
     }
 }
