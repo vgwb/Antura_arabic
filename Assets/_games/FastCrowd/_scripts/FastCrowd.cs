@@ -44,7 +44,7 @@ namespace EA4S.FastCrowd {
         [Header("Gameplay")]
         public int MinLettersOnField = 10;
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
-        public WordData ActualWord;
+        
         public List<WordData> CompletedWords = new List<WordData>();
 
         [Header("Manager Settings")]
@@ -59,7 +59,14 @@ namespace EA4S.FastCrowd {
 
         public TMPro.TextMeshProUGUI RightWordsCounter;
         public bool IsAnturaMoment = false;
-
+        /// <summary>
+        /// Actual word.
+        /// </summary>
+        WordData ActualWord;
+        /// <summary>
+        /// Actual round element data (letter of word, group of words, etc...).
+        /// </summary>
+        List<ILivingLetterData> dataList = new List<ILivingLetterData>();
         int tutorialState = 3;
 
         [HideInInspector]
@@ -94,41 +101,58 @@ namespace EA4S.FastCrowd {
             ActualWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
             AudioManager.I.PlayWord(ActualWord.Key);
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "newWord", ActualWord.Key);
-            List<LetterData> gameLetters = ArabicAlphabetHelper.LetterDataListFromWord(ActualWord.Word, AppManager.Instance.Letters);
+
+            // data from db 
+            dataList = new List<ILivingLetterData>();
+            string sepLetters = string.Empty;
+            if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
+                foreach (var data in ArabicAlphabetHelper.LetterDataListFromWord(ActualWord.Word, AppManager.Instance.Letters)) {
+                    dataList.Add(data);
+                    sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(data.Isolated_Unicode) + " ";
+                };
+            } else {
+                dataList.Add(ActualWord);
+                for (int i = 0; i < GameplayInfo.MaxNumbOfWrongLettersNoise; i++) {
+                    WordData newWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    if (!dataList.Contains(newWord)) { 
+                        dataList.Add(newWord);
+                        i++;
+                    }
+                }
+            }
 
             // popup info 
             // Separated letters
             if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
-                string sepLetters = string.Empty;
-                foreach (var item in gameLetters) {
-                    sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(item.Isolated_Unicode) + " ";
-                }
                 PopupMission.Show(new PopupMissionComponent.Data() {
                     Title = string.Format("Find the word {0}!", CompletedWords.Count + 1),
                     MainTextToDisplay = string.Format("{1} - {0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
                     Type = PopupMissionComponent.PopupType.New_Mission,
-                    DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                    DrawSprite = ActualWord.DrawForLivingLetter,
                 });
             } else {
+                string stringListOfWords = string.Empty;
+                foreach (var w in dataList)
+                    stringListOfWords += w.TextForLivingLetter + " ";
+                
                 PopupMission.Show(new PopupMissionComponent.Data() {
-                    Title = string.Format("Find the word {0}!", CompletedWords.Count + 1),
-                    MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), CompletedWords.Count + 1),
+                    Title = string.Format("Find the word group {0}!", CompletedWords.Count + 1),
+                    MainTextToDisplay = string.Format("{0}", stringListOfWords),
                     Type = PopupMissionComponent.PopupType.New_Mission,
-                    DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
                 });
             }
 
             int count = 0;
-            // Letter from db filtered by some parameters
-            foreach (LetterData letterData in gameLetters) {
+
+            foreach (ILivingLetterData data in dataList) {
                 LetterObjectView letterObjectView = Instantiate(LetterPref);
                 //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
                 Vector3 newPosition = Vector3.zero;
                 GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 20f, out newPosition);
                 letterObjectView.transform.position = newPosition;
-                letterObjectView.Init(letterData, GameplayInfo.BehaviourSettings);
-                PlaceDropAreaElement(letterData, count);
+                letterObjectView.Init(data, GameplayInfo.BehaviourSettings);
+                PlaceDropAreaElement(data, count);
                 count++;
             }
 
@@ -140,13 +164,14 @@ namespace EA4S.FastCrowd {
                 Vector3 newPosition = Vector3.zero;
                 GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 20f, out newPosition);
                 letterObjectView.transform.position = newPosition;
-                letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), GameplayInfo.BehaviourSettings);
+                // Get random data element of different type according with game variation type
+                if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
+                    letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), GameplayInfo.BehaviourSettings);
+                } else {
+                    letterObjectView.Init(WordData.GetWordCollection().GetRandomElement(), GameplayInfo.BehaviourSettings);
+                }
             }
             DropAreaContainer.SetupDone();
-        }
-
-        private void LetterDataListFromWord(object _word, object _vocabulary) {
-            throw new NotImplementedException();
         }
 
         void sceneClean() {
@@ -163,7 +188,7 @@ namespace EA4S.FastCrowd {
         /// Place drop object area in drop object area container.
         /// </summary>
         /// <param name="_letterData"></param>
-        void PlaceDropAreaElement(LetterData _letterData, int position) {
+        void PlaceDropAreaElement(ILivingLetterData _letterData, int position) {
             DropSingleArea dropSingleArea = Instantiate(DropSingleAreaPref);
             dropSingleArea.transform.SetParent(DropAreaContainer.transform, false);
             dropSingleArea.transform.position = Camera.main.transform.position;
@@ -253,24 +278,56 @@ namespace EA4S.FastCrowd {
         /// Called when objective block is completed (entire word).
         /// </summary>
         private void DropContainer_OnObjectiveBlockCompleted() {
-            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "wordFinished", ActualWord.Key);
-            LoggerEA4S.Save();
-            AudioManager.I.PlayWord(ActualWord.Key);
-            CompletedWords.Add(ActualWord);
-            if (RightWordsCounter)
-                RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
-            PopupMission.Show(new PopupMissionComponent.Data() {
-                                Title = string.Format("Word {0} Completed!", CompletedWords.Count + 1),
-                                MainTextToDisplay = ActualWord.Word,
-                                Type = PopupMissionComponent.PopupType.Mission_Completed,
-                                DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
-                            }
-                            , delegate() {
-                                ActualWord = null;
-                                // Recall gameplayBlockSetup
-                                sceneClean();
-                                gameplayBlockSetup();
-                            } );
+            ObjectiveBlockCompletedSequence(GameplayInfo.Variant);
+        }
+
+        /// <summary>
+        /// All action for BlockCompleted event for any variation.
+        /// </summary>
+        /// <param name="_variant"></param>
+        void ObjectiveBlockCompletedSequence(FastCrowdGameplayInfo.GameVariant _variant) {
+            switch (_variant) {
+
+                case FastCrowdGameplayInfo.GameVariant.living_letters:
+                    LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "wordFinished", ActualWord.Key);
+                    LoggerEA4S.Save();
+                    AudioManager.I.PlayWord(ActualWord.Key);
+                    CompletedWords.Add(ActualWord);
+                    if (RightWordsCounter)
+                        RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
+                    PopupMission.Show(new PopupMissionComponent.Data() {
+                        Title = string.Format("Word {0} Completed!", CompletedWords.Count),
+                        MainTextToDisplay = ActualWord.Word,
+                        Type = PopupMissionComponent.PopupType.Mission_Completed,
+                        DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                        }
+                        , delegate () {
+                            ActualWord = null;
+                            // Recall gameplayBlockSetup
+                            sceneClean();
+                            gameplayBlockSetup();
+                        });
+                    break;
+
+                case FastCrowdGameplayInfo.GameVariant.living_words:
+                    string stringListOfWords = string.Empty;
+                    foreach (var w in dataList)
+                        stringListOfWords += w.TextForLivingLetter + " ";
+                    PopupMission.Show(new PopupMissionComponent.Data() {
+                        Title = string.Format("Word Group {0} Completed!", CompletedWords.Count),
+                        MainTextToDisplay = stringListOfWords,
+                        Type = PopupMissionComponent.PopupType.Mission_Completed,
+                        DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                        }
+                        , delegate () {
+                            ActualWord = null;
+                            // Recall gameplayBlockSetup
+                            sceneClean();
+                            gameplayBlockSetup();
+                        });
+                    break;
+
+            }
         }
 
         /// <summary>
@@ -287,8 +344,16 @@ namespace EA4S.FastCrowd {
         /// </summary>
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "goodLetterDrop", _letterView.Model.Data.Key);
-            ActionFeedback.Show(true);
-            AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
+            if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
+                ActionFeedback.Show(true);
+                AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
+            } else { 
+                LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "wordFinished", ActualWord.Key);
+                LoggerEA4S.Save();
+                ActionFeedback.Show(true);
+                AudioManager.I.PlayWord(_letterView.Model.Data.Key);
+                CompletedWords.Add(ActualWord);
+            }
         }
 
         /// <summary>
