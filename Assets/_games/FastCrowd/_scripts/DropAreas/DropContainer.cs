@@ -42,13 +42,23 @@ namespace EA4S {
                 // TODO: move to FastCrowd domain
                 LoggerEA4S.Log("minigame", "fastcrowd" + FastCrowd.FastCrowd.Instance.VariationPrefix, "newLetter", Aree[actualAreaIndex].Data.Key);
                 DOTween.Sequence().InsertCallback(1, delegate () {
+                    // Todo: move to FastCrowd domain
+                    if (FastCrowd.FastCrowd.Instance.GameplayInfo.Variant == FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words)
+                        AudioManager.I.PlaySfx(Sfx.Hit);
                     dropAreaSetPosition();
                 });
             } else {
                 actualAreaIndex++;
                 DOTween.Sequence().InsertCallback(1, delegate () {
                     dropAreaSetPosition(delegate () {
-                        DOTween.Sequence().InsertCallback(2, delegate () {
+                        // Todo: move to FastCrowd domain
+                        float waitAtEnd = 2;
+                        if (FastCrowd.FastCrowd.Instance.GameplayInfo.Variant == FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words) { 
+                            AudioManager.I.PlaySfx(Sfx.Hit);
+                            waitAtEnd = 1;
+                        }
+                            
+                        DOTween.Sequence().InsertCallback(waitAtEnd, delegate () {
                             if (OnObjectiveBlockCompleted != null)
                                 OnObjectiveBlockCompleted();
                         });
