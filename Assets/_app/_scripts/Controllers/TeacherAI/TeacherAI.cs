@@ -40,14 +40,13 @@ namespace EA4S
                 availableVocabulary = getVocabularySubset(bodyPartsWords);
 
             List<WordData> returnList = new List<WordData>();
+            if(AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count) // if already used all available words... restart.
+                AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<WordData>();
             foreach (WordData w in availableVocabulary) {
                 if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w)) {
                     returnList.Add(w); // Only added if not already used
                 }
             }
-            // If all words already used (not new word in return list...)
-            if (returnList.Count == 0) // ... reset already used word list.
-                AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<WordData>();
 
             WordData returnWord = returnList.GetRandomElement();
             Debug.Log("Word: " + returnWord.Key);
