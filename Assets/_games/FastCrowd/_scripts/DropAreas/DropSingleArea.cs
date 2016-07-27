@@ -7,17 +7,26 @@ namespace EA4S {
     public class DropSingleArea : MonoBehaviour {
 
         public TMP_Text LetterLable;
-        public LetterData Data;
+        public SpriteRenderer DrawSprite;
+        public ILivingLetterData Data;
         public DropContainer DropContain;
 
         Vector3 enabledPos, disabledPos;
 
         #region Api
-        public void Init(LetterData _letterData, DropContainer _dropContainer) {
+        public void Init(ILivingLetterData _data, DropContainer _dropContainer) {
             DropContain = _dropContainer;
             DropContain.Aree.Add(this);
-            Data = _letterData;
-            LetterLable.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
+            Data = _data;
+            if (_data.DataType == LivingLetterDataType.Letter) {
+                LetterLable.text = Data.TextForLivingLetter;
+                DrawSprite.gameObject.SetActive(false);
+            } else {
+                LetterLable.text = string.Empty;
+                DrawSprite.gameObject.SetActive(true); 
+                DrawSprite.sprite = Data.DrawForLivingLetter;
+            }
+
             AreaState = State.disabled;
         }
 

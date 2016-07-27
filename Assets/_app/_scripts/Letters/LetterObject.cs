@@ -8,9 +8,9 @@ namespace EA4S {
 
     public class LetterObject {
 
-        public LetterData Data;
+        public ILivingLetterData Data;
 
-        public LetterObject(LetterData _data) {
+        public LetterObject(ILivingLetterData _data) {
             Data = _data;
         }
 

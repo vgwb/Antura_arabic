@@ -45,10 +45,10 @@ namespace EA4S.FastCrowd {
 
         IEnumerator AddLetter(LetterObjectView _letterView, float _delay) {
             yield return new WaitForSeconds(_delay);
-            CompletedLetters.Add(_letterView.Model.Data);
+            CompletedLetters.Add(_letterView.Model.Data as LetterData);
             AudioManager.I.PlaySfx(EA4S.Sfx.Hit);
             transform.DOShakeScale(1.5f);
-            UpdateWord();
+            UpdateWord(); 
         }
 
         private void DropContainer_OnObjectiveBlockCompleted() {

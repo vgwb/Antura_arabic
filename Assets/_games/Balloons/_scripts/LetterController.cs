@@ -61,7 +61,7 @@ namespace Balloons
         public void Init(LetterData _data)
         {
             LetterModel = new LetterObject(_data);
-            LetterView.text = ArabicAlphabetHelper.GetLetterFromUnicode(LetterModel.Data.Isolated_Unicode);
+            LetterView.text = _data.TextForLivingLetter; 
         }
 
         void OnMouseDown()

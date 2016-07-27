@@ -19,7 +19,7 @@ public class StageTileController : MonoBehaviour
     public void SetLetter(LetterData _data)
     {
         letterObject = new LetterObject(_data);
-        var text = ArabicAlphabetHelper.GetLetterFromUnicode(letterObject.Data.Isolated_Unicode);
+        var text = _data.TextForLivingLetter;
         letterText.text = text;
         //tileText.text = text;
     }

@@ -1,10 +1,19 @@
-﻿using Google2u;
+﻿using UnityEngine;
+using Google2u;
 using System.Collections.Generic;
+using System;
 
 namespace EA4S {
 
-    public class WordData {
-        public string Key;
+    public class WordData : ILivingLetterData {
+
+        public LivingLetterDataType DataType {
+            get { return LivingLetterDataType.Word; }
+        }
+        public string Key {
+            get { return key; }
+            set { key = value; }
+        }
         public string Kind;
         public string Category;
         public string Stage;
@@ -15,6 +24,8 @@ namespace EA4S {
         public string DifficultyLevel;
         public string NumberOfLetters;
         public string Group;
+
+        private string key;
 
         public WordData(string _keyRow, wordsRow _wordRow) {
             Key = _keyRow;
@@ -32,6 +43,7 @@ namespace EA4S {
 
         #region API
         static List<WordData> vocabulary = null;
+
         /// <summary>
         /// Contain entire cached vocabolary.
         /// </summary>
@@ -68,7 +80,23 @@ namespace EA4S {
                 return returnList.FindAll(w => w.Category == _category);
             return returnList;
         }
+
+        #region API
+        /// <summary>
+        /// Living Letter Text To Display.
+        /// </summary>
+        public string TextForLivingLetter {
+            get { return ArabicAlphabetHelper.ParseWord(Word, AppManager.Instance.Letters); }
+        }
+
+        /// <summary>
+        /// Return draw of word.
+        /// </summary>
+        public Sprite DrawForLivingLetter {
+            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Key); }
+        }
         #endregion
-        
+
+        #endregion
     }
 }
