@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: d5079a92cd2e68d4f9ce8a8be8c75bf1
-timeCreated: 1469608521
+guid: 6ec048aa7bf421149af2d14ce677cf74
+timeCreated: 1469616798
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -30,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: 1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -52,7 +52,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: UITransitions
   userData: 
   assetBundleName: 
   assetBundleVariant: 

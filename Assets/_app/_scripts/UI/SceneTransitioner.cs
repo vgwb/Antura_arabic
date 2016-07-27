@@ -13,7 +13,7 @@ namespace EA4S
         public float AnimationDuration = 0.75f;
         [Header("References")]
         public Image MaskCover;
-        public RectTransform Icon;
+        public RectTransform Icon, Logo;
 
         public static bool IsShown { get; private set; }
 
@@ -61,15 +61,17 @@ namespace EA4S
             GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
             go.name = "[SceneTransitioner]";
             DontDestroyOnLoad(go);
-            instance = go.GetComponent<SceneTransitioner>();
         }
 
         void Awake()
         {
+            instance = this.GetComponent<SceneTransitioner>();
+
             tween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(MaskCover.DOFillAmount(0, AnimationDuration).From())
-                .Join(Icon.DOScale(0.01f, AnimationDuration * 0.3f).From())
-                .Join(Icon.DOPunchRotation(new Vector3(0, 0, 60), AnimationDuration * 0.9f, 6))
+                .Join(Icon.DOScale(0.01f, AnimationDuration * 0.6f).From())
+                .Join(Icon.DOPunchRotation(new Vector3(0, 0, 90), AnimationDuration * 0.9f, 6))
+                .Insert(AnimationDuration * 0.4f, Logo.DOScale(0.01f, AnimationDuration * 0.5f).From().SetEase(Ease.OutBack))
                 .OnPlay(() => this.gameObject.SetActive(true))
                 .OnRewind(OnRewind)
                 .OnComplete(OnComplete);
