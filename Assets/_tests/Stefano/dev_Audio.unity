@@ -85,7 +85,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &333448681
+--- !u!1001 &227948847
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -948,7 +948,7 @@ CanvasRenderer:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11439158, guid: 8d2a6e676863b4658a06be3b5a745eca,
     type: 2}
-  m_PrefabInternal: {fileID: 333448681}
+  m_PrefabInternal: {fileID: 227948847}
   m_Script: {fileID: 11500000, guid: 23f042f9bb26c4a7c8d6d8ba0769b11e, type: 3}
 --- !u!1 &1954570277
 GameObject:
