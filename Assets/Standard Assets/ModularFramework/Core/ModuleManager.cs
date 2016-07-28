@@ -42,7 +42,7 @@ namespace ModularFramework.Core {
         public void ModulesSetup() {
             UIModule.SetupModule(new UIModuleDefault());
             //LocalizationModule.SetupModule(new LocalizationModuleGoogle2U());
-            SceneModule.SetupModule(new SceneModuleDefault());
+            //SceneModule.SetupModule(new SceneModuleDefault());
             //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
             // For Test 
             DummyModule.SetupModule(new DummyModuleDefault());
@@ -74,6 +74,11 @@ namespace ModularFramework.Core {
             if (_gamemanagerGO.GetComponentInChildren<ModuleInstaller<IUIModule>>()) {
                 IUIModule moduleInstance = _gamemanagerGO.GetComponentInChildren<ModuleInstaller<IUIModule>>().InstallModule();
                 UIModule.SetupModule(moduleInstance, moduleInstance.Settings);
+            }
+            // SceneModule Install
+            if (_gamemanagerGO.GetComponentInChildren<ModuleInstaller<ISceneModule>>()) {
+                ISceneModule moduleInstance = _gamemanagerGO.GetComponentInChildren<ModuleInstaller<ISceneModule>>().InstallModule();
+                SceneModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
         }

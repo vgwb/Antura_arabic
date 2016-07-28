@@ -793,6 +793,10 @@ Prefab:
       propertyPath: UseTestGameplayInfo
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+      propertyPath: GameplayInfo.Variant
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
   m_IsPrefabParent: 0
@@ -2686,6 +2690,8 @@ MonoBehaviour:
     HighQualityGfx: 0
   ActualGame: 
   StartMood: 0
+  StartMoodEval: 0
+  EndMoodEval: 0
 --- !u!4 &480134044
 Transform:
   m_ObjectHideFlags: 0
