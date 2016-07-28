@@ -64,7 +64,7 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             LoggerEA4S.Save();
 
-            AudioManager.I.PlayMusic(Music.Relax);
+            AudioManager.I.PlayMusic(Music.Lullaby);
             AudioManager.I.PlaySound("Dog/Snoring");
 
             GameIntro();
