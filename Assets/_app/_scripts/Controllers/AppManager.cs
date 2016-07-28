@@ -37,6 +37,14 @@ namespace EA4S
         /// False if not executed start mood eval.
         /// </summary>
         public bool StartMood = false;
+        /// <summary>
+        /// Start Mood value. Values 0,1,2,3,4.
+        /// </summary>
+        public int StartMoodEval = 0;
+        /// <summary>
+        /// End Mood value. Values 0,1,2,3,4.
+        /// </summary>
+        public int EndMoodEval = 0;
         #endregion
 
         #endregion
@@ -76,11 +84,7 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
-            // SceneModule Install
-            if (GetComponentInChildren<ModuleInstaller<ISceneModule>>()) {
-                ISceneModule moduleInstance = GetComponentInChildren<ModuleInstaller<ISceneModule>>().InstallModule();
-                Modules.SceneModule.SetupModule(moduleInstance, moduleInstance.Settings);
-            }
+
         }
 
         void CachingLetterData() {

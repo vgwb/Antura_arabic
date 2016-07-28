@@ -15,8 +15,15 @@ namespace EA4S {
         /// </summary>
         /// <param name="_mood"></param>
         public void MoodSelected(int _mood) {
-            /// - save mood
-            /// - log
+            /// save mood and log
+            if (!AppManager.Instance.StartMood) {
+                AppManager.Instance.StartMoodEval = _mood;
+                LoggerEA4S.Log("app", "user", "mood_start", _mood.ToString());
+            } else {
+                AppManager.Instance.EndMoodEval = _mood;
+                LoggerEA4S.Log("app", "user", "mood_end", _mood.ToString());
+            }
+            LoggerEA4S.Save();
             /// - change scene
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
         }

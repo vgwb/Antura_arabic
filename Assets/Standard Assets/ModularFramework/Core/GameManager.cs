@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using ModularFramework.Modules;
 
 namespace ModularFramework.Core {
-    public class GameManager : Singleton<GameManager> {
+    public abstract class GameManager : Singleton<GameManager> {
 
         #region Game Settings
         public GameSettings GameSettings = new GameSettings();
@@ -51,8 +51,8 @@ namespace ModularFramework.Core {
         #region Event Subscription
 
         void OnLevelWasLoaded(int level) {
+            Debug.Log("OnLevelWasLoaded");
             Modules.SceneModule.SceneLoadedBehaviour();
-            
         }
 
         #endregion
