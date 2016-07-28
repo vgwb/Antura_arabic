@@ -86,23 +86,24 @@ namespace EA4S.DontWakeUp
         void GameIntro() {
             currentState = MinigameState.GameIntro;
             WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
-            WidgetNextButton.I.Show(ClickedNext);
+            ContinueScreen.Show(ClickedNext, ContinueScreenMode.Button);
         }
 
         public void GameIntroFinished() {
-            WidgetSubtitles.I.DisplaySentence("");
+            WidgetSubtitles.I.Close();
             InitRound();
         }
 
         public void ClickedNext() {
             Debug.Log("ClickedNext()");
             switch (currentState) {
-                case MinigameState.RoundIntro:
-                    WidgetSubtitles.I.DisplaySentence("");
-                    currentState = MinigameState.Playing;
-                    break;
                 case MinigameState.GameIntro:
                     GameIntroFinished();
+                    break;
+                case MinigameState.RoundIntro:
+                    WidgetSubtitles.I.Close();
+                    WidgetPopupWindow.Show(false);
+                    currentState = MinigameState.Playing;
                     break;
                 case MinigameState.RoundEnd:
                     currentLevelController.DoAlarmOff();
@@ -124,7 +125,8 @@ namespace EA4S.DontWakeUp
             AudioManager.I.PlayWord(currentWord.Key);
 
             WidgetPopupWindow.I.Init(ClickedNext, "Carefully drag this word", currentWord.Key, currentWord.Word);
-            WidgetSubtitles.I.DisplaySentence("init round");
+            WidgetPopupWindow.Show(true);
+            //WidgetSubtitles.I.DisplayDebug("init round");
         }
 
         void SetupLevel() {
@@ -146,16 +148,16 @@ namespace EA4S.DontWakeUp
                 switch (how) {
                     case How2Die.TouchedAlarm:
                         currentLevelController.DoAlarmEverything();
-                        WidgetSubtitles.I.DisplaySentence("do not touch the alarms!");
+                        WidgetSubtitles.I.DisplayDebug("do not touch the alarms!");
                         break;
                     case How2Die.TouchedDog:
-                        WidgetSubtitles.I.DisplaySentence("do not touch Antura!");
+                        WidgetSubtitles.I.DisplayDebug("do not touch Antura!");
                         break;
                     case How2Die.TooFast:
-                        WidgetSubtitles.I.DisplaySentence("don't go too fast!");
+                        WidgetSubtitles.I.DisplayDebug("don't go too fast!");
                         break;
                     case How2Die.Fall:
-                        WidgetSubtitles.I.DisplaySentence("don't fall!");
+                        WidgetSubtitles.I.DisplayDebug("don't fall!");
                         break;
                 }
 
@@ -171,7 +173,7 @@ namespace EA4S.DontWakeUp
                 LivesLeft = LivesLeft - 1;
 
                 //WidgetSubtitles.I.DisplaySentence("game_result_retry");
-                WidgetNextButton.I.Show(ClickedNext);
+                ContinueScreen.Show(ClickedNext, ContinueScreenMode.Button);
             } else {
                 GameLost();
             }
