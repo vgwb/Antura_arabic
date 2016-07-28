@@ -29,7 +29,8 @@ namespace EA4S
             if (WidgetSubtitles.I != null) {
                 if (Input.GetKeyDown(KeyCode.C)) {
                     ContinueScreenMode continueScreenMode = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)
-                        ? ContinueScreenMode.Fullscreen : ContinueScreenMode.ButtonFullscreen;
+//                        ? ContinueScreenMode.FullscreenBg : ContinueScreenMode.ButtonWithBgFullscreen;
+                        ? ContinueScreenMode.Button : ContinueScreenMode.ButtonWithBg;
                     ContinueScreen.Show(null, continueScreenMode);
                 }
             }
