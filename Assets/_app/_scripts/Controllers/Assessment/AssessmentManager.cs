@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
 
-namespace EA4S {
-    public class AssessmentManager : MonoBehaviour {
+namespace EA4S
+{
+    public class AssessmentManager : MonoBehaviour
+    {
 
         public List<Color> Colors;
 
@@ -30,6 +32,9 @@ namespace EA4S {
                 Words[i].Init(newDatas[i], true, Colors[i]);
                 Words[i].InjectManager(this);
             }
+
+
+            WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true);
         }
 
         public void OnReleaseOnWord(AssessmentObject _objDrag, AssessmentObject _objDrop) {
