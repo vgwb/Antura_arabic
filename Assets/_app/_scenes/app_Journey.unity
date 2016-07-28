@@ -2865,7 +2865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneTypeToLoad: 4
-  SceneNameCustom: Wheel
+  SceneNameCustom: app_Wheel
   ActualGame: 0
   GameId: 
 --- !u!1 &296153827

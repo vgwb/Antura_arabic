@@ -2557,6 +2557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6124833a6a23541558e2e738b4e04f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseTestGameplayInfo: 0
   wordPrompt: {fileID: 1144538341}
   floatingLetterPrefab: {fileID: 111690, guid: edf0b39500b0d4feab6468093368450c, type: 2}
   floatingLetterLocations:
@@ -2720,6 +2721,7 @@ MonoBehaviour:
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
   ActualGame: 
+  StartMood: 0
 --- !u!4 &512341150
 Transform:
   m_ObjectHideFlags: 0
@@ -4969,6 +4971,10 @@ Prefab:
     - target: {fileID: 22478574, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435016, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
+      propertyPath: SceneNameCustom
+      value: app_Wheel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
