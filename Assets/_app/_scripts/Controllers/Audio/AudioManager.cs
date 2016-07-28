@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using DG.DeAudio;
 
 namespace EA4S
 {
@@ -35,17 +34,11 @@ namespace EA4S
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager I;
-
-        DeAudioClipData Music1;
-        DeAudioClipData Hit;
-
-
         static System.Action OnNotifyEndAudio;
 
         void Awake() {
             I = this;
         }
-
 
         public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject) {
             // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
@@ -188,7 +181,6 @@ namespace EA4S
             }
             return eventName;
         }
-
 
     }
 }
