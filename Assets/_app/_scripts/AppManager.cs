@@ -9,6 +9,8 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
+
+
         #region Overrides
         new public AppSettings GameSettings = new AppSettings();
 
@@ -62,6 +64,11 @@ namespace EA4S
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
+            }
+            // SceneModule Install
+            if (GetComponentInChildren<ModuleInstaller<ISceneModule>>()) {
+                ISceneModule moduleInstance = GetComponentInChildren<ModuleInstaller<ISceneModule>>().InstallModule();
+                Modules.SceneModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
         }
 

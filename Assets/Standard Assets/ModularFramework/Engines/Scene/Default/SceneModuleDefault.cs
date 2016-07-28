@@ -36,13 +36,14 @@ namespace ModularFramework.Modules {
         }
         #endregion
 
-        public void LoadSceneWithTransition(string _sceneToLoad, SceneTransition _transitionSettings) {
-            UnloadSceneWithTransition(_transitionSettings);
+        public virtual void LoadSceneWithTransition(string _sceneToLoad, SceneTransition _transitionSettings) {
             UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneToLoad);
         }
 
         public void UnloadSceneWithTransition(SceneTransition _transitionSettings) {
-            //UnityEngine.SceneManagement.SceneManager.UnloadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
+
+        public virtual void SceneLoadedBehaviour() {
         }
     }
 

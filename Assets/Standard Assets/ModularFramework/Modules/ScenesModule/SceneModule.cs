@@ -88,6 +88,13 @@ namespace ModularFramework.Modules {
         }
 
         /// <summary>
+        /// Scene loaded behaviour.
+        /// </summary>
+        public void SceneLoadedBehaviour() {
+            ConcreteModuleImplementation.SceneLoadedBehaviour();
+        }
+
+        /// <summary>
         /// Unload scene.
         /// </summary>
         /// <param name="_transitionSettings"></param>
@@ -157,6 +164,7 @@ namespace ModularFramework.Modules {
     public interface ISceneModule : IModule<ISceneModule> {
         void LoadSceneWithTransition(string _sceneToLoad, SceneTransition _transitionSettings);
         void UnloadSceneWithTransition(SceneTransition _transitionSettings);
+        void SceneLoadedBehaviour();
     }
 
     public enum SceneType {
