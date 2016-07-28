@@ -21,16 +21,16 @@ namespace EA4S
         int index;
         Tween showTween, textTween;
 
-        void Awake()
-        {
+        void Awake() {
             I = this;
 
             TextUI.isRightToLeftText = true;
 
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(Background.GetComponent<RectTransform>().DOAnchorPosY(170, 0.4f).From())
-                .OnPlay(()=> this.gameObject.SetActive(true))
-                .OnRewind(() => {
+                .OnPlay(() => this.gameObject.SetActive(true))
+                .OnRewind(() =>
+                {
                     TextUI.text = "";
                     this.gameObject.SetActive(false);
                 });
@@ -40,8 +40,7 @@ namespace EA4S
             this.gameObject.SetActive(false);
         }
 
-        void OnDestroy()
-        {
+        void OnDestroy() {
             I = null;
             this.StopAllCoroutines();
             showTween.Kill();
@@ -51,13 +50,13 @@ namespace EA4S
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(string SentenceId, float duration = 2, bool isKeeper = false, System.Action callback = null)
-        {
+        public void DisplaySentence(string SentenceId, float duration = 2, bool isKeeper = false, System.Action callback = null) {
             this.StopAllCoroutines();
             currentCallback = callback;
             showTween.PlayForward();
             WalkieTalkie.Show(isKeeper);
             DisplayText(SentenceId, duration);
+
         }
         // Overload
         public void DisplaySentence(string[] SentenceIdList, float duration = 2, bool isKeeper = false, System.Action callback = null) {
@@ -65,8 +64,7 @@ namespace EA4S
             DisplaySentence(SentenceIdList[index], duration, isKeeper, callback);
         }
 
-        public void Close()
-        {
+        public void Close() {
             this.StopAllCoroutines();
             showTween.PlayBackwards();
             WalkieTalkie.Show(false);
@@ -76,8 +74,7 @@ namespace EA4S
             // TODO Don't know how to deal with this (note by Daniele)
         }
 
-        void DisplayText(string textID, float duration = 2)
-        {
+        void DisplayText(string textID, float duration = 3) {
             bool isContinue = !string.IsNullOrEmpty(TextUI.text);
             this.StopAllCoroutines();
             textTween.Kill();
@@ -88,20 +85,32 @@ namespace EA4S
             }
 
             this.gameObject.SetActive(true);
-            if (WalkieTalkie.isShown) WalkieTalkie.StartPulsing(isContinue);
+            if (WalkieTalkie.isShown)
+                WalkieTalkie.StartPulsing(isContinue);
             LocalizationDataRow row = LocalizationData.Instance.GetRow(textID);
-            TextUI.text = row == null ? textID : ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+            //Debug.Log("DisplayText " + textID + " " + row.GetStringData("Arabic") + " " + ArabicFixer.Fix(row.GetStringData("Arabic")));
+            TextUI.text = row == null ? textID : ReverseText(ArabicFixer.Fix(row.GetStringData("Arabic")));
             this.StartCoroutine(DisplayTextCoroutine(duration));
+
+            AudioManager.I.PlayDialog(textID, currentCallback);
         }
 
-        IEnumerator DisplayTextCoroutine(float duration)
-        {
+        IEnumerator DisplayTextCoroutine(float duration) {
             yield return null; // Wait 1 frame otherwise TMP doesn't update characterCount
 
             TextUI.maxVisibleCharacters = TextUI.textInfo.characterCount;
             textTween = DOTween.To(() => TextUI.maxVisibleCharacters, x => TextUI.maxVisibleCharacters = x, 0, duration)
                 .From().SetUpdate(true).SetEase(Ease.Linear)
                 .OnComplete(WalkieTalkie.StopPulsing);
+        }
+
+        string ReverseText(string text) {
+            char[] cArray = text.ToCharArray();
+            string reverse = String.Empty;
+            for (int i = cArray.Length - 1; i > -1; i--) {
+                reverse += cArray[i];
+            }
+            return reverse;
         }
     }
 }
