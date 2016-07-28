@@ -131,6 +131,11 @@ namespace EA4S
 
         public void PlayDialog(string string_id) {
             Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetSwitch, string_id);
+        }
+
+        public void PlayDialog(string string_id, System.Action callback) {
+            OnNotifyEndAudio = callback;
+            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetSwitch, string_id);
             Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
         }
 

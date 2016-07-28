@@ -12,6 +12,13 @@ namespace EA4S
 
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
+
+            WidgetSubtitles.I.DisplaySentence("map_A2", 2, true, NextSentence);
+        }
+
+
+        public void NextSentence() {
+            WidgetSubtitles.I.DisplaySentence("map_A3", 3, true);
         }
 
     }

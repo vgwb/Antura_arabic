@@ -13,6 +13,8 @@ namespace EA4S
 
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
+
+            WidgetSubtitles.I.DisplaySentence("mood_how_are_you_today");
         }
 
         /// <summary> 
