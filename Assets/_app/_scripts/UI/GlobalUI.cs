@@ -15,6 +15,7 @@ namespace EA4S
         public static GlobalUI I { get; private set; }
         public static SceneTransitioner SceneTransitioner { get; private set; }
         public static ContinueScreen ContinueScreen { get; private set; }
+        public static WidgetPopupWindow WidgetPopupWindow { get; private set; }
 
         const string ResourceId = "Prefabs/UI/GlobalUI";
 
@@ -32,15 +33,21 @@ namespace EA4S
             I = this;
 
             // Awake all global UI elements
-            SceneTransitioner = this.GetComponentInChildren<SceneTransitioner>(true);
-            SceneTransitioner.gameObject.SetActive(true);
-            ContinueScreen = this.GetComponentInChildren<ContinueScreen>(true);
-            ContinueScreen.gameObject.SetActive(true);
+            SceneTransitioner = StoreAndAwake<SceneTransitioner>();
+            ContinueScreen = StoreAndAwake<ContinueScreen>();
+            WidgetPopupWindow = StoreAndAwake<WidgetPopupWindow>();
         }
 
         void OnDestroy()
         {
             I = null;
+        }
+
+        T StoreAndAwake<T>() where T : Component
+        {
+            T obj = this.GetComponentInChildren<T>(true);
+            obj.gameObject.SetActive(true);
+            return obj;
         }
     }
 }
