@@ -7,6 +7,7 @@ namespace EA4S
     public enum Music {
         MainTheme,
         Relax,
+        Lullaby,
         Theme3,
         Theme4
     }
@@ -66,6 +67,9 @@ namespace EA4S
                     break;
                 case Music.Relax:
                     eventName = "Music2";
+                    break;
+                case Music.Lullaby:
+                    eventName = "Music5";
                     break;
                 case Music.Theme3:
                     eventName = "Music3";
