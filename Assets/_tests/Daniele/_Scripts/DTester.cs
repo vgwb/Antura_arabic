@@ -33,6 +33,11 @@ namespace EA4S
                     ContinueScreen.Show(null, continueScreenMode);
                 }
             }
+
+            // Popup - P to show/hide
+            if (Input.GetKeyDown(KeyCode.P)) {
+                WidgetPopupWindow.Show(!WidgetPopupWindow.IsShown);
+            }
         }
 #endif
     }
