@@ -6683,7 +6683,7 @@ MonoBehaviour:
   FastBeyod360: 0
 --- !u!1 &804933874
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
@@ -6699,7 +6699,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &804933875
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 804933874}
@@ -6714,7 +6714,7 @@ MonoBehaviour:
   wireframeHiddenObjects: []
 --- !u!4 &804933876
 Transform:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 804933874}
@@ -12594,6 +12594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
+  SceneMusic: 3
   GameplayInfo:
     GameId: dontwakeup
     PlayTime: 10

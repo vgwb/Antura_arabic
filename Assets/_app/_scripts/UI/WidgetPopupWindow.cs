@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using TMPro;
 using ArabicSupport;
+using DG.Tweening;
 
 namespace EA4S
 {
@@ -11,6 +12,7 @@ namespace EA4S
     {
 
         public static WidgetPopupWindow I;
+        public static bool IsShown { get; private set; }
 
         public GameObject Window;
         public GameObject TitleGO;
@@ -19,9 +21,27 @@ namespace EA4S
         public GameObject ButtonGO;
 
         Action currentCallback;
+        Tween showTween;
 
-        void Awake() {
+        void Awake()
+        {
             I = this;
+
+            showTween = this.GetComponent<RectTransform>().DOAnchorPosY(-800, 0.5f).From()
+                .SetEase(Ease.OutBack).SetAutoKill(false).Pause()
+                .OnPlay(()=> this.gameObject.SetActive(true))
+                .OnRewind(()=> this.gameObject.SetActive(false));
+
+            this.gameObject.SetActive(false);
+        }
+
+        public static void Show(bool _doShow)
+        {
+            GlobalUI.Init();
+
+            IsShown = _doShow;
+            if (_doShow) I.showTween.PlayForward();
+            else I.showTween.PlayBackwards();
         }
 
         public void Init(string introText, string wordCode, string arabicWord) {
@@ -35,12 +55,12 @@ namespace EA4S
             AudioManager.I.PlaySfx(Sfx.UIPopup);
             SetTitle(introText);
             SetWord(wordCode, arabicWord);
-            Window.SetActive(true);
+//            Window.SetActive(true);
         }
 
         public void Close() {
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-            Window.SetActive(false);
+//            Window.SetActive(false);
         }
 
         public void SetTitle(string text) {

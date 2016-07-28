@@ -12,6 +12,9 @@ namespace EA4S
 
     public class WheelManager : MonoBehaviour
     {
+        [Header("Scene Setup")]
+        public Music SceneMusic;
+
         public static WheelManager Instance;
         public WheelController WheelCntrl;
 
@@ -37,8 +40,6 @@ namespace EA4S
         }
 
         void Start() {
-            AudioManager.I.StopSfx(Sfx.DangerClock); // to-do: temporary fix?
-
             AppManager.Instance.InitDataAI();
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
@@ -48,7 +49,10 @@ namespace EA4S
             labelText = GameTitle.GetComponent<TextMeshProUGUI>();
 
             isGameSelected = false;
-            AudioManager.I.PlayMusic(Music.MainTheme);
+            AudioManager.I.PlayMusic(SceneMusic);
+
+            WidgetSubtitles.I.DisplaySentence("wheel_turn", 2, true);
+
         }
 
         public void OnPopuplicked() {
@@ -89,6 +93,8 @@ namespace EA4S
             AudioManager.I.PlayMusic(Music.Relax);
             isGameSelected = true;
             ShakePopup();
+
+            ContinueScreen.Show(OnPopuplicked);
             // AudioManager.I.PlayMusic2();
             //GameIcon.SetActive(true);
         }
