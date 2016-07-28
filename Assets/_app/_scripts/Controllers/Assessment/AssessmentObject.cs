@@ -9,7 +9,7 @@ using System;
 namespace EA4S {
     public class AssessmentObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
-        
+
         public Image Draw;
         public TextMeshProUGUI Label;
         public Image Circle;
@@ -64,7 +64,6 @@ namespace EA4S {
                 return;
             //manager.OnStartDrag(this); 
             ShowCyrcle(1);
-            manager.startObj = this;
         }
 
         public void OnPointerUp(PointerEventData eventData) {
@@ -75,8 +74,7 @@ namespace EA4S {
                 AssessmentObject other = item.GetComponent<AssessmentObject>();
                 if (!other)
                     continue;
-                if (other && other.IsWord) { 
-                    manager.OnReleaseOnWord(this, other);
+                if (other && other.IsWord) {
                     other.SetColor(Color);
                     other.ShowCyrcle(1);
                     other.IsLocked = IsLocked = true;

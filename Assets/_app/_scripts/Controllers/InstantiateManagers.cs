@@ -23,6 +23,7 @@ namespace EA4S
                 Instantiate(TouchManager);
             }
 
+            GlobalUI.Init();
         }
     }
 }

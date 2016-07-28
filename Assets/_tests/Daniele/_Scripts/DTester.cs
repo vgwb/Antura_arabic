@@ -24,6 +24,21 @@ namespace EA4S
                     } else WidgetSubtitles.I.DisplaySentence("من فضلك، حاول اصطياد البعض منها. من فضلك، حاول التقاطها.", 2, Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
                 }
             }
+
+            // Continue button - C to show, SHIFT+C to show fullscreen-no-button
+            if (WidgetSubtitles.I != null) {
+                if (Input.GetKeyDown(KeyCode.C)) {
+                    ContinueScreenMode continueScreenMode = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)
+//                        ? ContinueScreenMode.FullscreenBg : ContinueScreenMode.ButtonWithBgFullscreen;
+                        ? ContinueScreenMode.Button : ContinueScreenMode.ButtonWithBg;
+                    ContinueScreen.Show(null, continueScreenMode);
+                }
+            }
+
+            // Popup - P to show/hide
+            if (Input.GetKeyDown(KeyCode.P)) {
+                WidgetPopupWindow.Show(!WidgetPopupWindow.IsShown);
+            }
         }
 #endif
     }

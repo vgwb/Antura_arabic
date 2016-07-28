@@ -43,7 +43,7 @@ namespace EA4S {
                 ILivingLetterData d, w;
                 d = Draws.Find(o => o.Color == c).data;
                 w = Words.Find(o => o.Color == c).data;
-                if (d.Key == w.Key) { 
+                if (d.Key == w.Key) {
                     rightCounter++;
                 }
             }

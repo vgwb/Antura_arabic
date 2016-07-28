@@ -6,11 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_app/_scenes/app_Start.unity
+  - enabled: 1
     path: Assets/_app/_scenes/app_Mood.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_Journey.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_Wheel.unity
+  - enabled: 1
+    path: Assets/_app/_scenes/app_Assessment.unity
   - enabled: 1
     path: Assets/_games/FastCrowd/game_FastCrowd.unity
   - enabled: 1
