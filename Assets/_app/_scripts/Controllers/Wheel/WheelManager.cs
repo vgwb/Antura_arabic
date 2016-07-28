@@ -94,7 +94,7 @@ namespace EA4S
             isGameSelected = true;
             ShakePopup();
 
-            ContinueScreen.Show(OnPopuplicked);
+            ContinueScreen.Show(OnPopuplicked, ContinueScreenMode.ButtonWithBgFullscreen);
             // AudioManager.I.PlayMusic2();
             //GameIcon.SetActive(true);
         }
