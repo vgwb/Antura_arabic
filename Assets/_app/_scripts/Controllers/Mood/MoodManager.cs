@@ -26,9 +26,10 @@ namespace EA4S
         /// </summary>
         /// <param name="_mood"></param>
         public void MoodSelected(int _mood) {
-            /// - save mood
+            //TODO save and log mood
             /// - log
-            /// - change scene
+
+            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
         }
 
