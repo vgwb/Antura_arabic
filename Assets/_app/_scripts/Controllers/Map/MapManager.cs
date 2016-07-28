@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using EA4S;
+using ModularFramework.Core;
 
 namespace EA4S
 {
@@ -12,13 +13,23 @@ namespace EA4S
 
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
-
-            WidgetSubtitles.I.DisplaySentence("map_A2", 2, true, NextSentence);
+            WidgetSubtitles.I.DisplaySentence("map_A1", 2, true, NextSentence);
         }
 
-
         public void NextSentence() {
-            WidgetSubtitles.I.DisplaySentence("map_A3", 3, true);
+            WidgetSubtitles.I.DisplaySentence("map_A2", 3, true, NextSentence2);
+        }
+
+        public void NextSentence2() {
+            WidgetSubtitles.I.DisplaySentence("map_A3", 3, true, Ready2Play);
+        }
+
+        public void Ready2Play() {
+            ContinueScreen.Show(Play, ContinueScreenMode.Button);
+        }
+
+        public void Play() {
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
         }
 
     }
