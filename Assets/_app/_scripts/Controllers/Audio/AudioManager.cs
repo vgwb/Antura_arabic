@@ -4,11 +4,12 @@ using System.Collections;
 namespace EA4S
 {
     public enum Music {
-        MainTheme,
-        Relax,
-        Lullaby,
-        Theme3,
-        Theme4
+        Silence = 0,
+        MainTheme = 1,
+        Relax = 2,
+        Lullaby = 3,
+        Theme3 = 4,
+        Theme4 = 5
     }
 
     public enum Sfx {
@@ -55,6 +56,9 @@ namespace EA4S
         public void PlayMusic(Music music) {
             var eventName = "";
             switch (music) {
+                case Music.Silence:
+                    eventName = "";
+                    break;
                 case Music.MainTheme:
                     eventName = "Music1";
                     break;
@@ -72,9 +76,13 @@ namespace EA4S
                     break;
             }
 
-            Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
-            Fabric.EventManager.Instance.PostEvent("MusicTrigger");
-            //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
+            if (eventName == "") {
+                StopMusic();
+            } else {
+                Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
+                Fabric.EventManager.Instance.PostEvent("MusicTrigger");
+                //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
+            }
         }
 
         public void StopMusic() {
