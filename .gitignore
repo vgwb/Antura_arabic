@@ -24,4 +24,8 @@ LocalTemp/
 LocalTemp.meta
 
 # private g2u logon settings
-**/g2uPrefs.bin*
+**/g2uPrefs.bin
+**/g2uPrefs.bin.meta
+
+/Assets/Standard Assets/ConsolePro/
+/Assets/Standard Assets/ConsolePro.meta

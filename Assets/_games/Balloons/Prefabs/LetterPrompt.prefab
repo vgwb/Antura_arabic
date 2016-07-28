@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LetterLable: {fileID: 11461514}
+  DrawSprite: {fileID: 0}
   DropContain: {fileID: 0}
 --- !u!114 &11418902
 MonoBehaviour:
