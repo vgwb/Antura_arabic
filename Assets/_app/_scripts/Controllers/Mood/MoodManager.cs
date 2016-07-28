@@ -11,6 +11,10 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
 
+        void Awake() {
+
+        }
+
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
 
