@@ -17,7 +17,7 @@ namespace EA4S
 
         public static bool IsShown { get; private set; }
 
-        static SceneTransitioner instance;
+        static SceneTransitioner I;
         const string ResourceId = "Prefabs/UI/SceneTransitioner";
         Action onCompleteCallback, onRewindCallback;
         Sequence tween;
@@ -36,18 +36,18 @@ namespace EA4S
 
             IsShown = _doShow;
             if (_doShow) {
-                instance.MaskCover.fillClockwise = true;
-                instance.onRewindCallback = null;
-                instance.onCompleteCallback = _onComplete;
-                instance.tween.Restart();
+                I.MaskCover.fillClockwise = true;
+                I.onRewindCallback = null;
+                I.onCompleteCallback = _onComplete;
+                I.tween.Restart();
             } else {
-                instance.MaskCover.fillClockwise = false;
-                instance.onCompleteCallback = null;
-                instance.onRewindCallback = _onComplete;
-                if (instance.tween.Elapsed() <= 0) {
-                    instance.tween.Pause();
-                    instance.OnRewind();
-                } else instance.tween.PlayBackwards();
+                I.MaskCover.fillClockwise = false;
+                I.onCompleteCallback = null;
+                I.onRewindCallback = _onComplete;
+                if (I.tween.Elapsed() <= 0) {
+                    I.tween.Pause();
+                    I.OnRewind();
+                } else I.tween.PlayBackwards();
             }
         }
 
@@ -56,7 +56,7 @@ namespace EA4S
 
         static void Init()
         {
-            if (instance != null) return;
+            if (I != null) return;
 
             GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
             go.name = "[SceneTransitioner]";
@@ -65,7 +65,7 @@ namespace EA4S
 
         void Awake()
         {
-            instance = this.GetComponent<SceneTransitioner>();
+            I = this.GetComponent<SceneTransitioner>();
 
             tween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(MaskCover.DOFillAmount(0, AnimationDuration).From())
@@ -81,7 +81,7 @@ namespace EA4S
 
         void OnDestroy()
         {
-            instance = null;
+            I = null;
             tween.Kill();
         }
 
