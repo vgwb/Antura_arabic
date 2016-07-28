@@ -50,6 +50,9 @@ namespace EA4S
 
             isGameSelected = false;
             AudioManager.I.PlayMusic(SceneMusic);
+
+            WidgetSubtitles.I.DisplaySentence("wheel_turn", 2, true);
+
         }
 
         public void OnPopuplicked() {
@@ -90,6 +93,8 @@ namespace EA4S
             AudioManager.I.PlayMusic(Music.Relax);
             isGameSelected = true;
             ShakePopup();
+
+            ContinueScreen.Show(OnPopuplicked);
             // AudioManager.I.PlayMusic2();
             //GameIcon.SetActive(true);
         }

@@ -288,7 +288,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: " \u061F\u0645\uFEEE\uFEF4\uFEDF\u0627 \uFEDA\uFEDF\uFE8E\uFEA3 \uFED2\uFEF4\uFEDB"
+  m_text: " \u061F\u0645\uFEEE\uFEF4\uFEDF\u0627 \uFEDA\uFEDF\uFE8E\uFEA3 \uFED2\uFEF4\uFEDB
+    \ \u061F\u0645\uFEEE\uFEF4\uFEDF\u0627 \uFEDA\uFEDF\uFE8E\uFEA3 \uFED2\uFEF4\uFEDB
+    \u061F\u0645\uFEEE\uFEF4\uFEDF\u0627 \uFEDA\uFEDF\uFE8E\uFEA3 \uFED2\uFEF4\uFEDB
+    \ \u061F\u0645\uFEEE\uFEF4\uFEDF\u0627 \uFEDA\uFEDF\uFE8E\uFEA3 \uFED2\uFEF4\uFEDB
+    \ \u061F\u0645\uFEEE\uFEF4\uFEDF\u0627 \uFEDA\uFEDF\uFE8E\uFEA3 \uFED2\uFEF4\uFEDB"
   m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 62456ee0939b34423af02ba3f4cf77e8, type: 2}
@@ -316,24 +320,24 @@ MonoBehaviour:
   m_fontSize: 60
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 40
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 54.73
   m_fontSizeMax: 60
   m_fontStyle: 0
-  m_textAlignment: 5
+  m_textAlignment: 17
   m_characterSpacing: 0
-  m_lineSpacing: -45.61
+  m_lineSpacing: -60
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_enableKerning: 1
+  m_enableKerning: 0
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
+  m_isRichText: 0
+  m_parseCtrlCharacters: 0
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_ignoreCulling: 1
@@ -341,15 +345,15 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_useMaxVisibleDescender: 0
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 6}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 11478940}
-    characterCount: 16
+    characterCount: 83
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 18
+    wordCount: 16
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
@@ -458,11 +462,11 @@ RectTransform:
   - {fileID: 22432800}
   m_Father: {fileID: 22482580}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 960, y: 110}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &22432800
 RectTransform:
   m_ObjectHideFlags: 1
@@ -479,8 +483,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 0, y: 76}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22445626
 RectTransform:
