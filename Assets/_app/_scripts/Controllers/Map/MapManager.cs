@@ -4,7 +4,7 @@ using EA4S;
 
 namespace EA4S
 {
-    public class HomeManager : MonoBehaviour
+    public class MapManager : MonoBehaviour
     {
 
         [Header("Scene Setup")]
@@ -13,6 +13,7 @@ namespace EA4S
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
         }
-	
+
     }
+
 }
