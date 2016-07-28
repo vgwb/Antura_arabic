@@ -7,6 +7,7 @@ namespace EA4S
     public enum Music {
         MainTheme,
         Relax,
+        Lullaby,
         Theme3,
         Theme4
     }
@@ -50,8 +51,8 @@ namespace EA4S
             // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
             if (info != null) {
                 if (type == Fabric.EventNotificationType.OnAudioComponentStopped) {
+                    Debug.Log("NotifyEndAudio OnAudioComponentStopped()");
                     if (OnNotifyEndAudio != null) {
-                        //Debug.Log ("NotifyEndAudio call custom callback");
                         OnNotifyEndAudio();
                     }
                 }
@@ -66,6 +67,9 @@ namespace EA4S
                     break;
                 case Music.Relax:
                     eventName = "Music2";
+                    break;
+                case Music.Lullaby:
+                    eventName = "Music5";
                     break;
                 case Music.Theme3:
                     eventName = "Music3";
@@ -123,6 +127,12 @@ namespace EA4S
                 component.FadeOut(0.1f, 0.5f);
             }
         }
+
+        public void PlayDialog(string string_id) {
+            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetSwitch, string_id);
+            Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
+        }
+
 
         string GetEventName(Sfx sfx) {
             var eventName = "";
