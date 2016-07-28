@@ -47,6 +47,14 @@ namespace EA4S
             textTween.Kill();
         }
 
+
+        public void DisplayDebug(string sentence) {
+            this.StopAllCoroutines();
+            currentCallback = null;
+            showTween.PlayForward();
+            TextUI.text = sentence;
+        }
+
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
