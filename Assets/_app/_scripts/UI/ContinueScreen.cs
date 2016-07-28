@@ -7,12 +7,14 @@ namespace EA4S
 {
     public enum ContinueScreenMode
     {
-        /// <summary>No button, just touch the screen to continue</summary>
-        Fullscreen,
-        /// <summary>Button that needs to be clicked directly</summary>
+        /// <summary>Just background, just touch the screen to continue</summary>
+        FullscreenBg,
+        /// <summary>Button with no background, that needs to be clicked directly</summary>
         Button,
-        /// <summary>Button, but the whole screen can be clicked</summary>
-        ButtonFullscreen
+        /// <summary>Button with background, that needs to be clicked directly</summary>
+        ButtonWithBg,
+        /// <summary>Button with background, but the whole screen can be clicked</summary>
+        ButtonWithBgFullscreen
     }
 
     public class ContinueScreen : MonoBehaviour
@@ -34,20 +36,21 @@ namespace EA4S
         /// </summary>
         /// <param name="_onContinue">Eventual callback to call when the user clicks to continue</param>
         /// <param name="_mode">Mode</param>
-        public static void Show(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonFullscreen)
+        public static void Show(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg)
         {
             GlobalUI.Init();
             GlobalUI.ContinueScreen.DoShow(_onContinue, _mode);
         }
-        void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonFullscreen)
+        void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg)
         {
             IsShown = true;
             clicked = false;
             currMode = _mode;
             onContinueCallback = _onContinue;
-            BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.Fullscreen);
-            gameObject.SetActive(true);
+            Bg.gameObject.SetActive(_mode != ContinueScreenMode.Button);
+            BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.FullscreenBg);
             showTween.Restart();
+            this.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -113,9 +116,13 @@ namespace EA4S
         {
             if (clicked) return;
 
-            clicked = true;
-            if (_isButton || currMode == ContinueScreenMode.ButtonFullscreen) btTween.Restart();
-            else if (currMode == ContinueScreenMode.Fullscreen) Continue();
+            if (_isButton || currMode == ContinueScreenMode.ButtonWithBgFullscreen) {
+                clicked = true;
+                btTween.Restart();
+            } else if (currMode == ContinueScreenMode.FullscreenBg) {
+                clicked = true;
+                Continue();
+            }
         }
     }
 }
