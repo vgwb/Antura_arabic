@@ -5595,7 +5595,7 @@ GameObject:
   - 4: {fileID: 1697446858}
   - 114: {fileID: 1697446859}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: WheelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5625,6 +5625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f43ab3d48ace43aaa36feaf6e8ba364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneMusic: 1
   WheelCntrl: {fileID: 847852692}
   Popup: {fileID: 1965238056}
   GameIcon: {fileID: 2087740736}

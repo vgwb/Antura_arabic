@@ -20,6 +20,10 @@ namespace EA4S.DontWakeUp
 
     public class GameDontWakeUp : MiniGameBase
     {
+        [Header("Scene Setup")]
+        public Music SceneMusic;
+
+
         [Header("Gameplay Info and Config section")]
         #region Overrides
         new public GameDontWakeUpGameplayInfo GameplayInfo;
@@ -64,7 +68,7 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             LoggerEA4S.Save();
 
-            AudioManager.I.PlayMusic(Music.Lullaby);
+            AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySound("Dog/Snoring");
 
             GameIntro();
