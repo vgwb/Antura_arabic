@@ -21,8 +21,6 @@ namespace EA4S
 
         public static bool IsShown { get; private set; }
 
-        static ContinueScreen I;
-        const string ResourceId = "Prefabs/UI/ContinueScreen";
         ContinueScreenMode currMode;
         Action onContinueCallback;
         bool clicked;
@@ -38,34 +36,47 @@ namespace EA4S
         /// <param name="_mode">Mode</param>
         public static void Show(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonFullscreen)
         {
-            Init();
-
-            Debug.Log(_mode);
+            GlobalUI.Init();
+            GlobalUI.ContinueScreen.DoShow(_onContinue, _mode);
+        }
+        void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonFullscreen)
+        {
             IsShown = true;
-            I.clicked = false;
-            I.currMode = _mode;
-            I.onContinueCallback = _onContinue;
-            I.BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.Fullscreen);
-            I.gameObject.SetActive(true);
-            I.showTween.Restart();
+            clicked = false;
+            currMode = _mode;
+            onContinueCallback = _onContinue;
+            BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.Fullscreen);
+            gameObject.SetActive(true);
+            showTween.Restart();
+        }
+
+        /// <summary>
+        /// Closes the continue screen without dispatching any callback
+        /// </summary>
+        /// <param name="_immediate">If TRUE, immmediately closes the screen without animation</param>
+        public static void Close(bool _immediate)
+        {
+            GlobalUI.ContinueScreen.DoClose(_immediate);
+        }
+
+        void DoClose(bool _immediate)
+        {
+            if (!IsShown) return;
+
+            IsShown = false;
+            clicked = false;
+            onContinueCallback = null;
+            if (_immediate) {
+                showTween.Rewind();
+                this.gameObject.SetActive(false);
+            } else showTween.PlayBackwards();
         }
 
         // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // ■■■ INTERNAL
 
-        static void Init()
-        {
-            if (I != null) return;
-
-            GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
-            go.name = "[ContinueScreen]";
-            DontDestroyOnLoad(go);
-        }
-
         void Awake()
         {
-            I = this.GetComponent<ContinueScreen>();
-
             RectTransform btRT = BtContinue.GetComponent<RectTransform>();
 
             const float duration = 0.5f;
@@ -87,7 +98,6 @@ namespace EA4S
 
         void OnDestroy()
         {
-            I = null;
             showTween.Kill();
             BtContinue.onClick.RemoveAllListeners();
             Bg.onClick.RemoveAllListeners();
