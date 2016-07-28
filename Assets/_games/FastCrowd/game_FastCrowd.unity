@@ -881,7 +881,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11435016, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
       propertyPath: SceneNameCustom
-      value: Wheel
+      value: app_Wheel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
@@ -2685,6 +2685,7 @@ MonoBehaviour:
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
   ActualGame: 
+  StartMood: 0
 --- !u!4 &480134044
 Transform:
   m_ObjectHideFlags: 0

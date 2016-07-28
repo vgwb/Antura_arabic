@@ -1377,6 +1377,7 @@ GameObject:
   - 114: {fileID: 11483638}
   - 114: {fileID: 11444334}
   - 114: {fileID: 11453334}
+  - 114: {fileID: 11405910}
   m_Layer: 0
   m_Name: AppManager
   m_TagString: Untagged
@@ -1915,6 +1916,18 @@ MonoBehaviour:
   PauseMenuContainer: {fileID: 175256}
   MenuBg: {fileID: 11485570}
   AnturaFace: {fileID: 22497410}
+--- !u!114 &11405910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708d3dbc1c3b014d8056dbc67f7c06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModuleActivationState: 0
 --- !u!114 &11408518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3174,6 +3187,8 @@ MonoBehaviour:
     GameName: Antura
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
+  ActualGame: 
+  StartMood: 0
 --- !u!114 &11432040
 MonoBehaviour:
   m_ObjectHideFlags: 1

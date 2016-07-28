@@ -10,6 +10,7 @@ namespace EA4S
     public class AppManager : GameManager
     {
 
+        #region properties, variables and constants
 
         #region Overrides
         new public AppSettings GameSettings = new AppSettings();
@@ -31,12 +32,21 @@ namespace EA4S
 
         #endregion
 
+        #region Mood
+        /// <summary>
+        /// False if not executed start mood eval.
+        /// </summary>
+        public bool StartMood = false;
+        #endregion
+
+        #endregion
+
         public List<LetterData> Letters = new List<LetterData>();
         
         public TeacherAI Teacher;
         public Database DB;
 
-        public const string AppVersion = "0.1.0";
+        public const string AppVersion = "0.2.0";
 
         public string IExist() {
             return "AppManager Exists";
@@ -65,6 +75,7 @@ namespace EA4S
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
+
             // SceneModule Install
             if (GetComponentInChildren<ModuleInstaller<ISceneModule>>()) {
                 ISceneModule moduleInstance = GetComponentInChildren<ModuleInstaller<ISceneModule>>().InstallModule();
