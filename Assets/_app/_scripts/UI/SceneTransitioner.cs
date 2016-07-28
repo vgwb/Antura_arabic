@@ -17,8 +17,6 @@ namespace EA4S
 
         public static bool IsShown { get; private set; }
 
-        static SceneTransitioner I;
-        const string ResourceId = "Prefabs/UI/SceneTransitioner";
         Action onCompleteCallback, onRewindCallback;
         Sequence tween;
 
@@ -32,41 +30,36 @@ namespace EA4S
         /// <param name="_onComplete">Eventual callback to call when the transition IN/OUT completes</param>
         public static void Show(bool _doShow, Action _onComplete = null)
         {
-            Init();
+            GlobalUI.Init();
 
+            GlobalUI.SceneTransitioner.DoShow(_doShow, _onComplete);
+        }
+
+        void DoShow(bool _doShow, Action _onComplete = null)
+        {
             IsShown = _doShow;
             if (_doShow) {
-                I.MaskCover.fillClockwise = true;
-                I.onRewindCallback = null;
-                I.onCompleteCallback = _onComplete;
-                I.tween.Restart();
+                MaskCover.fillClockwise = true;
+                onRewindCallback = null;
+                onCompleteCallback = _onComplete;
+                tween.Restart();
+                this.gameObject.SetActive(true);
             } else {
-                I.MaskCover.fillClockwise = false;
-                I.onCompleteCallback = null;
-                I.onRewindCallback = _onComplete;
-                if (I.tween.Elapsed() <= 0) {
-                    I.tween.Pause();
-                    I.OnRewind();
-                } else I.tween.PlayBackwards();
+                MaskCover.fillClockwise = false;
+                onCompleteCallback = null;
+                onRewindCallback = _onComplete;
+                if (tween.Elapsed() <= 0) {
+                    tween.Pause();
+                    OnRewind();
+                } else tween.PlayBackwards();
             }
         }
 
         // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // ■■■ INTERNAL
 
-        static void Init()
-        {
-            if (I != null) return;
-
-            GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
-            go.name = "[SceneTransitioner]";
-            DontDestroyOnLoad(go);
-        }
-
         void Awake()
         {
-            I = this.GetComponent<SceneTransitioner>();
-
             tween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(MaskCover.DOFillAmount(0, AnimationDuration).From())
                 .Join(Icon.DOScale(0.01f, AnimationDuration * 0.6f).From())
@@ -81,7 +74,6 @@ namespace EA4S
 
         void OnDestroy()
         {
-            I = null;
             tween.Kill();
         }
 
