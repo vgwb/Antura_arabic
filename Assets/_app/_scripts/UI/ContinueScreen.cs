@@ -63,6 +63,7 @@ namespace EA4S
                 btRT.anchorMax = btRT.anchorMin = new Vector2(0.5f, 0.5f);
                 btRT.anchoredPosition = btCenteredPosition;
             }
+            showBgTween.Rewind();
             showTween.Restart();
             if (_mode != ContinueScreenMode.Button && _mode != ContinueScreenMode.ButtonFullscreen) showBgTween.PlayForward();
             this.gameObject.SetActive(true);
