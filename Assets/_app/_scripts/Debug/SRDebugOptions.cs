@@ -7,21 +7,28 @@ using EA4S;
 
 public partial class SROptions
 {
-    [Category("Open Minigames")]
+    [Category("Open Scene")]
+    public void Home() {
+        //Debug.Log("Clearing PlayerPrefs");
+        SceneManager.LoadScene("app_Start");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Open Scene")]
     public void FastCrowd() {
         //Debug.Log("Clearing PlayerPrefs");
         SceneManager.LoadScene("game_FastCrowd");
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Open Minigames")]
+    [Category("Open Scene")]
     public void DontWakeUp() {
         //Debug.Log("Clearing PlayerPrefs");
         SceneManager.LoadScene("game_DontWakeUp");
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Open Minigames")]
+    [Category("Open Scene")]
     public void Balloons() {
         //Debug.Log("Clearing PlayerPrefs");
         SceneManager.LoadScene("game_Balloons");
