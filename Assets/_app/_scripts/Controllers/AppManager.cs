@@ -132,14 +132,22 @@ namespace EA4S
             return miniGame;
         }
 
-        public void MiniGameDone() {
+        /// <summary>
+        /// Set result and return next scene name.
+        /// </summary>
+        /// <returns>return next scene name.</returns>
+        public string MiniGameDone() {
+            string returnString = "app_Wheel";
             if (PlaySessionGameDone > 0) {
                 PlaySession++;
                 PlaySessionGameDone = 0;
             } else {
                 PlaySessionGameDone++;
             }
+            return returnString;
         }
+
+
         #endregion
 
         #region settings behaviours
