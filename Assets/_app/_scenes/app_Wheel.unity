@@ -1363,7 +1363,7 @@ Transform:
   - {fileID: 2000275669}
   - {fileID: 1067098113}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &616512257
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,6 +3175,8 @@ MonoBehaviour:
     HighQualityGfx: 0
   ActualGame: 
   StartMood: 0
+  StartMoodEval: 0
+  EndMoodEval: 0
 --- !u!4 &1097520944
 Transform:
   m_ObjectHideFlags: 0
@@ -4044,6 +4046,10 @@ Prefab:
     - target: {fileID: 400000, guid: 0a574eda5fff44b27a98255f66739106, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -105.9619
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0a574eda5fff44b27a98255f66739106, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a574eda5fff44b27a98255f66739106, type: 3}
@@ -5407,7 +5413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1711205834
 MonoBehaviour:
   m_ObjectHideFlags: 0
