@@ -53,7 +53,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &139502
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneTypeToLoad: 4
-  SceneNameCustom: Wheel
+  SceneNameCustom: app_Wheel
   ActualGame: 0
   GameId: 
 --- !u!114 &11435404

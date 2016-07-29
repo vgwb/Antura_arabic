@@ -18,6 +18,9 @@ namespace EA4S
         }
 
         public void Show(int _stars) {
+            //if(_stars > 0)
+            AppManager.Instance.MiniGameDone();
+
             this.gameObject.SetActive(true);
             // Reset zone
             Vector2 f1pos = Flower1.rectTransform.anchoredPosition;
