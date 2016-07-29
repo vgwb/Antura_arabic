@@ -69,6 +69,7 @@ namespace EA4S.FastCrowd {
         List<ILivingLetterData> dataList = new List<ILivingLetterData>();
         int round = 0;
         int tutorialState = 3;
+        public GameObject TutorialGO;
 
         [HideInInspector]
         public string VariationPrefix = string.Empty;
@@ -208,19 +209,23 @@ namespace EA4S.FastCrowd {
                 case 3:
                     WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro1");
                     TutorialNextStepButton.gameObject.SetActive(true);
+                    TutorialGO.SetActive(true);
                     break;
                 case 2:
                     WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro2");
                     TutorialNextStepButton.gameObject.SetActive(true);
+                    TutorialGO.SetActive(true);
                     break;
                 case 1:
                     WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3");
                     TutorialNextStepButton.gameObject.SetActive(true);
+                    TutorialGO.SetActive(true);
                     break;
                 default:
                     // play
                     WidgetSubtitles.I.DisplaySentence(string.Empty);
                     TutorialNextStepButton.gameObject.SetActive(false);
+                    TutorialGO.SetActive(false);
                     // Env Setup.
                     gameplayBlockSetup();
 
