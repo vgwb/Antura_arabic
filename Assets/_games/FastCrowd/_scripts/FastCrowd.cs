@@ -93,6 +93,9 @@ namespace EA4S.FastCrowd {
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "start", GameplayInfo.PlayTime.ToString());
             LoggerEA4S.Save();
             AudioManager.I.PlayMusic(Music.Relax);
+
+            if (OnReadyForGameplayDone != null)
+                OnReadyForGameplayDone(GameplayInfo);
         }
 
         /// <summary>
@@ -451,6 +454,14 @@ namespace EA4S.FastCrowd {
         /// Called every time a new word objective is created.
         /// </summary>
         public static event ObjectiveSetup OnNewWordObjective;
+
+
+        public delegate void SubGameEvent(IGameplayInfo _gameplayInfo);
+        /// <summary>
+        /// Called after OnReadyForGameplay event in sub game.
+        /// </summary>
+        public static event SubGameEvent OnReadyForGameplayDone;
+
 
         #endregion
     }
