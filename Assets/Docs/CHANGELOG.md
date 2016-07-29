@@ -1,6 +1,13 @@
 EA4S - Antura and the Letters
 ================
 
+Known Issues: on some mid-range Android devices some arabic fonts get corrupted, non well readable.  
+to solve this do a TRIPLE TAP on the TOP LEFT corner of the screen, and then select OPTIONS -> ToggleQuality  
+(the issue is caused by a screen effect that corrupts the rendering of some letters. sorry)
+
+
+## 2016-07-29 V 0.4.2 ##
+- debugged soem crashes
 
 ## 2016-07-29 V 0.4.1 ##
 
