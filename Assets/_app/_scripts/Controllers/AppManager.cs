@@ -136,13 +136,20 @@ namespace EA4S
         /// Set result and return next scene name.
         /// </summary>
         /// <returns>return next scene name.</returns>
-        public string MiniGameDone() {
-            string returnString = "app_Wheel";
-            if (PlaySessionGameDone > 0) {
-                PlaySession++;
-                PlaySessionGameDone = 0;
+        public string MiniGameDone(string actualSceneName = "") {
+            string returnString = "app_Start";
+            if (actualSceneName == "") {
+                if (PlaySessionGameDone > 0) { // end playsession
+                    PlaySession++;
+                    PlaySessionGameDone = 0;
+                    returnString = "app_Rewards";
+                } else {
+                    // next game in this playsession
+                    PlaySessionGameDone++;
+                    returnString = "app_Wheel";
+                }
             } else {
-                PlaySessionGameDone++;
+                // special cases
             }
             return returnString;
         }
