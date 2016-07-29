@@ -48,14 +48,7 @@ namespace ModularFramework.Core {
         //public static event GameEvent LevelSet;
         #endregion
 
-        #region Event Subscription
 
-        void OnLevelWasLoaded(int level) {
-            Debug.Log("OnLevelWasLoaded");
-            Modules.SceneModule.SceneLoadedBehaviour();
-        }
-
-        #endregion
 
         #region ShortCuts properties
 

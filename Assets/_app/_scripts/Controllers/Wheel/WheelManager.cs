@@ -59,7 +59,7 @@ namespace EA4S
         public void OnPopuplicked() {
             Debug.Log("Wheel start game: " + gameData[currentGameIndex].Code);
             if (isGameSelected) {
-                if (gameData[currentGameIndex].Code == "fastcrowd" || gameData[currentGameIndex].Code == "fastcrowd_word") {
+                if (gameData[currentGameIndex].Code == "fastcrowd" || gameData[currentGameIndex].Code == "fastcrowd_words") {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
                     gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
