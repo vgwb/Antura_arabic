@@ -61,6 +61,8 @@ namespace EA4S
         public TeacherAI Teacher;
         public Database DB;
 
+        public GameObject CurrentGameManagerGO;
+
 
         #endregion
 
@@ -116,8 +118,10 @@ namespace EA4S
         public int PlaySession = 1;
         [HideInInspector]
         public int PlaySessionGameDone = 0;
+
         [HideInInspector]
-        public bool IsAssessmentTime { get { return PlaySession == 3; } } // Change this to change position of assessment in the alpha.
+        public bool IsAssessmentTime { get { return PlaySession == 3; } }
+        // Change this to change position of assessment in the alpha.
         [HideInInspector]
         public MinigameData ActualMinigame;
 

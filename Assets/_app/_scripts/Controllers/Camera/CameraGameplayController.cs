@@ -20,7 +20,7 @@ namespace EA4S
         }
 
         public void EnableFX(bool status) {
-            Debug.Log("CameraGameplayController EnableFX " + status);
+            // Debug.Log("CameraGameplayController EnableFX " + status);
             gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
             gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
         }
