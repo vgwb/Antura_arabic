@@ -1,6 +1,22 @@
 EA4S - Antura and the Letters
-=================
+================
 
+
+## 2016-07-29 V 0.4.1 ##
+
+- home screen
+- mood screen
+- map screen
+- Assessment screen (init)
+- Rewards screen
+- Keeper's voice starts to be heard (to be finished) 
+- Mini Games: Tutorial
+- Don't Wake Up: refinement to levels
+- Balloons: improvements
+- Fast Crowd: variation
+- full walkthrough (hopefully)
+  
+  
 ## 2016-07-26 - Build #35 ##
 
 #### General ####
