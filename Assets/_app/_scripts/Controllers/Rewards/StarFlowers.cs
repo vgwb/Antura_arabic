@@ -58,12 +58,10 @@ namespace EA4S
                 sequence.Append(Flower1.rectTransform.DOAnchorPos(f1pos, 0.3f).SetAs(tParms));
             }
 
-            //sequence.Append(Japan1.rectTransform.DORotate(new Vector2(360, 0), 15).SetLoops(-1));
-            sequence.Play().OnComplete(delegate ()
-                {
-                    GetComponent<OnClickButtonChangeScene>().enabled = true;
-                });
+            sequence.Play().OnComplete(ShowButton);
+        }
 
+        void ShowButton() {
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 
@@ -71,7 +69,6 @@ namespace EA4S
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
             nextSceneName = string.Empty;
         }
-
 
     }
 }
