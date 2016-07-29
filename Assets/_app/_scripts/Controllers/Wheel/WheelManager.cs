@@ -57,6 +57,21 @@ namespace EA4S
         }
 
         public void OnPopuplicked() {
+            /* Alpha static logic */
+            if (isGameSelected) {
+                MinigameData miniGame = AppManager.Instance.GetMiniGameForActualPlaySession();
+                if(miniGame.Code == "fastcrowd" || miniGame.Code == "fastcrowd_words") {
+                    FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
+                    if (miniGame.Code == "fastcrowd") {
+                        gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
+                    } else {
+                        gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words;
+                    }
+                    GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
+                }
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.SceneName);
+            }
+            /*
             Debug.Log("Wheel start game: " + gameData[currentGameIndex].Code);
             if (isGameSelected) {
                 if (gameData[currentGameIndex].Code == "fastcrowd" || gameData[currentGameIndex].Code == "fastcrowd_words") {
@@ -67,6 +82,7 @@ namespace EA4S
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(gameData[currentGameIndex].SceneName);
                 //SceneManager.LoadScene(gameData[currentGameIndex].SceneName);
             }
+            */
         }
 
         void ShakePopup() {
