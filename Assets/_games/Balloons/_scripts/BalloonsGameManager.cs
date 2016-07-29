@@ -77,7 +77,9 @@ namespace Balloons
             letterDropDelay = balloonPopAnimation.length;
             AppManager.Instance.InitDataAI();
 
-            Play();
+            ResetScene();
+
+            //Play();
         }
 
         public void OnRoundStartPressed()
