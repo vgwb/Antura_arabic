@@ -60,6 +60,15 @@ namespace EA4S.DontWakeUp
 
         int RoundsTotal;
 
+        public void DoPause(bool status) {
+            Debug.Log("GameDontWakeUp DoPause() " + status);
+            if (currentState == MinigameState.Playing) {
+                currentState = MinigameState.Paused;
+            } else if (currentState == MinigameState.Paused) {
+                currentState = MinigameState.Playing;
+            }
+        }
+
         void Start() {
             currentState = MinigameState.Initializing;
             RoundsTotal = Levels.Length;
@@ -67,6 +76,7 @@ namespace EA4S.DontWakeUp
             currentLevel = 1;
             LivesLeft = 3;
             AppManager.Instance.InitDataAI();
+            AppManager.Instance.CurrentGameManagerGO = gameObject;
 
             LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             LoggerEA4S.Save();
