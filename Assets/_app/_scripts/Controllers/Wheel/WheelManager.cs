@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ModularFramework.Core;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,13 +57,14 @@ namespace EA4S
         }
 
         public void OnPopuplicked() {
+            Debug.Log("Wheel start game: " + gameData[currentGameIndex].Code);
             if (isGameSelected) {
-                if (gameData[currentGameIndex].Code == "fastcrowd") {
+                if (gameData[currentGameIndex].Code == "fastcrowd" || gameData[currentGameIndex].Code == "fastcrowd_word") {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
                     gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
-                    AppManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
+                    GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
                 }
-                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(gameData[currentGameIndex].SceneName);
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(gameData[currentGameIndex].SceneName);
                 //SceneManager.LoadScene(gameData[currentGameIndex].SceneName);
             }
         }
