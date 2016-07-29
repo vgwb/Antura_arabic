@@ -203,5 +203,18 @@ namespace EA4S
             return eventName;
         }
 
+
+        void OnApplicationPause(bool pauseStatus) {
+            // app is pausing
+            if (pauseStatus) {
+                // TODO Pause Audio if it is playing
+
+            }
+
+            //app is resuming
+            if (!pauseStatus) {
+                // TODO resume music
+            }
+        }
     }
 }
