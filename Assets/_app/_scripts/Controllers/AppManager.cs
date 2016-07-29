@@ -10,16 +10,19 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
+        public const string AppVersion = "0.4.0";
 
         #region properties, variables and constants
 
         #region Overrides
+
         new public AppSettings GameSettings = new AppSettings();
 
         new public static AppManager Instance
         {
             get { return GameManager.Instance as AppManager; }
         }
+
         #endregion
 
         #region TMP
@@ -34,18 +37,23 @@ namespace EA4S
         #endregion
 
         #region Mood
+
         /// <summary>
         /// False if not executed start mood eval.
         /// </summary>
+        [HideInInspector]
         public bool StartMood = false;
         /// <summary>
         /// Start Mood value. Values 0,1,2,3,4.
         /// </summary>
+        [HideInInspector]
         public int StartMoodEval = 0;
         /// <summary>
         /// End Mood value. Values 0,1,2,3,4.
         /// </summary>
+        [HideInInspector]
         public int EndMoodEval = 0;
+
         #endregion
 
         public List<LetterData> Letters = new List<LetterData>();
@@ -53,7 +61,6 @@ namespace EA4S
         public TeacherAI Teacher;
         public Database DB;
 
-        public const string AppVersion = "0.2.0";
 
         #endregion
 
@@ -100,9 +107,14 @@ namespace EA4S
         #endregion
 
         #region Game Progression
+
+        [HideInInspector]
         public int Stage = 2;
+        [HideInInspector]
         public int LearningBlock = 4;
+        [HideInInspector]
         public int PlaySession = 1;
+        [HideInInspector]
         public int PlaySessionGameDone = 0;
         public MinigameData ActualMinigame;
 
