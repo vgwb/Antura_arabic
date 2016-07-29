@@ -2635,8 +2635,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 55.999992}
-  m_SizeDelta: {x: 0, y: 120}
+  m_AnchoredPosition: {x: 0, y: 62}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1048341173
 MonoBehaviour:
@@ -2657,7 +2657,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u064A\u0627 \u0644\u0644\u0631\u0648\u0639\u0629"
+  m_text: "\uFECA\uFEF3\uFEAE\uFEB4\uFEDF\u0627 \uFEAA\uFEB8\uFEA4\uFEDF\u0627"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_sharedMaterial: {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
@@ -2682,16 +2682,16 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 65
+  m_fontSizeBase: 65
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 50
   m_fontSizeMax: 80
   m_fontStyle: 0
-  m_textAlignment: 5
+  m_textAlignment: 17
   m_characterSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -70
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -2713,7 +2713,7 @@ MonoBehaviour:
   m_margin: {x: 30, y: 0, z: 20, w: 0}
   m_textInfo:
     textComponent: {fileID: 1048341173}
-    characterCount: 9
+    characterCount: 12
     spriteCount: 0
     spaceCount: 1
     wordCount: 2

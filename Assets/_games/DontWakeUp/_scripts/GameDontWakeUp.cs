@@ -49,9 +49,10 @@ namespace EA4S.DontWakeUp
         float dangerIntensity;
         How2Die dangerCause;
 
+        [Header("References")]
         public GameObject myLetter;
         public GameObject StarSystems;
-        public WordFlexibleContainer LivesContainer;
+        public LivesContainer LivesController;
 
         public WordData currentWord;
 
@@ -233,17 +234,12 @@ namespace EA4S.DontWakeUp
             }
         }
 
-
         void UpdateLivesContainer() {
-            LivesContainer.SetText(LivesLeft.ToString(), false);
+            LivesController.SetLives(LivesLeft);
         }
 
 
-
         void Update() {
-//            if (Input.GetMouseButtonDown(0)) {
-//                ClickedAnything();
-//            }
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 if (inDanger) {
                     if (dangerCause == How2Die.TooFast) {

@@ -4298,8 +4298,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
-    min: 0
-    max: 0
+    min: -30
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -4330,8 +4330,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
-    min: 0
-    max: 0
+    min: -30
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -4360,10 +4360,10 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
-    max: 0
+    min: -30
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -4394,8 +4394,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
-    min: 0
-    max: 0
+    min: -30
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -4426,8 +4426,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
-    min: 0
-    max: 0
+    min: -30
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -4458,8 +4458,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
-    min: 0
-    max: 0
+    min: -30
+    max: 30
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -5066,8 +5066,9 @@ MonoBehaviour:
   floatDistance: 1.5
   floatRandomnessFactor: 0.25
   distanceRandomnessMargin: 2.5
-  waftSpeed: 5
-  waftWrappingMargin: 7.5
+  waftSpeed: 1
+  waftRandomnessFactor: 0.75
+  waftMargin: 2
   dragSpeed: 2
   tapsNeeded: 1
   explosionRadius: 9.5
