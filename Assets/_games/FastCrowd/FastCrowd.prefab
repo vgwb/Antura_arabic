@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 448670}
   - 114: {fileID: 11440868}
-  - 82: {fileID: 8231836}
   m_Layer: 0
   m_Name: FastCrowd
   m_TagString: Untagged
@@ -30,80 +29,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &8231836
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 127674}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &11440868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0291c533aac2cc14280973018f39a4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTestGameplayInfo: 1
+  UseTestGameplayInfo: 0
   ThresholdStar1: 1
   ThresholdStar2: 3
   ThresholdStar3: 6
@@ -133,9 +58,9 @@ MonoBehaviour:
       WalkDuration: 2
       RunDuration: 2
       NinjaDuration: 3.57
-  LetterPref: {fileID: 11463558, guid: 04d7a7dc7bbbd924eac035e8246d2980, type: 2}
+  LetterPref: {fileID: 11463558, guid: f282e92cdb614134093f9bc7e44141a5, type: 2}
   TerrainTrans: {fileID: 0}
-  DropSingleAreaPref: {fileID: 11485852, guid: 50ae8135bcc8dd94b887ab742e302430, type: 2}
+  DropSingleAreaPref: {fileID: 11485852, guid: a5397017961a39b4a821afdb6afb1400, type: 2}
   DropAreaContainer: {fileID: 0}
   MinLettersOnField: 10
   StarUI: {fileID: 0}
@@ -144,6 +69,7 @@ MonoBehaviour:
   TutorialNextStepButton: {fileID: 0}
   RightWordsCounter: {fileID: 0}
   IsAnturaMoment: 0
+  VariationPrefix: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
