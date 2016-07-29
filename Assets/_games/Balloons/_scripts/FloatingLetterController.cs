@@ -21,8 +21,10 @@ namespace Balloons
         public float distanceRandomnessMargin;
         [Range(0, 10)] [Tooltip("e.g.: 1")]
         public float waftSpeed;
-        [Range(0, 10)] [Tooltip("e.g.: 1")]
-        public float waftWrappingMargin;
+        [Range(0, 1)] [Tooltip("e.g.: 0.25")]
+        public float waftRandomnessFactor;
+        [Range(-10, 10)] [Tooltip("e.g.: 2")]
+        public float waftMargin;
         [Range(0, 10)] [Tooltip("e.g.: 2")]
         public float dragSpeed;
         [Range(1, 10)] [Tooltip("e.g.: 1")]
@@ -71,6 +73,7 @@ namespace Balloons
         public int activeBalloonCount;
 
         private int floatDirection = 1;
+        private int waftDirection = 1;
         private float randomOffset = 0f;
         private Vector3 basePosition;
         private Vector3 clampedPosition = new Vector3();
@@ -88,6 +91,9 @@ namespace Balloons
             basePosition = transform.position;
             RandomizePosition();
             RandomizeFloating();
+            RandomizeWafting();
+            RandomizeSwing();
+            EnterStage();
             waftVelocity.x = waftSpeed;
         }
 
@@ -125,6 +131,54 @@ namespace Balloons
             floatDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
         }
 
+        void RandomizeWafting()
+        {
+            waftSpeed += Random.Range(-waftRandomnessFactor * waftSpeed, waftRandomnessFactor * waftSpeed);
+            waftDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
+        }
+
+        void RandomizeSwing()
+        {
+            var direction = waftDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
+            var magnitude = 10f + 10f * Random.Range(-waftRandomnessFactor * waftSpeed, waftRandomnessFactor * waftSpeed);
+            Vector3 force = direction * magnitude * Vector3.right;
+            Letter.body.AddForce(force);
+        }
+
+        void EnterStage()
+        {
+            if (basePosition.x > 0)
+            {
+                transform.position = new Vector3(BalloonsGameManager.instance.maxX + waftMargin, basePosition.y, basePosition.z);
+            }
+            else
+            {
+                transform.position = new Vector3(BalloonsGameManager.instance.minX - waftMargin, basePosition.y, basePosition.z);
+            }
+
+            StartCoroutine(EnterStage_Coroutine());
+        }
+
+        private IEnumerator EnterStage_Coroutine()
+        {
+            float duration = 3f;
+            float progress = 0f;
+            float percentage = 0f;
+
+            var initialPosition = transform.position;
+            var finalPosition = basePosition;
+
+            while (progress < duration)
+            {
+                transform.position = Vector3.Lerp(initialPosition, finalPosition, percentage);
+                progress += Time.deltaTime;
+                percentage = progress / duration;
+                percentage = Mathf.Sin(percentage * Mathf.PI * 0.5f);
+
+                yield return null;
+            }
+        }
+
         void Float()
         {
             // Float using Rigidbody velocity
@@ -138,12 +192,17 @@ namespace Balloons
 
         public void Waft()
         {
-            waftVelocity.Set(waftSpeed, body.velocity.y, body.velocity.z);
+            waftVelocity.Set(waftDirection * waftSpeed, body.velocity.y, body.velocity.z);
 
             body.velocity = waftVelocity;
-            if (body.transform.position.x > BalloonsGameManager.instance.maxX + waftWrappingMargin)
+            if (body.transform.position.x > BalloonsGameManager.instance.maxX - waftMargin)
             {
-                body.transform.position = new Vector3(BalloonsGameManager.instance.minX - waftWrappingMargin, body.transform.position.y, body.transform.position.z);
+                waftDirection = -1;
+                //body.transform.position = new Vector3(BalloonsGameManager.instance.minX - waftWrappingMargin, body.transform.position.y, body.transform.position.z);
+            }
+            else if (body.transform.position.x < BalloonsGameManager.instance.minX + waftMargin)
+            {
+                waftDirection = 1;
             }
         }
 
