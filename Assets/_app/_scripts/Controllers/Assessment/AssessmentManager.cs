@@ -16,6 +16,7 @@ namespace EA4S
         public List<AssessmentObject> Words;
 
         public AssessmentObject startObj, endObj;
+        public PopupTmp Popup;
 
         void Start() {
             AppManager.Instance.InitDataAI();
@@ -52,7 +53,9 @@ namespace EA4S
                     rightCounter++;
                 }
             }
-            Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
+
+            //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
+            Popup.Show(true, string.Format("Result : {0}/{1}", rightCounter, Draws.Count));
         }
 
     }

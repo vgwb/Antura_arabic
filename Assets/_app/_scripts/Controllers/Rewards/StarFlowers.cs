@@ -11,6 +11,8 @@ namespace EA4S
     {
         public Image Flower1, Flower2, Flower3, Japan1, Japan2, Bbackground;
 
+        string nextSceneName = string.Empty;
+
         void Awake() {
             GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             foreach (Image img in GetComponentsInChildren<Image>()) {
@@ -20,7 +22,7 @@ namespace EA4S
 
         public void Show(int _stars) {
             //if(_stars > 0)
-            AppManager.Instance.MiniGameDone();
+            nextSceneName = AppManager.Instance.MiniGameDone();
 
             this.gameObject.SetActive(true);
             // Reset zone
@@ -66,7 +68,8 @@ namespace EA4S
         }
 
         public void Continue() {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
+            nextSceneName = string.Empty;
         }
 
 
