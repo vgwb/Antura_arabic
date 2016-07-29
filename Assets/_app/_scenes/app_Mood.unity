@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4642b91c3569c094ea80688705af471b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneMusic: 4
+  SceneMusic: 0
 --- !u!4 &986970066
 Transform:
   m_ObjectHideFlags: 0
@@ -1559,6 +1559,8 @@ MonoBehaviour:
     HighQualityGfx: 0
   ActualGame: 
   StartMood: 0
+  StartMoodEval: 0
+  EndMoodEval: 0
 --- !u!4 &2134100073
 Transform:
   m_ObjectHideFlags: 0
