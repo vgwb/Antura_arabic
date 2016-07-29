@@ -17,21 +17,27 @@ namespace Balloons
         public float floatDistance;
         [Range(0, 1)] [Tooltip("e.g.: 0.25")]
         public float floatRandomnessFactor;
-        [Range(0, 10)] [Tooltip("e.g.: 3")]
+        [Range(0, 10)] [Tooltip("e.g.: 2.5")]
         public float distanceRandomnessMargin;
         [Range(0, 10)] [Tooltip("e.g.: 1")]
         public float waftSpeed;
-        [Range(0, 1)] [Tooltip("e.g.: 0.25")]
+        [Range(0, 1)] [Tooltip("e.g.: 0.75")]
         public float waftRandomnessFactor;
         [Range(-10, 10)] [Tooltip("e.g.: 2")]
-        public float waftMargin;
+        public float stageMargin;
+        [Range(0, 500)] [Tooltip("e.g.: 50")]
+        public float initialSwingPush;
+        [Range(0, 1)] [Tooltip("e.g.: 0.5")]
+        public float initialSwingRandomnessFactor;
+        [Range(0, 10)] [Tooltip("e.g.: 2")]
+        public float stageEntranceDuration;
         [Range(0, 10)] [Tooltip("e.g.: 2")]
         public float dragSpeed;
         [Range(1, 10)] [Tooltip("e.g.: 1")]
         public int tapsNeeded;
-        [Range(0, 100f)] [Tooltip("e.g.: 5")]
+        [Range(0, 100f)] [Tooltip("e.g.: 9.5")]
         public float explosionRadius;
-        [Range(0, 100f)] [Tooltip("e.g.: 10")]
+        [Range(0, 100f)] [Tooltip("e.g.: 1")]
         public float explosionPower;
 
         [HideInInspector]
@@ -133,15 +139,15 @@ namespace Balloons
 
         void RandomizeWafting()
         {
-            waftSpeed += Random.Range(-waftRandomnessFactor * waftSpeed, waftRandomnessFactor * waftSpeed);
+            waftSpeed += waftSpeed * Random.Range(-waftRandomnessFactor, waftRandomnessFactor);
             waftDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
         }
 
         void RandomizeSwing()
         {
             var direction = waftDirection *= (Random.Range(0, 2) > 0 ? -1 : 1);
-            var magnitude = 10f + 10f * Random.Range(-waftRandomnessFactor * waftSpeed, waftRandomnessFactor * waftSpeed);
-            Vector3 force = direction * magnitude * Vector3.right;
+            initialSwingPush += initialSwingPush * Random.Range(-initialSwingRandomnessFactor, initialSwingRandomnessFactor);
+            Vector3 force = direction * initialSwingPush * Vector3.right;
             Letter.body.AddForce(force);
         }
 
@@ -149,11 +155,11 @@ namespace Balloons
         {
             if (basePosition.x > 0)
             {
-                transform.position = new Vector3(BalloonsGameManager.instance.maxX + waftMargin, basePosition.y, basePosition.z);
+                transform.position = new Vector3(BalloonsGameManager.instance.maxX + stageMargin, basePosition.y, basePosition.z);
             }
             else
             {
-                transform.position = new Vector3(BalloonsGameManager.instance.minX - waftMargin, basePosition.y, basePosition.z);
+                transform.position = new Vector3(BalloonsGameManager.instance.minX - stageMargin, basePosition.y, basePosition.z);
             }
 
             StartCoroutine(EnterStage_Coroutine());
@@ -161,18 +167,19 @@ namespace Balloons
 
         private IEnumerator EnterStage_Coroutine()
         {
-            float duration = 3f;
             float progress = 0f;
             float percentage = 0f;
 
             var initialPosition = transform.position;
             var finalPosition = basePosition;
+            var lerpedPosition = new Vector3();
 
-            while (progress < duration)
+            while (progress < stageEntranceDuration)
             {
-                transform.position = Vector3.Lerp(initialPosition, finalPosition, percentage);
+                lerpedPosition.Set(Vector3.Lerp(initialPosition, finalPosition, percentage).x, transform.position.y, transform.position.z);
+                transform.position = lerpedPosition;
                 progress += Time.deltaTime;
-                percentage = progress / duration;
+                percentage = progress / stageEntranceDuration;
                 percentage = Mathf.Sin(percentage * Mathf.PI * 0.5f);
 
                 yield return null;
@@ -195,12 +202,12 @@ namespace Balloons
             waftVelocity.Set(waftDirection * waftSpeed, body.velocity.y, body.velocity.z);
 
             body.velocity = waftVelocity;
-            if (body.transform.position.x > BalloonsGameManager.instance.maxX - waftMargin)
+            if (body.transform.position.x > BalloonsGameManager.instance.maxX - stageMargin)
             {
                 waftDirection = -1;
                 //body.transform.position = new Vector3(BalloonsGameManager.instance.minX - waftWrappingMargin, body.transform.position.y, body.transform.position.z);
             }
-            else if (body.transform.position.x < BalloonsGameManager.instance.minX + waftMargin)
+            else if (body.transform.position.x < BalloonsGameManager.instance.minX + stageMargin)
             {
                 waftDirection = 1;
             }

@@ -2413,6 +2413,7 @@ MonoBehaviour:
   maxY: 18
   numberOfRounds: 6
   lives: 0
+  roundTime: 30.9
   balloonColors:
   - {r: 1, g: 0.19607842, b: 0.19607842, a: 1}
   - {r: 0.19607843, g: 1, b: 0.19607843, a: 1}
@@ -4230,7 +4231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffd5e097d66942948f311da3e218f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 30
+  time: 30.9
   timerText: {fileID: 962712816}
 --- !u!1 &964579751
 GameObject:
