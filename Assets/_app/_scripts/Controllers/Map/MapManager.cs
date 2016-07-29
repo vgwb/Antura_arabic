@@ -29,7 +29,10 @@ namespace EA4S
         }
 
         public void Play() {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
+            if(AppManager.Instance.IsAssessmentTime)
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
+            else
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
         }
 
     }
