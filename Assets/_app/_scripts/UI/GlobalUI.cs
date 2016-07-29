@@ -2,6 +2,7 @@
 // Created: 2016/07/28 15:04
 // License Copyright (c) Daniele Giardini
 
+using DG.DemiLib.Attributes;
 using UnityEngine;
 
 namespace EA4S
@@ -10,12 +11,14 @@ namespace EA4S
     /// Global UI created dynamically at runtime,
     /// contains all global UI elements > Pause, SceneTransitioner, ContinueScreen, PopupScreen
     /// </summary>
+    [ScriptExecutionOrder(-100)]
     public class GlobalUI : MonoBehaviour
     {
         public static GlobalUI I { get; private set; }
         public static SceneTransitioner SceneTransitioner { get; private set; }
         public static ContinueScreen ContinueScreen { get; private set; }
         public static WidgetPopupWindow WidgetPopupWindow { get; private set; }
+        public static WidgetSubtitles WidgetSubtitles { get; private set; }
 
         const string ResourceId = "Prefabs/UI/GlobalUI";
 
@@ -36,6 +39,7 @@ namespace EA4S
             SceneTransitioner = StoreAndAwake<SceneTransitioner>();
             ContinueScreen = StoreAndAwake<ContinueScreen>();
             WidgetPopupWindow = StoreAndAwake<WidgetPopupWindow>();
+            WidgetSubtitles = StoreAndAwake<WidgetSubtitles>();
         }
 
         void OnDestroy()
