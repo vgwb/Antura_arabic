@@ -53,7 +53,7 @@ namespace EA4S
             AudioManager.I.PlayMusic(SceneMusic);
 
             WidgetSubtitles.I.DisplaySentence("wheel_turn", 2, true);
-
+            showGameIcon(-1);
         }
 
         public void CloseScene() {
@@ -107,11 +107,21 @@ namespace EA4S
 
                     PopupImage.color = _color;
 
-                    labelText.text = ArabicFixer.Fix(gameData[currentGameIndex].Title, false, false);
-                    GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
+                    showGameIcon(currentGameIndex);
                     AudioManager.I.PlaySfx(Sfx.WheelTick);
                     //AudioManager.I.PlayHit();
                 }
+            }
+        }
+
+        void showGameIcon(int index) {
+            if (index >= 0) {
+                GameIcon.SetActive(true);
+                labelText.text = ArabicFixer.Fix(gameData[index].Title, false, false);
+                GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[index].GetIconResourcePath());
+            } else {
+                labelText.text = "";
+                GameIcon.SetActive(false);
             }
         }
     }
