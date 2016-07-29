@@ -114,7 +114,8 @@ namespace EA4S
             switch (PlaySession) {
                 case 1:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd");
+                        miniGame = DB.gameData.Find(g => g.Code == "dontwakeup");
+                    
                     else
                         miniGame = DB.gameData.Find(g => g.Code == "balloons");
                     break;
@@ -122,7 +123,7 @@ namespace EA4S
                     if (PlaySessionGameDone == 0)
                         miniGame = DB.gameData.Find(g => g.Code == "fastcrowd_words");
                     else
-                        miniGame = DB.gameData.Find(g => g.Code == "dontwakeup");
+                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd");
                     break;
                 case 3:
                     miniGame = new MinigameData("Assessment", "Assessment", "Assessment", "app_Assessment", true);
@@ -137,12 +138,15 @@ namespace EA4S
         /// </summary>
         /// <returns>return next scene name.</returns>
         public string MiniGameDone() {
-            string returnString = "app_Wheel";
-            if (PlaySessionGameDone > 0) {
+            string returnString = "app_Journey";
+            if (PlaySessionGameDone > 0) { // end playsession
                 PlaySession++;
                 PlaySessionGameDone = 0;
+                returnString = "app_Rewards";
             } else {
+                // next game in this playsession
                 PlaySessionGameDone++;
+                returnString = "app_Wheel";
             }
             return returnString;
         }
