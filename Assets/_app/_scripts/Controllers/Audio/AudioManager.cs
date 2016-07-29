@@ -38,9 +38,12 @@ namespace EA4S
     {
         public static AudioManager I;
         static System.Action OnNotifyEndAudio;
+        bool musicEnabled = true;
+        Music currentMusic;
 
         void Awake() {
             I = this;
+            musicEnabled = true;
         }
 
         public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject) {
@@ -56,10 +59,17 @@ namespace EA4S
         }
 
         public void ToggleMusic() {
-            Debug.Log("TODO ToggleMusic()");
+            //Debug.Log("TODO ToggleMusic()");
+            musicEnabled = !musicEnabled;
+            if (musicEnabled) {
+                PlayMusic(currentMusic);
+            } else {
+                StopMusic();
+            }
         }
 
         public void PlayMusic(Music music) {
+            currentMusic = music;
             var eventName = "";
             switch (music) {
                 case Music.Silence:
@@ -85,9 +95,11 @@ namespace EA4S
             if (eventName == "") {
                 StopMusic();
             } else {
-                Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
-                Fabric.EventManager.Instance.PostEvent("MusicTrigger");
-                //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
+                if (musicEnabled) {
+                    Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.SetSwitch, eventName);
+                    Fabric.EventManager.Instance.PostEvent("MusicTrigger");
+                    //Fabric.EventManager.Instance.PostEvent("Music/" + eventName);
+                }
             }
         }
 
