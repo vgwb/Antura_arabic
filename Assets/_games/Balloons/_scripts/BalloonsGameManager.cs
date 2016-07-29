@@ -40,6 +40,8 @@ namespace Balloons
         [Header("Game Parameters")] [Tooltip("e.g.: 6")]
         public int numberOfRounds;
         public int lives;
+        [Range(10, 300)] [Tooltip("e.g.: 30.9")]
+        public float roundTime;
         public Color[] balloonColors;
 
         [HideInInspector]

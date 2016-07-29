@@ -2723,7 +2723,8 @@ Transform:
 --- !u!114 &480134045
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11405910, guid: 104c1af534acf1448948f93f215ff0c3,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 480134037}
   m_Enabled: 1
