@@ -4494,6 +4494,7 @@ GameObject:
   - 114: {fileID: 552459822}
   - 114: {fileID: 552459821}
   - 114: {fileID: 552459820}
+  - 114: {fileID: 552459827}
   m_Layer: 0
   m_Name: AppManager
   m_TagString: Untagged
@@ -4594,6 +4595,10 @@ MonoBehaviour:
   StartMood: 0
   StartMoodEval: 0
   EndMoodEval: 0
+  Stage: 2
+  LearningBlock: 4
+  PlaySession: 1
+  PlaySessionGameDone: 0
 --- !u!4 &552459826
 Transform:
   m_ObjectHideFlags: 0
@@ -4607,6 +4612,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &552459827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11405910, guid: 104c1af534acf1448948f93f215ff0c3,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 552459819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708d3dbc1c3b014d8056dbc67f7c06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModuleActivationState: 0
 --- !u!1001 &557247113
 Prefab:
   m_ObjectHideFlags: 0

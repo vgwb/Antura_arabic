@@ -2413,6 +2413,7 @@ MonoBehaviour:
   maxY: 18
   numberOfRounds: 6
   lives: 0
+  roundTime: 30.9
   balloonColors:
   - {r: 1, g: 0.19607842, b: 0.19607842, a: 1}
   - {r: 0.19607843, g: 1, b: 0.19607843, a: 1}
@@ -2448,6 +2449,7 @@ GameObject:
   - 114: {fileID: 512341146}
   - 114: {fileID: 512341145}
   - 114: {fileID: 512341144}
+  - 114: {fileID: 512341151}
   m_Layer: 0
   m_Name: AppManager
   m_TagString: Untagged
@@ -2540,14 +2542,18 @@ MonoBehaviour:
   Modules:
     LocalizationDataPath: 
   GameSettings:
-    GameID: 416e74757261
-    GameName: 416e74757261
+    GameID: Antura
+    GameName: Antura
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
   ActualGame: 
   StartMood: 0
   StartMoodEval: 0
   EndMoodEval: 0
+  Stage: 2
+  LearningBlock: 4
+  PlaySession: 1
+  PlaySessionGameDone: 0
 --- !u!4 &512341150
 Transform:
   m_ObjectHideFlags: 0
@@ -2561,6 +2567,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &512341151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11405910, guid: 104c1af534acf1448948f93f215ff0c3,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 512341143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e708d3dbc1c3b014d8056dbc67f7c06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModuleActivationState: 0
 --- !u!1001 &560155786
 Prefab:
   m_ObjectHideFlags: 0
@@ -4230,7 +4249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffd5e097d66942948f311da3e218f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 30
+  time: 30.9
   timerText: {fileID: 962712816}
 --- !u!1 &964579751
 GameObject:
