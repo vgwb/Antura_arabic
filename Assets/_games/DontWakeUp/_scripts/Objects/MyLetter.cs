@@ -74,7 +74,7 @@ namespace EA4S.DontWakeUp
 
         void OnTriggerEnter(Collider other) {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
-                Debug.Log("OnTriggerEnter " + other.gameObject.name);
+                //Debug.Log("OnTriggerEnter " + other.gameObject.name);
                 // GameDontWakeUp.Instance.dangering.InDanger(false);
                 colliding = true;
                 if (other.gameObject.tag == "Alert") {
@@ -111,7 +111,7 @@ namespace EA4S.DontWakeUp
 
         void OnTriggerExit(Collider other) {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
-                Debug.Log("OnTriggerExit " + other.gameObject.name);
+                //Debug.Log("OnTriggerExit " + other.gameObject.name);
                 if (other.gameObject.tag == "Alert") {
                     GameDontWakeUp.Instance.InDanger(false, How2Die.Null);
                 }

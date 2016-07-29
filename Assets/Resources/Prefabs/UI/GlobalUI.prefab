@@ -507,11 +507,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 60
+  m_fontSize: 50
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 54.73
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 50
   m_fontSizeMax: 60
   m_fontStyle: 0
   m_textAlignment: 17
