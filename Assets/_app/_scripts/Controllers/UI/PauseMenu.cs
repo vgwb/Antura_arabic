@@ -7,6 +7,9 @@ namespace EA4S
 {
     public class PauseMenu : MonoBehaviour
     {
+
+        public static PauseMenu I;
+
         [Header("Buttons Containers")]
         public CanvasGroup CgPause;
         public CanvasGroup CgExit, CgRestart, CgMusic, CgResume;
@@ -22,6 +25,10 @@ namespace EA4S
         float timeScaleAtMenuOpen = 1;
         Sequence openMenuTween;
         Tween anturaBobTween;
+
+        void Awake() {
+            I = this;
+        }
 
         void Start() {
             btPause = CgPause.GetComponentInChildren<Button>();
@@ -82,12 +89,16 @@ namespace EA4S
             if (_open) {
                 timeScaleAtMenuOpen = Time.timeScale;
                 Time.timeScale = 0;
+                if (AppManager.Instance.CurrentGameManagerGO != null)
+                    AppManager.Instance.CurrentGameManagerGO.SendMessage("DoPause", true, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.timeScale = 1;
                 openMenuTween.PlayForward();
                 AudioManager.I.PlaySfx(Sfx.UIPauseIn);
             } else {
                 Time.timeScale = timeScaleAtMenuOpen;
                 openMenuTween.timeScale = 2; // Speed up tween when going backwards
+                if (AppManager.Instance.CurrentGameManagerGO != null)
+                    AppManager.Instance.CurrentGameManagerGO.SendMessage("DoPause", false, SendMessageOptions.DontRequireReceiver);
                 openMenuTween.PlayBackwards();
                 AudioManager.I.PlaySfx(Sfx.UIPauseOut);
             }
@@ -105,12 +116,12 @@ namespace EA4S
                 switch (menuBtIndex) {
                     case 0: // Exit
                         OpenMenu(false);
+                        AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
                         break;
                     case 1: // Music on/off
-                    // TODO
+                        AudioManager.I.ToggleMusic();
                         break;
                     case 2: // Restart
-                        
                         OpenMenu(false);
                         break;
                     case 3: // Resume

@@ -63,7 +63,6 @@ namespace EA4S
 
         public GameObject CurrentGameManagerGO;
 
-
         #endregion
 
         #region Init

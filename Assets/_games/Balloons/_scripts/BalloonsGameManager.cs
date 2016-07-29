@@ -78,7 +78,6 @@ namespace Balloons
             FAIL
         }
 
-
         void Awake() {
             instance = this;
         }
@@ -88,6 +87,7 @@ namespace Balloons
             remainingLives = lives;
             letterDropDelay = balloonPopAnimation.length;
             AppManager.Instance.InitDataAI();
+            AppManager.Instance.CurrentGameManagerGO = gameObject;
 
             ResetScene();
             ShowTutorial();

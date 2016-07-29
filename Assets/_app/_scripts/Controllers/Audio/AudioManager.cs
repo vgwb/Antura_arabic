@@ -55,6 +55,10 @@ namespace EA4S
             }
         }
 
+        public void ToggleMusic() {
+            Debug.Log("TODO ToggleMusic()");
+        }
+
         public void PlayMusic(Music music) {
             var eventName = "";
             switch (music) {
