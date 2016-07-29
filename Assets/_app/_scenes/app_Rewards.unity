@@ -95,7 +95,7 @@ GameObject:
   - 224: {fileID: 293792701}
   - 114: {fileID: 293792702}
   m_Layer: 5
-  m_Name: Animated Background (1)
+  m_Name: Animated Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9176471, g: 0.81568635, b: 0.59607846, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.43137258, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.4784314, g: 0.16862746, b: 0.023529414, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
