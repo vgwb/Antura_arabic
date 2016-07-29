@@ -4,12 +4,18 @@ using ModularFramework.Core;
 
 namespace EA4S
 {
+    [RequireComponent(typeof(RewardsAnimator))]
     public class RewardsManager : MonoBehaviour
     {
 
 
-        void Start() {
-            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+        IEnumerator Start()
+        {
+            // Wait for animation to complete
+            RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
+            while (!animator.IsComplete) yield return null;
+
+            ContinueScreen.Show(Continue, ContinueScreenMode.ButtonFullscreen);
         }
 
         public void Continue() {
