@@ -30,6 +30,10 @@ namespace EA4S
             /// - log
 
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            Invoke("exitMoodScene", 1);
+        }
+
+        void exitMoodScene() {
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
         }
 
