@@ -16,6 +16,7 @@ namespace EA4S
         Hit,
         BaloonPop,
         DangerClock,
+        GameTitle,
         Win,
         Lose,
         UIPopup,
@@ -27,6 +28,7 @@ namespace EA4S
         LetterAngry,
         LetterHappy,
         LetterSad,
+        WalkieTalkie,
         WheelStart,
         WheelTick
     }
@@ -185,6 +187,12 @@ namespace EA4S
                 case Sfx.LetterSad:
                     eventName = "LivingLetter/Sad";
                     break;  
+                case Sfx.GameTitle:
+                    eventName = "VOX/GameTitle";
+                    break;
+                case Sfx.WalkieTalkie:
+                    eventName = "Sfx/WalkieTalkie";
+                    break;
                 case Sfx.WheelStart:
                     eventName = "Sfx/WheelStart";
                     break;  
