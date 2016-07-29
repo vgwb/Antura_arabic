@@ -791,7 +791,7 @@ Prefab:
       objectReference: {fileID: 1089058739}
     - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
       propertyPath: UseTestGameplayInfo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
       propertyPath: GameplayInfo.Variant
