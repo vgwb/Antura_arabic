@@ -25,12 +25,12 @@ namespace EA4S
                 }
             }
 
-            // Continue button - C to show, SHIFT+C to show fullscreen-no-button
+            // Continue button - C to show, SHIFT+C to show fullscreen-button on the side
             if (WidgetSubtitles.I != null) {
                 if (Input.GetKeyDown(KeyCode.C)) {
                     ContinueScreenMode continueScreenMode = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)
 //                        ? ContinueScreenMode.FullscreenBg : ContinueScreenMode.ButtonWithBgFullscreen;
-                        ? ContinueScreenMode.Button : ContinueScreenMode.ButtonWithBg;
+                        ? ContinueScreenMode.ButtonFullscreen : ContinueScreenMode.ButtonWithBg;
                     ContinueScreen.Show(null, continueScreenMode);
                 }
             }
