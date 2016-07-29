@@ -21,68 +21,55 @@ namespace Balloons
         private float adjustProgressPercentage;
 
 
-        void Start()
-        {
+        void Start() {
             animator = GetComponent<Animator>();
         }
 
-        void FixedUpdate()
-        {
-            if (adjustMiddleBalloon)
-            {
-                if (adjustProgress < adjustDuration)
-                {
+        void FixedUpdate() {
+            if (adjustMiddleBalloon) {
+                if (adjustProgress < adjustDuration) {
                     transform.localPosition = Vector3.Lerp(transform.localPosition, adjustedLocalPosition, adjustProgressPercentage);
                     adjustProgress += Time.deltaTime;
                     adjustProgressPercentage = adjustProgress / adjustDuration;
-                }
-                else
-                {
+                } else {
                     adjustMiddleBalloon = false;
                 }
             }
         }
 
-        public void OnMouseDown()
-        {
+        public void OnMouseDown() {
             TapAction();
         }
 
-        void TapAction()
-        {
+        void TapAction() {
             taps++;
-            if (taps >= parentFloatingLetter.tapsNeeded)
-            {
+            if (taps >= parentFloatingLetter.tapsNeeded) {
                 Pop();
-            }
-            else
-            {
+            } else {
                 animator.SetTrigger("Tap");
             }
         }
-            
-        public void Pop()
-        {
+
+        public void Pop() {
             balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
             AudioManager.I.PlaySfx(Sfx.BaloonPop);
             animator.SetBool("Pop", true);
+            GameObject go = Instantiate(BalloonsGameManager.instance.FxParticlesPoof, transform.position, Quaternion.identity) as GameObject;
+            Destroy(go, 10);
         }
 
-        public void AdjustMiddleBalloon()
-        {
+        public void AdjustMiddleBalloon() {
             adjustProgress = 0f;
             adjustProgressPercentage = 0f;
             adjustMiddleBalloon = true;
         }
 
-        public void DisableCollider()
-        {
+        public void DisableCollider() {
             balloonCollider.enabled = false;
         }
 
-        public void SetColor(Color color)
-        {
+        public void SetColor(Color color) {
             balloonRenderer.material.color = color;
         }
     }
