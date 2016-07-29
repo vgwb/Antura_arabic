@@ -17842,7 +17842,7 @@ MonoBehaviour:
   _audioClipAssetPath: 0
   _delay: 0
   _delayInBeats: 0
-  _loop: 0
+  _loop: 1
   _numLoops: -1
   _loopMarkersLoaded: 0
   _useLoopMarkers: 1

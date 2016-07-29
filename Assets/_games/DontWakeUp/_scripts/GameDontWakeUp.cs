@@ -172,6 +172,7 @@ namespace EA4S.DontWakeUp
 
             if (LivesLeft > 1) {
                 LivesLeft = LivesLeft - 1;
+                UpdateLivesContainer();
 
                 //WidgetSubtitles.I.DisplaySentence("game_result_retry");
                 ContinueScreen.Show(ClickedNext, ContinueScreenMode.Button);
