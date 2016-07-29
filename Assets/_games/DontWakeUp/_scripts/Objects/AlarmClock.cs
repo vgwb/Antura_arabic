@@ -8,9 +8,20 @@ namespace EA4S
     {
 
         Vector3 originalPosition;
+        public GameObject HoursGO;
+        public GameObject MinutesGO;
+
+        Tween hoursTween, minutesTween;
 
         void Start() {
             originalPosition = transform.position;
+            hoursTween = HoursGO.transform.DORotate(new Vector3(0, 0, 360), 20, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
+            minutesTween = MinutesGO.transform.DORotate(new Vector3(0, 0, 360), 5, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
+        }
+
+        void OnDestroy() {
+            hoursTween.Kill();
+            minutesTween.Kill();
         }
 
         void AlarmOn() {
