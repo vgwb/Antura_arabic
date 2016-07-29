@@ -3,17 +3,23 @@ using Google2u;
 using System.Collections.Generic;
 using System;
 
-namespace EA4S {
+namespace EA4S
+{
 
-    public class WordData : ILivingLetterData {
+    public class WordData : ILivingLetterData
+    {
 
-        public LivingLetterDataType DataType {
+        public LivingLetterDataType DataType
+        {
             get { return LivingLetterDataType.Word; }
         }
-        public string Key {
+
+        public string Key
+        {
             get { return key; }
             set { key = value; }
         }
+
         public string Kind;
         public string Category;
         public string Stage;
@@ -42,6 +48,7 @@ namespace EA4S {
         }
 
         #region API
+
         static List<WordData> vocabulary = null;
 
         /// <summary>
@@ -64,7 +71,7 @@ namespace EA4S {
         /// <param name="_keyRow"></param>
         /// <returns></returns>
         public static WordData GetWordDataByKeyRow(string _keyRow) {
-            wordsRow wr = words.Instance.GetRow(_keyRow);
+            // wordsRow wr = words.Instance.GetRow(_keyRow);
             WordData wd = Vocabulary().Find(w => w.Key == _keyRow);
             return wd;
         }
@@ -76,25 +83,29 @@ namespace EA4S {
         /// <returns></returns>
         public static List<WordData> GetWordCollection(string _category = "") {
             List<WordData> returnList = Vocabulary();
-            if(_category!="")
+            if (_category != "")
                 return returnList.FindAll(w => w.Category == _category);
             return returnList;
         }
 
         #region API
+
         /// <summary>
         /// Living Letter Text To Display.
         /// </summary>
-        public string TextForLivingLetter {
+        public string TextForLivingLetter
+        {
             get { return ArabicAlphabetHelper.ParseWord(Word, AppManager.Instance.Letters); }
         }
 
         /// <summary>
         /// Return draw of word.
         /// </summary>
-        public Sprite DrawForLivingLetter {
+        public Sprite DrawForLivingLetter
+        {
             get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Key); }
         }
+
         #endregion
 
         #endregion
