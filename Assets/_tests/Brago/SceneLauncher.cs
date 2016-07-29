@@ -3,10 +3,11 @@ using System.Collections;
 using System;
 using ModularFramework.Core;
 using ModularFramework.Components;
+using EA4S.FastCrowd;
 
-namespace EA4S.FastCrowd {
+namespace EA4S {
 
-    public class FastCrowdVariationLauncher : OnClickButtonChangeScene {
+    public class SceneLauncher : OnClickButtonChangeScene {
 
         public FastCrowdGameplayInfo.GameVariant Variant;
 

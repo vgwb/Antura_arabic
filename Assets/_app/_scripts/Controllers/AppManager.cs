@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
+using ModularFramework.Helpers;
 using Google2u;
 using EA4S;
 
@@ -47,14 +48,16 @@ namespace EA4S
         public int EndMoodEval = 0;
         #endregion
 
-        #endregion
-
         public List<LetterData> Letters = new List<LetterData>();
         
         public TeacherAI Teacher;
         public Database DB;
 
         public const string AppVersion = "0.2.0";
+
+        #endregion
+
+        #region Init
 
         public string IExist() {
             return "AppManager Exists";
@@ -94,21 +97,73 @@ namespace EA4S
             }
         }
 
+        #endregion
+
+        #region Game Progression
+        public int Stage = 2;
+        public int LearningBlock = 4;
+        public int PlaySession = 1;
+        public int PlaySessionGameDone = 0;
+        public MinigameData ActualMinigame;
+
+        /// <summary>
+        /// Give right game. Alpha version.
+        /// </summary>
+        public MinigameData GetMiniGameForActualPlaySession() {
+            MinigameData miniGame = null;
+            switch (PlaySession) {
+                case 1:
+                    if (PlaySessionGameDone == 0)
+                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd");
+                    else
+                        miniGame = DB.gameData.Find(g => g.Code == "balloons");
+                    break;
+                case 2:
+                    if (PlaySessionGameDone == 0)
+                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd_words");
+                    else
+                        miniGame = DB.gameData.Find(g => g.Code == "dontwakeup");
+                    break;
+                case 3:
+                    miniGame = new MinigameData("Assessment", "Assessment", "Assessment", "app_Assessment", true);
+                    break;
+            }
+            ActualMinigame = miniGame;
+            return miniGame;
+        }
+
+        /// <summary>
+        /// Set result and return next scene name.
+        /// </summary>
+        /// <returns>return next scene name.</returns>
+        public string MiniGameDone() {
+            string returnString = "app_Wheel";
+            if (PlaySessionGameDone > 0) {
+                PlaySession++;
+                PlaySessionGameDone = 0;
+            } else {
+                PlaySessionGameDone++;
+            }
+            return returnString;
+        }
+
+
+        #endregion
+
+        #region settings behaviours
+
         public void ToggleQualitygfx() {
             GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
             CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
         }
 
+        #endregion
+
+        #region event delegate
+
         public void OnMinigameStart() {
             // reset for already used word.
             ActualGameplayWordAlreadyUsed = new List<WordData>();
-        }
-
-        #region Event Subscription
-
-        void OnLevelWasLoaded(int level) {
-            Debug.Log("OnLevelWasLoaded");
-            Modules.SceneModule.SceneLoadedBehaviour();
         }
 
         #endregion
