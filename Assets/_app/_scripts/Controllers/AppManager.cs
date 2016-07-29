@@ -166,7 +166,6 @@ namespace EA4S
             return returnString;
         }
 
-
         #endregion
 
         #region settings behaviours

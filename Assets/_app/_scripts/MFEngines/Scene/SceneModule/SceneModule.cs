@@ -17,10 +17,16 @@ namespace EA4S {
         }
 
         public override void SceneLoadedBehaviour() {
-            if(SceneTransitioner.IsShown)
-                SceneTransitioner.Show(false);
+            if (SceneTransitioner.IsShown) {
+                AppManager.Instance.StartCoroutine(CloseSceneTransitioner(0.15f));
+            }
         }
 
+        IEnumerator CloseSceneTransitioner(float _waitTime) {
+            yield return new WaitForSeconds(_waitTime);
+            SceneTransitioner.Show(false);
+            yield return null;
+        }
 
     }
 
