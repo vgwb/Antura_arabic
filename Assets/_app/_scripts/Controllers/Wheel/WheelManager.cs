@@ -53,7 +53,7 @@ namespace EA4S
             AudioManager.I.PlayMusic(SceneMusic);
 
             WidgetSubtitles.I.DisplaySentence("wheel_turn", 2, true);
-
+            showGameIcon(-1);
         }
 
         public void CloseScene() {
@@ -61,6 +61,21 @@ namespace EA4S
         }
 
         public void OnPopuplicked() {
+            /* Alpha static logic */
+            if (isGameSelected) {
+                MinigameData miniGame = AppManager.Instance.GetMiniGameForActualPlaySession();
+                if(miniGame.Code == "fastcrowd" || miniGame.Code == "fastcrowd_words") {
+                    FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
+                    if (miniGame.Code == "fastcrowd") {
+                        gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
+                    } else {
+                        gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words;
+                    }
+                    GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
+                }
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.SceneName);
+            }
+            /*
             Debug.Log("Wheel start game: " + gameData[currentGameIndex].Code);
             if (isGameSelected) {
                 if (gameData[currentGameIndex].Code == "fastcrowd" || gameData[currentGameIndex].Code == "fastcrowd_words") {
@@ -72,6 +87,7 @@ namespace EA4S
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(gameData[currentGameIndex].SceneName);
                 //SceneManager.LoadScene(gameData[currentGameIndex].SceneName);
             }
+            */
         }
 
         void ShakePopup() {
@@ -107,11 +123,21 @@ namespace EA4S
 
                     PopupImage.color = _color;
 
-                    labelText.text = ArabicFixer.Fix(gameData[currentGameIndex].Title, false, false);
-                    GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
+                    showGameIcon(currentGameIndex);
                     AudioManager.I.PlaySfx(Sfx.WheelTick);
                     //AudioManager.I.PlayHit();
                 }
+            }
+        }
+
+        void showGameIcon(int index) {
+            if (index >= 0) {
+                GameIcon.SetActive(true);
+                labelText.text = ArabicFixer.Fix(gameData[index].Title, false, false);
+                GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[index].GetIconResourcePath());
+            } else {
+                labelText.text = "";
+                GameIcon.SetActive(false);
             }
         }
     }
