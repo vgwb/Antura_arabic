@@ -797,6 +797,16 @@ Prefab:
       propertyPath: GameplayInfo.Variant
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+      propertyPath: LetterPref
+      value: 
+      objectReference: {fileID: 11463558, guid: f282e92cdb614134093f9bc7e44141a5,
+        type: 2}
+    - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+      propertyPath: DropSingleAreaPref
+      value: 
+      objectReference: {fileID: 11485852, guid: a5397017961a39b4a821afdb6afb1400,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
   m_IsPrefabParent: 0
