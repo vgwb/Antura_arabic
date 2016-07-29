@@ -48,8 +48,10 @@ namespace EA4S.DontWakeUp
         bool inDanger;
         float dangerIntensity;
         How2Die dangerCause;
+        int TutorialState;
 
         [Header("References")]
+        public GameObject TutorialGO;
         public GameObject myLetter;
         public GameObject StarSystems;
         public LivesContainer LivesController;
@@ -87,19 +89,41 @@ namespace EA4S.DontWakeUp
         void GameIntro() {
             currentState = MinigameState.GameIntro;
             WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
-            ContinueScreen.Show(ClickedNext, ContinueScreenMode.Button);
+            TutorialGO.SetActive(true);
+            TutorialState = 3;
+            OnTutorialStateChanged();
         }
 
         public void GameIntroFinished() {
             WidgetSubtitles.I.Close();
+            TutorialGO.SetActive(false);
             InitRound();
         }
 
+        private void OnTutorialStateChanged() {
+            switch (TutorialState) {
+                case 3:
+                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
+                    break;
+                case 2:
+                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro2");
+                    break;
+                case 1:
+                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro3");
+                    break;
+            }
+        }
+
         public void ClickedNext() {
-            Debug.Log("ClickedNext()");
+            //Debug.Log("ClickedNext()");
             switch (currentState) {
                 case MinigameState.GameIntro:
-                    GameIntroFinished();
+                    if (TutorialState > 1) {
+                        TutorialState = TutorialState - 1;
+                        OnTutorialStateChanged();
+                    } else {
+                        GameIntroFinished();
+                    }
                     break;
                 case MinigameState.RoundIntro:
                     WidgetSubtitles.I.Close();
