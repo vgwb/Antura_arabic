@@ -46,14 +46,13 @@ GameObject:
   - 114: {fileID: 11459192}
   - 114: {fileID: 11493056}
   - 114: {fileID: 11425462}
-  - 114: {fileID: 11435016}
   m_Layer: 5
   m_Name: StarFlowers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &139502
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +112,7 @@ GameObject:
   - 224: {fileID: 22459560}
   - 222: {fileID: 22279658}
   - 114: {fileID: 11438068}
+  - 114: {fileID: 11403474}
   m_Layer: 5
   m_Name: JapanB
   m_TagString: Untagged
@@ -130,6 +130,7 @@ GameObject:
   - 224: {fileID: 22438536}
   - 222: {fileID: 22297510}
   - 114: {fileID: 11429604}
+  - 114: {fileID: 11488410}
   m_Layer: 5
   m_Name: Japan
   m_TagString: Untagged
@@ -137,6 +138,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &11403474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad54e9628242f4db6b1bf6ad3b349b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -15
 --- !u!114 &11413182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,21 +272,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11435016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136152}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96d287af5c6b2342af4cfa22aa39b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneTypeToLoad: 4
-  SceneNameCustom: app_Wheel
-  ActualGame: 0
-  GameId: 
 --- !u!114 &11435404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,6 +343,18 @@ MonoBehaviour:
   Japan1: {fileID: 11429604}
   Japan2: {fileID: 11438068}
   Bbackground: {fileID: 11435404}
+--- !u!114 &11488410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad54e9628242f4db6b1bf6ad3b349b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
 --- !u!114 &11490576
 MonoBehaviour:
   m_ObjectHideFlags: 1

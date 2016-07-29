@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening;
+using ModularFramework.Core;
 using ModularFramework.Components;
 
 namespace EA4S
@@ -37,9 +38,8 @@ namespace EA4S
 
             sequence.Append(Bbackground.DOFade(1, 0.3f))
                 .Insert(0f, Japan1.DOFade(1, 0.3f).SetAs(tParms))
-                .Insert(0f, Japan2.DOFade(1, 0.3f).SetAs(tParms))
-                //.Insert(0.5f, Japan1.transform.DORotate(new Vector2(360, 0), 15).SetLoops(-1));
-                ;
+                .Insert(0f, Japan2.DOFade(1, 0.3f).SetAs(tParms));
+            //.Insert(0.5f, Japan1.transform.DORotate(new Vector2(360, 0), 15).SetLoops(-1));;
 
             if (_stars > 0) { 
                 sequence.Append(Flower3.DOFade(1, 0.1f));
@@ -57,9 +57,18 @@ namespace EA4S
             }
 
             //sequence.Append(Japan1.rectTransform.DORotate(new Vector2(360, 0), 15).SetLoops(-1));
-            sequence.Play().OnComplete(delegate () {
-                GetComponent<OnClickButtonChangeScene>().enabled = true;
-            });
+            sequence.Play().OnComplete(delegate ()
+                {
+                    GetComponent<OnClickButtonChangeScene>().enabled = true;
+                });
+
+            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
+
+        public void Continue() {
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
+        }
+
+
     }
 }

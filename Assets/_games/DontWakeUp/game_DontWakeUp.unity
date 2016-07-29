@@ -4594,10 +4594,6 @@ MonoBehaviour:
   StartMood: 0
   StartMoodEval: 0
   EndMoodEval: 0
-  Stage: 2
-  LearningBlock: 4
-  PlaySession: 1
-  PlaySessionGameDone: 0
 --- !u!4 &552459826
 Transform:
   m_ObjectHideFlags: 0
@@ -6386,6 +6382,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 136152, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
   m_IsPrefabParent: 0
@@ -6474,7 +6474,7 @@ MonoBehaviour:
   FastBeyod360: 0
 --- !u!1 &804933874
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
@@ -6490,7 +6490,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &804933875
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 804933874}
@@ -6505,7 +6505,7 @@ MonoBehaviour:
   wireframeHiddenObjects: []
 --- !u!4 &804933876
 Transform:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 804933874}
@@ -12748,7 +12748,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 491954, guid: 428741834f5334c728a088a22f7492a8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 30.13
+      value: 33.7
       objectReference: {fileID: 0}
     - target: {fileID: 491954, guid: 428741834f5334c728a088a22f7492a8, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12756,7 +12756,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 491954, guid: 428741834f5334c728a088a22f7492a8, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.89
+      value: -4.46
       objectReference: {fileID: 0}
     - target: {fileID: 491954, guid: 428741834f5334c728a088a22f7492a8, type: 2}
       propertyPath: m_LocalRotation.x

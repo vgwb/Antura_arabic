@@ -18,9 +18,11 @@ namespace Balloons
         public Transform[] floatingLetterLocations;
         public AnimationClip balloonPopAnimation;
         public GameObject runningAntura;
+        public Canvas tutorialCanvas;
         public Canvas hudCanvas;
         public Canvas roundResultCanvas;
         public Canvas endGameCanvas;
+        public GameObject tutorialNextButton;
         public TextMeshProUGUI roundNumberText;
         public TimerManager timer;
         public Animator countdownAnimator;
@@ -55,6 +57,16 @@ namespace Balloons
         private int currentRound = 0;
         private int remainingLives;
         private int correctWords = 0;
+        private int _tutorialState;
+        private int TutorialState
+        {
+            get { return _tutorialState; }
+            set
+            {
+                _tutorialState = value;
+                OnTutorialStateChanged();
+            }
+        }
 
         private enum Result
         {
@@ -78,8 +90,42 @@ namespace Balloons
             AppManager.Instance.InitDataAI();
 
             ResetScene();
+            ShowTutorial();
+        }
 
-            //Play();
+        private void ShowTutorial()
+        {
+            tutorialCanvas.gameObject.SetActive(true);
+            TutorialState = 3;
+        }
+
+        private void OnTutorialStateChanged()
+        {
+            switch (TutorialState)
+            {
+                case 3:
+                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro1");
+                    tutorialCanvas.gameObject.SetActive(true);
+                    break;
+                case 2:
+                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro2");
+                    tutorialCanvas.gameObject.SetActive(true);
+                    break;
+                case 1:
+                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro3");
+                    tutorialCanvas.gameObject.SetActive(true);
+                    break;
+                default:
+                    WidgetSubtitles.I.DisplaySentence(string.Empty);
+                    tutorialCanvas.gameObject.SetActive(false);
+                    Play();
+                    break;
+            }
+        }
+
+        public void TutorialNextButtonAction()
+        {
+            TutorialState--;
         }
 
         public void OnRoundStartPressed()

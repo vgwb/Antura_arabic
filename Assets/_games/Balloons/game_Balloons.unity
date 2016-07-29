@@ -2395,9 +2395,11 @@ MonoBehaviour:
   - {fileID: 684511584}
   balloonPopAnimation: {fileID: 7400000, guid: c36accc0bd5aa46238a22c4e903c607e, type: 2}
   runningAntura: {fileID: 1585646071}
+  tutorialCanvas: {fileID: 1386884781}
   hudCanvas: {fileID: 820499488}
   roundResultCanvas: {fileID: 322097510}
   endGameCanvas: {fileID: 1295776640}
+  tutorialNextButton: {fileID: 2123300191}
   roundNumberText: {fileID: 672977591}
   timer: {fileID: 962712818}
   countdownAnimator: {fileID: 1321913917}
@@ -5903,8 +5905,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -0.0000076293945}
-  m_SizeDelta: {x: -250, y: -100.000015}
+  m_AnchoredPosition: {x: 0.000030517578, y: -25}
+  m_SizeDelta: {x: -250, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1316276450
 MonoBehaviour:
@@ -6266,7 +6268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1386884779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8535,7 +8537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2113389246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8723,7 +8725,7 @@ GameObject:
   - 114: {fileID: 2123300194}
   - 114: {fileID: 2123300193}
   m_Layer: 5
-  m_Name: NextButton
+  m_Name: TutorialNextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8790,19 +8792,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 508411710}
-        m_MethodName: Play
+        m_MethodName: TutorialNextButtonAction
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1386884778}
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

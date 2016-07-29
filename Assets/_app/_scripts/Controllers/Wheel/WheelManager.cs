@@ -53,7 +53,11 @@ namespace EA4S
             AudioManager.I.PlayMusic(SceneMusic);
 
             WidgetSubtitles.I.DisplaySentence("wheel_turn", 2, true);
+            showGameIcon(-1);
+        }
 
+        public void CloseScene() {
+            AudioManager.I.StopSfx(Sfx.WheelStart);
         }
 
         public void OnPopuplicked() {
@@ -79,6 +83,7 @@ namespace EA4S
                     gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
                 }
+                CloseScene();
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(gameData[currentGameIndex].SceneName);
                 //SceneManager.LoadScene(gameData[currentGameIndex].SceneName);
             }
@@ -87,12 +92,6 @@ namespace EA4S
 
         void ShakePopup() {
             AudioManager.I.PlaySfx(Sfx.UIPopup);
-//            Sequence mySequence = DOTween.Sequence();
-//            mySequence.Append(transform.DOMoveX(45, 1))
-//                .Append(transform.DORotate(new Vector3(0,180,0), 1))
-//                 .PrependInterval(1)
-//                  .Insert(0, transform.DOScale(new Vector3(3,3,3), mySequence.Duration()));
-//            
             Popup.GetComponent<RectTransform>().DOPunchScale(new Vector2(0.2f, 0.2f), 1.0f, 5, 1f)
                 .SetLoops(0).SetUpdate(true).SetAutoKill(true)
                 .SetEase(Ease.InOutQuad).Play();
@@ -102,7 +101,6 @@ namespace EA4S
             TutorialArrow.SetActive(false);
             AudioManager.I.PlaySfx(Sfx.WheelStart);
 
-            //AudioManager.I.PlayMusic("Music2");
         }
 
         public void OnWheelStopped() {
@@ -125,11 +123,21 @@ namespace EA4S
 
                     PopupImage.color = _color;
 
-                    labelText.text = ArabicFixer.Fix(gameData[currentGameIndex].Title, false, false);
-                    GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
+                    showGameIcon(currentGameIndex);
                     AudioManager.I.PlaySfx(Sfx.WheelTick);
                     //AudioManager.I.PlayHit();
                 }
+            }
+        }
+
+        void showGameIcon(int index) {
+            if (index >= 0) {
+                GameIcon.SetActive(true);
+                labelText.text = ArabicFixer.Fix(gameData[index].Title, false, false);
+                GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[index].GetIconResourcePath());
+            } else {
+                labelText.text = "";
+                GameIcon.SetActive(false);
             }
         }
     }
