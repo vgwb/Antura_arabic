@@ -79,10 +79,12 @@ namespace EA4S.FastCrowd {
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
-            if(!UseTestGameplayInfo)
-                GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as FastCrowdGameplayInfo;
+            //if(!UseTestGameplayInfo)
+            //    GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as FastCrowdGameplayInfo;
+            if (GameplayInfo == null)
+                GameplayInfo = new FastCrowdGameplayInfo();
             if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words)
-                VariationPrefix = "-2";
+                VariationPrefix = "_words";
 
             AppManager.Instance.InitDataAI();
             // put here start logic

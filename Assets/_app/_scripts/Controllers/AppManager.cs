@@ -104,6 +104,15 @@ namespace EA4S
             ActualGameplayWordAlreadyUsed = new List<WordData>();
         }
 
+        #region Event Subscription
+
+        void OnLevelWasLoaded(int level) {
+            Debug.Log("OnLevelWasLoaded");
+            Modules.SceneModule.SceneLoadedBehaviour();
+        }
+
+        #endregion
+
     }
 
     /// <summary>
