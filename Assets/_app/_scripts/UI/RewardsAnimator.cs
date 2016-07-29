@@ -33,7 +33,6 @@ namespace EA4S
             Pedestal.gameObject.SetActive(true);
 
             showTween = DOTween.Sequence().Pause()
-//                .Append(Bottom.DOAnchorPosY(-500, 0.8f).From())
                 .Append(LockClosed.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack))
                 .AppendInterval(0.3f)
                 .Append(LockClosed.DOShakePosition(0.8f, 40f, 16, 90, false, false))
@@ -49,6 +48,7 @@ namespace EA4S
                 .AppendInterval(0.7f)
                 .Append(LockOpen.DOScale(0.00001f, 0.6f).SetEase(Ease.InBack))
                 .Join(LockOpen.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetRelative().SetEase(Ease.InCubic))
+                .Join(Godray1.DOScale(0.00001f, 0.6f).SetEase(Ease.InCubic))
                 .Join(Pedestal.DOScale(0.00001f, 1f).From().SetDelay(0.5f).SetEase(Ease.OutBack))
                 .OnComplete(() => {
                     IsComplete = true;
