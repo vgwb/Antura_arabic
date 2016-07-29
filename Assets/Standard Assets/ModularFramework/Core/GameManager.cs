@@ -49,9 +49,9 @@ namespace ModularFramework.Core {
         #endregion
 
         #region Event Subscription
-
+        
         void OnLevelWasLoaded(int level) {
-            Debug.Log("OnLevelWasLoaded");
+            Debug.Log("OnLevelWasLoaded",this);
             Modules.SceneModule.SceneLoadedBehaviour();
         }
 

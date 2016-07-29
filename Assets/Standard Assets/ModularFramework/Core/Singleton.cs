@@ -36,11 +36,12 @@ namespace ModularFramework.Core {
         void Awake() {
             TypeName = typeof(T).FullName;
 
-            // First we check if there are any other instances conflicting then destroy this and return
+            // checks if there is already another instance of this type.
             if (Instance != null) {
                 if (Instance != this)
-                    Destroy(gameObject);
-                return;             // return is my addition so that the inspector in unity still updates
+                    // destroys immediately to break the chain of events associated to this object.
+                    DestroyImmediate(gameObject);
+                return;             
             }
 
             // Here we save our singleton instance
