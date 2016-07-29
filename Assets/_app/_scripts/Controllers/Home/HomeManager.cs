@@ -13,7 +13,7 @@ namespace EA4S
 
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
-
+            AudioManager.I.PlaySfx(Sfx.GameTitle);
             ContinueScreen.Show(Play, ContinueScreenMode.Button);
         }
 
