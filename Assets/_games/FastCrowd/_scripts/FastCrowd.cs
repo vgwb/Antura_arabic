@@ -80,9 +80,13 @@ namespace EA4S.FastCrowd
 
         #region Setup and initialization
 
-        //void Start() {
-        //    AppManager.Instance.CurrentGameManagerGO = gameObject;
-        //}
+        protected override void Awake() {
+            base.Awake();
+        }
+
+        protected override void Start() {
+            base.Start();
+        }
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();

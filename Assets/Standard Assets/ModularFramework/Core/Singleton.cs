@@ -35,7 +35,7 @@ namespace ModularFramework.Core {
 
         protected bool IsDuplicatedInstance = false;
 
-        void Awake() {
+        protected virtual void Awake() {
             TypeName = typeof(T).FullName;
 
             // checks if there is already another instance of this type.
