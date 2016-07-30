@@ -455,7 +455,9 @@ namespace EA4S.FastCrowd
             TutorialNextStepButton.onClick.AddListener(() => TutorialNextStep());
         }
 
-        void OnDisable() {
+        protected override void OnDisable() {
+            base.OnDisable();
+
             DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver -= GameplayTimer_OnTimeOver;
             GameplayTimer.OnCustomEvent -= GameplayTimer_OnCustomEvent;
