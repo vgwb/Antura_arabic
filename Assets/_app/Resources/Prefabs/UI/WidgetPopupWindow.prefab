@@ -303,9 +303,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Window: {fileID: 101778}
   TitleGO: {fileID: 127528}
+  TitleEnglishGO: {fileID: 0}
   DrawingImageGO: {fileID: 169214}
   WordTextGO: {fileID: 158266}
   ButtonGO: {fileID: 132048}
+  TutorialImageGO: {fileID: 0}
 --- !u!114 &11464942
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -178,7 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55f9c11ba079414da4547e6c27d8353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.4
   dangerCanvas: {fileID: 22561824}
 --- !u!114 &11495464
 MonoBehaviour:
