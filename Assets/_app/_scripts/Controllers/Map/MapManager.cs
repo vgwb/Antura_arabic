@@ -14,10 +14,16 @@ namespace EA4S
 
         [Header("Journey")]
         public GameObject[] Pins;
+        public GameObject[] CurrentSteps;
+
+        [Header("References")]
+        public GameObject Player;
 
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
             WidgetSubtitles.I.DisplaySentence("map_A1", 2, true, NextSentence);
+
+            ShowProgression();
         }
 
         public void NextSentence() {
@@ -37,6 +43,18 @@ namespace EA4S
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
             else
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
+        }
+
+        void ShowProgression() {
+            CurrentSteps[0].SetActive(AppManager.Instance.PlaySession > 0);
+            CurrentSteps[1].SetActive(AppManager.Instance.PlaySession > 1);
+            CurrentSteps[2].SetActive(AppManager.Instance.PlaySession > 2);
+            CurrentSteps[3].SetActive(AppManager.Instance.PlaySession > 3);
+
+            Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.PlaySession - 1].transform.position;
+
+            Player.transform.position = new Vector3(currentDotPosition.x, currentDotPosition.y + 4.6f, currentDotPosition.z);
+                
         }
 
     }
