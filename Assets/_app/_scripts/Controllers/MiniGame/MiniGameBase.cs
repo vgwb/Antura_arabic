@@ -14,14 +14,13 @@ namespace EA4S
         public bool UseTestGameplayInfo;
         public AnturaGameplayInfo GameplayInfo = new AnturaGameplayInfo();
 
-        void Start() {
+        protected virtual void Start() {
             if (!UseTestGameplayInfo)
                 GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
             else // manual set on framework for test session
                 AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo = GameplayInfo;
             AppManager.Instance.OnMinigameStart();
             ReadyForGameplay();
-
         }
 
         /// <summary>
