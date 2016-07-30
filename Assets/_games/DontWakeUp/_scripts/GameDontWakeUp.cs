@@ -175,13 +175,9 @@ namespace EA4S.DontWakeUp
             UpdateLivesContainer();
             SetupLevel();
 
-            myLetter.SetActive(true);
-            myLetter.GetComponent<MyLetter>().Init(currentWord.Key);
-            myLetter.transform.position = currentLevelController.GetStartPosition().position;
-            SpeakCurrentLetter();
-
             WidgetPopupWindow.I.Init(ClickedNext, "Carefully drag this word", currentWord.Key, currentWord.Word);
             WidgetPopupWindow.Show(true);
+            SpeakCurrentLetter();
             //WidgetSubtitles.I.DisplayDebug("init round");
         }
 
@@ -194,7 +190,12 @@ namespace EA4S.DontWakeUp
         {
             currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
-            // Debug.Log("word chosen: " + currentWord._id);
+
+            myLetter.SetActive(true);
+            myLetter.GetComponent<MyLetter>().Init(currentWord.Key);
+            myLetter.transform.position = currentLevelController.GetStartPosition().position;
+            myLetter.transform.eulerAngles = new Vector3(0, currentLevelController.GetStartPosition().rotation.eulerAngles.y, 0);
+
             LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
 
             currentLevelController.SetWord();
