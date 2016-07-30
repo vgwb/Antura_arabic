@@ -12,7 +12,7 @@ namespace EA4S.DontWakeUp
         public GameObject TextGO;
         TextMeshProUGUI TextWord;
 
-        public float SpeedLimit;
+        float SpeedLimit = 16f;
 
         public EA4S.SplineTrailRenderer trailReference;
         public string groundLayerName = "Terrain";
@@ -46,12 +46,14 @@ namespace EA4S.DontWakeUp
         //            }
         //        }
 
-        void Start() {
+        void Start()
+        {
             TextGO.SetActive(false);
             DrawingGO.SetActive(false);
         }
 
-        public void Init(string wordCode) {
+        public void Init(string wordCode)
+        {
             // Debug.Log("MyLetter Init " + wordCode);
             draggingStarted = false;
             overDestinationMarker = false;
@@ -63,7 +65,8 @@ namespace EA4S.DontWakeUp
             trailReference.Clear();
         }
 
-        void LetterDropped() {
+        void LetterDropped()
+        {
             if (overDestinationMarker) {
                 GameDontWakeUp.Instance.RoundWon();
             } else {
@@ -72,7 +75,8 @@ namespace EA4S.DontWakeUp
         }
 
 
-        void OnTriggerEnter(Collider other) {
+        void OnTriggerEnter(Collider other)
+        {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerEnter " + other.gameObject.name);
                 // GameDontWakeUp.Instance.dangering.InDanger(false);
@@ -90,7 +94,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        void OnTriggerStay(Collider other) {
+        void OnTriggerStay(Collider other)
+        {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerStay " + other.gameObject.name);
 //            if (other.gameObject.tag == "Obstacle") {
@@ -109,7 +114,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        void OnTriggerExit(Collider other) {
+        void OnTriggerExit(Collider other)
+        {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerExit " + other.gameObject.name);
                 if (other.gameObject.tag == "Alert") {
@@ -173,7 +179,8 @@ namespace EA4S.DontWakeUp
 
 
 
-        void Update() {
+        void Update()
+        {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 if (Input.GetMouseButtonDown(0)) {
                     RaycastHit hit;
@@ -206,7 +213,8 @@ namespace EA4S.DontWakeUp
 
 
 
-        void MoveOnFloor() {
+        void MoveOnFloor()
+        {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, 
                             Input.mousePosition.y, 0)), out hit, float.MaxValue, LayerNameToIntMask(groundLayerName))) {
@@ -231,7 +239,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        static int LayerNameToIntMask(string layerName) {
+        static int LayerNameToIntMask(string layerName)
+        {
             int layer = LayerMask.NameToLayer(layerName);
 
             if (layer == 0)
