@@ -12,7 +12,7 @@ GameObject:
   - 64: {fileID: 6481932}
   - 23: {fileID: 2337902}
   m_Layer: 0
-  m_Name: terrain
+  m_Name: terrain TANO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

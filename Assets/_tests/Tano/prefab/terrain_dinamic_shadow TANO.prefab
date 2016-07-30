@@ -12,7 +12,7 @@ GameObject:
   - 64: {fileID: 6440964}
   - 23: {fileID: 2357040}
   m_Layer: 0
-  m_Name: terrain_dinamic_shadow
+  m_Name: terrain_dinamic_shadow TANO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

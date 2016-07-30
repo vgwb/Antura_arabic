@@ -55,7 +55,7 @@ MonoBehaviour:
   _apiKey: 
   _enableBugReporter: 0
   _disabledTabs: 
-  _profilerAlignment: 2
+  _profilerAlignment: 0
   _optionsAlignment: 3
   _consoleAlignment: 0
-  _triggerPosition: 0
+  _triggerPosition: 2
