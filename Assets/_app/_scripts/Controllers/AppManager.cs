@@ -10,7 +10,7 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.4.2";
+        public const string AppVersion = "0.4.3";
 
         #region properties, variables and constants
 
@@ -67,18 +67,21 @@ namespace EA4S
 
         #region Init
 
-        public string IExist() {
+        public string IExist()
+        {
             return "AppManager Exists";
         }
 
-        public void InitDataAI() {
+        public void InitDataAI()
+        {
             if (DB == null)
                 DB = new Database();
             if (Teacher == null)
                 Teacher = new TeacherAI();
         }
 
-        protected override void GameSetup() { 
+        protected override void GameSetup()
+        { 
             base.GameSetup();
 
             AdditionalSetup();
@@ -88,7 +91,8 @@ namespace EA4S
             GameSettings.HighQualityGfx = true;
         }
 
-        void AdditionalSetup() {
+        void AdditionalSetup()
+        {
             // GameplayModule
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
@@ -98,7 +102,8 @@ namespace EA4S
 
         }
 
-        void CachingLetterData() {
+        void CachingLetterData()
+        {
             foreach (string rowName in letters.Instance.rowNames) {
                 lettersRow letRow = letters.Instance.GetRow(rowName);
                 Letters.Add(new LetterData(rowName, letRow));
@@ -127,7 +132,8 @@ namespace EA4S
         /// <summary>
         /// Give right game. Alpha version.
         /// </summary>
-        public MinigameData GetMiniGameForActualPlaySession() {
+        public MinigameData GetMiniGameForActualPlaySession()
+        {
             MinigameData miniGame = null;
             switch (PlaySession) {
                 case 1:
@@ -154,7 +160,8 @@ namespace EA4S
         /// Set result and return next scene name.
         /// </summary>
         /// <returns>return next scene name.</returns>
-        public string MiniGameDone(string actualSceneName = "") {
+        public string MiniGameDone(string actualSceneName = "")
+        {
             string returnString = "app_Start";
             if (actualSceneName == "") {
                 if (PlaySessionGameDone > 0) { // end playsession
@@ -176,7 +183,8 @@ namespace EA4S
 
         #region settings behaviours
 
-        public void ToggleQualitygfx() {
+        public void ToggleQualitygfx()
+        {
             GameSettings.HighQualityGfx = !GameSettings.HighQualityGfx;
             CameraGameplayController.I.EnableFX(GameSettings.HighQualityGfx);
         }
@@ -185,7 +193,8 @@ namespace EA4S
 
         #region event delegate
 
-        public void OnMinigameStart() {
+        public void OnMinigameStart()
+        {
             // reset for already used word.
             ActualGameplayWordAlreadyUsed = new List<WordData>();
         }
