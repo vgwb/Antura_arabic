@@ -23,9 +23,9 @@ namespace EA4S
 
         public void Continue()
         {
-            // if we just did Assestment then go back to Home
+            // if we just did Assestment then go mood
             if (AppManager.Instance.PlaySession > 2) {
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
             } else {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
             }
