@@ -3191,6 +3191,7 @@ MonoBehaviour:
   StartMood: 0
   StartMoodEval: 0
   EndMoodEval: 0
+  CurrentGameManagerGO: {fileID: 0}
   Stage: 2
   LearningBlock: 4
   PlaySession: 1
