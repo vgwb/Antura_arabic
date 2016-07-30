@@ -33,14 +33,19 @@ namespace ModularFramework.Core {
             }
         }
 
+        protected bool IsDuplicatedInstance = false;
+
         void Awake() {
             TypeName = typeof(T).FullName;
 
             // checks if there is already another instance of this type.
             if (Instance != null) {
-                if (Instance != this)
+                if (Instance != this) {
                     // destroys immediately to break the chain of events associated to this object.
-                    DestroyImmediate(gameObject);
+                    //DestroyImmediate(gameObject);
+                    IsDuplicatedInstance = true;
+                    Destroy(gameObject);
+                }
                 return;             
             }
 
