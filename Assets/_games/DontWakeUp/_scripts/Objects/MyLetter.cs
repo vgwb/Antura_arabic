@@ -67,6 +67,7 @@ namespace EA4S.DontWakeUp
 
         void LetterDropped()
         {
+            GameDontWakeUp.Instance.SpeakCurrentLetter();
             if (overDestinationMarker) {
                 GameDontWakeUp.Instance.RoundWon();
             } else {
@@ -191,6 +192,7 @@ namespace EA4S.DontWakeUp
                         draggingStarted = true;
                         MoveOnFloor();
                         trailReference.Clear();
+                        GameDontWakeUp.Instance.SpeakCurrentLetter();
                     }
                 } else if (Input.GetMouseButtonUp(0)) {
                     dragging = false;
@@ -248,6 +250,7 @@ namespace EA4S.DontWakeUp
 
             return 1 << layer;
         }
+
     }
    
 }
