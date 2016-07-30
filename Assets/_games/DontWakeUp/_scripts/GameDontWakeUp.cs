@@ -178,11 +178,16 @@ namespace EA4S.DontWakeUp
             myLetter.SetActive(true);
             myLetter.GetComponent<MyLetter>().Init(currentWord.Key);
             myLetter.transform.position = currentLevelController.GetStartPosition().position;
-            AudioManager.I.PlayWord(currentWord.Key);
+            SpeakCurrentLetter();
 
             WidgetPopupWindow.I.Init(ClickedNext, "Carefully drag this word", currentWord.Key, currentWord.Word);
             WidgetPopupWindow.Show(true);
             //WidgetSubtitles.I.DisplayDebug("init round");
+        }
+
+        public void SpeakCurrentLetter()
+        {
+            AudioManager.I.PlayWord(currentWord.Key);
         }
 
         void SetupLevel()
