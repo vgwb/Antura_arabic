@@ -251,13 +251,14 @@ namespace EA4S
         {
             // app is pausing
             if (pauseStatus) {
-                // TODO Pause Audio if it is playing
-
+                StopMusic();
             }
 
             //app is resuming
             if (!pauseStatus) {
-                // TODO resume music
+                if (musicEnabled) {
+                    PlayMusic(currentMusic);
+                }
             }
         }
     }
