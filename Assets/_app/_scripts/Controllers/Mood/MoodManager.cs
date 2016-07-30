@@ -11,11 +11,13 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
 
-        void Awake() {
+        void Awake()
+        {
 
         }
 
-        void Start() {
+        void Start()
+        {
             AudioManager.I.PlayMusic(SceneMusic);
 
             WidgetSubtitles.I.DisplaySentence("mood_how_are_you_today");
@@ -25,7 +27,8 @@ namespace EA4S
         /// Mood selected. Values 0,1,2,3,4.
         /// </summary>
         /// <param name="_mood"></param>
-        public void MoodSelected(int _mood) {
+        public void MoodSelected(int _mood)
+        {
             //TODO save and log mood
             /// - log
 
@@ -33,11 +36,18 @@ namespace EA4S
             Invoke("exitMoodScene", 0.5f);
         }
 
-        void exitMoodScene() {
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
+        void exitMoodScene()
+        {
+            // if we just did Assestment then go home
+            if (AppManager.Instance.PlaySession > 2) {
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+            } else {
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
+            }
         }
 
-        public void StartTest() {
+        public void StartTest()
+        {
             LoggerEA4S.SessionID = Random.Range(10000000, 99999999).ToString();
             LoggerEA4S.Log("app", "appversion", "info", AppManager.AppVersion);
             LoggerEA4S.Log("app", "platform", "info", string.Format("{0} | (sys mem) {1} | (video mem) {2} | {3} |", SystemInfo.operatingSystem, SystemInfo.systemMemorySize, SystemInfo.graphicsMemorySize, Screen.width + "x" + Screen.height));

@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 5199990}
   m_LocalRotation: {x: 0, y: 0, z: -0.67520416, w: 0.7376309}
-  m_LocalPosition: {x: -1.446, y: 0.058, z: -0.336}
+  m_LocalPosition: {x: -1.28, y: 0.07, z: -0.34}
   m_LocalScale: {x: 1.6282842, y: 1.6282843, z: 1.6282843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -84.939995}
   m_Children: []
@@ -2329,7 +2329,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 212343793}
   m_LocalRotation: {x: -0.050848067, y: -0.057358943, z: 0.69826126, w: 0.71172726}
-  m_LocalPosition: {x: 1.1100005, y: 0.07999981, z: 0.71000063}
+  m_LocalPosition: {x: 0.8, y: 0.09, z: 0.66}
   m_LocalScale: {x: 1.1359868, y: 2.470138, z: 1.1359876}
   m_LocalEulerAnglesHint: {x: 0.4425, y: -8.7813, z: 88.8716}
   m_Children: []
@@ -2973,7 +2973,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 307910551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 3.2, z: 5.98}
+  m_LocalPosition: {x: 0, y: 3.2, z: 5.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -5566,8 +5566,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 3, z: 8}
-  m_Center: {x: 0, y: 3, z: 1}
+  m_Size: {x: 2.75, y: 3, z: 7.36}
+  m_Center: {x: 0, y: 3, z: 1.53}
 --- !u!1001 &745922796
 Prefab:
   m_ObjectHideFlags: 0
@@ -6001,7 +6001,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 864321275}
   m_LocalRotation: {x: -0.00000026822087, y: -0.0000001490116, z: -0.7505197, w: 0.66084814}
-  m_LocalPosition: {x: 0.38, y: 0.15, z: 0.62}
+  m_LocalPosition: {x: 0.068, y: 0.19, z: 0.62}
   m_LocalScale: {x: 1.1863451, y: 3.0871046, z: 1.1863446}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -97.2708}
   m_Children: []
@@ -6760,7 +6760,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 950427147}
   m_LocalRotation: {x: 0.07983134, y: -0.061780106, z: -0.7055596, w: 0.70142424}
-  m_LocalPosition: {x: -0.39805174, y: -0.04999335, z: -0.081994504}
+  m_LocalPosition: {x: -0.03, y: -0.05, z: -0.01}
   m_LocalScale: {x: 1.1863463, y: 3.0871074, z: 1.1863452}
   m_LocalEulerAnglesHint: {x: 1.4218, y: -11.5008, z: -90.479996}
   m_Children: []
@@ -9326,7 +9326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrawingGO: {fileID: 1934026849}
   TextGO: {fileID: 1397997992}
-  SpeedLimit: 8
   trailReference: {fileID: 1103666601}
   groundLayerName: Terrain
   playerLayerName: Player
@@ -12425,7 +12424,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400080, guid: dd9b2abfce8c64fa2b25ad01957a2f96, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2059768592}
-  m_LocalRotation: {x: 0.6062252, y: -0.36399317, z: -0.60622513, w: -0.36399323}
+  m_LocalRotation: {x: 0.60622525, y: -0.3639932, z: -0.6062252, w: -0.36399326}
   m_LocalPosition: {x: -1.575815, y: 0.8004043, z: -1.0127485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -61.963398, y: -90, z: -180}
