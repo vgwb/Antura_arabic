@@ -454,65 +454,8 @@ MonoBehaviour:
   Delay: 0
   Duration: 2
   DestinationAngle: {x: 0, y: 0, z: 30}
+  DestinationPosition: {x: 0, y: 0, z: 0}
   FastBeyod360: 1
---- !u!1001 &110006385
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400028, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 100032, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100030, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100026, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 32f8acc640dc14d9a9a63d727959f45c, type: 3}
-  m_IsPrefabParent: 0
 --- !u!1 &139348338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,6 +1258,76 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb59dd1098a504130975f2b9f044e286, type: 3}
   m_IsPrefabParent: 0
+--- !u!1001 &477379325
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 495472, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 471572, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.68850946
+      objectReference: {fileID: 0}
+    - target: {fileID: 471572, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.040607117
+      objectReference: {fileID: 0}
+    - target: {fileID: 471572, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.7181946
+      objectReference: {fileID: 0}
+    - target: {fileID: 471572, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.09220875
+      objectReference: {fileID: 0}
+    - target: {fileID: 14420350, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -1.6011803
+      objectReference: {fileID: 0}
+    - target: {fileID: 14420350, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.060359318
+      objectReference: {fileID: 0}
+    - target: {fileID: 14420350, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0025257692
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d31c0c5828fe44e90a0de8c99ec09a39, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &492641240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,6 +1761,7 @@ MonoBehaviour:
   Delay: 1
   Duration: 1.5
   DestinationAngle: {x: 0, y: 0, z: 245}
+  DestinationPosition: {x: 0, y: 0, z: 0}
   FastBeyod360: 1
 --- !u!1 &688744168
 GameObject:
@@ -3001,6 +3015,7 @@ MonoBehaviour:
   Delay: 0.5
   Duration: 2
   DestinationAngle: {x: 0, y: 0, z: 345}
+  DestinationPosition: {x: 0, y: 0, z: 0}
   FastBeyod360: 0
 --- !u!1 &1156136972
 GameObject:
