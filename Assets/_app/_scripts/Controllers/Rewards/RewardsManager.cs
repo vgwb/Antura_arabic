@@ -9,7 +9,8 @@ namespace EA4S
     {
 
 
-        IEnumerator Start() {
+        IEnumerator Start()
+        {
             AudioManager.I.PlayMusic(Music.Theme4);
 
             // Wait for animation to complete
@@ -20,8 +21,15 @@ namespace EA4S
             ContinueScreen.Show(Continue, ContinueScreenMode.ButtonFullscreen);
         }
 
-        public void Continue() {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
+        public void Continue()
+        {
+            // if we just did Assestment then go back to Home
+            if (AppManager.Instance.PlaySession > 2) {
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+            } else {
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
+            }
+
         }
 
     }
