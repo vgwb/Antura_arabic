@@ -33,7 +33,6 @@ namespace EA4S
         WheelTick
     }
 
-
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager I;
@@ -50,7 +49,7 @@ namespace EA4S
             // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
             if (info != null) {
                 if (type == Fabric.EventNotificationType.OnAudioComponentStopped) {
-                    Debug.Log("NotifyEndAudio OnAudioComponentStopped()");
+                    //Debug.Log("NotifyEndAudio OnAudioComponentStopped()");
                     if (OnNotifyEndAudio != null) {
                         OnNotifyEndAudio();
                     }
