@@ -39,6 +39,13 @@ namespace EA4S
             this.gameObject.SetActive(false);
         }
 
+        public static void Close()
+        {
+            if (IsShown) {
+                Show(false);
+            }
+        }
+
         public static void Show(bool _doShow)
         {
             GlobalUI.Init();
@@ -77,12 +84,6 @@ namespace EA4S
 //            Window.SetActive(true);
         }
 
-        public void Close()
-        {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-//            Window.SetActive(false);
-        }
-
         public void SetTitle(string text)
         {
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
@@ -105,7 +106,7 @@ namespace EA4S
 
         public void OnPressButton()
         {
-            Close();
+            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             currentCallback();
         }
     }

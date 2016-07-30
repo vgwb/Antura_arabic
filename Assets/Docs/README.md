@@ -10,7 +10,7 @@ Please don't share this project to anybody who is not in the active CGL/VGWB/Wix
 
 ## Fetch the Project##
 
-1. Get Unity latest stable (Win or Mac, v 5.3.5 today) from http://unity3d.com/get-unity/update
+1. Get Unity latest stable (Win or Mac, v 5.3.6 today) from http://unity3d.com/get-unity/update
 
 2. Download the project. There are two ways:
   1.  the **simple** is to download the zipped package (from Clone or Download green button)

@@ -14,21 +14,27 @@ namespace EA4S
         const float brakeForce = 0.96f;
         const float minimalSpeed2Stop = 4f;
 
+        bool firstRoundDone;
+
         Vector3 rotationEuler;
 
-        protected virtual void OnEnable() {
+        protected virtual void OnEnable()
+        {
+            firstRoundDone = false;
             // Hook into the OnSwipe event
             Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
             // Lean.LeanTouch.OnFingerTap += OnFingerTap;
         }
 
-        protected virtual void OnDisable() {
+        protected virtual void OnDisable()
+        {
             // Unhook into the OnSwipe event
             Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
             // Lean.LeanTouch.OnFingerTap -= OnFingerTap;
         }
 
-        public void OnFingerSwipe(Lean.LeanFinger finger) {
+        public void OnFingerSwipe(Lean.LeanFinger finger)
+        {
             var swipe = finger.SwipeDelta;
             if (swipe.y < -Mathf.Abs(swipe.x)) {
                 StartWheel();
@@ -37,12 +43,13 @@ namespace EA4S
             }
         }
 
-        public void OnFingerTap(Lean.LeanFinger finger) {
-            StartWheel();
-        }
+        //        public void OnFingerTap(Lean.LeanFinger finger) {
+        //            StartWheel();
+        //        }
 
-        void StartWheel() {
-            if (isRotating == false) {
+        void StartWheel()
+        {
+            if (!firstRoundDone && !isRotating) {
                 //Debug.Log("ROTATE");
                 isRotating = true;
                 isQuiteStopped = false;
@@ -52,7 +59,8 @@ namespace EA4S
         }
 
 
-        void Update() {
+        void Update()
+        {
             if (isRotating) {
                 rotationEuler -= Vector3.forward * currentSpeed * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(rotationEuler);
