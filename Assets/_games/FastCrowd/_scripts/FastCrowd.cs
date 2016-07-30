@@ -80,12 +80,10 @@ namespace EA4S.FastCrowd
 
         #region Setup and initialization
 
-        void Start() {
-            AppManager.Instance.CurrentGameManagerGO = gameObject;
-        }
 
         protected override void ReadyForGameplay() {
             base.ReadyForGameplay();
+            AppManager.Instance.CurrentGameManagerGO = gameObject;
             if (!UseTestGameplayInfo)
                 GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as FastCrowdGameplayInfo;
             if (GameplayInfo == null)
