@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using EA4S;
 using ModularFramework.Core;
 
@@ -10,6 +11,9 @@ namespace EA4S
 
         [Header("Scene Setup")]
         public Music SceneMusic;
+
+        [Header("Journey")]
+        public GameObject[] Pins;
 
         void Start() {
             AudioManager.I.PlayMusic(SceneMusic);
@@ -29,7 +33,7 @@ namespace EA4S
         }
 
         public void Play() {
-            if(AppManager.Instance.IsAssessmentTime)
+            if (AppManager.Instance.IsAssessmentTime)
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
             else
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
