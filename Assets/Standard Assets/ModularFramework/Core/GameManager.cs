@@ -51,6 +51,8 @@ namespace ModularFramework.Core {
         #region Event Subscription
         
         void OnLevelWasLoaded(int level) {
+            if (IsDuplicatedInstance)
+                return;
             Debug.Log("OnLevelWasLoaded",this);
             Modules.SceneModule.SceneLoadedBehaviour();
         }
