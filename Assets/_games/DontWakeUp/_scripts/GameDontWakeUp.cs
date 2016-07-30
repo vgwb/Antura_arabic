@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
 using System.Collections.Generic;
 using EA4S;
 using ModularFramework.Core;
+using ModularFramework.Modules;
 using ModularFramework.Helpers;
 using Google2u;
-using System;
-using ModularFramework.Modules;
 
 namespace EA4S.DontWakeUp
 {
@@ -48,19 +49,21 @@ namespace EA4S.DontWakeUp
         bool inDanger;
         float dangerIntensity;
         How2Die dangerCause;
-        int TutorialState;
+        int TutorialIndex;
 
         [Header("References")]
         public GameObject TutorialGO;
         public GameObject myLetter;
         public GameObject StarSystems;
         public LivesContainer LivesController;
+        public Sprite TutorialImage;
 
         public WordData currentWord;
 
         int RoundsTotal;
 
-        public void DoPause(bool status) {
+        public void DoPause(bool status)
+        {
             Debug.Log("GameDontWakeUp DoPause() " + status);
             if (currentState == MinigameState.Playing) {
                 currentState = MinigameState.Paused;
@@ -69,7 +72,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        void Start() {
+        void Start()
+        {
             currentState = MinigameState.Initializing;
             RoundsTotal = Levels.Length;
             currentRound = 1;
@@ -87,31 +91,39 @@ namespace EA4S.DontWakeUp
             GameIntro();
         }
 
-        public void CloseScene() {
+        public void CloseScene()
+        {
             StopSceneSounds();
         }
 
-        void StopSceneSounds() {
+        void StopSceneSounds()
+        {
             AudioManager.I.StopSfx(Sfx.DangerClock);
             AudioManager.I.StopSound("Dog/Snoring");
         }
 
-        void GameIntro() {
+        void GameIntro()
+        {
             currentState = MinigameState.GameIntro;
             WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
-            TutorialGO.SetActive(true);
-            TutorialState = 3;
-            OnTutorialStateChanged();
+            WidgetPopupWindow.I.InitTutorial(ClickedNext, TutorialImage);
+            WidgetPopupWindow.Show(true);
+            //TutorialGO.SetActive(true);
+            TutorialIndex = 3;
+            ShowTutorialLine();
         }
 
-        public void GameIntroFinished() {
+        public void GameIntroFinished()
+        {
             WidgetSubtitles.I.Close();
-            TutorialGO.SetActive(false);
+            WidgetPopupWindow.Show(false);
+            //TutorialGO.SetActive(false);
             InitRound();
         }
 
-        private void OnTutorialStateChanged() {
-            switch (TutorialState) {
+        private void ShowTutorialLine()
+        {
+            switch (TutorialIndex) {
                 case 3:
                     WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
                     break;
@@ -124,13 +136,14 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        public void ClickedNext() {
+        public void ClickedNext()
+        {
             //Debug.Log("ClickedNext()");
             switch (currentState) {
                 case MinigameState.GameIntro:
-                    if (TutorialState > 1) {
-                        TutorialState = TutorialState - 1;
-                        OnTutorialStateChanged();
+                    if (TutorialIndex > 1) {
+                        TutorialIndex = TutorialIndex - 1;
+                        ShowTutorialLine();
                     } else {
                         GameIntroFinished();
                     }
@@ -148,7 +161,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        public void InitRound() {
+        public void InitRound()
+        {
             currentState = MinigameState.RoundIntro;
 
             UpdateLivesContainer();
@@ -164,7 +178,8 @@ namespace EA4S.DontWakeUp
             //WidgetSubtitles.I.DisplayDebug("init round");
         }
 
-        void SetupLevel() {
+        void SetupLevel()
+        {
             currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
             currentWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
             // Debug.Log("word chosen: " + currentWord._id);
@@ -174,7 +189,8 @@ namespace EA4S.DontWakeUp
             ChangeCamera(false);
         }
 
-        public void RoundLost(How2Die how) {
+        public void RoundLost(How2Die how)
+        {
             if (currentState != MinigameState.RoundEnd) {
                 currentState = MinigameState.RoundEnd;
                 resetDanger();
@@ -200,7 +216,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        void RoundLostEnded() {
+        void RoundLostEnded()
+        {
             AudioManager.I.StopSfx(Sfx.DangerClock);
             AudioManager.I.PlaySfx(Sfx.Lose);
 
@@ -215,7 +232,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        public void RoundWon() {
+        public void RoundWon()
+        {
             currentState = MinigameState.Paused;
             myLetter.SetActive(false);
             if (currentRound < RoundsTotal) {
@@ -225,7 +243,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        public void GameWon() {
+        public void GameWon()
+        {
             currentState = MinigameState.GameEnd;
             StopSceneSounds();
 
@@ -236,7 +255,8 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Save();
         }
 
-        public void GameLost() {
+        public void GameLost()
+        {
             currentState = MinigameState.GameEnd;
             StopSceneSounds();
 
@@ -246,7 +266,8 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Save();
         }
 
-        void GoToNextRound() {
+        void GoToNextRound()
+        {
             LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
             Levels[currentLevel - 1].SetActive(false);
             currentRound = currentRound + 1;
@@ -257,11 +278,13 @@ namespace EA4S.DontWakeUp
         }
             
         // called by callback in camera
-        public void CameraReady() {
+        public void CameraReady()
+        {
             InitRound();
         }
 
-        public void ChangeCamera(bool animated) {
+        public void ChangeCamera(bool animated)
+        {
             if (animated) {
                 CameraGameplayController.I.MoveToPosition(currentLevelController.LevelCamera.transform.position, currentLevelController.LevelCamera.transform.rotation);
             } else {
@@ -269,12 +292,14 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        void UpdateLivesContainer() {
+        void UpdateLivesContainer()
+        {
             LivesController.SetLives(LivesLeft);
         }
 
 
-        void Update() {
+        void Update()
+        {
             if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
                 if (inDanger) {
                     if (dangerCause == How2Die.TooFast) {
@@ -299,7 +324,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        public void InDanger(bool status, How2Die cause) {
+        public void InDanger(bool status, How2Die cause)
+        {
             inDanger = status;
             dangerCause = cause;
             if (inDanger) {
@@ -309,7 +335,8 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        void resetDanger() {
+        void resetDanger()
+        {
             InDanger(false, How2Die.Null);
             dangerIntensity = 0;
         }
