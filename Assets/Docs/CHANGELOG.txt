@@ -1,7 +1,16 @@
 EA4S - Antura and the Letters
-================
+DEV CHANGELOG
+=============
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
+
+##########   v0.4.4
+
+2016-07-30 - [DontWakeUp] improved alarm clock collision [Stefano Cecere]
+2016-07-30 - Running Antura in Balloon now is blue (and moved in its own folder) [Stefano Cecere]
+2016-07-30 - changelog is better without the authors [Stefano Cecere]
+2016-07-30 - improved CHANGELOG format [Stefano Cecere]
+2016-07-30 - new CHANGELOG format (from git log) [Stefano Cecere]
 
 ##########   v0.4.3
 
