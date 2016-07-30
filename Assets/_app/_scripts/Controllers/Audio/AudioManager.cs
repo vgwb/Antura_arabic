@@ -30,7 +30,10 @@ namespace EA4S
         LetterSad,
         WalkieTalkie,
         WheelStart,
-        WheelTick
+        WheelTick,
+        DogBarking,
+        DogSnoring,
+        DogSnorting
     }
 
     public class AudioManager : MonoBehaviour
@@ -40,12 +43,14 @@ namespace EA4S
         bool musicEnabled = true;
         Music currentMusic;
 
-        void Awake() {
+        void Awake()
+        {
             I = this;
             musicEnabled = true;
         }
 
-        public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject) {
+        public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject)
+        {
             // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
             if (info != null) {
                 if (type == Fabric.EventNotificationType.OnAudioComponentStopped) {
@@ -57,7 +62,8 @@ namespace EA4S
             }
         }
 
-        public void ToggleMusic() {
+        public void ToggleMusic()
+        {
             //Debug.Log("TODO ToggleMusic()");
             musicEnabled = !musicEnabled;
             if (musicEnabled) {
@@ -67,7 +73,8 @@ namespace EA4S
             }
         }
 
-        public void PlayMusic(Music music) {
+        public void PlayMusic(Music music)
+        {
             currentMusic = music;
             var eventName = "";
             switch (music) {
@@ -102,62 +109,75 @@ namespace EA4S
             }
         }
 
-        public void StopMusic() {
+        public void StopMusic()
+        {
             Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
         }
 
-        public void PlaySfx(Sfx sfx) {
+        public void PlaySfx(Sfx sfx)
+        {
             PlaySound(GetEventName(sfx));
         }
 
-        public void StopSfx(Sfx sfx) {
+        public void StopSfx(Sfx sfx)
+        {
             StopSound(GetEventName(sfx));
         }
 
-        public void PlaySound(string eventName) {
+        public void PlaySound(string eventName)
+        {
             Fabric.EventManager.Instance.PostEvent(eventName);
         }
 
-        public void PlaySound(string eventName, System.Action callback) {
+        public void PlaySound(string eventName, System.Action callback)
+        {
             OnNotifyEndAudio = callback;
             Fabric.EventManager.Instance.PostEventNotify(eventName, NotifyEndAudio);
         }
 
-        public void PlaySound(string eventName, GameObject GO) {
+        public void PlaySound(string eventName, GameObject GO)
+        {
             Fabric.EventManager.Instance.PostEvent(eventName, GO);
         }
 
-        public void PlayLetter(string wordId) {
+        public void PlayLetter(string wordId)
+        {
             Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + wordId);
         }
 
-        public void PlayWord(string wordId) {
+        public void PlayWord(string wordId)
+        {
             Fabric.EventManager.Instance.PostEvent("VOX/Words/" + wordId);
         }
 
-        public void StopSound(string eventName) {
+        public void StopSound(string eventName)
+        {
             Fabric.EventManager.Instance.PostEvent(eventName, Fabric.EventAction.StopAll);
         }
 
-        public void FadeOutMusic(string n) {
+        public void FadeOutMusic(string n)
+        {
             Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
             if (component != null) {
                 component.FadeOut(0.1f, 0.5f);
             }
         }
 
-        public void PlayDialog(string string_id) {
+        public void PlayDialog(string string_id)
+        {
             Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetSwitch, string_id);
         }
 
-        public void PlayDialog(string string_id, System.Action callback) {
+        public void PlayDialog(string string_id, System.Action callback)
+        {
             OnNotifyEndAudio = callback;
             Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetSwitch, string_id);
             Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
         }
 
 
-        string GetEventName(Sfx sfx) {
+        string GetEventName(Sfx sfx)
+        {
             var eventName = "";
             switch (sfx) {
                 case Sfx.Hit:
@@ -214,12 +234,21 @@ namespace EA4S
                 case Sfx.WheelTick:
                     eventName = "Sfx/WheelTick";
                     break;  
+                case Sfx.DogBarking:
+                    eventName = "Dog/Barking";
+                    break;
+                case Sfx.DogSnoring:
+                    eventName = "Dog/Snoring";
+                    break;  
+                case Sfx.DogSnorting:
+                    eventName = "Dog/Snorting";
+                    break;  
             }
             return eventName;
         }
 
-
-        void OnApplicationPause(bool pauseStatus) {
+        void OnApplicationPause(bool pauseStatus)
+        {
             // app is pausing
             if (pauseStatus) {
                 // TODO Pause Audio if it is playing

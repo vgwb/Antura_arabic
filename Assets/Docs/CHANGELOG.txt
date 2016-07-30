@@ -1,0 +1,545 @@
+EA4S - Antura and the Letters
+================
+to generate git log:
+git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
+
+##########   v0.4.3
+
+2016-07-30 - [sfx] dog sounds
+2016-07-30 - [Balloons] Environment, camera, and positioning edits
+2016-07-30 - [dontw] increased speed limit
+2016-07-30 - improved Android build settings
+2016-07-30 - [Balloons] Environment design testing
+2016-07-30 - ballon material
+2016-07-30 - [Balloons] new environmnet and balloons materials / colors
+2016-07-30 - Ballooons: revised environment
+2016-07-30 - applied start + Aeake ovverrides to DOnt and Ballons
+2016-07-30 - On Minigame now Start and Awake can be overridable.
+2016-07-30 - [translations] corrected maybe inapprorpiate arabic trasnation
+2016-07-30 - sleeping zzz is خخخ
+2016-07-30 - fix Closeing Transition error in Dotwake
+2016-07-30 - preparing 0.4.3 for itnernal test
+2016-07-30 - DontWakeUp: tutorial Image integrated into Generic Popup
+2016-07-30 - Fix singleton potential crash on startup.
+2016-07-30 - Timer UI texts
+2016-07-30 - Map: show progression
+2016-07-30 - Map: Pins prefab
+2016-07-30 - DontWakeUp: alarmClocks anims
+2016-07-29 - Mood: minimal delay after selection
+2016-07-29 - Audio: global toggle music by menu
+2016-07-29 - Directional Lights Prefab
+2016-07-29 - PauseMenu into GlobalUI and everywhere (with exit and resume working everywhere)
+2016-07-29 - Disabled realtime shadows from Directional Light Prefab
+2016-07-29 - Mood & Assesment backgrounds
+2016-07-29 - DontWakeUp: leaves and ZZZ, many assets reordering
+2016-07-29 - DontWU fix marker + Baloons POOF and better environment
+2016-07-29 - Dont Wake up zzz and some cleaning
+2016-07-29 - Fastcrowd added tutorial.
+2016-07-29 - - fix lifecycle assessment start directly from jmap.
+2016-07-29 - AppManager prefab cleaned + removed unised shader
+2016-07-29 - Page Transition anim on new scene loaded delayed.
+
+## 2016-07-29 V 0.4.2 ##
+- debugged soem crashes
+
+2016-07-29 - v 0.4.2 (not crashing)
+2016-07-29 - SR debugger settings (ligher mode)
+2016-07-29 - uncheck test mode on fastcrowd scene.
+2016-07-29 - map Letter right position
+2016-07-29 - Fix multiple call for sceneloaded.
+
+## 2016-07-29 V 0.4.1 ##
+
+- home screen
+- mood screen
+- map screen
+- Assessment screen (init)
+- Rewards screen
+- Keeper's voice starts to be heard (to be finished) 
+- Mini Games: Tutorial
+- Don't Wake Up: refinement to levels
+- Balloons: improvements
+- Fast Crowd: variation
+- full walkthrough (hopefully)
+  
+  
+## 2016-07-26 - Build #35 ##
+
+#### General ####
+- Fix arabic letters DB bug that causes some crash during gameplay.
+
+#### Fast Crowd ####
+- improved Antura moment.
+- improved right letter relase animations and effects.
+- textual tutorial on start.
+- added word draw on mission feedback popup.
+- fix release letter during Antura moment bug.
+
+## 2016-07-25 - Build  ##
+
+#### General ####
+- updated some arabic unicodes for a wrong letter
+
+#### Don't Wake Up ####
+- made it a bit easier (speed limit and collision sharpening)
+- changed the Danger SFX
+
+#### Balloons ####
+
+- changed balloons explosion sound effect
+
+
+## 2016-07-22 - Build 28 ##
+
+#### Don't Wake Up ####
+
+- fourth level added and improved level design
+- added real "hard" collision with the Dog (no trespassing)
+- added better fast speed metering and errors (to be tuned to dpi)
+- added intro subtitles (just first one)
+- added 3 lives (when you die)
+- added death (round end ;) cause messages
+
+#### Fast Crowd ####
+
+- added word container (bottom right) - to be finished
+- added Antura Time (enters randomly once per session) who makes all LL flee
+- added number of words matched
+
+#### Balloons ####
+
+- added intro popup with image word
+- overhauled physics: 
+-- more natural rope hanging
+-- smoother letter dragging
+-- balloons explode and radiate force to knockback nearby ones
+-- balloons are in constant wafting motion
+
+
+#### General ####
+
+- introduced the Subtitles module using the translated strings from online Sheet
+
+
+---
+
+2016-07-29 - v 0.4.1 CHANGELOG
+2016-07-29 - 0.4.1
+2016-07-29 - Fix wordcomposer exeption.
+2016-07-29 - music in Rewards
+2016-07-29 - REWARDS changes (maybe final)
+2016-07-29 - Rewards SFX
+2016-07-29 - [DontWW] tutorial
+2016-07-29 - Even better REWARDS screen
+2016-07-29 - Better REWARD animation and colors
+2016-07-29 - StarFlowers button to continue
+2016-07-29 - hoem version + mood fix
+2016-07-29 - REWARDS scene animated + Changed incorrect japan_sun_texture
+2016-07-29 - Alpha app cycle done.
+2016-07-29 - scene cycle with rewards
+2016-07-29 - scene map reordering
+2016-07-29 - ContinueScreen > Added option to show button on the side without background (ButtonFullscreen) + Added DeExtensions to DemiLib
+2016-07-29 - home: smaller logo, bigger ferns
+2016-07-29 - Scenemodule installer added to fastcrowd scene
+2016-07-29 - added SceneModule to these scenes
+2016-07-29 - [Balloons] Minor tweaks
+2016-07-29 - re-deleted shared asserts.
+2016-07-29 - Fixed game cycle from wheel: fastcrowd -> balloons ->  fastcrowd_words-> Assessment.
+2016-07-29 - Lock images
+2016-07-29 - [wheel] start empty
+2016-07-29 - bugfixes
+2016-07-29 - new Localization data
+2016-07-29 - [map] rotating
+2016-07-29 - [Balloons] Tutorial voice-over
+2016-07-29 - rotating Japan skies
+2016-07-29 - Rewards scene
+2016-07-29 - [DontW] fix level 4, furs recolored, music in loop
+2016-07-29 - Balloon end roudn shouldn't show the quit/back button
+2016-07-29 - Fonts reverted to Standard Distance Field Shader (the mobile version wan't showing on iOS)
+2016-07-29 - FastCrowd double subtitles fixed
+2016-07-29 - Fastcrows direct scene test.
+2016-07-29 - [Balloons] Placeholder tutorial popup
+2016-07-29 - iOS build settings
+2016-07-29 - Fix Fastcrowd scene opened from wheel.
+2016-07-29 - [Audio] WalkieTalkie SFX and game title in home
+2016-07-29 - [Balloons] Implemented modifications (balloons enter stage, waft around randomly), fixed Balloon Pop sound
+2016-07-29 - [dont] fixed lost prefab
+2016-07-29 - [Dont] WIP
+2016-07-29 - Tutorial Images and UI reorganization
+2016-07-29 - bugfixes
+2016-07-29 - Fix FastCrowd prefabs.
+2016-07-29 - [audio] Keeper VO processed
+2016-07-28 - dialog in Assestment
+2016-07-28 - Fix Mood eveluation crash.
+2016-07-28 - Home: bigger logo
+2016-07-28 - .meta fix
+2016-07-28 - SFX on buttons
+2016-07-28 - [Balloonns] use new popup window UI
+2016-07-28 - Leaves particles added to HOME
+2016-07-28 - [DontWakeUp] new UI in
+2016-07-28 - PLAY / Continue buttons in first scenes
+2016-07-28 - added Assessment with internal, now fastcrowd can be tested directly.
+2016-07-28 - [.meta cleaning]
+2016-07-28 - [test] antura tests
+2016-07-28 - GLobalUI in action
+2016-07-28 - Modified ContinueScreen to allow button without background
+2016-07-28 - WidgetPopupWindow now part of GlobalUI and appers with static Show method (widget must be removed from the rest of the UI)
+2016-07-28 - [mood] new icons
+2016-07-28 - Subtitles module init!
+2016-07-28 - Refactored SceneTransitioner and ContinueScreen so they're inside a single GlobalUI canvas
+2016-07-28 - ContinueScreen implemented (needs refactoring with popup and SceneTransitioner)
+2016-07-28 - mood button animation
+2016-07-28 - [home] improved design
+2016-07-28 - [Map] removed next steps (dots)
+2016-07-28 - icon for game fastcrowd_words
+2016-07-28 - [AUdio] music selectore in every scene, added MapManager
+2016-07-28 - [Home] logo
+2016-07-28 - WidgetSubtitles commit
+2016-07-28 - Better Walkie Talkie + Wheel scene modifications (DTester is now Editor-Only and can be kept)
+2016-07-28 - [Home] bg + HomeManager script
+2016-07-28 - polished AudioMananger
+2016-07-28 - [Mood] animated buttons and set 2D apper BG as prefab
+2016-07-28 - AudioMixer and Managers scripts in their place
+2016-07-28 - Mood scene ferns animated
+2016-07-28 - /_shared assets nomore
+2016-07-28 - added new scenes to build and moved Antura 3d model into app
+2016-07-28 - Renamed scenes.
+2016-07-28 - App life cycle.
+2016-07-28 - Audio: Keeper's VO and dynamic dialog audio playing by API and callback
+2016-07-28 - [DontWakeUp] new Lullaby music
+2016-07-28 - Antura Logo in HOme Screen
+2016-07-28 - some scripts reordering
+2016-07-28 - Unity 5.3.6f1 and some .gitignore
+2016-07-27 - Wheel launch fastcrowd fix crash.
+2016-07-27 - WidgetSubtitles complete with WalkieTalkie
+2016-07-27 - Tano's Journey Map scene
+2016-07-27 - new twrrain color
+2016-07-27 - Wheel scene with Arabic Font variations to be styled
+2016-07-27 - SceneTransitioner complete with correct graphics and colors
+2016-07-27 - g2uPrefs.bin stop tracking.
+2016-07-27 - FastCrowd variations: fix some minor bugs.
+2016-07-27 - Added SceneTransitioner (script, prefab, images)
+2016-07-27 - FastCrows variation.
+2016-07-26 - Word composer reactive on fastcrowd game variation.
+2016-07-26 - Mission Popup refactoring to allow it to work with all games and variations.
+2016-07-26 - added g2uPrefs to ignore list.
+2016-07-26 - Fix arabic letters DB bug that causes some crash during gameplay.
+2016-07-25 - Balloon Fix crash bug.
+2016-07-25 - updated some arabic unicodes for a wrong letter
+2016-07-25 - [Dont Wake Up] made it easier and updated Danger SFX
+2016-07-25 - [Ballonns] new explosion sounds
+2016-07-25 - [Balloons] Make balloons slightly faster and start appearing from off-screen
+2016-07-25 - Fix TeacherAI AOR
+2016-07-25 - FastCrowd: Letter matching animation improvement (to be improved again...).
+2016-07-25 - FastCrowd: added Subtitles for tutorial and gameplay result.
+2016-07-24 - FastCrowd: right letter goOut B.
+2016-07-24 - - Fix list getRandomElement in generic helper. Fastcrowd: wrong letter go away behaviour.
+2016-07-23 - [Balloons] Physics overhaul #2. Balloons explosions, balloons in motion.
+2016-07-22 - FastCrowd: Fix release during Antura time.
+2016-07-22 - FastCrowd: improved FOC during Hang.
+2016-07-22 - [Balloons] More post-merge modifications
+2016-07-22 - [Balloons] Post-merge modifications
+2016-07-22 - [Balloons] Physics overhaul. Floating letters now rely on Rigidbodies and Joints.
+2016-07-22 - TODO and CHANGELOG fils
+2016-07-22 - removed meta
+2016-07-22 - removed meta
+2016-07-22 - FastCrowd bigger letter size
+2016-07-22 - Fastcrowd: antura time endless fix. Startflower fix.
+2016-07-22 - subtitles in arabic from localizationdata
+2016-07-22 - [DontWakeUp] good speed limits and levels improvements
+2016-07-22 - [Dont Wake Up] speed limit and levels
+2016-07-22 - FastCrowd: removed shadow, randomized AnturaTime
+2016-07-22 - removed meta
+2016-07-22 - FastCrowd: some fix to arabic
+2016-07-22 - removed -meta
+2016-07-22 - removed .meta
+2016-07-22 - DontWakeUp rounds and Widgets!
+2016-07-22 - FastCrowd: correct prefab for subtitle and WordComposer. Fix release behaviour. Letter collision with Antura revert direction.
+2016-07-22 - FastCrowd Antura time movement fix.
+2016-07-22 - Fastcrowd: Mission Popup standardized.
+2016-07-22 - Fastcrowd: WordComposer, RightWord counter.
+2016-07-21 - TeachAI use each word once for gameplay session in Balloon and Don't wake up.
+2016-07-21 - TeachAI use each word once for gameplay session (only FastCrowd for now)
+2016-07-21 - [DontWakeUP] some game states and init subittles
+2016-07-21 - Merge
+2016-07-21 - fixed flexible letter prefab, subltitle controller, hiQ true by default, enhanched minigames states, roundmanager in Dontwkeup (not finished)
+2016-07-21 - Created WordData structure (but not yet used).
+2016-07-21 - LivingLetter Flexible Container Prefab
+2016-07-21 - Fastcrowd : Letter out of gameplay can be reactivated.
+2016-07-21 - new LocalizationData all trasnalted into Arabics!
+2016-07-21 - shared_assets is empty, for this veersion
+2016-07-20 - FastCrowd: right letter match excluded form gameplay.
+2016-07-20 - FastCrowd: Antura Moment. Added custom event to timer component.
+2016-07-20 - more Unity .meta file cleanup
+2016-07-20 - Unity .meta files cleanup
+2016-07-20 - Balloons: Popup at start of round with word, image, and voiceover. Changed color of timer text.
+2016-07-19 - Fastcrowd: repositioning letter puppet on right letter matching. Reorganized folder and prefabs.
+2016-07-19 - DOTween - 1.1.310
+2016-07-19 - some resetting to 5.3.5p5
+2016-07-19 - Fix Fastcrowd : the proposed word is unique in gameplay session.
+2016-07-18 - Piano Woof: Lights and letters
+2016-07-18 - Piano Woof placeholder scene
+2016-07-18 - Create PianoWoof folder and import assets for it
+2016-07-18 - current Unity version is still 5.3.5
+2016-07-18 - added option to disable the two camera effects (accessible from the Debugger panel in realtime)
+2016-07-18 - Wheel was using old camera
+2016-07-15 - really fixed marked wrong font in prefabs
+2016-07-15 - really fixed marked wrong font
+2016-07-15 - UI iamges sprite TAG
+2016-07-15 - removed plugin AdvancedBuilder (not really needed)
+2016-07-15 - refactoring: Scripts -> scripts, Reources all into root Resources, removed shared_assets tht isn't useful (yet)
+2016-07-15 - updated docs and disable HW statistics
+2016-07-15 - moved MFENgines into Scripts
+2016-07-15 - removed unused log files
+2016-07-15 - changed text shaderd to mobile optimized version
+2016-07-15 - removed Prefabs from shared
+2016-07-15 - - antura anim test for Tano
+2016-07-15 - fixed old fonts use
+2016-07-15 - Balloons: Fix countdown animations
+2016-07-15 - Baloons: hide countdown after used
+2016-07-15 - removed all old UGUI with dynamic texts
+2016-07-15 - converted all standard Texts to TesxtMeshPro texts
+2016-07-15 - AudioMixer: Make words and letters louder and music a little quieter
+2016-07-15 - Balloons: Fix win condition bug
+2016-07-15 - Balloons: Add silly running Antura
+2016-07-15 - Make sure Antura stops snoring. In some cases, Lose() was called without LoseAlarm() and Antura kept snoring.
+2016-07-15 - Make sure that maddening clock stops ticking (temporary fix?)
+2016-07-15 - Balloons: Logging, Use the small set of good words, Speak words
+2016-07-15 - Balloons: Progression, next round popup
+2016-07-15 - FastCrowd Fix continue button sound and functionality
+2016-07-15 - Muted clock noise in fast crowd.
+2016-07-15 - Set right round duration for fastcrowd.
+2016-07-15 - Balloon game little goodies: 1 life per round, 6 rounds, letters speak, results shown after 6 rounds, time ruuning out warning sound
+2016-07-15 - Fix: Pupup Mission menu
+2016-07-15 - fix DontWakeUp text direction!
+2016-07-14 - text fixing!
+2016-07-14 - Added SRDebugger Plugin for ingame debug and options (triple click top left corner to activate)
+2016-07-14 - Fix "Hit" sound effect
+2016-07-14 - Use AudioManager, set Balloons game to 6 rounds, bigger balloon pop animation.
+2016-07-14 - SFX: Win, Lose, DangerClock
+2016-07-14 - moved FastCrowdn scripts and prefab in their place 2
+2016-07-14 - moved FastCrowdn scripts and prefab in their place
+2016-07-14 - FastCrowd: fixed pause button
+2016-07-14 - AudiManager and new Sfx!
+2016-07-14 - Fix : Arabic parser.
+2016-07-14 - new Camera Movement sfx
+2016-07-14 - new Tano's test scene
+2016-07-14 - Balloons game returns to Wheel
+2016-07-14 - Fastcrows added some sound effects.
+2016-07-14 - Refactoring for number of rounds
+2016-07-14 - fixed UI Text broken on some devices
+2016-07-14 - DWU logger
+2016-07-14 - Fastcrowd refactoring word object.
+2016-07-14 - New Sounds FX in Manager and stop snoring, Antura!
+2016-07-14 - DontWakeUp debug part 1
+2016-07-14 - Log Trace App and Fastcrowd.
+2016-07-14 - DWU: alarm clock
+2016-07-14 - fixed drawing face
+2016-07-14 - Log sessionId dinamically change at any access from Test Homepage.
+2016-07-14 - corrected mission popup widnow
+2016-07-14 - moved log file location for unity editor version.
+2016-07-14 - proejct settings for test build
+2016-07-14 - DontWakeUp levels and omse UI
+2016-07-14 - improved popup missio animation feedback and added gameplay stop during popup.
+2016-07-14 - Popup mission added continue button behaviour.
+2016-07-14 - Merge for audiomanager
+2016-07-14 - new Audio SFX!
+2016-07-14 - DWU animations
+2016-07-14 - DWU levels + AudioManager enums
+2016-07-14 - Reenabled FloatingLetter prefab
+2016-07-14 - DontWakeUp: select Word from TeacherAI
+2016-07-14 - Fix log creation error.
+2016-07-14 - FastCrowd: mission popup with rewards.
+2016-07-14 - Audio manager with all bodyparts words and all letters. Dont'wakeup uses that
+2016-07-13 - Wheel: right rotations and proportions
+2016-07-13 - fastcrowd: fix camera position 2.
+2016-07-13 - fastcrowd: fix camera position.
+2016-07-13 - Fastcrowd feedback improved.
+2016-07-13 - Fix: mirrored letters on puppets and marker.
+2016-07-13 - FastCrowd: letter shadow on ground in hang mode.
+2016-07-13 - Letters spinning, better randomness
+2016-07-13 - Stars reward popup at and of gameplay.
+2016-07-13 - New balloons, randomized letter animations, word prompt repositioned
+2016-07-13 - Fastcrowd: positive and negative action feedback.
+2016-07-13 - NO image
+2016-07-13 - word direction is ok now :)
+2016-07-13 - Antura is Blue, Game icons correct, Subtitles Prefab
+2016-07-13 - ne Icon to select games in Wheel and Minigames Data
+2016-07-13 - AppManager reborn day 1 + soem coding about everything
+2016-07-13 - introducing TeacherAI and Database to have all the good words and letters
+2016-07-13 - Dog Accessories and Costumes
+2016-07-13 - UI scripts and reorganization
+2016-07-13 - UI prefabs and reorganization
+2016-07-12 - FastCrowd: - Fix collider, wrong letter progression, Fix wrong puppets start positioning.
+2016-07-12 - - fastcrowd: fix multiple event word complete.
+2016-07-12 - More balloons refactoring
+2016-07-12 - Balloons refactoring
+2016-07-12 - - added AppSettings.
+2016-07-12 - Test Home Screen to launch testmode
+2016-07-12 - imprioved again PopupController
+2016-07-12 - improved PopupWindowController
+2016-07-12 - BIgWindowPopup prefab
+2016-07-12 - letter material. WHITE!
+2016-07-12 - Fastcrowd: look at camera.
+2016-07-12 - tags to scene for fast search!
+2016-07-12 - uodated AudioManager and inegrated Pop into Balloons scene. init new test Home
+2016-07-12 - - bt fix
+2016-07-12 - Added Logger (sharing violation on start then work - to be fixed)
+2016-07-12 - Added Logger (sharing violation on start then work - to be fixed)
+2016-07-11 - FastCrowd: -  Star screen on TimeOver (without evaluation).
+2016-07-11 - FastCrowd: - infinite loop word generator.
+2016-07-11 - FastCrowd: - event chain for letter and word drop func. - word marker carousel for active/next/completed letter.
+2016-07-11 - [DontWakeUp] some movements i nthe 3 rouunds , danger zone and some won :)
+2016-07-11 - soma Antura Running in Wheel
+2016-07-11 - [DontWakeUp] alarm clock trigger
+2016-07-11 - AppIcon (for Cloud Build)
+2016-07-11 - DontWakeUp: 3 camera movements (for rounds)
+2016-07-11 - DOg animations
+2016-07-10 - WalkieTalkie
+2016-07-10 - FastCrowd: - look at camera during hang state. - Introduced ninja behaviour.
+2016-07-10 - moven WanderingLetter game which does not exists
+2016-07-10 - Antura base T pose in Dontwake up + Antura running in stefano test
+2016-07-10 - moved managers
+2016-07-10 - lock on manager
+2016-07-10 - Execution Order
+2016-07-10 - Amanager managers
+2016-07-10 - FastCrowd: - Timer
+2016-07-10 - game Dont' wake up: dotted trail!
+2016-07-10 - FastCrowd: - BT Refactoring. - re-backed non liner walkable area. - drop with preview on marker area. - drop evaluation.
+2016-07-10 - Wheel fixed pivot
+2016-07-10 - Dont' wake Up flowers + line renders
+2016-07-10 - Prefab managers moved
+2016-07-10 - plugin RainbowFolders (to colorize scene folders!!=
+2016-07-10 - Wheel Swipe Up Touch Manager, Audio Manageer configured with music switching, basic UI element punching, change scene after Wheel
+2016-07-10 - Plugin DemiLib Audio Manager (alternative to Fabric)
+2016-07-10 - Wheel again
+2016-07-10 - fix Wheel animation
+2016-07-10 - WHeel: labels, animation, audio mixer, game icons
+2016-07-10 - moved scripts frp, shared into main
+2016-07-10 - Fastcrowd drop area
+2016-07-09 - moved _docs to Docs
+2016-07-09 - Wheel colors and sound manager
+2016-07-09 - Turn down Balloon scene Lighting settings to match FastCrowd scene
+2016-07-09 - Fix script after merge
+2016-07-09 - Multiple balloons per letter
+2016-07-09 - Merge
+2016-07-09 - WHeel UI in overlay
+2016-07-09 - Wheel Scene + touch managers
+2016-07-09 - Fabric moved
+2016-07-09 - LEan Touch plugin
+2016-07-09 - Fabric plugin
+2016-07-09 - Fix behaviour after merge
+2016-07-09 - Letters Look at target task
+2016-07-09 - Utility scripts
+2016-07-09 - dev docs
+2016-07-09 - polish and refactoring
+2016-07-09 - namespace
+2016-07-09 - moved shared Models (trees and co) into _shared
+2016-07-09 - Fix gameplay camera prefab
+2016-07-09 - optimized screen fx
+2016-07-09 - external frameworks refactoring (speed compilation!)
+2016-07-09 - Fix letter animator
+2016-07-09 - removed Colr plugin
+2016-07-09 - namespace refactoring
+2016-07-09 - Dont Wake Up init & gamePlayCamera Prefab
+2016-07-09 - Plugin_ LeanTouch
+2016-07-09 - packages list
+2016-07-09 - cleaned my Stefano _test folder
+2016-07-09 - fixed README
+2016-07-09 - fix .meta
+2016-07-09 - all docs (public and DEV) are in _docs
+2016-07-09 - Moved Color plugin into _test since we are not sure we'll use it in production
+2016-07-09 - [Balloons] remoed unused vars to fix compilation warnings
+2016-07-09 - optimized Baloons game
+2016-07-09 - moved fonts into _shared/Fonts
+2016-07-09 - added LocalTemp/ to .gitignore (if you need local files not under gut)
+2016-07-09 - AI Nav driven by behaviour.
+2016-07-08 - AmaticSC Bold font ready for TextMesh Pro and tested in Stefano 3D Texts test.unity
+2016-07-08 - Lettere behaviour duration task
+2016-07-08 - Drag balloons fix
+2016-07-08 - Letters behaviour duration by parameter
+2016-07-08 - Drag balloons by the letters
+2016-07-06 - Stefano 3D Texts test scene to play with Text Mesh Pro
+2016-07-06 - fix .meta file
+2016-07-06 - Letter behaviour wih Panda BT - Letter LookAt target functionality
+2016-07-06 - remind that we have a README fixed
+2016-07-06 - remind that we have a README fixed
+2016-07-05 - Letter animation with bones. Adde Panda behaviours.
+2016-07-05 - Update Balloons prototype with countdown and timer
+2016-07-05 - my dog
+2016-07-04 - Add music to Balloon minigame
+2016-07-04 - Balloons game prototype
+2016-07-02 - h
+2016-07-02 - delete controller tano
+2016-07-02 - letters_avatar_anim
+2016-07-01 - re-fix letter hanging height
+2016-07-01 - FastCrowd voice sound on letter match.
+2016-07-01 - Letter voice at hanging.
+2016-07-01 - FastCrowd prototype loop1
+2016-07-01 - Drop letter wrong/right
+2016-07-01 - Changes to colors and icons of pauseMenu + Added QHierarchy in Plugins dir
+2016-07-01 - [pluigin] GrabYerAssets
+2016-07-01 - Fix letter hang position y
+2016-07-01 - Fix: FastCrowd scene crash
+2016-07-01 - Hang / idle alternance... conntinue...
+2016-07-01 - Added Model script to letters with inside Data
+2016-07-01 - restart gameplay in pause menù 2
+2016-07-01 - restart gameplay in pause menù
+2016-07-01 - [FastCrowd] test paper background for subtitles
+2016-07-01 - new Music theme for gameplay and integated into FastCrowd
+2016-07-01 - Fast Crowd - Letters GameObject autosetup from db
+2016-06-30 - Integrated pause menu
+2016-06-30 - some .meta fixing
+2016-06-30 - buidl Fast Crown scene in test build
+2016-06-30 - new light
+2016-06-30 - FastCrowd: removed DOF and soft -> soft shadown: now it runs fast on iphone!!!
+2016-06-30 - ddd
+2016-06-30 - Added Daniele folder in test scenes with Gameplay pause menu
+2016-06-30 - Fast Crowd env
+2016-06-30 - new one
+2016-06-30 - oggi è un altro giorno
+2016-06-29 - last of the day
+2016-06-29 - scene save tano
+2016-06-29 - tree-B,tree-A,grass,fern,hole-lake
+2016-06-29 - grass-holes-tree_v1
+2016-06-29 - Tree v1 and terrain smooth
+2016-06-29 - Tree v1_shadow
+2016-06-30 - Letters auto creation waypoint at start. Fix hanging mouse position.
+2016-06-30 - added letter object with first behaviour
+2016-06-29 - UI dynamic by height, test Cube, renaming
+2016-06-29 - This is a test
+2016-06-29 - added LetterObjects class
+2016-06-29 - [Environment test scene] different arabic words and drawing
+2016-06-29 - [Environment test scene] 4 letter animations to test Animator States
+2016-06-29 - README improvments
+2016-06-29 - [Environment test scene] some music and flat letters
+2016-06-28 - Environment Test scene with Arabic Fixed string using new Arabic Font Atlas
+2016-06-28 - refacto Don'tWake Up
+2016-06-28 - new Antura Arabic SDF with full unicodes
+2016-06-28 - added ArabicSupport plugin
+2016-06-28 - renamed "Shared Assets" into "_shared assets"
+2016-06-28 - environment scene to test new plants
+2016-06-28 - JsonDotNet configuration (to fix compilation errors)
+2016-06-28 - AdvancedBuilder plugin (to manage multiple different builds)
+2016-06-28 - FastCrowd scene and loading scripts
+2016-06-28 - COLR plugin
+2016-06-28 - dont wake up Letter Placeholder animated
+2016-06-28 - readme format
+2016-06-28 - reame download
+2016-06-28 - Words Drawings PH
+2016-06-28 - SND: letters and basic words
+2016-06-28 - some PlaceHolder  sound
+2016-06-28 - build project settings
+2016-06-28 - game scene rename
+2016-06-28 - readme note
+2016-06-28 - readme
+2016-06-28 - prefab reorganization
+2016-06-28 - basic project reorganization
+2016-06-25 - Added gameplay start / end API
+2016-06-23 - fix DLL .meta
+2016-06-23 - # Antura - v.0.1.1.1 #
+2016-06-22 - # Antura - v.0.1.1.0 #
+2016-06-21 - # Antura - v.0.1.0.0 #
+2016-06-17 - Editor setup and visible meta files
+2016-06-17 - initial project structure and base plugins
+2016-06-17 - init
