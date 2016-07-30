@@ -72,8 +72,15 @@ namespace EA4S.DontWakeUp
             }
         }
 
-        void Start()
+        protected override void Awake()
         {
+            base.Awake();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
             currentState = MinigameState.Initializing;
             RoundsTotal = Levels.Length;
             currentRound = 1;
