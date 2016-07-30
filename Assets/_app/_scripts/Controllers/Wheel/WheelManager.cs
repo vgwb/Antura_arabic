@@ -36,11 +36,13 @@ namespace EA4S
 
         List<MinigameData> gameData = new List<MinigameData>();
 
-        void Awake() {
+        void Awake()
+        {
             Instance = this;
         }
 
-        void Start() {
+        void Start()
+        {
             AppManager.Instance.InitDataAI();
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
@@ -56,15 +58,22 @@ namespace EA4S
             showGameIcon(-1);
         }
 
-        public void CloseScene() {
+        void OnDisable()
+        {
+            StopSounds();
+        }
+
+        public void StopSounds()
+        {
             AudioManager.I.StopSfx(Sfx.WheelStart);
         }
 
-        public void OnPopuplicked() {
+        public void OnPopuplicked()
+        {
             /* Alpha static logic */
             if (isGameSelected) {
                 MinigameData miniGame = AppManager.Instance.GetMiniGameForActualPlaySession();
-                if(miniGame.Code == "fastcrowd" || miniGame.Code == "fastcrowd_words") {
+                if (miniGame.Code == "fastcrowd" || miniGame.Code == "fastcrowd_words") {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
                     if (miniGame.Code == "fastcrowd") {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
@@ -90,20 +99,23 @@ namespace EA4S
             */
         }
 
-        void ShakePopup() {
+        void ShakePopup()
+        {
             AudioManager.I.PlaySfx(Sfx.UIPopup);
             Popup.GetComponent<RectTransform>().DOPunchScale(new Vector2(0.2f, 0.2f), 1.0f, 5, 1f)
                 .SetLoops(0).SetUpdate(true).SetAutoKill(true)
                 .SetEase(Ease.InOutQuad).Play();
         }
 
-        public void OnWheelStart() {
+        public void OnWheelStart()
+        {
             TutorialArrow.SetActive(false);
             AudioManager.I.PlaySfx(Sfx.WheelStart);
 
         }
 
-        public void OnWheelStopped() {
+        public void OnWheelStopped()
+        {
             AudioManager.I.StopSfx(Sfx.WheelStart);
             GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
             AudioManager.I.PlayMusic(Music.Relax);
@@ -115,7 +127,8 @@ namespace EA4S
             //GameIcon.SetActive(true);
         }
 
-        public void OnRadiusTrigger(int number, Color _color) {
+        public void OnRadiusTrigger(int number, Color _color)
+        {
             if (WheelCntrl.isRotating) {
                 if (number != currentGameIndex) {
                     currentGameIndex = (number % numberOfGames);
@@ -130,7 +143,8 @@ namespace EA4S
             }
         }
 
-        void showGameIcon(int index) {
+        void showGameIcon(int index)
+        {
             if (index >= 0) {
                 GameIcon.SetActive(true);
                 labelText.text = ArabicFixer.Fix(gameData[index].Title, false, false);

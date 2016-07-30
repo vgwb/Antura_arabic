@@ -98,6 +98,12 @@ namespace EA4S.DontWakeUp
             GameIntro();
         }
 
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            StopSceneSounds();
+        }
+
         public void CloseScene()
         {
             StopSceneSounds();
