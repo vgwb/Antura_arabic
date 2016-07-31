@@ -6,11 +6,51 @@ git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges 
 
 ##########   v0.4.4
 
-2016-07-30 - [DontWakeUp] improved alarm clock collision [Stefano Cecere]
-2016-07-30 - Running Antura in Balloon now is blue (and moved in its own folder) [Stefano Cecere]
-2016-07-30 - changelog is better without the authors [Stefano Cecere]
-2016-07-30 - improved CHANGELOG format [Stefano Cecere]
-2016-07-30 - new CHANGELOG format (from git log) [Stefano Cecere]
+2016-07-31 - [Antura] now 5 eyes types are selectable
+2016-07-31 - [home] default Antura state (click the dog to change random costumes)
+2016-07-31 - [home] no more leaves and Antura better position
+2016-07-31 - [environment] lights
+2016-07-31 - [Antura] colalrs! colors! eyes!
+2016-07-31 - Fastcrowd: also tap hold play letter/word name.
+2016-07-31 - Fastcrowd: now to catch the letters have to tap and old. Quick tap play letter/word name.
+2016-07-31 - [home] have fun with Antura! click it to change its dress
+2016-07-31 - [model] let's color Antura! some dress selectioable for the model
+2016-07-31 - [clean] do no use separated tutorial canvas anymore
+2016-07-31 - [model] now Antura has collars! activable by parameters
+2016-07-31 - Fastcrowd: new word to find in popup only in merged mode.
+2016-07-31 - [huge] new Antura model + 7 animations + global prefab configurable + pirate costume (added in Home, Rewards, Fastcrowd & Balloons)
+2016-07-30 - [bugfix] fix sfx playing changing scene
+2016-07-30 - [Home] Antura barks
+2016-07-30 - [DontWU] init ragdool
+2016-07-30 - [UI] amde word text bigger in popup windows
+2016-07-30 - [cleaning] stars images cleaned and deleted many unused animations
+2016-07-30 - [cleaning] moved _all_ prefabs into app/Resources/Prefabs
+2016-07-30 - [audio] pause and resume music when app is paused (like external message).. hopefully this is enough
+2016-07-30 - [DontWakeUp] Letter starts rotated like its start marker (more readeable)
+2016-07-30 - added Minigame event when minigame was unloaded : OnMinigameQuit()
+2016-07-30 - [wheel] is turnable just once
+2016-07-30 - [DontWUp] more permissive hard collision and words spone at letter rouch
+2016-07-30 - [navigation] after final reward we go to mood -> home
+2016-07-30 - lowered music volume
+2016-07-30 - [debug] fix jumping directly to scenes (closes popup window and new API)
+2016-07-30 - [map] disabled orbit (until better one)
+2016-07-30 - [map] assets materials
+2016-07-30 - [model] Antura running reorganization
+2016-07-30 - [Rewards] go back to home if finished Assessment
+2016-07-30 - [home] Antura starts breathing in Home page!
+2016-07-30 - [debug] now debugger opens with TRIPLE tap BOTTOM LEFT (no more TOP LEFT)
+2016-07-30 - preparing v0.4.4
+2016-07-30 - [cleaning] renamed test assets to not confuse
+2016-07-30 - [cleaning] removed old WanderingLetters test
+2016-07-30 - [cleaning] removed DeAudio package
+2016-07-30 - [UI] optimized and reorganized Pause Menu
+2016-07-30 - udpate to docs. TODO has been moved to Trello
+2016-07-30 - [Balloons] Make explosion poof effect more subtle
+2016-07-30 - [DontWakeUp] improved alarm clock collision
+2016-07-30 - Running Antura in Balloon now is blue (and moved in its own folder)
+2016-07-30 - changelog is better without the authors
+2016-07-30 - improved CHANGELOG format
+2016-07-30 - new CHANGELOG format (from git log)
 
 ##########   v0.4.3
 
