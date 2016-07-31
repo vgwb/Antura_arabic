@@ -118,8 +118,7 @@ namespace EA4S.DontWakeUp
         {
             currentState = MinigameState.GameIntro;
             WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
-            WidgetPopupWindow.I.InitTutorial(ClickedNext, TutorialImage);
-            WidgetPopupWindow.Show(true);
+            WidgetPopupWindow.I.ShowTutorial(ClickedNext, TutorialImage);
             TutorialIndex = 3;
             ShowTutorialLine();
         }
@@ -178,8 +177,7 @@ namespace EA4S.DontWakeUp
             UpdateLivesContainer();
             SetupLevel();
 
-            WidgetPopupWindow.I.Init(ClickedNext, "Carefully drag this word", currentWord.Key, currentWord.Word);
-            WidgetPopupWindow.Show(true);
+            WidgetPopupWindow.I.ShowSentenceAndWord(ClickedNext, "game_dontwake_intro2", currentWord);
             SpeakCurrentLetter();
             //WidgetSubtitles.I.DisplayDebug("init round");
         }

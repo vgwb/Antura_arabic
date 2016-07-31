@@ -5,6 +5,7 @@ using System.Collections;
 using TMPro;
 using ArabicSupport;
 using DG.Tweening;
+using Google2u;
 
 namespace EA4S
 {
@@ -57,28 +58,55 @@ namespace EA4S
                 I.showTween.PlayBackwards();
         }
 
+        public void ShowSentenceAndWord(Action callback, string SentenceId, WordData wordData)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+
+            SetWord(wordData.Key, wordData.Word);
+
+            Show(true);
+        }
+
+        void ResetContents()
+        {
+            TutorialImageGO.SetActive(false);
+            SetTitle("");
+            SetWord("", "");
+        }
+
         public void Init(string introText, string wordCode, string arabicWord)
         {
             Init(null, introText, wordCode, arabicWord);
         }
 
-        public void InitTutorial(Action callback, Sprite tutorialImage)
+        public void ShowTutorial(Action callback, Sprite tutorialImage)
         {
+            ResetContents();
+
             currentCallback = callback;
             ButtonGO.SetActive(callback != null);
             TutorialImageGO.GetComponent<Image>().sprite = tutorialImage;
             TutorialImageGO.SetActive(true);
-            SetTitle("");
-            SetWord("", "");
+
             AudioManager.I.PlaySfx(Sfx.UIPopup);
+            Show(true);
         }
 
         public void Init(Action callback, string introText, string wordCode, string arabicWord)
         {
+            ResetContents();
+
             currentCallback = callback;
             ButtonGO.SetActive(callback != null);
             TutorialImageGO.SetActive(false);
-            AudioManager.I.PlaySfx(Sfx.UIPopup);
+
             SetTitle(introText);
             SetWord(wordCode, arabicWord);
 //            Window.SetActive(true);
