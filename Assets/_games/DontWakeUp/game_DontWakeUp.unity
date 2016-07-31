@@ -6926,7 +6926,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1069362481}
-  - 95: {fileID: 1069362480}
   m_Layer: 0
   m_Name: Antura
   m_TagString: Untagged
@@ -6934,24 +6933,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1069362480
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: dd9b2abfce8c64fa2b25ad01957a2f96,
-    type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1069362479}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: dd9b2abfce8c64fa2b25ad01957a2f96, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &1069362481
 Transform:
   m_ObjectHideFlags: 0

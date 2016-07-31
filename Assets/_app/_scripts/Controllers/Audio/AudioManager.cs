@@ -33,7 +33,9 @@ namespace EA4S
         WheelTick,
         DogBarking,
         DogSnoring,
-        DogSnorting
+        DogSnorting,
+        OK,
+        KO
     }
 
     public class AudioManager : MonoBehaviour
@@ -242,7 +244,14 @@ namespace EA4S
                     break;  
                 case Sfx.DogSnorting:
                     eventName = "Dog/Snorting";
-                    break;  
+                    break;
+                case Sfx.OK:
+                    eventName = "Sfx/OK";
+                    break;
+                case Sfx.KO:
+                    eventName = "Sfx/KO";
+                    break;
+
             }
             return eventName;
         }
