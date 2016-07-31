@@ -8,11 +8,12 @@ namespace EA4S
         Nothing = 0,
         Run = 1,
         SitBreath = 2,
-        StandBreath = 3,
-        StandExcitedBreath = 4,
-        StandExcitedLookR = 5,
-        StandExcitedWagtail = 6,
-        StandSadBreath = 7
+        SitBreathV2 = 3,
+        StandBreath = 4,
+        StandExcitedBreath = 5,
+        StandExcitedLookR = 6,
+        StandExcitedWagtail = 7,
+        StandSadBreath = 8
     }
 
     public enum AnturaCollars {
@@ -194,6 +195,9 @@ namespace EA4S
                     break;
                 case AnturaAnim.SitBreath:
                     stateName = "SitBreath";
+                    break;
+                case AnturaAnim.SitBreathV2:
+                    stateName = "SitBreathV2";
                     break;
                 case AnturaAnim.StandBreath:
                     stateName = "StandBreath";

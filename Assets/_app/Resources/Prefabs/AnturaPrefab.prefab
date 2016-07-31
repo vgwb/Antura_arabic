@@ -1304,7 +1304,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172746}
-  m_LocalRotation: {x: 0.7398478, y: 0.661285, z: 0.07463016, w: -0.09878137}
+  m_LocalRotation: {x: 0.7398478, y: 0.661285, z: 0.07463016, w: -0.09878136}
   m_LocalPosition: {x: 0.03431945, y: 0.044092182, z: 0.093643494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -14.1742, y: -178.8053, z: 96.27}
@@ -1483,7 +1483,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169820}
-  m_LocalRotation: {x: -0.661285, y: 0.7398478, z: -0.09878137, w: -0.07463016}
+  m_LocalRotation: {x: -0.661285, y: 0.7398478, z: -0.09878136, w: -0.07463016}
   m_LocalPosition: {x: 0.03431945, y: 0.044092182, z: -0.093643494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 14.1742, y: 178.8053, z: -83.729996}
@@ -2824,7 +2824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb731f6df39c496e8e084e9dba6295b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationState: 6
+  ClickToBark: 1
+  ClickToChangeDress: 1
+  DisableAnimator: 0
+  AnimationState: 2
   IsPirate: 1
   AnturaCollar: 1
   AnturaColor: 0

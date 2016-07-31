@@ -345,7 +345,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: AnimationState
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: ClickToBark
@@ -353,6 +353,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 408510, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
+      propertyPath: ClickToChangeDress
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
