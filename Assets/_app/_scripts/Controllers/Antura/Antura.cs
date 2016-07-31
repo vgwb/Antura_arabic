@@ -52,10 +52,13 @@ namespace EA4S
         public Texture TexturePink;
         public Texture TexturePirate;
 
+        int CostumeId;
+
         void Start()
         {
             AnturaAnimator.Play(GetStateName(AnimationState));
             RefreshDress();
+            CostumeId = 0;
         }
 
         void RefreshDress()
@@ -77,12 +80,22 @@ namespace EA4S
                     AnturaBodyMaterial.SetTexture("_MainTex", TexturePirate);
                     break;
             }
+            AnturaAnimator.Play(GetStateName(AnimationState));
         }
 
         void OnMouseDown()
         {
+            RandomDress();
             RefreshDress();
             AudioManager.I.PlaySfx(Sfx.DogBarking);
+        }
+
+        void RandomDress()
+        {
+            IsPirate = (Random.Range(0, 100) > 50);
+            AnturaColor = GetRandomEnum<AnturaColors>();
+            AnturaCollar = GetRandomEnum<AnturaCollars>();
+            AnimationState = GetRandomEnum<AnturaAnim>();
         }
 
         string GetStateName(AnturaAnim state)
@@ -115,6 +128,13 @@ namespace EA4S
                     break;
             }
             return stateName;
+        }
+
+        T GetRandomEnum<T>()
+        {
+            System.Array A = System.Enum.GetValues(typeof(T));
+            T V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
+            return V;
         }
     }
 }
