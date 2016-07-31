@@ -43,7 +43,11 @@ namespace EA4S
 
     public class Antura : MonoBehaviour
     {
-        [Header("State")]
+        [Header("Behavior")]
+        public bool ClickToBark;
+        public bool ClickToChangeDress = false;
+
+        [Header("Starting State")]
         public AnturaAnim AnimationState;
         public bool IsPirate;
         public AnturaCollars AnturaCollar;
@@ -145,9 +149,11 @@ namespace EA4S
 
         void OnMouseDown()
         {
-            RandomDress();
-            RefreshDress();
-            AudioManager.I.PlaySfx(Sfx.DogBarking);
+            if (ClickToChangeDress)
+                RandomDress();
+
+            if (ClickToBark)
+                AudioManager.I.PlaySfx(Sfx.DogBarking);
         }
 
         void RandomDress()
@@ -157,6 +163,7 @@ namespace EA4S
             AnturaCollar = GetRandomEnum<AnturaCollars>();
             AnturaEye = GetRandomEnum<AnturaEyes>();
             AnimationState = GetRandomEnum<AnturaAnim>();
+            RefreshDress();
         }
 
         string GetStateName(AnturaAnim state)
