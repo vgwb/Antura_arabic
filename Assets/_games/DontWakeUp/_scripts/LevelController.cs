@@ -14,7 +14,7 @@ namespace EA4S.DontWakeUp
         }
 
         public void SetWord() { 
-            string wordCode = GameDontWakeUp.Instance.currentWord.Key; 
+            string wordCode = DontWakeUpManager.Instance.currentWord.Key; 
             BroadcastMessage("Init", wordCode, SendMessageOptions.DontRequireReceiver);
         }
 
