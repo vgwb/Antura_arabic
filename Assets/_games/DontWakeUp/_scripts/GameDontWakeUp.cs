@@ -52,7 +52,6 @@ namespace EA4S.DontWakeUp
         int TutorialIndex;
 
         [Header("References")]
-        public GameObject TutorialGO;
         public GameObject myLetter;
         public GameObject StarSystems;
         public LivesContainer LivesController;
@@ -121,7 +120,6 @@ namespace EA4S.DontWakeUp
             WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
             WidgetPopupWindow.I.InitTutorial(ClickedNext, TutorialImage);
             WidgetPopupWindow.Show(true);
-            //TutorialGO.SetActive(true);
             TutorialIndex = 3;
             ShowTutorialLine();
         }
@@ -130,7 +128,6 @@ namespace EA4S.DontWakeUp
         {
             WidgetSubtitles.I.Close();
             WidgetPopupWindow.Show(false);
-            //TutorialGO.SetActive(false);
             InitRound();
         }
 
