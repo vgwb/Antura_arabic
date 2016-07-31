@@ -46,6 +46,7 @@ namespace EA4S
         [Header("Behavior")]
         public bool ClickToBark;
         public bool ClickToChangeDress = false;
+        public bool DisableAnimator = false;
 
         [Header("Starting State")]
         public AnturaAnim AnimationState;
@@ -87,9 +88,24 @@ namespace EA4S
 
         void Start()
         {
-            AnturaAnimator.Play(GetStateName(AnimationState));
+            if (DisableAnimator) {
+                AnturaAnimator.enabled = false;
+            }
+            PlayAnimation();
+
             RefreshDress();
             CostumeId = 0;
+        }
+
+        void PlayAnimation()
+        {
+            if (!DisableAnimator) {
+                if (AnimationState != AnturaAnim.Nothing) {
+                    AnturaAnimator.Play(GetStateName(AnimationState));
+                } else {
+                    AnturaAnimator.StopPlayback();
+                }
+            }
         }
 
         void RefreshDress()
@@ -144,7 +160,7 @@ namespace EA4S
                     AnturaEyesMaterial.material.SetTexture("_MainTex", EyesNormal2);
                     break;
             }
-            AnturaAnimator.Play(GetStateName(AnimationState));
+            PlayAnimation();
         }
 
         void OnMouseDown()
