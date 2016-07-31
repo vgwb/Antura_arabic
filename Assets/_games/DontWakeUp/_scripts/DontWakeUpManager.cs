@@ -19,7 +19,7 @@ namespace EA4S.DontWakeUp
         Fall
     }
 
-    public class GameDontWakeUp : MiniGameBase
+    public class DontWakeUpManager : MiniGameBase
     {
         [Header("Scene Setup")]
         public Music SceneMusic;
@@ -29,9 +29,9 @@ namespace EA4S.DontWakeUp
         #region Overrides
         new public GameDontWakeUpGameplayInfo GameplayInfo;
 
-        new public static GameDontWakeUp Instance
+        new public static DontWakeUpManager Instance
         {
-            get { return SubGame.Instance as GameDontWakeUp; }
+            get { return SubGame.Instance as DontWakeUpManager; }
         }
 
         #endregion
@@ -314,7 +314,7 @@ namespace EA4S.DontWakeUp
 
         void Update()
         {
-            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
                 if (inDanger) {
                     if (dangerCause == How2Die.TooFast) {
                         // toofast danger speed in faster!
