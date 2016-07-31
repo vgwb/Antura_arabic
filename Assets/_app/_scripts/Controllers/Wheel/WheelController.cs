@@ -7,12 +7,19 @@ namespace EA4S
     {
         [HideInInspector]
         public bool isRotating;
-        bool isQuiteStopped;
+        public bool isQuiteStopped;
         public float initialSpeed;
-        float currentSpeed;
+        [HideInInspector]
+        public float currentSpeed;
 
-        const float brakeForce = 0.96f;
-        const float minimalSpeed2Stop = 4f;
+        const float brakeForce = 0.98f;
+        const float brakeForceEnhanced = 0.82f;
+        const float minimalSpeed2Stop = 2f;
+
+        /// <summary>
+        /// Set true to force brake wheel almost immediately (it depends to brakeForceEnhanced const value).
+        /// </summary>
+        public bool IsBrakeForceEnhanced = false;
 
         bool firstRoundDone;
 
@@ -59,13 +66,13 @@ namespace EA4S
         }
 
 
-        void Update()
+        void FixedUpdate()
         {
             if (isRotating) {
                 rotationEuler -= Vector3.forward * currentSpeed * Time.deltaTime;
                 transform.rotation = Quaternion.Euler(rotationEuler);
 
-                currentSpeed = currentSpeed * brakeForce;
+                currentSpeed = currentSpeed * (IsBrakeForceEnhanced ? brakeForceEnhanced : brakeForce);
 
                 if (currentSpeed < 200f && !isQuiteStopped) {
                     AudioManager.I.StopSfx(Sfx.WheelStart);
@@ -75,9 +82,9 @@ namespace EA4S
                 if (currentSpeed < minimalSpeed2Stop) {
                     isRotating = false;
                     WheelManager.Instance.OnWheelStopped();
+                    IsBrakeForceEnhanced = false;
                 }
             }
         }
-
     }
 }

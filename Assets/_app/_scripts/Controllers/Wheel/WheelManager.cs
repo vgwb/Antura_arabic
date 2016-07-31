@@ -35,6 +35,10 @@ namespace EA4S
         bool isGameSelected;
 
         List<MinigameData> gameData = new List<MinigameData>();
+        /// <summary>
+        /// Index (refered to gameData list) of the only game selectable for the actual playsession.
+        /// </summary>
+        int gameIndexToForceSelect;
 
         void Awake()
         {
@@ -46,6 +50,7 @@ namespace EA4S
             AppManager.Instance.InitDataAI();
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
+            gameIndexToForceSelect = gameData.FindIndex(g => g.Code == AppManager.Instance.GetMiniGameForActualPlaySession().Code);
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -129,6 +134,8 @@ namespace EA4S
 
         public void OnRadiusTrigger(int number, Color _color)
         {
+            
+
             if (WheelCntrl.isRotating) {
                 if (number != currentGameIndex) {
                     currentGameIndex = (number % numberOfGames);
@@ -141,6 +148,11 @@ namespace EA4S
                     //AudioManager.I.PlayHit();
                 }
             }
+
+            // if isQuiteStopped and is correct game perform a super breck to select this game.
+            if (WheelCntrl.isQuiteStopped && currentGameIndex == gameIndexToForceSelect)
+                WheelCntrl.IsBrakeForceEnhanced = true;
+
         }
 
         void showGameIcon(int index)
