@@ -8,11 +8,12 @@ namespace EA4S
         Nothing = 0,
         Run = 1,
         SitBreath = 2,
-        StandBreath = 3,
-        StandExcitedBreath = 4,
-        StandExcitedLookR = 5,
-        StandExcitedWagtail = 6,
-        StandSadBreath = 7
+        SitBreathV2 = 3,
+        StandBreath = 4,
+        StandExcitedBreath = 5,
+        StandExcitedLookR = 6,
+        StandExcitedWagtail = 7,
+        StandSadBreath = 8
     }
 
     public enum AnturaCollars {
@@ -55,7 +56,7 @@ namespace EA4S
         public AnturaColors AnturaColor;
         public AnturaEyes AnturaEye;
 
-        [Header("Scene References")]
+        [Header("References")]
         public Animator AnturaAnimator;
         public SkinnedMeshRenderer AnturaBodyMaterial;
         public SkinnedMeshRenderer AnturaEyesMaterial;
@@ -84,7 +85,7 @@ namespace EA4S
         public Texture EyesSoso;
         public Texture EyesNormal2;
 
-        int CostumeId;
+        public int CostumeId;
 
         void Start()
         {
@@ -93,8 +94,34 @@ namespace EA4S
             }
             PlayAnimation();
 
-            RefreshDress();
-            CostumeId = 0;
+            if (CostumeId > 0) {
+                SetPreset(CostumeId);
+            }
+
+            Refresh();
+        }
+
+        public void SetPreset(int id)
+        {
+            CostumeId = id;
+            switch (id) {
+                case 1:
+                    IsPirate = false;
+                    AnturaColor = AnturaColors.Yellow;
+                    AnturaCollar = AnturaCollars.Small;
+                    break;
+                case 2:
+                    IsPirate = false;
+                    AnturaColor = AnturaColors.Pinata;
+                    AnturaCollar = AnturaCollars.Big;
+                    break;
+                case 3:
+                    IsPirate = true;
+                    AnturaColor = AnturaColors.Pirate;
+                    AnturaCollar = AnturaCollars.None;
+                    break;
+            }
+            Refresh();
         }
 
         void PlayAnimation()
@@ -108,7 +135,7 @@ namespace EA4S
             }
         }
 
-        void RefreshDress()
+        void Refresh()
         {
             PropPirateHat.SetActive(IsPirate);
             PropPirateHook.SetActive(IsPirate);
@@ -175,11 +202,11 @@ namespace EA4S
         void RandomDress()
         {
             IsPirate = (Random.Range(0, 100) > 80);
-            AnturaColor = GetRandomEnum<AnturaColors>();
-            AnturaCollar = GetRandomEnum<AnturaCollars>();
-            AnturaEye = GetRandomEnum<AnturaEyes>();
-            AnimationState = GetRandomEnum<AnturaAnim>();
-            RefreshDress();
+            AnturaColor = GenericUtilites.GetRandomEnum<AnturaColors>();
+            AnturaCollar = GenericUtilites.GetRandomEnum<AnturaCollars>();
+            AnturaEye = GenericUtilites.GetRandomEnum<AnturaEyes>();
+            AnimationState = GenericUtilites.GetRandomEnum<AnturaAnim>();
+            Refresh();
         }
 
         string GetStateName(AnturaAnim state)
@@ -194,6 +221,9 @@ namespace EA4S
                     break;
                 case AnturaAnim.SitBreath:
                     stateName = "SitBreath";
+                    break;
+                case AnturaAnim.SitBreathV2:
+                    stateName = "SitBreathV2";
                     break;
                 case AnturaAnim.StandBreath:
                     stateName = "StandBreath";
@@ -213,12 +243,6 @@ namespace EA4S
             }
             return stateName;
         }
-
-        T GetRandomEnum<T>()
-        {
-            System.Array A = System.Enum.GetValues(typeof(T));
-            T V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
-            return V;
-        }
+            
     }
 }

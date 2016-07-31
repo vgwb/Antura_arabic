@@ -21,11 +21,13 @@ namespace EA4S
 
         }
 
-        public List<MinigameData> GimmeGoodMinigames() {
+        public List<MinigameData> GimmeGoodMinigames()
+        {
             return AppManager.Instance.DB.gameData;
         }
 
-        public wordsRow GimmeAGoodWord() {
+        public wordsRow GimmeAGoodWord()
+        {
             int index = Random.Range(0, bodyPartsWords.Length - 1);
             return words.Instance.GetRow(bodyPartsWords[index]);
         }
@@ -34,13 +36,14 @@ namespace EA4S
         /// Return WordData from a list of available data.
         /// </summary>
         /// <returns></returns>
-        public WordData GimmeAGoodWordData() {
+        public WordData GimmeAGoodWordData()
+        {
             // init vocabulary
             if (availableVocabulary.Count == 0)
                 availableVocabulary = getVocabularySubset(bodyPartsWords);
 
             List<WordData> returnList = new List<WordData>();
-            if(AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count) // if already used all available words... restart.
+            if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count) // if already used all available words... restart.
                 AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<WordData>();
             foreach (WordData w in availableVocabulary) {
                 if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w)) {
@@ -54,7 +57,14 @@ namespace EA4S
             return returnWord;
         }
 
-        List<WordData> getVocabularySubset(string[] _goodWords) {
+        public LetterData GimmeARandomLetter()
+        {
+            int index = Random.Range(0, AppManager.Instance.Letters.Count - 1);
+            return AppManager.Instance.Letters[index];
+        }
+
+        List<WordData> getVocabularySubset(string[] _goodWords)
+        {
             List<WordData> returnList = new List<WordData>();
             foreach (string wordKey in _goodWords) {
                 returnList.Add(WordData.GetWordDataByKeyRow(wordKey));
