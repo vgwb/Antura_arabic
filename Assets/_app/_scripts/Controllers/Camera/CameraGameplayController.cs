@@ -46,7 +46,7 @@ namespace EA4S
 
         void MovementCompleted()
         {
-            CallbackManager.SendMessage("CameraReady");
+            CallbackManager.SendMessage("CameraReady", SendMessageOptions.DontRequireReceiver);
         }
 
     }
