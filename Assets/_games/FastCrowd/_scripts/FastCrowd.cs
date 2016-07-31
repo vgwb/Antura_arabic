@@ -141,7 +141,7 @@ namespace EA4S.FastCrowd
                 PopupMission.Show(new PopupMissionComponent.Data()
                     {
                         Title = string.Format("Find the word {0}!", CompletedWords.Count + 1),
-                        MainTextToDisplay = string.Format("{1} - {0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
+                        MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
                         Type = PopupMissionComponent.PopupType.New_Mission,
                         DrawSprite = ActualWord.DrawForLivingLetter,
                     });
