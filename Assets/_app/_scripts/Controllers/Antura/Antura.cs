@@ -85,7 +85,7 @@ namespace EA4S
         public Texture EyesSoso;
         public Texture EyesNormal2;
 
-        int CostumeId;
+        public int CostumeId;
 
         void Start()
         {
@@ -94,8 +94,34 @@ namespace EA4S
             }
             PlayAnimation();
 
+            if (CostumeId > 0) {
+                SetPreset(CostumeId);
+            }
+
             Refresh();
-            CostumeId = 0;
+        }
+
+        public void SetPreset(int id)
+        {
+            CostumeId = id;
+            switch (id) {
+                case 1:
+                    IsPirate = false;
+                    AnturaColor = AnturaColors.Yellow;
+                    AnturaCollar = AnturaCollars.Small;
+                    break;
+                case 2:
+                    IsPirate = false;
+                    AnturaColor = AnturaColors.Pinata;
+                    AnturaCollar = AnturaCollars.Big;
+                    break;
+                case 3:
+                    IsPirate = true;
+                    AnturaColor = AnturaColors.Pirate;
+                    AnturaCollar = AnturaCollars.None;
+                    break;
+            }
+            Refresh();
         }
 
         void PlayAnimation()
