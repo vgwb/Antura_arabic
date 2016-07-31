@@ -32,8 +32,6 @@ namespace EA4S {
 
         void OnMouseDown() {
             startMouseDown = Time.time;
-            if (OnLetterHangOn != null)
-                OnLetterHangOn(letterView);
         }
 
         void OnMouseUp() {
@@ -46,11 +44,15 @@ namespace EA4S {
 
         #endregion
 
+        #region events delegates
         /// <summary>
         /// Whene start holdstate.
         /// </summary>
         void OnHoldStart() {
-            
+            if (OnLetterHangOn != null)
+                OnLetterHangOn(letterView);
+            AudioManager.I.PlayLetter(letterView.Model.Data.Key);
+            AudioManager.I.PlayWord(letterView.Model.Data.Key);
         }
 
         /// <summary>
@@ -58,6 +60,7 @@ namespace EA4S {
         /// </summary>
         void OnShortTap() {
             AudioManager.I.PlayLetter(letterView.Model.Data.Key);
+            AudioManager.I.PlayWord(letterView.Model.Data.Key);
         }
 
         /// <summary>
@@ -68,6 +71,7 @@ namespace EA4S {
             if (OnLetterHangOff != null)
                 OnLetterHangOff(letterView);
         }
+        #endregion
 
         void Update() {
             if (startMouseDown > 0 && Time.time - startMouseDown > HoldThreshold) {
