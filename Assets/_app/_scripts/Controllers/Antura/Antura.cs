@@ -32,6 +32,15 @@ namespace EA4S
         Yellow = 7
     }
 
+    public enum AnturaEyes {
+        Normal = 0,
+        Closed = 1,
+        Angry = 2,
+        Injured = 3,
+        Soso = 4,
+        Normal2 = 5
+    }
+
     public class Antura : MonoBehaviour
     {
         [Header("State")]
@@ -39,7 +48,7 @@ namespace EA4S
         public bool IsPirate;
         public AnturaCollars AnturaCollar;
         public AnturaColors AnturaColor;
-        public bool EyesClosed;
+        public AnturaEyes AnturaEye;
 
         [Header("Scene References")]
         public Animator AnturaAnimator;
@@ -61,6 +70,14 @@ namespace EA4S
         public Material ColorPinata;
         public Material ColorStrange;
         public Material ColorYellow;
+
+        [Header("Antura Eyes")]
+        public Texture EyesNormal;
+        public Texture EyesClosed;
+        public Texture EyesAngry;
+        public Texture EyesInjured;
+        public Texture EyesSoso;
+        public Texture EyesNormal2;
 
         int CostumeId;
 
@@ -102,6 +119,27 @@ namespace EA4S
                     AnturaBodyMaterial.material = ColorYellow;
                     break;
             }
+
+            switch (AnturaEye) {
+                case AnturaEyes.Normal:
+                    AnturaEyesMaterial.material.SetTexture("_MainTex", EyesNormal);
+                    break;
+                case AnturaEyes.Closed:
+                    AnturaEyesMaterial.material.SetTexture("_MainTex", EyesClosed);
+                    break;
+                case AnturaEyes.Angry:
+                    AnturaEyesMaterial.material.SetTexture("_MainTex", EyesAngry);
+                    break;
+                case AnturaEyes.Injured:
+                    AnturaEyesMaterial.material.SetTexture("_MainTex", EyesInjured);
+                    break;
+                case AnturaEyes.Soso:
+                    AnturaEyesMaterial.material.SetTexture("_MainTex", EyesSoso);
+                    break;
+                case AnturaEyes.Normal2:
+                    AnturaEyesMaterial.material.SetTexture("_MainTex", EyesNormal2);
+                    break;
+            }
             AnturaAnimator.Play(GetStateName(AnimationState));
         }
 
@@ -114,10 +152,10 @@ namespace EA4S
 
         void RandomDress()
         {
-            EyesClosed = (Random.Range(0, 100) > 50);
-            IsPirate = (Random.Range(0, 100) > 50);
+            IsPirate = (Random.Range(0, 100) > 80);
             AnturaColor = GetRandomEnum<AnturaColors>();
             AnturaCollar = GetRandomEnum<AnturaCollars>();
+            AnturaEye = GetRandomEnum<AnturaEyes>();
             AnimationState = GetRandomEnum<AnturaAnim>();
         }
 

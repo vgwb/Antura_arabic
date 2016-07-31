@@ -1304,7 +1304,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172746}
-  m_LocalRotation: {x: 0.7398478, y: 0.661285, z: 0.07463016, w: -0.098781385}
+  m_LocalRotation: {x: 0.7398478, y: 0.661285, z: 0.07463016, w: -0.09878137}
   m_LocalPosition: {x: 0.03431945, y: 0.044092182, z: 0.093643494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -14.1742, y: -178.8053, z: 96.27}
@@ -1413,10 +1413,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121932}
-  m_LocalRotation: {x: 0.015259334, y: 0.981787, z: -0.053858325, w: 0.18155068}
-  m_LocalPosition: {x: -5.15, y: -0.5, z: 8.98}
+  m_LocalRotation: {x: 0.038193647, y: 0.955862, z: -0.040816378, w: -0.2884496}
+  m_LocalPosition: {x: -3.72, y: -0.33, z: 4.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 6.39, y: 159.0801, z: 0.59999996}
+  m_LocalEulerAnglesHint: {x: 3.2099998, y: 213.73999, z: 5.5499997}
   m_Children:
   - {fileID: 496440}
   m_Father: {fileID: 0}
@@ -1483,7 +1483,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169820}
-  m_LocalRotation: {x: -0.661285, y: 0.7398478, z: -0.098781385, w: -0.07463016}
+  m_LocalRotation: {x: -0.661285, y: 0.7398478, z: -0.09878137, w: -0.07463016}
   m_LocalPosition: {x: 0.03431945, y: 0.044092182, z: -0.093643494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 14.1742, y: 178.8053, z: -83.729996}
@@ -2825,10 +2825,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationState: 6
-  IsPirate: 0
-  AnturaCollar: 0
+  IsPirate: 1
+  AnturaCollar: 1
   AnturaColor: 0
-  EyesClosed: 0
+  AnturaEye: 0
   AnturaAnimator: {fileID: 9528158}
   AnturaBodyMaterial: {fileID: 13754048}
   AnturaEyesMaterial: {fileID: 13752132}
@@ -2844,6 +2844,12 @@ MonoBehaviour:
   ColorPinata: {fileID: 2100000, guid: 0b32580d84c584c6baf072c7c1801d85, type: 2}
   ColorStrange: {fileID: 2100000, guid: 9e6c55194f22245c19f44003d6ba573a, type: 2}
   ColorYellow: {fileID: 2100000, guid: 4878b91d8a22e442a83cd9f68dbd6ab8, type: 2}
+  EyesNormal: {fileID: 2800000, guid: 85c0e17c2710d46fab7a7c1246aeebfb, type: 3}
+  EyesClosed: {fileID: 2800000, guid: 65f8f48c4a5224d11bd801eafaced0db, type: 3}
+  EyesAngry: {fileID: 2800000, guid: cbde8a403f9c9458f91c66b61435a0e6, type: 3}
+  EyesInjured: {fileID: 2800000, guid: 809833e2245fe404291f8b49f4760910, type: 3}
+  EyesSoso: {fileID: 2800000, guid: 9e9cbfc0a84a94fe493cc4b6aa4af43a, type: 3}
+  EyesNormal2: {fileID: 2800000, guid: af23321d4de7d408bb74717edc92ad1c, type: 3}
 --- !u!137 &13752132
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2854,7 +2860,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 61de4d5b5a0b94d6fb8139061360961f, type: 2}
+  - {fileID: 2100000, guid: 203b8d21c18e94cce95f1a49978eb09b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
