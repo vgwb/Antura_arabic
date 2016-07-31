@@ -10,7 +10,7 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.4.4";
+        public const string AppVersion = "0.4.5";
 
         #region properties, variables and constants
 
