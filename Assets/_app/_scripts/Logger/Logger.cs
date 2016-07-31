@@ -13,7 +13,6 @@ namespace EA4S {
         static string Filename = "AnturaLog.csv";
         public static string SessionID = "0000000000";
         static string buffer = string.Empty;
-        
 
         public static void Log(string _area, string _context, string _action, string _data) {
             LogData data = new LogData() {
