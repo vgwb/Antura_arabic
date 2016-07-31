@@ -18,7 +18,7 @@ namespace EA4S
             while (!animator.IsComplete)
                 yield return null;
 
-            ContinueScreen.Show(Continue, ContinueScreenMode.ButtonFullscreen);
+            ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 
         public void Continue()
