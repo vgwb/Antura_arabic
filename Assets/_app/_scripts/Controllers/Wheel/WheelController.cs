@@ -58,6 +58,7 @@ namespace EA4S
         {
             if (!firstRoundDone && !isRotating) {
                 //Debug.Log("ROTATE");
+                firstRoundDone = true;
                 isRotating = true;
                 isQuiteStopped = false;
                 currentSpeed = initialSpeed + Random.Range(-200, 200);
