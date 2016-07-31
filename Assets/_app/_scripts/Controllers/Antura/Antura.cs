@@ -56,7 +56,7 @@ namespace EA4S
         public AnturaColors AnturaColor;
         public AnturaEyes AnturaEye;
 
-        [Header("Scene References")]
+        [Header("References")]
         public Animator AnturaAnimator;
         public SkinnedMeshRenderer AnturaBodyMaterial;
         public SkinnedMeshRenderer AnturaEyesMaterial;

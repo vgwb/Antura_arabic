@@ -56,11 +56,11 @@ ModelImporter:
     400046: Letter
     400048: //RootNode
     4300000: Letter
-    7400000: idle
-    7400002: hold
-    7400004: walk
-    7400006: run
-    7400008: ninja
+    7400000: LL_idle
+    7400002: LL_hold
+    7400004: LL_walk
+    7400006: LL_run
+    7400008: LL_ninja
     9500000: //RootNode
     13700000: Letter
   materials:
@@ -85,7 +85,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: idle
+      name: LL_idle
       takeName: Take 001
       firstFrame: 2
       lastFrame: 18
@@ -173,7 +173,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: hold
+      name: LL_hold
       takeName: Take 001
       firstFrame: 22
       lastFrame: 33
@@ -261,7 +261,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: walk
+      name: LL_walk
       takeName: Take 001
       firstFrame: 52
       lastFrame: 84
@@ -349,7 +349,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: run
+      name: LL_run
       takeName: Take 001
       firstFrame: 86
       lastFrame: 103
@@ -437,7 +437,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: ninja
+      name: LL_ninja
       takeName: Take 001
       firstFrame: 107
       lastFrame: 157
