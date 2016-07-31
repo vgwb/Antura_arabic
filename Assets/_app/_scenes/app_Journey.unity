@@ -5697,6 +5697,22 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+      propertyPath: ClickToSpeakLetter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+      propertyPath: ClickToChangeLetter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+      propertyPath: ClickToChangeAnimation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+      propertyPath: AnimationState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
   m_IsPrefabParent: 0
