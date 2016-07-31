@@ -15,25 +15,87 @@ namespace EA4S
         StandSadBreath = 7
     }
 
+    public enum AnturaCollars {
+        None = 0,
+        Small = 1,
+        Medium = 2,
+        Big = 3
+    }
+
+    public enum AnturaColors {
+        Blue = 0,
+        Pink = 1,
+        Pirate = 2
+    }
+
     public class Antura : MonoBehaviour
     {
+        [Header("State")]
         public AnturaAnim AnimationState;
+        public bool IsPirate;
+        public AnturaCollars AnturaCollar;
+        public AnturaColors AnturaColor;
 
+        [Header("Scene References")]
         public Animator AnturaAnimator;
+        public Material AnturaBodyMaterial;
 
+        [Header("Antura Props")]
         public GameObject PropPirateHat;
         public GameObject PropPirateHook;
+        public GameObject PropCollarA;
+        public GameObject PropCollarB;
+        public GameObject PropCollarC;
+
+        [Header("Antura Color")]
+        public Texture TextureBlue;
+        public Texture TexturePink;
+        public Texture TexturePirate;
+
+        int CostumeId;
 
         void Start()
         {
             AnturaAnimator.Play(GetStateName(AnimationState));
-            PropPirateHat.SetActive(false);
-            PropPirateHook.SetActive(false);
+            RefreshDress();
+            CostumeId = 0;
+        }
+
+        void RefreshDress()
+        {
+            PropPirateHat.SetActive(IsPirate);
+            PropPirateHook.SetActive(IsPirate);
+            PropCollarA.SetActive(AnturaCollar == AnturaCollars.Small);
+            PropCollarB.SetActive(AnturaCollar == AnturaCollars.Medium);
+            PropCollarC.SetActive(AnturaCollar == AnturaCollars.Big);
+
+            switch (AnturaColor) {
+                case AnturaColors.Blue:
+                    AnturaBodyMaterial.SetTexture("_MainTex", TextureBlue);
+                    break;
+                case AnturaColors.Pink:
+                    AnturaBodyMaterial.SetTexture("_MainTex", TexturePink);
+                    break;
+                case AnturaColors.Pirate:
+                    AnturaBodyMaterial.SetTexture("_MainTex", TexturePirate);
+                    break;
+            }
+            AnturaAnimator.Play(GetStateName(AnimationState));
         }
 
         void OnMouseDown()
         {
+            RandomDress();
+            RefreshDress();
             AudioManager.I.PlaySfx(Sfx.DogBarking);
+        }
+
+        void RandomDress()
+        {
+            IsPirate = (Random.Range(0, 100) > 50);
+            AnturaColor = GetRandomEnum<AnturaColors>();
+            AnturaCollar = GetRandomEnum<AnturaCollars>();
+            AnimationState = GetRandomEnum<AnturaAnim>();
         }
 
         string GetStateName(AnturaAnim state)
@@ -66,6 +128,13 @@ namespace EA4S
                     break;
             }
             return stateName;
+        }
+
+        T GetRandomEnum<T>()
+        {
+            System.Array A = System.Enum.GetValues(typeof(T));
+            T V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
+            return V;
         }
     }
 }
