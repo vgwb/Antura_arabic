@@ -11,26 +11,31 @@ namespace EA4S
         public static CameraGameplayController I;
         public GameObject CallbackManager;
 
-        void Awake() {
+        void Awake()
+        {
             I = this;
         }
 
-        void Start() {
+        void Start()
+        {
             EnableFX(AppManager.Instance.GameSettings.HighQualityGfx);
         }
 
-        public void EnableFX(bool status) {
+        public void EnableFX(bool status)
+        {
             // Debug.Log("CameraGameplayController EnableFX " + status);
             gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
-            gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
+            //gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
         }
 
-        public void SetToPosition(Vector3 newPosition, Quaternion newRotation) {
+        public void SetToPosition(Vector3 newPosition, Quaternion newRotation)
+        {
             transform.position = newPosition;
             transform.rotation = newRotation;
         }
 
-        public void MoveToPosition(Vector3 newPosition, Quaternion newRotation) {
+        public void MoveToPosition(Vector3 newPosition, Quaternion newRotation)
+        {
             AudioManager.I.PlaySfx(Sfx.CameraMovement);
 
             DOTween.Sequence()
@@ -39,7 +44,8 @@ namespace EA4S
                 .OnComplete(MovementCompleted);
         }
 
-        void MovementCompleted() {
+        void MovementCompleted()
+        {
             CallbackManager.SendMessage("CameraReady");
         }
 
