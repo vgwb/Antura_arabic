@@ -25,12 +25,12 @@ namespace EA4S {
         /// </summary>
         /// <param name="_data"></param>
         /// <param name="_isWord">if true word else is a draw.</param>
-        public void Init(ILivingLetterData _data, bool _isWord, Color _color) {
+        public void Init(ILivingLetterData _data, bool _isWord) {
             data = _data;
             IsWord = _isWord;
             if (!IsWord) {
                 Draw.sprite = _data.DrawForLivingLetter;
-                SetColor(_color);
+                //SetColor(_color);
                 Label.gameObject.SetActive(false);
             } else {
                 Label.text = _data.TextForLivingLetter;
@@ -60,21 +60,24 @@ namespace EA4S {
         #region inputEvents
 
         public void OnPointerDown(PointerEventData eventData) {
-            if (IsWord || IsLocked)
+            if (IsWord)
                 return;
-            //manager.OnStartDrag(this); 
+            if (IsLocked)
+                manager.UnlockObjects(Color);
+            SetColor(manager.GetAvailableColor());
             ShowCyrcle(1);
         }
 
         public void OnPointerUp(PointerEventData eventData) {
-            if (IsWord || IsLocked)
+            if (IsWord)
                 return;
-            //manager.OnReleaseOnWord(this);
             foreach (var item in eventData.hovered) {
                 AssessmentObject other = item.GetComponent<AssessmentObject>();
                 if (!other)
                     continue;
                 if (other && other.IsWord) {
+                    if (other.IsLocked)
+                        manager.UnlockObjects(other.Color);
                     other.SetColor(Color);
                     other.ShowCyrcle(1);
                     other.IsLocked = IsLocked = true;
@@ -83,6 +86,7 @@ namespace EA4S {
                 }
             }
             HideCyrcle(1);
+            manager.UnlockObjects(Color);
         }
 
         #endregion
