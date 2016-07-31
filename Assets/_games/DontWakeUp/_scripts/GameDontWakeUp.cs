@@ -127,7 +127,7 @@ namespace EA4S.DontWakeUp
         public void GameIntroFinished()
         {
             WidgetSubtitles.I.Close();
-            WidgetPopupWindow.Show(false);
+            //WidgetPopupWindow.Show(false);
             InitRound();
         }
 
