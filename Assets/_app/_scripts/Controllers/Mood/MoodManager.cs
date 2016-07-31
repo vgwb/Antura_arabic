@@ -29,9 +29,13 @@ namespace EA4S
         /// <param name="_mood"></param>
         public void MoodSelected(int _mood)
         {
-            //TODO save and log mood
-            /// - log
-
+            if (AppManager.Instance.PlaySession > 2) 
+                // End mood eval
+                LoggerEA4S.Log("app", "mood", "end", _mood.ToString());
+            else
+                // start mood eval
+                LoggerEA4S.Log("app", "mood", "start", _mood.ToString());
+            
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             Invoke("exitMoodScene", 0.5f);
         }
@@ -46,13 +50,6 @@ namespace EA4S
             }
         }
 
-        public void StartTest()
-        {
-            LoggerEA4S.SessionID = Random.Range(10000000, 99999999).ToString();
-            LoggerEA4S.Log("app", "appversion", "info", AppManager.AppVersion);
-            LoggerEA4S.Log("app", "platform", "info", string.Format("{0} | (sys mem) {1} | (video mem) {2} | {3} |", SystemInfo.operatingSystem, SystemInfo.systemMemorySize, SystemInfo.graphicsMemorySize, Screen.width + "x" + Screen.height));
-            LoggerEA4S.Log("app", "user", "info", LoggerEA4S.SessionID);
-            SceneManager.LoadScene("Wheel");
-        }
+
     }
 }

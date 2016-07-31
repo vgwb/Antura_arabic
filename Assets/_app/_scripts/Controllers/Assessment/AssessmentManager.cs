@@ -25,24 +25,27 @@ namespace EA4S
         }
 
         void Start() {
+            
             AppManager.Instance.InitDataAI();
             Colors.Shuffle();
             foreach (Color c in Colors) {
                 AvailableColors.Add(new ColorSet() { Color = c, Available = true });
             }
+            string serializedWordsForLog = string.Empty;
             List<ILivingLetterData> newDatas = new List<ILivingLetterData>(); // list to be shuffled
             for (int i = 0; i < Draws.Count; i++) {
                 ILivingLetterData newData = AppManager.Instance.Teacher.GimmeAGoodWordData();
                 newDatas.Add(newData);
                 Draws[i].Init(newData, false);
                 Draws[i].InjectManager(this);
+                serializedWordsForLog += string.Format(" - {0}", newData.Key);
             }
             newDatas.Shuffle();
             for (int i = 0; i < newDatas.Count; i++) {
                 Words[i].Init(newDatas[i], true);
                 Words[i].InjectManager(this);
             }
-
+            LoggerEA4S.Log("app", "assessment", "start", serializedWordsForLog);
 
             WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true);
         }
@@ -71,6 +74,7 @@ namespace EA4S
 
             //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
             Popup.Show(true, string.Format("Result : {0}/{1}", rightCounter, Draws.Count));
+            LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
         }
 
 
