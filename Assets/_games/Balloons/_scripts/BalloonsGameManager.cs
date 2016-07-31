@@ -18,11 +18,10 @@ namespace Balloons
         public Transform[] floatingLetterLocations;
         public AnimationClip balloonPopAnimation;
         public GameObject runningAntura;
-        public Canvas tutorialCanvas;
         public Canvas hudCanvas;
         public Canvas roundResultCanvas;
         public Canvas endGameCanvas;
-        public GameObject tutorialNextButton;
+        public Sprite TutorialImage;
         public TextMeshProUGUI roundNumberText;
         public TimerManager timer;
         public Animator countdownAnimator;
@@ -100,8 +99,14 @@ namespace Balloons
 
         private void ShowTutorial()
         {
-            tutorialCanvas.gameObject.SetActive(true);
+            WidgetPopupWindow.I.InitTutorial(TutorialNextButtonAction, TutorialImage);
+            WidgetPopupWindow.Show(true);
             TutorialState = 3;
+        }
+
+        public void TutorialNextButtonAction()
+        {
+            TutorialState--;
         }
 
         private void OnTutorialStateChanged()
@@ -109,28 +114,22 @@ namespace Balloons
             switch (TutorialState) {
                 case 3:
                     WidgetSubtitles.I.DisplaySentence("game_balloons_intro1");
-                    tutorialCanvas.gameObject.SetActive(true);
                     break;
                 case 2:
                     WidgetSubtitles.I.DisplaySentence("game_balloons_intro2");
-                    tutorialCanvas.gameObject.SetActive(true);
                     break;
                 case 1:
                     WidgetSubtitles.I.DisplaySentence("game_balloons_intro3");
-                    tutorialCanvas.gameObject.SetActive(true);
                     break;
                 default:
                     WidgetSubtitles.I.DisplaySentence(string.Empty);
-                    tutorialCanvas.gameObject.SetActive(false);
+//                    WidgetPopupWindow.Close();
                     Play();
                     break;
             }
         }
 
-        public void TutorialNextButtonAction()
-        {
-            TutorialState--;
-        }
+
 
         public void OnRoundStartPressed()
         {

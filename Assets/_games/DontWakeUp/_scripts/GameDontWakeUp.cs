@@ -92,7 +92,7 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Save();
 
             AudioManager.I.PlayMusic(SceneMusic);
-            AudioManager.I.PlaySound("Dog/Snoring");
+            AudioManager.I.PlaySfx(Sfx.DogSnoring);
 
             GameIntro();
         }
@@ -111,7 +111,7 @@ namespace EA4S.DontWakeUp
         void StopSceneSounds()
         {
             AudioManager.I.StopSfx(Sfx.DangerClock);
-            AudioManager.I.StopSound("Dog/Snoring");
+            AudioManager.I.StopSfx(Sfx.DogSnoring);
         }
 
         void GameIntro()
@@ -127,7 +127,7 @@ namespace EA4S.DontWakeUp
         public void GameIntroFinished()
         {
             WidgetSubtitles.I.Close();
-            WidgetPopupWindow.Show(false);
+            //WidgetPopupWindow.Show(false);
             InitRound();
         }
 
