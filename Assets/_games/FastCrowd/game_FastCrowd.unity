@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  m_AmbientSkyColor: {r: 0.4705882, g: 0.4705882, b: 0.4705882, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.75
@@ -2291,7 +2291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &565029682
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2412,10 +2412,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5a5ea39bf067574ab18040f43d29f47, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &577714062 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 127674, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
-  m_PrefabInternal: {fileID: 101744378}
 --- !u!4 &648127174 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
@@ -5829,17 +5825,17 @@ Prefab:
       propertyPath: m_Name
       value: Camera_Gameplay
       objectReference: {fileID: 0}
-    - target: {fileID: 487864, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 21.7722
+    - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.9411765
       objectReference: {fileID: 0}
-    - target: {fileID: 11489782, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
-      propertyPath: CallbackManager
-      value: 
-      objectReference: {fileID: 577714062}
-    - target: {fileID: 11407226, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.8758838
+      objectReference: {fileID: 0}
+    - target: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.7266436
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}

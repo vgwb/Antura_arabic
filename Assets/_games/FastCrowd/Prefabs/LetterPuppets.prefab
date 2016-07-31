@@ -1225,6 +1225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDrag: 0
   ToBeRelease: 0
+  HoldThreshold: 0.25
 --- !u!137 &13725694
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
