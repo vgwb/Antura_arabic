@@ -10,11 +10,11 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2016
 		Month: 7
-		Day: 12
-		Hour: 19
-		Minute: 28
-		Second: 39
-		Millisecond: 988
+		Day: 31
+		Hour: 10
+		Minute: 5
+		Second: 10
+		Millisecond: 800
 	}
 	Creator: "FBX SDK/FBX Plugins version 2016.0"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -36,13 +36,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2014"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "12/07/2016 17:28:39.986"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "31/07/2016 08:05:10.800"
 			P: "Original|FileName", "KString", "", "", "F:\Lavoro\Sirian children\prove\3d\fbx\dog_collar_verA.FBX"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2014"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "12/07/2016 17:28:39.986"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "31/07/2016 08:05:10.800"
 		}
 	}
 }
@@ -60,7 +60,7 @@ GlobalSettings:  {
 		P: "UnitScaleFactor", "double", "Number", "",0.1
 		P: "OriginalUnitScaleFactor", "double", "Number", "",0.1
 		P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
-		P: "DefaultCamera", "KString", "", "", "Producer Perspective"
+		P: "DefaultCamera", "KString", "", "", "Producer Left"
 		P: "TimeMode", "enum", "", "",6
 		P: "TimeProtocol", "enum", "", "",2
 		P: "SnapOnFrameMode", "enum", "", "",0
@@ -77,7 +77,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 2101367776, "", "Scene" {
+	Document: 2149518480, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -266,7 +266,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 2108020992, "Geometry::", "Mesh" {
+	Geometry: 2186121264, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",1,1,1
 		}
@@ -343,16 +343,16 @@ Objects:  {
 			}
 		}
 	}
-	Model: 2535724992, "Model::Collar", "Mesh" {
+	Model: 2200323728, "Model::collar", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "GeometricTranslation", "Vector3D", "Vector", "",-0.765702128410339,-1.48708932101727e-006,-4.93853855133057
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",-0.0793780758976936,32.4994316101074,14.6307258605957
-			P: "Lcl Rotation", "Lcl Rotation", "", "A",82.2038678384665,-0,0
+			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0155753369076,-0,0
 			P: "Lcl Scaling", "Lcl Scaling", "", "A",0.961490094661713,0.961490094661713,0.961490094661713
 			P: "mr displacement use global settings", "Bool", "", "AU",1
 			P: "mr displacement view dependent", "Bool", "", "AU",1
@@ -361,12 +361,12 @@ Objects:  {
 			P: "mr displacement edge length", "Number", "", "AU",2,2,2
 			P: "mr displacement max displace", "Number", "", "AU",20,20,20
 			P: "mr displacement parametric subdivision level", "Integer", "", "AU",5,5,5
-			P: "MaxHandle", "int", "Integer", "UH",107
+			P: "MaxHandle", "int", "Integer", "UH",117
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 2230372976, "Material::Collar", "" {
+	Material: 2189312464, "Material::Collar", "" {
 		Version: 102
 		ShadingModel: "phong"
 		MultiLayer: 0
@@ -388,9 +388,9 @@ Objects:  {
 			P: "Reflectivity", "double", "Number", "",0
 		}
 	}
-	CollectionExclusive: 1348562304, "DisplayLayer::jointLayer", "DisplayLayer" {
+	CollectionExclusive: 2025963088, "DisplayLayer::jointLayer", "DisplayLayer" {
 	}
-	CollectionExclusive: 1348554048, "DisplayLayer::layer1", "DisplayLayer" {
+	CollectionExclusive: 2025955984, "DisplayLayer::layer1", "DisplayLayer" {
 	}
 }
 
@@ -399,15 +399,15 @@ Objects:  {
 
 Connections:  {
 	
-	;Model::Collar, Model::RootNode
-	C: "OO",2535724992,0
+	;Model::collar, Model::RootNode
+	C: "OO",2200323728,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",2308102400,2310145328
+	C: "OO",2149577344,2197580032
 	
-	;Geometry::, Model::Collar
-	C: "OO",2108020992,2535724992
+	;Geometry::, Model::collar
+	C: "OO",2186121264,2200323728
 	
-	;Material::Collar, Model::Collar
-	C: "OO",2230372976,2535724992
+	;Material::Collar, Model::collar
+	C: "OO",2189312464,2200323728
 }
