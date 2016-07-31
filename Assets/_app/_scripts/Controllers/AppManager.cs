@@ -12,10 +12,6 @@ namespace EA4S
     {
         public const string AppVersion = "0.4.5";
 
-        #region properties, variables and constants
-
-        #region Overrides
-
         new public AppSettings GameSettings = new AppSettings();
 
         new public static AppManager Instance
@@ -23,18 +19,12 @@ namespace EA4S
             get { return GameManager.Instance as AppManager; }
         }
 
-        #endregion
-
-        #region TMP
-
         /// <summary>
         /// Tmp var to store actual gameplay word already used.
         /// </summary>
         public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
 
         public string ActualGame = string.Empty;
-
-        #endregion
 
         #region Mood
 
@@ -63,8 +53,6 @@ namespace EA4S
 
         public GameObject CurrentGameManagerGO;
 
-        #endregion
-
         #region Init
 
         public string IExist()
@@ -89,6 +77,8 @@ namespace EA4S
             CachingLetterData();
 
             GameSettings.HighQualityGfx = true;
+
+            InitDataAI();
         }
 
         void AdditionalSetup()

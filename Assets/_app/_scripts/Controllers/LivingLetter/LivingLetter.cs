@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 using EA4S;
 
 namespace EA4S
@@ -17,20 +18,34 @@ namespace EA4S
     public class LivingLetter : MonoBehaviour
     {
         [Header("Behavior")]
+        public bool ClickToChangeAnimation = false;
+        public bool ClickToChangeLetter = false;
+        public bool ClickToSpeakLetter = false;
         public bool DisableAnimator = false;
 
         [Header("Starting State")]
         public LivingLetterAnim AnimationState;
+        public bool ShowLetter = false;
 
         [Header("References")]
         public Animator AnturaAnimator;
+        public GameObject TextGO;
+        TextMeshPro myText;
+
+        LetterData letterData;
 
         void Start()
         {
             if (DisableAnimator) {
                 AnturaAnimator.enabled = false;
             }
+            myText = TextGO.GetComponent<TextMeshPro>();
             PlayAnimation();
+            if (ShowLetter) {
+                RandomLetter();
+            } else {
+                SetText("");
+            }
         }
 
         void PlayAnimation()
@@ -42,6 +57,49 @@ namespace EA4S
                     AnturaAnimator.StopPlayback();
                 }
             }
+        }
+
+        public void Clicked()
+        {
+            if (ClickToChangeAnimation)
+                RandomAnimation();
+
+            if (ClickToChangeAnimation)
+                RandomLetter();
+
+            if (ClickToSpeakLetter)
+                SpeakLetter();
+        }
+
+        void RandomLetter()
+        {
+            letterData = AppManager.Instance.Teacher.GimmeARandomLetter();
+            //Debug.Log(letterData.Key);
+            SetText(letterData.TextForLivingLetter);
+        }
+
+        void SetText(string title)
+        {
+            myText.text = title; 
+        }
+
+        private void SpeakLetter()
+        {
+            if (letterData != null) {
+                AudioManager.I.PlayLetter(letterData.Key);
+            }
+        }
+
+        void RandomAnimation()
+        {
+            LivingLetterAnim newAnimationState = LivingLetterAnim.Nothing;
+
+            while ((newAnimationState == LivingLetterAnim.Nothing) || (newAnimationState == AnimationState)) {
+                newAnimationState = GenericUtilites.GetRandomEnum<LivingLetterAnim>();
+            }
+
+            AnimationState = newAnimationState;
+            PlayAnimation();
         }
 
         string GetStateName(LivingLetterAnim state)
