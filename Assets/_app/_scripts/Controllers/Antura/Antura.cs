@@ -25,7 +25,11 @@ namespace EA4S
     public enum AnturaColors {
         Blue = 0,
         Pink = 1,
-        Pirate = 2
+        Pirate = 2,
+        Gray = 3,
+        Pinata = 4,
+        Strange = 5,
+        Yellow = 7
     }
 
     public class Antura : MonoBehaviour
@@ -35,10 +39,12 @@ namespace EA4S
         public bool IsPirate;
         public AnturaCollars AnturaCollar;
         public AnturaColors AnturaColor;
+        public bool EyesClosed;
 
         [Header("Scene References")]
         public Animator AnturaAnimator;
-        public Material AnturaBodyMaterial;
+        public SkinnedMeshRenderer AnturaBodyMaterial;
+        public SkinnedMeshRenderer AnturaEyesMaterial;
 
         [Header("Antura Props")]
         public GameObject PropPirateHat;
@@ -48,9 +54,13 @@ namespace EA4S
         public GameObject PropCollarC;
 
         [Header("Antura Color")]
-        public Texture TextureBlue;
-        public Texture TexturePink;
-        public Texture TexturePirate;
+        public Material ColorBlue;
+        public Material ColorPink;
+        public Material ColorPirate;
+        public Material ColorGray;
+        public Material ColorPinata;
+        public Material ColorStrange;
+        public Material ColorYellow;
 
         int CostumeId;
 
@@ -71,13 +81,25 @@ namespace EA4S
 
             switch (AnturaColor) {
                 case AnturaColors.Blue:
-                    AnturaBodyMaterial.SetTexture("_MainTex", TextureBlue);
+                    AnturaBodyMaterial.material = ColorBlue;
                     break;
                 case AnturaColors.Pink:
-                    AnturaBodyMaterial.SetTexture("_MainTex", TexturePink);
+                    AnturaBodyMaterial.material = ColorPink;
                     break;
                 case AnturaColors.Pirate:
-                    AnturaBodyMaterial.SetTexture("_MainTex", TexturePirate);
+                    AnturaBodyMaterial.material = ColorPirate;
+                    break;
+                case AnturaColors.Gray:
+                    AnturaBodyMaterial.material = ColorGray;
+                    break;
+                case AnturaColors.Pinata:
+                    AnturaBodyMaterial.material = ColorPinata;
+                    break;
+                case AnturaColors.Strange:
+                    AnturaBodyMaterial.material = ColorStrange;
+                    break;
+                case AnturaColors.Yellow:
+                    AnturaBodyMaterial.material = ColorYellow;
                     break;
             }
             AnturaAnimator.Play(GetStateName(AnimationState));
@@ -92,6 +114,7 @@ namespace EA4S
 
         void RandomDress()
         {
+            EyesClosed = (Random.Range(0, 100) > 50);
             IsPirate = (Random.Range(0, 100) > 50);
             AnturaColor = GetRandomEnum<AnturaColors>();
             AnturaCollar = GetRandomEnum<AnturaCollars>();
