@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e41f709c2ac384ce48f8ab4e484335f3
+guid: b1c16963b3efc475b82c099d9d809e45
 timeCreated: 1469985453
 licenseType: Pro
 ModelImporter:
@@ -32,46 +32,48 @@ ModelImporter:
     100048: Ear2_R
     100050: Ear3_L
     100052: Ear3_R
-    100054: faceRoot_M
-    100056: frontAnkle_L
-    100058: frontAnkle_R
-    100060: frontHip_L
-    100062: frontHip_R
-    100064: frontKnee_L
-    100066: frontKnee_R
-    100068: frontRump_L
-    100070: frontRump_R
-    100072: frontToes_L
-    100074: frontToes_R
-    100076: Head_M
-    100078: Jaw_M
-    100080: Main
-    100082: mouth2_L
-    100084: mouth2_R
-    100086: mouth4_L
-    100088: mouth4_R
-    100090: mouth6_L
-    100092: mouth6_R
-    100094: mouthLower_M
-    100096: mouthUpper_M
-    100098: Neck_M
-    100100: nose1_M
-    100102: nose2_R
-    100104: Root_M
-    100106: snout1_L
-    100108: snout1_R
-    100110: Spine1_M
-    100112: Tail0_M
-    100114: Tail1_M
-    100116: Tail2_M
-    100118: Tail3_M
-    100120: teethLower_M
-    100122: teethUpper_M
-    100124: tongue1_M
-    100126: tongue2_M
-    100128: tongue3_M
-    100130: tongue4_M
-    100132: tongue5_M
+    100054: Eye_L
+    100056: Eye_R
+    100058: faceRoot_M
+    100060: frontAnkle_L
+    100062: frontAnkle_R
+    100064: frontHip_L
+    100066: frontHip_R
+    100068: frontKnee_L
+    100070: frontKnee_R
+    100072: frontRump_L
+    100074: frontRump_R
+    100076: frontToes_L
+    100078: frontToes_R
+    100080: Head_M
+    100082: Jaw_M
+    100084: Main
+    100086: mouth2_L
+    100088: mouth2_R
+    100090: mouth4_L
+    100092: mouth4_R
+    100094: mouth6_L
+    100096: mouth6_R
+    100098: mouthLower_M
+    100100: mouthUpper_M
+    100102: Neck_M
+    100104: nose1_M
+    100106: nose2_R
+    100108: Root_M
+    100110: snout1_L
+    100112: snout1_R
+    100114: Spine1_M
+    100116: Tail0_M
+    100118: Tail1_M
+    100120: Tail2_M
+    100122: Tail3_M
+    100124: teethLower_M
+    100126: teethUpper_M
+    100128: tongue1_M
+    100130: tongue2_M
+    100132: tongue3_M
+    100134: tongue4_M
+    100136: tongue5_M
     400000: //RootNode
     400002: backAnkle_L
     400004: backAnkle_R
@@ -99,47 +101,49 @@ ModelImporter:
     400048: Ear2_R
     400050: Ear3_L
     400052: Ear3_R
-    400054: faceRoot_M
-    400056: frontAnkle_L
-    400058: frontAnkle_R
-    400060: frontHip_L
-    400062: frontHip_R
-    400064: frontKnee_L
-    400066: frontKnee_R
-    400068: frontRump_L
-    400070: frontRump_R
-    400072: frontToes_L
-    400074: frontToes_R
-    400076: Head_M
-    400078: Jaw_M
-    400080: Main
-    400082: mouth2_L
-    400084: mouth2_R
-    400086: mouth4_L
-    400088: mouth4_R
-    400090: mouth6_L
-    400092: mouth6_R
-    400094: mouthLower_M
-    400096: mouthUpper_M
-    400098: Neck_M
-    400100: nose1_M
-    400102: nose2_R
-    400104: Root_M
-    400106: snout1_L
-    400108: snout1_R
-    400110: Spine1_M
-    400112: Tail0_M
-    400114: Tail1_M
-    400116: Tail2_M
-    400118: Tail3_M
-    400120: teethLower_M
-    400122: teethUpper_M
-    400124: tongue1_M
-    400126: tongue2_M
-    400128: tongue3_M
-    400130: tongue4_M
-    400132: tongue5_M
-    7400000: Antura_Run
+    400054: Eye_L
+    400056: Eye_R
+    400058: faceRoot_M
+    400060: frontAnkle_L
+    400062: frontAnkle_R
+    400064: frontHip_L
+    400066: frontHip_R
+    400068: frontKnee_L
+    400070: frontKnee_R
+    400072: frontRump_L
+    400074: frontRump_R
+    400076: frontToes_L
+    400078: frontToes_R
+    400080: Head_M
+    400082: Jaw_M
+    400084: Main
+    400086: mouth2_L
+    400088: mouth2_R
+    400090: mouth4_L
+    400092: mouth4_R
+    400094: mouth6_L
+    400096: mouth6_R
+    400098: mouthLower_M
+    400100: mouthUpper_M
+    400102: Neck_M
+    400104: nose1_M
+    400106: nose2_R
+    400108: Root_M
+    400110: snout1_L
+    400112: snout1_R
+    400114: Spine1_M
+    400116: Tail0_M
+    400118: Tail1_M
+    400120: Tail2_M
+    400122: Tail3_M
+    400124: teethLower_M
+    400126: teethUpper_M
+    400128: tongue1_M
+    400130: tongue2_M
+    400132: tongue3_M
+    400134: tongue4_M
+    400136: tongue5_M
+    7400000: Antura_Stand_Excited_Breath
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -163,10 +167,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Antura_Run
+      name: Antura_Stand_Excited_Breath
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -258,6 +262,10 @@ ModelImporter:
       - path: Main/DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Ear0_R/Ear1_R/Ear2_R
         weight: 1
       - path: Main/DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Ear0_R/Ear1_R/Ear2_R/Ear3_R
+        weight: 1
+      - path: Main/DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Eye_L
+        weight: 1
+      - path: Main/DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/Eye_R
         weight: 1
       - path: Main/DeformationSystem/Root_M/Spine1_M/Chest_M/Neck_M/Head_M/faceRoot_M
         weight: 1

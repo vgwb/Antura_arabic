@@ -99,8 +99,7 @@ namespace Balloons
 
         private void ShowTutorial()
         {
-            WidgetPopupWindow.I.InitTutorial(TutorialNextButtonAction, TutorialImage);
-            WidgetPopupWindow.Show(true);
+            WidgetPopupWindow.I.ShowTutorial(TutorialNextButtonAction, TutorialImage);
             TutorialState = 3;
         }
 
@@ -157,8 +156,7 @@ namespace Balloons
         {
             ResetScene();
             SetNewWord();
-            WidgetPopupWindow.I.Init(OnRoundStartPressed, "Pop the letters that don't form the word", wordData.Key, wordData.Word);
-            WidgetPopupWindow.Show(true);
+            WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
         }
 
         private void EndRound(Result result)

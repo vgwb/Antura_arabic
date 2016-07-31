@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e41f709c2ac384ce48f8ab4e484335f3
-timeCreated: 1469985453
+guid: 6f7c7c781c4af480490378caa4d0c873
+timeCreated: 1469985452
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -139,7 +139,7 @@ ModelImporter:
     400128: tongue3_M
     400130: tongue4_M
     400132: tongue5_M
-    7400000: Antura_Run
+    7400000: Antura_Sit_BreathV2
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -163,10 +163,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Antura_Run
+      name: Antura_Sit_BreathV2
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -60,44 +60,44 @@ namespace EA4S.DontWakeUp
             DrawingGO.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
             DrawingGO.SetActive(false);
             TextGO.SetActive(true);
-            TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(GameDontWakeUp.Instance.currentWord.Word, false, false);
+            TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(DontWakeUpManager.Instance.currentWord.Word, false, false);
 
             trailReference.Clear();
         }
 
         void LetterDropped()
         {
-            GameDontWakeUp.Instance.SpeakCurrentLetter();
+            DontWakeUpManager.Instance.SpeakCurrentLetter();
             if (overDestinationMarker) {
-                GameDontWakeUp.Instance.RoundWon();
+                DontWakeUpManager.Instance.RoundWon();
             } else {
-                GameDontWakeUp.Instance.RoundLost(How2Die.Fall);
+                DontWakeUpManager.Instance.RoundLost(How2Die.Fall);
             }
         }
 
 
         void OnTriggerEnter(Collider other)
         {
-            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerEnter " + other.gameObject.name);
                 // GameDontWakeUp.Instance.dangering.InDanger(false);
                 colliding = true;
                 if (other.gameObject.tag == "Alert") {
                     if (other.gameObject.name.Contains("alarm")) {
-                        GameDontWakeUp.Instance.InDanger(true, How2Die.TouchedAlarm);
+                        DontWakeUpManager.Instance.InDanger(true, How2Die.TouchedAlarm);
                     } else {
-                        GameDontWakeUp.Instance.InDanger(true, How2Die.TouchedDog);
+                        DontWakeUpManager.Instance.InDanger(true, How2Die.TouchedDog);
                     }
                 }
                 if (other.gameObject.tag == "Obstacle") {
-                    GameDontWakeUp.Instance.RoundLost(How2Die.TouchedDog);
+                    DontWakeUpManager.Instance.RoundLost(How2Die.TouchedDog);
                 }
             }
         }
 
         void OnTriggerStay(Collider other)
         {
-            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerStay " + other.gameObject.name);
 //            if (other.gameObject.tag == "Obstacle") {
 //                GameDontWakeUp.Instance.dangering.InDanger(true);
@@ -117,10 +117,10 @@ namespace EA4S.DontWakeUp
 
         void OnTriggerExit(Collider other)
         {
-            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerExit " + other.gameObject.name);
                 if (other.gameObject.tag == "Alert") {
-                    GameDontWakeUp.Instance.InDanger(false, How2Die.Null);
+                    DontWakeUpManager.Instance.InDanger(false, How2Die.Null);
                 }
                 if (other.gameObject.tag == "Marker") {
                     overDestinationMarker = false;
@@ -182,7 +182,7 @@ namespace EA4S.DontWakeUp
 
         void Update()
         {
-            if (GameDontWakeUp.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
                 if (Input.GetMouseButtonDown(0)) {
                     RaycastHit hit;
                     Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
@@ -192,7 +192,7 @@ namespace EA4S.DontWakeUp
                         draggingStarted = true;
                         MoveOnFloor();
                         trailReference.Clear();
-                        GameDontWakeUp.Instance.SpeakCurrentLetter();
+                        DontWakeUpManager.Instance.SpeakCurrentLetter();
                     }
                 } else if (Input.GetMouseButtonUp(0)) {
                     dragging = false;
@@ -230,11 +230,11 @@ namespace EA4S.DontWakeUp
                 //Debug.Log(mouseDelta.magnitude);
                 if (mouseDelta.magnitude > SpeedLimit) {
                     inOverSpeed = true;
-                    GameDontWakeUp.Instance.InDanger(true, How2Die.TooFast);
+                    DontWakeUpManager.Instance.InDanger(true, How2Die.TooFast);
                 } else {
                     if (inOverSpeed) {
                         inOverSpeed = false;
-                        GameDontWakeUp.Instance.InDanger(false, How2Die.Null);
+                        DontWakeUpManager.Instance.InDanger(false, How2Die.Null);
                     }
                 }
 

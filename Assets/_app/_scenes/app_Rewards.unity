@@ -265,11 +265,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 408510, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.16
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 408510, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.35
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 408510, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalRotation.x
@@ -345,11 +345,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: AnimationState
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: ClickToBark
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 408510, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
+      propertyPath: ClickToChangeDress
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
@@ -494,6 +502,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 561271040}
+--- !u!114 &683614984 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56,
+    type: 2}
+  m_PrefabInternal: {fileID: 436526735}
+  m_Script: {fileID: 11500000, guid: 7cb731f6df39c496e8e084e9dba6295b, type: 3}
 --- !u!1 &688744168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1093,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1449487717}
   m_LocalRotation: {x: -0.17364822, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0, z: 10.3}
+  m_LocalPosition: {x: 0, y: -0.42, z: 10.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
   m_Children:
@@ -1247,6 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62697f1eeb87d4e029d14bb9fc96227c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnturaController: {fileID: 683614984}
 --- !u!114 &1814291035
 MonoBehaviour:
   m_ObjectHideFlags: 0
