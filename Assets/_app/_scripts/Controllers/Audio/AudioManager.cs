@@ -51,6 +51,20 @@ namespace EA4S
             musicEnabled = true;
         }
 
+        void OnApplicationPause(bool pauseStatus)
+        {
+            // app is pausing
+            if (pauseStatus) {
+                StopMusic();
+            }
+            //app is resuming
+            if (!pauseStatus) {
+                if (musicEnabled) {
+                    PlayMusic(currentMusic);
+                }
+            }
+        }
+
         public void NotifyEndAudio(Fabric.EventNotificationType type, string boh, object info, GameObject gameObject)
         {
             // Debug.Log ("OnNotify:" + type + "GameObject:" + gameObject.name);
@@ -66,7 +80,6 @@ namespace EA4S
 
         public void ToggleMusic()
         {
-            //Debug.Log("TODO ToggleMusic()");
             musicEnabled = !musicEnabled;
             if (musicEnabled) {
                 PlayMusic(currentMusic);
@@ -126,25 +139,25 @@ namespace EA4S
             StopSound(GetEventName(sfx));
         }
 
-        public void PlaySound(string eventName)
+        void PlaySound(string eventName)
         {
             Fabric.EventManager.Instance.PostEvent(eventName);
         }
 
-        public void PlaySound(string eventName, System.Action callback)
+        void PlaySound(string eventName, System.Action callback)
         {
             OnNotifyEndAudio = callback;
             Fabric.EventManager.Instance.PostEventNotify(eventName, NotifyEndAudio);
         }
 
-        public void PlaySound(string eventName, GameObject GO)
+        void PlaySound(string eventName, GameObject GO)
         {
             Fabric.EventManager.Instance.PostEvent(eventName, GO);
         }
 
-        public void PlayLetter(string wordId)
+        public void PlayLetter(string letterId)
         {
-            Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + wordId);
+            Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + letterId);
         }
 
         public void PlayWord(string wordId)
@@ -152,12 +165,12 @@ namespace EA4S
             Fabric.EventManager.Instance.PostEvent("VOX/Words/" + wordId);
         }
 
-        public void StopSound(string eventName)
+        void StopSound(string eventName)
         {
             Fabric.EventManager.Instance.PostEvent(eventName, Fabric.EventAction.StopAll);
         }
 
-        public void FadeOutMusic(string n)
+        void FadeOutMusic(string n)
         {
             Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
             if (component != null) {
@@ -255,20 +268,6 @@ namespace EA4S
             }
             return eventName;
         }
-
-        void OnApplicationPause(bool pauseStatus)
-        {
-            // app is pausing
-            if (pauseStatus) {
-                StopMusic();
-            }
-
-            //app is resuming
-            if (!pauseStatus) {
-                if (musicEnabled) {
-                    PlayMusic(currentMusic);
-                }
-            }
-        }
+           
     }
 }
