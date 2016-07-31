@@ -17,18 +17,26 @@ namespace EA4S
 
     public class Antura : MonoBehaviour
     {
+        [Header("State")]
         public AnturaAnim AnimationState;
+        public bool IsPirate;
+        public int CollarSize;
 
+        [Header("Scene References")]
         public Animator AnturaAnimator;
-
         public GameObject PropPirateHat;
         public GameObject PropPirateHook;
+        public GameObject PropCollarA;
+        public GameObject PropCollarB;
+        public GameObject PropCollarC;
 
         void Start()
         {
             AnturaAnimator.Play(GetStateName(AnimationState));
-            PropPirateHat.SetActive(false);
-            PropPirateHook.SetActive(false);
+
+            PropPirateHat.SetActive(IsPirate);
+            PropPirateHook.SetActive(IsPirate);
+            PropCollarA.SetActive(CollarSize == 1);
         }
 
         void OnMouseDown()
