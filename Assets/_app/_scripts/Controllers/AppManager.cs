@@ -4,6 +4,7 @@ using ModularFramework.Core;
 using ModularFramework.Modules;
 using ModularFramework.Helpers;
 using Google2u;
+using UniRx;
 using EA4S;
 
 namespace EA4S
@@ -79,6 +80,13 @@ namespace EA4S
             GameSettings.HighQualityGfx = true;
 
             InitDataAI();
+
+
+            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
+                OnPlaySessionValueChange();
+            });
+
+
         }
 
         void AdditionalSetup()
@@ -167,6 +175,14 @@ namespace EA4S
                 // special cases
             }
             return returnString;
+        }
+
+        ///// <summary>
+        ///// Called when playSession value changes.
+        ///// </summary>
+        void OnPlaySessionValueChange() {
+            LoggerEA4S.Log("app", "PlaySession", "changed", PlaySession.ToString());
+            LoggerEA4S.Save();
         }
 
         #endregion

@@ -35,7 +35,8 @@ namespace EA4S
             else
                 // start mood eval
                 LoggerEA4S.Log("app", "mood", "start", _mood.ToString());
-            
+
+            LoggerEA4S.Save();
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             Invoke("exitMoodScene", 0.5f);
         }
