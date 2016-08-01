@@ -9,7 +9,7 @@ namespace EA4S
     {
         public Antura AnturaController;
 
-        IEnumerator Start()
+        void Start()
         {
             AudioManager.I.PlayMusic(Music.Theme4);
             Debug.Log("RewardsManager playsession: " + AppManager.Instance.PlaySession);
@@ -27,7 +27,21 @@ namespace EA4S
             }
             LoggerEA4S.Save();
 
+            WidgetSubtitles.I.DisplaySentence("game_rewards_intro1", 2, true, NextSentence);
+        }
 
+        public void NextSentence()
+        {
+            WidgetSubtitles.I.DisplaySentence("game_rewards_intro2", 2, true, NextSentence2);
+        }
+
+        public void NextSentence2()
+        {
+            StartCoroutine(StartReward());
+        }
+
+        IEnumerator StartReward()
+        {
             // Wait for animation to complete
             RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
             while (!animator.IsComplete)
@@ -35,6 +49,7 @@ namespace EA4S
 
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
+
 
         public void Continue()
         {
