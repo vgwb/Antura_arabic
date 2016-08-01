@@ -21,7 +21,8 @@ namespace EA4S
         int index;
         Tween showTween, textTween;
 
-        void Awake() {
+        void Awake()
+        {
             I = this;
             WalkieTalkie.gameObject.SetActive(true);
             WalkieTalkie.Setup();
@@ -42,7 +43,8 @@ namespace EA4S
             this.gameObject.SetActive(false);
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             I = null;
             this.StopAllCoroutines();
             showTween.Kill();
@@ -50,7 +52,8 @@ namespace EA4S
         }
 
 
-        public void DisplayDebug(string sentence) {
+        public void DisplayDebug(string sentence)
+        {
             this.StopAllCoroutines();
             currentCallback = null;
             showTween.PlayForward();
@@ -60,7 +63,8 @@ namespace EA4S
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(string SentenceId, float duration = 2, bool isKeeper = false, System.Action callback = null) {
+        public void DisplaySentence(string SentenceId, float duration = 2, bool isKeeper = false, System.Action callback = null)
+        {
             GlobalUI.Init();
             this.StopAllCoroutines();
             currentCallback = callback;
@@ -70,23 +74,29 @@ namespace EA4S
 
         }
         // Overload
-        public void DisplaySentence(string[] SentenceIdList, float duration = 2, bool isKeeper = false, System.Action callback = null) {
+        public void DisplaySentence(string[] SentenceIdList, float duration = 2, bool isKeeper = false, System.Action callback = null)
+        {
             index = 0;
             DisplaySentence(SentenceIdList[index], duration, isKeeper, callback);
         }
 
-        public void Close(bool _immediate = false) {
+        public void Close(bool _immediate = false)
+        {
             this.StopAllCoroutines();
-            if (_immediate) showTween.Rewind();
-            else showTween.PlayBackwards();
+            if (_immediate)
+                showTween.Rewind();
+            else
+                showTween.PlayBackwards();
             WalkieTalkie.Show(false, _immediate);
         }
 
-        public void ShowNext() {
+        public void ShowNext()
+        {
             // TODO Don't know how to deal with this (note by Daniele)
         }
 
-        void DisplayText(string textID, float duration = 3) {
+        void DisplayText(string textID, float duration = 3)
+        {
             bool isContinue = !string.IsNullOrEmpty(TextUI.text);
             this.StopAllCoroutines();
             textTween.Kill();
@@ -105,9 +115,11 @@ namespace EA4S
             this.StartCoroutine(DisplayTextCoroutine(duration));
 
             AudioManager.I.PlayDialog(textID, currentCallback);
+            Debug.Log("DisplayText() " + textID + " - " + row.GetStringData("English"));
         }
 
-        IEnumerator DisplayTextCoroutine(float duration) {
+        IEnumerator DisplayTextCoroutine(float duration)
+        {
             yield return null; // Wait 1 frame otherwise TMP doesn't update characterCount
 
             TextUI.maxVisibleCharacters = TextUI.textInfo.characterCount;
@@ -116,7 +128,8 @@ namespace EA4S
                 .OnComplete(WalkieTalkie.StopPulsing);
         }
 
-        string ReverseText(string text) {
+        string ReverseText(string text)
+        {
             char[] cArray = text.ToCharArray();
             string reverse = String.Empty;
             for (int i = cArray.Length - 1; i > -1; i--) {

@@ -85,6 +85,9 @@ namespace Balloons
         private Vector3 clampedPosition = new Vector3();
         private Vector3 floatVelocity = new Vector3();
         private Vector3 waftVelocity = new Vector3();
+        private Vector3 focusedPosition = new Vector3();
+        private Vector3 unfocusedPosition = new Vector3();
+        private bool keepUnfocusing = true;
 
 
         void Awake()
@@ -107,6 +110,7 @@ namespace Balloons
         {
             Float();
             Waft();
+            Unfocus();
         }
 
         public void SetActiveVariation(int index)
@@ -222,6 +226,31 @@ namespace Balloons
 
             // Drag using Rigidbody Position
             //body.MovePosition(ClampPositionToStage(dragPosition + MouseOffset));
+        }
+
+        public void Focus()
+        {
+            keepUnfocusing = false;
+
+            var focusZ = -10f;
+            focusedPosition.Set(transform.position.x, transform.position.y, focusZ);
+            transform.position = focusedPosition;
+        }
+
+        public void Unfocus()
+        {
+            if (keepUnfocusing)
+            {
+                if (!Mathf.Approximately(transform.position.z, basePosition.z))
+                {
+                    unfocusedPosition.Set(transform.position.x, transform.position.y, basePosition.z);
+                    transform.position = unfocusedPosition;
+                }
+            }
+            else
+            {
+                keepUnfocusing = true;
+            }
         }
 
         public void Pop()
