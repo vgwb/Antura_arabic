@@ -98,6 +98,13 @@ namespace EA4S
             var text = ActualTime.ToString(); //Mathf.Floor(timeRemaining).ToString();
             timerText.text = text;
         }
+
+        /// <summary>
+        /// Force end time.
+        /// </summary>
+        public void EndTimeRemaning() {
+            timeRemaining = 0;
+        }
         #endregion
 
         #region events
