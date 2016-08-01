@@ -4,6 +4,20 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.4.7
+
+2016-08-01 - [audio & UI] it's better the word popup doesn't speak also the sentence.. we have to check how to deal this
+2016-08-01 - [DontWake] corrected intro VoiceOvers, and Keeper alerts during gameplay (and Popup UI speaks sentences, if available)
+2016-08-01 - [Balloons] Smooth letter looking at camera on hold. Undo Z forward movement on hold.
+2016-08-01 - [rewards] VoiceOvers introduction and click to change Antura animation
+2016-08-01 - fix: "index out of range" exception random in fastcorwd.
+2016-08-01 - [Balloons] Slightly enlarged letter and balloon collision zones
+2016-08-01 - [Balloons] Floating Letters are now focused when held. Antura prefab disabled in hierarchy so that GameManager handles enabling it.
+2016-08-01 - [wheel] all VoiceOvers
+2016-08-01 - Fix: balloon error with some letters.
+2016-08-01 - [UI] global window has centered button (temp solution) and can be clicked everywhere
+2016-08-01 - [data] updated arabic letter data
+
 ##########   v0.4.6
 
 2016-08-01 - Fix: Wrong Walkthrough.
