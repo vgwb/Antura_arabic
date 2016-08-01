@@ -138,7 +138,7 @@ namespace EA4S
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
 
-            AudioManager.I.PlayDialog(SentenceId);
+            //AudioManager.I.PlayDialog(SentenceId);
 
             SetWord(wordData.Key, wordData.Word);
 
