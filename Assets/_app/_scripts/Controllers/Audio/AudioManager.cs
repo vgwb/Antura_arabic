@@ -167,7 +167,8 @@ namespace EA4S
 
         void StopSound(string eventName)
         {
-            Fabric.EventManager.Instance.PostEvent(eventName, Fabric.EventAction.StopAll);
+            if (Fabric.EventManager.Instance != null)
+                Fabric.EventManager.Instance.PostEvent(eventName, Fabric.EventAction.StopAll);
         }
 
         void FadeOutMusic(string n)
