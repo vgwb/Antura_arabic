@@ -22,14 +22,18 @@ using UnityEngine.Assertions;
 using System.Collections.Generic;
 using ModularFramework.Modules;
 
-namespace ModularFramework.Core {
-    public abstract class GameManager : Singleton<GameManager> {
+namespace ModularFramework.Core
+{
+    public abstract class GameManager : Singleton<GameManager>
+    {
 
         #region Game Settings
+
         public GameSettings GameSettings = new GameSettings();
         [Tooltip("To add new SubGame enable 'MultiGame' (if disabled) and add it to list")]
         public bool MultiGame = false;
         public List<GameSettings> Games = new List<GameSettings>();
+
         #endregion
 
         [HideInInspector]
@@ -43,17 +47,20 @@ namespace ModularFramework.Core {
         bool setuped = false;
 
         #region Events
+
         public delegate void GameEvent(IGameplayInfo _gameplayInfo);
 
         //public static event GameEvent LevelSet;
+
         #endregion
 
         #region Event Subscription
-        
-        void OnLevelWasLoaded(int level) {
+
+        void OnLevelWasLoaded(int level)
+        {
             if (IsDuplicatedInstance)
                 return;
-            Debug.Log("OnLevelWasLoaded",this);
+            //Debug.Log("OnLevelWasLoaded",this);
             Modules.SceneModule.SceneLoadedBehaviour();
         }
 
@@ -61,15 +68,18 @@ namespace ModularFramework.Core {
 
         #region ShortCuts properties
 
-        public UIModule UIModule {
+        public UIModule UIModule
+        {
             get { return Modules.UIModule; }
         }
 
-        public PlayerProfileModule PlayerProfile {
+        public PlayerProfileModule PlayerProfile
+        {
             get { return Modules.PlayerProfile; }
         }
 
-        public LocalizationModule Localization {
+        public LocalizationModule Localization
+        {
             get { return Modules.LocalizationModule; }
         }
 
@@ -80,7 +90,8 @@ namespace ModularFramework.Core {
         /// <summary>
         /// Game entry point.
         /// </summary>
-        protected override void GameSetup() {
+        protected override void GameSetup()
+        {
             if (setuped)
                 return;
             base.GameSetup();
@@ -92,10 +103,12 @@ namespace ModularFramework.Core {
             setuped = true;
         }
 
-        void Start() {
+        void Start()
+        {
             DontDestroyOnLoad(this);
             // Assert.IsTrue(!string.IsNullOrEmpty(GameSettings.GameID), "Main Game ID Can not be null or empty");
         }
+
         #endregion
 
         #region MultiGame
@@ -105,17 +118,20 @@ namespace ModularFramework.Core {
         /// If not multigame, return main game.
         /// </summary>
         /// <returns></returns>
-        public GameSettings GetActualGame() {
+        public GameSettings GetActualGame()
+        {
             if (MultiGame)
                 return ActualSubGame;
             else
                 return GameSettings;
         }
+
         /// <summary>
         /// Set as active game, game with id equal to parameter (if exist), otherwise set the main id.
         /// </summary>
         /// <param name="_gameID"></param>
-        public void SetActiveGame(string _gameID) {
+        public void SetActiveGame(string _gameID)
+        {
             if (!MultiGame)
                 return;
             GameSettings gameFound = Games.Find(g => g.GameID == _gameID);
@@ -124,10 +140,12 @@ namespace ModularFramework.Core {
             else
                 ActualSubGame = gameFound;
         }
+
         /// <summary>
         /// Set Main Game as active game.
         /// </summary>
-        public void SetMainActiveGame() {
+        public void SetMainActiveGame()
+        {
             ActualSubGame = GameSettings;
         }
 

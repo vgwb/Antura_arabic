@@ -65,14 +65,33 @@ namespace EA4S
 
             IsShown = _doShow;
             if (_doShow) {
-                if (_immediate) I.showTween.Complete();
-                else I.showTween.PlayForward();
+                if (_immediate)
+                    I.showTween.Complete();
+                else
+                    I.showTween.PlayForward();
             } else {
-                if (_immediate) I.showTween.Rewind();
-                else I.showTween.PlayBackwards();
+                if (_immediate)
+                    I.showTween.Rewind();
+                else
+                    I.showTween.PlayBackwards();
             }
         }
 
+
+        public void ShowTextDirect(Action callback, string myText)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            TitleGO.GetComponent<TextMeshProUGUI>().text = myText;
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
+
+            Show(true);
+        }
+
+       
         public void ShowSentence(Action callback, string SentenceId)
         {
             ResetContents();

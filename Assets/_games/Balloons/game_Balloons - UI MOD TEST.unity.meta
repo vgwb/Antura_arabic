@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 88a7aab313e64fa45a93be2900943ac7
-folderAsset: yes
-timeCreated: 1469611827
+guid: 153dcbee3caba7d43a0d8c10cff41a6a
+labels:
+- EA4S
+timeCreated: 1470052779
 licenseType: Pro
 DefaultImporter:
   userData: 
