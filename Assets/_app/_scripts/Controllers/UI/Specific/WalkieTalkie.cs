@@ -12,7 +12,8 @@ namespace EA4S
         bool makePulse;
         Tween showTween, pulseTween, btTween;
 
-        void Awake() {
+        void Awake()
+        {
             RectTransform rt = this.GetComponent<RectTransform>();
 
             const float pulseDuration = 0.3f;
@@ -52,13 +53,16 @@ namespace EA4S
             this.gameObject.SetActive(false);
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             showTween.Kill();
             pulseTween.Kill();
             btTween.Kill();
         }
 
-        public void Show(bool doShow) {
+        public void Show(bool doShow)
+        {
+            Debug.Log("Walki talki is " + isShown + " and want " + doShow);
             if (isShown == doShow)
                 return;
 
@@ -71,7 +75,8 @@ namespace EA4S
                 showTween.PlayBackwards();
         }
 
-        public void StartPulsing(bool pressButton = false) {
+        public void StartPulsing(bool pressButton = false)
+        {
             if (!isShown)
                 return;
 
@@ -83,12 +88,14 @@ namespace EA4S
                 btTween.Restart();
         }
 
-        void DOStartPulsing() {
+        void DOStartPulsing()
+        {
             makePulse = true;
             pulseTween.Restart();
         }
 
-        public void StopPulsing() {
+        public void StopPulsing()
+        {
             if (!isShown)
                 return;
 
