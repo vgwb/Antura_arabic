@@ -65,11 +65,12 @@ namespace EA4S
         void ShowProgression()
         {
             CurrentSteps[0].SetActive(AppManager.Instance.PlaySession > 0);
-            CurrentSteps[1].SetActive(AppManager.Instance.PlaySession > 1);
-            CurrentSteps[2].SetActive(AppManager.Instance.PlaySession > 2);
-            CurrentSteps[3].SetActive(AppManager.Instance.PlaySession > 3);
+            CurrentSteps[1].SetActive(AppManager.Instance.PlaySession > 0);
+            CurrentSteps[2].SetActive(AppManager.Instance.PlaySession > 1);
+            CurrentSteps[3].SetActive(AppManager.Instance.PlaySession > 2);
+            CurrentSteps[4].SetActive(AppManager.Instance.PlaySession > 3);
 
-            Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.PlaySession - 1].transform.position;
+            Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.PlaySession].transform.position;
 
             Player.transform.position = new Vector3(currentDotPosition.x, currentDotPosition.y + 4.6f, currentDotPosition.z);
                 
