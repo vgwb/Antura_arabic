@@ -12,7 +12,7 @@ namespace EA4S
         bool makePulse;
         Tween showTween, pulseTween, btTween;
 
-        void Awake()
+        public void Setup()
         {
             RectTransform rt = this.GetComponent<RectTransform>();
 
@@ -62,7 +62,6 @@ namespace EA4S
 
         public void Show(bool _doShow, bool _immediate = false)
         {
-            Debug.Log("Walkie talkie is " + isShown + " and want " + _doShow);
             if (isShown == _doShow && !_immediate)
                 return;
 
@@ -70,6 +69,7 @@ namespace EA4S
             pulseTween.Pause();
             if (_doShow) {
                 AudioManager.I.PlaySfx(Sfx.WalkieTalkie);
+                this.gameObject.SetActive(true);
                 if (_immediate) showTween.Complete();
                 else showTween.PlayForward();
             } else {
