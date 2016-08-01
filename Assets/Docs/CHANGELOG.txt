@@ -4,6 +4,30 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.4.6
+
+2016-08-01 - Fix: Wrong Walkthrough.
+2016-08-01 - [assesment] debug
+2016-08-01 - More coherent Popup CONTINUE button positioning and colors
+2016-08-01 - [cleaning] removed annoyg debug log
+2016-08-01 - [FastCrowd] official UI for Tutorial intro
+2016-08-01 - [assessment] new UI and now Keeper comments the results.. i made 1/5!!
+2016-08-01 - [arabic] updated arabic letter unicodes
+2016-08-01 - [optimization] images and textures optimized at multiple of 8.. much better compression and app size
+2016-08-01 - Better Pause Menu
+2016-08-01 - Modified Continue Screen side position + Updated DemiLib
+2016-08-01 - [Debug] now we can end FastCrowd by the Debug panle.. HURAAH! 89 seconds of life earned
+2016-08-01 - Fastcrowd: added DebugForceEndGame(). press "space" from editor.
+2016-08-01 - [Balooon] my dog is bigger than yours
+2016-08-01 - [Map] better progression shown
+2016-08-01 - FastCrowd some arabic translation form db.
+2016-08-01 - preparing next version 0.4.6
+2016-08-01 - [DontWakeUp] fix infinite lives
+2016-08-01 - Fixed WalkieTalkie non appearing in some conditions
+2016-08-01 - SceneTransitioner now cleans GlobalUI elements automatically as soon as it finishes the appear animation (before calling the callback) + Added Editor/AnturaMenuItems.cs
+2016-08-01 - Added option to WidgetPopupWindow to make it timeScale independent
+2016-08-01 - [audio] added sounds words belly and chest
+
 ##########   v0.4.5
 
 2016-08-01 - [assessment] add intro VO
