@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using ModularFramework.Core;
 using ModularFramework.Helpers;
 
 namespace EA4S
@@ -19,7 +20,8 @@ namespace EA4S
         public List<AssessmentObject> Words;
 
         public AssessmentObject startObj, endObj;
-        public PopupTmp Popup;
+
+        int currentResult;
 
         public struct ColorSet
         {
@@ -29,6 +31,9 @@ namespace EA4S
 
         void Start()
         {
+
+            currentResult = 0;
+
             PanelTestGO.SetActive(false);
             AppManager.Instance.InitDataAI();
             WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
@@ -98,11 +103,33 @@ namespace EA4S
                 }
             }
 
-            //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
-            Popup.Show(true, string.Format("Result : {0}/{1}", rightCounter, Draws.Count));
+            currentResult = rightCounter;
+
             LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
+
+            WidgetSubtitles.I.DisplaySentence("assessment_result_intro", 3, true, ShowResults);
+            //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
         }
 
+        public void ShowResults()
+        {
+            WidgetPopupWindow.I.ShowTextDirect(AllFinished, string.Format("Result : {0}/{1}", currentResult, Draws.Count));
+               
+            if (currentResult >= 5) {
+                WidgetSubtitles.I.DisplaySentence("assessment_result_verygood", 3, true);
+            } else if (currentResult >= 3) {
+                WidgetSubtitles.I.DisplaySentence("assessment_result_good", 3, true);
+            } else {
+                WidgetSubtitles.I.DisplaySentence("assessment_result_retry", 3, true);
+            }
+        }
+
+        public void AllFinished()
+        {
+            WidgetSubtitles.I.Close();
+            WidgetPopupWindow.Close();
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards");
+        }
 
         public void UnlockObjects(Color _color)
         {
