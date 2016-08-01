@@ -53,22 +53,24 @@ namespace EA4S
             MarkKO.SetActive(false);
         }
 
-        public static void Close()
+        public static void Close(bool _immediate = false)
         {
-            if (IsShown) {
-                Show(false);
-            }
+            if (IsShown || _immediate)
+                Show(false, _immediate);
         }
 
-        public static void Show(bool _doShow)
+        public static void Show(bool _doShow, bool _immediate = false)
         {
             GlobalUI.Init();
 
             IsShown = _doShow;
-            if (_doShow)
-                I.showTween.PlayForward();
-            else
-                I.showTween.PlayBackwards();
+            if (_doShow) {
+                if (_immediate) I.showTween.Complete();
+                else I.showTween.PlayForward();
+            } else {
+                if (_immediate) I.showTween.Rewind();
+                else I.showTween.PlayBackwards();
+            }
         }
 
         public void ShowSentence(Action callback, string SentenceId)
