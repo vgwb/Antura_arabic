@@ -22,14 +22,15 @@ namespace EA4S
     public class ContinueScreen : MonoBehaviour
     {
         [Header("Settings")]
-        public Vector2 BtSidePosition;
+        public ButtonSnapshot CenterSnapshot;
+        public ButtonSnapshot SideSnapshot;
         [Header("References")]
         public Button Bg;
         public Button BtContinue;
+        public RectTransform IcoContinue;
 
         public static bool IsShown { get; private set; }
 
-        Vector2 btCenteredPosition;
         RectTransform btRT;
         ContinueScreenMode currMode;
         Action onContinueCallback;
@@ -56,12 +57,11 @@ namespace EA4S
             onContinueCallback = _onContinue;
             Bg.gameObject.SetActive(_mode != ContinueScreenMode.Button);
             BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.FullscreenBg);
+            if (btIdleTween.IsPlaying()) btIdleTween.Rewind();
             if (_mode == ContinueScreenMode.ButtonFullscreen) {
-                btRT.anchorMax = btRT.anchorMin = Vector2.zero;
-                btRT.anchoredPosition = BtSidePosition;
+                SideSnapshot.Apply(btRT, IcoContinue);
             } else {
-                btRT.anchorMax = btRT.anchorMin = new Vector2(0.5f, 0.5f);
-                btRT.anchoredPosition = btCenteredPosition;
+                CenterSnapshot.Apply(btRT, IcoContinue);
             }
             showBgTween.Rewind();
             showTween.Restart();
@@ -98,7 +98,7 @@ namespace EA4S
 
         void Awake() {
             btRT = BtContinue.GetComponent<RectTransform>();
-            btCenteredPosition = btRT.anchoredPosition;
+            CenterSnapshot.Apply(btRT, IcoContinue);
 
             const float duration = 0.5f;
             showTween = btRT.DOScale(0.1f, duration).From().SetEase(Ease.OutBack)
@@ -121,6 +121,7 @@ namespace EA4S
             btIdleTween = btRT.DOAnchorPosX(10, 0.5f).SetRelative().SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo)
                 .SetUpdate(true).SetAutoKill(false).Pause();
 
+            CenterSnapshot.Apply(btRT, IcoContinue);
             this.gameObject.SetActive(false);
 
             // Listeners
@@ -159,6 +160,35 @@ namespace EA4S
                 btIdleTween.Pause();
                 AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             }
+        }
+    }
+
+    // █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+    // ███ CLASS ███████████████████████████████████████████████████████████████████████████████████████████████████████████
+    // █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+
+    [System.Serializable]
+    public struct ButtonSnapshot
+    {
+        public Vector2 AnchoredPos, AnchorMin, AnchorMax, SizeDelta;
+        public Vector2 IcoAnchoredPos;
+
+        public ButtonSnapshot(Vector2 _anchoredPos, Vector2 _anchorMin, Vector2 _anchorMax, Vector2 _sizeDelta, Vector2 _icoAnchoredPos)
+        {
+            AnchoredPos = _anchoredPos;
+            AnchorMin = _anchorMin;
+            AnchorMax = _anchorMax;
+            SizeDelta = _sizeDelta;
+            IcoAnchoredPos = _icoAnchoredPos;
+        }
+
+        public void Apply(RectTransform _bt, RectTransform _ico)
+        {
+            _bt.anchorMin = AnchorMin;
+            _bt.anchorMax = AnchorMax;
+            _bt.anchoredPosition = AnchoredPos;
+            _bt.sizeDelta = SizeDelta;
+            _ico.anchoredPosition = IcoAnchoredPos;
         }
     }
 }
