@@ -19,6 +19,8 @@ namespace Balloons
         public TMP_Text LetterView;
 
         [Header("Letter Parameters")]
+        [Tooltip("e.g: true")]
+        public bool spinEnabled;
         [Range(0, 5)] [Tooltip("e.g.: 1")]
         public float spinSpeed;
         [Range(0, 360)] [Tooltip("e.g.: 90")]
@@ -26,6 +28,8 @@ namespace Balloons
         [Range(0, 5)] [Tooltip("e.g.: 0.25")]
         public float spinRandomnessFactor;
 
+
+        private bool keepSpinning;
         private float spinDirection = 1f;
         private float randomOffset = 0f;
         private Vector3 baseRotation;
@@ -38,6 +42,7 @@ namespace Balloons
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
             baseRotation = transform.rotation.eulerAngles;
+            keepSpinning = spinEnabled;
             RandomizeSpin();
             RandomizeAnimation();
         }
@@ -67,6 +72,7 @@ namespace Balloons
         void OnMouseDown()
         {
             SpeakLetter();
+            FocusLetter();
 
             mousePosition = Input.mousePosition;
             mousePosition.z = cameraDistance;
@@ -76,6 +82,8 @@ namespace Balloons
 
         void OnMouseDrag()
         {
+            FocusLetter();
+
             mousePosition = Input.mousePosition;
             mousePosition.z = cameraDistance;
 
@@ -104,10 +112,23 @@ namespace Balloons
             }
         }
 
+        private void FocusLetter()
+        {
+            keepSpinning = false;
+            transform.rotation = Quaternion.Euler(baseRotation);
+            parentFloatingLetter.Focus();
+        }
+
         private void Spin()
         {
-            // Spin using Transform Rotation
-            transform.rotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
+            if (keepSpinning)
+            {
+                transform.rotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
+            }
+            else
+            {
+                keepSpinning = spinEnabled;
+            }
         }
 
         public void Drop()
