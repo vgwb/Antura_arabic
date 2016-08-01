@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+#if !UniRxLibrary
 using UnityEngine;
+#endif
 
 namespace UniRx
 {
     public interface IReadOnlyReactiveProperty<T> : IObservable<T>
     {
         T Value { get; }
+        bool HasValue { get; }
     }
 
     public interface IReactiveProperty<T> : IReadOnlyReactiveProperty<T>
@@ -20,7 +23,11 @@ namespace UniRx
     [Serializable]
     public class ReactiveProperty<T> : IReactiveProperty<T>, IDisposable, IOptimizedObservable<T>
     {
+#if !UniRxLibrary
         static readonly IEqualityComparer<T> defaultEqualityComparer = UnityEqualityComparer.GetDefault<T>();
+#else
+        static readonly IEqualityComparer<T> defaultEqualityComparer = EqualityComparer<T>.Default;
+#endif
 
         [NonSerialized]
         bool canPublishValueOnSubscribe = false;
@@ -28,7 +35,9 @@ namespace UniRx
         [NonSerialized]
         bool isDisposed = false;
 
+#if !UniRxLibrary
         [SerializeField]
+#endif
         T value = default(T);
 
         [NonSerialized]
@@ -81,6 +90,14 @@ namespace UniRx
             }
         }
 
+        public bool HasValue
+        {
+            get
+            {
+                return canPublishValueOnSubscribe;
+            }
+        }
+
         public ReactiveProperty()
             : this(default(T))
         {
@@ -107,7 +124,7 @@ namespace UniRx
         public ReactiveProperty(IObservable<T> source, T initialValue)
         {
             canPublishValueOnSubscribe = false;
-            Value = initialValue;
+            Value = initialValue; // Value set canPublishValueOnSubcribe = true
             publisher = new Subject<T>();
             sourceConnection = source.Subscribe(new ReactivePropertyObserver(this));
         }
@@ -263,6 +280,14 @@ namespace UniRx
             }
         }
 
+        public bool HasValue
+        {
+            get
+            {
+                return canPublishValueOnSubscribe;
+            }
+        }
+
         public ReadOnlyReactiveProperty(IObservable<T> source)
         {
             publisher = new Subject<T>();
@@ -272,6 +297,7 @@ namespace UniRx
         public ReadOnlyReactiveProperty(IObservable<T> source, T initialValue)
         {
             value = initialValue;
+            canPublishValueOnSubscribe = true;
             publisher = new Subject<T>();
             sourceConnection = source.Subscribe(new ReadOnlyReactivePropertyObserver(this));
         }
@@ -411,6 +437,11 @@ namespace UniRx
         public static ReadOnlyReactiveProperty<T> ToReadOnlyReactiveProperty<T>(this IObservable<T> source, T initialValue)
         {
             return new ReadOnlyReactiveProperty<T>(source, initialValue);
+        }
+
+        public static IObservable<T> SkipLatestValueOnSubscribe<T>(this IReadOnlyReactiveProperty<T> source)
+        {
+            return source.HasValue ? source.Skip(1) : source;
         }
 
         // for multiple toggle or etc..
