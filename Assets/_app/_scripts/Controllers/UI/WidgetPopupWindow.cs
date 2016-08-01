@@ -103,6 +103,8 @@ namespace EA4S
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
 
+            AudioManager.I.PlayDialog(SentenceId);
+
             Show(true);
         }
 
@@ -120,6 +122,8 @@ namespace EA4S
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
 
+            AudioManager.I.PlayDialog(SentenceId);
+
             Show(true);
         }
 
@@ -133,6 +137,8 @@ namespace EA4S
             LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+
+            AudioManager.I.PlayDialog(SentenceId);
 
             SetWord(wordData.Key, wordData.Word);
 

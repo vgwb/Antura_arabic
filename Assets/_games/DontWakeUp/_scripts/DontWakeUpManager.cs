@@ -53,6 +53,7 @@ namespace EA4S.DontWakeUp
         float dangerIntensity;
         How2Die dangerCause;
         int TutorialIndex;
+        bool dangerAlertShown;
 
         [Header("Gameplay Info and Config section")]
         #region Overrides
@@ -141,10 +142,10 @@ namespace EA4S.DontWakeUp
                     WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
                     break;
                 case 2:
-                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro2");
+                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro2");
                     break;
                 case 1:
-                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro3");
+                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro3");
                     break;
             }
         }
@@ -332,6 +333,25 @@ namespace EA4S.DontWakeUp
                         dangerIntensity = dangerIntensity + dangeringSpeed * Time.deltaTime;
                     }
 
+                    if (dangerIntensity < 0.3f) {
+                        dangerAlertShown = false;
+                    }
+
+                    if (dangerIntensity > 0.4f && !dangerAlertShown) {
+                        dangerAlertShown = true;
+                        switch (dangerCause) {
+                            case How2Die.TooFast:
+                                WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_toofast", 1, true, CloseDisplayAlert);
+                                break;
+                            case How2Die.TouchedAlarm:
+                                WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_alarms", 1, true, CloseDisplayAlert);
+                                break;
+                            case How2Die.TouchedDog:
+                                WidgetSubtitles.I.DisplaySentence("game_dontwake_fail_antura", 1, true, CloseDisplayAlert);
+                                break;
+                        }
+                    }
+
                     if (dangerIntensity > 1f) {
                         dangerIntensity = 1f;
                         RoundLost(dangerCause);
@@ -345,6 +365,11 @@ namespace EA4S.DontWakeUp
 
                 dangering.SetIntensity(dangerIntensity);
             }
+        }
+
+        public void CloseDisplayAlert()
+        {
+            WidgetSubtitles.I.Close();
         }
 
         public void InDanger(bool status, How2Die cause)
