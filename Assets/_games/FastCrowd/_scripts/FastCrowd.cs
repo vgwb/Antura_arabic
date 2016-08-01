@@ -496,6 +496,19 @@ namespace EA4S.FastCrowd
 
 
         #endregion
+
+        #region debug
+
+        public void DebugForceEndGame() {
+            GameplayTimer.Instance.EndTimeRemaning();
+        }
+
+
+        void Update() {
+            if (Input.GetKeyDown(KeyCode.Space))
+                DebugForceEndGame();
+        }
+        #endregion 
     }
 
     #region AnturaGameplayInfo
