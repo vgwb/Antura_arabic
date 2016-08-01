@@ -59,14 +59,38 @@ namespace EA4S
             isGameSelected = false;
             AudioManager.I.PlayMusic(SceneMusic);
 
-            WidgetSubtitles.I.DisplaySentence("wheel_turn", 2, true);
             showGameIcon(-1);
+
+
+            WidgetSubtitles.I.DisplaySentence("wheel_A1", 2, true, NextSentence);
         }
+
+        public void NextSentence()
+        {
+            WidgetSubtitles.I.DisplaySentence("wheel_A2", 2, true, NextSentence2);
+        }
+
+        public void NextSentence2()
+        {
+            WidgetSubtitles.I.DisplaySentence("wheel_A3", 1, true, NextSentence3);
+        }
+
+        public void NextSentence3()
+        {
+            WidgetSubtitles.I.DisplaySentence("wheel_A4", 3, true, NextSentence4);
+        }
+
+        public void NextSentence4()
+        {
+            WidgetSubtitles.I.DisplaySentence("wheel_A5", 1, true);
+        }
+
 
         void OnDisable()
         {
             StopSounds();
         }
+
 
         public void StopSounds()
         {
@@ -115,6 +139,7 @@ namespace EA4S
         public void OnWheelStart()
         {
             TutorialArrow.SetActive(false);
+            WidgetSubtitles.I.Close();
             AudioManager.I.PlaySfx(Sfx.WheelStart);
 
         }
@@ -127,7 +152,20 @@ namespace EA4S
             isGameSelected = true;
             ShakePopup();
 
-            ContinueScreen.Show(OnPopuplicked, ContinueScreenMode.ButtonWithBgFullscreen);
+            switch (gameData[currentGameIndex].Code) {
+                case "fastcrowd":
+                case "fastcrowd_words":
+                    WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowd", 2, true);
+                    break;
+                case "dontwakeup":
+                    WidgetSubtitles.I.DisplaySentence("wheel_game_dontwake", 2, true);
+                    break;
+                case "balloons":
+                    WidgetSubtitles.I.DisplaySentence("wheel_game_balloons_end", 2, true);
+                    break;
+            }
+
+            ContinueScreen.Show(OnPopuplicked, ContinueScreenMode.Button);
             // AudioManager.I.PlayMusic2();
             //GameIcon.SetActive(true);
         }
