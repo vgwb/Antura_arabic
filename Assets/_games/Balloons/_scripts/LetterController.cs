@@ -36,6 +36,12 @@ namespace Balloons
         private Vector3 mousePosition = new Vector3();
         private float cameraDistance;
         private bool drop;
+        private float focusDuration = 1f;
+        private float focusProgress;
+        private float focusProgressPercentage;
+        private float unfocusDuration = 1f;
+        private float unfocusProgress;
+        private float unfocusProgressPercentage;
 
 
         void Start()
@@ -90,6 +96,13 @@ namespace Balloons
             parentFloatingLetter.Drag(Camera.main.ScreenToWorldPoint(mousePosition));
         }
 
+        void OnMouseUp()
+        {
+            ResetLetterFocusingParameters();
+            ResetLetterUnfocusingParameters();
+            parentFloatingLetter.ResetFocusingParameters();
+        }
+
         private void RandomizeSpin()
         {
             randomOffset = Random.Range(0, 2 * Mathf.PI);
@@ -115,15 +128,40 @@ namespace Balloons
         private void FocusLetter()
         {
             keepSpinning = false;
-            transform.rotation = Quaternion.Euler(baseRotation);
+            //transform.rotation = Quaternion.Euler(baseRotation);
             parentFloatingLetter.Focus();
+
+            if (focusProgress < focusDuration)
+            {
+                focusProgress += Time.deltaTime;
+                focusProgressPercentage = focusProgress / focusDuration;
+            }
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(baseRotation), focusProgressPercentage);
+        }
+
+        public void ResetLetterFocusingParameters()
+        {
+            focusProgress = 0f;
+            focusProgressPercentage = 0f;
+        }
+
+        public void ResetLetterUnfocusingParameters()
+        {
+            unfocusProgress = 0f;
+            unfocusProgressPercentage = 0f;
         }
 
         private void Spin()
         {
             if (keepSpinning)
             {
-                transform.rotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z);
+                if (unfocusProgress < unfocusDuration)
+                {
+                    unfocusProgress += Time.deltaTime;
+                    unfocusProgressPercentage = unfocusProgress / unfocusDuration;
+                }
+                var spinRotation = Quaternion.Euler(baseRotation.x, baseRotation.y + spinDirection * spinAngle * Mathf.Sin(spinSpeed * Time.time + randomOffset), baseRotation.z); 
+                transform.rotation = Quaternion.Lerp(transform.rotation, spinRotation, unfocusProgressPercentage);
             }
             else
             {
