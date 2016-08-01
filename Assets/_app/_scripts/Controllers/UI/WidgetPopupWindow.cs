@@ -16,6 +16,8 @@ namespace EA4S
 
         public static bool IsShown { get; private set; }
 
+        [Header("Options")]
+        public bool timeIndependent = true;
         [Header("References")]
         public GameObject Window;
         public GameObject TitleGO;
@@ -34,8 +36,8 @@ namespace EA4S
         {
             I = this;
 
-            showTween = this.GetComponent<RectTransform>().DOAnchorPosY(-800, 0.5f).From()
-                .SetEase(Ease.OutBack).SetAutoKill(false).Pause()
+            showTween = this.GetComponent<RectTransform>().DOAnchorPosY(-800, 0.5f).From().SetUpdate(timeIndependent)
+                .SetEase(Ease.OutBack).SetAutoKill(false).Pause() 
                 .OnPlay(() => this.gameObject.SetActive(true))
                 .OnRewind(() => this.gameObject.SetActive(false));
 
