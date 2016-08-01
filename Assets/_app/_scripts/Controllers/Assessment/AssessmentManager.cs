@@ -9,6 +9,8 @@ namespace EA4S
 {
     public class AssessmentManager : MonoBehaviour
     {
+        [Header("References")]
+        public GameObject PanelTestGO;
 
         public List<Color> Colors;
         public List<ColorSet> AvailableColors = new List<ColorSet>();
@@ -19,14 +21,37 @@ namespace EA4S
         public AssessmentObject startObj, endObj;
         public PopupTmp Popup;
 
-        public struct ColorSet {
+        public struct ColorSet
+        {
             public Color Color;
             public bool Available;
         }
 
-        void Start() {
-            
+        void Start()
+        {
+            PanelTestGO.SetActive(false);
             AppManager.Instance.InitDataAI();
+            WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
+        }
+
+        public void NextSentence()
+        {
+            WidgetSubtitles.I.DisplaySentence("assessment_start_A2", 3, true, NextSentence2);
+        }
+
+        public void NextSentence2()
+        {
+            WidgetSubtitles.I.DisplaySentence("assessment_start_A3", 3, true, ReadyToTest);
+        }
+
+        public void ReadyToTest()
+        {
+            ContinueScreen.Show(StartTest, ContinueScreenMode.Button);
+        }
+
+        void StartTest()
+        {
+            WidgetSubtitles.I.Close();
             Colors.Shuffle();
             foreach (Color c in Colors) {
                 AvailableColors.Add(new ColorSet() { Color = c, Available = true });
@@ -46,11 +71,11 @@ namespace EA4S
                 Words[i].InjectManager(this);
             }
             LoggerEA4S.Log("app", "assessment", "start", serializedWordsForLog);
-
-            WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true);
+            PanelTestGO.SetActive(true); 
         }
 
-        public void OnReleaseOnWord(AssessmentObject _objDrag, AssessmentObject _objDrop) {
+        public void OnReleaseOnWord(AssessmentObject _objDrag, AssessmentObject _objDrop)
+        {
             foreach (var obj in Draws.FindAll(o => o.Color == _objDrag.Color && o != _objDrag && o != _objDrop)) {
                 obj.HideCyrcle(0.5f);
             }
@@ -61,7 +86,8 @@ namespace EA4S
                 CalculateResult();
         }
 
-        void CalculateResult() {
+        void CalculateResult()
+        {
             int rightCounter = 0;
             foreach (var c in Colors) {
                 ILivingLetterData d, w;
@@ -78,7 +104,8 @@ namespace EA4S
         }
 
 
-        public void UnlockObjects(Color _color) {
+        public void UnlockObjects(Color _color)
+        {
             foreach (var obj in Draws.FindAll(o => o.Color == _color && o.IsLocked)) {
                 obj.IsLocked = false;
                 obj.HideCyrcle(0.5f);
@@ -91,17 +118,21 @@ namespace EA4S
         }
 
         #region colors
-        public Color GetAvailableColor() {
+
+        public Color GetAvailableColor()
+        {
             AvailableColors.Shuffle();
             int index = AvailableColors.FindIndex(c => c.Available == true);
             AvailableColors[index] = new ColorSet() { Color = AvailableColors[index].Color, Available = false };
             return AvailableColors[index].Color;
         }
 
-        public void ReleaseColor(Color _color) {
+        public void ReleaseColor(Color _color)
+        {
             int index = AvailableColors.FindIndex(c => c.Color == _color);
             AvailableColors[index] = new ColorSet() { Color = AvailableColors[index].Color, Available = true };
         }
+
         #endregion
     }
 
