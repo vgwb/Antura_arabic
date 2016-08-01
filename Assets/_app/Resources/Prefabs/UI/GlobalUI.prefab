@@ -345,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &148072
 GameObject:
   m_ObjectHideFlags: 1
@@ -650,7 +650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &187638
 GameObject:
   m_ObjectHideFlags: 1
@@ -2033,6 +2033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bbd1d6a0caa4305b172d6573c7b700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeIndependent: 1
   Window: {fileID: 138318}
   TitleGO: {fileID: 142642}
   TitleEnglishGO: {fileID: 123306}
@@ -2389,9 +2390,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f04e6de7e4607148bdfcc54ff7c0c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BtSidePosition: {x: 62, y: 45}
+  CenterSnapshot:
+    AnchoredPos: {x: 13, y: -202}
+    AnchorMin: {x: 0.5, y: 0.5}
+    AnchorMax: {x: 0.5, y: 0.5}
+    SizeDelta: {x: 268, y: 190}
+    IcoAnchoredPos: {x: 0, y: 6}
+  SideSnapshot:
+    AnchoredPos: {x: -512, y: -265}
+    AnchorMin: {x: 0.5, y: 0.5}
+    AnchorMax: {x: 0.5, y: 0.5}
+    SizeDelta: {x: 375, y: 190}
+    IcoAnchoredPos: {x: 25, y: -0.0000033379}
   Bg: {fileID: 11493030}
   BtContinue: {fileID: 11426508}
+  IcoContinue: {fileID: 22406762}
 --- !u!114 &11493030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2814,10 +2827,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22423168}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.3364627, y: 0.30526316}
-  m_AnchorMax: {x: 0.6605373, y: 0.758}
-  m_AnchoredPosition: {x: 0.5, y: 0}
-  m_SizeDelta: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 6}
+  m_SizeDelta: {x: 87, y: 87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22408080
 RectTransform:
