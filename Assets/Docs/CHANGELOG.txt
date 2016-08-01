@@ -4,6 +4,50 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.4.5
+
+2016-08-01 - [assessment] add intro VO
+2016-08-01 - [environments] prefabbed pool and improved Dont & Fast
+2016-08-01 - [DontWakeUp] improved levels, added final level 5, corrected arabic sentences
+2016-08-01 - [audio manager] fixed exception
+2016-08-01 - [DontWakeUp] shows the 4 errors with arabic text and new popup with result mark
+2016-08-01 - [UI] Popup Window now can show results (OK or KO marks)
+2016-08-01 - [Dont Wake Up] first 4 levels made easier and progressive. correct Rewards based on lives left
+2016-08-01 - [packages] updated UniRx to v5.3.0 and info on currently used packages
+2016-08-01 - Fix: no sound fx when grab letter in fastcrowd.
+2016-08-01 - Fix: [Fast Crowd] When a word is completed ... display separated.
+2016-08-01 - Fix: [Fast Crowd] The UI element on the bottom right is misleading.
+2016-08-01 - Fix: break lifecycle app, unable to access to assessment scene.
+2016-08-01 - Log full lifecycle.
+2016-08-01 - Assessment on select already selected object crash fix.
+2016-07-31 - [Map] zoom camera after intro
+2016-07-31 - [rewards] fix reference
+2016-07-31 - FOOT drawing replaced by LEG drawing
+2016-07-31 - [rewards] show THREE different Antura's costumes based on progression
+2016-07-31 - [home] LivingLetter smaller
+2016-07-31 - [Dont Wake Up] new Antura model and animations
+2016-07-31 - [home] the perfect pair for Antura is a Living Letter
+2016-07-31 - [Journey] generic simple LivingLetter prefab + set as token in Journey Map
+2016-07-31 - [antura] fixed some animations parameters
+2016-07-31 - [Antura] EUREKA we have all the 8 Antura animations light and working well (tongue run animated)
+2016-07-31 - [rewords] repositioned prize and click 2 bark
+2016-07-31 - [UI in DOntW e Baloons] new mission window show arabics sentencesd
+2016-07-31 - FastCrowd: new env.
+2016-07-31 - [DontWake] updates
+2016-07-31 - [Baloons] use new Tutorial Window Widget
+2016-07-31 - [wheel] fixed the possibility to turn it again (for real now)
+2016-07-31 - [DontWakeUp] new Antura model
+2016-07-31 - Cheat whell.
+2016-07-31 - [images] new belly drawing
+2016-07-31 - [cleaning] removed unused old letters and materials
+2016-07-31 - [audio] corret OK and KO sfx in FastCrowd and Dont
+2016-07-31 - [Antura] options to make it bark or change dress on clicks (to be configurable in every place)
+2016-07-31 - [cleaning] movieng textures and materials into app, deleting unused
+2016-07-31 - removed Pirate costume from FastCrowd and Ballons
+2016-07-31 - [Antura] now red tongue is in every dress color
+2016-07-31 - [DontWUp] restyling.. no more leaves particels and new lives icons :)
+2016-07-31 - [colors] taken off second camera FX (breaking Android) and general color corrections
+
 ##########   v0.4.4
 
 2016-07-31 - [Antura] now 5 eyes types are selectable
