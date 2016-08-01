@@ -78,7 +78,7 @@ namespace EA4S
         }
 
         void DoClose(bool _immediate) {
-            if (!IsShown)
+            if (!IsShown && !_immediate)
                 return;
 
             IsShown = false;
