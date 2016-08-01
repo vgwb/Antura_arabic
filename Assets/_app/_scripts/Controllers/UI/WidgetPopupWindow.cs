@@ -127,6 +127,23 @@ namespace EA4S
             Show(true);
         }
 
+        public void ShowStringAndWord(Action callback, string text, WordData wordData)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            TitleGO.GetComponent<TextMeshProUGUI>().text = text;
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
+
+            //AudioManager.I.PlayDialog(SentenceId);
+
+            SetWord(wordData.Key, wordData.Word);
+
+            Show(true);
+        }
+
         public void ShowSentenceAndWord(Action callback, string SentenceId, WordData wordData)
         {
             ResetContents();

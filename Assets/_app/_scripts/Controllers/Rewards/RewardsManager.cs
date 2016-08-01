@@ -9,6 +9,8 @@ namespace EA4S
     {
         public Antura AnturaController;
 
+        int tutorialIndex = 10;
+
         void Start()
         {
             AudioManager.I.PlayMusic(Music.Theme4);
@@ -17,25 +19,53 @@ namespace EA4S
             // here we set the Rewards base on current progression level (playsession -1 because Rewards appear when playsession is already incremented)
             if ((AppManager.Instance.PlaySession - 1) == 1) {
                 AnturaController.SetPreset(1);
+                tutorialIndex = 10;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "1");
             } else if ((AppManager.Instance.PlaySession - 1) == 2) {
                 AnturaController.SetPreset(2);
+                tutorialIndex = 20;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "2");
             } else if ((AppManager.Instance.PlaySession - 1) > 2) {
                 AnturaController.SetPreset(3);
+                tutorialIndex = 30;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "3");
             }
             LoggerEA4S.Save();
 
-            WidgetSubtitles.I.DisplaySentence("game_rewards_intro1", 2, true, NextSentence);
+            ShowTutor();
         }
 
-        public void NextSentence()
+        public void ShowTutor()
         {
-            WidgetSubtitles.I.DisplaySentence("game_rewards_intro2", 2, true, NextSentence2);
+            switch (tutorialIndex) {
+                case 10:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("game_rewards_intro1", 2, true, ShowTutor);
+                    break;
+                case 11:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("game_rewards_intro2", 2, true, ShowReward);
+                    break;
+                case 20:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("game_reward_A1", 2, true, ShowTutor);
+                    break;
+                case 21:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("game_reward_A2", 2, true, ShowReward);
+                    break;
+                case 30:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("end_learningblock_A1", 2, true, ShowTutor);
+                    break;
+                case 31:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, ShowReward);
+                    break;
+            }
         }
 
-        public void NextSentence2()
+        public void ShowReward()
         {
             StartCoroutine(StartReward());
         }

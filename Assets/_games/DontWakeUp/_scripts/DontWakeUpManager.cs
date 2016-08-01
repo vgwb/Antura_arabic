@@ -122,7 +122,6 @@ namespace EA4S.DontWakeUp
         void GameIntro()
         {
             currentState = MinigameState.GameIntro;
-            WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
             WidgetPopupWindow.I.ShowTutorial(ClickedNext, TutorialImage);
             TutorialIndex = 3;
             ShowTutorialLine();
@@ -177,7 +176,7 @@ namespace EA4S.DontWakeUp
             UpdateLivesContainer();
             SetupLevel();
 
-            WidgetPopupWindow.I.ShowSentenceAndWord(ClickedNext, "game_dontwake_intro2", currentWord);
+            WidgetPopupWindow.I.ShowStringAndWord(ClickedNext, currentRound.ToString(), currentWord);
             SpeakCurrentLetter();
         }
 

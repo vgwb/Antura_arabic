@@ -40,6 +40,8 @@ namespace EA4S
         /// </summary>
         int gameIndexToForceSelect;
 
+        int tutorialIndex = 10;
+
         void Awake()
         {
             Instance = this;
@@ -61,30 +63,45 @@ namespace EA4S
 
             showGameIcon(-1);
 
-
-            WidgetSubtitles.I.DisplaySentence("wheel_A1", 2, true, NextSentence);
+            Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
+            if ((AppManager.Instance.PlaySession) == 1) {
+                tutorialIndex = 10;
+            } else {
+                tutorialIndex = 20;
+            }
+            ShowTutor();
         }
 
-        public void NextSentence()
+        public void ShowTutor()
         {
-            WidgetSubtitles.I.DisplaySentence("wheel_A2", 2, true, NextSentence2);
-        }
+            switch (tutorialIndex) {
+                case 10:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("wheel_A1", 2, true, ShowTutor);
+                    break;
+                case 11:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("wheel_A2", 1, true, ShowTutor);
+                    break;
+                case 12:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("wheel_A3", 1, true, ShowTutor);
+                    break;
+                case 13:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("wheel_A4", 2, true, ShowTutor);
+                    break;
+                case 14:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("wheel_A5", 1, true);
 
-        public void NextSentence2()
-        {
-            WidgetSubtitles.I.DisplaySentence("wheel_A3", 1, true, NextSentence3);
+                    break;
+                case 20:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("wheel_turn", 1, true);
+                    break;
+            }
         }
-
-        public void NextSentence3()
-        {
-            WidgetSubtitles.I.DisplaySentence("wheel_A4", 3, true, NextSentence4);
-        }
-
-        public void NextSentence4()
-        {
-            WidgetSubtitles.I.DisplaySentence("wheel_A5", 1, true);
-        }
-
 
         void OnDisable()
         {
