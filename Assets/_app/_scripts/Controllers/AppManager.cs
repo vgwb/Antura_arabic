@@ -174,6 +174,9 @@ namespace EA4S
                 }
             } else {
                 // special cases
+                if (actualSceneName == "assessment") {
+                    PlaySession++;
+                }
             }
             return returnString;
         }

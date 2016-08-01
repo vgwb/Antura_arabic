@@ -101,6 +101,7 @@ namespace EA4S
             //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
             Popup.Show(true, string.Format("Result : {0}/{1}", rightCounter, Draws.Count));
             LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
+            AppManager.Instance.MiniGameDone("assessment");
         }
 
 
