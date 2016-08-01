@@ -205,10 +205,10 @@ namespace Google2u
 			Rows.Add( new LocalizationDataRow("wheel_game_fastcrowdA", "keeper", "wheel", "Hmm, interesting. ", "همممم، مشوق.", "wheel_game_fastcrowdA", "Hummmm, interesting."));
 			Rows.Add( new LocalizationDataRow("wheel_locked", "keeper", "wheel", "Okay ", "حسناً", "wheel_locked", "Ok"));
 			Rows.Add( new LocalizationDataRow("wheel_game_dontwake", "keeper", "wheel", "Where is Antura? He is sleeping among the living letter creatures. ", "اين هو عنتورة؟ اهه كلا، انه يأخذ قيلولة وسط منطقة الحروف الحية", "wheel_game_dontwake", "Where is Antura? Oh no, he felt asleep among the Living Words specimens…"));
-			Rows.Add( new LocalizationDataRow("game_dontwake_fail_antura", "keeper", "game_dontwake", "Do not touch Antura!", "لا تلمس الكلب!", "", ""));
-			Rows.Add( new LocalizationDataRow("game_dontwake_fail_alarms", "keeper", "game_dontwake", "Do not touch the alarms!", "لا تلمس أجهزة الإنذار!", "", ""));
-			Rows.Add( new LocalizationDataRow("game_dontwake_fail_toofast", "keeper", "game_dontwake", "Don't go too fast!", "لا تذهب بسرعة كبيرة!", "", ""));
-			Rows.Add( new LocalizationDataRow("game_dontwake_fail_fall", "keeper", "game_dontwake", "Don't fall!", "لا تقع!", "", ""));
+			Rows.Add( new LocalizationDataRow("game_dontwake_fail_antura", "keeper", "game_dontwake", "Do not touch Antura!", "لا تلمس الكلب !", "", ""));
+			Rows.Add( new LocalizationDataRow("game_dontwake_fail_alarms", "keeper", "game_dontwake", "Do not touch the alarms!", "لا تلمس المنبه !", "", ""));
+			Rows.Add( new LocalizationDataRow("game_dontwake_fail_toofast", "keeper", "game_dontwake", "Don't go too fast!", "على مهل !", "", ""));
+			Rows.Add( new LocalizationDataRow("game_dontwake_fail_fall", "keeper", "game_dontwake", "Don't fall!", "لا تسقط الحرف!", "", ""));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{
