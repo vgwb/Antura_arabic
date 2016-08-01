@@ -23,7 +23,36 @@ namespace EA4S.DontWakeUp
     {
         [Header("Scene Setup")]
         public Music SceneMusic;
+ 
+        [Header("Test / Debug")]
+        public int StartingLevel;
 
+        [Header("References")]
+        public GameObject[] Levels;
+        public DangerMeter dangering;
+        public GameObject myLetter;
+        public GameObject StarSystems;
+        public LivesContainer LivesController;
+        public Sprite TutorialImage;
+
+        [HideInInspector]
+        public WordData currentWord;
+
+        [HideInInspector]
+        public MinigameState currentState;
+
+        [Header("Game Vars")]   
+        public int currentRound;
+
+        int LivesLeft;
+        int RoundsTotal;
+        int currentLevel;
+        LevelController currentLevelController;
+        float dangeringSpeed = 1.0f;
+        bool inDanger;
+        float dangerIntensity;
+        How2Die dangerCause;
+        int TutorialIndex;
 
         [Header("Gameplay Info and Config section")]
         #region Overrides
@@ -35,41 +64,6 @@ namespace EA4S.DontWakeUp
         }
 
         #endregion
-
-        [Header("Don't Wake Up vars")]
-        public MinigameState currentState;
-        public int LivesLeft;
-
-        public int currentRound;
-        int currentLevel;
-        LevelController currentLevelController;
-        public GameObject[] Levels;
-        public DangerMeter dangering;
-        float dangeringSpeed = 1.0f;
-        bool inDanger;
-        float dangerIntensity;
-        How2Die dangerCause;
-        int TutorialIndex;
-
-        [Header("References")]
-        public GameObject myLetter;
-        public GameObject StarSystems;
-        public LivesContainer LivesController;
-        public Sprite TutorialImage;
-
-        public WordData currentWord;
-
-        int RoundsTotal;
-
-        public void DoPause(bool status)
-        {
-            Debug.Log("GameDontWakeUp DoPause() " + status);
-            if (currentState == MinigameState.Playing) {
-                currentState = MinigameState.Paused;
-            } else if (currentState == MinigameState.Paused) {
-                currentState = MinigameState.Playing;
-            }
-        }
 
         protected override void Awake()
         {
@@ -95,6 +89,16 @@ namespace EA4S.DontWakeUp
             AudioManager.I.PlaySfx(Sfx.DogSnoring);
 
             GameIntro();
+        }
+
+        public void DoPause(bool status)
+        {
+            Debug.Log("GameDontWakeUp DoPause() " + status);
+            if (currentState == MinigameState.Playing) {
+                currentState = MinigameState.Paused;
+            } else if (currentState == MinigameState.Paused) {
+                currentState = MinigameState.Playing;
+            }
         }
 
         protected override void OnDisable()
@@ -264,7 +268,7 @@ namespace EA4S.DontWakeUp
 
             AudioManager.I.PlaySfx(Sfx.Win);
             StarSystems.SetActive(true);
-            StarSystems.GetComponent<StarFlowers>().Show(3);
+            StarSystems.GetComponent<StarFlowers>().Show(LivesLeft);
             LoggerEA4S.Log("minigame", "dontwakeup", "Won", "");
             LoggerEA4S.Save();
         }
