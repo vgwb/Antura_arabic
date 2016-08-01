@@ -11,7 +11,7 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.4.8";
+        public const string AppVersion = "0.4.9";
 
         new public AppSettings GameSettings = new AppSettings();
 
