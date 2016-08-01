@@ -11,7 +11,8 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
 
-        void Start() {
+        void Start()
+        {
             /// Reset log session
             EA4S.LoggerEA4S.SessionID = Random.Range(10000000, 99999999).ToString();
             LoggerEA4S.Log("app", "appversion", "info", AppManager.AppVersion);
@@ -19,12 +20,16 @@ namespace EA4S
             LoggerEA4S.Log("app", "user", "info", LoggerEA4S.SessionID);
             LoggerEA4S.Save();
 
+            AppManager.Instance.ResetProgressionData();
+
+
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySfx(Sfx.GameTitle);
             ContinueScreen.Show(Play, ContinueScreenMode.Button);
         }
 
-        public void Play() {
+        public void Play()
+        {
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
         }
 
