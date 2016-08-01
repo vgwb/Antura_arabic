@@ -4805,6 +4805,7 @@ MonoBehaviour:
   associatedPromptIndex: 0
   isRequired: 0
   LetterView: {fileID: 11417016}
+  spinEnabled: 1
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
@@ -5011,6 +5012,7 @@ MonoBehaviour:
   associatedPromptIndex: 0
   isRequired: 0
   LetterView: {fileID: 11475294}
+  spinEnabled: 1
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
@@ -5276,6 +5278,7 @@ MonoBehaviour:
   associatedPromptIndex: 0
   isRequired: 0
   LetterView: {fileID: 11450902}
+  spinEnabled: 1
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
