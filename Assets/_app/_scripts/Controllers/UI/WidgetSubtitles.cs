@@ -72,10 +72,11 @@ namespace EA4S
             DisplaySentence(SentenceIdList[index], duration, isKeeper, callback);
         }
 
-        public void Close() {
+        public void Close(bool _immediate = false) {
             this.StopAllCoroutines();
-            showTween.PlayBackwards();
-            WalkieTalkie.Show(false);
+            if (_immediate) showTween.Rewind();
+            else showTween.PlayBackwards();
+            WalkieTalkie.Show(false, _immediate);
         }
 
         public void ShowNext() {

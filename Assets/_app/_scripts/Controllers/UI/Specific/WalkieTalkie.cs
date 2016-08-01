@@ -60,19 +60,22 @@ namespace EA4S
             btTween.Kill();
         }
 
-        public void Show(bool doShow)
+        public void Show(bool _doShow, bool _immediate = false)
         {
-            Debug.Log("Walki talki is " + isShown + " and want " + doShow);
-            if (isShown == doShow)
+            Debug.Log("Walkie talkie is " + isShown + " and want " + _doShow);
+            if (isShown == _doShow && !_immediate)
                 return;
 
-            isShown = doShow;
+            isShown = _doShow;
             pulseTween.Pause();
-            AudioManager.I.PlaySfx(Sfx.WalkieTalkie);
-            if (doShow)
-                showTween.PlayForward();
-            else
-                showTween.PlayBackwards();
+            if (_doShow) {
+                AudioManager.I.PlaySfx(Sfx.WalkieTalkie);
+                if (_immediate) showTween.Complete();
+                else showTween.PlayForward();
+            } else {
+                if (_immediate) showTween.Rewind();
+                else showTween.PlayBackwards();
+            }
         }
 
         public void StartPulsing(bool pressButton = false)
