@@ -402,8 +402,9 @@ namespace EA4S.FastCrowd
         /// Hang catch.
         /// </summary>
         /// <param name="_letterView"></param>
-        private void Hangable_OnLetterHangOn(LetterObjectView _letterView)
-        {
+        private void Hangable_OnLetterHangOn(LetterObjectView _letterView) {
+            if (!DropAreaContainer.GetActualDropArea())
+                return;
             if (_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key) {
                 LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "goodLetterHold", _letterView.Model.Data.Key);
                 //AudioManager.I.PlaySfx(Sfx.LetterHappy);

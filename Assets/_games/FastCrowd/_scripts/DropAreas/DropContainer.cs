@@ -42,8 +42,9 @@ namespace EA4S
         /// Return actual active DropSingleArea.
         /// </summary>
         /// <returns></returns>
-        public DropSingleArea GetActualDropArea()
-        {
+        public DropSingleArea GetActualDropArea() {
+            if (actualAreaIndex >= Aree.Count)
+                return null;
             return Aree[actualAreaIndex];
         }
 

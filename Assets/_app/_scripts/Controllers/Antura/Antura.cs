@@ -47,6 +47,7 @@ namespace EA4S
         [Header("Behavior")]
         public bool ClickToBark;
         public bool ClickToChangeDress = false;
+        public bool ClickToChangeAnimation = false;
         public bool DisableAnimator = false;
 
         [Header("Starting State")]
@@ -195,8 +196,23 @@ namespace EA4S
             if (ClickToChangeDress)
                 RandomDress();
 
+            if (ClickToChangeAnimation)
+                RandomAnimation();
+
             if (ClickToBark)
                 AudioManager.I.PlaySfx(Sfx.DogBarking);
+        }
+
+        void RandomAnimation()
+        {
+            AnturaAnim newAnimationState = AnturaAnim.Nothing;
+
+            while ((newAnimationState == AnturaAnim.Nothing) || (newAnimationState == AnimationState)) {
+                newAnimationState = GenericUtilites.GetRandomEnum<AnturaAnim>();
+            }
+
+            AnimationState = newAnimationState;
+            Refresh();
         }
 
         void RandomDress()
@@ -205,7 +221,6 @@ namespace EA4S
             AnturaColor = GenericUtilites.GetRandomEnum<AnturaColors>();
             AnturaCollar = GenericUtilites.GetRandomEnum<AnturaCollars>();
             AnturaEye = GenericUtilites.GetRandomEnum<AnturaEyes>();
-            AnimationState = GenericUtilites.GetRandomEnum<AnturaAnim>();
             Refresh();
         }
 
