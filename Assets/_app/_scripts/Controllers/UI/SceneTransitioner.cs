@@ -55,6 +55,12 @@ namespace EA4S
             }
         }
 
+        public void CloseImmediate()
+        {
+            onRewindCallback = null;
+            tween.Rewind();
+        }
+
         // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // ■■■ INTERNAL
 
@@ -85,6 +91,7 @@ namespace EA4S
 
         void OnComplete()
         {
+            GlobalUI.Clear(false);
             if (onCompleteCallback != null) onCompleteCallback();
         }
     }
