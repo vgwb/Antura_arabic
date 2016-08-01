@@ -8,7 +8,7 @@ using ModularFramework.Core;
 
 public partial class SROptions
 {
-    [Category("Open Scene")]
+    [Category("Scenes")]
     public void Home()
     {
         WidgetPopupWindow.Close();
@@ -16,7 +16,7 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Open Scene")]
+    [Category("Scenes")]
     public void FastCrowd()
     {
         WidgetPopupWindow.Close();
@@ -24,7 +24,7 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Open Scene")]
+    [Category("Scenes")]
     public void DontWakeUp()
     {
         WidgetPopupWindow.Close();
@@ -32,7 +32,7 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Open Scene")]
+    [Category("Scenes")]
     public void Balloons()
     {
         WidgetPopupWindow.Close();
@@ -40,7 +40,15 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Quality")]
+    [Category("Shortcuts")]
+    public void EndFastCrowdGame()
+    {
+        EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+
+    [Category("Options")]
     public void ToggleQuality()
     {
         AppManager.Instance.ToggleQualitygfx();
