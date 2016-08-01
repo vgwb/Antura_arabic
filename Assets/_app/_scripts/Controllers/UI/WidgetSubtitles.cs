@@ -23,6 +23,8 @@ namespace EA4S
 
         void Awake() {
             I = this;
+            WalkieTalkie.gameObject.SetActive(true);
+            WalkieTalkie.Setup();
 
             TextUI.isRightToLeftText = true;
 
@@ -59,6 +61,7 @@ namespace EA4S
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
         public void DisplaySentence(string SentenceId, float duration = 2, bool isKeeper = false, System.Action callback = null) {
+            GlobalUI.Init();
             this.StopAllCoroutines();
             currentCallback = callback;
             showTween.PlayForward();
@@ -72,10 +75,11 @@ namespace EA4S
             DisplaySentence(SentenceIdList[index], duration, isKeeper, callback);
         }
 
-        public void Close() {
+        public void Close(bool _immediate = false) {
             this.StopAllCoroutines();
-            showTween.PlayBackwards();
-            WalkieTalkie.Show(false);
+            if (_immediate) showTween.Rewind();
+            else showTween.PlayBackwards();
+            WalkieTalkie.Show(false, _immediate);
         }
 
         public void ShowNext() {

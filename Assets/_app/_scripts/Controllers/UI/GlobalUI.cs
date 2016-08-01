@@ -52,6 +52,18 @@ namespace EA4S
             I = null;
         }
 
+        /// <summary>
+        /// Immediately clears the GlobalUI elements
+        /// </summary>
+        /// <param name="includeSceneTransitioner">If TRUE (default) also clears the sceneTransitioner, otherwise not</param>
+        public static void Clear(bool includeSceneTransitioner = true)
+        {
+            if (includeSceneTransitioner && SceneTransitioner != null) SceneTransitioner.CloseImmediate();
+            if (ContinueScreen != null) ContinueScreen.Close(true);
+            if (WidgetPopupWindow != null) WidgetPopupWindow.Close(true);
+            if (WidgetSubtitles != null) WidgetSubtitles.Close(true);
+        }
+
         T StoreAndAwake<T>() where T : Component
         {
             T obj = this.GetComponentInChildren<T>(true);
