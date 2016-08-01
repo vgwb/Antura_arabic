@@ -12,9 +12,10 @@ namespace EA4S
         IEnumerator Start()
         {
             AudioManager.I.PlayMusic(Music.Theme4);
+            Debug.Log("RewardsManager playsession: " + AppManager.Instance.PlaySession);
 
             // here we set the Rewards base on current progression level (playsession -1 because Rewards appear when playsession is already incremented)
-            if ((AppManager.Instance.PlaySession -1) == 1) {
+            if ((AppManager.Instance.PlaySession - 1) == 1) {
                 AnturaController.SetPreset(1);
                 LoggerEA4S.Log("app", "Reward", "get_reward", "1");
             } else if ((AppManager.Instance.PlaySession - 1) == 2) {
