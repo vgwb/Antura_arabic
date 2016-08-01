@@ -166,11 +166,6 @@ namespace EA4S.DontWakeUp
                     WidgetPopupWindow.Show(false);
                     currentState = MinigameState.Playing;
                     break;
-                case MinigameState.RoundEnd:
-                    currentLevelController.DoAlarmOff();
-                    WidgetSubtitles.I.DisplaySentence("");
-                    InitRound();
-                    break;
             }
         }
 
@@ -214,37 +209,39 @@ namespace EA4S.DontWakeUp
                 resetDanger();
                 myLetter.SetActive(false);
 
+                AudioManager.I.StopSfx(Sfx.DangerClock);
+                AudioManager.I.PlaySfx(Sfx.Lose);
+
+                if (LivesLeft > 1) {
+                    LivesLeft = LivesLeft - 1;
+                    UpdateLivesContainer();
+                }
+
                 switch (how) {
                     case How2Die.TouchedAlarm:
                         currentLevelController.DoAlarmEverything();
-                        WidgetSubtitles.I.DisplayDebug("do not touch the alarms!");
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false);
                         break;
                     case How2Die.TouchedDog:
-                        WidgetSubtitles.I.DisplayDebug("do not touch Antura!");
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false);
                         break;
                     case How2Die.TooFast:
-                        WidgetSubtitles.I.DisplayDebug("don't go too fast!");
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false);
                         break;
                     case How2Die.Fall:
-                        WidgetSubtitles.I.DisplayDebug("don't fall!");
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_fall", false);
                         break;
                 }
-
-                RoundLostEnded();
             }
         }
 
         void RoundLostEnded()
         {
-            AudioManager.I.StopSfx(Sfx.DangerClock);
-            AudioManager.I.PlaySfx(Sfx.Lose);
+            if (LivesLeft > 0) {
+                currentLevelController.DoAlarmOff();
+                WidgetSubtitles.I.DisplaySentence("");
+                InitRound();
 
-            if (LivesLeft > 1) {
-                LivesLeft = LivesLeft - 1;
-                UpdateLivesContainer();
-
-                //WidgetSubtitles.I.DisplaySentence("game_result_retry");
-                ContinueScreen.Show(ClickedNext, ContinueScreenMode.Button);
             } else {
                 GameLost();
             }
