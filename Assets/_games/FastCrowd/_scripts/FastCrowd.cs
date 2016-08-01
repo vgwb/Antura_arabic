@@ -319,7 +319,7 @@ namespace EA4S.FastCrowd
                     PopupMission.Show(new PopupMissionComponent.Data()
                         {
                             Title = string.Format("Word {0} Completed!", CompletedWords.Count),
-                            MainTextToDisplay = ActualWord.Word,
+                            MainTextToDisplay = ActualWord.TextForLivingLetter,
                             Type = PopupMissionComponent.PopupType.Mission_Completed,
                             DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
                         }
