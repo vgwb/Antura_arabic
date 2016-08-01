@@ -81,6 +81,7 @@ namespace EA4S
 
             InitDataAI();
 
+            ResetProgressionData();
 
             this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ =>
                 {
@@ -128,6 +129,15 @@ namespace EA4S
         [HideInInspector]
         public MinigameData ActualMinigame;
 
+
+        public void ResetProgressionData()
+        {
+            Stage = 2;
+            LearningBlock = 4;
+            PlaySession = 1;
+            PlaySessionGameDone = 0;
+        }
+
         /// <summary>
         /// Give right game. Alpha version.
         /// </summary>
@@ -170,6 +180,7 @@ namespace EA4S
                 } else {
                     // next game in this playsession
                     PlaySessionGameDone++;
+                    //Debug.Log("MiniGameDone PlaySessionGameDone = " + PlaySessionGameDone);
                     returnString = "app_Wheel";
                 }
             } else {

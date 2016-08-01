@@ -50,7 +50,7 @@ namespace EA4S
                     break;
                 case 12:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("map_A3", 2, true, ShowTutor);
+                    WidgetSubtitles.I.DisplaySentence("map_A3", 3, true, ShowTutor);
                     break;
                 case 13:
                     WidgetSubtitles.I.DisplaySentence("map_A4", 2, true);

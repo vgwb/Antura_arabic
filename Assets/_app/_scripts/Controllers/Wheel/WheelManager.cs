@@ -64,10 +64,10 @@ namespace EA4S
             showGameIcon(-1);
 
             Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
-            if ((AppManager.Instance.PlaySession) == 1) {
-                tutorialIndex = 10;
-            } else {
+            if (AppManager.Instance.PlaySessionGameDone >= 1) {
                 tutorialIndex = 20;
+            } else {
+                tutorialIndex = 10;
             }
             ShowTutor();
         }
