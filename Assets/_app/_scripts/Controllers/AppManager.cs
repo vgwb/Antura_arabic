@@ -11,7 +11,7 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.4.5";
+        public const string AppVersion = "0.4.6";
 
         new public AppSettings GameSettings = new AppSettings();
 
@@ -82,9 +82,10 @@ namespace EA4S
             InitDataAI();
 
 
-            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
-                OnPlaySessionValueChange();
-            });
+            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ =>
+                {
+                    OnPlaySessionValueChange();
+                });
 
 
         }
@@ -180,7 +181,8 @@ namespace EA4S
         ///// <summary>
         ///// Called when playSession value changes.
         ///// </summary>
-        void OnPlaySessionValueChange() {
+        void OnPlaySessionValueChange()
+        {
             LoggerEA4S.Log("app", "PlaySession", "changed", PlaySession.ToString());
             LoggerEA4S.Save();
         }
