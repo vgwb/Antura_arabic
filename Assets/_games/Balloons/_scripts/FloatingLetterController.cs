@@ -39,6 +39,8 @@ namespace Balloons
         public float explosionRadius;
         [Range(0, 100f)] [Tooltip("e.g.: 1")]
         public float explosionPower;
+        [Range(0, -30f)] [Tooltip("e.g.: -15")]
+        public float focusZ;
 
         [HideInInspector]
         public LetterController Letter
@@ -88,6 +90,9 @@ namespace Balloons
         private Vector3 focusedPosition = new Vector3();
         private Vector3 unfocusedPosition = new Vector3();
         private bool keepUnfocusing = true;
+        private float focusDuration = 1f;
+        private float focusProgress;
+        private float focusProgressPercentage;
 
 
         void Awake()
@@ -231,10 +236,15 @@ namespace Balloons
         public void Focus()
         {
             keepUnfocusing = false;
+            focusedPosition.Set(transform.position.x, transform.position.y, transform.position.z + focusZ);
 
-            var focusZ = -10f;
-            focusedPosition.Set(transform.position.x, transform.position.y, focusZ);
-            transform.position = focusedPosition;
+            if (focusProgress < focusDuration)
+            {
+                focusProgress += Time.deltaTime;
+                focusProgressPercentage = focusProgress / focusDuration;
+            }
+
+            transform.position = Vector3.Lerp(transform.position, focusedPosition, focusProgressPercentage); //transform.position = focusedPosition;
         }
 
         public void Unfocus()
@@ -251,6 +261,12 @@ namespace Balloons
             {
                 keepUnfocusing = true;
             }
+        }
+
+        public void ResetFocusingParameters()
+        {
+            focusProgress = 0f;
+            focusProgressPercentage = 0f;
         }
 
         public void Pop()
