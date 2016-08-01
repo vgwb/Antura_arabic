@@ -211,7 +211,7 @@ namespace EA4S.DontWakeUp
                 AudioManager.I.StopSfx(Sfx.DangerClock);
                 AudioManager.I.PlaySfx(Sfx.Lose);
 
-                if (LivesLeft > 1) {
+                if (LivesLeft > 0) {
                     LivesLeft = LivesLeft - 1;
                     UpdateLivesContainer();
                 }
@@ -236,6 +236,7 @@ namespace EA4S.DontWakeUp
 
         void RoundLostEnded()
         {
+            
             if (LivesLeft > 0) {
                 currentLevelController.DoAlarmOff();
                 WidgetSubtitles.I.DisplaySentence("");
@@ -272,6 +273,7 @@ namespace EA4S.DontWakeUp
 
         public void GameLost()
         {
+            WidgetPopupWindow.Close();
             currentState = MinigameState.GameEnd;
             StopSceneSounds();
 
