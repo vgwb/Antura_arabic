@@ -84,7 +84,7 @@ namespace UniRx
                 }
             }
 
-            public void UnsafeInvoke(Action<object> action, object state)
+            public void UnsafeInvoke<T>(Action<T> action, T state)
             {
                 try
                 {
@@ -267,7 +267,7 @@ namespace UniRx
         }
 
         /// <summary>Run Synchronous action.</summary>
-        public static void UnsafeSend(Action<object> action, object state)
+        public static void UnsafeSend<T>(Action<T> action, T state)
         {
 #if UNITY_EDITOR
             if (!ScenePlaybackDetector.IsPlaying) { EditorThreadDispatcher.Instance.UnsafeInvoke(action, state); return; }
@@ -316,6 +316,45 @@ namespace UniRx
             }
         }
 
+        public static void StartUpdateMicroCoroutine(IEnumerator routine)
+        {
+#if UNITY_EDITOR
+            if (!ScenePlaybackDetector.IsPlaying) { EditorThreadDispatcher.Instance.PseudoStartCoroutine(routine); return; }
+#endif
+
+            var dispatcher = Instance;
+            if (dispatcher != null)
+            {
+                dispatcher.updateMicroCoroutine.AddCoroutine(routine);
+            }
+        }
+
+        public static void StartFixedUpdateMicroCoroutine(IEnumerator routine)
+        {
+#if UNITY_EDITOR
+            if (!ScenePlaybackDetector.IsPlaying) { EditorThreadDispatcher.Instance.PseudoStartCoroutine(routine); return; }
+#endif
+
+            var dispatcher = Instance;
+            if (dispatcher != null)
+            {
+                dispatcher.fixedUpdateMicroCoroutine.AddCoroutine(routine);
+            }
+        }
+
+        public static void StartEndOfFrameMicroCoroutine(IEnumerator routine)
+        {
+#if UNITY_EDITOR
+            if (!ScenePlaybackDetector.IsPlaying) { EditorThreadDispatcher.Instance.PseudoStartCoroutine(routine); return; }
+#endif
+
+            var dispatcher = Instance;
+            if (dispatcher != null)
+            {
+                dispatcher.endOfFrameMicroCoroutine.AddCoroutine(routine);
+            }
+        }
+
         new public static Coroutine StartCoroutine(IEnumerator routine)
         {
 #if UNITY_EDITOR
@@ -348,6 +387,18 @@ namespace UniRx
 
         ThreadSafeQueueWorker queueWorker = new ThreadSafeQueueWorker();
         Action<Exception> unhandledExceptionCallback = ex => Debug.LogException(ex); // default
+
+        MicroCoroutine updateMicroCoroutine = null;
+        int updateCountForRefresh = 0;
+        const int UpdateRefreshCycle = 79;
+
+        MicroCoroutine fixedUpdateMicroCoroutine = null;
+        int fixedUpdateCountForRefresh = 0;
+        const int FixedUpdateRefreshCycle = 73;
+
+        MicroCoroutine endOfFrameMicroCoroutine = null;
+        int endOfFrameCountForRefresh = 0;
+        const int EndOfFrameRefreshCycle = 71;
 
         static MainThreadDispatcher instance;
         static bool initialized;
@@ -433,6 +484,10 @@ namespace UniRx
                 mainThreadToken = new object();
                 initialized = true;
 
+                StartCoroutine_Auto(RunUpdateMicroCoroutine());
+                StartCoroutine_Auto(RunFixedUpdateMicroCoroutine());
+                StartCoroutine_Auto(RunEndOfFrameMicroCoroutine());
+
                 // Added for consistency with Initialize()
                 DontDestroyOnLoad(gameObject);
             }
@@ -453,6 +508,81 @@ namespace UniRx
                 {
                     Debug.LogWarning("There is already a MainThreadDispatcher in the scene.");
                 }
+            }
+        }
+
+        IEnumerator RunUpdateMicroCoroutine()
+        {
+            this.updateMicroCoroutine = new MicroCoroutine(
+                () =>
+                {
+                    if (updateCountForRefresh > UpdateRefreshCycle)
+                    {
+                        updateCountForRefresh = 0;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                },
+                ex => unhandledExceptionCallback(ex));
+
+            while (true)
+            {
+                yield return null;
+                updateCountForRefresh++;
+                updateMicroCoroutine.Run();
+            }
+        }
+
+        IEnumerator RunFixedUpdateMicroCoroutine()
+        {
+            this.fixedUpdateMicroCoroutine = new MicroCoroutine(
+                () =>
+                {
+                    if (fixedUpdateCountForRefresh > FixedUpdateRefreshCycle)
+                    {
+                        fixedUpdateCountForRefresh = 0;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }, 
+                ex => unhandledExceptionCallback(ex));
+
+            while (true)
+            {
+                yield return YieldInstructionCache.WaitForFixedUpdate;
+                fixedUpdateCountForRefresh++;
+                fixedUpdateMicroCoroutine.Run();
+            }
+        }
+
+        IEnumerator RunEndOfFrameMicroCoroutine()
+        {
+            this.endOfFrameMicroCoroutine = new MicroCoroutine(
+                () =>
+                {
+                    if (endOfFrameCountForRefresh > EndOfFrameRefreshCycle)
+                    {
+                        endOfFrameCountForRefresh = 0;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }, 
+                ex => unhandledExceptionCallback(ex));
+
+            while (true)
+            {
+                yield return YieldInstructionCache.WaitForEndOfFrame;
+                endOfFrameCountForRefresh++;
+                endOfFrameMicroCoroutine.Run();
             }
         }
 
