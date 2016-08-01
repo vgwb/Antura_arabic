@@ -391,10 +391,10 @@ namespace EA4S.FastCrowd
         private void Hangable_OnLetterHangOn(LetterObjectView _letterView) {
             if (_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key) {
                 LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "goodLetterHold", _letterView.Model.Data.Key);
-                AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                //AudioManager.I.PlaySfx(Sfx.LetterHappy);
             } else {
                 LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "badLetterHold", _letterView.Model.Data.Key);
-                AudioManager.I.PlaySfx(Sfx.LetterAngry);
+                //AudioManager.I.PlaySfx(Sfx.LetterAngry);
             }
         }
 
