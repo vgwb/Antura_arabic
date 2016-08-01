@@ -20,22 +20,69 @@ namespace EA4S
         public GameObject Player;
         public GameObject ZoomCameraGO;
 
+        int tutorialIndex = 10;
+
         void Start()
         {
             AudioManager.I.PlayMusic(SceneMusic);
-            WidgetSubtitles.I.DisplaySentence("map_A1", 2, true, NextSentence);
-
             ShowProgression();
+            Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
+            if ((AppManager.Instance.PlaySession) == 1) {
+                tutorialIndex = 10;
+            } else if ((AppManager.Instance.PlaySession) == 2) {
+                tutorialIndex = 20;
+            } else if ((AppManager.Instance.PlaySession) > 2) {
+                tutorialIndex = 30;
+            }
+            ShowTutor();
         }
 
-        public void NextSentence()
+        public void ShowTutor()
         {
-            WidgetSubtitles.I.DisplaySentence("map_A2", 3, true, NextSentence2);
-        }
-
-        public void NextSentence2()
-        {
-            WidgetSubtitles.I.DisplaySentence("map_A3", 3, true, Zoom);
+            switch (tutorialIndex) {
+                case 10:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("map_A1", 2, true, ShowTutor);
+                    break;
+                case 11:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("map_A2", 2, true, ShowTutor);
+                    break;
+                case 12:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("map_A3", 2, true, ShowTutor);
+                    break;
+                case 13:
+                    WidgetSubtitles.I.DisplaySentence("map_A4", 2, true);
+                    Zoom();
+                    break;
+                case 20:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("map1_A1", 2, true, ShowTutor);
+                    break;
+                case 21:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("map1_A2", 2, true);
+                    Zoom();
+                    break;
+                case 30:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A1", 2, true, ShowTutor);
+                    break;
+                case 31:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A2", 2, true, ShowTutor);
+                    break;
+                case 32:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A3", 2, true, ShowTutor);
+                    break;
+                case 33:
+                    tutorialIndex++;
+                    WidgetSubtitles.I.DisplaySentence("assessment_intro_A4", 2, true);
+                    Zoom();
+                    break;
+            }
         }
 
         public void Zoom()

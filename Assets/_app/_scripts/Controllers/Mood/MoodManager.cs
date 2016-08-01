@@ -11,16 +11,16 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
 
-        void Awake()
-        {
-
-        }
-
         void Start()
         {
             AudioManager.I.PlayMusic(SceneMusic);
 
-            WidgetSubtitles.I.DisplaySentence("mood_how_are_you_today");
+            Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
+            if ((AppManager.Instance.PlaySession) > 2) {
+                WidgetSubtitles.I.DisplaySentence("mood_how_do_you_feel");
+            } else {
+                WidgetSubtitles.I.DisplaySentence("mood_how_are_you_today");
+            }
         }
 
         /// <summary> 
