@@ -24,6 +24,8 @@ namespace EA4S
         public GameObject WordTextGO;
         public GameObject ButtonGO;
         public GameObject TutorialImageGO;
+        public GameObject MarkOK;
+        public GameObject MarkKO;
 
         Action currentCallback;
         Tween showTween;
@@ -38,6 +40,15 @@ namespace EA4S
                 .OnRewind(() => this.gameObject.SetActive(false));
 
             this.gameObject.SetActive(false);
+        }
+
+        void ResetContents()
+        {
+            TutorialImageGO.SetActive(false);
+            SetTitle("");
+            SetWord("", "");
+            MarkOK.SetActive(false);
+            MarkKO.SetActive(false);
         }
 
         public static void Close()
@@ -58,6 +69,37 @@ namespace EA4S
                 I.showTween.PlayBackwards();
         }
 
+        public void ShowSentence(Action callback, string SentenceId)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+
+            Show(true);
+        }
+
+        public void ShowSentenceWithMark(Action callback, string SentenceId, bool result)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            MarkOK.SetActive(result);
+            MarkKO.SetActive(!result);
+
+            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+
+            Show(true);
+        }
+
         public void ShowSentenceAndWord(Action callback, string SentenceId, WordData wordData)
         {
             ResetContents();
@@ -74,12 +116,7 @@ namespace EA4S
             Show(true);
         }
 
-        void ResetContents()
-        {
-            TutorialImageGO.SetActive(false);
-            SetTitle("");
-            SetWord("", "");
-        }
+
 
         public void Init(string introText, string wordCode, string arabicWord)
         {
