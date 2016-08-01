@@ -76,8 +76,8 @@ namespace EA4S.DontWakeUp
 
             currentState = MinigameState.Initializing;
             RoundsTotal = Levels.Length;
-            currentRound = 1;
-            currentLevel = 1;
+            currentRound = StartingLevel;
+            currentLevel = currentRound;
             LivesLeft = 3;
             AppManager.Instance.InitDataAI();
             AppManager.Instance.CurrentGameManagerGO = gameObject;
@@ -131,7 +131,7 @@ namespace EA4S.DontWakeUp
         {
             WidgetSubtitles.I.Close();
             //WidgetPopupWindow.Show(false);
-            InitRound();
+            StartCurrentRound();
         }
 
         private void ShowTutorialLine()
@@ -178,7 +178,6 @@ namespace EA4S.DontWakeUp
 
             WidgetPopupWindow.I.ShowSentenceAndWord(ClickedNext, "game_dontwake_intro2", currentWord);
             SpeakCurrentLetter();
-            //WidgetSubtitles.I.DisplayDebug("init round");
         }
 
         public void SpeakCurrentLetter()
@@ -251,6 +250,7 @@ namespace EA4S.DontWakeUp
         {
             currentState = MinigameState.Paused;
             myLetter.SetActive(false);
+            LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
             if (currentRound < RoundsTotal) {
                 GoToNextRound();
             } else {
@@ -281,15 +281,21 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Save();
         }
 
-        void GoToNextRound()
+        void StartCurrentRound()
         {
-            LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
-            Levels[currentLevel - 1].SetActive(false);
-            currentRound = currentRound + 1;
+            Debug.Log("StartCurrentRound " + currentRound);
             currentLevel = currentRound;
             Levels[currentLevel - 1].SetActive(true);
             currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
             ChangeCamera(true);
+        }
+
+        void GoToNextRound()
+        {
+            if (currentLevel > 0)
+                Levels[currentLevel - 1].SetActive(false);
+            currentRound = currentRound + 1;
+            StartCurrentRound();
         }
             
         // called by callback in camera

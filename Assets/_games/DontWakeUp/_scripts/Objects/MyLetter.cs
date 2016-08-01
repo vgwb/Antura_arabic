@@ -52,6 +52,12 @@ namespace EA4S.DontWakeUp
             DrawingGO.SetActive(false);
         }
 
+        void OnDisable()
+        {
+            if (trailReference != null)
+                trailReference.Clear();
+        }
+
         public void Init(string wordCode)
         {
             // Debug.Log("MyLetter Init " + wordCode);
