@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Core;
@@ -46,13 +47,16 @@ namespace Balloons
             switch (State)
             {
                 case PromptState.IDLE:
-                    GetComponent<Renderer>().materials[0].color = Color.white;
+                    //GetComponent<Renderer>().materials[0].color = Color.white;
+                    GetComponent<Image>().color = Color.white;
                     break;
                 case PromptState.CORRECT:
-                    GetComponent<Renderer>().materials[0].color = Color.green;
+                    //GetComponent<Renderer>().materials[0].color = Color.green;
+                    GetComponent<Image>().color = Color.green;
                     break;
                 case PromptState.WRONG:
-                    GetComponent<Renderer>().materials[0].color = Color.red;
+                    //GetComponent<Renderer>().materials[0].color = Color.red;
+                    GetComponent<Image>().color = Color.red;
                     break;
                 default:
                     break;
