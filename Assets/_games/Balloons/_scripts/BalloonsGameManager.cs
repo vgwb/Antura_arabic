@@ -489,7 +489,7 @@ namespace Balloons
             }
             else
             {
-                var failDelay = 0.25f;
+                var failDelay = 0.75f;
                 yield return new WaitForSeconds(failDelay);
 
                 var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
