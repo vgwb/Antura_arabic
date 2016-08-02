@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: f775853fdfd14bb47934543e95c3bae3
 TrueTypeFontImporter:
   serializedVersion: 3
-  fontSize: 16
+  fontSize: 14
   forceTextureCase: -2
   characterSpacing: 1
   characterPadding: 0
@@ -16,7 +16,6 @@ TrueTypeFontImporter:
   - {fileID: 12800000, guid: 4fc6e4d90a31bfc40898a1cf01381ec7, type: 3}
   - {fileID: 12800000, guid: dde054ea94856a84b903ae51cd0ba696, type: 3}
   - {fileID: 12800000, guid: 9fef4b6b832a09d4ab300d9b7ff06a7f, type: 3}
-  - {fileID: 12800000, guid: 8908ac4e96a9e3148b076c6a3ff1b206, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

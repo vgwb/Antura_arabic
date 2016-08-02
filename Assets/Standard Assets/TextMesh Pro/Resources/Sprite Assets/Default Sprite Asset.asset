@@ -84,8 +84,8 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 106.14
     xAdvance: 128
-    name: Default Sprite Asset_0
-    hashCode: -1731209667
+    name: 03A5
+    hashCode: 1673815
     pivot: {x: -64, y: 64}
     scale: 1.25
     sprite: {fileID: 0}

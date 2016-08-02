@@ -247,6 +247,12 @@ namespace TMPro.EditorUtilities
             DestroyImmediate(tex);
         }
 
+        [MenuItem("CONTEXT/Asset Creator/Extra", false, 1000)]
+        static void Extra(MenuCommand command)
+        {
+
+        }
+
 
         // Context Menus for TMPro Sprite Assets
         //This function is used for debugging and fixing potentially broken Sprite Asset material links.
@@ -279,7 +285,7 @@ namespace TMPro.EditorUtilities
         //        Material tempMaterial = new Material(shader);
         //        tempMaterial.SetTexture(ShaderUtilities.ID_MainTex, spriteAsset.spriteSheet);
 
-                
+
         //        tempMaterial.hideFlags = HideFlags.HideInHierarchy;
         //        AssetDatabase.AddObjectToAsset(tempMaterial, spriteAsset);
         //        spriteAsset.material = tempMaterial;

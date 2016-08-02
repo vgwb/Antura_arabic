@@ -94,27 +94,6 @@ namespace TMPro
 
 
 
-        ///// <summary>
-        ///// Get a singleton instance of the ShaderUtilities
-        ///// </summary>
-        //public static ShaderUtilities instance
-        //{
-        //    get
-        //    {
-        //        Debug.Log("Creating ShaderUtilities Instance.");
-
-        //        if (ShaderUtilities.s_Instance == null)
-        //        {
-        //            ShaderUtilities.s_Instance = new ShaderUtilities();
-        //            GetShaderPropertyIDs();
-        //        }
-
-        //        return ShaderUtilities.s_Instance;
-        //    }
-        //}
-
-
-
         public static void GetShaderPropertyIDs()
         {
             if (isInitialized == false)

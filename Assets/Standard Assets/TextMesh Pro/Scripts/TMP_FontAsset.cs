@@ -109,25 +109,7 @@ namespace TMPro
         public FontCreationSetting fontCreationSettings;
 
         // FONT WEIGHTS
-        /// <summary>
-        /// Array containing the alternative font assets to be used for the different font weights.
-        /// </summary>
-        //public TMP_FontWeights[] fontWeights
-        //{
-        //    get
-        //    {
-        //        if (m_fontWeights == null)
-        //        {
-        //            m_fontWeights = new TMP_FontWeights[10];
-
-        //            for (int i = 0; i < m_fontWeights.Length; i++)
-        //                m_fontWeights[i] = new TMP_FontWeights();
-        //        }
-
-        //        return m_fontWeights;
-        //    }
-        //}
-        //[SerializeField]
+        [SerializeField]
         public TMP_FontWeights[] fontWeights = new TMP_FontWeights[10];
 
         private int[] m_characterSet; // Array containing all the characters in this font asset.
@@ -412,6 +394,49 @@ namespace TMPro
 
             if (m_characterDictionary.ContainsKey(character))
                 return true;
+
+            return false;
+        }
+
+
+        /// <summary>
+        /// Function to check if a character is contained in a font asset with the option to also check through fallback font assets.
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="searchFallbacks"></param>
+        /// <returns></returns>
+        public bool HasCharacter(char character, bool searchFallbacks)
+        {
+            if (m_characterDictionary == null)
+                return false;
+
+            // Check font asset
+            if (m_characterDictionary.ContainsKey(character))
+                return true;
+
+            
+            if (searchFallbacks)
+            {
+                // Check Font Asset Fallback fonts.
+                if (fallbackFontAssets != null && fallbackFontAssets.Count > 0)
+                {
+                    for (int i = 0; i < fallbackFontAssets.Count; i++)
+                    {
+                        if (fallbackFontAssets[i].characterDictionary != null && fallbackFontAssets[i].characterDictionary.ContainsKey(character))
+                            return true;
+                    }
+                }
+
+                // Check general fallback font assets.
+                if (TMP_Settings.fallbackFontAssets != null && TMP_Settings.fallbackFontAssets.Count > 0)
+                {
+                    for (int i = 0; i < TMP_Settings.fallbackFontAssets.Count; i++)
+                    {
+                        if (TMP_Settings.fallbackFontAssets[i].characterDictionary != null && TMP_Settings.fallbackFontAssets[i].characterDictionary.ContainsKey(character))
+                            return true;
+                    }
+                }
+            }
 
             return false;
         }

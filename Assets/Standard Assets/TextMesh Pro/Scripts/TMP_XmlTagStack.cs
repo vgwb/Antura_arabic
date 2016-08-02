@@ -76,11 +76,13 @@ namespace TMPro
         /// <summary>
         /// Function to retrieve the current item from the stack.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>itemStack <T></returns>
         public T CurrentItem()
         {
-            return itemStack[index - 1];
-        }
+            if (index > 0)
+                return itemStack[index - 1];
 
+            return itemStack[0];
+        }
     }
 }

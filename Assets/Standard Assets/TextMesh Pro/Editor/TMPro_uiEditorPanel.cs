@@ -4,6 +4,7 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 using System.Collections;
 
@@ -643,9 +644,24 @@ namespace TMPro.EditorUtilities
                 EditorGUIUtility.labelWidth = 150;
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PropertyField(isRichText_prop, new GUIContent("Enable Rich Text?"));
+                if (EditorGUI.EndChangeCheck())
+                    havePropertiesChanged = true;
+
+                EditorGUI.BeginChangeCheck();
                 EditorGUILayout.PropertyField(raycastTarget_prop, new GUIContent("Raycast Target?"));
+                if (EditorGUI.EndChangeCheck())
+                {
+                    // Change needs to propagate to the child sub objects.
+                    Graphic[] graphicComponents = m_textComponent.GetComponentsInChildren<Graphic>();
+                    for (int i = 0; i < graphicComponents.Length; i++)
+                        graphicComponents[i].raycastTarget = raycastTarget_prop.boolValue;
+
+                    havePropertiesChanged = true;
+                }
+
                 EditorGUILayout.EndHorizontal();
 
+                EditorGUI.BeginChangeCheck();
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PropertyField(enableEscapeCharacterParsing_prop, new GUIContent("Parse Escape Characters"));
                 EditorGUILayout.PropertyField(useMaxVisibleDescender_prop, new GUIContent("Use Visible Descender"));

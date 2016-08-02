@@ -132,7 +132,7 @@ namespace TMPro
             else
             {
                 cursor = CaretPosition.Right;
-                return index + 1;
+                return index;
             }
 
         }
@@ -926,6 +926,9 @@ namespace TMPro
                     TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
+                    // Check if Link characters are on the current page
+                    if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
+
                     if (isBeginRegion == false)
                     {
                         isBeginRegion = true;
@@ -1020,6 +1023,9 @@ namespace TMPro
                     int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
                     TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
+
+                    // Check if Link characters are on the current page
+                    if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
 
                     if (isBeginRegion == false)
                     {

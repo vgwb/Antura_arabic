@@ -75,7 +75,6 @@ namespace TMPro
         [SerializeField]
         private int m_missingGlyphCharacter;
 
-
         /// <summary>
         /// Controls the display of warning message in the console.
         /// </summary>
@@ -97,6 +96,37 @@ namespace TMPro
         private TMP_FontAsset m_defaultFontAsset;
 
         /// <summary>
+        /// The Default Point Size of newly created text objects.
+        /// </summary>
+        public static float defaultFontSize
+        {
+            get { return instance.m_defaultFontSize; }
+        }
+        [SerializeField]
+        private float m_defaultFontSize;
+
+        /// <summary>
+        /// The Default Width of the Rect Transform or Text Container.
+        /// </summary>
+        public static float defaultTextContainerWidth
+        {
+            get { return instance.m_defaultTextContainerWidth; }
+        }
+        [SerializeField]
+        private float m_defaultTextContainerWidth;
+
+        /// <summary>
+        /// The Default Height of the Rect Transform or Text Container.
+        /// </summary>
+        public static float defaultTextContainerHeight
+        {
+            get { return instance.m_defaultTextContainerHeight; }
+        }
+        [SerializeField]
+        private float m_defaultTextContainerHeight;
+
+
+        /// <summary>
         /// Returns the list of Fallback Fonts defined in the TMP Settings file.
         /// </summary>
         public static List<TMP_FontAsset> fallbackFontAssets
@@ -107,6 +137,16 @@ namespace TMPro
         private List<TMP_FontAsset> m_fallbackFontAssets;
 
         /// <summary>
+        /// Controls whether or not TMP will create a matching material preset or use the default material of the fallback font asset.
+        /// </summary>
+        public static bool matchMaterialPreset
+        {
+            get { return instance.m_matchMaterialPreset; }
+        }
+        [SerializeField]
+        private bool m_matchMaterialPreset;
+
+        /// <summary>
         /// The Default Sprite Asset to be used by default.
         /// </summary>
         public static TMP_SpriteAsset defaultSpriteAsset
@@ -115,6 +155,16 @@ namespace TMPro
         }
         [SerializeField]
         private TMP_SpriteAsset m_defaultSpriteAsset;
+
+        /// <summary>
+        /// The relative path to a Resources folder in the project.
+        /// </summary>
+        public static string defaultSpriteAssetPath
+        {
+            get { return instance.m_defaultSpriteAssetPath; }
+        }
+        [SerializeField]
+        private string m_defaultSpriteAssetPath;
 
         /// <summary>
         /// The Default Style Sheet used by the text objects.

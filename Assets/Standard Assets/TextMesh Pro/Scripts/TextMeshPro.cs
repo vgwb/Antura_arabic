@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 0.1.54 Beta 3b
+// Release 0.1.54 Beta 3c
 
 
 using UnityEngine;
@@ -169,21 +169,6 @@ namespace TMPro
             }
         }
 
-
-        /// <summary>
-        /// Contains the bounds of the text object.
-        /// </summary>
-        public override Bounds bounds
-        {
-            get { if (m_mesh != null)
-                    return m_mesh.bounds;
-
-                return new Bounds(); }
-
-            //set { if (_meshExtents != value) havePropertiesChanged = true; _meshExtents = value; }
-        }
-
-
         // MASKING RELATED PROPERTIES
         /// <summary>
         /// Sets the mask type 
@@ -229,7 +214,7 @@ namespace TMPro
         {
             //Debug.Log("SetVerticesDirty()");
 
-            if (m_verticesAlreadyDirty || !this.IsActive())
+            if (m_verticesAlreadyDirty || this == null || !this.IsActive())
                 return;
 
             TMP_UpdateManager.RegisterTextElementForGraphicRebuild(this);
@@ -242,7 +227,7 @@ namespace TMPro
         /// </summary>
         public override void SetLayoutDirty()
         {
-            if (m_layoutAlreadyDirty || !this.IsActive())
+            if (m_layoutAlreadyDirty || this == null || !this.IsActive())
                 return;
 
             //TMP_UpdateManager.RegisterTextElementForLayoutRebuild(this);

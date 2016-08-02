@@ -30,13 +30,13 @@ namespace TMPro
 
         public static readonly FastAction<bool, TextMeshProUGUI> TEXTMESHPRO_UGUI_PROPERTY_EVENT = new FastAction<bool, TextMeshProUGUI>();
 
-        public static readonly FastAction<Material> BASE_MATERIAL_EVENT = new FastAction<Material>();
+        //public static readonly FastAction<Material> BASE_MATERIAL_EVENT = new FastAction<Material>();
 
         public static readonly FastAction OnPreRenderObject_Event = new FastAction();
 
         public static readonly FastAction<Object> TEXT_CHANGED_EVENT = new FastAction<Object>();
 
-        public static readonly FastAction WILL_RENDER_CANVASES = new FastAction();
+        //public static readonly FastAction WILL_RENDER_CANVASES = new FastAction();
 
 
 
@@ -97,16 +97,15 @@ namespace TMPro
             TEXTMESHPRO_UGUI_PROPERTY_EVENT.Call(isChanged, obj);
         }
 
-        public static void ON_BASE_MATERIAL_CHANGED(Material mat)
-        {
-            BASE_MATERIAL_EVENT.Call(mat);
-        }
-
+        //public static void ON_BASE_MATERIAL_CHANGED(Material mat)
+        //{
+        //    BASE_MATERIAL_EVENT.Call(mat);
+        //}
 
         //public static void ON_PROGRESSBAR_UPDATE(Progress_Bar_EventTypes event_type, Progress_Bar_EventArgs eventArgs)
         //{
         //    if (PROGRESS_BAR_EVENT != null)
-        //        PROGRESS_BAR_EVENT(event_type, eventArgs);      
+        //        PROGRESS_BAR_EVENT(event_type, eventArgs);
         //}
 
         public static void ON_COMPUTE_DT_EVENT(object Sender, Compute_DT_EventArgs e)

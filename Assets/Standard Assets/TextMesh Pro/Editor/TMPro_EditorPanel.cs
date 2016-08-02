@@ -98,6 +98,7 @@ namespace TMPro.EditorUtilities
         private SerializedProperty checkPaddingRequired_prop;
         private SerializedProperty enableEscapeCharacterParsing_prop;
         private SerializedProperty useMaxVisibleDescender_prop;
+        private SerializedProperty isVolumetricText_prop;
 
         private SerializedProperty isOrthographic_prop;
         //private SerializedProperty isOverlay_prop;
@@ -192,6 +193,7 @@ namespace TMPro.EditorUtilities
             checkPaddingRequired_prop = serializedObject.FindProperty("checkPaddingRequired");
             enableEscapeCharacterParsing_prop = serializedObject.FindProperty("m_parseCtrlCharacters");
             useMaxVisibleDescender_prop = serializedObject.FindProperty("m_useMaxVisibleDescender");
+            isVolumetricText_prop = serializedObject.FindProperty("m_isVolumetricText");
 
             //isMaskUpdateRequired_prop = serializedObject.FindProperty("isMaskUpdateRequired");
             //mask_prop = serializedObject.FindProperty("m_mask");
@@ -307,7 +309,8 @@ namespace TMPro.EditorUtilities
                 m_foldout.fontSettings = !m_foldout.fontSettings;
 
             // Update list of material presets if needed.
-            if (m_isPresetListDirty) m_materialPresetNames = GetMaterialPresets();
+            if (m_isPresetListDirty)
+                m_materialPresetNames = GetMaterialPresets();
 
             if (m_foldout.fontSettings)
             {
@@ -669,9 +672,16 @@ namespace TMPro.EditorUtilities
                 EditorGUILayout.PropertyField(enableEscapeCharacterParsing_prop, new GUIContent("Parse Escape Characters"));
                 EditorGUILayout.PropertyField(useMaxVisibleDescender_prop, new GUIContent("Use Visible Descender"));
                 EditorGUILayout.EndHorizontal();
-
                 if (EditorGUI.EndChangeCheck())
                     havePropertiesChanged = true;
+
+                EditorGUI.BeginChangeCheck();
+                EditorGUILayout.PropertyField(isVolumetricText_prop, new GUIContent("Enabled Volumetric Setup"));
+                if (EditorGUI.EndChangeCheck())
+                {
+                    havePropertiesChanged = true;
+                    m_textComponent.textInfo.ResetVertexLayout(isVolumetricText_prop.boolValue);
+                }
 
                 EditorGUIUtility.labelWidth = 135;
                 // EditorGUI.BeginChangeCheck();

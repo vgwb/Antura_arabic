@@ -72,7 +72,7 @@ namespace TMPro
             ShaderUtilities.GetShaderPropertyIDs();
 
             // Add a new material
-            Shader shader = Shader.Find("TMPro/Sprite");
+            Shader shader = Shader.Find("TextMeshPro/Sprite");
             Material tempMaterial = new Material(shader);
             tempMaterial.SetTexture(ShaderUtilities.ID_MainTex, spriteSheet);
             tempMaterial.hideFlags = HideFlags.HideInHierarchy;

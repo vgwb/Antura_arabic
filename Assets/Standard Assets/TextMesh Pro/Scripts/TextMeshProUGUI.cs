@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 0.1.54 Beta 3b
+// Release 0.1.54 Beta 3c
 
 
 using UnityEngine;
@@ -25,7 +25,7 @@ namespace TMPro
     [RequireComponent(typeof(CanvasRenderer))]
     [AddComponentMenu("UI/TextMeshPro - Text (UI)", 11)]
     [SelectionBase]
-    public partial class TextMeshProUGUI : TMP_Text, ILayoutElement //, ICanvasElement, IMaskable, IClippable, IMaterialModifier
+    public partial class TextMeshProUGUI : TMP_Text, ILayoutElement
     {
         /// <summary>
         /// Get the material that will be used for rendering.
@@ -82,21 +82,6 @@ namespace TMPro
         public InlineGraphicManager inlineGraphicManager
         {
             get { return m_inlineGraphics; }
-        }
-
-
-        /// <summary>
-        /// Contains the bounds of the text object.
-        /// </summary>
-        public override Bounds bounds
-        {
-            get
-            {
-                if (m_mesh != null) return m_mesh.bounds;
-
-                return new Bounds();
-            }
-            //set { if (_meshExtents != value) havePropertiesChanged = true; _meshExtents = value; }
         }
 
 
@@ -167,7 +152,7 @@ namespace TMPro
         {
             //Debug.Log("SetVerticesDirty() on Object ID: " + this.GetInstanceID());
 
-            if (m_verticesAlreadyDirty || this == null || !this.IsActive())
+            if (m_verticesAlreadyDirty || this == null || !this.IsActive() || CanvasUpdateRegistry.IsRebuildingGraphics())
                 return;
 
             m_verticesAlreadyDirty = true;
@@ -199,7 +184,7 @@ namespace TMPro
         {
             //Debug.Log("SetMaterialDirty()");
 
-            if (!this.IsActive())
+            if (this == null || !this.IsActive() || CanvasUpdateRegistry.IsRebuildingGraphics())
                 return;
 
             m_isMaterialDirty = true;

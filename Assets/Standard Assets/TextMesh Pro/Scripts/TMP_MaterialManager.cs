@@ -285,12 +285,13 @@ namespace TMPro
         /// This function returns a material instance using the material properties of a previous material but using the font atlas texture of the new font asset.
         /// </summary>
         /// <param name="sourceMaterial">The material containing the source material properties to be copied to the new material.</param>
-        /// <param name="sourceAtlasTexture">The font atlas texture that should be assigned to the new material.</param>
+        /// <param name="targetMaterial">The font atlas texture that should be assigned to the new material.</param>
         /// <returns></returns>
-        public static Material GetFallbackMaterial (Material sourceMaterial, Texture sourceAtlasTexture)
+        public static Material GetFallbackMaterial (Material sourceMaterial, Material targetMaterial)
         {
             int sourceID = sourceMaterial.GetInstanceID();
-            int texID = sourceAtlasTexture.GetInstanceID();
+            Texture tex = targetMaterial.GetTexture(ShaderUtilities.ID_MainTex);
+            int texID = tex.GetInstanceID();
             long key = (long)sourceID << 32 + texID;
 
             FallbackMaterial fallback;
@@ -300,17 +301,23 @@ namespace TMPro
                 return fallback.fallbackMaterial;
             }
 
+            //Debug.Log("Creating new fallback material.");
 
             // Create new material from the source material
             Material fallbackMaterial = new Material(sourceMaterial);
             fallbackMaterial.hideFlags = HideFlags.HideAndDontSave;
 
             #if UNITY_EDITOR
-                fallbackMaterial.name += " + " + sourceAtlasTexture.name;
+                fallbackMaterial.name += " + " + tex.name;
             #endif
 
-            fallbackMaterial.SetTexture(ShaderUtilities.ID_MainTex, sourceAtlasTexture);
-
+            fallbackMaterial.SetTexture(ShaderUtilities.ID_MainTex, tex);
+            // Retain material properties unique to target material.
+            fallbackMaterial.SetFloat(ShaderUtilities.ID_GradientScale, targetMaterial.GetFloat(ShaderUtilities.ID_GradientScale));
+            fallbackMaterial.SetFloat(ShaderUtilities.ID_TextureWidth, targetMaterial.GetFloat(ShaderUtilities.ID_TextureWidth));
+            fallbackMaterial.SetFloat(ShaderUtilities.ID_TextureHeight, targetMaterial.GetFloat(ShaderUtilities.ID_TextureHeight));
+            fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightNormal, targetMaterial.GetFloat(ShaderUtilities.ID_WeightNormal));
+            fallbackMaterial.SetFloat(ShaderUtilities.ID_WeightBold, targetMaterial.GetFloat(ShaderUtilities.ID_WeightBold));
 
             fallback = new FallbackMaterial();
             fallback.baseID = sourceID;
@@ -346,6 +353,7 @@ namespace TMPro
                 FallbackMaterial fallback;
                 if (m_fallbackMaterials.TryGetValue(key, out fallback))
                 {
+                    //Debug.Log("Adding Fallback material " + fallback.fallbackMaterial.name + " with reference count of " + (fallback.count + 1));
                     fallback.count += 1;
                 }
             }
@@ -422,6 +430,8 @@ namespace TMPro
                 FallbackMaterial fallback;
                 if (m_fallbackMaterials.TryGetValue(key, out fallback))
                 {
+                    //Debug.Log("Releasing Fallback material " + fallback.fallbackMaterial.name + " with remaining reference count of " + (fallback.count - 1));
+
                     if (fallback.count > 1)
                         fallback.count -= 1;
                     else

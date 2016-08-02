@@ -35,6 +35,8 @@ namespace TMPro.EditorUtilities
                 GameObjectUtility.SetParentAndAlign(go, contextObject);
                 Undo.SetTransformParent(go.transform, contextObject.transform, "Parent " + go.name);
             }
+
+            Selection.activeGameObject = go;
         }
 
 
@@ -117,6 +119,8 @@ namespace TMPro.EditorUtilities
 #endif
                 Undo.RegisterCreatedObjectUndo(eventObject, "Create " + eventObject.name);
             }
+
+            Selection.activeGameObject = go;
         }
 
 
@@ -129,12 +133,12 @@ namespace TMPro.EditorUtilities
         }
 
 
-        //[MenuItem("GameObject/UI/TMP Dropdown", false, 2035)]
-        //static public void AddDropdown(MenuCommand menuCommand)
-        //{
-        //    GameObject go = TMP_DefaultControls.CreateDropdown(GetStandardResources());
-        //    PlaceUIElementRoot(go, menuCommand);
-        //}
+        [MenuItem("GameObject/UI/TextMeshPro - Dropdown", false, 2036)]
+        static public void AddDropdown(MenuCommand menuCommand)
+        {
+            GameObject go = TMP_DefaultControls.CreateDropdown(GetStandardResources());
+            PlaceUIElementRoot(go, menuCommand);
+        }
 
 
         private const string kUILayerName = "UI";

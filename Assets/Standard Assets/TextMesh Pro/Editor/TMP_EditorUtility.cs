@@ -87,7 +87,7 @@ namespace TMPro.EditorUtilities
             refs.Add(mat);
 
             // Get materials matching the search pattern.
-            string searchPattern = "t:Material" + " " + mat.name.Replace(" Material", "");
+            string searchPattern = "t:Material" + " " + fontAsset.name.Split(new char[] { ' ' })[0];
             string[] materialAssetGUIDs = AssetDatabase.FindAssets(searchPattern);
 
             for (int i = 0; i < materialAssetGUIDs.Length; i++)

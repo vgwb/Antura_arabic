@@ -84,8 +84,9 @@ namespace TMPro.EditorUtilities
 
         private SerializedProperty m_kerningPair_prop;
 
-
         private TMP_FontAsset m_fontAsset;
+
+        private Material[] m_materialPresets;
 
         private bool isAssetDirty = false;
 
@@ -136,9 +137,12 @@ namespace TMPro.EditorUtilities
             m_fontAsset = target as TMP_FontAsset;
             m_kerningTable = m_fontAsset.kerningInfo;
 
+            m_materialPresets = TMP_EditorUtility.FindMaterialReferences(m_fontAsset);
+
             // Get the UI Skin and Styles for the various Editors
             TMP_UIStyleManager.GetUIStyles();
         }
+
 
         public override void OnInspectorGUI()
         {
@@ -245,8 +249,10 @@ namespace TMPro.EditorUtilities
                 if (GUI.changed || evt_cmd == k_UndoRedo)
                 {
                     GUI.changed = false;
-                    Material mat = font_material_prop.objectReferenceValue as Material;
-                    mat.SetFloat("_WeightNormal", font_normalStyle_prop.floatValue);
+
+                    // Modify the material property on matching material presets.
+                    for (int i = 0; i < m_materialPresets.Length; i++)
+                        m_materialPresets[i].SetFloat("_WeightNormal", font_normalStyle_prop.floatValue);
                 }
 
 
@@ -255,8 +261,10 @@ namespace TMPro.EditorUtilities
                 if (GUI.changed || evt_cmd == k_UndoRedo)
                 {
                     GUI.changed = false;
-                    Material mat = font_material_prop.objectReferenceValue as Material;
-                    mat.SetFloat("_WeightBold", font_boldStyle_prop.floatValue);
+
+                    // Modify the material property on matching material presets.
+                    for (int i = 0; i < m_materialPresets.Length; i++)
+                        m_materialPresets[i].SetFloat("_WeightBold", font_boldStyle_prop.floatValue);
                 }
                 EditorGUILayout.EndHorizontal();
 

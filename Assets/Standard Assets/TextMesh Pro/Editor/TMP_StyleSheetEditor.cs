@@ -244,7 +244,7 @@ namespace TMPro.EditorUtilities
             m_page = Mathf.Clamp(m_page, 0, arraySize / itemsPerPage);
 
 
-            if (serializedObject.ApplyModifiedProperties())         
+            if (serializedObject.ApplyModifiedProperties())
                 TMPro_EventManager.ON_TEXT_STYLE_PROPERTY_CHANGED(true);
 
             // Clear selection if mouse event was not consumed. 

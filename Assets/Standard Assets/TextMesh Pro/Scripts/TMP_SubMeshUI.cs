@@ -93,7 +93,27 @@ namespace TMPro
         [SerializeField]
         private Material m_sharedMaterial;
 
-        internal Material m_fallbackMaterial;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Material fallbackMaterial
+        {
+            get { return m_fallbackMaterial; }
+            set
+            {
+                if (m_fallbackMaterial == value) return;
+
+                if (m_fallbackMaterial != null && m_fallbackMaterial != value)
+                    TMP_MaterialManager.ReleaseFallbackMaterial(m_fallbackMaterial);
+
+                m_fallbackMaterial = value;
+                TMP_MaterialManager.AddFallbackMaterialReference(m_fallbackMaterial);
+
+                SetSharedMaterial(m_fallbackMaterial);
+            }
+        }
+        private Material m_fallbackMaterial;
 
 
         /// <summary>
@@ -263,6 +283,7 @@ namespace TMPro
             if (m_fallbackMaterial != null)
             {
                 TMP_MaterialManager.ReleaseFallbackMaterial(m_fallbackMaterial);
+                m_fallbackMaterial = null;
             }
 
             base.OnDisable();
@@ -388,7 +409,12 @@ namespace TMPro
         {
             //if (spriteSheet != null && (obj as TMP_SpriteAsset == m_spriteAsset || obj as Texture2D == m_spriteAsset.spriteSheet))
             //{
-            SetVerticesDirty();
+            if (m_TextComponent != null)
+            {
+                m_TextComponent.havePropertiesChanged = true;
+                //m_TextComponent.SetVerticesDirty();
+            }
+
             //}
         }
 

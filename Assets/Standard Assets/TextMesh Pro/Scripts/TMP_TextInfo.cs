@@ -112,6 +112,16 @@ namespace TMPro
 
 
         /// <summary>
+        /// 
+        /// </summary>
+        public void ResetVertexLayout(bool isVolumetric)
+        {
+            for (int i = 0; i < this.meshInfo.Length; i++)
+                this.meshInfo[i].ResizeMeshInfo(0, isVolumetric);
+        }
+
+
+        /// <summary>
         /// Function used to mark unused vertices as degenerate.
         /// </summary>
         /// <param name="materials"></param>

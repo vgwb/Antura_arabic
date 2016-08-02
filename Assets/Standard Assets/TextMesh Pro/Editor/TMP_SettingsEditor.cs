@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using System.Collections;
 
-
+#pragma warning disable 0414 // Disabled a few warnings for not yet implemented features.
 
 namespace TMPro.EditorUtilities
 {
@@ -26,9 +26,16 @@ namespace TMPro.EditorUtilities
 
 
         private SerializedProperty prop_FontAsset;
+        private SerializedProperty prop_DefaultFontSize;
+        private SerializedProperty prop_DefaultTextContainerWidth;
+        private SerializedProperty prop_DefaultTextContainerHeight;
+
         private SerializedProperty prop_SpriteAsset;
+        private SerializedProperty prop_SpriteAssetPath;
         private SerializedProperty prop_StyleSheet;
         private ReorderableList m_list;
+
+        private SerializedProperty prop_matchMaterialPreset;
 
         private SerializedProperty prop_WordWrapping;
         private SerializedProperty prop_Kerning;
@@ -47,7 +54,12 @@ namespace TMPro.EditorUtilities
         public void OnEnable()
         {
             prop_FontAsset = serializedObject.FindProperty("m_defaultFontAsset");
+            prop_DefaultFontSize = serializedObject.FindProperty("m_defaultFontSize");
+            prop_DefaultTextContainerWidth = serializedObject.FindProperty("m_defaultTextContainerWidth");
+            prop_DefaultTextContainerHeight = serializedObject.FindProperty("m_defaultTextContainerHeight");
+
             prop_SpriteAsset = serializedObject.FindProperty("m_defaultSpriteAsset");
+            prop_SpriteAssetPath = serializedObject.FindProperty("m_defaultSpriteAssetPath");
             prop_StyleSheet = serializedObject.FindProperty("m_defaultStyleSheet");
 
             m_list = new ReorderableList(serializedObject, serializedObject.FindProperty("m_fallbackFontAssets"), true, true, true, true);
@@ -63,6 +75,8 @@ namespace TMPro.EditorUtilities
             {
                 EditorGUI.LabelField(rect, "<b>Fallback Font Asset List</b>", TMP_UIStyleManager.Label);
             };
+
+            prop_matchMaterialPreset = serializedObject.FindProperty("m_matchMaterialPreset");
 
             prop_WordWrapping = serializedObject.FindProperty("m_enableWordWrapping");
             prop_Kerning = serializedObject.FindProperty("m_enableKerning");
@@ -111,6 +125,8 @@ namespace TMPro.EditorUtilities
             GUILayout.Label("Select the Font Assets that will be searched to locate and replace missing characters from a given Font Asset.", TMP_UIStyleManager.Label);
             GUILayout.Space(5f);
             m_list.DoLayoutList();
+            GUILayout.Label("<b>Fallback Material Settings</b>", TMP_UIStyleManager.Label);
+            EditorGUILayout.PropertyField(prop_matchMaterialPreset, new GUIContent("Match Material Presets"));
             EditorGUILayout.EndVertical();
 
 
@@ -121,21 +137,32 @@ namespace TMPro.EditorUtilities
             GUILayout.Space(5f);
             EditorGUI.BeginChangeCheck();
 
-            EditorGUIUtility.labelWidth = 170;
+            //Debug.Log(EditorGUIUtility.currentViewWidth);
+
+            //EditorGUIUtility.labelWidth = 150;
+            //EditorGUILayout.BeginHorizontal();
+            //EditorGUILayout.PropertyField(prop_DefaultTextContainerWidth, new GUIContent("RectTransform Width"), GUILayout.MinWidth(180), GUILayout.MaxWidth(200));
+            //EditorGUIUtility.labelWidth = 50;
+            //EditorGUILayout.PropertyField(prop_DefaultTextContainerHeight, new GUIContent("Height"), GUILayout.MinWidth(80), GUILayout.MaxWidth(100));
+            //EditorGUILayout.EndHorizontal();
+
+            EditorGUIUtility.labelWidth = 150;
+            EditorGUILayout.PropertyField(prop_DefaultFontSize, new GUIContent("Default Font Size"), GUILayout.MinWidth(200), GUILayout.MaxWidth(200));
+
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(prop_WordWrapping);
+            EditorGUILayout.PropertyField(prop_WordWrapping); //, GUILayout.MaxWidth(200));
             EditorGUILayout.PropertyField(prop_Kerning);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(prop_ExtraPadding);
+            EditorGUILayout.PropertyField(prop_ExtraPadding); //, GUILayout.MaxWidth(200));
             EditorGUILayout.PropertyField(prop_TintAllSprites);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(prop_ParseEscapeCharacters, new GUIContent("Parse Escape Sequence"));
+            EditorGUILayout.PropertyField(prop_ParseEscapeCharacters, new GUIContent("Parse Escape Sequence")); //, GUILayout.MaxWidth(200));
             EditorGUIUtility.fieldWidth = 10;
-            EditorGUILayout.PropertyField(prop_MissingGlyphCharacter, new GUIContent("Missing Glyph Replacement"));
+            EditorGUILayout.PropertyField(prop_MissingGlyphCharacter, new GUIContent("Missing Glyph Repl."));
             EditorGUILayout.EndHorizontal();
 
             EditorGUIUtility.labelWidth = 135;
@@ -151,6 +178,9 @@ namespace TMPro.EditorUtilities
             GUILayout.Label("Select the Sprite Asset that will be assigned by default when using the <sprite> tag when no Sprite Asset is specified.", TMP_UIStyleManager.Label);
             GUILayout.Space(5f);
             EditorGUILayout.PropertyField(prop_SpriteAsset);
+            GUILayout.Space(10f);
+            GUILayout.Label("The relative path to a Resources folder where the Sprite Assets are located.\nExample \"Sprite Assets/\"", TMP_UIStyleManager.Label);
+            EditorGUILayout.PropertyField(prop_SpriteAssetPath, new GUIContent("Path:        Resources/"));
             EditorGUILayout.EndVertical();
 
 

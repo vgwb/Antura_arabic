@@ -78,7 +78,27 @@ namespace TMPro
         [SerializeField]
         private Material m_sharedMaterial;
 
-        internal Material m_fallbackMaterial;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Material fallbackMaterial
+        {
+            get { return m_fallbackMaterial; }
+            set
+            {
+                if (m_fallbackMaterial == value) return;
+
+                if (m_fallbackMaterial != null && m_fallbackMaterial != value)
+                    TMP_MaterialManager.ReleaseFallbackMaterial(m_fallbackMaterial);
+
+                m_fallbackMaterial = value;
+                TMP_MaterialManager.AddFallbackMaterialReference(m_fallbackMaterial);
+
+                SetSharedMaterial(m_fallbackMaterial);
+            }
+        }
+        private Material m_fallbackMaterial;
 
         /// <summary>
         /// Is the text object using the default font asset material.
@@ -275,7 +295,7 @@ namespace TMPro
             if (m_TextComponent != null)
             {
                 m_TextComponent.havePropertiesChanged = true;
-                m_TextComponent.SetVerticesDirty();
+                //m_TextComponent.SetVerticesDirty();
             }
 
             //}

@@ -39,7 +39,6 @@ namespace TMPro
             return child;
         }
 
-
         static GameObject CreateUIObject(string name, GameObject parent)
         {
             GameObject go = new GameObject(name);
@@ -48,6 +47,22 @@ namespace TMPro
             return go;
         }
 
+        private static void SetDefaultTextValues(TMP_Text lbl)
+        {
+            // Set text values we want across UI elements in default controls.
+            // Don't set values which are the same as the default values for the Text component,
+            // since there's no point in that, and it's good to keep them as consistent as possible.
+            lbl.color = s_TextColor;
+            lbl.fontSize = 14;
+        }
+
+        private static void SetDefaultColorTransitionValues(Selectable slider)
+        {
+            ColorBlock colors = slider.colors;
+            colors.highlightedColor = new Color(0.882f, 0.882f, 0.882f);
+            colors.pressedColor = new Color(0.698f, 0.698f, 0.698f);
+            colors.disabledColor = new Color(0.521f, 0.521f, 0.521f);
+        }
 
         private static void SetParentAndAlign(GameObject child, GameObject parent)
         {
@@ -66,24 +81,7 @@ namespace TMPro
                 SetLayerRecursively(t.GetChild(i).gameObject, layer);
         }
 
-
-        private static void SetDefaultTextValues(TextMeshProUGUI lbl)
-        {
-            // Set text values we want across UI elements in default controls.
-            // Don't set values which are the same as the default values for the Text component,
-            // since there's no point in that, and it's good to keep them as consistent as possible.
-            lbl.color = s_TextColor;
-            lbl.fontSize = 14;
-        }
-
-        private static void SetDefaultColorTransitionValues(Selectable slider)
-        {
-            ColorBlock colors = slider.colors;
-            colors.highlightedColor = new Color(0.882f, 0.882f, 0.882f);
-            colors.pressedColor = new Color(0.698f, 0.698f, 0.698f);
-            colors.disabledColor = new Color(0.521f, 0.521f, 0.521f);
-        }
-
+        // Actual controls
 
         public static GameObject CreateScrollbar(Resources resources)
         {
@@ -187,7 +185,6 @@ namespace TMPro
             return root;
         }
 
-        /*
         public static GameObject CreateDropdown(Resources resources)
         {
             GameObject root = CreateUIElementRoot("Dropdown", s_ThickElementSize);
@@ -260,7 +257,6 @@ namespace TMPro
 
             TextMeshProUGUI labelText = label.AddComponent<TextMeshProUGUI>();
             SetDefaultTextValues(labelText);
-            labelText.text = "Option A";
             labelText.alignment = TextAlignmentOptions.Left;
 
             Image arrowImage = arrow.AddComponent<Image>();
@@ -280,9 +276,10 @@ namespace TMPro
 
             // Setting default Item list.
             itemLabelText.text = "Option A";
-            dropdown.options.Add(new TMP_Dropdown.OptionData { text = "Option A" });
-            dropdown.options.Add(new TMP_Dropdown.OptionData { text = "Option B" });
-            dropdown.options.Add(new TMP_Dropdown.OptionData { text = "Option C" });
+            dropdown.options.Add(new TMP_Dropdown.OptionData {text = "Option A" });
+            dropdown.options.Add(new TMP_Dropdown.OptionData {text = "Option B" });
+            dropdown.options.Add(new TMP_Dropdown.OptionData {text = "Option C" });
+            dropdown.RefreshShownValue();
 
             // Set up RectTransforms.
 
@@ -344,6 +341,5 @@ namespace TMPro
 
             return root;
         }
-        */
     }
 }

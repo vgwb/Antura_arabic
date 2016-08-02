@@ -85,7 +85,10 @@ namespace TMPro
             for (int i = 0; i < m_ClosingDefinition.Length; i++)
                 m_ClosingTagArray[i] = m_ClosingDefinition[i];
 
+#if UNITY_EDITOR
+            // Event to update objects when styles are changed in the editor.
             TMPro_EventManager.ON_TEXT_STYLE_PROPERTY_CHANGED(true);
+#endif
         }
 
     }

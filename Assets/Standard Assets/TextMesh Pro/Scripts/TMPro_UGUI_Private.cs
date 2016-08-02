@@ -1,12 +1,11 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 0.1.54 Beta 3b
+// Release 0.1.54 Beta 3c
 
 //#define PROFILE_ON
 //#define PROFILE_PHASES_ON
 
-#if UNITY_4_6 || UNITY_4_7 || UNITY_5
 
 using UnityEngine;
 using System;
@@ -99,7 +98,7 @@ namespace TMPro
             if (m_rectTransform == null)  
                 m_rectTransform = gameObject.AddComponent<RectTransform>();
 
-             // Cache a reference to the CanvasRenderer.
+            // Cache a reference to the CanvasRenderer.
             m_canvasRenderer = GetComponent<CanvasRenderer>();
             if (m_canvasRenderer == null) 
                 m_canvasRenderer = gameObject.AddComponent<CanvasRenderer> ();
@@ -148,7 +147,7 @@ namespace TMPro
             if (m_fontSizeMin == 0) m_fontSizeMin = m_fontSize / 2;
             if (m_fontSizeMax == 0) m_fontSizeMax = m_fontSize * 2;
 
-            //// Set flags to ensure our text is parsed and redrawn.
+            // Set flags to ensure our text is parsed and redrawn.
             m_isInputParsingRequired = true;
             m_havePropertiesChanged = true;
             m_isCalculateSizeRequired = true;
@@ -249,8 +248,6 @@ namespace TMPro
             TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Remove(ON_TEXT_STYLE_CHANGED);
             TMPro_EventManager.TMP_SETTINGS_PROPERTY_EVENT.Remove(ON_TMP_SETTINGS_CHANGED);
 #endif
-            // UnRegister to get callback before Canvas is Rendered.
-            //TMPro_EventManager.WILL_RENDER_CANVASES.Remove(OnPreRenderCanvas);
             m_isRegisteredForEvents = false;
         }
 
@@ -287,8 +284,9 @@ namespace TMPro
 
             m_padding = GetPaddingForMaterial();
 
-            m_havePropertiesChanged = true;
             m_isInputParsingRequired = true;
+            m_inputSource = TextInputSources.Text;
+            m_havePropertiesChanged = true;
             m_isCalculateSizeRequired = true;
 
             SetAllDirty();
@@ -520,7 +518,17 @@ namespace TMPro
 
             gameObject.GetComponentsInParent(false, list);
             if (list.Count > 0)
-                canvas = list[0];
+            {
+                // Find the first active and enabled canvas.
+                for (int i = 0; i < list.Count; ++i)
+                {
+                    if (list[i].isActiveAndEnabled)
+                    {
+                        canvas = list[i];
+                        break;
+                    }
+                }
+            }
 
             TMP_ListPool<Canvas>.Release(list);
 
@@ -1062,7 +1070,6 @@ namespace TMPro
                     isUsingFallback = true;
                     isUsingAlternativeTypeface = true;
                     m_currentFontAsset = tempFontAsset;
-                    m_currentMaterial = TMP_MaterialManager.GetFallbackMaterial(m_currentMaterial, m_currentFontAsset.material.GetTexture(ShaderUtilities.ID_MainTex));
                     //m_currentMaterialIndex = MaterialReference.AddMaterialReference(m_currentMaterial, tempFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
                 }
                 #endregion
@@ -1087,8 +1094,6 @@ namespace TMPro
                             {
                                 isUsingFallback = true;
                                 m_currentFontAsset = tempFontAsset;
-                                m_currentMaterial = TMP_MaterialManager.GetFallbackMaterial(m_currentMaterial, m_currentFontAsset.material.GetTexture(ShaderUtilities.ID_MainTex));
-                                //m_currentMaterialIndex = MaterialReference.AddMaterialReference(m_currentMaterial, tempFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
                                 break;
                             }
                         }
@@ -1110,8 +1115,6 @@ namespace TMPro
                                 {
                                     isUsingFallback = true;
                                     m_currentFontAsset = tempFontAsset;
-                                    m_currentMaterial = TMP_MaterialManager.GetFallbackMaterial(m_currentMaterial, m_currentFontAsset.material.GetTexture(ShaderUtilities.ID_MainTex));
-                                    //m_currentMaterialIndex = MaterialReference.AddMaterialReference(m_currentMaterial, tempFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
                                     break;
                                 }
                             }
@@ -1166,7 +1169,6 @@ namespace TMPro
 
                                         isUsingFallback = true;
                                         m_currentFontAsset = tempFontAsset;
-                                        m_currentMaterial = TMP_MaterialManager.GetFallbackMaterial(m_currentMaterial, m_currentFontAsset.material.GetTexture(ShaderUtilities.ID_MainTex));
                                         //m_currentMaterialIndex = MaterialReference.AddMaterialReference(m_currentMaterial, tempFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
                                         break;
                                     }
@@ -1186,7 +1188,6 @@ namespace TMPro
 
                                     isUsingFallback = true;
                                     m_currentFontAsset = tempFontAsset;
-                                    m_currentMaterial = TMP_MaterialManager.GetFallbackMaterial(m_currentMaterial, m_currentFontAsset.material.GetTexture(ShaderUtilities.ID_MainTex));
                                     //m_currentMaterialIndex = MaterialReference.AddMaterialReference(m_currentMaterial, tempFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
                                 }
                                 else
@@ -1202,7 +1203,6 @@ namespace TMPro
 
                                         isUsingFallback = true;
                                         m_currentFontAsset = tempFontAsset;
-                                        m_currentMaterial = TMP_MaterialManager.GetFallbackMaterial(m_currentMaterial, m_currentFontAsset.material.GetTexture(ShaderUtilities.ID_MainTex));
                                         //m_currentMaterialIndex = MaterialReference.AddMaterialReference(m_currentMaterial, tempFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
                                     }
                                     else
@@ -1227,19 +1227,33 @@ namespace TMPro
                 m_textInfo.characterInfo[m_totalCharacterCount].isUsingAlternateTypeface = isUsingAlternativeTypeface;
                 m_textInfo.characterInfo[m_totalCharacterCount].character = (char)c;
                 m_textInfo.characterInfo[m_totalCharacterCount].fontAsset = m_currentFontAsset;
-                m_textInfo.characterInfo[m_totalCharacterCount].material = m_currentMaterial;
 
                 if (isUsingFallback)
+                {
+                    // Create Fallback material instance matching current material preset if necessary
+                    if (TMP_Settings.matchMaterialPreset)
+                        m_currentMaterial = TMP_MaterialManager.GetFallbackMaterial(m_currentMaterial, m_currentFontAsset.material);
+                    else
+                        m_currentMaterial = m_currentFontAsset.material;
+
                     m_currentMaterialIndex = MaterialReference.AddMaterialReference(m_currentMaterial, m_currentFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
-
-                m_textInfo.characterInfo[m_totalCharacterCount].materialReferenceIndex = m_currentMaterialIndex;
-                m_materialReferences[m_currentMaterialIndex].isFallbackFont = isUsingFallback;
-
+                }
 
                 if (!char.IsWhiteSpace((char)c))
                 {
-                    m_materialReferences[m_currentMaterialIndex].referenceCount += 1;
+                    // Limit the mesh of the main text object to 65535 vertices and use sub objects for the overflow.
+                    if (m_materialReferences[m_currentMaterialIndex].referenceCount < 16383)
+                        m_materialReferences[m_currentMaterialIndex].referenceCount += 1;
+                    else
+                    {
+                        m_currentMaterialIndex = MaterialReference.AddMaterialReference(new Material(m_currentMaterial), m_currentFontAsset, m_materialReferences, m_materialReferenceIndexLookup);
+                        m_materialReferences[m_currentMaterialIndex].referenceCount += 1;
+                    }
                 }
+
+                m_textInfo.characterInfo[m_totalCharacterCount].material = m_currentMaterial;
+                m_textInfo.characterInfo[m_totalCharacterCount].materialReferenceIndex = m_currentMaterialIndex;
+                m_materialReferences[m_currentMaterialIndex].isFallbackFont = isUsingFallback;
 
                 // Restore previous font asset and material if fallback font was used.
                 if (isUsingFallback)
@@ -1250,6 +1264,14 @@ namespace TMPro
                 }
 
                 m_totalCharacterCount += 1;
+            }
+
+            // Early return if we are calculating the preferred values.
+            if (m_isCalculatingPreferredValues)
+            {
+                m_isCalculatingPreferredValues = false;
+                m_isInputParsingRequired = true;
+                return m_totalCharacterCount;
             }
 
             // Save material and sprite count.
@@ -1302,19 +1324,9 @@ namespace TMPro
                     }
 
                     // Check if we need to use a Fallback Material
-                    if (m_materialReferences[i].isFallbackFont) // && m_materialReferences[i].isDefaultMaterial)
-                    {
-                        Material newFallback = m_materialReferences[i].material;
-                        Material prevFallback = m_subTextObjects[i].m_fallbackMaterial;
+                    if (m_materialReferences[i].isFallbackFont)
+                        m_subTextObjects[i].fallbackMaterial = m_materialReferences[i].material;
 
-                        if (newFallback != prevFallback)
-                        {
-                            TMP_MaterialManager.RemoveFallbackMaterialReference(prevFallback);
-
-                            m_subTextObjects[i].m_fallbackMaterial = newFallback;
-                            TMP_MaterialManager.AddFallbackMaterialReference( newFallback);
-                        }
-                    }
                 }
 
                 int referenceCount = m_materialReferences[i].referenceCount;
@@ -1340,7 +1352,7 @@ namespace TMPro
                 }
             }
 
-            TMP_MaterialManager.CleanupFallbackMaterials();
+            //TMP_MaterialManager.CleanupFallbackMaterials();
 
             // Clean up unused SubMeshes
             for (int i = materialCount; i < m_subTextObjects.Length + 1 && m_subTextObjects[i] != null; i++)
@@ -1400,19 +1412,11 @@ namespace TMPro
         }
 
 
-        //protected override void OnCanvasHierarchyChanged()
-        //{
-        //    Debug.Log("***** OnCanvasHierarchyChanged() *****");
-
-        //    Canvas currentCanvas = m_canvas;
-        //    m_canvas = GetCanvas();
-
-        //    if (currentCanvas != m_canvas)
-        //    {
-        //        GraphicRegistry.UnregisterGraphicForCanvas(currentCanvas, this);
-        //        GraphicRegistry.RegisterGraphicForCanvas(canvas, this);
-        //    }
-        //}
+        protected override void OnCanvasHierarchyChanged()
+        {
+            base.OnCanvasHierarchyChanged();
+            m_canvas = this.canvas;
+        }
 
 
         protected override void OnTransformParentChanged()
@@ -1552,11 +1556,14 @@ namespace TMPro
             if (m_char_buffer == null || m_char_buffer.Length == 0 || m_char_buffer[0] == (char)0)
             {
                 // Clear mesh and upload changes to the mesh.
-                //ClearRenderers();
                 ClearMesh();
 
                 m_preferredWidth = 0;
                 m_preferredHeight = 0;
+
+                // Event indicating the text has been regenerated.
+                TMPro_EventManager.ON_TEXT_CHANGED(this);
+
                 return;
             }
 
@@ -1632,8 +1639,6 @@ namespace TMPro
             //m_isIgnoringAlignment = false;
 
             m_characterCount = 0; // Total characters in the char[]
-            //m_visibleCharacterCount = 0; // # of visible characters.
-            //m_visibleSpriteCount = 0;
 
             // Tracking of line information
             m_firstCharacterOfLine = 0;
@@ -1677,9 +1682,6 @@ namespace TMPro
             // Initialize struct to track states of word wrapping
             bool isFirstWord = true;
             bool isLastBreakingChar = false;
-            //m_SavedLineState = new WordWrapState();
-            //SaveWordWrappingState(ref m_SavedLineState, 0, 0);
-            //m_SavedWordWrapState = new WordWrapState();
             int wrappingIndex = 0;
 
             loopCountA += 1;
@@ -1721,8 +1723,6 @@ namespace TMPro
                 m_isParsingText = false;
 
                 bool isUsingAltTypeface = m_textInfo.characterInfo[m_characterCount].isUsingAlternateTypeface;
-
-
 
 
                 // Handle Font Styles like LowerCase, UpperCase and SmallCaps.
@@ -2290,7 +2290,7 @@ namespace TMPro
 
                 // Check if Line Spacing of previous line needs to be adjusted.
                 #region Adjust Line Spacing
-#if PROFILE_ON
+                #if PROFILE_ON
                 Profiler.BeginSample("Adjust Line Spacing");
                 #endif
                 if (m_lineNumber > 0 && !TMP_Math.Approximately(m_maxLineAscender, m_startOfLineAscender) && m_lineHeight == 0 && !m_isNewPage)
@@ -2465,7 +2465,9 @@ namespace TMPro
                 #region XAdvance, Tabulation & Stops
                 if (charCode == 9)
                 {
-                    m_xAdvance += m_currentFontAsset.fontInfo.TabWidth * currentElementScale;
+                    float tabSize = m_currentFontAsset.fontInfo.TabWidth * currentElementScale;
+                    float tabs = Mathf.Ceil(m_xAdvance / tabSize) * tabSize;
+                    m_xAdvance = tabs > m_xAdvance ? tabs : m_xAdvance + tabSize;
                 }
                 else if (m_monoSpacing != 0)
                     m_xAdvance += (m_monoSpacing - monoAdvance + ((m_characterSpacing + m_currentFontAsset.normalSpacingOffset) * currentElementScale) + m_cSpacing) * (1 - m_charWidthAdjDelta);
@@ -2712,6 +2714,10 @@ namespace TMPro
             if (m_characterCount == 0) // && m_visibleSpriteCount == 0)
             {
                 ClearMesh();
+
+                // Event indicating the text has been regenerated.
+                TMPro_EventManager.ON_TEXT_CHANGED(this);
+
                 return;
             }
 
@@ -3238,7 +3244,7 @@ namespace TMPro
                 }
                 else if (isStartOfWord || i == 0 && (!char.IsPunctuation(currentCharacter) || char.IsWhiteSpace(currentCharacter) || i == m_characterCount - 1))
                 {
-                    if (i > 0 && i < m_characterCount && (currentCharacter == 39 || currentCharacter == 8217) && char.IsLetterOrDigit(characterInfos[i - 1].character) && char.IsLetterOrDigit(characterInfos[i + 1].character))
+                    if (i > 0 && i < characterInfos.Length - 1 && i < m_characterCount && (currentCharacter == 39 || currentCharacter == 8217) && char.IsLetterOrDigit(characterInfos[i - 1].character) && char.IsLetterOrDigit(characterInfos[i + 1].character))
                     {
 
                     }
@@ -3563,6 +3569,32 @@ namespace TMPro
         }
 
 
+        /// <summary>
+        ///  Method returning the compound bounds of the text object and child sub objects.
+        /// </summary>
+        /// <returns></returns>
+        protected override Bounds GetCompoundBounds()
+        {
+            Bounds mainBounds = m_mesh.bounds;
+            Vector2 min = mainBounds.min;
+            Vector2 max = mainBounds.max;
+
+            for (int i = 1; i < m_subTextObjects.Length && m_subTextObjects[i] != null; i++)
+            {
+                Bounds subBounds = m_subTextObjects[i].mesh.bounds;
+                min.x = min.x < subBounds.min.x ? min.x : subBounds.min.x;
+                min.y = min.y < subBounds.min.y ? min.y : subBounds.min.y;
+
+                max.x = max.x > subBounds.max.x ? max.x : subBounds.max.x;
+                max.y = max.y > subBounds.max.y ? max.y : subBounds.max.y;
+            }
+
+            Vector2 center = (min + max) / 2;
+            Vector2 size = max - min;
+            return new Bounds(center, size);
+        }
+
+
         //public override void UpdateGeometry()
         //{
 
@@ -3595,7 +3627,7 @@ namespace TMPro
                 if (m_textInfo.characterInfo[i].isVisible && m_textInfo.characterInfo[i].elementType == TMP_TextElementType.Character)
                 {
                     float scale = xScale * m_textInfo.characterInfo[i].scale * (1 - m_charWidthAdjDelta);
-                    if ((m_textInfo.characterInfo[i].style & FontStyles.Bold) == FontStyles.Bold) scale *= -1;
+                    if (!m_textInfo.characterInfo[i].isUsingAlternateTypeface && (m_textInfo.characterInfo[i].style & FontStyles.Bold) == FontStyles.Bold) scale *= -1;
 
                     int index = m_textInfo.characterInfo[i].materialReferenceIndex;
                     int vertexIndex = m_textInfo.characterInfo[i].vertexIndex;
@@ -3652,5 +3684,3 @@ namespace TMPro
 
     }
 }
-
-#endif
