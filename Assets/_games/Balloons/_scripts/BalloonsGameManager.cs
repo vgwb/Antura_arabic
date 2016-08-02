@@ -18,7 +18,7 @@ namespace Balloons
         public Transform[] floatingLetterLocations;
         public AnimationClip balloonPopAnimation;
         public GameObject runningAntura;
-        public Canvas hudCanvas;
+        public Canvas uiCanvas;
         public Canvas endGameCanvas;
         public Sprite TutorialImage;
         public TextMeshProUGUI roundNumberText;
@@ -157,7 +157,18 @@ namespace Balloons
         {
             ResetScene();
             SetNewWord();
-            DisplayRoundStart();
+            StartCoroutine(StartNewRound_Coroutine());
+        }
+
+        private IEnumerator StartNewRound_Coroutine()
+        {
+            float delay = 0.75f;
+            yield return new WaitForSeconds(delay);
+
+            AudioManager.I.PlayWord(wordData.Key);
+            WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
+
+            uiCanvas.gameObject.SetActive(true);
         }
 
         private void EndRound(Result result)
@@ -175,7 +186,7 @@ namespace Balloons
         {
             ResetScene();
 
-            hudCanvas.gameObject.SetActive(false);
+            uiCanvas.gameObject.SetActive(false);
             endGameCanvas.gameObject.SetActive(true);
 
             int numberOfStars = 0;
@@ -212,8 +223,10 @@ namespace Balloons
         {
             timer.StopTimer();
             timer.ResetTimer();
-            wordPrompt.Reset();
+            timer.DisplayTime();
             roundNumberText.text = "#" + currentRound.ToString();
+            wordPrompt.Reset();
+            uiCanvas.gameObject.SetActive(false);
             DestroyAllBalloons();
         }
 
@@ -496,20 +509,6 @@ namespace Balloons
                 var sentence = sentenceOptions[Random.Range(0, sentenceOptions.Length)];
                 WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false);
             }
-        }
-
-        private void DisplayRoundStart()
-        {
-            StartCoroutine(DisplayRoundStart_Coroutine());
-        }
-
-        private IEnumerator DisplayRoundStart_Coroutine()
-        {
-            float delay = 0.75f;
-            yield return new WaitForSeconds(delay);
-
-            AudioManager.I.PlayWord(wordData.Key);
-            WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
         }
     }
 }
