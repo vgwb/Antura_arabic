@@ -55,6 +55,7 @@ namespace EA4S.FastCrowd
         public ActionFeedbackComponent ActionFeedback;
         public PopupMissionComponent PopupMission;
         public Sprite TutorialImage;
+        public Sprite TutorialImageWords;
 
         #endregion
 
@@ -233,16 +234,30 @@ namespace EA4S.FastCrowd
         {
             switch (tutorialState) {
                 case 3:
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro1");
-                    WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
+                    if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
+                        WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro1");
+                        WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
+                    } else {
+                        WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro1");
+                        WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImageWords);
+                    }
                     break;
                 case 2:
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro2");
-                    WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
+                    if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
+                        WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro2");
+                        WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
+                    } else {
+                        WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro2");
+                        WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImageWords);
+                    }
                     break;
                 case 1:
                     WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3");
-                    WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
+                    if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
+                        WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
+                    } else {
+                        WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImageWords);
+                    }
                     break;
                 default:
                     // play
@@ -402,7 +417,8 @@ namespace EA4S.FastCrowd
         /// Hang catch.
         /// </summary>
         /// <param name="_letterView"></param>
-        private void Hangable_OnLetterHangOn(LetterObjectView _letterView) {
+        private void Hangable_OnLetterHangOn(LetterObjectView _letterView)
+        {
             if (!DropAreaContainer.GetActualDropArea())
                 return;
             if (_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key) {
