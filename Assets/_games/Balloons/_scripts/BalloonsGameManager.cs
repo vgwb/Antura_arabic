@@ -121,6 +121,7 @@ namespace Balloons
                     break;
                 default:
                     WidgetSubtitles.I.Close();
+                    WidgetPopupWindow.Close();
                     Play();
                     break;
             }
@@ -156,7 +157,7 @@ namespace Balloons
         {
             ResetScene();
             SetNewWord();
-            WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
+            DisplayRoundStart();
         }
 
         private void EndRound(Result result)
@@ -228,32 +229,6 @@ namespace Balloons
             LoggerEA4S.Save();
         }
 
-        /*
-        private void BeginGameplay()
-        {
-            StartCoroutine(BeginGameplay_Coroutine());
-        }
-
-        private IEnumerator BeginGameplay_Coroutine()
-        {
-            timer.DisplayTime();
-
-            countdownAnimator.gameObject.SetActive(true);
-            AnimateCountdown("3");
-            yield return new WaitForSeconds(1f);
-            AnimateCountdown("2");
-            yield return new WaitForSeconds(1f);
-            AnimateCountdown("1");
-            yield return new WaitForSeconds(1f);
-            countdownAnimator.gameObject.SetActive(false);
-
-            CreateBalloons(currentRound);
-            runningAntura.SetActive(true);
-            timer.StartTimer();
-            AudioManager.I.PlayMusic(Music.MainTheme);
-        }
-        */
-
         private void AnimateCountdown(string text)
         {
             countdownAnimator.gameObject.GetComponent<TextMeshProUGUI>().text = text;
@@ -266,8 +241,6 @@ namespace Balloons
             word = wordData.Word;
             wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
             wordPrompt.DisplayWord(wordLetters);
-
-            AudioManager.I.PlayWord(wordData.Key);
 
             LoggerEA4S.Log("minigame", "Balloons", "newWord", wordData.Key);
             LoggerEA4S.Save();
@@ -497,21 +470,46 @@ namespace Balloons
 
         private IEnumerator DisplayRoundResult_Coroutine(bool win)
         {
-            float delay = 0.5f;
-            yield return new WaitForSeconds(delay);
+            var initialDelay = 0.25f;
+            yield return new WaitForSeconds(initialDelay);
 
-            string audio = default(string);
+
             if (win)
             {
-                var audioOptions = new[]{ "comment_welldone", "comment_great" };
-                audio = audioOptions[Random.Range(0, audioOptions.Length)];
+                AudioManager.I.PlayDialog("comment_welldone");
+                var popUpDelay = 0.25f;
+                yield return new WaitForSeconds(popUpDelay);
+
+                WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundResultPressed, "comment_welldone", wordData);
+                var speakWordDelay = 0.75f;
+                yield return new WaitForSeconds(speakWordDelay);
+
+                AudioManager.I.PlayWord(wordData.Key);
+
             }
             else
             {
-                var audioOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
-                audio = audioOptions[Random.Range(0, audioOptions.Length)];
+                var failDelay = 0.25f;
+                yield return new WaitForSeconds(failDelay);
+
+                var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
+                var sentence = sentenceOptions[Random.Range(0, sentenceOptions.Length)];
+                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false);
             }
-            WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, audio, win);
+        }
+
+        private void DisplayRoundStart()
+        {
+            StartCoroutine(DisplayRoundStart_Coroutine());
+        }
+
+        private IEnumerator DisplayRoundStart_Coroutine()
+        {
+            float delay = 0.75f;
+            yield return new WaitForSeconds(delay);
+
+            AudioManager.I.PlayWord(wordData.Key);
+            WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
         }
     }
 }
