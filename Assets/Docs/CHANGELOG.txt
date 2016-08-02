@@ -4,6 +4,24 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.5.4
+
+2016-08-02 - [Balloons] Minor UI tweaks
+2016-08-02 - [Balloons] New 2D Word Prompt UI!
+2016-08-02 - [Balloons] Speak word at each end of round
+2016-08-02 - Update Fast Crowd Arabic name to match the one used in the Voice Overs
+2016-08-02 - Updated lighting system also on Balloon
+2016-08-02 - Updated lighting system
+2016-08-02 - [Balloons] UI Updates
+2016-08-02 - [FastCrowd] added new image tutorial and sentences for Words variation
+2016-08-02 - [clean] updating prefabs internal properties
+2016-08-02 - preparing v 0.5.4 with new App Icon
+2016-08-02 - [packages] updated Text Mesh Pro to 0.1.54 Beta 4
+2016-08-02 - [system] updated to Unity 5.4.0f3
+2016-08-01 - [navigation] fix not restarting after first full round.
+2016-08-01 - [navigation] corrected navigation bugs and checked Voice Overs
+2016-08-01 - [Balloons] New Arabic Poof particle effect
+
 ##########   v0.4.7
 
 2016-08-01 - [audio & UI] it's better the word popup doesn't speak also the sentence.. we have to check how to deal this
