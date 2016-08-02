@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Panda;
 
-namespace EA4S {
+namespace EA4S
+{
     /// <summary>
     /// Add AI Nav logic to letter puppet object.
     /// </summary>
     [RequireComponent(typeof(NavMeshAgent))]
-    public class LetterNavBehaviour : MonoBehaviour {
+    public class LetterNavBehaviour : MonoBehaviour
+    {
         public GameObject WayPointPrefab;
         NavMeshAgent agent;
         Transform wayPoint;
@@ -17,22 +19,25 @@ namespace EA4S {
         Vector3 LookAtCameraPosition = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
         public Vector3 HidePositionRight = new Vector3(17, 0.2f, -11);
         public Vector3 HidePositionLeft = new Vector3(-17, 0.2f, -11);
-        bool lookAtCamera = false; 
+        bool lookAtCamera = false;
 
-        void Start() {
+        void Start()
+        {
             agent = GetComponent<NavMeshAgent>();
             wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
         }
 
         #region Tasks
+
         [Task] 
-        public void SetNavigation(string _stateName) {
+        public void SetNavigation(string _stateName)
+        {
             if (!agent)
                 return;
             switch (_stateName) {
                 case "Stop":
                     agent.Stop();
-                    if(lookAtCamera)
+                    if (lookAtCamera)
                         transform.DOLookAt(LookAtCameraPosition, 0.1f);
                     lookAtCamera = !lookAtCamera;
                     break;
@@ -47,9 +52,10 @@ namespace EA4S {
                     break;
                 case "Hold":
                     agent.Stop();
-                    transform.DOLookAt(LookAtCameraPosition, 0.1f).OnComplete(delegate {
-                        transform.LookAt(LookAtCameraPosition);
-                    });
+                    transform.DOLookAt(LookAtCameraPosition, 0.1f).OnComplete(delegate
+                        {
+                            transform.LookAt(LookAtCameraPosition);
+                        });
                     agent.speed = 3.5f;
                     //agent.Resume();
                     break;
@@ -65,10 +71,10 @@ namespace EA4S {
                     break;
                 case "GoOut":
                     agent.enabled = false;
-                    agent.transform.DOMove(HidePositionRight, 2).SetDelay(1).OnComplete(delegate {
-                        agent.transform.position = HidePositionRight;
-                    });
-                    
+                    agent.transform.DOMove(HidePositionRight, 2).SetDelay(1).OnComplete(delegate
+                        {
+                            agent.transform.position = HidePositionRight;
+                        });
                     
                     //agent.Resume();
                     //agent.speed = 10f;
@@ -87,16 +93,20 @@ namespace EA4S {
         }
 
         [Task]
-        public bool IsAnturaMoment() {
+        public bool IsAnturaMoment()
+        {
             return FastCrowd.FastCrowd.Instance.IsAnturaMoment;
         }
+
         #endregion
 
         #region Navigation
+
         /// <summary>
         /// Debug waypoint.
         /// </summary>
-        void OnDrawGizmos() {
+        void OnDrawGizmos()
+        {
             if (wayPoint != null) {
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawLine(transform.position, wayPoint.position);
@@ -106,7 +116,8 @@ namespace EA4S {
         /// <summary>
         /// Repositioning waypoint.
         /// </summary>
-        void RepositioningWaypoint(int _areaMask = 1) {
+        void RepositioningWaypoint(int _areaMask = 1)
+        {
             if (!wayPoint)
                 return;
             Vector3 randomValidPosition;
@@ -119,7 +130,8 @@ namespace EA4S {
         /// <summary>
         /// Set waypoint to look in camera direction.
         /// </summary>
-        void setLookAtCamera() {
+        void setLookAtCamera()
+        {
             agent.Stop();
             if (!wayPoint)
                 return;
@@ -128,7 +140,8 @@ namespace EA4S {
             agent.Resume();
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             if (!wayPoint)
                 return;
             GameObject.Destroy(wayPoint.gameObject);
@@ -137,18 +150,19 @@ namespace EA4S {
         #endregion
 
         #region Collisions
-        void OnTriggerEnter(Collider other) {
+
+        void OnTriggerEnter(Collider other)
+        {
             //void OnTriggerEnter(Collider other) {
             if (!agent)
                 return;
             if (wayPoint && other == wayPoint.GetComponent<Collider>()) {
                 RepositioningWaypoint();
-            } else if(wayPoint && other.GetComponent<AnturaController>()) {
+            } else if (wayPoint && other.GetComponent<FastCrowd.AnturaController>()) {
                 wayPoint.position = -wayPoint.position;
             }
         }
 
-
-            #endregion
-        }
+        #endregion
+    }
 }
