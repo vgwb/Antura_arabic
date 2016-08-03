@@ -9,7 +9,6 @@ using System;
 namespace EA4S {
     public class AssessmentObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
-
         public Image Draw;
         public TextMeshProUGUI Label;
         public Image Circle;
@@ -18,7 +17,9 @@ namespace EA4S {
 
         public bool IsWord = false;
         public bool IsLocked = false;
+        public bool IsInteractable = true;
         AssessmentManager manager;
+
         #region 
         /// <summary>
         /// Init object.
@@ -60,7 +61,7 @@ namespace EA4S {
         #region inputEvents
 
         public void OnPointerDown(PointerEventData eventData) {
-            if (IsWord)
+            if (!IsInteractable)
                 return;
             if (IsLocked)
                 manager.UnlockObjects(Color);
@@ -69,13 +70,13 @@ namespace EA4S {
         }
 
         public void OnPointerUp(PointerEventData eventData) {
-            if (IsWord)
+            if (!IsInteractable)
                 return;
             foreach (var item in eventData.hovered) {
                 AssessmentObject other = item.GetComponent<AssessmentObject>();
                 if (!other)
                     continue;
-                if (other && other.IsWord) {
+                if (other && other.IsWord != IsWord) {
                     if (other.IsLocked)
                         manager.UnlockObjects(other.Color);
                     other.SetColor(Color);
