@@ -16,13 +16,14 @@ namespace EA4S
         NavMeshAgent agent;
         Transform wayPoint;
         public Transform LockCameraPH;
-        Vector3 LookAtCameraPosition = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
+        Vector3 LookAtCameraPosition;
         public Vector3 HidePositionRight = new Vector3(17, 0.2f, -11);
         public Vector3 HidePositionLeft = new Vector3(-17, 0.2f, -11);
         bool lookAtCamera = false;
 
         void Start()
         {
+            LookAtCameraPosition = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
             agent = GetComponent<NavMeshAgent>();
             wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
         }
