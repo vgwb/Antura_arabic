@@ -72,7 +72,7 @@ namespace EA4S.FastCrowd
         /// </summary>
         List<ILivingLetterData> dataList = new List<ILivingLetterData>();
         int round = 0;
-        int tutorialState = 3;
+        int tutorialState = -1;
 
         [HideInInspector]
         public string VariationPrefix = string.Empty;
@@ -109,6 +109,21 @@ namespace EA4S.FastCrowd
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "start", GameplayInfo.PlayTime.ToString());
             LoggerEA4S.Save();
             AudioManager.I.PlayMusic(Music.Relax);
+
+            // Env Setup.
+            gameplayBlockSetup();
+
+            //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
+            var AnturaTimea = UnityEngine.Random.Range(30, 50);
+            GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
+                new List<GameplayTimer.CustomEventData>()
+                {
+                            new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
+                            new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
+                }
+            );
+
+            AudioManager.I.PlayMusic(Music.Theme3);
 
             if (OnReadyForGameplayDone != null)
                 OnReadyForGameplayDone(GameplayInfo);
@@ -263,20 +278,7 @@ namespace EA4S.FastCrowd
                     // play
                     WidgetSubtitles.I.DisplaySentence(string.Empty);
                     WidgetPopupWindow.Close();
-                    // Env Setup.
-                    gameplayBlockSetup();
-
-                    //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
-                    var AnturaTimea = UnityEngine.Random.Range(30, 50);
-                    GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
-                        new List<GameplayTimer.CustomEventData>()
-                        {
-                            new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
-                            new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
-                        }
-                    );
-
-                    AudioManager.I.PlayMusic(Music.Theme3);
+                    
                     break;
             }
         }
@@ -478,13 +480,13 @@ namespace EA4S.FastCrowd
             Hangable.OnLetterHangOff += Hangable_OnLetterHangOff;
 
 
-            /// <summary>
-            /// Monitoring Model property XXX value changes.
-            /// </summary>
-            this.transform.ObserveEveryValueChanged(x => tutorialState).Subscribe(_ =>
-                {
-                    OnTutorialStateChanged();
-                }).AddTo(this);
+            ///// <summary>
+            ///// Monitoring Model property XXX value changes.
+            ///// </summary>
+            //this.transform.ObserveEveryValueChanged(x => tutorialState).Subscribe(_ =>
+            //    {
+            //        OnTutorialStateChanged();
+            //    }).AddTo(this);
 
         }
 
