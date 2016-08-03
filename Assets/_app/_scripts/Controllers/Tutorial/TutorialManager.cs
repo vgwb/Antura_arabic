@@ -10,6 +10,9 @@ namespace EA4S
 
         public MinigamesCode CurrentGameCode;
 
+        bool isAnimationComplete;
+        bool isDialogsComplete;
+
         int tutorialIndex = 10;
 
         void Start()
@@ -39,7 +42,7 @@ namespace EA4S
                     break;
                 case 12:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3", 3, true, Ready2Play);
+                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3", 3, true, DialogsComplete);
                     break;
                 case 15:
                     tutorialIndex++;
@@ -47,7 +50,7 @@ namespace EA4S
                     break;
                 case 16:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro2", 2, true, Ready2Play);
+                    WidgetSubtitles.I.DisplaySentence("game_fastcrowd_A_intro2", 2, true, DialogsComplete);
                     break;
                 case 20:
                     tutorialIndex++;
@@ -55,11 +58,11 @@ namespace EA4S
                     break;
                 case 21:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1", 2, true, ShowTutor);
+                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro2", 2, true, ShowTutor);
                     break;
                 case 22:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1", 2, true, Ready2Play);
+                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro3", 2, true, DialogsComplete);
                     break;
                 case 30:
                     tutorialIndex++;
@@ -71,15 +74,29 @@ namespace EA4S
                     break;
                 case 32:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro3", 2, true, Ready2Play);
+                    WidgetSubtitles.I.DisplaySentence("game_balloons_intro3", 2, true, DialogsComplete);
                     break;
-
             }
         }
 
-        public void Ready2Play()
+        public void DialogsComplete()
         {
-            ContinueScreen.Show(Play, ContinueScreenMode.Button);
+            isDialogsComplete = true;
+            Ready2Play();
+        }
+
+        public void OnTutorialComplete()
+        {
+            isAnimationComplete = true;
+            Ready2Play();
+        }
+
+        void Ready2Play()
+        {
+            // TODO both dialog and animation should be compelted before allowing continue
+            if (isAnimationComplete || isDialogsComplete) {
+                ContinueScreen.Show(Play, ContinueScreenMode.Button);
+            }
         }
 
         public void Play()
