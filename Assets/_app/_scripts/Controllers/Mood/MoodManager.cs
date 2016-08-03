@@ -21,6 +21,8 @@ namespace EA4S
             } else {
                 WidgetSubtitles.I.DisplaySentence("mood_how_are_you_today");
             }
+
+            SceneTransitioner.Close();
         }
 
         /// <summary> 

@@ -69,6 +69,8 @@ namespace EA4S
             } else {
                 tutorialIndex = 10;
             }
+
+            SceneTransitioner.Close();
             ShowTutor();
         }
 

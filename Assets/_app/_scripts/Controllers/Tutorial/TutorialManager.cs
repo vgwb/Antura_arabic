@@ -12,12 +12,15 @@ namespace EA4S
 
         bool isAnimationComplete;
         bool isDialogsComplete;
+        bool continueShown;
 
         int tutorialIndex = 10;
 
         void Start()
         {
             AudioManager.I.PlayMusic(Music.Silence);
+
+            SceneTransitioner.Close();
 
             if (CurrentGameCode == MinigamesCode.FastCrowd) {
                 tutorialIndex = 10;
@@ -94,7 +97,8 @@ namespace EA4S
         void Ready2Play()
         {
             // TODO both dialog and animation should be compelted before allowing continue
-            if (isAnimationComplete || isDialogsComplete) {
+            if ((isAnimationComplete || isDialogsComplete) && !continueShown) {
+                continueShown = true;
                 ContinueScreen.Show(Play, ContinueScreenMode.Button);
             }
         }

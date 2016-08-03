@@ -31,7 +31,7 @@ namespace EA4S
                 LoggerEA4S.Log("app", "Reward", "get_reward", "3");
             }
             LoggerEA4S.Save();
-
+            SceneTransitioner.Close();
             ShowTutor();
         }
 
