@@ -19,6 +19,8 @@ namespace EA4S {
         public bool IsLocked = false;
         public bool IsInteractable = true;
         AssessmentManager manager;
+        SpriteLineRenderer line;
+        
 
         #region 
         /// <summary>
@@ -58,6 +60,15 @@ namespace EA4S {
         }
         #endregion
 
+        #region Line
+
+        void Update() {
+            if (line)
+                line.OnDraw(transform.position, Input.mousePosition);
+        }
+
+        #endregion
+
         #region inputEvents
 
         public void OnPointerDown(PointerEventData eventData) {
@@ -66,6 +77,7 @@ namespace EA4S {
             if (IsLocked)
                 manager.UnlockObjects(Color);
             SetColor(manager.GetAvailableColor());
+            line = manager.GetLine(this.Color);
             ShowCyrcle(1);
         }
 
@@ -83,11 +95,13 @@ namespace EA4S {
                     other.ShowCyrcle(1);
                     other.IsLocked = IsLocked = true;
                     manager.OnReleaseOnWord(this, other);
+                    line = null;
                     return;
                 }
             }
             HideCyrcle(1);
             manager.UnlockObjects(Color);
+            line = null;
         }
 
         #endregion
