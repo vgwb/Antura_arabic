@@ -2,6 +2,7 @@
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -94,6 +95,16 @@ namespace TMPro
         }
         [SerializeField]
         private TMP_FontAsset m_defaultFontAsset;
+
+        /// <summary>
+        /// The relative path to a Resources folder in the project.
+        /// </summary>
+        public static string defaultFontAssetPath
+        {
+            get { return instance.m_defaultFontAssetPath; }
+        }
+        [SerializeField]
+        private string m_defaultFontAssetPath;
 
         /// <summary>
         /// The Default Point Size of newly created text objects.

@@ -166,12 +166,12 @@ namespace TMPro
         /// <summary>
         /// Function returning the index of the character at the given position (if any).
         /// </summary>
-        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="text">A reference to the TextMeshPro component.</param>
         /// <param name="position">Position to check for intersection.</param>
-        /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
+        /// <param name="camera">The scene camera which is rendering the text or whichever one might be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <param name="visibleOnly">Only check for visible characters.</param>
         /// <returns></returns>
-        public static int FindIntersectingCharacter(TextMeshProUGUI text, Vector3 position, Camera camera, bool visibleOnly)
+        public static int FindIntersectingCharacter(TMP_Text text, Vector3 position, Camera camera, bool visibleOnly)
         {
             RectTransform rectTransform = text.rectTransform;
 
@@ -182,7 +182,7 @@ namespace TMPro
             {
                 // Get current character info.
                 TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if (visibleOnly && !cInfo.isVisible)
+                if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
                     continue;
 
                 // Get Bottom Left and Top Right position of the current character
@@ -207,33 +207,33 @@ namespace TMPro
         /// <param name="camera">The camera which is rendering the text object.</param>
         /// <param name="visibleOnly">Only check for visible characters.</param>
         /// <returns></returns>
-        public static int FindIntersectingCharacter(TextMeshPro text, Vector3 position, Camera camera, bool visibleOnly)
-        {
-            Transform textTransform = text.transform;
+        //public static int FindIntersectingCharacter(TextMeshPro text, Vector3 position, Camera camera, bool visibleOnly)
+        //{
+        //    Transform textTransform = text.transform;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
 
-            for (int i = 0; i < text.textInfo.characterCount; i++)
-            {
-                // Get current character info.
-                TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if (visibleOnly && !cInfo.isVisible)
-                    continue;
+        //    for (int i = 0; i < text.textInfo.characterCount; i++)
+        //    {
+        //        // Get current character info.
+        //        TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
+        //        if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
+        //            continue;
 
-                // Get Bottom Left and Top Right position of the current character
-                Vector3 bl = textTransform.TransformPoint(cInfo.bottomLeft);
-                Vector3 tl = textTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
-                Vector3 tr = textTransform.TransformPoint(cInfo.topRight);
-                Vector3 br = textTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
+        //        // Get Bottom Left and Top Right position of the current character
+        //        Vector3 bl = textTransform.TransformPoint(cInfo.bottomLeft);
+        //        Vector3 tl = textTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
+        //        Vector3 tr = textTransform.TransformPoint(cInfo.topRight);
+        //        Vector3 br = textTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
 
-                if (PointIntersectRectangle(position, bl, tl, tr, br))
-                    return i;
+        //        if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //            return i;
 
-            }
+        //    }
 
-            return -1;
-        }
+        //    return -1;
+        //}
 
 
         /// <summary>
@@ -258,7 +258,7 @@ namespace TMPro
             {
                 // Get current character info.
                 TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if (visibleOnly && !cInfo.isVisible)
+                if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
                     continue;
 
                 // Get Bottom Left and Top Right position of the current character
@@ -299,53 +299,53 @@ namespace TMPro
         /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <param name="visibleOnly">Only check for visible characters.</param>
         /// <returns></returns>
-        public static int FindNearestCharacter(TextMeshProUGUI text, Vector3 position, Camera camera, bool visibleOnly)
-        {
-            RectTransform rectTransform = text.rectTransform;
+        //public static int FindNearestCharacter(TextMeshProUGUI text, Vector3 position, Camera camera, bool visibleOnly)
+        //{
+        //    RectTransform rectTransform = text.rectTransform;
 
-            float distanceSqr = Mathf.Infinity;
-            int closest = 0;
+        //    float distanceSqr = Mathf.Infinity;
+        //    int closest = 0;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
 
-            for (int i = 0; i < text.textInfo.characterCount; i++)
-            {
-                // Get current character info.
-                TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if (visibleOnly && !cInfo.isVisible)
-                    continue;
+        //    for (int i = 0; i < text.textInfo.characterCount; i++)
+        //    {
+        //        // Get current character info.
+        //        TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
+        //        if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
+        //            continue;
 
-                // Get Bottom Left and Top Right position of the current character
-                Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
-                Vector3 tl = rectTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
-                Vector3 tr = rectTransform.TransformPoint(cInfo.topRight);
-                Vector3 br = rectTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
+        //        // Get Bottom Left and Top Right position of the current character
+        //        Vector3 bl = rectTransform.TransformPoint(cInfo.bottomLeft);
+        //        Vector3 tl = rectTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
+        //        Vector3 tr = rectTransform.TransformPoint(cInfo.topRight);
+        //        Vector3 br = rectTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
 
-                if (PointIntersectRectangle(position, bl, tl, tr, br))
-                    return i;
+        //        if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //            return i;
 
-                // Find the closest corner to position.
-                float dbl = DistanceToLine(bl, tl, position);
-                float dtl = DistanceToLine(tl, tr, position);
-                float dtr = DistanceToLine(tr, br, position);
-                float dbr = DistanceToLine(br, bl, position);
+        //        // Find the closest corner to position.
+        //        float dbl = DistanceToLine(bl, tl, position);
+        //        float dtl = DistanceToLine(tl, tr, position);
+        //        float dtr = DistanceToLine(tr, br, position);
+        //        float dbr = DistanceToLine(br, bl, position);
 
-                float d = dbl < dtl ? dbl : dtl;
-                d = d < dtr ? d : dtr;
-                d = d < dbr ? d : dbr;
+        //        float d = dbl < dtl ? dbl : dtl;
+        //        d = d < dtr ? d : dtr;
+        //        d = d < dbr ? d : dbr;
 
-                if (distanceSqr > d)
-                {
-                    distanceSqr = d;
-                    closest = i;
-                }
-            }
+        //        if (distanceSqr > d)
+        //        {
+        //            distanceSqr = d;
+        //            closest = i;
+        //        }
+        //    }
 
-            //Debug.Log("Returning nearest character at index: " + closest);
+        //    //Debug.Log("Returning nearest character at index: " + closest);
 
-            return closest;
-        }
+        //    return closest;
+        //}
 
 
         /// <summary>
@@ -356,65 +356,64 @@ namespace TMPro
         /// <param name="camera">The camera which is rendering the text object.</param>
         /// <param name="visibleOnly">Only check for visible characters.</param>
         /// <returns></returns>
-        public static int FindNearestCharacter(TextMeshPro text, Vector3 position, Camera camera, bool visibleOnly)
-        {
-            Transform textTransform = text.transform;
-            
-            float distanceSqr = Mathf.Infinity;
-            int closest = 0;
+        //public static int FindNearestCharacter(TextMeshPro text, Vector3 position, Camera camera, bool visibleOnly)
+        //{
+        //    Transform textTransform = text.transform;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
+        //    float distanceSqr = Mathf.Infinity;
+        //    int closest = 0;
 
-            for (int i = 0; i < text.textInfo.characterCount; i++)
-            {
-                // Get current character info.
-                TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
-                if (visibleOnly && !cInfo.isVisible)
-                    continue;
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
 
-                // Get Bottom Left and Top Right position of the current character
-                Vector3 bl = textTransform.TransformPoint(cInfo.bottomLeft);
-                Vector3 tl = textTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
-                Vector3 tr = textTransform.TransformPoint(cInfo.topRight);
-                Vector3 br = textTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
+        //    for (int i = 0; i < text.textInfo.characterCount; i++)
+        //    {
+        //        // Get current character info.
+        //        TMP_CharacterInfo cInfo = text.textInfo.characterInfo[i];
+        //        if ((visibleOnly && !cInfo.isVisible) || (text.OverflowMode == TextOverflowModes.Page && cInfo.pageNumber + 1 != text.pageToDisplay))
+        //            continue;
 
-                if (PointIntersectRectangle(position, bl, tl, tr, br))
-                    return i;
+        //        // Get Bottom Left and Top Right position of the current character
+        //        Vector3 bl = textTransform.TransformPoint(cInfo.bottomLeft);
+        //        Vector3 tl = textTransform.TransformPoint(new Vector3(cInfo.bottomLeft.x, cInfo.topRight.y, 0));
+        //        Vector3 tr = textTransform.TransformPoint(cInfo.topRight);
+        //        Vector3 br = textTransform.TransformPoint(new Vector3(cInfo.topRight.x, cInfo.bottomLeft.y, 0));
 
-                // Find the closest corner to position.
-                float dbl = DistanceToLine(bl, tl, position); // (position - bl).sqrMagnitude;
-                float dtl = DistanceToLine(tl, tr, position); // (position - tl).sqrMagnitude;
-                float dtr = DistanceToLine(tr, br, position); // (position - tr).sqrMagnitude;
-                float dbr = DistanceToLine(br, bl, position); // (position - br).sqrMagnitude;
+        //        if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //            return i;
 
-                float d = dbl < dtl ? dbl : dtl;
-                d = d < dtr ? d : dtr;
-                d = d < dbr ? d : dbr;
+        //        // Find the closest corner to position.
+        //        float dbl = DistanceToLine(bl, tl, position); // (position - bl).sqrMagnitude;
+        //        float dtl = DistanceToLine(tl, tr, position); // (position - tl).sqrMagnitude;
+        //        float dtr = DistanceToLine(tr, br, position); // (position - tr).sqrMagnitude;
+        //        float dbr = DistanceToLine(br, bl, position); // (position - br).sqrMagnitude;
 
-                if (distanceSqr > d)
-                {
-                    distanceSqr = d;
-                    closest = i;
-                }
-            }
+        //        float d = dbl < dtl ? dbl : dtl;
+        //        d = d < dtr ? d : dtr;
+        //        d = d < dbr ? d : dbr;
 
-            //Debug.Log("Returning nearest character at index: " + closest);
+        //        if (distanceSqr > d)
+        //        {
+        //            distanceSqr = d;
+        //            closest = i;
+        //        }
+        //    }
 
-            return closest;
-        }
+        //    //Debug.Log("Returning nearest character at index: " + closest);
+
+        //    return closest;
+        //}
 
 
         // WORD HANDLING
-
         /// <summary>
         /// Function returning the index of the word at the given position (if any).
         /// </summary>
-        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="text">A reference to the TMP_Text component.</param>
         /// <param name="position">Position to check for intersection.</param>
         /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <returns></returns>
-        public static int FindIntersectingWord(TextMeshProUGUI text, Vector3 position, Camera camera)
+        public static int FindIntersectingWord(TMP_Text text, Vector3 position, Camera camera)
         {
             RectTransform rectTransform = text.rectTransform;
 
@@ -537,136 +536,263 @@ namespace TMPro
         /// <summary>
         /// Function returning the index of the word at the given position (if any).
         /// </summary>
-        /// <param name="text">A reference to the TextMeshPro component.</param>
+        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
         /// <param name="position">Position to check for intersection.</param>
-        /// <param name="camera">The camera which is rendering the text object.</param>
+        /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <returns></returns>
-        public static int FindIntersectingWord(TextMeshPro text, Vector3 position, Camera camera)
-        {
-            Transform textTransform = text.transform;
+        //public static int FindIntersectingWord(TextMeshProUGUI text, Vector3 position, Camera camera)
+        //{
+        //    RectTransform rectTransform = text.rectTransform;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
 
-            for (int i = 0; i < text.textInfo.wordCount; i++)
-            {
-                TMP_WordInfo wInfo = text.textInfo.wordInfo[i];
+        //    for (int i = 0; i < text.textInfo.wordCount; i++)
+        //    {
+        //        TMP_WordInfo wInfo = text.textInfo.wordInfo[i];
 
-                bool isBeginRegion = false;
+        //        bool isBeginRegion = false;
 
-                Vector3 bl = Vector3.zero;
-                Vector3 tl = Vector3.zero;
-                Vector3 br = Vector3.zero;
-                Vector3 tr = Vector3.zero;
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
 
-                float maxAscender = -Mathf.Infinity;
-                float minDescender = Mathf.Infinity;
+        //        float maxAscender = -Mathf.Infinity;
+        //        float minDescender = Mathf.Infinity;
 
-                // Iterate through each character of the word
-                for (int j = 0; j < wInfo.characterCount; j++)
-                {
-                    int characterIndex = wInfo.firstCharacterIndex + j;
-                    TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
-                    int currentLine = currentCharInfo.lineNumber;
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < wInfo.characterCount; j++)
+        //        {
+        //            int characterIndex = wInfo.firstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > text.maxVisibleLines ||
-                                             (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+        //            bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
+        //                                      currentCharInfo.lineNumber > text.maxVisibleLines ||
+        //                                     (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
 
-                    // Track maximum Ascender and minimum Descender for each word.
-                    maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
-                    minDescender = Mathf.Min(minDescender, currentCharInfo.descender);
+        //            // Track maximum Ascender and minimum Descender for each word.
+        //            maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
+        //            minDescender = Mathf.Min(minDescender, currentCharInfo.descender);
 
-                    if (isBeginRegion == false && isCharacterVisible)
-                    {
-                        isBeginRegion = true;
+        //            if (isBeginRegion == false && isCharacterVisible)
+        //            {
+        //                isBeginRegion = true;
 
-                        bl = new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0);
-                        tl = new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0);
+        //                bl = new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0);
+        //                tl = new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0);
 
-                        //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
 
-                        // If Word is one character
-                        if (wInfo.characterCount == 1)
-                        {
-                            isBeginRegion = false;
+        //                // If Word is one character
+        //                if (wInfo.characterCount == 1)
+        //                {
+        //                    isBeginRegion = false;
 
-                            br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
-                            tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
+        //                    br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
+        //                    tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
 
-                            // Transform coordinates to be relative to transform and account min descender and max ascender.
-                            bl = textTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
-                            tl = textTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
-                            tr = textTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
-                            br = textTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
+        //                    // Transform coordinates to be relative to transform and account min descender and max ascender.
+        //                    bl = rectTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
+        //                    tl = rectTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
+        //                    tr = rectTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
+        //                    br = rectTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
 
-                            // Check for Intersection
-                            if (PointIntersectRectangle(position, bl, tl, tr, br))
-                                return i;
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
 
-                            //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                        }
-                    }
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
 
-                    // Last Character of Word
-                    if (isBeginRegion && j == wInfo.characterCount - 1)
-                    {
-                        isBeginRegion = false;
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == wInfo.characterCount - 1)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
-                        tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
+        //                br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
+        //                tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
 
-                        // Transform coordinates to be relative to transform and account min descender and max ascender.
-                        bl = textTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
-                        tl = textTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
-                        br = textTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
+        //                // Transform coordinates to be relative to transform and account min descender and max ascender.
+        //                bl = rectTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
+        //                tl = rectTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
+        //                br = rectTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                    // If Word is split on more than one line.
-                    else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
-                    {
-                        isBeginRegion = false;
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
-                        tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
+        //                br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
+        //                tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
 
-                        // Transform coordinates to be relative to transform and account min descender and max ascender.
-                        bl = textTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
-                        tl = textTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
-                        br = textTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
+        //                // Transform coordinates to be relative to transform and account min descender and max ascender.
+        //                bl = rectTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
+        //                tl = rectTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
+        //                br = rectTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
 
-                        // Reset maxAscender and minDescender for next word segment.
-                        maxAscender = -Mathf.Infinity;
-                        minDescender = Mathf.Infinity;
+        //                maxAscender = -Mathf.Infinity;
+        //                minDescender = Mathf.Infinity;
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                }
-            }
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
 
-            return -1;
-        }
+        //        //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
+
+        //    }
+
+        //    return -1;
+        //}
 
 
         /// <summary>
         /// Function returning the index of the word at the given position (if any).
         /// </summary>
-        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="text">A reference to the TextMeshPro component.</param>
+        /// <param name="position">Position to check for intersection.</param>
+        /// <param name="camera">The camera which is rendering the text object.</param>
+        /// <returns></returns>
+        //public static int FindIntersectingWord(TextMeshPro text, Vector3 position, Camera camera)
+        //{
+        //    Transform textTransform = text.transform;
+
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
+
+        //    for (int i = 0; i < text.textInfo.wordCount; i++)
+        //    {
+        //        TMP_WordInfo wInfo = text.textInfo.wordInfo[i];
+
+        //        bool isBeginRegion = false;
+
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
+
+        //        float maxAscender = -Mathf.Infinity;
+        //        float minDescender = Mathf.Infinity;
+
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < wInfo.characterCount; j++)
+        //        {
+        //            int characterIndex = wInfo.firstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
+
+        //            bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
+        //                                      currentCharInfo.lineNumber > text.maxVisibleLines ||
+        //                                     (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+
+        //            // Track maximum Ascender and minimum Descender for each word.
+        //            maxAscender = Mathf.Max(maxAscender, currentCharInfo.ascender);
+        //            minDescender = Mathf.Min(minDescender, currentCharInfo.descender);
+
+        //            if (isBeginRegion == false && isCharacterVisible)
+        //            {
+        //                isBeginRegion = true;
+
+        //                bl = new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0);
+        //                tl = new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0);
+
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+
+        //                // If Word is one character
+        //                if (wInfo.characterCount == 1)
+        //                {
+        //                    isBeginRegion = false;
+
+        //                    br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
+        //                    tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
+
+        //                    // Transform coordinates to be relative to transform and account min descender and max ascender.
+        //                    bl = textTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
+        //                    tl = textTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
+        //                    tr = textTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
+        //                    br = textTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
+
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
+
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
+
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == wInfo.characterCount - 1)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
+        //                tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
+
+        //                // Transform coordinates to be relative to transform and account min descender and max ascender.
+        //                bl = textTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
+        //                tl = textTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0);
+        //                tr = new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0);
+
+        //                // Transform coordinates to be relative to transform and account min descender and max ascender.
+        //                bl = textTransform.TransformPoint(new Vector3(bl.x, minDescender, 0));
+        //                tl = textTransform.TransformPoint(new Vector3(tl.x, maxAscender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(tr.x, maxAscender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(br.x, minDescender, 0));
+
+        //                // Reset maxAscender and minDescender for next word segment.
+        //                maxAscender = -Mathf.Infinity;
+        //                minDescender = Mathf.Infinity;
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
+        //    }
+
+        //    return -1;
+        //}
+
+
+        /// <summary>
+        /// Function returning the index of the word at the given position (if any).
+        /// </summary>
+        /// <param name="text">A reference to the TMP_Text component.</param>
         /// <param name="position"></param>
         /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <returns></returns>
-        public static int FindNearestWord(TextMeshProUGUI text, Vector3 position, Camera camera)
+        public static int FindNearestWord(TMP_Text text, Vector3 position, Camera camera)
         {
             RectTransform rectTransform = text.rectTransform;
 
@@ -719,7 +845,21 @@ namespace TMPro
                             if (PointIntersectRectangle(position, bl, tl, tr, br))
                                 return i;
 
-                            //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+                            // Find the closest line segment to position.
+                            float dbl = DistanceToLine(bl, tl, position);
+                            float dtl = DistanceToLine(tl, tr, position);
+                            float dtr = DistanceToLine(tr, br, position);
+                            float dbr = DistanceToLine(br, bl, position);
+
+                            float d = dbl < dtl ? dbl : dtl;
+                            d = d < dtr ? d : dtr;
+                            d = d < dbr ? d : dbr;
+
+                            if (distanceSqr > d)
+                            {
+                                distanceSqr = d;
+                                closest = i;
+                            }
                         }
                     }
 
@@ -735,7 +875,21 @@ namespace TMPro
                         if (PointIntersectRectangle(position, bl, tl, tr, br))
                             return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+                        // Find the closest line segment to position.
+                        float dbl = DistanceToLine(bl, tl, position);
+                        float dtl = DistanceToLine(tl, tr, position);
+                        float dtr = DistanceToLine(tr, br, position);
+                        float dbr = DistanceToLine(br, bl, position);
+
+                        float d = dbl < dtl ? dbl : dtl;
+                        d = d < dtr ? d : dtr;
+                        d = d < dbr ? d : dbr;
+
+                        if (distanceSqr > d)
+                        {
+                            distanceSqr = d;
+                            closest = i;
+                        }
                     }
                     // If Word is split on more than one line.
                     else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
@@ -749,31 +903,145 @@ namespace TMPro
                         if (PointIntersectRectangle(position, bl, tl, tr, br))
                             return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+                        // Find the closest line segment to position.
+                        float dbl = DistanceToLine(bl, tl, position);
+                        float dtl = DistanceToLine(tl, tr, position);
+                        float dtr = DistanceToLine(tr, br, position);
+                        float dbr = DistanceToLine(br, bl, position);
+
+                        float d = dbl < dtl ? dbl : dtl;
+                        d = d < dtr ? d : dtr;
+                        d = d < dbr ? d : dbr;
+
+                        if (distanceSqr > d)
+                        {
+                            distanceSqr = d;
+                            closest = i;
+                        }
                     }
                 }
 
-                // Find the closest line segment to position.
-                float dbl = DistanceToLine(bl, tl, position); // (position - bl).sqrMagnitude;
-                float dtl = DistanceToLine(tl, tr, position); // (position - tl).sqrMagnitude;
-                float dtr = DistanceToLine(tr, br, position); // (position - tr).sqrMagnitude;
-                float dbr = DistanceToLine(br, bl, position); // (position - br).sqrMagnitude;
-
-                float d = dbl < dtl ? dbl : dtl;
-                d = d < dtr ? d : dtr;
-                d = d < dbr ? d : dbr;
-
-                if (distanceSqr > d)
-                {
-                    distanceSqr = d;
-                    closest = i;
-                }
                 //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
-
             }
 
             return closest;
         }
+
+        /// <summary>
+        /// Function returning the index of the word at the given position (if any).
+        /// </summary>
+        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="position"></param>
+        /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
+        /// <returns></returns>
+        //public static int FindNearestWord(TextMeshProUGUI text, Vector3 position, Camera camera)
+        //{
+        //    RectTransform rectTransform = text.rectTransform;
+
+        //    float distanceSqr = Mathf.Infinity;
+        //    int closest = 0;
+
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+
+        //    for (int i = 0; i < text.textInfo.wordCount; i++)
+        //    {
+        //        TMP_WordInfo wInfo = text.textInfo.wordInfo[i];
+
+        //        bool isBeginRegion = false;
+
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
+
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < wInfo.characterCount; j++)
+        //        {
+        //            int characterIndex = wInfo.firstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
+
+        //            bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
+        //                                      currentCharInfo.lineNumber > text.maxVisibleLines ||
+        //                                     (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+
+        //            if (isBeginRegion == false && isCharacterVisible)
+        //            {
+        //                isBeginRegion = true;
+
+        //                bl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
+        //                tl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
+
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+
+        //                // If Word is one character
+        //                if (wInfo.characterCount == 1)
+        //                {
+        //                    isBeginRegion = false;
+
+        //                    br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                    tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
+
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
+
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == wInfo.characterCount - 1)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
+
+        //        // Find the closest line segment to position.
+        //        float dbl = DistanceToLine(bl, tl, position); // (position - bl).sqrMagnitude;
+        //        float dtl = DistanceToLine(tl, tr, position); // (position - tl).sqrMagnitude;
+        //        float dtr = DistanceToLine(tr, br, position); // (position - tr).sqrMagnitude;
+        //        float dbr = DistanceToLine(br, bl, position); // (position - br).sqrMagnitude;
+
+        //        float d = dbl < dtl ? dbl : dtl;
+        //        d = d < dtr ? d : dtr;
+        //        d = d < dbr ? d : dbr;
+
+        //        if (distanceSqr > d)
+        //        {
+        //            distanceSqr = d;
+        //            closest = i;
+        //        }
+        //        //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
+
+        //    }
+
+        //    return closest;
+        //}
 
 
         /// <summary>
@@ -783,125 +1051,125 @@ namespace TMPro
         /// <param name="position">Position to check for intersection.</param>
         /// <param name="camera">The camera which is rendering the text object.</param>
         /// <returns></returns>
-        public static int FindNearestWord(TextMeshPro text, Vector3 position, Camera camera)
-        {
-            Transform textTransform = text.transform;
+        //public static int FindNearestWord(TextMeshPro text, Vector3 position, Camera camera)
+        //{
+        //    Transform textTransform = text.transform;
 
-            float distanceSqr = Mathf.Infinity;
-            int closest = 0;
+        //    float distanceSqr = Mathf.Infinity;
+        //    int closest = 0;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
 
-            for (int i = 0; i < text.textInfo.wordCount; i++)
-            {
-                TMP_WordInfo wInfo = text.textInfo.wordInfo[i];
+        //    for (int i = 0; i < text.textInfo.wordCount; i++)
+        //    {
+        //        TMP_WordInfo wInfo = text.textInfo.wordInfo[i];
 
-                bool isBeginRegion = false;
+        //        bool isBeginRegion = false;
 
-                Vector3 bl = Vector3.zero;
-                Vector3 tl = Vector3.zero;
-                Vector3 br = Vector3.zero;
-                Vector3 tr = Vector3.zero;
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
 
-                // Iterate through each character of the word
-                for (int j = 0; j < wInfo.characterCount; j++)
-                {
-                    int characterIndex = wInfo.firstCharacterIndex + j;
-                    TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
-                    int currentLine = currentCharInfo.lineNumber;
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < wInfo.characterCount; j++)
+        //        {
+        //            int characterIndex = wInfo.firstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
 
-                    bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
-                                              currentCharInfo.lineNumber > text.maxVisibleLines ||
-                                             (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
+        //            bool isCharacterVisible = characterIndex > text.maxVisibleCharacters ||
+        //                                      currentCharInfo.lineNumber > text.maxVisibleLines ||
+        //                                     (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) ? false : true;
 
-                    if (isBeginRegion == false && isCharacterVisible)
-                    {
-                        isBeginRegion = true;
+        //            if (isBeginRegion == false && isCharacterVisible)
+        //            {
+        //                isBeginRegion = true;
 
-                        bl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
-                        tl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
+        //                bl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
+        //                tl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
 
-                        //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
 
-                        // If Word is one character
-                        if (wInfo.characterCount == 1)
-                        {
-                            isBeginRegion = false;
+        //                // If Word is one character
+        //                if (wInfo.characterCount == 1)
+        //                {
+        //                    isBeginRegion = false;
 
-                            br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                            tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                    br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                    tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                            // Check for Intersection
-                            if (PointIntersectRectangle(position, bl, tl, tr, br))
-                                return i;
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
 
-                            //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                        }
-                    }
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
 
-                    // Last Character of Word
-                    if (isBeginRegion && j == wInfo.characterCount - 1)
-                    {
-                        isBeginRegion = false;
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == wInfo.characterCount - 1)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                    // If Word is split on more than one line.
-                    else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
-                    {
-                        isBeginRegion = false;
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                }
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
 
-                 // Find the closest line segment to position.
-                float dbl = DistanceToLine(bl, tl, position);
-                float dtl = DistanceToLine(tl, tr, position);
-                float dtr = DistanceToLine(tr, br, position);
-                float dbr = DistanceToLine(br, bl, position);
+        //         // Find the closest line segment to position.
+        //        float dbl = DistanceToLine(bl, tl, position);
+        //        float dtl = DistanceToLine(tl, tr, position);
+        //        float dtr = DistanceToLine(tr, br, position);
+        //        float dbr = DistanceToLine(br, bl, position);
 
-                float d = dbl < dtl ? dbl : dtl;
-                d = d < dtr ? d : dtr;
-                d = d < dbr ? d : dbr;
+        //        float d = dbl < dtl ? dbl : dtl;
+        //        d = d < dtr ? d : dtr;
+        //        d = d < dbr ? d : dbr;
 
-                if (distanceSqr > d)
-                {
-                    distanceSqr = d;
-                    closest = i;
-                }
-                //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
+        //        if (distanceSqr > d)
+        //        {
+        //            distanceSqr = d;
+        //            closest = i;
+        //        }
+        //        //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
 
-            }
+        //    }
 
-            return closest;
-           
-        }
+        //    return closest;
+
+        //}
 
 
         /// <summary>
         /// Function returning the index of the Link at the given position (if any).
         /// </summary>
-        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="text">A reference to the TMP_Text component.</param>
         /// <param name="position">Position to check for intersection.</param>
         /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <returns></returns>
-        public static int FindIntersectingLink(TextMeshProUGUI text, Vector3 position, Camera camera)
+        public static int FindIntersectingLink(TMP_Text text, Vector3 position, Camera camera)
         {
             Transform rectTransform = text.transform;
 
@@ -991,6 +1259,103 @@ namespace TMPro
             return -1;
         }
 
+        /// <summary>
+        /// Function returning the index of the Link at the given position (if any).
+        /// </summary>
+        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="position">Position to check for intersection.</param>
+        /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
+        /// <returns></returns>
+        //public static int FindIntersectingLink(TextMeshProUGUI text, Vector3 position, Camera camera)
+        //{
+        //    Transform rectTransform = text.transform;
+
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+
+        //    for (int i = 0; i < text.textInfo.linkCount; i++)
+        //    {
+        //        TMP_LinkInfo linkInfo = text.textInfo.linkInfo[i];
+
+        //        bool isBeginRegion = false;
+
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
+
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < linkInfo.linkTextLength; j++)
+        //        {
+        //            int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
+
+        //            // Check if Link characters are on the current page
+        //            if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
+
+        //            if (isBeginRegion == false)
+        //            {
+        //                isBeginRegion = true;
+
+        //                bl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
+        //                tl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
+
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+
+        //                // If Word is one character
+        //                if (linkInfo.linkTextLength == 1)
+        //                {
+        //                    isBeginRegion = false;
+
+        //                    br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                    tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
+
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
+
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == linkInfo.linkTextLength - 1)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
+
+        //        //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
+
+        //    }
+
+        //    return -1;
+        //}
+
 
         /// <summary>
         /// Function returning the index of the Link at the given position (if any).
@@ -999,105 +1364,105 @@ namespace TMPro
         /// <param name="position">Position to check for intersection.</param>
         /// <param name="camera">The camera which is rendering the text object.</param>
         /// <returns></returns>
-        public static int FindIntersectingLink(TextMeshPro text, Vector3 position, Camera camera)
-        {
-            Transform textTransform = text.transform;
+        //public static int FindIntersectingLink(TextMeshPro text, Vector3 position, Camera camera)
+        //{
+        //    Transform textTransform = text.transform;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
 
-            for (int i = 0; i < text.textInfo.linkCount; i++)
-            {
-                TMP_LinkInfo linkInfo = text.textInfo.linkInfo[i];
+        //    for (int i = 0; i < text.textInfo.linkCount; i++)
+        //    {
+        //        TMP_LinkInfo linkInfo = text.textInfo.linkInfo[i];
 
-                bool isBeginRegion = false;
+        //        bool isBeginRegion = false;
 
-                Vector3 bl = Vector3.zero;
-                Vector3 tl = Vector3.zero;
-                Vector3 br = Vector3.zero;
-                Vector3 tr = Vector3.zero;
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
 
-                // Iterate through each character of the word
-                for (int j = 0; j < linkInfo.linkTextLength; j++)
-                {
-                    int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
-                    TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
-                    int currentLine = currentCharInfo.lineNumber;
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < linkInfo.linkTextLength; j++)
+        //        {
+        //            int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
 
-                    // Check if Link characters are on the current page
-                    if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
+        //            // Check if Link characters are on the current page
+        //            if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
 
-                    if (isBeginRegion == false)
-                    {
-                        isBeginRegion = true;
+        //            if (isBeginRegion == false)
+        //            {
+        //                isBeginRegion = true;
 
-                        bl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
-                        tl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
+        //                bl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
+        //                tl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
 
-                        //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
 
-                        // If Word is one character
-                        if (linkInfo.linkTextLength == 1)
-                        {
-                            isBeginRegion = false;
+        //                // If Word is one character
+        //                if (linkInfo.linkTextLength == 1)
+        //                {
+        //                    isBeginRegion = false;
 
-                            br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                            tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                    br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                    tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                            // Check for Intersection
-                            if (PointIntersectRectangle(position, bl, tl, tr, br))
-                                return i;
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
 
-                            //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                        }
-                    }
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
 
-                    // Last Character of Word
-                    if (isBeginRegion && j == linkInfo.linkTextLength - 1)
-                    {
-                        isBeginRegion = false;
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == linkInfo.linkTextLength - 1)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                    // If Word is split on more than one line.
-                    else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
-                    {
-                        isBeginRegion = false;
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                }
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
 
-                //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
+        //        //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
 
-            }
+        //    }
 
-            return -1;
-        }
+        //    return -1;
+        //}
 
 
         /// <summary>
         /// Function returning the index of the word at the given position (if any).
         /// </summary>
-        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="text">A reference to the TMP_Text component.</param>
         /// <param name="position">Position to check for intersection.</param>
         /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
         /// <returns></returns>
-        public static int FindNearestLink(TextMeshProUGUI text, Vector3 position, Camera camera)
+        public static int FindNearestLink(TMP_Text text, Vector3 position, Camera camera)
         {
             RectTransform rectTransform = text.rectTransform;
 
@@ -1118,23 +1483,26 @@ namespace TMPro
                 Vector3 br = Vector3.zero;
                 Vector3 tr = Vector3.zero;
 
-                // Iterate through each character of the word
+                // Iterate through each character of the link
                 for (int j = 0; j < linkInfo.linkTextLength; j++)
                 {
                     int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
                     TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
                     int currentLine = currentCharInfo.lineNumber;
 
+                    // Check if Link characters are on the current page
+                    if (text.OverflowMode == TextOverflowModes.Page && currentCharInfo.pageNumber + 1 != text.pageToDisplay) continue;
+
                     if (isBeginRegion == false)
                     {
                         isBeginRegion = true;
 
+                        //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+
                         bl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
                         tl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
 
-                        //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
-
-                        // If Word is one character
+                        // If Link is one character
                         if (linkInfo.linkTextLength == 1)
                         {
                             isBeginRegion = false;
@@ -1146,7 +1514,22 @@ namespace TMPro
                             if (PointIntersectRectangle(position, bl, tl, tr, br))
                                 return i;
 
-                            //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+                            // Find the closest line segment to position.
+                            float dbl = DistanceToLine(bl, tl, position); 
+                            float dtl = DistanceToLine(tl, tr, position); 
+                            float dtr = DistanceToLine(tr, br, position); 
+                            float dbr = DistanceToLine(br, bl, position);
+
+                            float d = dbl < dtl ? dbl : dtl;
+                            d = d < dtr ? d : dtr;
+                            d = d < dbr ? d : dbr;
+
+                            if (distanceSqr > d)
+                            {
+                                distanceSqr = d;
+                                closest = i;
+                            }
+
                         }
                     }
 
@@ -1162,9 +1545,24 @@ namespace TMPro
                         if (PointIntersectRectangle(position, bl, tl, tr, br))
                             return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+                        // Find the closest line segment to position.
+                        float dbl = DistanceToLine(bl, tl, position);
+                        float dtl = DistanceToLine(tl, tr, position);
+                        float dtr = DistanceToLine(tr, br, position);
+                        float dbr = DistanceToLine(br, bl, position);
+
+                        float d = dbl < dtl ? dbl : dtl;
+                        d = d < dtr ? d : dtr;
+                        d = d < dbr ? d : dbr;
+
+                        if (distanceSqr > d)
+                        {
+                            distanceSqr = d;
+                            closest = i;
+                        }
+
                     }
-                    // If Word is split on more than one line.
+                    // If Link is split on more than one line.
                     else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
                     {
                         isBeginRegion = false;
@@ -1176,25 +1574,24 @@ namespace TMPro
                         if (PointIntersectRectangle(position, bl, tl, tr, br))
                             return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+                        // Find the closest line segment to position.
+                        float dbl = DistanceToLine(bl, tl, position);
+                        float dtl = DistanceToLine(tl, tr, position);
+                        float dtr = DistanceToLine(tr, br, position);
+                        float dbr = DistanceToLine(br, bl, position);
+
+                        float d = dbl < dtl ? dbl : dtl;
+                        d = d < dtr ? d : dtr;
+                        d = d < dbr ? d : dbr;
+
+                        if (distanceSqr > d)
+                        {
+                            distanceSqr = d;
+                            closest = i;
+                        }
                     }
                 }
 
-                // Find the closest line segment to position.
-                float dbl = DistanceToLine(bl, tl, position); // (position - bl).sqrMagnitude;
-                float dtl = DistanceToLine(tl, tr, position); // (position - tl).sqrMagnitude;
-                float dtr = DistanceToLine(tr, br, position); // (position - tr).sqrMagnitude;
-                float dbr = DistanceToLine(br, bl, position); // (position - br).sqrMagnitude;
-
-                float d = dbl < dtl ? dbl : dtl;
-                d = d < dtr ? d : dtr;
-                d = d < dbr ? d : dbr;
-
-                if (distanceSqr > d)
-                {
-                    distanceSqr = d;
-                    closest = i;
-                }
                 //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
 
             }
@@ -1206,113 +1603,226 @@ namespace TMPro
         /// <summary>
         /// Function returning the index of the word at the given position (if any).
         /// </summary>
+        /// <param name="text">A reference to the TextMeshPro UGUI component.</param>
+        /// <param name="position">Position to check for intersection.</param>
+        /// <param name="camera">The scene camera which may be assigned to a Canvas using ScreenSpace Camera or WorldSpace render mode. Set to null is using ScreenSpace Overlay.</param>
+        /// <returns></returns>
+        //public static int FindNearestLink(TextMeshProUGUI text, Vector3 position, Camera camera)
+        //{
+        //    RectTransform rectTransform = text.rectTransform;
+
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(rectTransform, position, camera, out position);
+
+        //    float distanceSqr = Mathf.Infinity;
+        //    int closest = 0;
+
+        //    for (int i = 0; i < text.textInfo.linkCount; i++)
+        //    {
+        //        TMP_LinkInfo linkInfo = text.textInfo.linkInfo[i];
+
+        //        bool isBeginRegion = false;
+
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
+
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < linkInfo.linkTextLength; j++)
+        //        {
+        //            int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
+
+        //            if (isBeginRegion == false)
+        //            {
+        //                isBeginRegion = true;
+
+        //                bl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
+        //                tl = rectTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
+
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+
+        //                // If Word is one character
+        //                if (linkInfo.linkTextLength == 1)
+        //                {
+        //                    isBeginRegion = false;
+
+        //                    br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                    tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
+
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
+
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == linkInfo.linkTextLength - 1)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
+
+        //                br = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = rectTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
+
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
+
+        //        // Find the closest line segment to position.
+        //        float dbl = DistanceToLine(bl, tl, position); // (position - bl).sqrMagnitude;
+        //        float dtl = DistanceToLine(tl, tr, position); // (position - tl).sqrMagnitude;
+        //        float dtr = DistanceToLine(tr, br, position); // (position - tr).sqrMagnitude;
+        //        float dbr = DistanceToLine(br, bl, position); // (position - br).sqrMagnitude;
+
+        //        float d = dbl < dtl ? dbl : dtl;
+        //        d = d < dtr ? d : dtr;
+        //        d = d < dbr ? d : dbr;
+
+        //        if (distanceSqr > d)
+        //        {
+        //            distanceSqr = d;
+        //            closest = i;
+        //        }
+        //        //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
+
+        //    }
+
+        //    return closest;
+        //}
+
+
+        /// <summary>
+        /// Function returning the index of the word at the given position (if any).
+        /// </summary>
         /// <param name="text">A reference to the TextMeshPro component.</param>
         /// <param name="position">Position to check for intersection.</param>
         /// <param name="camera">The camera which is rendering the text object.</param>
         /// <returns></returns>
-        public static int FindNearestLink(TextMeshPro text, Vector3 position, Camera camera)
-        {
-            Transform textTransform = text.transform;
+        //public static int FindNearestLink(TextMeshPro text, Vector3 position, Camera camera)
+        //{
+        //    Transform textTransform = text.transform;
 
-            // Convert position into Worldspace coordinates
-            ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
+        //    // Convert position into Worldspace coordinates
+        //    ScreenPointToWorldPointInRectangle(textTransform, position, camera, out position);
 
-            float distanceSqr = Mathf.Infinity;
-            int closest = 0;
+        //    float distanceSqr = Mathf.Infinity;
+        //    int closest = 0;
 
-            for (int i = 0; i < text.textInfo.linkCount; i++)
-            {
-                TMP_LinkInfo linkInfo = text.textInfo.linkInfo[i];
+        //    for (int i = 0; i < text.textInfo.linkCount; i++)
+        //    {
+        //        TMP_LinkInfo linkInfo = text.textInfo.linkInfo[i];
 
-                bool isBeginRegion = false;
+        //        bool isBeginRegion = false;
 
-                Vector3 bl = Vector3.zero;
-                Vector3 tl = Vector3.zero;
-                Vector3 br = Vector3.zero;
-                Vector3 tr = Vector3.zero;
+        //        Vector3 bl = Vector3.zero;
+        //        Vector3 tl = Vector3.zero;
+        //        Vector3 br = Vector3.zero;
+        //        Vector3 tr = Vector3.zero;
 
-                // Iterate through each character of the word
-                for (int j = 0; j < linkInfo.linkTextLength; j++)
-                {
-                    int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
-                    TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
-                    int currentLine = currentCharInfo.lineNumber;
+        //        // Iterate through each character of the word
+        //        for (int j = 0; j < linkInfo.linkTextLength; j++)
+        //        {
+        //            int characterIndex = linkInfo.linkTextfirstCharacterIndex + j;
+        //            TMP_CharacterInfo currentCharInfo = text.textInfo.characterInfo[characterIndex];
+        //            int currentLine = currentCharInfo.lineNumber;
 
-                    if (isBeginRegion == false)
-                    {
-                        isBeginRegion = true;
+        //            if (isBeginRegion == false)
+        //            {
+        //                isBeginRegion = true;
 
-                        bl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
-                        tl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
+        //                bl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.descender, 0));
+        //                tl = textTransform.TransformPoint(new Vector3(currentCharInfo.bottomLeft.x, currentCharInfo.ascender, 0));
 
-                        //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
+        //                //Debug.Log("Start Word Region at [" + currentCharInfo.character + "]");
 
-                        // If Word is one character
-                        if (linkInfo.linkTextLength == 1)
-                        {
-                            isBeginRegion = false;
+        //                // If Word is one character
+        //                if (linkInfo.linkTextLength == 1)
+        //                {
+        //                    isBeginRegion = false;
 
-                            br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                            tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                    br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                    tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                            // Check for Intersection
-                            if (PointIntersectRectangle(position, bl, tl, tr, br))
-                                return i;
+        //                    // Check for Intersection
+        //                    if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                        return i;
 
-                            //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                        }
-                    }
+        //                    //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //                }
+        //            }
 
-                    // Last Character of Word
-                    if (isBeginRegion && j == linkInfo.linkTextLength - 1)
-                    {
-                        isBeginRegion = false;
+        //            // Last Character of Word
+        //            if (isBeginRegion && j == linkInfo.linkTextLength - 1)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                    // If Word is split on more than one line.
-                    else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
-                    {
-                        isBeginRegion = false;
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //            // If Word is split on more than one line.
+        //            else if (isBeginRegion && currentLine != text.textInfo.characterInfo[characterIndex + 1].lineNumber)
+        //            {
+        //                isBeginRegion = false;
 
-                        br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
-                        tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
+        //                br = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.descender, 0));
+        //                tr = textTransform.TransformPoint(new Vector3(currentCharInfo.topRight.x, currentCharInfo.ascender, 0));
 
-                        // Check for Intersection
-                        if (PointIntersectRectangle(position, bl, tl, tr, br))
-                            return i;
+        //                // Check for Intersection
+        //                if (PointIntersectRectangle(position, bl, tl, tr, br))
+        //                    return i;
 
-                        //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
-                    }
-                }
+        //                //Debug.Log("End Word Region at [" + currentCharInfo.character + "]");
+        //            }
+        //        }
 
-                // Find the closest line segment to position.
-                float dbl = DistanceToLine(bl, tl, position);
-                float dtl = DistanceToLine(tl, tr, position);
-                float dtr = DistanceToLine(tr, br, position);
-                float dbr = DistanceToLine(br, bl, position);
+        //        // Find the closest line segment to position.
+        //        float dbl = DistanceToLine(bl, tl, position);
+        //        float dtl = DistanceToLine(tl, tr, position);
+        //        float dtr = DistanceToLine(tr, br, position);
+        //        float dbr = DistanceToLine(br, bl, position);
 
-                float d = dbl < dtl ? dbl : dtl;
-                d = d < dtr ? d : dtr;
-                d = d < dbr ? d : dbr;
+        //        float d = dbl < dtl ? dbl : dtl;
+        //        d = d < dtr ? d : dtr;
+        //        d = d < dbr ? d : dbr;
 
-                if (distanceSqr > d)
-                {
-                    distanceSqr = d;
-                    closest = i;
-                }
-                //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
+        //        if (distanceSqr > d)
+        //        {
+        //            distanceSqr = d;
+        //            closest = i;
+        //        }
+        //        //Debug.Log("Word at Index: " + i + " is located at (" + bl + ", " + tl + ", " + tr + ", " + br + ").");
 
-            }
-            return closest;
-        }
+        //    }
+        //    return closest;
+        //}
 
 
     
@@ -1492,6 +2002,60 @@ namespace TMPro
                 hashCode = (hashCode << 5) + hashCode ^ ToLowerFast(s[i]);
 
             return hashCode;
+        }
+
+
+        /// <summary>
+        /// Function to convert Hex to Int
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        public static int HexToInt(char hex)
+        {
+            switch (hex)
+            {
+                case '0': return 0;
+                case '1': return 1;
+                case '2': return 2;
+                case '3': return 3;
+                case '4': return 4;
+                case '5': return 5;
+                case '6': return 6;
+                case '7': return 7;
+                case '8': return 8;
+                case '9': return 9;
+                case 'A': return 10;
+                case 'B': return 11;
+                case 'C': return 12;
+                case 'D': return 13;
+                case 'E': return 14;
+                case 'F': return 15;
+                case 'a': return 10;
+                case 'b': return 11;
+                case 'c': return 12;
+                case 'd': return 13;
+                case 'e': return 14;
+                case 'f': return 15;
+            }
+            return 15;
+        }
+
+
+        /// <summary>
+        /// Function to convert a properly formatted string which contains an hex value to its decimal value. 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int StringToInt(string s)
+        {
+            int value = 0;
+
+            for (int i = 0; i < s.Length; i++)
+            {
+                value += HexToInt(s[i]) * (int)Mathf.Pow(16, (s.Length - 1) - i);
+            }
+
+            return value;
         }
 
     }

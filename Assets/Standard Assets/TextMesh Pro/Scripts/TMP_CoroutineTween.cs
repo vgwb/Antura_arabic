@@ -1,7 +1,14 @@
-﻿using System.Collections;
-using UnityEngine.Events;
+﻿// Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
+// This code can only be used under the standard Unity Asset Store End User License Agreement
+// A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
-namespace UnityEngine.UI.CoroutineTween
+
+using UnityEngine;
+using UnityEngine.Events;
+using System.Collections;
+
+
+namespace TMPro
 {
     // Base interface for tweeners,
     // using an interface instead of

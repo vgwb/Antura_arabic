@@ -292,7 +292,7 @@ namespace TMPro
             int sourceID = sourceMaterial.GetInstanceID();
             Texture tex = targetMaterial.GetTexture(ShaderUtilities.ID_MainTex);
             int texID = tex.GetInstanceID();
-            long key = (long)sourceID << 32 + texID;
+            long key = (long)sourceID << 32 | (long)(uint)texID;
 
             FallbackMaterial fallback;
             if (m_fallbackMaterials.TryGetValue(key, out fallback))
@@ -324,6 +324,11 @@ namespace TMPro
             fallback.baseMaterial = sourceMaterial;
             fallback.fallbackMaterial = fallbackMaterial;
             fallback.count = 0;
+
+            #if UNITY_5_0 || UNITY_5_1
+            // Have to manually copy shader keywords in Unity 5.0 and 5.1
+            fallbackMaterial.shaderKeywords = sourceMaterial.shaderKeywords;
+            #endif
 
             m_fallbackMaterials.Add(key, fallback);
             m_fallbackMaterialLookup.Add(fallbackMaterial.GetInstanceID(), key);
@@ -466,6 +471,37 @@ namespace TMPro
             public Material stencilMaterial;
             public int count;
             public int stencilID;
+        }
+
+
+        /// <summary>
+        /// Function to copy the properties of a source material preset to another while preserving the unique font asset properties of the destination material.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
+        public static void CopyMaterialPresetProperties(Material source, Material destination)
+        {
+            // Save unique material properties
+            Texture dst_texture = destination.GetTexture(ShaderUtilities.ID_MainTex);
+            float dst_gradientScale = destination.GetFloat(ShaderUtilities.ID_GradientScale);
+            float dst_texWidth = destination.GetFloat(ShaderUtilities.ID_TextureWidth);
+            float dst_texHeight = destination.GetFloat(ShaderUtilities.ID_TextureHeight);
+            float dst_weightNormal = destination.GetFloat(ShaderUtilities.ID_WeightNormal);
+            float dst_weightBold = destination.GetFloat(ShaderUtilities.ID_WeightBold);
+
+            // Copy all material properties
+            destination.CopyPropertiesFromMaterial(source);
+
+            // Copy shader keywords
+            destination.shaderKeywords = source.shaderKeywords;
+
+            // Restore unique material properties
+            destination.SetTexture(ShaderUtilities.ID_MainTex, dst_texture);
+            destination.SetFloat(ShaderUtilities.ID_GradientScale, dst_gradientScale);
+            destination.SetFloat(ShaderUtilities.ID_TextureWidth, dst_texWidth);
+            destination.SetFloat(ShaderUtilities.ID_TextureHeight, dst_texHeight);
+            destination.SetFloat(ShaderUtilities.ID_WeightNormal, dst_weightNormal);
+            destination.SetFloat(ShaderUtilities.ID_WeightBold, dst_weightBold);
         }
 
 

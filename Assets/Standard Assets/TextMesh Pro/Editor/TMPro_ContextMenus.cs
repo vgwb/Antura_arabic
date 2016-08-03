@@ -234,10 +234,22 @@ namespace TMPro.EditorUtilities
         static void ExtractAtlas(MenuCommand command)
         {
             TMP_FontAsset font = command.context as TMP_FontAsset;
-            Texture2D tex = Instantiate(font.material.mainTexture) as Texture2D;
 
             string fontPath = AssetDatabase.GetAssetPath(font);
             string texPath = Path.GetDirectoryName(fontPath) + "/" + Path.GetFileNameWithoutExtension(fontPath) + " Atlas.png";
+
+            // Create a Serialized Object of the texture to allow us to make it readable.
+            SerializedObject texprop = new SerializedObject(font.material.mainTexture);
+            texprop.FindProperty("m_IsReadable").boolValue = true;
+            texprop.ApplyModifiedProperties();
+
+            // Create a copy of the texture.
+            Texture2D tex = Instantiate(font.material.mainTexture) as Texture2D;
+
+            // Set the texture to not readable again.
+            texprop.FindProperty("m_IsReadable").boolValue = false;
+            texprop.ApplyModifiedProperties();
+
             Debug.Log(texPath);
             // Saving File for Debug
             var pngData = tex.EncodeToPNG();

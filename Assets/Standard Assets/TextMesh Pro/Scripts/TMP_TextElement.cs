@@ -25,5 +25,6 @@ namespace TMPro
         public float xOffset;
         public float yOffset;
         public float xAdvance;
+        public float scale;
     }
 }

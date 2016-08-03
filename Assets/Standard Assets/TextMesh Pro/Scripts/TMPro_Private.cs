@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 0.1.54 Beta 3c
+// Release 1.0.54 
 
 
 #define PROFILE_ON
@@ -50,7 +50,7 @@ namespace TMPro
         protected TMP_SubMesh[] m_subTextObjects = new TMP_SubMesh[16];
 
 
-        private List<Material> m_sharedMaterials = new List<Material>(16);
+        //private List<Material> m_sharedMaterials = new List<Material>(16);
 
 
         // MASKING RELATED PROPERTIES
@@ -122,7 +122,9 @@ namespace TMPro
 
 
             // Make sure we have a CanvasRenderer for compatibility reasons and hide it
-            if (this.canvasRenderer == null)
+            if (this.canvasRenderer != null)
+                this.canvasRenderer.hideFlags = HideFlags.HideInInspector;
+            else
             {
                 CanvasRenderer canvasRenderer = gameObject.AddComponent<CanvasRenderer>();
                 canvasRenderer.hideFlags = HideFlags.HideInInspector;
@@ -213,6 +215,7 @@ namespace TMPro
                 TMPro_EventManager.TEXTMESHPRO_PROPERTY_EVENT.Add(ON_TEXTMESHPRO_PROPERTY_CHANGED);
                 TMPro_EventManager.DRAG_AND_DROP_MATERIAL_EVENT.Add(ON_DRAG_AND_DROP_MATERIAL);
                 TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Add(ON_TEXT_STYLE_CHANGED);
+                TMPro_EventManager.COLOR_GRADIENT_PROPERTY_EVENT.Add(ON_COLOR_GRADIENT_CHANGED);
                 TMPro_EventManager.TMP_SETTINGS_PROPERTY_EVENT.Add(ON_TMP_SETTINGS_CHANGED);
 #endif
                 m_isRegisteredForEvents = true;
@@ -262,6 +265,7 @@ namespace TMPro
             TMPro_EventManager.TEXTMESHPRO_PROPERTY_EVENT.Remove(ON_TEXTMESHPRO_PROPERTY_CHANGED);
             TMPro_EventManager.DRAG_AND_DROP_MATERIAL_EVENT.Remove(ON_DRAG_AND_DROP_MATERIAL);
             TMPro_EventManager.TEXT_STYLE_PROPERTY_EVENT.Remove(ON_TEXT_STYLE_CHANGED);
+            TMPro_EventManager.COLOR_GRADIENT_PROPERTY_EVENT.Remove(ON_COLOR_GRADIENT_CHANGED);
             TMPro_EventManager.TMP_SETTINGS_PROPERTY_EVENT.Remove(ON_TMP_SETTINGS_CHANGED);
 #endif
 
@@ -304,6 +308,8 @@ namespace TMPro
             m_inputSource = TextInputSources.Text;
             m_havePropertiesChanged = true;
             m_isCalculateSizeRequired = true;
+            m_isPreferredWidthDirty = true;
+            m_isPreferredHeightDirty = true;
 
             SetAllDirty();
         }
@@ -340,7 +346,7 @@ namespace TMPro
             }
 
             m_padding = GetPaddingForMaterial();
-            m_sharedMaterialHashCode = TMP_TextUtilities.GetSimpleHashCode(m_sharedMaterial.name);
+            //m_sharedMaterialHashCode = TMP_TextUtilities.GetSimpleHashCode(m_sharedMaterial.name);
 
             UpdateMask();
             UpdateEnvMapMatrix();
@@ -405,6 +411,20 @@ namespace TMPro
         {
             m_havePropertiesChanged = true;
             SetVerticesDirty();
+        }
+
+
+        /// <summary>
+        /// Event received when a Color Gradient Preset is modified.
+        /// </summary>
+        /// <param name="textObject"></param>
+        void ON_COLOR_GRADIENT_CHANGED(TMP_ColorGradient gradient)
+        {
+            if (m_fontColorGradientPreset != null && gradient.GetInstanceID() == m_fontColorGradientPreset.GetInstanceID())
+            {
+                m_havePropertiesChanged = true;
+                SetVerticesDirty();
+            }
         }
 
 
@@ -496,8 +516,8 @@ namespace TMPro
             GetSpecialCharacters(m_fontAsset);
 
 
-            m_sharedMaterials.Add(m_sharedMaterial);
-            m_sharedMaterialHashCode = TMP_TextUtilities.GetSimpleHashCode(m_sharedMaterial.name);
+            //m_sharedMaterials.Add(m_sharedMaterial);
+            //m_sharedMaterialHashCode = TMP_TextUtilities.GetSimpleHashCode(m_sharedMaterial.name);
             // Hide Material Editor Component
             //m_renderer.sharedMaterial.hideFlags = HideFlags.None;
         }
@@ -1022,6 +1042,7 @@ namespace TMPro
                 TMP_FontAsset tempFontAsset;
                 TMP_FontAsset prev_fontAsset = m_currentFontAsset;
                 Material prev_material = m_currentMaterial;
+                //Material fallbackMaterial = null;
                 int prev_materialIndex = m_currentMaterialIndex;
 
 
@@ -1243,11 +1264,12 @@ namespace TMPro
 
                 m_textInfo.characterInfo[m_totalCharacterCount].material = m_currentMaterial;
                 m_textInfo.characterInfo[m_totalCharacterCount].materialReferenceIndex = m_currentMaterialIndex;
-                m_materialReferences[m_currentMaterialIndex].isFallbackFont = isUsingFallback;
+                m_materialReferences[m_currentMaterialIndex].isFallbackMaterial = isUsingFallback;
 
                 // Restore previous font asset and material if fallback font was used.
                 if (isUsingFallback)
                 {
+                    m_materialReferences[m_currentMaterialIndex].fallbackMaterial = prev_material;
                     m_currentFontAsset = prev_fontAsset;
                     m_currentMaterial = prev_material;
                     m_currentMaterialIndex = prev_materialIndex;
@@ -1310,8 +1332,11 @@ namespace TMPro
                     }
 
                     // Check if we need to use a Fallback Material
-                    if (m_materialReferences[i].isFallbackFont)
+                    if (m_materialReferences[i].isFallbackMaterial)
+                    {
                         m_subTextObjects[i].fallbackMaterial = m_materialReferences[i].material;
+                        m_subTextObjects[i].fallbackSourceMaterial = m_materialReferences[i].fallbackMaterial;
+                    }
 
                 }
 
@@ -1341,7 +1366,7 @@ namespace TMPro
             //TMP_MaterialManager.CleanupFallbackMaterials();
 
             // Clean up unused SubMeshes
-            for (int i = materialCount; i < m_subTextObjects.Length + 1 && m_subTextObjects[i] != null; i++)
+            for (int i = materialCount; i < m_subTextObjects.Length && m_subTextObjects[i] != null; i++)
             {
                 if (i < m_textInfo.meshInfo.Length)
                     m_textInfo.meshInfo[i].ClearUnusedVertices(0, true);
@@ -1630,8 +1655,8 @@ namespace TMPro
             m_lastCharacterOfLine = 0;
             m_firstVisibleCharacterOfLine = 0;
             m_lastVisibleCharacterOfLine = 0;
-            m_maxLineAscender = -Mathf.Infinity;
-            m_maxLineDescender = Mathf.Infinity;
+            m_maxLineAscender = k_LargeNegativeFloat;
+            m_maxLineDescender = k_LargePositiveFloat;
             m_lineNumber = 0;
             m_lineVisibleCharacterCount = 0;
             bool isStartOfNewLine = true;
@@ -1650,13 +1675,14 @@ namespace TMPro
             float width = marginWidth + 0.0001f - m_marginLeft - m_marginRight;
 
             // Need to initialize these Extents structures
-            m_meshExtents.min = k_InfinityVectorPositive;
-            m_meshExtents.max = k_InfinityVectorNegative;
+            m_meshExtents.min = k_LargePositiveVector2;
+            m_meshExtents.max = k_LargeNegativeVector2;
 
             // Initialize lineInfo
             m_textInfo.ClearLineInfo();
 
             // Tracking of the highest Ascender
+            m_maxCapHeight = 0;
             m_maxAscender = 0;
             m_maxDescender = 0;
             float pageAscender = 0;
@@ -1782,7 +1808,7 @@ namespace TMPro
                     // Re-calculate font scale as the font asset may have changed.
                     m_fontScale = m_currentFontSize * smallCapsMultiplier / m_currentFontAsset.fontInfo.PointSize * m_currentFontAsset.fontInfo.Scale * (m_isOrthographic ? 1 : 0.1f);
 
-                    currentElementScale = m_fontScale * m_fontScaleMultiplier;
+                    currentElementScale = m_fontScale * m_fontScaleMultiplier * m_cached_TextElement.scale;
 
                     m_textInfo.characterInfo[m_characterCount].elementType = TMP_TextElementType.Character;
                     m_textInfo.characterInfo[m_characterCount].scale = currentElementScale;
@@ -1917,7 +1943,11 @@ namespace TMPro
                     m_maxLineDescender = baseDescender < m_maxLineDescender ? baseDescender : m_maxLineDescender;
                 }
 
-                if (m_lineNumber == 0) m_maxAscender = m_maxAscender > elementAscender ? m_maxAscender : elementAscender;
+                if (m_lineNumber == 0)
+                {
+                    m_maxAscender = m_maxAscender > elementAscender ? m_maxAscender : elementAscender;
+                    m_maxCapHeight = Mathf.Max(m_maxCapHeight, m_currentFontAsset.fontInfo.CapHeight * currentElementScale);
+                }
                 if (m_lineOffset == 0) pageAscender = pageAscender > elementAscender ? pageAscender : elementAscender;
 
 
@@ -1935,7 +1965,7 @@ namespace TMPro
 
                     // Check if Character exceeds the width of the Text Container
                     #region Handle Line Breaking, Text Auto-Sizing and Horizontal Overflow
-                    if (Mathf.Abs(m_xAdvance) + (!m_isRightToLeft ? m_cached_TextElement.xAdvance : 0) * (1 - m_charWidthAdjDelta) * (charCode != 0xAD ? currentElementScale : old_scale) > width)
+                    if (Mathf.Abs(m_xAdvance) + (!m_isRightToLeft ? m_cached_TextElement.xAdvance : 0) * (1 - m_charWidthAdjDelta) * (charCode != 0xAD ? currentElementScale : old_scale) > width) // + width * 0.1f)
                     {
                         ellipsisIndex = m_characterCount - 1; // Last safely rendered character
 
@@ -2076,8 +2106,8 @@ namespace TMPro
                             else
                                 m_lineOffset += m_lineHeight + m_lineSpacing * baseScale;
 
-                            m_maxLineAscender = -Mathf.Infinity;
-                            m_maxLineDescender = Mathf.Infinity;
+                            m_maxLineAscender = k_LargeNegativeFloat;
+                            m_maxLineDescender = k_LargePositiveFloat;
 
                             m_xAdvance = 0 + tag_Indent;
 
@@ -2263,6 +2293,8 @@ namespace TMPro
                     #region Line Spacing Adjustments
                     if (m_enableAutoSizing && m_lineSpacingDelta > m_lineSpacingMax && m_lineNumber > 0)
                     {
+                        loopCountA = 0;
+
                         m_lineSpacingDelta -= 1;
                         GenerateTextMesh();
                         return;
@@ -2498,8 +2530,8 @@ namespace TMPro
                         else
                             m_lineOffset += m_lineHeight + (m_lineSpacing + m_paragraphSpacing) * baseScale;
 
-                        m_maxLineAscender = -Mathf.Infinity;
-                        m_maxLineDescender = Mathf.Infinity;
+                        m_maxLineAscender = k_LargeNegativeFloat;
+                        m_maxLineDescender = k_LargePositiveFloat;
                         m_startOfLineAscender = elementAscender;
 
                         m_xAdvance = 0 + tag_LineIndent + tag_Indent;
@@ -2694,6 +2726,14 @@ namespace TMPro
                 case TextAlignmentOptions.MidlineJustified:
                     anchorOffset = (corners[0] + corners[1]) / 2 + new Vector3(0 + margins.x, 0 - (m_meshExtents.max.y + margins.y + m_meshExtents.min.y - margins.w) / 2, 0);
                     break;
+
+                // Capline Vertically 
+                case TextAlignmentOptions.CaplineLeft:
+                case TextAlignmentOptions.Capline:
+                case TextAlignmentOptions.CaplineRight:
+                case TextAlignmentOptions.CaplineJustified:
+                    anchorOffset = (corners[0] + corners[1]) / 2 + new Vector3(0 + margins.x, 0 - (m_maxCapHeight - margins.y - margins.w) / 2, 0);
+                    break;
             }
             #endregion
 
@@ -2717,10 +2757,11 @@ namespace TMPro
 
             Color32 underlineColor = Color.white;
             Color32 strikethroughColor = Color.white;
+            float xScale = 0;
             float underlineStartScale = 0;
             float underlineEndScale = 0;
             float underlineMaxScale = 0;
-            float underlineBaseLine = Mathf.Infinity;
+            float underlineBaseLine = k_LargePositiveFloat;
             int lastPage = 0;
 
             float strikethroughPointSize = 0;
@@ -2748,6 +2789,7 @@ namespace TMPro
                     case TextAlignmentOptions.BottomLeft:
                     case TextAlignmentOptions.BaselineLeft:
                     case TextAlignmentOptions.MidlineLeft:
+                    case TextAlignmentOptions.CaplineLeft:
                         if (!m_isRightToLeft)
                             justificationOffset = new Vector3(0 + lineInfo.marginLeft, 0, 0);
                         else
@@ -2759,6 +2801,7 @@ namespace TMPro
                     case TextAlignmentOptions.Bottom:
                     case TextAlignmentOptions.Baseline:
                     case TextAlignmentOptions.Midline:
+                    case TextAlignmentOptions.Capline:
                         justificationOffset = new Vector3(lineInfo.marginLeft + lineInfo.width / 2 - lineInfo.maxAdvance / 2, 0, 0);
                         break;
 
@@ -2767,6 +2810,7 @@ namespace TMPro
                     case TextAlignmentOptions.BottomRight:
                     case TextAlignmentOptions.BaselineRight:
                     case TextAlignmentOptions.MidlineRight:
+                    case TextAlignmentOptions.CaplineRight:
                         if (!m_isRightToLeft)
                             justificationOffset = new Vector3(lineInfo.marginLeft + lineInfo.width - lineInfo.maxAdvance, 0, 0);
                         else
@@ -2778,36 +2822,54 @@ namespace TMPro
                     case TextAlignmentOptions.BottomJustified:
                     case TextAlignmentOptions.BaselineJustified:
                     case TextAlignmentOptions.MidlineJustified:
+                    case TextAlignmentOptions.CaplineJustified:
                         // Skip Zero Width Characters
                         if (currentCharacter == 0xAD || currentCharacter == 0x200B || currentCharacter == 0x2060) break;
 
                         char lastCharOfCurrentLine = characterInfos[lineInfo.lastCharacterIndex].character;
 
                         if (!char.IsControl(lastCharOfCurrentLine) && currentLine < m_lineNumber)
-                        {   // All lines are justified accept the last one.
-                            float gap = lineInfo.width - lineInfo.maxAdvance;
+                        {
+                            // All lines are justified accept the last one.
+                            float gap = !m_isRightToLeft ? lineInfo.width - lineInfo.maxAdvance : lineInfo.width + lineInfo.maxAdvance;
                             float ratio = lineInfo.spaceCount > 2 ? m_wordWrappingRatios : 1;
 
                             if (currentLine != lastLine || i == 0)
-                                justificationOffset = new Vector3(lineInfo.marginLeft, 0, 0);
+                            {
+                                if (!m_isRightToLeft)
+                                    justificationOffset = new Vector3(lineInfo.marginLeft, 0, 0);
+                                else
+                                    justificationOffset = new Vector3(lineInfo.marginLeft + lineInfo.width, 0, 0);
+                            }
                             else
                             {
                                 if (currentCharacter == 9 || char.IsSeparator((char)currentCharacter))
                                 {
                                     int spaces = characterInfos[lineInfo.lastCharacterIndex].isVisible ? lineInfo.spaceCount : lineInfo.spaceCount - 1;
                                     if (spaces < 1) spaces = 1;
-                                    justificationOffset += new Vector3(gap * (1 - ratio) / spaces, 0, 0);
+
+                                    if (!m_isRightToLeft)
+                                        justificationOffset += new Vector3(gap * (1 - ratio) / spaces, 0, 0);
+                                    else
+                                        justificationOffset -= new Vector3(gap * (1 - ratio) / spaces, 0, 0);
                                 }
                                 else
                                 {
-                                    justificationOffset += new Vector3(gap * ratio / (lineInfo.visibleCharacterCount - 1), 0, 0);
+                                    if (!m_isRightToLeft)
+                                        justificationOffset += new Vector3(gap * ratio / (lineInfo.visibleCharacterCount - 1), 0, 0);
+                                    else
+                                        justificationOffset -= new Vector3(gap * ratio / (lineInfo.visibleCharacterCount - 1), 0, 0);
                                 }
                             }
                         }
                         else
-                            justificationOffset = new Vector3(lineInfo.marginLeft, 0, 0); // Keep last line left justified.
-
-                        //Debug.Log("Char [" + (char)charCode + "] Code: " + charCode + "  Offset: " + justificationOffset + "  # Spaces: " + lineInfo.spaceCount + "  # Characters: " + lineInfo.characterCount + "  CurrentLine: " + currentLine + "  Last Line: " + lastLine + "  i: " + i);                      
+                        {
+                            if (!m_isRightToLeft)
+                                justificationOffset = new Vector3(lineInfo.marginLeft, 0, 0); // Keep last line left justified.
+                            else
+                                justificationOffset = new Vector3(lineInfo.marginLeft + lineInfo.width, 0, 0); // Keep last line right justified.
+                        }
+                        //Debug.Log("Char [" + (char)charCode + "] Code:" + charCode + "  Line # " + currentLine + "  Offset:" + justificationOffset + "  # Spaces:" + lineInfo.spaceCount + "  # Characters:" + lineInfo.characterCount);
                         break;
                 }
                 #endregion End Text Justification
@@ -2939,7 +3001,7 @@ namespace TMPro
 
                             // Pack UV's so that we can pass Xscale needed for Shader to maintain 1:1 ratio.
                             #region Pack Scale into UV2
-                            float xScale = characterInfos[i].scale * lossyScale * (1 - m_charWidthAdjDelta);
+                            xScale = characterInfos[i].scale * lossyScale * (1 - m_charWidthAdjDelta);
                             if (!characterInfos[i].isUsingAlternateTypeface && (characterInfos[i].style & FontStyles.Bold) == FontStyles.Bold) xScale *= -1;
 
                             //int isBold = (m_textInfo.characterInfo[i].style & FontStyles.Bold) == FontStyles.Bold ? 1 : 0;
@@ -3138,7 +3200,7 @@ namespace TMPro
                     if (!char.IsWhiteSpace(currentCharacter))
                     {
                         underlineMaxScale = Mathf.Max(underlineMaxScale, m_textInfo.characterInfo[i].scale);
-                        underlineBaseLine = Mathf.Min(currentPage == lastPage ? underlineBaseLine : Mathf.Infinity, m_textInfo.characterInfo[i].baseLine + font.fontInfo.Underline * underlineMaxScale);
+                        underlineBaseLine = Mathf.Min(currentPage == lastPage ? underlineBaseLine : k_LargePositiveFloat, m_textInfo.characterInfo[i].baseLine + font.fontInfo.Underline * underlineMaxScale);
                         lastPage = currentPage; // Need to track pages to ensure we reset baseline for the new pages.
                     }
 
@@ -3163,9 +3225,9 @@ namespace TMPro
                         underline_end = new Vector3(m_textInfo.characterInfo[i].topRight.x, underlineBaseLine, 0);
                         underlineEndScale = m_textInfo.characterInfo[i].scale;
 
-                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, underlineColor);
+                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, xScale, underlineColor);
                         underlineMaxScale = 0;
-                        underlineBaseLine = Mathf.Infinity;
+                        underlineBaseLine = k_LargePositiveFloat;
                     }
                     else if (beginUnderline && (i == lineInfo.lastCharacterIndex || i >= lineInfo.lastVisibleCharacterIndex))
                     {
@@ -3183,9 +3245,9 @@ namespace TMPro
                         }
 
                         beginUnderline = false;
-                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, underlineColor);
+                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, xScale, underlineColor);
                         underlineMaxScale = 0;
-                        underlineBaseLine = Mathf.Infinity;
+                        underlineBaseLine = k_LargePositiveFloat;
                     }
                     else if (beginUnderline && !isUnderlineVisible)
                     {
@@ -3193,9 +3255,9 @@ namespace TMPro
                         underline_end = new Vector3(m_textInfo.characterInfo[i - 1].topRight.x, underlineBaseLine, 0);
                         underlineEndScale = m_textInfo.characterInfo[i - 1].scale;
 
-                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, underlineColor);
+                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, xScale, underlineColor);
                         underlineMaxScale = 0;
-                        underlineBaseLine = Mathf.Infinity;
+                        underlineBaseLine = k_LargePositiveFloat;
                     }
                 }
                 else
@@ -3207,9 +3269,9 @@ namespace TMPro
                         underline_end = new Vector3(m_textInfo.characterInfo[i - 1].topRight.x, underlineBaseLine, 0);
                         underlineEndScale = m_textInfo.characterInfo[i - 1].scale;
 
-                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, underlineColor);
+                        DrawUnderlineMesh(underline_start, underline_end, ref last_vert_index, underlineStartScale, underlineEndScale, underlineMaxScale, xScale, underlineColor);
                         underlineMaxScale = 0;
-                        underlineBaseLine = Mathf.Infinity;
+                        underlineBaseLine = k_LargePositiveFloat;
                     }
                 }
                 #endregion
@@ -3248,7 +3310,7 @@ namespace TMPro
                         beginStrikethrough = false;
                         strikethrough_end = new Vector3(m_textInfo.characterInfo[i].topRight.x, m_textInfo.characterInfo[i].baseLine + (font.fontInfo.Ascender + font.fontInfo.Descender) / 2 * strikethroughScale, 0);
 
-                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, strikethroughColor);
+                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, xScale, strikethroughColor);
                     }
                     else if (beginStrikethrough && i == lineInfo.lastCharacterIndex)
                     {
@@ -3265,7 +3327,7 @@ namespace TMPro
                         }
 
                         beginStrikethrough = false;
-                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, strikethroughColor);
+                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, xScale, strikethroughColor);
                     }
                     else if (beginStrikethrough && i < m_characterCount && (m_textInfo.characterInfo[i + 1].pointSize != strikethroughPointSize || !TMP_Math.Approximately(m_textInfo.characterInfo[i + 1].baseLine + offset.y, strikethroughBaseline)))
                     {
@@ -3278,7 +3340,7 @@ namespace TMPro
                         else
                             strikethrough_end = new Vector3(m_textInfo.characterInfo[i].topRight.x, m_textInfo.characterInfo[i].baseLine + (font.fontInfo.Ascender + font.fontInfo.Descender) / 2 * strikethroughScale, 0);
 
-                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, strikethroughColor);
+                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, xScale, strikethroughColor);
                         //Debug.Log("Char [" + currentCharacter + "] at Index: " + i + "  End Strikethrough POS: " + strikethrough_end + "  Baseline: " + m_textInfo.characterInfo[i].baseLine.ToString("f3"));
                     }
                     else if (beginStrikethrough && !isStrikeThroughVisible)
@@ -3287,7 +3349,7 @@ namespace TMPro
                         beginStrikethrough = false;
                         strikethrough_end = new Vector3(m_textInfo.characterInfo[i - 1].topRight.x, m_textInfo.characterInfo[i - 1].baseLine + (font.fontInfo.Ascender + font.fontInfo.Descender) / 2 * strikethroughScale, 0);
 
-                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, strikethroughColor);
+                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, xScale, strikethroughColor);
                     }
                 }
                 else
@@ -3298,7 +3360,7 @@ namespace TMPro
                         beginStrikethrough = false;
                         strikethrough_end = new Vector3(m_textInfo.characterInfo[i - 1].topRight.x, m_textInfo.characterInfo[i - 1].baseLine + (font.fontInfo.Ascender + font.fontInfo.Descender) / 2 * strikethroughScale, 0);
 
-                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, strikethroughColor);
+                        DrawUnderlineMesh(strikethrough_start, strikethrough_end, ref last_vert_index, strikethroughScale, strikethroughScale, strikethroughScale, xScale, strikethroughColor);
                     }
                 }
                 #endregion

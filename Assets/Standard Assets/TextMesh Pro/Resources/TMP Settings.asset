@@ -17,8 +17,9 @@ MonoBehaviour:
   m_enableTintAllSprites: 0
   m_enableParseEscapeCharacters: 0
   m_missingGlyphCharacter: 0
-  m_warningsDisabled: 0
+  m_warningsDisabled: 1
   m_defaultFontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
+  m_defaultFontAssetPath: Fonts & Materials/
   m_defaultFontSize: 36
   m_defaultTextContainerWidth: 0
   m_defaultTextContainerHeight: 0

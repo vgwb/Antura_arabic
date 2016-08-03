@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 0.1.54 Beta 3c
+// Release 1.0.54 
 
 
 using UnityEngine;
@@ -503,8 +503,8 @@ namespace TMPro
                 }
 
                 // Set Margins to Infinity
-                m_marginWidth = Mathf.Infinity;
-                m_marginHeight = Mathf.Infinity;
+                m_marginWidth = k_LargePositiveFloat;
+                m_marginHeight = k_LargePositiveFloat;
 
                 if (m_isInputParsingRequired || m_isTextTruncated)
                     ParseInputText();
@@ -552,7 +552,7 @@ namespace TMPro
                     m_enableAutoSizing = false;
                 }
 
-                m_marginHeight = Mathf.Infinity;
+                m_marginHeight = k_LargePositiveFloat;
 
                 GenerateTextMesh();
 

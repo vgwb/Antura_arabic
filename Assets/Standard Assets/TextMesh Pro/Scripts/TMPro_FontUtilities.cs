@@ -27,6 +27,7 @@ namespace TMPro
         public float LineHeight;
         public float Baseline;
         public float Ascender;
+        public float CapHeight;
         public float Descender;
         public float CenterLine;
 
@@ -66,6 +67,7 @@ namespace TMPro
             copy.xOffset = source.xOffset;
             copy.yOffset = source.yOffset;
             copy.xAdvance = source.xAdvance;
+            copy.scale = source.scale;
 
             return copy;
         }

@@ -1,6 +1,10 @@
+// Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
+// This code can only be used under the standard Unity Asset Store End User License Agreement
+// A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
+
+
 using UnityEngine;
 using System.Collections.Generic;
-
 
 
 namespace TMPro
@@ -26,11 +30,11 @@ namespace TMPro
 
         public static readonly FastAction<bool> TEXT_STYLE_PROPERTY_EVENT = new FastAction<bool>();
 
+        public static readonly FastAction<TMP_ColorGradient> COLOR_GRADIENT_PROPERTY_EVENT = new FastAction<TMP_ColorGradient>();
+
         public static readonly FastAction TMP_SETTINGS_PROPERTY_EVENT = new FastAction();
 
         public static readonly FastAction<bool, TextMeshProUGUI> TEXTMESHPRO_UGUI_PROPERTY_EVENT = new FastAction<bool, TextMeshProUGUI>();
-
-        //public static readonly FastAction<Material> BASE_MATERIAL_EVENT = new FastAction<Material>();
 
         public static readonly FastAction OnPreRenderObject_Event = new FastAction();
 
@@ -81,6 +85,12 @@ namespace TMPro
         {
             TEXT_STYLE_PROPERTY_EVENT.Call(isChanged);
         }
+
+        public static void ON_COLOR_GRAIDENT_PROPERTY_CHANGED(TMP_ColorGradient gradient)
+        {
+            COLOR_GRADIENT_PROPERTY_EVENT.Call(gradient);
+        }
+
 
         public static void ON_TEXT_CHANGED(Object obj)
         {

@@ -117,6 +117,17 @@ namespace TMPro
 
 
         /// <summary>
+        /// The source material used by the fallback font
+        /// </summary>
+        public Material fallbackSourceMaterial
+        {
+            get { return m_fallbackSourceMaterial; }
+            set { m_fallbackSourceMaterial = value; }
+        }
+        private Material m_fallbackSourceMaterial;
+
+
+        /// <summary>
         /// Get the material that will be used for rendering.
         /// </summary>
         public override Material materialForRendering
@@ -341,9 +352,14 @@ namespace TMPro
             int targetMaterialID = mat.GetInstanceID();
             int sharedMaterialID = m_sharedMaterial.GetInstanceID();
             int maskingMaterialID = m_MaskMaterial == null ? 0 : m_MaskMaterial.GetInstanceID();
+            int fallbackSourceMaterialID = m_fallbackSourceMaterial == null ? 0 : m_fallbackSourceMaterial.GetInstanceID();
 
             // Filter events and return if the affected material is not this object's material.
             //if (targetMaterialID != sharedMaterialID && targetMaterialID != maskingMaterialID) return;
+
+            // Filter events and return if the affected material is not this object's material.
+            if (m_fallbackMaterial != null && fallbackSourceMaterialID == targetMaterialID)
+                TMP_MaterialManager.CopyMaterialPresetProperties(mat, m_fallbackMaterial);
 
             if (m_TextComponent == null) m_TextComponent = GetComponentInParent<TextMeshProUGUI>();
 
@@ -373,6 +389,16 @@ namespace TMPro
                     m_sharedMaterial.shaderKeywords = mat.shaderKeywords;
                     m_sharedMaterial.SetFloat(ShaderUtilities.ID_StencilID, 0);
                     m_sharedMaterial.SetFloat(ShaderUtilities.ID_StencilComp, 8);
+                }
+                else if (fallbackSourceMaterialID == targetMaterialID)
+                {
+                    float stencilID = m_MaskMaterial.GetFloat(ShaderUtilities.ID_StencilID);
+                    float stencilComp = m_MaskMaterial.GetFloat(ShaderUtilities.ID_StencilComp);
+                    m_MaskMaterial.CopyPropertiesFromMaterial(m_fallbackMaterial);
+                    m_MaskMaterial.shaderKeywords = m_fallbackMaterial.shaderKeywords;
+
+                    m_MaskMaterial.SetFloat(ShaderUtilities.ID_StencilID, stencilID);
+                    m_MaskMaterial.SetFloat(ShaderUtilities.ID_StencilComp, stencilComp);
                 }
             }
 

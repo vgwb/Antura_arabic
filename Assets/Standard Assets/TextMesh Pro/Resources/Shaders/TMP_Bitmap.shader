@@ -51,15 +51,13 @@ SubShader{
 		CGPROGRAM
 		#pragma vertex vert
 		#pragma fragment frag
-		#pragma fragmentoption ARB_precision_hint_fastest
-		//#pragma shader_feature __ MASK_HARD MASK_SOFT
 
 		#include "UnityCG.cginc"
-		#include "UnityUI.cginc"
 
-#if UNITY_VERSION < 530
+
+	#if UNITY_VERSION < 530
 		bool _UseClipRect;
-#endif
+	#endif
 
 		struct appdata_t {
 			float4 vertex		: POSITION;
@@ -86,7 +84,14 @@ SubShader{
 		uniform float		_MaskSoftnessX;
 		uniform float		_MaskSoftnessY;
 
-		float2 UnpackUV(float uv) { return float2(floor(uv) * 4.0 / 4096.0, frac(uv) * 4.0); }
+		float2 UnpackUV(float uv)
+		{
+			float2 output;
+			output.x = floor(uv / 4096);
+			output.y = uv - 4096 * output.x;
+
+			return output * 0.001953125;
+		}
 
 		v2f vert (appdata_t i)
 		{
@@ -105,42 +110,33 @@ SubShader{
 			o.texcoord1 = UnpackUV(i.texcoord1);
 			float2 pixelSize = vPosition.w;
 			pixelSize /= abs(float2(_ScreenParams.x * UNITY_MATRIX_P[0][0], _ScreenParams.y * UNITY_MATRIX_P[1][1]));
-			o.mask = float4(vert.xy, 0.5 / pixelSize.xy);
+
+			// Clamp _ClipRect to 16bit.
+			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
+			o.mask = float4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
+			
 			return o;
 		}
 
 		fixed4 frag (v2f i) : COLOR
 		{
-			fixed4 c = tex2D(_FaceTex, i.texcoord1) * i.color;
-			c.a *= tex2D(_MainTex, i.texcoord0).a;
+			//fixed4 c = tex2D(_MainTex, i.texcoord0) * tex2D(_FaceTex, i.texcoord1) * i.color;
+			
+			fixed4 c = tex2D(_MainTex, i.texcoord0);
+			c = fixed4 (tex2D(_FaceTex, i.texcoord1).rgb * i.color.rgb, i.color.a * c.a);
 
-			//float2 clipSize = (_ClipRect.zw - _ClipRect.xy) * 0.5;
-			//float2 clipCenter = _ClipRect.xy + clipSize;
-
-#if UNITY_VERSION < 530
-			if (_UseClipRect)
-				c *= UnityGet2DClipping(i.mask.xy, _ClipRect);
-#else
-			c *= UnityGet2DClipping(i.mask.xy, _ClipRect);
-#endif
-
-				//float2 s = float2(_MaskSoftnessX, _MaskSoftnessY) * i.mask.zw;
-				//float2 m = 1 - saturate(((abs(i.mask.xy - clipCenter) - clipSize) * i.mask.zw + s) / (1 + s));
-				//m *= m;
-				//c *= m.x * m.y;
-
-
-		//#if MASK_HARD
-		//	float2 m = 1 - saturate((abs(i.mask.xy - clipCenter) - clipSize) * i.mask.zw);
-		//	c.a *= m.x*m.y;
-		//#endif
-
-		//#if MASK_SOFT
-		//	float2 s = half2(_MaskSoftnessX, _MaskSoftnessY) * i.mask.zw;
-		//	float2 m = 1 - saturate(((abs(i.mask.xy - clipCenter) - clipSize) * i.mask.zw + s) / (1 + s));
-		//	m *= m;
-		//	c.a *= m.x*m.y;
-		//#endif
+			#if UNITY_VERSION < 530
+				if (_UseClipRect)
+				{
+					// Alternative implementation to UnityGet2DClipping with support for softness.
+					half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
+					c *= m.x * m.y;
+				}
+			#else
+				// Alternative implementation to UnityGet2DClipping with support for softness.
+				half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(i.mask.xy)) * i.mask.zw);
+				c *= m.x * m.y;
+			#endif
 
 			return c;
 		}
@@ -148,5 +144,5 @@ SubShader{
 	}
 }
 
-	//CustomEditor "TMPro_SDFMaterialEditor"
+	CustomEditor "TMPro.EditorUtilities.TMP_BitmapShaderGUI"
 }

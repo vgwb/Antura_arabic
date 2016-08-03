@@ -113,14 +113,20 @@ namespace TMPro
 
             return x && y && z && w;
         }
+
     }
 
     public static class TMP_Math
     {
+        public const float FLOAT_MAX = 32768;
+        public const float FLOAT_MIN = -32768;
+        public const int INT_MAX = 2147483647;
+        public const int INT_MIN = -2147483647;
+
+
         public static bool Approximately(float a, float b)
         {
             return (b - 0.0001f) < a && a < (b + 0.0001f);
         }
-
     }
 }

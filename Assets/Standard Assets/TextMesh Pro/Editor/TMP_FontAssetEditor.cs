@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 using System.Collections;
+using System.Collections.Generic;
 
 
 
@@ -53,9 +54,27 @@ namespace TMPro.EditorUtilities
             public static bool kerningInfoPanel = false;
         }
 
+        private struct Warning
+        {
+            public bool isEnabled;
+            public double expirationTime;
+        }
+
         private int m_GlyphPage = 0;
         private int m_KerningPage = 0;
 
+        private int m_selectedElement = -1;
+
+        private string m_dstGlyphID;
+        private const string k_placeholderUnicodeHex = "<i>Unicode Hex ID</i>";
+        private string m_unicodeHexLabel = k_placeholderUnicodeHex;
+
+        private Warning m_AddGlyphWarning;
+
+
+        private string m_searchPattern;
+        private List<int> m_searchList;
+        private bool m_isSearchDirty;
 
         private const string k_UndoRedo = "UndoRedoPerformed";
 
@@ -131,9 +150,6 @@ namespace TMPro.EditorUtilities
             m_kerningInfo_prop = serializedObject.FindProperty("m_kerningInfo");
             m_kerningPair_prop = serializedObject.FindProperty("m_kerningPair");
 
-            //m_isGlyphInfoListExpanded_prop = serializedObject.FindProperty("isGlyphInfoListExpanded");
-            //m_isKerningTableExpanded_prop = serializedObject.FindProperty("isKerningTableExpanded");
-
             m_fontAsset = target as TMP_FontAsset;
             m_kerningTable = m_fontAsset.kerningInfo;
 
@@ -141,14 +157,18 @@ namespace TMPro.EditorUtilities
 
             // Get the UI Skin and Styles for the various Editors
             TMP_UIStyleManager.GetUIStyles();
+
+            m_searchList = new List<int>();
         }
 
 
         public override void OnInspectorGUI()
         {
+            // Check Warnings
+
 
             //Debug.Log("OnInspectorGUI Called.");
-            Event evt = Event.current;
+            Event currentEvent = Event.current;
 
             serializedObject.Update();
 
@@ -170,8 +190,9 @@ namespace TMPro.EditorUtilities
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Scale"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("LineHeight"));
 
-            EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Baseline"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Ascender"));
+            EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("CapHeight"));
+            EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Baseline"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Descender"));
             EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("Underline"));
             //EditorGUILayout.PropertyField(m_fontInfo_prop.FindPropertyRelative("UnderlineThickness"));
@@ -316,7 +337,8 @@ namespace TMPro.EditorUtilities
             }
 
 
-                EditorGUIUtility.labelWidth = labelWidth;
+            // GLYPH INFO TABLE
+            EditorGUIUtility.labelWidth = labelWidth;
             EditorGUIUtility.fieldWidth = fieldWidth;
             GUILayout.Space(5);
             EditorGUI.indentLevel = 0;
@@ -330,45 +352,180 @@ namespace TMPro.EditorUtilities
                 int arraySize = m_glyphInfoList_prop.arraySize;
                 int itemsPerPage = 15;
 
+                // Display Glyph Management Tools
+                EditorGUILayout.BeginVertical(TMP_UIStyleManager.Group_Label, GUILayout.ExpandWidth(true));
+                {
+                    // Search Bar implementation
+                    #region DISPLAY SEARCH BAR
+                    EditorGUILayout.BeginHorizontal();
+                    {
+                        EditorGUIUtility.labelWidth = 110f;
+                        EditorGUI.BeginChangeCheck();
+                        string searchPattern = EditorGUILayout.TextField("Glyph Search", m_searchPattern, "SearchTextField");
+                        if (EditorGUI.EndChangeCheck() || m_isSearchDirty)
+                        {
+                            if (string.IsNullOrEmpty(searchPattern) == false)
+                            {
+                                //GUIUtility.keyboardControl = 0;
+                                m_searchPattern = searchPattern.ToLower(System.Globalization.CultureInfo.InvariantCulture).Trim();
+                                
+                                // Search Glyph Table for potential matches
+                                SearchGlyphTable(m_searchPattern, ref m_searchList);
+                            }
 
+                            m_isSearchDirty = false;
+                        }
+
+                        string styleName = string.IsNullOrEmpty(m_searchPattern) ? "SearchCancelButtonEmpty" : "SearchCancelButton";
+                        if (GUILayout.Button(GUIContent.none, styleName))
+                        {
+                            GUIUtility.keyboardControl = 0;
+                            m_searchPattern = string.Empty;
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+                    #endregion
+
+                    // Display Page Navigation
+                    if (!string.IsNullOrEmpty(m_searchPattern))
+                        arraySize = m_searchList.Count;
+
+                    DisplayGlyphPageNavigation(arraySize, itemsPerPage);
+                }
+                EditorGUILayout.EndVertical();
+
+                // Display Glyph Table Elements
+                #region Glyph Table
                 if (arraySize > 0)
                 {
                     // Display each GlyphInfo entry using the GlyphInfo property drawer.
                     for (int i = itemsPerPage * m_GlyphPage; i < arraySize && i < itemsPerPage * (m_GlyphPage + 1); i++)
                     {
-                        SerializedProperty glyphInfo = m_glyphInfoList_prop.GetArrayElementAtIndex(i);
+                        // Define the start of the selection region of the element.
+                        Rect elementStartRegion = GUILayoutUtility.GetRect(0f, 0f, GUILayout.ExpandWidth(true));
 
-                        EditorGUILayout.BeginVertical(TMP_UIStyleManager.Group_Label);
+                        int elementIndex = i;
+                        if (!string.IsNullOrEmpty(m_searchPattern))
+                            elementIndex = m_searchList[i];
+                            
+                        SerializedProperty glyphInfo = m_glyphInfoList_prop.GetArrayElementAtIndex(elementIndex);
 
-                        EditorGUILayout.PropertyField(glyphInfo);
+                        EditorGUI.BeginDisabledGroup(i != m_selectedElement);
+                        {
+                            EditorGUILayout.BeginVertical(TMP_UIStyleManager.Group_Label);
 
-                        EditorGUILayout.EndVertical();
+                            EditorGUILayout.PropertyField(glyphInfo);
+
+                            EditorGUILayout.EndVertical();
+                        }
+                        EditorGUI.EndDisabledGroup();
+
+                        // Define the end of the selection region of the element.
+                        Rect elementEndRegion = GUILayoutUtility.GetRect(0f, 0f, GUILayout.ExpandWidth(true));
+
+                        // Check for Item selection
+                        Rect selectionArea = new Rect(elementStartRegion.x, elementStartRegion.y, elementEndRegion.width, elementEndRegion.y - elementStartRegion.y);
+                        if (DoSelectionCheck(selectionArea))
+                        {
+                            m_selectedElement = i;
+                            m_AddGlyphWarning.isEnabled = false;
+                            m_unicodeHexLabel = k_placeholderUnicodeHex;
+                            GUIUtility.keyboardControl = 0;
+                        }
+
+
+                        // Draw Selection Highlight and Glyph Options
+                        if (m_selectedElement == i)
+                        {
+                            TMP_EditorUtility.DrawBox(selectionArea, 2f, new Color32(40, 192, 255, 255));
+
+                            // Draw Glyph management options
+                            Rect controlRect = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight * 1f);
+                            float optionAreaWidth = controlRect.width * 0.6f;
+                            float btnWidth = optionAreaWidth / 3;
+
+                            Rect position = new Rect(controlRect.x + controlRect.width * .4f, controlRect.y, btnWidth, controlRect.height);
+
+                            // Copy Selected Glyph to Target Glyph ID
+                            GUI.enabled = !string.IsNullOrEmpty(m_dstGlyphID);
+                            if (GUI.Button(position, new GUIContent("Copy to")))
+                            {
+                                GUIUtility.keyboardControl = 0;
+
+                                // Convert Hex Value to Decimal
+                                int dstGlyphID = TMP_TextUtilities.StringToInt(m_dstGlyphID);
+
+                                //Add new glyph at target Unicode hex id.
+                                if (!AddNewGlyph(elementIndex, dstGlyphID))
+                                {
+                                    m_AddGlyphWarning.isEnabled = true;
+                                    m_AddGlyphWarning.expirationTime = EditorApplication.timeSinceStartup + 1;
+                                }
+
+                                m_dstGlyphID = string.Empty;
+                                m_isSearchDirty = true;
+
+                                TMPro_EventManager.ON_FONT_PROPERTY_CHANGED(true, m_fontAsset);
+                            }
+
+                            // Target Glyph ID
+                            GUI.enabled = true;
+                            position.x += btnWidth;
+
+                            GUI.SetNextControlName("GlyphID_Input");
+                            m_dstGlyphID = EditorGUI.TextField(position, m_dstGlyphID);
+
+                            // Placeholder text
+                            EditorGUI.LabelField(position, new GUIContent(m_unicodeHexLabel, "The Unicode (Hex) ID of the duplicated Glyph"), TMP_UIStyleManager.Label);
+
+                            // Only filter the input when the destination glyph ID text field has focus.
+                            if (GUI.GetNameOfFocusedControl() == "GlyphID_Input")
+                            {
+                                m_unicodeHexLabel = string.Empty;
+
+                                //Filter out unwanted characters.
+                                char chr = Event.current.character;
+                                if ((chr < '0' || chr > '9') && (chr < 'a' || chr > 'f') && (chr < 'A' || chr > 'F'))
+                                {
+                                    Event.current.character = '\0';
+                                }
+                            }
+                            else
+                                m_unicodeHexLabel = k_placeholderUnicodeHex;
+
+
+                            // Remove Glyph
+                            position.x += btnWidth;
+                            if (GUI.Button(position, "Remove"))
+                            {
+                                GUIUtility.keyboardControl = 0;
+
+                                RemoveGlyphFromList(elementIndex);
+
+                                m_selectedElement = -1;
+                                m_isSearchDirty = true;
+
+                                TMPro_EventManager.ON_FONT_PROPERTY_CHANGED(true, m_fontAsset);
+
+                                return;
+                            }
+
+                            if (m_AddGlyphWarning.isEnabled && EditorApplication.timeSinceStartup < m_AddGlyphWarning.expirationTime)
+                            {
+                                EditorGUILayout.HelpBox("The Destination Glyph ID already exists", MessageType.Warning);
+                            }
+
+                        }
                     }
                 }
 
-                Rect pagePos = EditorGUILayout.GetControlRect(false, 20);
-                pagePos.width /= 2;
-
-                int shiftMultiplier = evt.shift ? 10 : 1;
-
-                if (m_GlyphPage > 0) GUI.enabled = true;
-                else GUI.enabled = false;
-
-                if (GUI.Button(pagePos, "Previous Page"))
-                    m_GlyphPage -= 1 * shiftMultiplier;
-
-                pagePos.x += pagePos.width;
-                if (itemsPerPage * (m_GlyphPage + 1) < arraySize) GUI.enabled = true;
-                else GUI.enabled = false;
-
-                if (GUI.Button(pagePos, "Next Page"))
-                    m_GlyphPage += 1 * shiftMultiplier;
-
-                m_GlyphPage = Mathf.Clamp(m_GlyphPage, 0, arraySize / itemsPerPage);
+                DisplayGlyphPageNavigation(arraySize, itemsPerPage);
             }
+            #endregion
 
 
             // KERNING TABLE PANEL
+            #region Kerning Table
             GUILayout.Space(5);
             if (GUILayout.Button("Kerning Table Info\t" + (UI_PanelState.kerningInfoPanel ? uiStateLabel[1] : uiStateLabel[0]), TMP_UIStyleManager.Section_Label))
                 UI_PanelState.kerningInfoPanel = !UI_PanelState.kerningInfoPanel;
@@ -421,7 +578,7 @@ namespace TMPro.EditorUtilities
                 Rect pagePos = EditorGUILayout.GetControlRect(false, 20);
                 pagePos.width /= 3;
 
-                int shiftMultiplier = evt.shift ? 10 : 1;
+                int shiftMultiplier = currentEvent.shift ? 10 : 1;
 
                 // Previous Page
                 if (m_KerningPage > 0) GUI.enabled = true;
@@ -500,6 +657,7 @@ namespace TMPro.EditorUtilities
 
                 GUILayout.EndVertical();
             }
+            #endregion
 
 
             if (serializedObject.ApplyModifiedProperties() || evt_cmd == k_UndoRedo || isAssetDirty)
@@ -512,6 +670,177 @@ namespace TMPro.EditorUtilities
                 //TMPro_EditorUtility.RepaintAll(); // Consider SetDirty
             }
 
+
+            // Clear selection if mouse event was not consumed. 
+            GUI.enabled = true;
+            if (currentEvent.type == EventType.mouseDown && currentEvent.button == 0)
+                m_selectedElement = -1;
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arraySize"></param>
+        /// <param name="itemsPerPage"></param>
+        void DisplayGlyphPageNavigation(int arraySize, int itemsPerPage)
+        {
+            Rect pagePos = EditorGUILayout.GetControlRect(false, 20);
+            pagePos.width /= 3;
+
+            int shiftMultiplier = Event.current.shift ? 10 : 1; // Page + Shift goes 10 page forward
+
+            // Previous Page
+            GUI.enabled = m_GlyphPage > 0;
+
+            if (GUI.Button(pagePos, "Previous Page"))
+            {
+                m_GlyphPage -= 1 * shiftMultiplier;
+                //m_isNewPage = true;
+            }
+
+            // Page Counter
+            var pageStyle = new GUIStyle(GUI.skin.button) { normal = { background = null } };
+            GUI.enabled = true;
+            pagePos.x += pagePos.width;
+            int totalPages = (int)(arraySize / (float)itemsPerPage + 0.999f);
+            GUI.Button(pagePos, "Page " + (m_GlyphPage + 1) + " / " + totalPages, pageStyle);
+
+            // Next Page
+            pagePos.x += pagePos.width;
+            GUI.enabled = itemsPerPage * (m_GlyphPage + 1) < arraySize;
+
+            if (GUI.Button(pagePos, "Next Page"))
+            {
+                m_GlyphPage += 1 * shiftMultiplier;
+                //m_isNewPage = true;
+            }
+
+            // Clamp page range
+            m_GlyphPage = Mathf.Clamp(m_GlyphPage, 0, arraySize / itemsPerPage);
+
+            GUI.enabled = true;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="srcGlyphID"></param>
+        /// <param name="dstGlyphID"></param>
+        bool AddNewGlyph(int srcIndex, int dstGlyphID)
+        {
+            // Make sure Destination Glyph ID doesn't already contain a Glyph
+            if (m_fontAsset.characterDictionary.ContainsKey(dstGlyphID))
+                return false;
+
+            // Add new element to glyph list.
+            m_glyphInfoList_prop.arraySize += 1;
+
+            // Get a reference to the source glyph.
+            SerializedProperty sourceGlyph = m_glyphInfoList_prop.GetArrayElementAtIndex(srcIndex);
+
+            int dstIndex = m_glyphInfoList_prop.arraySize - 1;
+
+            // Get a reference to the target / destination glyph.
+            SerializedProperty targetGlyph = m_glyphInfoList_prop.GetArrayElementAtIndex(dstIndex);
+
+            CopySerializedProperty(sourceGlyph, ref targetGlyph);
+
+            // Update the ID of the glyph
+            targetGlyph.FindPropertyRelative("id").intValue = dstGlyphID;
+
+            serializedObject.ApplyModifiedProperties();
+
+            m_fontAsset.ReadFontDefinition();
+
+            return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="glyphID"></param>
+        void RemoveGlyphFromList(int index)
+        {
+            if (index > m_glyphInfoList_prop.arraySize)
+                return;
+
+            m_glyphInfoList_prop.DeleteArrayElementAtIndex(index);
+
+            serializedObject.ApplyModifiedProperties();
+
+            m_fontAsset.ReadFontDefinition();
+        }
+
+
+        // Check if any of the Style elements were clicked on.
+        private bool DoSelectionCheck(Rect selectionArea)
+        {
+            Event currentEvent = Event.current;
+
+            switch (currentEvent.type)
+            {
+                case EventType.MouseDown:
+                    if (selectionArea.Contains(currentEvent.mousePosition) && currentEvent.button == 0)
+                    {
+                        currentEvent.Use();
+                        return true;
+                    }
+
+                    break;
+            }
+
+            return false;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        void CopySerializedProperty(SerializedProperty source, ref SerializedProperty target)
+        {
+            // TODO : Should make a generic function which copies each of the properties.
+            target.FindPropertyRelative("id").intValue = source.FindPropertyRelative("id").intValue;
+            target.FindPropertyRelative("x").floatValue = source.FindPropertyRelative("x").floatValue;
+            target.FindPropertyRelative("y").floatValue = source.FindPropertyRelative("y").floatValue;
+            target.FindPropertyRelative("width").floatValue = source.FindPropertyRelative("width").floatValue;
+            target.FindPropertyRelative("height").floatValue = source.FindPropertyRelative("height").floatValue;
+            target.FindPropertyRelative("xOffset").floatValue = source.FindPropertyRelative("xOffset").floatValue;
+            target.FindPropertyRelative("yOffset").floatValue = source.FindPropertyRelative("yOffset").floatValue;
+            target.FindPropertyRelative("xAdvance").floatValue = source.FindPropertyRelative("xAdvance").floatValue;
+            target.FindPropertyRelative("scale").floatValue = source.FindPropertyRelative("scale").floatValue;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="searchPattern"></param>
+        /// <returns></returns>
+        void SearchGlyphTable (string searchPattern, ref List<int> searchResults)
+        {
+            if (searchResults == null) searchResults = new List<int>();
+            searchResults.Clear();
+
+            int arraySize = m_glyphInfoList_prop.arraySize;
+
+            for (int i = 0; i < arraySize; i++)
+            {
+                SerializedProperty sourceGlyph = m_glyphInfoList_prop.GetArrayElementAtIndex(i);
+
+                int id = sourceGlyph.FindPropertyRelative("id").intValue;
+
+                // Check for potential match against decimal id
+                if (id.ToString().Contains(searchPattern))
+                    searchResults.Add(i);
+
+                if (id.ToString("x").Contains(searchPattern))
+                    searchResults.Add(i);
+            }
         }
     }
 }

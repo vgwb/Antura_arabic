@@ -195,7 +195,7 @@ namespace TMPro
             if (textComponent == null)
                 return string.Empty;
 
-            return new string(linkID);
+            return new string(linkID, 0, linkIdLength);
             //return textComponent.text.Substring(linkIdFirstCharacterIndex, linkIdLength);
 
         }
@@ -304,6 +304,7 @@ namespace TMPro
         public int lastVisibleCharIndex;
         public int lineNumber;
 
+        public float maxCapHeight;
         public float maxAscender;
         public float maxDescender;
         public float maxLineAscender;
