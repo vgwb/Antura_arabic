@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
+using DG.Tweening;
 
 namespace EA4S
 {
@@ -19,20 +20,16 @@ namespace EA4S
 
         public List<AssessmentObject> Draws;
         public List<AssessmentObject> Words;
-
-        public AssessmentObject startObj, endObj;
+        public List<SpriteLineRenderer> Lines;
 
         int currentResult;
 
-        public struct ColorSet
-        {
+        public struct ColorSet {
             public Color Color;
             public bool Available;
         }
 
-        void Start()
-        {
-
+        void Start() {
             currentResult = 0;
 
             PanelTestGO.SetActive(false);
@@ -42,6 +39,9 @@ namespace EA4S
             StartTest();
         }
 
+
+
+        #region Tutorial
         public void NextSentence()
         {
             WidgetSubtitles.I.DisplaySentence("assessment_start_A2", 3, true, NextSentence2);
@@ -56,13 +56,17 @@ namespace EA4S
         {
             ContinueScreen.Show(StartTest, ContinueScreenMode.Button);
         }
+        #endregion
 
         void StartTest()
         {
             WidgetSubtitles.I.Close();
             Colors.Shuffle();
+            int counter = 0;
             foreach (Color c in Colors) {
                 AvailableColors.Add(new ColorSet() { Color = c, Available = true });
+                Lines[counter].SetColor(c);
+                counter++;
             }
             string serializedWordsForLog = string.Empty;
             List<ILivingLetterData> newDatas = new List<ILivingLetterData>(); // list to be shuffled
@@ -151,6 +155,12 @@ namespace EA4S
             ReleaseColor(_color);
         }
 
+        public SpriteLineRenderer GetLine(Color _color) {
+            SpriteLineRenderer returnLine = Lines.Find(l => l.Color == _color);
+            returnLine.GetComponent<Image>().DOFade(1, 0.3f);
+            return returnLine;
+        }
+
         #region colors
 
         public Color GetAvailableColor()
@@ -165,9 +175,12 @@ namespace EA4S
         {
             int index = AvailableColors.FindIndex(c => c.Color == _color);
             AvailableColors[index] = new ColorSet() { Color = AvailableColors[index].Color, Available = true };
+            Lines.Find(l => l.Color == _color).GetComponent<Image>().DOFade(0,0.3f);
         }
 
         #endregion
+
+        
     }
 
 }
