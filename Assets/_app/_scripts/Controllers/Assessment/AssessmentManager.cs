@@ -81,14 +81,17 @@ namespace EA4S
 
         public void OnReleaseOnWord(AssessmentObject _objDrag, AssessmentObject _objDrop)
         {
-            foreach (var obj in Draws.FindAll(o => o.Color == _objDrag.Color && o != _objDrag && o != _objDrop)) {
-                obj.HideCyrcle(0.5f);
-            }
-            foreach (var obj in Words.FindAll(o => o.Color == _objDrag.Color && o != _objDrop)) {
-                obj.HideCyrcle(0.5f);
-            }
-            if (Draws.FindAll(o => !o.IsLocked).Count == 0 || Words.FindAll(o => !o.IsLocked).Count ==0)
+
+            if (Draws.FindAll(o => !o.IsLocked).Count == 0 || Words.FindAll(o => !o.IsLocked).Count == 0) {
                 CalculateResult();
+
+                foreach (var obj in Draws) {
+                    obj.IsInteractable = false;
+                }
+                foreach (var obj in Words) {
+                    obj.IsInteractable = false;
+                }
+            }
         }
 
         void CalculateResult()
