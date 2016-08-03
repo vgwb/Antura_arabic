@@ -24,20 +24,16 @@ namespace Balloons
 
         void Update()
         {
-            if (isRunning)
-            {
-                if (timeRemaining > 0f)
-                {
+            if (isRunning) {
+                if (timeRemaining > 0f) {
                     timeRemaining -= Time.deltaTime;
                     DisplayTime();
                 }
-                if (!playedSfx && timeRemaining < 5f)
-                {
-                    AudioManager.I.PlaySfx(Sfx.DangerClock);
+                if (!playedSfx && timeRemaining < 5f) {
+                    AudioManager.I.PlaySfx(Sfx.DangerClockLong);
                     playedSfx = true;
                 }
-                if (timeRemaining < 1f)
-                {
+                if (timeRemaining < 1f) {
                     StopTimer();
                     BalloonsGameManager.instance.OnTimeUp();
                 }
@@ -54,7 +50,7 @@ namespace Balloons
         {
             isRunning = false;
             playedSfx = false;
-            AudioManager.I.StopSfx(Sfx.DangerClock);
+            AudioManager.I.StopSfx(Sfx.DangerClockLong);
         }
 
         public void ResetTimer()

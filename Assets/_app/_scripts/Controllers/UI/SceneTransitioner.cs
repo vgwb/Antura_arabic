@@ -51,6 +51,7 @@ namespace EA4S
                 onCompleteCallback = _onComplete;
                 tween.Restart();
                 this.gameObject.SetActive(true);
+                AudioManager.I.PlaySfx(Sfx.Transition);
             } else {
                 MaskCover.fillClockwise = false;
                 onCompleteCallback = null;
