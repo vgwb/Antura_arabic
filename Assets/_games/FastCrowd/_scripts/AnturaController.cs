@@ -11,6 +11,7 @@ namespace EA4S.FastCrowd
         Transform wayPoint;
         public Vector3 HidePosition = new Vector3(25, 0, -20);
         public bool IsAnturaTime = false;
+        float nextAnturaBarkTime;
 
         // Use this for initialization
         void Start()
@@ -25,16 +26,26 @@ namespace EA4S.FastCrowd
         // Update is called once per frame
         void Update()
         {
-              
+            if (IsAnturaTime && Time.time > nextAnturaBarkTime) {
+                prepareNextAnturaBark();
+                AudioManager.I.PlaySfx(Sfx.DogBarking);
+            }
         }
 
         void setAnturaTime(bool _isAnturaTime)
         {
             IsAnturaTime = _isAnturaTime;
-            if (IsAnturaTime)
+            if (IsAnturaTime) {
                 RepositioningWaypoint();
-            else
+                prepareNextAnturaBark();
+            } else {
                 agent.SetDestination(HidePosition);
+            }
+        }
+
+        void prepareNextAnturaBark()
+        {
+            nextAnturaBarkTime = Time.time + Random.Range(1, 3);
         }
 
         void OnTriggerEnter(Collider other)
