@@ -89,7 +89,8 @@ namespace EA4S.DontWakeUp
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySfx(Sfx.DogSnoring);
 
-            GameIntro();
+            StartCurrentRound();
+            //GameIntro();
         }
 
         public void DoPause(bool status)

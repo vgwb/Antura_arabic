@@ -128,7 +128,7 @@ namespace EA4S
                     }
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
                 }
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.SceneName);
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.SceneName + "_tutorial");
             }
             /*
             Debug.Log("Wheel start game: " + gameData[currentGameIndex].Code);

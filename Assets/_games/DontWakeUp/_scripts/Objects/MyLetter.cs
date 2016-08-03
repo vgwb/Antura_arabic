@@ -234,15 +234,15 @@ namespace EA4S.DontWakeUp
                 lastMousePosition = Input.mousePosition;
 
                 //Debug.Log(mouseDelta.magnitude);
-                if (mouseDelta.magnitude > SpeedLimit) {
-                    inOverSpeed = true;
-                    DontWakeUpManager.Instance.InDanger(true, How2Die.TooFast);
-                } else {
-                    if (inOverSpeed) {
-                        inOverSpeed = false;
-                        DontWakeUpManager.Instance.InDanger(false, How2Die.Null);
-                    }
-                }
+//                if (mouseDelta.magnitude > SpeedLimit) {
+//                    inOverSpeed = true;
+//                    DontWakeUpManager.Instance.InDanger(true, How2Die.TooFast);
+//                } else {
+//                    if (inOverSpeed) {
+//                        inOverSpeed = false;
+//                        DontWakeUpManager.Instance.InDanger(false, How2Die.Null);
+//                    }
+//                }
 
             }
         }
