@@ -26,6 +26,8 @@ namespace EA4S
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySfx(Sfx.GameTitle);
             ContinueScreen.Show(Play, ContinueScreenMode.Button);
+
+            SceneTransitioner.Close();
         }
 
         public void Play()

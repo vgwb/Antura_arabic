@@ -39,6 +39,9 @@ namespace EA4S
             AppManager.Instance.InitDataAI();
             //myLineRenderer.OnDraw(new Vector3(30, 20, 0), new Vector3(300, 300, 0));
             // WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
+
+            SceneTransitioner.Close();
+
             StartTest();
         }
 

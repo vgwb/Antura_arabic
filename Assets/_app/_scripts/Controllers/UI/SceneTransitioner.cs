@@ -35,6 +35,13 @@ namespace EA4S
             GlobalUI.SceneTransitioner.DoShow(_doShow, _onComplete);
         }
 
+        public static void Close()
+        {
+            if (IsShown) {
+                Show(false);
+            }
+        }
+
         void DoShow(bool _doShow, Action _onComplete = null)
         {
             IsShown = _doShow;
@@ -51,7 +58,8 @@ namespace EA4S
                 if (tween.Elapsed() <= 0) {
                     tween.Pause();
                     OnRewind();
-                } else tween.PlayBackwards();
+                } else
+                    tween.PlayBackwards();
             }
         }
 
@@ -86,13 +94,15 @@ namespace EA4S
         void OnRewind()
         {
             this.gameObject.SetActive(false);
-            if (onRewindCallback != null) onRewindCallback();
+            if (onRewindCallback != null)
+                onRewindCallback();
         }
 
         void OnComplete()
         {
             GlobalUI.Clear(false);
-            if (onCompleteCallback != null) onCompleteCallback();
+            if (onCompleteCallback != null)
+                onCompleteCallback();
         }
     }
 }

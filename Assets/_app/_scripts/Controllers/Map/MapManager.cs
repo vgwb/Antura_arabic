@@ -34,6 +34,9 @@ namespace EA4S
             } else if ((AppManager.Instance.PlaySession) > 2) {
                 tutorialIndex = 30;
             }
+
+            SceneTransitioner.Close();
+
             ShowTutor();
         }
 

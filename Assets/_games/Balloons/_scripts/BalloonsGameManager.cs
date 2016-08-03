@@ -90,6 +90,7 @@ namespace Balloons
             AppManager.Instance.CurrentGameManagerGO = gameObject;
 
             ResetScene();
+            SceneTransitioner.Close();
             //ShowTutorial();
             Play();
         }

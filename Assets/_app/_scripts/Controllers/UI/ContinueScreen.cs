@@ -45,19 +45,23 @@ namespace EA4S
         /// </summary>
         /// <param name="_onContinue">Eventual callback to call when the user clicks to continue</param>
         /// <param name="_mode">Mode</param>
-        public static void Show(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg) {
+        public static void Show(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg)
+        {
             GlobalUI.Init();
             GlobalUI.ContinueScreen.DoShow(_onContinue, _mode);
         }
 
-        void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg) {
+        void DoShow(Action _onContinue, ContinueScreenMode _mode = ContinueScreenMode.ButtonWithBg)
+        {
+            Debug.Log("ContinueScreen DoShow " + _onContinue);
             IsShown = true;
             clicked = false;
             currMode = _mode;
             onContinueCallback = _onContinue;
             Bg.gameObject.SetActive(_mode != ContinueScreenMode.Button);
             BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.FullscreenBg);
-            if (btIdleTween.IsPlaying()) btIdleTween.Rewind();
+            if (btIdleTween.IsPlaying())
+                btIdleTween.Rewind();
             if (_mode == ContinueScreenMode.ButtonFullscreen) {
                 SideSnapshot.Apply(btRT, IcoContinue);
             } else {
@@ -65,7 +69,8 @@ namespace EA4S
             }
             showBgTween.Rewind();
             showTween.Restart();
-            if (_mode != ContinueScreenMode.Button && _mode != ContinueScreenMode.ButtonFullscreen) showBgTween.PlayForward();
+            if (_mode != ContinueScreenMode.Button && _mode != ContinueScreenMode.ButtonFullscreen)
+                showBgTween.PlayForward();
             this.gameObject.SetActive(true);
         }
 
@@ -73,11 +78,13 @@ namespace EA4S
         /// Closes the continue screen without dispatching any callback
         /// </summary>
         /// <param name="_immediate">If TRUE, immmediately closes the screen without animation</param>
-        public static void Close(bool _immediate) {
+        public static void Close(bool _immediate)
+        {
             GlobalUI.ContinueScreen.DoClose(_immediate);
         }
 
-        void DoClose(bool _immediate) {
+        void DoClose(bool _immediate)
+        {
             if (!IsShown && !_immediate)
                 return;
 
@@ -90,13 +97,14 @@ namespace EA4S
                 this.gameObject.SetActive(false);
             } else
                 showTween.PlayBackwards();
-                showBgTween.PlayBackwards();
+            showBgTween.PlayBackwards();
         }
 
         // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         // ■■■ INTERNAL
 
-        void Awake() {
+        void Awake()
+        {
             btRT = BtContinue.GetComponent<RectTransform>();
             CenterSnapshot.Apply(btRT, IcoContinue);
 
@@ -104,12 +112,15 @@ namespace EA4S
             showTween = btRT.DOScale(0.1f, duration).From().SetEase(Ease.OutBack)
                 .SetUpdate(true).SetAutoKill(false).Pause()
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     this.gameObject.SetActive(false);
                     btIdleTween.Rewind();
                 })
-                .OnComplete(() => {
-                    if (currMode == ContinueScreenMode.ButtonFullscreen) btIdleTween.Restart();
+                .OnComplete(() =>
+                {
+                    if (currMode == ContinueScreenMode.ButtonFullscreen)
+                        btIdleTween.Restart();
                 });
 
             showBgTween = Bg.image.DOFade(0, duration).From().SetEase(Ease.InSine)
@@ -129,7 +140,8 @@ namespace EA4S
             Bg.onClick.AddListener(() => OnClick(false));
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             showTween.Kill();
             showBgTween.Kill();
             btClickTween.Kill();
@@ -138,14 +150,16 @@ namespace EA4S
             Bg.onClick.RemoveAllListeners();
         }
 
-        void Continue() {
+        void Continue()
+        {
             if (onContinueCallback != null)
                 onContinueCallback();
             showTween.PlayBackwards();
             showBgTween.PlayBackwards();
         }
 
-        void OnClick(bool _isButton) {
+        void OnClick(bool _isButton)
+        {
             if (clicked)
                 return;
 
@@ -173,8 +187,7 @@ namespace EA4S
         public Vector2 AnchoredPos, AnchorMin, AnchorMax, SizeDelta;
         public Vector2 IcoAnchoredPos;
 
-        public ButtonSnapshot(Vector2 _anchoredPos, Vector2 _anchorMin, Vector2 _anchorMax, Vector2 _sizeDelta, Vector2 _icoAnchoredPos)
-        {
+        public ButtonSnapshot(Vector2 _anchoredPos, Vector2 _anchorMin, Vector2 _anchorMax, Vector2 _sizeDelta, Vector2 _icoAnchoredPos) {
             AnchoredPos = _anchoredPos;
             AnchorMin = _anchorMin;
             AnchorMax = _anchorMax;
