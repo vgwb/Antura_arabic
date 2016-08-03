@@ -17,6 +17,7 @@ namespace EA4S {
 
         public bool IsWord = false;
         public bool IsLocked = false;
+        public bool IsInteractable = true;
         AssessmentManager manager;
 
         #region 
@@ -60,6 +61,8 @@ namespace EA4S {
         #region inputEvents
 
         public void OnPointerDown(PointerEventData eventData) {
+            if (!IsInteractable)
+                return;
             if (IsLocked)
                 manager.UnlockObjects(Color);
             SetColor(manager.GetAvailableColor());
@@ -67,6 +70,8 @@ namespace EA4S {
         }
 
         public void OnPointerUp(PointerEventData eventData) {
+            if (!IsInteractable)
+                return;
             foreach (var item in eventData.hovered) {
                 AssessmentObject other = item.GetComponent<AssessmentObject>();
                 if (!other)
