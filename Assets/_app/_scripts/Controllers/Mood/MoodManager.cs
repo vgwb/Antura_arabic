@@ -47,7 +47,7 @@ namespace EA4S
         {
             // if we just did Assestment then go home
             if (AppManager.Instance.PlaySession > 2) {
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_End");
             } else {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
             }
