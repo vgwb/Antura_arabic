@@ -12,6 +12,7 @@ namespace EA4S
     {
         [Header("References")]
         public GameObject PanelTestGO;
+        public SpriteLineRenderer myLineRenderer;
 
         public List<Color> Colors;
         public List<ColorSet> AvailableColors = new List<ColorSet>();
@@ -36,7 +37,9 @@ namespace EA4S
 
             PanelTestGO.SetActive(false);
             AppManager.Instance.InitDataAI();
-            WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
+            //myLineRenderer.OnDraw(new Vector3(30, 20, 0), new Vector3(300, 300, 0));
+            // WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
+            StartTest();
         }
 
         public void NextSentence()
