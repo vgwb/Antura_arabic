@@ -127,7 +127,13 @@ namespace EA4S.FastCrowd
 
             if (OnReadyForGameplayDone != null)
                 OnReadyForGameplayDone(GameplayInfo);
+
+            // TODO: Quick fix
+            if (SceneTransitioner.IsShown) {
+                SceneTransitioner.Show(false);
+            }
         }
+
 
         /// <summary>
         /// 
