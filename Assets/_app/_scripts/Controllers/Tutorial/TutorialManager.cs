@@ -12,4 +12,10 @@ public class TutorialManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    // Called when the tutorial animations are complete
+    public void OnTutorialComplete()
+    {
+        Debug.Log("Tutorial complete");
+    }
 }
