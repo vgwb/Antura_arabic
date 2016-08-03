@@ -77,7 +77,7 @@ namespace EA4S
 
             CachingLetterData();
 
-            GameSettings.HighQualityGfx = true;
+            GameSettings.HighQualityGfx = false;
 
             InitDataAI();
 
