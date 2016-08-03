@@ -4656,19 +4656,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.6885094
+      value: -0.68850946
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607113
+      value: 0.040607117
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.71819454
+      value: 0.7181946
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220874
+      value: 0.09220875
       objectReference: {fileID: 0}
     - target: {fileID: 3385508, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_Mesh
@@ -6244,6 +6244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1556a6b324447f8b9919cfa598b4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentGameCode: 1
 --- !u!1 &1134668449
 GameObject:
   m_ObjectHideFlags: 0
