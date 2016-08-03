@@ -151,6 +151,6 @@ SubShader {
 }
 
 //Fallback "TMPro/Mobile/Distance Field (Surface)"
-CustomEditor "TMPro_SDFMaterialEditor"
+CustomEditor "TMPro.EditorUtilities.TMP_SDFShaderGUI"
 }
 

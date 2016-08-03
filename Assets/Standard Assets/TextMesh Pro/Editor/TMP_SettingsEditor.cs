@@ -26,6 +26,7 @@ namespace TMPro.EditorUtilities
 
 
         private SerializedProperty prop_FontAsset;
+        private SerializedProperty prop_DefaultFontAssetPath;
         private SerializedProperty prop_DefaultFontSize;
         private SerializedProperty prop_DefaultTextContainerWidth;
         private SerializedProperty prop_DefaultTextContainerHeight;
@@ -54,6 +55,7 @@ namespace TMPro.EditorUtilities
         public void OnEnable()
         {
             prop_FontAsset = serializedObject.FindProperty("m_defaultFontAsset");
+            prop_DefaultFontAssetPath = serializedObject.FindProperty("m_defaultFontAssetPath");
             prop_DefaultFontSize = serializedObject.FindProperty("m_defaultFontSize");
             prop_DefaultTextContainerWidth = serializedObject.FindProperty("m_defaultTextContainerWidth");
             prop_DefaultTextContainerHeight = serializedObject.FindProperty("m_defaultTextContainerHeight");
@@ -116,6 +118,9 @@ namespace TMPro.EditorUtilities
             GUILayout.Label("Select the Font Asset that will be assigned by default to newly created text objects when no Font Asset is specified.", TMP_UIStyleManager.Label);
             GUILayout.Space(5f);
             EditorGUILayout.PropertyField(prop_FontAsset);
+            GUILayout.Space(10f);
+            GUILayout.Label("The relative path to a Resources folder where the Font Assets and Material Presets are located.\nExample \"Fonts & Materials/\"", TMP_UIStyleManager.Label);
+            EditorGUILayout.PropertyField(prop_DefaultFontAssetPath, new GUIContent("Path:        Resources/"));
             EditorGUILayout.EndVertical();
 
 

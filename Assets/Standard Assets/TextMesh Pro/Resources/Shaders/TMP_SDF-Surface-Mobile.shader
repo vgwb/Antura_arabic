@@ -132,5 +132,5 @@ SubShader {
 	}
 }
 
-CustomEditor "TMPro_SDFMaterialEditor"
+CustomEditor "TMPro.EditorUtilities.TMP_SDFShaderGUI"
 }

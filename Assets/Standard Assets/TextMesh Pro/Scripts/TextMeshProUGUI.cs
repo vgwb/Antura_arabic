@@ -1,7 +1,7 @@
 // Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Release 0.1.54 Beta 3c
+// Release 1.0.54 
 
 
 using UnityEngine;
@@ -165,7 +165,7 @@ namespace TMPro
         /// </summary>
         public override void SetLayoutDirty()
         {
-            //Debug.Log("SetLayoutDirty()");
+            //Debug.Log("SetLayoutDirty() called at frame:" + Time.frameCount + ".");
 
             if ( m_layoutAlreadyDirty || this == null || !this.IsActive())
                 return;

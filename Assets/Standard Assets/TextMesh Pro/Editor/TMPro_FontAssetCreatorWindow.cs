@@ -91,10 +91,10 @@ namespace TMPro.EditorUtilities
         private int font_atlas_width = 512;
         private int font_atlas_height = 512;
 
-        private int m_shaderSelectionIndex;
-        private Shader m_shaderSelection;
-        private string[] m_availableShaderNames;
-        private Shader[] m_availableShaders;
+        //private int m_shaderSelectionIndex;
+        //private Shader m_shaderSelection;
+        //private string[] m_availableShaderNames;
+        //private Shader[] m_availableShaders;
 
 
         private int font_scaledownFactor = 1;
@@ -881,7 +881,7 @@ namespace TMPro.EditorUtilities
                 m_font_Atlas.filterMode = FilterMode.Point;
 
             m_font_Atlas.SetPixels32(colors, 0);
-            m_font_Atlas.Apply(false, false);
+            m_font_Atlas.Apply(false, true);
 
             // Saving File for Debug
             //var pngData = m_font_Atlas.EncodeToPNG();
@@ -938,6 +938,7 @@ namespace TMPro.EditorUtilities
                     KerningTable kerningTable = GetKerningTable(fontFilePath, (int)face.PointSize);
                     font_asset.AddKerningInfo(kerningTable);
                 }
+
 
                 // Add Font Atlas as Sub-Asset
                 font_asset.atlas = m_font_Atlas;
@@ -1019,7 +1020,7 @@ namespace TMPro.EditorUtilities
 
             m_font_Atlas = null;
 
-            // NEED TO GENERATE AN EVENT TO FORCE A REDRAW OF ANY TEXTMESHPRO INSTANCES THAT MIGHT BE USING THIS FONT ASSET      
+            // NEED TO GENERATE AN EVENT TO FORCE A REDRAW OF ANY TEXTMESHPRO INSTANCES THAT MIGHT BE USING THIS FONT ASSET
             TMPro_EventManager.ON_FONT_PROPERTY_CHANGED(true, font_asset);
         }
 
@@ -1266,6 +1267,7 @@ namespace TMPro.EditorUtilities
             face.PointSize = (float)ft_face.pointSize / scaleFactor;
             face.Padding = ft_face.padding / scaleFactor;
             face.LineHeight = ft_face.lineHeight / scaleFactor;
+            face.CapHeight = 0;
             face.Baseline = 0;
             face.Ascender = ft_face.ascender / scaleFactor;
             face.Descender = ft_face.descender / scaleFactor;

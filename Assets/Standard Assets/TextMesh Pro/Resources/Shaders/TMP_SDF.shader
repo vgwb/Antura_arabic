@@ -122,14 +122,13 @@ SubShader {
 		#pragma shader_feature __ BEVEL_ON
 		#pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
 		#pragma shader_feature __ GLOW_ON
-		#pragma shader_feature __ MASK_HARD MASK_SOFT
+		#pragma shader_feature __ MASK_OFF
 
 
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"
 		#include "TMPro_Properties.cginc"
 		#include "TMPro.cginc"
-
 
 		struct vertex_t {
 			float4	position		: POSITION;
@@ -168,7 +167,7 @@ SubShader {
 			pixelSize /= float2(_ScaleX, _ScaleY) * abs(mul((float2x2)UNITY_MATRIX_P, _ScreenParams.xy));
 			float scale = rsqrt(dot(pixelSize, pixelSize));
 			scale *= abs(input.texcoord1.y) * _GradientScale * 1.5;
-			if(UNITY_MATRIX_P[3][3] == 0) scale = lerp(scale*(1 - _PerspectiveFilter), scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz), normalize(WorldSpaceViewDir(vert)))));
+			if (UNITY_MATRIX_P[3][3] == 0) scale = lerp(abs(scale) * (1 - _PerspectiveFilter), scale, abs(dot(UnityObjectToWorldNormal(input.normal.xyz), normalize(WorldSpaceViewDir(vert)))));
 
 			float weight = (lerp(_WeightNormal, _WeightBold, bold)) / _GradientScale;
 			weight += _FaceDilate * _ScaleRatioA * 0.5;
@@ -196,14 +195,17 @@ SubShader {
 			float2 bOffset = float2(x, y);
 		#endif
 
+			// Generate UV for the Masking Texture
+			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
+			float2 maskUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
+
 			pixel_t output = {
 				vPosition,
 				input.color,
 				float4(input.texcoord0, UnpackUV(input.texcoord1.x)),
 				float4(alphaClip, scale, bias, weight),
-				float4(vert.xy, 0.5 / pixelSize.xy),
+				half4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy)),
 				mul((float3x3)_EnvMatrix, _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz),
-
 			#if (UNDERLAY_ON || UNDERLAY_INNER)
 				float4(input.texcoord0 + bOffset, bScale, bBias),
 				underlayColor,
@@ -274,47 +276,26 @@ SubShader {
 			faceColor.rgb += glowColor.rgb * glowColor.a;
 		#endif
 
-
-		/*if (_UseClipRect)
-		{
-			half2 clipSize = (_ClipRect.zw - _ClipRect.xy) * 0.5;
-			half2 clipCenter = _ClipRect.xy + clipSize;
-
-			half2 s = half2(_MaskSoftnessX, _MaskSoftnessY) * input.mask.zw;
-			half2 m = 1 - saturate(((abs(input.mask.xy - clipCenter) - clipSize) * input.mask.zw + s) / (1 + s));
-			m *= m;
-			faceColor *= m.x * m.y;
-		}*/
-
-
-		#if MASK_HARD
-			half2 m = 1 - saturate((abs(input.mask.xy) - _MaskCoord.zw) * input.mask.zw);
-			faceColor *= m.x * m.y;
-		#endif
-
-		#if MASK_SOFT
-			half2 s = half2(_MaskSoftnessX, _MaskSoftnessY) * input.mask.zw;
-			half2 m = 1 - saturate(((abs(input.mask.xy) - _MaskCoord.zw) * input.mask.zw + s) / (1 + s));
-			m *= m;
-			faceColor *= m.x * m.y;
-		#endif
-
-		// Support for 2D RectMask
+		// #if !MASK_OFF
 		#if UNITY_VERSION < 530
+			// Unity 5.2 2D Rect Mask Support
 			if (_UseClipRect)
 				faceColor *= UnityGet2DClipping(input.mask.xy, _ClipRect);
 		#else
-			faceColor *= UnityGet2DClipping(input.mask.xy, _ClipRect);
+			// Alternative implementation to UnityGet2DClipping with support for softness.
+			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
+			faceColor *= m.x * m.y;
 		#endif
+		//#endif
 
-			return faceColor * input.color.a;
+
+  		return faceColor * input.color.a;
 		}
 
 		ENDCG
 	}
 }
 
-
 Fallback "TextMeshPro/Mobile/Distance Field"
-CustomEditor "TMPro_SDFMaterialEditor"
+CustomEditor "TMPro.EditorUtilities.TMP_SDFShaderGUI"
 }

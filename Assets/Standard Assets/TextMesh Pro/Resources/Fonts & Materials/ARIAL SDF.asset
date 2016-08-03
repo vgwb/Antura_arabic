@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &2100000
+--- !u!21 &2132638
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -19,12 +19,33 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2892676}
+          m_Texture: {fileID: 2806040}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _MaskTex
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _FaceTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OutlineTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -68,20 +89,20 @@ Material:
         second: 0
       data:
         first:
-          name: _UnderlayOffsetX
+          name: _GlowOffset
         second: 0
       data:
         first:
-          name: _UnderlayOffsetY
-        second: 0
+          name: _GlowInner
+        second: .0500000007
       data:
         first:
-          name: _UnderlayDilate
-        second: 0
+          name: _GlowOuter
+        second: .0500000007
       data:
         first:
-          name: _UnderlaySoftness
-        second: 0
+          name: _GlowPower
+        second: .75
       data:
         first:
           name: _WeightNormal
@@ -89,7 +110,7 @@ Material:
       data:
         first:
           name: _WeightBold
-        second: .5
+        second: .75
       data:
         first:
           name: _ShaderFlags
@@ -101,7 +122,7 @@ Material:
       data:
         first:
           name: _ScaleRatioB
-        second: 1
+        second: .899999976
       data:
         first:
           name: _ScaleRatioC
@@ -140,6 +161,86 @@ Material:
         second: 0
       data:
         first:
+          name: _FaceUVSpeedX
+        second: 0
+      data:
+        first:
+          name: _FaceUVSpeedY
+        second: 0
+      data:
+        first:
+          name: _OutlineUVSpeedX
+        second: 0
+      data:
+        first:
+          name: _OutlineUVSpeedY
+        second: 0
+      data:
+        first:
+          name: _Bevel
+        second: .5
+      data:
+        first:
+          name: _BevelOffset
+        second: 0
+      data:
+        first:
+          name: _BevelWidth
+        second: 0
+      data:
+        first:
+          name: _BevelClamp
+        second: 0
+      data:
+        first:
+          name: _BevelRoundness
+        second: 0
+      data:
+        first:
+          name: _LightAngle
+        second: 3.14159989
+      data:
+        first:
+          name: _SpecularPower
+        second: 2
+      data:
+        first:
+          name: _Reflectivity
+        second: 10
+      data:
+        first:
+          name: _Diffuse
+        second: .5
+      data:
+        first:
+          name: _Ambient
+        second: .5
+      data:
+        first:
+          name: _BumpOutline
+        second: 0
+      data:
+        first:
+          name: _BumpFace
+        second: 0
+      data:
+        first:
+          name: _UnderlayOffsetX
+        second: 0
+      data:
+        first:
+          name: _UnderlayOffsetY
+        second: 0
+      data:
+        first:
+          name: _UnderlayDilate
+        second: 0
+      data:
+        first:
+          name: _UnderlaySoftness
+        second: 0
+      data:
+        first:
           name: _MaskSoftnessX
         second: 0
       data:
@@ -161,13 +262,33 @@ Material:
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
+          name: _GlowColor
+        second: {r: 0, g: 1, b: 0, a: .5}
+      data:
+        first:
+          name: _SpecularColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _ReflectFaceColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _ReflectOutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _EnvMatrixRotation
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
           name: _UnderlayColor
         second: {r: 0, g: 0, b: 0, a: .5}
       data:
         first:
           name: _MaskCoord
         second: {r: 0, g: 0, b: 10000, a: 10000}
---- !u!28 &2892676
+--- !u!28 &2806040
 Texture2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -182,7 +303,7 @@ Texture2D:
   m_CompleteImageSize: 1048576
   m_TextureFormat: 1
   m_MipCount: 1
-  m_IsReadable: 1
+  m_IsReadable: 0
   m_ReadAllowed: 1
   m_AlphaIsTransparency: 0
   m_ImageCount: 1
@@ -208,7 +329,7 @@ MonoBehaviour:
   m_Name: ARIAL SDF
   m_EditorClassIdentifier: 
   hashCode: 353930246
-  material: {fileID: 2100000}
+  material: {fileID: 2132638}
   materialHashCode: -852827955
   fontAssetType: 1
   m_fontInfo:
@@ -219,6 +340,7 @@ MonoBehaviour:
     LineHeight: 97.75
     Baseline: 0
     Ascender: 76.9375
+    CapHeight: 60.875
     Descender: -18
     CenterLine: 0
     SuperscriptOffset: 76.9375
@@ -230,7 +352,7 @@ MonoBehaviour:
     Padding: 9
     AtlasWidth: 1024
     AtlasHeight: 1024
-  atlas: {fileID: 2892676}
+  atlas: {fileID: 2806040}
   m_glyphInfoList:
   - id: 32
     x: 10
@@ -240,6 +362,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 76.9375
     xAdvance: 23.625
+    scale: 1
   - id: 33
     x: 956
     y: 860
@@ -248,6 +371,7 @@ MonoBehaviour:
     xOffset: 7.28125
     yOffset: 60.875
     xAdvance: 23.625
+    scale: 1
   - id: 34
     x: 871
     y: 95
@@ -256,6 +380,7 @@ MonoBehaviour:
     xOffset: 3.875
     yOffset: 60.875
     xAdvance: 30.1875
+    scale: 1
   - id: 35
     x: 254
     y: 772
@@ -264,6 +389,7 @@ MonoBehaviour:
     xOffset: .84375
     yOffset: 61.90625
     xAdvance: 47.28125
+    scale: 1
   - id: 36
     x: 186
     y: 854
@@ -272,6 +398,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 66.46875
     xAdvance: 47.28125
+    scale: 1
   - id: 37
     x: 309
     y: 949
@@ -280,6 +407,7 @@ MonoBehaviour:
     xOffset: 4.9375
     yOffset: 61.90625
     xAdvance: 75.59375
+    scale: 1
   - id: 38
     x: 527
     y: 769
@@ -288,6 +416,7 @@ MonoBehaviour:
     xOffset: 3.625
     yOffset: 61.90625
     xAdvance: 56.6875
+    scale: 1
   - id: 39
     x: 686
     y: 86
@@ -296,6 +425,7 @@ MonoBehaviour:
     xOffset: 3.71875
     yOffset: 60.875
     xAdvance: 16.21875
+    scale: 1
   - id: 40
     x: 775
     y: 848
@@ -304,6 +434,7 @@ MonoBehaviour:
     xOffset: 5.125
     yOffset: 61.90625
     xAdvance: 28.3125
+    scale: 1
   - id: 41
     x: 164
     y: 671
@@ -312,6 +443,7 @@ MonoBehaviour:
     xOffset: 5.125
     yOffset: 61.90625
     xAdvance: 28.3125
+    scale: 1
   - id: 42
     x: 869
     y: 50
@@ -320,6 +452,7 @@ MonoBehaviour:
     xOffset: 2.65625
     yOffset: 61.90625
     xAdvance: 33.09375
+    scale: 1
   - id: 43
     x: 245
     y: 10
@@ -328,6 +461,7 @@ MonoBehaviour:
     xOffset: 4.71875
     yOffset: 50.0625
     xAdvance: 49.625
+    scale: 1
   - id: 44
     x: 843
     y: 97
@@ -336,6 +470,7 @@ MonoBehaviour:
     xOffset: 7.03125
     yOffset: 8.53125
     xAdvance: 23.625
+    scale: 1
   - id: 45
     x: 595
     y: 60
@@ -344,6 +479,7 @@ MonoBehaviour:
     xOffset: 2.6875
     yOffset: 25.78125
     xAdvance: 28.3125
+    scale: 1
   - id: 46
     x: 391
     y: 70
@@ -352,6 +488,7 @@ MonoBehaviour:
     xOffset: 7.71875
     yOffset: 8.53125
     xAdvance: 23.625
+    scale: 1
   - id: 47
     x: 215
     y: 402
@@ -360,6 +497,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 61.90625
     xAdvance: 23.625
+    scale: 1
   - id: 48
     x: 584
     y: 687
@@ -368,6 +506,7 @@ MonoBehaviour:
     xOffset: 3.5
     yOffset: 61.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 49
     x: 609
     y: 499
@@ -376,6 +515,7 @@ MonoBehaviour:
     xOffset: 9.25
     yOffset: 61.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 50
     x: 329
     y: 178
@@ -384,6 +524,7 @@ MonoBehaviour:
     xOffset: 2.46875
     yOffset: 61.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 51
     x: 328
     y: 341
@@ -392,6 +533,7 @@ MonoBehaviour:
     xOffset: 3.5625
     yOffset: 61.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 52
     x: 331
     y: 98
@@ -400,6 +542,7 @@ MonoBehaviour:
     xOffset: 1.0625
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 53
     x: 561
     y: 580
@@ -408,6 +551,7 @@ MonoBehaviour:
     xOffset: 3.5
     yOffset: 60.03125
     xAdvance: 47.28125
+    scale: 1
   - id: 54
     x: 328
     y: 259
@@ -416,6 +560,7 @@ MonoBehaviour:
     xOffset: 3.1875
     yOffset: 61.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 55
     x: 926
     y: 576
@@ -424,6 +569,7 @@ MonoBehaviour:
     xOffset: 4
     yOffset: 60.0625
     xAdvance: 47.28125
+    scale: 1
   - id: 56
     x: 651
     y: 518
@@ -432,6 +578,7 @@ MonoBehaviour:
     xOffset: 3.4375
     yOffset: 61.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 57
     x: 387
     y: 346
@@ -440,6 +587,7 @@ MonoBehaviour:
     xOffset: 3.5
     yOffset: 61.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 58
     x: 910
     y: 315
@@ -448,6 +596,7 @@ MonoBehaviour:
     xOffset: 7.65625
     yOffset: 44.09375
     xAdvance: 23.625
+    scale: 1
   - id: 59
     x: 824
     y: 366
@@ -456,6 +605,7 @@ MonoBehaviour:
     xOffset: 7.03125
     yOffset: 44.09375
     xAdvance: 23.625
+    scale: 1
   - id: 60
     x: 605
     y: 357
@@ -464,6 +614,7 @@ MonoBehaviour:
     xOffset: 4.625
     yOffset: 50.59375
     xAdvance: 49.625
+    scale: 1
   - id: 61
     x: 714
     y: 93
@@ -472,6 +623,7 @@ MonoBehaviour:
     xOffset: 4.71875
     yOffset: 42.75
     xAdvance: 49.625
+    scale: 1
   - id: 62
     x: 918
     y: 433
@@ -480,6 +632,7 @@ MonoBehaviour:
     xOffset: 4.625
     yOffset: 50.59375
     xAdvance: 49.625
+    scale: 1
   - id: 63
     x: 453
     y: 103
@@ -488,6 +641,7 @@ MonoBehaviour:
     xOffset: 3.71875
     yOffset: 61.90625
     xAdvance: 47.28125
+    scale: 1
   - id: 64
     x: 10
     y: 934
@@ -496,6 +650,7 @@ MonoBehaviour:
     xOffset: 4.59375
     yOffset: 61.96875
     xAdvance: 86.28125
+    scale: 1
   - id: 65
     x: 880
     y: 860
@@ -504,6 +659,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 66
     x: 750
     y: 768
@@ -512,6 +668,7 @@ MonoBehaviour:
     xOffset: 6.21875
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 67
     x: 511
     y: 687
@@ -520,6 +677,7 @@ MonoBehaviour:
     xOffset: 4.21875
     yOffset: 61.90625
     xAdvance: 61.375
+    scale: 1
   - id: 68
     x: 188
     y: 322
@@ -528,6 +686,7 @@ MonoBehaviour:
     xOffset: 6.53125
     yOffset: 60.875
     xAdvance: 61.375
+    scale: 1
   - id: 69
     x: 750
     y: 688
@@ -536,6 +695,7 @@ MonoBehaviour:
     xOffset: 6.71875
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 70
     x: 548
     y: 500
@@ -544,6 +704,7 @@ MonoBehaviour:
     xOffset: 6.96875
     yOffset: 60.875
     xAdvance: 51.90625
+    scale: 1
   - id: 71
     x: 598
     y: 772
@@ -552,6 +713,7 @@ MonoBehaviour:
     xOffset: 4.5
     yOffset: 61.90625
     xAdvance: 66.125
+    scale: 1
   - id: 72
     x: 815
     y: 675
@@ -560,6 +722,7 @@ MonoBehaviour:
     xOffset: 6.78125
     yOffset: 60.875
     xAdvance: 61.375
+    scale: 1
   - id: 73
     x: 832
     y: 443
@@ -568,6 +731,7 @@ MonoBehaviour:
     xOffset: 7.90625
     yOffset: 60.875
     xAdvance: 23.625
+    scale: 1
   - id: 74
     x: 608
     y: 418
@@ -576,6 +740,7 @@ MonoBehaviour:
     xOffset: 2.28125
     yOffset: 60.875
     xAdvance: 42.5
+    scale: 1
   - id: 75
     x: 258
     y: 338
@@ -584,6 +749,7 @@ MonoBehaviour:
     xOffset: 6.21875
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 76
     x: 568
     y: 193
@@ -592,6 +758,7 @@ MonoBehaviour:
     xOffset: 6.21875
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 77
     x: 449
     y: 772
@@ -600,6 +767,7 @@ MonoBehaviour:
     xOffset: 6.28125
     yOffset: 60.875
     xAdvance: 70.8125
+    scale: 1
   - id: 78
     x: 261
     y: 258
@@ -608,6 +776,7 @@ MonoBehaviour:
     xOffset: 6.46875
     yOffset: 60.875
     xAdvance: 61.375
+    scale: 1
   - id: 79
     x: 176
     y: 772
@@ -616,6 +785,7 @@ MonoBehaviour:
     xOffset: 4.09375
     yOffset: 61.9375
     xAdvance: 66.125
+    scale: 1
   - id: 80
     x: 263
     y: 178
@@ -624,6 +794,7 @@ MonoBehaviour:
     xOffset: 6.53125
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 81
     x: 727
     y: 947
@@ -632,6 +803,7 @@ MonoBehaviour:
     xOffset: 3.625
     yOffset: 61.9375
     xAdvance: 66.125
+    scale: 1
   - id: 82
     x: 188
     y: 242
@@ -640,6 +812,7 @@ MonoBehaviour:
     xOffset: 6.65625
     yOffset: 60.875
     xAdvance: 61.375
+    scale: 1
   - id: 83
     x: 258
     y: 418
@@ -648,6 +821,7 @@ MonoBehaviour:
     xOffset: 3.8125
     yOffset: 61.90625
     xAdvance: 56.6875
+    scale: 1
   - id: 84
     x: 682
     y: 693
@@ -656,6 +830,7 @@ MonoBehaviour:
     xOffset: 1.96875
     yOffset: 60.875
     xAdvance: 51.90625
+    scale: 1
   - id: 85
     x: 99
     y: 10
@@ -664,6 +839,7 @@ MonoBehaviour:
     xOffset: 6.65625
     yOffset: 60.875
     xAdvance: 61.375
+    scale: 1
   - id: 86
     x: 251
     y: 500
@@ -672,6 +848,7 @@ MonoBehaviour:
     xOffset: .34375
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 87
     x: 10
     y: 854
@@ -680,6 +857,7 @@ MonoBehaviour:
     xOffset: 1.03125
     yOffset: 60.875
     xAdvance: 80.21875
+    scale: 1
   - id: 88
     x: 188
     y: 162
@@ -688,6 +866,7 @@ MonoBehaviour:
     xOffset: .34375
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 89
     x: 188
     y: 82
@@ -696,6 +875,7 @@ MonoBehaviour:
     xOffset: .21875
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 90
     x: 263
     y: 98
@@ -704,6 +884,7 @@ MonoBehaviour:
     xOffset: 1.6875
     yOffset: 60.875
     xAdvance: 51.90625
+    scale: 1
   - id: 91
     x: 945
     y: 763
@@ -712,6 +893,7 @@ MonoBehaviour:
     xOffset: 5.75
     yOffset: 60.875
     xAdvance: 23.625
+    scale: 1
   - id: 92
     x: 981
     y: 494
@@ -720,6 +902,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 61.90625
     xAdvance: 23.625
+    scale: 1
   - id: 93
     x: 86
     y: 367
@@ -728,6 +911,7 @@ MonoBehaviour:
     xOffset: 1.59375
     yOffset: 60.875
     xAdvance: 23.625
+    scale: 1
   - id: 94
     x: 938
     y: 270
@@ -736,6 +920,7 @@ MonoBehaviour:
     xOffset: 2.21875
     yOffset: 61.90625
     xAdvance: 39.875
+    scale: 1
   - id: 95
     x: 512
     y: 87
@@ -744,6 +929,7 @@ MonoBehaviour:
     xOffset: -1.3125
     yOffset: -11.46875
     xAdvance: 47.28125
+    scale: 1
   - id: 96
     x: 981
     y: 656
@@ -752,6 +938,7 @@ MonoBehaviour:
     xOffset: 3.6875
     yOffset: 61.1875
     xAdvance: 28.3125
+    scale: 1
   - id: 97
     x: 386
     y: 428
@@ -760,6 +947,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 45.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 98
     x: 512
     y: 112
@@ -768,6 +956,7 @@ MonoBehaviour:
     xOffset: 5.53125
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 99
     x: 860
     y: 443
@@ -776,6 +965,7 @@ MonoBehaviour:
     xOffset: 3.3125
     yOffset: 45.09375
     xAdvance: 42.5
+    scale: 1
   - id: 100
     x: 570
     y: 112
@@ -784,6 +974,7 @@ MonoBehaviour:
     xOffset: 2.875
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 101
     x: 446
     y: 348
@@ -792,6 +983,7 @@ MonoBehaviour:
     xOffset: 3.09375
     yOffset: 45.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 102
     x: 720
     y: 202
@@ -800,6 +992,7 @@ MonoBehaviour:
     xOffset: .78125
     yOffset: 61.90625
     xAdvance: 23.625
+    scale: 1
   - id: 103
     x: 157
     y: 407
@@ -808,6 +1001,7 @@ MonoBehaviour:
     xOffset: 2.71875
     yOffset: 45.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 104
     x: 978
     y: 414
@@ -816,6 +1010,7 @@ MonoBehaviour:
     xOffset: 5.59375
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 105
     x: 820
     y: 202
@@ -824,6 +1019,7 @@ MonoBehaviour:
     xOffset: 5.625
     yOffset: 60.875
     xAdvance: 18.875
+    scale: 1
   - id: 106
     x: 215
     y: 484
@@ -832,6 +1028,7 @@ MonoBehaviour:
     xOffset: -3.90625
     yOffset: 60.875
     xAdvance: 18.875
+    scale: 1
   - id: 107
     x: 768
     y: 362
@@ -840,6 +1037,7 @@ MonoBehaviour:
     xOffset: 5.625
     yOffset: 60.875
     xAdvance: 42.5
+    scale: 1
   - id: 108
     x: 822
     y: 282
@@ -848,6 +1046,7 @@ MonoBehaviour:
     xOffset: 5.40625
     yOffset: 60.875
     xAdvance: 18.875
+    scale: 1
   - id: 109
     x: 166
     y: 17
@@ -856,6 +1055,7 @@ MonoBehaviour:
     xOffset: 5.59375
     yOffset: 45.09375
     xAdvance: 70.8125
+    scale: 1
   - id: 110
     x: 774
     y: 137
@@ -864,6 +1064,7 @@ MonoBehaviour:
     xOffset: 5.59375
     yOffset: 45.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 111
     x: 865
     y: 590
@@ -872,6 +1073,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 45.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 112
     x: 628
     y: 112
@@ -880,6 +1082,7 @@ MonoBehaviour:
     xOffset: 5.59375
     yOffset: 45.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 113
     x: 716
     y: 444
@@ -888,6 +1091,7 @@ MonoBehaviour:
     xOffset: 2.96875
     yOffset: 45.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 114
     x: 829
     y: 137
@@ -896,6 +1100,7 @@ MonoBehaviour:
     xOffset: 5.5
     yOffset: 45.09375
     xAdvance: 28.3125
+    scale: 1
   - id: 115
     x: 665
     y: 370
@@ -904,6 +1109,7 @@ MonoBehaviour:
     xOffset: 2.59375
     yOffset: 45.09375
     xAdvance: 42.5
+    scale: 1
   - id: 116
     x: 506
     y: 437
@@ -912,6 +1118,7 @@ MonoBehaviour:
     xOffset: 1.46875
     yOffset: 59.5
     xAdvance: 23.625
+    scale: 1
   - id: 117
     x: 847
     y: 217
@@ -920,6 +1127,7 @@ MonoBehaviour:
     xOffset: 5.40625
     yOffset: 44.09375
     xAdvance: 47.28125
+    scale: 1
   - id: 118
     x: 714
     y: 138
@@ -928,6 +1136,7 @@ MonoBehaviour:
     xOffset: 1.0625
     yOffset: 44.09375
     xAdvance: 42.5
+    scale: 1
   - id: 119
     x: 481
     y: 597
@@ -936,6 +1145,7 @@ MonoBehaviour:
     xOffset: .21875
     yOffset: 44.09375
     xAdvance: 61.375
+    scale: 1
   - id: 120
     x: 547
     y: 436
@@ -944,6 +1154,7 @@ MonoBehaviour:
     xOffset: .59375
     yOffset: 44.09375
     xAdvance: 42.5
+    scale: 1
   - id: 121
     x: 861
     y: 509
@@ -952,6 +1163,7 @@ MonoBehaviour:
     xOffset: 1.34375
     yOffset: 44.09375
     xAdvance: 42.5
+    scale: 1
   - id: 122
     x: 852
     y: 379
@@ -960,6 +1172,7 @@ MonoBehaviour:
     xOffset: 1.65625
     yOffset: 44.09375
     xAdvance: 42.5
+    scale: 1
   - id: 123
     x: 161
     y: 572
@@ -968,6 +1181,7 @@ MonoBehaviour:
     xOffset: 2.34375
     yOffset: 61.90625
     xAdvance: 28.375
+    scale: 1
   - id: 124
     x: 86
     y: 464
@@ -976,6 +1190,7 @@ MonoBehaviour:
     xOffset: 7.78125
     yOffset: 61.90625
     xAdvance: 22.09375
+    scale: 1
   - id: 125
     x: 981
     y: 754
@@ -984,6 +1199,7 @@ MonoBehaviour:
     xOffset: 1.9375
     yOffset: 61.90625
     xAdvance: 28.375
+    scale: 1
   - id: 126
     x: 971
     y: 381
@@ -992,6 +1208,7 @@ MonoBehaviour:
     xOffset: 3.59375
     yOffset: 36.75
     xAdvance: 49.625
+    scale: 1
   - id: 160
     x: 10
     y: 1033
@@ -1000,6 +1217,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 23.625
+    scale: 1
   - id: 161
     x: 771
     y: 527
@@ -1008,6 +1226,7 @@ MonoBehaviour:
     xOffset: 9.625
     yOffset: 44.09375
     xAdvance: 28.3125
+    scale: 1
   - id: 162
     x: 516
     y: 852
@@ -1016,6 +1235,7 @@ MonoBehaviour:
     xOffset: 4.4375
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 163
     x: 319
     y: 773
@@ -1024,6 +1244,7 @@ MonoBehaviour:
     xOffset: 1.09375
     yOffset: 61.90625
     xAdvance: 47.28125
+    scale: 1
   - id: 164
     x: 305
     y: 10
@@ -1032,6 +1253,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 50.46875
     xAdvance: 47.28125
+    scale: 1
   - id: 165
     x: 121
     y: 197
@@ -1040,6 +1262,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 166
     x: 123
     y: 287
@@ -1048,6 +1271,7 @@ MonoBehaviour:
     xOffset: 7.78125
     yOffset: 61.90625
     xAdvance: 22.09375
+    scale: 1
   - id: 167
     x: 269
     y: 673
@@ -1056,6 +1280,7 @@ MonoBehaviour:
     xOffset: 3.34375
     yOffset: 61.90625
     xAdvance: 47.28125
+    scale: 1
   - id: 168
     x: 348
     y: 70
@@ -1064,6 +1289,7 @@ MonoBehaviour:
     xOffset: 2.53125
     yOffset: 61.21875
     xAdvance: 28.3125
+    scale: 1
   - id: 169
     x: 563
     y: 951
@@ -1072,6 +1298,7 @@ MonoBehaviour:
     xOffset: .09375
     yOffset: 61.90625
     xAdvance: 62.625
+    scale: 1
   - id: 170
     x: 465
     y: 53
@@ -1080,6 +1307,7 @@ MonoBehaviour:
     xOffset: 1.9375
     yOffset: 61.90625
     xAdvance: 31.46875
+    scale: 1
   - id: 171
     x: 938
     y: 323
@@ -1088,6 +1316,7 @@ MonoBehaviour:
     xOffset: 5.53125
     yOffset: 40.84375
     xAdvance: 47.28125
+    scale: 1
   - id: 172
     x: 714
     y: 48
@@ -1096,6 +1325,7 @@ MonoBehaviour:
     xOffset: 4.71875
     yOffset: 42.75
     xAdvance: 49.625
+    scale: 1
   - id: 173
     x: 508
     y: 19
@@ -1104,6 +1334,7 @@ MonoBehaviour:
     xOffset: 2.6875
     yOffset: 25.78125
     xAdvance: 28.3125
+    scale: 1
   - id: 174
     x: 645
     y: 951
@@ -1112,6 +1343,7 @@ MonoBehaviour:
     xOffset: .09375
     yOffset: 61.90625
     xAdvance: 62.625
+    scale: 1
   - id: 175
     x: 581
     y: 87
@@ -1120,6 +1352,7 @@ MonoBehaviour:
     xOffset: -1.3125
     yOffset: 70.375
     xAdvance: 46.9375
+    scale: 1
   - id: 176
     x: 465
     y: 10
@@ -1128,6 +1361,7 @@ MonoBehaviour:
     xOffset: 5.3125
     yOffset: 61.90625
     xAdvance: 34
+    scale: 1
   - id: 177
     x: 326
     y: 423
@@ -1136,6 +1370,7 @@ MonoBehaviour:
     xOffset: 3.21875
     yOffset: 51.03125
     xAdvance: 46.65625
+    scale: 1
   - id: 178
     x: 962
     y: 163
@@ -1144,6 +1379,7 @@ MonoBehaviour:
     xOffset: 1.03125
     yOffset: 61.59375
     xAdvance: 28.3125
+    scale: 1
   - id: 179
     x: 916
     y: 55
@@ -1152,6 +1388,7 @@ MonoBehaviour:
     xOffset: 1.34375
     yOffset: 61.59375
     xAdvance: 28.3125
+    scale: 1
   - id: 180
     x: 650
     y: 81
@@ -1160,6 +1397,7 @@ MonoBehaviour:
     xOffset: 9.1875
     yOffset: 61.1875
     xAdvance: 28.3125
+    scale: 1
   - id: 181
     x: 767
     y: 282
@@ -1168,6 +1406,7 @@ MonoBehaviour:
     xOffset: 6.625
     yOffset: 44.09375
     xAdvance: 48.96875
+    scale: 1
   - id: 182
     x: 815
     y: 851
@@ -1176,6 +1415,7 @@ MonoBehaviour:
     xOffset: .03125
     yOffset: 60.875
     xAdvance: 45.65625
+    scale: 1
   - id: 183
     x: 550
     y: 18
@@ -1184,6 +1424,7 @@ MonoBehaviour:
     xOffset: 9.875
     yOffset: 34.96875
     xAdvance: 28.3125
+    scale: 1
   - id: 184
     x: 424
     y: 10
@@ -1192,6 +1433,7 @@ MonoBehaviour:
     xOffset: 4.4375
     yOffset: .96875
     xAdvance: 28.3125
+    scale: 1
   - id: 185
     x: 993
     y: 273
@@ -1200,6 +1442,7 @@ MonoBehaviour:
     xOffset: 4.4375
     yOffset: 61.59375
     xAdvance: 28.3125
+    scale: 1
   - id: 186
     x: 913
     y: 106
@@ -1208,6 +1451,7 @@ MonoBehaviour:
     xOffset: 1.84375
     yOffset: 61.90625
     xAdvance: 31.03125
+    scale: 1
   - id: 187
     x: 907
     y: 157
@@ -1216,6 +1460,7 @@ MonoBehaviour:
     xOffset: 5.78125
     yOffset: 40.84375
     xAdvance: 47.28125
+    scale: 1
   - id: 188
     x: 394
     y: 949
@@ -1224,6 +1469,7 @@ MonoBehaviour:
     xOffset: 4.4375
     yOffset: 61.90625
     xAdvance: 70.875
+    scale: 1
   - id: 189
     x: 479
     y: 949
@@ -1232,6 +1478,7 @@ MonoBehaviour:
     xOffset: 4.4375
     yOffset: 61.90625
     xAdvance: 70.875
+    scale: 1
   - id: 190
     x: 88
     y: 770
@@ -1240,6 +1487,7 @@ MonoBehaviour:
     xOffset: 1.34375
     yOffset: 61.90625
     xAdvance: 70.875
+    scale: 1
   - id: 191
     x: 509
     y: 193
@@ -1248,6 +1496,7 @@ MonoBehaviour:
     xOffset: 6.53125
     yOffset: 44.09375
     xAdvance: 51.90625
+    scale: 1
   - id: 192
     x: 10
     y: 467
@@ -1256,6 +1505,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 76.21875
     xAdvance: 56.6875
+    scale: 1
   - id: 193
     x: 88
     y: 674
@@ -1264,6 +1514,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 76.21875
     xAdvance: 56.6875
+    scale: 1
   - id: 194
     x: 10
     y: 371
@@ -1272,6 +1523,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 76.21875
     xAdvance: 56.6875
+    scale: 1
   - id: 195
     x: 10
     y: 181
@@ -1280,6 +1532,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 74.1875
     xAdvance: 56.6875
+    scale: 1
   - id: 196
     x: 885
     y: 940
@@ -1288,6 +1541,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 73.09375
     xAdvance: 56.6875
+    scale: 1
   - id: 197
     x: 306
     y: 856
@@ -1296,6 +1550,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 73.875
     xAdvance: 56.6875
+    scale: 1
   - id: 198
     x: 209
     y: 953
@@ -1304,6 +1559,7 @@ MonoBehaviour:
     xOffset: .03125
     yOffset: 60.875
     xAdvance: 85
+    scale: 1
   - id: 199
     x: 88
     y: 575
@@ -1312,6 +1568,7 @@ MonoBehaviour:
     xOffset: 4.21875
     yOffset: 61.90625
     xAdvance: 61.375
+    scale: 1
   - id: 200
     x: 815
     y: 755
@@ -1320,6 +1577,7 @@ MonoBehaviour:
     xOffset: 6.71875
     yOffset: 76.21875
     xAdvance: 56.6875
+    scale: 1
   - id: 201
     x: 880
     y: 764
@@ -1328,6 +1586,7 @@ MonoBehaviour:
     xOffset: 6.71875
     yOffset: 76.21875
     xAdvance: 56.6875
+    scale: 1
   - id: 202
     x: 204
     y: 676
@@ -1336,6 +1595,7 @@ MonoBehaviour:
     xOffset: 6.71875
     yOffset: 76.21875
     xAdvance: 56.6875
+    scale: 1
   - id: 203
     x: 446
     y: 679
@@ -1344,6 +1604,7 @@ MonoBehaviour:
     xOffset: 6.71875
     yOffset: 73.09375
     xAdvance: 56.6875
+    scale: 1
   - id: 204
     x: 86
     y: 181
@@ -1352,6 +1613,7 @@ MonoBehaviour:
     xOffset: 2.25
     yOffset: 76.21875
     xAdvance: 23.625
+    scale: 1
   - id: 205
     x: 122
     y: 386
@@ -1360,6 +1622,7 @@ MonoBehaviour:
     xOffset: 5.8125
     yOffset: 76.21875
     xAdvance: 23.625
+    scale: 1
   - id: 206
     x: 985
     y: 853
@@ -1368,6 +1631,7 @@ MonoBehaviour:
     xOffset: -1.34375
     yOffset: 76.21875
     xAdvance: 23.625
+    scale: 1
   - id: 207
     x: 112
     y: 482
@@ -1376,6 +1640,7 @@ MonoBehaviour:
     xOffset: .15625
     yOffset: 73.09375
     xAdvance: 23.625
+    scale: 1
   - id: 208
     x: 674
     y: 773
@@ -1384,6 +1649,7 @@ MonoBehaviour:
     xOffset: -.125
     yOffset: 60.875
     xAdvance: 61.375
+    scale: 1
   - id: 209
     x: 382
     y: 855
@@ -1392,6 +1658,7 @@ MonoBehaviour:
     xOffset: 6.46875
     yOffset: 74.1875
     xAdvance: 61.375
+    scale: 1
   - id: 210
     x: 10
     y: 757
@@ -1400,6 +1667,7 @@ MonoBehaviour:
     xOffset: 4.09375
     yOffset: 76.21875
     xAdvance: 66.125
+    scale: 1
   - id: 211
     x: 10
     y: 660
@@ -1408,6 +1676,7 @@ MonoBehaviour:
     xOffset: 4.09375
     yOffset: 76.21875
     xAdvance: 66.125
+    scale: 1
   - id: 212
     x: 10
     y: 563
@@ -1416,6 +1685,7 @@ MonoBehaviour:
     xOffset: 4.09375
     yOffset: 76.21875
     xAdvance: 66.125
+    scale: 1
   - id: 213
     x: 108
     y: 854
@@ -1424,6 +1694,7 @@ MonoBehaviour:
     xOffset: 4.09375
     yOffset: 74.1875
     xAdvance: 66.125
+    scale: 1
   - id: 214
     x: 10
     y: 87
@@ -1432,6 +1703,7 @@ MonoBehaviour:
     xOffset: 4.09375
     yOffset: 73.09375
     xAdvance: 66.125
+    scale: 1
   - id: 215
     x: 933
     y: 214
@@ -1440,6 +1712,7 @@ MonoBehaviour:
     xOffset: 6.65625
     yOffset: 48.15625
     xAdvance: 49.625
+    scale: 1
   - id: 216
     x: 806
     y: 948
@@ -1448,6 +1721,7 @@ MonoBehaviour:
     xOffset: 3.4375
     yOffset: 63.09375
     xAdvance: 66.125
+    scale: 1
   - id: 217
     x: 449
     y: 852
@@ -1456,6 +1730,7 @@ MonoBehaviour:
     xOffset: 6.65625
     yOffset: 76.21875
     xAdvance: 61.375
+    scale: 1
   - id: 218
     x: 574
     y: 854
@@ -1464,6 +1739,7 @@ MonoBehaviour:
     xOffset: 6.65625
     yOffset: 76.21875
     xAdvance: 61.375
+    scale: 1
   - id: 219
     x: 641
     y: 854
@@ -1472,6 +1748,7 @@ MonoBehaviour:
     xOffset: 6.65625
     yOffset: 76.21875
     xAdvance: 61.375
+    scale: 1
   - id: 220
     x: 708
     y: 853
@@ -1480,6 +1757,7 @@ MonoBehaviour:
     xOffset: 6.65625
     yOffset: 73.09375
     xAdvance: 61.375
+    scale: 1
   - id: 221
     x: 10
     y: 275
@@ -1488,6 +1766,7 @@ MonoBehaviour:
     xOffset: .21875
     yOffset: 76.21875
     xAdvance: 56.6875
+    scale: 1
   - id: 222
     x: 482
     y: 517
@@ -1496,6 +1775,7 @@ MonoBehaviour:
     xOffset: 6.53125
     yOffset: 60.875
     xAdvance: 56.6875
+    scale: 1
   - id: 223
     x: 882
     y: 682
@@ -1504,6 +1784,7 @@ MonoBehaviour:
     xOffset: 6.34375
     yOffset: 61.90625
     xAdvance: 51.90625
+    scale: 1
   - id: 224
     x: 711
     y: 525
@@ -1512,6 +1793,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 225
     x: 921
     y: 494
@@ -1520,6 +1802,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 226
     x: 388
     y: 264
@@ -1528,6 +1811,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 227
     x: 545
     y: 355
@@ -1536,6 +1820,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 60.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 228
     x: 389
     y: 182
@@ -1544,6 +1829,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 61.21875
     xAdvance: 47.28125
+    scale: 1
   - id: 229
     x: 155
     y: 489
@@ -1552,6 +1838,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 62.96875
     xAdvance: 47.28125
+    scale: 1
   - id: 230
     x: 10
     y: 21
@@ -1560,6 +1847,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 45.09375
     xAdvance: 75.59375
+    scale: 1
   - id: 231
     x: 774
     y: 442
@@ -1568,6 +1856,7 @@ MonoBehaviour:
     xOffset: 3.3125
     yOffset: 45.09375
     xAdvance: 42.5
+    scale: 1
   - id: 232
     x: 393
     y: 100
@@ -1576,6 +1865,7 @@ MonoBehaviour:
     xOffset: 3.09375
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 233
     x: 446
     y: 414
@@ -1584,6 +1874,7 @@ MonoBehaviour:
     xOffset: 3.09375
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 234
     x: 448
     y: 266
@@ -1592,6 +1883,7 @@ MonoBehaviour:
     xOffset: 3.09375
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 235
     x: 449
     y: 184
@@ -1600,6 +1892,7 @@ MonoBehaviour:
     xOffset: 3.09375
     yOffset: 61.21875
     xAdvance: 47.28125
+    scale: 1
   - id: 236
     x: 944
     y: 682
@@ -1608,6 +1901,7 @@ MonoBehaviour:
     xOffset: 1.4375
     yOffset: 61.1875
     xAdvance: 23.625
+    scale: 1
   - id: 237
     x: 872
     y: 136
@@ -1616,6 +1910,7 @@ MonoBehaviour:
     xOffset: 7.8125
     yOffset: 61.1875
     xAdvance: 23.625
+    scale: 1
   - id: 238
     x: 721
     y: 283
@@ -1624,6 +1919,7 @@ MonoBehaviour:
     xOffset: -.71875
     yOffset: 61.1875
     xAdvance: 23.625
+    scale: 1
   - id: 239
     x: 678
     y: 289
@@ -1632,6 +1928,7 @@ MonoBehaviour:
     xOffset: .375
     yOffset: 61.21875
     xAdvance: 23.625
+    scale: 1
   - id: 240
     x: 508
     y: 274
@@ -1640,6 +1937,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 241
     x: 765
     y: 202
@@ -1648,6 +1946,7 @@ MonoBehaviour:
     xOffset: 5.59375
     yOffset: 60.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 242
     x: 127
     y: 115
@@ -1656,6 +1955,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 243
     x: 621
     y: 600
@@ -1664,6 +1964,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 244
     x: 682
     y: 611
@@ -1672,6 +1973,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 245
     x: 743
     y: 607
@@ -1680,6 +1982,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 60.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 246
     x: 804
     y: 593
@@ -1688,6 +1991,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 61.21875
     xAdvance: 47.28125
+    scale: 1
   - id: 247
     x: 911
     y: 380
@@ -1696,6 +2000,7 @@ MonoBehaviour:
     xOffset: 3.21875
     yOffset: 46.78125
     xAdvance: 46.65625
+    scale: 1
   - id: 248
     x: 800
     y: 523
@@ -1704,6 +2009,7 @@ MonoBehaviour:
     xOffset: 5.34375
     yOffset: 46.78125
     xAdvance: 51.90625
+    scale: 1
   - id: 249
     x: 568
     y: 273
@@ -1712,6 +2018,7 @@ MonoBehaviour:
     xOffset: 5.40625
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 250
     x: 623
     y: 275
@@ -1720,6 +2027,7 @@ MonoBehaviour:
     xOffset: 5.40625
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 251
     x: 626
     y: 193
@@ -1728,6 +2036,7 @@ MonoBehaviour:
     xOffset: 5.40625
     yOffset: 61.1875
     xAdvance: 47.28125
+    scale: 1
   - id: 252
     x: 661
     y: 436
@@ -1736,6 +2045,7 @@ MonoBehaviour:
     xOffset: 5.40625
     yOffset: 61.21875
     xAdvance: 47.28125
+    scale: 1
   - id: 253
     x: 246
     y: 854
@@ -1744,6 +2054,7 @@ MonoBehaviour:
     xOffset: 1.34375
     yOffset: 61.1875
     xAdvance: 42.5
+    scale: 1
   - id: 254
     x: 388
     y: 676
@@ -1752,6 +2063,7 @@ MonoBehaviour:
     xOffset: 5.59375
     yOffset: 60.875
     xAdvance: 47.28125
+    scale: 1
   - id: 255
     x: 328
     y: 674
@@ -1760,6 +2072,7 @@ MonoBehaviour:
     xOffset: 1.34375
     yOffset: 61.21875
     xAdvance: 42.5
+    scale: 1
   - id: 8192
     x: 10
     y: 1033
@@ -1768,6 +2081,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 42.5
+    scale: 1
   - id: 8193
     x: 10
     y: 1033
@@ -1776,6 +2090,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 85
+    scale: 1
   - id: 8194
     x: 10
     y: 1033
@@ -1784,6 +2099,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 42.5
+    scale: 1
   - id: 8195
     x: 10
     y: 1033
@@ -1792,6 +2108,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 85
+    scale: 1
   - id: 8196
     x: 10
     y: 1033
@@ -1800,6 +2117,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 28.34375
+    scale: 1
   - id: 8197
     x: 10
     y: 1033
@@ -1808,6 +2126,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 21.25
+    scale: 1
   - id: 8198
     x: 10
     y: 1033
@@ -1816,6 +2135,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 14.15625
+    scale: 1
   - id: 8199
     x: 10
     y: 1033
@@ -1824,6 +2144,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 47.28125
+    scale: 1
   - id: 8200
     x: 10
     y: 1033
@@ -1832,6 +2153,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 23.625
+    scale: 1
   - id: 8201
     x: 10
     y: 1033
@@ -1840,6 +2162,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 17.03125
+    scale: 1
   - id: 8202
     x: 10
     y: 1033
@@ -1848,6 +2171,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 7.09375
+    scale: 1
   - id: 8203
     x: 10
     y: 1033
@@ -1856,6 +2180,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 0
+    scale: 1
   - id: 8204
     x: 849
     y: 282
@@ -1864,6 +2189,7 @@ MonoBehaviour:
     xOffset: -1.5
     yOffset: 53.5
     xAdvance: 0
+    scale: 1
   - id: 8205
     x: 85
     y: 277
@@ -1872,6 +2198,7 @@ MonoBehaviour:
     xOffset: -9.09375
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8206
     x: 88
     y: 91
@@ -1880,6 +2207,7 @@ MonoBehaviour:
     xOffset: -1.5
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8207
     x: 149
     y: 296
@@ -1888,6 +2216,7 @@ MonoBehaviour:
     xOffset: -17.90625
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8210
     x: 774
     y: 75
@@ -1896,6 +2225,7 @@ MonoBehaviour:
     xOffset: -.1875
     yOffset: 25.03125
     xAdvance: 47.28125
+    scale: 1
   - id: 8211
     x: 774
     y: 49
@@ -1904,6 +2234,7 @@ MonoBehaviour:
     xOffset: -.1875
     yOffset: 25.03125
     xAdvance: 47.28125
+    scale: 1
   - id: 8212
     x: 511
     y: 661
@@ -1912,6 +2243,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 25.03125
     xAdvance: 85
+    scale: 1
   - id: 8213
     x: 882
     y: 656
@@ -1920,6 +2252,7 @@ MonoBehaviour:
     xOffset: 2.6875
     yOffset: 25.03125
     xAdvance: 85
+    scale: 1
   - id: 8214
     x: 871
     y: 298
@@ -1928,6 +2261,7 @@ MonoBehaviour:
     xOffset: 7.78125
     yOffset: 61.90625
     xAdvance: 35.125
+    scale: 1
   - id: 8215
     x: 774
     y: 101
@@ -1936,6 +2270,7 @@ MonoBehaviour:
     xOffset: -1.3125
     yOffset: -11.46875
     xAdvance: 46.9375
+    scale: 1
   - id: 8216
     x: 841
     y: 58
@@ -1944,6 +2279,7 @@ MonoBehaviour:
     xOffset: 5.3125
     yOffset: 61.90625
     xAdvance: 18.875
+    scale: 1
   - id: 8217
     x: 910
     y: 276
@@ -1952,6 +2288,7 @@ MonoBehaviour:
     xOffset: 4.46875
     yOffset: 61.46875
     xAdvance: 18.875
+    scale: 1
   - id: 8218
     x: 897
     y: 11
@@ -1960,6 +2297,7 @@ MonoBehaviour:
     xOffset: 4.46875
     yOffset: 8.6875
     xAdvance: 18.875
+    scale: 1
   - id: 8219
     x: 925
     y: 16
@@ -1968,6 +2306,7 @@ MonoBehaviour:
     xOffset: 5.71875
     yOffset: 61.46875
     xAdvance: 18.875
+    scale: 1
   - id: 8220
     x: 774
     y: 10
@@ -1976,6 +2315,7 @@ MonoBehaviour:
     xOffset: 3.4375
     yOffset: 61.90625
     xAdvance: 28.3125
+    scale: 1
   - id: 8221
     x: 815
     y: 10
@@ -1984,6 +2324,7 @@ MonoBehaviour:
     xOffset: 2.9375
     yOffset: 61.46875
     xAdvance: 28.3125
+    scale: 1
   - id: 8222
     x: 856
     y: 11
@@ -1992,6 +2333,7 @@ MonoBehaviour:
     xOffset: 2.9375
     yOffset: 8.6875
     xAdvance: 28.3125
+    scale: 1
   - id: 8223
     x: 424
     y: 48
@@ -2000,6 +2342,7 @@ MonoBehaviour:
     xOffset: 3.4375
     yOffset: 61.46875
     xAdvance: 28.3125
+    scale: 1
   - id: 8224
     x: 265
     y: 580
@@ -2008,6 +2351,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 59.4375
     xAdvance: 47.28125
+    scale: 1
   - id: 8225
     x: 205
     y: 582
@@ -2016,6 +2360,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 60.03125
     xAdvance: 47.28125
+    scale: 1
   - id: 8226
     x: 554
     y: 46
@@ -2024,6 +2369,7 @@ MonoBehaviour:
     xOffset: 4.5
     yOffset: 40.3125
     xAdvance: 29.75
+    scale: 1
   - id: 8230
     x: 263
     y: 70
@@ -2032,6 +2378,7 @@ MonoBehaviour:
     xOffset: 9.90625
     yOffset: 8.53125
     xAdvance: 85
+    scale: 1
   - id: 8234
     x: 506
     y: 355
@@ -2040,6 +2387,7 @@ MonoBehaviour:
     xOffset: -1.5
     yOffset: 51.21875
     xAdvance: 0
+    scale: 1
   - id: 8235
     x: 681
     y: 207
@@ -2048,6 +2396,7 @@ MonoBehaviour:
     xOffset: -17.90625
     yOffset: 51.21875
     xAdvance: 0
+    scale: 1
   - id: 8236
     x: 643
     y: 682
@@ -2056,6 +2405,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8237
     x: 325
     y: 583
@@ -2064,6 +2414,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8238
     x: 326
     y: 493
@@ -2072,6 +2423,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8239
     x: 10
     y: 1033
@@ -2080,6 +2432,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 17.03125
+    scale: 1
   - id: 8240
     x: 108
     y: 949
@@ -2088,6 +2441,7 @@ MonoBehaviour:
     xOffset: 1.53125
     yOffset: 61.90625
     xAdvance: 85
+    scale: 1
   - id: 8242
     x: 902
     y: 235
@@ -2096,6 +2450,7 @@ MonoBehaviour:
     xOffset: 5.3125
     yOffset: 60.875
     xAdvance: 15.9375
+    scale: 1
   - id: 8243
     x: 512
     y: 46
@@ -2104,6 +2459,7 @@ MonoBehaviour:
     xOffset: 5.53125
     yOffset: 60.875
     xAdvance: 30.09375
+    scale: 1
   - id: 8244
     x: 979
     y: 713
@@ -2112,6 +2468,7 @@ MonoBehaviour:
     xOffset: -2.0625
     yOffset: 60.875
     xAdvance: 30.09375
+    scale: 1
   - id: 8249
     x: 993
     y: 324
@@ -2120,6 +2477,7 @@ MonoBehaviour:
     xOffset: 3.8125
     yOffset: 40.84375
     xAdvance: 28.3125
+    scale: 1
   - id: 8250
     x: 985
     y: 599
@@ -2128,6 +2486,7 @@ MonoBehaviour:
     xOffset: 3.8125
     yOffset: 40.84375
     xAdvance: 28.3125
+    scale: 1
   - id: 8252
     x: 721
     y: 364
@@ -2136,6 +2495,7 @@ MonoBehaviour:
     xOffset: 7.28125
     yOffset: 60.875
     xAdvance: 42.5
+    scale: 1
   - id: 8254
     x: 979
     y: 687
@@ -2144,6 +2504,7 @@ MonoBehaviour:
     xOffset: -1.3125
     yOffset: 57.09375
     xAdvance: 28.3125
+    scale: 1
   - id: 8260
     x: 961
     y: 949
@@ -2152,6 +2513,7 @@ MonoBehaviour:
     xOffset: -18.90625
     yOffset: 61.90625
     xAdvance: 14.1875
+    scale: 1
   - id: 8286
     x: 686
     y: 127
@@ -2160,6 +2522,7 @@ MonoBehaviour:
     xOffset: 7.65625
     yOffset: 60.8125
     xAdvance: 23.625
+    scale: 1
   - id: 8298
     x: 364
     y: 584
@@ -2168,6 +2531,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8299
     x: 403
     y: 586
@@ -2176,6 +2540,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8300
     x: 365
     y: 494
@@ -2184,6 +2549,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8301
     x: 404
     y: 496
@@ -2192,6 +2558,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8302
     x: 442
     y: 586
@@ -2200,6 +2567,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8303
     x: 443
     y: 496
@@ -2208,6 +2576,7 @@ MonoBehaviour:
     xOffset: -9.71875
     yOffset: 58.65625
     xAdvance: 0
+    scale: 1
   - id: 8364
     x: 382
     y: 773
@@ -2216,6 +2585,7 @@ MonoBehaviour:
     xOffset: -1.1875
     yOffset: 61.90625
     xAdvance: 47.28125
+    scale: 1
   - id: 9633
     x: 365
     y: 11
@@ -2224,6 +2594,7 @@ MonoBehaviour:
     xOffset: 6.03125
     yOffset: 39.1875
     xAdvance: 51.34375
+    scale: 1
   m_kerningInfo:
     kerningPairs:
     - AscII_Left: 32
@@ -2578,8 +2949,8 @@ MonoBehaviour:
       AscII_Right: 8217
       XadvanceOffset: -1.53564453
   m_kerningPair:
-    AscII_Left: 90
-    AscII_Right: 101
+    AscII_Left: 0
+    AscII_Right: 0
     XadvanceOffset: 0
   fallbackFontAssets: []
   fontCreationSettings:
@@ -2618,7 +2989,7 @@ MonoBehaviour:
     italicTypeface: {fileID: 0}
   normalStyle: 0
   normalSpacingOffset: 0
-  boldStyle: .5
+  boldStyle: .75
   boldSpacing: 7
-  italicStyle: 20
+  italicStyle: 35
   tabSize: 10

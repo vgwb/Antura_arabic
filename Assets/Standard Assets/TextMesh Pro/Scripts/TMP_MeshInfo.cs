@@ -5,11 +5,15 @@
 
 using UnityEngine;
 using System;
+using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 
 namespace TMPro
 {
+    public enum VertexSortingOrder { Normal, Reverse, Depth };
+
     /// <summary>
     /// Structure which contains the vertex attributes (geometry) of the text object.
     /// </summary>
@@ -493,6 +497,164 @@ namespace TMPro
             if (updateMesh && mesh != null)
                 this.mesh.vertices = this.vertices;
         }
+
+
+        public void SortGeometry (VertexSortingOrder order)
+        {
+            switch (order)
+            {
+                case VertexSortingOrder.Normal:
+                    // Do nothing 
+                    break;
+                case VertexSortingOrder.Reverse:
+                    // 
+                    break;
+                case VertexSortingOrder.Depth:
+                    break;
+
+            }
+        }
+
+
+        /// <summary>
+        /// Function to rearrange the quads of the text object to change their rendering order.
+        /// </summary>
+        /// <param name="sortingOrder"></param>
+        public void SortGeometry(IList<int> sortingOrder)
+        {
+            // Make sure the sorting order array is not larger than the vertices array.
+            int indexCount = sortingOrder.Count;
+
+            if (indexCount * 4 > vertices.Length) return;
+
+            int src_index;
+
+            for (int dst_index = 0; dst_index < indexCount; dst_index++)
+            {
+                src_index = sortingOrder[dst_index];
+
+                while (src_index < dst_index)
+                {
+                    src_index = sortingOrder[src_index];
+                }
+
+                // Swap items
+                if (src_index != dst_index)
+                    SwapVertexData(src_index * 4, dst_index * 4);
+
+                //Debug.Log("Swap element [" + dst_index + "] with [" + src_index + "]. Vertex[" + dst_index + "] is " + vertices[dst_index * 4].z);
+            }
+        }
+
+
+        /// <summary>
+        /// Method to swap the vertex attributes between src and dst quads.
+        /// </summary>
+        /// <param name="src">Index of the first vertex attribute of the source character / quad.</param>
+        /// <param name="dst">Index of the first vertex attribute of the destination character / quad.</param>
+        public void SwapVertexData(int src, int dst)
+        {
+            int src_Index = src; //  * 4;
+            int dst_Index = dst; // * 4;
+
+            // Swap vertices
+            Vector3 vertex;
+            vertex = vertices[dst_Index + 0];
+            vertices[dst_Index + 0] = vertices[src_Index + 0];
+            vertices[src_Index + 0] = vertex;
+
+            vertex = vertices[dst_Index + 1];
+            vertices[dst_Index + 1] = vertices[src_Index + 1];
+            vertices[src_Index + 1] = vertex;
+
+            vertex = vertices[dst_Index + 2];
+            vertices[dst_Index + 2] = vertices[src_Index + 2];
+            vertices[src_Index + 2] = vertex;
+
+            vertex = vertices[dst_Index + 3];
+            vertices[dst_Index + 3] = vertices[src_Index + 3];
+            vertices[src_Index + 3] = vertex;
+
+
+            //Swap UVs0
+            Vector2 uvs;
+            uvs = uvs0[dst_Index + 0];
+            uvs0[dst_Index + 0] = uvs0[src_Index + 0];
+            uvs0[src_Index + 0] = uvs;
+
+            uvs = uvs0[dst_Index + 1];
+            uvs0[dst_Index + 1] = uvs0[src_Index + 1];
+            uvs0[src_Index + 1] = uvs;
+
+            uvs = uvs0[dst_Index + 2];
+            uvs0[dst_Index + 2] = uvs0[src_Index + 2];
+            uvs0[src_Index + 2] = uvs;
+
+            uvs = uvs0[dst_Index + 3];
+            uvs0[dst_Index + 3] = uvs0[src_Index + 3];
+            uvs0[src_Index + 3] = uvs;
+
+            // Swap UVs2
+            uvs = uvs2[dst_Index + 0];
+            uvs2[dst_Index + 0] = uvs2[src_Index + 0];
+            uvs2[src_Index + 0] = uvs;
+
+            uvs = uvs2[dst_Index + 1];
+            uvs2[dst_Index + 1] = uvs2[src_Index + 1];
+            uvs2[src_Index + 1] = uvs;
+
+            uvs = uvs2[dst_Index + 2];
+            uvs2[dst_Index + 2] = uvs2[src_Index + 2];
+            uvs2[src_Index + 2] = uvs;
+
+            uvs = uvs2[dst_Index + 3];
+            uvs2[dst_Index + 3] = uvs2[src_Index + 3];
+            uvs2[src_Index + 3] = uvs;
+
+            // Vertex Colors
+            Color32 color;
+            color = colors32[dst_Index + 0];
+            colors32[dst_Index + 0] = colors32[src_Index + 0];
+            colors32[src_Index + 0] = color;
+
+            color = colors32[dst_Index + 1];
+            colors32[dst_Index + 1] = colors32[src_Index + 1];
+            colors32[src_Index + 1] = color;
+
+            color = colors32[dst_Index + 2];
+            colors32[dst_Index + 2] = colors32[src_Index + 2];
+            colors32[src_Index + 2] = color;
+
+            color = colors32[dst_Index + 3];
+            colors32[dst_Index + 3] = colors32[src_Index + 3];
+            colors32[src_Index + 3] = color;
+        }
+
+
+        //int Partition (int start, int end)
+        //{
+        //    float pivot = vertices[end].z;
+
+        //    int partitionIndex = start;
+        //    for (int i = start; i < end; i++)
+        //    {
+        //        if (vertices[i].z <= pivot)
+        //        {
+        //            Swap(vertices[i], vertices[partitionIndex]);
+        //            partitionIndex += 1;
+        //        }
+        //    }
+        //    Swap(vertices[partitionIndex], vertices[end]);
+        //    return partitionIndex;
+        //}
+
+
+        //void Swap(Vector3 a, Vector3 b)
+        //{
+        //    Vector3 temp = a;
+        //    a = b;
+        //    b = a;
+        //}
 
     }
 }

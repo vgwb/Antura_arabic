@@ -1,3 +1,7 @@
+// Copyright (C) 2014 - 2016 Stephan Schaem - All Rights Reserved
+// This code can only be used under the standard Unity Asset Store End User License Agreement
+// A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
+
 Shader "TextMeshPro/Sprite"
 {
 	Properties
@@ -100,12 +104,12 @@ Shader "TextMeshPro/Sprite"
 			{
 				half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 				
-#if UNITY_VERSION < 530
+			#if UNITY_VERSION < 530
 				if (_UseClipRect)
 					color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
-#else
+			#else
 				color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
-#endif
+			#endif
 				
 				#ifdef UNITY_UI_ALPHACLIP
 				clip (color.a - 0.001);

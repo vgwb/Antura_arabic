@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿// Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
+// This code can only be used under the standard Unity Asset Store End User License Agreement
+// A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
+
+
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using UnityEditor.UI;
@@ -41,7 +46,9 @@ namespace TMPro.EditorUtilities
         SerializedProperty m_Placeholder;
         SerializedProperty m_OnValueChanged;
         SerializedProperty m_OnEndEdit;
+        SerializedProperty m_OnFocusLost;
         SerializedProperty m_ReadOnly;
+        SerializedProperty m_RichText;
 
         AnimBool m_CustomColor;
 
@@ -67,7 +74,9 @@ namespace TMPro.EditorUtilities
             m_Placeholder = serializedObject.FindProperty("m_Placeholder");
             m_OnValueChanged = serializedObject.FindProperty("m_OnValueChanged");
             m_OnEndEdit = serializedObject.FindProperty("m_OnEndEdit");
+            m_OnFocusLost = serializedObject.FindProperty("m_OnFocusLost");
             m_ReadOnly = serializedObject.FindProperty("m_ReadOnly");
+            m_RichText = serializedObject.FindProperty("m_RichText");
 
             m_CustomColor = new AnimBool(m_CustomCaretColor.boolValue);
             m_CustomColor.valueChanged.AddListener(Repaint);
@@ -190,12 +199,14 @@ namespace TMPro.EditorUtilities
                 EditorGUILayout.PropertyField(m_SelectionColor);
                 EditorGUILayout.PropertyField(m_HideMobileInput);
                 EditorGUILayout.PropertyField(m_ReadOnly);
+                EditorGUILayout.PropertyField(m_RichText);
 
             }
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(m_OnValueChanged);
             EditorGUILayout.PropertyField(m_OnEndEdit);
+            EditorGUILayout.PropertyField(m_OnFocusLost);
 
             EditorGUI.EndDisabledGroup();
 

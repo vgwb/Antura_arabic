@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿// Copyright (C) 2014 - 2016 Stephan Bouchard - All Rights Reserved
+// This code can only be used under the standard Unity Asset Store End User License Agreement
+// A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
+
+
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
@@ -36,9 +41,10 @@ namespace TMPro.EditorUtilities
         public static Texture2D alignBottom;
         public static Texture2D alignBaseline;
         public static Texture2D alignMidline;
+        public static Texture2D alignCapline;
 
         public static Texture2D progressTexture;
-        //public static Texture2D selectionBox;
+        public static Texture2D selectionBox;
 
         public static GUIContent[] alignContent_A;
         public static GUIContent[] alignContent_B;
@@ -69,10 +75,13 @@ namespace TMPro.EditorUtilities
                 alignBottom = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignBottom.psd", typeof(Texture2D)) as Texture2D;
                 alignBaseline = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignBaseLine.psd", typeof(Texture2D)) as Texture2D;
                 alignMidline = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignMidLine.psd", typeof(Texture2D)) as Texture2D;
+                alignCapline = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignCapLine.psd", typeof(Texture2D)) as Texture2D;
 
                 progressTexture = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/Progress Bar.psd", typeof(Texture2D)) as Texture2D;
                 //selectionBox = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/SelectionBox.psd", typeof(Texture2D)) as Texture2D;
                 //strikethroughIcon = new GUIContent(AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/icon_strikethrough.psd", typeof(Texture2D)) as Texture2D);
+                selectionBox = EditorGUIUtility.Load("IN thumbnailshadow On@2x") as Texture2D;
+
 
             }
             else
@@ -88,9 +97,10 @@ namespace TMPro.EditorUtilities
                 alignBottom = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignBottom_Light.psd", typeof(Texture2D)) as Texture2D;
                 alignBaseline = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignBaseLine_Light.psd", typeof(Texture2D)) as Texture2D;
                 alignMidline = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignMidLine_Light.psd", typeof(Texture2D)) as Texture2D;
+                alignCapline = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignCapLine_Light.psd", typeof(Texture2D)) as Texture2D;
 
                 progressTexture = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/Progress Bar (Light).psd", typeof(Texture2D)) as Texture2D;
-                //selectionBox = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/SelectionBox.psd", typeof(Texture2D)) as Texture2D;
+                selectionBox = EditorGUIUtility.Load("IN thumbnailshadow On@2x") as Texture2D;
             }
 
             if (TMP_GUISkin != null)
@@ -119,7 +129,9 @@ namespace TMPro.EditorUtilities
                     new GUIContent(alignMiddle, "Middle"), 
                     new GUIContent(alignBottom, "Bottom"),
                     new GUIContent(alignBaseline, "Baseline"),
-                    new GUIContent(alignMidline, "Midline") };
+                    new GUIContent(alignMidline, "Midline"),
+                    new GUIContent(alignCapline, "Capline") };
+
 
             }
 

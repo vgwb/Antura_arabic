@@ -28,7 +28,7 @@ namespace TMPro
         //public float xOffset; // Pivot X
         //public float yOffset; // Pivot Y
         //public float xAdvance;
-        public float scale;
+        //public float scale;
 
         public Sprite sprite;
     }
