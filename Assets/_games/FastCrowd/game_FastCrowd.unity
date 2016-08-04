@@ -638,7 +638,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22478574, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 22478574, guid: dc3018e706b1144119bdcbe94ffafb40, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -2098,7 +2098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OkImage: {fileID: 2132104903}
   KoImage: {fileID: 1581408680}
-  ShowPos: {x: 0, y: 150}
+  ShowPos: {x: 0, y: 350}
   HidePos: {x: 0, y: -150}
 --- !u!1001 &369371441
 Prefab:
@@ -9298,7 +9298,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22402530, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22402530, guid: 6f4d3e1c05f46416c8700a2743b331a3, type: 2}
       propertyPath: m_AnchoredPosition.x

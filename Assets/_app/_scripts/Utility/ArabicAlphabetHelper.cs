@@ -5,6 +5,8 @@ using System;
 namespace EA4S {
     public static class ArabicAlphabetHelper {
 
+        public static List<string> LetterExceptions = new List<string>(){ "0627", "062F", "0630", "0631", "0632", "0648", "0623" };
+
         /// <summary>
         /// Return single letter string start from unicode hexa code.
         /// </summary>
@@ -59,12 +61,27 @@ namespace EA4S {
         /// <returns></returns>
         public static string ParseWord(string _word, List<LetterData> _vocabulary, bool _revertOrder = false) {
             string returnString = string.Empty;
+            bool exceptionActive = false;
             List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
             if (letters.Count == 1)
                 return returnString = ArabicAlphabetHelper.GetLetterFromUnicode(letters[0].Isolated_Unicode);
             for (int i = 0; i < letters.Count; i++) {
                 LetterData let = letters[i];
-                if (let != null) {
+
+                /// Exceptions
+                if (exceptionActive) {
+                    if(i == letters.Count - 1)
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Isolated_Unicode);
+                    else
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Initial_Unicode);
+                    exceptionActive = false;
+                    continue;
+                }
+                if (LetterExceptions.Contains(let.Isolated_Unicode))
+                    exceptionActive = true;
+                /// end Exceptions
+                
+                if (let != null) { 
                     if (i == 0) {
                         returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Initial_Unicode);
                         continue;

@@ -404,6 +404,7 @@ namespace Balloons
 
         public void OnPoppedRequiredBalloon(int promptIndex)
         {
+            AudioManager.I.PlaySfx(Sfx.KO);
             wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
         }
 
