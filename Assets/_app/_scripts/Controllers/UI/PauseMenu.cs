@@ -10,9 +10,9 @@ namespace EA4S
 
         public static PauseMenu I;
 
-        [Header("Buttons Containers")]
-        public CanvasGroup CgPause;
-        public CanvasGroup CgExit, CgRestart, CgMusic, CgResume;
+        [Header("Buttons")]
+        public MenuButton BtPause;
+        public MenuButton BtExit, BtRestart, BtMusic, BtFx, BtResume;
         [Header("Other")]
         public GameObject PauseMenuContainer;
         public Image MenuBg;
@@ -20,8 +20,8 @@ namespace EA4S
 
         public bool IsMenuOpen { get; private set; }
 
-        Button btPause;
-        Button[] menuBts;
+//        Button btPause;
+        MenuButton[] menuBts;
         float timeScaleAtMenuOpen = 1;
         Sequence openMenuTween;
         Tween anturaBobTween;
@@ -31,14 +31,14 @@ namespace EA4S
         }
 
         void Start() {
-            btPause = CgPause.GetComponentInChildren<Button>();
-            menuBts = PauseMenuContainer.GetComponentsInChildren<Button>(true);
+            menuBts = PauseMenuContainer.GetComponentsInChildren<MenuButton>(true);
 
             // Tweens - Antura face bobbing
             anturaBobTween = AnturaFace.DORotate(new Vector3(0, 0, -20), 0.6f).SetRelative().SetUpdate(true).SetAutoKill(false).Pause()
                 .SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
             // Tweens - menu
-            CanvasGroup[] cgButtons = new[] { CgExit, CgRestart, CgMusic, CgResume };
+            CanvasGroup[] cgButtons = new CanvasGroup[menuBts.Length];
+            for (int i = 0; i < menuBts.Length; i++) cgButtons[i] = menuBts[i].GetComponent<CanvasGroup>();
             openMenuTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .OnPlay(() =>
                 {
@@ -65,19 +65,19 @@ namespace EA4S
             PauseMenuContainer.SetActive(false);
 
             // Listeners
-            btPause.onClick.AddListener(() => OnClick(btPause));
-            foreach (Button bt in menuBts) {
-                Button b = bt; // Redeclare to fix Unity's foreach issue with delegates
-                b.onClick.AddListener(() => OnClick(b));
+            BtPause.Bt.onClick.AddListener(() => OnClick(BtPause));
+            foreach (MenuButton bt in menuBts) {
+                MenuButton b = bt; // Redeclare to fix Unity's foreach issue with delegates
+                b.Bt.onClick.AddListener(() => OnClick(b));
             }
         }
 
         void OnDestroy() {
             openMenuTween.Kill();
             anturaBobTween.Kill();
-            btPause.onClick.RemoveAllListeners();
-            foreach (Button bt in menuBts)
-                bt.onClick.RemoveAllListeners();
+            BtPause.Bt.onClick.RemoveAllListeners();
+            foreach (MenuButton bt in menuBts)
+                bt.Bt.onClick.RemoveAllListeners();
         }
 
         /// <summary>
@@ -86,6 +86,11 @@ namespace EA4S
         /// <param name="_open">If TRUE opens, otherwise closes</param>
         public void OpenMenu(bool _open) {
             IsMenuOpen = _open;
+            
+            // Set toggles
+            BtMusic.Toggle(AudioManager.I.MusicEnabled);
+            BtFx.Toggle(CameraGameplayController.I.FxEnabled);
+
             if (_open) {
                 timeScaleAtMenuOpen = Time.timeScale;
                 Time.timeScale = 0;
@@ -107,27 +112,30 @@ namespace EA4S
         /// <summary>
         /// Callback for button clicks
         /// </summary>
-        void OnClick(Button bt) {
+        void OnClick(MenuButton _bt) {
 
-            if (bt == btPause) {
+            if (_bt == BtPause) {
                 OpenMenu(!IsMenuOpen);
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
-                int menuBtIndex = Array.IndexOf(menuBts, bt);
-                switch (menuBtIndex) {
-                    case 0: // Exit
-                        OpenMenu(false);
-                        AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
-                        break;
-                    case 1: // Music on/off
-                        AudioManager.I.ToggleMusic();
-                        break;
-                    case 2: // Restart
-                        OpenMenu(false);
-                        break;
-                    case 3: // Resume
-                        OpenMenu(false);
-                    // TODO
-                        break;
+                switch (_bt.Type) {
+                case MenuButtonType.Back: // Exit
+                    OpenMenu(false);
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+                    break;
+                case MenuButtonType.MusicToggle: // Music on/off
+                    AudioManager.I.ToggleMusic();
+                    BtMusic.Toggle(AudioManager.I.MusicEnabled);
+                    break;
+                case MenuButtonType.FxToggle: // FX on/off
+                    CameraGameplayController.I.EnableFX(!CameraGameplayController.I.FxEnabled);
+                    BtFx.Toggle(CameraGameplayController.I.FxEnabled);
+                    break;
+                case MenuButtonType.Restart: // Restart
+                    OpenMenu(false);
+                    break;
+                case MenuButtonType.Continue: // Resume
+                    OpenMenu(false);
+                    break;
                 }
             }
         }
