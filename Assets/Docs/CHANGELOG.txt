@@ -4,6 +4,26 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.5.7
+
+2016-08-04 - [DontWake] added spoken results on StarFlowers
+2016-08-04 - [Map] moutains road sign
+2016-08-04 - [DontWakeAntura] danger zones on arms and alarms
+2016-08-04 - FastCrowd: Correct sentence on "well done".
+2016-08-04 - [Balloons] Round start popup shows round number instead of long sentence
+2016-08-04 - FastCrowd: removed wrong sentence on pupup.
+2016-08-04 - [Balloons] Minor end of round tweaks
+2016-08-04 - [Balloons] Delay before end of round popup. Letters look straight at camera at end of round. Word Prompt goes green when round is won.
+2016-08-04 - [Antura] now has its own shadown (for balooons and Fascrowd) and added to the Wheel (where it is called by the Keeper)
+2016-08-04 - Balloons tutorial complete
+2016-08-04 - [DontWake] tutorial animated danger zone
+2016-08-04 - Added Arabic letter isolated exceptions. Attempt n. 2!
+2016-08-04 - [Balloons] Play wrong sound effect on bad balloon pop
+2016-08-04 - [home] disabled pause menu and fixed toggle fx
+2016-08-04 - Added Arabic letter isolated exceptions.
+2016-08-04 - Fixes to Fast Crowd tutorial
+2016-08-04 - [Balloonns tutortial] prepared scene
+
 ##########   v0.5.6
 
 2016-08-04 - [Balloons] Show green checkmark on popup after round win
