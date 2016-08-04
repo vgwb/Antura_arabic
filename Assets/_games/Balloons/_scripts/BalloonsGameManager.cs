@@ -442,6 +442,15 @@ namespace Balloons
             for (int i = 0; i < floatingLetters.Count; i++)
             {
                 floatingLetters[i].Disable();
+                floatingLetters[i].Letter.keepFocusingLetter = true;
+            }
+        }
+
+        private void MakeWordPromptGreen()
+        {
+            for (int i = 0; i < wordPrompt.letterPrompts.Length; i++)
+            {
+                wordPrompt.letterPrompts[i].State = LetterPromptController.PromptState.CORRECT;
             }
         }
 
@@ -518,26 +527,29 @@ namespace Balloons
 
         private IEnumerator DisplayRoundResult_Coroutine(bool win)
         {
-            var initialDelay = 0.25f;
-            yield return new WaitForSeconds(initialDelay);
-
-
             if (win)
             {
+                MakeWordPromptGreen();
+
+                var winInitialDelay = 3f;
+                yield return new WaitForSeconds(winInitialDelay);
+
                 AudioManager.I.PlayDialog("comment_welldone");
-                var popUpDelay = 0.25f;
-                yield return new WaitForSeconds(popUpDelay);
+
+                var winPopUpDelay = 0.25f;
+                yield return new WaitForSeconds(winPopUpDelay);
 
                 WidgetPopupWindow.I.ShowSentenceAndWordWithMark(OnRoundResultPressed, "comment_welldone", wordData, true);
-                var speakWordDelay = 0.75f;
-                yield return new WaitForSeconds(speakWordDelay);
+
+                var winSpeakWordDelay = 0.75f;
+                yield return new WaitForSeconds(winSpeakWordDelay);
 
                 AudioManager.I.PlayWord(wordData.Key);
 
             }
             else
             {
-                var failDelay = 0.75f;
+                var failDelay = 3f;
                 yield return new WaitForSeconds(failDelay);
 
                 var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
