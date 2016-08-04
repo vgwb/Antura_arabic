@@ -4,6 +4,35 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.5.5
+
+2016-08-04 - [DontWakeUè] 4 lives are better than 3 (cont)
+2016-08-04 - [DontWakeUè] 4 lives are better than 3
+2016-08-04 - [DontTutorial] optimized and removed Dog's danger zone.. shouldnt be needed anymore
+2016-08-04 - Dont Wake Up tutorial complete
+2016-08-04 - [assesment] simpe mask to render the lines much better
+2016-08-04 - [End game] after last mood, we go to End scene with final end greetings, before goign back home
+2016-08-04 - [camera fx] now OFF by defgault (faster and no corrupted arabic fonts)
+2016-08-04 - [SoundFX] antura barks when run, starflower, trasnitions, Letter Hold & Fear, Ok stamp, new balloons pops and something elase i don't rememebr
+2016-08-04 - [all scenens] now cuetain traìnsitioner works everywhere (hopefully)
+2016-08-03 - Assessment: colored line connections.
+2016-08-03 - Now SceneTransitioner is not automatically closed. Any scene manager it manually!!!
+2016-08-03 - [packages] updated Text Mesh Pro to 1.0.54.52 (official release for Unity 5.4)
+2016-08-03 - [Dontwakeup] prepared new red hot areas aroudn dog and alarms
+2016-08-03 - [tutorials] prepared Dont e Ballonstutorials
+2016-08-03 - Fast Crowd tutorial complete
+2016-08-03 - [assessment] basic dottet line renderer (for Paolo)
+2016-08-03 - Fastcrowd: disabled on startup tutorial.
+2016-08-03 - [DontWakeUp] disabled Too Fast die method
+2016-08-03 - [tutorials] TUtorialManager prepared, as intro of the 3 games, showing their intro lines.. waigin for animations!
+2016-08-03 - [tutorial] init FastCrowd tutorial scene
+2016-08-03 - assessment bidirectional 2.
+2016-08-03 - assessment bidirectional.
+2016-08-03 - Fix: fastcrowd bug exception camera position declaration + lookat camera wrong behaviour combo.
+2016-08-03 - [end] init end manager
+2016-08-03 - [UI] improvements to subtitle area and popup window
+2016-08-02 - [cleanin] some compilation warning and now FastCrowd's Antura is namespaced at FastCrowd
+
 ##########   v0.5.4
 
 2016-08-02 - [Balloons] Minor UI tweaks
