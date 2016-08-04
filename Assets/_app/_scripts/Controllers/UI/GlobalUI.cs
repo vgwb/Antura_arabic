@@ -24,6 +24,8 @@ namespace EA4S
 
         public static WidgetSubtitles WidgetSubtitles { get; private set; }
 
+        public static PauseMenu PauseMenu { get; private set; }
+
         const string ResourceId = "Prefabs/UI/GlobalUI";
 
         public static void Init()
@@ -45,6 +47,7 @@ namespace EA4S
             ContinueScreen = StoreAndAwake<ContinueScreen>();
             WidgetPopupWindow = StoreAndAwake<WidgetPopupWindow>();
             WidgetSubtitles = StoreAndAwake<WidgetSubtitles>();
+            PauseMenu = StoreAndAwake<PauseMenu>();
         }
 
         void OnDestroy()
@@ -58,11 +61,21 @@ namespace EA4S
         /// <param name="includeSceneTransitioner">If TRUE (default) also clears the sceneTransitioner, otherwise not</param>
         public static void Clear(bool includeSceneTransitioner = true)
         {
-            if (includeSceneTransitioner && SceneTransitioner != null) SceneTransitioner.CloseImmediate();
-            if (ContinueScreen != null) ContinueScreen.Close(true);
-            if (WidgetPopupWindow != null) WidgetPopupWindow.Close(true);
-            if (WidgetSubtitles != null) WidgetSubtitles.Close(true);
+            if (includeSceneTransitioner && SceneTransitioner != null)
+                SceneTransitioner.CloseImmediate();
+            if (ContinueScreen != null)
+                ContinueScreen.Close(true);
+            if (WidgetPopupWindow != null)
+                WidgetPopupWindow.Close(true);
+            if (WidgetSubtitles != null)
+                WidgetSubtitles.Close(true);
         }
+
+        public static void ShowPauseMenu(bool visible)
+        {
+            PauseMenu.gameObject.SetActive(visible);
+        }
+
 
         T StoreAndAwake<T>() where T : Component
         {
