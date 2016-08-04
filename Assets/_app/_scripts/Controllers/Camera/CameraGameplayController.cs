@@ -10,7 +10,7 @@ namespace EA4S
     {
         public static CameraGameplayController I;
         public GameObject CallbackManager;
-        
+
         public bool FxEnabled { get; private set; }
 
         void Awake()
@@ -41,11 +41,12 @@ namespace EA4S
 
         public void MoveToPosition(Vector3 newPosition, Quaternion newRotation)
         {
+            Debug.Log("MoveToPosition");
             AudioManager.I.PlaySfx(Sfx.CameraMovement);
 
             DOTween.Sequence()
                 .Append(transform.DOLocalMove(newPosition, 2.0f))
-                .Insert(0, transform.DOLocalRotateQuaternion(newRotation, 2.0f))
+                .Insert(0, transform.DOLocalRotate(newRotation.eulerAngles, 2.0f))
                 .OnComplete(MovementCompleted);
         }
 
