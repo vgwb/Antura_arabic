@@ -48,6 +48,7 @@ namespace EA4S
     {
         public static AudioManager I;
         static System.Action OnNotifyEndAudio;
+        public bool MusicEnabled {get { return musicEnabled; } }
         bool musicEnabled = true;
         Music currentMusic;
 

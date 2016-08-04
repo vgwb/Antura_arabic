@@ -10,6 +10,8 @@ namespace EA4S
     {
         public static CameraGameplayController I;
         public GameObject CallbackManager;
+        
+        public bool FxEnabled { get; private set; }
 
         void Awake()
         {
@@ -24,7 +26,10 @@ namespace EA4S
         public void EnableFX(bool status)
         {
             // Debug.Log("CameraGameplayController EnableFX " + status);
-            gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
+            if (gameObject.GetComponent<VignetteAndChromaticAberration>() != null) {
+                FxEnabled = status;
+                gameObject.GetComponent<VignetteAndChromaticAberration>().enabled = status;
+            }
             //gameObject.GetComponent<ColorCorrectionCurves>().enabled = status;
         }
 

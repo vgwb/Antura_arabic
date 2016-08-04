@@ -77,6 +77,8 @@ namespace EA4S.FastCrowd
         [HideInInspector]
         public string VariationPrefix = string.Empty;
 
+        bool OnTimeOverReserved = false;
+
         #endregion
 
         #region Setup and initialization
@@ -89,6 +91,9 @@ namespace EA4S.FastCrowd
         protected override void Start()
         {
             base.Start();
+            if (SceneTransitioner.IsShown) {
+                SceneTransitioner.Close();
+            }
         }
 
         protected override void ReadyForGameplay()
@@ -128,10 +133,7 @@ namespace EA4S.FastCrowd
             if (OnReadyForGameplayDone != null)
                 OnReadyForGameplayDone(GameplayInfo);
 
-            // TODO: Quick fix
-            if (SceneTransitioner.IsShown) {
-                SceneTransitioner.Show(false);
-            }
+
         }
 
 
@@ -299,8 +301,19 @@ namespace EA4S.FastCrowd
         /// Called when the time is over.
         /// </summary>
         /// <param name="_time"></param>
-        private void GameplayTimer_OnTimeOver(float _time)
-        {
+        private void GameplayTimer_OnTimeOver(float _time) {
+            // during normal gameplay call doTimeOverActions
+            if (DropAreaContainer.GetActualDropArea() != null)
+                doTimeOverActions();
+            else
+                // during objective evaluation
+                OnTimeOverReserved = true;
+        }
+
+        /// <summary>
+        /// Action for timeover.
+        /// </summary>
+        void doTimeOverActions() {
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "completedWords", round.ToString());
             int starCount = 0;
             // Open stars evaluation
@@ -319,7 +332,7 @@ namespace EA4S.FastCrowd
             }
 
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "endScoreStars", starCount.ToString());
-            
+
             StarUI.Show(starCount);
             LoggerEA4S.Save();
             AudioManager.I.PlayMusic(Music.Relax);
@@ -362,7 +375,10 @@ namespace EA4S.FastCrowd
                             ActualWord = null;
                             // Recall gameplayBlockSetup
                             sceneClean();
-                            gameplayBlockSetup();
+                            if (OnTimeOverReserved)
+                                doTimeOverActions();
+                            else
+                                gameplayBlockSetup();
                         });
                     break;
 
@@ -383,7 +399,10 @@ namespace EA4S.FastCrowd
                             ActualWord = null;
                             // Recall gameplayBlockSetup
                             sceneClean();
-                            gameplayBlockSetup();
+                            if (OnTimeOverReserved)
+                                doTimeOverActions();
+                            else
+                                gameplayBlockSetup();
                         });
                     if (RightWordsCounter)
                         RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = round.ToString();
