@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using EA4S;
 using ModularFramework.Core;
@@ -269,12 +270,13 @@ namespace EA4S.DontWakeUp
         {
             currentState = MinigameState.GameEnd;
             StopSceneSounds();
-
             AudioManager.I.PlaySfx(Sfx.Win);
-            StarSystems.SetActive(true);
-            StarSystems.GetComponent<StarFlowers>().Show(LivesLeft);
-            LoggerEA4S.Log("minigame", "dontwakeup", "Won", "");
-            LoggerEA4S.Save();
+
+            if (LivesLeft >= 3) {
+                LivesLeft = 3;
+            }
+
+            StartCoroutine(EndGame_ShowResults(LivesLeft));
         }
 
         public void GameLost()
@@ -283,10 +285,33 @@ namespace EA4S.DontWakeUp
             currentState = MinigameState.GameEnd;
             StopSceneSounds();
 
-            StarSystems.SetActive(true);
-            StarSystems.GetComponent<StarFlowers>().Show(0);
-            LoggerEA4S.Log("minigame", "dontwakeup", "Lost", "");
+            StartCoroutine(EndGame_ShowResults(0));
+        }
+
+
+        IEnumerator EndGame_ShowResults(int score)
+        {
+            yield return new WaitForSeconds(1f);
+
+            if (score <= 0) {
+                WidgetSubtitles.I.DisplaySentence("game_result_retry");
+            } else if (score == 1) {
+                WidgetSubtitles.I.DisplaySentence("game_result_fair");
+            } else if (score == 2) {
+                WidgetSubtitles.I.DisplaySentence("game_result_good");
+            } else {
+                WidgetSubtitles.I.DisplaySentence("game_result_great");
+            }
+
+            if (score > 0) {
+                LoggerEA4S.Log("minigame", "dontwakeup", "Won", score.ToString());
+            } else {
+                LoggerEA4S.Log("minigame", "dontwakeup", "Lost", "");
+            }
             LoggerEA4S.Save();
+
+            StarSystems.SetActive(true);
+            StarSystems.GetComponent<StarFlowers>().Show(score);
         }
 
         void StartCurrentRound()
