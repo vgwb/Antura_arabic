@@ -36,9 +36,9 @@ namespace Balloons
         [Range(1, 10)] [Tooltip("e.g.: 1")]
         public int tapsNeeded;
         [Range(0, 100f)] [Tooltip("e.g.: 9.5")]
-        public float explosionRadius;
+        public float shockwaveRadius;
         [Range(0, 100f)] [Tooltip("e.g.: 1")]
-        public float explosionPower;
+        public float shockwavePower;
         [Range(0, -30f)] [Tooltip("e.g.: -15")]
         public float focusZ;
 
@@ -272,7 +272,12 @@ namespace Balloons
         public void Pop()
         {
             activeBalloonCount--;
-            CreateExplosion();
+            CreateShockwave();
+
+            if (Letter.isRequired)
+            {
+                BalloonsGameManager.instance.OnPoppedRequiredBalloon(Letter.associatedPromptIndex);
+            }
 
             if (Balloons.Length == 3)
             {
@@ -287,16 +292,15 @@ namespace Balloons
                 Letter.transform.SetParent(null);
                 Letter.Drop();
                 BalloonsGameManager.instance.floatingLetters.Remove(this);
-                BalloonsGameManager.instance.OnDropped(Letter);
+                BalloonsGameManager.instance.OnDroppedLetter(Letter);
                 Destroy(gameObject, 3f);
             }
         }
 
-        private void CreateExplosion()
+        private void CreateShockwave()
         {
-            Vector3 explosionPosition = transform.position;
-            //Collider[] colliders = Physics.OverlapSphere(explosionPosition, explosionRadius);
-            var affectedObjects = BalloonsGameManager.instance.floatingLetters.FindAll(floatingLetter => floatingLetter.transform.position.x > transform.position.x - explosionRadius && floatingLetter.transform.position.x < transform.position.x + explosionRadius);
+            Vector3 shockwavePosition = transform.position;
+            var affectedObjects = BalloonsGameManager.instance.floatingLetters.FindAll(floatingLetter => floatingLetter.transform.position.x > transform.position.x - shockwaveRadius && floatingLetter.transform.position.x < transform.position.x + shockwaveRadius);
 
             for (int i = 0; i < affectedObjects.Count; i++)
             {
@@ -304,14 +308,14 @@ namespace Balloons
 
                 if (hit != null && hit.transform != null)
                 {
-                    var distance = (hit.transform.position - explosionPosition).magnitude;
+                    var distance = (hit.transform.position - shockwavePosition).magnitude;
                     if (hit == this)
                     {
                         continue;
                     }
 
-                    var direction = (hit.transform.position - explosionPosition).normalized;
-                    var displacement = (direction * explosionPower) * (explosionRadius - distance);
+                    var direction = (hit.transform.position - shockwavePosition).normalized;
+                    var displacement = (direction * shockwavePower) * (shockwaveRadius - distance);
                     displacement.z = 0f;
 
                     Knockback(hit.transform, displacement);

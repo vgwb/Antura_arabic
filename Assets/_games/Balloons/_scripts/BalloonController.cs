@@ -67,8 +67,8 @@ namespace Balloons
             parentFloatingLetter.Pop();
             AudioManager.I.PlaySfx(Sfx.BaloonPop);
             animator.SetBool("Pop", true);
-            GameObject go = Instantiate(BalloonsGameManager.instance.FxParticlesPoof, transform.position, Quaternion.identity) as GameObject;
-            Destroy(go, 10);
+            GameObject poof = Instantiate(BalloonsGameManager.instance.FxParticlesPoof, transform.position, Quaternion.identity) as GameObject;
+            Destroy(poof, 10);
         }
 
         public void AdjustMiddleBalloon()
