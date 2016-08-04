@@ -487,7 +487,7 @@ GameObject:
   - 114: {fileID: 11433918}
   - 114: {fileID: 11475222}
   m_Layer: 0
-  m_Name: VOX_Letters_alef
+  m_Name: VOX_Letters_alef_hamza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3004,13 +3004,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115494}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!4 &404554
 Transform:
   m_ObjectHideFlags: 1
@@ -3065,7 +3065,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 32
+  m_RootOrder: 33
 --- !u!4 &405592
 Transform:
   m_ObjectHideFlags: 1
@@ -3137,7 +3137,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 26
+  m_RootOrder: 27
 --- !u!4 &408486
 Transform:
   m_ObjectHideFlags: 1
@@ -3301,7 +3301,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 27
+  m_RootOrder: 28
 --- !u!4 &414072
 Transform:
   m_ObjectHideFlags: 1
@@ -3574,7 +3574,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 28
+  m_RootOrder: 29
 --- !u!4 &423430
 Transform:
   m_ObjectHideFlags: 1
@@ -3749,7 +3749,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 25
+  m_RootOrder: 26
 --- !u!4 &430872
 Transform:
   m_ObjectHideFlags: 1
@@ -3922,7 +3922,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 20
+  m_RootOrder: 21
 --- !u!4 &436040
 Transform:
   m_ObjectHideFlags: 1
@@ -4217,7 +4217,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 29
+  m_RootOrder: 30
 --- !u!4 &441540
 Transform:
   m_ObjectHideFlags: 1
@@ -4230,7 +4230,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 18
+  m_RootOrder: 19
 --- !u!4 &441552
 Transform:
   m_ObjectHideFlags: 1
@@ -4256,7 +4256,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 17
+  m_RootOrder: 18
 --- !u!4 &443130
 Transform:
   m_ObjectHideFlags: 1
@@ -4347,7 +4347,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 31
+  m_RootOrder: 32
 --- !u!4 &446108
 Transform:
   m_ObjectHideFlags: 1
@@ -4490,7 +4490,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 22
+  m_RootOrder: 23
 --- !u!4 &450236
 Transform:
   m_ObjectHideFlags: 1
@@ -4568,7 +4568,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 24
+  m_RootOrder: 25
 --- !u!4 &457866
 Transform:
   m_ObjectHideFlags: 1
@@ -4753,7 +4753,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 23
+  m_RootOrder: 24
 --- !u!4 &470598
 Transform:
   m_ObjectHideFlags: 1
@@ -4950,7 +4950,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 21
+  m_RootOrder: 22
 --- !u!4 &477300
 Transform:
   m_ObjectHideFlags: 1
@@ -5372,7 +5372,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 19
+  m_RootOrder: 20
 --- !u!4 &497290
 Transform:
   m_ObjectHideFlags: 1
@@ -5398,7 +5398,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 30
+  m_RootOrder: 31
 --- !u!4 &498354
 Transform:
   m_ObjectHideFlags: 1
@@ -5439,6 +5439,7 @@ Transform:
   - {fileID: 430872}
   - {fileID: 432494}
   - {fileID: 450326}
+  - {fileID: 4000012154645608}
   - {fileID: 402168}
   - {fileID: 441918}
   - {fileID: 441540}
@@ -11509,8 +11510,8 @@ MonoBehaviour:
   - KeeperDialog
   - LivingLetter/Angry
   - LivingLetter/Fear
-  - LivingLetter/Hold
   - LivingLetter/Happy
+  - LivingLetter/Hold
   - LivingLetter/Sad
   - Music/Music1
   - Music/Music2
@@ -11541,6 +11542,7 @@ MonoBehaviour:
   - VOX/GameTitle
   - VOX/Letters/ain
   - VOX/Letters/alef
+  - VOX/Letters/alef_hamza
   - VOX/Letters/beh
   - VOX/Letters/dad
   - VOX/Letters/dal
@@ -12010,7 +12012,7 @@ MonoBehaviour:
   Guid: 
   _componentHolder: {fileID: 0}
   _onEventNotifyEventName: 
-  _audioClip: {fileID: 8300000, guid: 90c4b2a55e6254d3f90c166906bd6d1c, type: 3}
+  _audioClip: {fileID: 8300000, guid: 1d6cbed32039f4fbd9d12b6f19314b61, type: 3}
   _audioClipHandle:
     _audioClipPath: 
     _useAudioClipPath: 1
@@ -18941,7 +18943,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/alef
+  _eventName: VOX/Letters/alef_hamza
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -23952,6 +23954,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013669319506
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012154645608}
+  - 114: {fileID: 114000012116762466}
+  - 114: {fileID: 114000010768400660}
+  m_Layer: 0
+  m_Name: VOX_Letters_alef
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000014174721484
 GameObject:
   m_ObjectHideFlags: 1
@@ -24135,6 +24154,19 @@ Transform:
   - {fileID: 4000010677477522}
   m_Father: {fileID: 439294}
   m_RootOrder: 3
+--- !u!4 &4000012154645608
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013669319506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 498528}
+  m_RootOrder: 16
 --- !u!4 &4000012229010376
 Transform:
   m_ObjectHideFlags: 1
@@ -24568,6 +24600,39 @@ MonoBehaviour:
   _syncWithMusicTime: 0
   _markers: []
   _regions: []
+--- !u!114 &114000010768400660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013669319506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventName: VOX/Letters/alef
+  _eventID: 0
+  _overrideEventTriggerAction: 0
+  _overrideParameters:
+    _overrideIncomingEventAction: 0
+    _incomingEventAction: 0
+    _overrideEventAction: 0
+    _type: 0
+    _floatParameter: 1
+    _stringParameter: 
+    _switchPresetData:
+      _sourcePreset: 
+      _targetPreset: 
+    _dspParameterData:
+      _dspType: 0
+      _parameter: 
+      _value: 0
+      _time: 0
+      _curve: 0.5
+    _transitionToSnapshotData:
+      _snapshot: 
+      _timeToReach: 0
 --- !u!114 &114000011020795590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24964,6 +25029,94 @@ MonoBehaviour:
   _componentHolder: {fileID: 0}
   _onEventNotifyEventName: 
   _audioClip: {fileID: 8300000, guid: 5d61d80a13a874b08a2c418aad9073f2, type: 3}
+  _audioClipHandle:
+    _audioClipPath: 
+    _useAudioClipPath: 1
+  _dynamicAudioClipLoading: 0
+  _dynamicAudioClipUnloadDelay: 0
+  _dynamicAsyncAudioClipLoading: 0
+  _audioClipAssetPath: 0
+  _delay: 0
+  _delayInBeats: 0
+  _loop: 0
+  _numLoops: -1
+  _loopMarkersLoaded: 0
+  _useLoopMarkers: 1
+  _dontPlay: 0
+  _dontStopOnDestroy: 0
+  _ignoreVirtualization: 0
+  _randomizePosition: 0
+  _randomizeMinPosition: 0
+  _randomizeMaxPosition: 10
+  _syncWithMusicTime: 0
+  _markers: []
+  _regions: []
+--- !u!114 &114000012116762466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013669319506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -71199202, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numVirtualizationEvents: 100
+  _maxInstances: 1
+  _stealingBehaviour: 0
+  _minimumPlaybackInterval: 0
+  _overrideParentVolume: 0
+  _volume: 1
+  _volumeRandomization: 0
+  _mute: 0
+  _overrideParentPitch: 0
+  _pitch: 1
+  _pitchRandomization: 0
+  _override2DProperties: 0
+  _pan2D: 0
+  _pan2DRandomization: 0
+  _override3DProperties: 0
+  _priority: 128
+  _panLevel: 1
+  _spreadLevel: 0
+  _dopplerLevel: 1
+  _maxDistance: 500
+  _minDistance: 1
+  _rolloffMode: 0
+  _overrideFadeProperties: 0
+  _fadeInTime: 0
+  _fadeInCurve: 0.5
+  _fadeOutTime: 0
+  _fadeOutCurve: 0.5
+  _reverbZoneMix: 1
+  _overrideBypassProperties: 0
+  _bypassEffects: 0
+  _bypassListenerEffects: 0
+  _bypassReverbZones: 0
+  _overrideAudioMixerGroup: 0
+  _audioMixerGroup: {fileID: 0}
+  _notifyParentComponent: 0
+  _audioBusName: 
+  _overrideAudioBus: 0
+  _overrideMusicTimeSettings: 0
+  _musicTimeSettingsIndex: -1
+  _musicTempo: -1
+  _musicTimeSignatureLower: 0
+  _musicTimeSignatureUpper: 0
+  _probability: 100
+  _multipleInstancesPerGameObject: 1
+  _componentVirtualization: 0
+  _overrideVolumeThreshold: 0
+  _volumeThreshold: 1
+  _virtualizationBehavior: 1
+  _RTPManager:
+    _parameters: []
+    _reference: {fileID: 0}
+  Guid: 
+  _componentHolder: {fileID: 0}
+  _onEventNotifyEventName: 
+  _audioClip: {fileID: 8300000, guid: 90c4b2a55e6254d3f90c166906bd6d1c, type: 3}
   _audioClipHandle:
     _audioClipPath: 
     _useAudioClipPath: 1
