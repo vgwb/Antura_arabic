@@ -168,7 +168,8 @@ namespace Balloons
             yield return new WaitForSeconds(delay);
 
             AudioManager.I.PlayWord(wordData.Key);
-            WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
+            //WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
+            WidgetPopupWindow.I.ShowStringAndWord(OnRoundStartPressed, "#" + currentRound, wordData);
 
             uiCanvas.gameObject.SetActive(true);
         }
@@ -442,6 +443,15 @@ namespace Balloons
             for (int i = 0; i < floatingLetters.Count; i++)
             {
                 floatingLetters[i].Disable();
+                floatingLetters[i].Letter.keepFocusingLetter = true;
+            }
+        }
+
+        private void MakeWordPromptGreen()
+        {
+            for (int i = 0; i < wordPrompt.letterPrompts.Length; i++)
+            {
+                wordPrompt.letterPrompts[i].State = LetterPromptController.PromptState.CORRECT;
             }
         }
 
@@ -518,26 +528,29 @@ namespace Balloons
 
         private IEnumerator DisplayRoundResult_Coroutine(bool win)
         {
-            var initialDelay = 0.25f;
-            yield return new WaitForSeconds(initialDelay);
-
-
             if (win)
             {
+                MakeWordPromptGreen();
+
+                var winInitialDelay = 2f;
+                yield return new WaitForSeconds(winInitialDelay);
+
                 AudioManager.I.PlayDialog("comment_welldone");
-                var popUpDelay = 0.25f;
-                yield return new WaitForSeconds(popUpDelay);
+
+                var winPopUpDelay = 0.25f;
+                yield return new WaitForSeconds(winPopUpDelay);
 
                 WidgetPopupWindow.I.ShowSentenceAndWordWithMark(OnRoundResultPressed, "comment_welldone", wordData, true);
-                var speakWordDelay = 0.75f;
-                yield return new WaitForSeconds(speakWordDelay);
+
+                var winSpeakWordDelay = 0.75f;
+                yield return new WaitForSeconds(winSpeakWordDelay);
 
                 AudioManager.I.PlayWord(wordData.Key);
 
             }
             else
             {
-                var failDelay = 0.75f;
+                var failDelay = 1f;
                 yield return new WaitForSeconds(failDelay);
 
                 var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
