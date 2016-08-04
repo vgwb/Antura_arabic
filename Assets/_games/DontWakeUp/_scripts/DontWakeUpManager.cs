@@ -79,7 +79,7 @@ namespace EA4S.DontWakeUp
             RoundsTotal = Levels.Length;
             currentRound = StartingLevel;
             currentLevel = currentRound;
-            LivesLeft = 3;
+            LivesLeft = 4;
             AppManager.Instance.InitDataAI();
             AppManager.Instance.CurrentGameManagerGO = gameObject;
 
