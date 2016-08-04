@@ -10829,8 +10829,10 @@ MonoBehaviour:
   myLetter: {fileID: 1490731481}
   StarSystems: {fileID: 809695001}
   LivesController: {fileID: 2117864515}
-  TutorialImage: {fileID: 21300000, guid: 95fc0e6acc3e54ccd8dcc5d6033c6221, type: 3}
   Antura: {fileID: 105046968}
+  FailTouchedDog: {fileID: 21300000, guid: 94d63a5dc790641d9a1821a347cc82d7, type: 3}
+  FailTouchedAlarm: {fileID: 21300000, guid: 73e1228880c5a4afe93e35fd97537d6b, type: 3}
+  FailFall: {fileID: 21300000, guid: ce43366baf48840cd9a70958f6704e10, type: 3}
   currentState: 0
   currentRound: 0
   GameplayInfo:

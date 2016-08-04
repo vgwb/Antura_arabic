@@ -108,7 +108,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceWithMark(Action callback, string SentenceId, bool result)
+        public void ShowSentenceWithMark(Action callback, string sentenceId, bool result, Sprite image2show)
         {
             ResetContents();
 
@@ -118,11 +118,16 @@ namespace EA4S
             MarkOK.SetActive(result);
             MarkKO.SetActive(!result);
 
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
+            if (image2show != null) {
+                TutorialImageGO.GetComponent<Image>().sprite = image2show;
+                TutorialImageGO.SetActive(true);
+            }
+
+            LocalizationDataRow row = LocalizationData.Instance.GetRow(sentenceId);
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
 
-            AudioManager.I.PlayDialog(SentenceId);
+            AudioManager.I.PlayDialog(sentenceId);
 
             Show(true);
         }
