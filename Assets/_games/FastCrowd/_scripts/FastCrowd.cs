@@ -163,7 +163,7 @@ namespace EA4S.FastCrowd {
                 //row.GetStringData("English");
                 PopupMission.Show(new PopupMissionComponent.Data() {
                     // Find the word
-                    Title = string.Format("{0} {1}!", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
+                    Title = string.Format("{1}", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
                     MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
                     Type = PopupMissionComponent.PopupType.New_Mission,
                     DrawSprite = ActualWord.DrawForLivingLetter,
@@ -175,7 +175,7 @@ namespace EA4S.FastCrowd {
                 LocalizationDataRow rowWords = LocalizationData.Instance.GetRow("game_fastcrowd_findwordgroup");
                 PopupMission.Show(new PopupMissionComponent.Data() {
                     // Find the word group
-                    Title = string.Format("{0} {1}!", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
+                    Title = string.Format("{1}", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
                     MainTextToDisplay = string.Format("{0}", stringListOfWords),
                     Type = PopupMissionComponent.PopupType.New_Mission,
                 });
