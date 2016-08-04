@@ -76,6 +76,10 @@ namespace EA4S
             List<ILivingLetterData> newDatas = new List<ILivingLetterData>(); // list to be shuffled
             for (int i = 0; i < Draws.Count; i++) {
                 ILivingLetterData newData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                if (newDatas.Contains(newData)) {
+                    i--;
+                    continue;
+                }
                 newDatas.Add(newData);
                 Draws[i].Init(newData, false);
                 Draws[i].InjectManager(this);
