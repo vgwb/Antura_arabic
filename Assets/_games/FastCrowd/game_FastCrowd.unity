@@ -10570,7 +10570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805c80b22665fef4f81362639a419c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SfxOnClick: 5
+  SfxOnClick: 8
 --- !u!1 &1763148744
 GameObject:
   m_ObjectHideFlags: 0
