@@ -49,6 +49,7 @@ namespace EA4S
         public bool ClickToChangeDress = false;
         public bool ClickToChangeAnimation = false;
         public bool DisableAnimator = false;
+        public bool BarkWhenRunning = false;
 
         [Header("Starting State")]
         public AnturaAnim AnimationState;
@@ -87,6 +88,7 @@ namespace EA4S
         public Texture EyesNormal2;
 
         public int CostumeId;
+        float nextAnturaBarkTime;
 
         void Start()
         {
@@ -130,10 +132,26 @@ namespace EA4S
             if (!DisableAnimator) {
                 if (AnimationState != AnturaAnim.Nothing) {
                     AnturaAnimator.Play(GetStateName(AnimationState));
+                    if (BarkWhenRunning && AnimationState == AnturaAnim.Run) {
+                        prepareNextAnturaBark();
+                    }
                 } else {
                     AnturaAnimator.StopPlayback();
                 }
             }
+        }
+
+        void Update()
+        {
+            if (BarkWhenRunning && AnimationState == AnturaAnim.Run && Time.time > nextAnturaBarkTime) {
+                prepareNextAnturaBark();
+                AudioManager.I.PlaySfx(Sfx.DogBarking);
+            }
+        }
+
+        void prepareNextAnturaBark()
+        {
+            nextAnturaBarkTime = Time.time + Random.Range(1, 3);
         }
 
         void Refresh()

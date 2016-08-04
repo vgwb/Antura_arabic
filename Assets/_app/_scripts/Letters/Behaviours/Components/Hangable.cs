@@ -5,19 +5,26 @@ using Panda;
 using Lean;
 using System;
 
-namespace EA4S {
+namespace EA4S
+{
     [RequireComponent(typeof(LetterObjectView))]
     /// <summary>
     /// Manage player drag behaviour.
     /// </summary>
-    public class Hangable : MonoBehaviour {
+    public class Hangable : MonoBehaviour
+    {
+
+        float holdSfxStartTime;
+        bool holdSfxPlayed;
+
         #region tasks
 
         [Task]
         public bool OnDrag = false;
         LetterObjectView letterView = null;
 
-        void Start() {
+        void Start()
+        {
             letterView = GetComponent<LetterObjectView>();
         }
 
@@ -27,14 +34,17 @@ namespace EA4S {
         #endregion
 
         #region input
+
         public float HoldThreshold = 0.25f;
         float startMouseDown = -1;
 
-        void OnMouseDown() {
+        void OnMouseDown()
+        {
             startMouseDown = Time.time;
         }
 
-        void OnMouseUp() {
+        void OnMouseUp()
+        {
             startMouseDown = -1;
             if (OnDrag)
                 OnLongTap();
@@ -45,20 +55,25 @@ namespace EA4S {
         #endregion
 
         #region events delegates
+
         /// <summary>
         /// Whene start holdstate.
         /// </summary>
-        void OnHoldStart() {
+        void OnHoldStart()
+        {
             if (OnLetterHangOn != null)
                 OnLetterHangOn(letterView);
             AudioManager.I.PlayLetter(letterView.Model.Data.Key);
             AudioManager.I.PlayWord(letterView.Model.Data.Key);
+
+            holdSfxStartTime = Time.time + 1;
         }
 
         /// <summary>
         /// On release of short tap action.
         /// </summary>
-        void OnShortTap() {
+        void OnShortTap()
+        {
             AudioManager.I.PlayLetter(letterView.Model.Data.Key);
             AudioManager.I.PlayWord(letterView.Model.Data.Key);
         }
@@ -66,20 +81,24 @@ namespace EA4S {
         /// <summary>
         /// On release of long tap action.
         /// </summary>
-        void OnLongTap() {
+        void OnLongTap()
+        {
             ToBeRelease = true;
             if (OnLetterHangOff != null)
                 OnLetterHangOff(letterView);
         }
+
         #endregion
 
-        void Update() {
+        void Update()
+        {
             if (startMouseDown > 0 && Time.time - startMouseDown > HoldThreshold) {
                 if (!OnDrag)
                     OnHoldStart();
                 OnDrag = true;
             } else {
                 OnDrag = false;
+                holdSfxPlayed = false;
             }
             if (OnDrag) {
                 RaycastHit hit;
@@ -87,17 +106,24 @@ namespace EA4S {
                 if (Physics.Raycast(ray, out hit, 100)) {
                     transform.position = hit.point;
                 }
+
+                if (Time.time > holdSfxStartTime && !holdSfxPlayed) {
+                    holdSfxPlayed = true;
+                    AudioManager.I.PlaySfx(Sfx.LetterHold);
+                }
             }
         }
 
         #region event subscriptions
 
-        void OnEnable() {
+        void OnEnable()
+        {
         }
 
 
 
-        void OnDisable() {
+        void OnDisable()
+        {
         }
 
 
@@ -105,6 +131,7 @@ namespace EA4S {
         #endregion
 
         #region events
+
         public delegate void HangAction(LetterObjectView _letterView);
 
         /// <summary>
@@ -116,6 +143,7 @@ namespace EA4S {
         /// End hang.
         /// </summary>
         public static event HangAction OnLetterHangOff;
+
         #endregion
 
     }

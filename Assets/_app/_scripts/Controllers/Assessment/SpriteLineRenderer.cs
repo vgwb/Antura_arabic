@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S {
+namespace EA4S
+{
     [RequireComponent(typeof(Image))]
     public class SpriteLineRenderer : MonoBehaviour
     {
@@ -28,7 +29,8 @@ namespace EA4S {
             //OnDraw(startingPos, new Vector3(currentPos.x, currentPos.y, 0f));
         }
 
-        public void SetColor(Color _color) {
+        public void SetColor(Color _color)
+        {
             Color = _color;
             GetComponent<Image>().color = Color;
         }
@@ -38,7 +40,7 @@ namespace EA4S {
 
             Vector3 differenceVector = pointB - pointA;
 
-            imageRectTransform.sizeDelta = new Vector2(differenceVector.magnitude *2, lineWidth);
+            imageRectTransform.sizeDelta = new Vector2(differenceVector.magnitude, lineWidth);
             imageRectTransform.position = pointA;
             float angle = Mathf.Atan2(differenceVector.y, differenceVector.x) * Mathf.Rad2Deg;
             imageRectTransform.rotation = Quaternion.Euler(0, 0, angle);
