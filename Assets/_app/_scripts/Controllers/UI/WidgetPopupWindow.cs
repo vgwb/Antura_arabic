@@ -162,6 +162,27 @@ namespace EA4S
             Show(true);
         }
 
+        public void ShowSentenceAndWordWithMark(Action callback, string SentenceId, WordData wordData, bool result)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            MarkOK.SetActive(result);
+            MarkKO.SetActive(!result);
+
+            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+
+            //AudioManager.I.PlayDialog(SentenceId);
+
+            SetWord(wordData.Key, wordData.Word);
+
+            Show(true);
+        }
+
 
 
         public void Init(string introText, string wordCode, string arabicWord)

@@ -527,7 +527,7 @@ namespace Balloons
                 var popUpDelay = 0.25f;
                 yield return new WaitForSeconds(popUpDelay);
 
-                WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundResultPressed, "comment_welldone", wordData);
+                WidgetPopupWindow.I.ShowSentenceAndWordWithMark(OnRoundResultPressed, "comment_welldone", wordData, true);
                 var speakWordDelay = 0.75f;
                 yield return new WaitForSeconds(speakWordDelay);
 
