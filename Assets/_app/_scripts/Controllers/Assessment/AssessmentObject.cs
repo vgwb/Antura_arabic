@@ -6,9 +6,12 @@ using TMPro;
 using DG.Tweening;
 using System;
 
-namespace EA4S {
-    public class AssessmentObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+namespace EA4S
+{
+    public class AssessmentObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    {
 
+        public GameObject Background;
         public Image Draw;
         public TextMeshProUGUI Label;
         public Image Circle;
@@ -20,15 +23,17 @@ namespace EA4S {
         public bool IsInteractable = true;
         AssessmentManager manager;
         SpriteLineRenderer line;
-        
 
-        #region 
+
+        #region
+
         /// <summary>
         /// Init object.
         /// </summary>
         /// <param name="_data"></param>
         /// <param name="_isWord">if true word else is a draw.</param>
-        public void Init(ILivingLetterData _data, bool _isWord) {
+        public void Init(ILivingLetterData _data, bool _isWord)
+        {
             data = _data;
             IsWord = _isWord;
             if (!IsWord) {
@@ -39,30 +44,38 @@ namespace EA4S {
                 Label.text = _data.TextForLivingLetter;
                 Draw.gameObject.SetActive(false);
             }
-            HideCyrcle(0);
+            HideCircle(0);
         }
 
-        public void InjectManager(AssessmentManager _manager) {
+        public void InjectManager(AssessmentManager _manager)
+        {
             manager = _manager;
         }
 
-        public void SetColor(Color _color) {
+        public void SetColor(Color _color)
+        {
             Color = _color;
             Circle.color = _color;
         }
 
-        public void HideCyrcle(float _time = 0) {
+        public void HideCircle(float _time = 0)
+        {
             Circle.DOFade(0, _time);
+            Background.SetActive(false);
         }
 
-        public void ShowCyrcle(float _time = 0) {
+        public void ShowCircle(float _time = 0)
+        {
             Circle.DOFade(1, _time);
+            Background.SetActive(true);
         }
+
         #endregion
 
         #region Line
 
-        void Update() {
+        void Update()
+        {
             if (line)
                 line.OnDraw(transform.position, Input.mousePosition);
         }
@@ -71,17 +84,19 @@ namespace EA4S {
 
         #region inputEvents
 
-        public void OnPointerDown(PointerEventData eventData) {
+        public void OnPointerDown(PointerEventData eventData)
+        {
             if (!IsInteractable)
                 return;
             if (IsLocked)
                 manager.UnlockObjects(Color);
             SetColor(manager.GetAvailableColor());
             line = manager.GetLine(this.Color);
-            ShowCyrcle(1);
+            ShowCircle(1);
         }
 
-        public void OnPointerUp(PointerEventData eventData) {
+        public void OnPointerUp(PointerEventData eventData)
+        {
             if (!IsInteractable)
                 return;
             foreach (var item in eventData.hovered) {
@@ -92,14 +107,14 @@ namespace EA4S {
                     if (other.IsLocked)
                         manager.UnlockObjects(other.Color);
                     other.SetColor(Color);
-                    other.ShowCyrcle(1);
+                    other.ShowCircle(1);
                     other.IsLocked = IsLocked = true;
                     manager.OnReleaseOnWord(this, other);
                     line = null;
                     return;
                 }
             }
-            HideCyrcle(1);
+            HideCircle(1);
             manager.UnlockObjects(Color);
             line = null;
         }
