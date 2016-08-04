@@ -14,6 +14,7 @@ namespace Balloons
     {
         public TMP_Text LetterLabel;
         public LetterData Data;
+        public Animator animator;
 
         public enum PromptState
         {

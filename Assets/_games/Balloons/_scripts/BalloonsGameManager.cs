@@ -361,7 +361,7 @@ namespace Balloons
             }
         }
 
-        public void OnDropped(LetterController letter = null)
+        public void OnDroppedLetter(LetterController letter = null)
         {
             bool isRequired = false;
             int promptIndex = -1;
@@ -380,7 +380,7 @@ namespace Balloons
             if (isRequired)
             {
                 LoggerEA4S.Log("minigame", "Balloons", "goodLetterExplode", letterKey);
-                OnDroppedRequired(promptIndex);
+                OnDroppedRequiredLetter(promptIndex);
             }
             else
             {
@@ -390,7 +390,7 @@ namespace Balloons
             CheckRemainingBalloons();
         }
 
-        public void OnDroppedRequired(int promptIndex)
+        public void OnDroppedRequiredLetter(int promptIndex)
         {
             remainingLives--;
             wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
@@ -400,6 +400,11 @@ namespace Balloons
             {
                 EndRound(Result.FAIL);
             }
+        }
+
+        public void OnPoppedRequiredBalloon(int promptIndex)
+        {
+            wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("FlashWrong");
         }
 
         private void CheckRemainingBalloons()
@@ -469,7 +474,7 @@ namespace Balloons
             }
             else
             {
-                OnDropped();
+                OnDroppedLetter();
             }
         }
 

@@ -38,6 +38,7 @@ GameObject:
   - 224: {fileID: 224000010208143086}
   - 222: {fileID: 222000013079562440}
   - 114: {fileID: 114000011685986758}
+  - 95: {fileID: 95000010211427438}
   - 114: {fileID: 114000013035698958}
   m_Layer: 5
   m_Name: LetterPrompt
@@ -63,6 +64,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95000010211427438
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013173225578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 34d099d0403f14fbcacc7268c0c2dad9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000011662432866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +117,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
   m_faceColor:
@@ -122,6 +141,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
+  m_enableAdaptiveJustification: 0
   m_overflowMode: 0
   m_enableKerning: 0
   m_enableExtraPadding: 0
@@ -231,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LetterLabel: {fileID: 114000011662432866}
+  animator: {fileID: 95000010211427438}
 --- !u!222 &222000010814212254
 CanvasRenderer:
   m_ObjectHideFlags: 1
