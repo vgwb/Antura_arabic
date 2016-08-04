@@ -89,6 +89,11 @@ namespace EA4S
             PanelTestGO.SetActive(true); 
         }
 
+        /// <summary>
+        /// Check if assessment is completed.
+        /// </summary>
+        /// <param name="_objDrag"></param>
+        /// <param name="_objDrop"></param>
         public void OnReleaseOnWord(AssessmentObject _objDrag, AssessmentObject _objDrop)
         {
 
@@ -147,11 +152,11 @@ namespace EA4S
 
         public void UnlockObjects(Color _color)
         {
-            foreach (var obj in Draws.FindAll(o => o.Color == _color && o.IsLocked)) {
+            foreach (var obj in Draws.FindAll(o => o.Color == _color)) {
                 obj.IsLocked = false;
                 obj.HideCyrcle(0.5f);
             }
-            foreach (var obj in Words.FindAll(o => o.Color == _color && o.IsLocked)) {
+            foreach (var obj in Words.FindAll(o => o.Color == _color)) {
                 obj.IsLocked = false;
                 obj.HideCyrcle(0.5f);
             }
