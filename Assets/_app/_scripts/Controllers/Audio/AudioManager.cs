@@ -168,7 +168,7 @@ namespace EA4S
         {
             // TODO sound for letter alef_hamza -- now using the alef one
             if (letterId == "alef_hamza") {
-                letterId == "alef";
+                letterId = "alef";
             }
             Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + letterId);
         }
