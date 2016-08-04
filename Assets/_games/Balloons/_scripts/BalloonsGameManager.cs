@@ -531,7 +531,7 @@ namespace Balloons
             {
                 MakeWordPromptGreen();
 
-                var winInitialDelay = 3f;
+                var winInitialDelay = 2f;
                 yield return new WaitForSeconds(winInitialDelay);
 
                 AudioManager.I.PlayDialog("comment_welldone");
@@ -549,7 +549,7 @@ namespace Balloons
             }
             else
             {
-                var failDelay = 3f;
+                var failDelay = 1f;
                 yield return new WaitForSeconds(failDelay);
 
                 var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
