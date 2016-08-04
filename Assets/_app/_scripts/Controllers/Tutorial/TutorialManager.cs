@@ -97,7 +97,7 @@ namespace EA4S
         void Ready2Play()
         {
             // TODO both dialog and animation should be compelted before allowing continue
-            if ((isAnimationComplete || isDialogsComplete) && !continueShown) {
+            if ((isAnimationComplete && isDialogsComplete) && !continueShown) {
                 continueShown = true;
                 ContinueScreen.Show(Play, ContinueScreenMode.Button);
             }
