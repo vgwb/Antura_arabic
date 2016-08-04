@@ -34,8 +34,13 @@ namespace EA4S.DontWakeUp
         public GameObject myLetter;
         public GameObject StarSystems;
         public LivesContainer LivesController;
-        public Sprite TutorialImage;
         public GameObject Antura;
+
+        [Header("Images")]
+        //        public Sprite TutorialImage;
+        public Sprite FailTouchedDog;
+        public Sprite FailTouchedAlarm;
+        public Sprite FailFall;
 
         [HideInInspector]
         public WordData currentWord;
@@ -124,48 +129,48 @@ namespace EA4S.DontWakeUp
             AudioManager.I.StopSfx(Sfx.DogSnoring);
         }
 
-        void GameIntro()
-        {
-            currentState = MinigameState.GameIntro;
-            WidgetPopupWindow.I.ShowTutorial(ClickedNext, TutorialImage);
-            TutorialIndex = 3;
-            ShowTutorialLine();
-        }
+        //        void GameIntro()
+        //        {
+        //            currentState = MinigameState.GameIntro;
+        //            WidgetPopupWindow.I.ShowTutorial(ClickedNext, TutorialImage);
+        //            TutorialIndex = 3;
+        //            ShowTutorialLine();
+        //        }
 
-        public void GameIntroFinished()
-        {
-            WidgetSubtitles.I.Close();
-            //WidgetPopupWindow.Show(false);
-            StartCurrentRound();
-        }
-
-        private void ShowTutorialLine()
-        {
-            switch (TutorialIndex) {
-                case 3:
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
-                    break;
-                case 2:
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro2");
-                    break;
-                case 1:
-                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro3");
-                    break;
-            }
-        }
+        //        public void GameIntroFinished()
+        //        {
+        //            WidgetSubtitles.I.Close();
+        //            //WidgetPopupWindow.Show(false);
+        //            StartCurrentRound();
+        //        }
+        //
+        //        private void ShowTutorialLine()
+        //        {
+        //            switch (TutorialIndex) {
+        //                case 3:
+        //                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro1");
+        //                    break;
+        //                case 2:
+        //                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro2");
+        //                    break;
+        //                case 1:
+        //                    WidgetSubtitles.I.DisplaySentence("game_dontwake_intro3");
+        //                    break;
+        //            }
+        //        }
 
         public void ClickedNext()
         {
             //Debug.Log("ClickedNext()");
             switch (currentState) {
-                case MinigameState.GameIntro:
-                    if (TutorialIndex > 1) {
-                        TutorialIndex = TutorialIndex - 1;
-                        ShowTutorialLine();
-                    } else {
-                        GameIntroFinished();
-                    }
-                    break;
+//                case MinigameState.GameIntro:
+//                    if (TutorialIndex > 1) {
+//                        TutorialIndex = TutorialIndex - 1;
+//                        ShowTutorialLine();
+//                    } else {
+//                        GameIntroFinished();
+//                    }
+//                    break;
                 case MinigameState.RoundIntro:
                     WidgetSubtitles.I.Close();
                     WidgetPopupWindow.Show(false);
@@ -226,16 +231,16 @@ namespace EA4S.DontWakeUp
                 switch (how) {
                     case How2Die.TouchedAlarm:
                         currentLevelController.DoAlarmEverything();
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false);
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false, FailTouchedAlarm);
                         break;
                     case How2Die.TouchedDog:
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false);
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false, FailTouchedDog);
                         break;
                     case How2Die.TooFast:
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false);
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false, null);
                         break;
                     case How2Die.Fall:
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_fall", false);
+                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_fall", false, FailFall);
                         break;
                 }
             }

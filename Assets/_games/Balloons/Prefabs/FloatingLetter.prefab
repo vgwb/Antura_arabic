@@ -4875,6 +4875,7 @@ MonoBehaviour:
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
+  keepFocusingLetter: 0
 --- !u!114 &11428028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5085,6 +5086,7 @@ MonoBehaviour:
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
+  keepFocusingLetter: 0
 --- !u!114 &11463564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5355,6 +5357,7 @@ MonoBehaviour:
   spinSpeed: 1
   spinAngle: 80
   spinRandomnessFactor: 0.15
+  keepFocusingLetter: 0
 --- !u!136 &13605448
 CapsuleCollider:
   m_ObjectHideFlags: 1
