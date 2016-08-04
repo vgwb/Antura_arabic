@@ -10,7 +10,7 @@ namespace EA4S
 {
     public class AssessmentObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-
+        public GameObject Background;
         public Image Draw;
         public TextMeshProUGUI Label;
         public Image Circle;
@@ -60,11 +60,13 @@ namespace EA4S
         public void HideCircle(float _time = 0)
         {
             Circle.DOFade(0, _time);
+            Background.SetActive(false);
         }
 
         public void ShowCircle(float _time = 0)
         {
             Circle.DOFade(1, _time);
+            Background.SetActive(true);
         }
 
         #endregion
