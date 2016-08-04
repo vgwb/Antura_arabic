@@ -154,11 +154,11 @@ namespace EA4S
         {
             foreach (var obj in Draws.FindAll(o => o.Color == _color)) {
                 obj.IsLocked = false;
-                obj.HideCyrcle(0.5f);
+                obj.HideCircle(0.5f);
             }
             foreach (var obj in Words.FindAll(o => o.Color == _color)) {
                 obj.IsLocked = false;
-                obj.HideCyrcle(0.5f);
+                obj.HideCircle(0.5f);
             }
             ReleaseColor(_color);
         }
