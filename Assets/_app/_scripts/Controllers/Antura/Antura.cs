@@ -13,7 +13,9 @@ namespace EA4S
         StandExcitedBreath = 5,
         StandExcitedLookR = 6,
         StandExcitedWagtail = 7,
-        StandSadBreath = 8
+        StandSadBreath = 8,
+        DontWakeSleeping = 20,
+        DontWakeWakesUp = 21
     }
 
     public enum AnturaCollars {
@@ -54,6 +56,7 @@ namespace EA4S
         [Header("Starting State")]
         public AnturaAnim AnimationState;
         public bool IsPirate;
+        public bool IsBarking;
         public AnturaCollars AnturaCollar;
         public AnturaColors AnturaColor;
         public AnturaEyes AnturaEye;
@@ -127,10 +130,17 @@ namespace EA4S
             Refresh();
         }
 
+        public void SetAnimation(AnturaAnim newAnimationState)
+        {
+            AnimationState = newAnimationState;
+            PlayAnimation();
+        }
+
         void PlayAnimation()
         {
             if (!DisableAnimator) {
                 if (AnimationState != AnturaAnim.Nothing) {
+                    Debug.Log("PlayAnimation " + AnturaAnimator.name + " " + GetStateName(AnimationState));
                     AnturaAnimator.Play(GetStateName(AnimationState));
                     if (BarkWhenRunning && AnimationState == AnturaAnim.Run) {
                         prepareNextAnturaBark();
@@ -143,7 +153,7 @@ namespace EA4S
 
         void Update()
         {
-            if (BarkWhenRunning && AnimationState == AnturaAnim.Run && Time.time > nextAnturaBarkTime) {
+            if ((IsBarking || (BarkWhenRunning && AnimationState == AnturaAnim.Run)) && Time.time > nextAnturaBarkTime) {
                 prepareNextAnturaBark();
                 AudioManager.I.PlaySfx(Sfx.DogBarking);
             }
@@ -186,6 +196,24 @@ namespace EA4S
                     break;
             }
 
+            RefreshEyes();
+            PlayAnimation();
+        }
+
+        void OnMouseDown()
+        {
+            if (ClickToChangeDress)
+                RandomDress();
+
+            if (ClickToChangeAnimation)
+                RandomAnimation();
+
+            if (ClickToBark)
+                AudioManager.I.PlaySfx(Sfx.DogBarking);
+        }
+
+        void RefreshEyes()
+        {
             switch (AnturaEye) {
                 case AnturaEyes.Normal:
                     AnturaEyesMaterial.material.SetTexture("_MainTex", EyesNormal);
@@ -206,19 +234,6 @@ namespace EA4S
                     AnturaEyesMaterial.material.SetTexture("_MainTex", EyesNormal2);
                     break;
             }
-            PlayAnimation();
-        }
-
-        void OnMouseDown()
-        {
-            if (ClickToChangeDress)
-                RandomDress();
-
-            if (ClickToChangeAnimation)
-                RandomAnimation();
-
-            if (ClickToBark)
-                AudioManager.I.PlaySfx(Sfx.DogBarking);
         }
 
         void RandomAnimation()
@@ -272,6 +287,12 @@ namespace EA4S
                     break;
                 case AnturaAnim.StandSadBreath:
                     stateName = "StandSadBreath";
+                    break;
+                case AnturaAnim.DontWakeSleeping:
+                    stateName = "DontWakeSleeping";
+                    break;
+                case AnturaAnim.DontWakeWakesUp:
+                    stateName = "DontWakeWakesUp";
                     break;
             }
             return stateName;
