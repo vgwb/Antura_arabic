@@ -4,6 +4,34 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.5.6
+
+2016-08-04 - [Balloons] Show green checkmark on popup after round win
+2016-08-04 - [Balloons] Word prompt color animations
+2016-08-04 - FastCrowd: removed red carpet...
+2016-08-04 - FastCrowd: NavMesh update to prevent out of camera field. Repositioning Right and Wrong icons.
+2016-08-04 - FastCrowd: fix crash on release letter after timeover.
+2016-08-04 - [Balloons] Flash required letter in prompt when balloon is popped
+2016-08-04 - FastCrowd: Fix bug complete word simultaneously with "on time over". Fix wrong sound fx on click popup.
+2016-08-04 - Final CREDITS (maybe, who knows?)
+2016-08-04 - HOME + Credits complete
+2016-08-04 - Better Pause Menu with toggles for Music and FX plus various optimizations
+2016-08-04 - [assesnemnt] added in debug panel
+2016-08-04 - assesment...
+2016-08-04 - asseement: another fix
+2016-08-04 - Assessment: minor bug fix.
+2016-08-04 - small detail in assesment object
+2016-08-04 - [home] new play button
+2016-08-04 - DEBUG: home page now allow to start the game... (we tried.. ;)
+2016-08-04 - [Balloons] Required letters now have at least 2 balloons
+2016-08-04 - [assesment] debug
+2016-08-04 - [assessment] better drawing of lines
+2016-08-04 - [map] improved ropes
+2016-08-04 - updated minigames titles!
+2016-08-04 - [home] really basic credits open/close
+2016-08-04 - [debug] checked that all scene cameras have the cameraDisplayController and associated to current scene manager
+2016-08-04 - [tutorial] init Balloons tutorials (fix the blocked walkthrough)
+
 ##########   v0.5.5
 
 2016-08-04 - [DontWakeUè] 4 lives are better than 3 (cont)
