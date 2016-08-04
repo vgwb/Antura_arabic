@@ -48,7 +48,9 @@ namespace EA4S
     {
         public static AudioManager I;
         static System.Action OnNotifyEndAudio;
-        public bool MusicEnabled {get { return musicEnabled; } }
+
+        public bool MusicEnabled { get { return musicEnabled; } }
+
         bool musicEnabled = true;
         Music currentMusic;
 
@@ -164,6 +166,10 @@ namespace EA4S
 
         public void PlayLetter(string letterId)
         {
+            // TODO sound for letter alef_hamza -- now using the alef one
+            if (letterId == "alef_hamza") {
+                letterId == "alef";
+            }
             Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + letterId);
         }
 
