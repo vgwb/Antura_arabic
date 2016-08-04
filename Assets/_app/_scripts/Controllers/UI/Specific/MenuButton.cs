@@ -16,7 +16,8 @@ namespace EA4S
         Back,
         MusicToggle,
         FxToggle,
-        Restart
+        Restart,
+        Credits
     }
 
     public class MenuButton : MonoBehaviour
