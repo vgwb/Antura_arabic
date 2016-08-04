@@ -13,6 +13,8 @@ namespace EA4S
 
         void Start()
         {
+            GlobalUI.ShowPauseMenu(false);
+
             /// Reset log session
             EA4S.LoggerEA4S.SessionID = Random.Range(10000000, 99999999).ToString();
             LoggerEA4S.Log("app", "appversion", "info", AppManager.AppVersion);
@@ -31,6 +33,7 @@ namespace EA4S
 
         public void Play()
         {
+            GlobalUI.ShowPauseMenu(true);
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
         }
 
