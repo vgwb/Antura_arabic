@@ -168,7 +168,8 @@ namespace Balloons
             yield return new WaitForSeconds(delay);
 
             AudioManager.I.PlayWord(wordData.Key);
-            WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
+            //WidgetPopupWindow.I.ShowSentenceAndWord(OnRoundStartPressed, "game_balloons_intro2", wordData);
+            WidgetPopupWindow.I.ShowStringAndWord(OnRoundStartPressed, "#" + currentRound, wordData);
 
             uiCanvas.gameObject.SetActive(true);
         }
