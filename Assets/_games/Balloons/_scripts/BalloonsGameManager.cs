@@ -404,7 +404,7 @@ namespace Balloons
 
         public void OnPoppedRequiredBalloon(int promptIndex)
         {
-            wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("FlashWrong");
+            wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
         }
 
         private void CheckRemainingBalloons()

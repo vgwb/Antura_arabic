@@ -48,16 +48,22 @@ namespace Balloons
             switch (State)
             {
                 case PromptState.IDLE:
-                    //GetComponent<Renderer>().materials[0].color = Color.white;
-                    GetComponent<Image>().color = Color.white;
+                    //GetComponent<Image>().color = Color.white;
+                    animator.SetBool("Idle", true);
+                    animator.SetBool("Correct", false);
+                    animator.SetBool("Wrong", false);
                     break;
                 case PromptState.CORRECT:
-                    //GetComponent<Renderer>().materials[0].color = Color.green;
-                    GetComponent<Image>().color = Color.green;
+                    //GetComponent<Image>().color = Color.green;
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Correct", true);
+                    animator.SetBool("Wrong", false);
                     break;
                 case PromptState.WRONG:
-                    //GetComponent<Renderer>().materials[0].color = Color.red;
-                    GetComponent<Image>().color = Color.red;
+                    //GetComponent<Image>().color = Color.red;
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Correct", false);
+                    animator.SetBool("Wrong", true);
                     break;
                 default:
                     break;
