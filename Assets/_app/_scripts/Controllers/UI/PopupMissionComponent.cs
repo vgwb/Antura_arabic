@@ -4,8 +4,10 @@ using System.Collections;
 using TMPro;
 using DG.Tweening;
 
-namespace EA4S {
-    public class PopupMissionComponent : MonoBehaviour {
+namespace EA4S
+{
+    public class PopupMissionComponent : MonoBehaviour
+    {
 
         public Image CompletedCheck;
         public TextMeshProUGUI TitleLable;
@@ -13,7 +15,8 @@ namespace EA4S {
         public Image Draw;
         public Button ContinueButton;
 
-        public class Data {
+        public class Data
+        {
             public string Title;
             public string MainTextToDisplay;
             public Sprite DrawSprite;
@@ -24,7 +27,11 @@ namespace EA4S {
             public float AutoCloseTime = -1;
         }
 
-        public enum PopupType { New_Mission, Mission_Completed }
+        public enum PopupType {
+            New_Mission,
+            Mission_Completed
+
+        }
 
         Vector2 HidePosition;
         Vector2 ShowPosition;
@@ -34,17 +41,20 @@ namespace EA4S {
         TweenCallback pendingCallback = null;
 
         float timeScaleAtMenuOpen = 1;
-        
 
-        void Start() { 
+
+        void Start()
+        { 
             HidePosition = new Vector2(0, -750);
             ShowPosition = new Vector2(0, 0);
             GetComponent<RectTransform>().anchoredPosition = HidePosition;
             //ContinueButton.gameObject.SetActive(AutoCloseTime < 0);
-        } 
+        }
 
-        public void Show(Data _data, TweenCallback _callback = null) {
+        public void Show(Data _data, TweenCallback _callback = null)
+        {
             AudioManager.I.PlaySfx(Sfx.UIPopup);
+
             MainLable.text = _data.MainTextToDisplay;
             // Preset for animation
             CompletedCheck.rectTransform.DOScale(6, 0);
@@ -59,10 +69,13 @@ namespace EA4S {
             TitleLable.text = _data.Title;
             // Complete check animation.
             if (_data.Type == PopupType.Mission_Completed) {
+                AudioManager.I.PlaySfx(Sfx.StampOK);
                 sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
-                sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms)).OnComplete(delegate() {
-                    AudioManager.I.PlaySfx(Sfx.Win);
-                });
+                sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms));
+//                    .OnComplete(delegate()
+//                    {
+//                        AudioManager.I.PlaySfx(Sfx.Win);
+//                    });
             }
             // Draw
             if (_data.DrawSprite) {
@@ -73,7 +86,10 @@ namespace EA4S {
             }
             // Autoclose
             if (_data.AutoCloseTime >= 0) {
-                sequence.InsertCallback(_data.AutoCloseTime, delegate { Close(sequence, tParms, _callback); });
+                sequence.InsertCallback(_data.AutoCloseTime, delegate
+                    {
+                        Close(sequence, tParms, _callback);
+                    });
             } else {
                 pendingCallback = null; // reset
                 if (_callback != null)
@@ -81,7 +97,8 @@ namespace EA4S {
             }
         }
 
-        public void Close() {
+        public void Close()
+        {
             Close(sequence, tParms, pendingCallback);
         }
 
@@ -91,14 +108,16 @@ namespace EA4S {
         /// <param name="_sequence"></param>
         /// <param name="_tParms"></param>
         /// <param name="_callback"></param>
-        void Close(Sequence _sequence, TweenParams _tParms, TweenCallback _callback) {
+        void Close(Sequence _sequence, TweenParams _tParms, TweenCallback _callback)
+        {
             Time.timeScale = 1;
             _sequence.Append(GetComponent<RectTransform>().DOAnchorPos(HidePosition, 0.15f).SetAs(_tParms));
             if (_callback != null)
                 _callback();
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             sequence.Kill();
         }
 

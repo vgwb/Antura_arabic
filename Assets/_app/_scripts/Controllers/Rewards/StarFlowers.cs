@@ -13,14 +13,16 @@ namespace EA4S
 
         string nextSceneName = string.Empty;
 
-        void Awake() {
+        void Awake()
+        {
             GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             foreach (Image img in GetComponentsInChildren<Image>()) {
                 img.DOFade(0, 0);
             }
         }
 
-        public void Show(int _stars) {
+        public void Show(int _stars)
+        {
             //if(_stars > 0)
             nextSceneName = AppManager.Instance.MiniGameDone();
 
@@ -46,26 +48,31 @@ namespace EA4S
             if (_stars > 0) { 
                 sequence.Append(Flower3.DOFade(1, 0.1f));
                 sequence.Append(Flower3.rectTransform.DOAnchorPos(f3pos, 0.3f).SetAs(tParms));
+                sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
             }
 
             if (_stars > 1) {
                 sequence.Append(Flower2.DOFade(1, 0.1f));
                 sequence.Append(Flower2.rectTransform.DOAnchorPos(f2pos, 0.3f).SetAs(tParms));
+                sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
             }
 
             if (_stars > 2) {
                 sequence.Append(Flower1.DOFade(1, 0.1f));
                 sequence.Append(Flower1.rectTransform.DOAnchorPos(f1pos, 0.3f).SetAs(tParms));
+                sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
             }
 
             sequence.Play().OnComplete(ShowButton);
         }
 
-        void ShowButton() {
+        void ShowButton()
+        {
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 
-        public void Continue() {
+        public void Continue()
+        {
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
             nextSceneName = string.Empty;
         }

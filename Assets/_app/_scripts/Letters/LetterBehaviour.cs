@@ -6,15 +6,19 @@ using DG.Tweening;
 using UniRx;
 using ModularFramework.Helpers;
 
-namespace EA4S {
-    public class LetterBehaviour : MonoBehaviour {
+namespace EA4S
+{
+    public class LetterBehaviour : MonoBehaviour
+    {
 
         #region public properties
+
         public BehaviourSettings Settings;
 
         [Header("GO Elements")]
         public Transform exclamationMark;
         private Sequence sequenceExclamationMark;
+
         #endregion
 
         #region runtime variables
@@ -22,7 +26,8 @@ namespace EA4S {
         /// <summary>
         /// Animator
         /// </summary>
-        public Animator Anim {
+        public Animator Anim
+        {
             get {
                 if (!anim)
                     anim = GetComponent<Animator>();
@@ -30,10 +35,13 @@ namespace EA4S {
             }
             set { anim = value; }
         }
+
         private Animator anim;
+
         #endregion
 
-        void Start() {
+        void Start()
+        {
             sequenceExclamationMark = DOTween.Sequence();
             sequenceExclamationMark.SetLoops(-1);
             //exclamationMark.transform.localScale = Vector3.zero;
@@ -48,23 +56,28 @@ namespace EA4S {
         #region Tasks
 
         #region properties
+
         [Task]
         public bool IsOut = false;
 
         [Task]
-        public void SetIsOut(bool _isOut) {
+        public void SetIsOut(bool _isOut)
+        {
             IsOut = _isOut;
             Task.current.Succeed();
         }
+
         #endregion
 
         #region Animation
+
         /// <summary>
         /// Play anim with name as param.
         /// </summary>
         /// <param name="_animationName"></param>
         [Task]
-        public void SetAnimation(string _animationName) {
+        public void SetAnimation(string _animationName)
+        {
             if (exclamationMark && sequenceExclamationMark != null) {
                 //exclamationMark.transform.localScale = Vector3.zero;
                 if (sequenceExclamationMark.IsPlaying()) {
@@ -93,6 +106,7 @@ namespace EA4S {
                     Anim.SetInteger("State", 2);
                     exclamationMark.DOScale(1, 0.3f);
                     sequenceExclamationMark.Play();
+                    AudioManager.I.PlaySfx(Sfx.LetterFear);
                     break;
                 default:
                     Debug.Log("Animation not found");
@@ -101,9 +115,11 @@ namespace EA4S {
             
             Task.current.Succeed();
         }
+
         #endregion
 
         #region LookAt
+
         [Header("Look at Target runtime variables")]
         public Transform Target = null;
         public Transform LookForwardTransform = null;
@@ -122,7 +138,8 @@ namespace EA4S {
         /// </summary>
         /// <returns></returns>
         [Task]
-        public bool IsTarget() {
+        public bool IsTarget()
+        {
             return Target;
         }
 
@@ -130,14 +147,16 @@ namespace EA4S {
         /// Do look at target action.
         /// </summary>
         [Task]
-        public void LookAtTarget() {
+        public void LookAtTarget()
+        {
             if (DoLookTarget)
                 RotateBonesTransform.DOLookAt(-Target.position, TimeRotation, AxisConstraint.Y, WorldUpForTarget);
             Task.current.Succeed();
         }
 
         [Task]
-        public void LookAtForward() {
+        public void LookAtForward()
+        {
             // TODO: improve -> verify if trasform already look forward. 
             RotateBonesTransform.DOLookAt(LookForwardTransform.position, TimeRotation, AxisConstraint.Y, WorldUpForTarget);
             Task.current.Succeed();
@@ -147,7 +166,8 @@ namespace EA4S {
         /// Turn all the body in front of camera.
         /// </summary>
         [Task]
-        public void TurnAllFrontOfTarget() {
+        public void TurnAllFrontOfTarget()
+        {
             if (DoLookTarget)
                 RotateAllBodyTransform.DOLookAt(-Target.position, TimeRotation, AxisConstraint.Y, WorldUpForTarget);
             Task.current.Succeed();
@@ -156,16 +176,19 @@ namespace EA4S {
         #endregion
 
         #region States
+
         float runtimeWaitTime = 0;
+
         /// <summary>
         /// Stay in actual game for specific duration time.
         /// </summary>
         /// <param name="_stateName"></param>
         [Task]
-        public void HoldState(string _stateName) {
+        public void HoldState(string _stateName)
+        {
             switch (_stateName) {
                 case "Idle":
-                    if(Task.current.isStarting)
+                    if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.IdleDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
@@ -206,7 +229,8 @@ namespace EA4S {
         }
 
         [Task]
-        public void HoldLookAtCamera(string _stateName) {
+        public void HoldLookAtCamera(string _stateName)
+        {
             switch (_stateName) {
                 case "Look":
                     if (Task.current.isStarting)
@@ -224,14 +248,17 @@ namespace EA4S {
                     break;
             }
         }
+
         #endregion
 
         #region Common
+
         /// <summary>
         /// Wait base task.
         /// </summary>
         /// <param name="duration"></param>
-        public void Wait(float duration) {
+        public void Wait(float duration)
+        {
             var task = Task.current;
             if (task.isStarting) {
                 task.item = Time.time;
@@ -240,7 +267,8 @@ namespace EA4S {
             float elapsedTime = Time.time - (float)Task.current.item;
 
             float tta = duration - elapsedTime;
-            if (tta < 0.0f) tta = 0.0f;
+            if (tta < 0.0f)
+                tta = 0.0f;
 
             if (Task.isInspected)
                 task.debugInfo = string.Format("t-{0:0.000}", tta);
@@ -250,6 +278,7 @@ namespace EA4S {
                 task.Succeed();
             }
         }
+
         #endregion
 
         #endregion
@@ -260,7 +289,8 @@ namespace EA4S {
         /// Define variables for behaviours variations.
         /// </summary>
         [Serializable]
-        public class BehaviourSettings {
+        public class BehaviourSettings
+        {
             [Header("LookAtTarget behaviour settings")]
             [Range(0, 5)]
             public float LookAtTargetRandomDelta = 0.5f;

@@ -16,6 +16,7 @@ namespace EA4S
         Hit,
         BaloonPop,
         DangerClock,
+        DangerClockLong,
         GameTitle,
         Win,
         Lose,
@@ -28,6 +29,8 @@ namespace EA4S
         LetterAngry,
         LetterHappy,
         LetterSad,
+        LetterHold,
+        LetterFear,
         WalkieTalkie,
         WheelStart,
         WheelTick,
@@ -35,7 +38,10 @@ namespace EA4S
         DogSnoring,
         DogSnorting,
         OK,
-        KO
+        KO,
+        Transition,
+        StarFlower,
+        StampOK
     }
 
     public class AudioManager : MonoBehaviour
@@ -209,6 +215,9 @@ namespace EA4S
                 case Sfx.DangerClock:
                     eventName = "Sfx/DangerClock";
                     break;
+                case Sfx.DangerClockLong:
+                    eventName = "Sfx/DangerClockLong";
+                    break;
                 case Sfx.Win:
                     eventName = "Sfx/Win";
                     break;
@@ -244,7 +253,13 @@ namespace EA4S
                     break;  
                 case Sfx.LetterSad:
                     eventName = "LivingLetter/Sad";
-                    break;  
+                    break;
+                case Sfx.LetterHold:
+                    eventName = "LivingLetter/Hold";
+                    break; 
+                case Sfx.LetterFear:
+                    eventName = "LivingLetter/Fear";
+                    break; 
                 case Sfx.GameTitle:
                     eventName = "VOX/GameTitle";
                     break;
@@ -271,6 +286,15 @@ namespace EA4S
                     break;
                 case Sfx.KO:
                     eventName = "Sfx/KO";
+                    break;
+                case Sfx.Transition:
+                    eventName = "Sfx/Transition";
+                    break;
+                case Sfx.StarFlower:
+                    eventName = "Sfx/StarFlower";
+                    break;
+                case Sfx.StampOK:
+                    eventName = "Sfx/StampOK";
                     break;
 
             }
