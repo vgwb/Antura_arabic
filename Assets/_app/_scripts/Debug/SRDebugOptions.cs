@@ -25,6 +25,14 @@ public partial class SROptions
     }
 
     [Category("Scenes")]
+    public void Assessment()
+    {
+        WidgetPopupWindow.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Scenes")]
     public void DontWakeUp()
     {
         WidgetPopupWindow.Close();
