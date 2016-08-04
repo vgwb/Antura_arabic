@@ -19,35 +19,36 @@ namespace EA4S
             menuBts = this.GetComponentsInChildren<MenuButton>(true);
             foreach (MenuButton bt in menuBts) {
                 MenuButton b = bt;
-                b.Bt.onClick.AddListener(()=> OnClick(b));
+                b.Bt.onClick.AddListener(() => OnClick(b));
             }
 
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
-            BtFx.Toggle(CameraGameplayController.I.FxEnabled);
+            BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
         }
 
         void OnDestroy()
         {
-            foreach (MenuButton bt in menuBts) bt.Bt.onClick.RemoveAllListeners();
+            foreach (MenuButton bt in menuBts)
+                bt.Bt.onClick.RemoveAllListeners();
         }
 
         void OnClick(MenuButton bt)
         {
             switch (bt.Type) {
-            case MenuButtonType.MusicToggle: // Music on/off
-                AudioManager.I.ToggleMusic();
-                BtMusic.Toggle(AudioManager.I.MusicEnabled);
-                break;
-            case MenuButtonType.FxToggle: // FX on/off
-                CameraGameplayController.I.EnableFX(!CameraGameplayController.I.FxEnabled);
-                BtFx.Toggle(CameraGameplayController.I.FxEnabled);
-                break;
-            case MenuButtonType.Continue:
-                HomeMngr.Play();
-                break;
-            case MenuButtonType.Credits:
-                CreditsWindow.Open();
-                break;
+                case MenuButtonType.MusicToggle: // Music on/off
+                    AudioManager.I.ToggleMusic();
+                    BtMusic.Toggle(AudioManager.I.MusicEnabled);
+                    break;
+                case MenuButtonType.FxToggle: // FX on/off
+                    AppManager.Instance.ToggleQualitygfx();
+                    BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
+                    break;
+                case MenuButtonType.Continue:
+                    HomeMngr.Play();
+                    break;
+                case MenuButtonType.Credits:
+                    CreditsWindow.Open();
+                    break;
             }
         }
     }
