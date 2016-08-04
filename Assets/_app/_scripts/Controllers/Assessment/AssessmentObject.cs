@@ -10,7 +10,6 @@ namespace EA4S
 {
     public class AssessmentObject : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-
         public GameObject Background;
         public Image Draw;
         public TextMeshProUGUI Label;
@@ -106,9 +105,9 @@ namespace EA4S
                 if (other && other.IsWord != IsWord) {
                     if (other.IsLocked)
                         manager.UnlockObjects(other.Color);
+                    other.IsLocked = IsLocked = true;
                     other.SetColor(Color);
                     other.ShowCircle(1);
-                    other.IsLocked = IsLocked = true;
                     manager.OnReleaseOnWord(this, other);
                     line = null;
                     return;
