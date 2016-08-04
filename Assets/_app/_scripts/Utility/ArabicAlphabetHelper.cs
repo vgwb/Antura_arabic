@@ -70,7 +70,10 @@ namespace EA4S {
 
                 /// Exceptions
                 if (exceptionActive) {
-                    returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Isolated_Unicode);
+                    if(i == letters.Count - 1)
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Isolated_Unicode);
+                    else
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Initial_Unicode);
                     exceptionActive = false;
                     continue;
                 }
