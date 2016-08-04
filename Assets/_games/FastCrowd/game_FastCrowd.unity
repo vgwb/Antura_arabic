@@ -504,9 +504,17 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 77044f90906a34909b32027727939079,
         type: 3}
+    - target: {fileID: 127674, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+      propertyPath: m_Name
+      value: FastCrowdManager
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &101744379 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 127674, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+  m_PrefabInternal: {fileID: 101744378}
 --- !u!1001 &102917029
 Prefab:
   m_ObjectHideFlags: 0
@@ -9697,6 +9705,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11489782, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
+      propertyPath: CallbackManager
+      value: 
+      objectReference: {fileID: 101744379}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
   m_IsPrefabParent: 0
