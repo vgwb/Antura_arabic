@@ -111,7 +111,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 491954}
   - 114: {fileID: 11490834}
-  - 114: {fileID: 114000010398064534}
   - 135: {fileID: 13500260}
   m_Layer: 9
   m_Name: clock_alarm
@@ -447,6 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HoursGO: {fileID: 169132}
   MinutesGO: {fileID: 148574}
+  DangerLine: {fileID: 1000012023110822}
 --- !u!135 &13500260
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -499,18 +499,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 491954}
   m_RootOrder: 0
---- !u!114 &114000010398064534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f705228e69774826bbb31cb127f7c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DangerLine: {fileID: 1000012023110822}
 --- !u!212 &212000011359677576
 SpriteRenderer:
   m_ObjectHideFlags: 1

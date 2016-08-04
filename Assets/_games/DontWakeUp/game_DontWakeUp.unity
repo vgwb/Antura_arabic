@@ -100,7 +100,7 @@ GameObject:
   - 4: {fileID: 42958534}
   - 212: {fileID: 42958535}
   m_Layer: 0
-  m_Name: danger_leg
+  m_Name: danger_legBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3078,7 +3078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f705228e69774826bbb31cb127f7c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DangerLine: {fileID: 1610249942}
 --- !u!1 &401634311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4783,7 +4782,7 @@ GameObject:
   - 4: {fileID: 736340261}
   - 212: {fileID: 736340262}
   m_Layer: 0
-  m_Name: danger_leg
+  m_Name: danger_legFR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5538,7 +5537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f705228e69774826bbb31cb127f7c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DangerLine: {fileID: 736340260}
 --- !u!1001 &900431530
 Prefab:
   m_ObjectHideFlags: 0
@@ -6346,7 +6344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f705228e69774826bbb31cb127f7c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DangerLine: {fileID: 42958533}
 --- !u!1 &985694503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,7 +6873,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f705228e69774826bbb31cb127f7c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DangerLine: {fileID: 1605170781}
 --- !u!1 &1186905705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7018,6 +7014,55 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: c1aa560a73dc7514a817d6cb415f4a36, type: 3}
   m_PrefabInternal: {fileID: 1188129531}
+--- !u!1 &1213548722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1213548723}
+  - 114: {fileID: 1213548724}
+  m_Layer: 0
+  m_Name: DangerDog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1213548723
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1213548722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1242839734}
+  m_Father: {fileID: 1950825686}
+  m_RootOrder: 1
+--- !u!114 &1213548724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1213548722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c57f0d47d64a4b5988a74ee1f0d0300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DangerZones:
+  - {fileID: 1242839733}
+  - {fileID: 1689404549}
+  - {fileID: 42958533}
+  - {fileID: 1688091808}
+  - {fileID: 736340260}
+  - {fileID: 1610249942}
+  - {fileID: 1605170781}
 --- !u!1 &1214702000
 GameObject:
   m_ObjectHideFlags: 0
@@ -7265,25 +7310,25 @@ GameObject:
   - 4: {fileID: 1242839734}
   - 212: {fileID: 1242839735}
   m_Layer: 0
-  m_Name: danger_dog
+  m_Name: danger_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1242839734
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1242839733}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.06, y: 1, z: 0.78}
-  m_LocalScale: {x: 0.85900474, y: 0.8573354, z: 0.6406097}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.05999999, y: 1, z: 0.78000003}
+  m_LocalScale: {x: 0.85900486, y: 0.857336, z: 0.6406101}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 1950825686}
-  m_RootOrder: 1
+  m_Father: {fileID: 1213548723}
+  m_RootOrder: 0
 --- !u!212 &1242839735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7729,7 +7774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f705228e69774826bbb31cb127f7c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DangerLine: {fileID: 1689404549}
 --- !u!1 &1331927821
 GameObject:
   m_ObjectHideFlags: 0
@@ -10350,7 +10394,7 @@ GameObject:
   - 4: {fileID: 1688091809}
   - 212: {fileID: 1688091810}
   m_Layer: 0
-  m_Name: danger_leg
+  m_Name: danger_legFL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10412,7 +10456,7 @@ GameObject:
   - 4: {fileID: 1689404550}
   - 212: {fileID: 1689404551}
   m_Layer: 0
-  m_Name: danger_leg
+  m_Name: danger_legBL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10792,7 +10836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f705228e69774826bbb31cb127f7c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DangerLine: {fileID: 1688091808}
 --- !u!1 &1814291033
 GameObject:
   m_ObjectHideFlags: 0
@@ -11687,7 +11730,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010342781254, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}

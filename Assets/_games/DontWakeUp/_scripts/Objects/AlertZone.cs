@@ -1,37 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S
+namespace EA4S.DontWakeUp
 {
     public class AlertZone : MonoBehaviour
     {
 
-        public GameObject DangerLine;
-
-        void Start()
-        {
-            HideDangerLine();
-        }
-
-        void OnEnable()
-        {
-            HideDangerLine();
-        }
-
-        void OnDisable()
-        {
-            HideDangerLine();
-        }
-
-        public void HideDangerLine()
-        {
-            DangerLine.SetActive(false);
-        }
-
         void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Player") {
-                DangerLine.SetActive(true);
+                DangerDog.I.Show();
             }
 
         }
@@ -39,7 +17,7 @@ namespace EA4S
         void OnTriggerExit(Collider other)
         {
             if (other.gameObject.tag == "Player") {
-                DangerLine.SetActive(false);
+                DangerDog.I.Hide();
             }
 
         }

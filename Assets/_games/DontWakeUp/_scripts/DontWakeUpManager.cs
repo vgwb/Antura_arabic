@@ -202,7 +202,7 @@ namespace EA4S.DontWakeUp
             myLetter.transform.position = currentLevelController.GetStartPosition().position;
             myLetter.transform.eulerAngles = new Vector3(0, currentLevelController.GetStartPosition().rotation.eulerAngles.y, 0);
 
-            Antura.BroadcastMessage("HideDangerLine");
+            DangerDog.I.Hide();
 
             LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
 

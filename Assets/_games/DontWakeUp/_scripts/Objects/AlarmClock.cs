@@ -10,6 +10,7 @@ namespace EA4S
         Vector3 originalPosition;
         public GameObject HoursGO;
         public GameObject MinutesGO;
+        public GameObject DangerLine;
 
         Tween hoursTween, minutesTween;
 
@@ -18,6 +19,7 @@ namespace EA4S
             originalPosition = transform.position;
             hoursTween = HoursGO.transform.DORotate(new Vector3(0, 0, 360 * (Random.Range(0, 100) > 50 ? 1 : -1)), Random.Range(15, 25), RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
             minutesTween = MinutesGO.transform.DORotate(new Vector3(0, 0, 360 * (Random.Range(0, 100) > 50 ? 1 : -1)), Random.Range(4, 6), RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
+            HideDangerLine();
         }
 
         void OnDestroy()
@@ -32,9 +34,7 @@ namespace EA4S
             transform.DOShakePosition(5).Play();
             AudioManager.I.PlaySfx(Sfx.AlarmClock);
 
-            if (gameObject.GetComponent<AlertZone>()) {
-                gameObject.GetComponent<AlertZone>().HideDangerLine();
-            }
+            HideDangerLine();
         }
 
         void AlarmOff()
@@ -46,7 +46,39 @@ namespace EA4S
 
         void OnMouseDown()
         {
-            Debug.Log("OnMouseDown on AlarmClock");
+            // Debug.Log("OnMouseDown on AlarmClock");
         }
+
+             
+        void OnEnable()
+        {
+            HideDangerLine();
+        }
+
+        void OnDisable()
+        {
+            HideDangerLine();
+        }
+
+        public void HideDangerLine()
+        {
+            DangerLine.SetActive(false);
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Player") {
+                DangerLine.SetActive(true);
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "Player") {
+                HideDangerLine();
+            }
+
+        }
+
     }
 }
