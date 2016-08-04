@@ -508,6 +508,10 @@ Prefab:
       propertyPath: m_Name
       value: FastCrowdManager
       objectReference: {fileID: 0}
+    - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+      propertyPath: GameplayInfo.Variant
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
   m_IsPrefabParent: 0
@@ -2695,7 +2699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16176468, g: 0.16176468, b: 0.16176468, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7110,7 +7114,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u0644\u0639\u0631\u0628\u064A\u0629"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_sharedMaterial: {fileID: 2137854, guid: c32738695c9794997a5db13263a8dcde, type: 2}
   m_fontSharedMaterials: []
@@ -10574,8 +10578,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.14792389, g: 0.3691776, b: 0.5588235, a: 1}
-    m_PressedColor: {r: 0.078431375, g: 0.6901961, b: 0.89019614, a: 1}
+    m_HighlightedColor: {r: 0.6013051, g: 0.22166954, b: 0.7352941, a: 1}
+    m_PressedColor: {r: 0.90601027, g: 0.6397059, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -10618,7 +10622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33823532, g: 0.72616637, b: 1, a: 0.753}
+  m_Color: {r: 0.7882353, g: 0.32156864, b: 0.9529412, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -28,6 +28,8 @@ namespace Balloons
         [Range(0, 5)] [Tooltip("e.g.: 0.25")]
         public float spinRandomnessFactor;
 
+        [HideInInspector]
+        public bool keepFocusingLetter = false;
 
         private bool keepSpinning;
         private float spinDirection = 1f;
@@ -57,11 +59,10 @@ namespace Balloons
         {
             Spin();
 
-//            if (drop)
-//            {
-//                // Drop using Transform
-//                transform.Translate(Vector3.down * Time.deltaTime * 50f);
-//            }
+            if (keepFocusingLetter)
+            {
+                FocusLetter();
+            }
 
             if (transform.position.y < -10)
             {
