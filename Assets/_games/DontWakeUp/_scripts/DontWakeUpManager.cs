@@ -37,7 +37,6 @@ namespace EA4S.DontWakeUp
         public GameObject Antura;
 
         [Header("Images")]
-        //        public Sprite TutorialImage;
         public Sprite FailTouchedDog;
         public Sprite FailTouchedAlarm;
         public Sprite FailFall;
@@ -98,8 +97,9 @@ namespace EA4S.DontWakeUp
 
             SceneTransitioner.Close();
 
-            StartCurrentRound();
-            //GameIntro();
+            //StartCurrentRound();
+            currentState = MinigameState.GameIntro;
+            Invoke("GameIntro", 2);
         }
 
         public void DoPause(bool status)
@@ -129,13 +129,10 @@ namespace EA4S.DontWakeUp
             AudioManager.I.StopSfx(Sfx.DogSnoring);
         }
 
-        //        void GameIntro()
-        //        {
-        //            currentState = MinigameState.GameIntro;
-        //            WidgetPopupWindow.I.ShowTutorial(ClickedNext, TutorialImage);
-        //            TutorialIndex = 3;
-        //            ShowTutorialLine();
-        //        }
+        void GameIntro()
+        {
+            StartCurrentRound();
+        }
 
         //        public void GameIntroFinished()
         //        {
@@ -210,7 +207,7 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
 
             currentLevelController.SetWord();
-            ChangeCamera(false);
+            //ChangeCamera(false);
         }
 
         public void RoundLost(How2Die how)
