@@ -2320,6 +2320,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 427558809}
   - 114: {fileID: 427558808}
+  - 114: {fileID: 427558810}
   - 95: {fileID: 427558807}
   m_Layer: 0
   m_Name: TutorialManager
@@ -2370,6 +2371,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &427558810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 427558806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15218ba2716f54f9fab1c2aeec2a16b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &448283957 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11418902, guid: c35f8b043314d4ca1bdedc0913a3db38,
