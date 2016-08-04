@@ -13,7 +13,6 @@ namespace EA4S
     {
         [Header("References")]
         public GameObject PanelTestGO;
-        public SpriteLineRenderer myLineRenderer;
 
         public List<Color> Colors;
         public List<ColorSet> AvailableColors = new List<ColorSet>();
@@ -24,27 +23,28 @@ namespace EA4S
 
         int currentResult;
 
-        public struct ColorSet {
+        public struct ColorSet
+        {
             public Color Color;
             public bool Available;
         }
 
-        void Start() {
+        void Start()
+        {
             currentResult = 0;
 
             PanelTestGO.SetActive(false);
             AppManager.Instance.InitDataAI();
-            //myLineRenderer.OnDraw(new Vector3(30, 20, 0), new Vector3(300, 300, 0));
-            // WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
-
+ 
             SceneTransitioner.Close();
-
-            StartTest();
+            WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
+            // StartTest();
         }
 
 
 
         #region Tutorial
+
         public void NextSentence()
         {
             WidgetSubtitles.I.DisplaySentence("assessment_start_A2", 3, true, NextSentence2);
@@ -59,6 +59,7 @@ namespace EA4S
         {
             ContinueScreen.Show(StartTest, ContinueScreenMode.Button);
         }
+
         #endregion
 
         void StartTest()
@@ -163,7 +164,8 @@ namespace EA4S
             ReleaseColor(_color);
         }
 
-        public SpriteLineRenderer GetLine(Color _color) {
+        public SpriteLineRenderer GetLine(Color _color)
+        {
             SpriteLineRenderer returnLine = Lines.Find(l => l.Color == _color);
             returnLine.GetComponent<Image>().DOFade(1, 0.3f);
             return returnLine;
@@ -183,7 +185,7 @@ namespace EA4S
         {
             int index = AvailableColors.FindIndex(c => c.Color == _color);
             AvailableColors[index] = new ColorSet() { Color = AvailableColors[index].Color, Available = true };
-            Lines.Find(l => l.Color == _color).GetComponent<Image>().DOFade(0,0.3f);
+            Lines.Find(l => l.Color == _color).GetComponent<Image>().DOFade(0, 0.3f);
         }
 
         #endregion
