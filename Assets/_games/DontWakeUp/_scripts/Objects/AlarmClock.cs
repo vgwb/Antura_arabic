@@ -13,30 +13,39 @@ namespace EA4S
 
         Tween hoursTween, minutesTween;
 
-        void Start() {
+        void Start()
+        {
             originalPosition = transform.position;
-            hoursTween = HoursGO.transform.DORotate(new Vector3(0, 0, 360), 20, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
-            minutesTween = MinutesGO.transform.DORotate(new Vector3(0, 0, 360), 5, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
+            hoursTween = HoursGO.transform.DORotate(new Vector3(0, 0, 360 * (Random.Range(0, 100) > 50 ? 1 : -1)), Random.Range(15, 25), RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
+            minutesTween = MinutesGO.transform.DORotate(new Vector3(0, 0, 360 * (Random.Range(0, 100) > 50 ? 1 : -1)), Random.Range(4, 6), RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1).Play();
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             hoursTween.Kill();
             minutesTween.Kill();
         }
 
-        void AlarmOn() {
+        void AlarmOn()
+        {
             Debug.Log("AlarmClock.AlarmOn()");
             transform.DOShakePosition(5).Play();
             AudioManager.I.PlaySfx(Sfx.AlarmClock);
+
+            if (gameObject.GetComponent<AlertZone>()) {
+                gameObject.GetComponent<AlertZone>().HideDangerLine();
+            }
         }
 
-        void AlarmOff() {
+        void AlarmOff()
+        {
             Debug.Log("AlarmClock.AlarmOff()");
             AudioManager.I.StopSfx(Sfx.AlarmClock);
             transform.position = originalPosition;
         }
 
-        void OnMouseDown() {
+        void OnMouseDown()
+        {
             Debug.Log("OnMouseDown on AlarmClock");
         }
     }

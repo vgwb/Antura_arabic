@@ -34,6 +34,7 @@ namespace EA4S.DontWakeUp
         public GameObject StarSystems;
         public LivesContainer LivesController;
         public Sprite TutorialImage;
+        public GameObject Antura;
 
         [HideInInspector]
         public WordData currentWord;
@@ -197,6 +198,8 @@ namespace EA4S.DontWakeUp
             myLetter.GetComponent<MyLetter>().Init(currentWord.Key);
             myLetter.transform.position = currentLevelController.GetStartPosition().position;
             myLetter.transform.eulerAngles = new Vector3(0, currentLevelController.GetStartPosition().rotation.eulerAngles.y, 0);
+
+            Antura.BroadcastMessage("HideDangerLine");
 
             LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
 
