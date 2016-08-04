@@ -508,6 +508,10 @@ Prefab:
       propertyPath: m_Name
       value: FastCrowdManager
       objectReference: {fileID: 0}
+    - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+      propertyPath: GameplayInfo.Variant
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
   m_IsPrefabParent: 0
@@ -10618,7 +10622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33823532, g: 0.72616637, b: 1, a: 0.753}
+  m_Color: {r: 0.33823532, g: 0.72616637, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
