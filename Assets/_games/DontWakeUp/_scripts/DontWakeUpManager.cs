@@ -34,7 +34,8 @@ namespace EA4S.DontWakeUp
         public GameObject myLetter;
         public GameObject StarSystems;
         public LivesContainer LivesController;
-        public GameObject Antura;
+        public Antura Antura;
+        public GameObject CameraWakeUpAntura;
 
         [Header("Images")]
         public Sprite FailTouchedDog;
@@ -91,6 +92,8 @@ namespace EA4S.DontWakeUp
 
             LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
             LoggerEA4S.Save();
+
+            ResetAntura();
 
             AudioManager.I.PlayMusic(SceneMusic);
             AudioManager.I.PlaySfx(Sfx.DogSnoring);
@@ -207,7 +210,7 @@ namespace EA4S.DontWakeUp
             LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
 
             currentLevelController.SetWord();
-            //ChangeCamera(false);
+            ChangeCamera(false);
         }
 
         public void RoundLost(How2Die how)
@@ -231,7 +234,7 @@ namespace EA4S.DontWakeUp
                         WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false, FailTouchedAlarm);
                         break;
                     case How2Die.TouchedDog:
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false, FailTouchedDog);
+                        AnturaHasWokenUp();
                         break;
                     case How2Die.TooFast:
                         WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false, null);
@@ -243,10 +246,30 @@ namespace EA4S.DontWakeUp
             }
         }
 
+        void ResetAntura()
+        {
+            Antura.SetAnimation(AnturaAnim.DontWakeSleeping);
+            Antura.IsBarking = false;
+        }
+
+        void AnturaHasWokenUp()
+        {
+            Antura.SetAnimation(AnturaAnim.DontWakeWakesUp);
+            Antura.IsBarking = true;
+            CameraGameplayController.I.MoveToPosition(CameraWakeUpAntura.transform.position, CameraWakeUpAntura.transform.rotation);
+            Invoke("AnturaHasWokenUpFinished", 4);
+        }
+
+        void AnturaHasWokenUpFinished()
+        {
+            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false, FailTouchedDog);
+        }
+
+
         void RoundLostEnded()
         {
-            
             if (LivesLeft > 0) {
+                ResetAntura();
                 currentLevelController.DoAlarmOff();
                 WidgetSubtitles.I.DisplaySentence("");
                 InitRound();
@@ -336,7 +359,9 @@ namespace EA4S.DontWakeUp
         // called by callback in camera
         public void CameraReady()
         {
-            InitRound();
+            if (currentState != MinigameState.RoundEnd) {
+                InitRound();
+            }
         }
 
         public void ChangeCamera(bool animated)
@@ -417,6 +442,7 @@ namespace EA4S.DontWakeUp
 
         void resetDanger()
         {
+            DangerDog.I.Hide();
             InDanger(false, How2Die.Null);
             dangerIntensity = 0;
         }
