@@ -12,7 +12,7 @@ namespace EA4S.DontWakeUp
         public GameObject TextGO;
         TextMeshProUGUI TextWord;
 
-        float SpeedLimit = 16f;
+        //        float SpeedLimit = 16f;
 
         public EA4S.SplineTrailRenderer trailReference;
         public string groundLayerName = "Terrain";
@@ -25,7 +25,7 @@ namespace EA4S.DontWakeUp
 
         bool colliding;
 
-        Vector3 mouseDelta = Vector3.zero;
+        //        Vector3 mouseDelta = Vector3.zero;
         Vector3 lastMousePosition = Vector3.zero;
 
         bool inOverSpeed;
@@ -230,8 +230,8 @@ namespace EA4S.DontWakeUp
 
                 transform.position = hit.point + trailOffset;
 
-                mouseDelta = Input.mousePosition - lastMousePosition;
-                lastMousePosition = Input.mousePosition;
+//                mouseDelta = Input.mousePosition - lastMousePosition;
+//                lastMousePosition = Input.mousePosition;
 
                 //Debug.Log(mouseDelta.magnitude);
 //                if (mouseDelta.magnitude > SpeedLimit) {
