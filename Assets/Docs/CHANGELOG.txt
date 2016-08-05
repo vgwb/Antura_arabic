@@ -4,6 +4,28 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.5.8
+
+2016-08-05 - [UI] FX toggle persists also if set from popup menu
+2016-08-05 - [environment] ferns are nicer when waving
+2016-08-05 - [DontWakUp] disable snoozing when Antura wakes up
+2016-08-05 - [DontW] bug in life containers
+2016-08-05 - [dont'wake] the smallest bug can be enormeus
+2016-08-05 - [map] a nicer map is nicer
+2016-08-05 - [DontWake] better to not Wake Up Antura...
+2016-08-05 - [Balloons Tutorial] Fix missing joint on rightmost balloon (reattach rope to letter's hand)
+2016-08-05 - [Dont] new fail image when stop drag
+2016-08-05 - [audio] alef_hamza now is really heard
+2016-08-05 - [DontW] dog danger zone is shown as a whole block, not separated elements
+2016-08-04 - [DontW] imrpoved intro camera movement
+2016-08-04 - [Audio] mixer levels
+2016-08-04 - [Audio] new audio sfx and alef_hamza sound
+2016-08-04 - [Balloon Tutorial] added neutral material to balloons
+2016-08-04 - [DontW & Balloons] fail error images shown
+2016-08-04 - Fix [Assessment] Duplicated Word.
+2016-08-04 - Traslations DB Update.
+2016-08-04 - [audio] plays letter sound ALEF also for the ALEF_HAMZA
+
 ##########   v0.5.7
 
 2016-08-04 - [DontWake] added spoken results on StarFlowers
