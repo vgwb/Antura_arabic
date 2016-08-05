@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
-public class FadeInFadeOut : MonoBehaviour {
+namespace EA4S
+{
+    public class FadeInFadeOut : MonoBehaviour
+    {
+        Tween showTween;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        void Start()
+        {
+//        showTween = this.GetComponent<Image>().DOFade(0, 0.36f).From().SetEase(Ease.Linear).SetAutoKill(false)
+//            .OnRewind(()=> this.gameObject.SetActive(false));
+        }
+    }
 }
