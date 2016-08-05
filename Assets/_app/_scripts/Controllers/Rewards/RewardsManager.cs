@@ -7,6 +7,7 @@ namespace EA4S
     [RequireComponent(typeof(RewardsAnimator))]
     public class RewardsManager : MonoBehaviour
     {
+        [Header("References")]
         public Antura AnturaController;
 
         int tutorialIndex = 10;
@@ -18,18 +19,20 @@ namespace EA4S
 
             // here we set the Rewards base on current progression level (playsession -1 because Rewards appear when playsession is already incremented)
             if ((AppManager.Instance.PlaySession - 1) == 1) {
-                AnturaController.SetPreset(1);
+                AppManager.Instance.Player.AnturaCurrentPreset = 1;
+
                 tutorialIndex = 10;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "1");
             } else if ((AppManager.Instance.PlaySession - 1) == 2) {
-                AnturaController.SetPreset(2);
+                AppManager.Instance.Player.AnturaCurrentPreset = 2;
                 tutorialIndex = 20;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "2");
             } else if ((AppManager.Instance.PlaySession - 1) > 2) {
-                AnturaController.SetPreset(3);
+                AppManager.Instance.Player.AnturaCurrentPreset = 3;
                 tutorialIndex = 30;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "3");
             }
+            AnturaController.SetPreset(AppManager.Instance.Player.AnturaCurrentPreset);
             LoggerEA4S.Save();
             SceneTransitioner.Close();
             ShowTutor();

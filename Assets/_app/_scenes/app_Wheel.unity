@@ -330,11 +330,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 121932, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_Name
-      value: AnturaPrefab2
+      value: AnturaPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &21438049 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11447720, guid: 5a61c183b1562474a8bd7a93374adf56,
+    type: 2}
+  m_PrefabInternal: {fileID: 21438048}
+  m_Script: {fileID: 11500000, guid: 7cb731f6df39c496e8e084e9dba6295b, type: 3}
 --- !u!1001 &41412023
 Prefab:
   m_ObjectHideFlags: 0
@@ -4476,6 +4482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneMusic: 1
+  AnturaController: {fileID: 21438049}
   WheelCntrl: {fileID: 847852692}
   Popup: {fileID: 1965238056}
   GameIcon: {fileID: 2087740736}
