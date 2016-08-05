@@ -20,17 +20,19 @@ namespace EA4S
 
         public bool IsMenuOpen { get; private set; }
 
-//        Button btPause;
+        //        Button btPause;
         MenuButton[] menuBts;
         float timeScaleAtMenuOpen = 1;
         Sequence openMenuTween;
         Tween anturaBobTween;
 
-        void Awake() {
+        void Awake()
+        {
             I = this;
         }
 
-        void Start() {
+        void Start()
+        {
             menuBts = PauseMenuContainer.GetComponentsInChildren<MenuButton>(true);
 
             // Tweens - Antura face bobbing
@@ -38,7 +40,8 @@ namespace EA4S
                 .SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
             // Tweens - menu
             CanvasGroup[] cgButtons = new CanvasGroup[menuBts.Length];
-            for (int i = 0; i < menuBts.Length; i++) cgButtons[i] = menuBts[i].GetComponent<CanvasGroup>();
+            for (int i = 0; i < menuBts.Length; i++)
+                cgButtons[i] = menuBts[i].GetComponent<CanvasGroup>();
             openMenuTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .OnPlay(() =>
                 {
@@ -72,7 +75,8 @@ namespace EA4S
             }
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             openMenuTween.Kill();
             anturaBobTween.Kill();
             BtPause.Bt.onClick.RemoveAllListeners();
@@ -84,12 +88,13 @@ namespace EA4S
         /// Opens or closes the pause menu
         /// </summary>
         /// <param name="_open">If TRUE opens, otherwise closes</param>
-        public void OpenMenu(bool _open) {
+        public void OpenMenu(bool _open)
+        {
             IsMenuOpen = _open;
             
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
-            BtFx.Toggle(CameraGameplayController.I.FxEnabled);
+            BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
 
             if (_open) {
                 timeScaleAtMenuOpen = Time.timeScale;
@@ -112,30 +117,31 @@ namespace EA4S
         /// <summary>
         /// Callback for button clicks
         /// </summary>
-        void OnClick(MenuButton _bt) {
+        void OnClick(MenuButton _bt)
+        {
 
             if (_bt == BtPause) {
                 OpenMenu(!IsMenuOpen);
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
                 switch (_bt.Type) {
-                case MenuButtonType.Back: // Exit
-                    OpenMenu(false);
-                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
-                    break;
-                case MenuButtonType.MusicToggle: // Music on/off
-                    AudioManager.I.ToggleMusic();
-                    BtMusic.Toggle(AudioManager.I.MusicEnabled);
-                    break;
-                case MenuButtonType.FxToggle: // FX on/off
-                    CameraGameplayController.I.EnableFX(!CameraGameplayController.I.FxEnabled);
-                    BtFx.Toggle(CameraGameplayController.I.FxEnabled);
-                    break;
-                case MenuButtonType.Restart: // Restart
-                    OpenMenu(false);
-                    break;
-                case MenuButtonType.Continue: // Resume
-                    OpenMenu(false);
-                    break;
+                    case MenuButtonType.Back: // Exit
+                        OpenMenu(false);
+                        AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+                        break;
+                    case MenuButtonType.MusicToggle: // Music on/off
+                        AudioManager.I.ToggleMusic();
+                        BtMusic.Toggle(AudioManager.I.MusicEnabled);
+                        break;
+                    case MenuButtonType.FxToggle: // FX on/off
+                        AppManager.Instance.ToggleQualitygfx();
+                        BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
+                        break;
+                    case MenuButtonType.Restart: // Restart
+                        OpenMenu(false);
+                        break;
+                    case MenuButtonType.Continue: // Resume
+                        OpenMenu(false);
+                        break;
                 }
             }
         }
