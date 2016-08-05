@@ -35,7 +35,7 @@ namespace EA4S
 
         #region input
 
-        public float HoldThreshold = 0.25f;
+        public float HoldThreshold = 0.05f;
         float startMouseDown = -1;
 
         void OnMouseDown()
