@@ -8,25 +8,41 @@ namespace EA4S.DontWakeUp
         public GameObject LevelCamera;
         public GameObject Marker1;
         public GameObject Marker2;
+        public GameObject SnoozingParticles;
 
-        void Start() {
+        void Start()
+        {
 	
         }
 
-        public void SetWord() { 
+        public void Init()
+        {
+            SnoozingParticles.SetActive(true);
+        }
+
+        public void StopSnoozing()
+        {
+            SnoozingParticles.SetActive(false);
+        }
+
+        public void SetWord()
+        { 
             string wordCode = DontWakeUpManager.Instance.currentWord.Key; 
             BroadcastMessage("Init", wordCode, SendMessageOptions.DontRequireReceiver);
         }
 
-        public void DoAlarmEverything() {
+        public void DoAlarmEverything()
+        {
             BroadcastMessage("AlarmOn", SendMessageOptions.DontRequireReceiver);
         }
 
-        public void DoAlarmOff() {
+        public void DoAlarmOff()
+        {
             BroadcastMessage("AlarmOff", SendMessageOptions.DontRequireReceiver);
         }
 
-        public Transform GetStartPosition() {
+        public Transform GetStartPosition()
+        {
             if (Marker1.GetComponent<Marker>().Type == MarkerType.Start) {
                 return Marker1.transform;
             } else {

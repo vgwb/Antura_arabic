@@ -2518,6 +2518,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 1753173591}
   Marker1: {fileID: 964386297}
   Marker2: {fileID: 2128849207}
+  SnoozingParticles: {fileID: 2138484180}
 --- !u!1001 &267122178
 Prefab:
   m_ObjectHideFlags: 0
@@ -2613,7 +2614,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 478192, guid: 58b2d4fd61f4148cfac1ba202fcb4616, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.37
+      value: 7.32
       objectReference: {fileID: 0}
     - target: {fileID: 478192, guid: 58b2d4fd61f4148cfac1ba202fcb4616, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2621,7 +2622,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 478192, guid: 58b2d4fd61f4148cfac1ba202fcb4616, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -8.33
+      value: -4.59
       objectReference: {fileID: 0}
     - target: {fileID: 478192, guid: 58b2d4fd61f4148cfac1ba202fcb4616, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2650,21 +2651,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 478192, guid: 58b2d4fd61f4148cfac1ba202fcb4616, type: 2}
   m_PrefabInternal: {fileID: 289507965}
---- !u!1 &289507967 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 167988, guid: 58b2d4fd61f4148cfac1ba202fcb4616, type: 2}
-  m_PrefabInternal: {fileID: 289507965}
---- !u!114 &289507968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 289507967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c12cc064b064731a32b372b4764914, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &293811319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2941,6 +2927,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 1393394740}
   Marker1: {fileID: 705160762}
   Marker2: {fileID: 2041280664}
+  SnoozingParticles: {fileID: 1227200300}
 --- !u!1001 &384233420
 Prefab:
   m_ObjectHideFlags: 0
@@ -3132,6 +3119,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 946941409}
   Marker1: {fileID: 1596142554}
   Marker2: {fileID: 1332343681}
+  SnoozingParticles: {fileID: 1310810045}
 --- !u!1001 &412886637
 Prefab:
   m_ObjectHideFlags: 0
@@ -5058,6 +5046,10 @@ Prefab:
 --- !u!4 &757801843 stripped
 Transform:
   m_PrefabParentObject: {fileID: 440556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
+  m_PrefabInternal: {fileID: 757801842}
+--- !u!1 &757801844 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 140556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
   m_PrefabInternal: {fileID: 757801842}
 --- !u!1001 &783673210
 Prefab:
@@ -7319,6 +7311,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1227200300 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 140556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
+  m_PrefabInternal: {fileID: 1227200299}
 --- !u!1 &1231151164
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,6 +7364,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 1214702000}
   Marker1: {fileID: 1277661019}
   Marker2: {fileID: 2050677274}
+  SnoozingParticles: {fileID: 1984072201}
 --- !u!1 &1242839733
 GameObject:
   m_ObjectHideFlags: 0
@@ -7713,6 +7710,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 2093575121}
   Marker1: {fileID: 656825146}
   Marker2: {fileID: 616691857}
+  SnoozingParticles: {fileID: 757801844}
 --- !u!1001 &1310810043
 Prefab:
   m_ObjectHideFlags: 0
@@ -7762,6 +7760,10 @@ Prefab:
 --- !u!4 &1310810044 stripped
 Transform:
   m_PrefabParentObject: {fileID: 440556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
+  m_PrefabInternal: {fileID: 1310810043}
+--- !u!1 &1310810045 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 140556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
   m_PrefabInternal: {fileID: 1310810043}
 --- !u!1 &1314536664
 GameObject:
@@ -12264,6 +12266,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 440556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
   m_PrefabInternal: {fileID: 1984072199}
+--- !u!1 &1984072201 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 140556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
+  m_PrefabInternal: {fileID: 1984072199}
 --- !u!1001 &1985473126
 Prefab:
   m_ObjectHideFlags: 0
@@ -13116,6 +13122,10 @@ Prefab:
 --- !u!4 &2138484179 stripped
 Transform:
   m_PrefabParentObject: {fileID: 440556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
+  m_PrefabInternal: {fileID: 2138484178}
+--- !u!1 &2138484180 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 140556, guid: 543c4350acd63c649a27f3c986b54efd, type: 2}
   m_PrefabInternal: {fileID: 2138484178}
 --- !u!1001 &2144823794
 Prefab:

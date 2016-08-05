@@ -254,6 +254,7 @@ namespace EA4S.DontWakeUp
 
         void AnturaHasWokenUp()
         {
+            currentLevelController.StopSnoozing();
             Antura.SetAnimation(AnturaAnim.DontWakeWakesUp);
             Antura.IsBarking = true;
             CameraGameplayController.I.MoveToPosition(CameraWakeUpAntura.transform.position, CameraWakeUpAntura.transform.rotation);
@@ -345,6 +346,7 @@ namespace EA4S.DontWakeUp
             currentLevel = currentRound;
             Levels[currentLevel - 1].SetActive(true);
             currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
+            currentLevelController.Init();
             ChangeCamera(true);
         }
 
