@@ -140,7 +140,7 @@ namespace EA4S
         {
             if (!DisableAnimator) {
                 if (AnimationState != AnturaAnim.Nothing) {
-                    Debug.Log("PlayAnimation " + AnturaAnimator.name + " " + GetStateName(AnimationState));
+                    //Debug.Log("PlayAnimation " + AnturaAnimator.name + " " + GetStateName(AnimationState));
                     AnturaAnimator.Play(GetStateName(AnimationState));
                     if (BarkWhenRunning && AnimationState == AnturaAnim.Run) {
                         prepareNextAnturaBark();
