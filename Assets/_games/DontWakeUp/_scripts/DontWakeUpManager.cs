@@ -36,6 +36,7 @@ namespace EA4S.DontWakeUp
         public LivesContainer LivesController;
         public Antura Antura;
         public GameObject CameraWakeUpAntura;
+        public GameObject ExplosionParticles;
 
         [Header("Images")]
         public Sprite FailTouchedDog;
@@ -228,19 +229,24 @@ namespace EA4S.DontWakeUp
                     UpdateLivesContainer();
                 }
 
+                Instantiate(ExplosionParticles, myLetter.transform.position, Quaternion.identity);
+
                 switch (how) {
                     case How2Die.TouchedAlarm:
                         currentLevelController.DoAlarmEverything();
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false, FailTouchedAlarm);
+                        AnturaHasWokenUp();
+                        Invoke("RoundLostAlarmsFinished", 2);
                         break;
                     case How2Die.TouchedDog:
                         AnturaHasWokenUp();
+                        CameraGameplayController.I.MoveToPosition(CameraWakeUpAntura.transform.position, CameraWakeUpAntura.transform.rotation);
+                        Invoke("RoundLostTouchedDogFinished", 3);
                         break;
                     case How2Die.TooFast:
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false, null);
+                        Invoke("RoundLostTooFastFinished", 2);
                         break;
                     case How2Die.Fall:
-                        WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_fall", false, FailFall);
+                        Invoke("RoundLostFallFinished", 1);
                         break;
                 }
             }
@@ -257,13 +263,26 @@ namespace EA4S.DontWakeUp
             currentLevelController.StopSnoozing();
             Antura.SetAnimation(AnturaAnim.DontWakeWakesUp);
             Antura.IsBarking = true;
-            CameraGameplayController.I.MoveToPosition(CameraWakeUpAntura.transform.position, CameraWakeUpAntura.transform.rotation);
-            Invoke("AnturaHasWokenUpFinished", 4);
         }
 
-        void AnturaHasWokenUpFinished()
+        void RoundLostAlarmsFinished()
+        {
+            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false, FailTouchedAlarm);
+        }
+
+        void RoundLostTouchedDogFinished()
         {
             WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false, FailTouchedDog);
+        }
+
+        void RoundLostTooFastFinished()
+        {
+            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false, null);
+        }
+
+        void RoundLostFallFinished()
+        {
+            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_fall", false, FailFall);
         }
 
 

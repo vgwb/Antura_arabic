@@ -25,6 +25,9 @@ namespace EA4S.DontWakeUp
 
         bool colliding;
 
+        float startingY;
+        Vector3 liftedOffset = new Vector3(0, 1.5f, 0);
+
         //        Vector3 mouseDelta = Vector3.zero;
         Vector3 lastMousePosition = Vector3.zero;
 
@@ -67,6 +70,8 @@ namespace EA4S.DontWakeUp
             DrawingGO.SetActive(false);
             TextGO.SetActive(true);
             TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(DontWakeUpManager.Instance.currentWord.Word, false, false);
+
+            startingY = transform.position.y;
 
             trailReference.Clear();
         }
@@ -228,7 +233,7 @@ namespace EA4S.DontWakeUp
                             Input.mousePosition.y, 0)), out hit, float.MaxValue, LayerNameToIntMask(groundLayerName))) {
                 trailReference.transform.position = hit.point + trailOffset;
 
-                transform.position = hit.point + trailOffset;
+                transform.position = hit.point + liftedOffset + trailOffset;
 
 //                mouseDelta = Input.mousePosition - lastMousePosition;
 //                lastMousePosition = Input.mousePosition;

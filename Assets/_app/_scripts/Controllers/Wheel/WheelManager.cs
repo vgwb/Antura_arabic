@@ -16,6 +16,8 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
 
+        [Header("References")]
+        public Antura AnturaController;
         public static WheelManager Instance;
         public WheelController WheelCntrl;
 
@@ -69,6 +71,8 @@ namespace EA4S
             } else {
                 tutorialIndex = 10;
             }
+
+            AnturaController.SetPreset(AppManager.Instance.Player.AnturaCurrentPreset);
 
             SceneTransitioner.Close();
             ShowTutor();
