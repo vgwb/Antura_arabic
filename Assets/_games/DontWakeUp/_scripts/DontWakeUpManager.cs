@@ -240,13 +240,13 @@ namespace EA4S.DontWakeUp
                     case How2Die.TouchedDog:
                         AnturaHasWokenUp();
                         CameraGameplayController.I.MoveToPosition(CameraWakeUpAntura.transform.position, CameraWakeUpAntura.transform.rotation);
-                        Invoke("RoundLostTouchedDogFinished", 4);
+                        Invoke("RoundLostTouchedDogFinished", 3);
                         break;
                     case How2Die.TooFast:
                         Invoke("RoundLostTooFastFinished", 2);
                         break;
                     case How2Die.Fall:
-                        Invoke("RoundLostFallFinished", 2);
+                        Invoke("RoundLostFallFinished", 1);
                         break;
                 }
             }
