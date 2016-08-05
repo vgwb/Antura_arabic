@@ -181,8 +181,10 @@ namespace EA4S
 
             switch (gameData[currentGameIndex].Code) {
                 case "fastcrowd":
-                case "fastcrowd_words":
                     WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowd", 2, true);
+                    break;
+                case "fastcrowd_words":
+                    WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowdword", 2, true);
                     break;
                 case "dontwakeup":
                     WidgetSubtitles.I.DisplaySentence("wheel_game_dontwake", 2, true);
