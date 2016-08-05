@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using DG.Tweening;
+using Google2u;
 
 namespace EA4S
 {
@@ -137,8 +138,14 @@ namespace EA4S
 
         public void ShowResults()
         {
-            WidgetPopupWindow.I.ShowTextDirect(AllFinished, string.Format("Result : {0}/{1}", currentResult, Draws.Count));
-               
+            //WidgetPopupWindow.I.ShowTextDirect(AllFinished, string.Format("Result : {0}/{1}", currentResult, Draws.Count));
+
+            var sentenceId = "assessment_result";
+            var row = LocalizationData.Instance.GetRow(sentenceId);
+            var arabicText = string.Format("{0} : {1}/{2}", row.GetStringData("Arabic"), currentResult, Draws.Count);
+
+            WidgetPopupWindow.I.ShowArabicTextDirect(AllFinished, arabicText);
+
             if (currentResult >= 5) {
                 WidgetSubtitles.I.DisplaySentence("assessment_result_verygood", 3, true);
             } else if (currentResult >= 3) {

@@ -91,6 +91,18 @@ namespace EA4S
             Show(true);
         }
 
+        public void ShowArabicTextDirect(Action callback, string myArabicText)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(myArabicText, false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
+
+            Show(true);
+        }
        
         public void ShowSentence(Action callback, string SentenceId)
         {
