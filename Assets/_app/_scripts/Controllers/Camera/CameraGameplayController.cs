@@ -41,7 +41,7 @@ namespace EA4S
 
         public void MoveToPosition(Vector3 newPosition, Quaternion newRotation)
         {
-            Debug.Log("MoveToPosition");
+            // Debug.Log("MoveToPosition");
             AudioManager.I.PlaySfx(Sfx.CameraMovement);
 
             DOTween.Sequence()
