@@ -922,7 +922,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelTestGO: {fileID: 1696348174}
-  myLineRenderer: {fileID: 2054259355}
   Colors:
   - {r: 0, g: 0.5803922, b: 0.26666668, a: 1}
   - {r: 0.9294118, g: 0.10980393, b: 0.14117648, a: 1}
@@ -1054,6 +1053,14 @@ Prefab:
     - target: {fileID: 11459224, guid: 2276a7821c57ab04a8cdeb38f015c0cd, type: 2}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22453794, guid: 2276a7821c57ab04a8cdeb38f015c0cd, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22453794, guid: 2276a7821c57ab04a8cdeb38f015c0cd, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2276a7821c57ab04a8cdeb38f015c0cd, type: 2}
@@ -2036,6 +2043,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 132116, guid: 2276a7821c57ab04a8cdeb38f015c0cd, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22453794, guid: 2276a7821c57ab04a8cdeb38f015c0cd, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22453794, guid: 2276a7821c57ab04a8cdeb38f015c0cd, type: 2}
+      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

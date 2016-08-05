@@ -17,6 +17,9 @@ namespace EA4S
         public Color Color;
         public ILivingLetterData data;
 
+        public GameObject OK;
+        public GameObject KO;
+
         public bool IsWord = false;
         public bool IsLocked = false;
         public bool IsInteractable = true;
@@ -44,6 +47,15 @@ namespace EA4S
                 Draw.gameObject.SetActive(false);
             }
             HideCircle(0);
+
+            OK.SetActive(false);
+            KO.SetActive(false);
+        }
+
+        public void ShowResult(bool how)
+        {
+            OK.SetActive(how);
+            KO.SetActive(!how);
         }
 
         public void InjectManager(AssessmentManager _manager)

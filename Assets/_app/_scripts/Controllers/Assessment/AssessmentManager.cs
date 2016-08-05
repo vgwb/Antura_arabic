@@ -124,9 +124,11 @@ namespace EA4S
                 w = Words.Find(o => o.Color == c).data;
                 if (d.Key == w.Key) {
                     rightCounter++;
+                    Words.Find(o => o.Color == c).ShowResult(true);
+                } else {
+                    Words.Find(o => o.Color == c).ShowResult(false);
                 }
             }
-
             currentResult = rightCounter;
 
             LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
@@ -140,11 +142,11 @@ namespace EA4S
         {
             //WidgetPopupWindow.I.ShowTextDirect(AllFinished, string.Format("Result : {0}/{1}", currentResult, Draws.Count));
 
-            var sentenceId = "assessment_result";
-            var row = LocalizationData.Instance.GetRow(sentenceId);
-            var arabicText = string.Format("{0} : {1}/{2}", row.GetStringData("Arabic"), currentResult, Draws.Count);
-
-            WidgetPopupWindow.I.ShowArabicTextDirect(AllFinished, arabicText);
+//            var sentenceId = "assessment_result";
+//            var row = LocalizationData.Instance.GetRow(sentenceId);
+//            var arabicText = string.Format("{0} : {1}/{2}", row.GetStringData("Arabic"), currentResult, Draws.Count);
+//
+            //           WidgetPopupWindow.I.ShowArabicTextDirect(AllFinished, arabicText);
 
             if (currentResult >= 5) {
                 WidgetSubtitles.I.DisplaySentence("assessment_result_verygood", 3, true);
@@ -153,6 +155,8 @@ namespace EA4S
             } else {
                 WidgetSubtitles.I.DisplaySentence("assessment_result_retry", 3, true);
             }
+
+            ContinueScreen.Show(AllFinished, ContinueScreenMode.Button);
         }
 
         public void AllFinished()
