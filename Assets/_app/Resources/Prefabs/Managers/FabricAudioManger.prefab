@@ -536,7 +536,7 @@ GameObject:
   - 4: {fileID: 478900}
   - 114: {fileID: 11405278}
   m_Layer: 0
-  m_Name: wheel_game_fastcrowd
+  m_Name: wheel_game_fastcrowdword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3814,7 +3814,7 @@ Transform:
   - {fileID: 472452}
   - {fileID: 477838}
   - {fileID: 487834}
-  - {fileID: 478900}
+  - {fileID: 4000014209730900}
   - {fileID: 400870}
   - {fileID: 471848}
   - {fileID: 475414}
@@ -3851,6 +3851,7 @@ Transform:
   - {fileID: 4000013420409514}
   - {fileID: 4000014067993152}
   - {fileID: 417474}
+  - {fileID: 478900}
   m_Father: {fileID: 470598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5005,12 +5006,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115974}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 431200}
-  m_RootOrder: 41
+  m_RootOrder: 78
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &478994
 Transform:
@@ -7036,9 +7037,9 @@ MonoBehaviour:
   Guid: 
   _componentHolder: {fileID: 0}
   _onEventNotifyEventName: 
-  _audioClip: {fileID: 8300000, guid: 0b8d18a5449d94c46ad072e81ef70884, type: 3}
+  _audioClip: {fileID: 0}
   _audioClipHandle:
-    _audioClipPath: 
+    _audioClipPath: Keeper/wheel_game_fastcrowdword
     _useAudioClipPath: 1
   _dynamicAudioClipLoading: 1
   _dynamicAudioClipUnloadDelay: 0
@@ -15400,9 +15401,9 @@ MonoBehaviour:
   Guid: 
   _componentHolder: {fileID: 0}
   _onEventNotifyEventName: 
-  _audioClip: {fileID: 8300000, guid: 80786d9d4788343d9a1bbf14c44df22a, type: 3}
+  _audioClip: {fileID: 0}
   _audioClipHandle:
-    _audioClipPath: 
+    _audioClipPath: Keeper/wheel_locked
     _useAudioClipPath: 1
   _dynamicAudioClipLoading: 1
   _dynamicAudioClipUnloadDelay: 0
@@ -23282,9 +23283,9 @@ MonoBehaviour:
   Guid: 
   _componentHolder: {fileID: 0}
   _onEventNotifyEventName: 
-  _audioClip: {fileID: 8300000, guid: fc357921f64414290ac6ad8d66e93939, type: 3}
+  _audioClip: {fileID: 0}
   _audioClipHandle:
-    _audioClipPath: 
+    _audioClipPath: Keeper/wheel_game_fastcrowdA
     _useAudioClipPath: 1
   _dynamicAudioClipLoading: 1
   _dynamicAudioClipUnloadDelay: 0
@@ -23762,6 +23763,22 @@ GameObject:
   - 114: {fileID: 114000011448616522}
   m_Layer: 0
   m_Name: game_fastcrowd_findword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000010911442226
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014209730900}
+  - 114: {fileID: 114000010734791650}
+  m_Layer: 0
+  m_Name: wheel_game_fastcrowd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24515,6 +24532,19 @@ Transform:
   m_Father: {fileID: 4000012150689846}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4000014209730900
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010911442226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 431200}
+  m_RootOrder: 41
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000014276001242
 Transform:
   m_ObjectHideFlags: 1
@@ -25114,6 +25144,94 @@ MonoBehaviour:
   _audioClip: {fileID: 0}
   _audioClipHandle:
     _audioClipPath: Keeper/game_fastcrowd_findwordgroup
+    _useAudioClipPath: 1
+  _dynamicAudioClipLoading: 1
+  _dynamicAudioClipUnloadDelay: 0
+  _dynamicAsyncAudioClipLoading: 0
+  _audioClipAssetPath: 0
+  _delay: 0
+  _delayInBeats: 0
+  _loop: 0
+  _numLoops: -1
+  _loopMarkersLoaded: 0
+  _useLoopMarkers: 1
+  _dontPlay: 0
+  _dontStopOnDestroy: 0
+  _ignoreVirtualization: 0
+  _randomizePosition: 0
+  _randomizeMinPosition: 0
+  _randomizeMaxPosition: 10
+  _syncWithMusicTime: 0
+  _markers: []
+  _regions: []
+--- !u!114 &114000010734791650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010911442226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -71199202, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numVirtualizationEvents: 100
+  _maxInstances: 1
+  _stealingBehaviour: 0
+  _minimumPlaybackInterval: 0
+  _overrideParentVolume: 0
+  _volume: 1
+  _volumeRandomization: 0
+  _mute: 0
+  _overrideParentPitch: 0
+  _pitch: 1
+  _pitchRandomization: 0
+  _override2DProperties: 0
+  _pan2D: 0
+  _pan2DRandomization: 0
+  _override3DProperties: 0
+  _priority: 128
+  _panLevel: 1
+  _spreadLevel: 0
+  _dopplerLevel: 1
+  _maxDistance: 500
+  _minDistance: 1
+  _rolloffMode: 0
+  _overrideFadeProperties: 0
+  _fadeInTime: 0
+  _fadeInCurve: 0.5
+  _fadeOutTime: 0
+  _fadeOutCurve: 0.5
+  _reverbZoneMix: 1
+  _overrideBypassProperties: 0
+  _bypassEffects: 0
+  _bypassListenerEffects: 0
+  _bypassReverbZones: 0
+  _overrideAudioMixerGroup: 0
+  _audioMixerGroup: {fileID: 0}
+  _notifyParentComponent: 0
+  _audioBusName: 
+  _overrideAudioBus: 0
+  _overrideMusicTimeSettings: 0
+  _musicTimeSettingsIndex: -1
+  _musicTempo: -1
+  _musicTimeSignatureLower: 0
+  _musicTimeSignatureUpper: 0
+  _probability: 100
+  _multipleInstancesPerGameObject: 1
+  _componentVirtualization: 0
+  _overrideVolumeThreshold: 0
+  _volumeThreshold: 1
+  _virtualizationBehavior: 1
+  _RTPManager:
+    _parameters: []
+    _reference: {fileID: 0}
+  Guid: 
+  _componentHolder: {fileID: 0}
+  _onEventNotifyEventName: 
+  _audioClip: {fileID: 0}
+  _audioClipHandle:
+    _audioClipPath: Keeper/wheel_game_fastcrowd
     _useAudioClipPath: 1
   _dynamicAudioClipLoading: 1
   _dynamicAudioClipUnloadDelay: 0
