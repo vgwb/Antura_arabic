@@ -29,6 +29,7 @@ namespace EA4S
         public GameObject MarkOK;
         public GameObject MarkKO;
 
+        bool clicked;
         Action currentCallback;
         Tween showTween;
 
@@ -46,6 +47,7 @@ namespace EA4S
 
         void ResetContents()
         {
+            clicked = false;
             TutorialImageGO.SetActive(false);
             SetTitle("");
             SetWord("", "");
@@ -53,15 +55,16 @@ namespace EA4S
             MarkKO.SetActive(false);
         }
 
-        public static void Close(bool _immediate = false)
+        public void Close(bool _immediate = false)
         {
             if (IsShown || _immediate)
                 Show(false, _immediate);
         }
 
-        public static void Show(bool _doShow, bool _immediate = false)
+        public void Show(bool _doShow, bool _immediate = false)
         {
             GlobalUI.Init();
+            clicked = false;
 
             IsShown = _doShow;
             if (_doShow) {
@@ -103,7 +106,7 @@ namespace EA4S
 
             Show(true);
         }
-       
+
         public void ShowSentence(Action callback, string SentenceId)
         {
             ResetContents();
@@ -253,8 +256,19 @@ namespace EA4S
             }
         }
 
+        public void OnPressButtonPanel()
+        {
+            //Debug.Log("OnPressButtonPanel() " + clicked);
+            OnPressButton();
+        }
+
         public void OnPressButton()
         {
+            //Debug.Log("OnPressButton() " + clicked);
+            if (clicked)
+                return;
+
+            clicked = true;
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             currentCallback();
         }

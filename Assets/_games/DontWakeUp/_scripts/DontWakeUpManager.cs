@@ -174,7 +174,7 @@ namespace EA4S.DontWakeUp
 //                    break;
                 case MinigameState.RoundIntro:
                     WidgetSubtitles.I.Close();
-                    WidgetPopupWindow.Show(false);
+                    WidgetPopupWindow.I.Show(false);
                     currentState = MinigameState.Playing;
                     break;
             }
@@ -326,7 +326,7 @@ namespace EA4S.DontWakeUp
 
         public void GameLost()
         {
-            WidgetPopupWindow.Close();
+            WidgetPopupWindow.I.Close();
             currentState = MinigameState.GameEnd;
             StopSceneSounds();
 
