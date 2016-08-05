@@ -24,6 +24,8 @@ namespace EA4S
 
             if (CurrentGameCode == MinigamesCode.FastCrowd) {
                 tutorialIndex = 10;
+            } else if (CurrentGameCode == MinigamesCode.FastCrowdWords) {
+                tutorialIndex = 15;
             } else if (CurrentGameCode == MinigamesCode.DontWakeUp) {
                 tutorialIndex = 20;
             } else if (CurrentGameCode == MinigamesCode.Balloons) {
@@ -105,7 +107,7 @@ namespace EA4S
 
         public void Play()
         {
-            if (CurrentGameCode == MinigamesCode.FastCrowd) {
+            if (CurrentGameCode == MinigamesCode.FastCrowd || CurrentGameCode == MinigamesCode.FastCrowdWords) {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
             } else if (CurrentGameCode == MinigamesCode.DontWakeUp) {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
