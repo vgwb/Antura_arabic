@@ -11,7 +11,7 @@ public partial class SROptions
     [Category("Scenes")]
     public void Home()
     {
-        WidgetPopupWindow.Close();
+        WidgetPopupWindow.I.Close();
         GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
         SRDebug.Instance.HideDebugPanel();
     }
@@ -19,7 +19,7 @@ public partial class SROptions
     [Category("Scenes")]
     public void FastCrowd()
     {
-        WidgetPopupWindow.Close();
+        WidgetPopupWindow.I.Close();
         GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
         SRDebug.Instance.HideDebugPanel();
     }
@@ -27,7 +27,7 @@ public partial class SROptions
     [Category("Scenes")]
     public void Assessment()
     {
-        WidgetPopupWindow.Close();
+        WidgetPopupWindow.I.Close();
         GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
         SRDebug.Instance.HideDebugPanel();
     }
@@ -35,7 +35,7 @@ public partial class SROptions
     [Category("Scenes")]
     public void DontWakeUp()
     {
-        WidgetPopupWindow.Close();
+        WidgetPopupWindow.I.Close();
         GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
         SRDebug.Instance.HideDebugPanel();
     }
@@ -43,7 +43,7 @@ public partial class SROptions
     [Category("Scenes")]
     public void Balloons()
     {
-        WidgetPopupWindow.Close();
+        WidgetPopupWindow.I.Close();
         GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Balloons");
         SRDebug.Instance.HideDebugPanel();
     }

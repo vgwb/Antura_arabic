@@ -158,7 +158,7 @@ namespace EA4S
         public void AllFinished()
         {
             WidgetSubtitles.I.Close();
-            WidgetPopupWindow.Close();
+            WidgetPopupWindow.I.Close();
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards");
         }
 

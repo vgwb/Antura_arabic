@@ -11,9 +11,11 @@ using UniRx;
 using EA4S;
 using Google2u;
 
-namespace EA4S.FastCrowd {
+namespace EA4S.FastCrowd
+{
 
-    public class FastCrowd : MiniGameBase {
+    public class FastCrowd : MiniGameBase
+    {
 
         #region GameSettings
 
@@ -27,7 +29,8 @@ namespace EA4S.FastCrowd {
 
         new public FastCrowdGameplayInfo GameplayInfo;
 
-        new public static FastCrowd Instance {
+        new public static FastCrowd Instance
+        {
             get { return SubGame.Instance as FastCrowd; }
         }
 
@@ -80,18 +83,21 @@ namespace EA4S.FastCrowd {
 
         #region Setup and initialization
 
-        protected override void Awake() {
+        protected override void Awake()
+        {
             base.Awake();
         }
 
-        protected override void Start() {
+        protected override void Start()
+        {
             base.Start();
             if (SceneTransitioner.IsShown) {
                 SceneTransitioner.Close();
             }
         }
 
-        protected override void ReadyForGameplay() {
+        protected override void ReadyForGameplay()
+        {
             base.ReadyForGameplay();
             AppManager.Instance.CurrentGameManagerGO = gameObject; // ?? why?
             if (!UseTestGameplayInfo)
@@ -117,8 +123,8 @@ namespace EA4S.FastCrowd {
             GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime,
                 new List<GameplayTimer.CustomEventData>()
                 {
-                            new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
-                            new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
+                    new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
+                    new GameplayTimer.CustomEventData() { Name = "AnturaEnd", Time = AnturaTimea - 10 }
                 }
             );
 
@@ -134,7 +140,8 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// 
         /// </summary>
-        void gameplayBlockSetup() {
+        void gameplayBlockSetup()
+        {
             // data from db 
             dataList = new List<ILivingLetterData>();
             string sepLetters = string.Empty;
@@ -161,24 +168,26 @@ namespace EA4S.FastCrowd {
             if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
                 LocalizationDataRow rowLetters = LocalizationData.Instance.GetRow("game_fastcrowd_findword");
                 //row.GetStringData("English");
-                PopupMission.Show(new PopupMissionComponent.Data() {
-                    // Find the word
-                    Title = string.Format("{1}", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
-                    MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
-                    Type = PopupMissionComponent.PopupType.New_Mission,
-                    DrawSprite = ActualWord.DrawForLivingLetter,
-                });
+                PopupMission.Show(new PopupMissionComponent.Data()
+                    {
+                        // Find the word
+                        Title = string.Format("{1}", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
+                        MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
+                        Type = PopupMissionComponent.PopupType.New_Mission,
+                        DrawSprite = ActualWord.DrawForLivingLetter,
+                    });
             } else {
                 string stringListOfWords = string.Empty;
                 foreach (var w in dataList)
                     stringListOfWords += w.TextForLivingLetter + " ";
                 LocalizationDataRow rowWords = LocalizationData.Instance.GetRow("game_fastcrowd_findwordgroup");
-                PopupMission.Show(new PopupMissionComponent.Data() {
-                    // Find the word group
-                    Title = string.Format("{1}", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
-                    MainTextToDisplay = string.Format("{0}", stringListOfWords),
-                    Type = PopupMissionComponent.PopupType.New_Mission,
-                });
+                PopupMission.Show(new PopupMissionComponent.Data()
+                    {
+                        // Find the word group
+                        Title = string.Format("{1}", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
+                        MainTextToDisplay = string.Format("{0}", stringListOfWords),
+                        Type = PopupMissionComponent.PopupType.New_Mission,
+                    });
             }
 
             int count = 0;
@@ -213,7 +222,8 @@ namespace EA4S.FastCrowd {
             DropAreaContainer.SetupDone();
         }
 
-        void sceneClean() {
+        void sceneClean()
+        {
             DropAreaContainer.clean();
             foreach (LetterObjectView item in TerrainTrans.GetComponentsInChildren<LetterObjectView>()) {
                 GameObject.Destroy(item.gameObject);
@@ -227,7 +237,8 @@ namespace EA4S.FastCrowd {
         /// Place drop object area in drop object area container.
         /// </summary>
         /// <param name="_letterData"></param>
-        void PlaceDropAreaElement(ILivingLetterData _letterData, int position) {
+        void PlaceDropAreaElement(ILivingLetterData _letterData, int position)
+        {
             DropSingleArea dropSingleArea = Instantiate(DropSingleAreaPref);
             dropSingleArea.transform.SetParent(DropAreaContainer.transform, false);
             dropSingleArea.transform.position = Camera.main.transform.position;
@@ -242,7 +253,8 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// Called when tutorial state changes.
         /// </summary>
-        void OnTutorialStateChanged() {
+        void OnTutorialStateChanged()
+        {
             switch (tutorialState) {
                 case 3:
                     if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
@@ -273,13 +285,14 @@ namespace EA4S.FastCrowd {
                 default:
                     // play
                     WidgetSubtitles.I.DisplaySentence(string.Empty);
-                    WidgetPopupWindow.Close();
+                    WidgetPopupWindow.I.Close();
 
                     break;
             }
         }
 
-        void TutorialNextStep() {
+        void TutorialNextStep()
+        {
             tutorialState--;
         }
 
@@ -288,7 +301,8 @@ namespace EA4S.FastCrowd {
         /// Called when the time is over.
         /// </summary>
         /// <param name="_time"></param>
-        private void GameplayTimer_OnTimeOver(float _time) {
+        private void GameplayTimer_OnTimeOver(float _time)
+        {
             // during normal gameplay call doTimeOverActions
             if (DropAreaContainer.GetActualDropArea() != null) { 
                 doTimeOverActions();
@@ -301,7 +315,8 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// Action for timeover.
         /// </summary>
-        void doTimeOverActions() {
+        void doTimeOverActions()
+        {
             sceneClean();
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "completedWords", round.ToString());
             int starCount = 0;
@@ -330,7 +345,8 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// Called when objective block is completed (entire word).
         /// </summary>
-        private void DropContainer_OnObjectiveBlockCompleted() {
+        private void DropContainer_OnObjectiveBlockCompleted()
+        {
             ObjectiveBlockCompletedSequence(GameplayInfo.Variant);
         }
 
@@ -338,7 +354,8 @@ namespace EA4S.FastCrowd {
         /// All action for BlockCompleted event for any variation.
         /// </summary>
         /// <param name="_variant"></param>
-        void ObjectiveBlockCompletedSequence(FastCrowdGameplayInfo.GameVariant _variant) {
+        void ObjectiveBlockCompletedSequence(FastCrowdGameplayInfo.GameVariant _variant)
+        {
             round++;
             switch (_variant) {
 
@@ -350,13 +367,15 @@ namespace EA4S.FastCrowd {
                     if (RightWordsCounter)
                         RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
                     LocalizationDataRow rowLetters = LocalizationData.Instance.GetRow("comment_welldone");
-                    PopupMission.Show(new PopupMissionComponent.Data() {
-                        Title = string.Format("{0}", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count),
-                        MainTextToDisplay = ActualWord.TextForLivingLetter,
-                        Type = PopupMissionComponent.PopupType.Mission_Completed,
-                        DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
-                    }
-                        , delegate () {
+                    PopupMission.Show(new PopupMissionComponent.Data()
+                        {
+                            Title = string.Format("{0}", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count),
+                            MainTextToDisplay = ActualWord.TextForLivingLetter,
+                            Type = PopupMissionComponent.PopupType.Mission_Completed,
+                            DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                        }
+                        , delegate ()
+                        {
                             ActualWord = null;
                             // Recall gameplayBlockSetup
                             sceneClean();
@@ -373,13 +392,15 @@ namespace EA4S.FastCrowd {
                         stringListOfWords += w.TextForLivingLetter + " ";
                     AudioManager.I.PlayDialog("comment_welldone");
                     LocalizationDataRow rowWords = LocalizationData.Instance.GetRow("comment_welldone");
-                    PopupMission.Show(new PopupMissionComponent.Data() {
-                        Title = string.Format("{0}", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count),
-                        MainTextToDisplay = stringListOfWords,
-                        Type = PopupMissionComponent.PopupType.Mission_Completed,
-                        DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
-                    }
-                        , delegate () {
+                    PopupMission.Show(new PopupMissionComponent.Data()
+                        {
+                            Title = string.Format("{0}", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count),
+                            MainTextToDisplay = stringListOfWords,
+                            Type = PopupMissionComponent.PopupType.Mission_Completed,
+                            DrawSprite = GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                        }
+                        , delegate ()
+                        {
                             ActualWord = null;
                             // Recall gameplayBlockSetup
                             sceneClean();
@@ -399,7 +420,8 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// Risen on letter or world match.
         /// </summary>
-        private void Droppable_OnWrongMatch(LetterObjectView _letterView) {
+        private void Droppable_OnWrongMatch(LetterObjectView _letterView)
+        {
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "badLetterDrop", _letterView.Model.Data.Key);
             ActionFeedback.Show(false);
             AudioManager.I.PlaySfx(Sfx.LetterSad);
@@ -408,7 +430,8 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// Risen on letter or world match.
         /// </summary>
-        private void Droppable_OnRightMatch(LetterObjectView _letterView) {
+        private void Droppable_OnRightMatch(LetterObjectView _letterView)
+        {
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "goodLetterDrop", _letterView.Model.Data.Key);
             if (GameplayInfo.Variant == FastCrowdGameplayInfo.GameVariant.living_letters) {
                 ActionFeedback.Show(true);
@@ -426,7 +449,8 @@ namespace EA4S.FastCrowd {
         /// Hang catch.
         /// </summary>
         /// <param name="_letterView"></param>
-        private void Hangable_OnLetterHangOn(LetterObjectView _letterView) {
+        private void Hangable_OnLetterHangOn(LetterObjectView _letterView)
+        {
             if (!DropAreaContainer.GetActualDropArea())
                 return;
             if (_letterView.Model.Data.Key == DropAreaContainer.GetActualDropArea().Data.Key) {
@@ -442,7 +466,8 @@ namespace EA4S.FastCrowd {
         /// Hang relese.
         /// </summary>
         /// <param name="_letterView"></param>
-        private void Hangable_OnLetterHangOff(LetterObjectView _letterView) {
+        private void Hangable_OnLetterHangOff(LetterObjectView _letterView)
+        {
 
         }
 
@@ -450,7 +475,8 @@ namespace EA4S.FastCrowd {
         /// Timer custom events delegates.
         /// </summary>
         /// <param name="_data"></param>
-        private void GameplayTimer_OnCustomEvent(GameplayTimer.CustomEventData _data) {
+        private void GameplayTimer_OnCustomEvent(GameplayTimer.CustomEventData _data)
+        {
             //Debug.LogFormat("Custom Event {0} at {1} sec.", _data.Name, _data.Time);
             switch (_data.Name) {
                 case "AnturaStart":
@@ -471,7 +497,8 @@ namespace EA4S.FastCrowd {
 
         #region events subscription
 
-        void OnEnable() {
+        void OnEnable()
+        {
             DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
             GameplayTimer.OnTimeOver += GameplayTimer_OnTimeOver;
             GameplayTimer.OnCustomEvent += GameplayTimer_OnCustomEvent;
@@ -493,7 +520,8 @@ namespace EA4S.FastCrowd {
 
         }
 
-        protected override void OnDisable() {
+        protected override void OnDisable()
+        {
             base.OnDisable();
 
             DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
@@ -531,12 +559,14 @@ namespace EA4S.FastCrowd {
 
         #region debug
 
-        public void DebugForceEndGame() {
+        public void DebugForceEndGame()
+        {
             GameplayTimer.Instance.EndTimeRemaning();
         }
 
 
-        void Update() {
+        void Update()
+        {
             if (Input.GetKeyDown(KeyCode.Space))
                 DebugForceEndGame();
         }
@@ -550,7 +580,8 @@ namespace EA4S.FastCrowd {
     /// Gameplay info class data structure.
     /// </summary>
     [Serializable]
-    public class FastCrowdGameplayInfo : AnturaGameplayInfo {
+    public class FastCrowdGameplayInfo : AnturaGameplayInfo
+    {
 
         [Tooltip("Game Variant")]
         public GameVariant Variant = GameVariant.living_letters;

@@ -2305,7 +2305,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11455738}
-        m_MethodName: OnPressButton
+        m_MethodName: OnPressButtonPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
