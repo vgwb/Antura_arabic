@@ -51,6 +51,7 @@ namespace EA4S
         
         public TeacherAI Teacher;
         public Database DB;
+        public EA4S.PlayerProfile Player;
 
         public GameObject CurrentGameManagerGO;
 
@@ -67,6 +68,8 @@ namespace EA4S
                 DB = new Database();
             if (Teacher == null)
                 Teacher = new TeacherAI();
+            if (Player == null)
+                Player = new EA4S.PlayerProfile();
         }
 
         protected override void GameSetup()
@@ -136,6 +139,7 @@ namespace EA4S
             LearningBlock = 4;
             PlaySession = 1;
             PlaySessionGameDone = 0;
+            Player.Reset();
         }
 
         /// <summary>
