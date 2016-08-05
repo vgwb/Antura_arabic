@@ -134,7 +134,11 @@ namespace EA4S
                     }
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
                 }
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.SceneName + "_tutorial");
+                if (miniGame.Code == "fastcrowd_words") {
+                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd_tutorialWords");
+                } else {
+                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.SceneName + "_tutorial");
+                }
             }
             /*
             Debug.Log("Wheel start game: " + gameData[currentGameIndex].Code);
