@@ -4,6 +4,31 @@ DEV CHANGELOG
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 
+##########   v0.6.0
+
+2016-08-05 - [FastCrowd] reduced time to be hanged, to make letter much more reactive!
+2016-08-05 - [map] fix dot shows
+2016-08-05 - [Assessment] now show correct and wrong answers with marks.
+2016-08-05 - [journey] dots repositioning and red dot
+2016-08-05 - [opt] trying to reduce double clicks on NEXT buttons
+2016-08-05 - [Antura] at Start in simpl,e at End is Pirate
+2016-08-05 - [Assessment] Replace English text with Arabic
+2016-08-05 - [project] added new FastCrowdWords tutorial scene to build
+2016-08-05 - [data] reimported all translations
+2016-08-05 - [Tutorials] added new FastCrowdWords custom tutorials with corrected iamges and sentences. pelase check
+2016-08-05 - [Wheel] [Audio] Added "Fast Crowd Word" audio for the wheel
+2016-08-05 - [DontW] optimized eake up animation and removed letter's sleeping fx
+2016-08-05 - FastCrowd: reduced walkable area.
+2016-08-05 - [DontW] letter has gone back to not have arms because we would need 2 days to do a good ragdool
+2016-08-05 - [Balloons] Use out of time failure voiceover
+2016-08-05 - [DontW] reduced delay times after deaths
+2016-08-05 - [wheel] show the current won Antura at the Rewards
+2016-08-05 - [DontW] new letter token, now lifts, pops when die before the popup, antura wakes up also for alarms
+2016-08-05 - [Audio] Add missing voiceover files and update Fabric Audio Manager prefab to include them
+2016-08-05 - [UI] no english tgranslations in popup window
+2016-08-05 - [Audio] new Assessment start Keeper's audio voice
+2016-08-05 - [DontW] alarm danger red line bigger
+
 ##########   v0.5.8
 
 2016-08-05 - [UI] FX toggle persists also if set from popup menu
