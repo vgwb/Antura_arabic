@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 namespace Lean
@@ -7,29 +6,6 @@ namespace Lean
 	// This class stores information about a single touch (or simulated touch)
 	public class LeanFinger
 	{
-		// This class stores the ScreenPosition and a timestamp
-		public class Snapshot
-		{
-			public float Age;
-			
-			public Vector2 ScreenPosition;
-			
-			// This will return the world position of this snapshot based on the distance from the camera
-			public Vector3 GetWorldPosition(float distance, Camera camera = null)
-			{
-				if (camera == null) camera = Camera.main;
-				
-				if (camera != null)
-				{
-					var point = new Vector3(ScreenPosition.x, ScreenPosition.y, distance);
-					
-					return camera.ScreenToWorldPoint(point);
-				}
-				
-				return default(Vector3);
-			}
-		}
-		
 		// This is the hardware ID of the finger (or 0 & 1 for simulated fingers)
 		public int Index;
 		
@@ -70,13 +46,7 @@ namespace Lean
 		public bool StartedOverGui;
 		
 		// Used to store position snapshots, enable RecordFingers in LeanTouch to use this
-		public List<Snapshot> Snapshots = new List<Snapshot>();
-		
-		// Used to find if the GUI is in use
-		private static List<RaycastResult> tempRaycastResults = new List<RaycastResult>();
-		
-		// Used to store unused snapshots
-		private static List<Snapshot> tempSnapshots = new List<Snapshot>();
+		public List<LeanSnapshot> Snapshots = new List<LeanSnapshot>(1000);
 		
 		// This will return true if the current finger is currently touching the screen
 		public bool IsActive
@@ -106,22 +76,7 @@ namespace Lean
 		{
 			get
 			{
-				var currentEventSystem = EventSystem.current;
-				
-				if (currentEventSystem != null)
-				{
-					var eventDataCurrentPosition = new PointerEventData(currentEventSystem);
-					
-					eventDataCurrentPosition.position = new Vector2(ScreenPosition.x, ScreenPosition.y);
-					
-					tempRaycastResults.Clear();
-					
-					currentEventSystem.RaycastAll(eventDataCurrentPosition, tempRaycastResults);
-					
-					return tempRaycastResults.Count > 0;
-				}
-				
-				return false;
+				return LeanTouch.PointOverGui(ScreenPosition);
 			}
 		}
 		
@@ -418,7 +373,7 @@ namespace Lean
 			
 			if (camera != null)
 			{
-				var point = new Vector3(ScreenPosition.x, ScreenPosition.y, distance);
+				var point = new Vector3(LastScreenPosition.x, LastScreenPosition.y, distance);
 				
 				return camera.ScreenToWorldPoint(point);
 			}
@@ -464,7 +419,7 @@ namespace Lean
 			{
 				for (var i = 0; i < count; i++)
 				{
-					tempSnapshots.Add(Snapshots[i]);
+					LeanSnapshot.InactiveSnapshots.Add(Snapshots[i]);
 				}
 				
 				Snapshots.RemoveRange(0, count);
@@ -472,7 +427,7 @@ namespace Lean
 			// Clear all?
 			else if (count < 0)
 			{
-				tempSnapshots.AddRange(Snapshots);
+				LeanSnapshot.InactiveSnapshots.AddRange(Snapshots);
 				
 				Snapshots.Clear();
 			}
@@ -481,22 +436,8 @@ namespace Lean
 		// Records a snapshot of the current finger
 		public void RecordSnapshot()
 		{
-			var snapshot          = default(Snapshot);
-			var tempSnapshotCount = tempSnapshots.Count;
-			
-			// Get snapshot from pool?
-			if (tempSnapshotCount > 0)
-			{
-				snapshot = tempSnapshots[tempSnapshotCount - 1];
-				
-				tempSnapshots.RemoveAt(tempSnapshotCount - 1);
-			}
-			
-			// Make new snapshot?
-			if (snapshot == null)
-			{
-				snapshot = new Snapshot();
-			}
+			// Get an unused snapshot and set it up
+			var snapshot = LeanSnapshot.Pop();
 			
 			snapshot.Age            = Age;
 			snapshot.ScreenPosition = ScreenPosition;

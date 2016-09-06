@@ -18,7 +18,7 @@ public class SimpleSwipe : MonoBehaviour
 	
 	protected virtual void OnDisable()
 	{
-		// Unhook into the OnSwipe event
+		// Unhook from the OnSwipe event
 		Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
 	}
 	

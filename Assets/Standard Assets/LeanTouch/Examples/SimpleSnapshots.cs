@@ -1,50 +1,85 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 // This script will set up LineRenderers based on recorded fingers
 public class SimpleSnapshots : MonoBehaviour
 {
-	public LineRenderer[] LineRenderers;
+	[Tooltip("")]
+	public LineRenderer Prefab;
+
+	// This stores all the lines that are spawned while a finger is active
+	private List<LineRenderer> lines = new List<LineRenderer>();
 	
-	protected virtual void LateUpdate()
+	protected virtual void OnEnable()
 	{
-		// Does the LineRenderer array exist?
-		if (LineRenderers != null)
+		// Hook into the OnFingerTap event
+		Lean.LeanTouch.OnFingerSet += OnFingerSet;
+
+		// Hook into the OnFingerUp event
+		Lean.LeanTouch.OnFingerUp  += OnFingerUp;
+	}
+
+	protected virtual void OnDisable()
+	{
+		// Unhook from the OnFingerTap event
+		Lean.LeanTouch.OnFingerSet -= OnFingerSet;
+
+		// Unhook from the OnFingerUp event
+		Lean.LeanTouch.OnFingerUp  -= OnFingerUp;
+	}
+
+	private void OnFingerSet(Lean.LeanFinger finger)
+	{
+		// Make sure the prefab exists
+		if (Prefab != null)
 		{
-			// Go through all LineRenderers
-			for (var i = 0; i < LineRenderers.Length; i++)
+			// Get the name of this finger, and find the line that has the same name
+			var fingerName = GetFingerName(finger);
+			var line       = lines.Find(l => l.name == fingerName);
+
+			// If the line doesn't exist, create it, give it the same name as the finger, and add it to the lines list
+			if (line == null)
 			{
-				// Get the LineRenderer at this index
-				var lineRenderer = LineRenderers[i];
+				line = Instantiate(Prefab);
+
+				line.name = fingerName;
+
+				lines.Add(line);
+			}
+
+			// Copy all snapshot data into this line
+			line.SetVertexCount(finger.Snapshots.Count);
+			
+			for (var j = 0; j < finger.Snapshots.Count; j++)
+			{
+				var snapshot = finger.Snapshots[j];
 				
-				// Has this LineRenderer been set?
-				if (lineRenderer != null)
+				if (snapshot != null)
 				{
-					// Find the finger at this index
-					var finger = Lean.LeanTouch.Fingers.Find(f => f.Index == i);
-					
-					// Exists?
-					if (finger != null)
-					{
-						lineRenderer.SetVertexCount(finger.Snapshots.Count);
-						
-						// Go through all snapshots
-						for (var j = 0; j < finger.Snapshots.Count; j++)
-						{
-							var snapshot = finger.Snapshots[j];
-							
-							if (snapshot != null)
-							{
-								lineRenderer.SetPosition(j, snapshot.GetWorldPosition(1.0f));
-							}
-						}
-					}
-					// Doesn't exist?
-					else
-					{
-						lineRenderer.SetVertexCount(0);
-					}
+					line.SetPosition(j, snapshot.GetWorldPosition(1.0f));
 				}
 			}
 		}
+	}
+
+	private void OnFingerUp(Lean.LeanFinger finger)
+	{
+		// Get the name of this finger, and find the line that has the same name
+		var fingerName = GetFingerName(finger);
+		var line       = lines.Find(l => l.name == fingerName);
+
+		// If the line exists, remove it from the lines list, and destroy it
+		if (line != null)
+		{
+			lines.Remove(line);
+
+			Destroy(line.gameObject);
+		}
+	}
+
+	// This will generate a unique name based on the finger index
+	private string GetFingerName(Lean.LeanFinger finger)
+	{
+		return finger.Index.ToString();
 	}
 }

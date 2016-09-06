@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -6,17 +7,18 @@ namespace Lean
 {
 	// If you add this component to your scene, then it will convert all mouse and touch data into easy to use data
 	[ExecuteInEditMode]
+	[DisallowMultipleComponent]
 	[AddComponentMenu("Lean/Touch")]
-	public class LeanTouch : MonoBehaviour
+	public partial class LeanTouch : MonoBehaviour
 	{
-		// This contains the current LeanTouch instance
-		public static LeanTouch Instance;
+		// This contains all the active and enabled LeanTouch instances
+		public static List<LeanTouch> Instances = new List<LeanTouch>();
 		
 		// This list contains all currently active fingers (including simulated ones)
-		public static List<LeanFinger> Fingers = new List<LeanFinger>();
+		public static List<LeanFinger> Fingers = new List<LeanFinger>(10);
 		
 		// This list contains all currently inactive fingers (e.g. this allows for pooling and tapping)
-		public static List<LeanFinger> InactiveFingers = new List<LeanFinger>();
+		public static List<LeanFinger> InactiveFingers = new List<LeanFinger>(10);
 		
 		// This contains the combined screen position delta of all fingers
 		public static Vector2 DragDelta;
@@ -84,42 +86,45 @@ namespace Lean
 		// This gets fired when a twist gesture occurs (float = TwistRadians)
 		public static System.Action<float> OnTwistRadians;
 		
-		// This allows you to set how many seconds are required between a finger down/up for a tap to be registered
+		[Tooltip("This allows you to set how many seconds are required between a finger down/up for a tap to be registered")]
 		public float TapThreshold = 0.5f;
 		
-		// This allows you to set how many pixels of movement (relative to the ReferenceDpi) are required within the TapThreshold for a swipe to be triggered
+		[Tooltip("This allows you to set how many pixels of movement (relative to the ReferenceDpi) are required within the TapThreshold for a swipe to be triggered")]
 		public float SwipeThreshold = 50.0f;
 		
-		// This allows you to set how many seconds a finger must be held down for it to be regarded as being held down
+		[Tooltip("This allows you to set how many seconds a finger must be held down for it to be regarded as being held down")]
 		public float HeldThreshold = 1.0f;
 		
-		// This allows you to set the default DPI you want the input scaling to be based on
+		[Tooltip("This allows you to set the default DPI you want the input scaling to be based on")]
 		public int ReferenceDpi = 200;
 		
-		// This allows you to enable recording of finger movements
+		[Tooltip("This allows you to enable recording of finger movements")]
 		public bool RecordFingers = true;
 		
-		// This allows you to set the amount of pixels a finger must move for another snapshot to be stored
+		[Tooltip("This allows you to set the amount of pixels a finger must move for another snapshot to be stored")]
 		public float RecordThreshold = 5.0f;
 		
-		// This allows you to set the maximum amount of seconds that can be recorded, 0 = unlimited
-		public float RecordLimit;
+		[Tooltip("This allows you to set the maximum amount of seconds that can be recorded, 0 = unlimited")]
+		public float RecordLimit = 10.0f;
 		
-		// This allows you to simulate multi touch inputs on devices that don't support them (e.g. desktop)
+		[Tooltip("This allows you to simulate multi touch inputs on devices that don't support them (e.g. desktop)")]
 		public bool SimulateMultiFingers = true;
 		
-		// This allows you to set which key is required to simulate multi key twisting
+		[Tooltip("This allows you to set which key is required to simulate multi key twisting")]
 		public KeyCode PinchTwistKey = KeyCode.LeftControl;
 		
-		// This allows you to set which key is required to simulate multi key dragging
+		[Tooltip("This allows you to set which key is required to simulate multi key dragging")]
 		public KeyCode MultiDragKey = KeyCode.LeftAlt;
 		
-		// This allows you to set which texture will be used to show the simulated fingers
+		[Tooltip("This allows you to set which texture will be used to show the simulated fingers")]
 		public Texture2D FingerTexture;
 		
 		// This stores the highest mouse button index
 		private static int highestMouseButton = 7;
 		
+		// Used to find if the GUI is in use
+		private static List<RaycastResult> tempRaycastResults = new List<RaycastResult>(10);
+
 		// This stores how many fingers were touching the screen last frame
 		private int lastFingerCount;
 		
@@ -129,6 +134,15 @@ namespace Lean
 		// This stores how many fingers at most were held during the multiFingerTime
 		private int multiFingerCount;
 		
+		// Returns the main instance
+		public static LeanTouch Instance
+		{
+			get
+			{
+				return Instances.Count > 0 ? Instances[0] : null;
+			}
+		}
+
 		// If you multiply this value with any other pixel delta (e.g. DragDelta), then it will become device resolution independant
 		public static float ScalingFactor
 		{
@@ -138,9 +152,9 @@ namespace Lean
 				var referenceDpi  = 200;
 				
 				// Grab the current reference DPI, if it exists
-				if (Instance != null)
+				if (Instances.Count > 0)
 				{
-					referenceDpi = Instance.ReferenceDpi;
+					referenceDpi = Instances[0].ReferenceDpi;
 				}
 				
 				// If this screen has a known DPI, scale the value based on it
@@ -220,209 +234,257 @@ namespace Lean
 				return false;
 			}
 		}
-		
-		// The center point of all fingers, or default
-		public static Vector2 GetCenterOfFingers()
+
+		// The average ScreenPosition of all fingers
+		public static Vector2 CenterOfFingers
 		{
-			var total       = Vector2.zero;
-			var fingerCount = Fingers.Count;
-			
-			if (fingerCount > 0)
+			get
 			{
-				for (var i = 0; i < fingerCount; i++)
-				{
-					total += Fingers[i].ScreenPosition;
-				}
-				
-				total /= fingerCount;
+				return GetCenterOfFingers(Fingers);
 			}
-			
-			return total;
 		}
-		
-		// The last center point of all fingers, or default
-		public static Vector2 GetLastCenterOfFingers()
+
+		// The average ScreenPosition of all fingers during the last frame
+		public static Vector2 LastCenterOfFingers
 		{
-			var total       = Vector2.zero;
-			var fingerCount = Fingers.Count;
-			
-			if (fingerCount > 0)
+			get
 			{
-				for (var i = 0; i < fingerCount; i++)
-				{
-					total += Fingers[i].LastScreenPosition;
-				}
-				
-				total /= fingerCount;
+				return GetLastCenterOfFingers(Fingers);
 			}
-			
-			return total;
 		}
-		
-		// This will return the average distance between all fingers and the reference point
-		public static float GetAverageFingerDistance(Vector2 referencePoint)
+
+		private static PointerEventData tempPointerEventData;
+
+		private static EventSystem tempEventSystem;
+
+		// This will return true if the input screenPosition is over any GUI elements
+		public static bool PointOverGui(Vector2 screenPosition)
 		{
-			var total       = 0.0f;
-			var fingerCount = Fingers.Count;
+			var currentEventSystem = EventSystem.current;
 			
-			if (fingerCount > 0)
+			if (currentEventSystem != null)
 			{
-				for (var i = 0; i < fingerCount; i++)
+				if (currentEventSystem != tempEventSystem)
 				{
-					total += Fingers[i].GetDistance(referencePoint);
-				}
-				
-				total /= fingerCount;
-			}
-			
-			return total;
-		}
-		
-		// This will return the last average distance between all fingers and the reference point
-		public static float GetLastAverageFingerDistance(Vector2 referencePoint)
-		{
-			var total       = 0.0f;
-			var fingerCount = Fingers.Count;
-			
-			if (fingerCount > 0)
-			{
-				for (var i = 0; i < fingerCount; i++)
-				{
-					total += Fingers[i].GetLastDistance(referencePoint);
-				}
-				
-				total /= fingerCount;
-			}
-			
-			return total;
-		}
-		
-		// This allows you to drag an object on screen by a change in screen position
-		public static void MoveObject(Transform transform, Vector2 deltaPosition, Camera camera = null)
-		{
-			if (transform != null)
-			{
-				if (deltaPosition.x != 0.0f || deltaPosition.y != 0.0f)
-				{
-					var rectTransform = transform as RectTransform;
-					
-					// If this is RectTransform then modify the anchoredPosition
-					if (rectTransform != null)
+					tempEventSystem = currentEventSystem;
+
+					if (tempPointerEventData == null)
 					{
-						rectTransform.anchoredPosition += deltaPosition;
+						tempPointerEventData = new PointerEventData(tempEventSystem);
 					}
-					// If this is Transform then modify the position
 					else
 					{
-						transform.position = MoveObject(transform.position, deltaPosition, camera);
+						tempPointerEventData.Reset();
 					}
 				}
-			}
-		}
-		
-		public static Vector3 MoveObject(Vector3 worldPosition, Vector2 deltaPosition, Camera camera = null)
-		{
-			if (camera == null) camera = Camera.main;
-			
-			if (camera != null)
-			{
-				// Find current screen position of world position
-				var screenPosition = camera.WorldToScreenPoint(worldPosition);
+
+				tempPointerEventData.position = screenPosition;
 				
-				// Modify screen position
-				screenPosition += (Vector3)deltaPosition;
+				tempRaycastResults.Clear();
 				
-				// Write new world position
-				worldPosition = camera.ScreenToWorldPoint(screenPosition);
+				currentEventSystem.RaycastAll(tempPointerEventData, tempRaycastResults);
+				
+				return tempRaycastResults.Count > 0;
 			}
 			
-			return worldPosition;
+			return false;
 		}
-		
-		// This allows you to rotate an object on screen by a change in screen rotation
-		public static void RotateObject(Transform transform, float deltaRotation, Camera camera = null)
+
+		// This wraps GetDeltaWorldPosition to be easier to use
+		public static Vector3 GetDeltaWorldPosition(float distance, Camera camera = null)
 		{
-			if (transform != null && deltaRotation != 0.0f)
-			{
-				transform.rotation = RotateObject(transform.rotation, deltaRotation, camera);
-			}
+			return GetDeltaWorldPosition(Fingers, distance, camera);
 		}
-		
-		public static Quaternion RotateObject(Quaternion worldRotation, float deltaRotation, Camera camera = null)
+
+		// This gets the delta world position of the fingers at distance from the camera
+		public static Vector3 GetDeltaWorldPosition(List<LeanFinger> fingers, float distance, Camera camera = null)
 		{
-			if (deltaRotation != 0.0f)
-			{
-				if (camera == null) camera = Camera.main;
-				
-				if (camera != null)
-				{
-					worldRotation = Quaternion.AngleAxis(deltaRotation, camera.transform.forward) * worldRotation;
-				}
-			}
+			var total = Vector3.zero;
 			
-			return worldRotation;
-		}
-		
-		// This allows you to scale an object by a change in pinch scale
-		public static void ScaleObject(Transform transform, float scale)
-		{
-			if (transform != null && scale != 1.0f)
+			if (fingers != null)
 			{
-				transform.localScale *= scale;
-			}
-		}
-		
-		// This allows you to scale an object by a change in pinch scale, relative to a point on the screen
-		public static void ScaleObjectRelative(Transform transform, float scale, Vector2 referencePoint, Camera camera = null)
-		{
-			if (transform != null && scale != 1.0f)
-			{
-				if (camera == null) camera = Camera.main;
-				
-				if (camera != null)
+				var count = 0;
+
+				for (var i = fingers.Count - 1; i >= 0; i--)
 				{
-					// Find screen position of transform
-					var localPosition = camera.WorldToScreenPoint(transform.position);
-					
-					// Scale screen position away from referencePoint
-					localPosition.x = referencePoint.x + (localPosition.x - referencePoint.x) * scale;
-					localPosition.y = referencePoint.y + (localPosition.y - referencePoint.y) * scale;
-					
-					// Update position
-					transform.position = camera.ScreenToWorldPoint(localPosition);
-					
-					// Scale up
-					transform.localScale *= scale;
+					var finger = Fingers[i];
+
+					if (finger != null)
+					{
+						total += finger.GetDeltaWorldPosition(distance, camera);
+						count += 1;
+					}
+				}
+
+				if (count > 0)
+				{
+					total /= count;
 				}
 			}
+
+			return total;
 		}
 		
-		// This allows you to rotate an object on screen by a change in screen rotation, relative to a point on the screen
-		public static void RotateObjectRelative(Transform transform, float deltaRotation, Vector2 referencePoint, Camera camera = null)
+		// This wraps GetCenterOfFingers to be easier to use
+		public static Vector2 GetCenterOfFingers(List<LeanFinger> fingers)
 		{
-			if (transform != null && deltaRotation != 0.0f)
+			var center = default(Vector2); GetCenterOfFingers(fingers, ref center); return center;
+		}
+
+		// If fingers contains more than one instance then this will return true and fill center with the average ScreenPosition
+		public static bool GetCenterOfFingers(List<LeanFinger> fingers, ref Vector2 center)
+		{
+			if (fingers != null)
 			{
-				if (camera == null) camera = Camera.main;
-				
-				if (camera != null)
+				var total = Vector2.zero;
+				var count = 0;
+
+				for (var i = fingers.Count - 1; i >= 0; i--)
 				{
-					transform.RotateAround(camera.ScreenToWorldPoint(referencePoint), camera.transform.forward, deltaRotation);
+					var finger = Fingers[i];
+
+					if (finger != null)
+					{
+						total += finger.ScreenPosition;
+						count += 1;
+					}
+				}
+
+				if (count > 0)
+				{
+					center = total / count;
+
+					return true;
 				}
 			}
+
+			return false;
+		}
+		
+		// This wraps GetLastCenterOfFingers to be easier to use
+		public static Vector2 GetLastCenterOfFingers(List<LeanFinger> fingers)
+		{
+			var center = default(Vector2); GetLastCenterOfFingers(fingers, ref center); return center;
+		}
+
+		// If fingers contains more than one instance then this will return true and fill center with the average LastScreenPosition
+		public static bool GetLastCenterOfFingers(List<LeanFinger> fingers, ref Vector2 center)
+		{
+			if (fingers != null)
+			{
+				var total = Vector2.zero;
+				var count = 0;
+
+				for (var i = fingers.Count - 1; i >= 0; i--)
+				{
+					var finger = Fingers[i];
+
+					if (finger != null)
+					{
+						total += finger.LastScreenPosition;
+						count += 1;
+					}
+				}
+
+				if (count > 0)
+				{
+					center = total / count;
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+		
+		// This wraps GetAverageFingerDistance to be easier to use
+		public static float GetAverageFingerDistance(Vector2 referencePoint)
+		{
+			return GetAverageFingerDistance(Fingers, referencePoint);
+		}
+
+		// This wraps GetAverageFingerDistance to be easier to use
+		public static float GetAverageFingerDistance(List<LeanFinger> fingers, Vector2 referencePoint)
+		{
+			var distance = default(float); GetAverageFingerDistance(fingers, referencePoint, ref distance); return distance;
+		}
+
+		// This will return the average distance between all fingers and the reference point
+		public static bool GetAverageFingerDistance(List<LeanFinger> fingers, Vector2 referencePoint, ref float distance)
+		{
+			if (fingers != null)
+			{
+				var total = 0.0f;
+				var count = 0;
+
+				for (var i = fingers.Count - 1; i >= 0; i--)
+				{
+					var finger = Fingers[i];
+
+					if (finger != null)
+					{
+						total += finger.GetDistance(referencePoint);
+						count += 1;
+					}
+				}
+
+				if (count > 0)
+				{
+					distance = total / count;
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		// This wraps GetLastAverageFingerDistance to be easier to use
+		public static float GetLastAverageFingerDistance(Vector2 referencePoint)
+		{
+			return GetLastAverageFingerDistance(Fingers, referencePoint);
+		}
+
+		// This wraps GetLastAverageFingerDistance to be easier to use
+		public static float GetLastAverageFingerDistance(List<LeanFinger> fingers, Vector2 referencePoint)
+		{
+			var distance = default(float); GetLastAverageFingerDistance(fingers, referencePoint, ref distance); return distance;
+		}
+
+		// This will return the average distance between all fingers and the reference point
+		public static bool GetLastAverageFingerDistance(List<LeanFinger> fingers, Vector2 referencePoint, ref float distance)
+		{
+			if (fingers != null)
+			{
+				var total = 0.0f;
+				var count = 0;
+
+				for (var i = fingers.Count - 1; i >= 0; i--)
+				{
+					var finger = Fingers[i];
+
+					if (finger != null)
+					{
+						total += finger.GetLastDistance(referencePoint);
+						count += 1;
+					}
+				}
+
+				if (count > 0)
+				{
+					distance = total / count;
+
+					return true;
+				}
+			}
+
+			return false;
 		}
 		
 		protected virtual void OnEnable()
 		{
-			// Make sure there's only one LeanTouch active in the scene
-			if (Instance != null && Instance != this)
-			{
-				Debug.LogWarning("Your scene already contains a " + typeof(LeanTouch).Name + ", destroying the old one...");
-				
-				DestroyImmediate(Instance.gameObject);
-			}
-			
-			Instance = this;
-			
+			Instances.Add(this);
+
 #if UNITY_EDITOR
 			// Set the finger texture?
 			if (FingerTexture == null)
@@ -441,7 +503,18 @@ namespace Lean
 		
 		protected virtual void Update()
 		{
+			// Only update if this is the first instance
+			if (Instances[0] != this)
+			{
+				return;
+			}
+
 			UpdateAllInputs();
+		}
+
+		protected virtual void OnDisable()
+		{
+			Instances.Remove(this);
 		}
 		
 		protected virtual void OnGUI()
@@ -639,8 +712,8 @@ namespace Lean
 				// Multi?
 				else
 				{
-					var lastCenter   = GetLastCenterOfFingers();
-					var center       = GetCenterOfFingers();
+					var lastCenter   = LastCenterOfFingers;
+					var center       = CenterOfFingers;
 					var lastDistance = GetLastAverageFingerDistance(lastCenter);
 					var distance     = GetAverageFingerDistance(center);
 					
@@ -715,12 +788,12 @@ namespace Lean
 		// Add a finger based on index, or return the existing one
 		private void AddFinger(int index, Vector2 screenPosition)
 		{
-			var finger = Fingers.Find(t => t.Index == index);
+			var finger = FindFinger(index);
 			
 			// No finger found?
 			if (finger == null)
 			{
-				var inactiveIndex = InactiveFingers.FindIndex(t => t.Index == index);
+				var inactiveIndex = FindInactiveFingerIndex(index);
 				
 				// Use inactive finger?
 				if (inactiveIndex >= 0)
@@ -761,7 +834,6 @@ namespace Lean
 			finger.Set            = true;
 			finger.ScreenPosition = screenPosition;
 			
-			
 			// Record?
 			if (RecordFingers == true)
 			{
@@ -789,6 +861,36 @@ namespace Lean
 					finger.RecordSnapshot();
 				}
 			}
+		}
+
+		// Find the finger with the specified index, or return null
+		private LeanFinger FindFinger(int index)
+		{
+			for (var i = Fingers.Count - 1; i>= 0; i--)
+			{
+				var finger = Fingers[i];
+
+				if (finger.Index == index)
+				{
+					return finger;
+				}
+			}
+
+			return null;
+		}
+
+		// Find the index of the inactive finger with the specified index, or return -1
+		private int FindInactiveFingerIndex(int index)
+		{
+			for (var i = InactiveFingers.Count - 1; i>= 0; i--)
+			{
+				if (InactiveFingers[i].Index == index)
+				{
+					return i;
+				}
+			}
+
+			return -1;
 		}
 	}
 }
