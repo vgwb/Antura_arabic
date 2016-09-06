@@ -12,7 +12,7 @@ Installed Packages
 
 ## OPTIONAL
 - G2U 2.1.9 - COMMERCIAL (could not be released with final project)
-- JsonDotNet - COMMERCIAL (could not be released with final project)
+- JsonDotNet - FREE (could not be released with final project)
 
 ## OPTIONAL Editor utilities
 - QHierarchy 2.19 - COMMERCIAL

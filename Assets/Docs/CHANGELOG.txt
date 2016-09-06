@@ -3,8 +3,10 @@ DEV CHANGELOG
 =============
 to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
+=============
 
-##########   v0.6.0
+
+##########   v0.6.0 RELEASED to NORAD as Phase 1 alpha version
 
 2016-08-05 - [FastCrowd] reduced time to be hanged, to make letter much more reactive!
 2016-08-05 - [map] fix dot shows
@@ -328,14 +330,14 @@ git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges 
 - map screen
 - Assessment screen (init)
 - Rewards screen
-- Keeper's voice starts to be heard (to be finished) 
+- Keeper's voice starts to be heard (to be finished)
 - Mini Games: Tutorial
 - Don't Wake Up: refinement to levels
 - Balloons: improvements
 - Fast Crowd: variation
 - full walkthrough (hopefully)
-  
-  
+
+
 ## 2016-07-26 - Build #35 ##
 
 #### General ####
@@ -382,7 +384,7 @@ git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges 
 #### Balloons ####
 
 - added intro popup with image word
-- overhauled physics: 
+- overhauled physics:
 -- more natural rope hanging
 -- smoother letter dragging
 -- balloons explode and radiate force to knockback nearby ones
