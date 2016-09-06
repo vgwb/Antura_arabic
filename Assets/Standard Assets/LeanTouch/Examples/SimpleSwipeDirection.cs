@@ -4,6 +4,7 @@ using UnityEngine.UI;
 // This script will tell you which direction you swiped in
 public class SimpleSwipeDirection : MonoBehaviour
 {
+	[Tooltip("The text element we will display the swipe information in")]
 	public Text InfoText;
 	
 	protected virtual void OnEnable()
@@ -14,7 +15,7 @@ public class SimpleSwipeDirection : MonoBehaviour
 	
 	protected virtual void OnDisable()
 	{
-		// Unhook into the OnSwipe event
+		// Unhook from the OnSwipe event
 		Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
 	}
 	

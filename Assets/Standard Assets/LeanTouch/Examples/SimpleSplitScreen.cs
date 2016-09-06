@@ -4,8 +4,10 @@ using UnityEngine.UI;
 // This script shows you how you can check tos ee which part of the screen a finger is on, and work accordingly
 public class SimpleSplitScreen : MonoBehaviour
 {
+	[Tooltip("The transform for the left GameObject")]
 	public Transform LeftObject;
 	
+	[Tooltip("The transform for the right GameObject")]
 	public Transform RightObject;
 	
 	protected virtual void OnEnable()
@@ -16,7 +18,7 @@ public class SimpleSplitScreen : MonoBehaviour
 	
 	protected virtual void OnDisable()
 	{
-		// Unhook the OnFingerSet event
+		// Unhook from the OnFingerSet event
 		Lean.LeanTouch.OnFingerSet -= OnFingerSet;
 	}
 	
@@ -25,7 +27,7 @@ public class SimpleSplitScreen : MonoBehaviour
 		// Right side of the screen?
 		if (finger.ScreenPosition.x > Screen.width / 2)
 		{
-			// Does it exist?
+			// Does the right object exist?
 			if (RightObject != null)
 			{
 				// Position it in front of the finger
@@ -35,8 +37,8 @@ public class SimpleSplitScreen : MonoBehaviour
 		// Left side?
 		else
 		{
-			// Does it exist?
-			if (RightObject != null)
+			// Does the left object exist?
+			if (LeftObject != null)
 			{
 				// Position it in front of the finger
 				LeftObject.position = finger.GetWorldPosition(10.0f);

@@ -41,73 +41,69 @@ namespace Lean
 		// Draw the whole inspector
 		public override void OnInspectorGUI()
 		{
+			if (LeanTouch.Instances.Count > 1)
+			{
+				EditorGUILayout.Separator();
+
+				EditorGUILayout.HelpBox("There is more than one active and enabled LeanThread...", MessageType.Warning);
+			}
+
 			var touch = (LeanTouch)target;
 			
-			EditorGUILayout.Separator();
+			Separator();
 			
 			DrawSettings(touch);
 			
-			EditorGUILayout.Separator();
+			Separator();
 			
 			DrawGestures();
 			
-			EditorGUILayout.Separator();
+			Separator();
 			
 			DrawFingers(touch);
 			
-			EditorGUILayout.Separator();
+			Separator();
 			
 			Repaint();
 		}
 		
-		private static void DrawSettings(LeanTouch touch)
+		private void DrawSettings(LeanTouch touch)
 		{
-			EditorGUI.LabelField(Reserve(), "Settings", EditorStyles.boldLabel);
+			DrawTitle("Settings");
+			DrawDefault("TapThreshold");
+			DrawDefault("SwipeThreshold");
+			DrawDefault("HeldThreshold");
+			DrawDefault("ReferenceDpi");
 			
-			touch.TapThreshold = EditorGUILayout.FloatField("Tap Threshold", touch.TapThreshold);
+			Separator();
 			
-			touch.SwipeThreshold = EditorGUILayout.FloatField("Swipe Threshold", touch.SwipeThreshold);
-			
-			touch.HeldThreshold = EditorGUILayout.FloatField("Held Threshold", touch.HeldThreshold);
-			
-			touch.ReferenceDpi = EditorGUILayout.IntField("Reference DPI", touch.ReferenceDpi);
-			
-			EditorGUILayout.Separator();
-			
-			touch.RecordFingers = EditorGUILayout.Toggle("Record Fingers", touch.RecordFingers);
+			DrawDefault("RecordFingers");
 			
 			if (touch.RecordFingers == true)
 			{
-				EditorGUI.indentLevel += 1;
-				{
-					touch.RecordThreshold = EditorGUILayout.FloatField("Record Threshold", touch.RecordThreshold);
-					
-					touch.RecordLimit = EditorGUILayout.FloatField("Record Limit", touch.RecordLimit);
-				}
-				EditorGUI.indentLevel -= 1;
+				BeginIndent();
+					DrawDefault("RecordThreshold");
+					DrawDefault("RecordLimit");
+				EndIndent();
 			}
 			
-			EditorGUILayout.Separator();
-			
-			touch.SimulateMultiFingers = EditorGUILayout.Toggle("Simulate Multi Fingers", touch.SimulateMultiFingers);
+			Separator();
+
+			DrawDefault("SimulateMultiFingers");
 			
 			if (touch.SimulateMultiFingers == true)
 			{
-				EditorGUI.indentLevel += 1;
-				{
-					touch.PinchTwistKey = (KeyCode)EditorGUILayout.EnumPopup("Pinch Twist Key", touch.PinchTwistKey);
-					
-					touch.MultiDragKey = (KeyCode)EditorGUILayout.EnumPopup("Multi Drag Key", touch.MultiDragKey);
-					
-					touch.FingerTexture = (Texture2D)EditorGUI.ObjectField(Reserve(), "Touch Texture", touch.FingerTexture, typeof(Texture2D), true);
-				}
-				EditorGUI.indentLevel -= 1;
+				BeginIndent();
+					DrawDefault("PinchTwistKey");
+					DrawDefault("MultiDragKey");
+					DrawDefault("FingerTexture");
+				EndIndent();
 			}
 		}
-		
-		private static void DrawFingers(LeanTouch touch)
+
+		private void DrawFingers(LeanTouch touch)
 		{
-			EditorGUI.LabelField(Reserve(), "Fingers", EditorStyles.boldLabel);
+			DrawTitle("Fingers");
 			
 			allFingers.Clear();
 			allFingers.AddRange(LeanTouch.Fingers);
@@ -129,9 +125,9 @@ namespace Lean
 			}
 		}
 		
-		private static void DrawGestures()
+		private void DrawGestures()
 		{
-			EditorGUI.LabelField(Reserve(), "Gestures", EditorStyles.boldLabel);
+			DrawTitle("Gestures");
 			
 			EditorGUI.BeginDisabledGroup(true);
 			{
@@ -159,6 +155,38 @@ namespace Lean
 			EditorGUI.LabelField(left, name);
 			EditorGUI.FloatField(middle, xy.x);
 			EditorGUI.FloatField(right, xy.y);
+		}
+
+		private void Separator()
+		{
+			EditorGUILayout.Separator();
+		}
+
+		private void DrawTitle(string name)
+		{
+			EditorGUI.LabelField(Reserve(), name, EditorStyles.boldLabel);
+		}
+
+		private void DrawDefault(string name)
+		{
+			EditorGUI.BeginChangeCheck();
+			{
+				EditorGUILayout.PropertyField(serializedObject.FindProperty(name));
+			}
+			if (EditorGUI.EndChangeCheck() == true)
+			{
+				serializedObject.ApplyModifiedProperties();
+			}
+		}
+
+		private void BeginIndent()
+		{
+			EditorGUI.indentLevel += 1;
+		}
+
+		private void EndIndent()
+		{
+			EditorGUI.indentLevel -= 1;
 		}
 		
 		private static Rect Reserve(ref Rect rect, float rightWidth = 0.0f, float padding = 2.0f)
