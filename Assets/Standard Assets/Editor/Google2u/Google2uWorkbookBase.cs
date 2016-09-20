@@ -34,6 +34,7 @@ namespace Google2u
         public bool ShowSpreadsheetExport;
         public bool ShowSpreadsheetOptions;
         public bool ShowSpreadsheetOptionsArrayDelimiters;
+        public bool ShowSpreadsheetOptionsCodeGeneration;
         public bool ShowSpreadsheetOptionsCSV;
         public bool ShowSpreadsheetOptionsJSON;
         public bool ShowSpreadsheetOptionsLegacy;
@@ -123,6 +124,24 @@ namespace Google2u
                     EditorGUILayoutEx.ToggleInput(
                         Google2u.LocalizationInfo.Localize(Localization.rowIds.ID_LABEL_TRIM_STRING_ARRAYS),
                         ref ExportOptions.TrimStringArrays, prefix + "TrimStringArrays");
+                }
+                in_layout.EndFadeArea();
+
+                ShowSpreadsheetOptionsCodeGeneration =
+                Google2uGUIUtil.GetBool("workbook" + WorkbookName.Replace(' ', '_') + "_OptionsCodeGenerationOpen",
+                    ShowSpreadsheetOptionsCodeGeneration);
+                var showWorkbookOptionsCodeGeneration = in_layout.BeginFadeArea(ShowSpreadsheetOptionsCodeGeneration,
+                    Google2u.LocalizationInfo.Localize(Localization.rowIds.ID_LABEL_CODE_GENERATION_OPTIONS),
+                    "workbook" + WorkbookName.Replace(' ', '_') + "_OptionsCodeGeneration", in_layout.OuterBox,
+                    in_layout.OuterBoxHeader);
+                ShowSpreadsheetOptionsCodeGeneration = showWorkbookOptionsCodeGeneration.Open;
+                Google2uGUIUtil.SetBool("workbook" + WorkbookName.Replace(' ', '_') + "_OptionsCodeGenerationOpen",
+                    ShowSpreadsheetOptionsCodeGeneration);
+                if (showWorkbookOptionsCodeGeneration.Show())
+                {
+                    EditorGUILayoutEx.ToggleInput(
+                        Google2u.LocalizationInfo.Localize(Localization.rowIds.ID_LABEL_PREPEND_UNDERSCORES),
+                        ref ExportOptions.TrimStrings, prefix + "PrependUnderscoreToVariableNames");
                 }
                 in_layout.EndFadeArea();
 
@@ -779,6 +798,16 @@ namespace Google2u
 
                     if (showWorkbookOptionsXML.Show())
                     {
+
+                        
+
+                        var oldXMLColsAsChildTags = ExportOptions.XMLColsAsChildTags;
+                        EditorGUILayoutEx.ToggleInput(
+                            Google2u.LocalizationInfo.Localize(Localization.rowIds.ID_LABEL_XML_COLUMN_AS_CHILD_TAGS),
+                            ref ExportOptions.XMLColsAsChildTags, prefix + "XMLColsAsChildTags");
+                        if (oldXMLColsAsChildTags != ExportOptions.XMLColsAsChildTags)
+                            in_activeWorksheet.UpdateValidation = true;
+
                         var oldXMLCellArrayToString = ExportOptions.XMLCellArrayToString;
                         EditorGUILayoutEx.ToggleInput(
                             Google2u.LocalizationInfo.Localize(Localization.rowIds.ID_LABEL_CONVERT_CELL_ARRAYS),

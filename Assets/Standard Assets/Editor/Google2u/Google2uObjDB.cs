@@ -144,7 +144,7 @@ namespace Google2u
                     {
                         if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                             string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader)) ||
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                         {
                         }
@@ -154,7 +154,7 @@ namespace Google2u
                                 FormatLine("		public System.Collections.Generic.List<" +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + "> " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = new System.Collections.Generic.List<" +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + ">();");
                         }
@@ -162,7 +162,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("		public " + StringSupportedType(in_sheet.Rows[0][i].MyType) + " " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ";");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ";");
                     }
 
                     // constructor parameter list
@@ -173,7 +173,7 @@ namespace Google2u
                         {
                             if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                                 string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                    in_options.LowercaseHeader)) ||
+                                    in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                 (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                                 continue;
 
@@ -182,7 +182,7 @@ namespace Google2u
                             firstItem = false;
                             fileString += ("string _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader));
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames));
                         }
                     }
                     fileString += FormatLine(") " + Environment.NewLine + "		{");
@@ -193,7 +193,7 @@ namespace Google2u
                         //nightmare time
                         if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                             string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader)) ||
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                         {
                         }
@@ -202,10 +202,10 @@ namespace Google2u
                             fileString +=
                                 FormatLine("			" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = GameObject.Find(\"" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + "\");");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "\");");
                         }
                         else if (in_sheet.Rows[0][i].MyType == SupportedType.Bool)
                         {
@@ -214,20 +214,20 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				if(" + StringSupportedType(in_sheet.Rows[0][i].MyType) + ".TryParse(_" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ", out res))");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ", out res))");
                             fileString +=
                                 FormatLine("					" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " +\" to bool\");");
                             fileString += FormatLine("			}");
                         }
@@ -238,21 +238,21 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				if(" + StringSupportedType(in_sheet.Rows[0][i].MyType) + ".TryParse(_" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ", NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
                             fileString +=
                                 FormatLine("					" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " +\" to byte\");");
                             fileString += FormatLine("			}");
                         }
@@ -263,21 +263,21 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				if(" + StringSupportedType(in_sheet.Rows[0][i].MyType) + ".TryParse(_" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ", NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
                             fileString +=
                                 FormatLine("					" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + " +\" to " +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " +\" to " +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + "\");");
                             fileString += FormatLine("			}");
                         }
@@ -290,7 +290,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            arrayDelimiter +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -307,7 +307,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("						" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add(res);");
                             fileString += FormatLine("					else");
                             fileString += FormatLine("					{");
@@ -315,24 +315,24 @@ namespace Google2u
                                 fileString +=
                                     FormatLine("						" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( 0 );");
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.BoolArray)
                                 fileString +=
                                     FormatLine("						" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( false );");
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.FloatArray)
                                 fileString +=
                                     FormatLine("						" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( float.NaN );");
                             fileString +=
                                 FormatLine("						Debug.LogError(\"Failed To Convert " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ result[i] +\" to " +
                                            (StringSupportedType(in_sheet.Rows[0][i].MyType)) + "\");");
                             fileString += FormatLine("					}");
@@ -346,21 +346,21 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				if(int.TryParse(_" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ", NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
                             fileString +=
                                 FormatLine("					" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " +\" to int\");");
                             fileString += FormatLine("			}");
                         }
@@ -372,7 +372,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            arrayDelimiter +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -383,19 +383,19 @@ namespace Google2u
                             fileString +=
                                 FormatLine("						" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( res );");
                             fileString += FormatLine("					else");
                             fileString += FormatLine("					{");
                             fileString +=
                                 FormatLine("						" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( 0 );");
                             fileString +=
                                 FormatLine("						Debug.LogError(\"Failed To Convert " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ result[i] +\" to " +
                                            (StringSupportedType(in_sheet.Rows[0][i].MyType)) + "\");");
                             fileString += FormatLine("					}");
@@ -408,19 +408,19 @@ namespace Google2u
                                 fileString +=
                                     FormatLine("			" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                " = _" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Trim();");
                             else
                                 fileString +=
                                     FormatLine("			" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                " = _" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ";");
                         }
                         else if (in_sheet.Rows[0][i].MyType == SupportedType.StringArray)
@@ -429,7 +429,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            stringArrayDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -438,13 +438,13 @@ namespace Google2u
                                 fileString +=
                                     FormatLine("					" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( result[i].Trim() );");
                             else
                                 fileString +=
                                     FormatLine("					" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( result[i] );");
                             fileString += FormatLine("				}");
                             fileString += FormatLine("			}");
@@ -455,7 +455,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 2)");
@@ -463,7 +463,7 @@ namespace Google2u
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + " );");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < 2; i++)");
                             fileString += FormatLine("				{");
@@ -479,24 +479,24 @@ namespace Google2u
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".x = results[0];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".y = results[1];");
                             fileString += FormatLine("			}");
                         }
@@ -507,7 +507,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -523,7 +523,7 @@ namespace Google2u
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) +
                                            " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -540,12 +540,12 @@ namespace Google2u
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
@@ -553,7 +553,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("		        		" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(in_sheet.Rows[0][i].MyType)) +
                                            "(results[0], results[1] ));");
                             fileString += FormatLine("		        	}");
@@ -567,7 +567,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 3)");
@@ -575,7 +575,7 @@ namespace Google2u
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + " );");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < 3; i++)");
                             fileString += FormatLine("				{");
@@ -591,29 +591,29 @@ namespace Google2u
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".x = results[0];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".y = results[1];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".z = results[2];");
                             fileString += FormatLine("			}");
                         }
@@ -623,7 +623,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -639,7 +639,7 @@ namespace Google2u
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) +
                                            " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -656,12 +656,12 @@ namespace Google2u
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
@@ -669,7 +669,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("		        	" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(in_sheet.Rows[0][i].MyType)) +
                                            "(results[0], results[1], results[2] ));");
 
@@ -684,7 +684,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 3 && splitpath.Length != 4)");
@@ -692,7 +692,7 @@ namespace Google2u
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + " );");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < splitpath.Length; i++)");
                             fileString += FormatLine("				{");
@@ -708,35 +708,35 @@ namespace Google2u
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".r = results[0];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".g = results[1];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".b = results[2];");
                             fileString += FormatLine("				if(splitpath.Length == 4)");
                             fileString +=
                                 FormatLine("					" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".a = results[3];");
                             fileString += FormatLine("			}");
                         }
@@ -746,7 +746,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -762,7 +762,7 @@ namespace Google2u
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) +
                                            " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -779,12 +779,12 @@ namespace Google2u
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
@@ -793,14 +793,14 @@ namespace Google2u
                             fileString +=
                                 FormatLine("		        		" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(in_sheet.Rows[0][i].MyType)) +
                                            "(results[0], results[1], results[2] ));");
                             fileString += FormatLine("		        		else");
                             fileString +=
                                 FormatLine("		        		" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(in_sheet.Rows[0][i].MyType)) +
                                            "(results[0], results[1], results[2], results[3] ));");
 
@@ -815,7 +815,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 3 && splitpath.Length != 4)");
@@ -823,7 +823,7 @@ namespace Google2u
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + " );");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				byte []results = new byte[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < splitpath.Length; i++)");
                             fileString += FormatLine("				{");
@@ -839,35 +839,35 @@ namespace Google2u
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".r = results[0];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".g = results[1];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".b = results[2];");
                             fileString += FormatLine("				if(splitpath.Length == 4)");
                             fileString +=
                                 FormatLine("					" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".a = results[3];");
                             fileString += FormatLine("			}");
                         }
@@ -877,7 +877,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -893,7 +893,7 @@ namespace Google2u
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) +
                                            " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				byte []results = new byte[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -910,12 +910,12 @@ namespace Google2u
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
@@ -924,14 +924,14 @@ namespace Google2u
                             fileString +=
                                 FormatLine("		        		    " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Add( new " +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Add( new " +
                                            (StringSupportedType(in_sheet.Rows[0][i].MyType)) +
                                            "(results[0], results[1], results[2], System.Convert.ToByte(0) ));");
                             fileString += FormatLine("		        		else");
                             fileString +=
                                 FormatLine("		        		    " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Add( new " +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Add( new " +
                                            (StringSupportedType(in_sheet.Rows[0][i].MyType)) +
                                            "(results[0], results[1], results[2], results[3] ));");
 
@@ -946,7 +946,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 4)");
@@ -954,7 +954,7 @@ namespace Google2u
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) + " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + " );");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < 4; i++)");
                             fileString += FormatLine("				{");
@@ -970,34 +970,34 @@ namespace Google2u
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".x = results[0];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".y = results[1];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".z = results[2];");
                             fileString +=
                                 FormatLine("				" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".w = results[3];");
                             fileString += FormatLine("			}");
                         }
@@ -1007,7 +1007,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("				string []result = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Split(\"" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -1023,7 +1023,7 @@ namespace Google2u
                                            StringSupportedType(in_sheet.Rows[0][i].MyType) +
                                            " in \" + _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -1040,12 +1040,12 @@ namespace Google2u
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader)
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
                                                      +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
@@ -1053,7 +1053,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("		        		" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(in_sheet.Rows[0][i].MyType)) +
                                            "(results[0], results[1], results[2], results[3] ));");
                             fileString += FormatLine("		        	}");
@@ -1066,9 +1066,9 @@ namespace Google2u
                             fileString +=
                                 FormatLine("			" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + " = _" +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " = _" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ";");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ";");
                         }
                     }
                     fileString += FormatLine("		}");
@@ -1081,7 +1081,7 @@ namespace Google2u
                         {
                             if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                                 string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                    in_options.LowercaseHeader)) ||
+                                    in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                 (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                                 continue;
                             colCount++;
@@ -1111,14 +1111,14 @@ namespace Google2u
                         {
                             if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                                 string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                    in_options.LowercaseHeader)) ||
+                                    in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                 (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                                 continue;
                             fileString += FormatLine("				case " + colNum++ + ":");
                             fileString +=
                                 FormatLine("					ret = " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".ToString();");
                             fileString += FormatLine("					break;");
                         }
@@ -1144,17 +1144,17 @@ namespace Google2u
                     {
                         if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                             string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader)) ||
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                             continue;
                         fileString +=
                             FormatLine("				case \"" +
                                        MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                           in_options.LowercaseHeader) + "\":");
+                                           in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "\":");
                         fileString +=
                             FormatLine("					ret = " +
                                        MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                           in_options.LowercaseHeader) +
+                                           in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                        ".ToString();");
                         fileString += FormatLine("					break;");
                     }
@@ -1171,16 +1171,16 @@ namespace Google2u
                     {
                         if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                             string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader)) ||
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                             continue;
                         fileString +=
                             FormatLine("			ret += \"{\" + \"" +
                                        MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                           in_options.LowercaseHeader) +
+                                           in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                        "\" + \" : \" + " +
                                        MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                           in_options.LowercaseHeader) +
+                                           in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                        ".ToString() + \"} \";");
                     }
                     fileString += FormatLine("			return ret;");
@@ -1312,7 +1312,7 @@ namespace Google2u
                             {
                                 if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                                     string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                        in_options.LowercaseHeader)) ||
+                                        in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                     (in_options.ObjectDBCullColumns && i > in_sheet.FirstBlankCol))
                                     continue;
                                 typeCount++;
@@ -1435,7 +1435,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("		public int " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "_Index = 0;");
                         }
                     }
@@ -1488,12 +1488,12 @@ namespace Google2u
                             fileString +=
                                 FormatLine("			if ( r." +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Count == 0 )");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Count == 0 )");
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("			    GUILayout.Label( \"" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "\", GUILayout.Width( 150.0f ) );");
                             fileString += FormatLine("			    {");
                             fileString += FormatLine("			    	EditorGUILayout.LabelField( \"Empty Array\" );");
@@ -1504,45 +1504,45 @@ namespace Google2u
                             fileString +=
                                 FormatLine("			    GUILayout.Label( \"" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "\", GUILayout.Width( 130.0f ) );");
                             // when you switch the row you are examining, they may have different array sizes... therefore, we may actually be past the end of the list
                             fileString +=
                                 FormatLine("			    if ( " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "_Index >= r." +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Count )");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Count )");
                             fileString +=
                                 FormatLine("				    " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + "_Index = 0;");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index = 0;");
                             // back button
                             fileString += FormatLine("			    if ( GUILayout.Button(\"<\", GUILayout.Width( 18.0f )) )");
                             fileString += FormatLine("			    {");
                             fileString +=
                                 FormatLine("			    	" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + "_Index -= 1;");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index -= 1;");
                             fileString +=
                                 FormatLine("			    	if ( " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "_Index < 0 )");
                             fileString +=
                                 FormatLine("			    		" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "_Index = r." +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Count - 1;");
                             fileString += FormatLine("			    }");
 
                             fileString += FormatLine("			    EditorGUILayout.LabelField(" +
                                                      MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                         in_options.LowercaseHeader) +
+                                                         in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "_Index.ToString(), GUILayout.Width( 15.0f ));");
 
                             // fwd button
@@ -1551,18 +1551,18 @@ namespace Google2u
                             fileString +=
                                 FormatLine("			    	" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + "_Index += 1;");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index += 1;");
                             fileString +=
                                 FormatLine("			    	if ( " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "_Index >= r." +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".Count )");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Count )");
                             fileString +=
                                 FormatLine("		        		" +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) +
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            "_Index = 0;");
                             fileString += FormatLine("				}");
                         }
@@ -1572,12 +1572,12 @@ namespace Google2u
                             {
                                 fileString += FormatLine("			GUILayout.Label( \"" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "\", GUILayout.Width( 150.0f ) );");
                                 fileString += FormatLine("			{");
                                 fileString += FormatLine("				EditorGUILayout.FloatField( (float)r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                                 fileString += FormatLine("			}");
                             }
                             else if ((in_sheet.Rows[0][i].MyType == SupportedType.Byte) ||
@@ -1585,31 +1585,31 @@ namespace Google2u
                             {
                                 fileString += FormatLine("			GUILayout.Label( \"" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "\", GUILayout.Width( 150.0f ) );");
                                 fileString += FormatLine("			{");
                                 fileString += FormatLine("				EditorGUILayout.IntField( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                                 fileString += FormatLine("			}");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.BoolArray)
                             {
                                 fileString += FormatLine("				EditorGUILayout.Toggle( System.Convert.ToBoolean( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index] ) );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index] ) );");
                                 fileString += FormatLine("			}");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.StringArray)
                             {
                                 fileString += FormatLine("				EditorGUILayout.TextField( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "_Index] );");
                                 fileString += FormatLine("			}");
                             }
@@ -1617,9 +1617,9 @@ namespace Google2u
                             {
                                 fileString += FormatLine("				EditorGUILayout.FloatField( (float)r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index] );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index] );");
                                 fileString += FormatLine("			}");
                             }
                             else if (IsSupportedArrayType(in_sheet.Rows[0][i].MyType) &&
@@ -1628,21 +1628,21 @@ namespace Google2u
                             {
                                 fileString += FormatLine("				EditorGUILayout.IntField( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index] );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index] );");
                                 fileString += FormatLine("			}");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.Byte)
                             {
                                 fileString += FormatLine("			GUILayout.Label( \"" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "\", GUILayout.Width( 150.0f ) );");
                                 fileString += FormatLine("			{");
                                 fileString += FormatLine("				EditorGUILayout.TextField( System.Convert.ToString( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          " ) );");
                                 fileString += FormatLine("			}");
                             }
@@ -1651,24 +1651,24 @@ namespace Google2u
                                 fileString +=
                                     FormatLine("			GUILayout.Label( \"" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) + "\", GUILayout.Width( 150.0f ) );");
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "\", GUILayout.Width( 150.0f ) );");
                                 fileString += FormatLine("			{");
                                 fileString += FormatLine("				EditorGUILayout.Toggle( System.Convert.ToBoolean( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " ) );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " ) );");
                                 fileString += FormatLine("			}");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.String)
                             {
                                 fileString += FormatLine("			GUILayout.Label( \"" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "\", GUILayout.Width( 150.0f ) );");
                                 fileString += FormatLine("			{");
                                 fileString +=
                                     FormatLine("				EditorGUILayout.TextField( r." +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) + " );");
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                                 fileString += FormatLine("			}");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.GameObject)
@@ -1676,13 +1676,13 @@ namespace Google2u
                                 fileString +=
                                     FormatLine("			GUILayout.Label( \"" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                "\", GUILayout.Width( 150.0f ) );");
                                 fileString += FormatLine("			{");
                                 fileString +=
                                     FormatLine("				EditorGUILayout.ObjectField( r." +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) + " );");
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                                 fileString += FormatLine("			}");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.Vector2)
@@ -1690,9 +1690,9 @@ namespace Google2u
                                 fileString +=
                                     FormatLine("			EditorGUILayout.Vector2Field( \"" +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) + "\", r." +
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "\", r." +
                                                MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                   in_options.LowercaseHeader) + " );");
+                                                   in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.Vector2Array)
                             {
@@ -1700,10 +1700,10 @@ namespace Google2u
                                 fileString += FormatLine("			EditorGUILayout.BeginHorizontal();");
                                 fileString += FormatLine("			EditorGUILayout.Vector2Field( \"\", r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "_Index] );");
                                 fileString += FormatLine("			}");
                             }
@@ -1711,9 +1711,9 @@ namespace Google2u
                             {
                                 fileString += FormatLine("			EditorGUILayout.Vector3Field( \"" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "\", r." +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "\", r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.Vector3Array)
                             {
@@ -1721,9 +1721,9 @@ namespace Google2u
                                 fileString += FormatLine("			EditorGUILayout.BeginHorizontal();");
                                 fileString += FormatLine("			EditorGUILayout.Vector3Field( \"\", r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index] );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index] );");
                                 fileString += FormatLine("			}");
                             }
                             else if ((in_sheet.Rows[0][i].MyType == SupportedType.Color) ||
@@ -1731,12 +1731,12 @@ namespace Google2u
                             {
                                 fileString += FormatLine("			GUILayout.Label( \"" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "\", GUILayout.Width( 150.0f ) );");
                                 fileString += FormatLine("			{");
                                 fileString += FormatLine("				EditorGUILayout.ColorField( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                                 fileString += FormatLine("			}");
                             }
                             else if ((in_sheet.Rows[0][i].MyType == SupportedType.ColorArray) ||
@@ -1746,34 +1746,34 @@ namespace Google2u
                                 fileString += FormatLine("			EditorGUILayout.BeginHorizontal();");
                                 fileString += FormatLine("			EditorGUILayout.ColorField( \"\", r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index] );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index] );");
                                 fileString += FormatLine("			}");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.Quaternion)
                             {
                                 fileString += FormatLine("          Vector4 converted" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                          " = new Vector4( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + ".x, "
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".x, "
                                                          + "r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + ".y, "
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".y, "
                                                          + "r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + ".z, "
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".z, "
                                                          + "r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + ".w ); ");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".w ); ");
                                 fileString += FormatLine("			EditorGUILayout.Vector4Field( \"" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "\", converted" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "\", converted" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             }
                             else if (in_sheet.Rows[0][i].MyType == SupportedType.QuaternionArray)
                             {
@@ -1781,29 +1781,29 @@ namespace Google2u
                                 fileString += FormatLine("			EditorGUILayout.BeginHorizontal();");
                                 fileString += FormatLine("          Vector4 converted" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " = new Vector4( r." +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " = new Vector4( r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index].x, " +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index].x, " +
                                                          "r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index].y, " +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index].y, " +
                                                          "r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index].z, " +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index].z, " +
                                                          "r." +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "[" +
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "[" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + "_Index].w ); ");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "_Index].w ); ");
                                 fileString += FormatLine("			EditorGUILayout.Vector4Field( \"\", converted" +
                                                          MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                                             in_options.LowercaseHeader) + " );");
+                                                             in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                                 fileString += FormatLine("			}");
                             }
                         }
@@ -1874,7 +1874,7 @@ namespace Google2u
                             var fsmvarType = string.Empty;
                             var varType = StringSupportedType(in_sheet.Rows[0][i].MyType);
                             var varName = MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader);
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames);
 
                             if ((in_sheet.Rows[0][i].MyType == SupportedType.Void) ||
                                 (IsSupportedArrayType(in_sheet.Rows[0][i].MyType)) ||
@@ -1938,7 +1938,7 @@ namespace Google2u
                         for (var i = 1; i < in_sheet.Rows[0].Count; i++)
                         {
                             var varName = MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader);
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames);
 
                             if ((in_sheet.Rows[0][i].MyType == SupportedType.Void) ||
                                 IsSupportedArrayType(in_sheet.Rows[0][i].MyType) ||
@@ -1974,7 +1974,7 @@ namespace Google2u
                         for (var i = 1; i < in_sheet.Rows[0].Count; i++)
                         {
                             var varName = MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader);
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames);
 
                             if ((in_sheet.Rows[0][i].MyType == SupportedType.Void) ||
                                 IsSupportedArrayType(in_sheet.Rows[0][i].MyType) ||
@@ -2054,7 +2054,7 @@ namespace Google2u
                             var fsmvarType = string.Empty;
                             var varType = StringSupportedType(in_sheet.Rows[0][i].MyType);
                             var varName = MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader);
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames);
 
                             if ((in_sheet.Rows[0][i].MyType == SupportedType.Void) ||
                                 IsSupportedArrayType(in_sheet.Rows[0][i].MyType) ||
@@ -2118,7 +2118,7 @@ namespace Google2u
                         for (var i = 1; i < in_sheet.Rows[0].Count; i++)
                         {
                             var varName = MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader);
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames);
 
                             if ((in_sheet.Rows[0][i].MyType == SupportedType.Void) ||
                                 IsSupportedArrayType(in_sheet.Rows[0][i].MyType) ||
@@ -2163,7 +2163,7 @@ namespace Google2u
                         for (var i = 1; i < in_sheet.Rows[0].Count; i++)
                         {
                             var varName = MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader);
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames);
 
                             if ((in_sheet.Rows[0][i].MyType == SupportedType.Void) ||
                                 IsSupportedArrayType(in_sheet.Rows[0][i].MyType) ||

@@ -38,6 +38,8 @@ namespace Google2u
             ComplexTypeDelimiters = Google2uGUIUtil.GetInt(in_prefix + "ComplexTypeDelimiters", ComplexTypeDelimiters);
             ComplexArrayDelimiters = Google2uGUIUtil.GetInt(in_prefix + "ComplexArrayDelimiters", ComplexArrayDelimiters);
 
+            PrependUnderscoreToVariableNames = Google2uGUIUtil.GetBool(in_prefix + "PrependUnderscoreToVariableNames", PrependUnderscoreToVariableNames);
+
             #region ObjectDatabase Options
 
             var dbObjName = Google2uGUIUtil.GetString(_Prefix + "GameObjectDatabaseName", string.Empty);
@@ -94,6 +96,7 @@ namespace Google2u
 
             #region XML Options
 
+            XMLColsAsChildTags = Google2uGUIUtil.GetBool(in_prefix + "XMLColsAsChildTags", XMLColsAsChildTags);
             XMLCellArrayToString = Google2uGUIUtil.GetBool(in_prefix + "XMLCellArrayToString", XMLCellArrayToString);
             XMLCullColumns = Google2uGUIUtil.GetBool(in_prefix + "XMLCullColumns", XMLCullColumns);
             XMLCullRows = Google2uGUIUtil.GetBool(in_prefix + "XMLCullRows", XMLCullRows);
@@ -184,6 +187,12 @@ namespace Google2u
 
         #endregion
 
+        #region Code Generation
+
+        public bool PrependUnderscoreToVariableNames = true;
+
+        #endregion
+
         #region ObjectDatabase Options
 
         [SerializeField] private GameObject _ExportDatabaseGameObject;
@@ -258,6 +267,7 @@ namespace Google2u
 
         #region XML Options
 
+        public bool XMLColsAsChildTags = true;
         public bool XMLCellArrayToString;
         public bool XMLCullColumns;
         public bool XMLCullRows;

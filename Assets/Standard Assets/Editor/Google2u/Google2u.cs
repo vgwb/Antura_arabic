@@ -199,7 +199,7 @@ namespace Google2u
             {
                 var ma = 2;
                 var mi = 1;
-                var bu = 9;
+                var bu = 12;
 
                 var request =
                     WebRequest.Create("http://www.litteratus.net/CheckUpdate.php?ma=" + ma + "&mi=" + mi + "&bu=" + bu);

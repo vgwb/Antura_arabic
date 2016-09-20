@@ -18,12 +18,23 @@ namespace Google2u
 
     public partial class Google2u : EditorWindow
     {
-        private static string MakeValidVariableName(string in_string, bool in_makeLower)
+        private static string MakeValidVariableName(string in_string, bool in_makeLower, bool in_prependUnderscore)
         {
             var ret = in_makeLower ? in_string.ToLowerInvariant() : in_string;
             if (string.IsNullOrEmpty(ret))
             {
                 return ret;
+            }
+
+            string[] invalidStarts =
+            {
+                "0", "1", "2", "3", "4",
+                "5", "6", "7", "8", "9"
+            };
+
+            if (invalidStarts.Any(start => in_string.StartsWith(start)))
+            {
+                ret = "_" + in_string;
             }
 
             string[] invalidCharacters =
@@ -36,7 +47,7 @@ namespace Google2u
 
             ret = invalidCharacters.Aggregate(ret, (in_current, in_x) => in_current.Replace(in_x, "_"));
 
-            ret = "_" + ret;
+            ret = in_prependUnderscore ? "_" + ret : "" + ret;
 
             return ret;
         }
@@ -155,7 +166,7 @@ namespace Google2u
                         var rowHeader = in_sheet.Rows[0][i].CellValueString;
 
                         if (rowType == SupportedType.Void ||
-                            string.IsNullOrEmpty(MakeValidVariableName(rowHeader, in_options.LowercaseHeader)) ||
+                            string.IsNullOrEmpty(MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.StaticDBCullColumns && i > in_sheet.FirstBlankCol))
                         {
                             continue;
@@ -164,13 +175,13 @@ namespace Google2u
                         if (IsSupportedArrayType(rowType))
                             fileString +=
                                 FormatLine("		public System.Collections.Generic.List<" + StringSupportedType(rowType) +
-                                           "> " + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           "> " + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = new System.Collections.Generic.List<" + StringSupportedType(rowType) +
                                            ">();");
                         else
                             fileString +=
                                 FormatLine("		public " + StringSupportedType(rowType) + " " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ";");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ";");
                     }
 
                     // constructor parameter list
@@ -183,14 +194,14 @@ namespace Google2u
                             var rowHeader = in_sheet.Rows[0][i].CellValueString;
 
                             if (rowType == SupportedType.Void ||
-                                string.IsNullOrEmpty(MakeValidVariableName(rowHeader, in_options.LowercaseHeader)) ||
+                                string.IsNullOrEmpty(MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                 (in_options.StaticDBCullColumns && i > in_sheet.FirstBlankCol))
                                 continue;
 
                             if (!firstItem)
                                 fileString += (", ");
                             firstItem = false;
-                            fileString += ("string _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader));
+                            fileString += ("string _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames));
                         }
                     }
                     fileString += FormatLine(") " + Environment.NewLine + "		{");
@@ -204,7 +215,7 @@ namespace Google2u
 
                         //nightmare time
                         if (rowType == SupportedType.Void ||
-                            string.IsNullOrEmpty(MakeValidVariableName(rowHeader, in_options.LowercaseHeader)) ||
+                            string.IsNullOrEmpty(MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.StaticDBCullColumns && i > in_sheet.FirstBlankCol))
                         {
                             continue;
@@ -213,9 +224,9 @@ namespace Google2u
                         if (rowType == SupportedType.GameObject)
                         {
                             fileString +=
-                                FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = GameObject.Find(\"" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + "\");");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + "\");");
                         }
                         else if (rowType == SupportedType.Bool)
                         {
@@ -223,16 +234,16 @@ namespace Google2u
                             fileString += FormatLine("			" + StringSupportedType(rowType) + " res;");
                             fileString +=
                                 FormatLine("				if(" + StringSupportedType(rowType) + ".TryParse(_" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ", out res))");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ", out res))");
                             fileString +=
-                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " +\" to bool\");");
                             fileString += FormatLine("			}");
                         }
@@ -242,17 +253,17 @@ namespace Google2u
                             fileString += FormatLine("			" + StringSupportedType(rowType) + " res;");
                             fileString +=
                                 FormatLine("				if(" + StringSupportedType(rowType) + ".TryParse(_" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ", NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
                             fileString +=
-                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " +\" to byte\");");
                             fileString += FormatLine("			}");
                         }
@@ -262,17 +273,17 @@ namespace Google2u
                             fileString += FormatLine("			" + StringSupportedType(rowType) + " res;");
                             fileString +=
                                 FormatLine("				if(" + StringSupportedType(rowType) + ".TryParse(_" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ", NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
                             fileString +=
-                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + " +\" to " +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " +\" to " +
                                            StringSupportedType(rowType) + "\");");
                             fileString += FormatLine("			}");
                         }
@@ -284,7 +295,7 @@ namespace Google2u
                             fileString += FormatLine("				" + StringSupportedType(rowType) + " res;");
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            arrayDelimiter +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -300,25 +311,25 @@ namespace Google2u
                                                ".TryParse(result[i], NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
 
                             fileString +=
-                                FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add(res);");
                             fileString += FormatLine("					else");
                             fileString += FormatLine("					{");
                             if (rowType == SupportedType.ByteArray)
                                 fileString +=
-                                    FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                    FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( 0 );");
                             else if (rowType == SupportedType.BoolArray)
                                 fileString +=
-                                    FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                    FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( false );");
                             else if (rowType == SupportedType.FloatArray)
                                 fileString +=
-                                    FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                    FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( float.NaN );");
                             fileString +=
                                 FormatLine("						Debug.LogError(\"Failed To Convert " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ result[i] +\" to " + (StringSupportedType(rowType)) + "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
@@ -330,17 +341,17 @@ namespace Google2u
                             fileString += FormatLine("			" + StringSupportedType(rowType) + " res;");
                             fileString +=
                                 FormatLine("				if(int.TryParse(_" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ", NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
                             fileString +=
-                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " = res;");
                             fileString += FormatLine("				else");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Failed To Convert " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " +\" to int\");");
                             fileString += FormatLine("			}");
                         }
@@ -350,7 +361,7 @@ namespace Google2u
                             fileString += FormatLine("				" + (StringSupportedType(rowType)) + " res;");
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            arrayDelimiter +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -359,16 +370,16 @@ namespace Google2u
                                 FormatLine(
                                     "					if(int.TryParse(result[i], NumberStyles.Any, CultureInfo.InvariantCulture, out res))");
                             fileString +=
-                                FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( res );");
                             fileString += FormatLine("					else");
                             fileString += FormatLine("					{");
                             fileString +=
-                                FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("						" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( 0 );");
                             fileString +=
                                 FormatLine("						Debug.LogError(\"Failed To Convert " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " string: \"+ result[i] +\" to " + (StringSupportedType(rowType)) + "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
@@ -378,13 +389,13 @@ namespace Google2u
                         {
                             if (in_options.TrimStrings)
                                 fileString +=
-                                    FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
-                                               " = _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                    FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
+                                               " = _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Trim();");
                             else
                                 fileString +=
-                                    FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
-                                               " = _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                    FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
+                                               " = _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ";");
                         }
                         else if (rowType == SupportedType.StringArray)
@@ -392,18 +403,18 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            stringArrayDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
                             fileString += FormatLine("				{");
                             if (in_options.TrimStringArrays)
                                 fileString +=
-                                    FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                    FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( result[i].Trim() );");
                             else
                                 fileString +=
-                                    FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                    FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                ".Add( result[i] );");
                             fileString += FormatLine("				}");
                             fileString += FormatLine("			}");
@@ -413,14 +424,14 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 2)");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) + " in \" + _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + " );");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < 2; i++)");
                             fileString += FormatLine("				{");
@@ -435,18 +446,18 @@ namespace Google2u
                             fileString += FormatLine("					{");
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".x = results[0];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".y = results[1];");
                             fileString += FormatLine("			}");
                         }
@@ -456,7 +467,7 @@ namespace Google2u
 
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -470,7 +481,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("      					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) +
-                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -486,16 +497,16 @@ namespace Google2u
                             fileString += FormatLine("      					{");
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
                             fileString += FormatLine("		        	}");
                             fileString +=
-                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(rowType)) +
                                            "(results[0], results[1] ));");
                             fileString += FormatLine("		        	}");
@@ -508,14 +519,14 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 3)");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) + " in \" + _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + " );");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < 3; i++)");
                             fileString += FormatLine("				{");
@@ -530,21 +541,21 @@ namespace Google2u
                             fileString += FormatLine("					{");
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".x = results[0];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".y = results[1];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".z = results[2];");
                             fileString += FormatLine("			}");
                         }
@@ -553,7 +564,7 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -567,7 +578,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("      					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) +
-                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -583,16 +594,16 @@ namespace Google2u
                             fileString += FormatLine("      					{");
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
                             fileString += FormatLine("		        	}");
                             fileString +=
-                                FormatLine("		        	" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("		        	" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(rowType)) +
                                            "(results[0], results[1], results[2] ));");
 
@@ -606,14 +617,14 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 3 && splitpath.Length != 4)");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) + " in \" + _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + " );");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < splitpath.Length; i++)");
                             fileString += FormatLine("				{");
@@ -628,25 +639,25 @@ namespace Google2u
                             fileString += FormatLine("					{");
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".r = results[0];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".g = results[1];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".b = results[2];");
                             fileString += FormatLine("				if(splitpath.Length == 4)");
                             fileString +=
-                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".a = results[3];");
                             fileString += FormatLine("			}");
                         }
@@ -655,7 +666,7 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -669,7 +680,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("      					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) +
-                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -685,22 +696,22 @@ namespace Google2u
                             fileString += FormatLine("      					{");
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
                             fileString += FormatLine("		        	}");
                             fileString += FormatLine("		        		if(splitpath.Length == 3)");
                             fileString +=
-                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(rowType)) +
                                            "(results[0], results[1], results[2] ));");
                             fileString += FormatLine("		        		else");
                             fileString +=
-                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(rowType)) +
                                            "(results[0], results[1], results[2], results[3] ));");
 
@@ -714,14 +725,14 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 3 && splitpath.Length != 4)");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) + " in \" + _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + " );");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				byte []results = new byte[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < splitpath.Length; i++)");
                             fileString += FormatLine("				{");
@@ -736,25 +747,25 @@ namespace Google2u
                             fileString += FormatLine("					{");
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".r = results[0];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".g = results[1];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".b = results[2];");
                             fileString += FormatLine("				if(splitpath.Length == 4)");
                             fileString +=
-                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("					" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".a = results[3];");
                             fileString += FormatLine("			}");
                         }
@@ -763,7 +774,7 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -777,7 +788,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("      					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) +
-                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				byte []results = new byte[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -793,10 +804,10 @@ namespace Google2u
                             fileString += FormatLine("      					{");
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
@@ -804,13 +815,13 @@ namespace Google2u
                             fileString += FormatLine("		        		if(splitpath.Length == 3)");
                             fileString +=
                                 FormatLine("		        		    " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Add( new " +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Add( new " +
                                            (StringSupportedType(rowType)) +
                                            "(results[0], results[1], results[2], System.Convert.ToByte(0) ));");
                             fileString += FormatLine("		        		else");
                             fileString +=
                                 FormatLine("		        		    " +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Add( new " +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Add( new " +
                                            (StringSupportedType(rowType)) +
                                            "(results[0], results[1], results[2], results[3] ));");
 
@@ -824,14 +835,14 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string [] splitpath = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeDelimiter +
                                            "\".ToCharArray(),System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				if(splitpath.Length != 4)");
                             fileString +=
                                 FormatLine("					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) + " in \" + _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + " );");
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " );");
                             fileString += FormatLine("				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("				for(int i = 0; i < 4; i++)");
                             fileString += FormatLine("				{");
@@ -846,24 +857,24 @@ namespace Google2u
                             fileString += FormatLine("					{");
                             fileString += FormatLine("						Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("					}");
                             fileString += FormatLine("				}");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".x = results[0];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".y = results[1];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".z = results[2];");
                             fileString +=
-                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("				" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".w = results[3];");
                             fileString += FormatLine("			}");
                         }
@@ -872,7 +883,7 @@ namespace Google2u
                             fileString += FormatLine("			{");
                             fileString +=
                                 FormatLine("				string []result = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ".Split(\"" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".Split(\"" +
                                            complexTypeArrayDelimiters +
                                            "\".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);");
                             fileString += FormatLine("				for(int i = 0; i < result.Length; i++)");
@@ -886,7 +897,7 @@ namespace Google2u
                             fileString +=
                                 FormatLine("      					Debug.LogError(\"Incorrect number of parameters for " +
                                            StringSupportedType(rowType) +
-                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                           " in \" + _" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            " );");
                             fileString += FormatLine("      				float []results = new float[splitpath.Length];");
                             fileString += FormatLine("      				for(int j = 0; j < splitpath.Length; j++)");
@@ -902,16 +913,16 @@ namespace Google2u
                             fileString += FormatLine("      					{");
                             fileString += FormatLine("	        					Debug.LogError(\"Error parsing \" + "
                                                      + "_" +
-                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader)
+                                                     MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)
                                                      +
                                                      " + \" Component: \" + splitpath[i] + \" parameter \" + i + \" of variable "
-                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                                     + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                                      "\");");
                             fileString += FormatLine("		        			continue;");
                             fileString += FormatLine("		        		}");
                             fileString += FormatLine("		        	}");
                             fileString +=
-                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) +
+                                FormatLine("		        		" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) +
                                            ".Add( new " + (StringSupportedType(rowType)) +
                                            "(results[0], results[1], results[2], results[3] ));");
                             fileString += FormatLine("		        	}");
@@ -922,8 +933,8 @@ namespace Google2u
                         else
                         {
                             fileString +=
-                                FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + " = _" +
-                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader) + ";");
+                                FormatLine("			" + MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + " = _" +
+                                           MakeValidVariableName(rowHeader, in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ";");
                         }
                     }
                     fileString += FormatLine("		}");
@@ -936,7 +947,7 @@ namespace Google2u
                         {
                             if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                                 string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                    in_options.LowercaseHeader)) ||
+                                    in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                 (in_options.StaticDBCullColumns && i > in_sheet.FirstBlankCol))
                                 continue;
                             colCount++;
@@ -966,14 +977,14 @@ namespace Google2u
                         {
                             if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                                 string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                    in_options.LowercaseHeader)) ||
+                                    in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                 (in_options.StaticDBCullColumns && i > in_sheet.FirstBlankCol))
                                 continue;
                             fileString += FormatLine("				case " + colNum++ + ":");
                             fileString +=
                                 FormatLine("					ret = " +
                                            MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                               in_options.LowercaseHeader) + ".ToString();");
+                                               in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".ToString();");
                             fileString += FormatLine("					break;");
                         }
                     }
@@ -997,14 +1008,14 @@ namespace Google2u
                     {
                         if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                             string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader)) ||
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.StaticDBCullColumns && i > in_sheet.FirstBlankCol))
                             continue;
                         fileString += FormatLine("				case \"" + (in_sheet.Rows[0][i].CellValueString) + "\":");
                         fileString +=
                             FormatLine("					ret = " +
                                        MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                           in_options.LowercaseHeader) + ".ToString();");
+                                           in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".ToString();");
                         fileString += FormatLine("					break;");
                     }
 
@@ -1020,14 +1031,14 @@ namespace Google2u
                     {
                         if (in_sheet.Rows[0][i].MyType == SupportedType.Void ||
                             string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                in_options.LowercaseHeader)) ||
+                                in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                             (in_options.StaticDBCullColumns && i > in_sheet.FirstBlankCol))
                             continue;
                         fileString +=
                             FormatLine("			ret += \"{\" + \"" + (in_sheet.Rows[0][i].CellValueString) +
                                        "\" + \" : \" + " +
                                        MakeValidVariableName(in_sheet.Rows[0][i].CellValueString,
-                                           in_options.LowercaseHeader) + ".ToString() + \"} \";");
+                                           in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames) + ".ToString() + \"} \";");
                     }
                     fileString += FormatLine("			return ret;");
                     fileString += FormatLine("		}");
@@ -1189,7 +1200,7 @@ namespace Google2u
                             if ((j != 0) &&
                                 (in_sheet.Rows[i][j].MyType == SupportedType.Void ||
                                  string.IsNullOrEmpty(MakeValidVariableName(in_sheet.Rows[0][j].CellValueString,
-                                     in_options.LowercaseHeader)) ||
+                                     in_options.LowercaseHeader, in_options.PrependUnderscoreToVariableNames)) ||
                                   in_sheet.Rows[0][j].CellValueString.Equals("void", StringComparison.InvariantCultureIgnoreCase) ||
                                   in_sheet.Rows[0][j].CellValueString.Equals("ignore", StringComparison.InvariantCultureIgnoreCase) ||
                                  (in_options.StaticDBCullColumns && j >= in_sheet.FirstBlankCol)))

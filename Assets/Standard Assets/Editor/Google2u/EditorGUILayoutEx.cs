@@ -16,7 +16,7 @@ namespace Google2u
 
     public class EditorGUILayoutEx
     {
-        public static int MaxWidth = 170;
+        public static int MaxWidth = 230;
         public static int ButtonWidth = 32;
         public static int ButtonHeight = 32;
         public static int GoogleButtonWidth = 393;
