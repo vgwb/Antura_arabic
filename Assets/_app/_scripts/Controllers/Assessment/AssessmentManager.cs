@@ -36,13 +36,11 @@ namespace EA4S
 
             PanelTestGO.SetActive(false);
             AppManager.Instance.InitDataAI();
- 
+
             SceneTransitioner.Close();
             WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
             // StartTest();
         }
-
-
 
         #region Tutorial
 
@@ -92,7 +90,7 @@ namespace EA4S
                 Words[i].InjectManager(this);
             }
             LoggerEA4S.Log("app", "assessment", "start", serializedWordsForLog);
-            PanelTestGO.SetActive(true); 
+            PanelTestGO.SetActive(true);
         }
 
         /// <summary>
@@ -142,10 +140,10 @@ namespace EA4S
         {
             //WidgetPopupWindow.I.ShowTextDirect(AllFinished, string.Format("Result : {0}/{1}", currentResult, Draws.Count));
 
-//            var sentenceId = "assessment_result";
-//            var row = LocalizationData.Instance.GetRow(sentenceId);
-//            var arabicText = string.Format("{0} : {1}/{2}", row.GetStringData("Arabic"), currentResult, Draws.Count);
-//
+            //            var sentenceId = "assessment_result";
+            //            var row = LocalizationData.Instance.GetRow(sentenceId);
+            //            var arabicText = string.Format("{0} : {1}/{2}", row.GetStringData("Arabic"), currentResult, Draws.Count);
+            //
             //           WidgetPopupWindow.I.ShowArabicTextDirect(AllFinished, arabicText);
 
             if (currentResult >= 5) {
@@ -205,7 +203,7 @@ namespace EA4S
 
         #endregion
 
-        
+
     }
 
 }

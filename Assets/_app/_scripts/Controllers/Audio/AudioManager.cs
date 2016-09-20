@@ -3,7 +3,8 @@ using System.Collections;
 
 namespace EA4S
 {
-    public enum Music {
+    public enum Music
+    {
         Silence = 0,
         MainTheme = 1,
         Relax = 2,
@@ -12,7 +13,8 @@ namespace EA4S
         Theme4 = 5
     }
 
-    public enum Sfx {
+    public enum Sfx
+    {
         Hit,
         BaloonPop,
         DangerClock,
@@ -250,19 +252,19 @@ namespace EA4S
                     break;
                 case Sfx.LetterAngry:
                     eventName = "LivingLetter/Angry";
-                    break;  
+                    break;
                 case Sfx.LetterHappy:
                     eventName = "LivingLetter/Happy";
-                    break;  
+                    break;
                 case Sfx.LetterSad:
                     eventName = "LivingLetter/Sad";
                     break;
                 case Sfx.LetterHold:
                     eventName = "LivingLetter/Hold";
-                    break; 
+                    break;
                 case Sfx.LetterFear:
                     eventName = "LivingLetter/Fear";
-                    break; 
+                    break;
                 case Sfx.GameTitle:
                     eventName = "VOX/GameTitle";
                     break;
@@ -271,16 +273,16 @@ namespace EA4S
                     break;
                 case Sfx.WheelStart:
                     eventName = "Sfx/WheelStart";
-                    break;  
+                    break;
                 case Sfx.WheelTick:
                     eventName = "Sfx/WheelTick";
-                    break;  
+                    break;
                 case Sfx.DogBarking:
                     eventName = "Dog/Barking";
                     break;
                 case Sfx.DogSnoring:
                     eventName = "Dog/Snoring";
-                    break;  
+                    break;
                 case Sfx.DogSnorting:
                     eventName = "Dog/Snorting";
                     break;
@@ -303,6 +305,6 @@ namespace EA4S
             }
             return eventName;
         }
-           
+
     }
 }

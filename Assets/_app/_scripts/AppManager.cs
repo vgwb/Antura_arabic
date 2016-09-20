@@ -15,8 +15,7 @@ namespace EA4S
 
         new public AppSettings GameSettings = new AppSettings();
 
-        new public static AppManager Instance
-        {
+        new public static AppManager Instance {
             get { return GameManager.Instance as AppManager; }
         }
 
@@ -24,7 +23,6 @@ namespace EA4S
         /// Tmp var to store actual gameplay word already used.
         /// </summary>
         public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
-
         public string ActualGame = string.Empty;
 
         #region Mood
@@ -48,11 +46,10 @@ namespace EA4S
         #endregion
 
         public List<LetterData> Letters = new List<LetterData>();
-        
+
         public TeacherAI Teacher;
         public Database DB;
         public EA4S.PlayerProfile Player;
-
         public GameObject CurrentGameManagerGO;
 
         #region Init
@@ -73,7 +70,7 @@ namespace EA4S
         }
 
         protected override void GameSetup()
-        { 
+        {
             base.GameSetup();
 
             AdditionalSetup();
@@ -86,10 +83,9 @@ namespace EA4S
 
             ResetProgressionData();
 
-            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ =>
-                {
-                    OnPlaySessionValueChange();
-                });
+            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
+                OnPlaySessionValueChange();
+            });
 
 
         }

@@ -4,7 +4,8 @@ using EA4S;
 
 namespace EA4S
 {
-    public enum AnturaAnim {
+    public enum AnturaAnim
+    {
         Nothing = 0,
         Run = 1,
         SitBreath = 2,
@@ -18,14 +19,16 @@ namespace EA4S
         DontWakeWakesUp = 21
     }
 
-    public enum AnturaCollars {
+    public enum AnturaCollars
+    {
         None = 0,
         Small = 1,
         Medium = 2,
         Big = 3
     }
 
-    public enum AnturaColors {
+    public enum AnturaColors
+    {
         Blue = 0,
         Pink = 1,
         Pirate = 2,
@@ -35,7 +38,8 @@ namespace EA4S
         Yellow = 7
     }
 
-    public enum AnturaEyes {
+    public enum AnturaEyes
+    {
         Normal = 0,
         Closed = 1,
         Angry = 2,
@@ -297,6 +301,6 @@ namespace EA4S
             }
             return stateName;
         }
-            
+
     }
 }
