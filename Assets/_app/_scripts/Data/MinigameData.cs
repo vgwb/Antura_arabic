@@ -11,7 +11,8 @@ namespace EA4S
         public bool Available;
         public string SceneName;
 
-        public MinigameData(string code, string title, string englishTitle, string sceneName, bool available) {
+        public MinigameData(string code, string title, string englishTitle, string sceneName, bool available)
+        {
             Code = code;
             Title = title;
             EnglishTitle = englishTitle;
@@ -19,7 +20,8 @@ namespace EA4S
             Available = available;
         }
 
-        public string GetIconResourcePath() {
+        public string GetIconResourcePath()
+        {
             return "Images/GameIcons/minigame_icon_" + Code;
         }
 

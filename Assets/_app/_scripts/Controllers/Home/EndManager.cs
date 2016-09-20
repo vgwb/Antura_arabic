@@ -7,7 +7,6 @@ namespace EA4S
 {
     public class EndManager : MonoBehaviour
     {
-
         [Header("Scene Setup")]
         public Music SceneMusic;
 

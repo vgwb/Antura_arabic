@@ -2,9 +2,11 @@
 using Google2u;
 using UnityEngine;
 
-namespace EA4S {
+namespace EA4S
+{
 
-    public class LetterData : ILivingLetterData {
+    public class LetterData : ILivingLetterData
+    {
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Letter; }
         }
@@ -21,7 +23,8 @@ namespace EA4S {
 
         private string key;
 
-        public LetterData(string _keyRow, lettersRow _letRow) {
+        public LetterData(string _keyRow, lettersRow _letRow)
+        {
             Key = _keyRow;
             Isolated = _letRow._isolated;
             Isolated_Unicode = _letRow._unicode;
