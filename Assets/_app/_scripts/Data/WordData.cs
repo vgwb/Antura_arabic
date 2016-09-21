@@ -5,7 +5,6 @@ using System;
 
 namespace EA4S
 {
-
     public class WordData : ILivingLetterData
     {
 

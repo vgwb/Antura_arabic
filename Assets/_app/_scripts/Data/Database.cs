@@ -11,7 +11,6 @@ namespace EA4S
         public Database()
         {
             // Debug.Log("Init Database()");
-
             gameData.Add(new MinigameData("fastcrowd", "جماهير الحروف", "Fast Crowd", "game_FastCrowd", true));
             gameData.Add(new MinigameData("dontwakeup", "لا توقظ عنتورة", "Don't Wake Antura", "game_DontWakeUp", true));
             gameData.Add(new MinigameData("balloons", "البالونات", "Balloons", "game_Balloons", true));

@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
-using ModularFramework.Core;
-using ModularFramework.Modules;
-using Google2u;
 
-namespace EA4S {
+namespace EA4S
+{
 
-    public class LetterObject {
+    public class LetterObject
+    {
 
         public ILivingLetterData Data;
 
-        public LetterObject(ILivingLetterData _data) {
+        public LetterObject(ILivingLetterData _data)
+        {
             Data = _data;
         }
 
@@ -27,7 +27,7 @@ namespace EA4S {
         public LetterObjectState State {
             get { return state; }
             set {
-                if(state != value) { 
+                if (state != value) {
                     OnStateChanged(state, value);
                     state = value;
                 } else
@@ -43,7 +43,8 @@ namespace EA4S {
         /// </summary>
         /// <param name="_oldState"></param>
         /// <param name="_newState"></param>
-        protected virtual void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState) {
+        protected virtual void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState)
+        {
             switch (_newState) {
                 case LetterObjectState.Idle_State:
 
@@ -61,7 +62,8 @@ namespace EA4S {
         }
     }
 
-    public enum LetterObjectState {
+    public enum LetterObjectState
+    {
         Idle_State,
         Run_State,
         Grab_State,

@@ -20,9 +20,7 @@ namespace EA4S
         /// Set true to force brake wheel almost immediately (it depends to brakeForceEnhanced const value).
         /// </summary>
         public bool IsBrakeForceEnhanced = false;
-
         bool firstRoundDone;
-
         Vector3 rotationEuler;
 
         protected virtual void OnEnable()

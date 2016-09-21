@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
 
 namespace EA4S
 {
@@ -10,7 +9,8 @@ namespace EA4S
         public GameObject EventsManager;
         public GameObject TouchManager;
 
-        void Awake() {
+        void Awake()
+        {
             if (FindObjectOfType(typeof(AudioManager)) == null) {
                 Instantiate(AudioManager);
             }

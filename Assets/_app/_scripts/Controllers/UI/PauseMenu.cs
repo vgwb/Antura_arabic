@@ -7,7 +7,6 @@ namespace EA4S
 {
     public class PauseMenu : MonoBehaviour
     {
-
         public static PauseMenu I;
 
         [Header("Buttons")]
@@ -43,13 +42,11 @@ namespace EA4S
             for (int i = 0; i < menuBts.Length; i++)
                 cgButtons[i] = menuBts[i].GetComponent<CanvasGroup>();
             openMenuTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .OnPlay(() =>
-                {
+                .OnPlay(() => {
                     PauseMenuContainer.SetActive(true);
                     anturaBobTween.Restart();
                 })
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     PauseMenuContainer.SetActive(false);
                     anturaBobTween.Rewind();
                 });
@@ -91,7 +88,7 @@ namespace EA4S
         public void OpenMenu(bool _open)
         {
             IsMenuOpen = _open;
-            
+
             // Set toggles
             BtMusic.Toggle(AudioManager.I.MusicEnabled);
             BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);

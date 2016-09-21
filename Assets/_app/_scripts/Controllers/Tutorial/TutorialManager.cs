@@ -7,7 +7,6 @@ namespace EA4S
 {
     public class TutorialManager : MonoBehaviour
     {
-
         public MinigamesCode CurrentGameCode;
 
         bool isAnimationComplete;

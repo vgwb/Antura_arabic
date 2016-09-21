@@ -301,7 +301,6 @@ namespace EA4S
                 case Sfx.StampOK:
                     eventName = "Sfx/StampOK";
                     break;
-
             }
             return eventName;
         }

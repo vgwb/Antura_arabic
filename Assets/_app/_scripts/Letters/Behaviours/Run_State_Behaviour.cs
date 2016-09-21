@@ -2,9 +2,10 @@
 using System.Collections;
 using UniRx;
 
-
-namespace EA4S {
-    public class Run_State_Behaviour : BaseBehaviour {
+namespace EA4S
+{
+    public class Run_State_Behaviour : BaseBehaviour
+    {
 
         public float Speed;
 
@@ -13,15 +14,16 @@ namespace EA4S {
         /// Target.
         /// </summary>
         public Transform Target;
-        
+
         NavMeshAgent agent;
 
         #region Behaviour base
-        public override void OnStartBehaviour() {
+        public override void OnStartBehaviour()
+        {
             base.OnStartBehaviour();
 
             agent = GetComponent<NavMeshAgent>();
-            if (!Target) { 
+            if (!Target) {
                 Target = Instantiate<Transform>(WayPointPrefab.transform);
                 Target.SetParent(transform.parent, true);
                 Target.position = transform.position;
@@ -48,17 +50,20 @@ namespace EA4S {
 
         }
 
-        public override void OnEndBehaviour() {
+        public override void OnEndBehaviour()
+        {
             base.OnEndBehaviour();
         }
 
-        public override void OnUpdateBehaviour() {
+        public override void OnUpdateBehaviour()
+        {
             base.OnUpdateBehaviour();
         }
 
         #endregion
 
-        void OnDrawGizmos() {
+        void OnDrawGizmos()
+        {
             if (Target != null) {
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawLine(transform.position, Target.position);
@@ -68,7 +73,8 @@ namespace EA4S {
         /// <summary>
         /// Repositioning waypoint.
         /// </summary>
-        void RepositioningWaypoint() {
+        void RepositioningWaypoint()
+        {
             Vector3 randomValidPosition;
             //RandomPoint(Target.position, 10f, out randomValidPosition);
             RandomPointInWalkableArea(Target.position, 15f, out randomValidPosition);
@@ -83,9 +89,10 @@ namespace EA4S {
         /// <param name="_range"></param>
         /// <param name="_result"></param>
         /// <returns></returns>
-        bool RandomPointInWalkableArea(Vector3 _center, float _range, out Vector3 _result) {
+        bool RandomPointInWalkableArea(Vector3 _center, float _range, out Vector3 _result)
+        {
             for (int i = 0; i < 30; i++) {
-                Vector3 randomPoint = _center + Random.insideUnitSphere * (_range + Random.Range(-_range/2f, _range / 2f));
+                Vector3 randomPoint = _center + Random.insideUnitSphere * (_range + Random.Range(-_range / 2f, _range / 2f));
                 NavMeshHit hit;
                 if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, 1)) {
                     _result = hit.position;
@@ -97,7 +104,8 @@ namespace EA4S {
         }
 
         #region collisions
-        void OnTriggerStay(Collider other) {
+        void OnTriggerStay(Collider other)
+        {
             //void OnTriggerEnter(Collider other) {
             if (agent && Target && other != Target.GetComponent<Collider>()) {
 
@@ -105,7 +113,7 @@ namespace EA4S {
                 RepositioningWaypoint();
                 //float casual = Random.Range(0f, 1f);
                 //if (casual > 0.3)
-                    
+
                 //else
                 //    Debug.Log("Hidle");
             }

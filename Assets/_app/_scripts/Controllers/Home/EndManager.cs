@@ -48,8 +48,5 @@ namespace EA4S
         {
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
         }
-
-
-
     }
 }

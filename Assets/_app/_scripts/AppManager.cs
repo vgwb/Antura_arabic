@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using ModularFramework.Helpers;
 using Google2u;
 using UniRx;
-using EA4S;
 
 namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.6.0";
+        public const string AppVersion = "0.6.1";
 
         new public AppSettings GameSettings = new AppSettings();
 

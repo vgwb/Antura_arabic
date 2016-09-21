@@ -30,7 +30,7 @@ namespace EA4S
 
         #region Tasks
 
-        [Task] 
+        [Task]
         public void SetNavigation(string _stateName)
         {
             if (!agent)
@@ -53,10 +53,9 @@ namespace EA4S
                     break;
                 case "Hold":
                     agent.Stop();
-                    transform.DOLookAt(LookAtCameraPosition, 0.1f).OnComplete(delegate
-                        {
-                            transform.LookAt(LookAtCameraPosition);
-                        });
+                    transform.DOLookAt(LookAtCameraPosition, 0.1f).OnComplete(delegate {
+                        transform.LookAt(LookAtCameraPosition);
+                    });
                     agent.speed = 3.5f;
                     //agent.Resume();
                     break;
@@ -72,11 +71,10 @@ namespace EA4S
                     break;
                 case "GoOut":
                     agent.enabled = false;
-                    agent.transform.DOMove(HidePositionRight, 2).SetDelay(1).OnComplete(delegate
-                        {
-                            agent.transform.position = HidePositionRight;
-                        });
-                    
+                    agent.transform.DOMove(HidePositionRight, 2).SetDelay(1).OnComplete(delegate {
+                        agent.transform.position = HidePositionRight;
+                    });
+
                     //agent.Resume();
                     //agent.speed = 10f;
                     break;
@@ -84,7 +82,7 @@ namespace EA4S
                     agent.ResetPath();
                     Vector3 newDestination = new List<Vector3>() { HidePositionRight, HidePositionLeft }.GetRandomElement();
                     agent.SetDestination(newDestination);
-                    agent.speed = 10f; 
+                    agent.speed = 10f;
                     agent.Resume();
                     break;
                 default:

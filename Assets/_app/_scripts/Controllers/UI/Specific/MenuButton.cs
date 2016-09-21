@@ -2,9 +2,9 @@
 // Created: 2016/08/04 11:47
 // License Copyright (c) Daniele Giardini
 
-using DG.DeExtensions;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.DeExtensions;
 
 namespace EA4S
 {

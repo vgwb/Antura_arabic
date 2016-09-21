@@ -2,25 +2,31 @@
 using System.Collections;
 using System;
 
-namespace EA4S {
-    public class BaseBehaviour : MonoBehaviour, IBehaviour {
+namespace EA4S
+{
+    public class BaseBehaviour : MonoBehaviour, IBehaviour
+    {
 
         public LetterObject Model;
 
-        void OnEnable() {
+        void OnEnable()
+        {
             OnStartBehaviour();
         }
 
-        public void StartBehaviour(LetterObject _model) {
+        public void StartBehaviour(LetterObject _model)
+        {
             Model = _model;
             OnStartBehaviour();
         }
 
-        void Update() {
+        void Update()
+        {
             OnUpdateBehaviour();
         }
 
-        void OnDisable() {
+        void OnDisable()
+        {
             OnEndBehaviour();
         }
 
@@ -29,7 +35,8 @@ namespace EA4S {
         public virtual void OnEndBehaviour() { }
     }
 
-    public interface IBehaviour {
+    public interface IBehaviour
+    {
         void OnStartBehaviour();
         void OnUpdateBehaviour();
         void OnEndBehaviour();

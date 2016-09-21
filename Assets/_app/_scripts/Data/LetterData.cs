@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace EA4S
 {
-
     public class LetterData : ILivingLetterData
     {
         public LivingLetterDataType DataType {

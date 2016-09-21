@@ -6,7 +6,8 @@ using DG.DeExtensions;
 
 namespace EA4S
 {
-    public enum ContinueScreenMode {
+    public enum ContinueScreenMode
+    {
         /// <summary>Just background, just touch the screen to continue</summary>
         FullscreenBg,
         /// <summary>Button with no background, that needs to be clicked directly</summary>
@@ -112,13 +113,11 @@ namespace EA4S
             showTween = btRT.DOScale(0.1f, duration).From().SetEase(Ease.OutBack)
                 .SetUpdate(true).SetAutoKill(false).Pause()
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     this.gameObject.SetActive(false);
                     btIdleTween.Rewind();
                 })
-                .OnComplete(() =>
-                {
+                .OnComplete(() => {
                     if (currMode == ContinueScreenMode.ButtonFullscreen)
                         btIdleTween.Restart();
                 });
@@ -187,7 +186,8 @@ namespace EA4S
         public Vector2 AnchoredPos, AnchorMin, AnchorMax, SizeDelta;
         public Vector2 IcoAnchoredPos;
 
-        public ButtonSnapshot(Vector2 _anchoredPos, Vector2 _anchorMin, Vector2 _anchorMax, Vector2 _sizeDelta, Vector2 _icoAnchoredPos) {
+        public ButtonSnapshot(Vector2 _anchoredPos, Vector2 _anchorMin, Vector2 _anchorMax, Vector2 _sizeDelta, Vector2 _icoAnchoredPos)
+        {
             AnchoredPos = _anchoredPos;
             AnchorMin = _anchorMin;
             AnchorMax = _anchorMax;

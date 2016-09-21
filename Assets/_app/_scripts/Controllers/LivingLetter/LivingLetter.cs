@@ -5,8 +5,8 @@ using EA4S;
 
 namespace EA4S
 {
-
-    public enum LivingLetterAnim {
+    public enum LivingLetterAnim
+    {
         Nothing = 0,
         idle = 1,
         hold = 2,
@@ -80,7 +80,7 @@ namespace EA4S
 
         void SetText(string title)
         {
-            myText.text = title; 
+            myText.text = title;
         }
 
         private void SpeakLetter()

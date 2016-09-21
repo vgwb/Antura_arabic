@@ -10,12 +10,13 @@ namespace EA4S
         public Transform RopeNode;
         public GameObject Dot;
 
-        void Start() {
-	
+        void Start()
+        {
+
         }
 
-
-        void OnMouseDown() {
+        void OnMouseDown()
+        {
             Debug.Log("Clicked Pin " + Number);
         }
     }

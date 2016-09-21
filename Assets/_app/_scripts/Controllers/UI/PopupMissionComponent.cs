@@ -8,7 +8,6 @@ namespace EA4S
 {
     public class PopupMissionComponent : MonoBehaviour
     {
-
         public Image CompletedCheck;
         public TextMeshProUGUI TitleLable;
         public TextMeshProUGUI MainLable;
@@ -27,10 +26,10 @@ namespace EA4S
             public float AutoCloseTime = -1;
         }
 
-        public enum PopupType {
+        public enum PopupType
+        {
             New_Mission,
             Mission_Completed
-
         }
 
         Vector2 HidePosition;
@@ -44,7 +43,7 @@ namespace EA4S
 
 
         void Start()
-        { 
+        {
             HidePosition = new Vector2(0, -750);
             ShowPosition = new Vector2(0, 0);
             GetComponent<RectTransform>().anchoredPosition = HidePosition;
@@ -72,10 +71,10 @@ namespace EA4S
                 AudioManager.I.PlaySfx(Sfx.StampOK);
                 sequence.Insert(0.3f, CompletedCheck.DOFade(1, 0.1f));
                 sequence.Append(CompletedCheck.rectTransform.DOScale(1, 0.3f).SetAs(tParms));
-//                    .OnComplete(delegate()
-//                    {
-//                        AudioManager.I.PlaySfx(Sfx.Win);
-//                    });
+                //                    .OnComplete(delegate()
+                //                    {
+                //                        AudioManager.I.PlaySfx(Sfx.Win);
+                //                    });
             }
             // Draw
             if (_data.DrawSprite) {
@@ -86,10 +85,9 @@ namespace EA4S
             }
             // Autoclose
             if (_data.AutoCloseTime >= 0) {
-                sequence.InsertCallback(_data.AutoCloseTime, delegate
-                    {
-                        Close(sequence, tParms, _callback);
-                    });
+                sequence.InsertCallback(_data.AutoCloseTime, delegate {
+                    Close(sequence, tParms, _callback);
+                });
             } else {
                 pendingCallback = null; // reset
                 if (_callback != null)
