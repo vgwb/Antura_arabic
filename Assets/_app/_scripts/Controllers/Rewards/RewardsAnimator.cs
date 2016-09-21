@@ -1,8 +1,8 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 
+using UnityEngine;
 using System.Collections;
 using DG.Tweening;
-using UnityEngine;
 
 namespace EA4S
 {
@@ -26,7 +26,8 @@ namespace EA4S
         Sequence showTween, godraysTween;
         Tween pedestalTween;
 
-        IEnumerator Start() {
+        IEnumerator Start()
+        {
             LockClosed.gameObject.SetActive(false);
             LockOpen.gameObject.SetActive(false);
             Pedestal.gameObject.SetActive(true);
@@ -34,15 +35,13 @@ namespace EA4S
             showTween = DOTween.Sequence().Pause()
                 .Append(LockClosed.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack))
                 .AppendInterval(0.3f)
-                .AppendCallback(() =>
-                {
+                .AppendCallback(() => {
                     AudioManager.I.PlaySfx(Sfx.AlarmClock);
                 })
                 .Append(LockClosed.DOShakePosition(0.8f, 40f, 16, 90, false, false))
                 .Join(LockClosed.DOShakeRotation(0.8f, new Vector3(0, 0, 70f), 16, 90, false))
                 .Join(LockClosed.DOPunchScale(Vector3.one * 0.8f, 0.4f, 20))
-                .AppendCallback(() =>
-                {
+                .AppendCallback(() => {
                     LockClosed.gameObject.SetActive(false);
                     LockOpen.gameObject.SetActive(true);
                     AudioManager.I.StopSfx(Sfx.AlarmClock);
@@ -53,15 +52,13 @@ namespace EA4S
                 .Join(Godray1.DOScale(0.00001f, 0.3f).From())
                 .AppendInterval(0.7f)
                 .Append(LockOpen.DOScale(0.00001f, 0.6f).SetEase(Ease.InBack))
-                .AppendCallback(() =>
-                {
+                .AppendCallback(() => {
                     AudioManager.I.PlaySfx(Sfx.Win);
                 })
                 .Join(LockOpen.DORotate(new Vector3(0, 0, 360), 0.6f, RotateMode.FastBeyond360).SetRelative().SetEase(Ease.InCubic))
                 .Join(Godray1.DOScale(0.00001f, 0.6f).SetEase(Ease.InCubic))
                 .Join(Pedestal.DOScale(0.00001f, 1f).From().SetDelay(0.5f).SetEase(Ease.OutBack))
-                .OnComplete(() =>
-                {
+                .OnComplete(() => {
                     IsComplete = true;
                     pedestalTween.Play();
                 });
@@ -80,7 +77,8 @@ namespace EA4S
             showTween.Play();
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             showTween.Kill();
             godraysTween.Kill();
             pedestalTween.Kill();

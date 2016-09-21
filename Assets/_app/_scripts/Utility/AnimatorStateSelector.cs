@@ -3,7 +3,6 @@ using System.Collections;
 
 public class AnimatorStateSelector : MonoBehaviour
 {
-
     public string AnimatorState;
 
     void Start()

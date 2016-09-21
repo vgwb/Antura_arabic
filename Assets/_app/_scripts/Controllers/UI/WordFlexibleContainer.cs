@@ -5,14 +5,15 @@ using ArabicSupport;
 
 public class WordFlexibleContainer : MonoBehaviour
 {
-
     public TextMeshProUGUI Label;
 
-    void Start() {
-	
+    void Start()
+    {
+
     }
 
-    public void SetText(string text, bool useArabicFixer) {
+    public void SetText(string text, bool useArabicFixer)
+    {
         if (useArabicFixer) {
             Label.text = ArabicFixer.Fix(text, false, false);
         } else {

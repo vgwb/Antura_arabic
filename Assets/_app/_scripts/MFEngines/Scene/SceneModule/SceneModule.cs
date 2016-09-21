@@ -6,20 +6,18 @@ using ModularFramework.Modules;
 
 namespace EA4S
 {
-
     public class SceneModule : SceneModuleDefault
     {
 
         public override void LoadSceneWithTransition(string _sceneToLoad, SceneTransition _transitionSettings)
         {
-            SceneTransitioner.Show(true, delegate
-                {
-                    sceneTransitionDone(_sceneToLoad);
-                });
+            SceneTransitioner.Show(true, delegate {
+                sceneTransitionDone(_sceneToLoad);
+            });
         }
 
         void sceneTransitionDone(string _sceneToLoad)
-        { 
+        {
             UnityEngine.SceneManagement.SceneManager.LoadScene(_sceneToLoad);
         }
 

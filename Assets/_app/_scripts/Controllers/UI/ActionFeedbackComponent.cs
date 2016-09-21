@@ -4,9 +4,11 @@ using System.Collections;
 using DG.Tweening;
 using UniRx;
 
-namespace EA4S {
+namespace EA4S
+{
     [RequireComponent(typeof(RectTransform))]
-    public class ActionFeedbackComponent : MonoBehaviour {
+    public class ActionFeedbackComponent : MonoBehaviour
+    {
 
         public Image OkImage;
         public Image KoImage;
@@ -19,7 +21,8 @@ namespace EA4S {
         RectTransform rt;
 
         // Use this for initialization
-        void Start() {
+        void Start()
+        {
             rt = GetComponent<RectTransform>();
             rt.anchoredPosition = HidePos;
         }
@@ -28,7 +31,8 @@ namespace EA4S {
         /// Show feedback positive or negative.
         /// </summary>
         /// <param name="_feedback"></param>
-        public void Show(bool _feedback) {
+        public void Show(bool _feedback)
+        {
             OkImage.enabled = _feedback;
             KoImage.enabled = !_feedback;
 

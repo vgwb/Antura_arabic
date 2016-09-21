@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
-using ModularFramework.Core;
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System;
 
-namespace EA4S {
-    public static class LoggerEA4S {
+namespace EA4S
+{
+    public static class LoggerEA4S
+    {
 
         static string Filename = "AnturaLog.csv";
         public static string SessionID = "0000000000";
         static string buffer = string.Empty;
 
-        public static void Log(string _area, string _context, string _action, string _data) {
+        public static void Log(string _area, string _context, string _action, string _data)
+        {
             LogData data = new LogData() {
                 SessionId = SessionID,
                 TimeInSeconds = DateTime.Now.Ticks.ToString(),
@@ -27,7 +28,8 @@ namespace EA4S {
             buffer += data;
         }
 
-        public static void Save() {
+        public static void Save()
+        {
             if (!File.Exists(getPath())) {
                 FileStream fs = File.Create(getPath());
                 fs.Close();
@@ -49,14 +51,15 @@ namespace EA4S {
             //tmpBuffer += buffer;
             //File.WriteAllText(getPath(), tmpBuffer);
 
-            
+
 
             ////Debug.Log(buffer);
-            buffer = string.Empty; 
+            buffer = string.Empty;
         }
 
         // Following method is used to retrive the relative path as device platform
-        private static string getPath() {
+        private static string getPath()
+        {
 #if UNITY_EDITOR
             //return @"c:\tmp\" + Filename;
             return Application.persistentDataPath + "/" + Filename;
@@ -71,7 +74,8 @@ namespace EA4S {
     }
 
     [Serializable]
-    public class LogData {
+    public class LogData
+    {
         public string SessionId = string.Empty;
         public string TimeInSeconds = string.Empty;
         public string Timestamp = string.Empty;
@@ -81,7 +85,8 @@ namespace EA4S {
         public string RawData = string.Empty;
 
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return string.Format("{0},{1},{2},{3},{4},{5},{6}" + Environment.NewLine,
                 SessionId,
                 TimeInSeconds,

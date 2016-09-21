@@ -37,7 +37,6 @@ namespace EA4S
 
         public void OnDraw(Vector3 pointA, Vector3 pointB)
         {
-
             Vector3 differenceVector = pointB - pointA;
 
             imageRectTransform.sizeDelta = new Vector2(differenceVector.magnitude, lineWidth);

@@ -22,21 +22,23 @@ using System.Collections.Generic;
 using ModularFramework.Core;
 using System;
 using Google2u;
-using Newtonsoft.Json;
 
-namespace ModularFramework.Modules {
+namespace ModularFramework.Modules
+{
     /// <summary>
     /// Concrete implementation for module type LocalizationModule.
     /// </summary>
-    public class LocalizationModuleGoogle2U : ILocalizationModule {
+    public class LocalizationModuleGoogle2U : ILocalizationModule
+    {
         public string ActualLanguage { get; set; }
         public string[] AvailableLanguages { get; set; }
 
         #region IModule Implementation
         public ILocalizationModule ConcreteModuleImplementation { get; set; }
         public IModuleSettings Settings { get; set; }
-        
-        public ILocalizationModule SetupModule(ILocalizationModule _concreteModule, IModuleSettings _settings = null) {
+
+        public ILocalizationModule SetupModule(ILocalizationModule _concreteModule, IModuleSettings _settings = null)
+        {
             Settings = _settings;
             AvailableLanguages = GetAllAvailableLanguages();
             ActualLanguage = AvailableLanguages[0];
@@ -44,7 +46,8 @@ namespace ModularFramework.Modules {
         }
         #endregion
 
-        public string GetLocalizedString(string _locStringID) {
+        public string GetLocalizedString(string _locStringID)
+        {
             LocalizationDataRow row = LocalizationData.Instance.GetRow(_locStringID);
             if (row == null)
                 return string.Format("{0}{1}{2}", "[", _locStringID, "]");
@@ -52,16 +55,18 @@ namespace ModularFramework.Modules {
             return returnString;
         }
 
-        public string SetActualLanguage(string _languageToSet) {
+        public string SetActualLanguage(string _languageToSet)
+        {
             ActualLanguage = _languageToSet;
             return ActualLanguage;
         }
 
-        public string[] GetAllAvailableLanguages() {
+        public string[] GetAllAvailableLanguages()
+        {
             string[] returnArray = new string[] { };
             foreach (LanguagesRow lang in Languages.Instance.Rows) {
-                if (lang._Enabled) { 
-                    Array.Resize(ref returnArray, returnArray.Length+1);
+                if (lang._Enabled) {
+                    Array.Resize(ref returnArray, returnArray.Length + 1);
                     returnArray[returnArray.Length - 1] = lang._Localization_ID;
                 }
             }

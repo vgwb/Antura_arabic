@@ -11,10 +11,11 @@ namespace EA4S
         string[] bodyPartsWords;
         List<WordData> availableVocabulary = new List<WordData>();
 
-        public TeacherAI() {
+        public TeacherAI()
+        {
             // Debug.Log("AI exists");
 
-            bodyPartsWords = new []
+            bodyPartsWords = new[]
             {
                 "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
             };

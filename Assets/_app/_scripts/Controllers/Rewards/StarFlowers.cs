@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening;
 using ModularFramework.Core;
-using ModularFramework.Components;
 
 namespace EA4S
 {
@@ -45,7 +44,7 @@ namespace EA4S
                 .Insert(0f, Japan2.DOFade(1, 0.3f).SetAs(tParms));
             //.Insert(0.5f, Japan1.transform.DORotate(new Vector2(360, 0), 15).SetLoops(-1));;
 
-            if (_stars > 0) { 
+            if (_stars > 0) {
                 sequence.Append(Flower3.DOFade(1, 0.1f));
                 sequence.Append(Flower3.rectTransform.DOAnchorPos(f3pos, 0.3f).SetAs(tParms));
                 sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));

@@ -6,8 +6,8 @@ using EA4S;
 public class VersionText : MonoBehaviour
 {
 
-    void Start() {
+    void Start()
+    {
         gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppManager.AppVersion;
     }
-
 }

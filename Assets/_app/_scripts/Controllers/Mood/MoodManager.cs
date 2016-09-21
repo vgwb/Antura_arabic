@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using EA4S;
 using ModularFramework.Core;
@@ -31,7 +30,7 @@ namespace EA4S
         /// <param name="_mood"></param>
         public void MoodSelected(int _mood)
         {
-            if (AppManager.Instance.PlaySession > 2) 
+            if (AppManager.Instance.PlaySession > 2)
                 // End mood eval
                 LoggerEA4S.Log("app", "mood", "end", _mood.ToString());
             else

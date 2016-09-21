@@ -12,7 +12,7 @@ namespace EA4S
         void Start()
         {
             showTween = this.GetComponent<Image>().DOFade(0, 0.36f).From().SetEase(Ease.Linear).SetAutoKill(false)
-                .OnRewind(()=> this.gameObject.SetActive(false));
+                .OnRewind(() => this.gameObject.SetActive(false));
         }
 
         void OnDestroy()

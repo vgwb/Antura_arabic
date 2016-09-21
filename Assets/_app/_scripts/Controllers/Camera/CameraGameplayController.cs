@@ -10,7 +10,6 @@ namespace EA4S
     {
         public static CameraGameplayController I;
         public GameObject CallbackManager;
-
         public bool FxEnabled { get; private set; }
 
         void Awake()

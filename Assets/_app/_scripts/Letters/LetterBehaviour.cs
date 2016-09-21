@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using Panda;
 using DG.Tweening;
-using UniRx;
 using ModularFramework.Helpers;
 
 namespace EA4S
@@ -26,8 +25,7 @@ namespace EA4S
         /// <summary>
         /// Animator
         /// </summary>
-        public Animator Anim
-        {
+        public Animator Anim {
             get {
                 if (!anim)
                     anim = GetComponent<Animator>();
@@ -112,7 +110,7 @@ namespace EA4S
                     Debug.Log("Animation not found");
                     break;
             }
-            
+
             Task.current.Succeed();
         }
 

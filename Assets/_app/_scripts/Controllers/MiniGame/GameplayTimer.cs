@@ -20,20 +20,21 @@ namespace EA4S
         /// </summary>
         protected int ActualTime {
             get { return actualTime; }
-            set { if (actualTime != (int)timeRemaining)
+            set {
+                if (actualTime != (int)timeRemaining)
                     timeChanged((int)timeRemaining);
-                actualTime = (int)timeRemaining; }
+                actualTime = (int)timeRemaining;
+            }
         }
         private int actualTime;
-        
-
         private bool isRunning;
         private float timeRemaining;
         protected List<CustomEventData> CustomEvents;
         #endregion
 
         #region timer update
-        void Update() {
+        void Update()
+        {
             if (!isRunning)
                 return;
             if (timeRemaining > 0f) {
@@ -53,7 +54,8 @@ namespace EA4S
         /// Start timer with time count by param.
         /// </summary>
         /// <param name="_time"></param>
-        public void StartTimer(float _time, List<CustomEventData> _customEvents = null) {
+        public void StartTimer(float _time, List<CustomEventData> _customEvents = null)
+        {
             if (OnStartTimer != null)
                 OnStartTimer(_time);
             ResetTimer(_time);
@@ -65,21 +67,24 @@ namespace EA4S
         /// <summary>
         /// Start timer with default time count.
         /// </summary>
-        public void StartTimer() {
+        public void StartTimer()
+        {
             isRunning = true;
         }
 
         /// <summary>
         /// Stop timer.
         /// </summary>
-        public void StopTimer() {
+        public void StopTimer()
+        {
             isRunning = false;
         }
 
         /// <summary>
         /// Reset timer with default time count.
         /// </summary>
-        public void ResetTimer() {
+        public void ResetTimer()
+        {
             timeRemaining = time;
         }
 
@@ -87,11 +92,13 @@ namespace EA4S
         /// Reset timer with time count by param.
         /// </summary>
         /// <param name="_time"></param>
-        public void ResetTimer(float _time) {
+        public void ResetTimer(float _time)
+        {
             timeRemaining = _time;
         }
 
-        public void DisplayTime() {
+        public void DisplayTime()
+        {
             if (!timerText)
                 timerText = GetComponent<TextMeshProUGUI>();
             ActualTime = (int)timeRemaining;
@@ -102,7 +109,8 @@ namespace EA4S
         /// <summary>
         /// Force end time.
         /// </summary>
-        public void EndTimeRemaning() {
+        public void EndTimeRemaning()
+        {
             timeRemaining = 0;
         }
         #endregion
@@ -120,11 +128,13 @@ namespace EA4S
         /// 
         /// </summary>
         /// <param name="_eventData"></param>
-        public void RegisterCustomEvent(CustomEventData _eventData) {
+        public void RegisterCustomEvent(CustomEventData _eventData)
+        {
             CustomEvents.Add(_eventData);
         }
 
-        public struct CustomEventData {
+        public struct CustomEventData
+        {
             public string Name;
             public int Time;
         }
@@ -133,7 +143,8 @@ namespace EA4S
         /// Called every value change of int value of timer.
         /// </summary>
         /// <param name="_time"></param>
-        void timeChanged(int _time) {
+        void timeChanged(int _time)
+        {
             foreach (var ev in CustomEvents.FindAll(e => e.Time == _time)) {
                 if (OnCustomEvent != null)
                     OnCustomEvent(ev);

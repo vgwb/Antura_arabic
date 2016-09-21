@@ -11,7 +11,6 @@ namespace EA4S
 {
     public class WidgetPopupWindow : MonoBehaviour
     {
-
         public static WidgetPopupWindow I;
 
         public static bool IsShown { get; private set; }
@@ -38,7 +37,7 @@ namespace EA4S
             I = this;
 
             showTween = this.GetComponent<RectTransform>().DOAnchorPosY(-800, 0.5f).From().SetUpdate(timeIndependent)
-                .SetEase(Ease.OutBack).SetAutoKill(false).Pause() 
+                .SetEase(Ease.OutBack).SetAutoKill(false).Pause()
                 .OnPlay(() => this.gameObject.SetActive(true))
                 .OnRewind(() => this.gameObject.SetActive(false));
 
@@ -233,7 +232,7 @@ namespace EA4S
 
             SetTitle(introText);
             SetWord(wordCode, arabicWord);
-//            Window.SetActive(true);
+            //            Window.SetActive(true);
         }
 
         public void SetTitle(string text)

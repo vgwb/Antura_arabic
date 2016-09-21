@@ -10,7 +10,6 @@ using DG.Tweening;
 
 namespace EA4S
 {
-
     public class WheelManager : MonoBehaviour
     {
         [Header("Scene Setup")]
@@ -201,7 +200,7 @@ namespace EA4S
 
         public void OnRadiusTrigger(int number, Color _color)
         {
-            
+
 
             if (WheelCntrl.isRotating) {
                 if (number != currentGameIndex) {

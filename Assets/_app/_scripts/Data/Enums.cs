@@ -1,8 +1,5 @@
-﻿using System.Collections;
-
-namespace EA4S
+﻿namespace EA4S
 {
-
     public enum MinigamesCode
     {
         FastCrowd = 1,

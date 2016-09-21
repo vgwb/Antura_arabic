@@ -11,7 +11,6 @@ namespace EA4S
     public class WidgetSubtitles : MonoBehaviour
     {
         public static WidgetSubtitles I;
-
         public GameObject Background;
         public TextMeshProUGUI TextUI;
         public WalkieTalkie WalkieTalkie;
@@ -32,8 +31,7 @@ namespace EA4S
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(Background.GetComponent<RectTransform>().DOAnchorPosY(170, 0.4f).From())
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     TextUI.text = "";
                     this.gameObject.SetActive(false);
                 });

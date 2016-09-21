@@ -12,7 +12,8 @@ namespace EA4S
         /// Manual implementation for gameplay result.
         /// </summary>
         /// <param name="_stars"></param>
-        public void SimulateEndGameplay(int _stars) {
+        public void SimulateEndGameplay(int _stars)
+        {
             bool positiveResult = false;
             if (_stars > 0)
                 positiveResult = true;
@@ -20,9 +21,8 @@ namespace EA4S
             AnturaGameplayInfo gameInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
 
             AppManager.Instance.Modules.GameplayModule.GameplayResult(
-                new AnturaGameplayResult()
-                {
-                        
+                new AnturaGameplayResult() {
+
                     GameplayInfo = new AnturaGameplayInfo() { GameId = gameInfo.GameId },
                     Stars = _stars,
                     PositiveResult = positiveResult

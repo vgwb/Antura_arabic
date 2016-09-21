@@ -3,13 +3,12 @@ using System.Collections;
 
 public class RotatingJapanSky : MonoBehaviour
 {
-
-
     public float speed = 20f;
 
     Vector3 rotationEuler;
 
-    void Update() {
+    void Update()
+    {
         rotationEuler += Vector3.forward * speed * Time.deltaTime; //increment 30 degrees every second
         transform.rotation = Quaternion.Euler(rotationEuler);
 

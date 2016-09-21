@@ -15,17 +15,11 @@ namespace EA4S
     public class GlobalUI : MonoBehaviour
     {
         public static GlobalUI I { get; private set; }
-
         public static SceneTransitioner SceneTransitioner { get; private set; }
-
         public static ContinueScreen ContinueScreen { get; private set; }
-
         public static WidgetPopupWindow WidgetPopupWindow { get; private set; }
-
         public static WidgetSubtitles WidgetSubtitles { get; private set; }
-
         public static PauseMenu PauseMenu { get; private set; }
-
         const string ResourceId = "Prefabs/UI/GlobalUI";
 
         public static void Init()

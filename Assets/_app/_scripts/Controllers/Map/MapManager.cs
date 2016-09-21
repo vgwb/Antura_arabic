@@ -8,7 +8,6 @@ namespace EA4S
 {
     public class MapManager : MonoBehaviour
     {
-
         [Header("Scene Setup")]
         public Music SceneMusic;
 
@@ -123,7 +122,7 @@ namespace EA4S
             Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.PlaySession].transform.position;
 
             Player.transform.position = new Vector3(currentDotPosition.x, currentDotPosition.y + 4.6f, currentDotPosition.z);
-                
+
         }
 
         public void ChangeCamera()

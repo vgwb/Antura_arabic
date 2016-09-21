@@ -20,32 +20,28 @@ namespace EA4S
             pulseTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).SetLoops(2, LoopType.Yoyo).Pause()
                 .Append(rt.DOScale(1.05f, pulseDuration).SetEase(Ease.InOutQuad))
                 .Join(rt.DORotate(new Vector3(0, 0, 12), pulseDuration, RotateMode.FastBeyond360).SetRelative().SetEase(Ease.InOutSine));
-            pulseTween.OnComplete(() =>
-                {
-                    if (makePulse)
-                        pulseTween.Restart();
-                });
+            pulseTween.OnComplete(() => {
+                if (makePulse)
+                    pulseTween.Restart();
+            });
 
             const float showDuration = 0.3f;
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(rt.DOScale(0.1f, showDuration).From().SetEase(Ease.OutBack))
                 .Join(rt.DORotate(new Vector3(0, 0, 45f), showDuration, RotateMode.FastBeyond360).From().SetEase(Ease.OutBack))
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() =>
-                {
+                .OnRewind(() => {
                     if (pulseTween != null)
                         pulseTween.Rewind();
                     this.gameObject.SetActive(false);
                 });
 
             btTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .AppendCallback(() =>
-                {
+                .AppendCallback(() => {
                     Button.gameObject.SetActive(false);
                     ButtonPressed.gameObject.SetActive(true);
                 })
-                .InsertCallback(0.2f, () =>
-                {
+                .InsertCallback(0.2f, () => {
                     Button.gameObject.SetActive(true);
                     ButtonPressed.gameObject.SetActive(false);
                 });

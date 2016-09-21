@@ -2,14 +2,14 @@
 using System.Collections;
 using TMPro;
 using System.Text.RegularExpressions;
-using UniRx;
-using Panda;
 
-namespace EA4S {
+namespace EA4S
+{
     /// <summary>
     /// View object for letter puppets.
     /// </summary>
-    public class LetterObjectView : MonoBehaviour {
+    public class LetterObjectView : MonoBehaviour
+    {
         public float MergedElementsDistance = 1;
 
         // Obsolete
@@ -18,7 +18,7 @@ namespace EA4S {
         public LetterObjectView LeftLetter = null;
 
         public LetterObject Model;
-        
+
         public bool IsMerged;
         public DropSingleArea ActualDropArea;
         //DropState dropState = DropState.off;
@@ -29,15 +29,17 @@ namespace EA4S {
 
         #endregion
 
-        public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride) {
+        public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride)
+        {
             Init(_data);
             GetComponent<LetterBehaviour>().Settings = _behaviourSettingsOverride;
         }
 
-        public void Init(ILivingLetterData _data) {
+        public void Init(ILivingLetterData _data)
+        {
             Model = new LetterObject(_data);
             Lable.text = Model.Data.TextForLivingLetter;
-            IsMerged = false; 
+            IsMerged = false;
         }
 
         #region

@@ -26,7 +26,6 @@ namespace EA4S
         AssessmentManager manager;
         SpriteLineRenderer line;
 
-
         #region
 
         /// <summary>
