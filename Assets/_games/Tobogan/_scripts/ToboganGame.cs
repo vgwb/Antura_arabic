@@ -1,19 +1,15 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-namespace EA4S.Tobogan
+﻿namespace EA4S.Tobogan
 {
     public class ToboganGame : TemplateGame
     {
         ToboganIntroductionState introductionState;
-        
-        public override void Initialize()
+
+        protected override void OnInitialize(IGameContext context, int difficulty)
         {
             introductionState = new ToboganIntroductionState(this);
         }
 
-        public override IGameState GetInitialState()
+        protected override IGameState GetInitialState()
         {
             return introductionState;
         }
