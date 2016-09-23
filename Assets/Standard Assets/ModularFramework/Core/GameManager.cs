@@ -21,6 +21,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
 using ModularFramework.Modules;
+using UnityEngine.SceneManagement;
 
 namespace ModularFramework.Core
 {
@@ -54,14 +55,23 @@ namespace ModularFramework.Core
 
         #endregion
 
-        #region Event Subscription
-
-        void OnLevelWasLoaded(int level)
-        {
+        #region Event Handlers
+        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1) {
             if (IsDuplicatedInstance)
                 return;
-            //Debug.Log("OnLevelWasLoaded",this);
+            Debug.Log("SceneLoaded", this);
             Modules.SceneModule.SceneLoadedBehaviour();
+        }
+        #endregion
+
+        #region Event Subscription
+
+        void OnEnable() {
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
+
+        void OnDisable() {
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
         }
 
         #endregion
