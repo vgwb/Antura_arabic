@@ -3,7 +3,21 @@ EA4S - Antura and the Letters
 the full Unity3D project  
 by CGL / VGWB / Wixel
 
-this is a Unity 5.4 project
-set the project to Android or iOS
+the developer docs are here: [/Assets/Docs/](https://github.com/VGWB/EA4S_Antura_U3D/tree/master/Assets/Docs)
 
-all docs are in folder [/Assets/Docs/](https://github.com/StefanoCecere/EA4S_Antura_U3D/tree/master/Assets/Docs)
+
+## Licensing
+
+### Code
+
+All scripts and scene files are distributed under the [MIT license](LICENSE.md).
+
+* Copyright: ...
+
+### Assets
+
+Unless mentioned otherwise, all art assets (files in ``art/``, ``music/`` and
+``sound/``) are distributed under the [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/) license.
+
+* Artist: Gaetano Leonardi
+* Copyright: ...
