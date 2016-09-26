@@ -1,14 +1,14 @@
 ﻿// Written by Davide Barbieri <davide.barbieri AT ghostshark.it>
 namespace EA4S
 {
-    public delegate void GameResult(bool won, int score);
+    public delegate void GameResultAction(int stars, int score);
 
     public interface IGame
     {
         GameStateManager StateManager { get; }
 
-        event GameResult OnGameEnded;
+        event GameResultAction OnGameEnded;
 
-        void Initialize(IGameContext context, int difficulty /*, World currentWorld*/);
+        void Initialize(IGameContext context, int difficulty, IWordProvider wordProvider /*, World currentWorld*/);
     }
 }

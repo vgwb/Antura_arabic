@@ -1,13 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-namespace EA4S.Tobogan
+﻿namespace EA4S.Template
 {
     public class IntroductionGameState : IGameState
     {
         TemplateGame game;
 
+        float timer = 4;
         public IntroductionGameState(TemplateGame game)
         {
             this.game = game;
@@ -23,6 +20,12 @@ namespace EA4S.Tobogan
 
         public void Update(float delta)
         {
+            timer -= delta;
+
+            if (timer < 0)
+            {
+                game.SetCurrentState(game.QuestionState);
+            }
         }
 
         public void UpdatePhysics(float delta)
