@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace EA4S.Tobogan
+﻿namespace EA4S.Tobogan
 {
     public class ToboganIntroductionState : IGameState
     {
-        TemplateGame game;
+        ToboganGame game;
 
-        public ToboganIntroductionState(TemplateGame game)
+        float timer = 4;
+        public ToboganIntroductionState(ToboganGame game)
         {
             this.game = game;
         }
 
         public void EnterState()
         {
+            var subTitleWidget = game.Context.GetSubtitleWidget();
+            subTitleWidget.DisplaySentence(GameResult.game_result_retry);
         }
 
         public void ExitState()
@@ -24,6 +22,13 @@ namespace EA4S.Tobogan
 
         public void Update(float delta)
         {
+            timer -= delta;
+
+            if (timer < 0)
+            {
+                game.SetCurrentState(game.PlayState);
+                return;
+            }
         }
 
         public void UpdatePhysics(float delta)

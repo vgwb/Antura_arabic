@@ -1,50 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace EA4S.Tobogan
+namespace EA4S.Template
 {
-    public abstract class TemplateGame : MiniGameBase, IGame
+    public class TemplateGame : MiniGame
     {
-        // When the game is ended, this event is raised
-        public event GameResult OnGameEnded;
+        public IntroductionGameState IntroductionState { get; private set; }
+        public QuestionGameState QuestionState { get; private set; }
+        public PlayGameState PlayState { get; private set; }
+        public ResultGameState ResultState { get; private set; }
 
-        /// <summary>
-        /// Specify which is the first state of this game using this method
-        /// </summary>
-        protected abstract IGameState GetInitialState();
-
-        /// <summary>
-        /// Implement game's construction steps inside this method
-        /// </summary>
-        protected abstract void OnInitialize(IGameContext context, int difficulty);
-
-        GameStateManager stateManager = new GameStateManager();
-        public GameStateManager StateManager { get { return stateManager; } }
-
-        public void Initialize(IGameContext context, int difficulty)
+        protected override void OnInitialize(IGameContext context, int difficulty, IWordProvider wordProvider)
         {
-            base.Start();
-            OnInitialize(context, difficulty);
-            this.SetCurrentState(GetInitialState());
+            IntroductionState = new IntroductionGameState(this);
+            QuestionState = new QuestionGameState(this);
+            PlayState = new PlayGameState(this);
+            ResultState = new ResultGameState(this);
         }
 
-        /// <summary>
-        /// Do not override Update/FixedUpdate; just implement Update and UpdatePhysics inside game states
-        /// </summary>
-        void Update()
+        protected override IGameState GetInitialState()
         {
-            stateManager.Update(Time.deltaTime);
-        }
-
-        void FixedUpdate()
-        {
-            stateManager.UpdatePhysics(Time.fixedDeltaTime);
-        }
-
-        protected void EndGame(bool won, int score)
-        {
-            this.SetCurrentState(null);
-            if (OnGameEnded != null)
-                OnGameEnded(won, score);
+            return IntroductionState;
         }
     }
 }

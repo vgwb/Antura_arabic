@@ -7,6 +7,9 @@ namespace EA4S
     /// </summary>
     public class GameStateManager
     {
+        // Use to prevent recursive calls to ExitState, when the transition happens in ExitState
+        bool isInExitTransition = false;
+
         IGameState currentState;
         public IGameState CurrentState
         {
@@ -17,8 +20,12 @@ namespace EA4S
 
             set
             {
-                if (currentState != null)
+                if (!isInExitTransition && currentState != null)
+                {
+                    isInExitTransition = true;
                     currentState.ExitState();
+                    isInExitTransition = false;
+                }
 
                 currentState = value;
 

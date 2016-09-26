@@ -1,13 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-namespace EA4S.Tobogan
+﻿namespace EA4S.Template
 {
     public class ResultGameState : IGameState
     {
         TemplateGame game;
 
+        float timer = 4;
         public ResultGameState(TemplateGame game)
         {
             this.game = game;
@@ -15,6 +12,8 @@ namespace EA4S.Tobogan
 
         public void EnterState()
         {
+            var subTitleWidget = game.Context.GetSubtitleWidget();
+            subTitleWidget.DisplaySentence(GameResult.game_result_good);
         }
 
         public void ExitState()
@@ -23,6 +22,12 @@ namespace EA4S.Tobogan
 
         public void Update(float delta)
         {
+            timer -= delta;
+
+            if (timer < 0)
+            {
+                game.EndGame(2, 100);
+            }
         }
 
         public void UpdatePhysics(float delta)
