@@ -3,7 +3,7 @@ namespace EA4S
 {
     public interface ISubtitlesWidget
     {
-        void DisplaySentence(GameResult text, float enterDuration = 2, bool showSpeaker = false, System.Action onSentenceCompleted = null);
+        void DisplaySentence(TextID text, float enterDuration = 2, bool showSpeaker = false, System.Action onSentenceCompleted = null);
         void Clear();
     }
 }

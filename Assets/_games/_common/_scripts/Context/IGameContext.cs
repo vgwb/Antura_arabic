@@ -8,7 +8,7 @@ namespace EA4S
 
         ISubtitlesWidget GetSubtitleWidget();
         IStarsWidget GetStarsWidget();
-        IQuestionWidget GetQuestionWidget();
+        IPopupWidget GetPopupWidget();
 
     }
 }

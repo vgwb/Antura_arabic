@@ -15,7 +15,14 @@ namespace EA4S
 
         public void EnterState()
         {
-            game.Context.GetStarsWidget().Show(game.StarsScore);
+            int starsScore = game.StarsScore;
+            if (starsScore > 3)
+                starsScore = 3;
+
+            game.Context.GetStarsWidget().Show(starsScore);
+
+            var subTitleWidget = game.Context.GetSubtitleWidget();
+            subTitleWidget.DisplaySentence(TextID.GetTextIDFromStars(starsScore));
         }
 
         public void ExitState()

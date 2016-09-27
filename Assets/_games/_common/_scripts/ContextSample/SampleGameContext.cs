@@ -8,7 +8,7 @@ namespace EA4S
 
         ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
         IStarsWidget starsWidget = new SampleStarsWidget();
-        IQuestionWidget questionWidget = new SampleQuestionWidget();
+        IPopupWidget questionWidget = new SamplePopupWidget();
 
         public IAudioManager GetAudioManager()
         {
@@ -25,7 +25,7 @@ namespace EA4S
             return subtitleWidget;
         }
 
-        public IQuestionWidget GetQuestionWidget()
+        public IPopupWidget GetPopupWidget()
         {
             return questionWidget;
         }

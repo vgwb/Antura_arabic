@@ -5,7 +5,7 @@ namespace EA4S
 {
     public class SampleSubtitlesWidget : ISubtitlesWidget
     {
-        public void DisplaySentence(GameResult text, float enterDuration , bool showSpeaker, System.Action onSentenceCompleted)
+        public void DisplaySentence(TextID text, float enterDuration , bool showSpeaker, System.Action onSentenceCompleted)
         {
             WidgetSubtitles.I.DisplaySentence(text.ToString(), enterDuration, showSpeaker, onSentenceCompleted);
         }
