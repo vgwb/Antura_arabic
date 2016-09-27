@@ -13,7 +13,7 @@
         public void EnterState()
         {
             var subTitleWidget = game.Context.GetSubtitleWidget();
-            subTitleWidget.DisplaySentence(GameResult.game_result_retry);
+            subTitleWidget.DisplaySentence(TextID.GAME_RESULT_RETRY);
         }
 
         public void ExitState()

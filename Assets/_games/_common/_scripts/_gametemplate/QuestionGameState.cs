@@ -11,12 +11,12 @@
 
         public void EnterState()
         {
-            game.Context.GetQuestionWidget().Show("bla bla", game.WordProvider.GetNextWord(), OnQuestionCompleted);
+            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, false, game.WordProvider.GetNextWord());
         }
 
         public void ExitState()
         {
-            game.Context.GetQuestionWidget().Hide();
+            game.Context.GetPopupWidget().Hide();
         }
 
         void OnQuestionCompleted()

@@ -11,12 +11,12 @@
 
         public void EnterState()
         {
-            WidgetPopupWindow.I.ShowStringAndWord(null, "This is a Text", AppManager.Instance.Teacher.GimmeAGoodWordData());
+            game.Context.GetPopupWidget().Show(null, TextID.ASSESSMENT_RESULT_RETRY, game.WordProvider.GetNextWord());
         }
 
         public void ExitState()
         {
-            WidgetPopupWindow.I.Close();
+            game.Context.GetPopupWidget().Hide();
         }
 
         public void Update(float delta)

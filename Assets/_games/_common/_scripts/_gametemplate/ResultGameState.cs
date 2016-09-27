@@ -12,8 +12,6 @@
 
         public void EnterState()
         {
-            var subTitleWidget = game.Context.GetSubtitleWidget();
-            subTitleWidget.DisplaySentence(GameResult.game_result_good);
         }
 
         public void ExitState()
