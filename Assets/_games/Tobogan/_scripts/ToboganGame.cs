@@ -1,29 +1,26 @@
-﻿namespace EA4S.Tobogan
+﻿using System;
+
+namespace EA4S.Tobogan
 {
-    public class ToboganGame : EA4S.Template.TemplateGame
+    public class ToboganGame : MiniGame
     {
-        /*
         public ToboganIntroductionState IntroductionState { get; private set; }
         public ToboganPlayState PlayState { get; private set; }
-        
-        protected override void OnInitialize(IGameContext context, int difficulty)
+
+        protected override IGameConfiguration GetConfiguration()
         {
-            IntroductionState = new ToboganIntroductionState(this);
-            PlayState = new ToboganPlayState(this);
+            return ToboganConfiguration.Instance;
         }
 
         protected override IGameState GetInitialState()
         {
             return IntroductionState;
         }
-        */
 
-        protected override void Start()
+        protected override void OnInitialize(IGameContext context)
         {
-            base.Start();
-
-            // WARNING: THIS MUST BE CALLED BY THE GAME HUB OR WHAT CONFIGURES THE GAME
-            Initialize(new SampleGameContext(), 0, new SampleWordProvider(5));
+            IntroductionState = new ToboganIntroductionState(this);
+            PlayState = new ToboganPlayState(this);
         }
     }
 }
