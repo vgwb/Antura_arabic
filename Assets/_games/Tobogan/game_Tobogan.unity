@@ -1926,7 +1926,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.88463056, y: 0.0000014081598, z: -0.0000020507707}
+  m_ConnectedAnchor: {x: -0.8846303, y: 0.0000015199187, z: -0.0000025127063}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -2892,19 +2892,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.6885094
+      value: -0.68850946
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607113
+      value: 0.040607117
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.71819454
+      value: 0.7181946
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220874
+      value: 0.09220875
       objectReference: {fileID: 0}
     - target: {fileID: 3385508, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_Mesh
@@ -4633,6 +4633,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1247669103 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9598902, guid: 290e2d22a391946ada89c65a1cef5038,
+    type: 2}
+  m_PrefabInternal: {fileID: 849704530}
 --- !u!1 &1253120628
 GameObject:
   m_ObjectHideFlags: 0
@@ -5142,6 +5147,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1404855971}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1414301147 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 113144, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
+  m_PrefabInternal: {fileID: 849704530}
+--- !u!114 &1414301148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414301147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a5a3d3af60a064499299c1a2f006ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1247669103}
+  doRagdoll: 0
 --- !u!1001 &1457109733
 Prefab:
   m_ObjectHideFlags: 0
