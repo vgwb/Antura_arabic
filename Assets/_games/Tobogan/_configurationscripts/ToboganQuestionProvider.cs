@@ -1,0 +1,1 @@
+﻿// Implement this if needed by the core
