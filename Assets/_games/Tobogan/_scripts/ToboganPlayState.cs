@@ -11,7 +11,9 @@
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(null, TextID.ASSESSMENT_RESULT_RETRY, game.WordProvider.GetNextWord());
+            var nextQuestion = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
+
+            game.Context.GetPopupWidget().Show(null, TextID.ASSESSMENT_RESULT_RETRY, (WordData)nextQuestion.GetQuestion());
         }
 
         public void ExitState()

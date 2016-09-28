@@ -12,7 +12,7 @@ namespace EA4S.Template
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
 
-        protected override void OnInitialize(IGameContext context, int difficulty, IWordProvider wordProvider)
+        protected override void OnInitialize(IGameContext context)
         {
             IntroductionState = new IntroductionGameState(this);
             QuestionState = new QuestionGameState(this);
@@ -23,6 +23,11 @@ namespace EA4S.Template
         protected override IGameState GetInitialState()
         {
             return IntroductionState;
+        }
+
+        protected override IGameConfiguration GetConfiguration()
+        {
+            return TemplateConfiguration.Instance;
         }
     }
 }
