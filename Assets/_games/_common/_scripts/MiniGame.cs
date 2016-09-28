@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace EA4S
 {
@@ -9,7 +10,6 @@ namespace EA4S
         public int StarsScore { get; private set; }
 
         public IGameContext Context { get; private set; }
-        public IWordProvider WordProvider { get; private set; }
 
         // When the game is ended, this event is raised
         public event GameResultAction OnGameEnded;
@@ -20,22 +20,36 @@ namespace EA4S
         protected abstract IGameState GetInitialState();
 
         /// <summary>
+        /// Specify which is the game configuration class for this game
+        /// </summary>
+        protected abstract IGameConfiguration GetConfiguration();
+
+        /// <summary>
         /// Implement game's construction steps inside this method.
         /// </summary>
-        protected abstract void OnInitialize(IGameContext context, int difficulty, IWordProvider wordProvider);
+        protected abstract void OnInitialize(IGameContext context);
+
+        public void EndGame(int stars, int score)
+        {
+            StarsScore = stars;
+
+            if (OnGameEnded != null)
+                OnGameEnded(stars, score);
+
+            this.SetCurrentState(OutcomeState);
+        }
 
         GameStateManager stateManager = new GameStateManager();
         public GameStateManager StateManager { get { return stateManager; } }
 
-        public void Initialize(IGameContext context, int difficulty, IWordProvider wordProvider)
+        void Initialize(IGameContext context)
         {
             Context = context;
-            WordProvider = wordProvider;
 
             OutcomeState = new OutcomeGameState(this);
 
             base.Start();
-            OnInitialize(context, difficulty, wordProvider);
+            OnInitialize(context);
             this.SetCurrentState(GetInitialState());
         }
 
@@ -52,14 +66,11 @@ namespace EA4S
             stateManager.UpdatePhysics(Time.fixedDeltaTime);
         }
 
-        public void EndGame(int stars, int score)
+        protected override void Start()
         {
-            StarsScore = stars;
+            base.Start();
 
-            if (OnGameEnded != null)
-                OnGameEnded(stars, score);
-
-            this.SetCurrentState(OutcomeState);
+            Initialize(GetConfiguration().Context);
         }
     }
 }

@@ -5,10 +5,8 @@ namespace EA4S
 
     public interface IGame
     {
-        GameStateManager StateManager { get; }
-
         event GameResultAction OnGameEnded;
 
-        void Initialize(IGameContext context, int difficulty, IWordProvider wordProvider /*, World currentWorld*/);
+        GameStateManager StateManager { get; }
     }
 }

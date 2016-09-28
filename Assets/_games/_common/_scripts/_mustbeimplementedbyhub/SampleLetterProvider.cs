@@ -3,16 +3,16 @@
 namespace EA4S
 {
     /// <summary>
-    /// Implement here a word provider based on difficulty, etc.
+    /// Letter provider sample
     /// </summary>
-    public class SampleLetterProvider : ILetterProvider
+    public class SampleLetterProvider : ILivingLetterDataProvider
     {
         public SampleLetterProvider(int difficulty)
         {
 
         }
         
-        public LetterData GetNextLetter()
+        public ILivingLetterData GetNextData()
         {
             return AppManager.Instance.Teacher.GimmeARandomLetter();
         }
