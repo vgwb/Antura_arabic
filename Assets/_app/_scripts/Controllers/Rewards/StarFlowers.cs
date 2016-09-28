@@ -48,8 +48,7 @@ namespace EA4S
                 .Insert(0f, Japan1.DOFade(1, 0.3f).SetAs(tParms))
                 .Insert(0f, Japan2.DOFade(1, 0.3f).SetAs(tParms));
             //.Insert(0.5f, Japan1.transform.DORotate(new Vector2(360, 0), 15).SetLoops(-1));;
-
-            if (_stars > 0) {
+            
             if (_stars > 0)
             {
                 sequence.Append(Flower3.DOFade(1, 0.1f));
