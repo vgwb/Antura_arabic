@@ -8,14 +8,19 @@ namespace EA4S
 {
     public class StarFlowers : MonoBehaviour
     {
+        public static StarFlowers I;
+
         public Image Flower1, Flower2, Flower3, Japan1, Japan2, Bbackground;
 
         string nextSceneName = string.Empty;
 
         void Awake()
         {
+            I = this;
+
             GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            foreach (Image img in GetComponentsInChildren<Image>()) {
+            foreach (Image img in GetComponentsInChildren<Image>())
+            {
                 img.DOFade(0, 0);
             }
         }
@@ -45,18 +50,22 @@ namespace EA4S
             //.Insert(0.5f, Japan1.transform.DORotate(new Vector2(360, 0), 15).SetLoops(-1));;
 
             if (_stars > 0) {
+            if (_stars > 0)
+            {
                 sequence.Append(Flower3.DOFade(1, 0.1f));
                 sequence.Append(Flower3.rectTransform.DOAnchorPos(f3pos, 0.3f).SetAs(tParms));
                 sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
             }
 
-            if (_stars > 1) {
+            if (_stars > 1)
+            {
                 sequence.Append(Flower2.DOFade(1, 0.1f));
                 sequence.Append(Flower2.rectTransform.DOAnchorPos(f2pos, 0.3f).SetAs(tParms));
                 sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
             }
 
-            if (_stars > 2) {
+            if (_stars > 2)
+            {
                 sequence.Append(Flower1.DOFade(1, 0.1f));
                 sequence.Append(Flower1.rectTransform.DOAnchorPos(f1pos, 0.3f).SetAs(tParms));
                 sequence.AppendCallback(() => AudioManager.I.PlaySfx(Sfx.StarFlower));
@@ -75,6 +84,10 @@ namespace EA4S
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
             nextSceneName = string.Empty;
         }
-
+        
+        void OnDestroy()
+        {
+            I = null;
+        }
     }
 }
