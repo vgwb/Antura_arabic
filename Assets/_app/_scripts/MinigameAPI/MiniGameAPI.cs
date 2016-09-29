@@ -6,7 +6,7 @@ using EA4S;
 namespace EA4S.API {
 
     /// <summary>
-    /// 
+    /// TODO: this API implementation will be replaced by dependency injection pattern implementation.
     /// </summary>
     /// <seealso cref="ModularFramework.Core.Singleton{EA4S.API.MiniGameAPI}" />
     public class MiniGameAPI : Singleton<MiniGameAPI> {
