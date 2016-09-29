@@ -11,14 +11,19 @@
 
         public void EnterState()
         {
-            var nextQuestion = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            //var nextQuestion = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
 
-            game.Context.GetPopupWidget().Show(null, TextID.ASSESSMENT_RESULT_RETRY, (WordData)nextQuestion.GetQuestion());
+            //game.Context.GetPopupWidget().Show(OnPopupCloseRequested, TextID.ASSESSMENT_RESULT_RETRY, (WordData)nextQuestion.GetQuestion());
+        }
+
+        void OnPopupCloseRequested()
+        {
+            //game.Context.GetPopupWidget().Hide();
         }
 
         public void ExitState()
         {
-            game.Context.GetPopupWidget().Hide();
+            //game.Context.GetPopupWidget().Hide();
         }
 
         public void Update(float delta)
