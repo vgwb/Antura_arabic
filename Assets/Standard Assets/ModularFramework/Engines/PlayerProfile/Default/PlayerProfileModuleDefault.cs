@@ -20,7 +20,6 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using ModularFramework.Core;
 
 namespace ModularFramework.Modules
@@ -80,7 +79,7 @@ namespace ModularFramework.Modules
         {
             if (PlayerPrefs.HasKey(GetStoreKeyForPlayer(_playerId))) {
                 string serializableProfile = PlayerPrefs.GetString(GetStoreKeyForPlayer(_playerId));
-                return JsonConvert.DeserializeObject<PlayerProfile>(serializableProfile);
+                return JsonUtility.FromJson<PlayerProfile>(serializableProfile);
             } else {
                 Debug.LogFormat("Profile {0} not found.", _playerId);
             }
@@ -95,7 +94,7 @@ namespace ModularFramework.Modules
         public void SavePlayerSettings(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
         {
             string storeKey = GetStoreKeyForPlayer(_newPlayer.Id);
-            string serializedObjs = JsonConvert.SerializeObject(_newPlayer);
+            string serializedObjs = JsonUtility.ToJson(_newPlayer);
             if (serializedObjs != null)
                 PlayerPrefs.SetString(storeKey, serializedObjs);
             else
@@ -140,7 +139,7 @@ namespace ModularFramework.Modules
             string serializedObjs;
             if (PlayerPrefs.HasKey(PLAYERS_PREFS_KEY)) {
                 serializedObjs = PlayerPrefs.GetString(PLAYERS_PREFS_KEY);
-                AvailablePlayers = JsonConvert.DeserializeObject<List<string>>(serializedObjs);
+                AvailablePlayers = JsonUtility.FromJson<List<string>>(serializedObjs);
             } else {
                 // Players list not created yet.
                 AvailablePlayers = new List<string>();
@@ -154,7 +153,7 @@ namespace ModularFramework.Modules
         /// </summary>
         public void SaveAllPlayerProfiles()
         {
-            string serializedObjs = JsonConvert.SerializeObject(AvailablePlayers);
+            string serializedObjs = JsonUtility.ToJson(AvailablePlayers);
             PlayerPrefs.SetString(PLAYERS_PREFS_KEY, serializedObjs);
             PlayerPrefs.Save();
         }
