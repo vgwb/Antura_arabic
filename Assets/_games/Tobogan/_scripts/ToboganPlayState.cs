@@ -14,9 +14,14 @@
             game.questionsManager.NewQuestion();
         }
 
+        void OnPopupCloseRequested()
+        {
+            //game.Context.GetPopupWidget().Hide();
+        }
+
         public void ExitState()
         {
-            game.Context.GetPopupWidget().Hide();
+            //game.Context.GetPopupWidget().Hide();
         }
 
         public void Update(float delta)

@@ -21,7 +21,6 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using ModularFramework.Core;
 
 namespace ModularFramework.Modules {
@@ -47,7 +46,7 @@ namespace ModularFramework.Modules {
         /// </summary>
         /// <param name="_dataToStore"></param>
         public void SaveData(ISerializableData _dataToStore, string _filename) {
-            string serializedObject = JsonConvert.SerializeObject(_dataToStore);
+            string serializedObject = JsonUtility.ToJson(_dataToStore);
             SaveDataToTextFile(serializedObject, _filename);
         }
 
@@ -59,7 +58,7 @@ namespace ModularFramework.Modules {
             ISerializableData returnObject;
             DataModuleJsonSettings typedSettings = ((DataModuleJsonSettings)Settings);
             string stringFromResources = LoadStringFromTextFileResource(typedSettings.StoreDataPath + Path.PathSeparator + _resourceName);
-            returnObject = JsonConvert.DeserializeObject<ISerializableData>(stringFromResources);
+            returnObject = JsonUtility.FromJson<ISerializableData>(stringFromResources);
             return returnObject;
         }
 

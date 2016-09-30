@@ -4,6 +4,7 @@ using ModularFramework.Core;
 using ModularFramework.Modules;
 using Google2u;
 using UniRx;
+using EA4S.API;
 
 namespace EA4S
 {
@@ -70,6 +71,8 @@ namespace EA4S
         protected override void GameSetup()
         {
             base.GameSetup();
+
+            gameObject.AddComponent<MiniGameAPI>();
 
             AdditionalSetup();
 

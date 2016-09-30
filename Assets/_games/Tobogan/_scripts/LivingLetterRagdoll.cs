@@ -14,6 +14,9 @@ public class LivingLetterRagdoll : MonoBehaviour
     void Awake()
     {
         rigidBodies = GetComponentsInChildren<Rigidbody>(true);
+
+        for (int i = 0; i < rigidBodies.Length; ++i)
+            rigidBodies[i].isKinematic = true;
     }
 
     void Update()
@@ -22,7 +25,7 @@ public class LivingLetterRagdoll : MonoBehaviour
         {
             doRagdoll = false;
 
-            SetRagdoll(true, 10*Vector3.one);
+            SetRagdoll(true, 10 * Vector3.one);
         }
     }
 
@@ -33,7 +36,10 @@ public class LivingLetterRagdoll : MonoBehaviour
         if (active && !isRagdoll)
         {
             for (int i = 0; i < rigidBodies.Length; ++i)
+            {
+                rigidBodies[i].isKinematic = false;
                 rigidBodies[i].velocity = initialVelocity;
+            }
         }
 
         isRagdoll = active;
