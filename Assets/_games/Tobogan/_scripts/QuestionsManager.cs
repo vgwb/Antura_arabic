@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace EA4S.Tobogan
 {
@@ -11,6 +12,7 @@ namespace EA4S.Tobogan
 
         QuestionLivingLetter questionLivingLetter;
         List<QuestionLivingLetter> standbyLivingLetters = new List<QuestionLivingLetter>();
+        public event Action<bool> onAnswered;
 
         public QuestionsManager(ToboganGame game)
         {

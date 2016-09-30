@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EA4S
 {
@@ -31,6 +32,7 @@ namespace EA4S
                     correctAnswers.Add(letterData);
                 }
 
+                correctAnswers = correctAnswers.Distinct().ToList();
 
                 // At least 4 wrong letters
                 while (wrongAnswers.Count < 4)

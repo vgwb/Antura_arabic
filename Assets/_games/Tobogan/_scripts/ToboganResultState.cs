@@ -13,6 +13,10 @@
         public void EnterState()
         {
             // Show some animation
+            if (game.CurrentScoreRecord == 0)
+            {
+                game.feedbackGraphics.ShowPoorPlayerPerformanceFeedback();
+            }
         }
 
         public void ExitState()
@@ -25,7 +29,7 @@
 
             if (timer < 0)
             {
-                game.EndGame(game.CurrentStars, game.CurrentAnswersRecord);
+                game.EndGame(game.CurrentStars, game.CurrentScoreRecord);
             }
         }
 
