@@ -5,11 +5,13 @@ namespace EA4S.Tobogan
 {
     public class LettersTower : MonoBehaviour
     {
+        public bool HasLettersInBacklog { get { return backlogTube.Count > 0; } }
+        public bool IsLetterFalling { get { return fallingLetter != null; } }
+
         // The tower is a stack of letters, that could be crash
         private List<LivingLetter> stackedLetters = new List<LivingLetter>();
 
         float letterHeight = 4.75f;
-        public bool isCrashing = false;
         public float TowerFullHeight { get { return stackedLetters.Count * letterHeight; } }
         public GameObject letterPrefab;
 
@@ -27,10 +29,14 @@ namespace EA4S.Tobogan
         float lastCompressionValue = 1;
 
         // Used to simulate tower swing
-        public float swingAmountFactor = 8.0f;
+        float maxSwingAmountFactor = 80.0f;
+        float minSwingAmountFactor = 2.0f;
+
+        float swingAmountFactor = 10.0f;
+
         public float swingSpeed = 0.15f;
         float currentSwing = 0.0f;
-        float swingFreightenedSpeedFactor = 1.0f;
+        float crashingSwing = 0.0f;
         float swingPercentage = 0; // a swing starts from center, go left, go right and comes back to center
 
         // Used to calculate the right moment in which a letter should be dropped
@@ -41,6 +47,11 @@ namespace EA4S.Tobogan
         float remainingFallingTime = 0.0f;
         float letterInitialFallSpeed = -0.0f;
         float spawnTimer = 0;
+
+        // Crash behaviour
+        public bool isCrashing = false;
+        float crashDirection = 1;
+        float crashingSpeed = 0;
 
         /// <summary>
         /// Crash the tower!
@@ -134,10 +145,16 @@ namespace EA4S.Tobogan
             }
 
             //// Simulate a bit of horizontal swinging
-            float swingFrequency = swingSpeed * swingFreightenedSpeedFactor;
+            float swingFrequency = swingSpeed;
 
             swingPercentage += Time.deltaTime * swingFrequency;
-            currentSwing = Mathf.Sin(swingPercentage * 2 * Mathf.PI);
+            swingPercentage = Mathf.Repeat(swingPercentage, 1);
+            float currentSwingNormalized = Mathf.Sin(swingPercentage * 2 * Mathf.PI);
+
+            currentSwing = currentSwingNormalized * swingAmountFactor + crashingSwing;
+
+            swingAmountFactor = Mathf.Lerp(swingAmountFactor, minSwingAmountFactor, 0.1f * Time.deltaTime);
+            swingAmountFactor = Mathf.Clamp(swingAmountFactor, minSwingAmountFactor, maxSwingAmountFactor);
 
             // Update letters positions
             if (currentHeight == 0)
@@ -146,29 +163,29 @@ namespace EA4S.Tobogan
                 lastCompressionValue = currentHeight / normalHeight;
             for (int i = 0, count = stackedLetters.Count; i < count; ++i)
             {
-                float heightSwingFactor = i / 30.0f;
-                heightSwingFactor = heightSwingFactor * heightSwingFactor;
+                float heightSwingFactor = GetHeightSwingFactor(i);
 
-                stackedLetters[i].transform.position = transform.position + Vector3.up * (i * letterHeight * lastCompressionValue) + transform.right * currentSwing * swingAmountFactor * heightSwingFactor;
+                stackedLetters[i].transform.position = transform.position + Vector3.up * (i * letterHeight * lastCompressionValue) + transform.right * currentSwing * heightSwingFactor;
 
                 if (i > 0)
                     stackedLetters[i].transform.up = (stackedLetters[i].transform.position - stackedLetters[i - 1].transform.position).normalized;
             }
 
-            // for testing purposed
             if (doBounce)
             {
                 doBounce = false;
-                yVelocity += -20f;
+
+                Bounce();
             }
 
 
-            if (isCrashing)
+            if (isCrashing && !IsLetterFalling)
             {
-                swingFreightenedSpeedFactor = Mathf.Lerp(swingFreightenedSpeedFactor, 2.0f, 3.0f * Time.deltaTime);
+                crashingSwing += crashDirection * crashingSpeed * Time.deltaTime;
+                crashingSpeed += 150 * Time.deltaTime;
 
                 // wait for a good swing
-                if (Mathf.Abs(currentSwing) >= 0.8f)
+                if (Mathf.Abs(currentSwing) > maxSwingAmountFactor * 1.2f)
                 {
                     isCrashing = false;
 
@@ -179,7 +196,7 @@ namespace EA4S.Tobogan
 
                         //randomVelocity.y = Mathf.Min(Mathf.Abs(randomVelocity.y), 5);
 
-                        randomVelocity += transform.right * Mathf.Sign(currentSwing) * i;
+                        randomVelocity += transform.right * crashDirection * i;
 
                         stackedLetters[i].GetComponent<LivingLetterRagdoll>().SetRagdoll(true, randomVelocity);
                     }
@@ -187,7 +204,17 @@ namespace EA4S.Tobogan
                 }
             }
             else
-                swingFreightenedSpeedFactor = 1.0f;
+            {
+                crashDirection = (swingPercentage < 0.25f || swingPercentage > 0.75f) ? 1 : -1;
+                crashingSwing = 0;
+                crashingSpeed = 0;
+            }
+        }
+
+        float GetHeightSwingFactor(int i)
+        {
+            float heightSwingFactor = i / 30.0f;
+            return heightSwingFactor * heightSwingFactor;
         }
 
         float ComputeElasticForce()
@@ -237,8 +264,18 @@ namespace EA4S.Tobogan
                 currentHeight += letterHeight;
                 stackedLetters.Add(fallingLetter);
                 fallingLetter = null;
-                doBounce = true;
+                Bounce();
             }
+        }
+
+        void Bounce()
+        {
+            if (stackedLetters.Count > 2)
+                yVelocity += -20f;
+            else
+                yVelocity += -1f * stackedLetters.Count;
+
+            swingAmountFactor += 20.0f;
         }
 
         void SpawnLetter(LivingLetter letter)
@@ -252,7 +289,7 @@ namespace EA4S.Tobogan
 
         void UpdateBacklog()
         {
-            if (backlogTube.Count == 0)
+            if (backlogTube.Count == 0 || isCrashing)
                 return;
 
             // A letter was already scheduled to spawn
@@ -276,8 +313,8 @@ namespace EA4S.Tobogan
                 // Some maths: {....please, do not say that "engineering skills are not needed to make games" no more}
 
                 // The following is true: 
-                // tFall + spawnTimer = tSwingToCenter + K*swingPeriod, K in N, K >= 0
-                // ---> spawnTimer = tSwingToCenter - tFall + K*swingPeriod
+                // tFall + spawnTimer = tSwingToCenter + K*swingPeriod*0.5, K in N, K >= 0
+                // ---> spawnTimer = tSwingToCenter - tFall + K*swingPeriod*0.5
                 // ---> we'll select, in the end, the minimum K in order that spawnTimer >= 0
 
                 // tFall = (- initialVelocity +/- sqrtf(initialVelocity^2 - 2 * g * fallHeight)) / g;
@@ -290,13 +327,13 @@ namespace EA4S.Tobogan
 
                 fallingTime = (-letterInitialFallSpeed - sqrtDelta) / Physics.gravity.y;
 
-                if (stackedLetters.Count < 3)
+                if (stackedLetters.Count < 3 || (GetHeightSwingFactor(stackedLetters.Count) * swingAmountFactor < 1.0f))
                 {
                     spawnTimer = 0;
                 }
                 else
                 {
-                    float swingFrequency = swingSpeed * swingFreightenedSpeedFactor;
+                    float swingFrequency = swingSpeed;
 
                     // it 
                     float tSwingToCenter;
@@ -306,7 +343,7 @@ namespace EA4S.Tobogan
                         tSwingToCenter = (Mathf.CeilToInt(swingPercentage / 0.5f) * 0.5f - swingPercentage) / swingFrequency;
 
 
-                    float swingPeriod = swingFrequency == 0 ? 0 : 1 / swingFrequency;
+                    float swingPeriod = (swingFrequency == 0 ? 0 : 1 / swingFrequency) * 0.5f;
 
                     spawnTimer = tSwingToCenter - fallingTime + swingPeriod * Mathf.Max(0, Mathf.CeilToInt((fallingTime - tSwingToCenter) / swingPeriod));
                 }
