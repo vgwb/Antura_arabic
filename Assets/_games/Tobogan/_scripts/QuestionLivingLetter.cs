@@ -19,9 +19,14 @@ namespace EA4S.Tobogan
         Tweener moveTweener;
         Tweener rotationTweener;
 
-        void Start()
+        void Awake()
         {
             livingLetterText = livingLetter.TextGO.GetComponent<TextMeshPro>();
+        }
+
+        void Start()
+        {
+            
         }
 
         public void PlayIdleAnimation()

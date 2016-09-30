@@ -20,6 +20,11 @@ namespace EA4S.Tobogan
 
             int answersCount = wrongs.Count + 1;
 
+            if(answersCount > 4)
+            {
+                answersCount = 4;
+            }
+
             bool setCorrect = false;
 
             for (int i = 0; i < answersCount; i++)
