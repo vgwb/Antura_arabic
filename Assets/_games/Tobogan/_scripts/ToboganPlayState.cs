@@ -11,6 +11,7 @@
 
         public void EnterState()
         {
+            game.questionsManager.Initialize();
             game.questionsManager.NewQuestion();
         }
 

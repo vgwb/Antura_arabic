@@ -16,26 +16,24 @@ namespace EA4S.Tobogan
             if(livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 answerText.gameObject.SetActive(true);
-                answerImage.gameObject.SetActive(false);
+                //answerImage.gameObject.SetActive(false);
 
                 answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LetterData)livingLetterData).Isolated_Unicode);
             }
             else if (livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 answerText.gameObject.SetActive(true);
-                answerImage.gameObject.SetActive(false);
+                //answerImage.gameObject.SetActive(false);
 
                 answerText.text = ((WordData)livingLetterData).Word;
             }
-            else
-            {
-                answerImage.gameObject.SetActive(true);
-                answerImage.sprite = livingLetterData.DrawForLivingLetter;
+            //else
+            //{
+            //    answerImage.gameObject.SetActive(true);
+            //    answerImage.sprite = livingLetterData.DrawForLivingLetter;
 
-                answerText.gameObject.SetActive(false);
-
-                IsCorrectAnswer = correct;
-            }
+            //    answerText.gameObject.SetActive(false);
+            //}
 
 
 
