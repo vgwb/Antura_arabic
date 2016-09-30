@@ -1,4 +1,4 @@
-﻿// Written by Davide Barbieri <davide.barbieri AT ghostshark.it>
+﻿
 using System;
 
 namespace EA4S

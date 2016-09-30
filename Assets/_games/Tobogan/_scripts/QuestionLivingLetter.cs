@@ -25,13 +25,33 @@ namespace EA4S.Tobogan
         Vector3 holdPosition;
         Vector3 normalPosition;
 
+        private float cameraDistance;
+
+        Camera tubesCamera;
+        float minX;
+        float maxX;
+        float minY;
+        float maxY;
+
         void Awake()
         {
             normalPosition = livingLetterTransform.localPosition;
 
             holdPosition.y = normalPosition.y + 5f;
+        }
 
-            boxCollider.enabled = false;
+        public void Initialize(Camera tubesCamera, Vector3 endPosition, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition)
+        {
+            this.tubesCamera = tubesCamera;
+
+            cameraDistance = Vector3.Distance(tubesCamera.transform.position, endPosition);
+
+            minX = downLeftMaxPosition.x;
+            maxX = upRightMaxPosition.x;
+            minY = downLeftMaxPosition.y;
+            maxY = upRightMaxPosition.y;
+
+            EnableCollider(true);
         }
 
         public void PlayIdleAnimation()
@@ -62,7 +82,7 @@ namespace EA4S.Tobogan
 
         public void SetQuestionText(ILivingLetterData livingLetterData)
         {
-            if(livingLetterData.DataType == LivingLetterDataType.Letter)
+            if (livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 livingLetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LetterData)livingLetterData).Isolated_Unicode);
             }
@@ -79,7 +99,7 @@ namespace EA4S.Tobogan
 
         public void MoveTo(Vector3 position, float time)
         {
-            
+
         }
 
         public void RoteteTo(Vector3 rotation, float time)
@@ -95,20 +115,30 @@ namespace EA4S.Tobogan
 
         void OnMouseDown()
         {
-            //mousePosition = Input.mousePosition;
-            //mousePosition.z = cameraDistance;
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = cameraDistance;
 
-            //parentFloatingLetter.MouseOffset = parentFloatingLetter.transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 local = transform.localPosition;
+            transform.position = tubesCamera.ScreenToWorldPoint(mousePosition);
+            local.x = transform.localPosition.x;
+            local.y = transform.localPosition.y - 2.5f;
+
+            transform.localPosition = ClampPositionToStage(local);
 
             PlayHoldAnimation();
         }
 
         void OnMouseDrag()
         {
-            //mousePosition = Input.mousePosition;
-            //mousePosition.z = cameraDistance;
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = cameraDistance;
 
-            //parentFloatingLetter.Drag(Camera.main.ScreenToWorldPoint(mousePosition));
+            Vector3 local = transform.localPosition;
+            transform.position = tubesCamera.ScreenToWorldPoint(mousePosition);
+            local.x = transform.localPosition.x;
+            local.y = transform.localPosition.y - 2.5f;
+
+            transform.localPosition = ClampPositionToStage(local);
         }
 
         void OnMouseUp()
@@ -116,10 +146,16 @@ namespace EA4S.Tobogan
             PlayIdleAnimation();
         }
 
-        public void Drag()
+        public Vector3 ClampPositionToStage(Vector3 unclampedPosition)
         {
-            moveTweener.Kill();
-            rotationTweener.Kill();
+            Vector3 clampedPosition = unclampedPosition;
+
+            clampedPosition.x = clampedPosition.x < minX ? minX : clampedPosition.x;
+            clampedPosition.x = clampedPosition.x > maxX ? maxX : clampedPosition.x;
+            clampedPosition.y = clampedPosition.y < minY ? minY : clampedPosition.y;
+            clampedPosition.y = clampedPosition.y > maxY ? maxY : clampedPosition.y;
+
+            return clampedPosition;
         }
 
         void EnableCollider(bool enable)
