@@ -17,7 +17,7 @@ namespace EA4S
         {
             currentQuestion = 0;
 
-            description = TextID.ASSESSMENT_RESULT_GOOD.ToString();
+            description = "Questions description";
 
             // 10 QuestionPacks
             for (int i = 0; i < 10; i++)

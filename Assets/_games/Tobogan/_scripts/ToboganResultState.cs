@@ -1,25 +1,22 @@
 ﻿namespace EA4S.Tobogan
 {
-    public class ToboganIntroductionState : IGameState
+    public class ToboganResultGameState : IGameState
     {
         ToboganGame game;
 
         float timer = 4;
-        public ToboganIntroductionState(ToboganGame game)
+        public ToboganResultGameState(ToboganGame game)
         {
             this.game = game;
         }
 
         public void EnterState()
         {
-            var subTitleWidget = game.Context.GetSubtitleWidget();
-            subTitleWidget.DisplaySentence(TextID.GAME_RESULT_RETRY);
+            // Show some animation
         }
 
         public void ExitState()
         {
-
-            game.Context.GetSubtitleWidget().Clear();
         }
 
         public void Update(float delta)
@@ -28,8 +25,7 @@
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.PlayState);
-                return;
+                game.EndGame(game.CurrentStars, game.CurrentAnswersRecord);
             }
         }
 
