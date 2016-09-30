@@ -1,22 +1,24 @@
 ﻿namespace EA4S.Tobogan
 {
-    public class ToboganPlayState : IGameState
+    class ToboganQuestionState : IGameState
     {
         ToboganGame game;
-        
-        public ToboganPlayState(ToboganGame game)
+
+        public ToboganQuestionState(ToboganGame game)
         {
             this.game = game;
         }
 
         public void EnterState()
         {
-            game.questionsManager.NewQuestion();
+            //var nextQuestion = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
+
+            //game.Context.GetPopupWidget().Show(null, TextID.ASSESSMENT_RESULT_RETRY, (WordData)nextQuestion.GetQuestion());
         }
 
         public void ExitState()
         {
-            game.Context.GetPopupWidget().Hide();
+
         }
 
         public void Update(float delta)
