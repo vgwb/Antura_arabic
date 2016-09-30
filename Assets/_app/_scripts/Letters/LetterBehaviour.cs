@@ -5,50 +5,25 @@ using Panda;
 using DG.Tweening;
 using ModularFramework.Helpers;
 
-namespace EA4S
-{
-    public class LetterBehaviour : MonoBehaviour
-    {
+namespace EA4S {
+    /// <summary>
+    /// Add AI logic to letter puppet object.
+    /// </summary>
+    [RequireComponent(typeof(LetterObjectView))]
+    public class LetterBehaviour : MonoBehaviour {
 
         #region public properties
 
         public BehaviourSettings Settings;
 
-        [Header("GO Elements")]
-        public Transform exclamationMark;
-        private Sequence sequenceExclamationMark;
-
         #endregion
 
-        #region runtime variables
-
-        /// <summary>
-        /// Animator
-        /// </summary>
-        public Animator Anim {
-            get {
-                if (!anim)
-                    anim = GetComponent<Animator>();
-                return anim;
-            }
-            set { anim = value; }
-        }
-
-        private Animator anim;
-
+        #region Runtime properties
+        LetterObjectView View;
         #endregion
 
-        void Start()
-        {
-            sequenceExclamationMark = DOTween.Sequence();
-            sequenceExclamationMark.SetLoops(-1);
-            //exclamationMark.transform.localScale = Vector3.zero;
-            if (exclamationMark) {
-                // Sequence
-                sequenceExclamationMark.Append(exclamationMark.DOShakePosition(0.9f));
-                //sequenceExclamationMark.AppendInterval(0.5f);
-                sequenceExclamationMark.Pause();
-            }
+        void Start() {
+            View = GetComponent<LetterObjectView>();
         }
 
         #region Tasks
@@ -62,55 +37,6 @@ namespace EA4S
         public void SetIsOut(bool _isOut)
         {
             IsOut = _isOut;
-            Task.current.Succeed();
-        }
-
-        #endregion
-
-        #region Animation
-
-        /// <summary>
-        /// Play anim with name as param.
-        /// </summary>
-        /// <param name="_animationName"></param>
-        [Task]
-        public void SetAnimation(string _animationName)
-        {
-            if (exclamationMark && sequenceExclamationMark != null) {
-                //exclamationMark.transform.localScale = Vector3.zero;
-                if (sequenceExclamationMark.IsPlaying()) {
-                    sequenceExclamationMark.Pause();
-                    exclamationMark.DOScale(0, 0.3f);
-                }
-            }
-
-            switch (_animationName) {
-                case "Idle":
-                    Anim.SetInteger("State", 0);
-                    break;
-                case "Walk":
-                    Anim.SetInteger("State", 1);
-                    break;
-                case "Run":
-                    Anim.SetInteger("State", 2);
-                    break;
-                case "Hold":
-                    Anim.SetInteger("State", 3);
-                    break;
-                case "Ninja":
-                    Anim.SetInteger("State", 4);
-                    break;
-                case "Terrified":
-                    Anim.SetInteger("State", 2);
-                    exclamationMark.DOScale(1, 0.3f);
-                    sequenceExclamationMark.Play();
-                    AudioManager.I.PlaySfx(Sfx.LetterFear);
-                    break;
-                default:
-                    Debug.Log("Animation not found");
-                    break;
-            }
-
             Task.current.Succeed();
         }
 
@@ -178,7 +104,7 @@ namespace EA4S
         float runtimeWaitTime = 0;
 
         /// <summary>
-        /// Stay in actual game for specific duration time.
+        /// Stay in actual state for specific duration time.
         /// </summary>
         /// <param name="_stateName"></param>
         [Task]
@@ -186,36 +112,43 @@ namespace EA4S
         {
             switch (_stateName) {
                 case "Idle":
+                    View.Model.State = LetterObjectState.Idle_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.IdleDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Walk":
+                    View.Model.State = LetterObjectState.Walk_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.WalkDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Run":
+                    View.Model.State = LetterObjectState.Run_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.RunDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Ninja":
+                    View.Model.State = LetterObjectState.Ninja_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.NinjaDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "TurnFrontOfCamera":
+                    View.Model.State = LetterObjectState.FrontOfCamera_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(0.4f, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "GoOut":
+                    View.Model.State = LetterObjectState.GoOut_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = 3.0f;
                     Wait(runtimeWaitTime);
                     break;
                 case "BumpOut":
+                    View.Model.State = LetterObjectState.BumpOut_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = 1.0f;
                     Wait(runtimeWaitTime);
@@ -279,13 +212,20 @@ namespace EA4S
 
         #endregion
 
+        #region ToBeDeleted
+        [Task]
+        public void SetAnimation(string _animationName) {
+            Task.current.Succeed();
+        }
         #endregion
 
-        #region BehaviourSettings
+            #endregion
 
-        /// <summary>
-        /// Define variables for behaviours variations.
-        /// </summary>
+            #region BehaviourSettings
+
+            /// <summary>
+            /// Define variables for behaviours variations.
+            /// </summary>
         [Serializable]
         public class BehaviourSettings
         {
