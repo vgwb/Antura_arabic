@@ -27,7 +27,7 @@ namespace EA4S.Tobogan
             }
         }
 
-        public void NewQuestion()
+        public void StartNewQuestion()
         {
             var nextQuestionPack = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
 
