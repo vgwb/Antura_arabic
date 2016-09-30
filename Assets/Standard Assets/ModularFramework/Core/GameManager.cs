@@ -113,7 +113,7 @@ namespace ModularFramework.Core
             setuped = true;
         }
 
-        void Start()
+        void Awake()
         {
             DontDestroyOnLoad(this);
             // Assert.IsTrue(!string.IsNullOrEmpty(GameSettings.GameID), "Main Game ID Can not be null or empty");
