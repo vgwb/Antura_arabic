@@ -1,8 +1,10 @@
-﻿namespace EA4S.Tobogan
+﻿using System;
+
+namespace EA4S.Tobogan
 {
     public class ToboganPlayState : IGameState
     {
-        CountdownTimer gameTime = new CountdownTimer(99.9f);
+        CountdownTimer gameTime = new CountdownTimer(20.0f);
         ToboganGame game;
         
         public ToboganPlayState(ToboganGame game)
@@ -14,41 +16,33 @@
 
         public void EnterState()
         {
-            game.CurrentAnswersRecord = 0;
+            game.ResetScore();
             
             // Reset game timer
             gameTime.Reset();
             gameTime.Start();
 
-            game.questionsManager.Initialize();
-            game.questionsManager.StartNewQuestion();
-
-            // Show questions description
-            var popupWidget = game.Context.GetPopupWidget();
-            popupWidget.Show(OnPopupCloseRequested, ToboganConfiguration.Instance.PipeQuestions.GetDescription(), true);
+            game.timerText.gameObject.SetActive(true);
+            game.timerText.text = "";
         }
 
-        void OnPopupCloseRequested()
-        {
-            game.Context.GetPopupWidget().Hide();
-        }
 
         public void ExitState()
         {
-
-            game.Context.GetPopupWidget().Hide();
+            game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
         }
 
         public void Update(float delta)
         {
-            if (game.CurrentAnswersRecord >= ToboganGame.MAX_ANSWERS_RECORD)
+            if (game.CurrentScoreRecord >= ToboganGame.MAX_ANSWERS_RECORD)
             {
                 // Maximum tower height reached
                 game.SetCurrentState(game.ResultState);
                 return;
             }
 
+            game.timerText.text = String.Format("{0:0}", gameTime.Time);
             gameTime.Update(delta);
         }
 

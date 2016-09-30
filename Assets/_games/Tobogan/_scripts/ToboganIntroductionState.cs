@@ -28,7 +28,7 @@
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.PlayState);
+                game.SetCurrentState(game.QuestionState);
                 return;
             }
         }
