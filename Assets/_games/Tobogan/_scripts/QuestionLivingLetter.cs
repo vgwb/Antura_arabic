@@ -12,41 +12,52 @@ namespace EA4S.Tobogan
         const string walkAnimation = "walk";
         const string ninjaAnimation = "ninja";
 
-        public LivingLetter livingLetter;
+        public Transform livingLetterTransform;
+        public BoxCollider boxCollider;
 
-        TextMeshPro livingLetterText;
+        public Animator AnturaAnimator;
+
+        public TextMeshPro livingLetterText;
 
         Tweener moveTweener;
         Tweener rotationTweener;
 
+        Vector3 holdPosition;
+        Vector3 normalPosition;
+
         void Awake()
         {
-            livingLetterText = livingLetter.TextGO.GetComponent<TextMeshPro>();
-        }
+            normalPosition = livingLetterTransform.localPosition;
 
-        void Start()
-        {
-            
+            holdPosition.y = normalPosition.y + 5f;
+
+            boxCollider.enabled = false;
         }
 
         public void PlayIdleAnimation()
         {
             PlayAnimation(idleAnimation);
+
+            livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayWalkAnimation()
         {
             PlayAnimation(walkAnimation);
+
+            livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayHoldAnimation()
         {
             PlayAnimation(holdAnimation);
+
+            livingLetterTransform.localPosition = holdPosition;
         }
 
         void PlayAnimation(string animation)
         {
-            livingLetter.AnturaAnimator.Play(animation);
+            AnturaAnimator.Play(animation);
         }
 
         public void SetQuestionText(ILivingLetterData livingLetterData)
@@ -88,6 +99,8 @@ namespace EA4S.Tobogan
             //mousePosition.z = cameraDistance;
 
             //parentFloatingLetter.MouseOffset = parentFloatingLetter.transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
+
+            PlayHoldAnimation();
         }
 
         void OnMouseDrag()
@@ -100,13 +113,18 @@ namespace EA4S.Tobogan
 
         void OnMouseUp()
         {
-
+            PlayIdleAnimation();
         }
 
         public void Drag()
         {
             moveTweener.Kill();
             rotationTweener.Kill();
+        }
+
+        void EnableCollider(bool enable)
+        {
+            boxCollider.enabled = enable;
         }
     }
 }
