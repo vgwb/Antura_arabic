@@ -10,6 +10,7 @@ namespace EA4S.Tobogan
 
         // The tower is a stack of letters, that could be crash
         private List<LivingLetter> stackedLetters = new List<LivingLetter>();
+        Dictionary<LivingLetter, System.Action> releasedCallbacks = new Dictionary<LivingLetter, System.Action>();
 
         float letterHeight = 4.8f;
         public float TowerFullHeight { get { return stackedLetters.Count * letterHeight; } }
@@ -49,6 +50,7 @@ namespace EA4S.Tobogan
         float spawnTimer = 0;
 
         // Crash behaviour
+        public event System.Action onCrashed;
         public bool isCrashing = false;
         float crashDirection = 1;
         float crashingSpeed = 0;
@@ -56,22 +58,27 @@ namespace EA4S.Tobogan
         /// <summary>
         /// Crash the tower!
         /// </summary>
-        public void Crash()
+        public void RequestCrash()
         {
             isCrashing = true;
+            backlogTube.Clear();
         }
 
         /// <summary>
         /// Add a new letter to falling queue, it will be released when is the right time
         /// </summary>
-        public void AddLetter()
+        public void AddLetter(System.Action onLetterReleased)
         {
             var newLetter = GameObject.Instantiate(letterPrefab);
             newLetter.transform.SetParent(transform, false);
             
             newLetter.SetActive(false);
 
-            backlogTube.Enqueue(newLetter.GetComponent<LivingLetter>());
+            var letterComponent = newLetter.GetComponent<LivingLetter>();
+            backlogTube.Enqueue(letterComponent);
+
+            if (onLetterReleased != null)
+                releasedCallbacks.Add(letterComponent, onLetterReleased);
         }
 
         void Start()
@@ -80,7 +87,7 @@ namespace EA4S.Tobogan
 
             // Test
             for (int i = 0; i < 15; ++i)
-                AddLetter();
+                AddLetter(null);
         }
 
         void Update()
@@ -104,7 +111,7 @@ namespace EA4S.Tobogan
             if (testAddLetter)
             {
                 testAddLetter = false;
-                AddLetter();
+                AddLetter(null);
             }
         }
 
@@ -193,20 +200,10 @@ namespace EA4S.Tobogan
                 // wait for a good swing
                 if (Mathf.Abs(currentSwing) > maxSwingAmountFactor * 1.2f)
                 {
+                    // Do Actual Crash
                     isCrashing = false;
 
-                    for (int i = 0, count = stackedLetters.Count; i < count; ++i)
-                    {
-                        var randomVelocity = Random.insideUnitSphere * 10.0f;
-                        randomVelocity.y = Mathf.Abs(randomVelocity.y);
-
-                        //randomVelocity.y = Mathf.Min(Mathf.Abs(randomVelocity.y), 5);
-
-                        randomVelocity += transform.right * crashDirection * i;
-
-                        stackedLetters[i].GetComponent<LivingLetterRagdoll>().SetRagdoll(true, randomVelocity);
-                    }
-                    stackedLetters.Clear();
+                    Crash();
                 }
             }
             else
@@ -215,6 +212,28 @@ namespace EA4S.Tobogan
                 crashingSwing = 0;
                 crashingSpeed = 0;
             }
+        }
+
+        void Crash()
+        {
+            // Do Actual Crash
+            isCrashing = false;
+
+            for (int i = 0, count = stackedLetters.Count; i < count; ++i)
+            {
+                var randomVelocity = Random.insideUnitSphere * 10.0f;
+                randomVelocity.y = Mathf.Abs(randomVelocity.y);
+
+                //randomVelocity.y = Mathf.Min(Mathf.Abs(randomVelocity.y), 5);
+
+                randomVelocity += transform.right * crashDirection * i;
+
+                stackedLetters[i].GetComponent<LivingLetterRagdoll>().SetRagdoll(true, randomVelocity);
+            }
+            stackedLetters.Clear();
+
+            if (onCrashed != null)
+                onCrashed();
         }
 
         float GetHeightSwingFactor(int i)
@@ -267,10 +286,26 @@ namespace EA4S.Tobogan
             // Stack it
             if (toStack)
             {
-                currentHeight += letterHeight;
-                stackedLetters.Add(fallingLetter);
-                fallingLetter = null;
-                Bounce();
+                StackFallingLetter();
+            }
+        }
+
+        void StackFallingLetter()
+        {
+            if (fallingLetter == null)
+                return;
+
+            currentHeight += letterHeight;
+            stackedLetters.Add(fallingLetter);
+            var currentFallingLetter = fallingLetter;
+            fallingLetter = null;
+            Bounce();
+
+            System.Action callback;
+            if (releasedCallbacks.TryGetValue(currentFallingLetter, out callback))
+            {
+                releasedCallbacks.Remove(currentFallingLetter);
+                callback();
             }
         }
 

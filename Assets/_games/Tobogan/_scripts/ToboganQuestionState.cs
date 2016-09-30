@@ -1,6 +1,6 @@
 ﻿namespace EA4S.Tobogan
 {
-    class ToboganQuestionState : IGameState
+    public class ToboganQuestionState : IGameState
     {
         ToboganGame game;
 
@@ -11,14 +11,23 @@
 
         public void EnterState()
         {
-            //var nextQuestion = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            game.questionsManager.Initialize();
+            game.questionsManager.NewQuestion();
 
-            //game.Context.GetPopupWidget().Show(null, TextID.ASSESSMENT_RESULT_RETRY, (WordData)nextQuestion.GetQuestion());
+            // Show questions description
+            var popupWidget = game.Context.GetPopupWidget();
+            popupWidget.Show(OnPopupCloseRequested, ToboganConfiguration.Instance.PipeQuestions.GetDescription(), true);
+        }
+
+        void OnPopupCloseRequested()
+        {
+            game.Context.GetPopupWidget().Hide();
+            game.SetCurrentState(game.PlayState);
         }
 
         public void ExitState()
         {
-
+            game.Context.GetPopupWidget().Hide();
         }
 
         public void Update(float delta)
