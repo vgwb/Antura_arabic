@@ -11,7 +11,7 @@ namespace EA4S.Tobogan
         // The tower is a stack of letters, that could be crash
         private List<LivingLetter> stackedLetters = new List<LivingLetter>();
 
-        float letterHeight = 4.75f;
+        float letterHeight = 4.8f;
         public float TowerFullHeight { get { return stackedLetters.Count * letterHeight; } }
         public GameObject letterPrefab;
 
@@ -67,6 +67,8 @@ namespace EA4S.Tobogan
         public void AddLetter()
         {
             var newLetter = GameObject.Instantiate(letterPrefab);
+            newLetter.transform.SetParent(transform, false);
+            
             newLetter.SetActive(false);
 
             backlogTube.Enqueue(newLetter.GetComponent<LivingLetter>());
@@ -168,7 +170,11 @@ namespace EA4S.Tobogan
                 stackedLetters[i].transform.position = transform.position + Vector3.up * (i * letterHeight * lastCompressionValue) + transform.right * currentSwing * heightSwingFactor;
 
                 if (i > 0)
+                {
                     stackedLetters[i].transform.up = (stackedLetters[i].transform.position - stackedLetters[i - 1].transform.position).normalized;
+                    stackedLetters[i].transform.right = Vector3.Cross(stackedLetters[i].transform.up, transform.forward);
+
+                }
             }
 
             if (doBounce)

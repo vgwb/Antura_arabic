@@ -10,5 +10,8 @@ namespace EA4S.Tobogan
         public Transform letterStartPosition;
         public Transform[] lettersPosition;
         public Transform letterEndPosition;
+
+        public Transform upRightMaxPosition;
+        public Transform downLeftMaxPosition;
     }
 }

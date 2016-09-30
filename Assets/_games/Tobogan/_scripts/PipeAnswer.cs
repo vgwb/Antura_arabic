@@ -34,9 +34,6 @@ namespace EA4S.Tobogan
 
             //    answerText.gameObject.SetActive(false);
             //}
-
-
-
             IsCorrectAnswer = correct;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace EA4S.Tobogan
 {
@@ -11,6 +12,9 @@ namespace EA4S.Tobogan
 
         QuestionLivingLetter questionLivingLetter;
         List<QuestionLivingLetter> standbyLivingLetters = new List<QuestionLivingLetter>();
+
+        // return aswer result
+        public event Action<bool> onAnswered;
 
         public QuestionsManager(ToboganGame game)
         {
@@ -57,6 +61,8 @@ namespace EA4S.Tobogan
 
             questionLivingLetter.transform.localPosition = game.questionLivingLetterBox.letterEndPosition.localPosition;
             questionLivingLetter.transform.rotation = game.questionLivingLetterBox.letterEndPosition.rotation;
+            questionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position, 
+                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
 
             standbyLivingLetters.Clear();
             Transform[] lettersPosition = game.questionLivingLetterBox.lettersPosition;
@@ -65,6 +71,9 @@ namespace EA4S.Tobogan
 
             startQuestionLetter.transform.localPosition = game.questionLivingLetterBox.letterStartPosition.localPosition;
             startQuestionLetter.transform.rotation = game.questionLivingLetterBox.letterStartPosition.rotation;
+            startQuestionLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position,
+                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
+
 
             standbyLivingLetters.Add(startQuestionLetter);
 
@@ -74,6 +83,8 @@ namespace EA4S.Tobogan
 
                 questionLetter.transform.localPosition = lettersPosition[i].localPosition;
                 questionLetter.transform.rotation = lettersPosition[i].rotation;
+                questionLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position,
+                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
 
                 standbyLivingLetters.Add(questionLetter);
             }
