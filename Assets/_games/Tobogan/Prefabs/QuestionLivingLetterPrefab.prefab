@@ -1188,6 +1188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95000012556893588}
+  headTransform: {fileID: 0}
+  pelvisTransform: {fileID: 0}
+  puffPrefab: {fileID: 0}
+  deleteOnRagdollHit: 1
   doRagdoll: 0
 --- !u!114 &114000013110944292
 MonoBehaviour:

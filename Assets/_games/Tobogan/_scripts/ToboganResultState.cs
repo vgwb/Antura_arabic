@@ -4,7 +4,7 @@
     {
         ToboganGame game;
 
-        float timer = 4;
+        float timer = 20;
         public ToboganResultGameState(ToboganGame game)
         {
             this.game = game;
