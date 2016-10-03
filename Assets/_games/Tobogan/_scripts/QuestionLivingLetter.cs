@@ -40,6 +40,9 @@ namespace EA4S.Tobogan
 
         Action endTransformToCallback;
 
+        Transform[] letterPositions;
+        int currentPosition;
+
         void Awake()
         {
             normalPosition = livingLetterTransform.localPosition;
@@ -48,11 +51,12 @@ namespace EA4S.Tobogan
             holdPosition.y = normalPosition.y + 5f;
         }
 
-        public void Initialize(Camera tubesCamera, Vector3 endPosition, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition)
+        public void Initialize(Camera tubesCamera, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition, Transform[] letterPositions)
         {
             this.tubesCamera = tubesCamera;
+            this.letterPositions = letterPositions;
 
-            cameraDistance = Vector3.Distance(tubesCamera.transform.position, endPosition);
+            cameraDistance = Vector3.Distance(tubesCamera.transform.position, letterPositions[letterPositions.Length-1].position);
 
             minX = downLeftMaxPosition.x;
             maxX = upRightMaxPosition.x;
@@ -109,20 +113,65 @@ namespace EA4S.Tobogan
         {
             PlayWalkAnimation();
 
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate() { PlayIdleAnimation(); if(endTransformToCallback != null) endTransformToCallback(); });
+            if (moveTweener != null)
+            {
+                moveTweener.Kill();
+            }
+
+            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () { PlayIdleAnimation(); if (endTransformToCallback != null) endTransformToCallback(); });
         }
 
         void RoteteTo(Vector3 rotation, float duration)
         {
+            if (rotationTweener != null)
+            {
+                rotationTweener.Kill();
+            }
+
             rotationTweener = transform.DORotate(rotation, duration);
         }
 
-        public void TransformTo(Transform transformTo, float duration, Action callback)
+        void TransformTo(Transform transformTo, float duration, Action callback)
         {
             MoveTo(transformTo.localPosition, duration);
             RoteteTo(transformTo.eulerAngles, duration);
 
             endTransformToCallback = callback;
+        }
+
+        public void GoToFirstPostion()
+        {
+            GoToPosition(0);
+        }
+
+        public void GoToPosition(int positionNumber)
+        {
+            dropLetter = false;
+
+            if (moveTweener != null) { moveTweener.Kill(); }
+            if (rotationTweener != null) { rotationTweener.Kill(); }
+
+            currentPosition = positionNumber;
+
+            transform.localPosition = letterPositions[currentPosition].localPosition;
+            transform.rotation = letterPositions[currentPosition].rotation;
+        }
+
+        public void MoveToNextPosition(float duration, Action callback)
+        {
+            dropLetter = false;
+
+            if (moveTweener != null) { moveTweener.Kill(); }
+            if (rotationTweener != null) { rotationTweener.Kill(); }
+
+            currentPosition++;
+
+            if(currentPosition >= letterPositions.Length)
+            {
+                currentPosition = 0;
+            }
+
+            TransformTo(letterPositions[currentPosition], duration, callback);
         }
 
         void OnMouseDown()
@@ -163,7 +212,7 @@ namespace EA4S.Tobogan
 
             PlayIdleAnimation();
 
-            if(onMouseUpLetter != null)
+            if (onMouseUpLetter != null)
             {
                 onMouseUpLetter();
             }
@@ -180,7 +229,7 @@ namespace EA4S.Tobogan
 
         void Update()
         {
-            if(dropLetter)
+            if (dropLetter)
             {
                 Drop(Time.deltaTime);
             }

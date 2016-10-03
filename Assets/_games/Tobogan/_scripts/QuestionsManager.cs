@@ -10,6 +10,7 @@ namespace EA4S.Tobogan
         bool initialized = false;
 
         QuestionLivingLetter questionLivingLetter;
+        int questionLetterIndex;
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
 
         float nextQuestionTimer;
@@ -32,6 +33,8 @@ namespace EA4S.Tobogan
                 game.pipesAnswerController.Initialize();
                 CreateQuestionLivingLetters();
 
+                questionLetterIndex = livingLetters.Count - 1;
+
                 nextQuestionTimer = 0f;
                 requestNextQueston = false;
             }
@@ -49,10 +52,9 @@ namespace EA4S.Tobogan
         {
             ResetLetters();
 
-            questionLivingLetter = livingLetters[livingLetters.Count - 1];
+            questionLivingLetter = livingLetters[questionLetterIndex];
 
             questionLivingLetter.SetQuestionText(questionPack.GetQuestion());
-            questionLivingLetter.PlayIdleAnimation();
 
             ILivingLetterData corretcAnswer = null;
 
@@ -66,41 +68,13 @@ namespace EA4S.Tobogan
 
         void CreateQuestionLivingLetters()
         {
-            /*
-            questionLivingLetter = GetQuestionLivingLetter();
-            questionLivingLetter.onMouseUpLetter += CheckAnswer;
-
-            questionLivingLetter.transform.localPosition = game.questionLivingLetterBox.letterEndPosition.localPosition;
-            questionLivingLetter.transform.rotation = game.questionLivingLetterBox.letterEndPosition.rotation;
-            questionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position,
-                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
-
             livingLetters.Clear();
-            Transform[] lettersPosition = game.questionLivingLetterBox.lettersPosition;
 
-            //QuestionLivingLetter startQuestionLetter = GetQuestionLivingLetter();
-            //startQuestionLetter.onMouseUpLetter += CheckAnswer;
-
-            //startQuestionLetter.transform.localPosition = game.questionLivingLetterBox.letterStartPosition.localPosition;
-            //startQuestionLetter.transform.rotation = game.questionLivingLetterBox.letterStartPosition.rotation;
-            //startQuestionLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position,
-            //    game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
-
-
-            //standbyLivingLetters.Add(startQuestionLetter);
-            */
-
-            livingLetters.Clear();
-            Transform[] lettersPosition = game.questionLivingLetterBox.lettersPosition;
-
-            for (int i = 0; i < lettersPosition.Length - 1; i++)
+            for (int i = 0; i < game.questionLivingLetterBox.lettersPosition.Length - 1; i++)
             {
                 QuestionLivingLetter questionLetter = GetQuestionLivingLetter();
 
-                questionLetter.transform.localPosition = lettersPosition[i].localPosition;
-                questionLetter.transform.rotation = lettersPosition[i].rotation;
-                questionLetter.Initialize(game.tubesCamera, lettersPosition[lettersPosition.Length - 1].position,
-                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
+                questionLetter.GoToPosition(i);
 
                 livingLetters.Add(questionLetter);
             }
@@ -109,6 +83,8 @@ namespace EA4S.Tobogan
         QuestionLivingLetter GetQuestionLivingLetter()
         {
             QuestionLivingLetter newQuestionLivingLetter = GameObject.Instantiate(game.questionLivingLetterPrefab).GetComponent<QuestionLivingLetter>();
+            newQuestionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.upRightMaxPosition.localPosition,
+                game.questionLivingLetterBox.downLeftMaxPosition.localPosition, game.questionLivingLetterBox.lettersPosition);
             newQuestionLivingLetter.transform.SetParent(game.questionLivingLetterBox.transform);
             newQuestionLivingLetter.onMouseUpLetter += CheckAnswer;
 
@@ -127,14 +103,16 @@ namespace EA4S.Tobogan
 
         void PrepareLettersToAnswer()
         {
-            Transform[] lettersPosition = game.questionLivingLetterBox.lettersPosition;
-
-            for (int i = 1; i < lettersPosition.Length; i++)
+            for (int i = 0; i < livingLetters.Count; i++)
             {
                 if (i == livingLetters.Count - 1)
-                    livingLetters[i - 1].TransformTo(lettersPosition[i], 1f, OnQuestionLivingLetterOnPosition);
+                {
+                    livingLetters[i].MoveToNextPosition(1, OnQuestionLivingLetterOnPosition);
+                }
                 else
-                    livingLetters[i - 1].TransformTo(lettersPosition[i], 1f, null);
+                {
+                    livingLetters[i].MoveToNextPosition(1, null);
+                }
             }
         }
 
@@ -155,19 +133,12 @@ namespace EA4S.Tobogan
 
                     pipeAnswer.StopSelectedAnimation();
 
-                    questionLivingLetter.transform.localPosition = game.questionLivingLetterBox.lettersPosition[0].localPosition;
-                    questionLivingLetter.transform.eulerAngles = game.questionLivingLetterBox.lettersPosition[0].eulerAngles;
+                    questionLivingLetter.GoToFirstPostion();
 
-                    List<QuestionLivingLetter> newLivingLetters = new List<QuestionLivingLetter>();
+                    questionLetterIndex--;
 
-                    newLivingLetters.Add(livingLetters[livingLetters.Count - 1]);
-
-                    for (int i = 0; i < livingLetters.Count - 1; i++)
-                    {
-                        newLivingLetters.Add(livingLetters[i]);
-                    }
-
-                    livingLetters = newLivingLetters;
+                    if (questionLetterIndex < 0)
+                        questionLetterIndex = livingLetters.Count - 1;
 
                     requestNextQueston = true;
                     nextQuestionTimer = 1f;
@@ -177,7 +148,7 @@ namespace EA4S.Tobogan
 
         public void Update(float delta)
         {
-            if(requestNextQueston)
+            if (requestNextQueston)
             {
                 nextQuestionTimer -= delta;
 
