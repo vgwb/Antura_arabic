@@ -182,7 +182,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 2081511133
+  randomSeed: -713647196
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -1816,7 +1816,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 321914
+  randomSeed: -1997863502
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -3450,7 +3450,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 187894649
+  randomSeed: 332222526
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4058,10 +4058,10 @@ ParticleSystem:
           rgba: 16777215
         key1:
           serializedVersion: 2
-          rgba: 2634022911
+          rgba: 1124073471
         key2:
           serializedVersion: 2
-          rgba: 0
+          rgba: 838860800
         key3:
           serializedVersion: 2
           rgba: 0
@@ -4087,14 +4087,14 @@ ParticleSystem:
         ctime7: 0
         atime0: 386
         atime1: 27178
-        atime2: 65535
+        atime2: 28142
         atime3: 65535
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 4
       minGradient:
         key0:
           serializedVersion: 2
