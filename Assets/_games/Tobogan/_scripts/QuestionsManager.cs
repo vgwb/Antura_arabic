@@ -150,36 +150,34 @@ namespace EA4S.Tobogan
             if (pipeAnswer != null)
             {
                 if (onAnswered != null)
-                {
                     onAnswered(pipeAnswer.IsCorrectAnswer);
 
-                    pipeAnswer.StopSelectedAnimation();
+                pipeAnswer.StopSelectedAnimation();
 
-                    questionLivingLetter.transform.localPosition = game.questionLivingLetterBox.lettersPosition[0].localPosition;
-                    questionLivingLetter.transform.eulerAngles = game.questionLivingLetterBox.lettersPosition[0].eulerAngles;
+                questionLivingLetter.transform.localPosition = game.questionLivingLetterBox.lettersPosition[0].localPosition;
+                questionLivingLetter.transform.eulerAngles = game.questionLivingLetterBox.lettersPosition[0].eulerAngles;
 
-                    List<QuestionLivingLetter> newLivingLetters = new List<QuestionLivingLetter>();
+                List<QuestionLivingLetter> newLivingLetters = new List<QuestionLivingLetter>();
 
-                    newLivingLetters.Add(livingLetters[livingLetters.Count - 1]);
+                newLivingLetters.Add(livingLetters[livingLetters.Count - 1]);
 
-                    for (int i = 0; i < livingLetters.Count - 1; i++)
-                    {
-                        newLivingLetters.Add(livingLetters[i]);
-                    }
-
-                    livingLetters = newLivingLetters;
-
-                    requestNextQueston = true;
-                    nextQuestionTimer = 1f;
+                for (int i = 0; i < livingLetters.Count - 1; i++)
+                {
+                    newLivingLetters.Add(livingLetters[i]);
                 }
-            }
 
-            game.pipesAnswerController.HidePipes();
+                livingLetters = newLivingLetters;
+
+                requestNextQueston = true;
+                nextQuestionTimer = 1f;
+                game.pipesAnswerController.HidePipes();
+
+            }
         }
 
         public void Update(float delta)
         {
-            if(requestNextQueston)
+            if (requestNextQueston)
             {
                 nextQuestionTimer -= delta;
 

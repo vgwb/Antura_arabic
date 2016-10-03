@@ -20,9 +20,19 @@ namespace EA4S.Tobogan
 
         public bool active;
 
+        bool trembling = false;
+        Vector3 tremblingOffset;
+
         void Start()
         {
-            aspirationParticle.SetActive(false);
+            StopSelectedAnimation();
+
+            foreach (var particles in aspirationParticle.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Clear();
+            }
+
+            aspirationParticle.SetActive(true);
             graphics.transform.localPosition = Vector3.up * 6;
         }
 
@@ -31,9 +41,27 @@ namespace EA4S.Tobogan
             Vector3 targetPosition = Vector3.zero;
 
             if (!active)
-                targetPosition = Vector3.up*6;
+                targetPosition = Vector3.up * 6;
 
-            graphics.transform.localPosition = Vector3.Lerp(graphics.transform.localPosition, targetPosition, 5.0f*Time.deltaTime);
+            graphics.transform.localPosition = tremblingOffset + Vector3.Lerp(graphics.transform.localPosition, targetPosition, 5.0f * Time.deltaTime);
+
+            Vector3 tremblingTarget;
+
+            if (trembling)
+            {
+                tremblingTarget = 0.03f * new Vector3(
+                    Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * 317, 2 * Mathf.PI)),
+                    Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * 601, 2 * Mathf.PI)),
+                    Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * 363, 2 * Mathf.PI)));
+
+                tremblingOffset = Vector3.Lerp(tremblingOffset, tremblingTarget, 50.0f * Time.deltaTime);
+            }
+            else
+            {
+                tremblingTarget = Vector3.zero;
+                tremblingOffset = Vector3.Lerp(tremblingOffset, tremblingTarget, 5.0f * Time.deltaTime);
+            }
+
         }
 
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
@@ -90,12 +118,22 @@ namespace EA4S.Tobogan
 
         public void PlaySelectedAnimation()
         {
-            aspirationParticle.SetActive(true);
+            foreach (var particles in aspirationParticle.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Play();
+            }
+
+            trembling = true;
         }
 
         public void StopSelectedAnimation()
         {
-            aspirationParticle.SetActive(false);
+            foreach (var particles in aspirationParticle.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Stop();
+            }
+
+            trembling = false;
         }
     }
 }
