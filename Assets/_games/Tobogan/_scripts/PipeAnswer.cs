@@ -10,7 +10,8 @@ namespace EA4S.Tobogan
         public TMP_Text answerText;
         public Image answerImage;
 
-        public GameObject aspirationParticle;
+        public ParticleSystem aspirationParticle;
+        ParticleSystem.EmissionModule emissionModule;
 
         public bool IsCorrectAnswer { get; private set; }
 
@@ -19,7 +20,7 @@ namespace EA4S.Tobogan
 
         void Start()
         {
-            aspirationParticle.SetActive(false);
+            aspirationParticle.Stop();
         }
 
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
@@ -76,12 +77,12 @@ namespace EA4S.Tobogan
 
         public void PlaySelectedAnimation()
         {
-            aspirationParticle.SetActive(true);
+            aspirationParticle.Play();
         }
 
         public void StopSelectedAnimation()
         {
-            aspirationParticle.SetActive(false);
+            aspirationParticle.Stop();
         }
     }
 }

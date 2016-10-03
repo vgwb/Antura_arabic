@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000011502407006}
   answerImage: {fileID: 0}
-  aspirationParticle: {fileID: 1000010462342154}
+  aspirationParticle: {fileID: 198000014234061144}
 --- !u!114 &114000010838498368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2307,7 +2307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000012862349020}
   answerImage: {fileID: 0}
-  aspirationParticle: {fileID: 1000010484559756}
+  aspirationParticle: {fileID: 198000013108749166}
 --- !u!114 &114000012862349020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2435,7 +2435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000013139507732}
   answerImage: {fileID: 0}
-  aspirationParticle: {fileID: 1000011208966110}
+  aspirationParticle: {fileID: 198000012418583922}
 --- !u!114 &114000013139507732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2583,7 +2583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   answerText: {fileID: 114000010838498368}
   answerImage: {fileID: 0}
-  aspirationParticle: {fileID: 1000011681459326}
+  aspirationParticle: {fileID: 198000011272590624}
 --- !u!114 &114000013836955070
 MonoBehaviour:
   m_ObjectHideFlags: 1
