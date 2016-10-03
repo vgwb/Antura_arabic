@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace EA4S.Tobogan
 {
@@ -9,11 +10,21 @@ namespace EA4S.Tobogan
         public TMP_Text answerText;
         public Image answerImage;
 
+        public GameObject aspirationParticle;
+
         public bool IsCorrectAnswer { get; private set; }
+
+        public event Action<PipeAnswer> onTriggerEnterPipe;
+        public event Action<PipeAnswer> onTriggerExitPipe;
+
+        void Start()
+        {
+            aspirationParticle.SetActive(false);
+        }
 
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
         {
-            if(livingLetterData.DataType == LivingLetterDataType.Letter)
+            if (livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 answerText.gameObject.SetActive(true);
                 //answerImage.gameObject.SetActive(false);
@@ -35,6 +46,42 @@ namespace EA4S.Tobogan
             //    answerText.gameObject.SetActive(false);
             //}
             IsCorrectAnswer = correct;
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (onTriggerEnterPipe != null)
+            {
+                onTriggerEnterPipe(this);
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (onTriggerExitPipe != null)
+            {
+                onTriggerExitPipe(this);
+            }
+        }
+
+        public void EnterAnimation()
+        {
+
+        }
+
+        public void ExitAnimation()
+        {
+
+        }
+
+        public void PlaySelectedAnimation()
+        {
+            aspirationParticle.SetActive(true);
+        }
+
+        public void StopSelectedAnimation()
+        {
+            aspirationParticle.SetActive(false);
         }
     }
 }

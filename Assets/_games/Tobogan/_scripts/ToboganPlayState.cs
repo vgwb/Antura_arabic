@@ -4,7 +4,7 @@ namespace EA4S.Tobogan
 {
     public class ToboganPlayState : IGameState
     {
-        CountdownTimer gameTime = new CountdownTimer(20.0f);
+        CountdownTimer gameTime = new CountdownTimer(99.0f);
         ToboganGame game;
         
         public ToboganPlayState(ToboganGame game)
@@ -44,6 +44,8 @@ namespace EA4S.Tobogan
 
             game.timerText.text = String.Format("{0:0}", gameTime.Time);
             gameTime.Update(delta);
+
+            game.questionsManager.Update(delta);
         }
 
         public void UpdatePhysics(float delta)
