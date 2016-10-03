@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WrongTubes : MonoBehaviour {
+public class WrongTubes : MonoBehaviour
+{
+    public WrongTube[] tubes;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public void DropLetter (System.Action callback)
+    {
+        tubes[Random.Range(0, tubes.Length)].DropLetter(callback);
+    }
 }
