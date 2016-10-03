@@ -69,15 +69,17 @@ namespace EA4S.Tobogan
                     wrongs.RemoveAt(wrongIndex);
                 }
 
-                pipeAnswers[i].gameObject.SetActive(true);
+                //pipeAnswers[i].gameObject.SetActive(true);
+                pipeAnswers[i].active = true;
             }
         }
 
-        void HidePipes()
+        public void HidePipes()
         {
             for (int i = 0; i < pipeAnswers.Length; i++)
             {
-                pipeAnswers[i].gameObject.SetActive(false);
+                //pipeAnswers[i].gameObject.SetActive(false);
+                pipeAnswers[i].active = false;
             }
         }
 

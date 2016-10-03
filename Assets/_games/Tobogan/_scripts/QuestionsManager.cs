@@ -173,6 +173,8 @@ namespace EA4S.Tobogan
                     nextQuestionTimer = 1f;
                 }
             }
+
+            game.pipesAnswerController.HidePipes();
         }
 
         public void Update(float delta)
@@ -181,7 +183,7 @@ namespace EA4S.Tobogan
             {
                 nextQuestionTimer -= delta;
 
-                if (nextQuestionTimer > 0f)
+                if (nextQuestionTimer <= 0f)
                 {
                     StartNewQuestion();
                     requestNextQueston = false;
