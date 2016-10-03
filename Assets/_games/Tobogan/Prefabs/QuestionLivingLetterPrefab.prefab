@@ -90,6 +90,7 @@ GameObject:
   - 4: {fileID: 4000013403451618}
   - 114: {fileID: 114000011365474870}
   - 65: {fileID: 65000013607426084}
+  - 54: {fileID: 54000010530688954}
   m_Layer: 0
   m_Name: QuestionLivingLetterPrefab
   m_TagString: Untagged
@@ -765,7 +766,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010213350156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9, y: 31.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -937,6 +938,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54000010530688954
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010213350156}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &54000010755603890
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1065,7 +1081,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012433009708}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.73664886, y: 2.00366, z: 2.0036595}
   m_Center: {x: 0.0852097, y: 0.114545345, z: -1.0018305}
@@ -1077,7 +1093,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012698499452}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.83696777, y: 2.0036602, z: 2.0036607}
   m_Center: {x: -0.41848388, y: 0.10649741, z: 1.0018295}
@@ -1091,8 +1107,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 3}
-  m_Center: {x: 0, y: 2.5, z: 0}
+  m_Size: {x: 3, y: 3, z: 8}
+  m_Center: {x: 0, y: 3.5, z: 0}
 --- !u!95 &95000012556893588
 Animator:
   serializedVersion: 3
@@ -1188,6 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95000012556893588}
+  puffPrefab: {fileID: 0}
   doRagdoll: 0
 --- !u!114 &114000013110944292
 MonoBehaviour:
@@ -1311,7 +1328,7 @@ SphereCollider:
   m_GameObject: {fileID: 1000014261990308}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1.0018301
   m_Center: {x: -1.0018301, y: 0, z: 0}
@@ -1323,7 +1340,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000010024007968}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.25614262
   m_Height: 0.8538087
   m_Direction: 0
@@ -1336,7 +1353,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000012558385682}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.2211576
   m_Height: 0.8846304
   m_Direction: 0
@@ -1349,7 +1366,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000010408543774}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.22115654
   m_Height: 0.88462615
   m_Direction: 0
@@ -1362,7 +1379,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000011617036904}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.18662044
   m_Height: 0.9331022
   m_Direction: 0
@@ -1375,7 +1392,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000012525228358}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.2596354
   m_Height: 1.0385416
   m_Direction: 0
@@ -1388,7 +1405,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000010080227262}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.18662009
   m_Height: 0.9331004
   m_Direction: 0
@@ -1401,7 +1418,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000010130993958}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.2561427
   m_Height: 0.85380894
   m_Direction: 0
@@ -1414,7 +1431,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1000013326132874}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.2596355
   m_Height: 1.038542
   m_Direction: 0
@@ -1486,7 +1503,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.28311577, y: 0.07627015, z: -2.0036602}
+  m_ConnectedAnchor: {x: -0.28311488, y: 0.0762728, z: -2.0036182}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1528,7 +1545,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.8538103, y: 0.0000004729949, z: 0.00000040419394}
+  m_ConnectedAnchor: {x: -0.8538091, y: 0.000008942295, z: -0.000008068978}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1570,7 +1587,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.08480331, y: 0.19703797, z: -0.51308775}
+  m_ConnectedAnchor: {x: -0.08480233, y: 0.19704647, z: -0.5131364}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1612,7 +1629,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.4821401, y: -0.2449015, z: -0.00000001594115}
+  m_ConnectedAnchor: {x: -1.4821396, y: -0.24489722, z: 0.0000057061043}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1654,7 +1671,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.2831155, y: 0.07627014, z: 2.0036602}
+  m_ConnectedAnchor: {x: -0.28311253, y: 0.07627338, z: 2.0037131}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1696,7 +1713,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.57810915, y: 0.075283706, z: 0.00000016391277}
+  m_ConnectedAnchor: {x: -0.57811177, y: 0.07528615, z: 0.000009700656}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1738,7 +1755,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.85381037, y: -0.0000026741445, z: -0.00000003352761}
+  m_ConnectedAnchor: {x: -0.8538092, y: 0.0000006436597, z: 0.000047601752}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1780,7 +1797,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.88462824, y: 0.000000081956394, z: -0.0000005029138}
+  m_ConnectedAnchor: {x: -0.8846846, y: 0.00001589209, z: -0.00000016577529}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1822,7 +1839,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.08480337, y: 0.19703794, z: 0.51308775}
+  m_ConnectedAnchor: {x: -0.08480144, y: 0.19704416, z: 0.5130267}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1864,7 +1881,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.884628, y: -0.00000013411045, z: -0.00000017881379}
+  m_ConnectedAnchor: {x: -0.8845955, y: 0.000013895333, z: -0.0000018551931}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
