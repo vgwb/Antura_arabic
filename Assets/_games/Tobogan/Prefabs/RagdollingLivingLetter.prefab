@@ -1244,6 +1244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95000011719275586}
+  puffPrefab: {fileID: 0}
   doRagdoll: 0
 --- !u!114 &114000014131227380
 MonoBehaviour:

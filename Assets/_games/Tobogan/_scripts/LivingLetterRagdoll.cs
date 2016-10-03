@@ -5,6 +5,8 @@ public class LivingLetterRagdoll : MonoBehaviour
 {
     public Animator animator;
 
+    public GameObject puffPrefab;
+
     // For Test purposes
     public bool doRagdoll = false;
 
