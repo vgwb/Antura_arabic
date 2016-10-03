@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
+
 namespace EA4S.Tobogan
 {
     public class QuestionsManager
@@ -54,14 +56,26 @@ namespace EA4S.Tobogan
             questionLivingLetter.SetQuestionText(questionPack.GetQuestion());
             questionLivingLetter.PlayIdleAnimation();
 
-            ILivingLetterData corretcAnswer = null;
+            ILivingLetterData correctAnswer = null;
 
-            foreach (ILivingLetterData correct in questionPack.GetCorrectAnswers())
+            var correctAnswers = questionPack.GetCorrectAnswers();
+            var correctList = correctAnswers.ToList();
+            correctAnswer = correctList[UnityEngine.Random.Range(0, correctList.Count)];
+
+            var wrongAnswers = questionPack.GetWrongAnswers().ToList();
+
+            // Shuffle wrong answers
+            int n = wrongAnswers.Count;
+            while (n > 1)
             {
-                corretcAnswer = correct;
+                n--;
+                int k = UnityEngine.Random.Range(0, n + 1);
+                var value = wrongAnswers[k];
+                wrongAnswers[k] = wrongAnswers[n];
+                wrongAnswers[n] = value;
             }
 
-            game.pipesAnswerController.SetPipeAnswers(questionPack.GetWrongAnswers(), corretcAnswer);
+            game.pipesAnswerController.SetPipeAnswers(wrongAnswers, correctAnswer);
         }
 
         void CreateQuestionLivingLetters()
