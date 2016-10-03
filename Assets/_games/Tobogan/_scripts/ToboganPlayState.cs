@@ -31,6 +31,7 @@ namespace EA4S.Tobogan
         {
             game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
+            game.pipesAnswerController.HidePipes();
         }
 
         public void Update(float delta)

@@ -29,34 +29,18 @@ namespace EA4S.Tobogan
             List<ILivingLetterData> wrongs = new List<ILivingLetterData>();
 
             foreach (ILivingLetterData answer in wrongAnswers)
-            {
                 wrongs.Add(answer);
-            }
 
             int answersCount = wrongs.Count + 1;
 
             if (answersCount > 4)
-            {
                 answersCount = 4;
-            }
 
-            bool setCorrect = false;
-
+            int correctPosition = Random.Range(0, answersCount);
+            
             for (int i = 0; i < answersCount; i++)
             {
-                if (!setCorrect)
-                {
-                    if (i < answersCount - 1)
-                    {
-                        setCorrect = Random.Range(0, 1) == 1;
-                    }
-                    else
-                    {
-                        setCorrect = true;
-                    }
-                }
-
-                if (setCorrect)
+                if (i == correctPosition)
                 {
                     pipeAnswers[i].SetAnswer(correctAnswers, true);
                 }
@@ -69,15 +53,17 @@ namespace EA4S.Tobogan
                     wrongs.RemoveAt(wrongIndex);
                 }
 
-                pipeAnswers[i].gameObject.SetActive(true);
+                //pipeAnswers[i].gameObject.SetActive(true);
+                pipeAnswers[i].active = true;
             }
         }
 
-        void HidePipes()
+        public void HidePipes()
         {
             for (int i = 0; i < pipeAnswers.Length; i++)
             {
-                pipeAnswers[i].gameObject.SetActive(false);
+                //pipeAnswers[i].gameObject.SetActive(false);
+                pipeAnswers[i].active = false;
             }
         }
 
