@@ -11,15 +11,29 @@ namespace EA4S.Tobogan
         public Image answerImage;
 
         public GameObject aspirationParticle;
+        public GameObject graphics;
 
         public bool IsCorrectAnswer { get; private set; }
 
         public event Action<PipeAnswer> onTriggerEnterPipe;
         public event Action<PipeAnswer> onTriggerExitPipe;
 
+        public bool active;
+
         void Start()
         {
             aspirationParticle.SetActive(false);
+            graphics.transform.localPosition = Vector3.up * 6;
+        }
+
+        public void Update()
+        {
+            Vector3 targetPosition = Vector3.zero;
+
+            if (!active)
+                targetPosition = Vector3.up*6;
+
+            graphics.transform.localPosition = Vector3.Lerp(graphics.transform.localPosition, targetPosition, 5.0f*Time.deltaTime);
         }
 
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
