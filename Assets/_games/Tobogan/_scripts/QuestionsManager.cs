@@ -16,6 +16,7 @@ namespace EA4S.Tobogan
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
 
         float nextQuestionTimer;
+        float nextQuestiontime = 1f;
         bool requestNextQueston;
 
         // return aswer result
@@ -121,11 +122,11 @@ namespace EA4S.Tobogan
             {
                 if (i == livingLetters.Count - 1)
                 {
-                    livingLetters[i].MoveToNextPosition(1, OnQuestionLivingLetterOnPosition);
+                    livingLetters[i].MoveToNextPosition(1f, OnQuestionLivingLetterOnPosition);
                 }
                 else
                 {
-                    livingLetters[i].MoveToNextPosition(1, null);
+                    livingLetters[i].MoveToNextPosition(1f, null);
                 }
             }
         }
@@ -146,17 +147,16 @@ namespace EA4S.Tobogan
 
                 pipeAnswer.StopSelectedAnimation();
 
-                    questionLivingLetter.GoToFirstPostion();
+                questionLivingLetter.GoToFirstPostion();
 
-                    questionLetterIndex--;
+                questionLetterIndex--;
 
-                    if (questionLetterIndex < 0)
-                        questionLetterIndex = livingLetters.Count - 1;
+                if (questionLetterIndex < 0)
+                    questionLetterIndex = livingLetters.Count - 1;
 
                 requestNextQueston = true;
-                nextQuestionTimer = 1f;
+                nextQuestionTimer = nextQuestiontime;
                 game.pipesAnswerController.HidePipes();
-
             }
         }
 

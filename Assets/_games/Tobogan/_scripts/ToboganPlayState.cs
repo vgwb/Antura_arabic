@@ -24,6 +24,8 @@ namespace EA4S.Tobogan
 
             game.timerText.gameObject.SetActive(true);
             game.timerText.text = "";
+
+            //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
 
