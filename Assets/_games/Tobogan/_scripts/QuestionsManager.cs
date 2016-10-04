@@ -142,8 +142,16 @@ namespace EA4S.Tobogan
 
             if (pipeAnswer != null)
             {
+                bool isCorrectAnswer = pipeAnswer.IsCorrectAnswer;
+
+                if (isCorrectAnswer)
+                    game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
+                else
+                    game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
+
+
                 if (onAnswered != null)
-                    onAnswered(pipeAnswer.IsCorrectAnswer);
+                    onAnswered(isCorrectAnswer);
 
                 pipeAnswer.StopSelectedAnimation();
 
