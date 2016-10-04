@@ -23,10 +23,9 @@ using System.Collections.Generic;
 using ModularFramework.Modules;
 using UnityEngine.SceneManagement;
 
-namespace ModularFramework.Core
-{
-    public abstract class GameManager : Singleton<GameManager>
-    {
+namespace ModularFramework.Core {
+
+    public abstract class GameManager : Singleton<GameManager> {
 
         #region Game Settings
 
@@ -37,6 +36,7 @@ namespace ModularFramework.Core
 
         #endregion
 
+        #region Runtime variables
         [HideInInspector]
         public ModuleManager Modules = new ModuleManager();
         [HideInInspector]
@@ -46,6 +46,7 @@ namespace ModularFramework.Core
         /// Setted to true after first setup.
         /// </summary>
         bool setuped = false;
+        #endregion
 
         #region Events
 
@@ -113,10 +114,10 @@ namespace ModularFramework.Core
             setuped = true;
         }
 
-        void Start()
-        {
-            DontDestroyOnLoad(this);
+        protected override void Awake() {
+            base.Awake();
             // Assert.IsTrue(!string.IsNullOrEmpty(GameSettings.GameID), "Main Game ID Can not be null or empty");
+            DontDestroyOnLoad(this);
         }
 
         #endregion
