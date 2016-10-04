@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public class ToboganFeedbackGraphics : MonoBehaviour
 {
     Queue<bool> answersResults = new Queue<bool>();
-    
+
     public LettersTower tower;
-    //public WrongTubesSet wrongTubes;
+    public WrongTubes wrongTubes;
+    public AnturaAngerController antura;
 
     bool waitingForTowerRelease = false;
     bool waitingForTowerCrash = false;
@@ -24,7 +25,7 @@ public class ToboganFeedbackGraphics : MonoBehaviour
     {
         answersResults.Enqueue(result);
     }
-    
+
     void OnLetterGoodReleased()
     {
         waitingForTowerRelease = false;
@@ -34,7 +35,7 @@ public class ToboganFeedbackGraphics : MonoBehaviour
     {
         waitingForTowerCrash = false;
     }
-    
+
     public void Initialize(QuestionsManager questionsManager)
     {
         tower.onCrashed += OnTowerCrashed;
@@ -58,7 +59,12 @@ public class ToboganFeedbackGraphics : MonoBehaviour
             else
             {
                 waitingForTowerCrash = true;
-                tower.RequestCrash();
+
+                wrongTubes.DropLetter(() =>
+                {
+                    tower.RequestCrash();
+                    antura.Bark();
+                });
             }
         }
     }

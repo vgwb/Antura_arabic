@@ -51,7 +51,8 @@ namespace EA4S.Tobogan
 
         // Crash behaviour
         public event System.Action onCrashed;
-        public bool isCrashing = false;
+        public bool isCrashingRequested = false;
+        float crashIntervalBetweenLettersTimer = 0;
         float crashDirection = 1;
         float crashingSpeed = 0;
 
@@ -60,7 +61,7 @@ namespace EA4S.Tobogan
         /// </summary>
         public void RequestCrash()
         {
-            isCrashing = true;
+            isCrashingRequested = true;
             backlogTube.Clear();
         }
 
@@ -85,9 +86,11 @@ namespace EA4S.Tobogan
         {
             currentHeight = TowerFullHeight;
 
+            /*
             // Test
             for (int i = 0; i < 15; ++i)
                 AddLetter(null);
+                */
         }
 
         void Update()
@@ -192,7 +195,7 @@ namespace EA4S.Tobogan
             }
 
 
-            if (isCrashing && !IsLetterFalling)
+            if (isCrashingRequested && !IsLetterFalling)
             {
                 crashingSwing += crashDirection * crashingSpeed * Time.deltaTime;
                 crashingSpeed += 150 * Time.deltaTime;
@@ -201,9 +204,11 @@ namespace EA4S.Tobogan
                 if (Mathf.Abs(currentSwing) > maxSwingAmountFactor * 1.2f)
                 {
                     // Do Actual Crash
-                    isCrashing = false;
-
-                    Crash();
+                    crashIntervalBetweenLettersTimer -= Time.deltaTime;
+                    if (crashIntervalBetweenLettersTimer <= 0)
+                    { 
+                        CrashTop();
+                    }
                 }
             }
             else
@@ -214,10 +219,10 @@ namespace EA4S.Tobogan
             }
         }
 
-        void Crash()
+        void CrashTop()
         {
+            /*
             // Do Actual Crash
-            isCrashing = false;
 
             for (int i = 0, count = stackedLetters.Count; i < count; ++i)
             {
@@ -231,9 +236,29 @@ namespace EA4S.Tobogan
                 stackedLetters[i].GetComponent<LivingLetterRagdoll>().SetRagdoll(true, randomVelocity);
             }
             stackedLetters.Clear();
+            */
+            if (stackedLetters.Count > 0)
+            {
+                int letterID = (stackedLetters.Count - 1);
 
-            if (onCrashed != null)
+                crashIntervalBetweenLettersTimer = 0.1f;
+                var randomVelocity = Random.insideUnitSphere * 10.0f;
+                randomVelocity.y = Mathf.Abs(randomVelocity.y);
+
+                //randomVelocity.y = Mathf.Min(Mathf.Abs(randomVelocity.y), 5);
+
+                randomVelocity += transform.right * crashDirection * letterID;
+
+                stackedLetters[letterID].GetComponent<LivingLetterRagdoll>().SetRagdoll(true, randomVelocity);
+                stackedLetters.RemoveAt(letterID);
+                currentHeight -= letterHeight;
+            }
+
+            if (stackedLetters.Count == 0 && onCrashed != null)
+            {
+                isCrashingRequested = false;
                 onCrashed();
+            }
         }
 
         float GetHeightSwingFactor(int i)
@@ -330,7 +355,7 @@ namespace EA4S.Tobogan
 
         void UpdateBacklog()
         {
-            if (backlogTube.Count == 0 || isCrashing)
+            if (backlogTube.Count == 0 || isCrashingRequested)
                 return;
 
             // A letter was already scheduled to spawn

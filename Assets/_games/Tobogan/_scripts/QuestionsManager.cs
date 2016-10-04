@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace EA4S.Tobogan
 {
@@ -11,7 +12,11 @@ namespace EA4S.Tobogan
         bool initialized = false;
 
         QuestionLivingLetter questionLivingLetter;
-        List<QuestionLivingLetter> standbyLivingLetters = new List<QuestionLivingLetter>();
+        int questionLetterIndex;
+        List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
+
+        float nextQuestionTimer;
+        bool requestNextQueston;
 
         // return aswer result
         public event Action<bool> onAnswered;
@@ -27,7 +32,13 @@ namespace EA4S.Tobogan
             {
                 initialized = true;
 
+                game.pipesAnswerController.Initialize();
                 CreateQuestionLivingLetters();
+
+                questionLetterIndex = livingLetters.Count - 1;
+
+                nextQuestionTimer = 0f;
+                requestNextQueston = false;
             }
         }
 
@@ -36,73 +47,130 @@ namespace EA4S.Tobogan
             var nextQuestionPack = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
 
             UpdateQuestion(nextQuestionPack);
+            PrepareLettersToAnswer();
         }
 
         void UpdateQuestion(IQuestionPack questionPack)
         {
-            ResetStandbyLetters();
+            ResetLetters();
+
+            questionLivingLetter = livingLetters[questionLetterIndex];
 
             questionLivingLetter.SetQuestionText(questionPack.GetQuestion());
-            questionLivingLetter.PlayIdleAnimation();
 
-            ILivingLetterData corretcAnswer = null;
+            ILivingLetterData correctAnswer = null;
 
-            foreach(ILivingLetterData correct in questionPack.GetCorrectAnswers())
+            var correctAnswers = questionPack.GetCorrectAnswers();
+            var correctList = correctAnswers.ToList();
+            correctAnswer = correctList[UnityEngine.Random.Range(0, correctList.Count)];
+
+            var wrongAnswers = questionPack.GetWrongAnswers().ToList();
+
+            // Shuffle wrong answers
+            int n = wrongAnswers.Count;
+            while (n > 1)
             {
-                corretcAnswer = correct;
+                n--;
+                int k = UnityEngine.Random.Range(0, n + 1);
+                var value = wrongAnswers[k];
+                wrongAnswers[k] = wrongAnswers[n];
+                wrongAnswers[n] = value;
             }
 
-            game.pipesAnswerController.SetPipeAnswers(questionPack.GetWrongAnswers(), corretcAnswer);
+            game.pipesAnswerController.SetPipeAnswers(wrongAnswers, correctAnswer);
         }
 
         void CreateQuestionLivingLetters()
         {
-            questionLivingLetter = GetQuestionLivingLetter();
+            livingLetters.Clear();
 
-            questionLivingLetter.transform.localPosition = game.questionLivingLetterBox.letterEndPosition.localPosition;
-            questionLivingLetter.transform.rotation = game.questionLivingLetterBox.letterEndPosition.rotation;
-            questionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position, 
-                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
-
-            standbyLivingLetters.Clear();
-            Transform[] lettersPosition = game.questionLivingLetterBox.lettersPosition;
-
-            QuestionLivingLetter startQuestionLetter = GetQuestionLivingLetter();
-
-            startQuestionLetter.transform.localPosition = game.questionLivingLetterBox.letterStartPosition.localPosition;
-            startQuestionLetter.transform.rotation = game.questionLivingLetterBox.letterStartPosition.rotation;
-            startQuestionLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position,
-                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
-
-
-            standbyLivingLetters.Add(startQuestionLetter);
-
-            for (int i = 0; i < lettersPosition.Length; i++)
+            for (int i = 0; i < game.questionLivingLetterBox.lettersPosition.Length - 1; i++)
             {
                 QuestionLivingLetter questionLetter = GetQuestionLivingLetter();
 
-                questionLetter.transform.localPosition = lettersPosition[i].localPosition;
-                questionLetter.transform.rotation = lettersPosition[i].rotation;
-                questionLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.letterEndPosition.position,
-                game.questionLivingLetterBox.upRightMaxPosition.localPosition, game.questionLivingLetterBox.downLeftMaxPosition.localPosition);
+                questionLetter.GoToPosition(i);
 
-                standbyLivingLetters.Add(questionLetter);
+                livingLetters.Add(questionLetter);
             }
         }
 
         QuestionLivingLetter GetQuestionLivingLetter()
         {
             QuestionLivingLetter newQuestionLivingLetter = GameObject.Instantiate(game.questionLivingLetterPrefab).GetComponent<QuestionLivingLetter>();
+            newQuestionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.upRightMaxPosition.localPosition,
+                game.questionLivingLetterBox.downLeftMaxPosition.localPosition, game.questionLivingLetterBox.lettersPosition);
             newQuestionLivingLetter.transform.SetParent(game.questionLivingLetterBox.transform);
+            newQuestionLivingLetter.onMouseUpLetter += CheckAnswer;
+
             return newQuestionLivingLetter;
         }
 
-        void ResetStandbyLetters()
+        void ResetLetters()
         {
-            for (int i = 0; i < standbyLivingLetters.Count; i++)
+            for (int i = 0; i < livingLetters.Count; i++)
             {
-                standbyLivingLetters[i].ClearQuestionText();
-                standbyLivingLetters[i].PlayIdleAnimation();
+                livingLetters[i].ClearQuestionText();
+                livingLetters[i].PlayIdleAnimation();
+                livingLetters[i].EnableCollider(false);
+            }
+        }
+
+        void PrepareLettersToAnswer()
+        {
+            for (int i = 0; i < livingLetters.Count; i++)
+            {
+                if (i == livingLetters.Count - 1)
+                {
+                    livingLetters[i].MoveToNextPosition(1, OnQuestionLivingLetterOnPosition);
+                }
+                else
+                {
+                    livingLetters[i].MoveToNextPosition(1, null);
+                }
+            }
+        }
+
+        void OnQuestionLivingLetterOnPosition()
+        {
+            questionLivingLetter.EnableCollider(true);
+        }
+
+        void CheckAnswer()
+        {
+            PipeAnswer pipeAnswer = game.pipesAnswerController.GetCurrentPipeAnswer();
+
+            if (pipeAnswer != null)
+            {
+                if (onAnswered != null)
+                    onAnswered(pipeAnswer.IsCorrectAnswer);
+
+                pipeAnswer.StopSelectedAnimation();
+
+                    questionLivingLetter.GoToFirstPostion();
+
+                    questionLetterIndex--;
+
+                    if (questionLetterIndex < 0)
+                        questionLetterIndex = livingLetters.Count - 1;
+
+                requestNextQueston = true;
+                nextQuestionTimer = 1f;
+                game.pipesAnswerController.HidePipes();
+
+            }
+        }
+
+        public void Update(float delta)
+        {
+            if (requestNextQueston)
+            {
+                nextQuestionTimer -= delta;
+
+                if (nextQuestionTimer <= 0f)
+                {
+                    StartNewQuestion();
+                    requestNextQueston = false;
+                }
             }
         }
     }

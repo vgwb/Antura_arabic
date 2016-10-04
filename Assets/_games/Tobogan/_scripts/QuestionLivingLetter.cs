@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using System;
 
 namespace EA4S.Tobogan
 {
@@ -33,18 +34,29 @@ namespace EA4S.Tobogan
         float minY;
         float maxY;
 
+        bool dropLetter;
+
+        public event Action onMouseUpLetter;
+
+        Action endTransformToCallback;
+
+        Transform[] letterPositions;
+        int currentPosition;
+
         void Awake()
         {
             normalPosition = livingLetterTransform.localPosition;
 
+            holdPosition.x = normalPosition.x + 1f;
             holdPosition.y = normalPosition.y + 5f;
         }
 
-        public void Initialize(Camera tubesCamera, Vector3 endPosition, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition)
+        public void Initialize(Camera tubesCamera, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition, Transform[] letterPositions)
         {
             this.tubesCamera = tubesCamera;
+            this.letterPositions = letterPositions;
 
-            cameraDistance = Vector3.Distance(tubesCamera.transform.position, endPosition);
+            cameraDistance = Vector3.Distance(tubesCamera.transform.position, letterPositions[letterPositions.Length-1].position);
 
             minX = downLeftMaxPosition.x;
             maxX = upRightMaxPosition.x;
@@ -97,24 +109,75 @@ namespace EA4S.Tobogan
             livingLetterText.text = "";
         }
 
-        public void MoveTo(Vector3 position, float time)
+        void MoveTo(Vector3 position, float duration)
         {
+            PlayWalkAnimation();
 
+            if (moveTweener != null)
+            {
+                moveTweener.Kill();
+            }
+
+            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () { PlayIdleAnimation(); if (endTransformToCallback != null) endTransformToCallback(); });
         }
 
-        public void RoteteTo(Vector3 rotation, float time)
+        void RoteteTo(Vector3 rotation, float duration)
         {
+            if (rotationTweener != null)
+            {
+                rotationTweener.Kill();
+            }
 
+            rotationTweener = transform.DORotate(rotation, duration);
         }
 
-        public void TransformTo(Transform transformTo, float time)
+        void TransformTo(Transform transformTo, float duration, Action callback)
         {
-            MoveTo(transformTo.position, time);
-            RoteteTo(transformTo.eulerAngles, time);
+            MoveTo(transformTo.localPosition, duration);
+            RoteteTo(transformTo.eulerAngles, duration);
+
+            endTransformToCallback = callback;
+        }
+
+        public void GoToFirstPostion()
+        {
+            GoToPosition(0);
+        }
+
+        public void GoToPosition(int positionNumber)
+        {
+            dropLetter = false;
+
+            if (moveTweener != null) { moveTweener.Kill(); }
+            if (rotationTweener != null) { rotationTweener.Kill(); }
+
+            currentPosition = positionNumber;
+
+            transform.localPosition = letterPositions[currentPosition].localPosition;
+            transform.rotation = letterPositions[currentPosition].rotation;
+        }
+
+        public void MoveToNextPosition(float duration, Action callback)
+        {
+            dropLetter = false;
+
+            if (moveTweener != null) { moveTweener.Kill(); }
+            if (rotationTweener != null) { rotationTweener.Kill(); }
+
+            currentPosition++;
+
+            if(currentPosition >= letterPositions.Length)
+            {
+                currentPosition = 0;
+            }
+
+            TransformTo(letterPositions[currentPosition], duration, callback);
         }
 
         void OnMouseDown()
         {
+            dropLetter = false;
+
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = cameraDistance;
 
@@ -130,6 +193,8 @@ namespace EA4S.Tobogan
 
         void OnMouseDrag()
         {
+            dropLetter = false;
+
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = cameraDistance;
 
@@ -143,10 +208,34 @@ namespace EA4S.Tobogan
 
         void OnMouseUp()
         {
+            dropLetter = true;
+
             PlayIdleAnimation();
+
+            if (onMouseUpLetter != null)
+            {
+                onMouseUpLetter();
+            }
         }
 
-        public Vector3 ClampPositionToStage(Vector3 unclampedPosition)
+        void Drop(float delta)
+        {
+            Vector3 dropPosition = transform.localPosition;
+
+            dropPosition += Physics.gravity * delta;
+
+            transform.localPosition = ClampPositionToStage(dropPosition);
+        }
+
+        void Update()
+        {
+            if (dropLetter)
+            {
+                Drop(Time.deltaTime);
+            }
+        }
+
+        Vector3 ClampPositionToStage(Vector3 unclampedPosition)
         {
             Vector3 clampedPosition = unclampedPosition;
 
@@ -158,7 +247,7 @@ namespace EA4S.Tobogan
             return clampedPosition;
         }
 
-        void EnableCollider(bool enable)
+        public void EnableCollider(bool enable)
         {
             boxCollider.enabled = enable;
         }
