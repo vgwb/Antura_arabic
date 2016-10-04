@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011469908546}
   m_Layer: 0
-  m_Name: positionStart
+  m_Name: position00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010155132812}
   m_Layer: 0
-  m_Name: positionStandby02
+  m_Name: position03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010992720368}
   m_Layer: 0
-  m_Name: positionStandby00
+  m_Name: position01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012715676640}
   m_Layer: 0
-  m_Name: positionEnd
+  m_Name: position04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012495535228}
   m_Layer: 0
-  m_Name: positionStandby01
+  m_Name: position02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010447192268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 6, z: 0}
+  m_LocalPosition: {x: -7, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -217,7 +217,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012846351064}
   m_LocalRotation: {x: 0.00017442823, y: 0.032511145, z: 0.000005673967, w: 0.99947137}
-  m_LocalPosition: {x: 20.52, y: -6.2, z: 108.26}
+  m_LocalPosition: {x: 20.51, y: -7.47, z: 108.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0.020000001, y: 3.6190002, z: 0.001}
   m_Children:
@@ -237,7 +237,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012073016800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0, z: 0}
+  m_LocalPosition: {x: -21, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -254,11 +254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3c52a237ec3b3478b2d47f3cf32851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterStartPosition: {fileID: 4000011469908546}
   lettersPosition:
+  - {fileID: 4000011469908546}
   - {fileID: 4000010992720368}
   - {fileID: 4000012495535228}
   - {fileID: 4000010155132812}
-  letterEndPosition: {fileID: 4000012715676640}
+  - {fileID: 4000012715676640}
   upRightMaxPosition: {fileID: 4000010774523278}
   downLeftMaxPosition: {fileID: 4000013842329056}
