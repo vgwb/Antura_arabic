@@ -24,6 +24,7 @@ namespace EA4S {
 
         void Start() {
             View = GetComponent<LetterObjectView>();
+            //HoldState("Idle");
         }
 
         #region Tasks
@@ -108,8 +109,9 @@ namespace EA4S {
         /// </summary>
         /// <param name="_stateName"></param>
         [Task]
-        public void HoldState(string _stateName)
-        {
+        public void HoldState(string _stateName) {
+            if (Task.current == null)
+                return;
             switch (_stateName) {
                 case "Idle":
                     View.Model.State = LetterObjectState.Idle_State;
@@ -215,7 +217,7 @@ namespace EA4S {
         #region ToBeDeleted
         [Task]
         public void SetAnimation(string _animationName) {
-            Task.current.Succeed();
+            //Task.current.Fail();
         }
         #endregion
 

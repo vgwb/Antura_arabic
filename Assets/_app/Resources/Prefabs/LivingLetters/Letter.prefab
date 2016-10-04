@@ -385,12 +385,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lable: {fileID: 11453920}
+  exclamationMark: {fileID: 0}
   MergedElementsDistance: 1
-  RightLetter: {fileID: 0}
-  LeftLetter: {fileID: 0}
   IsMerged: 0
   ActualDropArea: {fileID: 0}
-  Lable: {fileID: 11453920}
 --- !u!222 &22226684
 CanvasRenderer:
   m_ObjectHideFlags: 1
