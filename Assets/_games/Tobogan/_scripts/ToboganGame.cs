@@ -19,6 +19,9 @@ namespace EA4S.Tobogan
         public int CurrentScore { get; private set; }
         public int CurrentScoreRecord { get; private set; }
 
+        [HideInInspector]
+        public bool isTimesUp;
+
         public const int MAX_ANSWERS_RECORD = 15;
 
         const int STARS_1_THRESHOLD = 5;
