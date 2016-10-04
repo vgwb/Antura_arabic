@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Panda;
 
-namespace EA4S
-{
+namespace EA4S {
     /// <summary>
-    /// Add AI Nav logic to letter puppet object.
+    /// Add Nav logic to letter puppet object.
     /// </summary>
     [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(Rigidbody))]
     public class LetterNavBehaviour : MonoBehaviour
     {
         public GameObject WayPointPrefab;
@@ -28,7 +28,7 @@ namespace EA4S
             wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
         }
 
-        #region Tasks
+        #region Tasks for Panda BT
 
         [Task]
         public void SetNavigation(string _stateName)
@@ -92,8 +92,8 @@ namespace EA4S
         }
 
         [Task]
-        public bool IsAnturaMoment()
-        {
+        public bool IsAnturaMoment() {
+            // TODO: delete reference to single game.
             return FastCrowd.FastCrowd.Instance.IsAnturaMoment;
         }
 

@@ -7,6 +7,7 @@ namespace EA4S {
     /// Add functionality to be droppable on DropSingleArea.
     /// </summary>
     [RequireComponent(typeof(LetterObjectView))]
+    [RequireComponent(typeof(Collider))]
     public class Droppable : MonoBehaviour {
 
         LetterObjectView thisLetterView;
