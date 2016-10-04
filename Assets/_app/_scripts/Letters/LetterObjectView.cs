@@ -77,20 +77,33 @@ namespace EA4S {
         /// </summary>
         void setDummyLetterObject() {
             lettersRow letRow = letters.Instance.GetRow(letters.Instance.rowNames[0]);
-            Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
+            Init(new LetterData(letters.Instance.rowNames[0], letRow));
+            //Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
         }
 
+        /// <summary>
+        /// Called when [model changed].
+        /// </summary>
         void OnModelChanged() {
             Lable.text = Model.Data.TextForLivingLetter;
-            Init(Model.Data);
         }
 
+        /// <summary>
+        /// Initializes object with the specified data.
+        /// </summary>
+        /// <param name="_data">The data.</param>
+        /// <param name="_behaviourSettingsOverride">The behaviour settings override.</param>
         public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride) {
             Init(_data);
             GetComponent<LetterBehaviour>().Settings = _behaviourSettingsOverride;
         }
 
+        /// <summary>
+        /// Initializes  object with the specified data.
+        /// </summary>
+        /// <param name="_data">The data.</param>
         public void Init(ILivingLetterData _data) {
+            Model = new LetterObject(_data);
             // Init Animation sequenceExclamationMark
             sequenceExclamationMark = DOTween.Sequence();
             sequenceExclamationMark.SetLoops(-1);

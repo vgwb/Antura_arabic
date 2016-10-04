@@ -512,6 +512,11 @@ Prefab:
       propertyPath: GameplayInfo.Variant
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11440868, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
+      propertyPath: LetterPref
+      value: 
+      objectReference: {fileID: 114000011975068830, guid: 6e35fb39489399c46bf7216ffa65f818,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5c8bb0e0e5fd8a4ebce4ef068b968a4, type: 2}
   m_IsPrefabParent: 0
@@ -5262,7 +5267,7 @@ GameObject:
   - 33: {fileID: 872909831}
   - 64: {fileID: 872909830}
   - 23: {fileID: 872909829}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TerrainWalkable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5407,7 +5412,7 @@ GameObject:
   - 33: {fileID: 886257707}
   - 64: {fileID: 886257706}
   - 23: {fileID: 886257705}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TerrainWalkable (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5928,7 +5933,7 @@ GameObject:
   - 33: {fileID: 968019329}
   - 64: {fileID: 968019328}
   - 23: {fileID: 968019327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TerrainWalkable (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8055,7 +8060,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1411710100}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: 0, y: -0.04, z: 0}
   m_LocalScale: {x: 1000, y: 1000.00006, z: 1}
   m_LocalEulerAnglesHint: {x: 89.980194, y: 0, z: 0}
   m_Children:

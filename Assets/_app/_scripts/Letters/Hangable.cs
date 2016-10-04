@@ -18,7 +18,7 @@ namespace EA4S {
         /// <summary>
         /// Layer used to find ray collision and set position during drag behaviour.
         /// </summary>
-        public LayerMask PositionLayer;
+        public LayerMask DragOverLayer;
 
         float holdSfxStartTime;
         bool holdSfxPlayed;
@@ -89,7 +89,7 @@ namespace EA4S {
             if (OnDrag) {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, PositionLayer)) { // to be investigated if layer filter realy work...
+                if (Physics.Raycast(ray, out hit, DragOverLayer)) { // to be investigated if layer filter realy work...
                     //if (hit.transform.gameObject.layer == 8) {
                         tweener.Kill();
                         tweener = transform.DOMove(hit.point, 0.3f);
