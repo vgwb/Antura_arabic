@@ -32,14 +32,14 @@ namespace EA4S
         public IAudioSource PlayLetter(string letterId)
         {
             AudioManager.I.PlayLetter(letterId);
-            return new SampleAudioSource();
+            return new SampleAudioSource(null);
 
         }
 
         public IAudioSource PlayWord(string wordId)
         {
             AudioManager.I.PlayWord(wordId);
-            return new SampleAudioSource();
+            return new SampleAudioSource(null);
         }
 
         public void PlayMusic(Music music)
@@ -54,7 +54,7 @@ namespace EA4S
             // MUST BE IMPLEMENTED IN THE CURRENT AUDIO MANAGER
             AudioManager.I.PlaySfx(sfx);
 
-            return new SampleAudioSource();
+            return new SampleAudioSource(sfx);
         }
 
         public void StopMusic()

@@ -154,7 +154,7 @@ namespace EA4S.Tobogan
                         questionLetterIndex = livingLetters.Count - 1;
 
                 requestNextQueston = true;
-                nextQuestionTimer = 1f;
+                nextQuestionTimer = 0.3f;
                 game.pipesAnswerController.HidePipes();
 
             }
