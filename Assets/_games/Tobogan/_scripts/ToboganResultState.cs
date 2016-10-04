@@ -12,6 +12,8 @@
 
         public void EnterState()
         {
+            game.Context.GetAudioManager().PlayMusic(Music.Relax);
+
             // Show some animation
             if (game.CurrentScoreRecord == 0)
             {
