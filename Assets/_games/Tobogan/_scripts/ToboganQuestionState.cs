@@ -21,7 +21,6 @@
 
         void OnPopupCloseRequested()
         {
-            game.Context.GetPopupWidget().Hide();
             game.SetCurrentState(game.PlayState);
         }
 

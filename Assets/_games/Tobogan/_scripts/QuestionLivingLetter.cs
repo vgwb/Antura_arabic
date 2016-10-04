@@ -2,6 +2,7 @@
 using DG.Tweening;
 using TMPro;
 using System;
+using ArabicSupport;
 
 namespace EA4S.Tobogan
 {
@@ -100,7 +101,9 @@ namespace EA4S.Tobogan
             }
             else
             {
-                livingLetterText.text = ((WordData)livingLetterData).Word;
+                //livingLetterText.text = GenericUtilites.ReverseText(ArabicFixer.Fix(((WordData)livingLetterData).TextForLivingLetter, false, false));
+                //livingLetterText.text = ArabicFixer.Fix(((WordData)livingLetterData).TextForLivingLetter, false, false);
+                livingLetterText.text = ArabicFixer.Fix(((WordData)livingLetterData).Word, false, false);
             }
         }
 

@@ -18,7 +18,6 @@ tree("Idle")
 			not IsOut
 			not OnDrag
 		Sequence
-			SetAnimation("Idle")
 			SetNavigation("Stop")
 			HoldState("Idle")
 			Succeed
@@ -29,7 +28,6 @@ tree("Walk")
 			not IsOut
 			not OnDrag
 		Sequence
-			SetAnimation("Walk")
 			SetNavigation("Walk")
 			HoldState("Walk")
 			Succeed
@@ -40,7 +38,6 @@ tree("Run")
 			not IsOut
 			not OnDrag
 		Sequence
-			SetAnimation("Run")
 			SetNavigation("Run")
 			HoldState("Ninja")
 			Succeed
@@ -51,7 +48,6 @@ tree("Ninja")
 			not IsOut
 			not OnDrag
 		Sequence
-			SetAnimation("Ninja")
 			SetNavigation("Ninja")
 			HoldState("Ninja")
 			Succeed
@@ -68,7 +64,6 @@ tree("Hold")
 				not IsOut
 				OnDrag
 			Parallel
-				SetAnimation("Hold")
 				SetNavigation("Hold")
 				Race
 					Sequence
@@ -87,7 +82,6 @@ tree("AnturaTime")
 		not IsOut
 		not OnDrag
 		IsAnturaMoment
-		SetAnimation("Terrified")
 		SetNavigation("Run")
 		while
 			Sequence
@@ -112,7 +106,6 @@ tree("Release")
 tree("GoOut")
 	Sequence
 		Release
-//		SetAnimation("Run")
 		SetNavigation("GoOut")
 		SetIsOut(true)
 		HoldState("GoOut")
@@ -122,14 +115,12 @@ tree("GoOut")
 tree("BumpOut")
 	Sequence
 		Release
-		SetAnimation("Run")
 		SetNavigation("BumpOut")
 		Succeed
 		HoldState("BumpOut")
 
 tree("TurnFrontOfCamera")
 	Sequence
-		SetAnimation("Walk")
 		SetNavigation("Stop")
 		TurnAllFrontOfTarget()
 		HoldState("TurnFrontOfCamera")

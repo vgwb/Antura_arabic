@@ -10,7 +10,7 @@ namespace EA4S.Tobogan
 
         public void Bark()
         {
-            GetComponent<Antura>().IsBarking = true;
+            //GetComponent<Antura>().IsBarking = true;
             GetComponent<Antura>().SetAnimation(AnturaAnim.StandExcitedLookR);
             barkingTimer = 1.4f;
         }

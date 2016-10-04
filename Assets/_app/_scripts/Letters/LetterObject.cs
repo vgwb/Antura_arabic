@@ -3,14 +3,16 @@ using System.Collections;
 
 namespace EA4S
 {
-
-    public class LetterObject
-    {
+    /// <summary>
+    /// Base component for LivingLetter.
+    /// Old data for this letter.
+    /// Old state for this letter.
+    /// </summary>
+    public class LetterObject {
 
         public ILivingLetterData Data;
 
-        public LetterObject(ILivingLetterData _data)
-        {
+        public LetterObject(ILivingLetterData _data) {
             Data = _data;
         }
 
@@ -28,44 +30,57 @@ namespace EA4S
             get { return state; }
             set {
                 if (state != value) {
-                    OnStateChanged(state, value);
+                    if(OnStateChanged != null)
+                        OnStateChanged(state, value);
+                    OldState = state;
                     state = value;
-                } else
-                    state = value;
+                } 
+                //else
+                //    state = value;
             }
         }
         private LetterObjectState state = LetterObjectState.Idle_State;
 
         #endregion
 
-        /// <summary>
-        /// Called at any State variation.
-        /// </summary>
-        /// <param name="_oldState"></param>
-        /// <param name="_newState"></param>
-        protected virtual void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState)
-        {
-            switch (_newState) {
-                case LetterObjectState.Idle_State:
+        #region events
+        public delegate void StateEvent(LetterObjectState _oldState, LetterObjectState _newState);
 
-                    break;
-                case LetterObjectState.Run_State:
+        public StateEvent OnStateChanged;
+        #endregion
 
-                    break;
-                case LetterObjectState.Grab_State:
+        ///// <summary>
+        ///// Called at any State variation.
+        ///// </summary>
+        ///// <param name="_oldState"></param>
+        ///// <param name="_newState"></param>
+        //protected virtual void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState) {
+        //    switch (_newState) {
+        //        case LetterObjectState.Idle_State:
 
-                    break;
-                default:
-                    Debug.Log("State not found");
-                    break;
-            }
-        }
+        //            break;
+        //        case LetterObjectState.Run_State:
+
+        //            break;
+        //        case LetterObjectState.Grab_State:
+
+        //            break;
+        //        default:
+        //            Debug.Log("State not found");
+        //            break;
+        //    }
+        //}
     }
 
-    public enum LetterObjectState
-    {
+    public enum LetterObjectState {
         Idle_State,
+        Walk_State,
         Run_State,
+        Ninja_State,
+        FrontOfCamera_State,
+        GoOut_State,
+        BumpOut_State,
         Grab_State,
+        Terrified_State,
     }
 }

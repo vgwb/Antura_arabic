@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using ArabicSupport;
 
 namespace EA4S.Tobogan
 {
@@ -78,7 +79,7 @@ namespace EA4S.Tobogan
                 answerText.gameObject.SetActive(true);
                 //answerImage.gameObject.SetActive(false);
 
-                answerText.text = ((WordData)livingLetterData).Word;
+                answerText.text = ArabicFixer.Fix(((WordData)livingLetterData).Word, false, false);
             }
             //else
             //{

@@ -6600,6 +6600,7 @@ MonoBehaviour:
   tubesCamera: {fileID: 760998704}
   feedbackGraphics: {fileID: 1814291035}
   timerText: {fileID: 654885984}
+  isTimesUp: 0
 --- !u!114 &1814291035
 MonoBehaviour:
   m_ObjectHideFlags: 0
