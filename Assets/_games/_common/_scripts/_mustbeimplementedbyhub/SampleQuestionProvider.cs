@@ -39,7 +39,7 @@ namespace EA4S
                 {
                     var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
 
-                    if (!correctAnswers.Contains(letter))
+                    if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter))
                     {
                         wrongAnswers.Add(letter);
                     }
