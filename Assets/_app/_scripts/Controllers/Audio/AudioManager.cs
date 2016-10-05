@@ -17,6 +17,7 @@ namespace EA4S
     {
         Hit,
         BaloonPop,
+		Splat,
         DangerClock,
         DangerClockLong,
         GameTitle,
@@ -232,6 +233,9 @@ namespace EA4S
                 case Sfx.BaloonPop:
                     eventName = "Sfx/BalloonPop";
                     break;
+				case Sfx.Splat:
+					eventName = "Sfx/Splat";
+				break;
                 case Sfx.UIPopup:
                     eventName = "Sfx/UI/Popup";
                     break;

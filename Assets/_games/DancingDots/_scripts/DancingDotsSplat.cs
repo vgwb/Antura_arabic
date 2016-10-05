@@ -29,7 +29,7 @@ namespace EA4S.DancingDots
 
 			float timer = 0;
 
-			//FIXME//AudioManager.I.PlaySfx(Sfx.Splat);
+			AudioManager.I.PlaySfx(Sfx.Splat);
 
 			// Scale
 			while(splatMaxSize > trans.localScale.x)
