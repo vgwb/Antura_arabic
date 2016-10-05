@@ -104,7 +104,7 @@ namespace ModularFramework.Components {
             foreach (var p in PlayersIds) {
                 PlayerProfileSetActive newComponent = Instantiate(SingleItemPrefab).GetComponent<PlayerProfileSetActive>();
                 newComponent.transform.SetParent(ListContainer);
-                newComponent.Init(GameManager.Instance.PlayerProfile.LoadPlayerSettings(p));
+                newComponent.Init(GameManager.Instance.PlayerProfile.LoadPlayerSettings<PlayerProfile>(p));
                 newComponent.gameObject.name = newComponent.Player.Id;
             }
         }
@@ -129,7 +129,7 @@ namespace ModularFramework.Components {
         #endregion
 
         void GetPlayers() {
-            PlayersIds = GameManager.Instance.PlayerProfile.LoadAllPlayerProfiles();
+            PlayersIds = GameManager.Instance.PlayerProfile.LoadAllPlayerProfiles().AvailablePlayers;
         }
     }
 }

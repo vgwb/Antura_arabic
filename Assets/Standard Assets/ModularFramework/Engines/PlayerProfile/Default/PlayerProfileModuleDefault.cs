@@ -29,11 +29,20 @@ namespace ModularFramework.Modules
     /// </summary>
     public class PlayerProfileModuleDefault : IPlayerProfileModule
     {
-        public PlayerProfile ActivePlayer { get; set; }
+        public IPlayerProfile ActivePlayer { get; set; }
 
         #region IModule Implementation
         public IPlayerProfileModule ConcreteModuleImplementation { get; set; }
-        public List<string> AvailablePlayers { get; set; }
+        private PlayersData players;
+        public PlayersData Players {
+            get {
+                if (players == null)
+                    players = LoadAllPlayerProfiles();
+                return players;
+            }
+            set { players = value; }
+        }
+
         public IModuleSettings Settings { get; set; }
 
         public IPlayerProfileModule SetupModule(IPlayerProfileModule _concreteModule, IModuleSettings _settings = null)
@@ -50,13 +59,10 @@ namespace ModularFramework.Modules
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
         /// <returns></returns>
-        public PlayerProfile CreateNewPlayer(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
-        {
-            if (AvailablePlayers == null)
-                AvailablePlayers = new List<string>();
-            if (!AvailablePlayers.Exists(p => p == _newPlayer.Id)) {
-                AvailablePlayers.Add(_newPlayer.Id);
-                SavePlayerSettings(new PlayerProfile() { Id = _newPlayer.Id });
+        public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
+            if (!Players.AvailablePlayers.Exists(p => p == _newPlayer.Id)) {
+                Players.AvailablePlayers.Add(_newPlayer.Id);
+                SavePlayerSettings(_newPlayer);
                 SaveAllPlayerProfiles();
             }
             return _newPlayer;
@@ -66,20 +72,20 @@ namespace ModularFramework.Modules
         /// Delete player.
         /// </summary>
         /// <param name="_playerId"></param>
-        public void DeletePlayer(string _playerId)
-        {
-            AvailablePlayers.Remove(_playerId);
+        public void DeletePlayer(string _playerId) {
+            Players.AvailablePlayers.Remove(_playerId);
         }
 
         /// <summary>
         /// Load player settings.
         /// </summary>
         /// <param name="_playerId"></param>
-        public PlayerProfile LoadPlayerSettings(string _playerId)
-        {
+        public IPlayerProfile LoadPlayerSettings<T>(string _playerId) where T : IPlayerProfile {
             if (PlayerPrefs.HasKey(GetStoreKeyForPlayer(_playerId))) {
                 string serializableProfile = PlayerPrefs.GetString(GetStoreKeyForPlayer(_playerId));
-                return JsonUtility.FromJson<PlayerProfile>(serializableProfile);
+                IPlayerProfile returnProfile = JsonUtility.FromJson<T>(serializableProfile);
+                returnProfile.Id = _playerId;
+                return returnProfile;
             } else {
                 Debug.LogFormat("Profile {0} not found.", _playerId);
             }
@@ -87,11 +93,11 @@ namespace ModularFramework.Modules
         }
 
         /// <summary>
-        /// Save player settings.
+        /// Save player settings on PlayerPrefs (do not update list of players).
         /// </summary>
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
-        public void SavePlayerSettings(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
+        public void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
         {
             string storeKey = GetStoreKeyForPlayer(_newPlayer.Id);
             string serializedObjs = JsonUtility.ToJson(_newPlayer);
@@ -106,11 +112,10 @@ namespace ModularFramework.Modules
         /// Set the active player.
         /// </summary>
         /// <param name="_playerId"></param>
-        public void SetActivePlayer(string _playerId)
-        {
-            if (!AvailablePlayers.Exists(p => p == _playerId)) // If player is not in active players list...
+        public void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile {
+            if (!Players.AvailablePlayers.Exists(p => p == _playerId)) // If player is not in active players list...
                 return;
-            PlayerProfile pp = LoadPlayerSettings(_playerId);
+            IPlayerProfile pp = LoadPlayerSettings<T>(_playerId);
             if (pp == null) {
                 Debug.LogError("Player not found");
             } else {
@@ -124,7 +129,7 @@ namespace ModularFramework.Modules
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
         /// <returns></returns>
-        public PlayerProfile UpdatePlayer(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
+        public IPlayerProfile UpdatePlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
         {
             SavePlayerSettings(_newPlayer);
             return _newPlayer;
@@ -134,26 +139,23 @@ namespace ModularFramework.Modules
         /// Return the list of all availables player profiles.
         /// </summary>
         /// <returns></returns>
-        public List<string> LoadAllPlayerProfiles()
+        public PlayersData LoadAllPlayerProfiles()
         {
             string serializedObjs;
             if (PlayerPrefs.HasKey(PLAYERS_PREFS_KEY)) {
                 serializedObjs = PlayerPrefs.GetString(PLAYERS_PREFS_KEY);
-                AvailablePlayers = JsonUtility.FromJson<List<string>>(serializedObjs);
+                return JsonUtility.FromJson<PlayersData>(serializedObjs);
             } else {
                 // Players list not created yet.
-                AvailablePlayers = new List<string>();
-                SaveAllPlayerProfiles();
+                return new PlayersData();
             }
-            return AvailablePlayers;
         }
 
         /// <summary>
         /// Save all player profiles.
         /// </summary>
-        public void SaveAllPlayerProfiles()
-        {
-            string serializedObjs = JsonUtility.ToJson(AvailablePlayers);
+        public void SaveAllPlayerProfiles() {
+            string serializedObjs = JsonUtility.ToJson(Players);
             PlayerPrefs.SetString(PLAYERS_PREFS_KEY, serializedObjs);
             PlayerPrefs.Save();
         }
