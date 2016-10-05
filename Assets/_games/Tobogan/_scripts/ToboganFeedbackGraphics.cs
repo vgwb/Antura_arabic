@@ -7,6 +7,7 @@ public class ToboganFeedbackGraphics : MonoBehaviour
     Queue<bool> answersResults = new Queue<bool>();
 
     public LettersTower tower;
+    public HeightMeter heightMeter;
     public WrongTubes wrongTubes;
     public AnturaAngerController antura;
 
@@ -38,6 +39,8 @@ public class ToboganFeedbackGraphics : MonoBehaviour
 
     public void Initialize(QuestionsManager questionsManager)
     {
+        heightMeter.targetHeight = 0;
+
         tower.onCrashed += OnTowerCrashed;
         questionsManager.onAnswered += OnResult;
     }
@@ -67,5 +70,7 @@ public class ToboganFeedbackGraphics : MonoBehaviour
                 });
             }
         }
+
+        heightMeter.targetHeight = Mathf.Max(heightMeter.targetHeight, tower.TowerFullHeight);
     }
 }

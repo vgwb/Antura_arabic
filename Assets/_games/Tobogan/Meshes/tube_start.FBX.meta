@@ -1,27 +1,32 @@
 fileFormatVersion: 2
-guid: 60c79e1419f5191408311e21d6aac4bc
+guid: 5d7097af8947daa4cb150ba95648abb6
 timeCreated: 1475660780
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: screws
-    100002: //RootNode
-    100004: tube
-    100006: tube_interior
-    400000: screws
-    400002: //RootNode
-    400004: tube
-    400006: tube_interior
-    2300000: screws
-    2300002: tube
-    2300004: tube_interior
-    3300000: screws
-    3300002: tube
-    3300004: tube_interior
-    4300000: tube_interior
-    4300002: tube
-    4300004: screws
+    100000: screw
+    100002: sign
+    100004: tube001
+    100006: //RootNode
+    100008: tube_start_interior
+    400000: screw
+    400002: sign
+    400004: tube001
+    400006: //RootNode
+    400008: tube_start_interior
+    2300000: screw
+    2300002: sign
+    2300004: tube001
+    2300006: tube_start_interior
+    3300000: screw
+    3300002: sign
+    3300004: tube001
+    3300006: tube_start_interior
+    4300000: tube001
+    4300002: screw
+    4300004: sign
+    4300006: tube_start_interior
   materials:
     importMaterials: 1
     materialName: 0
