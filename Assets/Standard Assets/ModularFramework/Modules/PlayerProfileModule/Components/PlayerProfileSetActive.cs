@@ -41,7 +41,7 @@ namespace ModularFramework.Components {
         #endregion
 
 
-        public PlayerProfile Player { get; protected set; }
+        public IPlayerProfile Player { get; protected set; }
 
         /// <summary>
         /// Subscribe for click event.
@@ -51,7 +51,7 @@ namespace ModularFramework.Components {
             if(SetActiveProfileButton)
                 SetActiveProfileButton.onClick.AsObservable()
                     .Subscribe(_ =>
-                        GameManager.Instance.Modules.PlayerProfile.SetActivePlayer(Player.Id)
+                        GameManager.Instance.Modules.PlayerProfile.SetActivePlayer<PlayerProfile>(Player.Id)
                     ).AddTo(this);
 
             // Delete profile button
@@ -66,7 +66,7 @@ namespace ModularFramework.Components {
         /// Init component ui with player data.
         /// </summary>
         /// <param name="_player"></param>
-        public void Init(PlayerProfile _player) {
+        public void Init(IPlayerProfile _player) {
             Player = _player;
             ProfileIDLable.text = Player.Id;
         }
