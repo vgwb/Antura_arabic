@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace EA4S
@@ -34,6 +32,11 @@ namespace EA4S
         public void Show(Action callback, Sprite image)
         {
             WidgetPopupWindow.I.ShowTutorial(callback, image);
+        }
+
+        public void ShowTimeUp(Action callback)
+        {
+            WidgetPopupWindow.I.ShowTimeUp(callback);
         }
 
         public void Hide()
