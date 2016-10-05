@@ -1,27 +1,15 @@
 fileFormatVersion: 2
-guid: 60c79e1419f5191408311e21d6aac4bc
+guid: 94adbee542e57b847ac62c56e88678b7
 timeCreated: 1475660780
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: screws
-    100002: //RootNode
-    100004: tube
-    100006: tube_interior
-    400000: screws
-    400002: //RootNode
-    400004: tube
-    400006: tube_interior
-    2300000: screws
-    2300002: tube
-    2300004: tube_interior
-    3300000: screws
-    3300002: tube
-    3300004: tube_interior
-    4300000: tube_interior
-    4300002: tube
-    4300004: screws
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Line018
   materials:
     importMaterials: 1
     materialName: 0

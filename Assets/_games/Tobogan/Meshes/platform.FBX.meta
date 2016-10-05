@@ -1,27 +1,29 @@
 fileFormatVersion: 2
-guid: 60c79e1419f5191408311e21d6aac4bc
+guid: 4bb0eb6358a6a4d458f9653e606204bf
 timeCreated: 1475660780
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: screws
+    100000: Line017
     100002: //RootNode
-    100004: tube
-    100006: tube_interior
-    400000: screws
+    100004: Tobogan_platform_box1_exterior
+    100006: Tobogan_platform_box1_interior
+    100008: Tobogan_platform_box2_exterior
+    400000: Line017
     400002: //RootNode
-    400004: tube
-    400006: tube_interior
-    2300000: screws
-    2300002: tube
-    2300004: tube_interior
-    3300000: screws
-    3300002: tube
-    3300004: tube_interior
-    4300000: tube_interior
-    4300002: tube
-    4300004: screws
+    400004: Tobogan_platform_box1_exterior
+    400006: Tobogan_platform_box1_interior
+    400008: Tobogan_platform_box2_exterior
+    2300000: Tobogan_platform_box1_exterior
+    2300002: Tobogan_platform_box1_interior
+    2300004: Tobogan_platform_box2_exterior
+    3300000: Tobogan_platform_box1_exterior
+    3300002: Tobogan_platform_box1_interior
+    3300004: Tobogan_platform_box2_exterior
+    4300000: Tobogan_platform_box2_exterior
+    4300002: Tobogan_platform_box1_exterior
+    4300004: Tobogan_platform_box1_interior
   materials:
     importMaterials: 1
     materialName: 0
