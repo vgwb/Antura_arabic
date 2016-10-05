@@ -114,14 +114,14 @@ namespace Google2u
 			, game_dontwake_end, game_dontwake_fail_antura, game_dontwake_fail_alarms, game_dontwake_fail_toofast, game_dontwake_fail_fall, game_fastcrowd_A_intro1, game_fastcrowd_A_intro2, game_fastcrowd_A_end, game_fastcrowd_intro1, game_fastcrowd_intro2, game_fastcrowd_intro3, game_fastcrowd_findword, game_fastcrowd_wordcompleted, game_fastcrowd_findwordgroup, comment_catch_letters, comment_welldone, comment_great, map_A1, map_A2, map_A3
 			, map_A4, map1_A1, map1_A2, assessment_intro_A1, assessment_intro_A2, assessment_intro_A3, assessment_intro_A4, mood_how_are_you_today, mood_how_do_you_feel, end_game_A1, end_game_A2, end_game_A3, game_result_great_B, game_result_good_B, game_result_retry, game_result_fair, game_result_good, game_result_great, game_rewards_intro1, game_rewards_intro2
 			, game_reward_A1, game_reward_A2, end_learningblock_A1, end_learningblock_A2, ui_living_letters, ui_game_title, wheel_A1, wheel_A2, wheel_A3, wheel_A4, wheel_A5, wheel_game_fastcrowd, wheel_turn, wheel_game_balloons_intro, wheel_game_balloons_end, wheel_game_fastcrowdA, wheel_locked, wheel_game_dontwake, wheel_game_fastcrowdword, game_fastcrowd_wordgroupcompleted
-			, assessment_result
+			, assessment_result, game_time_up
 		};
 		public string [] rowNames = {
 			"assessment_start_A1", "assessment_start_A2", "assessment_start_A3", "assessment_result_intro", "assessment_result_verygood", "assessment_result_good", "assessment_result_retry", "match_words_drawings", "game_balloons_intro1", "game_balloons_intro2", "game_balloons_intro3", "game_balloons_commentA", "game_balloons_commentB", "game_balloons_end", "game_balloons_fail_time", "game_dontwake_attention", "game_dontwake_intro1", "game_dontwake_intro2", "game_dontwake_intro3"
 			, "game_dontwake_end", "game_dontwake_fail_antura", "game_dontwake_fail_alarms", "game_dontwake_fail_toofast", "game_dontwake_fail_fall", "game_fastcrowd_A_intro1", "game_fastcrowd_A_intro2", "game_fastcrowd_A_end", "game_fastcrowd_intro1", "game_fastcrowd_intro2", "game_fastcrowd_intro3", "game_fastcrowd_findword", "game_fastcrowd_wordcompleted", "game_fastcrowd_findwordgroup", "comment_catch_letters", "comment_welldone", "comment_great", "map_A1", "map_A2", "map_A3"
 			, "map_A4", "map1_A1", "map1_A2", "assessment_intro_A1", "assessment_intro_A2", "assessment_intro_A3", "assessment_intro_A4", "mood_how_are_you_today", "mood_how_do_you_feel", "end_game_A1", "end_game_A2", "end_game_A3", "game_result_great_B", "game_result_good_B", "game_result_retry", "game_result_fair", "game_result_good", "game_result_great", "game_rewards_intro1", "game_rewards_intro2"
 			, "game_reward_A1", "game_reward_A2", "end_learningblock_A1", "end_learningblock_A2", "ui_living_letters", "ui_game_title", "wheel_A1", "wheel_A2", "wheel_A3", "wheel_A4", "wheel_A5", "wheel_game_fastcrowd", "wheel_turn", "wheel_game_balloons_intro", "wheel_game_balloons_end", "wheel_game_fastcrowdA", "wheel_locked", "wheel_game_dontwake", "wheel_game_fastcrowdword", "game_fastcrowd_wordgroupcompleted"
-			, "assessment_result"
+			, "assessment_result", "game_time_up"
 		};
 		public System.Collections.Generic.List<LocalizationDataRow> Rows = new System.Collections.Generic.List<LocalizationDataRow>();
 
@@ -218,7 +218,8 @@ namespace Google2u
 			Rows.Add( new LocalizationDataRow("wheel_game_fastcrowdword", "keeper", "wheel", "Word croud", "جماهير الكلمات! ", "wheel_game_fastcrowdword", ""));
 			Rows.Add( new LocalizationDataRow("game_fastcrowd_wordgroupcompleted", "keeper", "game_fastcrowd", "Word group completed", "اكملت جمع كافة الكلمات بنجاح! ", "", ""));
 			Rows.Add( new LocalizationDataRow("assessment_result", "keeper", "journey", "Result", "النتيجة", "", ""));
-		}
+            Rows.Add( new LocalizationDataRow("game_time_up", "keeper", "gameplay", "Time up", "اه, انتهى الوقت!", "game_time_up", ""));
+        }
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{
 			IGoogle2uRow ret = null;
