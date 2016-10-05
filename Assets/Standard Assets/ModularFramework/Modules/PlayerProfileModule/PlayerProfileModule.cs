@@ -35,16 +35,16 @@ namespace ModularFramework.Modules {
         /// <summary>
         /// Actual active player profile.
         /// </summary>
-        public PlayerProfile ActivePlayer {
+        public IPlayerProfile ActivePlayer {
             get { return ConcreteModuleImplementation.ActivePlayer; }
             set { ConcreteModuleImplementation.ActivePlayer = value; }
         }
         /// <summary>
         /// List of Available players profiles.
         /// </summary>
-        public List<string> AvailablePlayers {
-            get { return ConcreteModuleImplementation.AvailablePlayers; }
-            set { ConcreteModuleImplementation.AvailablePlayers = value; }
+        public PlayersData Players {
+            get { return ConcreteModuleImplementation.Players; }
+            set { ConcreteModuleImplementation.Players = value; }
         }
 
         public bool MultipleProfileSupported = false;
@@ -83,7 +83,7 @@ namespace ModularFramework.Modules {
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
         /// <returns>Player created or null if player with user id already exist.</returns>
-        public PlayerProfile CreateNewPlayer(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
+        public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
             return ConcreteModuleImplementation.CreateNewPlayer(_newPlayer, _extProfile);
         }
 
@@ -101,7 +101,7 @@ namespace ModularFramework.Modules {
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
         /// <returns></returns>
-        public PlayerProfile UpdatePlayer(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
+        public IPlayerProfile UpdatePlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
             return ConcreteModuleImplementation.UpdatePlayer(_newPlayer, _extProfile);
         }
 
@@ -109,8 +109,8 @@ namespace ModularFramework.Modules {
         /// Set Active player as Active Player.
         /// </summary>
         /// <param name="_playerId"></param>
-        public void SetActivePlayer(string _playerId) {
-            ConcreteModuleImplementation.SetActivePlayer(_playerId);
+        public void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile {
+            ConcreteModuleImplementation.SetActivePlayer<T>(_playerId);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace ModularFramework.Modules {
         /// </summary>
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
-        public void SavePlayerSettings(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
+        public void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
             ConcreteModuleImplementation.SavePlayerSettings(_newPlayer, _extProfile);
         }
 
@@ -126,15 +126,15 @@ namespace ModularFramework.Modules {
         /// Load player settings from previous saved.
         /// </summary>
         /// <param name="_playerId"></param>
-        public PlayerProfile LoadPlayerSettings(string _playerId) {
-            return ConcreteModuleImplementation.LoadPlayerSettings(_playerId);
+        public IPlayerProfile LoadPlayerSettings<T>(string _playerId) where T : IPlayerProfile {
+            return ConcreteModuleImplementation.LoadPlayerSettings<T>(_playerId);
         }
 
         /// <summary>
         /// Load all player profile.
         /// </summary>
         /// <returns></returns>
-        public List<string> LoadAllPlayerProfiles() {
+        public PlayersData LoadAllPlayerProfiles() {
             return ConcreteModuleImplementation.LoadAllPlayerProfiles();
         }
 
@@ -149,7 +149,7 @@ namespace ModularFramework.Modules {
         /// WARNING! Delete all stored profiles and set actual profile to null.
         /// </summary>
         public void DeleteAllPlayerProfiles() {
-            AvailablePlayers.Clear();
+            Players.AvailablePlayers.Clear();
             SaveAllPlayerProfiles();
             ActivePlayer = null;
         }
@@ -162,21 +162,30 @@ namespace ModularFramework.Modules {
     /// Provide All the functionalities required for any Concrete implementation of the module.
     /// </summary>
     public interface IPlayerProfileModule : IModule<IPlayerProfileModule> {
-        PlayerProfile ActivePlayer { get; set; }
-        List<string> AvailablePlayers { get; set; }
+        IPlayerProfile ActivePlayer { get; set; }
+        PlayersData Players { get; set; }
         // Player creation
-        PlayerProfile CreateNewPlayer(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
+        IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
         void DeletePlayer(string _playerId);
         // Mod Player 
-        PlayerProfile UpdatePlayer(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
+        IPlayerProfile UpdatePlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
         // Change player
-        void SetActivePlayer(string _playerId);
+        void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile;
         // Save and load
-        void SavePlayerSettings(PlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
-        PlayerProfile LoadPlayerSettings(string _playerId);
+        void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
+        IPlayerProfile LoadPlayerSettings<T>(string _playerId) where T : IPlayerProfile;
         // Save and load Players
-        List<string> LoadAllPlayerProfiles();
+        PlayersData LoadAllPlayerProfiles();
         void SaveAllPlayerProfiles();
+    }
+
+    /// <summary>
+    /// Data struct to store organized data info for players profiles into module.
+    /// </summary>
+    [Serializable]
+    public class PlayersData {
+        public string Dummy;
+        public List<string> AvailablePlayers;
     }
 
     /// <summary>
@@ -184,6 +193,10 @@ namespace ModularFramework.Modules {
     /// </summary>
     public interface IPlayerExtendedProfile {
         string PlayerRef { get; set; }
+    }
+
+    public interface IPlayerProfile {
+        string Id { get; set; }
     }
 
     #endregion
