@@ -12,8 +12,9 @@ namespace ModularFramework.Modules {
         public Material UnlockMaterial;
 
         void OnEnable() {
-            GameManager.Instance.PlayerProfile.ActivePlayer.ObserveEveryValueChanged(p => p.ProgressionRate).Subscribe(_ => {
-                if(GameManager.Instance.PlayerProfile.ActivePlayer.ProgressionRate >= UnlockThreshold)
+            PlayerProfile pp = GameManager.Instance.PlayerProfile.ActivePlayer as PlayerProfile;
+            pp.ObserveEveryValueChanged(p => p.ProgressionRate).Subscribe(_ => {
+                if (pp.ProgressionRate >= UnlockThreshold)
                     Unlock(true);
             }).AddTo(this);
         }
