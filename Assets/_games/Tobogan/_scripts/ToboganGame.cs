@@ -76,6 +76,8 @@ namespace EA4S.Tobogan
             feedbackGraphics.Initialize(questionsManager);
 
             timerText.gameObject.SetActive(false);
+
+            Physics.gravity = new Vector3(0, -80, 0);
         }
 
         void OnResult(bool result)
