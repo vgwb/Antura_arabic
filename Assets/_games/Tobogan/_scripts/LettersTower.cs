@@ -19,6 +19,7 @@ namespace EA4S.Tobogan
         // Used to manage the backlog in the tube and the falling letter
         public Queue<LivingLetter> backlogTube = new Queue<LivingLetter>();
         public LivingLetter fallingLetter;
+        float tremblingTimer = 0;
 
         public bool testAddLetter = false;
 
@@ -42,11 +43,12 @@ namespace EA4S.Tobogan
 
         // Used to calculate the right moment in which a letter should be dropped
         public Transform fallingSpawnPosition;
+        public TremblingTube tube;
         float fallingSpawnHeight;
         // I use here time, instead of integrating over timesteps to be sure that the fall takes that time
         float fallingTime = 0.0f;
         float remainingFallingTime = 0.0f;
-        float letterInitialFallSpeed = -0.0f;
+        float letterInitialFallSpeed = -10.0f;
         float spawnTimer = 0;
 
         // Crash behaviour
@@ -72,7 +74,7 @@ namespace EA4S.Tobogan
         {
             var newLetter = GameObject.Instantiate(letterPrefab);
             newLetter.transform.SetParent(transform, false);
-            
+
             newLetter.SetActive(false);
 
             var letterComponent = newLetter.GetComponent<LivingLetter>();
@@ -95,6 +97,17 @@ namespace EA4S.Tobogan
 
         void Update()
         {
+            if (backlogTube.Count > 0)
+                tremblingTimer = 0.75f;
+
+            if (tremblingTimer > 0f)
+            {
+                tremblingTimer -= Time.deltaTime;
+                tube.Trembling = true;
+            }
+            else
+                tube.Trembling = false;
+
             fallingSpawnHeight = (fallingSpawnPosition.position - transform.position).y;
 
             if (fallingLetter == null)
@@ -206,7 +219,7 @@ namespace EA4S.Tobogan
                     // Do Actual Crash
                     crashIntervalBetweenLettersTimer -= Time.deltaTime;
                     if (crashIntervalBetweenLettersTimer <= 0)
-                    { 
+                    {
                         CrashTop();
                     }
                 }
