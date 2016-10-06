@@ -21,6 +21,9 @@ namespace EA4S.Tobogan
 
         public bool active;
 
+        const float DISAPPEAR_HEIGHT = 6.5f;
+        float disappearSpeed;
+
         bool trembling = false;
         Vector3 tremblingOffset;
 
@@ -34,7 +37,8 @@ namespace EA4S.Tobogan
             }
 
             aspirationParticle.SetActive(true);
-            graphics.transform.localPosition = Vector3.up * 6;
+            graphics.transform.localPosition = Vector3.up * DISAPPEAR_HEIGHT;
+            disappearSpeed = 4.0f + 2 * UnityEngine.Random.value;
         }
 
         public void Update()
@@ -42,9 +46,9 @@ namespace EA4S.Tobogan
             Vector3 targetPosition = Vector3.zero;
 
             if (!active)
-                targetPosition = Vector3.up * 6;
+                targetPosition = Vector3.up * DISAPPEAR_HEIGHT;
 
-            graphics.transform.localPosition = tremblingOffset + Vector3.Lerp(graphics.transform.localPosition, targetPosition, 5.0f * Time.deltaTime);
+            graphics.transform.localPosition = tremblingOffset + Vector3.Lerp(graphics.transform.localPosition, targetPosition, disappearSpeed * Time.deltaTime);
 
             Vector3 tremblingTarget;
 
