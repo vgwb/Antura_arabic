@@ -21,19 +21,18 @@ namespace EA4S.ThrowBalls
 
         public void Enable()
         {
-            Reset();
             gameObject.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
         }
 
         public void Reset()
         {
             GameObject letter = letterController.gameObject;
             transform.position = new Vector3(letter.transform.position.x, letter.transform.position.y + 3.4f, letter.transform.position.z - 2.5f);
-        }
-
-        public void Disable()
-        {
-            gameObject.SetActive(false);
         }
     }
 }

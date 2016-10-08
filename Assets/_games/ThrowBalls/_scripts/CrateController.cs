@@ -5,107 +5,140 @@ namespace EA4S.ThrowBalls
 {
     public class CrateController : MonoBehaviour
     {
-        public Vector2 velocity;
+        public const float MAX_SWERVE_ANGLE = 25;
+        public const float SWERVE_PERIOD_IN_SECS = 3f;
 
-        public LetterController letterController;
+        public CratePileController cratePileController;
 
-        private bool isBouncing = false;
+        public Rigidbody rigidBody;
 
-        public Collider collider;
+        private IEnumerator customGravityCoroutine;
+        private IEnumerator swervingCoroutine;
 
         // Use this for initialization
         void Start()
         {
-            velocity = new Vector2(0, 0);
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            Vector3 position = transform.position;
-            Vector2 deltaPosition = velocity * Time.deltaTime;
-            position.x += deltaPosition.x;
-            position.y += deltaPosition.y;
-            transform.position = position;
 
-            if (!isBouncing)
-            {
-                letterController.MoveBy(deltaPosition.x, deltaPosition.y, 0); 
-            }
-
-            Vector3 viewportPoint = Camera.main.WorldToViewportPoint(transform.position);
-
-            if ((viewportPoint.x < 0 && !IsMovingRight()) || (viewportPoint.x > 1 && IsMovingRight()))
-            {
-                velocity.x *= -1;
-            }
-
-            if ((viewportPoint.y < 0 && !IsMovingUp()) || (viewportPoint.y > 1 && IsMovingUp()))
-            {
-                velocity.y *= -1;
-            }
         }
 
-        public void SetIdle()
+        public void SetSwerving(Vector3 leftPivot, Vector3 rightPivot, float factor)
         {
-            velocity.x = 0;
-            velocity.y = 0;
+            swervingCoroutine = SwerveCoroutine(leftPivot, rightPivot, factor);
+            StartCoroutine(swervingCoroutine);
         }
 
-        public void SetMoving(bool isMovingRight)
+        private IEnumerator SwerveCoroutine(Vector3 leftPivot, Vector3 rightPivot, float deviationFactor)
         {
-            velocity.x = Random.Range(4, 10);
+            float previousAngle = 0;
+            float swerveFrequency = 1 / SWERVE_PERIOD_IN_SECS;
 
-            if (!isMovingRight)
+            while (true)
             {
-                velocity.x *= -1;
+                float sinValue = Mathf.Sin(2 * Mathf.PI * swerveFrequency * Time.time);
+                float sinSign = Mathf.Sign(sinValue);
+
+                float lerpCoeff = Mathf.Abs(sinValue);
+
+                Vector3 temp = transform.rotation.eulerAngles;
+                temp.z = Mathf.Lerp(0, MAX_SWERVE_ANGLE * deviationFactor, lerpCoeff);
+
+                float rotateByAngle = temp.z - previousAngle;
+
+                Vector3 rotateByPivot = sinSign > 0 ? rightPivot : leftPivot;
+                Vector3 zVector = new Vector3(0, 0, sinSign * -1);
+
+                transform.RotateAround(rotateByPivot, zVector, rotateByAngle);
+                previousAngle = temp.z;
+
+                cratePileController.OnSwerveUpdate(this, rotateByAngle, rotateByPivot, zVector);
+
+                yield return new WaitForFixedUpdate();
             }
         }
 
-        private bool IsMovingRight()
+        public void StopSwerving()
         {
-            return velocity.x >= 0;
-        }
-
-        private bool IsMovingUp()
-        {
-            return velocity.y >= 0;
+            StopCoroutine(swervingCoroutine);
         }
 
         public void Reset()
         {
-            transform.Rotate(0, Random.Range(-20, 20), 0);
-            GameObject letter = letterController.gameObject;
-            transform.position = new Vector3(letter.transform.position.x, letter.transform.position.y - 2.1f, letter.transform.position.z);
-            isBouncing = false;
-            collider.enabled = true;
-            SetIdle();
+            //transform.Rotate(0, Random.Range(-20, 20), 0);
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+            SetIsKinematic(true);
+            StopAllCoroutines();
         }
 
         void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
-                Vector3 pokeballVelocity = PokeballController.instance.GetVelocity();
+                cratePileController.OnCrateHit(this);
+            }
 
-                /*velocity.x = pokeballVelocity.x > 50 ? 50 : pokeballVelocity.x;
-                velocity.y = pokeballVelocity.y > 50 ? 50 : pokeballVelocity.y;*/
-
-                pokeballVelocity.Normalize();
-
-                velocity.x = pokeballVelocity.x > 0 ? 40 * pokeballVelocity.x : -40 * pokeballVelocity.y;
-                velocity.y = pokeballVelocity.y > 0 ? 40 * pokeballVelocity.x : -40 * pokeballVelocity.y;
-
-                letterController.SetIsDropping();
-                isBouncing = true;
-
-                collider.enabled = false;
-
-                StartCoroutine(VanishAfterDelay(1.5f));
+            else if (collision.gameObject.tag == Constants.TAG_RAIL)
+            {
             }
         }
 
-        private IEnumerator VanishAfterDelay(float delay)
+        public void Launch(Vector3 direction, float speed)
+        {
+            StartCoroutine(LaunchCoroutine(direction, speed));
+        }
+
+        private IEnumerator LaunchCoroutine(Vector3 direction, float speed)
+        {
+            direction.Normalize();
+
+            while (true)
+            {
+                Vector3 position = transform.position;
+
+                position.x += direction.x * speed * Time.fixedDeltaTime;
+                position.y += direction.y * speed * Time.fixedDeltaTime;
+                position.z += direction.z * speed * Time.fixedDeltaTime;
+
+                transform.position = position;
+
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        public void ApplyCustomGravity()
+        {
+            customGravityCoroutine = ApplyCustomGravityCoroutine();
+            StartCoroutine(customGravityCoroutine);
+        }
+
+        private IEnumerator ApplyCustomGravityCoroutine()
+        {
+            rigidBody.isKinematic = false;
+
+            while (true)
+            {
+                rigidBody.AddForce(Constants.GRAVITY_FACTOR * Physics.gravity, ForceMode.Acceleration);
+
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        public void StopCustomGravity()
+        {
+            StopCoroutine(customGravityCoroutine);
+        }
+
+        public void VanishAfterDelay(float delay)
+        {
+            StartCoroutine(VanishAfterDelayCoroutine(delay));
+        }
+
+        private IEnumerator VanishAfterDelayCoroutine(float delay)
         {
             yield return new WaitForSeconds(delay);
 
@@ -114,9 +147,13 @@ namespace EA4S.ThrowBalls
             gameObject.SetActive(false);
         }
 
+        public void SetIsKinematic(bool isKinematic)
+        {
+            rigidBody.isKinematic = isKinematic;
+        }
+
         public void Enable()
         {
-            Reset();
             gameObject.SetActive(true);
         }
 

@@ -46,7 +46,9 @@ namespace EA4S.ThrowBalls
             position.y = mousePosInWorldUnits.y + touchOffset.y;
             position.z = transform.position.z;
 
-            flickDirection += position - transform.position;
+            //flickDirection += position - transform.position;
+
+            flickDirection = position - transform.position;
 
             transform.position = position;
         }
