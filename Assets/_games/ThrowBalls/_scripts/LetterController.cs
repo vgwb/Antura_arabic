@@ -9,7 +9,7 @@ namespace EA4S.ThrowBalls
     {
         public enum PropVariation
         {
-            Nothing, Bush, Crate, MovingCrate, PileOfCrates
+            Nothing, Bush, SwervingPileOfCrates, StaticPileOfCrates
         }
 
         public enum MotionVariation
@@ -20,8 +20,10 @@ namespace EA4S.ThrowBalls
         public const float JUMP_VELOCITY_IMPULSE = 50f;
         public const float GRAVITY = -245f;
         public const float POPPING_OFFSET = 5f;
+        public const float PROP_UP_TIME = 0.2f;
+        public const float PROP_UP_DELAY = 0.3f;
 
-        public CrateController crateController;
+        public CratePileController cratePileController;
         public BushController bushController;
 
         public TMP_Text letterTextView;
@@ -29,12 +31,14 @@ namespace EA4S.ThrowBalls
         private Animator animator;
         private IEnumerator animationResetter;
 
-        private PropVariation propVariation;
-        private MotionVariation motionVariation;
-
         private float yEquilibrium;
 
         private LetterData letterData;
+
+        private IEnumerator customGravityCoroutine;
+        private IEnumerator propUpCoroutine;
+
+        public Rigidbody rigidBody;
 
         // Use this for initialization
         void Start()
@@ -44,28 +48,24 @@ namespace EA4S.ThrowBalls
 
         public void SetPropVariation(PropVariation propVariation)
         {
-            ResetPropVariation();
+            ResetProps();
+            DisableProps();
 
             switch (propVariation)
             {
-                case PropVariation.Crate:
-                    crateController.Reset();
-                    crateController.Enable();
+                case PropVariation.StaticPileOfCrates:
+                    cratePileController.Enable();
                     break;
-                case PropVariation.MovingCrate:
-                    crateController.Reset();
-                    crateController.Enable();
-                    crateController.SetMoving(Random.Range(0, 50) < 25);
+                case PropVariation.SwervingPileOfCrates:
+                    cratePileController.Enable();
+                    cratePileController.SetSwerving();
                     break;
                 case PropVariation.Bush:
-                    bushController.Reset();
                     bushController.Enable();
                     break;
                 default:
                     break;
             }
-
-            this.propVariation = propVariation;
         }
 
         public void SetMotionVariation(MotionVariation motionVariation)
@@ -85,21 +85,23 @@ namespace EA4S.ThrowBalls
                 default:
                     break;
             }
-
-            this.motionVariation = motionVariation;
         }
 
-        public void ResetPropVariation()
+        public void ResetProps()
         {
-            crateController.Disable();
+            cratePileController.Reset();
+            bushController.Reset();
+        }
+
+        public void DisableProps()
+        {
+            cratePileController.Disable();
             bushController.Disable();
-            propVariation = PropVariation.Nothing;
         }
 
         public void ResetMotionVariation()
         {
             StopAllCoroutines();
-            motionVariation = MotionVariation.Idle;
         }
 
         // Update is called once per frame
@@ -119,9 +121,9 @@ namespace EA4S.ThrowBalls
             return letterData;
         }
 
-        public void OnCollision(Collision collision)
+        public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == "Pokeball")
+            if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
                 if (tag == Constants.TAG_CORRECT_LETTER)
                 {
@@ -138,6 +140,13 @@ namespace EA4S.ThrowBalls
                     animationResetter = ResetAnimation();
                     StartCoroutine(animationResetter);
                 }
+            }
+
+            else if (collision.gameObject.tag == Constants.TAG_RAIL)
+            {
+                rigidBody.isKinematic = true;
+                PropUp(PROP_UP_DELAY);
+                Debug.Log("Propping Up");
             }
         }
 
@@ -220,6 +229,48 @@ namespace EA4S.ThrowBalls
             transform.position = new Vector3(transform.position.x, yEquilibrium, transform.position.z);
         }
 
+        private void PropUp(float delay)
+        {
+            propUpCoroutine = PropUpCoroutine(delay);
+            StartCoroutine(propUpCoroutine);
+        }
+
+        private IEnumerator PropUpCoroutine(float delay)
+        {
+            float initZAngle = transform.localRotation.eulerAngles.z;
+
+            if (initZAngle > 180)
+            {
+                initZAngle = 180 - initZAngle;
+            }
+
+            float initZAngleSign = Mathf.Sign(initZAngle);
+            float propUpSpeed = (initZAngle / PROP_UP_TIME) * initZAngleSign * -1;
+
+            yield return new WaitForSeconds(delay);
+
+            while (true)
+            {
+                transform.RotateAround(transform.position, Vector3.back, propUpSpeed * Time.fixedDeltaTime);
+
+                float currentZAngle = transform.localRotation.eulerAngles.z;
+
+                if (currentZAngle > 180)
+                {
+                    currentZAngle = 180 - currentZAngle;
+                }
+
+                if (Mathf.Sign(currentZAngle) * initZAngleSign <= -1)
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+
+                    break;
+                }
+
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
         private bool PassesEquilibriumOnNextFrame(float velocity, float deltaPos, float equilibrium)
         {
             return (velocity < 0 && transform.position.y + deltaPos < equilibrium)
@@ -262,6 +313,29 @@ namespace EA4S.ThrowBalls
             }
         }
 
+        public void ApplyCustomGravity()
+        {
+            customGravityCoroutine = ApplyCustomGravityCoroutine();
+            StartCoroutine(customGravityCoroutine);
+        }
+
+        private IEnumerator ApplyCustomGravityCoroutine()
+        {
+            rigidBody.isKinematic = false;
+
+            while (true)
+            {
+                rigidBody.AddForce(Constants.GRAVITY_FACTOR * Physics.gravity, ForceMode.Acceleration);
+
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        public void StopCustomGravity()
+        {
+            StopCoroutine(customGravityCoroutine);
+        }
+
         public void Show()
         {
             GameObject poof = (GameObject)Instantiate(ThrowBallsGameManager.Instance.poofPrefab, transform.position, Quaternion.identity);
@@ -286,8 +360,11 @@ namespace EA4S.ThrowBalls
         public void Reset()
         {
             ResetMotionVariation();
-            ResetPropVariation();
+            ResetProps();
+            DisableProps();
             yEquilibrium = transform.position.y;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            rigidBody.isKinematic = true;
         }
     }
 }

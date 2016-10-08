@@ -55,6 +55,9 @@ namespace EA4S.ThrowBalls
 
             UnityEngine.Random.seed = DateTime.Now.GetHashCode();
 
+            // Layer 8 = Terrain. Layer 12 = Pokeball.
+            Physics.IgnoreLayerCollision(8, 12);
+
             foreach (Collider collider in environment.GetComponentsInChildren<Collider>())
             {
                 collider.enabled = false;
@@ -73,6 +76,8 @@ namespace EA4S.ThrowBalls
 
                 letter.SetActive(false);
             }
+
+            ResetScene();
 
             StartCoroutine("StartNewRound");
 
@@ -100,17 +105,18 @@ namespace EA4S.ThrowBalls
                 positionIndices.Add(i);
             }
 
+            foreach (LetterController letterController in letterControllers)
+            {
+                letterController.Reset();
+                letterController.DisableProps();
+            }
+
             foreach (GameObject letter in letterPool)
             {
                 int randIndex = UnityEngine.Random.Range(0, positionIndices.Count);
                 letter.transform.position = Constants.LETTER_POSITIONS[(int)positionIndices[randIndex]];
                 positionIndices.RemoveAt(randIndex);
                 letter.SetActive(false);
-            }
-
-            foreach (LetterController letterController in letterControllers)
-            {
-                letterController.Reset();
             }
 
             // Sort the letters according to y axis position:
@@ -137,7 +143,6 @@ namespace EA4S.ThrowBalls
             numPokeballs = MAX_NUM_POKEBALLS;
 
             isRoundOngoing = false;
-
         }
 
         public IEnumerator StartNewRound()
@@ -267,12 +272,12 @@ namespace EA4S.ThrowBalls
             if (isRoundOngoing)
             {
                 numPokeballs--;
-                UIController.instance.OnPokeballLost();
+                //UIController.instance.OnPokeballLost();
 
                 if (numPokeballs == 0)
                 {
-                    PokeballController.instance.Disable();
-                    OnRoundLost();
+                    //PokeballController.instance.Disable();
+                    //OnRoundLost();
                 }
             }
         }
@@ -328,9 +333,9 @@ namespace EA4S.ThrowBalls
             ResetScene();
 
             UIController.instance.Disable();
-            
+
             yield return new WaitForSeconds(1f);
-            
+
             endGameCanvas.gameObject.SetActive(true);
 
             int numberOfStars = 2;
@@ -381,16 +386,18 @@ namespace EA4S.ThrowBalls
 
         private LetterController.PropVariation GetPropOfRound()
         {
+            return LetterController.PropVariation.SwervingPileOfCrates;
+
             switch (roundNumber)
             {
                 case 1:
                     return LetterController.PropVariation.Nothing;
                 case 2:
-                    return LetterController.PropVariation.Crate;
+                    return LetterController.PropVariation.SwervingPileOfCrates;
                 case 3:
-                    return LetterController.PropVariation.Crate;
+                    return LetterController.PropVariation.SwervingPileOfCrates;
                 case 4:
-                    return LetterController.PropVariation.MovingCrate;
+                    return LetterController.PropVariation.SwervingPileOfCrates;
                 case 5:
                     return LetterController.PropVariation.Bush;
                 default:
