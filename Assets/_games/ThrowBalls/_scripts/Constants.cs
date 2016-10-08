@@ -19,5 +19,5 @@ public class Constants
     public const string TAG_POKEBALL = "Pokeball";
     public const string TAG_RAIL = "Rail";
 
-    public const int GRAVITY_FACTOR = 14;
+    public static readonly Vector3 GRAVITY = new Vector3(0, -147, 0);
 }

@@ -122,7 +122,7 @@ namespace EA4S.ThrowBalls
 
             while (true)
             {
-                rigidBody.AddForce(Constants.GRAVITY_FACTOR * Physics.gravity, ForceMode.Acceleration);
+                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
 
                 yield return new WaitForFixedUpdate();
             }

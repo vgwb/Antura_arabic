@@ -79,7 +79,7 @@ namespace EA4S.ThrowBalls
         {
             if (!rigidBody.isKinematic)
             {
-                rigidBody.AddForce(24 * Physics.gravity, ForceMode.Acceleration);
+                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
 
                 if (transform.position.y < -9)
                 {
