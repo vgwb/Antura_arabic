@@ -11,18 +11,11 @@ namespace EA4S.Maze
 		public MazeCharacter character;
 
 
-
 		bool isInside;
-		bool initialClick;
-
-
-
 
 		// Use this for initialization
 		void Start () {
 
-
-			initialClick = true;
 			isInside = false;
 
 		}
@@ -36,7 +29,7 @@ namespace EA4S.Maze
 
 		void OnMouseDown()
 		{
-			if (character.characterIsMoving || !MazeGameManager.Instance.tutorialForLetterisComplete)
+			if (character.characterIsMoving || !MazeGameManager.Instance.tutorialForLetterisComplete())
 				return;
 
 			//check if input is within range
@@ -52,17 +45,12 @@ namespace EA4S.Maze
 
 		void OnMouseUp()
 		{
-			if (!MazeGameManager.Instance.tutorialForLetterisComplete || !isInside)
+			if (!MazeGameManager.Instance.tutorialForLetterisComplete() || !isInside)
 				return;
 			isInside =  false;
 
 			character.initMovement ();
 		}
-
-
-
-
-
 
 	}
 
