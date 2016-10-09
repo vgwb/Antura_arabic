@@ -8,23 +8,23 @@ namespace EA4S.Maze
 	public class HandTutorial : MonoBehaviour {
 
 		public float handSpeed = 2.0f;
-		public GameObject pathToFollow;
-		private List<Vector3> wayPoints;
 
-		private int currentWayPoint;
+		//support mutliple paths:
+		public List<GameObject> pathsToFollow;
+		private List<Vector3> wayPoints = new List<Vector3> ();
+
+		private int currentPath = 0;
+		private int currentWayPoint = 0;
+
+
+		private bool isMovingOnPath = false;
 
 		// Use this for initialization
 		void Start () {
 
-			wayPoints = new List<Vector3> ();
-			//construct the path waypoints:
-			foreach (Transform child in pathToFollow.transform) {
-				wayPoints.Add (child.transform.position);
-			}
-			currentWayPoint = 0;
-
 			//hide the path
-			pathToFollow.SetActive(false);
+			foreach(GameObject pathToFollow in pathsToFollow)
+				pathToFollow.SetActive(false);
 
 
 		}
@@ -49,12 +49,47 @@ namespace EA4S.Maze
 					gameObject.SetActive (false);
 
 					//set tutorial done:
-					MazeGameManager.Instance.tutorialForLetterisComplete = true;
-
+					isMovingOnPath = false;
 				}
 			}
 
 
+		}
+
+		public void showCurrentTutorial()
+		{
+			isMovingOnPath = true;
+			setWayPoints ();
+			
+		}
+
+		void setWayPoints()
+		{
+			gameObject.SetActive (true);
+			wayPoints = new List<Vector3> ();
+			//construct the path waypoints:
+			foreach (Transform child in pathsToFollow[currentPath].transform) {
+				wayPoints.Add (child.transform.position);
+			}
+			currentWayPoint = 0;
+		}
+
+		public bool isComplete()
+		{
+			return currentPath == pathsToFollow.Count - 1;
+		}
+
+		public void moveToNextPath()
+		{
+			if (currentPath < pathsToFollow.Count - 1) {
+				currentPath++;
+				setWayPoints ();
+			}
+		}
+
+		public bool isCurrentTutorialDone()
+		{
+			return !isMovingOnPath;
 		}
 
 
