@@ -648,7 +648,7 @@ Transform:
   m_GameObject: {fileID: 1000013179381164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.7295013, y: 2.4437857, z: 2.4171867}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013480947500}
@@ -688,7 +688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012776724264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.99, y: 9.3, z: -3.4}
+  m_LocalPosition: {x: -2.99, y: 18.44, z: 16.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -734,8 +734,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011992576776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.74, y: 5.74, z: -15.275812}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalPosition: {x: 2.64, y: -4.11, z: -24}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011763906314}
@@ -845,7 +845,7 @@ Transform:
   m_GameObject: {fileID: 1000011358071588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.7295013, y: -6.326215, z: 2.4171867}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013480947500}
@@ -973,7 +973,7 @@ Transform:
   m_GameObject: {fileID: 1000012373679390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.7295013, y: -1.926001, z: 2.4171867}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013480947500}
@@ -1440,6 +1440,7 @@ MonoBehaviour:
   bushController: {fileID: 114000013315525300}
   letterTextView: {fileID: 114000013823819604}
   rigidBody: {fileID: 54000013152163612}
+  letterWithPropsCntrl: {fileID: 114000012251784484}
 --- !u!114 &114000013315525300
 MonoBehaviour:
   m_ObjectHideFlags: 1

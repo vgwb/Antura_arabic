@@ -5,7 +5,7 @@ namespace EA4S.ThrowBalls
 {
     public class CrateController : MonoBehaviour
     {
-        public const float MAX_SWERVE_ANGLE = 25;
+        public const float MAX_SWERVE_ANGLE = 15;
         public const float SWERVE_PERIOD_IN_SECS = 3f;
 
         public CratePileController cratePileController;
