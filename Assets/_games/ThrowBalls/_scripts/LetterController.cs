@@ -40,6 +40,8 @@ namespace EA4S.ThrowBalls
 
         public Rigidbody rigidBody;
 
+        public LetterWithPropsController letterWithPropsCntrl;
+
         // Use this for initialization
         void Start()
         {
@@ -48,6 +50,8 @@ namespace EA4S.ThrowBalls
 
         public void SetPropVariation(PropVariation propVariation)
         {
+            letterWithPropsCntrl.AccountForProp(propVariation);
+
             ResetProps();
             DisableProps();
 
@@ -66,6 +70,8 @@ namespace EA4S.ThrowBalls
                 default:
                     break;
             }
+
+            
         }
 
         public void SetMotionVariation(MotionVariation motionVariation)
@@ -144,7 +150,7 @@ namespace EA4S.ThrowBalls
 
             else if (collision.gameObject.tag == Constants.TAG_RAIL)
             {
-                rigidBody.isKinematic = true;
+                //rigidBody.isKinematic = true;
                 PropUp(PROP_UP_DELAY);
                 Debug.Log("Propping Up");
             }

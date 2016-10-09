@@ -70,12 +70,12 @@ namespace EA4S.ThrowBalls
             Vector3 pivot = bottomCrate.transform.position;
 
             Vector3 leftPivot = bottomCrate.transform.position;
-            leftPivot.x += -2.2f;
-            leftPivot.y += -2.2f;
+            leftPivot.x += -1.6f;
+            leftPivot.y += -1.6f;
 
             Vector3 rightPivot = bottomCrate.transform.position;
-            rightPivot.x += 2.2f;
-            rightPivot.y += -2.2f;
+            rightPivot.x += 1.6f;
+            rightPivot.y += -1.6f;
 
             topCrate.SetSwerving(leftPivot, rightPivot, 1.5f);
             middleCrate.SetSwerving(leftPivot, rightPivot, 1.25f);
@@ -90,9 +90,9 @@ namespace EA4S.ThrowBalls
 
             Vector3 letterPos = letter.transform.position;
 
-            bottomCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 11.0462f, letterPos.z);
-            middleCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 6.646f, letterPos.z);
-            topCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 2.27622f, letterPos.z);
+            bottomCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 8.05f, letterPos.z);
+            middleCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 4.85f, letterPos.z);
+            topCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 1.65f, letterPos.z);
         }
 
         public void Disable()
