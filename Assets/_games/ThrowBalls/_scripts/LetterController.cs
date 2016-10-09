@@ -150,9 +150,12 @@ namespace EA4S.ThrowBalls
 
             else if (collision.gameObject.tag == Constants.TAG_RAIL)
             {
-                //rigidBody.isKinematic = true;
-                PropUp(PROP_UP_DELAY);
-                Debug.Log("Propping Up");
+                if (propUpCoroutine == null)
+                {
+                    rigidBody.isKinematic = true;
+                    PropUp(PROP_UP_DELAY);
+                    Debug.Log("Propping Up");
+                }
             }
         }
 
@@ -371,6 +374,7 @@ namespace EA4S.ThrowBalls
             yEquilibrium = transform.position.y;
             transform.rotation = Quaternion.Euler(0, 180, 0);
             rigidBody.isKinematic = true;
+            propUpCoroutine = null;
         }
     }
 }
