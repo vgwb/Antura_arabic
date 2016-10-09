@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using TMPro;
 
 namespace EA4S.ThrowBalls
 {
@@ -14,6 +15,9 @@ namespace EA4S.ThrowBalls
         public Sprite pokeballOffSprite;
         public Text messageText;
         public Text variationText;
+
+        public GameObject letterHint;
+        public TMP_Text letterHintText;
 
         private int numPokeballs;
 
@@ -79,6 +83,8 @@ namespace EA4S.ThrowBalls
 
             messageText.enabled = false;
 
+            letterHint.SetActive(false);
+
             StopAllCoroutines();
         }
 
@@ -87,9 +93,11 @@ namespace EA4S.ThrowBalls
             StartCoroutine("ShowMessage");
         }
 
-        public void OnRoundStarted(string roundText)
+        public void OnRoundStarted(string roundText, LetterData _data)
         {
             variationText.text = roundText;
+            letterHint.SetActive(true);
+            letterHintText.text = _data.TextForLivingLetter;
         }
 
         private IEnumerator ShowMessage()

@@ -203,19 +203,19 @@ namespace EA4S.ThrowBalls
             switch (roundNumber)
             {
                 case 1:
-                    UIController.instance.OnRoundStarted("Idle");
+                    UIController.instance.OnRoundStarted("Idle", correctLetter);
                     break;
                 case 2:
-                    UIController.instance.OnRoundStarted("Crate");
+                    UIController.instance.OnRoundStarted("Crate", correctLetter);
                     break;
                 case 3:
-                    UIController.instance.OnRoundStarted("Crate & Jumping");
+                    UIController.instance.OnRoundStarted("Crate & Jumping", correctLetter);
                     break;
                 case 4:
-                    UIController.instance.OnRoundStarted("Moving Crate");
+                    UIController.instance.OnRoundStarted("Moving Crate", correctLetter);
                     break;
                 case 5:
-                    UIController.instance.OnRoundStarted("Bush");
+                    UIController.instance.OnRoundStarted("Bush", correctLetter);
                     break;
                 default:
                     break;
