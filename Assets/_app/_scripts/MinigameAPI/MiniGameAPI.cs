@@ -124,7 +124,7 @@ namespace EA4S.API {
         #region Gameplay Management
 
         static string ActualGame = string.Empty;
-        public string[] ActiveGames = new string[] { "Tobogan", "TestGame" };
+        public string[] ActiveGames = new string[] { "Tobogan", "TestGame", "FastCrowd_v1", "FastCrowd_v2", "FastCrowd_v3", "FastCrowd_v4", };
 
 
 
@@ -137,7 +137,7 @@ namespace EA4S.API {
                     // ====================================================
                     Tobogan.ToboganConfiguration.Instance.Difficulty = 0.2f;
                     Tobogan.ToboganConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
-                    Tobogan.ToboganConfiguration.Instance.Context = new AnturaMinigameDefaultContext() {
+                    Tobogan.ToboganConfiguration.Instance.Context = new AnturaMinigameContext() {
                         audioManager = new SampleAudioManager(),
                         subtitleWidget = new SampleSubtitlesWidget(),
                         starsWidget = new SampleStarsWidget(),
@@ -148,7 +148,32 @@ namespace EA4S.API {
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "Tobogan");
                     break;
                 case "TestGame":
-                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "TestGame");
+                    break;
+                case "FastCrowd_v1":
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 1;
+                    FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 70;
+                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+                    break;
+                case "FastCrowd_v2":
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 2;
+                    FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 80;
+                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+                    break;
+                case "FastCrowd_v3":
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 3;
+                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+                    break;
+                case "FastCrowd_v4":
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 4;
+                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 default:
                     Debug.LogWarningFormat("Game {0} is not a valid active minigame!", _gameName);
@@ -203,10 +228,11 @@ namespace EA4S.API {
 
     #region Context and providers
 
-    // ====================================================
-    // Default Context.
-    // ====================================================
-    public class AnturaMinigameDefaultContext : IGameContext {
+    /// <summary>
+    /// Default Context for Antura Minigame.
+    /// </summary>
+    /// <seealso cref="EA4S.IGameContext" />
+    public class AnturaMinigameContext : IGameContext {
 
         public IAudioManager audioManager = new SampleAudioManager();
         public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
@@ -228,8 +254,33 @@ namespace EA4S.API {
         public IPopupWidget GetPopupWidget() {
             return questionWidget;
         }
+
+        #region presets
+
+        public static AnturaMinigameContext Default = new AnturaMinigameContext() {
+            audioManager = new SampleAudioManager(),
+            subtitleWidget = new SampleSubtitlesWidget(),
+            starsWidget = new SampleStarsWidget(),
+            questionWidget = new SamplePopupWidget(),
+        };
+
+        /// <summary>
+        /// Example for custom context preset used for fast crowd.
+        /// </summary>
+        public static AnturaMinigameContext FastCrowd = new AnturaMinigameContext() {
+            audioManager = new SampleAudioManager(),
+            subtitleWidget = new SampleSubtitlesWidget(),
+            starsWidget = new SampleStarsWidget(),
+            questionWidget = new SamplePopupWidget(),
+        };
+
+        #endregion
     }
 
+    /// <summary>
+    /// Default IQuestionProvider.
+    /// </summary>
+    /// <seealso cref="EA4S.IQuestionProvider" />
     public class AnturaDefaultQuestionProvider : IQuestionProvider {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
         string description;
