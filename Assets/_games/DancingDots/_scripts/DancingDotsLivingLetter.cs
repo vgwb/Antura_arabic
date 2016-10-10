@@ -32,6 +32,8 @@ namespace EA4S.DancingDots
 		public TextMeshPro dotlessText;
 		public GameObject fullTextGO;
 
+		public GameObject rainbow;
+
 		TextMeshPro fullText;
 
 		LetterData letterData;
@@ -94,7 +96,11 @@ namespace EA4S.DancingDots
 			do
 			{
 				letterData = AppManager.Instance.Teacher.GimmeARandomLetter();
-			} while (!lettersWithDots.Contains(letterData.TextForLivingLetter) || 
+
+			} 
+			// Check if letter in dotted letters and  
+			// Check DancingDotsGameManager.instance.currentLetter so that previous letter is not repeated
+			while (!lettersWithDots.Contains(letterData.TextForLivingLetter) || 
 				letterData.TextForLivingLetter == DancingDotsGameManager.instance.currentLetter);
 
 			SetupLetter();
@@ -132,12 +138,8 @@ namespace EA4S.DancingDots
 			hintText.text = letterData.TextForLivingLetter;
 			dotlessText.text = letterData.TextForLivingLetter;
 			fullText.text = letterData.TextForLivingLetter;
-			HideLetters();
+//			HideLetters();
 			fullTextGO.SetActive(false);
-
-
-			StartCoroutine(DancingDotsGameManager.instance.RandomDiacritic());
-
 
 		}
 
@@ -153,18 +155,28 @@ namespace EA4S.DancingDots
 			}
 		}
 
-		public void HideLetters()
+//		public void HideLetters()
+//		{
+//			hintText.color = SetAlpha(hintText.color,0);
+//			dotlessText.color = SetAlpha(dotlessText.color,0);
+//			fullText.color = SetAlpha(fullText.color,0);
+//		}
+//
+//		public void ShowLetters()
+//		{
+//			hintText.color = SetAlpha(hintText.color,DancingDotsGameManager.instance.dotHintAlpha);
+//			dotlessText.color = SetAlpha(dotlessText.color,255);
+//			fullText.color = SetAlpha(fullText.color,255);
+//		}
+
+		public void ShowRainbow()
 		{
-			hintText.color = SetAlpha(hintText.color,0);
-			dotlessText.color = SetAlpha(dotlessText.color,0);
-			fullText.color = SetAlpha(fullText.color,0);
+			rainbow.SetActive(true);
 		}
 
-		public void ShowLetters()
+		public void HideRainbow()
 		{
-			hintText.color = SetAlpha(hintText.color,DancingDotsGameManager.instance.dotHintAlpha);
-			dotlessText.color = SetAlpha(dotlessText.color,255);
-			fullText.color = SetAlpha(fullText.color,255);
+			rainbow.SetActive(false);
 		}
 
 		private void SpeakLetter()

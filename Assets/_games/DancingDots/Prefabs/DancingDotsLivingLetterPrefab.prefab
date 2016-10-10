@@ -2759,6 +2759,7 @@ MonoBehaviour:
   hintText: {fileID: 114000012761997732}
   dotlessText: {fileID: 114000010028320920}
   fullTextGO: {fileID: 1000010490400506}
+  rainbow: {fileID: 0}
 --- !u!114 &114000014114888778
 MonoBehaviour:
   m_ObjectHideFlags: 1

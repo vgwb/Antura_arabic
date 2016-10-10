@@ -26,7 +26,6 @@ namespace EA4S.DancingDots
 		{
 			if (letterMesh && diacriticMesh)
 			{
-				float newX = letterMesh.bounds.center.x - Mathf.Clamp(diacriticMesh.bounds.extents.x, 0.5f, 5f) + offSetX;
 				float newY = Mathf.Clamp(diacriticMesh.bounds.extents.y, 0.5f, 5f) + offSetY;
 
 				if (diacritic == Diacritic.Kasrah)
@@ -43,7 +42,7 @@ namespace EA4S.DancingDots
 					newY += letterTop > dotTop ? letterTop : dotTop;
 				}	
 
-				transform.position =  new Vector3(newX, newY, transform.position.z);
+				transform.position =  new Vector3(transform.position.x, newY, transform.position.z);
 			}
 		}
 			
