@@ -108,7 +108,7 @@ namespace EA4S.DancingDots
 
 			isCorrectDiacritic = false;
 
-			RandomDiacritic();
+			StartCoroutine(RandomDiacritic());
 		}
 
 //		IEnumerator ShowMenu(Animator animator)
@@ -163,7 +163,7 @@ namespace EA4S.DancingDots
 			yield return new WaitForEndOfFrame();
 			activeDiacritic.CheckPosition();
 
-			livingLetter.ShowLetters();
+//			livingLetter.ShowLetters();
 
 			Color32 oldColor = activeDiacritic.GetComponent<TextMeshPro>().color;
 			activeDiacritic.GetComponent<TextMeshPro>().color = new Color32(oldColor.r,oldColor.g,oldColor.b,diacriticHintAlpha);
@@ -172,12 +172,20 @@ namespace EA4S.DancingDots
 
 		IEnumerator CorrectMove(bool isWon)
 		{
+			livingLetter.ShowRainbow();
 			yield return new WaitForSeconds(0.25f);
 			livingLetter.LivingLetterAnimator.Play("run");
 			yield return new WaitForSeconds(0.5f);
 			livingLetter.LivingLetterAnimator.Play("walk");
 
-			if (isWon) StartCoroutine(RoundWon());
+			if (isWon) 
+			{
+				StartCoroutine(RoundWon());
+			}
+			else
+			{
+				livingLetter.HideRainbow();
+			}
 		}
 
 
@@ -217,6 +225,7 @@ namespace EA4S.DancingDots
 			{
 				livingLetter.GetComponent<Animator>().Play("Pirouette");
 				yield return new WaitForSeconds(0.25f);
+				livingLetter.HideRainbow();
 				StartRound();
 				yield return new WaitForSeconds(0.75f);
 				livingLetter.LivingLetterAnimator.Play("walk");
@@ -237,6 +246,7 @@ namespace EA4S.DancingDots
 		IEnumerator RoundWon()
 		{
 			numberOfRoundsWon++;
+			livingLetter.ShowRainbow();
 			livingLetter.LivingLetterAnimator.Play("ninja");
 			yield return new WaitForSeconds(0.5f);
 

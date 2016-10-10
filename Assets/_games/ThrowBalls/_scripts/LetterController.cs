@@ -39,6 +39,7 @@ namespace EA4S.ThrowBalls
         private IEnumerator propUpCoroutine;
 
         public Rigidbody rigidBody;
+        public BoxCollider boxCollider;
 
         public LetterWithPropsController letterWithPropsCntrl;
 
@@ -46,6 +47,13 @@ namespace EA4S.ThrowBalls
         void Start()
         {
             animator = GetComponent<Animator>();
+
+            foreach (Collider collider in GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
+
+            SetIsColliderEnabled(true);
         }
 
         public void SetPropVariation(PropVariation propVariation)
@@ -71,7 +79,7 @@ namespace EA4S.ThrowBalls
                     break;
             }
 
-            
+
         }
 
         public void SetMotionVariation(MotionVariation motionVariation)
@@ -152,9 +160,8 @@ namespace EA4S.ThrowBalls
             {
                 if (propUpCoroutine == null)
                 {
-                    rigidBody.isKinematic = true;
-                    PropUp(PROP_UP_DELAY);
-                    Debug.Log("Propping Up");
+                    //SetIsKinematic(true);
+                    //PropUp(PROP_UP_DELAY);
                 }
             }
         }
@@ -238,7 +245,7 @@ namespace EA4S.ThrowBalls
             transform.position = new Vector3(transform.position.x, yEquilibrium, transform.position.z);
         }
 
-        private void PropUp(float delay)
+        public void PropUp(float delay)
         {
             propUpCoroutine = PropUpCoroutine(delay);
             StartCoroutine(propUpCoroutine);
@@ -246,7 +253,9 @@ namespace EA4S.ThrowBalls
 
         private IEnumerator PropUpCoroutine(float delay)
         {
-            float initZAngle = transform.localRotation.eulerAngles.z;
+            yield return new WaitForSeconds(delay);
+
+            float initZAngle = transform.rotation.eulerAngles.z;
 
             if (initZAngle > 180)
             {
@@ -256,13 +265,16 @@ namespace EA4S.ThrowBalls
             float initZAngleSign = Mathf.Sign(initZAngle);
             float propUpSpeed = (initZAngle / PROP_UP_TIME) * initZAngleSign * -1;
 
-            yield return new WaitForSeconds(delay);
+            SetIsKinematic(true);
+            SetIsColliderEnabled(false);
+
+            Vector3 centerOfRotation = boxCollider.transform.position;
 
             while (true)
             {
-                transform.RotateAround(transform.position, Vector3.back, propUpSpeed * Time.fixedDeltaTime);
+                transform.RotateAround(centerOfRotation, initZAngleSign > 0 ? Vector3.back : Vector3.forward, propUpSpeed * Time.fixedDeltaTime);
 
-                float currentZAngle = transform.localRotation.eulerAngles.z;
+                float currentZAngle = transform.rotation.eulerAngles.z;
 
                 if (currentZAngle > 180)
                 {
@@ -272,12 +284,22 @@ namespace EA4S.ThrowBalls
                 if (Mathf.Sign(currentZAngle) * initZAngleSign <= -1)
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
-
+                    SetIsColliderEnabled(true);
                     break;
                 }
 
                 yield return new WaitForFixedUpdate();
             }
+        }
+
+        public void SetIsKinematic(bool isKinematic)
+        {
+            rigidBody.isKinematic = isKinematic;
+        }
+
+        public void SetIsColliderEnabled(bool isEnabled)
+        {
+            boxCollider.enabled = isEnabled;
         }
 
         private bool PassesEquilibriumOnNextFrame(float velocity, float deltaPos, float equilibrium)
@@ -375,6 +397,7 @@ namespace EA4S.ThrowBalls
             transform.rotation = Quaternion.Euler(0, 180, 0);
             rigidBody.isKinematic = true;
             propUpCoroutine = null;
+            SetIsKinematic(true);
         }
     }
 }
