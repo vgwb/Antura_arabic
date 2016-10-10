@@ -85,6 +85,7 @@ public class LivingLetterRagdoll : MonoBehaviour, ICollidable
     public void Puff()
     {
         var puffGo = GameObject.Instantiate(puffPrefab);
+        puffGo.AddComponent<AutoDestroy>().duration = 2;
         puffGo.SetActive(true);
 
         puffGo.transform.position = headTransform.position;

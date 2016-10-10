@@ -1835,6 +1835,7 @@ MonoBehaviour:
   TutorialImageGO: {fileID: 190384}
   MarkOK: {fileID: 178540}
   MarkKO: {fileID: 138106}
+  gameTimeUpSprite: {fileID: 21300000, guid: 6ca51c95ecf20844f8b003c2dc746b73, type: 3}
 --- !u!114 &11456244
 MonoBehaviour:
   m_ObjectHideFlags: 1

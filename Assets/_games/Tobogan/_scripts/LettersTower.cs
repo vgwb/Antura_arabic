@@ -12,13 +12,14 @@ namespace EA4S.Tobogan
         private List<LivingLetter> stackedLetters = new List<LivingLetter>();
         Dictionary<LivingLetter, System.Action> releasedCallbacks = new Dictionary<LivingLetter, System.Action>();
 
-        float letterHeight = 4.8f;
-        public float TowerFullHeight { get { return stackedLetters.Count * letterHeight; } }
+        public const float LETTER_HEIGHT = 4.8f;
+        public float TowerFullHeight { get { return stackedLetters.Count * LETTER_HEIGHT; } }
         public GameObject letterPrefab;
 
         // Used to manage the backlog in the tube and the falling letter
         public Queue<LivingLetter> backlogTube = new Queue<LivingLetter>();
         public LivingLetter fallingLetter;
+        float tremblingTimer = 0;
 
         public bool testAddLetter = false;
 
@@ -42,11 +43,12 @@ namespace EA4S.Tobogan
 
         // Used to calculate the right moment in which a letter should be dropped
         public Transform fallingSpawnPosition;
+        public TremblingTube tube;
         float fallingSpawnHeight;
         // I use here time, instead of integrating over timesteps to be sure that the fall takes that time
         float fallingTime = 0.0f;
         float remainingFallingTime = 0.0f;
-        float letterInitialFallSpeed = -0.0f;
+        float letterInitialFallSpeed = -10.0f;
         float spawnTimer = 0;
 
         // Crash behaviour
@@ -72,7 +74,7 @@ namespace EA4S.Tobogan
         {
             var newLetter = GameObject.Instantiate(letterPrefab);
             newLetter.transform.SetParent(transform, false);
-            
+
             newLetter.SetActive(false);
 
             var letterComponent = newLetter.GetComponent<LivingLetter>();
@@ -95,6 +97,17 @@ namespace EA4S.Tobogan
 
         void Update()
         {
+            if (backlogTube.Count > 0)
+                tremblingTimer = 0.75f;
+
+            if (tremblingTimer > 0f)
+            {
+                tremblingTimer -= Time.deltaTime;
+                tube.Trembling = true;
+            }
+            else
+                tube.Trembling = false;
+
             fallingSpawnHeight = (fallingSpawnPosition.position - transform.position).y;
 
             if (fallingLetter == null)
@@ -145,15 +158,15 @@ namespace EA4S.Tobogan
                 currentHeight += yVelocity * Time.deltaTime + 0.5f * yAcceleration * Time.deltaTime * Time.deltaTime;
 
                 // Put a maximum of height so letters cannot be detached
-                if (currentHeight > normalHeight + letterHeight * 0.2f)
+                if (currentHeight > normalHeight + LETTER_HEIGHT * 0.2f)
                 {
-                    currentHeight = normalHeight + letterHeight * 0.2f;
+                    currentHeight = normalHeight + LETTER_HEIGHT * 0.2f;
 
                     //yVelocity = -yVelocity*0.8f;// elastic bounce
                     yVelocity = Mathf.Min(yVelocity, 0.1f); // just a small jump
                 }
-                else if (currentHeight < letterHeight)
-                    currentHeight = letterHeight;
+                else if (currentHeight < LETTER_HEIGHT)
+                    currentHeight = LETTER_HEIGHT;
             }
 
             //// Simulate a bit of horizontal swinging
@@ -177,7 +190,7 @@ namespace EA4S.Tobogan
             {
                 float heightSwingFactor = GetHeightSwingFactor(i);
 
-                stackedLetters[i].transform.position = transform.position + Vector3.up * (i * letterHeight * lastCompressionValue) + transform.right * currentSwing * heightSwingFactor;
+                stackedLetters[i].transform.position = transform.position + Vector3.up * (i * LETTER_HEIGHT * lastCompressionValue) + transform.right * currentSwing * heightSwingFactor;
 
                 if (i > 0)
                 {
@@ -206,7 +219,7 @@ namespace EA4S.Tobogan
                     // Do Actual Crash
                     crashIntervalBetweenLettersTimer -= Time.deltaTime;
                     if (crashIntervalBetweenLettersTimer <= 0)
-                    { 
+                    {
                         CrashTop();
                     }
                 }
@@ -251,7 +264,7 @@ namespace EA4S.Tobogan
 
                 stackedLetters[letterID].GetComponent<LivingLetterRagdoll>().SetRagdoll(true, randomVelocity);
                 stackedLetters.RemoveAt(letterID);
-                currentHeight -= letterHeight;
+                currentHeight -= LETTER_HEIGHT;
             }
 
             if (stackedLetters.Count == 0 && onCrashed != null)
@@ -320,7 +333,7 @@ namespace EA4S.Tobogan
             if (fallingLetter == null)
                 return;
 
-            currentHeight += letterHeight;
+            currentHeight += LETTER_HEIGHT;
             stackedLetters.Add(fallingLetter);
             var currentFallingLetter = fallingLetter;
             fallingLetter = null;

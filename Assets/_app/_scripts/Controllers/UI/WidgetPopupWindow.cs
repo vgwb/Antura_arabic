@@ -27,6 +27,7 @@ namespace EA4S
         public GameObject TutorialImageGO;
         public GameObject MarkOK;
         public GameObject MarkKO;
+        public Sprite gameTimeUpSprite;
 
         bool clicked;
         Action currentCallback;
@@ -202,9 +203,12 @@ namespace EA4S
             Show(true);
         }
 
+        public void ShowTimeUp(Action callback)
+        {
+            ShowSentenceWithMark(callback, "game_time_up", false, gameTimeUpSprite);
+        }
 
-
-        public void Init(string introText, string wordCode, string arabicWord)
+    public void Init(string introText, string wordCode, string arabicWord)
         {
             Init(null, introText, wordCode, arabicWord);
         }
