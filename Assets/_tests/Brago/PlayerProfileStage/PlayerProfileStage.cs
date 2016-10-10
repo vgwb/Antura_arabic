@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System;
 
 namespace EA4S.Test {
-
+    /// <summary>
+    /// Examples of use PlayerProfile module API.
+    /// </summary>
+    /// <seealso cref="UnityEngine.MonoBehaviour" />
     public class PlayerProfileStage : MonoBehaviour {
 
         void Start() {

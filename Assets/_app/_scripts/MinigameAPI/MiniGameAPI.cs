@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ModularFramework.Core;
 using EA4S;
+using System.Linq;
 
 namespace EA4S.API {
 
@@ -120,6 +121,43 @@ namespace EA4S.API {
 
         #endregion
 
+        #region Gameplay Management
+
+        static string ActualGame = string.Empty;
+        public string[] ActiveGames = new string[] { "Tobogan", "TestGame" };
+
+
+
+        public void StartGame(string _gameName) {
+            string prefix = "game_";
+            switch (_gameName) {
+                case "Tobogan":
+                    // ====================================================
+                    // Set configuration for the actual learning course context.
+                    // ====================================================
+                    Tobogan.ToboganConfiguration.Instance.Difficulty = 0.2f;
+                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    Tobogan.ToboganConfiguration.Instance.Context = new AnturaMinigameDefaultContext() {
+                        audioManager = new SampleAudioManager(),
+                        subtitleWidget = new SampleSubtitlesWidget(),
+                        starsWidget = new SampleStarsWidget(),
+                        questionWidget = new SamplePopupWidget(),
+                    };
+                    // ====================================================
+                    // Call game start
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "Tobogan");
+                    break;
+                case "TestGame":
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "TestGame");
+                    break;
+                default:
+                    Debug.LogWarningFormat("Game {0} is not a valid active minigame!", _gameName);
+                    break;
+            }
+        }
+
+        #endregion
+
     }
 
     #region Data Structures
@@ -162,4 +200,86 @@ namespace EA4S.API {
     }
 
     #endregion
+
+    #region Context and providers
+
+    // ====================================================
+    // Default Context.
+    // ====================================================
+    public class AnturaMinigameDefaultContext : IGameContext {
+
+        public IAudioManager audioManager = new SampleAudioManager();
+        public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
+        public IStarsWidget starsWidget = new SampleStarsWidget();
+        public IPopupWidget questionWidget = new SamplePopupWidget();
+
+        public IAudioManager GetAudioManager() {
+            return audioManager;
+        }
+
+        public IStarsWidget GetStarsWidget() {
+            return starsWidget;
+        }
+
+        public ISubtitlesWidget GetSubtitleWidget() {
+            return subtitleWidget;
+        }
+
+        public IPopupWidget GetPopupWidget() {
+            return questionWidget;
+        }
+    }
+
+    public class AnturaDefaultQuestionProvider : IQuestionProvider {
+        List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
+        string description;
+
+        int currentQuestion;
+
+        public AnturaDefaultQuestionProvider() {
+            currentQuestion = 0;
+
+            description = "Antura Questions";
+
+            // 10 QuestionPacks
+            for (int i = 0; i < 3; i++) {
+                List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
+                List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
+
+                WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Word, AppManager.Instance.Letters)) {
+                    correctAnswers.Add(letterData);
+                }
+
+                correctAnswers = correctAnswers.Distinct().ToList();
+
+                // At least 4 wrong letters
+                while (wrongAnswers.Count < 4) {
+                    var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+
+                    if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter)) {
+                        wrongAnswers.Add(letter);
+                    }
+                }
+
+                var currentPack = new SampleQuestionPack(newWordData, wrongAnswers, correctAnswers);
+                questions.Add(currentPack);
+            }
+        }
+
+        public string GetDescription() {
+            return description;
+        }
+
+        IQuestionPack IQuestionProvider.GetNextQuestion() {
+            currentQuestion++;
+
+            if (currentQuestion >= questions.Count)
+                currentQuestion = 0;
+
+            return questions[currentQuestion];
+        }
+    }
+
+    #endregion 
 }

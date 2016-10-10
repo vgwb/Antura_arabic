@@ -16,6 +16,7 @@ namespace EA4S {
 
         [Header("GO Elements")]
         public TMP_Text Lable;
+        public SpriteRenderer ImageSprite;
         public Transform exclamationMark;
 
         #endregion
@@ -85,7 +86,15 @@ namespace EA4S {
         /// Called when [model changed].
         /// </summary>
         void OnModelChanged() {
-            Lable.text = Model.Data.TextForLivingLetter;
+            if (model.Data.DataType == LivingLetterDataType.Image) {
+                ImageSprite.sprite = model.Data.DrawForLivingLetter;
+                ImageSprite.enabled = true;
+                Lable.enabled = false;
+            } else {
+                ImageSprite.enabled = false;
+                Lable.enabled = true;
+                Lable.text = Model.Data.TextForLivingLetter;
+            }
         }
 
         /// <summary>
