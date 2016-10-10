@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dots
-  m_Shader: {fileID: 4800000, guid: 57742c64e93522944a97e25150b551db, type: 3}
+  m_Name: Tobogan_platform_box1_exterior_mat
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 744137a77a5eb402682fbef6ec7e887b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,9 +71,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: _Base
-      second: -38.919792
-    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -94,9 +91,6 @@ Material:
     - first:
         name: _GlossyReflections
       second: 1
-    - first:
-        name: _Height
-      second: 14.321471
     - first:
         name: _Metallic
       second: 0
@@ -127,7 +121,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 0, b: 0, a: 1}
+      second: {r: 0.7058824, g: 0.98823535, b: 0.5686275, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

@@ -765,7 +765,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011953625862}
-  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
+  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: -10.6786995, y: -87.1645, z: 175.5333}
@@ -1137,10 +1137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d25880b5486088419c5708c2c5f3dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livingLetterTransform: {fileID: 4000010461957444}
-  boxCollider: {fileID: 65000013607824370}
-  AnturaAnimator: {fileID: 95000011415150568}
-  livingLetterText: {fileID: 114000012400503508}
+  livingLetterTransform: {fileID: 56249504}
+  boxCollider: {fileID: 56074656}
+  AnturaAnimator: {fileID: 4096}
+  livingLetterText: {fileID: 0}
 --- !u!114 &114000011857250124
 MonoBehaviour:
   m_ObjectHideFlags: 1
