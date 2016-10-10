@@ -60,6 +60,11 @@ namespace EA4S.ThrowBalls
                 bottomCrate.StopSwerving();
             }
 
+            //letter.SetIsKinematic(false);
+            letter.PropUp(1.75f);
+
+            Debug.Log("Propping letter up");
+
             letter.ApplyCustomGravity();
             
             PokeballController.instance.Reset();

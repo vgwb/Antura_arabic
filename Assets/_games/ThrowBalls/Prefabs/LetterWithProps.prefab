@@ -11,6 +11,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000012776724264}
   m_IsPrefabParent: 1
+--- !u!1 &1000010010687728
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010489231768}
+  - 65: {fileID: 65000012295801092}
+  - 114: {fileID: 114000012954939350}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010239813986
 GameObject:
   m_ObjectHideFlags: 1
@@ -121,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010867798842
 GameObject:
   m_ObjectHideFlags: 1
@@ -504,7 +521,6 @@ GameObject:
   - 95: {fileID: 95000013732604110}
   - 114: {fileID: 114000013193933908}
   - 54: {fileID: 54000013152163612}
-  - 65: {fileID: 65000011454617842}
   m_Layer: 0
   m_Name: ThrowBallsLetter
   m_TagString: Untagged
@@ -597,6 +613,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011427052412}
   m_RootOrder: 0
+--- !u!4 &4000010489231768
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010010687728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013822068754}
+  m_RootOrder: 5
 --- !u!4 &4000010776901132
 Transform:
   m_ObjectHideFlags: 1
@@ -647,7 +676,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013179381164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7295013, y: 2.4437857, z: 2.4171867}
+  m_LocalPosition: {x: 0.7295013, y: 3.07, z: 2.4171867}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -963,6 +992,7 @@ Transform:
   - {fileID: 4000012291602216}
   - {fileID: 4000012583135248}
   - {fileID: 4000013597254976}
+  - {fileID: 4000010489231768}
   m_Father: {fileID: 4000011763906314}
   m_RootOrder: 0
 --- !u!4 &4000014091143258
@@ -1263,18 +1293,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!65 &65000011454617842
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014221073410}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.03, y: 3.03, z: 1}
-  m_Center: {x: 0, y: 3.49, z: 0}
 --- !u!65 &65000011676285856
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1298,6 +1316,18 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000012295801092
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010010687728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000013315824000
 BoxCollider:
@@ -1425,6 +1455,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letter: {fileID: 1000014221073410}
+--- !u!114 &114000012954939350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010010687728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5131f7120a8b14c87e051a0b7be815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letterController: {fileID: 114000013193933908}
 --- !u!114 &114000013193933908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1440,6 +1482,7 @@ MonoBehaviour:
   bushController: {fileID: 114000013315525300}
   letterTextView: {fileID: 114000013823819604}
   rigidBody: {fileID: 54000013152163612}
+  boxCollider: {fileID: 65000012295801092}
   letterWithPropsCntrl: {fileID: 114000012251784484}
 --- !u!114 &114000013315525300
 MonoBehaviour:
