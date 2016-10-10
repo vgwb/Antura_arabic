@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using EA4S;
+using TMPro;
 
 
 namespace EA4S.Maze
@@ -20,6 +21,14 @@ namespace EA4S.Maze
 
 		public List<GameObject> prefabs;
 
+		public Canvas endGameCanvas;
+
+		public StarFlowers starFlowers;
+
+		[Range(0,1)]
+		public float difficulty = 0.5f;
+		public float idleTime = 7;
+		public TextMeshProUGUI roundNumber;
 
 
 		int currentLetterIndex;
@@ -29,10 +38,22 @@ namespace EA4S.Maze
 		List<GameObject> _cracks;
 		List<GameObject> lines;
 
+
+		int correctLetters = 0;
+		int wrongLetters = 0;
+
+		[HideInInspector]
+		public float gameTime = 0;
+		public float maxGameTime = 120;
+		public MazeTimer timer;
+		public Antura antoura;
+
 		protected override void Awake()
 		{
 			base.Awake();
 			Instance = this;
+
+
 		}
 
 		protected override void Start()
@@ -55,9 +76,15 @@ namespace EA4S.Maze
 			lines = new List<GameObject>();
 
 			currentLetterIndex = 0;
+			roundNumber.text = "#" + (currentLetterIndex + 1);
+
+			gameTime = maxGameTime / (1 + difficulty);
+
+			timer.initTimer ();
 
 			//init first letter
 			initCurrentLetter();
+
 		}
 
 		protected override void ReadyForGameplay()
@@ -98,16 +125,34 @@ namespace EA4S.Maze
 		{
 			//check if current letter is complete:
 			if (currentCharacter.isComplete ()) {
+				correctLetters++;
+
 				currentLetterIndex++;
-				if (currentLetterIndex == prefabs.Count - 1) {
-					print ("all done");
+				if (currentLetterIndex == prefabs.Count) {
+					EndGame ();
 					return;
-				}else
-				restartCurrentLetter ();
+				} else {
+					roundNumber.text = "#" + (currentLetterIndex + 1);
+					restartCurrentLetter ();
+				}
 			} else {
 				currentCharacter.nextPath ();
 				currentTutorial.moveToNextPath ();
 			}
+		}
+
+		public void lostCurrentLetter()
+		{
+			wrongLetters++;
+			currentLetterIndex++;
+			if (currentLetterIndex == prefabs.Count - 1) {
+				EndGame ();
+				return;
+			} else {
+				roundNumber.text = "#" + (currentLetterIndex + 1);
+				restartCurrentLetter ();
+			}
+			
 		}
 
 		public void restartCurrentLetter()
@@ -194,6 +239,54 @@ namespace EA4S.Maze
 			lr.SetPosition(1, end);
 
 			lines.Add(myLine);
+		}
+
+		private void EndGame()
+		{
+			StartCoroutine(EndGame_Coroutine());
+		}
+
+		private IEnumerator EndGame_Coroutine()
+		{
+			yield return new WaitForSeconds(1f);
+
+			endGameCanvas.gameObject.SetActive(true);
+
+			int numberOfStars = 0;
+
+			if (correctLetters == prefabs.Count) {
+				numberOfStars = 3;
+				WidgetSubtitles.I.DisplaySentence ("game_result_great");
+			} else if (correctLetters > prefabs.Count / 2) {
+				numberOfStars = 2;
+				WidgetSubtitles.I.DisplaySentence ("game_result_good");
+			} else if (correctLetters > prefabs.Count / 4) {
+				numberOfStars = 1;
+				WidgetSubtitles.I.DisplaySentence ("game_result_fair");
+			} else {
+				numberOfStars = 0;
+				WidgetSubtitles.I.DisplaySentence("game_result_retry");
+			}
+
+
+			LoggerEA4S.Log("minigame", "Maze", "correctLetters", ""+correctLetters);
+			LoggerEA4S.Log("minigame", "Maze", "wrongLetters", ""+wrongLetters);
+			LoggerEA4S.Save();
+
+			starFlowers.Show(numberOfStars);
+		}
+
+
+		public void onTimeUp()
+		{
+			//end game:
+			EndGame();
+		}
+
+		public void onIdleTime()
+		{
+			antoura.gameObject.SetActive (true);
+
 		}
 	}
 
