@@ -383,8 +383,6 @@ MonoBehaviour:
   dots: 0
   diacritic: 0
   fingerOffset: {x: 0, y: 2, z: 0}
-  splatPrefab: {fileID: 1000013385010608, guid: e7244dd65456a49be97826830806469b,
-    type: 2}
   draggableText: {fileID: 114000013677804830}
   isNeeded: 0
 --- !u!114 &114000014061327064
