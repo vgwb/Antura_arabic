@@ -499,7 +499,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 66639525}
-  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
+  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: -10.6786995, y: -87.1645, z: 175.5333}
@@ -4372,13 +4372,12 @@ GameObject:
 --- !u!65 &1268689051
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65000011454617842, guid: 435ad19523f5d1c4085ae8af18702bf7,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1268689050}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3.03, y: 3.03, z: 1}
   m_Center: {x: 0, y: 3.49, z: 0}
@@ -4414,6 +4413,7 @@ MonoBehaviour:
   bushController: {fileID: 2078786140}
   letterTextView: {fileID: 1903829211}
   rigidBody: {fileID: 1268689052}
+  boxCollider: {fileID: 0}
   letterWithPropsCntrl: {fileID: 0}
 --- !u!95 &1268689054
 Animator:
@@ -4450,6 +4450,7 @@ Transform:
   - {fileID: 1619868498}
   - {fileID: 438034961}
   - {fileID: 620167418}
+  - {fileID: 2079342437}
   m_Father: {fileID: 0}
   m_RootOrder: 12
 --- !u!1 &1281455061
@@ -6976,19 +6977,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.6885094
+      value: -0.68850946
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607113
+      value: 0.040607117
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.71819454
+      value: 0.7181946
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220874
+      value: 0.09220875
       objectReference: {fileID: 0}
     - target: {fileID: 1000012776724264, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_Name
@@ -6997,14 +6998,6 @@ Prefab:
     - target: {fileID: 1000012776724264, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010712632772, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011156280108, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
@@ -7021,6 +7014,47 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2078786139}
   m_Script: {fileID: 11500000, guid: 275465f53c2bc974abceaf1da8f082ef, type: 3}
+--- !u!1 &2079342436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2079342437}
+  - 65: {fileID: 2079342438}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2079342437
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079342436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1268689055}
+  m_RootOrder: 5
+--- !u!65 &2079342438
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079342436}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2080642489
 GameObject:
   m_ObjectHideFlags: 0
