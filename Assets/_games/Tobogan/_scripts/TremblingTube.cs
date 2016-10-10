@@ -8,6 +8,13 @@ public class TremblingTube : MonoBehaviour
     Vector3 tremblingOffset;
     Vector3 initialPosition;
 
+    public float tremblingSpeedX = 1;
+    public float tremblingSpeedY = 1;
+    public float tremblingSpeedZ = 1;
+    public float tremblingAmountX = 0.1f;
+    public float tremblingAmountY = 0.1f;
+    public float tremblingAmountZ = 0.1f;
+
     void Start()
     {
         initialPosition = transform.localPosition;
@@ -16,10 +23,10 @@ public class TremblingTube : MonoBehaviour
     void Update()
     {
         // Trembling
-        Vector3 noise = 0.015f * new Vector3(
-            Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * 317, 2 * Mathf.PI)),
-            Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * 601, 2 * Mathf.PI)),
-            Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * 363, 2 * Mathf.PI)));
+        Vector3 noise = new Vector3(
+            tremblingAmountX*Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedX, 2 * Mathf.PI)),
+            tremblingAmountY * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedY, 2 * Mathf.PI)),
+            tremblingAmountZ * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedZ, 2 * Mathf.PI)));
 
         tremblingOffset = Vector3.Lerp(tremblingOffset, noise, 40.0f * Time.deltaTime);
 

@@ -7,7 +7,17 @@ namespace EA4S.Tobogan
     {
         public PipeAnswer[] pipeAnswers;
 
+        float hidingProbability;
+
         PipeAnswer currentPipeAnswer;
+        float hideSignsTimer;
+
+        List<PipeAnswer> toHide = new List<PipeAnswer>();
+
+        public void SetSignHidingProbability(float hidingProbability)
+        {
+            this.hidingProbability = hidingProbability;
+        }
 
         public void Initialize()
         {
@@ -22,6 +32,18 @@ namespace EA4S.Tobogan
 
         public void SetPipeAnswers(IEnumerable<ILivingLetterData> wrongAnswers, ILivingLetterData correctAnswers)
         {
+            // Selecting auto-hiding signs
+            toHide.Clear();
+            for (int i = 0; i < pipeAnswers.Length; ++i)
+            {
+                if (Random.value + 0.0001f < hidingProbability)
+                {
+                    toHide.Add(pipeAnswers[i]);
+                }
+            }
+
+            hideSignsTimer = 2.5f + 0.5f * toHide.Count;
+
             HidePipes();
 
             currentPipeAnswer = null;
@@ -37,7 +59,7 @@ namespace EA4S.Tobogan
                 answersCount = 4;
 
             int correctPosition = Random.Range(0, answersCount);
-            
+
             for (int i = 0; i < answersCount; i++)
             {
                 if (i == correctPosition)
@@ -55,6 +77,7 @@ namespace EA4S.Tobogan
 
                 //pipeAnswers[i].gameObject.SetActive(true);
                 pipeAnswers[i].active = true;
+                pipeAnswers[i].showSign = true;
             }
         }
 
@@ -95,6 +118,24 @@ namespace EA4S.Tobogan
             pipe.StopSelectedAnimation();
 
             currentPipeAnswer = null;
+        }
+
+        void Update()
+        {
+            if (hideSignsTimer > 0)
+            {
+                hideSignsTimer -= Time.deltaTime;
+
+                if (hideSignsTimer <= 0)
+                {
+                    int len = toHide.Count;
+
+                    for (int i = 0; i < len; i++)
+                    {
+                        toHide[i].showSign = false;
+                    }
+                }
+            }
         }
     }
 }
