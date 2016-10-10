@@ -21,6 +21,7 @@ namespace EA4S.Maze
 
 		public bool characterIsMoving;
 
+		public MazeDot dot = null;
 
 
 		int currentCharacterWayPoint;
@@ -31,9 +32,6 @@ namespace EA4S.Maze
 		Vector3 targetPos;
 		Quaternion targetRotation;
 		int currentWayPoint;
-
-
-
 
 
 		List<GameObject> _fruits;
@@ -180,7 +178,7 @@ namespace EA4S.Maze
 				characterIsMoving = false;
 			},
 				()=>{
-					MazeGameManager.Instance.restartCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+					MazeGameManager.Instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}));
 
 
@@ -198,7 +196,19 @@ namespace EA4S.Maze
 
 		public bool isComplete()
 		{
-			return currentFruitList == Fruits.Count - 1;
+			if (currentFruitList == Fruits.Count - 1) {
+				if (dot == null)
+					return true;
+				else
+					return dot.isClicked;
+			} else
+				return false;
+			
+		}
+
+		public void setClickedDot()
+		{
+			MazeGameManager.Instance.moveToNext ();
 		}
 
 		public void nextPath()
@@ -236,6 +246,7 @@ namespace EA4S.Maze
 
 		public void initMovement()
 		{
+			
 			characterIsMoving = true;
 			GetComponent<BoxCollider> ().enabled = true;
 			foreach (GameObject fruit in _fruits) {
@@ -266,7 +277,6 @@ namespace EA4S.Maze
 
 			if(previousPosition != targetPos)
 			{
-				print (targetPos);
 				targetPos.z = -0.2f;
 				characterWayPoints.Add(targetPos);
 
@@ -299,6 +309,11 @@ namespace EA4S.Maze
 							GetComponent<BoxCollider> ().enabled = false;
 							characterIsMoving = false;
 							MazeGameManager.Instance.moveToNext ();
+
+							if (currentFruitList == Fruits.Count - 1) {
+								if (dot != null)
+									dot.GetComponent<BoxCollider> ().enabled = true;
+							}
 						} else
 							waitAndRestartScene ();
 					}

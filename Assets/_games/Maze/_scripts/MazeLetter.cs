@@ -29,6 +29,8 @@ namespace EA4S.Maze
 
 		void OnMouseDown()
 		{
+			
+
 			if (character.characterIsMoving || !MazeGameManager.Instance.tutorialForLetterisComplete())
 				return;
 
@@ -50,6 +52,8 @@ namespace EA4S.Maze
 			isInside =  false;
 
 			character.initMovement ();
+
+			MazeGameManager.Instance.timer.StopTimer ();
 		}
 
 	}

@@ -50,6 +50,9 @@ namespace EA4S.Maze
 
 					//set tutorial done:
 					isMovingOnPath = false;
+
+					MazeGameManager.Instance.timer.StartTimer ();
+
 				}
 			}
 
