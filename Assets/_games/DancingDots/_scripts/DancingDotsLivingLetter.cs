@@ -46,11 +46,12 @@ namespace EA4S.DancingDots
 			}
 
 			PlayAnimation();
-			Reset();
+//			Reset();
 		}
 
 		public void Reset()
 		{
+
 			if (ShowLetter) {
 				RandomLetter();
 				SpeakLetter();
@@ -131,12 +132,39 @@ namespace EA4S.DancingDots
 			hintText.text = letterData.TextForLivingLetter;
 			dotlessText.text = letterData.TextForLivingLetter;
 			fullText.text = letterData.TextForLivingLetter;
+			HideLetters();
 			fullTextGO.SetActive(false);
 
 
 			StartCoroutine(DancingDotsGameManager.instance.RandomDiacritic());
 
 
+		}
+
+		private Color32 SetAlpha(Color32 color, byte alpha)
+		{
+			if (alpha >= 0 && alpha <= 255)
+			{
+				return new Color32(color.r, color.g, color.b, alpha);
+			}
+			else
+			{
+				return color;
+			}
+		}
+
+		public void HideLetters()
+		{
+			hintText.color = SetAlpha(hintText.color,0);
+			dotlessText.color = SetAlpha(dotlessText.color,0);
+			fullText.color = SetAlpha(fullText.color,0);
+		}
+
+		public void ShowLetters()
+		{
+			hintText.color = SetAlpha(hintText.color,DancingDotsGameManager.instance.dotHintAlpha);
+			dotlessText.color = SetAlpha(dotlessText.color,255);
+			fullText.color = SetAlpha(fullText.color,255);
 		}
 
 		private void SpeakLetter()

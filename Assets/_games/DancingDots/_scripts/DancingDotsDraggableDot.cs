@@ -16,7 +16,6 @@ namespace EA4S.DancingDots
 		public Diacritic diacritic;
 
 		public Vector3 fingerOffset;
-		public GameObject splatPrefab;
 		public TextMeshPro draggableText;
 
 		public bool isNeeded = false;
@@ -62,7 +61,7 @@ namespace EA4S.DancingDots
 			{
 				if (overPlayermarker && !isNeeded)
 				{
-					Instantiate(splatPrefab,new Vector3(transform.position.x,transform.position.y,-20), Quaternion.identity);
+					DancingDotsGameManager.instance.WrongMove(transform.position);
 					isDragging = false;
 					gameObject.SetActive(false);
 				}
