@@ -19,5 +19,6 @@ namespace EA4S
     {
         Letter,
         Word,
+        Image,
     }
 }

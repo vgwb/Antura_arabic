@@ -8,7 +8,7 @@ namespace EA4S.Test {
 
     public class StateDropDownList : Dropdown {
 
-        void Start() {
+        new void Start() {
             options.Clear();
             options.AddRange(new List<OptionData>(){
                 new OptionData() { text = LetterObjectState.Idle_State.ToString() },

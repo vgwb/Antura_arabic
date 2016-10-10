@@ -447,6 +447,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013807326982
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014136485822}
+  - 212: {fileID: 212000014278341224}
+  m_Layer: 0
+  m_Name: ImageSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4000010015072876
 Transform:
   m_ObjectHideFlags: 1
@@ -542,6 +558,7 @@ Transform:
   m_Children:
   - {fileID: 4000012746363866}
   - {fileID: 224000013204119606}
+  - {fileID: 4000014136485822}
   m_Father: {fileID: 4000014085001360}
   m_RootOrder: 0
 --- !u!4 &4000011741384344
@@ -717,7 +734,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013405985368}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -6.3, y: 0, z: -7.4}
+  m_LocalPosition: {x: 0, y: 0, z: -9.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -826,6 +843,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012168247234}
   m_RootOrder: 0
+--- !u!4 &4000014136485822
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013807326982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011487941352}
+  m_RootOrder: 2
 --- !u!23 &23000011303540780
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1132,6 +1162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lable: {fileID: 114000010901255416}
+  ImageSprite: {fileID: 212000014278341224}
   exclamationMark: {fileID: 4000013940432554}
   MergedElementsDistance: 1
   IsMerged: 0
@@ -1149,7 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DragOverLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   OnDrag: 0
   ToBeRelease: 0
   HoldThreshold: 0.25
@@ -1210,6 +1241,39 @@ SkinnedMeshRenderer:
     m_Center: {x: 1.2810289, y: 0.21142417, z: 0.2942158}
     m_Extent: {x: 4.31575, y: 1.4929821, z: 2.483664}
   m_DirtyAABB: 0
+--- !u!212 &212000014278341224
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013807326982}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 1
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 339d1168b9be76444aced80585d68d50, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!222 &222000011742775990
 CanvasRenderer:
   m_ObjectHideFlags: 1

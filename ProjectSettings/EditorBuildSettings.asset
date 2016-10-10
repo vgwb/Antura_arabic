@@ -33,3 +33,5 @@ EditorBuildSettings:
     path: Assets/_games/FastCrowd/game_FastCrowd_tutorial.unity
   - enabled: 1
     path: Assets/_games/FastCrowd/game_FastCrowd_tutorialWords.unity
+  - enabled: 1
+    path: Assets/_games/Tobogan/game_Tobogan.unity

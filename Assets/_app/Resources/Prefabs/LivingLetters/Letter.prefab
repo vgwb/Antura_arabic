@@ -386,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lable: {fileID: 11453920}
+  ImageSprite: {fileID: 0}
   exclamationMark: {fileID: 0}
   MergedElementsDistance: 1
   IsMerged: 0
