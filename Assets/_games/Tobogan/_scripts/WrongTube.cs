@@ -8,14 +8,14 @@ public class WrongTube : MonoBehaviour
     public Transform spawnTransform;
     public GameObject letterPrefab;
 
+    public TremblingTube tube;
+    float spittingTimer = 0;
+
+    GameObject spittingLetter;
+
     public bool doSpawn = false;
 
     bool dropping = false;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -32,16 +32,12 @@ public class WrongTube : MonoBehaviour
                 dropRequest.RemoveAt(dropRequest.Count - 1);
             }
 
-            var letterGo = Instantiate(letterPrefab);
-            letterGo.SetActive(true);
+            spittingLetter = Instantiate(letterPrefab);
+            spittingLetter.SetActive(false);
 
-            letterGo.transform.position = spawnTransform.position;
-            letterGo.transform.forward = spawnTransform.right;
+            var ragdoll = spittingLetter.GetComponent<LivingLetterRagdoll>();
 
-            letterGo.transform.RotateAround(letterGo.transform.position + letterGo.transform.up * 3.5f, letterGo.transform.forward, Random.value * 360);
-
-            var ragdoll = letterGo.GetComponent<LivingLetterRagdoll>();
-            
+            spittingTimer = 0.5f;
             ragdoll.SetRagdoll(true, spawnTransform.forward * 75);
             ragdoll.onPoofed += () => {
                 if (toCall != null)
@@ -50,6 +46,27 @@ public class WrongTube : MonoBehaviour
                 dropping = false;
             };
 
+        }
+        
+        if (spittingTimer > 0)
+        {
+            tube.Trembling = true;
+            spittingTimer -= Time.deltaTime;
+
+            if (spittingTimer <= 0)
+            {
+                spittingLetter.transform.position = spawnTransform.position;
+                spittingLetter.transform.forward = spawnTransform.right;
+
+                spittingLetter.transform.RotateAround(spittingLetter.transform.position + spittingLetter.transform.up * 3.5f, spittingLetter.transform.forward, Random.value * 360);
+                spittingLetter.SetActive(true);
+                spittingLetter = null;
+            }
+        }
+        else
+        {
+
+            tube.Trembling = false;
         }
     }
 
