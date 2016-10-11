@@ -136,9 +136,9 @@ namespace EA4S.DancingDots
 			}
 					
 			hintText.text = letterData.TextForLivingLetter;
+			ShowText(hintText, DancingDotsGameManager.instance.dotHintAlpha);
 			dotlessText.text = letterData.TextForLivingLetter;
 			fullText.text = letterData.TextForLivingLetter;
-//			HideLetters();
 			fullTextGO.SetActive(false);
 
 		}
@@ -155,14 +155,24 @@ namespace EA4S.DancingDots
 			}
 		}
 
-//		public void HideLetters()
+		public void HideText(TextMeshPro tmp)
+		{
+			tmp.color = SetAlpha(tmp.color,0);
+		}
+
+		public void ShowText(TextMeshPro tmp, byte alpha)
+		{
+			tmp.color = SetAlpha(tmp.color, alpha);
+		}
+
+//		public void HideAllText()
 //		{
 //			hintText.color = SetAlpha(hintText.color,0);
 //			dotlessText.color = SetAlpha(dotlessText.color,0);
 //			fullText.color = SetAlpha(fullText.color,0);
 //		}
 //
-//		public void ShowLetters()
+//		public void ShowAllText()
 //		{
 //			hintText.color = SetAlpha(hintText.color,DancingDotsGameManager.instance.dotHintAlpha);
 //			dotlessText.color = SetAlpha(dotlessText.color,255);
