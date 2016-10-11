@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace Lean
+namespace Lean.Touch
 {
 	// This class stores a snapshot of where a finger was at a previous point in time
 	public class LeanSnapshot
