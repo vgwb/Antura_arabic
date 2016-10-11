@@ -108,9 +108,6 @@ namespace EA4S.DancingDots
 
 		void SetupLetter()
 		{
-			//			string[] diacritics = {"َ","ِ","ُ","ْ"};
-			//			int random = UnityEngine.Random.Range(0, diacritics.Length);
-			//			hintDotText.text = ArabicSupport.ArabicFixer.Fix(letterData.TextForLivingLetter+ diacritics[random], true, true);
 
 			DancingDotsGameManager.instance.currentLetter = letterData.TextForLivingLetter;
 
