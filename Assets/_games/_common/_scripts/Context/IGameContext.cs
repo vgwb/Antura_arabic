@@ -4,7 +4,7 @@ namespace EA4S
     public interface IGameContext
     {
         IAudioManager GetAudioManager();
-        //IInputManager GetInputManager();
+        IInputManager GetInputManager();
 
         ISubtitlesWidget GetSubtitleWidget();
         IStarsWidget GetStarsWidget();
