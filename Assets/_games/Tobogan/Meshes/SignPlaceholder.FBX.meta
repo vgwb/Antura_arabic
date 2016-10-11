@@ -18,7 +18,7 @@ ModelImporter:
     4300000: NGon001
     4300002: NGon002
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

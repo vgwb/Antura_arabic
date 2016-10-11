@@ -43,6 +43,13 @@ namespace EA4S.ThrowBalls
 
         public LetterWithPropsController letterWithPropsCntrl;
 
+        private Vector3 lastPosition;
+        private Vector3 lastRotation;
+
+        private bool isGrounded = false;
+        private bool isProppingUp = false;
+        private bool isStill = false;
+
         // Use this for initialization
         void Start()
         {
@@ -121,7 +128,26 @@ namespace EA4S.ThrowBalls
         // Update is called once per frame
         void Update()
         {
+            Vector3 currentPosition = transform.position;
+            Vector3 currentRotation = transform.rotation.eulerAngles;
 
+            if (AreVectorsApproxEqual(currentPosition, lastPosition) && AreVectorsApproxEqual(currentRotation, lastRotation))
+            {
+                isStill = true;
+            }
+
+            else
+            {
+                isStill = false;
+            }
+
+            lastPosition = currentPosition;
+            lastRotation = currentRotation;
+        }
+
+        private bool AreVectorsApproxEqual(Vector3 vector1, Vector3 vector2)
+        {
+            return Mathf.Approximately(vector1.x, vector2.x) && Mathf.Approximately(vector1.y, vector2.y) && Mathf.Approximately(vector1.z, vector2.z);
         }
 
         public void SetLetter(LetterData _data)
@@ -163,6 +189,26 @@ namespace EA4S.ThrowBalls
                     //SetIsKinematic(true);
                     //PropUp(PROP_UP_DELAY);
                 }
+
+                isGrounded = true;
+            }
+
+            if (isProppingUp)
+            {
+                isProppingUp = false;
+
+                if (propUpCoroutine != null)
+                {
+                    StopCoroutine(propUpCoroutine);
+                }
+            }
+        }
+
+        public void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.tag == Constants.TAG_RAIL)
+            {
+                isGrounded = false;
             }
         }
 
@@ -245,8 +291,30 @@ namespace EA4S.ThrowBalls
             transform.position = new Vector3(transform.position.x, yEquilibrium, transform.position.z);
         }
 
+        public void MakeSureIsProppedUp()
+        {
+            StartCoroutine(MakeSureIsProppedUpCoroutine());
+        }
+
+        private IEnumerator MakeSureIsProppedUpCoroutine()
+        {
+            while (true)
+            {
+                if (transform.rotation.eulerAngles.z != 0 && isGrounded && isStill)
+                {
+                    if (!isProppingUp)
+                    {
+                        PropUp(0.5f);
+                    }
+                }
+
+                yield return new WaitForSeconds(0.25f);
+            }
+        }
+
         public void PropUp(float delay)
         {
+            isProppingUp = true;
             propUpCoroutine = PropUpCoroutine(delay);
             StartCoroutine(propUpCoroutine);
         }
@@ -285,6 +353,7 @@ namespace EA4S.ThrowBalls
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                     SetIsColliderEnabled(true);
+                    isProppingUp = false;
                     break;
                 }
 
@@ -352,8 +421,6 @@ namespace EA4S.ThrowBalls
 
         private IEnumerator ApplyCustomGravityCoroutine()
         {
-            rigidBody.isKinematic = false;
-
             while (true)
             {
                 rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
@@ -398,6 +465,9 @@ namespace EA4S.ThrowBalls
             rigidBody.isKinematic = true;
             propUpCoroutine = null;
             SetIsKinematic(true);
+            isProppingUp = false;
+            isGrounded = false;
+            isStill = false;
         }
     }
 }

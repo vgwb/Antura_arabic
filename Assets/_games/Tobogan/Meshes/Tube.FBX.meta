@@ -23,7 +23,7 @@ ModelImporter:
     4300002: tube
     4300004: screws
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
