@@ -76,6 +76,9 @@ namespace EA4S.DancingDots
 		private int numberOfRoundsPlayed = 0;
 		private int numberOfFailedMoves = 0;
 
+		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
+
+		private Level currentLevel = Level.Level4;
 
 		protected override void Awake()
 		{
@@ -98,27 +101,86 @@ namespace EA4S.DancingDots
 
 		}
 
-		public void StartRound()
+
+		private void SetLevel(Level level)
+		{
+			switch (level)
+			{
+			case Level.Level1 : // Dots alone with visual aid
+				allowedFailedMoves = 2;
+				isCorrectDot = false;
+				isCorrectDiacritic = true;
+				foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
+				StartCoroutine(RemoveHintDot());
+				break;
+
+			case Level.Level2 : // Diacritics alone with visual aid
+				isCorrectDot = true;
+				isCorrectDiacritic = false;
+				foreach (DancingDotsDraggableDot dDots in dragableDiacritics) dDots.Reset();
+				livingLetter.fullTextGO.SetActive(true); // Show dot
+				StartCoroutine(RandomDiacritic());
+				StartCoroutine(RemoveHintDiacritic());
+				break;
+
+			case Level.Level3 : // Dots and diacritics with visual aid
+				isCorrectDot = false;
+				isCorrectDiacritic = false;
+				foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
+				foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.Reset();
+				StartCoroutine(RandomDiacritic());
+				StartCoroutine(RemoveHintDot());
+				StartCoroutine(RemoveHintDiacritic());
+				break;
+
+			case Level.Level4 : // Dots alone without visual aid
+				allowedFailedMoves = 2;
+				isCorrectDot = false;
+				isCorrectDiacritic = true;
+				foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
+				livingLetter.HideText(livingLetter.hintText);
+				break;
+
+			case Level.Level5 : // Diacritics alone without visual aid
+				isCorrectDot = true;
+				isCorrectDiacritic = false;
+				foreach (DancingDotsDraggableDot dDots in dragableDiacritics) dDots.Reset();
+				livingLetter.fullTextGO.SetActive(true); // Show dot
+				StartCoroutine(RandomDiacritic());
+				// Level checked in RandomDiacritic instead of activeDiacritic.Hide(); due to frame delay
+				break;
+
+			case Level.Level6 : // Dots and diacritics without visual aid
+				isCorrectDot = false;
+				isCorrectDiacritic = false;
+				foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
+				foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.Reset();
+				StartCoroutine(RandomDiacritic());
+				livingLetter.HideText(livingLetter.hintText);
+				// Level checked in RandomDiacritic instead of activeDiacritic.Hide(); due to frame delay
+				break;
+
+			default:
+				break;
+
+			}
+		}
+
+		private void StartRound()
 		{
 			numberOfRoundsPlayed++;
 			Debug.Log(numberOfRoundsPlayed);
 			numberOfFailedMoves = 0;
-
-			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
-
-			foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.Reset();
-
 			livingLetter.Reset();
+			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
+			foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
+			foreach (GameObject go in diacritics) go.SetActive(false);
 
-			isCorrectDot = false;
+			currentLevel = (Level) Mathf.Clamp((int) Mathf.Floor(pedagogicalLevel * 6),0, 5);
+			Debug.Log(currentLevel);
+			SetLevel(currentLevel);
 
-			isCorrectDiacritic = false;
 
-			StartCoroutine(RandomDiacritic());
-
-			StartCoroutine(RemoveHintDot());
-
-			StartCoroutine(RemoveHintDiacritic());
 		}
 			
 
@@ -145,7 +207,7 @@ namespace EA4S.DancingDots
 						break;
 					}
 				}
-				CreatePoof(poofPosition, 10f);
+				CreatePoof(poofPosition, 2f);
 				livingLetter.HideText(livingLetter.hintText);
 			}
 		}
@@ -155,7 +217,7 @@ namespace EA4S.DancingDots
 			yield return new WaitForSeconds(hintDiacriticDuration);
 			if (!isCorrectDiacritic)
 			{
-				CreatePoof(activeDiacritic.transform.position, 10f);
+				CreatePoof(activeDiacritic.transform.position, 2f);
 				activeDiacritic.Hide();
 			}
 		}
@@ -189,7 +251,7 @@ namespace EA4S.DancingDots
 			base.OnMinigameQuit();
 		}
 
-		public IEnumerator RandomDiacritic() {
+		private IEnumerator RandomDiacritic() {
 
 
 			foreach (GameObject go in diacritics)
@@ -211,7 +273,12 @@ namespace EA4S.DancingDots
 			// wait for end of frame to ge correct values for meshes
 			yield return new WaitForEndOfFrame();
 			activeDiacritic.CheckPosition();
-			activeDiacritic.Show();
+
+			// Level checked in RandomDiacritic instead of SetLevel due to frame delay
+			if (currentLevel != Level.Level5 && currentLevel != Level.Level6)
+			{
+				activeDiacritic.Show();
+			}
 
 		}
 
@@ -233,12 +300,26 @@ namespace EA4S.DancingDots
 			}
 		}
 
+		IEnumerator PoofOthers(DancingDotsDraggableDot[] draggables)
+		{
+			foreach (DancingDotsDraggableDot dd in draggables)
+			{
+				if (dd.gameObject.activeSelf)
+				{
+					yield return new WaitForSeconds(0.25f);
+					dd.gameObject.SetActive(false);
+					CreatePoof(dd.transform.position, 2f);
+				}
+
+			}
+		}
 
 		public void CorrectDot()
 		{
 			// Change font or show correct character
 			isCorrectDot = true;
 			livingLetter.fullTextGO.SetActive(true);
+			StartCoroutine(PoofOthers(dragableDots));
 			StartCoroutine(CorrectMove(isCorrectDiacritic));
 		}
 
@@ -246,6 +327,7 @@ namespace EA4S.DancingDots
 		{
 			isCorrectDiacritic = true;
 			activeDiacritic.GetComponent<TextMeshPro>().color = new Color32(0,0,0,255);
+			StartCoroutine(PoofOthers(dragableDiacritics));
 			StartCoroutine(CorrectMove(isCorrectDot));
 		}
 
@@ -282,6 +364,8 @@ namespace EA4S.DancingDots
 			yield return new WaitForSeconds(0.5f);
 			AudioManager.I.PlaySfx(Sfx.Lose);
 			livingLetter.LivingLetterAnimator.Play("ninja");
+			StartCoroutine(PoofOthers(dragableDots));
+			StartCoroutine(PoofOthers(dragableDiacritics));
 			livingLetter.GetComponent<Animator>().Play("FallAndStand");
 			yield return new WaitForSeconds(1.5f);
 
@@ -304,7 +388,7 @@ namespace EA4S.DancingDots
 			StartCoroutine(EndGame_Coroutine());
 		}
 
-		private IEnumerator EndGame_Coroutine()
+	    IEnumerator EndGame_Coroutine()
 		{
 			yield return new WaitForSeconds(1f);
 

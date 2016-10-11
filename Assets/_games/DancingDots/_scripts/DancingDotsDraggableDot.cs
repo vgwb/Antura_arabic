@@ -94,7 +94,23 @@ namespace EA4S.DancingDots
 		{
 			transform.position = new Vector3(startX, startY, startZ);
 			isDragging = false;
+			transform.localScale = Vector3.one;
 			gameObject.SetActive(true);
+			StartCoroutine(Coroutine_ScaleOverTime(1f));
+		}
+
+		IEnumerator Coroutine_ScaleOverTime(float time)
+		{
+			Vector3 originalScale = transform.localScale;
+			Vector3 destinationScale = new Vector3(4.0f, 1.0f, 4.0f);
+
+			float currentTime = 0.0f;
+			do
+			{
+				transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
+				currentTime += Time.deltaTime;
+				yield return null;
+			} while (currentTime <= time);
 		}
 			
 		void Update() {

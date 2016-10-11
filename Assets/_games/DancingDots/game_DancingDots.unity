@@ -3341,6 +3341,10 @@ Prefab:
       propertyPath: diacritic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4000010442495944, guid: 380988909aba2462c8a2d2888f035197, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 380988909aba2462c8a2d2888f035197, type: 2}
   m_IsPrefabParent: 0
@@ -4729,7 +4733,7 @@ MonoBehaviour:
   hintDotDuration: 2.5
   hintDiacriticDuration: 3
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
-  pedagogicalLevel: 0
+  pedagogicalLevel: 0.16
   numberOfRounds: 6
   allowedFailedMoves: 3
   dragableDots:
