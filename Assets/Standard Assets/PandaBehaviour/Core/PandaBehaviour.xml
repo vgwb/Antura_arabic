@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PandaBehaviour</name>
+    </assembly>
+    <members>
+        <member name="M:Panda.BTNode.Succeed">
+            <summary>
+            Succeed the task. The task will report Status.Succeeded on the next status return.
+            </summary>
+        </member>
+        <member name="M:Panda.BTNode.Fail">
+            <summary>
+            Fail the task. The task will report Status.Failed on the next status return.
+            </summary>
+        </member>
+        <member name="T:Panda.Task">
+            <summary>
+            Task implementation.
+            This class gives you access to a Task at runtime. When a task is ticked, the method implementing
+            the task is called and Task.current give access to the corresponing task.
+            </summary>
+        </member>
+        <member name="F:Panda.Task._isInspected">
+            <summary>
+            Whether the current BT script is displayed in the Inspector.
+            (Use this for GC allocation optimization)
+            </summary>
+        </member>
+        <member name="P:Panda.Task.status">
+            <summary>
+            Current status of the task.
+            </summary>
+        </member>
+        <member name="P:Panda.Task.current">
+            <summary>
+            The current ticked task. (Only valid within the scope of task method scope.)
+            </summary>
+        </member>
+        <member name="P:Panda.Task.item">
+            <summary>
+            Use this to attach custom data needed for the computation of the task.
+            </summary>
+        </member>
+        <member name="P:Panda.Task.debugInfo">
+            <summary>
+            The text displayed next to the task in the inspector at runtime.
+            Use to expose debugging information about the task.
+            </summary>
+        </member>
+        <member name="P:Panda.Task.isStarting">
+            <summary>
+            Returns true on first tick of the task. Use to initialise a task.
+            </summary>
+        </member>
+        <member name="M:Panda.Task.Succeed">
+            <summary>
+            Succeed the task.
+            </summary>
+        </member>
+        <member name="M:Panda.Task.Fail">
+            <summary>
+            Fail the task.
+            </summary>
+        </member>
+        <member name="M:Panda.Task.Complete(System.Boolean)">
+            <summary>
+            Complete the task. If succeed is true, the task succeeds otherwise the task fails.
+            </summary>
+            <param name="succeed">wether the task succeeds or fails</param>
+        </member>
+        <member name="F:Panda.BehaviourTree.scripts">
+            <summary>
+            BT scripts
+            </summary>
+        </member>
+        <member name="F:Panda.BehaviourTree.autoReset">
+            <summary>
+            Whether the root node is automatically reset when completed.
+            </summary>
+        </member>
+        <member name="F:Panda.BehaviourTree.tickOn">
+            <summary>
+            On which update function the BT is ticked.
+            </summary>
+        </member>
+        <member name="F:Panda.BehaviourTree.OnInitialized">
+            <summary>
+            Callback triggered when the BT is initialized.
+            </summary>
+        </member>
+        <member name="F:Panda.BehaviourTree.OnTicked">
+            <summary>
+            Callback triggered when the BT is ticked.
+            </summary>
+        </member>
+        <member name="P:Panda.BehaviourTree.status">
+            <summary>
+            The BT current status.
+            </summary>
+        </member>
+        <member name="M:Panda.BehaviourTree.Tick">
+            <summary>
+            Tick the BT.
+            </summary>
+        </member>
+        <member name="M:Panda.BehaviourTree.Compile(System.String)">
+            <summary>
+            Compile a BT from the \p source.
+            </summary>
+            <param name="source">
+            </param>
+        </member>
+        <member name="M:Panda.BehaviourTree.Compile(System.String[])">
+            <summary>
+            Compile a BT from \p sources.
+            </summary>
+            <param name="sources">
+            </param>
+        </member>
+        <member name="M:Panda.BehaviourTree.Compile">
+            <summary>
+            Compile the BT from the attached scripts.
+            </summary>
+        </member>
+        <member name="M:Panda.BehaviourTree.Reset">
+            <summary>
+            Reset the BT.
+            </summary>
+        </member>
+    </members>
+</doc>
