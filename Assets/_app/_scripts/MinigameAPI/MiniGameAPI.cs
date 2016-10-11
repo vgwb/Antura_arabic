@@ -235,12 +235,18 @@ namespace EA4S.API {
     public class AnturaMinigameContext : IGameContext {
 
         public IAudioManager audioManager = new SampleAudioManager();
+        public IInputManager inputManager = new SampleInputManager();
         public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
         public IStarsWidget starsWidget = new SampleStarsWidget();
         public IPopupWidget questionWidget = new SamplePopupWidget();
 
         public IAudioManager GetAudioManager() {
             return audioManager;
+        }
+
+        public IInputManager GetInputManager()
+        {
+            return inputManager;
         }
 
         public IStarsWidget GetStarsWidget() {
