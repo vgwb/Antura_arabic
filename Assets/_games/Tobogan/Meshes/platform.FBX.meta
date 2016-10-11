@@ -25,7 +25,7 @@ ModelImporter:
     4300002: Tobogan_platform_box1_exterior
     4300004: Tobogan_platform_box1_interior
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

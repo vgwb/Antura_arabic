@@ -23,5 +23,10 @@ namespace EA4S.ThrowBalls
         {
             letterController.OnCollisionEnter(collision);
         }
+
+        public void OnCollisionExit(Collision collision)
+        {
+            letterController.OnCollisionExit(collision);
+        }
     }
 }

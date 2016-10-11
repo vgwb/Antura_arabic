@@ -177,29 +177,18 @@ namespace EA4S.Tobogan
             TransformTo(letterPositions[currentPosition], duration, callback);
         }
 
-        void OnMouseDown()
+        public void OnPointerDown(Vector2 pointerPosition)
         {
-            dropLetter = false;
-
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = cameraDistance;
-
-            Vector3 local = transform.localPosition;
-            transform.position = tubesCamera.ScreenToWorldPoint(mousePosition);
-            local.x = transform.localPosition.x;
-            local.y = transform.localPosition.y - 2.5f;
-
-            transform.localPosition = ClampPositionToStage(local);
+            OnPointerDrag(pointerPosition);
 
             PlayHoldAnimation();
         }
 
-        void OnMouseDrag()
+        public void OnPointerDrag(Vector2 pointerPosition)
         {
             dropLetter = false;
 
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = cameraDistance;
+            Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
 
             Vector3 local = transform.localPosition;
             transform.position = tubesCamera.ScreenToWorldPoint(mousePosition);
@@ -209,7 +198,7 @@ namespace EA4S.Tobogan
             transform.localPosition = ClampPositionToStage(local);
         }
 
-        void OnMouseUp()
+        public void OnPointerUp()
         {
             dropLetter = true;
 

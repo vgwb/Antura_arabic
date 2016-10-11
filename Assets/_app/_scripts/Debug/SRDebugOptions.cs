@@ -48,13 +48,13 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Minigame")]
-    public void Egg()
-    {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Egg");
-        SRDebug.Instance.HideDebugPanel();
-    }
+    //[Category("Minigame")]
+    //public void Egg()
+    //{
+    //    WidgetPopupWindow.I.Close();
+    //    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Egg");
+    //    SRDebug.Instance.HideDebugPanel();
+    //}
 
     [Category("Minigame")]
     public void MakeFriends()
