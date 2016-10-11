@@ -19,7 +19,7 @@ namespace EA4S
                 Instantiate(EventsManager);
             }
 
-            if (FindObjectOfType(typeof(Lean.LeanTouch)) == null) {
+            if (FindObjectOfType(typeof(Lean.Touch.LeanTouch)) == null) {
                 Instantiate(TouchManager);
             }
 

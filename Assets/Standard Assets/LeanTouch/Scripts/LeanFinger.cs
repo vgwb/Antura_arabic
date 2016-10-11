@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace Lean
+namespace Lean.Touch
 {
 	// This class stores information about a single touch (or simulated touch)
 	public class LeanFinger
@@ -350,15 +350,15 @@ namespace Lean
 		{
 			return Vector2.Distance(ScreenPosition, referencePoint);
 		}
-		
-		// This will return the world position of this finger based on the distance from the camera
-		public Vector3 GetWorldPosition(float distance, Camera camera = null)
+
+		// This will return the start world position of this finger based on the distance from the camera
+		public Vector3 GetStartWorldPosition(float distance, Camera camera = null)
 		{
 			if (camera == null) camera = Camera.main;
 			
 			if (camera != null)
 			{
-				var point = new Vector3(ScreenPosition.x, ScreenPosition.y, distance);
+				var point = new Vector3(StartScreenPosition.x, StartScreenPosition.y, distance);
 				
 				return camera.ScreenToWorldPoint(point);
 			}
@@ -374,6 +374,21 @@ namespace Lean
 			if (camera != null)
 			{
 				var point = new Vector3(LastScreenPosition.x, LastScreenPosition.y, distance);
+				
+				return camera.ScreenToWorldPoint(point);
+			}
+			
+			return default(Vector3);
+		}
+		
+		// This will return the world position of this finger based on the distance from the camera
+		public Vector3 GetWorldPosition(float distance, Camera camera = null)
+		{
+			if (camera == null) camera = Camera.main;
+			
+			if (camera != null)
+			{
+				var point = new Vector3(ScreenPosition.x, ScreenPosition.y, distance);
 				
 				return camera.ScreenToWorldPoint(point);
 			}
