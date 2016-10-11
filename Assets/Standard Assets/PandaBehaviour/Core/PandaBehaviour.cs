@@ -54,17 +54,15 @@ namespace Panda
         {
             var task = Task.current;
             if (task.isStarting)
-            {
                 task.item = Time.time;
-            }
 
             float elapsedTime = Time.time - (float)Task.current.item;
 
-            float tta = duration - elapsedTime;
-            if (tta < 0.0f) tta = 0.0f;
-
             if (Task.isInspected)
+            {
+                float tta = Mathf.Clamp(duration - elapsedTime, 0.0f, float.PositiveInfinity);
                 task.debugInfo = string.Format("t-{0:0.000}", tta);
+            }
 
             if (elapsedTime >= duration)
             {
