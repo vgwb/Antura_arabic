@@ -54,6 +54,11 @@ namespace EA4S.DancingDots
 		[Range(0, 255)] public byte dotHintAlpha = 60;
 		[Range(0, 255)] public byte diacriticHintAlpha = 60;
 
+		public float hintDotDuration = 2.5f;
+		public float hintDiacriticDuration = 3f;
+
+		public GameObject poofPrefab;
+
 		[Range(0,1)] public float pedagogicalLevel = 0;
 
 		public int numberOfRounds = 6;
@@ -62,6 +67,7 @@ namespace EA4S.DancingDots
 
 		public DancingDotsDraggableDot[] dragableDots;
 		public DancingDotsDraggableDot[] dragableDiacritics;
+		public DancingDotsDropZone[] dropZones;
 
 		private bool isCorrectDot = false;
 		private bool isCorrectDiacritic = false;
@@ -109,7 +115,51 @@ namespace EA4S.DancingDots
 			isCorrectDiacritic = false;
 
 			StartCoroutine(RandomDiacritic());
+
+			StartCoroutine(RemoveHintDot());
+
+			StartCoroutine(RemoveHintDiacritic());
 		}
+			
+
+		private void CreatePoof(Vector3 position, float duration)
+		{
+			AudioManager.I.PlaySfx(Sfx.BaloonPop);
+			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
+			Destroy(poof, duration);
+		}
+
+
+		IEnumerator RemoveHintDot()
+		{
+			yield return new WaitForSeconds(hintDotDuration);
+			if (!isCorrectDot)
+			{
+				// find dot postion
+				Vector3 poofPosition = Vector3.zero;
+				foreach (DancingDotsDropZone dz in dropZones)
+				{
+					if (dz.letters.Contains(currentLetter))
+					{
+						poofPosition = new Vector3(dz.transform.position.x, dz.transform.position.y, -8);
+						break;
+					}
+				}
+				CreatePoof(poofPosition, 10f);
+				livingLetter.HideText(livingLetter.hintText);
+			}
+		}
+
+		IEnumerator RemoveHintDiacritic()
+		{
+			yield return new WaitForSeconds(hintDiacriticDuration);
+			if (!isCorrectDiacritic)
+			{
+				CreatePoof(activeDiacritic.transform.position, 10f);
+				activeDiacritic.Hide();
+			}
+		}
+
 
 //		IEnumerator ShowMenu(Animator animator)
 //		{
@@ -145,14 +195,13 @@ namespace EA4S.DancingDots
 			foreach (GameObject go in diacritics)
 			{
 				go.SetActive(false);
-				Color32 currentColor = go.GetComponent<TextMeshPro>().color;
-				go.GetComponent<TextMeshPro>().color = new Color32(currentColor.r,currentColor.g,currentColor.b,0);
+				go.GetComponent<DancingDotsDiacriticPosition>().Hide();
 			}
 
 			int random = UnityEngine.Random.Range(0, diacritics.Length);
+
 			activeDiacritic = diacritics[random].GetComponent<DancingDotsDiacriticPosition>();
-		
-			diacritics[random].SetActive(true);
+			activeDiacritic.gameObject.SetActive(true);
 
 			foreach (DancingDotsDraggableDot dd in dragableDiacritics)
 			{
@@ -162,11 +211,7 @@ namespace EA4S.DancingDots
 			// wait for end of frame to ge correct values for meshes
 			yield return new WaitForEndOfFrame();
 			activeDiacritic.CheckPosition();
-
-//			livingLetter.ShowLetters();
-
-			Color32 oldColor = activeDiacritic.GetComponent<TextMeshPro>().color;
-			activeDiacritic.GetComponent<TextMeshPro>().color = new Color32(oldColor.r,oldColor.g,oldColor.b,diacriticHintAlpha);
+			activeDiacritic.Show();
 
 		}
 
@@ -175,8 +220,6 @@ namespace EA4S.DancingDots
 			livingLetter.ShowRainbow();
 			yield return new WaitForSeconds(0.25f);
 			livingLetter.LivingLetterAnimator.Play("run");
-			yield return new WaitForSeconds(0.5f);
-			livingLetter.LivingLetterAnimator.Play("walk");
 
 			if (isWon) 
 			{
@@ -184,6 +227,8 @@ namespace EA4S.DancingDots
 			}
 			else
 			{
+				yield return new WaitForSeconds(0.5f);
+				livingLetter.LivingLetterAnimator.Play("walk");
 				livingLetter.HideRainbow();
 			}
 		}
@@ -235,7 +280,7 @@ namespace EA4S.DancingDots
 		IEnumerator RoundLost()
 		{
 			yield return new WaitForSeconds(0.5f);
-			Debug.Log("Failed");
+			AudioManager.I.PlaySfx(Sfx.Lose);
 			livingLetter.LivingLetterAnimator.Play("ninja");
 			livingLetter.GetComponent<Animator>().Play("FallAndStand");
 			yield return new WaitForSeconds(1.5f);
@@ -246,9 +291,10 @@ namespace EA4S.DancingDots
 		IEnumerator RoundWon()
 		{
 			numberOfRoundsWon++;
-			livingLetter.ShowRainbow();
+			AudioManager.I.PlaySfx(Sfx.Win);
+			yield return new WaitForSeconds(1f);
 			livingLetter.LivingLetterAnimator.Play("ninja");
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(1.5f);
 
 			StartCoroutine(CheckNewRound());
 		}
