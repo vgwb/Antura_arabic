@@ -7,6 +7,7 @@ namespace EA4S.ThrowBalls
     {
         public const float MAX_SWERVE_ANGLE = 15;
         public const float SWERVE_PERIOD_IN_SECS = 3f;
+        public const float FRICTION = -120;
 
         public CratePileController cratePileController;
 
@@ -27,20 +28,20 @@ namespace EA4S.ThrowBalls
 
         }
 
-        public void SetSwerving(Vector3 leftPivot, Vector3 rightPivot, float factor)
+        public void SetSwerving(Vector3 leftPivot, Vector3 rightPivot, float factor, float phase)
         {
-            swervingCoroutine = SwerveCoroutine(leftPivot, rightPivot, factor);
+            swervingCoroutine = SwerveCoroutine(leftPivot, rightPivot, factor, phase);
             StartCoroutine(swervingCoroutine);
         }
 
-        private IEnumerator SwerveCoroutine(Vector3 leftPivot, Vector3 rightPivot, float deviationFactor)
+        private IEnumerator SwerveCoroutine(Vector3 leftPivot, Vector3 rightPivot, float deviationFactor, float phase)
         {
             float previousAngle = 0;
             float swerveFrequency = 1 / SWERVE_PERIOD_IN_SECS;
 
             while (true)
             {
-                float sinValue = Mathf.Sin(2 * Mathf.PI * swerveFrequency * Time.time);
+                float sinValue = Mathf.Sin(2 * Mathf.PI * swerveFrequency * Time.time + phase);
                 float sinSign = Mathf.Sign(sinValue);
 
                 float lerpCoeff = Mathf.Abs(sinValue);
@@ -105,6 +106,13 @@ namespace EA4S.ThrowBalls
                 position.z += direction.z * speed * Time.fixedDeltaTime;
 
                 transform.position = position;
+
+                speed += FRICTION * Time.fixedDeltaTime;
+
+                if (speed < 0)
+                {
+                    speed = 0;
+                }
 
                 yield return new WaitForFixedUpdate();
             }
