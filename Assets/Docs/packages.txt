@@ -14,6 +14,5 @@ Installed Packages
 - JsonDotNet - FREE
 
 ## OPTIONAL Editor utilities
-- QHierarchy 2.19 - COMMERCIAL
 - Rainbow Folders 0.3 - FREE
 - SRDebugger 1.4.9 - COMMERCIAL
