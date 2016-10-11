@@ -28,7 +28,7 @@ ModelImporter:
     4300004: sign
     4300006: tube_start_interior
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
