@@ -33,40 +33,28 @@ namespace EA4S.ThrowBalls
 
         public void OnCrateHit(CrateController crate)
         {
-            crate.Launch(new Vector3(0, 0, 1), 40);
-            crate.VanishAfterDelay(0.15f);
+            crate.Launch(new Vector3(0, 0, 1), 30);
 
-            if (crate != middleCrate)
-            {
-                middleCrate.ApplyCustomGravity();
-                middleCrate.SetIsKinematic(false);
-                middleCrate.VanishAfterDelay(1.5f);
-                middleCrate.StopSwerving();
-            }
+            middleCrate.ApplyCustomGravity();
+            middleCrate.SetIsKinematic(false);
+            middleCrate.VanishAfterDelay(0.7f);
+            middleCrate.StopSwerving();
 
-            if (crate != topCrate)
-            {
-                topCrate.ApplyCustomGravity();
-                topCrate.SetIsKinematic(false);
-                topCrate.VanishAfterDelay(1.5f);
-                topCrate.StopSwerving();
-            }
+            topCrate.ApplyCustomGravity();
+            topCrate.SetIsKinematic(false);
+            topCrate.VanishAfterDelay(0.9f);
+            topCrate.StopSwerving();
 
-            if (crate != bottomCrate)
-            {
-                bottomCrate.ApplyCustomGravity();
-                bottomCrate.SetIsKinematic(false);
-                bottomCrate.VanishAfterDelay(1.5f);
-                bottomCrate.StopSwerving();
-            }
+            bottomCrate.ApplyCustomGravity();
+            bottomCrate.SetIsKinematic(false);
+            bottomCrate.VanishAfterDelay(1.1f);
+            bottomCrate.StopSwerving();
 
             //letter.SetIsKinematic(false);
             letter.PropUp(1.75f);
 
-            Debug.Log("Propping letter up");
-
             letter.ApplyCustomGravity();
-            
+
             PokeballController.instance.Reset();
         }
 
@@ -82,9 +70,11 @@ namespace EA4S.ThrowBalls
             rightPivot.x += 1.6f;
             rightPivot.y += -1.6f;
 
-            topCrate.SetSwerving(leftPivot, rightPivot, 1.5f);
-            middleCrate.SetSwerving(leftPivot, rightPivot, 1.25f);
-            bottomCrate.SetSwerving(leftPivot, rightPivot, 1f);
+            float swervePhase = Random.Range(-360f, 360f);
+
+            topCrate.SetSwerving(leftPivot, rightPivot, 1.5f, swervePhase);
+            middleCrate.SetSwerving(leftPivot, rightPivot, 1.25f, swervePhase);
+            bottomCrate.SetSwerving(leftPivot, rightPivot, 1f, swervePhase);
         }
 
         public void Reset()
@@ -95,9 +85,14 @@ namespace EA4S.ThrowBalls
 
             Vector3 letterPos = letter.transform.position;
 
-            bottomCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 8.05f, letterPos.z);
-            middleCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 4.85f, letterPos.z);
-            topCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 1.65f, letterPos.z);
+            bottomCrate.transform.position = new Vector3(letterPos.x + Random.Range(-1f, 1f), letterPos.y - 8.05f, letterPos.z + Random.Range(-1f, 1f));
+            middleCrate.transform.position = new Vector3(letterPos.x + Random.Range(-1f, 1f), letterPos.y - 4.85f, letterPos.z + Random.Range(-1f, 1f));
+            topCrate.transform.position = new Vector3(letterPos.x + Random.Range(-1f, 1f), letterPos.y - 1.65f, letterPos.z + Random.Range(-1f, 1f));
+
+            letterPos.x = topCrate.transform.position.x;
+            letterPos.z = topCrate.transform.position.z;
+
+            letter.transform.position = letterPos;
         }
 
         public void Disable()
