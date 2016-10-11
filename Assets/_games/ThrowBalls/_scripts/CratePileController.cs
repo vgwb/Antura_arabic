@@ -50,9 +50,11 @@ namespace EA4S.ThrowBalls
             bottomCrate.VanishAfterDelay(1.1f);
             bottomCrate.StopSwerving();
 
-            //letter.SetIsKinematic(false);
-            letter.PropUp(1.75f);
+            //letter.PropUp(1.75f);
 
+            letter.MakeSureIsProppedUp();
+
+            letter.SetIsKinematic(false);
             letter.ApplyCustomGravity();
 
             PokeballController.instance.Reset();
