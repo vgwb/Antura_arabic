@@ -7,7 +7,7 @@ namespace EA4S
     /// </summary>
     public class SampleWordProvider : ILivingLetterDataProvider
     {
-        public SampleWordProvider(int difficulty)
+        public SampleWordProvider()
         {
 
         }

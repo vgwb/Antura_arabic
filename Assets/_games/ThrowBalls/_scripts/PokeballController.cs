@@ -71,8 +71,8 @@ namespace EA4S.ThrowBalls
 
             flickDirection.Normalize();
             rigidBody.isKinematic = false;
-            rigidBody.AddForce(new Vector3(flickDirection.x * 60, flickDirection.y * 60, 60), ForceMode.VelocityChange);
-            rigidBody.AddTorque(new Vector3(flickDirection.x * 60, flickDirection.y * 60, 60), ForceMode.VelocityChange);
+            rigidBody.AddForce(new Vector3(flickDirection.x * 50, flickDirection.y * 50, 80), ForceMode.VelocityChange);
+            rigidBody.AddTorque(new Vector3(flickDirection.x * 50, flickDirection.y * 50, 80), ForceMode.VelocityChange);
         }
 
         void Update()
