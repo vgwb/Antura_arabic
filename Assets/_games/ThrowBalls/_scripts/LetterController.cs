@@ -134,7 +134,7 @@ namespace EA4S.ThrowBalls
             Vector3 currentPosition = transform.position;
             Vector3 currentRotation = transform.localRotation.eulerAngles;
             
-            if (AreVectorsApproxEqual(currentPosition, lastPosition))//&& AreVectorsApproxEqual(currentRotation, lastRotation))
+            if (AreVectorsApproxEqual(currentPosition, lastPosition, 0.01f) && AreVectorsApproxEqual(currentRotation, lastRotation, 0.1f))
             {
                 isStill = true;
             }
@@ -144,13 +144,15 @@ namespace EA4S.ThrowBalls
                 isStill = false;
             }
 
+            //Debug.Log(currentRotation.x + "," + lastRotation.x);
+
             lastPosition = currentPosition;
             lastRotation = currentRotation;
         }
 
-        private bool AreVectorsApproxEqual(Vector3 vector1, Vector3 vector2)
+        private bool AreVectorsApproxEqual(Vector3 vector1, Vector3 vector2, float threshold)
         {
-            return Mathf.Approximately(vector1.x, vector2.x) && Mathf.Approximately(vector1.y, vector2.y) && Mathf.Approximately(vector1.z, vector2.z);
+            return Mathf.Abs(vector1.x - vector2.x) <= threshold && Mathf.Abs(vector1.y - vector2.y) <= threshold && Mathf.Abs(vector1.z - vector2.z) <= threshold;
         }
 
         public void SetLetter(LetterData _data)
@@ -314,6 +316,7 @@ namespace EA4S.ThrowBalls
         {
             while (true)
             {
+                //Debug.Log(isGrounded + "," + isStill);
                 if (isGrounded && isStill)
                 {
                     SetIsKinematic(true);
@@ -339,6 +342,8 @@ namespace EA4S.ThrowBalls
         {
             yield return new WaitForSeconds(delay);
 
+            StopCustomGravity();
+
             float initZAngle = transform.rotation.eulerAngles.z;
 
             if (initZAngle > 180)
@@ -357,14 +362,14 @@ namespace EA4S.ThrowBalls
             {
                 transform.RotateAround(centerOfRotation, initZAngleSign > 0 ? Vector3.back : Vector3.forward, propUpSpeed * Time.fixedDeltaTime);
 
-                float currentZAngle = transform.rotation.eulerAngles.z;
+                float currentZAngle = transform.localRotation.eulerAngles.z;
 
                 if (currentZAngle > 180)
                 {
                     currentZAngle = 180 - currentZAngle;
                 }
 
-                if (Mathf.Sign(currentZAngle) * initZAngleSign <= -1 || Mathf.Approximately(currentZAngle, 0))
+                if (Mathf.Sign(currentZAngle) * initZAngleSign <= -1 || Mathf.Abs(currentZAngle) <= 0.05)
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                     SetIsColliderEnabled(true);
@@ -433,7 +438,6 @@ namespace EA4S.ThrowBalls
                 yield return new WaitForSeconds(0.75f);
             }
         }
-        
 
         public void ApplyCustomGravity()
         {
