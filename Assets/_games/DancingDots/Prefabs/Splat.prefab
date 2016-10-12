@@ -34,10 +34,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013385010608}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.88, y: 5.02, z: -20}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,11 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d0f0e1d82534c4aa52e8159929cbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splatMaxSize: 2
-  splatMaxY: -8.5
-  splatGrowFactor: 7
-  splatSlideFactor: 20
-  splatWaitTime: 0.5
+  colors:
+  - {r: 0.1678708, g: 0.075908326, b: 0.8602941, a: 0.49803922}
+  - {r: 0.66743225, g: 0.9191176, b: 0.18923011, a: 0.49803922}
+  - {r: 0.14462587, g: 0.78676474, b: 0.14462587, a: 0.49803922}
+  - {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.49803922}
+  - {r: 0.28546715, g: 0.48247233, b: 0.64705884, a: 0.49803922}
 --- !u!212 &212000013843158842
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,6 +88,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6333a38bd075841fd825d28844807112, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.08965492, b: 1, a: 0.49803922}
   m_FlipX: 0
   m_FlipY: 0
