@@ -165,8 +165,10 @@ namespace EA4S.Maze
 			//Destroy (currentPrefab);
 
 			//show message:
-
-		
+			if (won)
+				AudioManager.I.PlaySfx (Sfx.Win);
+			else 
+				AudioManager.I.PlaySfx (Sfx.Lose);
 
 			currentPrefab.SendMessage("moveOut",won);
 			initCurrentLetter ();
