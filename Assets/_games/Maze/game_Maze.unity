@@ -1243,15 +1243,16 @@ MonoBehaviour:
   currentCharacter: {fileID: 0}
   currentTutorial: {fileID: 0}
   prefabs:
+  - {fileID: 1000011492346856, guid: eb410d2de2324364382b7a9caa707618, type: 2}
   - {fileID: 1000013343319830, guid: 313ff74373232794e81081e9e67352c8, type: 2}
   - {fileID: 1000012790830904, guid: 793d4b45f25216a4bbe0301cd4e4dc2f, type: 2}
-  - {fileID: 1000013343319830, guid: 313ff74373232794e81081e9e67352c8, type: 2}
-  - {fileID: 1000012790830904, guid: 793d4b45f25216a4bbe0301cd4e4dc2f, type: 2}
+  - {fileID: 1000011492346856, guid: eb410d2de2324364382b7a9caa707618, type: 2}
   - {fileID: 1000013343319830, guid: 313ff74373232794e81081e9e67352c8, type: 2}
   - {fileID: 1000012790830904, guid: 793d4b45f25216a4bbe0301cd4e4dc2f, type: 2}
   endGameCanvas: {fileID: 1242465281}
   starFlowers: {fileID: 283899644}
-  difficulty: 0.5
+  gameplay: 0.5
+  pedagogic: 0.5
   idleTime: 7
   roundNumber: {fileID: 207166661}
   health: 4

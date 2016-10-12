@@ -187,6 +187,7 @@ namespace EA4S.Maze
 			}
 		}
 
+		bool tweenCurrentLetter = false;
 		void initCurrentLetter()
 		{
 			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex],Vector3.zero, Quaternion.identity);
@@ -201,6 +202,13 @@ namespace EA4S.Maze
 			if(currentTutorial != null)
 				currentTutorial.showCurrentTutorial();
 		}
+
+		void showCurrentLetter()
+		{
+		//	currentPrefab.transform.position = Vector3.MoveTowards (transform.position, Vector3.zero, Time.deltaTime*5);
+
+		}
+
 
 		IEnumerator shakeCamera(float duration, float magnitude) {
 
