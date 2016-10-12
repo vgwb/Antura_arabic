@@ -32,13 +32,15 @@ Shader "Custom/EnlargingTube" {
 		half _OpeningAnimation;
 
 		void vert(inout appdata_full v) {
-			half3 localV = mul(v.vertex, unity_WorldToObject);
+			//half3 localV = mul(unity_ObjectToWorld, v.vertex);
+			half4 localV = v.vertex;
 
 			half3 offset = (1 - smoothstep(0, 0.5, localV.y))*_OpeningAnimation*0.1f*sin(_Time.y * 20)*normalize(localV);
 
-			localV += offset;
+			localV += half4(offset,0);
 
-			v.vertex = mul(localV, unity_ObjectToWorld);
+			//v.vertex = mul(unity_WorldToObject, localV);
+			v.vertex = localV;
 		}
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {

@@ -5,53 +5,76 @@ namespace EA4S.DancingDots
 {
 	public class DancingDotsSplat : MonoBehaviour {
 
+//		public float splatMaxSize = 5.0f;
+//		public float splatMaxY = -22;
+//		public float splatGrowFactor = 5f;
+//		public float splatSlideFactor = 10f;
+//		public float splatWaitTime = 1f;
+
+		public float minAlpha = 0.25f;
+		public float fadeDuration = 3f;
+
+		public Color[] colors;
+
+		private SpriteRenderer goRenderer;
+
 		// Use this for initialization
 		void Start () {
-			StartCoroutine(AnimateSplat(transform));
-
-		}
-
-		// Update is called once per frame
-		void Update () {
-
-		}
-
-		public float splatMaxSize = 5.0f;
-		public float splatMaxY = -22;
-
-		public float splatGrowFactor = 5f;
-		public float splatSlideFactor = 10f;
-		public float splatWaitTime = 1f;
-
-		IEnumerator AnimateSplat(Transform trans)
-		{
-
-
-			float timer = 0;
-
+//			StartCoroutine(AnimateSplat(transform));
+			goRenderer = GetComponent<SpriteRenderer>();
+			goRenderer.color = colors[Random.Range(0, colors.Length)];
 			AudioManager.I.PlaySfx(Sfx.Splat);
-
-			// Scale
-			while(splatMaxSize > trans.localScale.x)
-			{
-				timer += Time.deltaTime;
-				trans.localScale += Vector3.one * Time.deltaTime * splatGrowFactor;
-				yield return null;
-			}
-
-
-			yield return new WaitForSeconds(splatWaitTime);
-
-			//Slide
-			while(splatMaxY < trans.position.y)
-			{
-				timer += Time.deltaTime;
-				trans.position -= new Vector3(0, Time.deltaTime * splatSlideFactor, 0);
-				yield return null;
-			}
-
-			Destroy(trans.gameObject);
-
+//			StartCoroutine(FadeTo(minAlpha, fadeDuration));
 		}
+
+		public void CleanSplat()
+		{
+			Destroy(gameObject,0.25f);
+		}
+
+		IEnumerator FadeTo(float aValue, float aTime)
+		{
+			float alpha = goRenderer.color.a;
+			for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+			{
+				Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha,aValue,t));
+				goRenderer.color = newColor;
+				yield return null;
+			}
+		}
+
+
+//		IEnumerator AnimateSplat(Transform trans)
+//		{
+//
+//
+//			float timer = 0;
+//
+//			AudioManager.I.PlaySfx(Sfx.Splat);
+//
+//			// Scale
+//			while(splatMaxSize > trans.localScale.x)
+//			{
+//				timer += Time.deltaTime;
+//				trans.localScale += Vector3.one * Time.deltaTime * splatGrowFactor;
+//				yield return null;
+//			}
+//
+//
+//			yield return new WaitForSeconds(splatWaitTime);
+//
+//			//Slide
+//			while(splatMaxY < trans.position.y)
+//			{
+//				timer += Time.deltaTime;
+//				trans.position -= new Vector3(0, Time.deltaTime * splatSlideFactor, 0);
+//				yield return null;
+//			}
+//
+//			Destroy(trans.gameObject);
+//
+//		}
+
+
 	}
 }
