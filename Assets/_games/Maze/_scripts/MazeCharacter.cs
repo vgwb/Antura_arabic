@@ -298,14 +298,16 @@ namespace EA4S.Maze
 
 		void Update()
 		{
+			
+
 			if (characterIsMoving) {
 				transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*5);
-				var dir = transform.position - characterWayPoints[currentCharacterWayPoint];
+				var dir = transform.position - characterWayPoints[currentCharacterWayPoint+1];
 				var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 				targetRotation =  Quaternion.AngleAxis(angle, Vector3.forward) * initialRotation;
 
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
-
+				//transform.LookAt(characterWayPoints[currentCharacterWayPoint+1]);
 
 				if((transform.position - characterWayPoints[currentCharacterWayPoint]).magnitude == 0 && currentCharacterWayPoint < characterWayPoints.Count-1){
 
@@ -314,6 +316,7 @@ namespace EA4S.Maze
 					//reached the end:
 					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
 						//arrived!
+						transform.rotation = initialRotation;
 						if (currentFruitIndex == _fruits.Count) {
 							print ("Won");
 							GetComponent<BoxCollider> ().enabled = false;
