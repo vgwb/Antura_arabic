@@ -1,3 +1,24 @@
+Version 1.3.1 - 15 Augustus 2016
+-------------
+
+Core:
+	- Optimisation: drastically decreased GC Alloc during BTs initialisation.
+
+Fixes:
+	- Fixed BT script field disappearing in the Inspector when BT script is invalid.
+	- Fixed PandaBehaviour inspector not being updated when selecting BT script through the asset selector window.
+	- Fixed null exception raised when adding PandaBehaviour component on prefabs.
+	- Fixed Task.IsInspected being true while BT is not displayed in the Inspector.
+	- Highlight unimplemented task in Inspector.
+	- Fixed parsing error occuring when no EOL on last line.
+	- Fixed BT scripts not being refreshed when reverted (Pro).
+
+Minor Changes:
+	- New icon for PandaBehaviour component and gizmo.
+	- Added PandaBehaviour.xml for autocompletion documentation in IDE.
+
+
+
 Version 1.3.0 - 2 June 2016
 -------------
 Core:

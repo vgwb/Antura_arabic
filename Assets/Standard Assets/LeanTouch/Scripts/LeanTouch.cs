@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
-namespace Lean
+namespace Lean.Touch
 {
 	// If you add this component to your scene, then it will convert all mouse and touch data into easy to use data
 	[ExecuteInEditMode]
 	[DisallowMultipleComponent]
-	[AddComponentMenu("Lean/Touch")]
 	public partial class LeanTouch : MonoBehaviour
 	{
 		// This contains all the active and enabled LeanTouch instances

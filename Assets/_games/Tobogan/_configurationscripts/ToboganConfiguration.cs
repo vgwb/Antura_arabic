@@ -5,7 +5,17 @@
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider PipeQuestions { get; set; }
+
         public float Difficulty { get; set; }
+
+        public int GetDiscreteDifficulty(int maximum)
+        {
+            int d = (int) Difficulty * (maximum + 1);
+
+            if (d > maximum)
+                return maximum;
+            return d;
+        }
 
         /////////////////
         // Singleton Pattern
@@ -27,7 +37,8 @@
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             PipeQuestions = new SampleQuestionProvider();
             Context = new SampleGameContext();
-            Difficulty = 0.5f;
+            Difficulty = 0.0f;
         }
+
     }
 }

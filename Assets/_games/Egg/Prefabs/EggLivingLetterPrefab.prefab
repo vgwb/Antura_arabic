@@ -1137,10 +1137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d25880b5486088419c5708c2c5f3dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livingLetterTransform: {fileID: 4000010461957444}
-  boxCollider: {fileID: 65000013607824370}
-  AnturaAnimator: {fileID: 95000011415150568}
-  livingLetterText: {fileID: 114000012400503508}
+  livingLetterTransform: {fileID: 56249504}
+  boxCollider: {fileID: 56074656}
+  AnturaAnimator: {fileID: 4096}
+  livingLetterText: {fileID: 0}
 --- !u!114 &114000011857250124
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -17,14 +17,6 @@ public partial class SROptions
     }
 
     [Category("Scenes")]
-    public void FastCrowd()
-    {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
-        SRDebug.Instance.HideDebugPanel();
-    }
-
-    [Category("Scenes")]
     public void Assessment()
     {
         WidgetPopupWindow.I.Close();
@@ -32,15 +24,7 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Scenes")]
-    public void DontWakeUp()
-    {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
-        SRDebug.Instance.HideDebugPanel();
-    }
-
-    [Category("Scenes")]
+    [Category("Minigame")]
     public void Balloons()
     {
         WidgetPopupWindow.I.Close();
@@ -48,13 +32,76 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
+    [Category("Minigame")]
+    public void FastCrowd()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void DancingDots()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DancingDots");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    //[Category("Minigame")]
+    //public void Egg()
+    //{
+    //    WidgetPopupWindow.I.Close();
+    //    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Egg");
+    //    SRDebug.Instance.HideDebugPanel();
+    //}
+
+    [Category("Minigame")]
+    public void MakeFriends()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_MakeFriends");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void Maze()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Maze");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void ThrowBalls()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_ThrowBalls");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void Tobogan()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Tobogan");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    //[Category("Minigame")]
+    //public void DontWakeUp()
+    //{
+    //    WidgetPopupWindow.I.Close();
+    //    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
+    //    SRDebug.Instance.HideDebugPanel();
+    //}
+
     [Category("Shortcuts")]
     public void EndFastCrowdGame()
     {
         EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
         SRDebug.Instance.HideDebugPanel();
     }
-
 
     [Category("Options")]
     public void ToggleQuality()

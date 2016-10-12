@@ -53,12 +53,25 @@ namespace EA4S
             this.SetCurrentState(GetInitialState());
         }
 
+        void OnDestroy()
+        {
+            if (Context != null)
+                Context.Reset();
+        }
+
         /// <summary>
         /// Do not override Update/FixedUpdate; just implement Update and UpdatePhysics inside game states
         /// </summary>
         void Update()
         {
             stateManager.Update(Time.deltaTime);
+
+            var inputManager = Context.GetInputManager();
+
+            // TODO: move this outside this method (actually it is useless with the current implementation of PauseMenu)
+            inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
+
+            inputManager.Update();
         }
 
         void FixedUpdate()
