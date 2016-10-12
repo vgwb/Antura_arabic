@@ -126,6 +126,28 @@ namespace EA4S
             Show(true);
         }
 
+        public void ShowSentence(Action callback, string sentenceId, Sprite image2show)
+        {
+            ResetContents();
+
+            currentCallback = callback;
+            ButtonGO.SetActive(callback != null);
+
+            if (image2show != null)
+            {
+                TutorialImageGO.GetComponent<Image>().sprite = image2show;
+                TutorialImageGO.SetActive(true);
+            }
+
+            LocalizationDataRow row = LocalizationData.Instance.GetRow(sentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+
+            AudioManager.I.PlayDialog(sentenceId);
+
+            Show(true);
+        }
+
         public void ShowSentenceWithMark(Action callback, string sentenceId, bool result, Sprite image2show)
         {
             ResetContents();
@@ -209,7 +231,7 @@ namespace EA4S
 
         public void ShowTimeUp(Action callback)
         {
-            ShowSentenceWithMark(callback, "game_time_up", false, gameTimeUpSprite);
+            ShowSentence(callback, "game_time_up", gameTimeUpSprite);
         }
 
         public void Init(string introText, string wordCode, string arabicWord)
