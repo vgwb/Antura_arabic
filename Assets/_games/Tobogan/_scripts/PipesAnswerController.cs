@@ -10,7 +10,7 @@ namespace EA4S.Tobogan
         float hidingProbability;
 
         PipeAnswer currentPipeAnswer;
-        float hideSignsTimer;
+        float hideSignsTimer = 0;
 
         List<PipeAnswer> toHide = new List<PipeAnswer>();
 
@@ -28,6 +28,8 @@ namespace EA4S.Tobogan
             }
 
             currentPipeAnswer = null;
+
+            HidePipes();
         }
 
         public void SetPipeAnswers(IEnumerable<ILivingLetterData> wrongAnswers, ILivingLetterData correctAnswers)
@@ -42,8 +44,7 @@ namespace EA4S.Tobogan
                 }
             }
 
-            hideSignsTimer = 2.5f + 0.5f * toHide.Count;
-
+            hideSignsTimer = 1.5f + 0.5f * toHide.Count;
             HidePipes();
 
             currentPipeAnswer = null;
@@ -77,7 +78,7 @@ namespace EA4S.Tobogan
 
                 //pipeAnswers[i].gameObject.SetActive(true);
                 pipeAnswers[i].active = true;
-                pipeAnswers[i].showSign = true;
+                pipeAnswers[i].ShowSign = true;
             }
         }
 
@@ -132,7 +133,7 @@ namespace EA4S.Tobogan
 
                     for (int i = 0; i < len; i++)
                     {
-                        toHide[i].showSign = false;
+                        toHide[i].ShowSign = false;
                     }
                 }
             }

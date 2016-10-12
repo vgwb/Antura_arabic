@@ -281,7 +281,6 @@ namespace EA4S
             clicked = true;
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             currentCallback();
-            UnityEngine.Debug.Log("Exit");
         }
     }
 }

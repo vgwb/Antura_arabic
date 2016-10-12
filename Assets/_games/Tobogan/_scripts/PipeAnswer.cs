@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using ArabicSupport;
+using System.Collections.Generic;
 
 namespace EA4S.Tobogan
 {
@@ -22,11 +23,30 @@ namespace EA4S.Tobogan
         public event Action<PipeAnswer> onTriggerEnterPipe;
         public event Action<PipeAnswer> onTriggerExitPipe;
 
+        List<Material> tubeMaterials = new List<Material>();
+
         public bool active;
-        public bool showSign = true;
+
+        bool showSign = true;
+
+        float easeTimer;
+        const float EASE_DURATION = 4.0f;
+        public bool ShowSign
+        {
+            set
+            {
+                if (value == showSign)
+                    return;
+
+                easeTimer = EASE_DURATION;
+                showSign = value;
+            }
+        }
 
         const float DISAPPEAR_HEIGHT = 6.5f;
         float disappearSpeed;
+
+        public AnimationCurve easeCurve;
 
         void Start()
         {
@@ -36,6 +56,9 @@ namespace EA4S.Tobogan
             {
                 particles.Clear();
             }
+
+            foreach (var renderer in graphics.GetComponentsInChildren<MeshRenderer>(true))
+                tubeMaterials.Add(renderer.material);
 
             aspirationParticle.SetActive(true);
             graphics.transform.localPosition = Vector3.up * DISAPPEAR_HEIGHT;
@@ -51,18 +74,23 @@ namespace EA4S.Tobogan
 
             graphics.transform.localPosition = Vector3.Lerp(graphics.transform.localPosition, targetPosition, disappearSpeed * Time.deltaTime);
             
-           
-            Quaternion signTargetRotation = Quaternion.identity;
-            float targetAlpha = 1;
-
-            if (!showSign)
-            { 
-                signTargetRotation = Quaternion.Euler(0, 90, 0);
-                targetAlpha = 0;
+          
+            if (showSign)
+            {
+                answerText.alpha = Mathf.Lerp(answerText.alpha, 1, Time.deltaTime * 5.0f);
+                signTransform.localRotation = Quaternion.Slerp(signTransform.localRotation, Quaternion.identity, Time.deltaTime * 5.0f);
             }
+            else
+            {
+                easeTimer -= Time.deltaTime;
+                if (easeTimer < 0)
+                    easeTimer = 0;
 
-            answerText.alpha = Mathf.Lerp(answerText.alpha, targetAlpha, Time.deltaTime * 5.0f);
-            signTransform.localRotation = Quaternion.Slerp(signTransform.localRotation, signTargetRotation, Time.deltaTime * 5.0f);
+                float t = easeCurve.Evaluate(1 - (easeTimer / EASE_DURATION));
+                answerText.alpha = 1 - t;
+
+                signTransform.localRotation = Quaternion.Slerp(Quaternion.identity, Quaternion.Euler(0, 90, 0), t);
+            }
         }
 
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
@@ -125,6 +153,9 @@ namespace EA4S.Tobogan
             }
 
             trembling.Trembling = true;
+
+            for (int i = 0, count = tubeMaterials.Count; i < count; ++i)
+                tubeMaterials[i].SetFloat("_OpeningAnimation", 1);
         }
 
         public void StopSelectedAnimation()
@@ -135,6 +166,9 @@ namespace EA4S.Tobogan
             }
 
             trembling.Trembling = false;
+
+            for (int i = 0, count = tubeMaterials.Count; i < count; ++i)
+                tubeMaterials[i].SetFloat("_OpeningAnimation", 0);
         }
     }
 }
