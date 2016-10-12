@@ -50,6 +50,7 @@ namespace EA4S.DancingDots
 		}
 
 		public GameObject splatPrefab;
+		public Transform splatParent;
 
 		[Range(0, 255)] public byte dotHintAlpha = 60;
 		[Range(0, 255)] public byte diacriticHintAlpha = 60;
@@ -79,6 +80,8 @@ namespace EA4S.DancingDots
 		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
 
 		private Level currentLevel = Level.Level4;
+		private List<DancingDotsSplat> splats;
+
 
 		protected override void Awake()
 		{
@@ -95,6 +98,8 @@ namespace EA4S.DancingDots
 			AppManager.Instance.InitDataAI();
 			AppManager.Instance.CurrentGameManagerGO = gameObject;
 			SceneTransitioner.Close();
+
+			splats = new List<DancingDotsSplat>();
 
 			StartRound();
 //			StartCoroutine(ShowMenu(dotsMenu));
@@ -175,13 +180,34 @@ namespace EA4S.DancingDots
 		{
 			
 			numberOfRoundsPlayed++;
+
+			splats.Clear();
+
 			Debug.Log("[Dancing Dots] Round: " + numberOfRoundsPlayed);
 			numberOfFailedMoves = 0;
 			livingLetter.Reset();
 
 			if (pedagogicalLevel == 0f) // TODO for testing only each round increment Level. Remove later!
 			{
-				currentLevel = (Level) numberOfRoundsPlayed - 1;
+				switch (numberOfRoundsPlayed)
+				{
+				case 1: 
+				case 2: currentLevel = Level.Level1;
+					break;
+				case 3: currentLevel = Level.Level4;
+					break;
+				case 4: currentLevel = Level.Level2;
+					break;
+				case 5: 
+				case 6: currentLevel = Level.Level3;
+					break;
+				default: currentLevel = Level.Level3;
+					break;
+				}
+
+//				if (numberOfRoundsPlayed == 1) currentLevel = Level.Level1;
+//				currentLevel = (Level) numberOfRoundsPlayed - 1;
+
 			}
 			else
 			{
@@ -298,18 +324,21 @@ namespace EA4S.DancingDots
 			base.OnMinigameQuit();
 		}
 
-		IEnumerator CorrectMove(bool isWon)
+		IEnumerator CorrectMove(bool roundWon)
 		{
-			livingLetter.ShowRainbow();
-			yield return new WaitForSeconds(0.25f);
-			livingLetter.LivingLetterAnimator.Play("run");
+			AudioManager.I.PlayDialog("comment_welldone");
 
-			if (isWon) 
-			{
+			if (roundWon) 
+			{			
+				livingLetter.ShowRainbow();
 				StartCoroutine(RoundWon());
 			}
 			else
 			{
+				livingLetter.GetComponent<Animator>().Play("Jump");
+
+				yield return new WaitForSeconds(0.25f);
+				livingLetter.LivingLetterAnimator.Play("run");
 				yield return new WaitForSeconds(0.5f);
 				livingLetter.LivingLetterAnimator.Play("walk");
 				livingLetter.HideRainbow();
@@ -346,11 +375,19 @@ namespace EA4S.DancingDots
 			StartCoroutine(PoofOthers(dragableDiacritics));
 			StartCoroutine(CorrectMove(isCorrectDot));
 		}
-
+			
 		public void WrongMove(Vector3 pos)
 		{
 			numberOfFailedMoves++;
-			Instantiate(splatPrefab,new Vector3(pos.x,pos.y,-20), Quaternion.identity);
+			GameObject splat = (GameObject) Instantiate(splatPrefab);
+			splat.transform.parent = splatParent;
+			splat.transform.localScale = new Vector3(1f,1f,1f);
+			splat.transform.localRotation = Quaternion.Euler(0f,0f,0f);
+			splat.transform.position = pos;
+			splat.transform.localPosition = new Vector3(splat.transform.localPosition.x, splat.transform.localPosition.y, 1.6f);
+
+			splats.Add(splat.GetComponent<DancingDotsSplat>());
+
 			if (numberOfFailedMoves >= allowedFailedMoves)
 			{
 				StartCoroutine(RoundLost());
@@ -367,6 +404,7 @@ namespace EA4S.DancingDots
 			else
 			{
 				livingLetter.GetComponent<Animator>().Play("Pirouette");
+				foreach (DancingDotsSplat splat in splats) splat.CleanSplat();
 				yield return new WaitForSeconds(0.25f);
 				livingLetter.HideRainbow();
 				StartRound();
@@ -391,6 +429,10 @@ namespace EA4S.DancingDots
 		IEnumerator RoundWon()
 		{
 			numberOfRoundsWon++;
+
+			yield return new WaitForSeconds(0.25f);
+			livingLetter.LivingLetterAnimator.Play("run");
+
 			AudioManager.I.PlaySfx(Sfx.Win);
 			yield return new WaitForSeconds(1f);
 			livingLetter.LivingLetterAnimator.Play("ninja");
