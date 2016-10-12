@@ -17,7 +17,7 @@ namespace EA4S.Maze
 			movingOut = false;
 
 
-			AudioManager.I.PlayLetter(AppManager.Instance.Letters[letterIndex].Key);
+
 
 			transform.position = new Vector3 (40, 0, 0);
 		}
@@ -35,6 +35,7 @@ namespace EA4S.Maze
 				
 				transform.position = Vector3.MoveTowards (transform.position, Vector3.zero, Time.deltaTime * 20);
 				if (transform.position.x == 0) {
+					AudioManager.I.PlayLetter(AppManager.Instance.Letters[letterIndex].Key);
 					movingIn = false;
 					MazeGameManager.Instance.showCurrentTutorial ();
 				}
@@ -58,8 +59,8 @@ namespace EA4S.Maze
 			movingIn = false;
 			movingOut = true;
 
-			if(win)
-				AudioManager.I.PlayLetter(AppManager.Instance.Letters[letterIndex].Key);
+		/*	if(win)
+				AudioManager.I.PlayLetter(AppManager.Instance.Letters[letterIndex].Key);*/
 			
 		}
 	}
