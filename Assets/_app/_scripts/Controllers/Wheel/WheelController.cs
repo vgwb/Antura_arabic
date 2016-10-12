@@ -27,18 +27,18 @@ namespace EA4S
         {
             firstRoundDone = false;
             // Hook into the OnSwipe event
-            Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
+            Lean.Touch.LeanTouch.OnFingerSwipe += OnFingerSwipe;
             // Lean.LeanTouch.OnFingerTap += OnFingerTap;
         }
 
         protected virtual void OnDisable()
         {
             // Unhook into the OnSwipe event
-            Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+            Lean.Touch.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
             // Lean.LeanTouch.OnFingerTap -= OnFingerTap;
         }
 
-        public void OnFingerSwipe(Lean.LeanFinger finger)
+        public void OnFingerSwipe(Lean.Touch.LeanFinger finger)
         {
             var swipe = finger.SwipeDelta;
             if (swipe.y < -Mathf.Abs(swipe.x)) {

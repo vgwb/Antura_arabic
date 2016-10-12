@@ -9,6 +9,11 @@ TagManager:
   - Obstacle
   - Destination
   - Alert
+  - DotZone
+  - Diacritic
+  - Pokeball
+  - CorrectLetter
+  - WrongLetter
   layers:
   - Default
   - TransparentFX

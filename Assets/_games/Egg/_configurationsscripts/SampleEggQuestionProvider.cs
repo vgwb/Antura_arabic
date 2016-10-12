@@ -13,7 +13,7 @@
             this.difficulty = difficulty;
 
             letterProvider = new SampleLetterProvider(difficulty);
-            wordProvider = new SampleWordProvider(difficulty);
+            wordProvider = new SampleWordProvider();
         }
 
         public ILivingLetterData GetNextData()

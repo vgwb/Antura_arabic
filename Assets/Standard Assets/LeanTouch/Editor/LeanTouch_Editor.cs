@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace Lean
+namespace Lean.Touch
 {
 	[CustomEditor(typeof(LeanTouch))]
 	public class LeanTouch_Editor : Editor

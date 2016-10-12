@@ -5,6 +5,89 @@ to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+##########   v0.6.1 test build
+
+2016-10-11 - [cgl & debug] RainbowColors to active minigames, added shortcuts to Debugger panel, added Labels to scenes for shortcuts
+2016-10-11 - [clean]
+2016-10-11 - [Dancing Dots] - Added poof for hints
+2016-10-11 - [ThrowBalls] Improve crate physics.
+2016-10-11 - [clean] removed old AppManager
+2016-10-11 - [audio] start AudioManager refactoring and Test new Audio API (references and PitchChange and isPlaying)
+2016-10-11 - [packages] updated Panda Behaviour to 1.3.1
+2016-10-11 - [packages] removed QHierarchy
+2016-10-11 - [packages] removed GYA
+2016-10-11 - [packages] Lean Touch updated to 1.1.1 (new namespace)
+2016-10-11 - Add Timer Add Round Number Add Dot Support Add Win/Lose conditions Add star rating Prepare antoura
+2016-10-11 - [Dancing Dots] - Added rainbow - Fixed diacritic placement bug
+2016-10-11 - [ThrowBalls] Crate and letter physics updates.
+2016-10-10 - [Tobogan] Merged prefabs and scene
+2016-10-10 - [Tobogan] Difficulty levels, fixed trembling pipes
+2016-10-10 - [Dancing Dots] - Rounds - Failures - End of round - End of game
+2016-10-10 - Fix: to use custom configuration provider in word composer (fastcrowd).
+2016-10-10 - Fastcrowd refactoring to be configured by a core call using a custom provider for any variation.
+2016-10-10 - [data] first JSONS of data
+2016-10-10 - deleted empty folders.
+2016-10-10 - [Minigame] SampleLetterProvider fix
+2016-10-10 - [ThrowBalls] Fix prefab-breaking bug.
+2016-10-10 - - LivingLetters image type (tbc) - Inject custom context from core call - Inject custom providers from core call (tbc)
+2016-10-10 - Move game logic from GameObject to MazeGameManager Allow Letter to have multiple Paths Create more than one character Allow game to move from character to the other
+2016-10-09 - [ThrowBalls] Add letter hint in the corner.
+2016-10-09 - [ThrowBalls] Make crates smaller.
+2016-10-09 - [ThrowBalls] Add color to the rails.
+2016-10-09 - [ThrowBalls] Account for changed gravity.
+2016-10-09 - [ThrowBalls] Major Updates.
+2016-10-07 - [Minigames] Egg base
+2016-10-06 - [Tobogan] Adapting graphics to multiple mobile aspect ratio
+2016-10-06 - [Tobogan] Faster feedback, trembling tubes, back fog
+2016-10-06 - [Tobogan] Switched graphics
+2016-10-05 - [Tobogan] Fixes [Tobogan] Improved graphics
+2016-10-05 - [Dancing Dots] - Fixed splat sound in new branch
+2016-10-05 - [MiniGames] widget popup game time up
+2016-10-05 - Initial commit of Wixel Beta Minigames
+2016-10-05 - - Player profile total refactoring. Now can be store any kind of data that implement IPlayerProfile interface.
+2016-10-04 - [Toboban] Some fixes
+2016-10-04 - [Tobogan] audio: music and sound effects
+2016-10-04 - [Tobogan] fixed: question arabic word
+2016-10-04 - Living Letter prefab total refactoring. Crated common prefab, model, material, script and animation for LivingLetters.
+2016-10-03 - [Tobogan] fixed letters' queue
+2016-10-03 - [Tobogan] Randomize answers
+2016-10-03 - [Tobogan] Pipes vibrate
+2016-10-03 - [Tobogan] Pipe animations down/up
+2016-10-03 - [Tobogan] Antura placeholder animations
+2016-10-03 - Updated scene
+2016-10-03 - [Tobogan] question manager
+2016-10-03 - [Tobogan] Added poof to falling letters [Tobogan] Better tower fall [Tobogan] Tube particles [Tobogan] Shooting tubes with queue
+2016-10-03 - Send particles for Armando
+2016-10-03 - Fix: GameManager dontdestroyonload.
+2016-09-30 - Living letters refactoring. Fix potential bug in GameManager Start function.
+2016-09-30 - [Tobogan] Added signs placeholders
+2016-09-30 - Merge branch 'dev' of https://github.com/vgwb/EA4S_Antura_U3D into dev
+2016-09-30 - [Tobogan] Added Pipes Placeholder
+2016-09-30 - [Tobogan] Updated game logics and game states [Minigames] Fixed sample question provider
+2016-09-30 - [Minigames] advances on Tobogan gameplay
+2016-09-30 - [Tobogan] Advances in Tobogan: fixed tower, scene stub, advances in game logics
+2016-09-30 - [Minigames] advances on Tobogan gameplay
+2016-09-30 - [Tobogan] Better and faster tower feedback
+2016-09-30 - [Minigames] advances on Tobogan gameplay
+2016-09-29 - [Minigames] Tower implementation for Tobogan and Ragdoll fixes
+2016-09-29 - - Used JsonUtility native instead of Json.Net. - Removed Json.Net dependency.
+2016-09-28 - [Minigames] Advances in interfaces between core and minigames [Questions Database] Content providers stubs
+2016-09-28 - Fixing auto-merge on StarFlowers.cs
+2016-09-28 - Committing scene before merging
+2016-09-28 - Add MiniGame API.
+2016-09-27 - [Minigames] Advances in shared code for minigames [LivingLetter] Stub for Letter Ragdoll (for falling animations)
+2016-09-27 - [Minigames] Started working on questions stub for Tobogan
+2016-09-26 - [Minigames] Advances in Minigame template, stubs for interfaces for audio, question/stars/subtitles widgets
+2016-09-23 - [Minigames] More Game Template code
+2016-09-23 - [Minigames] Started working on game templates
+2016-09-23 - init Licenses
+2016-09-23 - Improvement: changed internal frameword reference to OnLevelWasLoaded deprecated method with new SceneManager methods. Fix: LivingLetterPappets prefab lost behaviour tree code.
+2016-09-22 - preparing 0.6.1 with some first CGL and cleaning
+2016-09-20 - Unity 5.4.1 (and some CGL)
+2016-09-20 - [plugins] G2U 2.1.12
+2016-09-20 - [plugins] Fabric 2.2.7
+2016-09-06 - [plugins] LeanTouch updated to v1.1.0
+2016-09-06 - repository migrated to https://github.com/vgwb/EA4S_Antura_U3D
 
 ##########   v0.6.0 RELEASED to NORAD as Phase 1 alpha version
 

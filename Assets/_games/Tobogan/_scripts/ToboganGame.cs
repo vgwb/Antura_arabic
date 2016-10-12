@@ -65,6 +65,8 @@ namespace EA4S.Tobogan
 
         protected override void OnInitialize(IGameContext context)
         {
+            pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
+
             IntroductionState = new ToboganIntroductionState(this);
             QuestionState = new ToboganQuestionState(this);
             PlayState = new ToboganPlayState(this);
