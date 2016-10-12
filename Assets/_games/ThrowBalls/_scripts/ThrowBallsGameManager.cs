@@ -84,7 +84,7 @@ namespace EA4S.ThrowBalls
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
         }
-
+        
         protected override void ReadyForGameplay()
         {
             base.ReadyForGameplay();
