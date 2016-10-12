@@ -218,7 +218,7 @@ namespace EA4S.Maze
 
 		public void setClickedDot()
 		{
-			MazeGameManager.Instance.moveToNext ();
+			MazeGameManager.Instance.moveToNext (true);
 		}
 
 		public void nextPath()
