@@ -24,8 +24,8 @@ namespace EA4S.DancingDots
 
 		public StarFlowers starFlowers;
 
-		public Animator dotsMenu;
-		public Animator diacriticMenu;
+//		public Animator dotsMenu;
+//		public Animator diacriticMenu;
 
 		public DancingDotsLivingLetter livingLetter;
 		public GameObject[] diacritics;
@@ -104,10 +104,14 @@ namespace EA4S.DancingDots
 
 		private void SetLevel(Level level)
 		{
+			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
+			foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
+			foreach (GameObject go in diacritics) go.SetActive(false);
+
 			switch (level)
 			{
 			case Level.Level1 : // Dots alone with visual aid
-				allowedFailedMoves = 2;
+//				allowedFailedMoves = 2;
 				isCorrectDot = false;
 				isCorrectDiacritic = true;
 				foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
@@ -134,7 +138,7 @@ namespace EA4S.DancingDots
 				break;
 
 			case Level.Level4 : // Dots alone without visual aid
-				allowedFailedMoves = 2;
+//				allowedFailedMoves = 2;
 				isCorrectDot = false;
 				isCorrectDiacritic = true;
 				foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.Reset();
@@ -161,6 +165,7 @@ namespace EA4S.DancingDots
 				break;
 
 			default:
+				SetLevel(Level.Level1);
 				break;
 
 			}
@@ -168,16 +173,25 @@ namespace EA4S.DancingDots
 
 		private void StartRound()
 		{
+			
 			numberOfRoundsPlayed++;
-			Debug.Log(numberOfRoundsPlayed);
+			Debug.Log("[Dancing Dots] Round: " + numberOfRoundsPlayed);
 			numberOfFailedMoves = 0;
 			livingLetter.Reset();
-			foreach (DancingDotsDraggableDot dDots in dragableDots) dDots.gameObject.SetActive(false);
-			foreach (DancingDotsDraggableDot dDiacritic in dragableDiacritics) dDiacritic.gameObject.SetActive(false);
-			foreach (GameObject go in diacritics) go.SetActive(false);
 
-			currentLevel = (Level) Mathf.Clamp((int) Mathf.Floor(pedagogicalLevel * 6),0, 5);
-			Debug.Log(currentLevel);
+			if (pedagogicalLevel == 0f) // TODO for testing only each round increment Level. Remove later!
+			{
+				currentLevel = (Level) numberOfRoundsPlayed - 1;
+			}
+			else
+			{
+				// TODO Move later to Start method
+				var numberOfLevels = Enum.GetNames(typeof(Level)).Length;
+				currentLevel = (Level) Mathf.Clamp((int) Mathf.Floor(pedagogicalLevel * numberOfLevels),0, numberOfLevels - 1);
+			}
+
+			Debug.Log("[Dancing Dots] pedagogicalLevel: " + pedagogicalLevel + " Game Level: " + currentLevel);
+
 			SetLevel(currentLevel);
 
 
@@ -236,21 +250,6 @@ namespace EA4S.DancingDots
 //			menu2.SetTrigger("Show");
 //		}
 
-		protected override void ReadyForGameplay()
-		{
-			base.ReadyForGameplay();
-		}
-
-		protected override void OnDisable()
-		{
-			base.OnDisable();
-		}
-
-		protected override void OnMinigameQuit()
-		{
-			base.OnMinigameQuit();
-		}
-
 		private IEnumerator RandomDiacritic() {
 
 
@@ -280,6 +279,23 @@ namespace EA4S.DancingDots
 				activeDiacritic.Show();
 			}
 
+		}
+
+
+
+		protected override void ReadyForGameplay()
+		{
+			base.ReadyForGameplay();
+		}
+
+		protected override void OnDisable()
+		{
+			base.OnDisable();
+		}
+
+		protected override void OnMinigameQuit()
+		{
+			base.OnMinigameQuit();
 		}
 
 		IEnumerator CorrectMove(bool isWon)

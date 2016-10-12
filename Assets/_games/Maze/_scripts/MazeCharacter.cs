@@ -49,25 +49,35 @@ namespace EA4S.Maze
 			characterWayPoints = new List<Vector3>();
 			currentCharacterWayPoint = 0;
 
+
+
+			currentWayPoint = 0;
+			GetComponent<BoxCollider> ().enabled = false;
+
+			collider.GetComponent<MeshRenderer> ().enabled = false;
+			collider.SetActive(false);
+
+
+			foreach (GameObject fruitList in Fruits)
+				fruitList.SetActive (false);
+
+
+			
+
+		}
+
+		public void initialize()
+		{
 			initialPosition = transform.position;
 			targetPos = initialPosition;
 
 			initialRotation = transform.rotation;
 			targetRotation = initialRotation;
 
-			currentWayPoint = 0;
-			collider.GetComponent<MeshRenderer> ().enabled = false;
-			collider.SetActive(false);
-
 			characterWayPoints.Add(initialPosition);
-
-			foreach (GameObject fruitList in Fruits)
-				fruitList.SetActive (false);
-
 			setFruitsList ();
-			
-
 		}
+
 
 		void setFruitsList()
 		{
@@ -88,7 +98,7 @@ namespace EA4S.Maze
 
 		void OnTriggerEnter(Collider other)
 		{
-			if (donotHandleBorderCollision)
+			if (donotHandleBorderCollision || !characterIsMoving)
 				return;
 			
 			print ("Colliding with: " + other.gameObject.name);
@@ -208,7 +218,7 @@ namespace EA4S.Maze
 
 		public void setClickedDot()
 		{
-			MazeGameManager.Instance.moveToNext ();
+			MazeGameManager.Instance.moveToNext (true);
 		}
 
 		public void nextPath()
@@ -308,7 +318,7 @@ namespace EA4S.Maze
 							print ("Won");
 							GetComponent<BoxCollider> ().enabled = false;
 							characterIsMoving = false;
-							MazeGameManager.Instance.moveToNext ();
+							MazeGameManager.Instance.moveToNext (true);
 
 							if (currentFruitList == Fruits.Count - 1) {
 								if (dot != null)
