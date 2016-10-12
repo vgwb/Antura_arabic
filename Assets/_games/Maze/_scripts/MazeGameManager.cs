@@ -26,7 +26,12 @@ namespace EA4S.Maze
 		public StarFlowers starFlowers;
 
 		[Range(0,1)]
-		public float difficulty = 0.5f;
+		public float gameplay = 0.5f;
+
+		[Range(0,1)]
+		public float pedagogic = 0.5f;
+
+		 
 		public float idleTime = 7;
 		public TextMeshProUGUI roundNumber;
 
@@ -78,7 +83,7 @@ namespace EA4S.Maze
 			currentLetterIndex = 0;
 			roundNumber.text = "#" + (currentLetterIndex + 1);
 
-			gameTime = maxGameTime / (1 + difficulty);
+			gameTime = maxGameTime / (1 + gameplay);
 
 			timer.initTimer ();
 
