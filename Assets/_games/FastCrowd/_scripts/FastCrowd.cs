@@ -238,7 +238,7 @@ namespace EA4S.FastCrowd
 
         void sceneClean()
         {
-            DropAreaContainer.clean();
+            DropAreaContainer.Clean();
             foreach (LetterObjectView item in TerrainTrans.GetComponentsInChildren<LetterObjectView>()) {
                 GameObject.Destroy(item.gameObject);
             }

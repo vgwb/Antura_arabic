@@ -30,7 +30,7 @@ namespace EA4S
             dropAreaSetPosition();
         }
 
-        public void clean()
+        public void Clean()
         {
             foreach (var item in Aree) {
                 GameObject.Destroy(item.gameObject);
