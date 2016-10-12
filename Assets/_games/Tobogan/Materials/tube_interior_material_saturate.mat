@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: tube_interior_material_saturate
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 2f681b5e4ae2d49449f6e198f75b898d, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
