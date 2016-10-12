@@ -12,7 +12,6 @@
         public void EnterState()
         {
             game.questionsManager.Initialize();
-            game.questionsManager.StartNewQuestion();
 
             // Show questions description
             var popupWidget = game.Context.GetPopupWidget();

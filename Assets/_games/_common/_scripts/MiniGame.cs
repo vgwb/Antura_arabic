@@ -53,6 +53,12 @@ namespace EA4S
             this.SetCurrentState(GetInitialState());
         }
 
+        void OnDestroy()
+        {
+            if (Context != null)
+                Context.Reset();
+        }
+
         /// <summary>
         /// Do not override Update/FixedUpdate; just implement Update and UpdatePhysics inside game states
         /// </summary>

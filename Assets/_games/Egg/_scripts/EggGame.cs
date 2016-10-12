@@ -1,4 +1,4 @@
-﻿using TMPro;
+﻿using UnityEngine;
 
 namespace EA4S.Egg
 {
@@ -7,8 +7,9 @@ namespace EA4S.Egg
         public EggBox eggBox;
         public EggController eggController;
         public EggButtonsBox eggButtonBox;
+        public GameObject eggButtonPrefab;
 
-        public TextMeshProUGUI timerText;
+        public QuestionManager questionManager;
 
         public EggIntroductionState IntroductionState { get; private set; }
         public EggQuestionState QuestionState { get; private set; }
@@ -31,6 +32,9 @@ namespace EA4S.Egg
             QuestionState = new EggQuestionState(this);
             PlayState = new EggPlayState(this);
             ResultState = new EggResultState(this);
+
+            eggController.Initialize(eggBox.GetEggLocalPositions());
+            eggButtonBox.Initialize(eggButtonPrefab);
         }
     }
 

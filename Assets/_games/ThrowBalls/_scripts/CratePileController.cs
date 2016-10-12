@@ -38,19 +38,33 @@ namespace EA4S.ThrowBalls
             middleCrate.ApplyCustomGravity();
             middleCrate.SetIsKinematic(false);
             middleCrate.VanishAfterDelay(0.7f);
-            middleCrate.StopSwerving();
-
+            if (middleCrate.IsSwerving())
+            {
+                middleCrate.StopSwerving();
+            }
+            
             topCrate.ApplyCustomGravity();
             topCrate.SetIsKinematic(false);
             topCrate.VanishAfterDelay(0.9f);
-            topCrate.StopSwerving();
+            if (topCrate.IsSwerving())
+            {
+                topCrate.StopSwerving(); 
+            }
 
             bottomCrate.ApplyCustomGravity();
             bottomCrate.SetIsKinematic(false);
             bottomCrate.VanishAfterDelay(1.1f);
-            bottomCrate.StopSwerving();
+            if (bottomCrate.IsSwerving())
+            {
+                bottomCrate.StopSwerving(); 
+            }
 
             //letter.PropUp(1.75f);
+
+            if (letter.IsJumping())
+            {
+                letter.StopJumping();
+            }
 
             letter.MakeSureIsProppedUp();
 
@@ -87,13 +101,9 @@ namespace EA4S.ThrowBalls
 
             Vector3 letterPos = letter.transform.position;
 
-            bottomCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 8.05f, letterPos.z);
-            middleCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 4.85f, letterPos.z);
-            topCrate.transform.position = new Vector3(letterPos.x, letterPos.y - 1.65f, letterPos.z);
-
-            /*bottomCrate.transform.position = new Vector3(letterPos.x + Random.Range(-1f, 1f), letterPos.y - 8.05f, letterPos.z + Random.Range(-1f, 1f));
-            middleCrate.transform.position = new Vector3(letterPos.x + Random.Range(-1f, 1f), letterPos.y - 4.85f, letterPos.z + Random.Range(-1f, 1f));
-            topCrate.transform.position = new Vector3(letterPos.x + Random.Range(-1f, 1f), letterPos.y - 1.65f, letterPos.z + Random.Range(-1f, 1f));*/
+            bottomCrate.transform.position = new Vector3(letterPos.x + Random.Range(-0.4f, 0.4f), letterPos.y - 8.05f, letterPos.z + Random.Range(-0.4f, 0.4f));
+            middleCrate.transform.position = new Vector3(letterPos.x + Random.Range(-0.4f, 0.4f), letterPos.y - 4.85f, letterPos.z + Random.Range(-0.4f, 0.4f));
+            topCrate.transform.position = new Vector3(letterPos.x + Random.Range(-0.4f, 0.4f), letterPos.y - 1.65f, letterPos.z + Random.Range(-0.4f, 0.4f));
 
             letterPos.x = topCrate.transform.position.x;
             letterPos.z = topCrate.transform.position.z;
