@@ -4716,8 +4716,6 @@ MonoBehaviour:
     PlayTime: 0
   endGameCanvas: {fileID: 353301248}
   starFlowers: {fileID: 1205094847}
-  dotsMenu: {fileID: 1247043372}
-  diacriticMenu: {fileID: 237631169}
   livingLetter: {fileID: 6993642}
   diacritics:
   - {fileID: 1467419120}
@@ -4733,7 +4731,7 @@ MonoBehaviour:
   hintDotDuration: 2.5
   hintDiacriticDuration: 3
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
-  pedagogicalLevel: 0.16
+  pedagogicalLevel: 0
   numberOfRounds: 6
   allowedFailedMoves: 3
   dragableDots:
@@ -5970,19 +5968,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010711976764, guid: 2cc28fb201a2b4226b77ee5b76da026a, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 4000010711976764, guid: 2cc28fb201a2b4226b77ee5b76da026a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 4000010711976764, guid: 2cc28fb201a2b4226b77ee5b76da026a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 4000010711976764, guid: 2cc28fb201a2b4226b77ee5b76da026a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 33000010182390960, guid: 2cc28fb201a2b4226b77ee5b76da026a,
         type: 2}
