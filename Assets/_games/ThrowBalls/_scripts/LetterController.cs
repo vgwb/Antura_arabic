@@ -134,7 +134,7 @@ namespace EA4S.ThrowBalls
             Vector3 currentPosition = transform.position;
             Vector3 currentRotation = transform.localRotation.eulerAngles;
             
-            if (AreVectorsApproxEqual(currentPosition, lastPosition, 0.01f) && AreVectorsApproxEqual(currentRotation, lastRotation, 0.1f))
+            if (AreVectorsApproxEqual(currentPosition, lastPosition, 0.0001f) && AreVectorsApproxEqual(currentRotation, lastRotation, 0.1f))
             {
                 isStill = true;
             }
