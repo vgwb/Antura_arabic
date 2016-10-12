@@ -40,7 +40,8 @@
         KO,
         Transition,
         StarFlower,
-        StampOK
+        StampOK,
+        Splat
     }
 
     class AudioConfig
@@ -162,6 +163,9 @@
                     break;
                 case Sfx.StampOK:
                     eventName = "Sfx/StampOK";
+                    break;
+                case Sfx.Splat:
+                    eventName = "Sfx/Splat";
                     break;
             }
             return eventName;

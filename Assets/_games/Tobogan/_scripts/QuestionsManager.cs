@@ -12,6 +12,8 @@ namespace EA4S.Tobogan
         bool initialized = false;
 
         QuestionLivingLetter questionLivingLetter;
+        QuestionLivingLetter draggingLetter;
+
         int questionLetterIndex;
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
 
@@ -40,6 +42,10 @@ namespace EA4S.Tobogan
 
                 nextQuestionTimer = 0f;
                 requestNextQueston = false;
+
+                game.Context.GetInputManager().onPointerDown += OnPointerDown;
+                game.Context.GetInputManager().onPointerUp += OnPointerUp;
+                game.Context.GetInputManager().onPointerDrag += OnPointerDrag;
             }
         }
 
@@ -87,7 +93,7 @@ namespace EA4S.Tobogan
 
             for (int i = 0; i < game.questionLivingLetterBox.lettersPosition.Length - 1; i++)
             {
-                QuestionLivingLetter questionLetter = GetQuestionLivingLetter();
+                QuestionLivingLetter questionLetter = CreateQuestionLivingLetter();
 
                 questionLetter.GoToPosition(i);
 
@@ -95,7 +101,7 @@ namespace EA4S.Tobogan
             }
         }
 
-        QuestionLivingLetter GetQuestionLivingLetter()
+        QuestionLivingLetter CreateQuestionLivingLetter()
         {
             QuestionLivingLetter newQuestionLivingLetter = GameObject.Instantiate(game.questionLivingLetterPrefab).GetComponent<QuestionLivingLetter>();
             newQuestionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.upRightMaxPosition.localPosition,
@@ -179,6 +185,39 @@ namespace EA4S.Tobogan
                     StartNewQuestion();
                     requestNextQueston = false;
                 }
+            }
+        }
+
+        void OnPointerDown()
+        {
+            if (questionLivingLetter != null)
+            {
+                var pointerPosition = game.Context.GetInputManager().LastPointerPosition;
+                var screenRay = game.tubesCamera.ScreenPointToRay(pointerPosition);
+
+                RaycastHit hitInfo;
+                if (questionLivingLetter.GetComponent<Collider>().Raycast(screenRay, out hitInfo, game.tubesCamera.farClipPlane))
+                {
+                    draggingLetter = questionLivingLetter;
+                    questionLivingLetter.OnPointerDown(pointerPosition);
+                }
+            }
+        }
+
+        void OnPointerUp()
+        {
+            draggingLetter = null;
+
+            if (questionLivingLetter != null)
+                questionLivingLetter.OnPointerUp();
+        }
+
+        void OnPointerDrag()
+        {
+            if (questionLivingLetter == draggingLetter)
+            {
+                var pointerPosition = game.Context.GetInputManager().LastPointerPosition;
+                questionLivingLetter.OnPointerDrag(pointerPosition);
             }
         }
     }
