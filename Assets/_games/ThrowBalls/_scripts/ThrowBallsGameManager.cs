@@ -321,7 +321,7 @@ namespace EA4S.ThrowBalls
 
         private int GetNumLettersInRound()
         {
-            return 2;
+            return 3;
             return (roundNumber - 1) % 2 + 2;
         }
 
