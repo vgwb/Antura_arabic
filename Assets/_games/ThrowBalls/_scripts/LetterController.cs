@@ -300,15 +300,17 @@ namespace EA4S.ThrowBalls
         {
             while (true)
             {
-                if (transform.rotation.eulerAngles.z != 0 && isGrounded && isStill)
+                if (isGrounded && isStill)
                 {
-                    if (!isProppingUp)
+                    SetIsKinematic(true);
+
+                    if (transform.rotation.eulerAngles.z != 0 && !isProppingUp)
                     {
-                        PropUp(0.5f);
+                        PropUp(0.2f);
                     }
                 }
 
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForFixedUpdate();
             }
         }
 
@@ -468,6 +470,7 @@ namespace EA4S.ThrowBalls
             isProppingUp = false;
             isGrounded = false;
             isStill = false;
+            SetIsColliderEnabled(true);
         }
     }
 }
