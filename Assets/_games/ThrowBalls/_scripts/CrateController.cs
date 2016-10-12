@@ -68,6 +68,11 @@ namespace EA4S.ThrowBalls
             StopCoroutine(swervingCoroutine);
         }
 
+        public bool IsSwerving()
+        {
+            return swervingCoroutine != null;
+        }
+
         public void Reset()
         {
             //transform.Rotate(0, Random.Range(-20, 20), 0);
