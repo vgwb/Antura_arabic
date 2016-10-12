@@ -37,6 +37,7 @@ namespace EA4S.ThrowBalls
 
         private IEnumerator customGravityCoroutine;
         private IEnumerator propUpCoroutine;
+        private IEnumerator jumpCoroutine;
 
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
@@ -49,6 +50,8 @@ namespace EA4S.ThrowBalls
         private bool isGrounded = false;
         private bool isProppingUp = false;
         private bool isStill = false;
+
+        private MotionVariation motionVariation;
 
         // Use this for initialization
         void Start()
@@ -85,13 +88,13 @@ namespace EA4S.ThrowBalls
                 default:
                     break;
             }
-
-
         }
 
         public void SetMotionVariation(MotionVariation motionVariation)
         {
             ResetMotionVariation();
+
+            this.motionVariation = motionVariation;
 
             switch (motionVariation)
             {
@@ -131,7 +134,7 @@ namespace EA4S.ThrowBalls
             Vector3 currentPosition = transform.position;
             Vector3 currentRotation = transform.localRotation.eulerAngles;
             
-            if (AreVectorsApproxEqual(currentPosition, lastPosition) && AreVectorsApproxEqual(currentRotation, lastRotation))
+            if (AreVectorsApproxEqual(currentPosition, lastPosition))//&& AreVectorsApproxEqual(currentRotation, lastRotation))
             {
                 isStill = true;
             }
@@ -234,12 +237,13 @@ namespace EA4S.ThrowBalls
 
         private void SetIsJumping()
         {
-            StartCoroutine("Jump");
+            jumpCoroutine = Jump();
+            StartCoroutine(jumpCoroutine);
         }
 
         private IEnumerator Jump()
         {
-            yield return new WaitForSeconds(Random.Range(0.25f, 1f));
+            yield return new WaitForSeconds(Random.Range(0.4f, 1f));
 
             for (;;)
             {
@@ -262,6 +266,16 @@ namespace EA4S.ThrowBalls
 
                 yield return new WaitForSeconds(1.5f);
             }
+        }
+
+        public void StopJumping()
+        {
+            StopCoroutine(jumpCoroutine);
+        }
+
+        public bool IsJumping()
+        {
+            return motionVariation == MotionVariation.Jumping;
         }
 
         public void SetIsDropping()
@@ -335,7 +349,7 @@ namespace EA4S.ThrowBalls
             float initZAngleSign = Mathf.Sign(initZAngle);
             float propUpSpeed = (initZAngle / PROP_UP_TIME) * initZAngleSign * -1;
 
-            SetIsColliderEnabled(false);
+            //SetIsColliderEnabled(false);
 
             Vector3 centerOfRotation = boxCollider.transform.position;
 
@@ -350,11 +364,17 @@ namespace EA4S.ThrowBalls
                     currentZAngle = 180 - currentZAngle;
                 }
 
-                if (Mathf.Sign(currentZAngle) * initZAngleSign <= -1)
+                if (Mathf.Sign(currentZAngle) * initZAngleSign <= -1 || Mathf.Approximately(currentZAngle, 0))
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                     SetIsColliderEnabled(true);
                     isProppingUp = false;
+
+                    if (motionVariation == MotionVariation.Jumping)
+                    {
+                        SetIsJumping();
+                    }
+
                     break;
                 }
 
@@ -413,6 +433,7 @@ namespace EA4S.ThrowBalls
                 yield return new WaitForSeconds(0.75f);
             }
         }
+        
 
         public void ApplyCustomGravity()
         {
@@ -463,7 +484,6 @@ namespace EA4S.ThrowBalls
             DisableProps();
             yEquilibrium = transform.position.y;
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            rigidBody.isKinematic = true;
             propUpCoroutine = null;
             SetIsKinematic(true);
             isProppingUp = false;
