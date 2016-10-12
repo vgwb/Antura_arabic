@@ -14,7 +14,7 @@ namespace EA4S
         event System.Action onPointerUp;
         event System.Action onPointerDrag;
 
-
         void Update();
+        void Reset();
     }
 }

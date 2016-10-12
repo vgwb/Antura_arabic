@@ -252,6 +252,7 @@ namespace EA4S.ThrowBalls
             yield return new WaitForSeconds(0.1f);
 
             correctLetterCntrl.Vanish();
+            correctLetterCntrl.Reset();
 
             yield return new WaitForSeconds(0.7f);
 
@@ -320,6 +321,7 @@ namespace EA4S.ThrowBalls
 
         private int GetNumLettersInRound()
         {
+            return 3;
             return (roundNumber - 1) % 2 + 2;
         }
 
@@ -374,11 +376,11 @@ namespace EA4S.ThrowBalls
                 case 2:
                     return LetterController.MotionVariation.Idle;
                 case 3:
-                    return LetterController.MotionVariation.Jumping;
-                case 4:
-                    return LetterController.MotionVariation.Idle;
-                case 5:
                     return LetterController.MotionVariation.Popping;
+                case 4:
+                    return LetterController.MotionVariation.Jumping;
+                case 5:
+                    return LetterController.MotionVariation.Idle;
                 default:
                     return LetterController.MotionVariation.Idle;
             }
@@ -386,20 +388,18 @@ namespace EA4S.ThrowBalls
 
         private LetterController.PropVariation GetPropOfRound()
         {
-            return LetterController.PropVariation.SwervingPileOfCrates;
-
             switch (roundNumber)
             {
                 case 1:
                     return LetterController.PropVariation.Nothing;
                 case 2:
-                    return LetterController.PropVariation.SwervingPileOfCrates;
+                    return LetterController.PropVariation.StaticPileOfCrates;
                 case 3:
-                    return LetterController.PropVariation.SwervingPileOfCrates;
-                case 4:
-                    return LetterController.PropVariation.SwervingPileOfCrates;
-                case 5:
                     return LetterController.PropVariation.Bush;
+                case 4:
+                    return LetterController.PropVariation.StaticPileOfCrates;
+                case 5:
+                    return LetterController.PropVariation.SwervingPileOfCrates;
                 default:
                     return LetterController.PropVariation.Nothing;
             }
