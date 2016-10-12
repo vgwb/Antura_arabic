@@ -126,7 +126,7 @@ namespace EA4S.Maze
 
 		}
 
-		public void moveToNext()
+		public void moveToNext(bool won = false)
 		{
 			//check if current letter is complete:
 			if (currentCharacter.isComplete ()) {
@@ -138,7 +138,7 @@ namespace EA4S.Maze
 					return;
 				} else {
 					roundNumber.text = "#" + (currentLetterIndex + 1);
-					restartCurrentLetter ();
+					restartCurrentLetter (won);
 				}
 			} else {
 				currentCharacter.nextPath ();
@@ -160,9 +160,15 @@ namespace EA4S.Maze
 			
 		}
 
-		public void restartCurrentLetter()
+		public void restartCurrentLetter(bool won = false)
 		{
-			Destroy (currentPrefab);
+			//Destroy (currentPrefab);
+
+			//show message:
+
+		
+
+			currentPrefab.SendMessage("moveOut",won);
 			initCurrentLetter ();
 		
 
@@ -187,7 +193,6 @@ namespace EA4S.Maze
 			}
 		}
 
-		bool tweenCurrentLetter = false;
 		void initCurrentLetter()
 		{
 			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex],Vector3.zero, Quaternion.identity);
@@ -199,19 +204,28 @@ namespace EA4S.Maze
 			}
 
 			//
-			if(currentTutorial != null)
-				currentTutorial.showCurrentTutorial();
+			/*if (currentTutorial != null) {
+				currentTutorial.showCurrentTutorial ();
+
+			}*/
+
 		}
 
-		void showCurrentLetter()
+		public void showCurrentTutorial()
 		{
-		//	currentPrefab.transform.position = Vector3.MoveTowards (transform.position, Vector3.zero, Time.deltaTime*5);
+			if (currentTutorial != null) {
+				currentTutorial.showCurrentTutorial ();
+
+			}
+			if (currentCharacter != null) {
+				currentCharacter.initialize ();
+
+			}
 
 		}
-
 
 		IEnumerator shakeCamera(float duration, float magnitude) {
-
+			
 			float elapsed = 0.0f;
 
 			Vector3 originalCamPos = Camera.main.transform.position;

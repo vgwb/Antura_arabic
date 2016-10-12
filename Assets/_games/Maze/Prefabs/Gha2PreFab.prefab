@@ -161,7 +161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011753756994
 GameObject:
   m_ObjectHideFlags: 1
@@ -467,6 +467,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011898353906}
+  - 114: {fileID: 114000013794844544}
   m_Layer: 0
   m_Name: Gha2PreFab
   m_TagString: Untagged
@@ -896,7 +897,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011023201020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.96, y: 6.9, z: -0.72}
+  m_LocalPosition: {x: 0.35, y: 5.94, z: -0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2438,6 +2439,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 50
+--- !u!114 &114000013794844544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013343319830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571654c7286bae74f8a24c0b5a28bf42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letterIndex: 18
 --- !u!114 &114000014087383462
 MonoBehaviour:
   m_ObjectHideFlags: 1
