@@ -261,6 +261,11 @@ namespace EA4S.API {
             return questionWidget;
         }
 
+        public void Reset()
+        {
+            inputManager.Reset();
+        }
+
         #region presets
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {
