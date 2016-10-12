@@ -129,8 +129,8 @@ namespace EA4S.ThrowBalls
         void Update()
         {
             Vector3 currentPosition = transform.position;
-            Vector3 currentRotation = transform.rotation.eulerAngles;
-
+            Vector3 currentRotation = transform.localRotation.eulerAngles;
+            
             if (AreVectorsApproxEqual(currentPosition, lastPosition) && AreVectorsApproxEqual(currentRotation, lastRotation))
             {
                 isStill = true;
@@ -335,7 +335,6 @@ namespace EA4S.ThrowBalls
             float initZAngleSign = Mathf.Sign(initZAngle);
             float propUpSpeed = (initZAngle / PROP_UP_TIME) * initZAngleSign * -1;
 
-            SetIsKinematic(true);
             SetIsColliderEnabled(false);
 
             Vector3 centerOfRotation = boxCollider.transform.position;
