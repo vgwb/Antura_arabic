@@ -64,15 +64,18 @@ namespace EA4S
         public void Show(bool _doShow, bool _immediate = false)
         {
             GlobalUI.Init();
-            clicked = false;
 
             IsShown = _doShow;
-            if (_doShow) {
+            if (_doShow)
+            {
+                clicked = false;
                 if (_immediate)
                     I.showTween.Complete();
                 else
                     I.showTween.PlayForward();
-            } else {
+            }
+            else
+            {
                 if (_immediate)
                     I.showTween.Rewind();
                 else
@@ -133,7 +136,8 @@ namespace EA4S
             MarkOK.SetActive(result);
             MarkKO.SetActive(!result);
 
-            if (image2show != null) {
+            if (image2show != null)
+            {
                 TutorialImageGO.GetComponent<Image>().sprite = image2show;
                 TutorialImageGO.SetActive(true);
             }
@@ -208,7 +212,7 @@ namespace EA4S
             ShowSentenceWithMark(callback, "game_time_up", false, gameTimeUpSprite);
         }
 
-    public void Init(string introText, string wordCode, string arabicWord)
+        public void Init(string introText, string wordCode, string arabicWord)
         {
             Init(null, introText, wordCode, arabicWord);
         }
@@ -247,13 +251,16 @@ namespace EA4S
 
         public void SetWord(string wordCode, string arabicWord)
         {
-            if (wordCode != "") {
+            if (wordCode != "")
+            {
                 WordTextGO.SetActive(true);
                 DrawingImageGO.SetActive(true);
                 // here set both word and drawing 
                 WordTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(arabicWord, false, false);
                 DrawingImageGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
-            } else {
+            }
+            else
+            {
                 WordTextGO.SetActive(false);
                 DrawingImageGO.SetActive(false);
             }
@@ -274,6 +281,7 @@ namespace EA4S
             clicked = true;
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
             currentCallback();
+            UnityEngine.Debug.Log("Exit");
         }
     }
 }
