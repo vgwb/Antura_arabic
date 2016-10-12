@@ -133,6 +133,7 @@ namespace EA4S.Maze
 				correctLetters++;
 
 				currentLetterIndex++;
+				print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
 				if (currentLetterIndex == prefabs.Count) {
 					EndGame ();
 					return;
@@ -150,7 +151,7 @@ namespace EA4S.Maze
 		{
 			wrongLetters++;
 			currentLetterIndex++;
-			if (currentLetterIndex == prefabs.Count - 1) {
+			if (currentLetterIndex == prefabs.Count) {
 				EndGame ();
 				return;
 			} else {
