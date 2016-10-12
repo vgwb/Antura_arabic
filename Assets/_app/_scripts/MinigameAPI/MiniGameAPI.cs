@@ -152,26 +152,26 @@ namespace EA4S.API {
                 case "FastCrowd_v1":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 1;
                     FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 70;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v2":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 2;
                     FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 80;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v3":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 3;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v4":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 4;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
