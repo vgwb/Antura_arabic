@@ -131,7 +131,6 @@ namespace EA4S.Maze
 			//check if current letter is complete:
 			if (currentCharacter.isComplete ()) {
 				correctLetters++;
-
 				currentLetterIndex++;
 				print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
 				if (currentLetterIndex == prefabs.Count) {
@@ -256,7 +255,7 @@ namespace EA4S.Maze
 
 		public void DrawLine(Vector3 start, Vector3 end, Color color)
 		{
-			start.z = end.z = -0.5f;//-0.1f;
+			start.z = end.z = -0.1f;//-0.1f;
 			GameObject myLine = new GameObject();
 			myLine.transform.position = start;
 			myLine.AddComponent<LineRenderer>();
