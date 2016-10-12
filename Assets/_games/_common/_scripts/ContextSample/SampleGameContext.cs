@@ -35,5 +35,10 @@ namespace EA4S
         {
             return questionWidget;
         }
+
+        public void Reset()
+        {
+            inputManager.Reset();
+        }
     }
 }

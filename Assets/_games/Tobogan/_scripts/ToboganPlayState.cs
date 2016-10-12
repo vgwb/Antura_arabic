@@ -19,6 +19,8 @@ namespace EA4S.Tobogan
 
         public void EnterState()
         {
+            game.questionsManager.StartNewQuestion();
+
             game.isTimesUp = false;
             game.ResetScore();
             

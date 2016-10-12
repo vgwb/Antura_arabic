@@ -214,7 +214,7 @@ namespace EA4S.Tobogan
 
         void OnPointerDrag()
         {
-            if (questionLivingLetter == draggingLetter)
+            if (draggingLetter != null && questionLivingLetter == draggingLetter)
             {
                 var pointerPosition = game.Context.GetInputManager().LastPointerPosition;
                 questionLivingLetter.OnPointerDrag(pointerPosition);
