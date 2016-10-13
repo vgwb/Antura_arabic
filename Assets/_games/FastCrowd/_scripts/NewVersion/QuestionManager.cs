@@ -4,12 +4,28 @@ namespace EA4S.FastCrowd
 {
     public class QuestionManager : MonoBehaviour
     {
+        public event System.Action OnCompleted;
+
         public DropAreaWidget dropContainer;
         public Crowd crowd;
+
+        IQuestionPack currentQuestion;
+
+        void Start()
+        {
+            dropContainer.OnComplete += OnContainerComplete;
+        }
+
+        void OnContainerComplete()
+        {
+            if (OnCompleted != null)
+                OnCompleted();
+        }
 
         public void StartQuestion(IQuestionPack nextQuestion)
         {
             Clean();
+            currentQuestion = nextQuestion;
 
             foreach (var correctAnswer in nextQuestion.GetCorrectAnswers())
             {
@@ -29,6 +45,7 @@ namespace EA4S.FastCrowd
 
         public void Clean()
         {
+            currentQuestion = null;
             dropContainer.Clean();
             crowd.Clean();
         }

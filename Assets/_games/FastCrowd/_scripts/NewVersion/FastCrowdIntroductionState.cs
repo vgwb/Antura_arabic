@@ -4,7 +4,7 @@
     {
         FastCrowdGame game;
 
-        float timer = 4;
+        float timer = 1;
         public FastCrowdIntroductionState(FastCrowdGame game)
         {
             this.game = game;

@@ -62,7 +62,7 @@ namespace EA4S.FastCrowd
         #region Runtime Variables
 
         public TMPro.TextMeshProUGUI RightWordsCounter;
-        public bool IsAnturaMoment = false;
+
         /// <summary>
         /// Actual word.
         /// </summary>
@@ -494,11 +494,17 @@ namespace EA4S.FastCrowd
             //Debug.LogFormat("Custom Event {0} at {1} sec.", _data.Name, _data.Time);
             switch (_data.Name) {
                 case "AnturaStart":
-                    IsAnturaMoment = true;
+                    foreach (LetterNavBehaviour item in TerrainTrans.GetComponentsInChildren<LetterNavBehaviour>())
+                    {
+                        item.isAnturaMoment = true;
+                    }
                     AudioManager.I.PlayMusic(Music.MainTheme);
                     break;
                 case "AnturaEnd":
-                    IsAnturaMoment = false;
+                    foreach (LetterNavBehaviour item in TerrainTrans.GetComponentsInChildren<LetterNavBehaviour>())
+                    {
+                        item.isAnturaMoment = false;
+                    }
                     AudioManager.I.PlayMusic(Music.Theme3);
                     break;
                 default:
