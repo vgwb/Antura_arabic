@@ -26,7 +26,7 @@ namespace EA4S.Maze
 			foreach(GameObject pathToFollow in pathsToFollow)
 				pathToFollow.SetActive(false);
 
-
+			gameObject.SetActive (false);
 		}
 		
 		// Update is called once per frame
@@ -61,6 +61,7 @@ namespace EA4S.Maze
 
 		public void showCurrentTutorial()
 		{
+			gameObject.SetActive (true);
 			isMovingOnPath = true;
 			setWayPoints ();
 			

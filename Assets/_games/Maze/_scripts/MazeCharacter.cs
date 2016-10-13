@@ -49,25 +49,35 @@ namespace EA4S.Maze
 			characterWayPoints = new List<Vector3>();
 			currentCharacterWayPoint = 0;
 
+
+
+			currentWayPoint = 0;
+			GetComponent<BoxCollider> ().enabled = false;
+
+			collider.GetComponent<MeshRenderer> ().enabled = false;
+			collider.SetActive(false);
+
+
+			foreach (GameObject fruitList in Fruits)
+				fruitList.SetActive (false);
+
+
+			
+
+		}
+
+		public void initialize()
+		{
 			initialPosition = transform.position;
 			targetPos = initialPosition;
 
 			initialRotation = transform.rotation;
 			targetRotation = initialRotation;
 
-			currentWayPoint = 0;
-			collider.GetComponent<MeshRenderer> ().enabled = false;
-			collider.SetActive(false);
-
 			characterWayPoints.Add(initialPosition);
-
-			foreach (GameObject fruitList in Fruits)
-				fruitList.SetActive (false);
-
 			setFruitsList ();
-			
-
 		}
+
 
 		void setFruitsList()
 		{
@@ -88,7 +98,7 @@ namespace EA4S.Maze
 
 		void OnTriggerEnter(Collider other)
 		{
-			if (donotHandleBorderCollision)
+			if (donotHandleBorderCollision || !characterIsMoving)
 				return;
 			
 			print ("Colliding with: " + other.gameObject.name);
@@ -208,7 +218,7 @@ namespace EA4S.Maze
 
 		public void setClickedDot()
 		{
-			MazeGameManager.Instance.moveToNext ();
+			MazeGameManager.Instance.moveToNext (true);
 		}
 
 		public void nextPath()
@@ -288,14 +298,16 @@ namespace EA4S.Maze
 
 		void Update()
 		{
+			
+
 			if (characterIsMoving) {
 				transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*5);
-				var dir = transform.position - characterWayPoints[currentCharacterWayPoint];
+				var dir = transform.position - characterWayPoints[currentCharacterWayPoint+1];
 				var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 				targetRotation =  Quaternion.AngleAxis(angle, Vector3.forward) * initialRotation;
 
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
-
+				//transform.LookAt(characterWayPoints[currentCharacterWayPoint+1]);
 
 				if((transform.position - characterWayPoints[currentCharacterWayPoint]).magnitude == 0 && currentCharacterWayPoint < characterWayPoints.Count-1){
 
@@ -304,11 +316,12 @@ namespace EA4S.Maze
 					//reached the end:
 					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
 						//arrived!
+						transform.rotation = initialRotation;
 						if (currentFruitIndex == _fruits.Count) {
 							print ("Won");
 							GetComponent<BoxCollider> ().enabled = false;
 							characterIsMoving = false;
-							MazeGameManager.Instance.moveToNext ();
+							MazeGameManager.Instance.moveToNext (true);
 
 							if (currentFruitList == Fruits.Count - 1) {
 								if (dot != null)

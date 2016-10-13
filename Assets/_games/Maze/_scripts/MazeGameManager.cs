@@ -26,7 +26,12 @@ namespace EA4S.Maze
 		public StarFlowers starFlowers;
 
 		[Range(0,1)]
-		public float difficulty = 0.5f;
+		public float gameplay = 0.5f;
+
+		[Range(0,1)]
+		public float pedagogic = 0.5f;
+
+		 
 		public float idleTime = 7;
 		public TextMeshProUGUI roundNumber;
 
@@ -78,7 +83,7 @@ namespace EA4S.Maze
 			currentLetterIndex = 0;
 			roundNumber.text = "#" + (currentLetterIndex + 1);
 
-			gameTime = maxGameTime / (1 + difficulty);
+			gameTime = maxGameTime / (1 + gameplay);
 
 			timer.initTimer ();
 
@@ -121,19 +126,19 @@ namespace EA4S.Maze
 
 		}
 
-		public void moveToNext()
+		public void moveToNext(bool won = false)
 		{
 			//check if current letter is complete:
 			if (currentCharacter.isComplete ()) {
 				correctLetters++;
-
 				currentLetterIndex++;
+				print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
 				if (currentLetterIndex == prefabs.Count) {
 					EndGame ();
 					return;
 				} else {
 					roundNumber.text = "#" + (currentLetterIndex + 1);
-					restartCurrentLetter ();
+					restartCurrentLetter (won);
 				}
 			} else {
 				currentCharacter.nextPath ();
@@ -145,7 +150,7 @@ namespace EA4S.Maze
 		{
 			wrongLetters++;
 			currentLetterIndex++;
-			if (currentLetterIndex == prefabs.Count - 1) {
+			if (currentLetterIndex == prefabs.Count) {
 				EndGame ();
 				return;
 			} else {
@@ -155,9 +160,17 @@ namespace EA4S.Maze
 			
 		}
 
-		public void restartCurrentLetter()
+		public void restartCurrentLetter(bool won = false)
 		{
-			Destroy (currentPrefab);
+			//Destroy (currentPrefab);
+
+			//show message:
+			if (won)
+				AudioManager.I.PlaySfx (Sfx.Win);
+			else 
+				AudioManager.I.PlaySfx (Sfx.Lose);
+
+			currentPrefab.SendMessage("moveOut",won);
 			initCurrentLetter ();
 		
 
@@ -193,12 +206,28 @@ namespace EA4S.Maze
 			}
 
 			//
-			if(currentTutorial != null)
-				currentTutorial.showCurrentTutorial();
+			/*if (currentTutorial != null) {
+				currentTutorial.showCurrentTutorial ();
+
+			}*/
+
+		}
+
+		public void showCurrentTutorial()
+		{
+			if (currentTutorial != null) {
+				currentTutorial.showCurrentTutorial ();
+
+			}
+			if (currentCharacter != null) {
+				currentCharacter.initialize ();
+
+			}
+
 		}
 
 		IEnumerator shakeCamera(float duration, float magnitude) {
-
+			
 			float elapsed = 0.0f;
 
 			Vector3 originalCamPos = Camera.main.transform.position;
@@ -226,7 +255,7 @@ namespace EA4S.Maze
 
 		public void DrawLine(Vector3 start, Vector3 end, Color color)
 		{
-			start.z = end.z = -0.5f;//-0.1f;
+			start.z = end.z = -0.1f;//-0.1f;
 			GameObject myLine = new GameObject();
 			myLine.transform.position = start;
 			myLine.AddComponent<LineRenderer>();

@@ -18,6 +18,13 @@ namespace EA4S
         Vector2 lastPointerPosition = Vector2.zero;
         Vector2 deltaPosition;
 
+        public void Reset()
+        {
+            onPointerDown = null;
+            onPointerDrag = null;
+            onPointerUp = null;
+        }
+
         public void Update()
         {
             if (!Enabled)

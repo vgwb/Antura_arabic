@@ -71,6 +71,6 @@ public class ToboganFeedbackGraphics : MonoBehaviour
             }
         }
 
-        heightMeter.targetHeight = Mathf.Max(heightMeter.targetHeight, tower.TowerFullHeight);
+        heightMeter.targetHeight = Mathf.Max(heightMeter.targetHeight, tower.TowerFullHeight > 0 ? tower.TowerFullHeight + 0.5f : 0);
     }
 }
