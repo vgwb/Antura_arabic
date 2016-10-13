@@ -15,15 +15,18 @@ namespace EA4S.MakeFriends
         public GameObject angerGraphic;
         public LetterData letterData;
         public LetterObject letterObject;
-        public WordData wordData;
         public TMP_Text tmpText;
         [Range(-1, 1)]
         public int entranceDirection;
+        [HideInInspector]
+        public WordData wordData;
 
         //private Vector3 standingPosition;
         //private Vector3 offscreenPosition;
         private Vector3 initialRotation;
         private Vector3 entranceRotation;
+        private bool isFocusing;
+        private bool isWalking;
 
         private struct WalkParameters
         {
@@ -31,6 +34,7 @@ namespace EA4S.MakeFriends
             public Vector3 to;
             public Vector3 rotation;
             public float duration;
+            public float delay;
             public string walkAnimation;
             public string afterWalkAnimation;
             public bool speak;
@@ -38,12 +42,13 @@ namespace EA4S.MakeFriends
             public bool rotateAfterWalk;
             public Vector3 afterWalkRotation;
 
-            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, string walkAnimation, string afterWalkAnimation, bool speak, float speakDelay, bool rotateAfterWalk, Vector3 afterWalkRotation)
+            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay, string walkAnimation, string afterWalkAnimation, bool speak, float speakDelay, bool rotateAfterWalk, Vector3 afterWalkRotation)
             {
                 this.from = from;
                 this.to = to;
                 this.rotation = rotation;
                 this.duration = duration;
+                this.delay = delay;
                 this.walkAnimation = walkAnimation;
                 this.afterWalkAnimation = afterWalkAnimation;
                 this.speak = speak;
@@ -52,7 +57,7 @@ namespace EA4S.MakeFriends
                 this.afterWalkRotation = afterWalkRotation;
             }
         }
-            
+
 
         public void Init(WordData _data)
         {
@@ -63,10 +68,15 @@ namespace EA4S.MakeFriends
 
         void OnMouseDown()
         {
-            SpeakWord();
+            if (!isWalking && !isFocusing)
+            {
+                SpeakWord();
+                Focus();
+            }
         }
 
         #region Public Methods
+
         public void MakeEntrance(Vector3 offscreenPosition, Vector3 startingPosition, Vector3 entranceRotation, float entranceDuration, float speakDelay, Vector3 afterWalkRotation)
         {
             Walk(offscreenPosition, startingPosition, entranceRotation, entranceDuration, speak: true, speakDelay: speakDelay, rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
@@ -95,13 +105,13 @@ namespace EA4S.MakeFriends
             Walk(from, to, rotation, duration, walkAnimation: "Run", rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
         }
 
-        public void MoveAwayAngrily(Vector3 position, Vector3 rotation, float duration)
+        public void MoveAwayAngrily(Vector3 position, Vector3 rotation, float duration, float delay)
         {
             var from = transform.position;
             var to = position;
 
             LookAngry();
-            Walk(from, to, rotation, duration);
+            Walk(from, to, rotation, duration, delay: delay);
         }
 
         public void Celebrate(Vector3 celebrationPosition, Vector3 rotation, float celebrationDuration)
@@ -127,9 +137,11 @@ namespace EA4S.MakeFriends
                 container.GetComponent<Animator>().SetTrigger("Throb");
             }
         }
+
         #endregion
 
         #region Private Methods
+
         private void LookAngry()
         {
             StopCoroutine("LookAngry_Coroutine");
@@ -143,25 +155,61 @@ namespace EA4S.MakeFriends
             angerGraphic.SetActive(false);
         }
 
-        private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, string walkAnimation = "Walk", string afterWalkAnimation = "Idle", bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
+        private void Focus()
         {
-            var parameters = new WalkParameters(from, to, rotation, duration, walkAnimation, afterWalkAnimation, speak, speakDelay, rotateAfterWalk, afterWalkRotation);
+            StartCoroutine("Focus_Coroutine");
+        }
+
+        private IEnumerator Focus_Coroutine()
+        {
+            isFocusing = true;
+            var originalRotation = transform.rotation.eulerAngles;
+
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            yield return new WaitForSeconds(1f);
+
+            var focusedRotation = transform.rotation.eulerAngles;
+            var interpolant = 0f;
+            var lerpProgress = 0f;
+            var lerpLength = 0.5f;
+
+            while (lerpProgress < lerpLength)
+            {
+                transform.rotation = Quaternion.Euler(Vector3.Lerp(focusedRotation, originalRotation, interpolant));
+                lerpProgress += Time.deltaTime;
+                interpolant = lerpProgress / lerpLength;
+                interpolant = Mathf.Sin(interpolant * Mathf.PI * 0.5f);
+                yield return new WaitForFixedUpdate();
+            }
+            isFocusing = false;
+        }
+
+        private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, string walkAnimation = "Walk", string afterWalkAnimation = "Idle", bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
+        {
+            var parameters = new WalkParameters(from, to, rotation, duration, delay, walkAnimation, afterWalkAnimation, speak, speakDelay, rotateAfterWalk, afterWalkRotation);
             StopCoroutine("Walk_Coroutine");
             StartCoroutine("Walk_Coroutine", parameters);
         }
 
         private IEnumerator Walk_Coroutine(WalkParameters parameters)
         {
+            isWalking = true;
             var from = parameters.from;
             var to = parameters.to;
             var rotation = parameters.rotation;
             var duration = parameters.duration;
+            var delay = parameters.delay;
             var walkAnimation = parameters.walkAnimation;
             var afterWalkAnimation = parameters.afterWalkAnimation;
             var speak = parameters.speak;
             var speakDelay = parameters.speakDelay;
             var rotateAfterWalk = parameters.rotateAfterWalk;
             var afterWalkRotation = parameters.afterWalkRotation;
+
+            if (delay > 0)
+            {
+                yield return new WaitForSeconds(delay);
+            }
 
             transform.rotation = Quaternion.Euler(rotation);
             animator.SetTrigger(walkAnimation);
@@ -206,7 +254,9 @@ namespace EA4S.MakeFriends
                     yield return new WaitForFixedUpdate();
                 }
             }
+            isWalking = false;
         }
+
         #endregion
     }
 }

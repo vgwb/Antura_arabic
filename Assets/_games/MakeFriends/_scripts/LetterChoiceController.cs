@@ -6,7 +6,6 @@ using ModularFramework.Core;
 using ModularFramework.Helpers;
 using Google2u;
 using TMPro;
-using EA4S;
 
 namespace EA4S.MakeFriends
 {
@@ -14,6 +13,8 @@ namespace EA4S.MakeFriends
     {
         public TMP_Text LetterLabel;
         public Animator animator;
+        public Image image;
+        public Button button;
 
         [HideInInspector]
         public LetterData letterData;
@@ -41,14 +42,16 @@ namespace EA4S.MakeFriends
 
         public void Init(LetterData _letterData)
         {
+            Reset();
             letterData = _letterData;
             LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Isolated_Unicode);
         }
 
         public void ClickAction()
         {
-            MakeFriendsGameManager.Instance.OnClickedLetterChoice(this);
+            Disable();
             SpeakLetter();
+            MakeFriendsGameManager.Instance.OnClickedLetterChoice(this);
         }
 
         public void SpeakLetter()
@@ -62,6 +65,29 @@ namespace EA4S.MakeFriends
         public void FlashWrong()
         {
             animator.SetTrigger("FlashWrong");
+        }
+
+        public void SpawnBalloon(bool correctChoice)
+        {
+            var balloon = Instantiate(MakeFriendsGameManager.Instance.letterBalloonPrefab, MakeFriendsGameManager.Instance.letterBalloonContainer.transform.position, Quaternion.identity, MakeFriendsGameManager.Instance.letterBalloonContainer.transform) as GameObject;
+            var balloonController = balloon.GetComponent<LetterBalloonController>();
+            balloonController.Init(letterData);
+            balloonController.EnterScene(correctChoice);
+        }
+
+        private void Disable()
+        {
+            image.enabled = false;
+            button.enabled = false;
+            LetterLabel.enabled = false;
+        }
+
+        private void Reset()
+        {
+            image.enabled = true;
+            button.enabled = true;
+            LetterLabel.enabled = true;
+            State = ChoiceState.IDLE;
         }
 
         private void OnStateChanged()

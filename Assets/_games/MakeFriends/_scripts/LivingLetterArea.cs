@@ -57,7 +57,7 @@ namespace EA4S.MakeFriends
             
         public void MoveAwayAngrily()
         {
-            livingLetter.MoveAwayAngrily(nextMovingAwayPosition, exitRotation, movingAwayDuration);
+            livingLetter.MoveAwayAngrily(nextMovingAwayPosition, exitRotation, movingAwayDuration, 1f);
             nextMovingAwayPosition += (offscreenPosition - startingPosition) / 3f;
         }
 
