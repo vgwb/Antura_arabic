@@ -10,5 +10,6 @@ namespace EA4S
         IStarsWidget GetStarsWidget();
         IPopupWidget GetPopupWidget();
 
+        void Reset();
     }
 }

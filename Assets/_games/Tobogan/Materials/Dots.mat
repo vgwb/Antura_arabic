@@ -72,7 +72,7 @@ Material:
     m_Floats:
     - first:
         name: _Base
-      second: -38.919792
+      second: -39.18578
     - first:
         name: _BumpScale
       second: 1
@@ -96,7 +96,7 @@ Material:
       second: 1
     - first:
         name: _Height
-      second: 4.722137
+      second: 14.832563
     - first:
         name: _Metallic
       second: 0

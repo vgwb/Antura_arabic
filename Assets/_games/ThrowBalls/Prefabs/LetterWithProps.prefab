@@ -1397,6 +1397,7 @@ MonoBehaviour:
   middleCrate: {fileID: 114000010811121450}
   topCrate: {fileID: 114000013693691730}
   letter: {fileID: 114000013193933908}
+  hit: 0
 --- !u!114 &114000010811121450
 MonoBehaviour:
   m_ObjectHideFlags: 1
