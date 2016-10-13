@@ -114,19 +114,19 @@ namespace EA4S {
                 return;
             switch (_stateName) {
                 case "Idle":
-                    View.Model.State = LetterObjectState.Idle_State;
+                    View.Model.State = LetterObjectState.LL_idle;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.IdleDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Walk":
-                    View.Model.State = LetterObjectState.Walk_State;
+                    View.Model.State = LetterObjectState.LL_walk;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.WalkDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Run":
-                    View.Model.State = LetterObjectState.Run_State;
+                    View.Model.State = LetterObjectState.LL_run;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.RunDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);

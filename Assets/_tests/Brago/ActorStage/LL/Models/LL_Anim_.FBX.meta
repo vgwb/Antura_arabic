@@ -106,12 +106,12 @@ ModelImporter:
     4300000: LL
     4300002: LL_FrontQuad
     4300004: LL_BackQuad
-    7400000: _Horray anim
-    7400002: _Dance step 01
+    7400000: LL_horray
+    7400002: LL_dancing 1
     7400004: _Get angry
-    7400006: _Idle 01
+    7400006: LL_idle_1
     7400008: _Slap a highfive
-    7400010: _Walk
+    7400010: LL_walk
     9500000: //RootNode
     13700000: LL
     13700002: LL_BackQuad
@@ -138,7 +138,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: _Horray anim
+      name: LL_horray
       takeName: Take 001
       firstFrame: 0
       lastFrame: 39
@@ -264,7 +264,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _Dance step 01
+      name: LL_dancing 1
       takeName: Take 001
       firstFrame: 100
       lastFrame: 148
@@ -400,7 +400,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -516,7 +516,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _Idle 01
+      name: LL_idle_1
       takeName: Take 001
       firstFrame: 300
       lastFrame: 330
@@ -768,7 +768,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: _Walk
+      name: LL_walk
       takeName: Take 001
       firstFrame: 415
       lastFrame: 445
