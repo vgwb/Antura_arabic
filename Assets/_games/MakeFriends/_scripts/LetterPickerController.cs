@@ -45,6 +45,19 @@ namespace EA4S.MakeFriends
             animator.SetTrigger("Entrance");
         }
 
+        public void BlockForSeconds(float duration)
+        {
+            StopCoroutine("BlockForSeconds_Coroutine");
+            StartCoroutine("BlockForSeconds_Coroutine", duration);
+        }
+
+        public IEnumerator BlockForSeconds_Coroutine(float duration)
+        {
+            Block();
+            yield return new WaitForSeconds(duration);
+            Unblock();
+        }
+
         public void ShowAndUnblockDelayed(float delay)
         {
             StopCoroutine("ShowAndUnblockDelayed_Coroutine");

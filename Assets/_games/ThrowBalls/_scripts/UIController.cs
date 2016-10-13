@@ -95,7 +95,7 @@ namespace EA4S.ThrowBalls
 
         public void OnRoundStarted(string roundText, LetterData _data)
         {
-            variationText.text = roundText;
+            //variationText.text = roundText;
             letterHint.SetActive(true);
             letterHintText.text = _data.TextForLivingLetter;
         }
