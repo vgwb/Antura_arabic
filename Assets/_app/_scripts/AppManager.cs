@@ -148,15 +148,15 @@ namespace EA4S
             switch (PlaySession) {
                 case 1:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd");
+                        miniGame = DB.gameData.Find(g => g.Code == "FastCrowd_letter");
                     else
-                        miniGame = DB.gameData.Find(g => g.Code == "balloons");
+                        miniGame = DB.gameData.Find(g => g.Code == "Balloons_spelling");
                     break;
                 case 2:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd_words");
+                        miniGame = DB.gameData.Find(g => g.Code == "FastCrowd_words");
                     else
-                        miniGame = DB.gameData.Find(g => g.Code == "dontwakeup");
+                        miniGame = DB.gameData.Find(g => g.Code == "Tobogan");
                     break;
                 case 3:
                     miniGame = new MinigameData("Assessment", "Assessment", "Assessment", "app_Assessment", true);
