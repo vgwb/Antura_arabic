@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8cb83b2851ada459a87bba2eb88756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livingLetterPrefab: {fileID: 114000011825636988, guid: f44db73140b32c4448e8ab9ecbb51a46,
+  livingLetterPrefab: {fileID: 114000011975068830, guid: 6e35fb39489399c46bf7216ffa65f818,
     type: 2}
 --- !u!1001 &102917029
 Prefab:
@@ -8929,7 +8929,9 @@ Prefab:
       propertyPath: CallbackManager
       value: 
       objectReference: {fileID: 101744379}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11407226, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
+    - {fileID: 11433158, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1677212308
@@ -9166,8 +9168,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}

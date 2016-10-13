@@ -14,9 +14,17 @@
             var provider = FastCrowdConfiguration.Instance.Questions;
             game.CurrentQuestion = provider.GetNextQuestion();
 
-            // Show question
-            var popupWidget = game.Context.GetPopupWidget();
-            popupWidget.Show(OnPopupCloseRequested, "", true);
+            if (game.CurrentQuestion != null)
+            {
+                // Show question
+                var popupWidget = game.Context.GetPopupWidget();
+                popupWidget.Show(OnPopupCloseRequested, "", true);
+            }
+            else
+            {
+                // no more questions
+                game.SetCurrentState(game.ResultState);
+            }
         }
 
         void OnPopupCloseRequested()
@@ -32,7 +40,6 @@
 
         public void Update(float delta)
         {
-
         }
 
         public void UpdatePhysics(float delta)

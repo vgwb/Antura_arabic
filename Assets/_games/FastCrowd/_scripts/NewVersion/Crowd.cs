@@ -10,7 +10,7 @@ namespace EA4S.FastCrowd
     {
         public LetterObjectView livingLetterPrefab;
 
-        List<GameObject> letters = new List<GameObject>();
+        List<FastCrowdLivingLetter> letters = new List<FastCrowdLivingLetter>();
 
         public void AddLivingLetter(ILivingLetterData letter)
         {
@@ -20,12 +20,18 @@ namespace EA4S.FastCrowd
             GameplayHelper.RandomPointInWalkableArea(transform.position, 20f, out newPosition);
             letterObjectView.transform.position = newPosition;
             letterObjectView.Init(letter);
+
+            var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
+
+            letters.Add(livingLetter);
         }
 
         public void Clean()
         {
+            // TODO: Poof!
+
             foreach (var l in letters)
-                Destroy(l);
+                Destroy(l.gameObject);
             letters.Clear();
         }
     }
