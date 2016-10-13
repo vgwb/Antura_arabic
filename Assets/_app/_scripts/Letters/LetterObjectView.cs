@@ -149,37 +149,50 @@ namespace EA4S {
             }
 
             switch (_newState) {
-                case LetterObjectState.Idle_State:
-                    Anim.SetInteger("State", 0);
+                case LetterObjectState.LL_idle:
+                    // Random from 4 idle animations
+                    Anim.SetInteger("State", Random.Range(1, 4));
                     break;
-                case LetterObjectState.Walk_State:
-                    Anim.SetInteger("State", 1);
+                case LetterObjectState.LL_walk:
+                    Anim.SetInteger("State", (int)LetterObjectState.LL_walk);
                     break;
-                case LetterObjectState.Run_State:
-                    Anim.SetInteger("State", 2);
+                case LetterObjectState.LL_run:
+                    Anim.SetInteger("State", (int)LetterObjectState.LL_run);
                     break;
+                case LetterObjectState.LL_drag_idle:
+                    // Todo: disable animator and start ragdoll
+                    break;
+                case LetterObjectState.LL_jump:
+                    Anim.SetInteger("State", (int)LetterObjectState.LL_jump);
+                    break;
+                case LetterObjectState.LL_land:
+                    Anim.SetInteger("State", (int)LetterObjectState.LL_land);
+                    break;
+
                 case LetterObjectState.Ninja_State:
-                    Anim.SetInteger("State", 4);
+                    // deprecated?
+                    break;
+
+                case LetterObjectState.BumpOut_State:
+                    
+                    break;
+
+                case LetterObjectState.LL_run_fear:
+                    // Todo: make this with new 'emoticons'
+
+                    //Anim.SetInteger("State", 2);
+                    //exclamationMark.DOScale(1, 0.3f);
+                    //sequenceExclamationMark.Play();
+                    //AudioManager.I.PlaySfx(Sfx.LetterFear);
                     break;
                 case LetterObjectState.FrontOfCamera_State:
-                    Anim.SetInteger("State", 0);
+                    // Verify
                     break;
                 case LetterObjectState.GoOut_State:
-                    Anim.SetInteger("State", 2);
-                    break;
-                case LetterObjectState.BumpOut_State:
-                    Anim.SetInteger("State", 2);
-                    break;
-                case LetterObjectState.Grab_State:
-                    Anim.SetInteger("State", 3);
-                    break;
-                case LetterObjectState.Terrified_State:
-                    Anim.SetInteger("State", 2);
-                    exclamationMark.DOScale(1, 0.3f);
-                    sequenceExclamationMark.Play();
-                    AudioManager.I.PlaySfx(Sfx.LetterFear);
+                    // Verify
                     break;
                 default:
+                    // No specific visual behaviour for this state
                     break;
             }
         }
