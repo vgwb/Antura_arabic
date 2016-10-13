@@ -273,12 +273,12 @@ namespace EA4S.ThrowBalls
             if (isRoundOngoing)
             {
                 numPokeballs--;
-                //UIController.instance.OnPokeballLost();
+                UIController.instance.OnPokeballLost();
 
                 if (numPokeballs == 0)
                 {
-                    //PokeballController.instance.Disable();
-                    //OnRoundLost();
+                    PokeballController.instance.Disable();
+                    OnRoundLost();
                 }
             }
         }
