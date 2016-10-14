@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+Database is maintained by Stefano Cecere
+we are using Mysqlite from https://github.com/codecoding/SQLite4Unity3d 
+and engine from https://github.com/praeclarum/sqlite-net
+*/
+
+using UnityEngine;
 #if !UNITY_EDITOR
 using System.Collections;
 using System.IO;
