@@ -29,6 +29,10 @@ namespace EA4S.DancingDots
 
 		public DancingDotsLivingLetter dancingDotsLL;
 		public GameObject antura;
+		public float anturaMinDelay = 3f;
+		public float anturaMaxDelay = 10f;
+		public float anturaMinScreenTime = 1f;
+		public float anturaMaxScreenTime = 2f;
 		public GameObject[] diacritics;
 		public DancingDotsDiacriticPosition activeDiacritic;
 
@@ -82,6 +86,7 @@ namespace EA4S.DancingDots
 
 		private Level currentLevel = Level.Level4;
 		private List<DancingDotsSplat> splats;
+		private bool isPlaying = false;
 
 
 		protected override void Awake()
@@ -104,6 +109,8 @@ namespace EA4S.DancingDots
 
 			StartRound();
 
+			isPlaying = true;
+
 			StartCoroutine(AnimateAntura());
 
 //			StartCoroutine(ShowMenu(dotsMenu));
@@ -116,23 +123,24 @@ namespace EA4S.DancingDots
 			Vector3 pos = antura.transform.position;
 			// Move antura off screen because SetActive is reseting the animation to running
 			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-			do
+
+			while (isPlaying)
 			{
-				yield return new WaitForSeconds(UnityEngine.Random.Range(1f,10f));
+				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
 				poof = Instantiate(poofPrefab, pos, Quaternion.identity) as GameObject;
 				Destroy(poof, 2f);
 				yield return new WaitForSeconds(0.4f);
 				// Move antura on screen because SetActive is reseting the animation to running
 				antura.transform.position = pos;
 
-				yield return new WaitForSeconds(UnityEngine.Random.Range(1f,2f));
+				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
 
 				poof = Instantiate(poofPrefab, pos, Quaternion.identity) as GameObject;
 				Destroy(poof, 2f);
 				// Move antura off screen because SetActive is reseting the animation to running
 				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
 
-			} while (true);
+			}
 
 		}
 
@@ -478,10 +486,9 @@ namespace EA4S.DancingDots
 
 	    IEnumerator EndGame_Coroutine()
 		{
+			isPlaying = false;
 
 			dancingDotsLL.LivingLetterAnimator.Play("idle");
-
-			StopCoroutine(AnimateAntura());
 
 			yield return new WaitForSeconds(1f);
 
