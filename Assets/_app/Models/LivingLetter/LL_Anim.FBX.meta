@@ -125,7 +125,7 @@ ModelImporter:
     13700002: LL_BackQuad
     13700004: LL_FrontQuad
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
