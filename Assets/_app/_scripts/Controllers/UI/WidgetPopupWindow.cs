@@ -45,7 +45,7 @@ namespace EA4S
             this.gameObject.SetActive(false);
         }
 
-        void ResetContents()
+        public void ResetContents()
         {
             clicked = false;
             TutorialImageGO.SetActive(false);
@@ -95,6 +95,11 @@ namespace EA4S
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
 
             Show(true);
+        }
+
+        public void SetButtonCallback(Action callback)
+        {
+            currentCallback = callback;
         }
 
         public void ShowArabicTextDirect(Action callback, string myArabicText)
@@ -172,6 +177,24 @@ namespace EA4S
 
             Show(true);
         }
+
+        public void SetMark(bool visible, bool ok)
+        {
+            MarkOK.SetActive(ok);
+            MarkKO.SetActive(!ok);
+        }
+
+        public void SetImage(Sprite image2show)
+        {
+            if (image2show != null)
+            {
+                TutorialImageGO.GetComponent<Image>().sprite = image2show;
+                TutorialImageGO.SetActive(true);
+            }
+            else
+                TutorialImageGO.SetActive(false);
+        }
+
 
         public void ShowStringAndWord(Action callback, string text, WordData wordData)
         {
@@ -271,6 +294,13 @@ namespace EA4S
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = text;
         }
 
+        public void SetTitleSentence(string SentenceId)
+        {
+            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+        }
+
         public void SetWord(string wordCode, string arabicWord)
         {
             if (wordCode != "")
@@ -302,7 +332,9 @@ namespace EA4S
 
             clicked = true;
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-            currentCallback();
+
+            if (currentCallback != null)
+                currentCallback();
         }
     }
 }

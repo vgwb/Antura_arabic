@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EA4S.FastCrowd
 {
     public class FastCrowdPlayState : IGameState
     {
-        CountdownTimer gameTime = new CountdownTimer(90.0f);
+        CountdownTimer gameTime;
         FastCrowdGame game;
-        
+
+        float anturaTimer;
+        bool isAnturaRunning = false;
+
         public FastCrowdPlayState(FastCrowdGame game)
         {
             this.game = game;
 
+            gameTime = new CountdownTimer(FastCrowdConfiguration.Instance.PlayTime);
             gameTime.onTimesUp += OnTimesUp;
 
             gameTime.Reset();
@@ -19,9 +24,28 @@ namespace EA4S.FastCrowd
         public void EnterState()
         {
             game.QuestionManager.OnCompleted += OnQuestionCompleted;
+            game.QuestionManager.OnDropped += OnAnswerDropped;
 
-            if (game.CurrentQuestion != null)
-                game.QuestionManager.StartQuestion(game.CurrentQuestion);
+            // Generate wrong answers
+            List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
+            int maxRetries = 100;
+            for (int i = 0; 
+                i < FastCrowdConfiguration.Instance.MaxNumbOfWrongLettersNoise && 
+                i < game.QuestionNumber &&
+                maxRetries > 0; i++)
+            {
+                --maxRetries; // prevent deadlocks
+                WordData newWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                if (!wrongAnswers.Contains(newWord) && !game.CurrentChallenge.Contains(newWord))
+                {
+                    wrongAnswers.Add(newWord);
+                }
+                else
+                    i--;
+            }
+
+            if (game.CurrentChallenge != null)
+                game.QuestionManager.StartQuestion(game.CurrentChallenge, wrongAnswers);
             else
                 game.QuestionManager.Clean();
 
@@ -29,25 +53,77 @@ namespace EA4S.FastCrowd
             gameTime.Start();
 
             game.timerText.gameObject.SetActive(true);
+
+            StopAntura();
         }
 
         public void ExitState()
         {
+            StopAntura();
+
             game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
+            game.QuestionManager.OnDropped -= OnAnswerDropped;
             game.QuestionManager.Clean();
         }
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.QuestionState);
+            game.SetCurrentState(game.ResultState);
+        }
+
+        void OnAnswerDropped(bool result)
+        {
+            game.Context.GetCheckmarkWidget().Show(result);
+        }
+
+        void StopAntura()
+        {
+            isAnturaRunning = false;
+            game.antura.SetAnturaTime(false);
+            // Schedule next exit
+            anturaTimer = UnityEngine.Random.Range(20, 30);
+
+            // TEMP
+            foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
+            {
+                item.isAnturaMoment = false;
+            }
+
+            AudioManager.I.PlayMusic(Music.Theme3);
+        }
+
+        void StartAntura()
+        {
+            isAnturaRunning = true;
+            game.antura.SetAnturaTime(true);
+            // Schedule next duration
+            anturaTimer = UnityEngine.Random.Range(10, 20);
+
+            // TEMP
+            foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
+            {
+                item.isAnturaMoment = true;
+            }
+
+            AudioManager.I.PlayMusic(Music.MainTheme);
         }
 
         public void Update(float delta)
         {
             gameTime.Update(delta);
             game.timerText.text = String.Format("{0:0}", gameTime.Time);
+
+            anturaTimer -= delta;
+
+            if (anturaTimer <= 0.0f)
+            {
+                if (isAnturaRunning)
+                    StopAntura();
+                else
+                    StartAntura();
+            }
         }
 
         public void UpdatePhysics(float delta)
@@ -58,7 +134,7 @@ namespace EA4S.FastCrowd
         {
             // Time's up!
             game.isTimesUp = true;
-            game.SetCurrentState(game.ResultState);
+            game.SetCurrentState(game.EndState);
         }
     }
 }

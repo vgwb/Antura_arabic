@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArabicSupport;
+using System;
 using UnityEngine;
 
 namespace EA4S
@@ -19,6 +20,22 @@ namespace EA4S
                 WidgetPopupWindow.I.ShowSentenceAndWord(callback, text.ToString(), word);
             else
                 WidgetPopupWindow.I.ShowSentence(callback, text.ToString());
+        }
+
+        public void Show(System.Action callback, string text, bool markResult, WordData word = null)
+        {
+            if (word != null)
+                WidgetPopupWindow.I.ShowSentenceAndWordWithMark(callback, text, word, markResult);
+            else
+                WidgetPopupWindow.I.ShowSentenceWithMark(callback, text, markResult, null);
+        }
+
+        public void Show(System.Action callback, string text, WordData word = null)
+        {
+            if (word != null)
+                WidgetPopupWindow.I.ShowSentenceAndWord(callback, text, word);
+            else
+                WidgetPopupWindow.I.ShowSentence(callback, text);
         }
 
         public void Show(System.Action callback, string text, bool isArabic)
@@ -42,6 +59,44 @@ namespace EA4S
         public void Hide()
         {
             WidgetPopupWindow.I.Close();
+        }
+
+        public void Show(bool reset = true)
+        {
+            if (reset)
+                WidgetPopupWindow.I.ResetContents();
+
+            WidgetPopupWindow.I.Show(true);
+        }
+
+        public void SetButtonCallback(System.Action callback)
+        {
+            WidgetPopupWindow.I.SetButtonCallback(callback);
+        }
+
+        public void SetTitle(string text, bool isArabic)
+        {
+            WidgetPopupWindow.I.SetTitle(isArabic ? ArabicFixer.Fix(text, false, false) : text);
+        }
+
+        public void SetTitle(TextID text)
+        {
+            WidgetPopupWindow.I.SetTitleSentence(text.ToString());
+        }
+
+        public void SetMark(bool visible, bool correct)
+        {
+            WidgetPopupWindow.I.SetMark(visible, correct);
+        }
+
+        public void SetImage(Sprite image)
+        {
+            WidgetPopupWindow.I.SetImage(image);
+        }
+
+        public void SetWord(WordData data)
+        {
+            WidgetPopupWindow.I.SetWord(data.Key, ((WordData)data).Word);
         }
     }
 }

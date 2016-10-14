@@ -11,19 +11,35 @@
 
         public void EnterState()
         {
-            var provider = FastCrowdConfiguration.Instance.Questions;
-            game.CurrentQuestion = provider.GetNextQuestion();
+            game.CurrentChallenge.Clear();
 
-            if (game.CurrentQuestion != null)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            {
+                var provider = FastCrowdConfiguration.Instance.WordsProvider;
+                var question = provider.GetNextData();
+                game.CurrentChallenge.Add(question);
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+            {
+                for (int i = 0; i < 3; ++i)
+                {
+                    var provider = FastCrowdConfiguration.Instance.WordsProvider;
+                    var question = provider.GetNextData();
+                    game.CurrentChallenge.Add(question);
+                }
+            }
+
+            ++game.QuestionNumber;
+
+            if (game.CurrentChallenge.Count > 0)
             {
                 // Show question
-                var popupWidget = game.Context.GetPopupWidget();
-                popupWidget.Show(OnPopupCloseRequested, "", true);
+                game.ShowChallengePopupWidget(false, OnPopupCloseRequested);
             }
             else
             {
                 // no more questions
-                game.SetCurrentState(game.ResultState);
+                game.SetCurrentState(game.EndState);
             }
         }
 

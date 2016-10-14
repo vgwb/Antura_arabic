@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ModularFramework.Core;
 using EA4S;
 using System.Linq;
+using System;
 
 namespace EA4S.API {
 
@@ -150,28 +151,34 @@ namespace EA4S.API {
                 case "TestGame":
                     break;
                 case "FastCrowd_v1":
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 1;
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Spelling;
                     FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 70;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.WordsProvider = new SampleWordProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v2":
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 2;
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Words;
                     FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 80;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.WordsProvider = new SampleWordProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v3":
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 3;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Counting;
+                    FastCrowd.FastCrowdConfiguration.Instance.WordsProvider = new SampleWordProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v4":
-                    FastCrowd.FastCrowdConfiguration.Instance.Variation = 4;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
+                    FastCrowd.FastCrowdConfiguration.Instance.LetterProvider = new SampleLetterProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+                    break;
+                case "FastCrowd_v5":
+                    FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Alphabet;
+                    FastCrowd.FastCrowdConfiguration.Instance.LetterProvider = new SampleLetterProvider();
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
@@ -239,6 +246,7 @@ namespace EA4S.API {
         public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
         public IStarsWidget starsWidget = new SampleStarsWidget();
         public IPopupWidget questionWidget = new SamplePopupWidget();
+        public ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
 
         public IAudioManager GetAudioManager() {
             return audioManager;
@@ -264,6 +272,11 @@ namespace EA4S.API {
         public void Reset()
         {
             inputManager.Reset();
+        }
+
+        public ICheckmarkWidget GetCheckmarkWidget()
+        {
+            return checkmarkWidget;
         }
 
         #region presets

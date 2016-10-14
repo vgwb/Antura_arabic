@@ -1,18 +1,18 @@
 ﻿namespace EA4S.FastCrowd
 {
-    public class FastCrowdIntroductionState : IGameState
+    public class FastCrowdEndState : IGameState
     {
         FastCrowdGame game;
 
-        float timer = 1;
-        public FastCrowdIntroductionState(FastCrowdGame game)
+        float timer = 2;
+        public FastCrowdEndState(FastCrowdGame game)
         {
             this.game = game;
         }
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayMusic(Music.Theme3);
+            game.Context.GetAudioManager().PlayMusic(Music.Relax);
         }
 
         public void ExitState()
@@ -25,7 +25,7 @@
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.QuestionState);
+                game.EndGame(game.CurrentStars, game.CurrentScore);
             }
         }
 

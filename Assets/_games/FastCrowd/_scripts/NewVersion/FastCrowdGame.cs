@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace EA4S.FastCrowd
@@ -6,11 +8,16 @@ namespace EA4S.FastCrowd
     public class FastCrowdGame : MiniGame
     {
         public QuestionManager QuestionManager;
-
+        
         public TextMeshProUGUI timerText;
+        public AnturaController antura;
+        public WordComposer wordComposer;
 
-        public IQuestionPack CurrentQuestion { get; set; }
+        public List<ILivingLetterData> CurrentChallenge = new List<ILivingLetterData>();
+
         public int CurrentScore { get; private set; }
+
+        public int QuestionNumber = 0;
 
         [HideInInspector]
         public bool isTimesUp;
@@ -37,6 +44,7 @@ namespace EA4S.FastCrowd
         public FastCrowdQuestionState QuestionState { get; private set; }
         public FastCrowdPlayState PlayState { get; private set; }
         public FastCrowdResultState ResultState { get; private set; }
+        public FastCrowdEndState EndState { get; private set; }
 
         public void ResetScore()
         {
@@ -61,10 +69,45 @@ namespace EA4S.FastCrowd
             QuestionState = new FastCrowdQuestionState(this);
             PlayState = new FastCrowdPlayState(this);
             ResultState = new FastCrowdResultState(this);
-            
+            EndState = new FastCrowdEndState(this);
+
             timerText.gameObject.SetActive(false);
 
             Physics.gravity = new Vector3(0, -10, 0);
+
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+                wordComposer.gameObject.SetActive(false);
+        }
+
+
+        public void ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
+        {
+            var popupWidget = Context.GetPopupWidget();
+            popupWidget.Show();
+            popupWidget.SetButtonCallback(callback);
+
+            if (showAsGoodAnswer)
+            {
+                popupWidget.SetTitle(TextID.WELL_DONE);
+                popupWidget.SetMark(true, true);
+            }
+            else
+                popupWidget.SetTitle("" + QuestionNumber, false);
+
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            {
+                var question = CurrentChallenge[0];
+                popupWidget.SetWord((WordData)question);
+                Context.GetAudioManager().PlayWord((WordData)question);
+            }
+            else
+            {
+                var stringListOfWords = "";
+                foreach (var w in CurrentChallenge)
+                    stringListOfWords +=  w.TextForLivingLetter + " ";
+
+                popupWidget.SetTitle(stringListOfWords, true);
+            }
         }
     }
 }

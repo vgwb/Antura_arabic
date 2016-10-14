@@ -9,6 +9,7 @@ namespace EA4S
         ISubtitlesWidget GetSubtitleWidget();
         IStarsWidget GetStarsWidget();
         IPopupWidget GetPopupWidget();
+        ICheckmarkWidget GetCheckmarkWidget();
 
         void Reset();
     }
