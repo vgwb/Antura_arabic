@@ -75,7 +75,11 @@ namespace EA4S
     public enum LetterObjectState {
         // Idle
         LL_idle = 0, // Generic idle
-        LL_idle_ciao = 2,
+        LL_idle_1 = 1,
+        LL_idle_2 = 2,
+        LL_idle_3 = 3,
+        LL_idle_4 = 4,
+        LL_idle_5 = 5,
         // Walk or run
         LL_walk = 10, // Generic walk
         LL_walk_L = 15,
@@ -89,6 +93,7 @@ namespace EA4S
         LL_drag_idle = 30,
         // Vertical situations
         LL_jump = 41,
+        LL_jump_loop = 42,
         LL_fall_down = 43,
         LL_land = 45,
         LL_standup = 48,
@@ -110,8 +115,8 @@ namespace EA4S
         LL_balance_L = 75,
         LL_balance_R = 76,
         // Ride Rocket
-        LL_ride_rocket_idle = 71,
-        LL_ride_rocket_horray = 75,
+        LL_ride_rocket_idle = 81,
+        LL_ride_rocket_horray = 85,
 
         // to be check
         FrontOfCamera_State,

@@ -9,7 +9,6 @@ namespace EA4S {
     /// - init component by data
     /// - manage animation
     /// </summary>
-    [RequireComponent(typeof(Animator))]
     public class LetterObjectView : MonoBehaviour {
 
         #region public properties
@@ -53,7 +52,7 @@ namespace EA4S {
         public Animator Anim {
             get {
                 if (!anim)
-                    anim = GetComponent<Animator>();
+                    anim = GetComponentInChildren<Animator>();
                 return anim;
             }
             set { anim = value; }
@@ -148,42 +147,50 @@ namespace EA4S {
                 }
             }
 
+            Debug.Log((int)_newState);
+            
             switch (_newState) {
                 case LetterObjectState.LL_idle:
                     // Random from 4 idle animations
                     Anim.SetInteger("State", Random.Range(1, 4));
                     break;
+                case LetterObjectState.LL_idle_1:
+                    Anim.SetInteger("State", (int)LetterObjectState.LL_idle_1);
+                    break;
+                case LetterObjectState.LL_idle_2:
+                case LetterObjectState.LL_idle_3:
+                case LetterObjectState.LL_idle_4:
+                case LetterObjectState.LL_idle_5:
                 case LetterObjectState.LL_walk:
-                    Anim.SetInteger("State", (int)LetterObjectState.LL_walk);
-                    break;
+                case LetterObjectState.LL_walk_L:
+                case LetterObjectState.LL_walk_R:
                 case LetterObjectState.LL_run:
-                    Anim.SetInteger("State", (int)LetterObjectState.LL_run);
-                    break;
-                case LetterObjectState.LL_drag_idle:
-                    // Todo: disable animator and start ragdoll
-                    break;
-                case LetterObjectState.LL_jump:
-                    Anim.SetInteger("State", (int)LetterObjectState.LL_jump);
-                    break;
-                case LetterObjectState.LL_land:
-                    Anim.SetInteger("State", (int)LetterObjectState.LL_land);
-                    break;
-
-                case LetterObjectState.Ninja_State:
-                    // deprecated?
-                    break;
-
-                case LetterObjectState.BumpOut_State:
-                    
-                    break;
-
+                case LetterObjectState.LL_run_happy:
                 case LetterObjectState.LL_run_fear:
-                    // Todo: make this with new 'emoticons'
-
-                    //Anim.SetInteger("State", 2);
-                    //exclamationMark.DOScale(1, 0.3f);
-                    //sequenceExclamationMark.Play();
-                    //AudioManager.I.PlaySfx(Sfx.LetterFear);
+                case LetterObjectState.LL_run_fear_L:
+                case LetterObjectState.LL_run_fear_R:
+                case LetterObjectState.LL_drag_idle:
+                case LetterObjectState.LL_jump:
+                case LetterObjectState.LL_fall_down:
+                case LetterObjectState.LL_land:
+                case LetterObjectState.LL_standup:
+                case LetterObjectState.LL_dancing:
+                case LetterObjectState.LL_dancing_win:
+                case LetterObjectState.LL_twirl:
+                case LetterObjectState.LL_turn_180:
+                case LetterObjectState.LL_win:
+                case LetterObjectState.LL_horray:
+                case LetterObjectState.LL_highfive:
+                case LetterObjectState.LL_lose:
+                case LetterObjectState.LL_get_angry:
+                case LetterObjectState.LL_get_angry_1:
+                case LetterObjectState.LL_get_angry_2:
+                case LetterObjectState.LL_balance:
+                case LetterObjectState.LL_balance_L:
+                case LetterObjectState.LL_balance_R:
+                case LetterObjectState.LL_ride_rocket_idle:
+                case LetterObjectState.LL_ride_rocket_horray:
+                    Anim.SetInteger("State", (int)_newState);
                     break;
                 case LetterObjectState.FrontOfCamera_State:
                     // Verify
@@ -191,10 +198,18 @@ namespace EA4S {
                 case LetterObjectState.GoOut_State:
                     // Verify
                     break;
+                case LetterObjectState.Ninja_State:
+                    // Verify
+                    break;
+                case LetterObjectState.BumpOut_State:
+                    // Verify
+                    break;
                 default:
                     // No specific visual behaviour for this state
                     break;
+
             }
+            
         }
         #endregion
 
