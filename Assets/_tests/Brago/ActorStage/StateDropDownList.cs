@@ -13,7 +13,7 @@ namespace EA4S.Test {
             options.AddRange(addOptionsFromEnum<LetterObjectState>());
             onValueChanged.AddListener(delegate {
                 foreach (var l in FindObjectsOfType<LetterObjectView>()) {
-                    l.DebugStates((LetterObjectState)Enum.Parse(typeof(LetterObjectState), options[value].text));
+                    l.SetState((LetterObjectState)Enum.Parse(typeof(LetterObjectState), options[value].text));
                 }
             });
 

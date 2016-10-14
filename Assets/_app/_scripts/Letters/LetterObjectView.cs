@@ -137,6 +137,7 @@ namespace EA4S {
         #endregion
 
         #region events handlers
+
         void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState) {
             // reset animation for Terrified_State
             if (exclamationMark && sequenceExclamationMark != null) {
@@ -155,8 +156,6 @@ namespace EA4S {
                     Anim.SetInteger("State", Random.Range(1, 4));
                     break;
                 case LetterObjectState.LL_idle_1:
-                    Anim.SetInteger("State", (int)LetterObjectState.LL_idle_1);
-                    break;
                 case LetterObjectState.LL_idle_2:
                 case LetterObjectState.LL_idle_3:
                 case LetterObjectState.LL_idle_4:
@@ -170,6 +169,7 @@ namespace EA4S {
                 case LetterObjectState.LL_run_fear_L:
                 case LetterObjectState.LL_run_fear_R:
                 case LetterObjectState.LL_drag_idle:
+                case LetterObjectState.LL_jump_loop:
                 case LetterObjectState.LL_jump:
                 case LetterObjectState.LL_fall_down:
                 case LetterObjectState.LL_land:
@@ -211,11 +211,20 @@ namespace EA4S {
             }
             
         }
+
         #endregion
 
-        public void DebugStates(LetterObjectState _stateToSet) {
-            Model.State = _stateToSet;
+        #region API
+
+        /// <summary>
+        /// Sets new state.
+        /// </summary>
+        /// <param name="_newState">The new state.</param>
+        public void SetState(LetterObjectState _newState) {
+            Model.State = _newState;
         }
+
+        #endregion
 
     }
 }
