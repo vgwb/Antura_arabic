@@ -5,6 +5,46 @@ to generate git log:
 git log --since='last week' --pretty=format:'%ad - %s' --date=short --no-merges --decorate
 =============
 
+##########   v0.6.2 (13/10/2016 playtest)
+
+2016-10-13 - [build] preparing v0.6.2 for 13/10/2016 playtest
+2016-10-13 - [ThrowBalls] Fix pokeball bug.
+2016-10-13 - [ThrowBalls] Final updates before playtest.
+2016-10-13 - [fix] metas
+2016-10-13 - [settings] 5.4 updates settings
+2016-10-13 - [Dancing Dots] - Antura visits the scene
+2016-10-12 - [fix] missing meta
+2016-10-12 - Revert "[TObogan] fix BLOCKING error with tube shaders (converted to Standard Shader)"
+2016-10-12 - [Tobogan] Fixed enlarging animation shader for tubes
+2016-10-12 - Add Rocket model and fix rotation/heading
+2016-10-12 - [Dancing Dots] - Splats appear on LL now - Mid animation now is Jump - Added dialog "comment_welldone"
+2016-10-12 - [TObogan] fix BLOCKING error with tube shaders (converted to Standard Shader)
+2016-10-12 - [build] preparing 0.6.1c for test
+2016-10-12 - [ThrowBalls] Level design.
+2016-10-12 - [Egg] eggController and buttons
+2016-10-12 - [Minigames] Added a Context Reset, if reusing the same context instead instancing another one per game run (eg. by Debug panel) [Tobogan] Tube enlarging animation [Tobogan] Tube sign slow ease with bounce [Tobogan] Fixed red line position
+2016-10-12 - [ThrowBalls] Bug fixes + add boundaries on side.
+2016-10-12 - [ThrowBalls] Physics refactoring.
+2016-10-12 - [ThrowBalls] Commit before refactoring propping up.
+2016-10-12 - Change lose condition bug to account for last prefab
+2016-10-12 - Add Win/Lose audio SFX
+2016-10-12 - remove replay of letter sfx in case of won
+2016-10-12 - Add letter sfx Add letters transition
+2016-10-12 - [Dancing Dots]  - Cycle through levels - Each round increment the level
+2016-10-12 - Add Ha2 Prefab
+2016-10-12 - Rename difficulty variable to gameplay
+2016-10-12 - [ThrowBalls] Fix rotation-related bug.
+2016-10-12 - [ThrowBalls] Fix bug after letter has dropped from crates.
+2016-10-12 - [BUGFIX] Fixed PopupWidget callbacks bug on tap when closing
+2016-10-12 - [build] preparing 0.6.1b to test minigames via Debug Panel
+2016-10-12 - [build] add new minigames scenes to project
+2016-10-11 - [Dancing Dots] - Added Missing Balloon Pop Sounds in FabricAudioManager - Implemented 6 Levels Based on pedagogicalLevel (0 to 1) - Poof for remaining choices - Fade in for buttons
+2016-10-11 - [data] dataset for active minigames
+2016-10-11 - [ThrowBalls] Prop letter up when grounded.
+2016-10-11 - [Tobogan] Fixing Tobogan's materials
+2016-10-11 - [Tobogan] polishing [Minigames] InputManager stub
+2016-10-11 - [docs] preparing v0.6.1 (test build)
+
 ##########   v0.6.1 test build
 
 2016-10-11 - [cgl & debug] RainbowColors to active minigames, added shortcuts to Debugger panel, added Labels to scenes for shortcuts

@@ -6,7 +6,6 @@ using ModularFramework.Core;
 using ModularFramework.Helpers;
 using EA4S;
 
-
 namespace EA4S.MakeFriends
 {
     public class MakeFriendsGameManager : MiniGameBase
@@ -21,6 +20,9 @@ namespace EA4S.MakeFriends
         public float letterPickerEntranceDelay;
         public Vector3 endCameraPosition;
         public Vector3 endCameraRotation;
+        public GameObject letterBalloonPrefab;
+        public GameObject letterBalloonContainer;
+        public GameObject FxParticlesPoof;
         new public static MakeFriendsGameManager Instance;
         new public MakeFriendsGameplayInfo GameplayInfo;
 
@@ -231,9 +233,12 @@ namespace EA4S.MakeFriends
 
         public void OnClickedLetterChoice(LetterChoiceController letterChoice)
         {
+            letterPicker.BlockForSeconds(2f);
+
             if (commonLetters.Contains(letterChoice.letterData))
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.CORRECT;
+                letterChoice.SpawnBalloon(true);
 
                 if (!correctChoices.Contains(letterChoice.letterData))
                 {
@@ -246,7 +251,8 @@ namespace EA4S.MakeFriends
             }
             else
             {
-                letterChoice.FlashWrong();
+                letterChoice.State = LetterChoiceController.ChoiceState.WRONG;
+                letterChoice.SpawnBalloon(false);
                 leftArea.MoveAwayAngrily();
                 rightArea.MoveAwayAngrily();
 
