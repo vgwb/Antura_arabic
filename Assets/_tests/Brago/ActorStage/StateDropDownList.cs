@@ -26,5 +26,9 @@ namespace EA4S.Test {
             }
             return optionsToAdd;
         }
+
+        void OnDisable() {
+            onValueChanged.RemoveAllListeners();
+        }
     }
 }
