@@ -121,26 +121,23 @@ namespace EA4S.DancingDots
 		{
 			GameObject poof;
 			Vector3 pos = antura.transform.position;
+
 			// Move antura off screen because SetActive is reseting the animation to running
 			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
 
-			while (isPlaying)
+			do
 			{
+
 				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
-				poof = Instantiate(poofPrefab, pos, Quaternion.identity) as GameObject;
-				Destroy(poof, 2f);
+				CreatePoof(pos, 2f, false);
 				yield return new WaitForSeconds(0.4f);
-				// Move antura on screen because SetActive is reseting the animation to running
 				antura.transform.position = pos;
 
 				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
-
-				poof = Instantiate(poofPrefab, pos, Quaternion.identity) as GameObject;
-				Destroy(poof, 2f);
-				// Move antura off screen because SetActive is reseting the animation to running
+				CreatePoof(pos, 2f, false);
 				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
 
-			}
+			} while (isPlaying);
 
 		}
 
@@ -262,9 +259,11 @@ namespace EA4S.DancingDots
 		}
 			
 
-		private void CreatePoof(Vector3 position, float duration)
+
+
+		private void CreatePoof(Vector3 position, float duration, bool withSound)
 		{
-			AudioManager.I.PlaySfx(Sfx.BaloonPop);
+			if (withSound) AudioManager.I.PlaySfx(Sfx.BaloonPop);
 			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
 			Destroy(poof, duration);
 		}
@@ -285,7 +284,7 @@ namespace EA4S.DancingDots
 						break;
 					}
 				}
-				CreatePoof(poofPosition, 2f);
+				CreatePoof(poofPosition, 2f, true);
 				dancingDotsLL.HideText(dancingDotsLL.hintText);
 			}
 		}
@@ -295,7 +294,7 @@ namespace EA4S.DancingDots
 			yield return new WaitForSeconds(hintDiacriticDuration);
 			if (!isCorrectDiacritic)
 			{
-				CreatePoof(activeDiacritic.transform.position, 2f);
+				CreatePoof(activeDiacritic.transform.position, 2f, true);
 				activeDiacritic.Hide();
 			}
 		}
@@ -391,7 +390,7 @@ namespace EA4S.DancingDots
 				{
 					yield return new WaitForSeconds(0.25f);
 					dd.gameObject.SetActive(false);
-					CreatePoof(dd.transform.position, 2f);
+					CreatePoof(dd.transform.position, 2f, true);
 				}
 
 			}
