@@ -8,106 +8,105 @@ using ModularFramework.Helpers;
 using EA4S;
 using TMPro;
 
-
-public class PianoWoofGameManager : MonoBehaviour
+namespace EA4S.PianoWoof
 {
-    public StageTileController[] stageTiles;
-
-    [Header("Game Parameters")] [Tooltip("in seconds")]
-    public float lightsCycleDuration;
-
-    private int CurrentTileIndex
+    public class PianoWoofGameManager : MonoBehaviour
     {
-        get { return _currentTileIndex; }
-        set
+        public StageTileController[] stageTiles;
+
+        [Header("Game Parameters")] [Tooltip("in seconds")]
+        public float lightsCycleDuration;
+
+        private int CurrentTileIndex
         {
-            _currentTileIndex = (value % stageTilesCount + stageTilesCount) % stageTilesCount;
+            get { return _currentTileIndex; }
+            set
+            {
+                _currentTileIndex = (value % stageTilesCount + stageTilesCount) % stageTilesCount;
+            }
         }
-    }
 
-    private int PreviousTileIndex
-    {
-        get { return ((CurrentTileIndex - 1) % stageTilesCount + stageTilesCount) % stageTilesCount; }
-    }
+        private int PreviousTileIndex
+        {
+            get { return ((CurrentTileIndex - 1) % stageTilesCount + stageTilesCount) % stageTilesCount; }
+        }
 
-    private int _currentTileIndex;
-    private int stageTilesCount;
-    private float waitTime;
+        private int _currentTileIndex;
+        private int stageTilesCount;
+        private float waitTime;
 
 
-    void Start()
-    {
-        stageTilesCount = stageTiles.Length;
-        ResetScene();
-        CycleLights();
-    }
+        void Start()
+        {
+            stageTilesCount = stageTiles.Length;
+            ResetScene();
+            CycleLights();
+        }
 
-    void Update()
-    {
+        void Update()
+        {
         
-    }
-
-    private void CycleLights()
-    {
-        StartCoroutine(CycleLights_Coroutine());
-    }
-
-    private void StopLights()
-    {
-        StopCoroutine(CycleLights_Coroutine());
-    }
-
-
-    private IEnumerator CycleLights_Coroutine()
-    {
-        while (true)
-        {
-            Debug.Log("Tiles: " + stageTilesCount + ", Current Index: " + CurrentTileIndex + ", Previous Index: " + PreviousTileIndex + ", Wait Time: " + waitTime);
-
-            stageTiles[CurrentTileIndex].TurnLightOn();
-            stageTiles[PreviousTileIndex].TurnLightOff();
-            CurrentTileIndex++;
-
-            yield return new WaitForSeconds(waitTime);
-        }
-    }
-
-    private void StartNewRound()
-    {
-        ResetScene();
-        BeginGameplay();
-
-        //LoggerEA4S.Log("minigame", "PianoWoof", "start", - );
-        //LoggerEA4S.Save();
-    }
-
-    private void ResetScene()
-    {
-        waitTime = lightsCycleDuration / stageTiles.Length;
-        CurrentTileIndex = 0;
-
-        for (int i = 0; i < stageTilesCount; i++)
-        {
-            stageTiles[i].TurnLightOff();
         }
 
-        // To-do: Placeholder
-        // Set Stage Letters
-        stageTiles[0].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-        stageTiles[1].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-        stageTiles[2].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-        stageTiles[3].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-        //stageTiles[4].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-        stageTiles[5].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-        stageTiles[6].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-        stageTiles[7].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-    }
+        private void CycleLights()
+        {
+            StartCoroutine(CycleLights_Coroutine());
+        }
 
-    private void BeginGameplay()
-    {
+        private void StopLights()
+        {
+            StopCoroutine(CycleLights_Coroutine());
+        }
+
+
+        private IEnumerator CycleLights_Coroutine()
+        {
+            while (true)
+            {
+                Debug.Log("Tiles: " + stageTilesCount + ", Current Index: " + CurrentTileIndex + ", Previous Index: " + PreviousTileIndex + ", Wait Time: " + waitTime);
+
+                stageTiles[CurrentTileIndex].TurnLightOn();
+                stageTiles[PreviousTileIndex].TurnLightOff();
+                CurrentTileIndex++;
+
+                yield return new WaitForSeconds(waitTime);
+            }
+        }
+
+        private void StartNewRound()
+        {
+            ResetScene();
+            BeginGameplay();
+
+            //LoggerEA4S.Log("minigame", "PianoWoof", "start", - );
+            //LoggerEA4S.Save();
+        }
+
+        private void ResetScene()
+        {
+            waitTime = lightsCycleDuration / stageTiles.Length;
+            CurrentTileIndex = 0;
+
+            for (int i = 0; i < stageTilesCount; i++)
+            {
+                stageTiles[i].TurnLightOff();
+            }
+
+            // To-do: Placeholder
+            // Set Stage Letters
+            stageTiles[0].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            stageTiles[1].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            stageTiles[2].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            stageTiles[3].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            //stageTiles[4].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            stageTiles[5].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            stageTiles[6].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            stageTiles[7].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+        }
+
+        private void BeginGameplay()
+        {
         
+        }
     }
-
-
-
 }
