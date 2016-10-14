@@ -4,7 +4,7 @@
     {
         FastCrowdGame game;
 
-        float timer = 3;
+        float timer = 2;
         public FastCrowdResultState(FastCrowdGame game)
         {
             this.game = game;
@@ -12,20 +12,25 @@
 
         public void EnterState()
         {
+            if (game.CurrentChallenge != null)
+            {
+                game.ShowChallengePopupWidget(true, OnPopupCloseRequested);
+            }
+        }
+
+
+        void OnPopupCloseRequested()
+        {
+            game.SetCurrentState(game.QuestionState);
         }
 
         public void ExitState()
         {
+            game.Context.GetPopupWidget().Hide();
         }
 
         public void Update(float delta)
         {
-            timer -= delta;
-
-            if (timer < 0)
-            {
-                game.EndGame(game.CurrentStars, game.CurrentScore);
-            }
         }
 
         public void UpdatePhysics(float delta)

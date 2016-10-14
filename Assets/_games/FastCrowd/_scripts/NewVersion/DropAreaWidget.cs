@@ -12,6 +12,7 @@ namespace EA4S.FastCrowd
         public DropSingleArea dropAreaPrefab;
 
         public event System.Action OnComplete;
+        public event System.Action<bool> OnDropped;
 
         Dictionary<ILivingLetterData, DropSingleArea> letters = new Dictionary<ILivingLetterData, DropSingleArea>();
 
@@ -23,12 +24,18 @@ namespace EA4S.FastCrowd
 
             // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
             DropContainer.OnObjectiveBlockCompleted += OnCompleted;
+
+            Droppable.OnRightMatch += OnRightMatch;
+            Droppable.OnWrongMatch += OnWrongMatch;
         }
 
         void OnDestroy()
         {
             // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
             DropContainer.OnObjectiveBlockCompleted -= OnCompleted;
+
+            Droppable.OnRightMatch -= OnRightMatch;
+            Droppable.OnWrongMatch -= OnWrongMatch;
         }
 
         public void AddDropArea(ILivingLetterData newElement)
@@ -52,6 +59,18 @@ namespace EA4S.FastCrowd
         {
             if (OnComplete != null)
                 OnComplete();
+        }
+
+        void OnRightMatch(LetterObjectView letter)
+        {
+            if (OnDropped != null)
+                OnDropped(true);
+        }
+
+        void OnWrongMatch(LetterObjectView letter)
+        {
+            if (OnDropped != null)
+                OnDropped(false);
         }
     }
 }

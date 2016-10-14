@@ -9,7 +9,8 @@
         void PlayMusic(Music music);
         void StopMusic();
 
-        IAudioSource PlayLetter(string letterId);
-        IAudioSource PlayWord(string wordId);
+        IAudioSource PlayLetter(LetterData letterId);
+        IAudioSource PlayWord(WordData wordId);
+        IAudioSource PlayText(TextID text);
     }
 }

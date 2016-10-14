@@ -57,7 +57,7 @@ namespace EA4S
                 DOTween.Sequence().InsertCallback(1, delegate ()
                     {
                         // Todo: move to FastCrowd domain
-                        if (FastCrowd.FastCrowdConfiguration.Instance.Variation == 2)
+                        if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words)
                             AudioManager.I.PlaySfx(Sfx.Hit);
                         dropAreaSetPosition();
                     });
@@ -69,7 +69,7 @@ namespace EA4S
                             {
                                 // Todo: move to FastCrowd domain
                                 float waitAtEnd = 2;
-                                if (FastCrowd.FastCrowdConfiguration.Instance.Variation == 2) { 
+                                if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words) { 
                                     AudioManager.I.PlaySfx(Sfx.Hit);
                                     waitAtEnd = 1;
                                 }

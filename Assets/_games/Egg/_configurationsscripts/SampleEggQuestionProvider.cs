@@ -12,7 +12,7 @@
         {
             this.difficulty = difficulty;
 
-            letterProvider = new SampleLetterProvider(difficulty);
+            letterProvider = new SampleLetterProvider();
             wordProvider = new SampleWordProvider();
         }
 
