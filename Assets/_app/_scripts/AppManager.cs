@@ -10,7 +10,7 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.6.2";
+        public const string AppVersion = "0.6.3a";
 
         new public AppSettings GameSettings = new AppSettings();
 
@@ -23,26 +23,6 @@ namespace EA4S
         /// </summary>
         public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
         public string ActualGame = string.Empty;
-
-        #region Mood
-
-        /// <summary>
-        /// False if not executed start mood eval.
-        /// </summary>
-        [HideInInspector]
-        public bool StartMood = false;
-        /// <summary>
-        /// Start Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int StartMoodEval = 0;
-        /// <summary>
-        /// End Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int EndMoodEval = 0;
-
-        #endregion
 
         public List<LetterData> Letters = new List<LetterData>();
 
