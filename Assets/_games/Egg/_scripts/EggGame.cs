@@ -33,8 +33,10 @@ namespace EA4S.Egg
             PlayState = new EggPlayState(this);
             ResultState = new EggResultState(this);
 
+            questionManager = new QuestionManager(this);
+
             eggController.Initialize(eggBox.GetEggLocalPositions());
-            eggButtonBox.Initialize(eggButtonPrefab);
+            eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), PlayState.OnEggButtonPressed);
         }
     }
 

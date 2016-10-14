@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Egg
@@ -13,9 +14,15 @@ namespace EA4S.Egg
 
         int buttonCount;
 
-        public void Initialize(GameObject eggButtonPrefab)
+        IAudioManager audioManager;
+
+        Action<ILivingLetterData> buttonsCallback;
+
+        public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager, Action<ILivingLetterData> buttonsCallback)
         {
             this.eggButtonPrefab = eggButtonPrefab;
+            this.audioManager = audioManager;
+            this.buttonsCallback = buttonsCallback;
         }
 
         public void AddButton(ILivingLetterData letterData)
@@ -23,6 +30,8 @@ namespace EA4S.Egg
             EggButton eggButton = CreateButton();
 
             eggButton.SetAnswer(letterData);
+
+            eggButtons.Add(eggButton);
         }
 
         public void RemoveButtons()
@@ -39,7 +48,26 @@ namespace EA4S.Egg
         {
             EggButton eggButton = GameObject.Instantiate(eggButtonPrefab).GetComponent<EggButton>();
             eggButton.transform.SetParent(transform, false);
+            eggButton.gameObject.SetActive(false);
+            eggButton.Initialize(audioManager, buttonsCallback);
+            eggButton.DisableInput();
             return eggButton;
+        }
+
+        public void ShowButtons()
+        {
+            for(int i=0; i< eggButtons.Count; i++)
+            {
+                eggButtons[i].gameObject.SetActive(true);
+            }
+        }
+
+        public void HideButtons()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].gameObject.SetActive(false);
+            }
         }
 
         public void SetButtonsOnPosition()
@@ -57,11 +85,13 @@ namespace EA4S.Egg
 
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
-                int index = Random.Range(0, buttonsIndex.Count);
+                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
+                //Debug.Log("Random Position: " + i.ToString() + " index: " + index.ToString());
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
-                eggButtons[currentIndex].transform.position = buttonsPosition[i];
+                eggButtons[currentIndex].transform.localPosition = buttonsPosition[i];
+                eggButtons[currentIndex].positionIndex = i;
             }
         }
 
@@ -73,7 +103,7 @@ namespace EA4S.Egg
 
             Vector3 currentPosition = Vector3.zero;
 
-            float positionUp = eggSizeDelta.y + (buttonDistance / 2f);
+            float positionUp = (eggSizeDelta.y + buttonDistance) / 2f;
             float positionDown = -positionUp;
 
             int upLineLength = 0;
@@ -129,7 +159,7 @@ namespace EA4S.Egg
             }
             else
             {
-                float currentHorizontal = ((size * number) + (buttonDistance * (number - 1)) / 2f);
+                float currentHorizontal = -(((size + buttonDistance) * (number - 1)) / 2f);
 
                 for (int i = 0; i < number; i++)
                 {
@@ -143,6 +173,52 @@ namespace EA4S.Egg
             }
 
             return horizontalPositions;
+        }
+
+        public List<EggButton> GetButtons(bool inPositionOrder)
+        {
+            if(inPositionOrder)
+            {
+                List<EggButton> buttons = new List<EggButton>();
+
+                while (buttons.Count < eggButtons.Count)
+                {
+                    EggButton eB = null;
+
+                    for (int i = 0; i < eggButtons.Count; i++)
+                    {
+                        if (eggButtons[i].positionIndex == buttons.Count)
+                        {
+                            eB = eggButtons[i];
+                            break;
+                        }
+                    }
+
+                    buttons.Add(eB);
+                }
+
+                return buttons;
+            }
+            else
+            {
+                return eggButtons;
+            }
+        }
+
+        public void EnableButtonsInput()
+        {
+            for(int i=0; i< eggButtons.Count; i++)
+            {
+                eggButtons[i].EnableInput();
+            }
+        }
+
+        public void DisableButtonsInput()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].DisableInput();
+            }
         }
     }
 }
