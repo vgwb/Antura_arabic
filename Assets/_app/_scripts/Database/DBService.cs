@@ -21,7 +21,7 @@ public class DBService
     {
 
 #if UNITY_EDITOR
-        var dbPath = string.Format(@"Assets/StreamingAssets/Database/{0}", DatabaseName);
+        var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
 #else
         // check if file exists in Application.persistentDataPath
         var filepath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
@@ -42,15 +42,15 @@ public class DBService
                 // then save to Application.persistentDataPath
                 File.Copy(loadDb, filepath);
 #elif UNITY_WP8
-                var loadDb = Application.dataPath + "/StreamingAssets/Database/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
+                var loadDb = Application.dataPath + "/StreamingAssets/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
                 // then save to Application.persistentDataPath
                 File.Copy(loadDb, filepath);
 #elif UNITY_WINRT
-		var loadDb = Application.dataPath + "/StreamingAssets/Database/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
+		var loadDb = Application.dataPath + "/StreamingAssets/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
 		// then save to Application.persistentDataPath
 		File.Copy(loadDb, filepath);
 #else
-	var loadDb = Application.dataPath + "/StreamingAssets/Database/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
+	var loadDb = Application.dataPath + "/StreamingAssets/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
 	// then save to Application.persistentDataPath
 	File.Copy(loadDb, filepath);
 #endif

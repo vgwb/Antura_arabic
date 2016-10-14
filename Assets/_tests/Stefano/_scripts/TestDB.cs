@@ -9,7 +9,7 @@ public class TestDB : MonoBehaviour
 
     void Start()
     {
-        var ds = new DBService("EA4S_Database.sqlite");
+        var ds = new DBService("EA4S_Database.bytes");
 
         var minigames = ds.GetMinigames();
         foreach (var minigame in minigames) {
