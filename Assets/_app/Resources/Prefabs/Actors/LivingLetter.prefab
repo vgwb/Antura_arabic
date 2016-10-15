@@ -113,7 +113,7 @@ GameObject:
   - 136: {fileID: 136000013401160078}
   - 114: {fileID: 114000012975697870}
   m_Layer: 0
-  m_Name: LivingLetters
+  m_Name: LivingLetter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
