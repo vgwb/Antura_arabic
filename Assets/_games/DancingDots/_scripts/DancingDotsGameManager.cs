@@ -18,7 +18,6 @@ namespace EA4S.DancingDots
 
 		public static DancingDotsGameManager instance;
 
-		public DancingDotsGamePlayInfo GameplayInfo;
 
 		public Canvas endGameCanvas;
 
@@ -119,15 +118,11 @@ namespace EA4S.DancingDots
 
 		IEnumerator AnimateAntura()
 		{
-			GameObject poof;
 			Vector3 pos = antura.transform.position;
-
 			// Move antura off screen because SetActive is reseting the animation to running
 			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-
 			do
 			{
-
 				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
 				CreatePoof(pos, 2f, false);
 				yield return new WaitForSeconds(0.4f);
@@ -136,7 +131,6 @@ namespace EA4S.DancingDots
 				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
 				CreatePoof(pos, 2f, false);
 				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-
 			} while (isPlaying);
 
 		}
@@ -239,10 +233,6 @@ namespace EA4S.DancingDots
 				default: currentLevel = Level.Level3;
 					break;
 				}
-
-//				if (numberOfRoundsPlayed == 1) currentLevel = Level.Level1;
-//				currentLevel = (Level) numberOfRoundsPlayed - 1;
-
 			}
 			else
 			{
