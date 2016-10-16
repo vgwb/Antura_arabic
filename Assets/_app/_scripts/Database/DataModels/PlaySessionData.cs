@@ -10,14 +10,16 @@ namespace EA4S.Db
         public int LearningBlock;
         public int PlaySession;
         public string Description;
-        public String AssessmentType;
-        public String AssessmentData;
+        public AssessmentType AssessmentType;
+        public string AssessmentData;
+        public DidacticalFocus Focus;
 
-        // to be marsed during import 
-        public String[] Words;
-        public String[] Words_previous;
-        public String[] Phrases;
-        public String[] Phrases_previous;
+        // to be marsed during import
+        public string[] Letters;
+        public string[] Words;
+        public string[] Words_previous;
+        public string[] Phrases;
+        public string[] Phrases_previous;
         public List<MiniGameInPlaysession> Minigames;
 
         public override string ToString()
@@ -31,6 +33,13 @@ namespace EA4S.Db
     {
         public MiniGameCode Code;
         public int Weight;
+    }
+
+    public enum DidacticalFocus
+    {
+        Letters = 1,
+        Shapes = 2,
+        Words = 3
     }
 
 }
