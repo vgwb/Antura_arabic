@@ -26,7 +26,7 @@
         MissingLetter_phrases = 20,
         MixedLetters_alphabet = 21,
         MixedLetters_spelling = 22,
-        MysteriousGuest = 23,
+        SickLetter = 23,
         ReadingGame = 24,
         Scanner = 25,
         Scanner_phrase = 26,
