@@ -3,21 +3,43 @@ using System;
 
 namespace EA4S.Db
 {
+    public enum LogDataType
+    {
+        Info,
+        PlayData,
+        LearnData,
+        MoodData
+    }
+
+    public enum LogPlaySkill
+    {
+        Precision = 0,
+        Reaction = 1,
+        Memory = 2,
+        Logic = 3,
+        Rhythm = 4,
+        Musicality = 5,
+        Sight = 6
+    }
+
     public class LogData
     {
-        public string Session = string.Empty;
-        public string Time = string.Empty;
-        public string Area = string.Empty;
-        public string Context = string.Empty;
-        public string Action = string.Empty;
-        public string RawData = string.Empty;
+        public string Session;
+        public string Time;
+        public int PlayerID;
+        public LogDataType Type;
+        public LogPlaySkill PlaySkill;
+        public string Context;
+        public string Action;
+        public float Score;
+        public string RawData;
 
         public override string ToString()
         {
             return string.Format("{0},{1},{3},{4},{5},{6}" + Environment.NewLine,
                 Session,
                 Time,
-                Area,
+                Type,
                 Context,
                 Action,
                 RawData

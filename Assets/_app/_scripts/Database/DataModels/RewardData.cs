@@ -13,9 +13,9 @@ namespace EA4S.Db
 
     public enum RewardCategory
     {
-        DogProp,
-        DogSkin,
-        PlayerTitle
+        DogProp = 1,
+        DogSkin = 2,
+        PlayerTitle = 3
     }
 
 }
