@@ -203,23 +203,26 @@ namespace EA4S.ThrowBalls
             switch (roundNumber)
             {
                 case 1:
-                    UIController.instance.OnRoundStarted("Idle", correctLetter);
+                    UIController.instance.OnRoundStarted(correctLetter);
                     break;
                 case 2:
-                    UIController.instance.OnRoundStarted("Crate", correctLetter);
+                    UIController.instance.OnRoundStarted(correctLetter);
                     break;
                 case 3:
-                    UIController.instance.OnRoundStarted("Crate & Jumping", correctLetter);
+                    UIController.instance.OnRoundStarted(correctLetter);
                     break;
                 case 4:
-                    UIController.instance.OnRoundStarted("Moving Crate", correctLetter);
+                    UIController.instance.OnRoundStarted(correctLetter);
                     break;
                 case 5:
-                    UIController.instance.OnRoundStarted("Bush", correctLetter);
+                    UIController.instance.OnRoundStarted(correctLetter);
                     break;
                 default:
                     break;
             }
+
+            PokeballController.instance.Enable();
+            UIController.instance.Enable();
         }
 
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
@@ -228,7 +231,6 @@ namespace EA4S.ThrowBalls
             {
                 numRoundsWon++;
                 StartCoroutine(ShowWinSequence(correctLetterCntrl));
-                UIController.instance.HideMessage();
                 pokeBallController.Disable();
 
                 isRoundOngoing = false;
@@ -240,7 +242,6 @@ namespace EA4S.ThrowBalls
             if (isRoundOngoing)
             {
                 DisplayRoundResult(false);
-                UIController.instance.HideMessage();
                 pokeBallController.Disable();
 
                 isRoundOngoing = false;
@@ -285,6 +286,8 @@ namespace EA4S.ThrowBalls
 
         private void DisplayRoundResult(bool win)
         {
+            UIController.instance.Disable();
+
             if (win)
             {
                 WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
