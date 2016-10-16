@@ -23,13 +23,12 @@ namespace EA4S.DontWakeUp
         bool draggingStarted;
         bool overDestinationMarker;
 
-        bool colliding;
+        //        bool colliding;
 
-        float startingY;
+        //        float startingY;
         Vector3 liftedOffset = new Vector3(0, 1.5f, 0);
 
-        //        Vector3 mouseDelta = Vector3.zero;
-        Vector3 lastMousePosition = Vector3.zero;
+        //        Vector3 lastMousePosition = Vector3.zero;
 
         bool inOverSpeed;
 
@@ -40,7 +39,7 @@ namespace EA4S.DontWakeUp
         //        }
         //    }
         //
- 
+
         //        void OnTriggeEnter(Collider other) {
         //            Debug.Log("triggero WON " + other.gameObject.name);
         //            if (other.gameObject.tag == "Destination") {
@@ -71,7 +70,7 @@ namespace EA4S.DontWakeUp
             TextGO.SetActive(true);
             TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(DontWakeUpManager.Instance.currentWord.Word, false, false);
 
-            startingY = transform.position.y;
+            //startingY = transform.position.y;
 
             trailReference.Clear();
         }
@@ -92,7 +91,7 @@ namespace EA4S.DontWakeUp
             if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerEnter " + other.gameObject.name);
                 // GameDontWakeUp.Instance.dangering.InDanger(false);
-                colliding = true;
+                //colliding = true;
                 if (other.gameObject.tag == "Alert") {
                     if (other.gameObject.name.Contains("alarm")) {
                         DontWakeUpManager.Instance.InDanger(true, How2Die.TouchedAlarm);
@@ -110,9 +109,9 @@ namespace EA4S.DontWakeUp
         {
             if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
                 //Debug.Log("OnTriggerStay " + other.gameObject.name);
-//            if (other.gameObject.tag == "Obstacle") {
-//                GameDontWakeUp.Instance.dangering.InDanger(true);
-//            }
+                //            if (other.gameObject.tag == "Obstacle") {
+                //                GameDontWakeUp.Instance.dangering.InDanger(true);
+                //            }
 
                 if (other.gameObject.tag == "Marker") {
                     if (other.gameObject.GetComponent<Marker>().Type == MarkerType.Goal) {
@@ -137,11 +136,9 @@ namespace EA4S.DontWakeUp
                     overDestinationMarker = false;
                 }
 
-                colliding = false;
+                //colliding = false;
             }
         }
-
-
 
 
         //
@@ -229,25 +226,25 @@ namespace EA4S.DontWakeUp
         void MoveOnFloor()
         {
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, 
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x,
                             Input.mousePosition.y, 0)), out hit, float.MaxValue, LayerNameToIntMask(groundLayerName))) {
                 trailReference.transform.position = hit.point + trailOffset;
 
                 transform.position = hit.point + liftedOffset + trailOffset;
 
-//                mouseDelta = Input.mousePosition - lastMousePosition;
-//                lastMousePosition = Input.mousePosition;
+                //                mouseDelta = Input.mousePosition - lastMousePosition;
+                //                lastMousePosition = Input.mousePosition;
 
                 //Debug.Log(mouseDelta.magnitude);
-//                if (mouseDelta.magnitude > SpeedLimit) {
-//                    inOverSpeed = true;
-//                    DontWakeUpManager.Instance.InDanger(true, How2Die.TooFast);
-//                } else {
-//                    if (inOverSpeed) {
-//                        inOverSpeed = false;
-//                        DontWakeUpManager.Instance.InDanger(false, How2Die.Null);
-//                    }
-//                }
+                //                if (mouseDelta.magnitude > SpeedLimit) {
+                //                    inOverSpeed = true;
+                //                    DontWakeUpManager.Instance.InDanger(true, How2Die.TooFast);
+                //                } else {
+                //                    if (inOverSpeed) {
+                //                        inOverSpeed = false;
+                //                        DontWakeUpManager.Instance.InDanger(false, How2Die.Null);
+                //                    }
+                //                }
 
             }
         }
@@ -263,5 +260,5 @@ namespace EA4S.DontWakeUp
         }
 
     }
-   
+
 }
