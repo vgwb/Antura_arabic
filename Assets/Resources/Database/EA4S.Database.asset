@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2b2cc58e67e4093ae0ebb1919d5089, type: 3}
+  m_Name: EA4S.Database
+  m_EditorClassIdentifier: 
+  gameData:
+  - Code: 10
+    Id: DancingDots
+    Variation: 
+    Available: 1
+    Status: 
+    Parent: 
+    Description: 
+    Title_En: DancingDots
+    Title_Ar: 
+    Scene: 
+    Team: 2
+  - Code: 1
+    Id: FastCrowd_spelling
+    Variation: 
+    Available: 0
+    Status: 
+    Parent: 
+    Description: 
+    Title_En: FastCrowd_spelling
+    Title_Ar: 
+    Scene: 
+    Team: 1
+  - Code: 4
+    Id: FastCrowd_words
+    Variation: 
+    Available: 0
+    Status: 
+    Parent: 
+    Description: 
+    Title_En: FastCrowd_words
+    Title_Ar: 
+    Scene: 
+    Team: 0
+  - Code: 9
+    Id: colorticke
+    Variation: 
+    Available: 1
+    Status: active
+    Parent: 
+    Description: 
+    Title_En: color Ticke
+    Title_Ar: asda
+    Scene: scene_colorTicke
+    Team: 0
+  lettersData:
+  - Id: 
+    Number: 0
+    Title: 
+    Kind: 
+    Type: 
+    Notes: 
+    SunMoon: 
+    Sound: 
+    Isolated: 
+    Initial: 
+    Medial: 
+    Final: 
+    Unicode: 
+    Initial_unicode: 
+    Medial_unicode: 
+    Final_unicode: 
+    Level: 
+  - Id: 
+    Number: 0
+    Title: 
+    Kind: 
+    Type: 
+    Notes: 
+    SunMoon: 
+    Sound: 
+    Isolated: 
+    Initial: 
+    Medial: 
+    Final: 
+    Unicode: 
+    Initial_unicode: 
+    Medial_unicode: 
+    Final_unicode: 
+    Level: 
+  PlaySessions:
+  - Stage: 0
+    LearningBlock: 0
+    PlaySession: 0
+    Description: 
+    Minigames:
+    - Code: 3
+      Weight: 5
+    - Code: 19
+      Weight: 10
