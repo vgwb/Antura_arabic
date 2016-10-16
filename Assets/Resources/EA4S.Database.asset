@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2b2cc58e67e4093ae0ebb1919d5089, type: 3}
+  m_Name: EA4S.Database
+  m_EditorClassIdentifier: 
+  MiniGames: []
+  Letters: []
+  Words: []
+  PlaySessions:
+  - Stage: 0
+    LearningBlock: 0
+    PlaySession: 0
+    Description: 
+    AssessmentType: 
+    AssessmentData: 
+    Words: []
+    Words_previous: []
+    Phrases: []
+    Phrases_previous: []
+    Minigames:
+    - Code: 3
+      Weight: 5
+    - Code: 19
+      Weight: 10
+  Assessments: []
+  Localizations: []
+  Phrases: []
+  Stages: []
+  Rewards: []
