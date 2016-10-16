@@ -14,5 +14,6 @@ namespace EA4S.Db
         public List<LocalizationData> Localizations;
         public List<PhraseData> Phrases;
         public List<StageData> Stages;
+        public List<RewardData> Rewards;
     }
 }
