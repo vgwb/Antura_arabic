@@ -16,15 +16,10 @@ namespace EA4S.DancingDots
 
 		public Color[] colors;
 
-		private SpriteRenderer goRenderer;
-
 		// Use this for initialization
 		void Start () {
-//			StartCoroutine(AnimateSplat(transform));
-			goRenderer = GetComponent<SpriteRenderer>();
-			goRenderer.color = colors[Random.Range(0, colors.Length)];
+			GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
 			AudioManager.I.PlaySfx(Sfx.Splat);
-//			StartCoroutine(FadeTo(minAlpha, fadeDuration));
 		}
 
 		public void CleanSplat()
@@ -32,16 +27,16 @@ namespace EA4S.DancingDots
 			Destroy(gameObject,0.25f);
 		}
 
-		IEnumerator FadeTo(float aValue, float aTime)
-		{
-			float alpha = goRenderer.color.a;
-			for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
-			{
-				Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha,aValue,t));
-				goRenderer.color = newColor;
-				yield return null;
-			}
-		}
+//		IEnumerator FadeTo(float aValue, float aTime)
+//		{
+//			float alpha = goRenderer.color.a;
+//			for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+//			{
+//				Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha,aValue,t));
+//				goRenderer.color = newColor;
+//				yield return null;
+//			}
+//		}
 
 
 //		IEnumerator AnimateSplat(Transform trans)
