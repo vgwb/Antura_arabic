@@ -18,12 +18,26 @@ namespace EA4S.ThrowBalls
         private List<Vector3> touchPositionsInPx;
         private List<float> touchSpeedsInPxPerSecs;
 
+        #region Temporary mouse control variables
+
+        private Vector3 flickDirection;
+        private Vector3 flickOrigin;
+        private Vector3 velocity;
+        private Vector3 lastPosition;
+        public List<Vector3> positions;
+        public List<float> times;
+
+        #endregion
+
         void Awake()
         {
             instance = this;
 
             touchPositionsInPx = new List<Vector3>();
             touchSpeedsInPxPerSecs = new List<float>();
+
+            positions = new List<Vector3>();
+            times = new List<float>();
         }
         
         void Start()
@@ -39,6 +53,12 @@ namespace EA4S.ThrowBalls
             rigidBody.isKinematic = true;
             touchPositionsInPx.Clear();
             touchSpeedsInPxPerSecs.Clear();
+
+            flickDirection = new Vector3(0, 0, 0);
+            velocity = new Vector3(0, 0, 0);
+            lastPosition = new Vector3(POKEBALL_POSITION.x, POKEBALL_POSITION.y, POKEBALL_POSITION.z);
+            positions.Clear();
+            times.Clear();
         }
 
         public void Enable()
@@ -66,7 +86,7 @@ namespace EA4S.ThrowBalls
 
             else
             {
-                if (Input.touchCount > 0)
+                /*if (Input.touchCount > 0)
                 {
                     Touch touch = Input.GetTouch(0);
 
@@ -158,8 +178,86 @@ namespace EA4S.ThrowBalls
                         default:
                             break;
                     }
-                }
+                }*/
+
+                velocity = (transform.position - lastPosition) / Time.deltaTime;
+                lastPosition = transform.position;
             }
         }
+
+        #region Temporary mouse controls
+        void OnMouseDown()
+        {
+            Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
+            touchOffset.x = transform.position.x - mousePosInWorldUnits.x;
+            touchOffset.y = transform.position.y - mousePosInWorldUnits.y;
+        }
+        void OnMouseDrag()
+        {
+            Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
+            Vector3 position = transform.position;
+            position.x = mousePosInWorldUnits.x + touchOffset.x;
+            position.y = mousePosInWorldUnits.y + touchOffset.y;
+            position.z = transform.position.z;
+            //flickDirection += position - transform.position;
+            flickDirection = position - transform.position;
+            flickDirection.Normalize();
+            Vector3 mousePosInPx = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+            if (positions.Count == 5)
+            {
+                positions[0] = positions[1];
+                positions[1] = positions[2];
+                positions[2] = positions[3];
+                positions[3] = positions[4];
+                positions[4] = mousePosInPx;
+                times[0] = times[1];
+                times[1] = times[2];
+                times[2] = times[3];
+                times[3] = times[4];
+                times[4] = Time.time;
+            }
+            else
+            {
+                positions.Add(mousePosInPx);
+                times.Add(Time.time);
+            }
+            transform.position = position;
+        }
+        void OnMouseUp()
+        {
+            if (velocity.sqrMagnitude < VELOCITY_SQUARED_LAUNCH_THRESOLD)
+            {
+                Reset();
+                return;
+            }
+            Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
+            Vector3 position = transform.position;
+            position.x = mousePosInWorldUnits.x + touchOffset.x;
+            position.y = mousePosInWorldUnits.y + touchOffset.y;
+            position.z = transform.position.z;
+            //flickDirection += 2 * (position - transform.position);
+            flickDirection = new Vector3(0, 0, 0);
+            for (int i = 1; i < positions.Count; i++)
+            {
+                flickDirection += (positions[i] - positions[i - 1]).normalized;
+            }
+            flickDirection /= positions.Count;
+            velocity = (positions[positions.Count - 1] - positions[0]) / Screen.dpi;
+            velocity /= times[times.Count - 1] - times[0];
+            velocity *= 3;
+            flickDirection.Normalize();
+            float magnitude = velocity.magnitude;
+            magnitude = Mathf.Clamp(magnitude, 20, 100);
+            rigidBody.isKinematic = false;
+            int velocityZ = Mathf.RoundToInt(Mathf.Max(flickDirection.x * magnitude * 0.5f, flickDirection.y * magnitude * 0.5f));
+            velocityZ = velocityZ / 20;
+            velocityZ = velocityZ * 20;
+            velocityZ = Mathf.Clamp(velocityZ, 40, 80);
+            Debug.Log("Magnitude = " + magnitude);
+            rigidBody.AddForce(new Vector3(flickDirection.x * magnitude * 0.7f, flickDirection.y * magnitude * 0.7f, 0.7f * magnitude), ForceMode.VelocityChange);
+            rigidBody.AddTorque(new Vector3(flickDirection.x * velocity.x, flickDirection.y * velocity.y, 80), ForceMode.VelocityChange);
+        }
+
+        #endregion
     }
 }
