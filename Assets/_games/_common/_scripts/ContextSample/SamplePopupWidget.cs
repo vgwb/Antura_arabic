@@ -76,7 +76,12 @@ namespace EA4S
 
         public void SetTitle(string text, bool isArabic)
         {
-            WidgetPopupWindow.I.SetTitle(isArabic ? ArabicFixer.Fix(text, false, false) : text);
+            WidgetPopupWindow.I.SetTitle(text, isArabic);
+        }
+
+        public void SetMessage(string text, bool isArabic)
+        {
+            WidgetPopupWindow.I.SetMessage(text, isArabic);
         }
 
         public void SetTitle(TextID text)

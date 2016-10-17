@@ -405,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingLetterPrefab: {fileID: 114000011975068830, guid: 6e35fb39489399c46bf7216ffa65f818,
     type: 2}
+  puffPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
 --- !u!1001 &102917029
 Prefab:
   m_ObjectHideFlags: 0
