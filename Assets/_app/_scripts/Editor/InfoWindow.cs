@@ -8,7 +8,7 @@ namespace EA4S.Editor
 
     public class InfoView : EditorWindow
     {
-        [MenuItem("Tools/EA4S Antura")]
+        [MenuItem("Tools/EA4S Antura/Info")]
         static void ShowWindow()
         {
             EditorWindow.GetWindow(typeof(EA4S.Editor.InfoView));
