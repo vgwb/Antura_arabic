@@ -9,6 +9,13 @@ namespace EA4S
 
         public Vector2 LastPointerPosition { get { return lastPointerPosition; } }
         public Vector2 LastPointerDelta { get { return deltaPosition; } }
+        public float LastDeltaTime { get; private set; }
+
+        public Vector2 LastPointerPositionNormalized { get { return new Vector2(LastPointerPosition.x / (float)Screen.width, LastPointerPosition.y / (float)Screen.height); } }
+        public Vector2 LastPointerPositionPhysical { get { return LastPointerPosition / Screen.dpi; } }
+
+        public Vector2 LastPointerDeltaNormalized { get { return new Vector2(LastPointerDelta.x / (float)Screen.width, LastPointerDelta.y / (float)Screen.height); } }
+        public Vector2 LastPointerDeltaPhysical { get { return LastPointerDelta / Screen.dpi; } }
 
         public event Action onPointerDown;
         public event Action onPointerDrag;
@@ -25,8 +32,10 @@ namespace EA4S
             onPointerUp = null;
         }
 
-        public void Update()
+        public void Update(float delta)
         {
+            LastDeltaTime = delta;
+
             if (!Enabled)
                 return;
 

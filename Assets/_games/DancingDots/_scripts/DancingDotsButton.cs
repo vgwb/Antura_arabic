@@ -13,10 +13,5 @@ namespace EA4S.DancingDots
 		public Image buttonImage;
 		public TextMeshProUGUI buttonText;
 
-		public void OnMouseDown()
-		{
-
-		}
-
 	}
 }
