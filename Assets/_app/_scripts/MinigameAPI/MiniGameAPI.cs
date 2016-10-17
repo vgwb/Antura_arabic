@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ModularFramework.Core;
 using EA4S;
 using System.Linq;
+using System;
 
 namespace EA4S.API {
 
@@ -240,12 +241,19 @@ namespace EA4S.API {
         public IStarsWidget starsWidget = new SampleStarsWidget();
         public IPopupWidget questionWidget = new SamplePopupWidget();
 
+        #region Log Manager 
+        public ILogManager logManager = new AnturaLogManagerProvider();
+
+        public ILogManager GetLogManager() {
+            return logManager;
+        }
+        #endregion
+
         public IAudioManager GetAudioManager() {
             return audioManager;
         }
 
-        public IInputManager GetInputManager()
-        {
+        public IInputManager GetInputManager() {
             return inputManager;
         }
 
@@ -261,8 +269,7 @@ namespace EA4S.API {
             return questionWidget;
         }
 
-        public void Reset()
-        {
+        public void Reset() {
             inputManager.Reset();
         }
 
@@ -304,7 +311,7 @@ namespace EA4S.API {
             description = "Antura Questions";
 
             // 10 QuestionPacks
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 10; i++) {
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
@@ -343,5 +350,63 @@ namespace EA4S.API {
         }
     }
 
-    #endregion 
+    /// <summary>
+    /// Concrete implementation of log manager to store on db.
+    /// </summary>
+    public class AnturaLogManagerProvider : ILogManager {
+
+        #region Log API for AI
+        /// <summary>
+        /// Answer result for question pack.
+        /// </summary>
+        /// <param name="_questionPack"></param>
+        /// <param name="_isPositiveResult"></param>
+        public void OnAnswer(IQuestionPack _questionPack, bool _isPositiveResult) {
+            // Todo: Save on db
+        }
+
+        /// <summary>
+        /// Answer result for single player action.
+        /// </summary>
+        /// <param name="_data"></param>
+        /// <param name="_isPositiveResult"></param>
+        public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult) {
+            // Todo: Save on db
+        }
+
+        public void OnGameplaySessionResult(int _valuation) {
+            // Todo: Save on db
+        }
+        #endregion
+
+
+        #region Playsession Logs
+        public void OnGameplayEventTrace(PlayerAbilities _ability, bool _isPositive) {
+            switch (_ability) {
+                case PlayerAbilities.precision:
+                    break;
+                case PlayerAbilities.speed:
+                    break;
+                default:
+                    Debug.LogErrorFormat("Player ability {0} not found!", _ability);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Player abilities categories to trace player actions.
+        /// </summary>
+        public enum PlayerAbilities {
+            precision,
+            speed,
+        }
+        #endregion
+
+        #region Generic Log
+
+        #endregion
+
+    }
+
+    #endregion
 }
