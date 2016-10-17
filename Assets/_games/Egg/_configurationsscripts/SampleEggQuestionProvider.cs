@@ -1,9 +1,11 @@
-﻿namespace EA4S.Egg
+﻿using UnityEngine;
+
+namespace EA4S.Egg
 {
     public class SampleEggQuestionProvider : ILivingLetterDataProvider
     {
         float difficulty;
-        bool onlyLetter = true;
+        bool onlyLetter = false;
 
         ILivingLetterDataProvider letterProvider;
         ILivingLetterDataProvider wordProvider;
@@ -14,11 +16,16 @@
 
             letterProvider = new SampleLetterProvider(difficulty);
             wordProvider = new SampleWordProvider();
+
+            onlyLetter = Random.Range(0, 2) == 1;
         }
 
         public ILivingLetterData GetNextData()
         {
-            if(onlyLetter)
+            //onlyLetter = true;
+
+
+            if (onlyLetter)
             {
                 return letterProvider.GetNextData();
             }
