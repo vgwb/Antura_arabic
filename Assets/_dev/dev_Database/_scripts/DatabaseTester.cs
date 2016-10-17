@@ -7,13 +7,6 @@ namespace EA4S.Db.Loader
     {
         public Database db;
 
-        void Start()
-        {
-            LogDataCounts();
-            LogAllLetters();
-            TestAccess();
-        }
-
         public void LogDataCounts()
         {
             string s = "";
@@ -39,6 +32,16 @@ namespace EA4S.Db.Loader
             Debug.Log(s);
         }
 
+        public void LogMiniGames()
+        {
+            string s = "";
+            foreach (var data in db.minigameTable.Values)
+            {
+                s += (data.ToString()) + "\n";
+            }
+            Debug.Log(s);
+        }
+
         public void TestAccess()
         {
             string s = "";
@@ -48,4 +51,4 @@ namespace EA4S.Db.Loader
         }
 
     }
-}
+} 

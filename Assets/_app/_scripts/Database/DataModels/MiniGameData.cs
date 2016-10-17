@@ -18,6 +18,7 @@ namespace EA4S.Db
         public string Team;
 
         // Derived
+        // TODO: these could be made less verbose, now that we control serialization using 'DataParsers'
         private MiniGameCode _miniGameCode;
         public MiniGameCode MiniGameCode {
             get { return _miniGameCode; }
@@ -29,37 +30,6 @@ namespace EA4S.Db
             set { _available = value; }
         }
 
-        // NOTE: THESE ARE NEEDED ONLY WHEN GENERATING THE DATA!
-       
-        public bool ValidateData()
-        {
-            // Derived data 
-            _available = Status == "active";
-
-            try
-            {
-                MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), Id);
-                this._miniGameCode = parsed_enum;
-            }
-            catch (ArgumentException e)
-            {
-                UnityEngine.Debug.LogError("MiniGameData: " + "field Id is '" + this.Parent + "', not available in the enum values.");
-                return false;
-            }
-
-            // Validation
-            try
-            {
-                MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), this.Parent);
-            }
-            catch (ArgumentException e)
-            {
-                UnityEngine.Debug.LogError("MiniGameData: " + "field Parent is '" + this.Parent+"', not available in the enum values.");
-                return false;
-            }
-
-            return true;
-        }
 
         public override string ToString()
         {
