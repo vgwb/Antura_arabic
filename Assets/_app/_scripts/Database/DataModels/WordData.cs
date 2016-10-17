@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EA4S.Db
 {
     [Serializable]
-    public class WordData
+    public class WordData : IData
     {
         public string Id;
         public string Kind;
@@ -21,6 +21,10 @@ namespace EA4S.Db
         // calculated during import
         public int NumberOfLetters;
 
+        public string GetID()
+        {
+            return Id;
+        }
 
         #region API
 

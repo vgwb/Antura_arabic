@@ -3,7 +3,7 @@
 namespace EA4S.Db
 {
     [Serializable]
-    public class LetterData
+    public class LetterData : IData
     {
         public string Id;
         public int Number;
@@ -27,6 +27,11 @@ namespace EA4S.Db
         /// </summary>
         public string TextForLivingLetter {
             get { return ArabicAlphabetHelper.GetLetterFromUnicode(Isolated_Unicode); }
+        }
+
+        public string GetID()
+        {
+            return Id;
         }
     }
 }
