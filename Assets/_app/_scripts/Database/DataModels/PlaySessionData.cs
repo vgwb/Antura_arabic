@@ -10,17 +10,15 @@ namespace EA4S.Db
         public int LearningBlock;
         public int PlaySession;
         public string Description;
-        public AssessmentType AssessmentType;
+        public DidacticalFocus Focus; 
+        public string[] Letters;   
+        public string[] Words;     
+        public string[] Words_previous;    
+        public string[] Phrases;     
+        public string[] Phrases_previous;   
+        public AssessmentType AssessmentType; 
         public string AssessmentData;
-        public DidacticalFocus Focus;
-
-        // to be marsed during import
-        public string[] Letters;
-        public string[] Words;
-        public string[] Words_previous;
-        public string[] Phrases;
-        public string[] Phrases_previous;
-        public List<MiniGameInPlaysession> Minigames;
+        public List<MiniGameInPlaysession> Minigames;  
 
         public override string ToString()
         {
