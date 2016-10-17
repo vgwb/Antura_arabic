@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EA4S.Db
 {
     [Serializable]
-    public class LocalizationData
+    public class LocalizationData : IData
     {
         public string Id;
         public string Character;
@@ -13,5 +13,10 @@ namespace EA4S.Db
         public string Arabic;
         public string AudioFile;
         public string EnglishOld;
+
+        public string GetID()
+        {
+            return Id;
+        }
     }
 }

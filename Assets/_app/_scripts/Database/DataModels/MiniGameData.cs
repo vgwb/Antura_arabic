@@ -3,28 +3,62 @@
 namespace EA4S.Db
 {
     [Serializable]
-    public class MiniGameData
+    public class MiniGameData : IData
     {
-        public MiniGameCode Code;
+        // Source
         public string Id;
         public string Variation;
-        public bool Available;
         public string Status;
         public string Parent;
         public string Description;
         public string Title_En;
         public string Title_Ar;
         public string Scene;
+        public string TitleNew;
+        public string Team;
 
-        public void InitMiniGameData(MiniGameCode code, string id, string title_ar, string englishTitle, string sceneName, bool available)
+        // Derived
+        private MiniGameCode _miniGameCode;
+        public MiniGameCode MiniGameCode {
+            get { return _miniGameCode; }
+            set { _miniGameCode = value; }
+        }
+        private bool _available;
+        public bool Available {
+            get { return _available; }
+            set { _available = value; }
+        }
+
+        // NOTE: THESE ARE NEEDED ONLY WHEN GENERATING THE DATA!
+       
+        public bool ValidateData()
         {
-            Code = code;
-            Id = id;
-            Title_Ar = title_ar;
-            Title_En = englishTitle;
-            Scene = sceneName;
-            Available = available;
-            Status = (available ? "active" : "");
+            // Derived data 
+            _available = Status == "active";
+
+            try
+            {
+                MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), Id);
+                this._miniGameCode = parsed_enum;
+            }
+            catch (ArgumentException e)
+            {
+                UnityEngine.Debug.LogError("MiniGameData: " + "field Id is '" + this.Parent + "', not available in the enum values.");
+                return false;
+            }
+
+            // Validation
+            try
+            {
+                MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), this.Parent);
+            }
+            catch (ArgumentException e)
+            {
+                UnityEngine.Debug.LogError("MiniGameData: " + "field Parent is '" + this.Parent+"', not available in the enum values.");
+                return false;
+            }
+
+            return true;
         }
 
         public override string ToString()
@@ -37,5 +71,9 @@ namespace EA4S.Db
             return "Images/GameIcons/minigame_icon_" + Id;
         }
 
+        public string GetID()
+        {
+            return Id;
+        }
     }
 }

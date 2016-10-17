@@ -11,27 +11,2369 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2b2cc58e67e4093ae0ebb1919d5089, type: 3}
   m_Name: EA4S.Database
   m_EditorClassIdentifier: 
-  MiniGames: []
-  Letters: []
-  Words: []
-  PlaySessions:
-  - Stage: 0
-    LearningBlock: 0
-    PlaySession: 0
-    Description: 
-    AssessmentType: 
-    AssessmentData: 
-    Words: []
-    Words_previous: []
-    Phrases: []
-    Phrases_previous: []
-    Minigames:
-    - Code: 3
-      Weight: 5
-    - Code: 19
-      Weight: 10
-  Assessments: []
-  Localizations: []
-  Phrases: []
-  Stages: []
-  Rewards: []
+  minigameTable:
+    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
+    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
+    _Count: 30
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - AlphabetSong
+    - Balloons_counting
+    - Balloons_letter
+    - Balloons_spelling
+    - Balloons_words
+    - ColorTickle
+    - DancingDots
+    - DontWakeUp
+    - Egg
+    - FastCrowd_alphabet
+    - FastCrowd_counting
+    - FastCrowd_letter
+    - FastCrowd_spelling
+    - FastCrowd_words
+    - HiddenSource
+    - HideSeek
+    - MakeFriends
+    - Maze
+    - MissingLetter
+    - MissingLetter_phrases
+    - MixedLetters_alphabet
+    - MixedLetters_spelling
+    - SickLetter
+    - ReadingGame
+    - Scanner
+    - Scanner_phrase
+    - ThrowBalls_letters
+    - ThrowBalls_words
+    - Tobogan_letters
+    - Tobogan_words
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    _Values:
+    - Id: AlphabetSong
+      Variation: 
+      Status: 
+      Parent: CC
+      Description: video
+      Title_En: The Alphabet Song
+      Title_Ar: "\u0623\u063A\u0646\u064A\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Scene: 
+      TitleNew: The letters song
+      Team: VGWB
+    - Id: Balloons_counting
+      Variation: counting
+      Status: 
+      Parent: Balloons_spelling
+      Description: 
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0627\u0631\u0642\u0627\u0645"
+      Scene: game_Balloons
+      TitleNew: 
+      Team: Wixel
+    - Id: Balloons_letter
+      Variation: letters
+      Status: 
+      Parent: Balloons_spelling
+      Description: 
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Scene: game_Balloons
+      TitleNew: 
+      Team: Wixel
+    - Id: Balloons_spelling
+      Variation: spelling
+      Status: dev
+      Parent: 
+      Description: 
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062A\u0647\u062C\u0626\u0629"
+      Scene: game_Balloons
+      TitleNew: 
+      Team: Wixel
+    - Id: Balloons_words
+      Variation: words
+      Status: 
+      Parent: Balloons_spelling
+      Description: 
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0643\u0644\u0645\u0627\u062A "
+      Scene: game_Balloons
+      TitleNew: 
+      Team: Wixel
+    - Id: ColorTickle
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Color Tickle
+      Title_Ar: "\u062F\u063A\u062F\u063A\u0627\u062A \u0645\u0644\u0648\u0646\u0629 "
+      Scene: 
+      TitleNew: 
+      Team: Students
+    - Id: DancingDots
+      Variation: 
+      Status: active
+      Parent: 
+      Description: 
+      Title_En: Dancing Dots
+      Title_Ar: "\u062D\u0644\u0628\u0629 \u0627\u0644\u0631\u0642\u0635"
+      Scene: game_DancingDots
+      TitleNew: Dancing Arena
+      Team: Wixel
+    - Id: DontWakeUp
+      Variation: 
+      Status: standby
+      Parent: 
+      Description: 
+      Title_En: Don't Wake Up
+      Title_Ar: "\u0644\u0627 \u062A\u0648\u0642\u0638 \u0639\u0646\u062A\u0648\u0631\u0629"
+      Scene: 
+      TitleNew: 
+      Team: VGWB
+    - Id: Egg
+      Variation: 
+      Status: dev
+      Parent: 
+      Description: 
+      Title_En: The Egg
+      Title_Ar: "\u0628\u064A\u0636\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Scene: 
+      TitleNew: 
+      Team: VGWB
+    - Id: FastCrowd_alphabet
+      Variation: alphabet
+      Status: 
+      Parent: FastCrowd_spelling
+      Description: 
+      Title_En: 'Fast Crowd '
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u062D\u0631\u0648\u0641 \u0627\u0644\u0627\u0628\u062C\u062F\u064A\u0629"
+      Scene: game_FastCrowd
+      TitleNew: 
+      Team: VGWB
+    - Id: FastCrowd_counting
+      Variation: counting
+      Status: 
+      Parent: FastCrowd_spelling
+      Description: 
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0627\u0631\u0642\u0627\u0645"
+      Scene: game_FastCrowd
+      TitleNew: 
+      Team: VGWB
+    - Id: FastCrowd_letter
+      Variation: letters
+      Status: 
+      Parent: FastCrowd_spelling
+      Description: 
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Scene: game_FastCrowd
+      TitleNew: 
+      Team: VGWB
+    - Id: FastCrowd_spelling
+      Variation: spelling
+      Status: active
+      Parent: 
+      Description: 
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u062A\u0647\u062C\u0626\u0629"
+      Scene: game_FastCrowd
+      TitleNew: 
+      Team: VGWB
+    - Id: FastCrowd_words
+      Variation: words
+      Status: active
+      Parent: FastCrowd_spelling
+      Description: 
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
+      Scene: game_FastCrowd
+      TitleNew: 
+      Team: VGWB
+    - Id: HiddenSource
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Hidden Source
+      Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0645\u0646\u0632\u0644"
+      Scene: 
+      TitleNew: Take me home
+      Team: Wixel
+    - Id: HideSeek
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Hide & Seek
+      Title_Ar: "\u0627\u0644\u063A\u0645\u064A\u0636\u0629"
+      Scene: 
+      TitleNew: 
+      Team: Students
+    - Id: MakeFriends
+      Variation: 
+      Status: active
+      Parent: 
+      Description: 
+      Title_En: Make Friends
+      Title_Ar: "\u0634\u0631\u0627\u0631\u0629 \u0627\u0644\u0635\u062F\u0627\u0642\u0629"
+      Scene: game_MakeFriends
+      TitleNew: Friendship spark
+      Team: Wixel
+    - Id: Maze
+      Variation: 
+      Status: active
+      Parent: 
+      Description: 
+      Title_En: Maze
+      Title_Ar: "\u0645\u062A\u0627\u0647\u0629 \u0627\u0644\u0635\u0627\u0631\u0648\u062E"
+      Scene: game_Maze
+      TitleNew: Missle maze
+      Team: Wixel
+    - Id: MissingLetter
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Missing Letters
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: Students
+    - Id: MissingLetter_phrases
+      Variation: phrases
+      Status: 
+      Parent: MissingLetter
+      Description: 
+      Title_En: Missing Letters
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: Students
+    - Id: MixedLetters_alphabet
+      Variation: alphabet
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Mixed Letters
+      Title_Ar: "\u0633\u0644\u0637\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Scene: 
+      TitleNew: Letters Salad
+      Team: Wixel
+    - Id: MixedLetters_spelling
+      Variation: spelling
+      Status: 
+      Parent: MixedLetters_alphabet
+      Description: 
+      Title_En: Mixed Letters
+      Title_Ar: "\u0633\u0644\u0637\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
+      Scene: 
+      TitleNew: Words Salad
+      Team: Wixel
+    - Id: SickLetter
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Sick Letter
+      Title_Ar: "\u0627\u0644\u0636\u064A\u0641 \u0627\u0644\u063A\u0627\u0645\u0636"
+      Scene: 
+      TitleNew: 
+      Team: Wixel
+    - Id: ReadingGame
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Reading Game
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: VGWB
+    - Id: Scanner
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: Scanner
+      Title_Ar: "\u0641\u0627\u062D\u0635 \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0636\u0648\u0626\u064A"
+      Scene: 
+      TitleNew: 
+      Team: Wixel
+    - Id: Scanner_phrase
+      Variation: phrases
+      Status: 
+      Parent: Scanner
+      Description: 
+      Title_En: Scanner
+      Title_Ar: "\u0641\u0627\u062D\u0635 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0627\u0644\u0636\u0648\u0626\u064A"
+      Scene: 
+      TitleNew: 
+      Team: Wixel
+    - Id: ThrowBalls_letters
+      Variation: letters
+      Status: active
+      Parent: 
+      Description: 
+      Title_En: Throw Balls
+      Title_Ar: "\u0635\u064A\u062F \u0627\u0644\u062D\u0631\u0648\u0641"
+      Scene: game_ThrowBalls
+      TitleNew: Letter hunt
+      Team: Wixel
+    - Id: ThrowBalls_words
+      Variation: words
+      Status: 
+      Parent: ThrowBalls_letters
+      Description: 
+      Title_En: Throw Balls
+      Title_Ar: "\u0635\u064A\u062F \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
+      Scene: game_ThrowBalls
+      TitleNew: Word hunt
+      Team: Wixel
+    - Id: Tobogan_letters
+      Variation: letters
+      Status: active
+      Parent: 
+      Description: 
+      Title_En: Tobogan
+      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641 "
+      Scene: game_Tobogan
+      TitleNew: letter tower
+      Team: VGWB
+    - Id: Tobogan_words
+      Variation: words
+      Status: 
+      Parent: Tobogan_letters
+      Description: 
+      Title_En: Tobogan
+      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u0643\u0644\u0645\u0627\u062A "
+      Scene: game_Tobogan
+      TitleNew: Word tower
+      Team: VGWB
+    - Id: 
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: 
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: 
+    - Id: 
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: 
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: 
+    - Id: 
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: 
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: 
+    - Id: 
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: 
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: 
+    - Id: 
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: 
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: 
+    - Id: 
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: 
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: 
+    - Id: 
+      Variation: 
+      Status: 
+      Parent: 
+      Description: 
+      Title_En: 
+      Title_Ar: 
+      Scene: 
+      TitleNew: 
+      Team: 
+  letterTable:
+    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
+    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
+    _Count: 30
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - AlphabetSong
+    - Balloons_counting
+    - Balloons_letter
+    - Balloons_spelling
+    - Balloons_words
+    - ColorTickle
+    - DancingDots
+    - DontWakeUp
+    - Egg
+    - FastCrowd_alphabet
+    - FastCrowd_counting
+    - FastCrowd_letter
+    - FastCrowd_spelling
+    - FastCrowd_words
+    - HiddenSource
+    - HideSeek
+    - MakeFriends
+    - Maze
+    - MissingLetter
+    - MissingLetter_phrases
+    - MixedLetters_alphabet
+    - MixedLetters_spelling
+    - SickLetter
+    - ReadingGame
+    - Scanner
+    - Scanner_phrase
+    - ThrowBalls_letters
+    - ThrowBalls_words
+    - Tobogan_letters
+    - Tobogan_words
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    _Values:
+    - Id: AlphabetSong
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Balloons_counting
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Balloons_letter
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Balloons_spelling
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Balloons_words
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: ColorTickle
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: DancingDots
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: DontWakeUp
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Egg
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: FastCrowd_alphabet
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: FastCrowd_counting
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: FastCrowd_letter
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: FastCrowd_spelling
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: FastCrowd_words
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: HiddenSource
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: HideSeek
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: MakeFriends
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Maze
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: MissingLetter
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: MissingLetter_phrases
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: MixedLetters_alphabet
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: MixedLetters_spelling
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: SickLetter
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: ReadingGame
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Scanner
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Scanner_phrase
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: ThrowBalls_letters
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: ThrowBalls_words
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Tobogan_letters
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: Tobogan_words
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: 
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: 
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: 
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: 
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: 
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: 
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: 
+      Number: 0
+      Title: 
+      Kind: 
+      Type: 
+      Notes: 
+      SunMoon: 
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+  wordTable:
+    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
+    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
+    _Count: 30
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - AlphabetSong
+    - Balloons_counting
+    - Balloons_letter
+    - Balloons_spelling
+    - Balloons_words
+    - ColorTickle
+    - DancingDots
+    - DontWakeUp
+    - Egg
+    - FastCrowd_alphabet
+    - FastCrowd_counting
+    - FastCrowd_letter
+    - FastCrowd_spelling
+    - FastCrowd_words
+    - HiddenSource
+    - HideSeek
+    - MakeFriends
+    - Maze
+    - MissingLetter
+    - MissingLetter_phrases
+    - MixedLetters_alphabet
+    - MixedLetters_spelling
+    - SickLetter
+    - ReadingGame
+    - Scanner
+    - Scanner_phrase
+    - ThrowBalls_letters
+    - ThrowBalls_words
+    - Tobogan_letters
+    - Tobogan_words
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    _Values:
+    - Id: AlphabetSong
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Balloons_counting
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Balloons_letter
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Balloons_spelling
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Balloons_words
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: ColorTickle
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: DancingDots
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: DontWakeUp
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Egg
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: FastCrowd_alphabet
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: FastCrowd_counting
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: FastCrowd_letter
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: FastCrowd_spelling
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: FastCrowd_words
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: HiddenSource
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: HideSeek
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: MakeFriends
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Maze
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: MissingLetter
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: MissingLetter_phrases
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: MixedLetters_alphabet
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: MixedLetters_spelling
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: SickLetter
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: ReadingGame
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Scanner
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Scanner_phrase
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: ThrowBalls_letters
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: ThrowBalls_words
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Tobogan_letters
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: Tobogan_words
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: 
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: 
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: 
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: 
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: 
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: 
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+    - Id: 
+      Kind: 
+      Category: 
+      English: 
+      Arabic: 
+      Letters: []
+      Transliteration: 
+      DifficultyLevel: 
+      Group: 
+      NumberOfLetters: 0
+  playSessionTable:
+    _Buckets: ffffffffffffffff00000000
+    _HashCodes: 340bba020000000000000000
+    _Next: ffffffff0000000000000000
+    _Count: 1
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - 0.0.0
+    - 
+    - 
+    _Values:
+    - Stage: 0
+      LearningBlock: 0
+      PlaySession: 0
+      Description: 
+      AssessmentType: 0
+      AssessmentData: 
+      Focus: 0
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
+    - Stage: 0
+      LearningBlock: 0
+      PlaySession: 0
+      Description: 
+      AssessmentType: 0
+      AssessmentData: 
+      Focus: 0
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
+    - Stage: 0
+      LearningBlock: 0
+      PlaySession: 0
+      Description: 
+      AssessmentType: 0
+      AssessmentData: 
+      Focus: 0
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
+  assessmentTable:
+    _Buckets: ffffffffffffffffffffffff
+    _HashCodes: 000000000000000000000000
+    _Next: 000000000000000000000000
+    _Count: 0
+    _Version: 0
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - 
+    - 
+    - 
+    _Values:
+    - Id: 0
+      Title: 
+      Description: 
+    - Id: 0
+      Title: 
+      Description: 
+    - Id: 0
+      Title: 
+      Description: 
+  localizationTable:
+    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
+    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
+    _Count: 30
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - AlphabetSong
+    - Balloons_counting
+    - Balloons_letter
+    - Balloons_spelling
+    - Balloons_words
+    - ColorTickle
+    - DancingDots
+    - DontWakeUp
+    - Egg
+    - FastCrowd_alphabet
+    - FastCrowd_counting
+    - FastCrowd_letter
+    - FastCrowd_spelling
+    - FastCrowd_words
+    - HiddenSource
+    - HideSeek
+    - MakeFriends
+    - Maze
+    - MissingLetter
+    - MissingLetter_phrases
+    - MixedLetters_alphabet
+    - MixedLetters_spelling
+    - SickLetter
+    - ReadingGame
+    - Scanner
+    - Scanner_phrase
+    - ThrowBalls_letters
+    - ThrowBalls_words
+    - Tobogan_letters
+    - Tobogan_words
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    _Values:
+    - Id: AlphabetSong
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Balloons_counting
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Balloons_letter
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Balloons_spelling
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Balloons_words
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: ColorTickle
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: DancingDots
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: DontWakeUp
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Egg
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: FastCrowd_alphabet
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: FastCrowd_counting
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: FastCrowd_letter
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: FastCrowd_spelling
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: FastCrowd_words
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: HiddenSource
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: HideSeek
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: MakeFriends
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Maze
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: MissingLetter
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: MissingLetter_phrases
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: MixedLetters_alphabet
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: MixedLetters_spelling
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: SickLetter
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: ReadingGame
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Scanner
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Scanner_phrase
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: ThrowBalls_letters
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: ThrowBalls_words
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Tobogan_letters
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: Tobogan_words
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: 
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: 
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: 
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: 
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: 
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: 
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+    - Id: 
+      Character: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: 
+      EnglishOld: 
+  phraseTable:
+    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
+    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
+    _Count: 30
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - AlphabetSong
+    - Balloons_counting
+    - Balloons_letter
+    - Balloons_spelling
+    - Balloons_words
+    - ColorTickle
+    - DancingDots
+    - DontWakeUp
+    - Egg
+    - FastCrowd_alphabet
+    - FastCrowd_counting
+    - FastCrowd_letter
+    - FastCrowd_spelling
+    - FastCrowd_words
+    - HiddenSource
+    - HideSeek
+    - MakeFriends
+    - Maze
+    - MissingLetter
+    - MissingLetter_phrases
+    - MixedLetters_alphabet
+    - MixedLetters_spelling
+    - SickLetter
+    - ReadingGame
+    - Scanner
+    - Scanner_phrase
+    - ThrowBalls_letters
+    - ThrowBalls_words
+    - Tobogan_letters
+    - Tobogan_words
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    _Values:
+    - Id: AlphabetSong
+      English: 
+      Arabic: 
+    - Id: Balloons_counting
+      English: 
+      Arabic: 
+    - Id: Balloons_letter
+      English: 
+      Arabic: 
+    - Id: Balloons_spelling
+      English: 
+      Arabic: 
+    - Id: Balloons_words
+      English: 
+      Arabic: 
+    - Id: ColorTickle
+      English: 
+      Arabic: 
+    - Id: DancingDots
+      English: 
+      Arabic: 
+    - Id: DontWakeUp
+      English: 
+      Arabic: 
+    - Id: Egg
+      English: 
+      Arabic: 
+    - Id: FastCrowd_alphabet
+      English: 
+      Arabic: 
+    - Id: FastCrowd_counting
+      English: 
+      Arabic: 
+    - Id: FastCrowd_letter
+      English: 
+      Arabic: 
+    - Id: FastCrowd_spelling
+      English: 
+      Arabic: 
+    - Id: FastCrowd_words
+      English: 
+      Arabic: 
+    - Id: HiddenSource
+      English: 
+      Arabic: 
+    - Id: HideSeek
+      English: 
+      Arabic: 
+    - Id: MakeFriends
+      English: 
+      Arabic: 
+    - Id: Maze
+      English: 
+      Arabic: 
+    - Id: MissingLetter
+      English: 
+      Arabic: 
+    - Id: MissingLetter_phrases
+      English: 
+      Arabic: 
+    - Id: MixedLetters_alphabet
+      English: 
+      Arabic: 
+    - Id: MixedLetters_spelling
+      English: 
+      Arabic: 
+    - Id: SickLetter
+      English: 
+      Arabic: 
+    - Id: ReadingGame
+      English: 
+      Arabic: 
+    - Id: Scanner
+      English: 
+      Arabic: 
+    - Id: Scanner_phrase
+      English: 
+      Arabic: 
+    - Id: ThrowBalls_letters
+      English: 
+      Arabic: 
+    - Id: ThrowBalls_words
+      English: 
+      Arabic: 
+    - Id: Tobogan_letters
+      English: 
+      Arabic: 
+    - Id: Tobogan_words
+      English: 
+      Arabic: 
+    - Id: 
+      English: 
+      Arabic: 
+    - Id: 
+      English: 
+      Arabic: 
+    - Id: 
+      English: 
+      Arabic: 
+    - Id: 
+      English: 
+      Arabic: 
+    - Id: 
+      English: 
+      Arabic: 
+    - Id: 
+      English: 
+      Arabic: 
+    - Id: 
+      English: 
+      Arabic: 
+  stageTable:
+    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
+    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
+    _Count: 30
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - AlphabetSong
+    - Balloons_counting
+    - Balloons_letter
+    - Balloons_spelling
+    - Balloons_words
+    - ColorTickle
+    - DancingDots
+    - DontWakeUp
+    - Egg
+    - FastCrowd_alphabet
+    - FastCrowd_counting
+    - FastCrowd_letter
+    - FastCrowd_spelling
+    - FastCrowd_words
+    - HiddenSource
+    - HideSeek
+    - MakeFriends
+    - Maze
+    - MissingLetter
+    - MissingLetter_phrases
+    - MixedLetters_alphabet
+    - MixedLetters_spelling
+    - SickLetter
+    - ReadingGame
+    - Scanner
+    - Scanner_phrase
+    - ThrowBalls_letters
+    - ThrowBalls_words
+    - Tobogan_letters
+    - Tobogan_words
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    _Values:
+    - Id: AlphabetSong
+      Title_En: The Alphabet Song
+      Title_Ar: "\u0623\u063A\u0646\u064A\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Description: video
+    - Id: Balloons_counting
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0627\u0631\u0642\u0627\u0645"
+      Description: 
+    - Id: Balloons_letter
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Description: 
+    - Id: Balloons_spelling
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062A\u0647\u062C\u0626\u0629"
+      Description: 
+    - Id: Balloons_words
+      Title_En: Balloons
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0643\u0644\u0645\u0627\u062A "
+      Description: 
+    - Id: ColorTickle
+      Title_En: Color Tickle
+      Title_Ar: "\u062F\u063A\u062F\u063A\u0627\u062A \u0645\u0644\u0648\u0646\u0629 "
+      Description: 
+    - Id: DancingDots
+      Title_En: Dancing Dots
+      Title_Ar: "\u062D\u0644\u0628\u0629 \u0627\u0644\u0631\u0642\u0635"
+      Description: 
+    - Id: DontWakeUp
+      Title_En: Don't Wake Up
+      Title_Ar: "\u0644\u0627 \u062A\u0648\u0642\u0638 \u0639\u0646\u062A\u0648\u0631\u0629"
+      Description: 
+    - Id: Egg
+      Title_En: The Egg
+      Title_Ar: "\u0628\u064A\u0636\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Description: 
+    - Id: FastCrowd_alphabet
+      Title_En: 'Fast Crowd '
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u062D\u0631\u0648\u0641 \u0627\u0644\u0627\u0628\u062C\u062F\u064A\u0629"
+      Description: 
+    - Id: FastCrowd_counting
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0627\u0631\u0642\u0627\u0645"
+      Description: 
+    - Id: FastCrowd_letter
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Description: 
+    - Id: FastCrowd_spelling
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u062A\u0647\u062C\u0626\u0629"
+      Description: 
+    - Id: FastCrowd_words
+      Title_En: Fast Crowd
+      Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
+      Description: 
+    - Id: HiddenSource
+      Title_En: Hidden Source
+      Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0645\u0646\u0632\u0644"
+      Description: 
+    - Id: HideSeek
+      Title_En: Hide & Seek
+      Title_Ar: "\u0627\u0644\u063A\u0645\u064A\u0636\u0629"
+      Description: 
+    - Id: MakeFriends
+      Title_En: Make Friends
+      Title_Ar: "\u0634\u0631\u0627\u0631\u0629 \u0627\u0644\u0635\u062F\u0627\u0642\u0629"
+      Description: 
+    - Id: Maze
+      Title_En: Maze
+      Title_Ar: "\u0645\u062A\u0627\u0647\u0629 \u0627\u0644\u0635\u0627\u0631\u0648\u062E"
+      Description: 
+    - Id: MissingLetter
+      Title_En: Missing Letters
+      Title_Ar: 
+      Description: 
+    - Id: MissingLetter_phrases
+      Title_En: Missing Letters
+      Title_Ar: 
+      Description: 
+    - Id: MixedLetters_alphabet
+      Title_En: Mixed Letters
+      Title_Ar: "\u0633\u0644\u0637\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
+      Description: 
+    - Id: MixedLetters_spelling
+      Title_En: Mixed Letters
+      Title_Ar: "\u0633\u0644\u0637\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
+      Description: 
+    - Id: SickLetter
+      Title_En: Sick Letter
+      Title_Ar: "\u0627\u0644\u0636\u064A\u0641 \u0627\u0644\u063A\u0627\u0645\u0636"
+      Description: 
+    - Id: ReadingGame
+      Title_En: Reading Game
+      Title_Ar: 
+      Description: 
+    - Id: Scanner
+      Title_En: Scanner
+      Title_Ar: "\u0641\u0627\u062D\u0635 \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0636\u0648\u0626\u064A"
+      Description: 
+    - Id: Scanner_phrase
+      Title_En: Scanner
+      Title_Ar: "\u0641\u0627\u062D\u0635 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
+        \u0627\u0644\u0636\u0648\u0626\u064A"
+      Description: 
+    - Id: ThrowBalls_letters
+      Title_En: Throw Balls
+      Title_Ar: "\u0635\u064A\u062F \u0627\u0644\u062D\u0631\u0648\u0641"
+      Description: 
+    - Id: ThrowBalls_words
+      Title_En: Throw Balls
+      Title_Ar: "\u0635\u064A\u062F \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
+      Description: 
+    - Id: Tobogan_letters
+      Title_En: Tobogan
+      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641 "
+      Description: 
+    - Id: Tobogan_words
+      Title_En: Tobogan
+      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u0643\u0644\u0645\u0627\u062A "
+      Description: 
+    - Id: 
+      Title_En: 
+      Title_Ar: 
+      Description: 
+    - Id: 
+      Title_En: 
+      Title_Ar: 
+      Description: 
+    - Id: 
+      Title_En: 
+      Title_Ar: 
+      Description: 
+    - Id: 
+      Title_En: 
+      Title_Ar: 
+      Description: 
+    - Id: 
+      Title_En: 
+      Title_Ar: 
+      Description: 
+    - Id: 
+      Title_En: 
+      Title_Ar: 
+      Description: 
+    - Id: 
+      Title_En: 
+      Title_Ar: 
+      Description: 
+  rewardTable:
+    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
+    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
+    _Count: 30
+    _Version: 60
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys:
+    - AlphabetSong
+    - Balloons_counting
+    - Balloons_letter
+    - Balloons_spelling
+    - Balloons_words
+    - ColorTickle
+    - DancingDots
+    - DontWakeUp
+    - Egg
+    - FastCrowd_alphabet
+    - FastCrowd_counting
+    - FastCrowd_letter
+    - FastCrowd_spelling
+    - FastCrowd_words
+    - HiddenSource
+    - HideSeek
+    - MakeFriends
+    - Maze
+    - MissingLetter
+    - MissingLetter_phrases
+    - MixedLetters_alphabet
+    - MixedLetters_spelling
+    - SickLetter
+    - ReadingGame
+    - Scanner
+    - Scanner_phrase
+    - ThrowBalls_letters
+    - ThrowBalls_words
+    - Tobogan_letters
+    - Tobogan_words
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    _Values:
+    - Id: AlphabetSong
+      Title: 
+      Category: 0
+    - Id: Balloons_counting
+      Title: 
+      Category: 0
+    - Id: Balloons_letter
+      Title: 
+      Category: 0
+    - Id: Balloons_spelling
+      Title: 
+      Category: 0
+    - Id: Balloons_words
+      Title: 
+      Category: 0
+    - Id: ColorTickle
+      Title: 
+      Category: 0
+    - Id: DancingDots
+      Title: 
+      Category: 0
+    - Id: DontWakeUp
+      Title: 
+      Category: 0
+    - Id: Egg
+      Title: 
+      Category: 0
+    - Id: FastCrowd_alphabet
+      Title: 
+      Category: 0
+    - Id: FastCrowd_counting
+      Title: 
+      Category: 0
+    - Id: FastCrowd_letter
+      Title: 
+      Category: 0
+    - Id: FastCrowd_spelling
+      Title: 
+      Category: 0
+    - Id: FastCrowd_words
+      Title: 
+      Category: 0
+    - Id: HiddenSource
+      Title: 
+      Category: 0
+    - Id: HideSeek
+      Title: 
+      Category: 0
+    - Id: MakeFriends
+      Title: 
+      Category: 0
+    - Id: Maze
+      Title: 
+      Category: 0
+    - Id: MissingLetter
+      Title: 
+      Category: 0
+    - Id: MissingLetter_phrases
+      Title: 
+      Category: 0
+    - Id: MixedLetters_alphabet
+      Title: 
+      Category: 0
+    - Id: MixedLetters_spelling
+      Title: 
+      Category: 0
+    - Id: SickLetter
+      Title: 
+      Category: 0
+    - Id: ReadingGame
+      Title: 
+      Category: 0
+    - Id: Scanner
+      Title: 
+      Category: 0
+    - Id: Scanner_phrase
+      Title: 
+      Category: 0
+    - Id: ThrowBalls_letters
+      Title: 
+      Category: 0
+    - Id: ThrowBalls_words
+      Title: 
+      Category: 0
+    - Id: Tobogan_letters
+      Title: 
+      Category: 0
+    - Id: Tobogan_words
+      Title: 
+      Category: 0
+    - Id: 
+      Title: 
+      Category: 0
+    - Id: 
+      Title: 
+      Category: 0
+    - Id: 
+      Title: 
+      Category: 0
+    - Id: 
+      Title: 
+      Category: 0
+    - Id: 
+      Title: 
+      Category: 0
+    - Id: 
+      Title: 
+      Category: 0
+    - Id: 
+      Title: 
+      Category: 0

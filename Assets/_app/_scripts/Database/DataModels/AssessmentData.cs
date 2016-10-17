@@ -4,11 +4,16 @@ using UnityEngine;
 namespace EA4S.Db
 {
     [Serializable]
-    public class AssessmentData
+    public class AssessmentData :IData
     {
         public AssessmentType Id;
         public string Title;
         public string Description;
+
+        public string GetID()
+        {
+            return Id.ToString();
+        }
     }
 
     public enum AssessmentType

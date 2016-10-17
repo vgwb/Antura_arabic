@@ -4,16 +4,26 @@ using System.Collections.Generic;
 
 namespace EA4S.Db
 {
+    // @note: we use these serialized tables for faster access
     public class Database : ScriptableObject
     {
-        public List<MiniGameData> MiniGames;
-        public List<LetterData> Letters;
-        public List<WordData> Words;
-        public List<PlaySessionData> PlaySessions;
-        public List<AssessmentData> Assessments;
-        public List<LocalizationData> Localizations;
-        public List<PhraseData> Phrases;
-        public List<StageData> Stages;
-        public List<RewardData> Rewards;
+        [SerializeField]
+        public MiniGameTable minigameTable;
+        [SerializeField]
+        public LetterTable letterTable;
+        [SerializeField]
+        public WordTable wordTable;
+        [SerializeField]
+        public PlaySessionTable playSessionTable;
+        [SerializeField]
+        public AssessmentTable assessmentTable;
+        [SerializeField]
+        public LocalizationTable localizationTable;
+        [SerializeField]
+        public PhraseTable phraseTable;
+        [SerializeField]
+        public StageTable stageTable;
+        [SerializeField]
+        public RewardTable rewardTable;
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace EA4S.Db
 {
     [Serializable]
-    public class PlaySessionData
+    public class PlaySessionData : IData
     {
         public int Stage;
         public int LearningBlock;
@@ -25,6 +25,11 @@ namespace EA4S.Db
         public override string ToString()
         {
             return string.Format("[Playsession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
+        }
+
+        public string GetID()
+        {
+            return Stage + "." + LearningBlock + "." + PlaySession;
         }
     }
 
