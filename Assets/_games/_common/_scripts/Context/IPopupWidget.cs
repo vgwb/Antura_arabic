@@ -9,6 +9,7 @@ namespace EA4S
         void Show(bool reset = true);
         void SetButtonCallback(System.Action callback);
         void SetTitle(string text, bool isArabic);
+        void SetMessage(string text, bool isArabic);
         void SetTitle(TextID text);
         void SetImage(Sprite image);
         void SetWord(WordData data); // Modifies Text + Image      

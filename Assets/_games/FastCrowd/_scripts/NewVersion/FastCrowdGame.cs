@@ -8,7 +8,7 @@ namespace EA4S.FastCrowd
     public class FastCrowdGame : MiniGame
     {
         public QuestionManager QuestionManager;
-        
+
         public TextMeshProUGUI timerText;
         public AnturaController antura;
         public WordComposer wordComposer;
@@ -100,13 +100,20 @@ namespace EA4S.FastCrowd
                 popupWidget.SetWord((WordData)question);
                 Context.GetAudioManager().PlayWord((WordData)question);
             }
-            else
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
             {
                 var stringListOfWords = "";
-                foreach (var w in CurrentChallenge)
-                    stringListOfWords +=  w.TextForLivingLetter + " ";
+                for (int i = 0, count = CurrentChallenge.Count; i < count; ++i)
+                {
+                    var word = ((WordData)CurrentChallenge[i]).Word;
 
-                popupWidget.SetTitle(stringListOfWords, true);
+                    if (i == 0)
+                    stringListOfWords = word;
+                    else
+                        stringListOfWords = word + " " + stringListOfWords;
+                }
+
+                popupWidget.SetMessage(stringListOfWords, true);
             }
         }
     }

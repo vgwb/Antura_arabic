@@ -23,6 +23,7 @@ namespace EA4S
         public GameObject TitleEnglishGO;
         public GameObject DrawingImageGO;
         public GameObject WordTextGO;
+        public GameObject MessageTextGO;
         public GameObject ButtonGO;
         public GameObject TutorialImageGO;
         public GameObject MarkOK;
@@ -49,10 +50,11 @@ namespace EA4S
         {
             clicked = false;
             TutorialImageGO.SetActive(false);
-            SetTitle("");
+            SetTitle("", false);
             SetWord("", "");
             MarkOK.SetActive(false);
             MarkKO.SetActive(false);
+            SetMessage("", false);
         }
 
         public void Close(bool _immediate = false)
@@ -283,15 +285,42 @@ namespace EA4S
             ButtonGO.SetActive(callback != null);
             TutorialImageGO.SetActive(false);
 
-            SetTitle(introText);
+            SetTitle(introText, false);
             SetWord(wordCode, arabicWord);
             //            Window.SetActive(true);
         }
 
-        public void SetTitle(string text)
+        public void SetTitle(string text, bool isArabic)
         {
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = text;
+            if (isArabic)
+                TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
+            else
+                TitleGO.GetComponent<TextMeshProUGUI>().text = text;
+
+            /*
+            if (isArabic)
+            {
+                TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
+                TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
+            }
+            else
+            {
+                TitleGO.GetComponent<TextMeshProUGUI>().text = "";
+                TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = text;
+            }
+            */
+        }
+
+        public void SetMessage(string text, bool isArabic)
+        {
+            if (isArabic)
+            {
+                MessageTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
+            }
+            else
+            {
+                MessageTextGO.GetComponent<TextMeshProUGUI>().text = text;
+            }
         }
 
         public void SetTitleSentence(string SentenceId)
