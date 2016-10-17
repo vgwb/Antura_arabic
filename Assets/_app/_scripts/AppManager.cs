@@ -79,7 +79,8 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
-
+            // PlayerProfileModule Install override
+            PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
         }
 
         void CachingLetterData()
