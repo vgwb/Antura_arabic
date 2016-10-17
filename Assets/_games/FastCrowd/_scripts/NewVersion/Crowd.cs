@@ -9,8 +9,12 @@ namespace EA4S.FastCrowd
     public class Crowd : MonoBehaviour
     {
         public LetterObjectView livingLetterPrefab;
+        public GameObject puffPrefab;
 
         List<FastCrowdLivingLetter> letters = new List<FastCrowdLivingLetter>();
+
+        Queue<FastCrowdLivingLetter> toDestroy = new Queue<FastCrowdLivingLetter>();
+        float destroyTimer = 0;
 
         public void AddLivingLetter(ILivingLetterData letter)
         {
@@ -28,11 +32,31 @@ namespace EA4S.FastCrowd
 
         public void Clean()
         {
-            // TODO: Poof!
-
             foreach (var l in letters)
-                Destroy(l.gameObject);
+                toDestroy.Enqueue(l);
+
             letters.Clear();
+        }
+
+        void Update()
+        {
+            if (toDestroy.Count > 0)
+            {
+                destroyTimer -= Time.deltaTime;
+
+                if (destroyTimer <= 0)
+                {
+                    destroyTimer = 0.1f;
+
+                    var puffGo = GameObject.Instantiate(puffPrefab);
+                    puffGo.AddComponent<AutoDestroy>().duration = 2;
+                    puffGo.SetActive(true);
+
+                    var t = toDestroy.Dequeue();
+                    puffGo.transform.position = t.transform.position;
+                    Destroy(t.gameObject);
+                }
+            }
         }
     }
 }
