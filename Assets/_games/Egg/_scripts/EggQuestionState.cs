@@ -13,9 +13,12 @@ namespace EA4S.Egg
 
         public void EnterState()
         {
+            game.eggButtonBox.RemoveButtons();
+
             game.questionManager.StartNewQuestion();
             game.eggController.Reset();
-            game.eggController.MoveNext(2f, OnEggEnterComplete);
+
+            game.Context.GetPopupWidget().Show(OnPopupCloseRequested, "Question Description", true);
         }
 
         public void ExitState()
@@ -28,6 +31,13 @@ namespace EA4S.Egg
 
         public void UpdatePhysics(float delta)
         {
+        }
+
+        void OnPopupCloseRequested()
+        {
+            game.Context.GetPopupWidget().Hide();
+
+            game.eggController.MoveNext(2f, OnEggEnterComplete);
         }
 
         void OnEggEnterComplete()
@@ -53,45 +63,20 @@ namespace EA4S.Egg
         void ShowQuestionSequence()
         {
             WordData questionWordData = game.questionManager.GetQuestionWordData();
-            List<EggButton> eggButtons;
 
             if (questionWordData == null)
             {
+                game.eggController.eggLivingLetter.SetQuestionText(game.questionManager.GetlLetterDataSequence()[0]);
                 game.Context.GetAudioManager().PlayLetter(((LetterData)game.questionManager.GetlLetterDataSequence()[0]).Key);
-                eggButtons = game.eggButtonBox.GetButtons(true);
+                game.eggController.StartTrembling();
+
+                game.eggButtonBox.LightUpButtons(true, true, 1f, 2f, OnLightUpButtonsComplete);
             }
             else
             {
-                eggButtons = game.eggButtonBox.GetButtons(false);
+                game.eggController.eggLivingLetter.SetQuestionText(questionWordData);
+                game.eggButtonBox.LightUpButtons(true, false, 1f, 1f, OnLightUpButtonsComplete);
             }
-
-            LightUpButtons(eggButtons);
-        }
-
-        int currentLightUpButtonIndex;
-        List<EggButton> lightUpButtons;
-        void LightUpButtons(List<EggButton> buttons)
-        {
-            currentLightUpButtonIndex = 0;
-            lightUpButtons = buttons;
-
-            lightUpButtons[currentLightUpButtonIndex].LightUp(true, 1f, 1f, OnLightUpButtonComplete);
-
-            currentLightUpButtonIndex++;
-        }
-
-        void OnLightUpButtonComplete()
-        {
-            if(currentLightUpButtonIndex == lightUpButtons.Count - 1)
-            {
-                lightUpButtons[currentLightUpButtonIndex].LightUp(true, 1f, 0f, OnLightUpButtonsComplete);
-            }
-            else
-            {
-                lightUpButtons[currentLightUpButtonIndex].LightUp(true, 1f, 0f, OnLightUpButtonComplete);
-            }
-            
-            currentLightUpButtonIndex++;
         }
 
         void OnLightUpButtonsComplete()

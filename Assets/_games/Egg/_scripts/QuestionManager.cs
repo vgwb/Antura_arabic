@@ -18,6 +18,7 @@ namespace EA4S.Egg
         public void StartNewQuestion()
         {
             quetionWordData = null;
+            lLetterDataSequence.Clear();
 
             ILivingLetterData lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
 
