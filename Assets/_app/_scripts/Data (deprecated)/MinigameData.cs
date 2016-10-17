@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S
+namespace EA4S.deprecated
 {
     public class MinigameData
     {
