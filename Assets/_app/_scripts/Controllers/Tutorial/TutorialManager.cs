@@ -7,7 +7,7 @@ namespace EA4S
 {
     public class TutorialManager : MonoBehaviour
     {
-        public MinigamesCode CurrentGameCode;
+        public MiniGameCode CurrentGameCode;
 
         bool isAnimationComplete;
         bool isDialogsComplete;
@@ -21,13 +21,13 @@ namespace EA4S
 
             SceneTransitioner.Close();
 
-            if (CurrentGameCode == MinigamesCode.FastCrowd) {
+            if (CurrentGameCode == MiniGameCode.FastCrowd_letter) {
                 tutorialIndex = 10;
-            } else if (CurrentGameCode == MinigamesCode.FastCrowdWords) {
+            } else if (CurrentGameCode == MiniGameCode.FastCrowd_words) {
                 tutorialIndex = 15;
-            } else if (CurrentGameCode == MinigamesCode.DontWakeUp) {
+            } else if (CurrentGameCode == MiniGameCode.DontWakeUp) {
                 tutorialIndex = 20;
-            } else if (CurrentGameCode == MinigamesCode.Balloons) {
+            } else if (CurrentGameCode == MiniGameCode.Balloons_spelling) {
                 tutorialIndex = 30;
             }
             ShowTutor();
@@ -106,11 +106,11 @@ namespace EA4S
 
         public void Play()
         {
-            if (CurrentGameCode == MinigamesCode.FastCrowd || CurrentGameCode == MinigamesCode.FastCrowdWords) {
+            if (CurrentGameCode == MiniGameCode.FastCrowd_letter || CurrentGameCode == MiniGameCode.FastCrowd_words) {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
-            } else if (CurrentGameCode == MinigamesCode.DontWakeUp) {
+            } else if (CurrentGameCode == MiniGameCode.DontWakeUp) {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
-            } else if (CurrentGameCode == MinigamesCode.Balloons) {
+            } else if (CurrentGameCode == MiniGameCode.Balloons_spelling) {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Balloons");
             }
         }

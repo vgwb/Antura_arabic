@@ -68,7 +68,7 @@ namespace EA4S.ThrowBalls
                 letter.StopJumping();
             }
 
-            letter.MakeSureIsProppedUp();
+            letter.MakeSureIsProppedUp(1.5f);
 
             letter.SetIsKinematic(false);
             letter.ApplyCustomGravity();
