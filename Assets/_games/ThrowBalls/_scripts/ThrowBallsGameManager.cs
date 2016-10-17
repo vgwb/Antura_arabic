@@ -11,7 +11,7 @@ namespace EA4S.ThrowBalls
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 3;
-        public const int MAX_NUM_POKEBALLS = 3;
+        public const int MAX_NUM_POKEBALLS = 300;
 
         new public static ThrowBallsGameManager Instance;
         new public ThrowBallsGameplayInfo GameplayInfo;
@@ -79,7 +79,9 @@ namespace EA4S.ThrowBalls
 
             ResetScene();
 
-            StartCoroutine("StartNewRound");
+            //StartCoroutine("StartNewRound");
+
+            PokeballController.instance.Enable();
 
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
