@@ -14,11 +14,11 @@ namespace EA4S
     {
         public TutorialLetter RightLetter, WrongLetter;
 
-        Animator animator;
+        // Animator animator;
 
         void Start()
         {
-            animator = this.GetComponent<Animator>();
+            // animator = this.GetComponent<Animator>();
         }
 
         // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
