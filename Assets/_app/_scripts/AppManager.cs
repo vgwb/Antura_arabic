@@ -107,7 +107,7 @@ namespace EA4S
         public bool IsAssessmentTime { get { return PlaySession == 3; } }
         // Change this to change position of assessment in the alpha.
         [HideInInspector]
-        public MinigameData ActualMinigame;
+        public Db.MiniGameData ActualMinigame;
 
 
         public void ResetProgressionData()
@@ -122,24 +122,24 @@ namespace EA4S
         /// <summary>
         /// Give right game. Alpha version.
         /// </summary>
-        public MinigameData GetMiniGameForActualPlaySession()
+        public Db.MiniGameData GetMiniGameForActualPlaySession()
         {
-            MinigameData miniGame = null;
+            Db.MiniGameData miniGame = null;
             switch (PlaySession) {
                 case 1:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.gameData.Find(g => g.Code == "FastCrowd_letter");
+                        miniGame = DB.minigameTable["FastCrowd_letter"];
                     else
-                        miniGame = DB.gameData.Find(g => g.Code == "Balloons_spelling");
+                        miniGame = DB.minigameTable["Balloons_spelling"];
                     break;
                 case 2:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.gameData.Find(g => g.Code == "FastCrowd_words");
+                        miniGame = DB.minigameTable["FastCrowd_words"];
                     else
-                        miniGame = DB.gameData.Find(g => g.Code == "Tobogan");
+                        miniGame = DB.minigameTable["Tobogan"];
                     break;
                 case 3:
-                    miniGame = new MinigameData("Assessment", "Assessment", "Assessment", "app_Assessment", true);
+                    miniGame = DB.minigameTable["Assessment"];
                     break;
             }
             ActualMinigame = miniGame;

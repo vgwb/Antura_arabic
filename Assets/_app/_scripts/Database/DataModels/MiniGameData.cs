@@ -26,7 +26,7 @@ namespace EA4S.Db
         }
         private bool _available;
         public bool Available {
-            get { return _available; }
+            get { return Status == "active"; }
             set { _available = value; }
         }
 
