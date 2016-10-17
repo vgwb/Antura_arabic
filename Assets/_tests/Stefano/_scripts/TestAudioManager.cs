@@ -7,18 +7,23 @@ namespace EA4S
     {
 
         public string MyEventName;
-        public GameObject LED;
+        public GameObject[] LEDs;
 
-        public void StartSfxTest()
+        void Start()
         {
-            MyEventName = AudioConfig.GetSfxEventName(Sfx.GameTitle);
-            Fabric.EventManager.Instance.PostEvent(MyEventName, gameObject);
+            MyEventName = AudioConfig.GetSfxEventName(Sfx.AlarmClock);
         }
 
-        public void StopSfxTest()
+        public void StartSfxTest(int id)
         {
-            AudioManager.I.StopSfx(Sfx.GameTitle);
-            MyEventName = "";
+            Fabric.EventManager.Instance.PostEvent(MyEventName, LEDs[id]);
+        }
+
+        public void StopSfxTest(int id)
+        {
+            //AudioManager.I.StopSfx(Sfx.GameTitle);
+            Fabric.EventManager.Instance.PostEvent(MyEventName, Fabric.EventAction.StopSound, LEDs[id]);
+            //MyEventName = "";
         }
 
         public void ChangePitch(float pitch)
@@ -28,14 +33,16 @@ namespace EA4S
 
         void Update()
         {
-            if (MyEventName != "") {
-                if (Fabric.EventManager.Instance.IsEventActive(MyEventName, gameObject)) {
-                    LED.SetActive(true);
-                } else {
-                    LED.SetActive(false);
-                }
+            if (Fabric.EventManager.Instance.IsEventActive(MyEventName, LEDs[0])) {
+                LEDs[0].SetActive(true);
+            } else {
+                LEDs[0].SetActive(false);
             }
-
+            if (Fabric.EventManager.Instance.IsEventActive(MyEventName, LEDs[1])) {
+                LEDs[1].SetActive(true);
+            } else {
+                LEDs[1].SetActive(false);
+            }
         }
     }
 }
