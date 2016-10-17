@@ -10,6 +10,12 @@
         int questionProgress;
         int correctAnswers;
 
+        bool anturaEnter;
+        bool anturaEntered;
+
+        float nextStateTimer;
+        bool toNextState;
+
         public EggPlayState(EggGame game)
         {
             this.game = game;
@@ -36,21 +42,54 @@
             game.eggController.onEggExitComplete = OnEggExitComplete;
 
             EnableAllGameplayInput();
+
+            anturaEnter = false;
+            anturaEntered = false;
+
+            nextStateTimer = 2f;
+            toNextState = false;
         }
 
         public void ExitState()
         {
-            DisableAllGameplayInput();
+            
         }
 
         public void Update(float delta)
         {
+            if(anturaEnter && !anturaEntered)
+            {
+                anturaEntered = true;
+                AnturaOut();
+            }
 
+            if(toNextState)
+            {
+                nextStateTimer -= delta;
+                
+                if(nextStateTimer <= 0f)
+                {
+                    toNextState = false;
+                    game.SetCurrentState(game.ResultState);
+                }
+            }
         }
 
         public void UpdatePhysics(float delta)
         {
 
+        }
+
+        void AnturaOut()
+        {
+            game.antura.Bark();
+            DisableAllGameplayInput();
+            game.eggButtonBox.AnturaButtonOut(AnturaIn, 0.5f, 1f);
+        }
+
+        void AnturaIn()
+        {
+            game.eggButtonBox.AnturaButtonIn(EnableAllGameplayInput, 0.5f, 1f);
         }
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
@@ -78,6 +117,8 @@
 
         void NegativeFeedback()
         {
+            anturaEnter = true;
+
             letterOnSequence = 0;
 
             questionProgress = 0;
@@ -101,12 +142,45 @@
 
         void OnEggExitComplete()
         {
-            game.SetCurrentState(game.ResultState);
+            DisableAllGameplayInput();
+            game.stagePositiveResult = false;
+            toNextState = true;
         }
 
         void OnEggCrackComplete()
         {
-            game.SetCurrentState(game.ResultState);
+            game.correctStages++;
+
+            DisableAllGameplayInput();
+            game.stagePositiveResult = true;
+
+            WordData questionWordData = game.questionManager.GetQuestionWordData();
+
+            if (questionWordData == null)
+            {
+                OnLightUpButtonsComplete();
+            }
+            else
+            {
+                game.eggButtonBox.LightUpButtons(true, false, 1f, 1f, OnLightUpButtonsComplete);
+            }
+
+        }
+
+        void OnLightUpButtonsComplete()
+        {
+            WordData questionWordData = game.questionManager.GetQuestionWordData();
+
+            if (questionWordData == null)
+            {
+                game.eggButtonBox.GetButtons(false)[0].LightUp(true, 1f, 1, null);
+            }
+            else
+            {
+                game.Context.GetAudioManager().PlayWord(questionWordData.Key);
+            }
+
+            toNextState = true;
         }
     }
 }

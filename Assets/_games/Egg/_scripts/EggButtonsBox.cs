@@ -6,6 +6,8 @@ namespace EA4S.Egg
 {
     public class EggButtonsBox : MonoBehaviour
     {
+        public Transform anturaOut;
+
         GameObject eggButtonPrefab;
 
         List<EggButton> eggButtons = new List<EggButton>();
@@ -56,7 +58,7 @@ namespace EA4S.Egg
 
         public void ShowButtons()
         {
-            for(int i=0; i< eggButtons.Count; i++)
+            for (int i = 0; i < eggButtons.Count; i++)
             {
                 eggButtons[i].gameObject.SetActive(true);
             }
@@ -86,12 +88,63 @@ namespace EA4S.Egg
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
                 int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
-                //Debug.Log("Random Position: " + i.ToString() + " index: " + index.ToString());
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
                 eggButtons[currentIndex].transform.localPosition = buttonsPosition[i];
                 eggButtons[currentIndex].positionIndex = i;
+            }
+        }
+
+        public void AnturaButtonOut(Action endCallback, float duration, float delay)
+        {
+            List<EggButton> buttons = GetButtons(true);
+
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (i == buttons.Count - 1)
+                {
+                    buttons[i].MoveTo(anturaOut.localPosition, duration, (i * 0.1f) + delay, endCallback);
+                }
+                else
+                {
+                    buttons[i].MoveTo(anturaOut.localPosition, duration, (i * 0.1f) + delay);
+                }
+
+                buttons[i].ScaleTo(0f, duration, (i * 0.1f) + delay);
+            }
+        }
+
+        public void AnturaButtonIn(Action endCallback, float duration, float delay)
+        {
+            buttonCount = eggButtons.Count;
+
+            Vector3[] buttonsPosition = CalculateButtonPositions();
+
+            List<int> buttonsIndex = new List<int>();
+
+            for (int i = 0; i < buttonCount; i++)
+            {
+                buttonsIndex.Add(i);
+            }
+
+            for (int i = 0; i < buttonsPosition.Length; i++)
+            {
+                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
+                int currentIndex = buttonsIndex[index];
+                buttonsIndex.RemoveAt(index);
+
+                if (i == buttonsPosition.Length - 1)
+                {
+                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, (i * 0.1f) + delay, endCallback);
+                }
+                else
+                {
+                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, (i * 0.1f) + delay);
+                }
+
+                eggButtons[currentIndex].positionIndex = i;
+                eggButtons[currentIndex].ScaleTo(1f, duration, (i * 0.1f) + delay);
             }
         }
 
@@ -177,7 +230,7 @@ namespace EA4S.Egg
 
         public List<EggButton> GetButtons(bool inPositionOrder)
         {
-            if(inPositionOrder)
+            if (inPositionOrder)
             {
                 List<EggButton> buttons = new List<EggButton>();
 
@@ -207,7 +260,7 @@ namespace EA4S.Egg
 
         public void EnableButtonsInput()
         {
-            for(int i=0; i< eggButtons.Count; i++)
+            for (int i = 0; i < eggButtons.Count; i++)
             {
                 eggButtons[i].EnableInput();
             }
@@ -218,6 +271,23 @@ namespace EA4S.Egg
             for (int i = 0; i < eggButtons.Count; i++)
             {
                 eggButtons[i].DisableInput();
+            }
+        }
+
+        public void LightUpButtons(bool playAudio, bool inPositionOrder, float duration, float delay, Action endCallback)
+        {
+            List<EggButton> buttons = GetButtons(inPositionOrder);
+
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (i == buttons.Count - 1)
+                {
+                    buttons[i].LightUp(playAudio, duration, delay + (i * 1f), endCallback);
+                }
+                else
+                {
+                    buttons[i].LightUp(playAudio, duration, delay + (i * 1f), null);
+                }
             }
         }
     }

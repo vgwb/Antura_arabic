@@ -29,6 +29,12 @@ namespace EA4S.Egg
 
         bool inputEnabled = false;
 
+        Action endMoveCallback;
+        Action endScaleCallback;
+
+        Tween moveTweener;
+        Tween scaleTweener;
+
         public void Initialize(IAudioManager audioManager, Action<ILivingLetterData> onButtonPressed)
         {
             button.onClick.AddListener(OnButtonPressed);
@@ -86,14 +92,13 @@ namespace EA4S.Egg
 
         void OnButtonPressed()
         {
-            if(inputEnabled)
+            if (inputEnabled)
             {
                 if (onButtonPressed != null)
                 {
                     onButtonPressed(livingLetterData);
                 }
             }
-            
         }
 
         public void EnableInput()
@@ -104,6 +109,25 @@ namespace EA4S.Egg
         public void DisableInput()
         {
             inputEnabled = false;
+        }
+
+        public void ScaleTo(float scale, float duration, float delay = 0f, Action endCallback = null)
+        {
+            endScaleCallback = endCallback;
+
+            scaleTweener = transform.DOScale(scale, duration).SetDelay(delay).OnComplete(delegate () { if (endScaleCallback != null) endScaleCallback(); });
+        }
+
+        public void MoveTo(Vector3 position, float duration, float delay = 0f, Action endCallback = null)
+        {
+            endMoveCallback = endCallback;
+
+            moveTweener = transform.DOLocalMove(position, duration).SetDelay(delay).OnComplete(delegate () { if (endMoveCallback != null) endMoveCallback(); });
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.localPosition = position;
         }
     }
 }

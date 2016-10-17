@@ -22,7 +22,10 @@ namespace EA4S.Egg
 
         public ILivingLetterData GetNextData()
         {
-            if(onlyLetter)
+            //onlyLetter = true;
+
+
+            if (onlyLetter)
             {
                 return letterProvider.GetNextData();
             }

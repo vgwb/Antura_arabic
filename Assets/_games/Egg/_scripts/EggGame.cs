@@ -8,6 +8,31 @@ namespace EA4S.Egg
         public EggController eggController;
         public EggButtonsBox eggButtonBox;
         public GameObject eggButtonPrefab;
+        public AnturaEggController antura;
+
+        public const int numberOfStage = 4;
+        public int currentStage { get; set; }
+
+        public int correctStages = 0;
+
+        public int CurrentStars
+        {
+            get
+            {
+                if (correctStages == 0)
+                    return 0;
+
+                if (correctStages == 1)
+                    return 1;
+
+                if (correctStages == 2 || correctStages == 3)
+                    return 2;
+
+                return 3;
+            }
+        }
+
+        public bool stagePositiveResult { get; set; }
 
         public QuestionManager questionManager;
 
@@ -34,6 +59,9 @@ namespace EA4S.Egg
             ResultState = new EggResultState(this);
 
             questionManager = new QuestionManager(this);
+
+            currentStage = 0;
+            correctStages = 0;
 
             eggController.Initialize(eggBox.GetEggLocalPositions());
             eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), PlayState.OnEggButtonPressed);
