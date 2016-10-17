@@ -18,7 +18,7 @@ namespace EA4S.Db.Loader.Editor
         {
             DrawDefaultInspector();
 
-            if (GUILayout.Button("ReloadAll"))
+            if (GUILayout.Button("Load All Data"))
             {
                 if (AllDataIsSet())
                 {

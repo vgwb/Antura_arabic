@@ -1254,7 +1254,7 @@ GameObject:
   - 114: {fileID: 788752066}
   - 114: {fileID: 788752065}
   m_Layer: 5
-  m_Name: Dialog button 2
+  m_Name: Dialog button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1326,7 +1326,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: assessment_intro_A2
+          m_StringArgument: assessment_intro_A1
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1776,7 +1776,7 @@ GameObject:
   - 114: {fileID: 1450832172}
   - 114: {fileID: 1450832171}
   m_Layer: 5
-  m_Name: Dialog button 1
+  m_Name: Dialog button (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1848,7 +1848,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: assessment_intro_A1
+          m_StringArgument: assessment_intro_A2
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

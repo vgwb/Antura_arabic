@@ -11,8 +11,6 @@ namespace EA4S.Db
         public string Category;
         public string English;
         public string Arabic;
-
-        // to be parsed
         public string[] Letters;
         public string Transliteration;
         public string DifficultyLevel;
