@@ -9,6 +9,7 @@ namespace EA4S
 
         public Vector2 LastPointerPosition { get { return lastPointerPosition; } }
         public Vector2 LastPointerDelta { get { return deltaPosition; } }
+        public float LastDeltaTime { get; private set; }
 
         public event Action onPointerDown;
         public event Action onPointerDrag;
@@ -25,8 +26,10 @@ namespace EA4S
             onPointerUp = null;
         }
 
-        public void Update()
+        public void Update(float delta)
         {
+            LastDeltaTime = delta;
+
             if (!Enabled)
                 return;
 

@@ -9,12 +9,13 @@ namespace EA4S
 
         Vector2 LastPointerPosition { get; }
         Vector2 LastPointerDelta { get; }
+        float LastDeltaTime { get; }
 
         event System.Action onPointerDown;
         event System.Action onPointerUp;
         event System.Action onPointerDrag;
 
-        void Update();
+        void Update(float delta);
         void Reset();
     }
 }
