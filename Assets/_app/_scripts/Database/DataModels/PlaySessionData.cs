@@ -1,20 +1,48 @@
-﻿using SQLite;
+﻿using System;
+using System.Collections.Generic;
 
 namespace EA4S.Db
 {
-    public class PlaySessionData
+    [Serializable]
+    public class PlaySessionData : IData
     {
-        [Indexed]
-        public int stage { get; set; }
-        [Indexed]
-        public int learningblock { get; set; }
-        [Indexed]
-        public int playsession { get; set; }
-        public string description { get; set; }
+        public int Stage;
+        public int LearningBlock;
+        public int PlaySession;
+        public string Description;
+        public DidacticalFocus Focus; 
+        public string[] Letters;   
+        public string[] Words;     
+        public string[] Words_previous;    
+        public string[] Phrases;     
+        public string[] Phrases_previous;   
+        public AssessmentType AssessmentType; 
+        public string AssessmentData;
+        public List<MiniGameInPlaysession> Minigames;  
 
         public override string ToString()
         {
-            return string.Format("[Playsession: S={0}, LB={1}, PS={2}, description={3}]", stage, learningblock, playsession, description);
+            return string.Format("[Playsession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
+        }
+
+        public string GetID()
+        {
+            return Stage + "." + LearningBlock + "." + PlaySession;
         }
     }
+
+    [Serializable]
+    public struct MiniGameInPlaysession
+    {
+        public MiniGameCode Code;
+        public int Weight;
+    }
+
+    public enum DidacticalFocus
+    {
+        Letters = 1,
+        Shapes = 2,
+        Words = 3
+    }
+
 }
