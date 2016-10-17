@@ -21,42 +21,44 @@ namespace EA4S.Db.Loader
             data.TitleNew = (string)(dict["TitleNew"]);
             data.Team = (string)(dict["Team"]);
 
+            data.Available = data.Status == "active";
+
             return data;
         }
 
-       /* TODO: use this logic for validation of Status/Parent/Variation
-       private bool ValidateMiniGame(MiniGameData data)
-        {
-            // Validate Id
-            try
-            {
-                MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Id);
-            }
-            catch (System.ArgumentException)
-            {
-                Debug.LogError("MiniGameData (ID ?): " + "field Id is '" + data.Id + "', not available in the enum values.");
-                return false;
-            }
+        /* TODO: use this logic for validation of Status/Parent/Variation
+        private bool ValidateMiniGame(MiniGameData data)
+         {
+             // Validate Id
+             try
+             {
+                 MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Id);
+             }
+             catch (System.ArgumentException)
+             {
+                 Debug.LogError("MiniGameData (ID ?): " + "field Id is '" + data.Id + "', not available in the enum values.");
+                 return false;
+             }
 
-            // Validate Parent
-            try
-            {
-                if (data.Parent != "")
-                {
-                    MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Parent);
-                }
-            }
-            catch (System.ArgumentException)
-            {
-                Debug.LogError("MiniGameData (ID " + data.GetID() + "): " + "field Parent is '" + data.Parent + "', not available in the enum values.");
-                return false;
-            }
+             // Validate Parent
+             try
+             {
+                 if (data.Parent != "")
+                 {
+                     MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Parent);
+                 }
+             }
+             catch (System.ArgumentException)
+             {
+                 Debug.LogError("MiniGameData (ID " + data.GetID() + "): " + "field Parent is '" + data.Parent + "', not available in the enum values.");
+                 return false;
+             }
 
-            // Set derived values too
-            data.Available = data.Status == "active";
-            data.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Id);
-            return true;
-        }*/
+             // Set derived values too
+             data.Available = data.Status == "active";
+             data.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Id);
+             return true;
+         }*/
 
     }
 }

@@ -11,7 +11,7 @@ namespace EA4S.Db.Loader
             var data = new LetterData();
 
             data.Id = (string)(dict["Id"]);
-            data.Number = ToI(dict["Number"]);
+            data.Number = ToInt(dict["Number"]);
             data.Title = (string)(dict["Title"]);
             data.Kind = (string)(dict["Kind"]);
             data.Type = (string)(dict["Type"]);

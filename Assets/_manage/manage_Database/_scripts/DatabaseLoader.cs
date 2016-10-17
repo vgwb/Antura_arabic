@@ -5,7 +5,6 @@ namespace EA4S.Db.Loader
 {
     public class DatabaseLoader : MonoBehaviour
     {
-        // Fields
         public DatabaseInputData inputData;
         public Database database;
         public bool verbose;
@@ -61,8 +60,18 @@ namespace EA4S.Db.Loader
                 adapter.Parse(inputData.playSessionDataAsset.text, database, database.playSessionTable);
             }
 
-            // TODO: localization
-            // TODO: stage
+            {
+                Debug.Log("Loading Localization...");
+                var adapter = new LocalizationParser();
+                adapter.Parse(inputData.localizationDataAsset.text, database, database.localizationTable);
+            }
+
+            {
+                Debug.Log("Loading Stages...");
+                var adapter = new StageParser();
+                adapter.Parse(inputData.stageDataAsset.text, database, database.stageTable);
+            }
+
             // TODO: reward
 
             // Save database modifications
