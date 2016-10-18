@@ -16,7 +16,7 @@ MonoBehaviour:
     _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
     _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
     _Count: 30
-    _Version: 710
+    _Version: 958
     _FreeList: -1
     _FreeCount: 0
     _Keys:
@@ -68,6 +68,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: The letters song
       Team: VGWB
+      MiniGameCode: 5
+      Available: 0
     - Id: Balloons_counting
       Variation: counting
       Status: 
@@ -78,6 +80,8 @@ MonoBehaviour:
       Scene: game_Balloons
       TitleNew: 
       Team: Wixel
+      MiniGameCode: 6
+      Available: 0
     - Id: Balloons_letter
       Variation: letters
       Status: 
@@ -88,6 +92,8 @@ MonoBehaviour:
       Scene: game_Balloons
       TitleNew: 
       Team: Wixel
+      MiniGameCode: 7
+      Available: 0
     - Id: Balloons_spelling
       Variation: spelling
       Status: dev
@@ -98,26 +104,32 @@ MonoBehaviour:
       Scene: game_Balloons
       TitleNew: 
       Team: Wixel
+      MiniGameCode: 3
+      Available: 0
     - Id: Balloons_words
       Variation: words
       Status: 
       Parent: Balloons_spelling
       Description: 
       Title_En: Balloons
-      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0643\u0644\u0645\u0627\u062A "
+      Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       Scene: game_Balloons
       TitleNew: 
       Team: Wixel
+      MiniGameCode: 8
+      Available: 0
     - Id: ColorTickle
       Variation: 
       Status: 
       Parent: 
       Description: 
       Title_En: Color Tickle
-      Title_Ar: "\u062F\u063A\u062F\u063A\u0627\u062A \u0645\u0644\u0648\u0646\u0629 "
+      Title_Ar: "\u062F\u063A\u062F\u063A\u0627\u062A \u0645\u0644\u0648\u0646\u0629"
       Scene: 
       TitleNew: 
       Team: Students
+      MiniGameCode: 9
+      Available: 0
     - Id: DancingDots
       Variation: 
       Status: active
@@ -128,6 +140,8 @@ MonoBehaviour:
       Scene: game_DancingDots
       TitleNew: Dancing Arena
       Team: Wixel
+      MiniGameCode: 10
+      Available: 1
     - Id: DontWakeUp
       Variation: 
       Status: standby
@@ -138,6 +152,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 2
+      Available: 0
     - Id: Egg
       Variation: 
       Status: dev
@@ -148,16 +164,20 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 11
+      Available: 0
     - Id: FastCrowd_alphabet
       Variation: alphabet
       Status: 
       Parent: FastCrowd_spelling
       Description: 
-      Title_En: 'Fast Crowd '
+      Title_En: Fast Crowd
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u062D\u0631\u0648\u0641 \u0627\u0644\u0627\u0628\u062C\u062F\u064A\u0629"
       Scene: game_FastCrowd
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 12
+      Available: 0
     - Id: FastCrowd_counting
       Variation: counting
       Status: 
@@ -168,6 +188,8 @@ MonoBehaviour:
       Scene: game_FastCrowd
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 13
+      Available: 0
     - Id: FastCrowd_letter
       Variation: letters
       Status: 
@@ -178,6 +200,8 @@ MonoBehaviour:
       Scene: game_FastCrowd
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 14
+      Available: 0
     - Id: FastCrowd_spelling
       Variation: spelling
       Status: active
@@ -188,6 +212,8 @@ MonoBehaviour:
       Scene: game_FastCrowd
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 1
+      Available: 1
     - Id: FastCrowd_words
       Variation: words
       Status: active
@@ -198,6 +224,8 @@ MonoBehaviour:
       Scene: game_FastCrowd
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 4
+      Available: 1
     - Id: HiddenSource
       Variation: 
       Status: 
@@ -208,6 +236,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: Take me home
       Team: Wixel
+      MiniGameCode: 15
+      Available: 0
     - Id: HideSeek
       Variation: 
       Status: 
@@ -218,6 +248,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: Students
+      MiniGameCode: 16
+      Available: 0
     - Id: MakeFriends
       Variation: 
       Status: active
@@ -228,6 +260,8 @@ MonoBehaviour:
       Scene: game_MakeFriends
       TitleNew: Friendship spark
       Team: Wixel
+      MiniGameCode: 17
+      Available: 1
     - Id: Maze
       Variation: 
       Status: active
@@ -238,6 +272,8 @@ MonoBehaviour:
       Scene: game_Maze
       TitleNew: Missle maze
       Team: Wixel
+      MiniGameCode: 18
+      Available: 1
     - Id: MissingLetter
       Variation: 
       Status: 
@@ -248,6 +284,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: Students
+      MiniGameCode: 19
+      Available: 0
     - Id: MissingLetter_phrases
       Variation: phrases
       Status: 
@@ -258,6 +296,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: Students
+      MiniGameCode: 20
+      Available: 0
     - Id: MixedLetters_alphabet
       Variation: alphabet
       Status: 
@@ -268,6 +308,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: Letters Salad
       Team: Wixel
+      MiniGameCode: 21
+      Available: 0
     - Id: MixedLetters_spelling
       Variation: spelling
       Status: 
@@ -278,6 +320,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: Words Salad
       Team: Wixel
+      MiniGameCode: 22
+      Available: 0
     - Id: SickLetter
       Variation: 
       Status: 
@@ -288,6 +332,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: Wixel
+      MiniGameCode: 23
+      Available: 0
     - Id: ReadingGame
       Variation: 
       Status: 
@@ -298,6 +344,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: VGWB
+      MiniGameCode: 24
+      Available: 0
     - Id: Scanner
       Variation: 
       Status: 
@@ -308,6 +356,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: Wixel
+      MiniGameCode: 25
+      Available: 0
     - Id: Scanner_phrase
       Variation: phrases
       Status: 
@@ -319,6 +369,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: Wixel
+      MiniGameCode: 26
+      Available: 0
     - Id: ThrowBalls_letters
       Variation: letters
       Status: active
@@ -329,6 +381,8 @@ MonoBehaviour:
       Scene: game_ThrowBalls
       TitleNew: Letter hunt
       Team: Wixel
+      MiniGameCode: 27
+      Available: 1
     - Id: ThrowBalls_words
       Variation: words
       Status: 
@@ -339,26 +393,32 @@ MonoBehaviour:
       Scene: game_ThrowBalls
       TitleNew: Word hunt
       Team: Wixel
+      MiniGameCode: 28
+      Available: 0
     - Id: Tobogan_letters
       Variation: letters
       Status: active
       Parent: 
       Description: 
       Title_En: Tobogan
-      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641 "
+      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: game_Tobogan
       TitleNew: letter tower
       Team: VGWB
+      MiniGameCode: 29
+      Available: 1
     - Id: Tobogan_words
       Variation: words
       Status: 
       Parent: Tobogan_letters
       Description: 
       Title_En: Tobogan
-      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u0643\u0644\u0645\u0627\u062A "
+      Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       Scene: game_Tobogan
       TitleNew: Word tower
       Team: VGWB
+      MiniGameCode: 30
+      Available: 0
     - Id: 
       Variation: 
       Status: 
@@ -369,6 +429,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: 
+      MiniGameCode: 0
+      Available: 0
     - Id: 
       Variation: 
       Status: 
@@ -379,6 +441,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: 
+      MiniGameCode: 0
+      Available: 0
     - Id: 
       Variation: 
       Status: 
@@ -389,6 +453,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: 
+      MiniGameCode: 0
+      Available: 0
     - Id: 
       Variation: 
       Status: 
@@ -399,6 +465,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: 
+      MiniGameCode: 0
+      Available: 0
     - Id: 
       Variation: 
       Status: 
@@ -409,6 +477,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: 
+      MiniGameCode: 0
+      Available: 0
     - Id: 
       Variation: 
       Status: 
@@ -419,6 +489,8 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: 
+      MiniGameCode: 0
+      Available: 0
     - Id: 
       Variation: 
       Status: 
@@ -429,12 +501,14 @@ MonoBehaviour:
       Scene: 
       TitleNew: 
       Team: 
+      MiniGameCode: 0
+      Available: 0
   letterTable:
     _Buckets: ffffffffffffffffffffffffffffffffffffffff1a0000000600000014000000ffffffffffffffff1d000000ffffffffffffffffffffffff1c00000016000000ffffffff220000002300000020000000ffffffffffffffffffffffffffffffffffffffff1f00000015000000ffffffff1900000000000000ffffffffffffffffffffffffffffffffffffffff04000000ffffffffffffffffffffffffffffffffffffffffffffffff0a000000ffffffff0f000000ffffffffffffffff01000000ffffffffffffffffffffffffffffffff170000000c000000ffffffffffffffff1e000000ffffffff0d000000ffffffffffffffff0e000000ffffffffffffffff13000000ffffffffffffffffffffffffffffffff0700000018000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff1b0000000200000003000000ffffffff05000000ffffffffffffffffffffffffffffffff0b00000021000000
     _HashCodes: 0cba2d00857c010017c0010071c0010023b731008f920100443632008f8301009f4d360095b8010032d601007bce3500595d8506d6bb0100878301009bbf010021d6010046790100c534dc05898b010056b40100d09d010098a101004014330060af33000b930100edca0100dcd20100c8b04854d6849b331c71233cc4b72e303b1c863fbb4ce7054fc76225c05c252f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff08000000ffffffffffffffffffffffffffffffffffffffffffffffff09000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff12000000ffffffff10000000ffffffffffffffff11000000ffffffff0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Count: 36
-    _Version: 1125
+    _Version: 1421
     _FreeList: -1
     _FreeCount: 0
     _Keys:
@@ -540,7 +614,7 @@ MonoBehaviour:
       Initial: "\u0627"
       Medial: "\uFE8E"
       Final: "\uFE8E"
-      Isolated_Unicode: '0627        '
+      Isolated_Unicode: 0627
       Initial_Unicode: FE8D
       Medial_Unicode: FE8E
       Final_Unicode: FE8E
@@ -1957,7 +2031,7 @@ MonoBehaviour:
     _HashCodes: 067f2f2b38e3662b07788a055a838b0522edd250927a010041f8b32ca82d6b39e7042e00654fc52c3c062e00c56c572bb4132e0091958017817c010010464b61d68b940516a39405007d0100b9242e00e93a2e00aa229905cb7d0100cc7d0100f64a9a05804c9a05f8589a051bd8b02d4d0f8350c0a4fd08bf51de2d807e0100b6d4a0053c1d3106eade0a2183397c2ed67f01007c6c7d2ec5d6a305d7c4d82e99f5d82e01e7a30580b16e6253ae797f49b6a50535dea505b6a42e00e4ae2e00d9c4496223cc044eb6dfd64c5abd074ebc2fd94c270b4e4e8a6e1809d230dd4c1850ff0ab5ad1776691b720f4d082b4fd0ac7619de27de61e0e5fd38f97fa80566fbe0086823051e9c8301006277020a1363cc15fcd4236ad3035e201da7db45aab8d01f7342e76feefc2e00296a84701f91ef303c850100ae232f00907ab605b9382f0004eebc05568701001133ac7f6f7e826c318a01005dd62f007bd72f0063af9a335c859b33faa0ce05048c0100698309346cff2f007a819251f8ff2f005b7a34345e0c30006e0c30006d2b86171ddc5f3405068634f257675d35664f35ae844f359c6a300035763000146c7a1d684df25ecf82a96b06d1e2058868373687d93d36e2bf30006fc03000e056e705e0cd3000010d00003afee66d4d94010076b6b06410d9aa6ee4f5300020c7ed05d73866428f19f76ffe48cb7c60810c06c69e01007e68615ce036487d749332000ea20100626a0e3e163523061cb03200bff22c5907cdbf55d753230640b032005aa501003c948c3fcb1333005677d921802234060730d83da2746f7d04dbec40812eb50faba9d86a771aea1ea11aea1ec4777a3e26b78b321100230121581377d2f18e55013b3300c3ba52408d1a9f78ee66c66676f1cc62a53c3406c73c3406167a33008fc87341588a3300d3af3300d6aa0100ba388f0fbb388f0fd5de5762d6de5762d7de5762d8de5762d9de5762dade5762dbde5762dcde5762ddde5762dede5762bc388f0ff4de5762bd388f0fbe388f0fbf388f0fc0388f0fc1388f0fc2388f0fc3388f0f58e65762d8e4a46859e657625ae657625be657625ce657625de657625ee657625fe6576260e6576283df167ed2ad0100c9c94f065a221d0d69c8c343d03c34008c1158069639ab44e67034004ffce76f46ac59060d8de144d39a3e45948d34007c838372272c7145944b3500652774063dd9235f3d4b5a16d96835000cfa7706cf5e58211775c040db803500d6bb01008dbf350056c03500e6bb0100e9bb0100745be1491869de2b4377196a8b409d5d1770e7587444fb49f6da350024fa3a4a21bd010001ea35000795870683f135000fc988060d029d4a3401ec0e1890fe0f364d8b06af3fe14a150c3600ce3b900610c00100e2cb312a12b87431f50c573b948a8a350d9d524143378630ad4453417dde484c92a15569cde1862f822a57416fa6994f49c210082e25890b080b872fca0ae444a8b8f369f9715a41059365449469ce7a0c5fbd5b57e54b7cbff09306419f96060db63f4c0a60414c05ff2d4204eb414cc8ca960609e796069e733600080a4659382d9d549f625461abbcd616729cbf0e6df85a5d32e1b20628509a50eb64b40d17c5ba06fc5fa775629b7f4914a1370029adbd06f0db0b51c5160c5152c637008207c10696cc0100e2c7c8610bc737007e5362519d1c863a65f77545656ec2063d883800828d521fc62bc7545724194d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0a000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff11000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff07000000ffffffffffffffff1d000000ffffffffffffffffffffffff1b000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff19000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff26000000ffffffffffffffffffffffffffffffff390000002a000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1f000000ffffffffffffffffffffffffffffffff2f000000ffffffffffffffff25000000ffffffffffffffff3300000005000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff12000000500000005e000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff2200000028000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff75000000ffffffffffffffff0c000000ffffffffffffffff5a000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff3c000000870000003e000000ffffffffffffffffffffffff2000000059000000ffffffffffffffffffffffff7c000000ffffffff17000000ffffffffffffffffffffffffffffffffffffffff850000002d000000ffffffffffffffff5100000086000000ffffffffa3000000ffffffff3b000000ffffffffffffffffffffffffffffffff5b000000ffffffffffffffff42000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff970000008200000046000000ffffffffffffffffffffffffffffffffffffffff27000000ffffffffffffffffffffffff77000000ffffffffffffffffffffffff69000000ffffffffffffffffffffffffffffffff62000000ffffffffffffffffffffffffffffffffaa000000ffffffff600000006b000000b2000000ffffffffda000000c1000000ffffffff43000000d600000021000000ffffffff4d00000049000000ffffffffffffffffffffffffb6000000ffffffff54000000ffffffff0e000000c7000000ffffffff56000000440000001e000000a8000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0f000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffba00000010000000c3000000ffffffffffffffffffffffff47000000fffffffffffffffffc000000ffffffffffffffffffffffff7f000000ffffffffffffffffffffffffffffffffffffffffffffffff5d000000ffffffffc2000000ffffffff00000000a6000000fffffffff60000000d010000ffffffffffffffffe8000000d0000000ffffffffcc000000ffffffffffffffff8d000000ffffffff9500000026010000df000000ffffffffffffffffffffffffffffffffffffffffffffffff1b010000940000000801000076000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Count: 311
-    _Version: 6309
+    _Version: 8805
     _FreeList: -1
     _FreeCount: 0
     _Keys:
@@ -2401,9 +2475,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: agreed
       Kind: verb
       Category: 
@@ -2412,9 +2486,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: anger
       Kind: noun
       Category: 
@@ -2423,9 +2497,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: apple
       Kind: noun
       Category: fruit
@@ -2434,9 +2508,9 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u0641\u0640 \u0640\u0627 \u062D"
       Transliteration: tuffah
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: apricot
       Kind: noun
       Category: fruit
@@ -2445,9 +2519,9 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0634\u0640 \u0640\u0645\u0640 \u0640\u0634"
       Transliteration: mishmosh
-      DifficultyLevel: 
+      Difficulty: 2
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: ate
       Kind: verb
       Category: 
@@ -2456,9 +2530,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: aunt_father
       Kind: noun
       Category: family_members
@@ -2467,9 +2541,9 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0645\u0640 \u0640\u0629"
       Transliteration: amma
-      DifficultyLevel: 
+      Difficulty: 1
       Group: A
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: aunt_mother
       Kind: noun
       Category: family_members
@@ -2478,9 +2552,9 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0627 \u0644\u0640 \u0640\u0629"
       Transliteration: khala
-      DifficultyLevel: 
+      Difficulty: 2
       Group: B
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: back
       Kind: noun
       Category: body_parts
@@ -2489,9 +2563,9 @@ MonoBehaviour:
       Letters:
       - "\u0638\u0640 \u0640\u0647\u0640 \u0640\u0631"
       Transliteration: DHahr
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: banana
       Kind: noun
       Category: fruit
@@ -2500,9 +2574,9 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0648 \u0632"
       Transliteration: mawz
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 1
     - Id: bank
       Kind: noun
       Category: 
@@ -2511,9 +2585,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: basketball
       Kind: noun
       Category: 
@@ -2522,9 +2596,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: bear
       Kind: noun
       Category: animals
@@ -2533,9 +2607,9 @@ MonoBehaviour:
       Letters:
       - "\u062F \u0628"
       Transliteration: dub
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: beautiful
       Kind: adjective
       Category: 
@@ -2544,9 +2618,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: bed
       Kind: noun
       Category: 
@@ -2555,9 +2629,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: believed
       Kind: verb
       Category: 
@@ -2566,9 +2640,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: belly
       Kind: noun
       Category: body_parts
@@ -2577,9 +2651,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0646"
       Transliteration: batn
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: berry
       Kind: noun
       Category: fruit
@@ -2588,9 +2662,9 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u0648 \u062A"
       Transliteration: tut
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: big
       Kind: adjective
       Category: 
@@ -2599,9 +2673,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: bird
       Kind: noun
       Category: animal
@@ -2610,9 +2684,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: book
       Kind: noun
       Category: things
@@ -2621,9 +2695,9 @@ MonoBehaviour:
       Letters:
       - "\u0643\u0640 \u0640\u062A\u0640 \u0640\u0627 \u0628"
       Transliteration: kitaa
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: books
       Kind: noun
       Category: 
@@ -2632,9 +2706,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: box
       Kind: noun
       Category: 
@@ -2643,9 +2717,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: boy
       Kind: noun
       Category: family_members
@@ -2654,9 +2728,9 @@ MonoBehaviour:
       Letters:
       - "\u0635\u0640 \u0640\u0628\u0640 \u0640\u064A"
       Transliteration: Sabi
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: brain
       Kind: noun
       Category: 
@@ -2665,9 +2739,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: brave
       Kind: adjective
       Category: 
@@ -2676,9 +2750,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: bread
       Kind: noun
       Category: food
@@ -2687,9 +2761,9 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u0628\u0640 \u0640\u0632"
       Transliteration: khubz
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: breeze
       Kind: noun
       Category: 
@@ -2698,9 +2772,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: broad_bean
       Kind: 
       Category: 
@@ -2709,9 +2783,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: brother
       Kind: noun
       Category: family_members
@@ -2720,9 +2794,9 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u062E"
       Transliteration: akh
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: bulgar
       Kind: noun
       Category: 
@@ -2731,9 +2805,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: bus
       Kind: noun
       Category: 
@@ -2742,9 +2816,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: camel
       Kind: noun
       Category: animal
@@ -2753,9 +2827,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: carpenter
       Kind: noun
       Category: 
@@ -2764,9 +2838,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: carried
       Kind: verb
       Category: 
@@ -2775,9 +2849,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: carrot
       Kind: noun
       Category: food
@@ -2786,9 +2860,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cat
       Kind: noun
       Category: animals
@@ -2797,9 +2871,9 @@ MonoBehaviour:
       Letters:
       - "\u0647\u0640 \u0640\u0631"
       Transliteration: hir
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: caught
       Kind: verb
       Category: 
@@ -2808,9 +2882,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: chair
       Kind: noun
       Category: 
@@ -2819,9 +2893,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cheese
       Kind: noun
       Category: food
@@ -2830,9 +2904,9 @@ MonoBehaviour:
       Letters:
       - "\u062C\u0640 \u0640\u0628\u0640 \u0640\u0646"
       Transliteration: jubn
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cherry
       Kind: noun
       Category: fruit
@@ -2841,9 +2915,9 @@ MonoBehaviour:
       Letters:
       - "\u0643\u0640 \u0640\u0631 \u0632"
       Transliteration: karaz
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: chest
       Kind: noun
       Category: body_parts
@@ -2852,9 +2926,9 @@ MonoBehaviour:
       Letters:
       - "\u0635\u0640 \u0640\u062F \u0631"
       Transliteration: Sadr
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: chickpea
       Kind: noun
       Category: 
@@ -2863,9 +2937,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: classroom
       Kind: noun
       Category: 
@@ -2874,9 +2948,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: clean
       Kind: adjective
       Category: 
@@ -2885,9 +2959,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cloud
       Kind: noun
       Category: 
@@ -2896,9 +2970,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: club
       Kind: noun
       Category: 
@@ -2907,9 +2981,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cold
       Kind: adjective
       Category: nature
@@ -2918,9 +2992,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0631 \u062F"
       Transliteration: bard
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cold_food
       Kind: noun
       Category: food
@@ -2929,9 +3003,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0627 \u0631 \u062F"
       Transliteration: bared
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_black
       Kind: adjective
       Category: color
@@ -2940,9 +3014,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_blue
       Kind: adjective
       Category: color
@@ -2951,9 +3025,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_brown
       Kind: adjective
       Category: color
@@ -2962,9 +3036,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_gold
       Kind: adjective
       Category: color
@@ -2973,9 +3047,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_green
       Kind: adjective
       Category: color
@@ -2984,9 +3058,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_orange
       Kind: adjective
       Category: color
@@ -2995,9 +3069,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_pink
       Kind: adjective
       Category: color
@@ -3006,9 +3080,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_purple
       Kind: adjective
       Category: color
@@ -3017,9 +3091,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_red
       Kind: adjective
       Category: color
@@ -3028,9 +3102,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_silver
       Kind: adjective
       Category: color
@@ -3039,9 +3113,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_white
       Kind: adjective
       Category: color
@@ -3050,9 +3124,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: color_yellow
       Kind: adjective
       Category: color
@@ -3061,9 +3135,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: copybook
       Kind: noun
       Category: things
@@ -3072,9 +3146,9 @@ MonoBehaviour:
       Letters:
       - "\u062F \u0641\u0640 \u0640\u062A\u0640 \u0640\u0631"
       Transliteration: daftar
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: costume
       Kind: noun
       Category: 
@@ -3083,9 +3157,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cried
       Kind: verb
       Category: 
@@ -3094,9 +3168,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cucumber
       Kind: noun
       Category: vegetables
@@ -3105,9 +3179,9 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u064A\u0640 \u0640\u0627 \u0631"
       Transliteration: khiyar
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: cupboard
       Kind: noun
       Category: 
@@ -3116,9 +3190,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day
       Kind: noun
       Category: time
@@ -3127,9 +3201,9 @@ MonoBehaviour:
       Letters:
       - "\u064A\u0640 \u0640\u0648 \u0645"
       Transliteration: yawm
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day_friday
       Kind: noun
       Category: time
@@ -3138,9 +3212,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day_monday
       Kind: noun
       Category: time
@@ -3149,9 +3223,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day_saturday
       Kind: noun
       Category: time
@@ -3160,9 +3234,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day_sunday
       Kind: noun
       Category: time
@@ -3171,9 +3245,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day_thursday
       Kind: noun
       Category: time
@@ -3182,9 +3256,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day_tuesday
       Kind: noun
       Category: time
@@ -3193,9 +3267,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: day_wednesday
       Kind: noun
       Category: time
@@ -3204,9 +3278,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: deer
       Kind: noun
       Category: animals
@@ -3215,9 +3289,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: delicious
       Kind: noun
       Category: food
@@ -3226,9 +3300,9 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0644\u0640 \u0640\u0648"
       Transliteration: helu
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: doctor
       Kind: noun
       Category: 
@@ -3237,9 +3311,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: dog
       Kind: noun
       Category: animals
@@ -3248,9 +3322,9 @@ MonoBehaviour:
       Letters:
       - "\u0643\u0640 \u0640\u0644\u0640 \u0640\u0628"
       Transliteration: kalb
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: door
       Kind: noun
       Category: 
@@ -3259,9 +3333,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: drank
       Kind: verb
       Category: 
@@ -3270,9 +3344,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: duck
       Kind: noun
       Category: animals
@@ -3281,9 +3355,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: eagle
       Kind: noun
       Category: animals
@@ -3292,9 +3366,9 @@ MonoBehaviour:
       Letters:
       - "\u0646\u0640 \u0640\u0633\u0640 \u0640\u0631"
       Transliteration: neser
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: ear
       Kind: noun
       Category: body_parts
@@ -3303,9 +3377,9 @@ MonoBehaviour:
       Letters:
       - "\u0627 \u062F \u0646"
       Transliteration: Eden
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: elephant
       Kind: noun
       Category: animals
@@ -3314,9 +3388,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: engineer
       Kind: noun
       Category: 
@@ -3325,9 +3399,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: eye
       Kind: noun
       Category: body_parts
@@ -3336,9 +3410,9 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u064A\u0640 \u0640\u0646"
       Transliteration: ain
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: face
       Kind: noun
       Category: body_parts
@@ -3347,9 +3421,9 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u062C\u0640 \u0640\u0647"
       Transliteration: wajeh
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: fall
       Kind: noun
       Category: 
@@ -3358,9 +3432,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: farmer
       Kind: noun
       Category: 
@@ -3369,9 +3443,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: father
       Kind: noun
       Category: family_members
@@ -3380,9 +3454,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0627 \u0628\u0640 \u0627"
       Transliteration: baba
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: field
       Kind: noun
       Category: 
@@ -3391,9 +3465,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: fig
       Kind: noun
       Category: fruit
@@ -3402,9 +3476,9 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u064A\u0640 \u0640\u0646"
       Transliteration: tiin
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: finger
       Kind: noun
       Category: 
@@ -3413,9 +3487,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: flag
       Kind: noun
       Category: 
@@ -3424,9 +3498,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: flapped
       Kind: verb
       Category: 
@@ -3435,9 +3509,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: flew
       Kind: verb
       Category: 
@@ -3446,9 +3520,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: flower
       Kind: noun
       Category: nature
@@ -3457,9 +3531,9 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u0631 \u062F"
       Transliteration: ward
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: food
       Kind: noun
       Category: food
@@ -3468,9 +3542,9 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u0643\u0640 \u0640\u0644"
       Transliteration: akl
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: foot
       Kind: noun
       Category: body_parts
@@ -3479,9 +3553,9 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u062C\u0640 \u0640\u0644"
       Transliteration: rijl
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: football
       Kind: noun
       Category: 
@@ -3490,9 +3564,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: forest
       Kind: noun
       Category: 
@@ -3501,9 +3575,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: fridge
       Kind: noun
       Category: 
@@ -3512,9 +3586,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: furniture
       Kind: noun
       Category: 
@@ -3523,9 +3597,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: garden
       Kind: noun
       Category: 
@@ -3534,9 +3608,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: garlic
       Kind: noun
       Category: vegetables
@@ -3545,9 +3619,9 @@ MonoBehaviour:
       Letters:
       - "\u062B\u0640 \u0640\u0648 \u0645"
       Transliteration: thuum
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: girl
       Kind: noun
       Category: family_members
@@ -3556,9 +3630,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062A"
       Transliteration: bint
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: glue
       Kind: noun
       Category: 
@@ -3567,9 +3641,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: granddaughter
       Kind: noun
       Category: family_members
@@ -3578,9 +3652,9 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F \u0629"
       Transliteration: hafida
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: grandfather
       Kind: noun
       Category: family_members
@@ -3589,9 +3663,9 @@ MonoBehaviour:
       Letters:
       - "\u062C\u0640 \u0640\u062F \u0648"
       Transliteration: jeddo
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: grandmother
       Kind: noun
       Category: family_members
@@ -3600,9 +3674,9 @@ MonoBehaviour:
       Letters:
       - "\u0646\u0640 \u0627 \u0646\u0640 \u0627"
       Transliteration: nana
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: grandson
       Kind: noun
       Category: family_members
@@ -3611,9 +3685,9 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F"
       Transliteration: hafid
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: grapes
       Kind: noun
       Category: fruit
@@ -3622,9 +3696,9 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0646\u0640 \u0640\u0628"
       Transliteration: "e\u2019nab"
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: ground
       Kind: noun
       Category: 
@@ -3633,9 +3707,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hair
       Kind: noun
       Category: body_parts
@@ -3644,9 +3718,9 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0639\u0640 \u0640\u0631"
       Transliteration: "sha\u2019ar"
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hand
       Kind: noun
       Category: body_parts
@@ -3655,9 +3729,9 @@ MonoBehaviour:
       Letters:
       - "\u064A\u0640 \u0640\u062F"
       Transliteration: yad
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: happy
       Kind: adjective
       Category: 
@@ -3666,9 +3740,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: head
       Kind: noun
       Category: body_parts
@@ -3677,9 +3751,9 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u0627 \u0633"
       Transliteration: ras
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hi
       Kind: verb
       Category: 
@@ -3688,9 +3762,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hospital
       Kind: noun
       Category: 
@@ -3699,9 +3773,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hot
       Kind: adjective
       Category: nature
@@ -3710,9 +3784,9 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0648 \u0628"
       Transliteration: shob
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hot_CHECK
       Kind: 
       Category: 
@@ -3721,9 +3795,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hot_food
       Kind: noun
       Category: food
@@ -3732,9 +3806,9 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u062E\u0640 \u0640\u0646"
       Transliteration: sekhen
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: hour
       Kind: noun
       Category: time
@@ -3743,9 +3817,9 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u0627 \u0639\u0640 \u0640\u0629"
       Transliteration: "sa\u2019a"
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: house
       Kind: noun
       Category: 
@@ -3754,9 +3828,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: icecream
       Kind: noun
       Category: 
@@ -3765,9 +3839,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: insistent
       Kind: adjective
       Category: 
@@ -3776,9 +3850,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: islands
       Kind: noun
       Category: 
@@ -3787,9 +3861,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: juice
       Kind: noun
       Category: 
@@ -3798,9 +3872,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: kid
       Kind: noun
       Category: family_members
@@ -3809,9 +3883,9 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u0644\u0640 \u0640\u062F"
       Transliteration: walad
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: knowledge
       Kind: noun
       Category: 
@@ -3820,9 +3894,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: laughed
       Kind: verb
       Category: 
@@ -3831,9 +3905,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: lazy
       Kind: adjective
       Category: 
@@ -3842,9 +3916,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: leg
       Kind: noun
       Category: body_parts
@@ -3853,9 +3927,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: lentil
       Kind: noun
       Category: 
@@ -3864,9 +3938,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: light
       Kind: adjective
       Category: 
@@ -3875,9 +3949,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: lion
       Kind: noun
       Category: animals
@@ -3886,9 +3960,9 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u0633\u0640 \u0640\u062F"
       Transliteration: asad
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: lion_dual
       Kind: noun
       Category: 
@@ -3897,9 +3971,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: lion_plural
       Kind: noun
       Category: 
@@ -3908,9 +3982,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: lions
       Kind: noun
       Category: 
@@ -3919,9 +3993,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: lips
       Kind: noun
       Category: 
@@ -3930,9 +4004,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: man
       Kind: noun
       Category: family_members
@@ -3941,9 +4015,9 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u062C\u0640 \u0640\u0644"
       Transliteration: rajol
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: market
       Kind: noun
       Category: 
@@ -3952,9 +4026,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: meat
       Kind: noun
       Category: 
@@ -3963,9 +4037,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: melancholy
       Kind: noun
       Category: 
@@ -3974,9 +4048,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month
       Kind: noun
       Category: time
@@ -3985,9 +4059,9 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0647\u0640 \u0640\u0631"
       Transliteration: shahr
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_april
       Kind: noun
       Category: time
@@ -3996,9 +4070,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_august
       Kind: noun
       Category: time
@@ -4007,9 +4081,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_december
       Kind: noun
       Category: time
@@ -4018,9 +4092,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_february
       Kind: noun
       Category: time
@@ -4029,9 +4103,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_january
       Kind: noun
       Category: time
@@ -4040,9 +4114,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_july
       Kind: noun
       Category: time
@@ -4051,9 +4125,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_june
       Kind: noun
       Category: time
@@ -4062,9 +4136,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_march
       Kind: noun
       Category: time
@@ -4073,9 +4147,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_may
       Kind: noun
       Category: time
@@ -4084,9 +4158,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_november
       Kind: noun
       Category: time
@@ -4095,9 +4169,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_october
       Kind: noun
       Category: time
@@ -4106,9 +4180,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: month_september
       Kind: noun
       Category: time
@@ -4117,9 +4191,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: moon
       Kind: noun
       Category: nature
@@ -4128,9 +4202,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: mother
       Kind: noun
       Category: family_members
@@ -4139,9 +4213,9 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0627 \u0645\u0640 \u0627"
       Transliteration: mama
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: mountain
       Kind: noun
       Category: 
@@ -4150,9 +4224,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: mountain_dual
       Kind: noun
       Category: 
@@ -4161,9 +4235,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: mountain_plural
       Kind: noun
       Category: 
@@ -4172,9 +4246,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: mouse
       Kind: noun
       Category: animals
@@ -4183,9 +4257,9 @@ MonoBehaviour:
       Letters:
       - "\u0641\u0640 \u0640\u0627 \u0631"
       Transliteration: far
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: mouth
       Kind: noun
       Category: body_parts
@@ -4194,9 +4268,9 @@ MonoBehaviour:
       Letters:
       - "\u0641\u0640 \u0640\u0645"
       Transliteration: fam
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: nail
       Kind: noun
       Category: 
@@ -4205,9 +4279,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: needle
       Kind: noun
       Category: things
@@ -4216,9 +4290,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: nest
       Kind: noun
       Category: 
@@ -4227,9 +4301,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: nose
       Kind: noun
       Category: body_parts
@@ -4238,9 +4312,9 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u0646\u0640 \u0640\u0641"
       Transliteration: anf
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: now
       Kind: noun
       Category: time
@@ -4249,9 +4323,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_0
       Kind: noun
       Category: number
@@ -4260,9 +4334,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_1
       Kind: noun
       Category: number
@@ -4271,9 +4345,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_10
       Kind: noun
       Category: number
@@ -4282,9 +4356,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_11
       Kind: noun
       Category: number
@@ -4293,9 +4367,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_12
       Kind: noun
       Category: number
@@ -4304,9 +4378,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_13
       Kind: noun
       Category: number
@@ -4315,9 +4389,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_14
       Kind: noun
       Category: number
@@ -4326,9 +4400,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_15
       Kind: noun
       Category: number
@@ -4337,9 +4411,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_16
       Kind: noun
       Category: number
@@ -4348,9 +4422,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_17
       Kind: noun
       Category: number
@@ -4359,9 +4433,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_18
       Kind: noun
       Category: number
@@ -4370,9 +4444,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_19
       Kind: noun
       Category: number
@@ -4381,9 +4455,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_2
       Kind: noun
       Category: number
@@ -4392,9 +4466,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_20
       Kind: noun
       Category: number
@@ -4403,9 +4477,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_3
       Kind: noun
       Category: number
@@ -4414,9 +4488,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_4
       Kind: noun
       Category: number
@@ -4425,9 +4499,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_5
       Kind: noun
       Category: number
@@ -4436,9 +4510,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_6
       Kind: noun
       Category: number
@@ -4447,9 +4521,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_7
       Kind: noun
       Category: number
@@ -4458,9 +4532,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_8
       Kind: noun
       Category: number
@@ -4469,9 +4543,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_9
       Kind: noun
       Category: number
@@ -4480,9 +4554,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o1
       Kind: noun
       Category: number
@@ -4491,9 +4565,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o10
       Kind: noun
       Category: number
@@ -4502,9 +4576,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o2
       Kind: noun
       Category: number
@@ -4513,9 +4587,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o3
       Kind: noun
       Category: number
@@ -4524,9 +4598,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o4
       Kind: noun
       Category: number
@@ -4535,9 +4609,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o5
       Kind: noun
       Category: number
@@ -4546,9 +4620,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o6
       Kind: noun
       Category: number
@@ -4557,9 +4631,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o7
       Kind: noun
       Category: number
@@ -4568,9 +4642,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o8
       Kind: noun
       Category: number
@@ -4579,9 +4653,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: number_o9
       Kind: noun
       Category: number
@@ -4590,9 +4664,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: of_course
       Kind: adverb
       Category: 
@@ -4601,9 +4675,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: oil
       Kind: noun
       Category: food
@@ -4612,9 +4686,9 @@ MonoBehaviour:
       Letters:
       - "\u0632 \u064A\u0640 \u0640\u062A"
       Transliteration: zayt
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: onion
       Kind: noun
       Category: vegetables
@@ -4623,9 +4697,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0635\u0640 \u0640\u0644"
       Transliteration: baSal
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: OokaDH
       Kind: 
       Category: 
@@ -4634,9 +4708,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: opened
       Kind: adjective
       Category: 
@@ -4645,9 +4719,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: oven
       Kind: noun
       Category: 
@@ -4656,9 +4730,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: paper
       Kind: noun
       Category: things
@@ -4667,9 +4741,9 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u0631 \u0642"
       Transliteration: waraq
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: parrot
       Kind: noun
       Category: animal
@@ -4678,9 +4752,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: pear
       Kind: noun
       Category: fruit
@@ -4689,9 +4763,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: pear_CHECK
       Kind: 
       Category: 
@@ -4700,9 +4774,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: pearl
       Kind: noun
       Category: 
@@ -4711,9 +4785,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: pencil
       Kind: noun
       Category: things
@@ -4722,9 +4796,9 @@ MonoBehaviour:
       Letters:
       - "\u0642\u0640 \u0640\u0644\u0640 \u0640\u0645"
       Transliteration: qalam
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: played
       Kind: verb
       Category: 
@@ -4733,9 +4807,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: plum
       Kind: noun
       Category: fruit
@@ -4744,9 +4818,9 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u0648 \u062E"
       Transliteration: khawkh
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: policeman
       Kind: noun
       Category: 
@@ -4755,9 +4829,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: potato
       Kind: noun
       Category: vegetables
@@ -4766,9 +4840,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0627 \u0637\u0640 \u0640\u0627"
       Transliteration: baTaTa
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: rain
       Kind: noun
       Category: nature
@@ -4777,9 +4851,9 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0637\u0640 \u0640\u0631"
       Transliteration: matar
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: rainy
       Kind: adjective
       Category: 
@@ -4788,9 +4862,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: released
       Kind: verb
       Category: 
@@ -4799,9 +4873,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: restaurant
       Kind: noun
       Category: 
@@ -4810,9 +4884,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: rice
       Kind: noun
       Category: food
@@ -4821,9 +4895,9 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u0632"
       Transliteration: ruz
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: river
       Kind: noun
       Category: 
@@ -4832,9 +4906,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: river_dual
       Kind: noun
       Category: 
@@ -4843,9 +4917,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: river_plural
       Kind: noun
       Category: 
@@ -4854,9 +4928,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: room
       Kind: noun
       Category: 
@@ -4865,9 +4939,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: sad
       Kind: adjective
       Category: 
@@ -4876,9 +4950,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: safe
       Kind: adjective
       Category: 
@@ -4887,9 +4961,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: salt
       Kind: noun
       Category: 
@@ -4898,9 +4972,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: sat
       Kind: verb
       Category: 
@@ -4909,9 +4983,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: saw
       Kind: verb
       Category: 
@@ -4920,9 +4994,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: school
       Kind: noun
       Category: 
@@ -4931,9 +5005,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: scientist
       Kind: noun
       Category: 
@@ -4942,9 +5016,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: scientist_dual
       Kind: noun
       Category: 
@@ -4953,9 +5027,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: scientist_plural
       Kind: noun
       Category: 
@@ -4964,9 +5038,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: scissors
       Kind: noun
       Category: 
@@ -4975,9 +5049,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: second
       Kind: noun
       Category: time
@@ -4986,9 +5060,9 @@ MonoBehaviour:
       Letters:
       - "\u062B\u0640 \u0640\u0627 \u0646\u0640 \u0640\u064A\u0640 \u0640\u0629"
       Transliteration: thaniya
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: shop
       Kind: noun
       Category: 
@@ -4997,9 +5071,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: sister
       Kind: noun
       Category: family_members
@@ -5008,9 +5082,9 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u062E\u0640 \u0640\u062A"
       Transliteration: ukht
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: sky
       Kind: noun
       Category: 
@@ -5019,9 +5093,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: slow
       Kind: adjective
       Category: 
@@ -5030,9 +5104,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: small
       Kind: adjective
       Category: 
@@ -5041,9 +5115,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: snow
       Kind: noun
       Category: nature
@@ -5052,9 +5126,9 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u0644\u0640 \u0640\u062C"
       Transliteration: talj
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: sound
       Kind: noun
       Category: 
@@ -5063,9 +5137,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: spring
       Kind: noun
       Category: 
@@ -5074,9 +5148,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: station
       Kind: noun
       Category: 
@@ -5085,9 +5159,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: studied
       Kind: verb
       Category: 
@@ -5096,9 +5170,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: sugar
       Kind: noun
       Category: food
@@ -5107,9 +5181,9 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u0643\u0640 \u0640\u0631"
       Transliteration: sukkar
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: summer
       Kind: noun
       Category: 
@@ -5118,9 +5192,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: sure
       Kind: adjective
       Category: 
@@ -5129,9 +5203,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: table
       Kind: noun
       Category: 
@@ -5140,9 +5214,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tea
       Kind: noun
       Category: food
@@ -5151,9 +5225,9 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0627 \u064A"
       Transliteration: shai
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: teacher
       Kind: noun
       Category: 
@@ -5162,9 +5236,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: television
       Kind: noun
       Category: 
@@ -5173,9 +5247,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: thankyou
       Kind: verb
       Category: 
@@ -5184,9 +5258,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_active
       Kind: 
       Category: 
@@ -5195,9 +5269,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_ball
       Kind: 
       Category: 
@@ -5206,9 +5280,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_beautiful
       Kind: 
       Category: 
@@ -5217,9 +5291,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_coat
       Kind: 
       Category: 
@@ -5228,9 +5302,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_engineer
       Kind: 
       Category: 
@@ -5239,9 +5313,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_happy
       Kind: 
       Category: 
@@ -5250,9 +5324,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_hat
       Kind: 
       Category: 
@@ -5261,9 +5335,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_lazy
       Kind: 
       Category: 
@@ -5272,9 +5346,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_player
       Kind: 
       Category: 
@@ -5283,9 +5357,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_playground
       Kind: 
       Category: 
@@ -5294,9 +5368,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_policeman
       Kind: 
       Category: 
@@ -5305,9 +5379,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_sad
       Kind: 
       Category: 
@@ -5316,9 +5390,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_scientist
       Kind: 
       Category: 
@@ -5327,9 +5401,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_shirt
       Kind: 
       Category: 
@@ -5338,9 +5412,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_shoe
       Kind: 
       Category: 
@@ -5349,9 +5423,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_trousers
       Kind: 
       Category: 
@@ -5360,9 +5434,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_wonderful
       Kind: 
       Category: 
@@ -5371,9 +5445,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_worker
       Kind: 
       Category: 
@@ -5382,9 +5456,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: the_year_2016
       Kind: 
       Category: time
@@ -5394,9 +5468,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tiger
       Kind: noun
       Category: animals
@@ -5405,9 +5479,9 @@ MonoBehaviour:
       Letters:
       - "\u0646\u0640 \u0640\u0645\u0640 \u0640\u0631"
       Transliteration: nemer
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: today
       Kind: noun
       Category: time
@@ -5416,9 +5490,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: toilet
       Kind: noun
       Category: 
@@ -5427,9 +5501,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tomato
       Kind: noun
       Category: vegetables
@@ -5438,9 +5512,9 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062F \u0648 \u0631 \u0629"
       Transliteration: banadora
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tomorrow
       Kind: noun
       Category: time
@@ -5449,9 +5523,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tongue
       Kind: noun
       Category: body_parts
@@ -5460,9 +5534,9 @@ MonoBehaviour:
       Letters:
       - "\u0644\u0640 \u0640\u0633\u0640 \u0640\u0627 \u0646"
       Transliteration: lisan
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tooth
       Kind: noun
       Category: body_parts
@@ -5471,9 +5545,9 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u0646"
       Transliteration: sin
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tower
       Kind: noun
       Category: 
@@ -5482,9 +5556,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: tree
       Kind: noun
       Category: nature
@@ -5493,9 +5567,9 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u062C\u0640 \u0640\u0631"
       Transliteration: shajar
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: triangle
       Kind: noun
       Category: 
@@ -5504,9 +5578,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: uncle_father
       Kind: noun
       Category: family_members
@@ -5515,9 +5589,9 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0645"
       Transliteration: am
-      DifficultyLevel: 
+      Difficulty: 1
       Group: A
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: uncle_mother
       Kind: noun
       Category: family_members
@@ -5526,9 +5600,9 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0627 \u0644"
       Transliteration: khal
-      DifficultyLevel: 
+      Difficulty: 1
       Group: B
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: understood
       Kind: verb
       Category: 
@@ -5537,9 +5611,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: vegetables
       Kind: noun
       Category: food
@@ -5548,9 +5622,9 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u0636\u0640 \u0640\u0631"
       Transliteration: khuDar
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: virtuous
       Kind: adjective
       Category: 
@@ -5559,9 +5633,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: voice
       Kind: noun
       Category: 
@@ -5570,9 +5644,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: walked
       Kind: varb
       Category: 
@@ -5581,9 +5655,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: washing_machine
       Kind: noun
       Category: 
@@ -5592,9 +5666,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: water
       Kind: noun
       Category: food
@@ -5603,9 +5677,9 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u064A"
       Transliteration: mai
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: watermelon
       Kind: noun
       Category: food
@@ -5614,9 +5688,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: welcome
       Kind: verb
       Category: 
@@ -5625,9 +5699,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: went
       Kind: verb
       Category: 
@@ -5636,9 +5710,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: whale
       Kind: noun
       Category: animals
@@ -5647,9 +5721,9 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0648 \u062A"
       Transliteration: huut
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: window
       Kind: noun
       Category: 
@@ -5658,9 +5732,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: winter
       Kind: noun
       Category: 
@@ -5669,9 +5743,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: wolf
       Kind: noun
       Category: 
@@ -5680,9 +5754,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: woman
       Kind: noun
       Category: family_members
@@ -5691,9 +5765,9 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0631 \u0623 \u0629"
       Transliteration: mara
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: won
       Kind: verb
       Category: 
@@ -5702,9 +5776,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: wonderful
       Kind: adjective
       Category: 
@@ -5713,9 +5787,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: wore
       Kind: verb
       Category: 
@@ -5724,9 +5798,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: worker
       Kind: noun
       Category: 
@@ -5735,9 +5809,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: worker_dual
       Kind: noun
       Category: 
@@ -5746,9 +5820,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: worker_plural
       Kind: noun
       Category: 
@@ -5757,9 +5831,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: wrote
       Kind: verb
       Category: 
@@ -5768,9 +5842,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: year
       Kind: noun
       Category: time
@@ -5779,9 +5853,9 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0627 \u0645"
       Transliteration: "a\u2019am"
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: yesterday
       Kind: noun
       Category: time
@@ -5790,9 +5864,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: yogurt
       Kind: noun
       Category: food
@@ -5801,9 +5875,9 @@ MonoBehaviour:
       Letters:
       - "\u0644\u0640 \u0640\u0628\u0640 \u0640\u0646"
       Transliteration: laban
-      DifficultyLevel: 
+      Difficulty: 1
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: you_are_welcome
       Kind: verb
       Category: 
@@ -5812,9 +5886,9 @@ MonoBehaviour:
       Letters:
       - 
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5822,9 +5896,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5832,9 +5906,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5842,9 +5916,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5852,9 +5926,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5862,9 +5936,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5872,9 +5946,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5882,9 +5956,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5892,9 +5966,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5902,9 +5976,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5912,9 +5986,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5922,9 +5996,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5932,9 +6006,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5942,9 +6016,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5952,9 +6026,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5962,9 +6036,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5972,9 +6046,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5982,9 +6056,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -5992,9 +6066,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6002,9 +6076,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6012,9 +6086,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6022,9 +6096,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6032,9 +6106,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6042,9 +6116,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6052,9 +6126,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6062,9 +6136,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6072,9 +6146,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6082,9 +6156,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6092,9 +6166,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6102,9 +6176,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6112,9 +6186,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6122,9 +6196,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6132,9 +6206,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6142,9 +6216,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6152,9 +6226,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6162,9 +6236,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6172,9 +6246,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6182,9 +6256,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6192,9 +6266,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6202,9 +6276,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6212,9 +6286,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6222,9 +6296,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6232,9 +6306,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6242,9 +6316,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6252,9 +6326,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6262,9 +6336,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6272,9 +6346,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6282,9 +6356,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6292,9 +6366,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6302,9 +6376,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6312,9 +6386,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6322,9 +6396,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6332,9 +6406,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6342,9 +6416,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6352,9 +6426,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6362,9 +6436,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6372,9 +6446,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6382,9 +6456,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6392,9 +6466,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6402,9 +6476,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6412,9 +6486,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6422,9 +6496,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6432,9 +6506,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6442,9 +6516,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6452,9 +6526,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6462,9 +6536,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6472,9 +6546,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6482,9 +6556,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6492,9 +6566,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6502,9 +6576,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6512,9 +6586,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6522,9 +6596,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6532,9 +6606,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6542,9 +6616,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6552,9 +6626,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6562,9 +6636,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6572,9 +6646,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6582,9 +6656,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6592,9 +6666,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6602,9 +6676,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6612,9 +6686,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6622,9 +6696,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6632,9 +6706,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6642,9 +6716,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6652,9 +6726,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6662,9 +6736,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6672,9 +6746,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6682,9 +6756,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6692,9 +6766,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6702,9 +6776,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6712,9 +6786,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6722,9 +6796,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6732,9 +6806,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6742,9 +6816,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6752,9 +6826,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6762,9 +6836,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6772,9 +6846,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6782,9 +6856,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6792,9 +6866,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6802,9 +6876,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6812,9 +6886,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6822,9 +6896,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6832,9 +6906,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6842,9 +6916,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6852,9 +6926,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6862,9 +6936,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6872,9 +6946,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6882,9 +6956,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6892,9 +6966,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6902,9 +6976,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6912,9 +6986,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6922,9 +6996,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6932,9 +7006,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6942,9 +7016,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6952,9 +7026,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6962,9 +7036,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6972,9 +7046,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6982,9 +7056,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -6992,9 +7066,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -7002,9 +7076,9 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
     - Id: 
       Kind: 
       Category: 
@@ -7012,15 +7086,15 @@ MonoBehaviour:
       Arabic: 
       Letters: []
       Transliteration: 
-      DifficultyLevel: 
+      Difficulty: 0
       Group: 
-      NumberOfLetters: 0
+      Drawing: 0
   playSessionTable:
     _Buckets: ffffffffffffffffa3000000a4000000ffffffff7e0000007f000000ffffffffffffffffffffffffffffffff4800000049000000310000009200000093000000ffffffff12000000130000006b0000006c00000063000000ffffffffffffffffffffffffffffffffa1000000a2000000ffffffff7c0000007d000000ffffffffffffffffffffffffffffffff4600000047000000ffffffff9000000091000000ffffffff1000000054000000690000006a00000061000000ffffffffffffffffffffffffffffffff9f000000a0000000ffffffff7b000000ffffffffffffffffffffffffffffffffffffffff4400000045000000ffffffff8e0000008f000000ffffffff0e0000005200000067000000680000005f000000ffffffffffffffffffffffffffffffff9d0000009e000000ffffffff7a000000ffffffffffffffffffffffffffffffffffffffff4200000043000000ffffffff8d000000ffffffffffffffff0c00000050000000510000005c0000005d000000ffffffffffffffffffffffffffffffff9b0000009c000000ffffffff7800000079000000ffffffffffffffffffffffffffffffff4000000041000000ffffffff8c000000ffffffffffffffff380000004e0000004f0000005a0000005b000000ffffffffffffffffffffffff89000000990000009a000000ffffffff7600000077000000ffffffffffffffffffffffffffffffff3e0000003f000000ffffffff8b000000ffffffffffffffff360000004c000000980000005800000059000000ffffffffffffffff71000000870000008800000023000000ffffffff7400000075000000ffffffffffffffffffffffff82000000830000003d000000ffffffffffffffffffffffffffffffff3400000035000000960000009700000057000000ffffffffffffffff6f000000850000008600000021000000ffffffffffffffffffffffffffffffffffffffffffffffff80000000810000003b000000ffffffffffffffffffffffff4a0000004b000000330000009400000095000000ffffffffffffffffffffffff6d000000840000001e0000001f000000ffffffff
     _HashCodes: 7726c8027826c802b76a5871382ac802392ac80238826671f92dc802fa2dc802ba31c802bb31c8027b35c8027c35c8023c39c8023d39c802fd3cc802fe3cc802be40c802bf40c8027f44c8028044c802bfaf3c56c0af3c5680b33c5681b33c5641b73c5642b73c5602bb3c5603bb3c56c3be3c56c4be3c56f83dd602f93dd602b941d602ba41d6027a45d6027b45d6023b49d6023c49d602fc4cd602fd4cd602bd50d602be50d6027e54d6027f54d6023f58d6024058d602005cd602015cd6025e88f1575f88f1571f8cf157208cf157e08ff157e18ff157a193f157a293f1576297f1576397f1577955e4027a55e4023a59e4023b59e402fb5ce402fc5ce402bc60e402bd60e4027d64e4027e64e4023e68e4023f68e402ff6be402006ce402c06fe402c16fe4028173e4028273e402fd60a659fe60a659be64a659bf64a6597f68a6598068a659406ca659416ca6590170a6590270a659fa6cf202fb6cf202bb70f202bc70f2027c74f2027d74f2023d78f2023e78f202fe7bf202ff7bf202bf7ff202c07ff2028083f2028183f2024187f202028bf202038bf2029c395b5b9d395b5b5d3d5b5b5e3d5b5b1e415b5b1f415b5bdf445b5be0445b5ba0485b5ba1485b5b614c5b5b624c5b5b634c5b5b7b8400037c8400033c8800033d880003fd8b0003fe8b0003be8f00037f9300034097000341970003019b0003029b0003c29e0003c39e000383a2000384a200033b12105dfc15105dfd15105dbd19105dbe19105d7e1d105d7f1d105dfc9b0e03bd9f0e037ea30e033fa70e0340a70e0300ab0e0301ab0e03c1ae0e03c2ae0e0382b20e0383b20e0343b60e0344b60e0304ba0e03daeac45edbeac45e9beec45e9ceec45e5cf2c45e5df2c45e1df6c45e1ef6c45edef9c45edff9c45e9ffdc45ea0fdc45e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffff03000000ffffffffffffffffffffffff02000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1b000000010000001d00000004000000060000000700000008000000090000000a0000000b000000ffffffffffffffffffffffff05000000ffffffffffffffffffffffffffffffff1400000015000000160000001700000018000000190000001a000000300000001c0000003200000037000000ffffffff39000000ffffffff0d000000ffffffff0f000000ffffffff11000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff20000000530000005e0000005500000060000000ffffffff62000000ffffffff64000000ffffffff65000000ffffffffffffffff22000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff3a000000ffffffff3c0000006e00000070000000660000007200000073000000ffffffff24000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff560000004d0000008a00000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Count: 165
-    _Version: 3529
+    _Version: 4857
     _FreeList: -1
     _FreeCount: 0
     _Keys:
@@ -20034,18 +20108,74 @@ MonoBehaviour:
       AssessmentData: 
       Minigames: []
   assessmentTable:
-    _Buckets: ffffffffffffffffffffffff
-    _HashCodes: 000000000000000000000000
-    _Next: 000000000000000000000000
-    _Count: 0
-    _Version: 0
+    _Buckets: 00000000030000000400000008000000050000000600000007000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff02000000ffffffffffffffff
+    _HashCodes: edf84b67a929c04f934a537634000000350000003700000038000000390000001f0600000000000000000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffff01000000ffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000
+    _Count: 9
+    _Version: 39
     _FreeList: -1
     _FreeCount: 0
     _Keys:
+    - Letters
+    - LettersMatchShape
+    - Alphabet
+    - 4
+    - 5
+    - 7
+    - 8
+    - 9
+    - 10
+    - 
+    - 
+    - 
+    - 
+    - 
     - 
     - 
     - 
     _Values:
+    - Id: 1
+      Title: Rearranging Letters
+      Description: 
+    - Id: 2
+      Title: Matching Letter Shape
+      Description: 
+    - Id: 3
+      Title: Break It Up
+      Description: 
+    - Id: 4
+      Title: Memory Match
+      Description: 
+    - Id: 5
+      Title: Word Builder
+      Description: 
+    - Id: 7
+      Title: Classification
+      Description: 
+    - Id: 8
+      Title: Listen and Locate
+      Description: 
+    - Id: 9
+      Title: Fill in the Gaps
+      Description: 
+    - Id: 10
+      Title: Definitions
+      Description: 
+    - Id: 0
+      Title: 
+      Description: 
+    - Id: 0
+      Title: 
+      Description: 
+    - Id: 0
+      Title: 
+      Description: 
+    - Id: 0
+      Title: 
+      Description: 
+    - Id: 0
+      Title: 
+      Description: 
     - Id: 0
       Title: 
       Description: 
@@ -20060,7 +20190,7 @@ MonoBehaviour:
     _HashCodes: ea297360eb297360ec2973602706cb3458256f7da27d603763c24535a5866e5d73dfa16874dfa16875dfa16870020b0171020b016daf59036068325981c3f230c2971071c3971071c49710717e71831601ccea4426eec5444c6eec465f1ec6251e9ddb1b1f9ddb1ba2c9091e20864b6821864b6822864b685e0c623846ffa024e1f44d55a9b9da3d30abb90bad9c683dd3798b3fd4798b3fd5798b3fd6798b3f3a4acf313b4acf31a0d3ab34a1d3ab34a2d3ab34a3d3ab34ff2dd14543548e5a19686b211a686b211b686b21dbec5d7515ea2f35339ba86d39a1d64dd24ad74d1847136dadbc494faebc494f139b5131149b513104012f3a05012f3a82769b2556b67d24742f4f79752f4f79762f4f79772f4f79782f4f79284b9906e15e59629a3de4048953f237191a904c6e087b237eccc573323e6735913a79083ad02570000000000000000000000000000000000000000000000000000000000000000000000000
     _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffff03000000ffffffffffffffffffffffffffffffff07000000ffffffffffffffffffffffffffffffff05000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff15000000ffffffffffffffffffffffffffffffff06000000ffffffffffffffffffffffff1f000000ffffffff00000000010000000200000016000000ffffffffffffffff13000000ffffffff1a000000ffffffff2b000000ffffffffffffffffffffffffffffffff14000000ffffffffffffffff29000000ffffffff24000000ffffffff0f0000003000000031000000ffffffff1b000000ffffffffffffffffffffffff1000000011000000120000003b0000001d0000000a00000042000000ffffffff27000000ffffffff0e000000470000001e000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000
     _Count: 80
-    _Version: 252
+    _Version: 1224
     _FreeList: -1
     _FreeCount: 0
     _Keys:
@@ -20157,7 +20287,7 @@ MonoBehaviour:
     - Id: assessment_start_A1
       Character: keeper
       Context: assessment
-      English: 'This evaluation is so important, listen carefully. '
+      English: This evaluation is so important, listen carefully.
       Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062A\u0642\u064A\u064A\u0645 \u0645\u0647\u0645
         \u062C\u062F\u0627\u064B\u060C \u0627\u0646\u0635\u062A \u0628\u0639\u0646\u0627\u064A\u0629"
       AudioFile: assessment_start_A1
@@ -20165,7 +20295,7 @@ MonoBehaviour:
     - Id: assessment_start_A2
       Character: keeper
       Context: assessment
-      English: 'Look at the following words and pictures. '
+      English: Look at the following words and pictures.
       Arabic: "\u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0648\u0627\u0644\u0635\u0648\u0631"
       AudioFile: assessment_start_A2
@@ -20173,7 +20303,7 @@ MonoBehaviour:
     - Id: assessment_start_A3
       Character: keeper
       Context: assessment
-      English: 'Using lines, connect the correct word with its picture. '
+      English: Using lines, connect the correct word with its picture.
       Arabic: "\u0635\u0644 \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629
         \u0628\u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0645\u0646\u0627\u0633\u0628
         \u0639\u0646 \u0637\u0631\u064A\u0642 \u0631\u0633\u0645 \u062E\u0637 \u0628\u064A\u0646\u0647\u0645\u0627"
@@ -20182,7 +20312,7 @@ MonoBehaviour:
     - Id: assessment_result_intro
       Character: keeper
       Context: assessment
-      English: 'Hmm, Let''s look at the evaluation result. '
+      English: Hmm, Let's look at the evaluation result.
       Arabic: "\u0647\u0645\u0645\u0645\u060C \u0644\u0646\u062A\u0645\u0639\u064E\u0646
         \u0633\u0648\u064A\u0627\u064B \u0641\u064A \u0646\u062A\u064A\u062C\u0629
         \u0627\u0644\u062A\u0642\u064A\u064A\u0645"
@@ -20191,7 +20321,7 @@ MonoBehaviour:
     - Id: assessment_result_verygood
       Character: keeper
       Context: assessment
-      English: 'Great result! I am really impressed. '
+      English: Great result! I am really impressed.
       Arabic: "\u0646\u062A\u064A\u062C\u0629 \u0645\u0645\u062A\u0627\u0632\u0629!
         \u0627\u0646\u0627 \u0645\u0646\u0628\u0647\u0631"
       AudioFile: assessment_result_verygood
@@ -20199,7 +20329,7 @@ MonoBehaviour:
     - Id: assessment_result_good
       Character: keeper
       Context: assessment
-      English: 'Your performance was excellent! '
+      English: Your performance was excellent!
       Arabic: "\u0643\u0627\u0646 \u0627\u062F\u0627\u0626\u0643 \u062C\u064A\u062F
         \u062C\u062F\u0627\u064B!"
       AudioFile: assessment_result_good
@@ -20207,7 +20337,7 @@ MonoBehaviour:
     - Id: assessment_result_retry
       Character: keeper
       Context: assessment
-      English: 'Acceptable try, but we have to investigate this area. '
+      English: Acceptable try, but we have to investigate this area.
       Arabic: "\u0645\u062D\u0627\u0648\u0644\u0629 \u0644\u0627 \u0628\u0623\u0633
         \u0628\u0647\u0627\u060C \u0644\u0643\u0646 \u0639\u0644\u064A\u0646\u0627
         \u0627\u0633\u062A\u0643\u0634\u0627\u0641 \u0647\u0630\u0647 \u0627\u0644\u0645\u0646\u0637\u0642\u0629
@@ -20217,7 +20347,7 @@ MonoBehaviour:
     - Id: match_words_drawings
       Character: keeper
       Context: assessment
-      English: 'Match the correct words with their images. '
+      English: Match the correct words with their images.
       Arabic: "\u0637\u0627\u0628\u0642 \u0643\u0644 \u0643\u0644\u0645\u0629 \u0645\u0639
         \u0635\u0648\u0631\u062A\u0647\u0627 \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629"
       AudioFile: match_words_drawings
@@ -20225,24 +20355,24 @@ MonoBehaviour:
     - Id: game_balloons_intro1
       Character: keeper
       Context: game balloons
-      English: 'Pay attention carefully! '
+      English: Pay attention carefully!
       Arabic: "\u0627\u0646\u062A\u0628\u0647 \u062C\u064A\u062F\u0627\u064B!"
       AudioFile: game_balloons_intro1
       EnglishOld: 
     - Id: game_balloons_intro2
       Character: keeper
       Context: game balloons
-      English: 'Do not pop the letter balloons. '
+      English: Do not pop the letter balloons.
       Arabic: "\u0644\u0627 \u062A\u0641\u0631\u0642\u0639 \u0628\u0627\u0644\u0648\u0646\u0627\u062A
         \u0627\u0644\u0623\u062D\u0631\u0641 \u0627\u0644\u062A\u064A \u062A\u0631\u0627\u0647\u0627
-        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629! "
+        \u0641\u064A \u0627\u0644\u0643\u0644\u0645\u0629!"
       AudioFile: game_balloons_intro2
       EnglishOld: 
     - Id: game_balloons_intro3
       Character: keeper
       Context: game balloons
-      English: 'Pop only the balloons of the letters that are unavailable in the word
-        quickly. '
+      English: Pop only the balloons of the letters that are unavailable in the word
+        quickly.
       Arabic: "\u0641\u0631\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
         \u0627\u0644\u062A\u064A \u062A\u062D\u0645\u0644 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0627\u0644\u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F\u0629 \u0641\u064A
@@ -20252,21 +20382,21 @@ MonoBehaviour:
     - Id: game_balloons_commentA
       Character: keeper
       Context: game balloons
-      English: 'Oh no! '
-      Arabic: "\u0627\u0647 \u0644\u0627! "
+      English: Oh no!
+      Arabic: "\u0627\u0647 \u0644\u0627!"
       AudioFile: game_balloons_commentA
       EnglishOld: 
     - Id: game_balloons_commentB
       Character: keeper
       Context: game balloons
       English: Ouch!
-      Arabic: "\u0622\u062E\u062E\u062E! "
+      Arabic: "\u0622\u062E\u062E\u062E!"
       AudioFile: game_balloons_commentB
       EnglishOld: 
     - Id: game_balloons_end
       Character: keeper
       Context: game balloons
-      English: 'All the best. '
+      English: All the best.
       Arabic: "\u0628\u0627\u0644\u062A\u0648\u0641\u064A\u0642.."
       AudioFile: game_balloons_end
       EnglishOld: 
@@ -20280,14 +20410,14 @@ MonoBehaviour:
     - Id: game_dontwake_attention
       Character: keeper
       Context: game_dontwake
-      English: 'Do not wake up Antura! '
-      Arabic: "\u0644\u0627 \u062A\u0648\u0642\u0638 \u0639\u0646\u062A\u0648\u0631\u0629! "
+      English: Do not wake up Antura!
+      Arabic: "\u0644\u0627 \u062A\u0648\u0642\u0638 \u0639\u0646\u062A\u0648\u0631\u0629!"
       AudioFile: game_dontwake_attention
       EnglishOld: 
     - Id: game_dontwake_intro1
       Character: keeper
       Context: game_dontwake
-      English: 'Shhh! All are asleep. '
+      English: Shhh! All are asleep.
       Arabic: "\u0634\u0634\u0634\u0634\u0634\u0634\u0634\u0634! \u0627\u0644\u062C\u0645\u064A\u0639
         \u0646\u0627\u0626\u0645..."
       AudioFile: game_dontwake_intro1
@@ -20295,7 +20425,7 @@ MonoBehaviour:
     - Id: game_dontwake_intro2
       Character: keeper
       Context: game_dontwake
-      English: 'Move the picture toward the word without waking up anyone. '
+      English: Move the picture toward the word without waking up anyone.
       Arabic: "\u062D\u0631\u0643 \u0627\u0644\u0635\u0648\u0631\u0629 \u0646\u062D\u0648
         \u0627\u0644\u0643\u0644\u0645\u0629 \u062F\u0648\u0646 \u0627\u064A\u0642\u0627\u0638
         \u0627\u062D\u062F"
@@ -20304,14 +20434,14 @@ MonoBehaviour:
     - Id: game_dontwake_intro3
       Character: keeper
       Context: game_dontwake
-      English: 'especially Antura. '
+      English: especially Antura.
       Arabic: "\u062E\u0635\u0648\u0635\u0627\u064B \u0639\u0646\u062A\u0648\u0631\u0629"
       AudioFile: game_dontwake_intro3
       EnglishOld: 
     - Id: game_dontwake_end
       Character: keeper
       Context: game_dontwake
-      English: 'Aha, here we go again. '
+      English: Aha, here we go again.
       Arabic: "\u0627\u0647\u0647\u0647\u060C \u0647\u0627 \u0646\u062D\u0646 \u0646\u0639\u0648\u062F
         \u0645\u0646 \u062C\u062F\u064A\u062F"
       AudioFile: game_dontwake_end
@@ -20352,19 +20482,18 @@ MonoBehaviour:
     - Id: game_fastcrowd_A_intro1
       Character: keeper
       Context: game_fastcrowd
-      English: 'Look! There are some living words wandering here. '
+      English: Look! There are some living words wandering here.
       Arabic: "\u0623\u0646\u0638\u0631\u060C \u0628\u0639\u0636 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
-        \u0627\u0644\u062D\u064A\u0629 \u062A\u062A\u062C\u0648\u0644 \u0647\u0646\u0627.
-        \  "
+        \u0627\u0644\u062D\u064A\u0629 \u062A\u062A\u062C\u0648\u0644 \u0647\u0646\u0627."
       AudioFile: game_fastcrowd_A_intro1
       EnglishOld: 
     - Id: game_fastcrowd_A_intro2
       Character: keeper
       Context: game_fastcrowd
-      English: 'You have to drag the correct words into the dropping zone. '
+      English: You have to drag the correct words into the dropping zone.
       Arabic: "\u0639\u0644\u064A\u0643 \u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629 \u0627\u0644\u0649 \u0645\u0631\u0628\u0639
-        \u0627\u0644\u0627\u0633\u0642\u0627\u0637 "
+        \u0627\u0644\u0627\u0633\u0642\u0627\u0637"
       AudioFile: game_fastcrowd_A_intro2
       EnglishOld: 
     - Id: game_fastcrowd_A_end
@@ -20378,25 +20507,25 @@ MonoBehaviour:
     - Id: game_fastcrowd_intro1
       Character: keeper
       Context: game_fastcrowd
-      English: 'Wow! Look at these wonderful creatures. '
+      English: Wow! Look at these wonderful creatures.
       Arabic: "\u062C\u0645\u064A\u0644\u060C \u064A\u0627 \u0644\u0647\u0627 \u0645\u0646
-        \u0645\u062E\u0644\u0648\u0642\u0627\u062A \u0631\u0627\u0626\u0639\u0629! "
+        \u0645\u062E\u0644\u0648\u0642\u0627\u062A \u0631\u0627\u0626\u0639\u0629!"
       AudioFile: game_fastcrowd_intro1
       EnglishOld: 
     - Id: game_fastcrowd_intro2
       Character: keeper
       Context: game_fastcrowd
-      English: 'Catch the correct living letters and drag them into the dropping zone. '
+      English: Catch the correct living letters and drag them into the dropping zone.
       Arabic: "\u0627\u0644\u062A\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629 \u0648 \u0627\u0633\u062D\u0628\u0647\u0645
-        \u0625\u0644\u0649 \u0645\u0631\u0628\u0639 \u0627\u0644\u0627\u0633\u0642\u0627\u0637 "
+        \u0625\u0644\u0649 \u0645\u0631\u0628\u0639 \u0627\u0644\u0627\u0633\u0642\u0627\u0637"
       AudioFile: game_fastcrowd_intro2
       EnglishOld: 
     - Id: game_fastcrowd_intro3
       Character: keeper
       Context: game_fastcrowd
-      English: 'Hurry up! We are running out of time. '
-      Arabic: "\u0627\u0633\u0631\u0639! \u0627\u0644\u0648\u0642\u062A \u064A\u062F\u0627\u0647\u0645\u0646\u0627! "
+      English: Hurry up! We are running out of time.
+      Arabic: "\u0627\u0633\u0631\u0639! \u0627\u0644\u0648\u0642\u062A \u064A\u062F\u0627\u0647\u0645\u0646\u0627!"
       AudioFile: game_fastcrowd_intro3
       EnglishOld: 
     - Id: game_fastcrowd_findword
@@ -20419,41 +20548,41 @@ MonoBehaviour:
       Context: game_fastcrowd
       English: Find this word group
       Arabic: "\u0627\u0628\u062D\u062B \u0639\u0646 \u0645\u062C\u0645\u0648\u0639\u0629
-        \u0627\u0644\u0643\u0644\u0645\u0627\u062A "
+        \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       AudioFile: game_fastcrowd_findwordgroup
       EnglishOld: 
     - Id: comment_catch_letters
       Character: keeper
       Context: gameplay
-      English: 'Pick up the letters. '
+      English: Pick up the letters.
       Arabic: "\u0627\u0644\u062A\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641"
       AudioFile: comment_catch_letters
       EnglishOld: 
     - Id: comment_welldone
       Character: keeper
       Context: gameplay
-      English: 'Well done! '
-      Arabic: "\u0623\u062D\u0633\u0646\u062A! "
+      English: Well done!
+      Arabic: "\u0623\u062D\u0633\u0646\u062A!"
       AudioFile: comment_welldone
       EnglishOld: 
     - Id: comment_great
       Character: keeper
       Context: gameplay
       English: Great job!
-      Arabic: "\u0645\u0645\u062A\u0627\u0632! "
+      Arabic: "\u0645\u0645\u062A\u0627\u0632!"
       AudioFile: comment_great
       EnglishOld: 
     - Id: map_A1
       Character: keeper
       Context: journey
-      English: 'Hey you! Yes you! '
+      English: Hey you! Yes you!
       Arabic: "\u0647\u0627\u064A \u0627\u0646\u062A! \u0646\u0639\u0645 \u0627\u0646\u062A!"
       AudioFile: map_A1
       EnglishOld: 
     - Id: map_A2
       Character: keeper
       Context: journey
-      English: 'We need your help right now. '
+      English: We need your help right now.
       Arabic: "\u0646\u062D\u062A\u0627\u062C \u0644\u0645\u0633\u0627\u0639\u062F\u062A\u0643
         \u0641\u0648\u0631\u0627\u064B! \u0646\u062D\u062A\u0627\u062C \u0644\u0645\u0633\u0627\u0639\u062F\u062A\u0643
         \u062D\u0627\u0644\u0627\u064B\u061F"
@@ -20462,7 +20591,7 @@ MonoBehaviour:
     - Id: map_A3
       Character: keeper
       Context: journey
-      English: 'You are in the living letters'' territory. They are surrounding you. '
+      English: You are in the living letters' territory. They are surrounding you.
       Arabic: "\u0627\u0646\u062A \u0641\u064A \u0627\u0631\u0627\u0636\u064A \u0627\u0644\u062D\u0631\u0648\u0641
         \u0627\u0644\u062D\u064A\u0629! \u0633\u062A\u062C\u062F\u0647\u0645 \u0645\u0646\u062A\u0634\u0631\u064A\u0646
         \u0641\u064A \u0627\u0644\u0645\u0643\u0627\u0646."
@@ -20471,7 +20600,7 @@ MonoBehaviour:
     - Id: map_A4
       Character: keeper
       Context: journey
-      English: 'Please try to catch some of them. Please try to pick up some of them. '
+      English: Please try to catch some of them. Please try to pick up some of them.
       Arabic: "\u0645\u0646 \u0641\u0636\u0644\u0643\u060C \u062D\u0627\u0648\u0644
         \u0627\u0635\u0637\u064A\u0627\u062F \u0627\u0644\u0628\u0639\u0636 \u0645\u0646\u0647\u0627"
       AudioFile: map_A4
@@ -20479,7 +20608,7 @@ MonoBehaviour:
     - Id: map1_A1
       Character: keeper
       Context: journey
-      English: 'You did a great job! We need to investigate this are more. '
+      English: You did a great job! We need to investigate this are more.
       Arabic: "\u0643\u0627\u0646 \u0627\u062F\u0627\u0626\u0643 \u0631\u0627\u0626\u0639\u0627\u064B!
         \u0639\u0644\u064A\u0646\u0627 \u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0633\u062A\u0643\u0634\u0627\u0641
         \u0647\u0630\u0647 \u0627\u0644\u0645\u0646\u0637\u0642\u0629"
@@ -20488,24 +20617,24 @@ MonoBehaviour:
     - Id: map1_A2
       Character: keeper
       Context: journey
-      English: 'I am sure you will find more exciting creatures here. '
+      English: I am sure you will find more exciting creatures here.
       Arabic: "\u0627\u0646\u0627 \u0648\u0627\u062B\u0642  \u0645\u0646 \u0627\u0646\u0643
         \u0633\u062A\u062C\u062F \u0645\u062E\u0644\u0648\u0642\u0627\u062A \u0627\u0643\u062B\u0631
-        \u063A\u0631\u0627\u0628\u0629 \u0648 \u0645\u062B\u064A\u0631\u0629 \u0644\u0644\u0627\u0639\u062C\u0627\u0628! "
+        \u063A\u0631\u0627\u0628\u0629 \u0648 \u0645\u062B\u064A\u0631\u0629 \u0644\u0644\u0627\u0639\u062C\u0627\u0628!"
       AudioFile: map1_A2
       EnglishOld: 
     - Id: assessment_intro_A1
       Character: keeper
       Context: journey
-      English: 'You did an awesome job during the previous missions. '
+      English: You did an awesome job during the previous missions.
       Arabic: "\u0627\u062F\u0627\u0626\u0643 \u0643\u0627\u0646 \u0639\u0638\u064A\u0645\u0627\u064B
-        \u062E\u0644\u0627\u0644 \u0627\u0644\u0645\u0647\u0645\u0627\u062A \u0627\u0644\u0633\u0627\u0628\u0642\u0629! "
+        \u062E\u0644\u0627\u0644 \u0627\u0644\u0645\u0647\u0645\u0627\u062A \u0627\u0644\u0633\u0627\u0628\u0642\u0629!"
       AudioFile: assessment_intro_A1
       EnglishOld: 
     - Id: assessment_intro_A2
       Character: keeper
       Context: journey
-      English: 'We have to stop playing for now. I need to evaluate you. '
+      English: We have to stop playing for now. I need to evaluate you.
       Arabic: "\u0639\u0644\u064A\u0646\u0627 \u0627\u064A\u0642\u0627\u0641 \u0627\u0644\u0644\u0639\u0628
         \u0627\u0644\u0627\u0646. \u0633\u0648\u0641 \u0646\u0642\u0648\u0645 \u0628\u062A\u0642\u064A\u064A\u0645
         \u062C\u062F\u064A"
@@ -20514,8 +20643,8 @@ MonoBehaviour:
     - Id: assessment_intro_A3
       Character: keeper
       Context: journey
-      English: 'Let''s see how good you are in recognizing the living letters in this
-        area. '
+      English: Let's see how good you are in recognizing the living letters in this
+        area.
       Arabic: "\u0644\u0646\u0631\u0649 \u0643\u0645 \u0627\u0646\u062A \u0636\u0644\u064A\u0639
         \u0641\u064A \u0645\u0639\u0631\u0641\u0629 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0627\u0644\u062D\u064A\u0629 \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0645\u0646\u0637\u0642\u0629"
@@ -20525,7 +20654,7 @@ MonoBehaviour:
       Character: keeper
       Context: journey
       English: Get ready!
-      Arabic: "\u0643\u0646 \u062C\u0627\u0647\u0632\u0627\u064B! "
+      Arabic: "\u0643\u0646 \u062C\u0627\u0647\u0632\u0627\u064B!"
       AudioFile: assessment_intro_A4
       EnglishOld: 
     - Id: mood_how_are_you_today
@@ -20539,7 +20668,7 @@ MonoBehaviour:
       Character: female
       Context: mood
       English: How do you feel now?
-      Arabic: " \u0643\u064A\u0641 \u062A\u0634\u0639\u0631 \u0627\u0644\u0622\u0646\u061F"
+      Arabic: "\u0643\u064A\u0641 \u062A\u0634\u0639\u0631 \u0627\u0644\u0622\u0646\u061F"
       AudioFile: mood_how_do_you_feel
       EnglishOld: 
     - Id: end_game_A1
@@ -20553,7 +20682,7 @@ MonoBehaviour:
     - Id: end_game_A2
       Character: keeper
       Context: playsession
-      English: 'I hope you come soon to explore new areas. '
+      English: I hope you come soon to explore new areas.
       Arabic: "\u0627\u0645\u0644 \u0627\u0646 \u062A\u0639\u0648\u062F \u0642\u0631\u064A\u0628\u0627\u064B
         \u0644\u0627\u0633\u062A\u0643\u0634\u0627\u0641 \u0645\u0646\u0627\u0637\u0642
         \u062C\u062F\u064A\u062F\u0629 \u0645\u0639\u0646\u0627"
@@ -20562,21 +20691,21 @@ MonoBehaviour:
     - Id: end_game_A3
       Character: keeper
       Context: playsession
-      English: 'Goodbye! '
-      Arabic: "\u0627\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621! "
+      English: Goodbye!
+      Arabic: "\u0627\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621!"
       AudioFile: end_game_A3
       EnglishOld: 
     - Id: game_result_great_B
       Character: keeper
       Context: results
-      English: 'Excellent! '
+      English: Excellent!
       Arabic: "\u062C\u064A\u062F \u062C\u062F\u0627\u064B!"
       AudioFile: game_result_great_B
       EnglishOld: 
     - Id: game_result_good_B
       Character: keeper
       Context: results
-      English: 'Good, although you can still do better. '
+      English: Good, although you can still do better.
       Arabic: "\u062C\u064A\u062F\u060C \u0627\u0646\u0627 \u0648\u0627\u062B\u0642
         \u0645\u0646 \u0642\u062F\u0631\u062A\u0643 \u0639\u0644\u0649 \u062A\u062D\u0633\u064A\u0646
         \u0627\u0644\u0646\u062A\u064A\u062C\u0629"
@@ -20593,7 +20722,7 @@ MonoBehaviour:
     - Id: game_result_fair
       Character: keeper
       Context: results
-      English: 'Good, you can get more next time. '
+      English: Good, you can get more next time.
       Arabic: "\u062C\u064A\u062F\u060C \u0633\u0646\u062D\u0635\u0644 \u0639\u0644\u0649
         \u0627\u0644\u0645\u0632\u064A\u062F \u0641\u064A \u0627\u0644\u0645\u0631\u0629
         \u0627\u0644\u0645\u0642\u0628\u0644\u0629..."
@@ -20603,21 +20732,21 @@ MonoBehaviour:
       Character: keeper
       Context: results
       English: Impressive performance!
-      Arabic: " \u0646\u062A\u064A\u062C\u0629 \u0631\u0627\u0626\u0639\u0629! "
+      Arabic: "\u0646\u062A\u064A\u062C\u0629 \u0631\u0627\u0626\u0639\u0629!"
       AudioFile: game_result_good
       EnglishOld: 
     - Id: game_result_great
       Character: keeper
       Context: results
       English: Wonderful job!
-      Arabic: "\u0639\u0645\u0644 \u0645\u0645\u062A\u0627\u0632! "
+      Arabic: "\u0639\u0645\u0644 \u0645\u0645\u062A\u0627\u0632!"
       AudioFile: game_result_great
       EnglishOld: 
     - Id: game_rewards_intro1
       Character: keeper
       Context: results
-      English: 'End of this mission. Look here! '
-      Arabic: " \u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0627! \u0627\u0646\u0647\u0627
+      English: End of this mission. Look here!
+      Arabic: "\u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0627! \u0627\u0646\u0647\u0627
         \u0646\u0647\u0627\u064A\u0629 \u0627\u0644\u0645\u0631\u062D\u0644\u0629."
       AudioFile: game_rewards_intro1
       EnglishOld: 
@@ -20633,14 +20762,14 @@ MonoBehaviour:
     - Id: game_reward_A1
       Character: keeper
       Context: results
-      English: 'Congratulations! '
-      Arabic: "\u0645\u0628\u0631\u0648\u0643! "
+      English: Congratulations!
+      Arabic: "\u0645\u0628\u0631\u0648\u0643!"
       AudioFile: game_reward_A1
       EnglishOld: 
     - Id: game_reward_A2
       Character: keeper
       Context: results
-      English: 'I am sure Antura will love these. '
+      English: I am sure Antura will love these.
       Arabic: "\u0627\u0646\u0627 \u0648\u0627\u062B\u0642 \u0627\u0646 \u0639\u0646\u062A\u0648\u0631\u0629
         \u0633\u064A\u062D\u0628 \u0647\u0630\u0647 \u0627\u0644\u0627\u0636\u0627\u0641\u0627\u062A!"
       AudioFile: game_reward_A2
@@ -20648,7 +20777,7 @@ MonoBehaviour:
     - Id: end_learningblock_A1
       Character: keeper
       Context: results
-      English: 'You did huge efforts in collecting the living letters. '
+      English: You did huge efforts in collecting the living letters.
       Arabic: "\u0642\u0645\u062A \u0628\u0645\u062C\u0647\u0648\u062F \u0639\u0638\u064A\u0645
         \u062E\u0644\u0627\u0644 \u0645\u0633\u0627\u0647\u0645\u062A\u0643 \u0628\u0627\u0644\u062A\u0642\u0627\u0637
         \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u062D\u064A\u0629!"
@@ -20659,35 +20788,35 @@ MonoBehaviour:
       Context: results
       English: I have a special gift for you!
       Arabic: "\u0644\u062F\u064A \u0647\u062F\u064A\u0629 \u0645\u0645\u064A\u0632\u0629
-        \u0644\u0643! "
+        \u0644\u0643!"
       AudioFile: end_learningblock_A2
       EnglishOld: 
     - Id: ui_living_letters
       Character: kids or female
       Context: ui
-      English: 'The living letters. '
+      English: The living letters.
       Arabic: "\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u062D\u064A\u0629"
       AudioFile: ui_living_letters
       EnglishOld: 
     - Id: ui_game_title
       Character: kids or female
       Context: ui
-      English: 'Antura and the letters. '
+      English: Antura and the letters.
       Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u0648 \u0627\u0644\u062D\u0631\u0648\u0641"
       AudioFile: ui_game_title
       EnglishOld: 
     - Id: wheel_A1
       Character: keeper
       Context: wheel
-      English: 'My dog Antura will help you find the letters. '
+      English: My dog Antura will help you find the letters.
       Arabic: "\u0643\u0644\u0628\u064A \u0639\u0646\u062A\u0648\u0631\u0629 \u0633\u064A\u0633\u0627\u0639\u062F\u0643
-        \u0641\u064A \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0648\u0641 "
+        \u0641\u064A \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0648\u0641"
       AudioFile: wheel_A1
       EnglishOld: 
     - Id: wheel_A2
       Character: keeper
       Context: wheel
-      English: 'He is not focused on his job. '
+      English: He is not focused on his job.
       Arabic: "\u0644\u0643\u0646 \u0627\u0644\u062A\u0631\u0643\u064A\u0632 \u0644\u064A\u0633
         \u0645\u0646 \u0627\u0641\u0636\u0644 \u0633\u0645\u0627\u062A\u0647 \u062E\u0644\u0627\u0644
         \u0627\u0644\u0639\u0645\u0644"
@@ -20696,8 +20825,8 @@ MonoBehaviour:
     - Id: wheel_A3
       Character: keeper
       Context: wheel
-      English: 'Fine! '
-      Arabic: "\u062D\u0633\u0646\u0627\u064B! "
+      English: Fine!
+      Arabic: "\u062D\u0633\u0646\u0627\u064B!"
       AudioFile: wheel_A3
       EnglishOld: 
     - Id: wheel_A4
@@ -20714,14 +20843,14 @@ MonoBehaviour:
     - Id: wheel_A5
       Character: keeper
       Context: wheel
-      English: 'Come on, let''s spin the wheel! '
-      Arabic: "\u0647\u064A\u0627 \u0628\u0646\u0627\u060C \u0627\u062F\u0631 \u0627\u0644\u062F\u0648\u0644\u0627\u0628! "
+      English: Come on, let's spin the wheel!
+      Arabic: "\u0647\u064A\u0627 \u0628\u0646\u0627\u060C \u0627\u062F\u0631 \u0627\u0644\u062F\u0648\u0644\u0627\u0628!"
       AudioFile: wheel_A5
       EnglishOld: 
     - Id: wheel_game_fastcrowd
       Character: keeper
       Context: wheel
-      English: 'Aha! It is the fast crowd game! Let''s see what we can catch today. '
+      English: Aha! It is the fast crowd game! Let's see what we can catch today.
       Arabic: "\u0627\u0627\u0627\u0647! \u0644\u0639\u0628\u0629 \u062C\u0645\u0627\u0647\u064A\u0631
         \u0627\u0644\u062D\u0631\u0648\u0641! \u0644\u0646\u0631\u0649 \u0645\u0627\u0630\u0627
         \u0633\u0646\u0635\u0637\u0627\u062F \u0627\u0644\u064A\u0648\u0645\u061F"
@@ -20730,14 +20859,14 @@ MonoBehaviour:
     - Id: wheel_turn
       Character: keeper
       Context: wheel
-      English: 'Spin the wheel. '
+      English: Spin the wheel.
       Arabic: "\u0627\u062F\u0631 \u0627\u0644\u062F\u0648\u0644\u0627\u0628!"
       AudioFile: wheel_turn
       EnglishOld: 
     - Id: wheel_game_balloons_intro
       Character: keeper
       Context: wheel
-      English: 'It is time to pick up more living letters. '
+      English: It is time to pick up more living letters.
       Arabic: "\u062D\u0627\u0646 \u0627\u0644\u0648\u0642\u062A \u0644\u0627\u0644\u062A\u0642\u0627\u0637
         \u0627\u0644\u0645\u0632\u064A\u062F \u0645\u0646 \u0627\u0644\u062D\u0631\u0648\u0641!"
       AudioFile: wheel_game_balloons_intro
@@ -20745,7 +20874,7 @@ MonoBehaviour:
     - Id: wheel_game_balloons_end
       Character: keeper
       Context: wheel
-      English: 'The balloon game! You will catch so many letters with the baloon. '
+      English: The balloon game! You will catch so many letters with the baloon.
       Arabic: "\u0644\u0639\u0628\u0629 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A.
         \u0633\u0648\u0641 \u062A\u0635\u0637\u0627\u062F \u0641\u064A\u0647\u0627
         \u0627\u0644\u0643\u062B\u064A\u0631 \u0645\u0646 \u0627\u0644\u062D\u0631\u0648\u0641"
@@ -20754,32 +20883,32 @@ MonoBehaviour:
     - Id: wheel_game_fastcrowdA
       Character: keeper
       Context: wheel
-      English: 'Hmm, interesting. '
-      Arabic: "\u0647\u0645\u0645\u0645\u0645\u060C \u0645\u0634\u0648\u0642! "
+      English: Hmm, interesting.
+      Arabic: "\u0647\u0645\u0645\u0645\u0645\u060C \u0645\u0634\u0648\u0642!"
       AudioFile: wheel_game_fastcrowdA
       EnglishOld: 
     - Id: wheel_locked
       Character: keeper
       Context: wheel
-      English: 'Okay '
+      English: Okay
       Arabic: "\u062D\u0633\u0646\u0627\u064B..."
       AudioFile: wheel_locked
       EnglishOld: 
     - Id: wheel_game_dontwake
       Character: keeper
       Context: wheel
-      English: 'Where is Antura? He is sleeping among the living letter creatures. '
+      English: Where is Antura? He is sleeping among the living letter creatures.
       Arabic: "\u0627\u064A\u0646 \u0647\u0648 \u0639\u0646\u062A\u0648\u0631\u0629\u061F
         \u0627\u0647\u0647 \u0643\u0644\u0627\u060C \u0627\u0646\u0647 \u064A\u0623\u062E\u0630
         \u0642\u064A\u0644\u0648\u0644\u0629 \u0648\u0633\u0637 \u0645\u0646\u0637\u0642\u0629
-        \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u062D\u064A\u0629! "
+        \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u062D\u064A\u0629!"
       AudioFile: wheel_game_dontwake
       EnglishOld: 
     - Id: wheel_game_fastcrowdword
       Character: keeper
       Context: wheel
       English: Word croud
-      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0643\u0644\u0645\u0627\u062A! "
+      Arabic: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0643\u0644\u0645\u0627\u062A!"
       AudioFile: wheel_game_fastcrowdword
       EnglishOld: 
     - Id: game_fastcrowd_wordgroupcompleted
@@ -20787,7 +20916,7 @@ MonoBehaviour:
       Context: game_fastcrowd
       English: Word group completed
       Arabic: "\u0627\u0643\u0645\u0644\u062A \u062C\u0645\u0639 \u0643\u0627\u0641\u0629
-        \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0628\u0646\u062C\u0627\u062D! "
+        \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0628\u0646\u062C\u0627\u062D!"
       AudioFile: 
       EnglishOld: 
     - Id: assessment_result
@@ -20865,7 +20994,7 @@ MonoBehaviour:
     _HashCodes: 796694447a6694443d26e8493e26e849010d000084777a3085777a30cfdbfc1a9b617109baf52f00f50c573b150c3600ec52fc4911e9560c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0600000003000000020000000a0000000b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Count: 14
-    _Version: 390
+    _Version: 510
     _FreeList: -1
     _FreeCount: 0
     _Keys:
@@ -21023,7 +21152,7 @@ MonoBehaviour:
     _HashCodes: 31000000320000003300000034000000350000003600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Next: ffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     _Count: 6
-    _Version: 104
+    _Version: 160
     _FreeList: -1
     _FreeCount: 0
     _Keys:
@@ -21214,44 +21343,44 @@ MonoBehaviour:
       Title_Ar: 
       Description: 
   rewardTable:
-    _Buckets: ffffffffffffffff1a00000018000000020000000d0000000e000000ffffffff1700000015000000ffffffff05000000ffffffff19000000ffffffff13000000ffffffffffffffff0b0000000c00000003000000ffffffff0a0000001d000000ffffffffffffffff1c000000ffffffff16000000ffffffff11000000ffffffff04000000ffffffffffffffffffffffff09000000
-    _HashCodes: 4832dd2f0e00845d81d6e45755ad0f75ee30d06ef9d8071ffad3fe7170fe4062e50f010061817c206113d71794a27a60a8c0622f7b16176f85dee85dfa121e1aa79b820cdf7b24000c9dea47a7b06812605fb025a79e96342463a6537e100f48de8d1f553a587a7bfc58001f584219577afd3a4d56ee0e6c00000000000000000000000000000000000000000000000000000000
-    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff06000000ffffffff07000000ffffffffffffffffffffffff01000000ffffffff10000000ffffffffffffffff12000000ffffffffffffffff08000000ffffffff00000000ffffffff0f000000140000001b00000000000000000000000000000000000000000000000000000000000000
-    _Count: 30
-    _Version: 90
+    _Buckets: ffffffffffffffffffffffffffffffffffffffffffffffff0000000002000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff05000000ffffffffffffffffffffffff06000000ffffffffffffffffffffffffffffffffffffffff04000000ffffffffffffffffffffffffffffffffffffffff01000000ffffffffffffffffffffffff03000000
+    _HashCodes: 2e104d182e79a8666236e517c62b420f588103598d9a2c3918e1fd5b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    _Count: 7
+    _Version: 122
     _FreeList: -1
     _FreeCount: 0
     _Keys:
-    - AlphabetSong
-    - Balloons_counting
-    - Balloons_letter
-    - Balloons_spelling
-    - Balloons_words
-    - ColorTickle
-    - DancingDots
-    - DontWakeUp
-    - Egg
-    - FastCrowd_alphabet
-    - FastCrowd_counting
-    - FastCrowd_letter
-    - FastCrowd_spelling
-    - FastCrowd_words
-    - HiddenSource
-    - HideSeek
-    - MakeFriends
-    - Maze
-    - MissingLetter
-    - MissingLetter_phrases
-    - MixedLetters_alphabet
-    - MixedLetters_spelling
-    - SickLetter
-    - ReadingGame
-    - Scanner
-    - Scanner_phrase
-    - ThrowBalls_letters
-    - ThrowBalls_words
-    - Tobogan_letters
-    - Tobogan_words
+    - DogCollarSmall
+    - DogCollarMedium
+    - DogCollarLarge
+    - DogPirateHat
+    - DogPirateHook
+    - DogSkinYellow
+    - DogSkinRed
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
     - 
     - 
     - 
@@ -21260,94 +21389,94 @@ MonoBehaviour:
     - 
     - 
     _Values:
-    - Id: AlphabetSong
+    - Id: DogCollarSmall
+      Title: 
+      Category: 1
+    - Id: DogCollarMedium
+      Title: 
+      Category: 1
+    - Id: DogCollarLarge
+      Title: 
+      Category: 1
+    - Id: DogPirateHat
+      Title: 
+      Category: 1
+    - Id: DogPirateHook
+      Title: 
+      Category: 1
+    - Id: DogSkinYellow
+      Title: 
+      Category: 2
+    - Id: DogSkinRed
+      Title: 
+      Category: 2
+    - Id: 
       Title: 
       Category: 0
-    - Id: Balloons_counting
+    - Id: 
       Title: 
       Category: 0
-    - Id: Balloons_letter
+    - Id: 
       Title: 
       Category: 0
-    - Id: Balloons_spelling
+    - Id: 
       Title: 
       Category: 0
-    - Id: Balloons_words
+    - Id: 
       Title: 
       Category: 0
-    - Id: ColorTickle
+    - Id: 
       Title: 
       Category: 0
-    - Id: DancingDots
+    - Id: 
       Title: 
       Category: 0
-    - Id: DontWakeUp
+    - Id: 
       Title: 
       Category: 0
-    - Id: Egg
+    - Id: 
       Title: 
       Category: 0
-    - Id: FastCrowd_alphabet
+    - Id: 
       Title: 
       Category: 0
-    - Id: FastCrowd_counting
+    - Id: 
       Title: 
       Category: 0
-    - Id: FastCrowd_letter
+    - Id: 
       Title: 
       Category: 0
-    - Id: FastCrowd_spelling
+    - Id: 
       Title: 
       Category: 0
-    - Id: FastCrowd_words
+    - Id: 
       Title: 
       Category: 0
-    - Id: HiddenSource
+    - Id: 
       Title: 
       Category: 0
-    - Id: HideSeek
+    - Id: 
       Title: 
       Category: 0
-    - Id: MakeFriends
+    - Id: 
       Title: 
       Category: 0
-    - Id: Maze
+    - Id: 
       Title: 
       Category: 0
-    - Id: MissingLetter
+    - Id: 
       Title: 
       Category: 0
-    - Id: MissingLetter_phrases
+    - Id: 
       Title: 
       Category: 0
-    - Id: MixedLetters_alphabet
+    - Id: 
       Title: 
       Category: 0
-    - Id: MixedLetters_spelling
+    - Id: 
       Title: 
       Category: 0
-    - Id: SickLetter
-      Title: 
-      Category: 0
-    - Id: ReadingGame
-      Title: 
-      Category: 0
-    - Id: Scanner
-      Title: 
-      Category: 0
-    - Id: Scanner_phrase
-      Title: 
-      Category: 0
-    - Id: ThrowBalls_letters
-      Title: 
-      Category: 0
-    - Id: ThrowBalls_words
-      Title: 
-      Category: 0
-    - Id: Tobogan_letters
-      Title: 
-      Category: 0
-    - Id: Tobogan_words
+    - Id: 
       Title: 
       Category: 0
     - Id: 
