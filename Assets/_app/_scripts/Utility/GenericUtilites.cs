@@ -8,7 +8,7 @@ namespace EA4S
     static class GenericUtilites
     {
 
-        private static readonly System.Random _random = new System.Random(DateTime.Now.Millisecond);
+        static readonly System.Random _random = new System.Random(DateTime.Now.Millisecond);
         public static T GetRandom<T>(this IList<T> list)
         {
             return list[_random.Next(0, list.Count)];
@@ -30,5 +30,6 @@ namespace EA4S
             }
             return reverse;
         }
+
     }
 }
