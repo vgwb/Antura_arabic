@@ -48,7 +48,6 @@ namespace EA4S.DancingDots
 			}
 
 			PlayAnimation();
-//			Reset();
 		}
 
 		public void Reset()
@@ -96,7 +95,6 @@ namespace EA4S.DancingDots
 			do
 			{
 				letterData = AppManager.Instance.Teacher.GimmeARandomLetter();
-
 			} 
 			// Check if letter in dotted letters and  
 			// Check DancingDotsGameManager.instance.currentLetter so that previous letter is not repeated
@@ -140,41 +138,15 @@ namespace EA4S.DancingDots
 
 		}
 
-		private Color32 SetAlpha(Color32 color, byte alpha)
-		{
-			if (alpha >= 0 && alpha <= 255)
-			{
-				return new Color32(color.r, color.g, color.b, alpha);
-			}
-			else
-			{
-				return color;
-			}
-		}
-
 		public void HideText(TextMeshPro tmp)
 		{
-			tmp.color = SetAlpha(tmp.color,0);
+			tmp.color = DancingDotsGameManager.instance.SetAlpha(tmp.color,0);
 		}
 
 		public void ShowText(TextMeshPro tmp, byte alpha)
 		{
-			tmp.color = SetAlpha(tmp.color, alpha);
+			tmp.color = DancingDotsGameManager.instance.SetAlpha(tmp.color, alpha);
 		}
-
-//		public void HideAllText()
-//		{
-//			hintText.color = SetAlpha(hintText.color,0);
-//			dotlessText.color = SetAlpha(dotlessText.color,0);
-//			fullText.color = SetAlpha(fullText.color,0);
-//		}
-//
-//		public void ShowAllText()
-//		{
-//			hintText.color = SetAlpha(hintText.color,DancingDotsGameManager.instance.dotHintAlpha);
-//			dotlessText.color = SetAlpha(dotlessText.color,255);
-//			fullText.color = SetAlpha(fullText.color,255);
-//		}
 
 		public void ShowRainbow()
 		{
@@ -230,5 +202,20 @@ namespace EA4S.DancingDots
 			}
 			return stateName;
 		}
+
+//		public void HideAllText()
+//		{
+//			hintText.color = SetAlpha(hintText.color,0);
+//			dotlessText.color = SetAlpha(dotlessText.color,0);
+//			fullText.color = SetAlpha(fullText.color,0);
+//		}
+//
+//		public void ShowAllText()
+//		{
+//			hintText.color = SetAlpha(hintText.color,DancingDotsGameManager.instance.dotHintAlpha);
+//			dotlessText.color = SetAlpha(dotlessText.color,255);
+//			fullText.color = SetAlpha(fullText.color,255);
+//		}
+
 	}
 }
