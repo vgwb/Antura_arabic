@@ -6,6 +6,7 @@ namespace EA4S.Db
     [Serializable]
     public class PlaySessionData : IData
     {
+        public string Id { get; set; }
         public int Stage { get; set; }
         public int LearningBlock { get; set; }
         public int PlaySession { get; set; }
@@ -22,7 +23,7 @@ namespace EA4S.Db
 
         public string GetId()
         {
-            return Stage + "." + LearningBlock + "." + PlaySession;
+            return Id;
         }
 
         public override string ToString()
@@ -30,14 +31,13 @@ namespace EA4S.Db
             string output = "";
             output += string.Format("[PlaySession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
             output += "\n MiniGames:";
-            foreach(var minigame in Minigames)
-            {
+            foreach (var minigame in Minigames) {
                 if (minigame.Weight == 0) continue;
                 output += "\n      " + minigame.MiniGame_Id + ": \t" + minigame.Weight;
             }
             return output;
         }
-        
+
     }
 
     [Serializable]
