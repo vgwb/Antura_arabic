@@ -41,5 +41,21 @@
             MaxNumbOfWrongLettersNoise = 3;
             PlayTime = 90;
         }
+
+        #region external configuration call
+        public static void SetConfiguration(float _difficulty, int _variation) {
+            instance = new FastCrowdConfiguration() {
+                Difficulty = _difficulty,
+                Variation = _variation,
+            };
+        }
+        public static void SetConfiguration(float _difficulty, int _variation, float _playTime) {
+            instance = new FastCrowdConfiguration() {
+                Difficulty = _difficulty,
+                Variation = _variation,
+                PlayTime = _playTime,
+            };
+        }
+        #endregion
     }
 }

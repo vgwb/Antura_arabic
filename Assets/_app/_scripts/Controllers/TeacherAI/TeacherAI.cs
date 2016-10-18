@@ -60,7 +60,7 @@ namespace EA4S
         public LetterData GimmeARandomLetter()
         {
             var RandomLetterData = AppManager.Instance.DB.GetLetterDataByRandom();
-            return new LetterData(RandomLetterData.GetId(), RandomLetterData);
+            return new LetterData(RandomLetterData.GetId());
         }
 
         List<WordData> getVocabularySubset(string[] _goodWords)

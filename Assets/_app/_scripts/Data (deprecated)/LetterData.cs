@@ -21,7 +21,7 @@ namespace EA4S
 
         private string key;
 
-        public LetterData(string _keyRow, Db.LetterData _letRow)
+        protected void chargeLetterData(string _keyRow, Db.LetterData _letRow)
         {
             Key = _keyRow;
             Isolated = _letRow.Isolated;
@@ -29,6 +29,11 @@ namespace EA4S
             Initial_Unicode = _letRow.Initial_Unicode;
             Medial_Unicode = _letRow.Medial_Unicode;
             Final_Unicode = _letRow.Final_Unicode;
+        }
+
+        public LetterData(string _keyRow) {
+            chargeLetterData(_keyRow, AppManager.Instance.DB.GetLetterDataById(_keyRow));
+            
         }
 
         #region API
