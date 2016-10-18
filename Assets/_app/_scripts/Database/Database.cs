@@ -133,26 +133,38 @@ namespace EA4S
         {
             return GetById<EA4S.Db.LetterData, LetterTable>(letterTable, id);
         }
+
+        public EA4S.Db.LetterData GetLetterDataByRandom()
+        {
+            var letterslist = FindAllLetterData();
+            return letterslist[UnityEngine.Random.Range(0, letterslist.Count)];
+        }
+
         public PhraseData GetPhraseDataById(string id)
         {
             return GetById<PhraseData, PhraseTable>(phraseTable, id);
         }
+
         public PlaySessionData GetPlaySessionDataById(string id)
         {
             return GetById<PlaySessionData, PlaySessionTable>(playSessionTable, id);
         }
+
         public StageData GetStageDataById(string id)
         {
             return GetById<StageData, StageTable>(stageTable, id);
         }
+
         public AssessmentData GetAssessmentDataById(string id)
         {
             return GetById<AssessmentData, AssessmentTable>(assessmentTable, id);
         }
+
         public LocalizationData GetLocalizationDataById(string id)
         {
             return GetById<LocalizationData, LocalizationTable>(localizationTable, id);
         }
+
         public RewardData GetRewardDataById(string id)
         {
             return GetById<RewardData, RewardTable>(rewardTable, id);
