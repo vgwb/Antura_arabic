@@ -2,7 +2,7 @@
 using MiniJSON;
 using UnityEngine;
 
-namespace EA4S.Db.Loader
+namespace EA4S.Db.Management
 {
     public class RewardParser : DataParser<RewardData, RewardTable>
     {
