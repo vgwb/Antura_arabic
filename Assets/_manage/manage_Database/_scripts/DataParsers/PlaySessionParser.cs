@@ -2,7 +2,7 @@
 using MiniJSON;
 using UnityEngine;
 
-namespace EA4S.Db.Loader
+namespace EA4S.Db.Management
 {
     public class PlaySessionParser : DataParser<PlaySessionData, PlaySessionTable>
     {
@@ -29,9 +29,9 @@ namespace EA4S.Db.Loader
             return data;
         }
 
-        public List<MiniGameInPlaysession> CustomParseMinigames(PlaySessionData data, Dictionary<string, object> dict, MiniGameTable table) 
+        public List<MiniGameInPlaySession> CustomParseMinigames(PlaySessionData data, Dictionary<string, object> dict, MiniGameTable table) 
         {
-            var list = new List<MiniGameInPlaysession>();
+            var list = new List<MiniGameInPlaySession>();
             for(int enum_i=0; enum_i < System.Enum.GetValues(typeof(MiniGameCode)).Length; enum_i++)
             {  
                 var enum_string = ((MiniGameCode)enum_i).ToString();
@@ -45,8 +45,8 @@ namespace EA4S.Db.Loader
                     continue;
                 }
 
-                var minigameStruct = new MiniGameInPlaysession();
-                minigameStruct.Code = (MiniGameCode)enum_i;
+                var minigameStruct = new MiniGameInPlaySession();
+                minigameStruct.MiniGame_Id = enum_string;
                 minigameStruct.Weight = (string)dict[enum_string] == "" ? 0 : ToInt(dict[enum_string]);
                 list.Add(minigameStruct);
             }

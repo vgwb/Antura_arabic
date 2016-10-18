@@ -13,7 +13,7 @@ namespace EA4S.Db
         {
             var ds = new DBService("EA4S_Database.bytes");
 
-            var minigames = ds.GetMinigames();
+            /*var minigames = ds.GetMinigames();
             foreach (var minigame in minigames) {
                 ToConsole(minigame.ToString());
             }
@@ -21,7 +21,7 @@ namespace EA4S.Db
             var playsessions = ds.GetPlaySessions(1);
             foreach (var playsession in playsessions) {
                 ToConsole(playsession.ToString());
-            }
+            }*/
 
             //people = ds.GetPersonsNamedRoberto();
             //ToConsole("Searching for Roberto ...");

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S.Db.Loader.Editor
+namespace EA4S.Db.Management.Editor
 {
     [CustomEditor(typeof(DatabaseLoader))]
     public class DatabaseLoaderInspector : UnityEditor.Editor

@@ -11,7 +11,9 @@ using System.IO;
 #endif
 using System.Collections.Generic;
 using SQLite;
+using System.Linq.Expressions;
 using EA4S;
+using System;
 
 namespace EA4S.Db
 {
@@ -66,26 +68,60 @@ namespace EA4S.Db
         }
 
 
-        public IEnumerable<MiniGameData> GetMinigames()
+        #region Creation
+
+        public void CreateDB()
         {
-            return _connection.Table<MiniGameData>().Where(x => x.Status == "active");
+            // @note: create the DB here (for now only has LogData)
+            RecreateTable<LogData>();
         }
 
-        public IEnumerable<PlaySessionData> GetPlaySessions(int stage)
+        private void RecreateTable<T>()
         {
-            return _connection.Table<PlaySessionData>().Where(x => x.Stage == stage);
+            _connection.DropTable<T>();
+            _connection.CreateTable<T>();
         }
 
+        #endregion
 
-        //public Person CreatePerson()
-        //{
-        //    var p = new Person {
-        //        Name = "Johnny",
-        //        Surname = "Mnemonic",
-        //        Age = 21
-        //    };
-        //    _connection.Insert(p);
-        //    return p;
-        //}
+        #region Insert
+
+        public void Insert<T>(T data) where T : IData, new()
+        {
+            _connection.Insert(data); 
+        }
+
+        public void InsertAll<T>(System.Collections.IEnumerable objects) where T : IData, new()
+        {
+            _connection.InsertAll(objects);
+        }
+
+        #endregion
+
+        #region Find
+
+        public LogData FindLogDataById(string target_id)
+        {
+            return _connection.Table<LogData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
+        }
+
+        // @note: we this cannot be used as the current SQLite implementation does not support Parameter expression nodes in LINQ
+        public T FindById<T>(string target_id) where T : IData, new()
+        {
+            return _connection.Table<T>().Where((x) => (x.GetId().Equals(target_id))).FirstOrDefault();
+        }
+         
+        public List<T> FindAll<T>() where T : IData, new()
+        {
+            return new List<T>(_connection.Table<T>());
+        }
+
+        public List<T> FindAll<T>(Expression<Func<T,bool>> expression) where T : IData, new()
+        {
+            return new List<T>(_connection.Table<T>().Where(expression));
+        }
+        
+        #endregion
+
     }
 }

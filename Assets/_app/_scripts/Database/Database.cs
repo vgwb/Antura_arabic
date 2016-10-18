@@ -2,9 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using EA4S.Db;
 
-namespace EA4S
+namespace EA4S.Db
 {
     // @note: we use these serialized tables for faster access
     public class Database : ScriptableObject
@@ -28,142 +27,17 @@ namespace EA4S
         [SerializeField]
         private RewardTable rewardTable;
 
-        #region Common Use Queries
-
-        public List<MiniGameData> FindAllActiveMinigames()
-        {
-            return FindAllMiniGameData((x) => (x.Available));
-        }
-
-        #endregion
-
-        #region Specific Queries
-
-        public List<MiniGameData> FindAllMiniGameData(Predicate<MiniGameData> predicate)
-        {
-           return FindAll<MiniGameData, MiniGameTable>(minigameTable, predicate);
-        }
-        public List<EA4S.Db.LetterData> FindAllLetterData(Predicate<EA4S.Db.LetterData> predicate)
-        {
-            return FindAll<EA4S.Db.LetterData, LetterTable>(letterTable, predicate);
-        }
-        public List<EA4S.Db.WordData> FindAllWordData(Predicate<EA4S.Db.WordData> predicate)
-        {
-            return FindAll<EA4S.Db.WordData, WordTable>(wordTable, predicate);
-        }
-        public List<PhraseData> FindAllPhraseData(Predicate<PhraseData> predicate)
-        {
-            return FindAll<PhraseData, PhraseTable>(phraseTable, predicate);
-        }
-        public List<PlaySessionData> FindAllPlaySessionData(Predicate<PlaySessionData> predicate)
-        {
-            return FindAll<PlaySessionData, PlaySessionTable>(playSessionTable, predicate);
-        }
-        public List<StageData> FindAllStageData(Predicate<StageData> predicate)
-        {
-            return FindAll<StageData, StageTable>(stageTable, predicate);
-        }
-        public List<AssessmentData> FindAllAssessmentData(Predicate<AssessmentData> predicate)
-        {
-            return FindAll<AssessmentData, AssessmentTable>(assessmentTable, predicate);
-        }
-        public List<LocalizationData> FindAllLocalizationData(Predicate<LocalizationData> predicate)
-        {
-            return FindAll<LocalizationData, LocalizationTable>(localizationTable, predicate);
-        }
-        public List<RewardData> FindAllRewardData(Predicate<RewardData> predicate)
-        {
-            return FindAll<RewardData, RewardTable>(rewardTable, predicate);
-        }
-
-        public List<MiniGameData> FindAllMiniGameData()
-        {
-            return new List<MiniGameData>(minigameTable.Values);
-        }
-        public List<EA4S.Db.LetterData> FindAllLetterData()
-        {
-            return new List<EA4S.Db.LetterData>(letterTable.Values);
-        }
-        public List<EA4S.Db.WordData> FindAllWordData()
-        {
-            return new List<EA4S.Db.WordData>(wordTable.Values);
-        }
-        public List<PhraseData> FindAllPhraseData()
-        {
-            return new List<PhraseData>(phraseTable.Values);
-        }
-        public List<PlaySessionData> FindAllPlaySessionData()
-        {
-            return new List<PlaySessionData>(playSessionTable.Values);
-        }
-        public List<StageData> FindAllStageData()
-        {
-            return new List<StageData>(stageTable.Values);
-        }
-        public List<AssessmentData> FindAllAssessmentData()
-        {
-            return new List<AssessmentData>(assessmentTable.Values);
-        }
-        public List<LocalizationData> FindAllLocalizationData()
-        {
-            return new List<LocalizationData>(localizationTable.Values);
-        }
-        public List<RewardData> FindAllRewardData()
-        {
-            return new List<RewardData>(rewardTable.Values);
-        }
-
-
-        public MiniGameData GetMiniGameDataById(string id)
-        {
-            return GetById<MiniGameData, MiniGameTable>(minigameTable, id);
-        }
-        public EA4S.Db.WordData GetWordDataById(string id)
-        {
-            return GetById<EA4S.Db.WordData, WordTable>(wordTable, id);
-        }
-        public EA4S.Db.LetterData GetLetterDataById(string id)
-        {
-            return GetById<EA4S.Db.LetterData, LetterTable>(letterTable, id);
-        }
-        public PhraseData GetPhraseDataById(string id)
-        {
-            return GetById<PhraseData, PhraseTable>(phraseTable, id);
-        }
-        public PlaySessionData GetPlaySessionDataById(string id)
-        {
-            return GetById<PlaySessionData, PlaySessionTable>(playSessionTable, id);
-        }
-        public StageData GetStageDataById(string id)
-        {
-            return GetById<StageData, StageTable>(stageTable, id);
-        }
-        public AssessmentData GetAssessmentDataById(string id)
-        {
-            return GetById<AssessmentData, AssessmentTable>(assessmentTable, id);
-        }
-        public LocalizationData GetLocalizationDataById(string id)
-        {
-            return GetById<LocalizationData, LocalizationTable>(localizationTable, id);
-        }
-        public RewardData GetRewardDataById(string id)
-        {
-            return GetById<RewardData, RewardTable>(rewardTable, id);
-        }
-
-        #endregion
-
 
         #region Access
 
-        public List<T> FindAll<T, Ttable>(Ttable table, Predicate<T> predicate) where T : IData where Ttable : SerializableDataTable<T>
+        public List<T> FindAll<T>(SerializableDataTable<T> table, Predicate<T> predicate) where T : IData 
         {
             List<T> allValues = new List<T>(table.Values);
             List<T> filtered = allValues.FindAll(predicate);
             return filtered;
         }
 
-        public T GetById<T, Ttable>(Ttable table, string id) where T : IData where Ttable : SerializableDataTable<T>
+        public T GetById<T>(SerializableDataTable<T> table, string id) where T : IData 
         {
             if (!table.ContainsKey(id))
             {
