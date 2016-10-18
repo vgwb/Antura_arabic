@@ -23,9 +23,6 @@ namespace EA4S.DancingDots
 
 		public StarFlowers starFlowers;
 
-//		public Animator dotsMenu;
-//		public Animator diacriticMenu;
-
 		public DancingDotsLivingLetter dancingDotsLL;
 		public GameObject antura;
 		public float anturaMinDelay = 3f;
@@ -112,8 +109,18 @@ namespace EA4S.DancingDots
 
 			StartCoroutine(AnimateAntura());
 
-//			StartCoroutine(ShowMenu(dotsMenu));
+		}
 
+		public Color32 SetAlpha(Color32 color, byte alpha)
+		{
+			if (alpha >= 0 && alpha <= 255)
+			{
+				return new Color32(color.r, color.g, color.b, alpha);
+			}
+			else
+			{
+				return color;
+			}
 		}
 
 		IEnumerator AnimateAntura()
@@ -288,20 +295,6 @@ namespace EA4S.DancingDots
 				activeDiacritic.Hide();
 			}
 		}
-
-
-//		IEnumerator ShowMenu(Animator animator)
-//		{
-//			yield return new WaitForSeconds(0.5f);
-//			animator.SetTrigger("Show");
-//		}
-//
-//		IEnumerator SwitchMenus(Animator menu1, Animator menu2)
-//		{
-//			yield return new WaitForSeconds(0.5f);
-//			menu1.SetTrigger("Hide");
-//			menu2.SetTrigger("Show");
-//		}
 
 		private IEnumerator RandomDiacritic() {
 
