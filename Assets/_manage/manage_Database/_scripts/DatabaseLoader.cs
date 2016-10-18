@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace EA4S.Db.Loader
+namespace EA4S.Db.Management
 {
     public class DatabaseLoader : MonoBehaviour
     {

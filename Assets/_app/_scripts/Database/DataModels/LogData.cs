@@ -22,28 +22,39 @@ namespace EA4S.Db
         Sight = 6
     }
 
-    public class LogData
+    [System.Serializable]
+    public class LogData : IData
     {
-        public string Session;
-        public string Time;
-        public int PlayerID;
-        public LogDataType Type;
-        public LogPlaySkill PlaySkill;
-        public string Context;
-        public string Action;
-        public float Score;
-        public string RawData;
+        public string Id { get; set; }
+        public string Session { get; set; }
+        public string Time { get; set; }
+        public int PlayerID { get; set; }
+        public LogDataType Type { get; set; }
+        public LogPlaySkill PlaySkill { get; set; }
+        public string Context { get; set; }
+        public string Action { get; set; }
+        public float Score { get; set; }
+        public string RawData { get; set; }
+
+        public string GetId()
+        {
+            return Id;
+        }
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{3},{4},{5},{6}" + Environment.NewLine,
+            return string.Format("S{0},T{1},P{2},T{3},PS{4},C{5},A{6},S{7},RD{8}",
                 Session,
                 Time,
+                PlayerID,
                 Type,
+                PlaySkill,
                 Context,
                 Action,
+                Score,
                 RawData
                 );
         }
+
     }
 }
