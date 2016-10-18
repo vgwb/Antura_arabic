@@ -11,7 +11,7 @@ namespace EA4S.Db
         public string Title_Ar;
         public string Description;
 
-        public string GetID()
+        public string GetId()
         {
             return Id;
         }

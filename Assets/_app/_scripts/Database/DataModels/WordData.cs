@@ -13,13 +13,13 @@ namespace EA4S.Db
         public string Arabic;
         public string[] Letters;
         public string Transliteration;
-        public string DifficultyLevel;
+        public int Difficulty;
         public string Group;
+        public int Drawing;
 
-        // calculated during import
-        public int NumberOfLetters;
+        public int NumberOfLetters { get { return Letters.Length; } }
 
-        public string GetID()
+        public string GetId()
         {
             return Id;
         }
