@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace EA4S.Db.Loader
+namespace EA4S.Db.Management
 {
     [System.Serializable]
     public struct DatabaseInputData
