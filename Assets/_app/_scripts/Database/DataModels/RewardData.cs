@@ -6,9 +6,9 @@ namespace EA4S.Db
     [Serializable]
     public class RewardData : IData
     {
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public RewardCategory Category { get; set; }
+        public string Id;
+        public string Title;
+        public RewardCategory Category;
 
         public string GetId()
         {
