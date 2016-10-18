@@ -2,7 +2,7 @@
 using MiniJSON;
 using UnityEngine;
 
-namespace EA4S.Db.Loader
+namespace EA4S.Db.Management
 {
     public class MiniGameParser : DataParser<MiniGameData, MiniGameTable>
     {
@@ -26,7 +26,7 @@ namespace EA4S.Db.Loader
             data.TitleNew = ToString(dict["TitleNew"]);
             data.Team = ToString(dict["Team"]);
 
-            data.MiniGameCode = ParseEnum<MiniGameCode>(data, dict["Id"]);
+            //data.MiniGameCode = ParseEnum<MiniGameCode>(data, dict["Id"]);
             data.Available = data.Status == "active";
 
             return data;
