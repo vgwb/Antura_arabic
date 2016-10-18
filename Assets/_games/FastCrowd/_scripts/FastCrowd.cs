@@ -9,7 +9,6 @@ using System;
 using ArabicSupport;
 using UniRx;
 using EA4S;
-using Google2u;
 
 namespace EA4S.FastCrowd
 {
@@ -29,8 +28,7 @@ namespace EA4S.FastCrowd
 
         //new public FastCrowdGameplayInfo GameplayInfo;
 
-        new public static FastCrowd Instance
-        {
+        new public static FastCrowd Instance {
             get { return SubGame.Instance as FastCrowd; }
         }
 
@@ -78,6 +76,7 @@ namespace EA4S.FastCrowd
         public string VariationPrefix = string.Empty;
 
         bool OnTimeOverReserved = false;
+        Db.LocalizationData localizationData;
 
         #endregion
 
@@ -180,28 +179,26 @@ namespace EA4S.FastCrowd
 
             // popup info 
             if (FastCrowdConfiguration.Instance.Variation == 1) {
-                LocalizationDataRow rowLetters = LocalizationData.Instance.GetRow("game_fastcrowd_findword");
+                localizationData = LocalizationManager.GetLocalizationData("game_fastcrowd_findword");
                 //row.GetStringData("English");
-                PopupMission.Show(new PopupMissionComponent.Data()
-                    {
-                        // Find the word
-                        Title = string.Format("{1}", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
-                        MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
-                        Type = PopupMissionComponent.PopupType.New_Mission,
-                        DrawSprite = ActualWord.DrawForLivingLetter,
-                    });
+                PopupMission.Show(new PopupMissionComponent.Data() {
+                    // Find the word
+                    Title = string.Format("{1}", ArabicFixer.Fix(localizationData.Arabic, false, false), CompletedWords.Count + 1),
+                    MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
+                    Type = PopupMissionComponent.PopupType.New_Mission,
+                    DrawSprite = ActualWord.DrawForLivingLetter,
+                });
             } else {
                 string stringListOfWords = string.Empty;
                 foreach (var w in dataList)
                     stringListOfWords += w.TextForLivingLetter + " ";
-                LocalizationDataRow rowWords = LocalizationData.Instance.GetRow("game_fastcrowd_findwordgroup");
-                PopupMission.Show(new PopupMissionComponent.Data()
-                    {
-                        // Find the word group
-                        Title = string.Format("{1}", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count + 1),
-                        MainTextToDisplay = string.Format("{0}", stringListOfWords),
-                        Type = PopupMissionComponent.PopupType.New_Mission,
-                    });
+                localizationData = LocalizationManager.GetLocalizationData("game_fastcrowd_findwordgroup");
+                PopupMission.Show(new PopupMissionComponent.Data() {
+                    // Find the word group
+                    Title = string.Format("{1}", ArabicFixer.Fix(localizationData.Arabic, false, false), CompletedWords.Count + 1),
+                    MainTextToDisplay = string.Format("{0}", stringListOfWords),
+                    Type = PopupMissionComponent.PopupType.New_Mission,
+                });
             }
 
             int count = 0;
@@ -227,7 +224,7 @@ namespace EA4S.FastCrowd
                 GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 20f, out newPosition);
                 letterObjectView.transform.position = newPosition;
                 // Get random data element of different type according with game variation type
-                if (FastCrowdConfiguration.Instance.Variation ==1) {
+                if (FastCrowdConfiguration.Instance.Variation == 1) {
                     letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), FastCrowdConfiguration.Instance.BehaviourSettings);
                 } else {
                     letterObjectView.Init(WordData.GetWordCollection().GetRandomElement(), FastCrowdConfiguration.Instance.BehaviourSettings);
@@ -318,9 +315,9 @@ namespace EA4S.FastCrowd
         private void GameplayTimer_OnTimeOver(float _time)
         {
             // during normal gameplay call doTimeOverActions
-            if (DropAreaContainer.GetActualDropArea() != null) { 
+            if (DropAreaContainer.GetActualDropArea() != null) {
                 doTimeOverActions();
-            } else { 
+            } else {
                 // during objective evaluation
                 OnTimeOverReserved = true;
             }
@@ -380,16 +377,14 @@ namespace EA4S.FastCrowd
                     CompletedWords.Add(ActualWord);
                     if (RightWordsCounter)
                         RightWordsCounter.GetComponent<TMPro.TextMeshProUGUI>().text = CompletedWords.Count.ToString();
-                    LocalizationDataRow rowLetters = LocalizationData.Instance.GetRow("comment_welldone");
-                    PopupMission.Show(new PopupMissionComponent.Data()
-                        {
-                            Title = string.Format("{0}", ArabicFixer.Fix(rowLetters.GetStringData("Arabic"), false, false), CompletedWords.Count),
-                            MainTextToDisplay = ActualWord.TextForLivingLetter,
-                            Type = PopupMissionComponent.PopupType.Mission_Completed,
-                            DrawSprite = FastCrowdConfiguration.Instance.Variation == 2 ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
-                        }
-                        , delegate ()
-                        {
+                    localizationData = LocalizationManager.GetLocalizationData("comment_welldone");
+                    PopupMission.Show(new PopupMissionComponent.Data() {
+                        Title = string.Format("{0}", ArabicFixer.Fix(localizationData.Arabic, false, false), CompletedWords.Count),
+                        MainTextToDisplay = ActualWord.TextForLivingLetter,
+                        Type = PopupMissionComponent.PopupType.Mission_Completed,
+                        DrawSprite = FastCrowdConfiguration.Instance.Variation == 2 ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                    }
+                        , delegate () {
                             ActualWord = null;
                             // Recall gameplayBlockSetup
                             sceneClean();
@@ -405,16 +400,14 @@ namespace EA4S.FastCrowd
                     foreach (var w in dataList)
                         stringListOfWords += w.TextForLivingLetter + " ";
                     AudioManager.I.PlayDialog("comment_welldone");
-                    LocalizationDataRow rowWords = LocalizationData.Instance.GetRow("comment_welldone");
-                    PopupMission.Show(new PopupMissionComponent.Data()
-                        {
-                            Title = string.Format("{0}", ArabicFixer.Fix(rowWords.GetStringData("Arabic"), false, false), CompletedWords.Count),
-                            MainTextToDisplay = stringListOfWords,
-                            Type = PopupMissionComponent.PopupType.Mission_Completed,
-                            DrawSprite = FastCrowdConfiguration.Instance.Variation == 2 ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
-                        }
-                        , delegate ()
-                        {
+                    localizationData = LocalizationManager.GetLocalizationData("comment_welldone");
+                    PopupMission.Show(new PopupMissionComponent.Data() {
+                        Title = string.Format("{0}", ArabicFixer.Fix(localizationData.Arabic, false, false), CompletedWords.Count),
+                        MainTextToDisplay = stringListOfWords,
+                        Type = PopupMissionComponent.PopupType.Mission_Completed,
+                        DrawSprite = FastCrowdConfiguration.Instance.Variation == 2 ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                    }
+                        , delegate () {
                             ActualWord = null;
                             // Recall gameplayBlockSetup
                             sceneClean();
@@ -600,7 +593,8 @@ namespace EA4S.FastCrowd
         [Tooltip("Game Variant")]
         public GameVariant Variant = GameVariant.living_letters;
 
-        public enum GameVariant {
+        public enum GameVariant
+        {
             living_letters,
             living_words
 
