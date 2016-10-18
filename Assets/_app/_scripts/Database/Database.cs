@@ -47,6 +47,12 @@ namespace EA4S
         {
             return FindAll<EA4S.Db.LetterData, LetterTable>(letterTable, predicate);
         }
+        public List<EA4S.Db.LetterData> FindAllLetterData()
+        {
+            return FindAllLetterData((x) => (x.Kind == "letter"));
+            //return new List<EA4S.Db.LetterData>(letterTable.Values);
+        }
+
         public List<EA4S.Db.WordData> FindAllWordData(Predicate<EA4S.Db.WordData> predicate)
         {
             return FindAll<EA4S.Db.WordData, WordTable>(wordTable, predicate);
@@ -80,10 +86,9 @@ namespace EA4S
         {
             return new List<MiniGameData>(minigameTable.Values);
         }
-        public List<EA4S.Db.LetterData> FindAllLetterData()
-        {
-            return new List<EA4S.Db.LetterData>(letterTable.Values);
-        }
+
+
+
         public List<EA4S.Db.WordData> FindAllWordData()
         {
             return new List<EA4S.Db.WordData>(wordTable.Values);
