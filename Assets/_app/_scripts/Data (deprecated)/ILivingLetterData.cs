@@ -7,8 +7,7 @@ namespace EA4S
     /// <summary>
     /// Common interface for living letter data.
     /// </summary>
-    public interface ILivingLetterData
-    {
+    public interface ILivingLetterData {
         LivingLetterDataType DataType { get; }
         string TextForLivingLetter { get; }
         Sprite DrawForLivingLetter { get; }
