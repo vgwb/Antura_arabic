@@ -4,6 +4,7 @@ using ModularFramework.Core;
 using EA4S;
 using System.Linq;
 using System;
+using EA4S.Db;
 
 namespace EA4S.API {
 
@@ -137,7 +138,7 @@ namespace EA4S.API {
                     // Set configuration for the actual learning course context.
                     // ====================================================
                     Tobogan.ToboganConfiguration.Instance.Difficulty = 0.2f;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new SampleQuestionProvider();
                     Tobogan.ToboganConfiguration.Instance.Context = new AnturaMinigameContext() {
                         audioManager = new SampleAudioManager(),
                         subtitleWidget = new SampleSubtitlesWidget(),
@@ -153,26 +154,40 @@ namespace EA4S.API {
                 case "FastCrowd_v1":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 1;
                     FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 70;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = 
+                        new FindRightLetterQuestionProvider(
+                            new FindRightLetterQuestionProvider.Settings() {
+                                MaxQuestions = 10
+                            }
+                        );
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v2":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 2;
                     FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 80;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions =
+                        new FindRightLetterQuestionProvider(
+                            new FindRightLetterQuestionProvider.Settings() {
+                                MaxQuestions = 10
+                            }
+                        );
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v3":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 3;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = new FindRightLetterQuestionProvider(
+                        new FindRightLetterQuestionProvider.Settings() {
+                                MaxQuestions = 8
+                            }
+                        );
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v4":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = 4;
-                    FastCrowd.FastCrowdConfiguration.Instance.PipeQuestions = new AnturaDefaultQuestionProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = new FindRightLetterQuestionProvider(FindRightLetterQuestionProvider.DefaultSettings);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
@@ -184,7 +199,7 @@ namespace EA4S.API {
 
         #endregion
 
-    }
+    }    
 
     #region Data Structures
 
@@ -234,48 +249,62 @@ namespace EA4S.API {
     /// </summary>
     /// <seealso cref="EA4S.IGameContext" />
     public class AnturaMinigameContext : IGameContext {
-
-        public IAudioManager audioManager = new SampleAudioManager();
-        public IInputManager inputManager = new SampleInputManager();
-        public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
-        public IStarsWidget starsWidget = new SampleStarsWidget();
-        public IPopupWidget questionWidget = new SamplePopupWidget();
-
+        
         #region Log Manager 
-        public ILogManager logManager = new AnturaLogManagerProvider();
+        public ILogManager logManager = new AnturaLogManager();
 
         public ILogManager GetLogManager() {
             return logManager;
         }
         #endregion
 
+        #region AudioManager provider
+        public IAudioManager audioManager = new SampleAudioManager();
+
         public IAudioManager GetAudioManager() {
             return audioManager;
         }
+        #endregion
+
+        #region InputManger provider
+        public IInputManager inputManager = new SampleInputManager();
 
         public IInputManager GetInputManager() {
             return inputManager;
         }
+        #endregion
+
+        #region SubTitle provider
+        public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
 
         public IStarsWidget GetStarsWidget() {
             return starsWidget;
         }
+        #endregion
+
+        #region StarsWidget provider
+        public IStarsWidget starsWidget = new SampleStarsWidget();
 
         public ISubtitlesWidget GetSubtitleWidget() {
             return subtitleWidget;
         }
+        #endregion
 
+        #region PopupWidget provider
+        public IPopupWidget questionWidget = new SamplePopupWidget();
         public IPopupWidget GetPopupWidget() {
             return questionWidget;
         }
+        #endregion
 
         public void Reset() {
             inputManager.Reset();
         }
 
-        #region presets
+        #region Context Presets
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {
+            logManager = new AnturaLogManager(),
             audioManager = new SampleAudioManager(),
             subtitleWidget = new SampleSubtitlesWidget(),
             starsWidget = new SampleStarsWidget(),
@@ -286,6 +315,7 @@ namespace EA4S.API {
         /// Example for custom context preset used for fast crowd.
         /// </summary>
         public static AnturaMinigameContext FastCrowd = new AnturaMinigameContext() {
+            logManager = new AnturaLogManager(),
             audioManager = new SampleAudioManager(),
             subtitleWidget = new SampleSubtitlesWidget(),
             starsWidget = new SampleStarsWidget(),
@@ -296,22 +326,34 @@ namespace EA4S.API {
     }
 
     /// <summary>
-    /// Default IQuestionProvider.
+    /// Default IQuestionProvider that find the right letter question.
     /// </summary>
     /// <seealso cref="EA4S.IQuestionProvider" />
-    public class AnturaDefaultQuestionProvider : IQuestionProvider {
+    public class FindRightLetterQuestionProvider : IQuestionProvider {
+
+        #region properties
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
         string description;
-
         int currentQuestion;
+        #endregion
 
-        public AnturaDefaultQuestionProvider() {
+        #region Settings
+        Settings settings;
+
+        public struct Settings {
+            public int MaxQuestions;
+        }
+
+        public static Settings DefaultSettings = new Settings() { MaxQuestions = 5 };
+        #endregion
+
+        public FindRightLetterQuestionProvider(Settings _settings) {
             currentQuestion = 0;
 
             description = "Antura Questions";
 
             // 10 QuestionPacks
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < _settings.MaxQuestions; i++) {
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
@@ -348,12 +390,14 @@ namespace EA4S.API {
 
             return questions[currentQuestion];
         }
+
+
     }
 
     /// <summary>
     /// Concrete implementation of log manager to store on db.
     /// </summary>
-    public class AnturaLogManagerProvider : ILogManager {
+    public class AnturaLogManager : ILogManager {
 
         #region Log API for AI
         /// <summary>
@@ -381,7 +425,8 @@ namespace EA4S.API {
 
 
         #region Playsession Logs
-        public void OnGameplayEventTrace(PlayerAbilities _ability, bool _isPositive) {
+
+        public void OnGameplayEvent(PlayerAbilities _ability, bool _isPositive) {
             switch (_ability) {
                 case PlayerAbilities.precision:
                     break;
@@ -393,19 +438,31 @@ namespace EA4S.API {
             }
         }
 
-        /// <summary>
-        /// Player abilities categories to trace player actions.
-        /// </summary>
-        public enum PlayerAbilities {
-            precision,
-            speed,
-        }
+
         #endregion
 
         #region Generic Log
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_area"></param>
+        /// <param name="_context"></param>
+        /// <param name="_action"></param>
+        /// <param name="_data"></param>
+        public void Log(string _area, string _context, string _action, string _data) {
+            LoggerEA4S.Log(_area, _context, _action, _data);
+        }
         #endregion
 
+    }
+
+    /// <summary>
+    /// TODO: change location for this.
+    /// Player abilities categories to trace player actions.
+    /// </summary>
+    public enum PlayerAbilities {
+        precision,
+        speed,
     }
 
     #endregion

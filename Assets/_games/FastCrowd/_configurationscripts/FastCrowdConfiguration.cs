@@ -4,7 +4,7 @@
     {
         // Game configuration
         public IGameContext Context { get; set; }
-        public IQuestionProvider PipeQuestions { get; set; }
+        public IQuestionProvider FindRightLetterQuestions { get; set; }
         #region Game configurations
         public float Difficulty { get; set; }
         public int Variation { get; set; }
@@ -33,7 +33,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            PipeQuestions = new SampleQuestionProvider();
+            FindRightLetterQuestions = new SampleQuestionProvider();
             Context = new SampleGameContext();
             Difficulty = 0.5f;
             Variation = 1;
