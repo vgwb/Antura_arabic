@@ -14,7 +14,7 @@ namespace EA4S.Db
         public string AudioFile;
         public string EnglishOld;
 
-        public string GetID()
+        public string GetId()
         {
             return Id;
         }

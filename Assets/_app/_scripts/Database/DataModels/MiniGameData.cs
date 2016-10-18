@@ -21,7 +21,7 @@ namespace EA4S.Db
         public MiniGameCode MiniGameCode;   // @note: we could just get rid of the Id and use this instead
         public bool Available;  // @note: derived values are risky as they are derived from above, use a property instead?
 
-        public string GetID()
+        public string GetId()
         {
             return Id;
         }

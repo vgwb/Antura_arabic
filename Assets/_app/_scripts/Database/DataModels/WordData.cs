@@ -19,7 +19,7 @@ namespace EA4S.Db
 
         public int NumberOfLetters { get { return Letters.Length; } }
 
-        public string GetID()
+        public string GetId()
         {
             return Id;
         }
