@@ -8,6 +8,8 @@ namespace EA4S.FastCrowd
     /// </summary>
     public class Crowd : MonoBehaviour
     {
+        public event System.Action<bool> onDropped;
+
         public LetterObjectView livingLetterPrefab;
         public GameObject puffPrefab;
 
@@ -49,6 +51,9 @@ namespace EA4S.FastCrowd
                     letterObjectView.Init(toAdd.Dequeue());
 
                     var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
+                    letterObjectView.gameObject.AddComponent<FastCrowdDraggableLetter>();
+                    letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
+                    Destroy(letterObjectView.gameObject.GetComponent<Hangable>());
 
                     letters.Add(livingLetter);
 
@@ -59,6 +64,9 @@ namespace EA4S.FastCrowd
                             letters.Remove(livingLetter);
                             toDestroy.Enqueue(livingLetter);
                         }
+
+                        if (onDropped != null)
+                            onDropped(result);
                     };
                 }
             }

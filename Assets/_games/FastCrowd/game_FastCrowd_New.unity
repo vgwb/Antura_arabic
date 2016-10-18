@@ -403,9 +403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8cb83b2851ada459a87bba2eb88756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livingLetterPrefab: {fileID: 114000011975068830, guid: 6e35fb39489399c46bf7216ffa65f818,
+  livingLetterPrefab: {fileID: 114000011031556424, guid: d5826ab7f51b7c549919cf0b6fe83693,
     type: 2}
   puffPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  MaxConcurrentLetters: 5
 --- !u!1001 &102917029
 Prefab:
   m_ObjectHideFlags: 0

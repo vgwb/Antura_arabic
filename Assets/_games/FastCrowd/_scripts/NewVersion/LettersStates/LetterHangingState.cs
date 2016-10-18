@@ -14,13 +14,5 @@
             // set letter animation
             letter.gameObject.GetComponent<LetterObjectView>().Model.State = LetterObjectState.LL_drag_idle;
         }
-
-        public override void ExitState()
-        {
-            base.ExitState();
-
-            // Fall!
-            letter.SetCurrentState(letter.FallingState);
-        }
     }
 }
