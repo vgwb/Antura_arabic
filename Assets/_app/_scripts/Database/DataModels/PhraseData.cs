@@ -10,7 +10,7 @@ namespace EA4S.Db
         public string English;
         public string Arabic;
 
-        public string GetID()
+        public string GetId()
         {
             return Id;
         }

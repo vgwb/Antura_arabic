@@ -25,13 +25,10 @@ namespace EA4S.Db.Loader.Editor
 
             dbTester = (DatabaseManager)EditorGUILayout.ObjectField("Tester", dbTester, typeof(DatabaseManager), true);
             if (GUILayout.Button("Log: Counts")) {
-                dbTester.LogDataCounts();
+                dbTester.LogAllDataCounts();
             }
             if (GUILayout.Button("Log: MiniGames")) {
-                dbTester.LogMiniGames();
-            }
-            if (GUILayout.Button("Log: Test Access")) {
-                dbTester.TestAccess();
+                dbTester.LogAllMiniGameData();
             }
         }
     }

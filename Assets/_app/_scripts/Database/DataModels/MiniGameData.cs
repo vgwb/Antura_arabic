@@ -8,7 +8,7 @@ namespace EA4S.Db
         // Source
         public string Id;
         public string Variation;
-        public string Status;
+        public string Status;  
         public string Parent;
         public string Description;
         public string Title_En;
@@ -18,18 +18,13 @@ namespace EA4S.Db
         public string Team;
 
         // Derived
-        // TODO: these could be made less verbose, now that we control serialization using 'DataParsers'
-        private MiniGameCode _miniGameCode;
-        public MiniGameCode MiniGameCode {
-            get { return _miniGameCode; }
-            set { _miniGameCode = value; }
-        }
-        private bool _available;
-        public bool Available {
-            get { return Status == "active"; }
-            set { _available = value; }
-        }
+        public MiniGameCode MiniGameCode;   // @note: we could just get rid of the Id and use this instead
+        public bool Available;  // @note: derived values are risky as they are derived from above, use a property instead?
 
+        public string GetId()
+        {
+            return Id;
+        }
 
         public override string ToString()
         {
@@ -41,9 +36,5 @@ namespace EA4S.Db
             return "Images/GameIcons/minigame_icon_" + Id;
         }
 
-        public string GetID()
-        {
-            return Id;
-        }
     }
 }

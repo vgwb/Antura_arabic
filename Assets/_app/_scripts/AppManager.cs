@@ -129,18 +129,18 @@ namespace EA4S
             switch (PlaySession) {
                 case 1:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.minigameTable["FastCrowd_letter"];
+                        miniGame = DB.GetMiniGameDataById("FastCrowd_letter");
                     else
-                        miniGame = DB.minigameTable["Balloons_spelling"];
+                        miniGame = DB.GetMiniGameDataById("Balloons_spelling");
                     break;
                 case 2:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.minigameTable["FastCrowd_words"];
+                        miniGame = DB.GetMiniGameDataById("FastCrowd_words");
                     else
-                        miniGame = DB.minigameTable["Tobogan"];
+                        miniGame = DB.GetMiniGameDataById("Tobogan");
                     break;
                 case 3:
-                    miniGame = DB.minigameTable["Assessment"];
+                    miniGame = DB.GetMiniGameDataById("Assessment"); 
                     break;
             }
             ActualMinigame = miniGame;

@@ -10,12 +10,12 @@ namespace EA4S.Db.Loader
         {
             var data = new LocalizationData();
 
-            data.Id = (string)(dict["Id"]);
-            data.Character = (string)(dict["Character"]);
-            data.Context = (string)(dict["Context"]);
-            data.English = (string)(dict["English"]);
-            data.Arabic = (string)(dict["Arabic"]);
-            data.AudioFile = (string)(dict["AudioFile"]);
+            data.Id = ToString(dict["Id"]);
+            data.Character = ToString(dict["Character"]);
+            data.Context = ToString(dict["Context"]);
+            data.English = ToString(dict["English"]);
+            data.Arabic = ToString(dict["Arabic"]);
+            data.AudioFile = ToString(dict["AudioFile"]);
 
             return data;
         }
