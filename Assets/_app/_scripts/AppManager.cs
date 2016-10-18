@@ -56,18 +56,17 @@ namespace EA4S
 
             AdditionalSetup();
 
+            InitDataAI();
+
             CachingLetterData();
 
             GameSettings.HighQualityGfx = false;
-
-            InitDataAI();
 
             ResetProgressionData();
 
             this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
                 OnPlaySessionValueChange();
             });
-
 
         }
 
@@ -78,15 +77,12 @@ namespace EA4S
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
-
-
         }
 
         void CachingLetterData()
         {
-            foreach (string rowName in letters.Instance.rowNames) {
-                lettersRow letRow = letters.Instance.GetRow(rowName);
-                Letters.Add(new LetterData(rowName, letRow));
+            foreach (var letterData in DB.FindAllLetterData()) {
+                Letters.Add(new LetterData(letterData.GetId(), letterData));
             }
         }
 
@@ -139,7 +135,7 @@ namespace EA4S
                         miniGame = DB.GetMiniGameDataById("Tobogan");
                     break;
                 case 3:
-                    miniGame = DB.GetMiniGameDataById("Assessment"); 
+                    miniGame = DB.GetMiniGameDataById("Assessment");
                     break;
             }
             ActualMinigame = miniGame;

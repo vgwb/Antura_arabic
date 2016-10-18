@@ -5,15 +5,6 @@ namespace EA4S.DancingDots
 {
 	public class DancingDotsSplat : MonoBehaviour {
 
-//		public float splatMaxSize = 5.0f;
-//		public float splatMaxY = -22;
-//		public float splatGrowFactor = 5f;
-//		public float splatSlideFactor = 10f;
-//		public float splatWaitTime = 1f;
-
-		public float minAlpha = 0.25f;
-		public float fadeDuration = 3f;
-
 		public Color[] colors;
 
 		// Use this for initialization
@@ -27,6 +18,11 @@ namespace EA4S.DancingDots
 			Destroy(gameObject,0.25f);
 		}
 
+
+
+//		public float minAlpha = 0.25f;
+//		public float fadeDuration = 3f;
+//
 //		IEnumerator FadeTo(float aValue, float aTime)
 //		{
 //			float alpha = goRenderer.color.a;
@@ -37,8 +33,13 @@ namespace EA4S.DancingDots
 //				yield return null;
 //			}
 //		}
-
-
+//
+//		public float splatMaxSize = 5.0f;
+//		public float splatMaxY = -22;
+//		public float splatGrowFactor = 5f;
+//		public float splatSlideFactor = 10f;
+//		public float splatWaitTime = 1f;
+//
 //		IEnumerator AnimateSplat(Transform trans)
 //		{
 //
