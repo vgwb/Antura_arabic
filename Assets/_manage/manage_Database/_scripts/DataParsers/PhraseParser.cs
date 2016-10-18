@@ -10,9 +10,9 @@ namespace EA4S.Db.Loader
         {
             var data = new PhraseData();
 
-            data.Id = (string)(dict["Id"]);
-            data.English = (string)(dict["English"]);
-            data.Arabic = (string)(dict["Arabic"]);
+            data.Id = ToString(dict["Id"]);
+            data.English = ToString(dict["English"]);
+            data.Arabic = ToString(dict["Arabic"]);
 
             return data;
         }
