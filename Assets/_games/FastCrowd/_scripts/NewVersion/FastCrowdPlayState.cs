@@ -67,15 +67,31 @@ namespace EA4S.FastCrowd
             game.QuestionManager.OnDropped -= OnAnswerDropped;
             game.QuestionManager.Clean();
         }
-
+        
         void OnQuestionCompleted()
         {
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
+                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            {
+                // In spelling and letter, increment score only when the full question is completed
+                game.IncrementScore();
+            }
+
             game.SetCurrentState(game.ResultState);
         }
 
         void OnAnswerDropped(bool result)
         {
             game.Context.GetCheckmarkWidget().Show(result);
+
+            if (result &&
+                (FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Spelling &&
+                FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Letter)
+                )
+            {
+                // In spelling and letter, increment score only when the full question is completed
+                game.IncrementScore();
+            }
         }
 
         void StopAntura()

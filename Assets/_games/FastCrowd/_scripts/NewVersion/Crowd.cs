@@ -11,27 +11,24 @@ namespace EA4S.FastCrowd
         public LetterObjectView livingLetterPrefab;
         public GameObject puffPrefab;
 
+        public int MaxConcurrentLetters = 5;
+
         List<FastCrowdLivingLetter> letters = new List<FastCrowdLivingLetter>();
 
+        Queue<ILivingLetterData> toAdd = new Queue<ILivingLetterData>();
         Queue<FastCrowdLivingLetter> toDestroy = new Queue<FastCrowdLivingLetter>();
         float destroyTimer = 0;
 
+
         public void AddLivingLetter(ILivingLetterData letter)
         {
-            LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
-            letterObjectView.transform.SetParent(transform, true);
-            Vector3 newPosition = Vector3.zero;
-            GameplayHelper.RandomPointInWalkableArea(transform.position, 20f, out newPosition);
-            letterObjectView.transform.position = newPosition;
-            letterObjectView.Init(letter);
-
-            var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
-
-            letters.Add(livingLetter);
+            toAdd.Enqueue(letter);
         }
 
         public void Clean()
         {
+            toAdd.Clear();
+
             foreach (var l in letters)
                 toDestroy.Enqueue(l);
 
@@ -40,6 +37,32 @@ namespace EA4S.FastCrowd
 
         void Update()
         {
+            if (toAdd.Count > 0)
+            {
+                if (letters.Count < MaxConcurrentLetters)
+                {
+                    LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
+                    letterObjectView.transform.SetParent(transform, true);
+                    Vector3 newPosition = Vector3.zero;
+                    GameplayHelper.RandomPointInWalkableArea(transform.position, 20f, out newPosition);
+                    letterObjectView.transform.position = newPosition;
+                    letterObjectView.Init(toAdd.Dequeue());
+
+                    var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
+
+                    letters.Add(livingLetter);
+
+                    livingLetter.onDropped += (result) =>
+                    {
+                        if (result)
+                        {
+                            letters.Remove(livingLetter);
+                            toDestroy.Enqueue(livingLetter);
+                        }
+                    };
+                }
+            }
+
             if (toDestroy.Count > 0)
             {
                 destroyTimer -= Time.deltaTime;
@@ -53,7 +76,7 @@ namespace EA4S.FastCrowd
                     puffGo.SetActive(true);
 
                     var t = toDestroy.Dequeue();
-                    puffGo.transform.position = t.transform.position;
+                    puffGo.transform.position = t.transform.position + Vector3.up*3;
                     Destroy(t.gameObject);
                 }
             }

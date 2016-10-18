@@ -17,8 +17,11 @@
         // For Spelling, Words, Counting (words of the numbers)
         public ILivingLetterDataProvider WordsProvider { get; set; }
 
-        // For Letter, Alphabet
+        // For Alphabet
         public ILivingLetterDataProvider LetterProvider { get; set; }
+
+        // For Letter
+        public IQuestionProvider QuestionProvider { get; set; }
 
         #region Game configurations
         public float Difficulty { get; set; }

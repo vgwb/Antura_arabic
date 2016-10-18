@@ -166,19 +166,19 @@ namespace EA4S.API {
                     break;
                 case "FastCrowd_v3":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Counting;
-                    FastCrowd.FastCrowdConfiguration.Instance.WordsProvider = new SampleWordProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.WordsProvider = new SampleWordProvider(); // provide here a words provider with "one", "two", "three", in order
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v4":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
-                    FastCrowd.FastCrowdConfiguration.Instance.LetterProvider = new SampleLetterProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.QuestionProvider = new SampleQuestionProvider(); // provide here questions : letter "e" as question, "è é .." as correct answers
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;
                 case "FastCrowd_v5":
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Alphabet;
-                    FastCrowd.FastCrowdConfiguration.Instance.LetterProvider = new SampleLetterProvider();
+                    FastCrowd.FastCrowdConfiguration.Instance.LetterProvider = new SampleLetterProvider(); // provide here a letters provider with "a", "b", "c", in order
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
                     break;

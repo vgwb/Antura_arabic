@@ -19,6 +19,9 @@ namespace EA4S.FastCrowd
         public override void EnterState()
         {
             scaredTimer = ScaredDuration;
+
+            // set letter animation
+            letter.gameObject.GetComponent<LetterObjectView>().Model.State = LetterObjectState.LL_run_fear;
         }
 
         public override void ExitState()
@@ -30,7 +33,7 @@ namespace EA4S.FastCrowd
             scaredTimer -= delta;
 
             if (scaredTimer <= 0)
-                letter.SetCurrentState(letter.LetterWalkingState);
+                letter.SetCurrentState(letter.WalkingState);
         }
 
         public override void UpdatePhysics(float delta)
