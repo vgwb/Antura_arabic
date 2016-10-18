@@ -15,16 +15,16 @@ namespace EA4S.Db.Loader
             data.PlaySession = ToInt(dict["PlaySession"]);
             data.Focus = DidacticalFocus.Letters; // TODO: (sometimes it is empty!) ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);
 
-            data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.letterTable);
-            data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.wordTable);
-            data.Words_previous = ParseIDArray<WordData, WordTable>(data, (string)dict["Words_previous"], db.wordTable);
-            data.Phrases = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases"], db.phraseTable);
-            data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.phraseTable);
+            data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
+            data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
+            data.Words_previous = ParseIDArray<WordData, WordTable>(data, (string)dict["Words_previous"], db.GetWordTable());
+            data.Phrases = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases"], db.GetPhraseTable());
+            data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.GetPhraseTable());
 
             data.AssessmentType = AssessmentType.Alphabet; // TODO: (sometimes it is empty!) ParseEnum<AssessmentType>(data, (string)dict["AssesmentType"]);
             data.AssessmentData = ToString(dict["AssessmentData"]);
 
-            data.Minigames = CustomParseMinigames(data, dict, db.minigameTable);
+            data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
 
             return data;
         }

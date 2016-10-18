@@ -15,12 +15,12 @@ namespace EA4S.Db.Loader
                 var dict = row as Dictionary<string, object>;
                 var data = CreateData(dict, db);
 
-                if (table.ContainsKey(data.GetID())) {
+                if (table.ContainsKey(data.GetId())) {
                     LogValidation(data, "found multiple ID.");
                     continue;
                 }
 
-                table.Add(data.GetID(), data);
+                table.Add(data.GetId(), data);
             }
         }
 
@@ -57,7 +57,7 @@ namespace EA4S.Db.Loader
 
         protected void LogValidation(D data, string msg)
         {
-            Debug.LogWarning(data.GetType().ToString() + " (ID " + data.GetID() + "): " + msg);
+            Debug.LogWarning(data.GetType().ToString() + " (ID " + data.GetId() + "): " + msg);
         }
 
         #region Conversions

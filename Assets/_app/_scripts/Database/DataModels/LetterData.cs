@@ -22,7 +22,7 @@ namespace EA4S.Db
         public string Medial_Unicode;
         public string Final_Unicode;
 
-        public string GetID()
+        public string GetId()
         {
             return Id;
         }

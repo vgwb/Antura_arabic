@@ -20,14 +20,22 @@ namespace EA4S.Db
         public string AssessmentData;
         public List<MiniGameInPlaysession> Minigames;
 
-        public string GetID()
+        public string GetId()
         {
             return Stage + "." + LearningBlock + "." + PlaySession;
         }
 
         public override string ToString()
         {
-            return string.Format("[Playsession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
+            string output = "";
+            output += string.Format("[PlaySession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
+            output += "\n MiniGames:";
+            foreach(var minigame in Minigames)
+            {
+                if (minigame.Weight == 0) continue;
+                output += "\n      " + minigame.Code + ": \t" + minigame.Weight;
+            }
+            return output;
         }
         
     }
