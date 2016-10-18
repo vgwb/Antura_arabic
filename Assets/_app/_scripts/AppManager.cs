@@ -86,7 +86,7 @@ namespace EA4S
         void CachingLetterData()
         {
             foreach (var letterData in DB.FindAllLetterData()) {
-                Letters.Add(new LetterData(letterData.GetId(), letterData));
+                Letters.Add(new LetterData(letterData.GetId()));
             }
         }
 

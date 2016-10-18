@@ -128,10 +128,14 @@ namespace EA4S.API {
         static string ActualGame = string.Empty;
         public string[] ActiveGames = new string[] { "Tobogan", "TestGame", "FastCrowd_v1", "FastCrowd_v2", "FastCrowd_v3", "FastCrowd_v4", };
 
-
+        
 
         public void StartGame(string _gameName) {
             string prefix = "game_";
+
+            MiniGameData gameToBeLouched = AppManager.Instance.DB.GetMiniGameDataById("");
+            
+
             switch (_gameName) {
                 case "Tobogan":
                     // ====================================================
@@ -196,6 +200,92 @@ namespace EA4S.API {
                     break;
             }
         }
+
+
+        public void StartGame(MiniGameCode _gameCode, List<IGameData> _gameData,  GameConfiguration _gameConfiguration) {
+            MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataById(_gameCode.ToString());
+
+            switch (_gameCode) {
+                case MiniGameCode.Assessment:
+                    break;
+                case MiniGameCode.AlphabetSong:
+                    break;
+                case MiniGameCode.Balloons_counting:
+                    break;
+                case MiniGameCode.Balloons_letter:
+                    break;
+                case MiniGameCode.Balloons_spelling:
+                    break;
+                case MiniGameCode.Balloons_words:
+                    break;
+                case MiniGameCode.ColorTickle:
+                    break;
+                case MiniGameCode.DancingDots:
+                    break;
+                case MiniGameCode.DontWakeUp:
+                    break;
+                case MiniGameCode.Egg:
+                    break;
+                case MiniGameCode.FastCrowd_alphabet:
+                    break;
+                case MiniGameCode.FastCrowd_counting:
+                    break;
+                case MiniGameCode.FastCrowd_letter:
+                    break;
+                case MiniGameCode.FastCrowd_spelling:
+                    break;
+                case MiniGameCode.FastCrowd_words:
+                    break;
+                case MiniGameCode.HiddenSource:
+                    break;
+                case MiniGameCode.HideSeek:
+                    break;
+                case MiniGameCode.MakeFriends:
+                    break;
+                case MiniGameCode.Maze:
+                    break;
+                case MiniGameCode.MissingLetter:
+                    break;
+                case MiniGameCode.MissingLetter_phrases:
+                    break;
+                case MiniGameCode.MixedLetters_alphabet:
+                    break;
+                case MiniGameCode.MixedLetters_spelling:
+                    break;
+                case MiniGameCode.SickLetter:
+                    break;
+                case MiniGameCode.ReadingGame:
+                    break;
+                case MiniGameCode.Scanner:
+                    break;
+                case MiniGameCode.Scanner_phrase:
+                    break;
+                case MiniGameCode.ThrowBalls_letters:
+                    break;
+                case MiniGameCode.ThrowBalls_words:
+                    break;
+                case MiniGameCode.Tobogan_letters:
+                    Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    Tobogan.ToboganConfiguration.Instance.Variation = 1;
+                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData.ConvertAll(o => (FindRightDataQuestionPack)o), miniGameData.Description);
+                    Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    break;
+                case MiniGameCode.Tobogan_words:
+                    Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    Tobogan.ToboganConfiguration.Instance.Variation = 2;
+                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new SampleQuestionProvider();
+                    Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    break;
+                default:
+                    Debug.LogWarningFormat("Minigame selected {0} not found.", _gameCode.ToString() );
+                    break;
+            }
+
+            // Call game start
+            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameData.Scene);
+        }
+
+
 
         #endregion
 
@@ -332,56 +422,26 @@ namespace EA4S.API {
     public class FindRightLetterQuestionProvider : IQuestionProvider {
 
         #region properties
-        List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
+        List<FindRightDataQuestionPack> questions = new List<FindRightDataQuestionPack>();
         string description;
         int currentQuestion;
         #endregion
 
-        #region Settings
-        Settings settings;
-
-        public struct Settings {
-            public int MaxQuestions;
-        }
-
-        public static Settings DefaultSettings = new Settings() { MaxQuestions = 5 };
-        #endregion
-
-        public FindRightLetterQuestionProvider(Settings _settings) {
+        public FindRightLetterQuestionProvider(List<FindRightDataQuestionPack> _questionsPack, string descriptions) {
             currentQuestion = 0;
-
             description = "Antura Questions";
 
-            // 10 QuestionPacks
-            for (int i = 0; i < _settings.MaxQuestions; i++) {
-                List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
-                List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
-
-                WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Word, AppManager.Instance.Letters)) {
-                    correctAnswers.Add(letterData);
-                }
-
-                correctAnswers = correctAnswers.Distinct().ToList();
-
-                // At least 4 wrong letters
-                while (wrongAnswers.Count < 4) {
-                    var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
-
-                    if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter)) {
-                        wrongAnswers.Add(letter);
-                    }
-                }
-
-                var currentPack = new SampleQuestionPack(newWordData, wrongAnswers, correctAnswers);
-                questions.Add(currentPack);
-            }
+            questions.AddRange(_questionsPack);
         }
 
         public string GetDescription() {
             return description;
         }
 
+        /// <summary>
+        /// Provide me another question.
+        /// </summary>
+        /// <returns></returns>
         IQuestionPack IQuestionProvider.GetNextQuestion() {
             currentQuestion++;
 
@@ -393,6 +453,38 @@ namespace EA4S.API {
 
 
     }
+
+    /// <summary>
+    /// Data Pack for "find right question" mechanics.
+    /// One data question data, many right answare data, many answare data.
+    /// </summary>
+    /// <seealso cref="EA4S.IQuestionPack" />
+    public class FindRightDataQuestionPack : IQuestionPack {
+        ILivingLetterData questionSentence;
+        IEnumerable<ILivingLetterData> wrongAnswersSentence;
+        IEnumerable<ILivingLetterData> correctAnswersSentence;
+
+        public FindRightDataQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence) {
+            this.questionSentence = questionSentence;
+            this.wrongAnswersSentence = wrongAnswersSentence;
+            this.correctAnswersSentence = correctAnswersSentence;
+        }
+
+        ILivingLetterData IQuestionPack.GetQuestion() {
+            return questionSentence;
+        }
+
+        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers() {
+            return wrongAnswersSentence;
+        }
+
+        public IEnumerable<ILivingLetterData> GetCorrectAnswers() {
+            return correctAnswersSentence;
+        }
+    }
+
+
+    #endregion
 
     /// <summary>
     /// Concrete implementation of log manager to store on db.
@@ -465,5 +557,4 @@ namespace EA4S.API {
         speed,
     }
 
-    #endregion
 }
