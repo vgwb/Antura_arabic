@@ -14,7 +14,7 @@ namespace EA4S.FastCrowd
         void Start()
         {
             dropContainer.OnComplete += OnContainerComplete;
-            dropContainer.OnDropped += OnLetterDropped;
+            crowd.onDropped += OnLetterDropped;
         }
 
         void OnContainerComplete()
@@ -27,6 +27,9 @@ namespace EA4S.FastCrowd
         {
             if (OnDropped != null)
                 OnDropped(result);
+
+            if (result)
+                dropContainer.AdvanceArea();
         }
 
         public void StartQuestion(List<ILivingLetterData> nextChallenge, List<ILivingLetterData> wrongAnswers)

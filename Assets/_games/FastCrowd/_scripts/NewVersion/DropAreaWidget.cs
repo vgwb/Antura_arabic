@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace EA4S.FastCrowd
 {
@@ -12,11 +13,20 @@ namespace EA4S.FastCrowd
         public DropSingleArea dropAreaPrefab;
 
         public event System.Action OnComplete;
-        public event System.Action<bool> OnDropped;
 
         Dictionary<ILivingLetterData, DropSingleArea> letters = new Dictionary<ILivingLetterData, DropSingleArea>();
 
         DropContainer container;
+
+        public ILivingLetterData GetActiveData()
+        {
+            var currentArea = container.GetActualDropArea();
+
+            if (currentArea == null)
+                return null;
+
+            return container.GetActualDropArea().Data;
+        }
 
         void Awake()
         {
@@ -24,18 +34,41 @@ namespace EA4S.FastCrowd
 
             // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
             DropContainer.OnObjectiveBlockCompleted += OnCompleted;
-
-            Droppable.OnRightMatch += OnRightMatch;
-            Droppable.OnWrongMatch += OnWrongMatch;
         }
+
+        public void SetMatchingOutline(bool active, bool matching)
+        {
+            var currentArea = container.GetActualDropArea();
+
+            if (currentArea == null)
+                return;
+
+            if (active)
+            {
+                if (matching)
+                    currentArea.SetMatching();
+                else
+                    currentArea.SetMatchingWrong();
+            }
+            else
+                currentArea.DeactivateMatching();
+        }
+
+        public bool AdvanceArea()
+        {
+            if (container.GetActualDropArea() != null)
+            {
+                container.NextArea();
+                return false;
+            }
+
+            return true;
+        } 
 
         void OnDestroy()
         {
             // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
             DropContainer.OnObjectiveBlockCompleted -= OnCompleted;
-
-            Droppable.OnRightMatch -= OnRightMatch;
-            Droppable.OnWrongMatch -= OnWrongMatch;
         }
 
         public void AddDropArea(ILivingLetterData newElement)
@@ -59,18 +92,6 @@ namespace EA4S.FastCrowd
         {
             if (OnComplete != null)
                 OnComplete();
-        }
-
-        void OnRightMatch(LetterObjectView letter)
-        {
-            if (OnDropped != null)
-                OnDropped(true);
-        }
-
-        void OnWrongMatch(LetterObjectView letter)
-        {
-            if (OnDropped != null)
-                OnDropped(false);
         }
     }
 }

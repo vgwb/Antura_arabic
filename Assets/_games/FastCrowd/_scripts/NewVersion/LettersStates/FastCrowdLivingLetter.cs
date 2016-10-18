@@ -1,11 +1,12 @@
-﻿using EA4S;
+﻿using System;
+using EA4S;
 using EA4S.FastCrowd;
 using UnityEngine;
 
 public class FastCrowdLivingLetter : MonoBehaviour
 {
-    public event System.Action<bool> onDropped;
     public event System.Action onDestroy;
+    public event System.Action<bool> onDropped;
 
     GameStateManager stateManager = new GameStateManager();
 
@@ -13,6 +14,7 @@ public class FastCrowdLivingLetter : MonoBehaviour
     public LetterIdleState IdleState { get; private set; }
     public LetterStealthState StealthState { get; private set; }
     public LetterFallingState FallingState { get; private set; }
+    public LetterHangingState HangingState { get; private set; }
 
     // Use Scare() method instead
     private LetterScaredState ScaredState { get; set; }
@@ -28,30 +30,9 @@ public class FastCrowdLivingLetter : MonoBehaviour
         StealthState = new LetterStealthState(this);
         ScaredState = new LetterScaredState(this);
         FallingState = new LetterFallingState(this);
-
-        // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
-        Droppable.OnRightMatch += OnDroppedRight;
-        Droppable.OnWrongMatch += OnDroppedWrong;
+        HangingState = new LetterHangingState(this);
 
         SetCurrentState(IdleState);
-    }
-
-    void OnDroppedRight(LetterObjectView letter)
-    {
-        if (letter == thisView)
-        {
-            if (onDropped != null)
-                onDropped(true);
-        }
-    }
-
-    void OnDroppedWrong(LetterObjectView letter)
-    {
-        if (letter == thisView)
-        {
-            if (onDropped != null)
-                onDropped(false);
-        }
     }
 
     void Update()
@@ -68,7 +49,12 @@ public class FastCrowdLivingLetter : MonoBehaviour
     {
         stateManager.CurrentState = letterState;
     }
-
+    
+    public LetterState GetCurrentState()
+    {
+        return (LetterState)stateManager.CurrentState;
+    }
+    
     /// <summary>
     /// Scare time is the duration of being in scared state
     /// </summary>
@@ -81,11 +67,20 @@ public class FastCrowdLivingLetter : MonoBehaviour
 
     void OnDestroy()
     {
-        // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
-        Droppable.OnWrongMatch -= OnDroppedWrong;
-        Droppable.OnRightMatch -= OnDroppedRight;
-
         if (onDestroy != null)
             onDestroy();
+    }
+
+    public void DropOnArea(DropAreaWidget area)
+    {
+        var currentData = area.GetActiveData();
+
+        if (currentData != null)
+        {
+            bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
+
+            if (onDropped != null)
+                onDropped(matching);
+        }
     }
 }
