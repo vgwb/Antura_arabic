@@ -67,13 +67,23 @@ MonoBehaviour:
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
   ActualGame: 
-  StartMood: 0
-  StartMoodEval: 0
-  EndMoodEval: 0
+  DB: {fileID: 11400000, guid: e7398fb7d95a5470ab6975cb96382e96, type: 2}
+  CurrentGameManagerGO: {fileID: 0}
   Stage: 2
   LearningBlock: 4
   PlaySession: 1
   PlaySessionGameDone: 0
+  ActualMinigame:
+    Id: 
+    Variation: 
+    Status: 
+    Parent: 
+    Description: 
+    Title_En: 
+    Title_Ar: 
+    Scene: 
+    TitleNew: 
+    Team: 
 --- !u!114 &11441512
 MonoBehaviour:
   m_ObjectHideFlags: 1

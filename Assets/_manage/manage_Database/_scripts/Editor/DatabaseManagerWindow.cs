@@ -6,14 +6,14 @@ namespace EA4S.Db.Loader.Editor
     public class DatabaseManagerWindow : EditorWindow
     {
         public DatabaseLoader dbLoader;
-        public DatabaseTester dbTester;
+        public DatabaseManager dbTester;
 
         [MenuItem("Tools/EA4S Antura/Database Manager")]
         public static void ShowWindow()
         {
             var window = (DatabaseManagerWindow)EditorWindow.GetWindow(typeof(DatabaseManagerWindow), false, "DB Manager");
             if (window.dbLoader == null) window.dbLoader = FindObjectOfType<DatabaseLoader>();
-            if (window.dbTester == null) window.dbTester = FindObjectOfType<DatabaseTester>();
+            if (window.dbTester == null) window.dbTester = FindObjectOfType<DatabaseManager>();
         }
 
         void OnGUI()
@@ -23,7 +23,7 @@ namespace EA4S.Db.Loader.Editor
                 dbLoader.LoadDatabase();
             }
 
-            dbTester = (DatabaseTester)EditorGUILayout.ObjectField("Tester", dbTester, typeof(DatabaseTester), true);
+            dbTester = (DatabaseManager)EditorGUILayout.ObjectField("Tester", dbTester, typeof(DatabaseManager), true);
             if (GUILayout.Button("Log: Counts")) {
                 dbTester.LogDataCounts();
             }
