@@ -14,6 +14,7 @@ namespace EA4S.FastCrowd
         public WordComposer wordComposer;
 
         public List<ILivingLetterData> CurrentChallenge = new List<ILivingLetterData>();
+        public IQuestionPack CurrentQuestion = null; // optional
 
         public int CurrentScore { get; private set; }
 
@@ -49,6 +50,11 @@ namespace EA4S.FastCrowd
         public void ResetScore()
         {
             CurrentScore = 0;
+        }
+
+        public void IncrementScore()
+        {
+            ++CurrentScore;
         }
 
         protected override IGameConfiguration GetConfiguration()
