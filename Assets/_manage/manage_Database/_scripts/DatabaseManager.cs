@@ -79,7 +79,12 @@ namespace EA4S.Db.Loader
         }
         public void LogWordById(string id)
         {
-            IData data = db.GetWordDataById(id);
+            string output = "";
+
+            var data = db.GetWordDataById(id);
+            var arabic_text = data.Arabic;
+
+            PrintArabicOutput(arabic_text);
             LogDataById(id, data);
         }
         public void LogPhraseById(string id)
@@ -125,8 +130,7 @@ namespace EA4S.Db.Loader
         public void LogAllData<T>(List<T> list) where T : IData
         {
             string output = "";
-            foreach (var data in list)
-            {
+            foreach (var data in list) {
                 output += (data.GetId() + ": " + data.ToString()) + "\n";
             }
             PrintOutput(output); ;
@@ -135,12 +139,9 @@ namespace EA4S.Db.Loader
         public void LogDataById(string id, IData data)
         {
             string output = "";
-            if (data != null)
-            { 
+            if (data != null) {
                 output += (data.GetId() + ": " + data.ToString());
-            }
-            else
-            {
+            } else {
                 output += "No data with ID " + id;
             }
             PrintOutput(output);
@@ -150,21 +151,11 @@ namespace EA4S.Db.Loader
 
         #region Log - specific tests
 
-        public void LogArabicWord(string id)
-        {
-            string output = "";
-
-            var data = db.GetWordDataById(id);
-            var arabic_text = data.Arabic;
-
-            PrintArabicOutput(arabic_text);
-        }
-
         public void LogActiveMinigames()
         {
             var all_minigames = db.FindAllMiniGameData();
             var active_minigames = db.FindAllActiveMinigames();
-            PrintOutput(active_minigames.Count +  " active minigames out of " + all_minigames.Count);
+            PrintOutput(active_minigames.Count + " active minigames out of " + all_minigames.Count);
         }
 
         #endregion
@@ -177,7 +168,7 @@ namespace EA4S.Db.Loader
             Debug.Log(output);
             OutputText.text = output;
         }
-   
+
         void PrintArabicOutput(string output)
         {
             string fixed_output = ReverseText(ArabicFixer.Fix(output));
@@ -189,8 +180,7 @@ namespace EA4S.Db.Loader
         {
             char[] cArray = text.ToCharArray();
             string reverse = String.Empty;
-            for (int i = cArray.Length - 1; i > -1; i--)
-            {
+            for (int i = cArray.Length - 1; i > -1; i--) {
                 reverse += cArray[i];
             }
             return reverse;
