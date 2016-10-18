@@ -74,7 +74,7 @@ namespace EA4S
     }
 
     [Serializable]
-    public class LogData
+    public class LogData 
     {
         public string SessionId = string.Empty;
         public string TimeInSeconds = string.Empty;
