@@ -15,19 +15,20 @@ namespace EA4S.Db.Loader
                 var dict = row as Dictionary<string, object>;
                 var data = CreateData(dict, db);
 
-                if (table.ContainsKey(data.GetID())) {
+                if (table.ContainsKey(data.GetId())) {
                     LogValidation(data, "found multiple ID.");
                     continue;
                 }
 
-                table.Add(data.GetID(), data);
+                table.Add(data.GetId(), data);
             }
         }
 
         protected abstract D CreateData(Dictionary<string, object> dict, Database db);
 
-        protected T ParseEnum<T>(D data, string enum_string)
+        protected T ParseEnum<T>(D data, object enum_object)
         {
+            string enum_string = ToString(enum_object);
             T parsed_enum = default(T);
             try {
                 parsed_enum = (T)System.Enum.Parse(typeof(T), enum_string);
@@ -56,10 +57,15 @@ namespace EA4S.Db.Loader
 
         protected void LogValidation(D data, string msg)
         {
-            Debug.LogWarning(data.GetType().ToString() + " (ID " + data.GetID() + "): " + msg);
+            Debug.LogWarning(data.GetType().ToString() + " (ID " + data.GetId() + "): " + msg);
         }
 
         #region Conversions
+        protected string ToString(object _input)
+        {
+            return ((string)_input).Trim();
+        }
+
         protected int ToInt(object _input)
         {
             // Force empty to 0

@@ -22,6 +22,11 @@ namespace EA4S.Db
         public string Medial_Unicode;
         public string Final_Unicode;
 
+        public string GetId()
+        {
+            return Id;
+        }
+
         /// <summary>
         /// Living Letter Text To Display.
         /// </summary>
@@ -29,9 +34,5 @@ namespace EA4S.Db
             get { return ArabicAlphabetHelper.GetLetterFromUnicode(Isolated_Unicode); }
         }
 
-        public string GetID()
-        {
-            return Id;
-        }
     }
 }
