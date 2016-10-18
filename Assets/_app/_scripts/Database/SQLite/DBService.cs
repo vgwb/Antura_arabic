@@ -88,7 +88,7 @@ namespace EA4S.Db
 
         public void Insert<T>(T data) where T : IData, new()
         {
-            _connection.Insert(data); 
+            _connection.Insert(data);
         }
 
         public void InsertAll<T>(System.Collections.IEnumerable objects) where T : IData, new()
@@ -105,22 +105,22 @@ namespace EA4S.Db
             return _connection.Table<LogData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
 
-        // @note: we this cannot be used as the current SQLite implementation does not support Parameter expression nodes in LINQ
+        // @note: this cannot be used as the current SQLite implementation does not support Parameter expression nodes in LINQ
         public T FindById<T>(string target_id) where T : IData, new()
         {
             return _connection.Table<T>().Where((x) => (x.GetId().Equals(target_id))).FirstOrDefault();
         }
-         
+
         public List<T> FindAll<T>() where T : IData, new()
         {
             return new List<T>(_connection.Table<T>());
         }
 
-        public List<T> FindAll<T>(Expression<Func<T,bool>> expression) where T : IData, new()
+        public List<T> FindAll<T>(Expression<Func<T, bool>> expression) where T : IData, new()
         {
             return new List<T>(_connection.Table<T>().Where(expression));
         }
-        
+
         #endregion
 
     }
