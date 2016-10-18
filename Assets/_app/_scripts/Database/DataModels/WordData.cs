@@ -6,16 +6,16 @@ namespace EA4S.Db
     [Serializable]
     public class WordData : IData
     {
-        public string Id { get; set; }
-        public string Kind { get; set; }
-        public string Category { get; set; }
-        public string English { get; set; }
-        public string Arabic { get; set; }
-        public string[] Letters { get; set; }
-        public string Transliteration { get; set; }
-        public int Difficulty { get; set; }
-        public string Group { get; set; }
-        public int Drawing { get; set; }
+        public string Id;
+        public string Kind;
+        public string Category;
+        public string English;
+        public string Arabic;
+        public string[] Letters;
+        public string Transliteration;
+        public int Difficulty;
+        public string Group;
+        public int Drawing;
 
         public int NumberOfLetters { get { return Letters.Length; } }
 

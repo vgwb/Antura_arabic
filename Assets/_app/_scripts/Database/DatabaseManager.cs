@@ -82,8 +82,8 @@ namespace EA4S
 
         public List<EA4S.Db.LetterData> FindAllLetterData()
         {
-            //return FindAllLetterData((x) => (x.Kind == "letter"));
-            return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
+            return FindAllLetterData((x) => (x.Kind == "letter"));
+            //return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
         public List<EA4S.Db.WordData> FindAllWordData(Predicate<EA4S.Db.WordData> predicate)
@@ -176,7 +176,7 @@ namespace EA4S
         {
             // TODO now locked to body parts for retrocompatibility
             var wordslist = FindAllWordData((x) => (x.Category == "body_parts"));
-            return wordslist[UnityEngine.Random.Range(0, wordslist.Count)];
+            return GenericUtilites.GetRandom(wordslist);
         }
 
         public EA4S.Db.LetterData GetLetterDataById(string id)
@@ -187,7 +187,7 @@ namespace EA4S
         public EA4S.Db.LetterData GetLetterDataByRandom()
         {
             var letterslist = FindAllLetterData();
-            return letterslist[UnityEngine.Random.Range(0, letterslist.Count)];
+            return GenericUtilites.GetRandom(letterslist);
         }
 
         public PhraseData GetPhraseDataById(string id)

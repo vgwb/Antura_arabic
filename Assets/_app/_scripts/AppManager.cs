@@ -56,18 +56,17 @@ namespace EA4S
 
             AdditionalSetup();
 
+            InitDataAI();
+
             CachingLetterData();
 
             GameSettings.HighQualityGfx = false;
-
-            InitDataAI();
 
             ResetProgressionData();
 
             this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
                 OnPlaySessionValueChange();
             });
-
 
         }
 
@@ -78,8 +77,6 @@ namespace EA4S
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
-
-
         }
 
         void CachingLetterData()
