@@ -10,55 +10,46 @@ namespace EA4S.Db.Loader
         {
             var data = new MiniGameData();
 
-            data.Id = (string)(dict["Id"]);
-            data.Variation = (string)(dict["Variation"]);
-            data.Status = (string)(dict["Status"]); // TODO validate
-            data.Parent = (string)(dict["Parent"]); // TODO validate
-            data.Description = (string)(dict["Description"]);
-            data.Title_En = (string)(dict["Title_En"]);
-            data.Title_Ar = (string)(dict["Title_Ar"]);
-            data.Scene = (string)(dict["Scene"]);
-            data.TitleNew = (string)(dict["TitleNew"]);
-            data.Team = (string)(dict["Team"]);
+            data.Id = ToString(dict["Id"]);
+            data.Variation = ToString(dict["Variation"]);
 
+            ValidateStatus(data, dict["Status"]);
+            data.Status = ToString(dict["Status"]);
+
+            ValidateParent(data, dict["Parent"]);
+            data.Parent = ToString(dict["Parent"]);
+
+            data.Description = ToString(dict["Description"]);
+            data.Title_En = ToString(dict["Title_En"]);
+            data.Title_Ar = ToString(dict["Title_Ar"]);
+            data.Scene = ToString(dict["Scene"]);
+            data.TitleNew = ToString(dict["TitleNew"]);
+            data.Team = ToString(dict["Team"]);
+
+            data.MiniGameCode = ParseEnum<MiniGameCode>(data, dict["Id"]);
             data.Available = data.Status == "active";
 
             return data;
         }
 
-        /* TODO: use this logic for validation of Status/Parent/Variation
-        private bool ValidateMiniGame(MiniGameData data)
-         {
-             // Validate Id
-             try
-             {
-                 MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Id);
-             }
-             catch (System.ArgumentException)
-             {
-                 Debug.LogError("MiniGameData (ID ?): " + "field Id is '" + data.Id + "', not available in the enum values.");
-                 return false;
-             }
-
-             // Validate Parent
-             try
-             {
-                 if (data.Parent != "")
-                 {
-                     MiniGameCode parsed_enum = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Parent);
-                 }
-             }
-             catch (System.ArgumentException)
-             {
-                 Debug.LogError("MiniGameData (ID " + data.GetID() + "): " + "field Parent is '" + data.Parent + "', not available in the enum values.");
-                 return false;
-             }
-
-             // Set derived values too
-             data.Available = data.Status == "active";
-             data.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), data.Id);
-             return true;
-         }*/
+        private void ValidateParent(MiniGameData data, object json_object)
+        {
+            if ((string)json_object != "") // Empty is fine
+            {    
+                // We try to parse the parent as a MiniGameCode enum, triggering validation if this cannot be done.
+                ParseEnum<MiniGameCode>(data, json_object);
+            }
+        }
+        private void ValidateStatus(MiniGameData data, object json_object)
+        {
+            // Status must be one of a given list
+            string target_string = ToString(json_object);
+            List<string> correct_strings = new List<string> { "", "dev", "standby", "active"};
+            if (!correct_strings.Contains(target_string))
+            {
+                LogValidation(data, "Status value is not among the avaliable ones (" + target_string + " found)");
+            }
+        }
 
     }
 }
