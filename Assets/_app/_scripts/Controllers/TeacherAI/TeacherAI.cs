@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
-using Google2u;
 
 namespace EA4S
 {
@@ -24,13 +23,13 @@ namespace EA4S
 
         public List<Db.MiniGameData> GimmeGoodMinigames()
         {
-            return AppManager.Instance.DB.FindAllActiveMinigames(); 
+            return AppManager.Instance.DB.FindAllActiveMinigames();
         }
 
-        public wordsRow GimmeAGoodWord()
+        public Db.WordData GimmeAGoodWord()
         {
             int index = Random.Range(0, bodyPartsWords.Length - 1);
-            return words.Instance.GetRow(bodyPartsWords[index]);
+            return AppManager.Instance.DB.GetWordDataById(bodyPartsWords[index]);
         }
 
         /// <summary>
