@@ -227,7 +227,7 @@ namespace EA4S.FastCrowd
                 if (FastCrowdConfiguration.Instance.Variation == 1) {
                     letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), FastCrowdConfiguration.Instance.BehaviourSettings);
                 } else {
-                    letterObjectView.Init(WordData.GetWordCollection().GetRandomElement(), FastCrowdConfiguration.Instance.BehaviourSettings);
+                    letterObjectView.Init(WordData.GetRandomWord(), FastCrowdConfiguration.Instance.BehaviourSettings);
                 }
             }
             DropAreaContainer.SetupDone();
