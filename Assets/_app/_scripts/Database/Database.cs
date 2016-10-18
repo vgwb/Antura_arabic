@@ -41,7 +41,7 @@ namespace EA4S
 
         public List<MiniGameData> FindAllMiniGameData(Predicate<MiniGameData> predicate)
         {
-           return FindAll<MiniGameData, MiniGameTable>(minigameTable, predicate);
+            return FindAll<MiniGameData, MiniGameTable>(minigameTable, predicate);
         }
         public List<EA4S.Db.LetterData> FindAllLetterData(Predicate<EA4S.Db.LetterData> predicate)
         {
@@ -122,6 +122,13 @@ namespace EA4S
         {
             return GetById<EA4S.Db.WordData, WordTable>(wordTable, id);
         }
+        public EA4S.Db.WordData GetWordDataByRandom()
+        {
+            // TODO now locked to body parts for retrocompatibility
+            var wordslist = FindAll<EA4S.Db.WordData, WordTable>(wordTable, (x) => (x.Category == "body_parts"));
+            return wordslist[UnityEngine.Random.Range(0, wordslist.Count)];
+        }
+
         public EA4S.Db.LetterData GetLetterDataById(string id)
         {
             return GetById<EA4S.Db.LetterData, LetterTable>(letterTable, id);
@@ -165,8 +172,7 @@ namespace EA4S
 
         public T GetById<T, Ttable>(Ttable table, string id) where T : IData where Ttable : SerializableDataTable<T>
         {
-            if (!table.ContainsKey(id))
-            {
+            if (!table.ContainsKey(id)) {
                 Debug.LogWarning("Cannot find id '" + id + "' in talbe " + table.GetType().Name);
                 return default(T);
             }
@@ -212,8 +218,7 @@ namespace EA4S
         private IDataTable GetTable(DatabaseCategory category)
         {
             IDataTable table = null;
-            switch (category)
-            {
+            switch (category) {
                 case DatabaseCategory.Letters: table = this.letterTable; break;
                 case DatabaseCategory.Words: table = this.wordTable; break;
                 case DatabaseCategory.Phrases: table = this.phraseTable; break;
