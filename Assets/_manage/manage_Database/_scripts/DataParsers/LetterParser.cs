@@ -10,22 +10,22 @@ namespace EA4S.Db.Loader
         {
             var data = new LetterData();
 
-            data.Id = (string)(dict["Id"]);
+            data.Id = ToString(dict["Id"]);
             data.Number = ToInt(dict["Number"]);
-            data.Title = (string)(dict["Title"]);
-            data.Kind = (string)(dict["Kind"]);
-            data.Type = (string)(dict["Type"]);
-            data.Notes = (string)(dict["Notes"]);
-            data.SunMoon = (string)(dict["SunMoon"]);
-            data.Sound = (string)(dict["Sound"]);
-            data.Isolated = (string)(dict["Isolated"]);
-            data.Initial = (string)(dict["Initial"]);
-            data.Medial = (string)(dict["Medial"]);
-            data.Final = (string)(dict["Final"]);
-            data.Isolated_Unicode = (string)(dict["Isolated_Unicode"]);
-            data.Initial_Unicode = (string)(dict["Initial_Unicode"]);
-            data.Medial_Unicode = (string)(dict["Medial_Unicode"]);
-            data.Final_Unicode = (string)(dict["Final_Unicode"]);
+            data.Title = ToString(dict["Title"]);
+            data.Kind = ToString(dict["Kind"]);
+            data.Type = ToString(dict["Type"]);
+            data.Notes = ToString(dict["Notes"]);
+            data.SunMoon = ToString(dict["SunMoon"]);
+            data.Sound = ToString(dict["Sound"]);
+            data.Isolated = ToString(dict["Isolated"]);
+            data.Initial = ToString(dict["Initial"]);
+            data.Medial = ToString(dict["Medial"]);
+            data.Final = ToString(dict["Final"]);
+            data.Isolated_Unicode = ToString(dict["Isolated_Unicode"]);
+            data.Initial_Unicode = ToString(dict["Initial_Unicode"]);
+            data.Medial_Unicode = ToString(dict["Medial_Unicode"]);
+            data.Final_Unicode = ToString(dict["Final_Unicode"]);
 
             return data;
         }

@@ -18,17 +18,18 @@ namespace EA4S.Db
         public string[] Phrases_previous;   
         public AssessmentType AssessmentType; 
         public string AssessmentData;
-        public List<MiniGameInPlaysession> Minigames;  
-
-        public override string ToString()
-        {
-            return string.Format("[Playsession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
-        }
+        public List<MiniGameInPlaysession> Minigames;
 
         public string GetID()
         {
             return Stage + "." + LearningBlock + "." + PlaySession;
         }
+
+        public override string ToString()
+        {
+            return string.Format("[Playsession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
+        }
+        
     }
 
     [Serializable]

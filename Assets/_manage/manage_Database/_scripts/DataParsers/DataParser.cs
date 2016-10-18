@@ -26,8 +26,9 @@ namespace EA4S.Db.Loader
 
         protected abstract D CreateData(Dictionary<string, object> dict, Database db);
 
-        protected T ParseEnum<T>(D data, string enum_string)
+        protected T ParseEnum<T>(D data, object enum_object)
         {
+            string enum_string = ToString(enum_object);
             T parsed_enum = default(T);
             try {
                 parsed_enum = (T)System.Enum.Parse(typeof(T), enum_string);
@@ -60,6 +61,11 @@ namespace EA4S.Db.Loader
         }
 
         #region Conversions
+        protected string ToString(object _input)
+        {
+            return ((string)_input).Trim();
+        }
+
         protected int ToInt(object _input)
         {
             // Force empty to 0

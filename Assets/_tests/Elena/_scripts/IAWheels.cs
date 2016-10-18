@@ -51,7 +51,7 @@ public class IAWheels : MonoBehaviour {
     void ListGamesbyHeight(int l)
     {
         heightMiniGames.Add(miniGames[l]);
-        heightMiniGames = heightMiniGames.OrderByDescending(go => go.height).ToList();
+        heightMiniGames = heightMiniGames.OrderByDescending(go => go.weight).ToList();
     }
     void ListMiniGamesinOrder()
     {
