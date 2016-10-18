@@ -1,5 +1,4 @@
 ﻿using System;
-using Google2u;
 using UnityEngine;
 
 namespace EA4S
@@ -22,14 +21,14 @@ namespace EA4S
 
         private string key;
 
-        public LetterData(string _keyRow, lettersRow _letRow)
+        public LetterData(string _keyRow, Db.LetterData _letRow)
         {
             Key = _keyRow;
-            Isolated = _letRow._isolated;
-            Isolated_Unicode = _letRow._unicode;
-            Initial_Unicode = _letRow._initial_unicode;
-            Medial_Unicode = _letRow._medial_unicode;
-            Final_Unicode = _letRow._final_unicode;
+            Isolated = _letRow.Isolated;
+            Isolated_Unicode = _letRow.Isolated_Unicode;
+            Initial_Unicode = _letRow.Initial_Unicode;
+            Medial_Unicode = _letRow.Medial_Unicode;
+            Final_Unicode = _letRow.Final_Unicode;
         }
 
         #region API
