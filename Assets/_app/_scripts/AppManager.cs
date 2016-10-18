@@ -27,7 +27,7 @@ namespace EA4S
         public List<LetterData> Letters = new List<LetterData>();
 
         public TeacherAI Teacher;
-        public Database DB;
+        public DatabaseManager DB;
         public EA4S.PlayerProfile Player;
         public GameObject CurrentGameManagerGO;
 
@@ -41,7 +41,7 @@ namespace EA4S
         public void InitDataAI()
         {
             if (DB == null)
-                DB = new Database();
+                DB = new DatabaseManager("1");  // @todo: player ID should be passed here
             if (Teacher == null)
                 Teacher = new TeacherAI();
             if (Player == null)
