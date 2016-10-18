@@ -22,7 +22,7 @@ namespace EA4S.Db.Loader
             data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.phraseTable);
 
             data.AssessmentType = AssessmentType.Alphabet; // TODO: (sometimes it is empty!) ParseEnum<AssessmentType>(data, (string)dict["AssesmentType"]);
-            data.AssessmentData = (string)dict["AssessmentData"];
+            data.AssessmentData = ToString(dict["AssessmentData"]);
 
             data.Minigames = CustomParseMinigames(data, dict, db.minigameTable);
 
