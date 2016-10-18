@@ -80,6 +80,12 @@ namespace EA4S
             return db.FindAll<EA4S.Db.LetterData>(db.GetLetterTable(), predicate);
         }
 
+        public List<EA4S.Db.LetterData> FindAllLetterData()
+        {
+            //return FindAllLetterData((x) => (x.Kind == "letter"));
+            return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
+        }
+
         public List<EA4S.Db.WordData> FindAllWordData(Predicate<EA4S.Db.WordData> predicate)
         {
             return db.FindAll<EA4S.Db.WordData>(db.GetWordTable(), predicate);
@@ -118,11 +124,6 @@ namespace EA4S
         public List<MiniGameData> FindAllMiniGameData()
         {
             return new List<MiniGameData>(db.GetMiniGameTable().Values);
-        }
-
-        public List<EA4S.Db.LetterData> FindAllLetterData()
-        {
-            return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
         public List<EA4S.Db.WordData> FindAllWordData()
@@ -165,14 +166,28 @@ namespace EA4S
             return db.GetById<MiniGameData>(db.GetMiniGameTable(), id);
         }
 
+
         public EA4S.Db.WordData GetWordDataById(string id)
         {
             return db.GetById<EA4S.Db.WordData>(db.GetWordTable(), id);
         }
 
+        public EA4S.Db.WordData GetWordDataByRandom()
+        {
+            // TODO now locked to body parts for retrocompatibility
+            var wordslist = FindAllWordData((x) => (x.Category == "body_parts"));
+            return wordslist[UnityEngine.Random.Range(0, wordslist.Count)];
+        }
+
         public EA4S.Db.LetterData GetLetterDataById(string id)
         {
             return db.GetById<EA4S.Db.LetterData>(db.GetLetterTable(), id);
+        }
+
+        public EA4S.Db.LetterData GetLetterDataByRandom()
+        {
+            var letterslist = FindAllLetterData();
+            return letterslist[UnityEngine.Random.Range(0, letterslist.Count)];
         }
 
         public PhraseData GetPhraseDataById(string id)
