@@ -12,11 +12,18 @@ namespace EA4S.ThrowBalls
 
         public static PokeballController instance;
         public Rigidbody rigidBody;
-        
+
         private Vector3 touchOffset;
         private float cameraDistance;
         private List<Vector3> touchPositionsInPx;
         private List<float> touchSpeedsInPxPerSecs;
+
+        private float stopWhenYIsEqualToMe = 0;
+        private float yVelocity = 0;
+        private float zVelocity = 0;
+        private Vector3 launchPoint;
+
+        Vector3 letterPos = new Vector3(0, 1.8f, 29.5f);
 
         #region Temporary mouse control variables
 
@@ -39,11 +46,11 @@ namespace EA4S.ThrowBalls
             positions = new List<Vector3>();
             times = new List<float>();
         }
-        
+
         void Start()
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
-            
+
             Reset();
         }
 
@@ -71,7 +78,21 @@ namespace EA4S.ThrowBalls
             gameObject.SetActive(false);
         }
 
-        void Update()
+        public Vector3 ComputePosition(float time)
+        {
+            Vector3 pos = new Vector3();
+            pos.x = transform.position.x;
+
+            pos.y = Constants.GRAVITY.y * Mathf.Pow(time, 2);
+            pos.y /= 2;
+            pos.y += yVelocity * time + launchPoint.y - letterPos.y;
+
+            pos.z = launchPoint.z + zVelocity * time;
+
+            return pos;
+        }
+
+        void FixedUpdate()
         {
             if (!rigidBody.isKinematic)
             {
@@ -82,6 +103,14 @@ namespace EA4S.ThrowBalls
                     ThrowBallsGameManager.Instance.OnPokeballLost();
                     Reset();
                 }
+            }
+        }
+
+        void Update()
+        {
+            if (transform.position.y <= stopWhenYIsEqualToMe)
+            {
+                rigidBody.isKinematic = true;
             }
 
             else
@@ -225,7 +254,7 @@ namespace EA4S.ThrowBalls
         }
         void OnMouseUp()
         {
-            if (velocity.sqrMagnitude < VELOCITY_SQUARED_LAUNCH_THRESOLD)
+            /*if (velocity.sqrMagnitude < VELOCITY_SQUARED_LAUNCH_THRESOLD)
             {
                 Reset();
                 return;
@@ -255,7 +284,29 @@ namespace EA4S.ThrowBalls
             velocityZ = Mathf.Clamp(velocityZ, 40, 80);
             Debug.Log("Magnitude = " + magnitude);
             rigidBody.AddForce(new Vector3(flickDirection.x * magnitude * 0.7f, flickDirection.y * magnitude * 0.7f, 0.7f * magnitude), ForceMode.VelocityChange);
-            rigidBody.AddTorque(new Vector3(flickDirection.x * velocity.x, flickDirection.y * velocity.y, 80), ForceMode.VelocityChange);
+            rigidBody.AddTorque(new Vector3(flickDirection.x * velocity.x, flickDirection.y * velocity.y, 80), ForceMode.VelocityChange);*/
+
+            
+
+            float velocityY = 50f;
+            float velocityZ = letterPos.z - transform.position.z;
+
+            velocityZ *= Constants.GRAVITY.y;
+
+            float factor = (-1 * velocityY) - Mathf.Sqrt(Mathf.Pow(velocityY, 2) - (2 * (transform.position.y - letterPos.y) * Constants.GRAVITY.y));
+            factor = Mathf.Pow(factor, -1);
+
+            velocityZ *= factor;
+
+            rigidBody.isKinematic = false;
+            rigidBody.AddForceAtPosition(new Vector3(0, velocityY, velocityZ), transform.position, ForceMode.Impulse);
+
+            stopWhenYIsEqualToMe = letterPos.y;
+
+            yVelocity = velocityY;
+            zVelocity = velocityZ;
+
+            launchPoint = transform.position;
         }
 
         #endregion

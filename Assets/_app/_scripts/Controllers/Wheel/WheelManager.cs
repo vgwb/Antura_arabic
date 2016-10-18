@@ -35,7 +35,7 @@ namespace EA4S
 
         bool isGameSelected;
 
-        List<MinigameData> gameData = new List<MinigameData>();
+        List<Db.MiniGameData> gameData = new List<Db.MiniGameData>();
         /// <summary>
         /// Index (refered to gameData list) of the only game selectable for the actual playsession.
         /// </summary>
@@ -53,7 +53,8 @@ namespace EA4S
             AppManager.Instance.InitDataAI();
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
-            gameIndexToForceSelect = gameData.FindIndex(g => g.Code == AppManager.Instance.GetMiniGameForActualPlaySession().Code);
+            Debug.Log("numberOfGames " + numberOfGames);
+            gameIndexToForceSelect = gameData.FindIndex(a => a.Id == AppManager.Instance.GetMiniGameForActualPlaySession().Id);
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -123,20 +124,20 @@ namespace EA4S
         {
             /* Alpha static logic */
             if (isGameSelected) {
-                MinigameData miniGame = AppManager.Instance.GetMiniGameForActualPlaySession();
-                if (miniGame.Code == "fastcrowd" || miniGame.Code == "fastcrowd_words") {
+                Db.MiniGameData miniGame = AppManager.Instance.GetMiniGameForActualPlaySession();
+                if (miniGame.Id == "fastcrowd" || miniGame.Id == "fastcrowd_words") {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
-                    if (miniGame.Code == "fastcrowd") {
+                    if (miniGame.Id == "fastcrowd") {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
                     } else {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words;
                     }
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
                 }
-                if (miniGame.Code == "fastcrowd_words") {
+                if (miniGame.Id == "fastcrowd_words") {
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd_tutorialWords");
                 } else {
-                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.SceneName + "_tutorial");
+                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.Scene + "_tutorial");
                 }
             }
             /*
@@ -178,17 +179,17 @@ namespace EA4S
             isGameSelected = true;
             ShakePopup();
 
-            switch (gameData[currentGameIndex].Code) {
-                case "fastcrowd":
+            switch (gameData[currentGameIndex].Id) {
+                case "FastCrowd_spelling":
                     WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowd", 2, true);
                     break;
-                case "fastcrowd_words":
+                case "FastCrowd_words":
                     WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowdword", 2, true);
                     break;
-                case "dontwakeup":
+                case "DontWakeUp":
                     WidgetSubtitles.I.DisplaySentence("wheel_game_dontwake", 2, true);
                     break;
-                case "balloons":
+                case "Balloons_spelling":
                     WidgetSubtitles.I.DisplaySentence("wheel_game_balloons_end", 2, true);
                     break;
             }
@@ -225,7 +226,7 @@ namespace EA4S
         {
             if (index >= 0) {
                 GameIcon.SetActive(true);
-                labelText.text = ArabicFixer.Fix(gameData[index].Title, false, false);
+                labelText.text = ArabicFixer.Fix(gameData[index].Title_Ar, false, false);
                 GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[index].GetIconResourcePath());
             } else {
                 labelText.text = "";

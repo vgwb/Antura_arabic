@@ -10,9 +10,9 @@ namespace EA4S.Db.Loader
         { 
             var data = new PlaySessionData();
 
-            data.Stage = ToI(dict["Stage"]);
-            data.LearningBlock = ToI(dict["LearningBlock"]);
-            data.PlaySession = ToI(dict["PlaySession"]);
+            data.Stage = ToInt(dict["Stage"]);
+            data.LearningBlock = ToInt(dict["LearningBlock"]);
+            data.PlaySession = ToInt(dict["PlaySession"]);
             data.Focus = DidacticalFocus.Letters; // TODO: (sometimes it is empty!) ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);
 
             data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.letterTable);
@@ -47,7 +47,7 @@ namespace EA4S.Db.Loader
 
                 var minigameStruct = new MiniGameInPlaysession();
                 minigameStruct.Code = (MiniGameCode)enum_i;
-                minigameStruct.Weight = (string)dict[enum_string] == "" ? 0 : ToI(dict[enum_string]);
+                minigameStruct.Weight = (string)dict[enum_string] == "" ? 0 : ToInt(dict[enum_string]);
                 list.Add(minigameStruct);
             }
             return list;
