@@ -29,16 +29,22 @@ namespace EA4S
             }
         }
 
-        public IAudioSource PlayLetter(string letterId)
+        public IAudioSource PlayLetter(LetterData letterId)
         {
-            AudioManager.I.PlayLetter(letterId);
+            AudioManager.I.PlayLetter(letterId.Key);
             return new SampleAudioSource(null);
 
         }
 
-        public IAudioSource PlayWord(string wordId)
+        public IAudioSource PlayWord(WordData wordId)
         {
-            AudioManager.I.PlayWord(wordId);
+            AudioManager.I.PlayWord(wordId.Key);
+            return new SampleAudioSource(null);
+        }
+
+        public IAudioSource PlayText(TextID text)
+        {
+            AudioManager.I.PlayDialog(text.ToString());
             return new SampleAudioSource(null);
         }
 

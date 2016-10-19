@@ -10,8 +10,12 @@ namespace EA4S.Test {
     public class PlayerProfileStage : MonoBehaviour {
 
         void Start() {
+            MyGlobalOptions opt = new MyGlobalOptions() { AvailablePlayers = new List<string>() { } };
+            AppManager.Instance.PlayerProfile.LoadGlobalOptions<MyGlobalOptions>(opt);
+
             List<string> AvailablePlayersId;
-            AvailablePlayersId = AppManager.Instance.PlayerProfile.Players.AvailablePlayers;
+            Debug.Log(JsonUtility.ToJson(AppManager.Instance.PlayerProfile.Options));
+            AvailablePlayersId = AppManager.Instance.PlayerProfile.Options.AvailablePlayers;
             if(AvailablePlayersId.Count > 0) Debug.Log(AvailablePlayersId.ToString());
 
             if (AvailablePlayersId.Count == 0) {
@@ -24,7 +28,7 @@ namespace EA4S.Test {
                     });
             }
 
-            AvailablePlayersId = AppManager.Instance.PlayerProfile.Players.AvailablePlayers;
+            AvailablePlayersId = AppManager.Instance.PlayerProfile.Options.AvailablePlayers;
             if (AvailablePlayersId.Count > 0)
                 AppManager.Instance.PlayerProfile.SetActivePlayer<MyPlayerProfile>(AvailablePlayersId[0]);
 
@@ -42,5 +46,14 @@ namespace EA4S.Test {
         public string Name;
         public string Lastname;
         public int Age;
+    }
+
+    [Serializable]
+    public class MyGlobalOptions : ModularFramework.Modules.GlobalOptions {
+        public bool HiRes;
+
+        public MyGlobalOptions() {
+            AvailablePlayers = new List<string>();
+        }
     }
 }

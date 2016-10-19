@@ -3,14 +3,15 @@ using DG.Tweening;
 using TMPro;
 using Google2u;
 
-namespace EA4S {
+namespace EA4S
+{
     /// <summary>
     /// View object for letter puppets.
     /// - init component by data
     /// - manage animation
     /// </summary>
-    [RequireComponent(typeof(Animator))]
-    public class LetterObjectView : MonoBehaviour {
+    public class LetterObjectView : MonoBehaviour
+    {
 
         #region public properties
 
@@ -53,7 +54,7 @@ namespace EA4S {
         public Animator Anim {
             get {
                 if (!anim)
-                    anim = GetComponent<Animator>();
+                    anim = GetComponentInChildren<Animator>();
                 return anim;
             }
             set { anim = value; }
@@ -76,16 +77,18 @@ namespace EA4S {
         /// <summary>
         /// Fallback function to set dummy data to letter if no data is provided.
         /// </summary>
-        void setDummyLetterObject() {
-            lettersRow letRow = letters.Instance.GetRow(letters.Instance.rowNames[0]);
-            Init(new LetterData(letters.Instance.rowNames[0], letRow));
+        void setDummyLetterObject()
+        {
+            var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
+            Init(new LetterData(letterData.GetId()));
             //Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
         }
 
         /// <summary>
         /// Called when [model changed].
         /// </summary>
-        void OnModelChanged() {
+        void OnModelChanged()
+        {
             if (model.Data.DataType == LivingLetterDataType.Image) {
                 ImageSprite.sprite = model.Data.DrawForLivingLetter;
                 ImageSprite.enabled = true;
@@ -102,7 +105,8 @@ namespace EA4S {
         /// </summary>
         /// <param name="_data">The data.</param>
         /// <param name="_behaviourSettingsOverride">The behaviour settings override.</param>
-        public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride) {
+        public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride)
+        {
             Init(_data);
             GetComponent<LetterBehaviour>().Settings = _behaviourSettingsOverride;
         }
@@ -111,7 +115,8 @@ namespace EA4S {
         /// Initializes  object with the specified data.
         /// </summary>
         /// <param name="_data">The data.</param>
-        public void Init(ILivingLetterData _data) {
+        public void Init(ILivingLetterData _data)
+        {
             Model = new LetterObject(_data);
             // Init Animation sequenceExclamationMark
             sequenceExclamationMark = DOTween.Sequence();
@@ -129,16 +134,20 @@ namespace EA4S {
         #endregion
 
         #region event subscription
-        void OnEnable() {
+        void OnEnable()
+        {
 
         }
-        void OnDisable() {
+        void OnDisable()
+        {
             Model.OnStateChanged -= OnStateChanged;
         }
         #endregion
 
         #region events handlers
-        void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState) {
+
+        void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState)
+        {
             // reset animation for Terrified_State
             if (exclamationMark && sequenceExclamationMark != null) {
                 //exclamationMark.transform.localScale = Vector3.zero;
@@ -148,46 +157,86 @@ namespace EA4S {
                 }
             }
 
+            Debug.Log((int)_newState);
+
             switch (_newState) {
-                case LetterObjectState.Idle_State:
-                    Anim.SetInteger("State", 0);
+                case LetterObjectState.LL_idle:
+                    // Random from 4 idle animations
+                    Anim.SetInteger("State", Random.Range(1, 4));
                     break;
-                case LetterObjectState.Walk_State:
-                    Anim.SetInteger("State", 1);
-                    break;
-                case LetterObjectState.Run_State:
-                    Anim.SetInteger("State", 2);
-                    break;
-                case LetterObjectState.Ninja_State:
-                    Anim.SetInteger("State", 4);
+                case LetterObjectState.LL_idle_1:
+                case LetterObjectState.LL_idle_2:
+                case LetterObjectState.LL_idle_3:
+                case LetterObjectState.LL_idle_4:
+                case LetterObjectState.LL_idle_5:
+                case LetterObjectState.LL_walk:
+                case LetterObjectState.LL_walk_L:
+                case LetterObjectState.LL_walk_R:
+                case LetterObjectState.LL_run:
+                case LetterObjectState.LL_run_happy:
+                case LetterObjectState.LL_run_fear:
+                case LetterObjectState.LL_run_fear_L:
+                case LetterObjectState.LL_run_fear_R:
+                case LetterObjectState.LL_drag_idle:
+                case LetterObjectState.LL_jump_loop:
+                case LetterObjectState.LL_jump:
+                case LetterObjectState.LL_fall_down:
+                case LetterObjectState.LL_land:
+                case LetterObjectState.LL_standup:
+                case LetterObjectState.LL_dancing:
+                case LetterObjectState.LL_dancing_win:
+                case LetterObjectState.LL_twirl:
+                case LetterObjectState.LL_turn_180:
+                case LetterObjectState.LL_win:
+                case LetterObjectState.LL_horray:
+                case LetterObjectState.LL_highfive:
+                case LetterObjectState.LL_lose:
+                //case LetterObjectState.LL_get_angry:
+                case LetterObjectState.LL_get_angry_1:
+                case LetterObjectState.LL_get_angry_2:
+                case LetterObjectState.LL_balance:
+                case LetterObjectState.LL_balance_L:
+                case LetterObjectState.LL_balance_R:
+                case LetterObjectState.LL_crouching:
+                case LetterObjectState.LL_crouching_up:
+                case LetterObjectState.LL_ride_rocket_idle:
+                case LetterObjectState.LL_ride_rocket_horray:
+                    Anim.SetInteger("State", (int)_newState);
                     break;
                 case LetterObjectState.FrontOfCamera_State:
-                    Anim.SetInteger("State", 0);
+                    // Verify
                     break;
                 case LetterObjectState.GoOut_State:
-                    Anim.SetInteger("State", 2);
+                    // Verify
+                    break;
+                case LetterObjectState.Ninja_State:
+                    // Verify
                     break;
                 case LetterObjectState.BumpOut_State:
-                    Anim.SetInteger("State", 2);
-                    break;
-                case LetterObjectState.Grab_State:
-                    Anim.SetInteger("State", 3);
-                    break;
-                case LetterObjectState.Terrified_State:
-                    Anim.SetInteger("State", 2);
-                    exclamationMark.DOScale(1, 0.3f);
-                    sequenceExclamationMark.Play();
-                    AudioManager.I.PlaySfx(Sfx.LetterFear);
+                    // Verify
                     break;
                 default:
+                    // No specific visual behaviour for this state
                     break;
+
             }
+
         }
+
         #endregion
 
-        public void DebugStates(LetterObjectState _stateToSet) {
-            Model.State = _stateToSet;
+        #region API
+
+        /// <summary>
+        /// Sets new state.
+        /// </summary>
+        /// <param name="_newState">The new state.</param>
+        public void SetState(LetterObjectState _newState)
+        {
+            Model.State = _newState;
         }
+
+        #endregion
 
     }
 }

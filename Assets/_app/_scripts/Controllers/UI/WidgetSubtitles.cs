@@ -4,7 +4,7 @@ using System.Collections;
 using TMPro;
 using ArabicSupport;
 using DG.Tweening;
-using Google2u;
+using EA4S;
 
 namespace EA4S
 {
@@ -107,13 +107,13 @@ namespace EA4S
             this.gameObject.SetActive(true);
             if (WalkieTalkie.isShown)
                 WalkieTalkie.StartPulsing(isContinue);
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(textID);
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(textID);
             //Debug.Log("DisplayText " + textID + " " + row.GetStringData("Arabic") + " " + ArabicFixer.Fix(row.GetStringData("Arabic")));
-            TextUI.text = row == null ? textID : ReverseText(ArabicFixer.Fix(row.GetStringData("Arabic")));
+            TextUI.text = row == null ? textID : ReverseText(ArabicFixer.Fix(row.Arabic));
             this.StartCoroutine(DisplayTextCoroutine(duration));
 
             AudioManager.I.PlayDialog(textID, currentCallback);
-            Debug.Log("DisplayText() " + textID + " - " + row.GetStringData("English"));
+            Debug.Log("DisplayText() " + textID + " - " + row.English);
         }
 
         IEnumerator DisplayTextCoroutine(float duration)

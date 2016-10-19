@@ -133,7 +133,7 @@ namespace EA4S.ThrowBalls
         {
             Vector3 currentPosition = transform.position;
             Vector3 currentRotation = transform.localRotation.eulerAngles;
-            
+
             if (AreVectorsApproxEqual(currentPosition, lastPosition, 0.0001f) && AreVectorsApproxEqual(currentRotation, lastRotation, 0.1f))
             {
                 isStill = true;
@@ -307,13 +307,15 @@ namespace EA4S.ThrowBalls
             transform.position = new Vector3(transform.position.x, yEquilibrium, transform.position.z);
         }
 
-        public void MakeSureIsProppedUp()
+        public void MakeSureIsProppedUp(float delay)
         {
-            StartCoroutine(MakeSureIsProppedUpCoroutine());
+            StartCoroutine(MakeSureIsProppedUpCoroutine(delay));
         }
 
-        private IEnumerator MakeSureIsProppedUpCoroutine()
+        private IEnumerator MakeSureIsProppedUpCoroutine(float delay)
         {
+            yield return new WaitForSeconds(delay);
+
             while (true)
             {
                 //Debug.Log(isGrounded + "," + isStill);
@@ -325,6 +327,11 @@ namespace EA4S.ThrowBalls
                     {
                         PropUp(0.2f);
                     }
+                }
+
+                else
+                {
+                    yield return new WaitForSeconds(Random.Range(0.25f, 0.5f));
                 }
 
                 yield return new WaitForFixedUpdate();

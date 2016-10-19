@@ -12,11 +12,11 @@ namespace EA4S
     [RequireComponent(typeof(Animator))]
     public class TutorialDontWakeUp : MonoBehaviour
     {
-        Animator animator;
+        // Animator animator;
 
         void Start()
         {
-            animator = this.GetComponent<Animator>();
+            // animator = this.GetComponent<Animator>();
         }
 
         // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

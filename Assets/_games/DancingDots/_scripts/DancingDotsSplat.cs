@@ -5,26 +5,12 @@ namespace EA4S.DancingDots
 {
 	public class DancingDotsSplat : MonoBehaviour {
 
-//		public float splatMaxSize = 5.0f;
-//		public float splatMaxY = -22;
-//		public float splatGrowFactor = 5f;
-//		public float splatSlideFactor = 10f;
-//		public float splatWaitTime = 1f;
-
-		public float minAlpha = 0.25f;
-		public float fadeDuration = 3f;
-
 		public Color[] colors;
-
-		private SpriteRenderer goRenderer;
 
 		// Use this for initialization
 		void Start () {
-//			StartCoroutine(AnimateSplat(transform));
-			goRenderer = GetComponent<SpriteRenderer>();
-			goRenderer.color = colors[Random.Range(0, colors.Length)];
+			GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
 			AudioManager.I.PlaySfx(Sfx.Splat);
-//			StartCoroutine(FadeTo(minAlpha, fadeDuration));
 		}
 
 		public void CleanSplat()
@@ -32,18 +18,28 @@ namespace EA4S.DancingDots
 			Destroy(gameObject,0.25f);
 		}
 
-		IEnumerator FadeTo(float aValue, float aTime)
-		{
-			float alpha = goRenderer.color.a;
-			for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
-			{
-				Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha,aValue,t));
-				goRenderer.color = newColor;
-				yield return null;
-			}
-		}
 
 
+//		public float minAlpha = 0.25f;
+//		public float fadeDuration = 3f;
+//
+//		IEnumerator FadeTo(float aValue, float aTime)
+//		{
+//			float alpha = goRenderer.color.a;
+//			for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+//			{
+//				Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha,aValue,t));
+//				goRenderer.color = newColor;
+//				yield return null;
+//			}
+//		}
+//
+//		public float splatMaxSize = 5.0f;
+//		public float splatMaxY = -22;
+//		public float splatGrowFactor = 5f;
+//		public float splatSlideFactor = 10f;
+//		public float splatWaitTime = 1f;
+//
 //		IEnumerator AnimateSplat(Transform trans)
 //		{
 //

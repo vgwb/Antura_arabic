@@ -18,17 +18,17 @@ namespace EA4S.DancingDots
 
 		public static DancingDotsGameManager instance;
 
-		public DancingDotsGamePlayInfo GameplayInfo;
 
 		public Canvas endGameCanvas;
 
 		public StarFlowers starFlowers;
 
-//		public Animator dotsMenu;
-//		public Animator diacriticMenu;
-
 		public DancingDotsLivingLetter dancingDotsLL;
 		public GameObject antura;
+		public float anturaMinDelay = 3f;
+		public float anturaMaxDelay = 10f;
+		public float anturaMinScreenTime = 1f;
+		public float anturaMaxScreenTime = 2f;
 		public GameObject[] diacritics;
 		public DancingDotsDiacriticPosition activeDiacritic;
 
@@ -82,6 +82,7 @@ namespace EA4S.DancingDots
 
 		private Level currentLevel = Level.Level4;
 		private List<DancingDotsSplat> splats;
+		private bool isPlaying = false;
 
 
 		protected override void Awake()
@@ -104,35 +105,40 @@ namespace EA4S.DancingDots
 
 			StartRound();
 
+			isPlaying = true;
+
 			StartCoroutine(AnimateAntura());
 
-//			StartCoroutine(ShowMenu(dotsMenu));
+		}
 
+		public Color32 SetAlpha(Color32 color, byte alpha)
+		{
+			if (alpha >= 0 && alpha <= 255)
+			{
+				return new Color32(color.r, color.g, color.b, alpha);
+			}
+			else
+			{
+				return color;
+			}
 		}
 
 		IEnumerator AnimateAntura()
 		{
-			GameObject poof;
 			Vector3 pos = antura.transform.position;
 			// Move antura off screen because SetActive is reseting the animation to running
 			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
 			do
 			{
-				yield return new WaitForSeconds(UnityEngine.Random.Range(1f,10f));
-				poof = Instantiate(poofPrefab, pos, Quaternion.identity) as GameObject;
-				Destroy(poof, 2f);
+				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
+				CreatePoof(pos, 2f, false);
 				yield return new WaitForSeconds(0.4f);
-				// Move antura on screen because SetActive is reseting the animation to running
 				antura.transform.position = pos;
 
-				yield return new WaitForSeconds(UnityEngine.Random.Range(1f,2f));
-
-				poof = Instantiate(poofPrefab, pos, Quaternion.identity) as GameObject;
-				Destroy(poof, 2f);
-				// Move antura off screen because SetActive is reseting the animation to running
+				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
+				CreatePoof(pos, 2f, false);
 				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-
-			} while (true);
+			} while (isPlaying);
 
 		}
 
@@ -234,10 +240,6 @@ namespace EA4S.DancingDots
 				default: currentLevel = Level.Level3;
 					break;
 				}
-
-//				if (numberOfRoundsPlayed == 1) currentLevel = Level.Level1;
-//				currentLevel = (Level) numberOfRoundsPlayed - 1;
-
 			}
 			else
 			{
@@ -254,9 +256,11 @@ namespace EA4S.DancingDots
 		}
 			
 
-		private void CreatePoof(Vector3 position, float duration)
+
+
+		private void CreatePoof(Vector3 position, float duration, bool withSound)
 		{
-			AudioManager.I.PlaySfx(Sfx.BaloonPop);
+			if (withSound) AudioManager.I.PlaySfx(Sfx.BaloonPop);
 			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
 			Destroy(poof, duration);
 		}
@@ -277,7 +281,7 @@ namespace EA4S.DancingDots
 						break;
 					}
 				}
-				CreatePoof(poofPosition, 2f);
+				CreatePoof(poofPosition, 2f, true);
 				dancingDotsLL.HideText(dancingDotsLL.hintText);
 			}
 		}
@@ -287,24 +291,10 @@ namespace EA4S.DancingDots
 			yield return new WaitForSeconds(hintDiacriticDuration);
 			if (!isCorrectDiacritic)
 			{
-				CreatePoof(activeDiacritic.transform.position, 2f);
+				CreatePoof(activeDiacritic.transform.position, 2f, true);
 				activeDiacritic.Hide();
 			}
 		}
-
-
-//		IEnumerator ShowMenu(Animator animator)
-//		{
-//			yield return new WaitForSeconds(0.5f);
-//			animator.SetTrigger("Show");
-//		}
-//
-//		IEnumerator SwitchMenus(Animator menu1, Animator menu2)
-//		{
-//			yield return new WaitForSeconds(0.5f);
-//			menu1.SetTrigger("Hide");
-//			menu2.SetTrigger("Show");
-//		}
 
 		private IEnumerator RandomDiacritic() {
 
@@ -383,7 +373,7 @@ namespace EA4S.DancingDots
 				{
 					yield return new WaitForSeconds(0.25f);
 					dd.gameObject.SetActive(false);
-					CreatePoof(dd.transform.position, 2f);
+					CreatePoof(dd.transform.position, 2f, true);
 				}
 
 			}
@@ -478,10 +468,9 @@ namespace EA4S.DancingDots
 
 	    IEnumerator EndGame_Coroutine()
 		{
+			isPlaying = false;
 
 			dancingDotsLL.LivingLetterAnimator.Play("idle");
-
-			StopCoroutine(AnimateAntura());
 
 			yield return new WaitForSeconds(1f);
 

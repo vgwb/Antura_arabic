@@ -9,6 +9,14 @@ namespace EA4S.Egg
         public EggLivingLetter eggLivingLetter;
         public GameObject egg;
 
+        public Collider eggCollider;
+
+        public TremblingTube tremblingEgg;
+        float tremblingTimer;
+
+        public Action onEggCrackComplete;
+        public Action onEggExitComplete;
+
         Tween moveTweener;
         Tween rotationTweener;
 
@@ -21,18 +29,21 @@ namespace EA4S.Egg
 
         Vector3[] eggPositions;
 
-        public void Initialize(Vector3[] eggPositions)
+        public void Initialize(GameObject letterObjectViewPrefab,  Vector3[] eggPositions)
         {
             this.eggPositions = eggPositions;
+            eggLivingLetter.Initialize(letterObjectViewPrefab);
         }
 
         public void Reset()
         {
-            currentRotation = Vector3.zero;
+            currentRotation = new Vector3(0f, 0f, -90f);
             GoToPosition(0, currentRotation);
 
             eggLivingLetter.gameObject.SetActive(false);
             egg.gameObject.SetActive(true);
+
+            tremblingTimer = 0f;
         }
 
         public void MoveNext(float duration, Action callback)
@@ -52,15 +63,32 @@ namespace EA4S.Egg
             TransformTo(eggPositions[currentPosition], currentRotation, duration, callback);
         }
 
-        public void Cracking()
+        public void ResetCrack()
         {
 
+        }
+
+        public void Cracking(float progress)
+        {
+            StartTrembling();
+
+            if (progress == 1f)
+            {
+                Crack();
+            }
         }
 
         public void Crack()
         {
             eggLivingLetter.gameObject.SetActive(true);
+            eggLivingLetter.PlayIdleAnimation();
+
             egg.gameObject.SetActive(false);
+
+            if (onEggCrackComplete != null)
+            {
+                onEggCrackComplete();
+            }
         }
 
         void MoveTo(Vector3 position, float duration)
@@ -70,7 +98,16 @@ namespace EA4S.Egg
                 moveTweener.Kill();
             }
 
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () { if (endTransformToCallback != null) endTransformToCallback(); });
+            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate ()
+            {
+                if (endTransformToCallback != null) endTransformToCallback();
+
+                if (onEggExitComplete != null && (currentPosition == eggPositions.Length - 1))
+                {
+                    onEggExitComplete();
+                }
+
+            });
         }
 
         void RoteteTo(Vector3 rotation, float duration)
@@ -100,6 +137,34 @@ namespace EA4S.Egg
 
             transform.localPosition = eggPositions[currentPosition];
             egg.transform.eulerAngles = rotation;
+        }
+
+        public void EnableInput()
+        {
+            eggCollider.enabled = true;
+        }
+
+        public void DisableInput()
+        {
+            eggCollider.enabled = false;
+        }
+
+        void Update()
+        {
+            if (tremblingTimer > 0f)
+            {
+                tremblingTimer -= Time.deltaTime;
+                tremblingEgg.Trembling = true;
+            }
+            else
+            {
+                tremblingEgg.Trembling = false;
+            }
+        }
+
+        public void StartTrembling()
+        {
+            tremblingTimer = 0.5f;
         }
     }
 }

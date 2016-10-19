@@ -30,7 +30,7 @@ namespace EA4S
             dropAreaSetPosition();
         }
 
-        public void clean()
+        public void Clean()
         {
             foreach (var item in Aree) {
                 GameObject.Destroy(item.gameObject);
@@ -53,11 +53,11 @@ namespace EA4S
             if (actualAreaIndex < Aree.Count - 1) { 
                 actualAreaIndex++;
                 // TODO: move to FastCrowd domain
-                LoggerEA4S.Log("minigame", "fastcrowd" + FastCrowd.FastCrowd.Instance.VariationPrefix, "newLetter", Aree[actualAreaIndex].Data.Key);
+                //LoggerEA4S.Log("minigame", "fastcrowd" + FastCrowd.FastCrowd.Instance.VariationPrefix, "newLetter", Aree[actualAreaIndex].Data.Key);
                 DOTween.Sequence().InsertCallback(1, delegate ()
                     {
                         // Todo: move to FastCrowd domain
-                        if (FastCrowd.FastCrowdConfiguration.Instance.Variation == 2)
+                        if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words)
                             AudioManager.I.PlaySfx(Sfx.Hit);
                         dropAreaSetPosition();
                     });
@@ -69,7 +69,7 @@ namespace EA4S
                             {
                                 // Todo: move to FastCrowd domain
                                 float waitAtEnd = 2;
-                                if (FastCrowd.FastCrowdConfiguration.Instance.Variation == 2) { 
+                                if (FastCrowd.FastCrowdConfiguration.Instance.Variation == FastCrowd.FastCrowdVariation.Words) { 
                                     AudioManager.I.PlaySfx(Sfx.Hit);
                                     waitAtEnd = 1;
                                 }
