@@ -26,7 +26,7 @@ namespace EA4S.FastCrowd
             game.QuestionManager.OnCompleted += OnQuestionCompleted;
             game.QuestionManager.OnDropped += OnAnswerDropped;
 
-            // Generate wrong answers
+            /*
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
             for (int i = 0; 
@@ -36,9 +36,11 @@ namespace EA4S.FastCrowd
             {
                 wrongAnswers.Add(game.NoiseData[i]);
             }
+            */
+
 
             if (game.CurrentChallenge != null)
-                game.QuestionManager.StartQuestion(game.CurrentChallenge, wrongAnswers);
+                game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
             else
                 game.QuestionManager.Clean();
 
@@ -100,7 +102,7 @@ namespace EA4S.FastCrowd
                 item.isAnturaMoment = false;
             }
 
-            AudioManager.I.PlayMusic(Music.Theme3);
+            game.Context.GetAudioManager().PlayMusic(Music.Theme3);
         }
 
         void StartAntura()
@@ -115,8 +117,8 @@ namespace EA4S.FastCrowd
             {
                 item.isAnturaMoment = true;
             }
-
-            AudioManager.I.PlayMusic(Music.MainTheme);
+            
+            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
         public void Update(float delta)

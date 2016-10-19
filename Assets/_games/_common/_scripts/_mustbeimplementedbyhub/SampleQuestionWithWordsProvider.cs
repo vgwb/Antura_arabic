@@ -5,22 +5,21 @@ using System.Linq;
 namespace EA4S
 {
     /// <summary>
-    /// This sample class generates 32 quizzes of type "I give you a word, you say what letters it contains"
+    /// This sample class generates 32 quizzes of type "I give you a word, you say that word"
     /// </summary>
-    public class SampleQuestionProvider : IQuestionProvider
+    public class SampleQuestionWithWordsProvider : IQuestionProvider
     {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
         string description;
 
         int currentQuestion;
 
-        public SampleQuestionProvider()
+        public SampleQuestionWithWordsProvider ()
         {
             currentQuestion = 0;
 
             description = "Questions description";
 
-            // 10 QuestionPacks
             for (int i = 0; i < 32; i++)
             {
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
@@ -31,21 +30,16 @@ namespace EA4S
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Word, AppManager.Instance.Letters))
-                {
-                    correctAnswers.Add(letterData);
-                }
+                correctAnswers.Add(newWordData);
 
-                correctAnswers = correctAnswers.Distinct().ToList();
-
-                // At least 4 wrong letters
+                // At least 4 wrong words
                 while (wrongAnswers.Count < 4)
                 {
-                    var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
 
-                    if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter))
+                    if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word))
                     {
-                        wrongAnswers.Add(letter);
+                        wrongAnswers.Add(word);
                     }
                 }
 

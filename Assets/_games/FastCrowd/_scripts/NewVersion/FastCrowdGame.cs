@@ -71,7 +71,7 @@ namespace EA4S.FastCrowd
 
         protected override void OnInitialize(IGameContext context)
         {
-            float difficulty = FastCrowdConfiguration.Instance.Difficulty;
+            //float difficulty = FastCrowdConfiguration.Instance.Difficulty;
 
             IntroductionState = new FastCrowdIntroductionState(this);
             QuestionState = new FastCrowdQuestionState(this);
@@ -115,6 +115,8 @@ namespace EA4S.FastCrowd
                 var stringListOfWords = "";
                 for (int i = 0, count = CurrentChallenge.Count; i < count; ++i)
                 {
+                    Debug.Log(CurrentChallenge[i]);
+
                     var word = ((WordData)CurrentChallenge[i]).Word;
 
                     if (i == 0)
