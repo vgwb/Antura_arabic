@@ -10,26 +10,30 @@ namespace EA4S.Test {
 
     public class MiniGamesDropDownList : Dropdown {
 
+
         new void Start() {
             options.Clear();
             options.AddRange(addOptionsFromEnum<MiniGameCode>());
             onValueChanged.AddListener(delegate {
                 // Example minigame call
+                MiniGameCode miniGameCodeSelected = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), options[value].text);
+
+                float difficulty = float.Parse(FindObjectsOfType<InputField>().First(n => n.name == "Difficulty").text);
+
 
                 MiniGameAPI.Instance.StartGame(
-                    (MiniGameCode)Enum.Parse(typeof(MiniGameCode), options[value].text),
-                    CreateQuestionPack(9).ConvertAll(e => (IGameData)e),
-                    new GameConfiguration(1)
+                    miniGameCodeSelected,
+                    CreateQuestionPack(9),
+                    new GameConfiguration(difficulty)
                     );
                 
-
             });
 
         }
 
-        List<SampleQuestionPack> CreateQuestionPack(int _dimensionPack) {
+        List<FindRightDataQuestionPack> CreateQuestionPack(int _dimensionPack) {
 
-            List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
+            List<FindRightDataQuestionPack> questions = new List<FindRightDataQuestionPack>();
 
             // 10 QuestionPacks
             for (int i = 0; i < _dimensionPack; i++) {
@@ -52,7 +56,7 @@ namespace EA4S.Test {
                     }
                 }
 
-                var currentPack = new SampleQuestionPack(newWordData, wrongAnswers, correctAnswers);
+                var currentPack = new FindRightDataQuestionPack( newWordData, wrongAnswers, correctAnswers);
                 
                 questions.Add(currentPack);
             }

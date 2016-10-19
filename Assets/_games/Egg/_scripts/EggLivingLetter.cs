@@ -1,78 +1,47 @@
-﻿using ArabicSupport;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EA4S.Egg
 {
     public class EggLivingLetter : MonoBehaviour
     {
-        const string idleAnimation = "idle";
-        const string holdAnimation = "hold";
-        const string runAnimation = "run";
-        const string walkAnimation = "walk";
-        const string ninjaAnimation = "ninja";
-
-        public Transform livingLetterTransform;
         public BoxCollider boxCollider;
 
-        public Animator AnturaAnimator;
+        GameObject letterObjectViewPrefab;
 
-        public TextMeshPro livingLetterText;
+        LetterObjectView livingLetter;
 
-        Vector3 holdPosition;
-        Vector3 normalPosition;
-
-        void Awake()
+        public void Initialize(GameObject letterObjectViewPrefab)
         {
-            normalPosition = livingLetterTransform.localPosition;
-
-            holdPosition.x = normalPosition.x + 1f;
-            holdPosition.y = normalPosition.y + 5f;
-
-            PlayIdleAnimation();
+            this.letterObjectViewPrefab = letterObjectViewPrefab;
         }
 
         public void PlayIdleAnimation()
         {
-            PlayAnimation(idleAnimation);
-
-            livingLetterTransform.localPosition = normalPosition;
+            livingLetter.Model.State = LetterObjectState.LL_idle_1;
         }
 
         public void PlayWalkAnimation()
         {
-            PlayAnimation(walkAnimation);
-
-            livingLetterTransform.localPosition = normalPosition;
+            livingLetter.Model.State = LetterObjectState.LL_walk;
         }
 
-        public void PlayHoldAnimation()
+        public void PlayHorrayAnimation()
         {
-            PlayAnimation(holdAnimation);
-
-            livingLetterTransform.localPosition = holdPosition;
+            livingLetter.Model.State = LetterObjectState.LL_horray;
         }
 
-        void PlayAnimation(string animation)
+        public void SetLetter(ILivingLetterData livingLetterData)
         {
-            AnturaAnimator.Play(animation);
-        }
-
-        public void SetQuestionText(ILivingLetterData livingLetterData)
-        {
-            if (livingLetterData.DataType == LivingLetterDataType.Letter)
+            if(livingLetter != null)
             {
-                livingLetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LetterData)livingLetterData).Isolated_Unicode);
+                Destroy(livingLetter.gameObject);
             }
-            else
-            {
-                livingLetterText.text = ArabicFixer.Fix(((WordData)livingLetterData).Word, false, false);
-            }
-        }
 
-        public void ClearQuestionText()
-        {
-            livingLetterText.text = "";
+            livingLetter = GameObject.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
+
+            livingLetter.transform.SetParent(transform);
+            livingLetter.transform.localPosition = Vector3.zero;
+            livingLetter.Init(livingLetterData);
         }
     }
 }
