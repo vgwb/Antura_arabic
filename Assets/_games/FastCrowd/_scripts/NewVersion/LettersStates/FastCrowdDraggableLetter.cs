@@ -100,6 +100,9 @@ public class FastCrowdDraggableLetter : MonoBehaviour
             {
                 var dropArea = singleArea.transform.parent.GetComponent<DropAreaWidget>(); // dirty hack
 
+                if (dropArea == null)
+                    return;
+
                 currentDropAreaWidget = dropArea;
                 currentDropArea = singleArea;
 
