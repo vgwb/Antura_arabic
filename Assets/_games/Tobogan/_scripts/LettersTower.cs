@@ -316,7 +316,7 @@ namespace EA4S.Tobogan
                 float compressedHeight = lastCompressionValue * fullHeight;
 
                 float currentFallHeight = letter.transform.position.y - transform.position.y - compressedHeight;
-                float totalFallHeight = fallingSpawnHeight - compressedHeight;
+                //float totalFallHeight = fallingSpawnHeight - compressedHeight;
 
                 toStack = (currentFallHeight <= 0);
             }

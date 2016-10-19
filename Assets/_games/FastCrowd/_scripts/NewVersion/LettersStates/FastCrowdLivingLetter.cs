@@ -19,13 +19,10 @@ public class FastCrowdLivingLetter : MonoBehaviour
     // Use Scare() method instead
     private LetterScaredState ScaredState { get; set; }
 
-    LetterObjectView thisView;
-
     Collider[] colliders;
 
     void Awake()
     {
-        thisView = GetComponent<LetterObjectView>();
         colliders = GetComponentsInChildren<Collider>();
 
         WalkingState = new LetterWalkingState(this);
@@ -48,7 +45,7 @@ public class FastCrowdLivingLetter : MonoBehaviour
         stateManager.UpdatePhysics(Time.fixedDeltaTime);
     }
 
-    public bool Raycast(out Vector3 position, Ray ray, float maxDistance)
+    public bool Raycast(out float distance, out Vector3 position, Ray ray, float maxDistance)
     {
         for (int i = 0, count = colliders.Length; i < count; ++i)
         {
@@ -56,10 +53,12 @@ public class FastCrowdLivingLetter : MonoBehaviour
             if (colliders[i].Raycast(ray, out info, maxDistance))
             {
                 position = info.point;
+                distance = info.distance;
                 return true;
             }
         }
         position = Vector3.zero;
+        distance = 0;
         return false;
     }
 

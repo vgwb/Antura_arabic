@@ -2,54 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EA4S
+namespace EA4S.FastCrowd
 {
     /// <summary>
-    /// This sample class generates 32 quizzes of type "I give you a word, you say what letters it contains"
+    /// This sample class generates 32 quizzes of type "I give you a word, you say that word"
     /// </summary>
-    public class SampleQuestionProvider : IQuestionProvider
+    public class SampleQuestionWordsVariationProvider : IQuestionProvider
     {
         List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
         string description;
 
         int currentQuestion;
 
-        public SampleQuestionProvider()
+        public SampleQuestionWordsVariationProvider()
         {
             currentQuestion = 0;
 
             description = "Questions description";
 
-            // 10 QuestionPacks
             for (int i = 0; i < 32; i++)
             {
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
-
-                if (newWordData == null)
-                    return;
-
-                foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Word, AppManager.Instance.Letters))
+                for (int j=0; j<3; ++j)
                 {
-                    correctAnswers.Add(letterData);
+                    WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+
+                    correctAnswers.Add(newWordData);
                 }
 
-                correctAnswers = correctAnswers.Distinct().ToList();
-
-                // At least 4 wrong letters
+                // At least 4 wrong words
                 while (wrongAnswers.Count < 4)
                 {
-                    var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
 
-                    if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter))
+                    if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word))
                     {
-                        wrongAnswers.Add(letter);
+                        wrongAnswers.Add(word);
                     }
                 }
 
-                var currentPack = new SampleQuestionPack(newWordData, wrongAnswers, correctAnswers);
+                var currentPack = new SampleQuestionPack(null, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
         }

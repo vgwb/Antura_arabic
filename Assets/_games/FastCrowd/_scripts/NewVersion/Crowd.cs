@@ -37,16 +37,24 @@ namespace EA4S.FastCrowd
 
             var inputManager = FastCrowdConfiguration.Instance.Context.GetInputManager();
 
+            Vector3 draggingPosition = Vector3.zero;
+            float draggingDistance = 100;
+
             for (int i = 0, count = letters.Count; i < count; ++i)
             {
                 Vector3 position;
-                if (letters[i].Raycast(out position, Camera.main.ScreenPointToRay(inputManager.LastPointerPosition), 100))
+                float distance;
+                if (letters[i].Raycast(out distance, out position, Camera.main.ScreenPointToRay(inputManager.LastPointerPosition), draggingDistance) &&
+                    distance < draggingDistance)
                 {
+                    draggingPosition = position;
+                    draggingDistance = distance;
                     dragging = letters[i].GetComponent<FastCrowdDraggableLetter>();
-                    dragging.StartDragging(position - letters[i].transform.position);
-                    break;
                 }
             }
+
+            if (dragging != null)
+                dragging.StartDragging(draggingPosition - dragging.transform.position);
         }
 
         void OnPointerUp()

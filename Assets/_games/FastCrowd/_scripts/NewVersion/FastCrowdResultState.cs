@@ -3,8 +3,7 @@
     public class FastCrowdResultState : IGameState
     {
         FastCrowdGame game;
-
-        float timer = 2;
+        
         public FastCrowdResultState(FastCrowdGame game)
         {
             this.game = game;
