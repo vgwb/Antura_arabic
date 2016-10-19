@@ -24,6 +24,7 @@ namespace EA4S.FastCrowd
 
         public override void ExitState()
         {
+            view.Model.State = LetterObjectState.LL_land;
         }
 
         public override void Update(float delta)
