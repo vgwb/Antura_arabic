@@ -392,6 +392,8 @@ namespace EA4S.ThrowBalls
             switch (chargeStrength)
             {
                 case ChargeStrength.None:
+                    Reset();
+                    return;
                     break;
                 case ChargeStrength.Low:
                     letterPos = ThrowBallsGameManager.Instance.GetPositionOfLetter(0);
