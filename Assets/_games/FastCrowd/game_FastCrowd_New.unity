@@ -185,7 +185,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 47691808}
   - 33: {fileID: 47691811}
-  - 64: {fileID: 47691810}
   - 23: {fileID: 47691809}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -236,18 +235,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &47691810
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 47691807}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &47691811
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -842,7 +829,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 141237734}
   - 33: {fileID: 141237737}
-  - 64: {fileID: 141237736}
   - 23: {fileID: 141237735}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -893,18 +879,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &141237736
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 141237733}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &141237737
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1027,7 +1001,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 174911464}
   - 33: {fileID: 174911467}
-  - 64: {fileID: 174911466}
   - 23: {fileID: 174911465}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -1078,18 +1051,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &174911466
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 174911463}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &174911467
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1314,7 +1275,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 252077881}
   - 33: {fileID: 252077884}
-  - 64: {fileID: 252077883}
   - 23: {fileID: 252077882}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -1365,18 +1325,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &252077883
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 252077880}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &252077884
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1393,7 +1341,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 258004738}
   - 33: {fileID: 258004741}
-  - 64: {fileID: 258004740}
   - 23: {fileID: 258004739}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -1444,18 +1391,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &258004740
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 258004737}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &258004741
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1562,7 +1497,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 276441301}
   - 33: {fileID: 276441304}
-  - 64: {fileID: 276441303}
   - 23: {fileID: 276441302}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -1613,18 +1547,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &276441303
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 276441300}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &276441304
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1641,7 +1563,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 279511650}
   - 33: {fileID: 279511653}
-  - 64: {fileID: 279511652}
   - 23: {fileID: 279511651}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -1692,18 +1613,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &279511652
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 279511649}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &279511653
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1720,7 +1629,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 290979316}
   - 33: {fileID: 290979319}
-  - 64: {fileID: 290979318}
   - 23: {fileID: 290979317}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -1771,18 +1679,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &290979318
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 290979315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &290979319
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1799,7 +1695,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 314457445}
   - 33: {fileID: 314457448}
-  - 64: {fileID: 314457447}
   - 23: {fileID: 314457446}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -1850,18 +1745,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &314457447
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 314457444}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &314457448
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1972,7 +1855,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 370039363}
   - 33: {fileID: 370039366}
-  - 64: {fileID: 370039365}
   - 23: {fileID: 370039364}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -2023,18 +1905,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &370039365
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 370039362}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &370039366
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2216,7 +2086,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 401129003}
   - 33: {fileID: 401129006}
-  - 64: {fileID: 401129005}
   - 23: {fileID: 401129004}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -2267,18 +2136,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &401129005
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 401129002}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &401129006
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2295,7 +2152,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 428169745}
   - 33: {fileID: 428169748}
-  - 64: {fileID: 428169747}
   - 23: {fileID: 428169746}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -2346,18 +2202,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &428169747
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 428169744}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &428169748
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2387,7 +2231,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 476723360}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: 6.92, y: -0.01, z: -3.91}
   m_LocalScale: {x: 1000, y: 1000.00006, z: 1}
   m_LocalEulerAnglesHint: {x: 89.980194, y: 0, z: 0}
   m_Children:
@@ -2579,7 +2423,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 528889703}
   - 33: {fileID: 528889706}
-  - 64: {fileID: 528889705}
   - 23: {fileID: 528889704}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -2630,18 +2473,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &528889705
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 528889702}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &528889706
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2904,7 +2735,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 593282106}
   - 33: {fileID: 593282109}
-  - 64: {fileID: 593282108}
   - 23: {fileID: 593282107}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -2955,18 +2785,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &593282108
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 593282105}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &593282109
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3069,7 +2887,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 601562494}
   - 33: {fileID: 601562497}
-  - 64: {fileID: 601562496}
   - 23: {fileID: 601562495}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -3120,18 +2937,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &601562496
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 601562493}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &601562497
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3148,7 +2953,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 613919833}
   - 33: {fileID: 613919836}
-  - 64: {fileID: 613919835}
   - 23: {fileID: 613919834}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -3199,18 +3003,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &613919835
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 613919832}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &613919836
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3673,7 +3465,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 697403474}
   - 33: {fileID: 697403477}
-  - 64: {fileID: 697403476}
   - 23: {fileID: 697403475}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -3724,18 +3515,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &697403476
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 697403473}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &697403477
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3842,7 +3621,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 712025482}
   - 33: {fileID: 712025485}
-  - 64: {fileID: 712025484}
   - 23: {fileID: 712025483}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -3893,18 +3671,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &712025484
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 712025481}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &712025485
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4350,7 +4116,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 823195905}
   - 33: {fileID: 823195908}
-  - 64: {fileID: 823195907}
   - 23: {fileID: 823195906}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -4401,18 +4166,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &823195907
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823195904}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &823195908
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4429,7 +4182,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 833870695}
   - 33: {fileID: 833870698}
-  - 64: {fileID: 833870697}
   - 23: {fileID: 833870696}
   m_Layer: 2
   m_Name: shadow-tree (2)
@@ -4480,18 +4232,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &833870697
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 833870694}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &833870698
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4508,7 +4248,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 838151810}
   - 33: {fileID: 838151813}
-  - 64: {fileID: 838151812}
   - 23: {fileID: 838151811}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -4559,18 +4298,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &838151812
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 838151809}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &838151813
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4873,8 +4600,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 872909832}
   - 33: {fileID: 872909831}
-  - 64: {fileID: 872909830}
   - 23: {fileID: 872909829}
+  - 65: {fileID: 872909830}
   m_Layer: 8
   m_Name: TerrainWalkable
   m_TagString: Untagged
@@ -4911,18 +4638,18 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &872909830
-MeshCollider:
+--- !u!65 &872909830
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 872909828}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &872909831
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5022,8 +4749,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 886257704}
   - 33: {fileID: 886257707}
-  - 64: {fileID: 886257706}
   - 23: {fileID: 886257705}
+  - 65: {fileID: 886257706}
   m_Layer: 8
   m_Name: TerrainWalkable (2)
   m_TagString: Untagged
@@ -5073,18 +4800,18 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &886257706
-MeshCollider:
+--- !u!65 &886257706
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 886257703}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &886257707
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5101,7 +4828,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 895258829}
   - 33: {fileID: 895258832}
-  - 64: {fileID: 895258831}
   - 23: {fileID: 895258830}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -5152,18 +4878,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &895258831
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 895258828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &895258832
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5180,7 +4894,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 904544300}
   - 33: {fileID: 904544303}
-  - 64: {fileID: 904544302}
   - 23: {fileID: 904544301}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -5231,18 +4944,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &904544302
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 904544299}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &904544303
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5377,7 +5078,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 942675535}
   - 33: {fileID: 942675538}
-  - 64: {fileID: 942675537}
   - 23: {fileID: 942675536}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -5428,18 +5128,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &942675537
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 942675534}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &942675538
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5484,8 +5172,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 968019326}
   - 33: {fileID: 968019329}
-  - 64: {fileID: 968019328}
   - 23: {fileID: 968019327}
+  - 65: {fileID: 968019328}
   m_Layer: 8
   m_Name: TerrainWalkable (1)
   m_TagString: Untagged
@@ -5535,18 +5223,18 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &968019328
-MeshCollider:
+--- !u!65 &968019328
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 968019325}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Size: {x: 1, y: 0.99999994, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &968019329
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5563,7 +5251,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 969090337}
   - 33: {fileID: 969090340}
-  - 64: {fileID: 969090339}
   - 23: {fileID: 969090338}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -5614,18 +5301,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &969090339
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 969090336}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &969090340
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5642,7 +5317,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 969905702}
   - 33: {fileID: 969905705}
-  - 64: {fileID: 969905704}
   - 23: {fileID: 969905703}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -5693,18 +5367,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &969905704
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 969905701}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &969905705
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5721,7 +5383,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 972941800}
   - 33: {fileID: 972941803}
-  - 64: {fileID: 972941802}
   - 23: {fileID: 972941801}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -5772,18 +5433,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &972941802
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 972941799}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &972941803
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6464,7 +6113,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1134668450}
   - 33: {fileID: 1134668453}
-  - 64: {fileID: 1134668452}
   - 23: {fileID: 1134668451}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -6515,18 +6163,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1134668452
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1134668449}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1134668453
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6633,7 +6269,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1198284906}
   - 33: {fileID: 1198284909}
-  - 64: {fileID: 1198284908}
   - 23: {fileID: 1198284907}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -6684,18 +6319,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1198284908
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1198284905}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1198284909
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6974,7 +6597,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1277814889}
   - 33: {fileID: 1277814892}
-  - 64: {fileID: 1277814891}
   - 23: {fileID: 1277814890}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -7025,18 +6647,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1277814891
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1277814888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1277814892
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7053,7 +6663,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1297811756}
   - 33: {fileID: 1297811759}
-  - 64: {fileID: 1297811758}
   - 23: {fileID: 1297811757}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -7104,18 +6713,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1297811758
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1297811755}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1297811759
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7484,7 +7081,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1390036867}
   - 33: {fileID: 1390036870}
-  - 64: {fileID: 1390036869}
   - 23: {fileID: 1390036868}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -7535,18 +7131,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1390036869
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1390036866}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1390036870
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7605,7 +7189,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1411710100}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.04, z: 0}
+  m_LocalPosition: {x: 0, y: -0.04, z: -1.28}
   m_LocalScale: {x: 1000, y: 1000.00006, z: 1}
   m_LocalEulerAnglesHint: {x: 89.980194, y: 0, z: 0}
   m_Children:
@@ -7740,7 +7324,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1464528112}
   - 33: {fileID: 1464528115}
-  - 64: {fileID: 1464528114}
   - 23: {fileID: 1464528113}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -7791,18 +7374,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1464528114
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1464528111}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1464528115
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8047,7 +7618,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1510388641}
   - 33: {fileID: 1510388644}
-  - 64: {fileID: 1510388643}
   - 23: {fileID: 1510388642}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -8098,18 +7668,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1510388643
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1510388640}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1510388644
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8216,7 +7774,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1523399650}
   - 33: {fileID: 1523399653}
-  - 64: {fileID: 1523399652}
   - 23: {fileID: 1523399651}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -8267,18 +7824,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1523399652
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1523399649}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1523399653
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8295,7 +7840,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1541186796}
   - 33: {fileID: 1541186799}
-  - 64: {fileID: 1541186798}
   - 23: {fileID: 1541186797}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -8346,18 +7890,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1541186798
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1541186795}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1541186799
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8374,7 +7906,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1552451393}
   - 33: {fileID: 1552451396}
-  - 64: {fileID: 1552451395}
   - 23: {fileID: 1552451394}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -8425,18 +7956,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1552451395
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1552451392}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1552451396
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8813,7 +8332,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1648118985}
   - 33: {fileID: 1648118988}
-  - 64: {fileID: 1648118987}
   - 23: {fileID: 1648118986}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -8864,18 +8382,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1648118987
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1648118984}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1648118988
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8960,7 +8466,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1677212309}
   - 33: {fileID: 1677212312}
-  - 64: {fileID: 1677212311}
   - 23: {fileID: 1677212310}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -9011,18 +8516,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1677212311
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1677212308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1677212312
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9039,7 +8532,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1678256048}
   - 33: {fileID: 1678256051}
-  - 64: {fileID: 1678256050}
   - 23: {fileID: 1678256049}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -9090,18 +8582,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1678256050
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1678256047}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1678256051
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9525,7 +9005,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1749553686}
   - 33: {fileID: 1749553689}
-  - 64: {fileID: 1749553688}
   - 23: {fileID: 1749553687}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -9576,18 +9055,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1749553688
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1749553685}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1749553689
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9604,7 +9071,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1751923008}
   - 33: {fileID: 1751923011}
-  - 64: {fileID: 1751923010}
   - 23: {fileID: 1751923009}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -9655,18 +9121,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1751923010
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1751923007}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1751923011
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9683,7 +9137,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1763148745}
   - 33: {fileID: 1763148748}
-  - 64: {fileID: 1763148747}
   - 23: {fileID: 1763148746}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -9734,18 +9187,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1763148747
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1763148744}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1763148748
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9946,7 +9387,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1818629829}
   - 33: {fileID: 1818629832}
-  - 64: {fileID: 1818629831}
   - 23: {fileID: 1818629830}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -9997,18 +9437,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1818629831
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1818629828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1818629832
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10025,7 +9453,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1821592344}
   - 33: {fileID: 1821592347}
-  - 64: {fileID: 1821592346}
   - 23: {fileID: 1821592345}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -10076,18 +9503,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1821592346
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1821592343}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1821592347
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10104,7 +9519,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1825288756}
   - 33: {fileID: 1825288759}
-  - 64: {fileID: 1825288758}
   - 23: {fileID: 1825288757}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -10155,18 +9569,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1825288758
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1825288755}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1825288759
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10183,7 +9585,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1835095763}
   - 33: {fileID: 1835095766}
-  - 64: {fileID: 1835095765}
   - 23: {fileID: 1835095764}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -10234,18 +9635,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1835095765
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1835095762}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1835095766
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10756,7 +10145,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1937879368}
   - 33: {fileID: 1937879371}
-  - 64: {fileID: 1937879370}
   - 23: {fileID: 1937879369}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -10807,18 +10195,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1937879370
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1937879367}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1937879371
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10840,7 +10216,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1946874147}
   - 33: {fileID: 1946874150}
-  - 64: {fileID: 1946874149}
   - 23: {fileID: 1946874148}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -10891,18 +10266,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1946874149
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1946874146}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1946874150
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10919,7 +10282,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1953136802}
   - 33: {fileID: 1953136805}
-  - 64: {fileID: 1953136804}
   - 23: {fileID: 1953136803}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -10970,18 +10332,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1953136804
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1953136801}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1953136805
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10998,7 +10348,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1968145906}
   - 33: {fileID: 1968145909}
-  - 64: {fileID: 1968145908}
   - 23: {fileID: 1968145907}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -11049,18 +10398,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &1968145908
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1968145905}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1968145909
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11249,7 +10586,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2017910036}
   - 33: {fileID: 2017910039}
-  - 64: {fileID: 2017910038}
   - 23: {fileID: 2017910037}
   m_Layer: 2
   m_Name: shadow-tree (1)
@@ -11300,18 +10636,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &2017910038
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2017910035}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &2017910039
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11328,7 +10652,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2023527621}
   - 33: {fileID: 2023527624}
-  - 64: {fileID: 2023527623}
   - 23: {fileID: 2023527622}
   m_Layer: 2
   m_Name: shadow-tree (4)
@@ -11379,18 +10702,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &2023527623
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2023527620}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &2023527624
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11497,7 +10808,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2056680777}
   - 33: {fileID: 2056680780}
-  - 64: {fileID: 2056680779}
   - 23: {fileID: 2056680778}
   m_Layer: 2
   m_Name: shadow-tree (5)
@@ -11548,18 +10858,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &2056680779
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2056680776}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &2056680780
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11694,7 +10992,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2083549338}
   - 33: {fileID: 2083549341}
-  - 64: {fileID: 2083549340}
   - 23: {fileID: 2083549339}
   m_Layer: 2
   m_Name: shadow-tree (3)
@@ -11745,18 +11042,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &2083549340
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2083549337}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &2083549341
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11773,7 +11058,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2093322222}
   - 33: {fileID: 2093322225}
-  - 64: {fileID: 2093322224}
   - 23: {fileID: 2093322223}
   m_Layer: 2
   m_Name: shadow-tree (2)
@@ -11824,18 +11108,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &2093322224
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2093322221}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &2093322225
 MeshFilter:
   m_ObjectHideFlags: 0

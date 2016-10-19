@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FastCrowdWalkableArea : MonoBehaviour
 {
     public GameObject[] spawnPoints;
-
+    Collider[] colliders;
 
     void Awake()
     {
-        
+        colliders = GetComponentsInChildren<Collider>(false);
     }
 
     public Vector3 GetFurthestSpawn(List<FastCrowdLivingLetter> letters)
@@ -44,15 +45,27 @@ public class FastCrowdWalkableArea : MonoBehaviour
         return randomPosition;
     }
 
-    /*
-    public Vector3 GetNearestPoint(Vector2 planePosition)
+
+    public Vector3 GetNearestPoint(Vector3 pos)
     {
+        Vector3 nearest = pos;
+        float nearestDistance = float.PositiveInfinity;
+
         for (int i = 0, count = colliders.Length; i < count; ++i)
         {
+            var nearPos = colliders[i].ClosestPointOnBounds(pos);
+
+            float distance = Vector3.Distance(nearPos, pos);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearest = nearPos;
+            }
         }
-        return Vector3.zero;
+
+        return nearest;
     }
-    */
+    
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {

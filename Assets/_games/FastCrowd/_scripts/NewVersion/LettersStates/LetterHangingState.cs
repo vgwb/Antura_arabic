@@ -8,9 +8,11 @@ namespace EA4S.FastCrowd
     {
         List<FastCrowdLivingLetter> near = new List<FastCrowdLivingLetter>();
 
+        FastCrowdLetterMovement movement;
+
         public LetterHangingState(FastCrowdLivingLetter letter) : base(letter)
         {
-
+            movement = letter.GetComponent<FastCrowdLetterMovement>();
         }
 
         public override void EnterState()
@@ -33,7 +35,7 @@ namespace EA4S.FastCrowd
                 near[i].Scare(letter.transform.position, 2);
 
             // Face Camera!
-            letter.LerpLookAt(Camera.main.transform.position, 3*delta);
+            movement.LerpLookAt(Camera.main.transform.position, 3*delta);
         }
 
         public override void UpdatePhysics(float delta)

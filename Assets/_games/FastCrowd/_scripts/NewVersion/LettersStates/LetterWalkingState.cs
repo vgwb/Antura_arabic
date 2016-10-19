@@ -6,8 +6,11 @@ namespace EA4S.FastCrowd
 {
     public class LetterWalkingState : LetterState
     {
+        FastCrowdLetterMovement movement;
+        
         public LetterWalkingState(FastCrowdLivingLetter letter) : base(letter)
         {
+            movement = letter.GetComponent<FastCrowdLetterMovement>();
 
         }
 
@@ -49,8 +52,8 @@ namespace EA4S.FastCrowd
         public override void Update(float delta)
         {
             Vector3 distance = target - letter.transform.position;
-            letter.transform.position += distance.normalized * speed * delta;
-            letter.LerpLookAt(target, 4 * delta);
+            movement.MoveAmount(distance.normalized * speed * delta);
+            movement.LerpLookAt(target, 4 * delta);
 
             timer -= delta;
 
@@ -58,6 +61,8 @@ namespace EA4S.FastCrowd
             {
                 letter.SetCurrentState(letter.IdleState);
             }
+
+            Debug.DrawLine(letter.transform.position, target);
         }
 
         public override void UpdatePhysics(float delta)
