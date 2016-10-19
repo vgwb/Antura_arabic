@@ -130,77 +130,81 @@ namespace EA4S.API {
 
         
 
-        public void StartGame(string _gameName) {
-            string prefix = "game_";
+        //public void StartGame(string _gameName) {
+        //    string prefix = "game_";
 
-            MiniGameData gameToBeLouched = AppManager.Instance.DB.GetMiniGameDataById("");
+        //    MiniGameData gameToBeLouched = AppManager.Instance.DB.GetMiniGameDataById("");
             
 
-            switch (_gameName) {
-                case "Tobogan":
-                    // ====================================================
-                    // Set configuration for the actual learning course context.
-                    // ====================================================
-                    Tobogan.ToboganConfiguration.Instance.Difficulty = 0.2f;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new SampleQuestionProvider();
-                    Tobogan.ToboganConfiguration.Instance.Context = new AnturaMinigameContext() {
-                        audioManager = new SampleAudioManager(),
-                        subtitleWidget = new SampleSubtitlesWidget(),
-                        starsWidget = new SampleStarsWidget(),
-                        questionWidget = new SamplePopupWidget(),
-                    };
-                    // ====================================================
-                    // Call game start
-                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "Tobogan");
-                    break;
-                case "TestGame":
-                    break;
-                case "FastCrowd_v1":
-                    //FastCrowd.FastCrowdConfiguration.Instance.Variation = 1;
-                    //FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 70;
-                    //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = 
-                    //    new FindRightLetterQuestionProvider(
-                    //        new FindRightLetterQuestionProvider.Settings() {
-                    //            MaxQuestions = 10
-                    //        }
-                    //    );
-                    //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
-                    //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
-                    break;
-                case "FastCrowd_v2":
-                    //FastCrowd.FastCrowdConfiguration.Instance.Variation = 2;
-                    //FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 80;
-                    //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions =
-                    //    new FindRightLetterQuestionProvider(
-                    //        new FindRightLetterQuestionProvider.Settings() {
-                    //            MaxQuestions = 10
-                    //        }
-                    //    );
-                    //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
-                    //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
-                    break;
-                case "FastCrowd_v3":
-                    //FastCrowd.FastCrowdConfiguration.Instance.Variation = 3;
-                    //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = new FindRightLetterQuestionProvider(
-                    //    new FindRightLetterQuestionProvider.Settings() {
-                    //            MaxQuestions = 8
-                    //        }
-                    //    );
-                    //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
-                    //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
-                    //break;
-                case "FastCrowd_v4":
-                    //FastCrowd.FastCrowdConfiguration.Instance.Variation = 4;
-                    //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = new FindRightLetterQuestionProvider(FindRightLetterQuestionProvider.DefaultSettings);
-                    //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
-                    //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
-                    break;
-                default:
-                    Debug.LogWarningFormat("Game {0} is not a valid active minigame!", _gameName);
-                    break;
-            }
-        }
+        //    switch (_gameName) {
+        //        case "Tobogan":
+        //            // ====================================================
+        //            // Set configuration for the actual learning course context.
+        //            // ====================================================
+        //            Tobogan.ToboganConfiguration.Instance.Difficulty = 0.2f;
+        //            Tobogan.ToboganConfiguration.Instance.PipeQuestions = new SampleQuestionProvider();
+        //            Tobogan.ToboganConfiguration.Instance.Context = new AnturaMinigameContext() {
+        //                audioManager = new SampleAudioManager(),
+        //                subtitleWidget = new SampleSubtitlesWidget(),
+        //                starsWidget = new SampleStarsWidget(),
+        //                questionWidget = new SamplePopupWidget(),
+        //            };
+        //            // ====================================================
+        //            // Call game start
+        //            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "Tobogan");
+        //            break;
+        //        case "TestGame":
+        //            break;
+        //        case "FastCrowd_v1":
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Variation = 1;
+        //            //FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 70;
+        //            //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = 
+        //            //    new FindRightLetterQuestionProvider(
+        //            //        new FindRightLetterQuestionProvider.Settings() {
+        //            //            MaxQuestions = 10
+        //            //        }
+        //            //    );
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+        //            //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+        //            break;
+        //        case "FastCrowd_v2":
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Variation = 2;
+        //            //FastCrowd.FastCrowdConfiguration.Instance.PlayTime = 80;
+        //            //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions =
+        //            //    new FindRightLetterQuestionProvider(
+        //            //        new FindRightLetterQuestionProvider.Settings() {
+        //            //            MaxQuestions = 10
+        //            //        }
+        //            //    );
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+        //            //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+        //            break;
+        //        case "FastCrowd_v3":
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Variation = 3;
+        //            //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = new FindRightLetterQuestionProvider(
+        //            //    new FindRightLetterQuestionProvider.Settings() {
+        //            //            MaxQuestions = 8
+        //            //        }
+        //            //    );
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+        //            //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+        //            //break;
+        //        case "FastCrowd_v4":
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Variation = 4;
+        //            //FastCrowd.FastCrowdConfiguration.Instance.FindRightLetterQuestions = new FindRightLetterQuestionProvider(FindRightLetterQuestionProvider.DefaultSettings);
+        //            //FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.FastCrowd;
+        //            //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(prefix + "FastCrowd");
+        //            break;
+        //        default:
+        //            Debug.LogWarningFormat("Game {0} is not a valid active minigame!", _gameName);
+        //            break;
+        //    }
+        ////}
 
+        public void StartGame(MiniGameCode _gameCode, List<FindRightDataQuestionPack> _gameData, GameConfiguration _gameConfiguration) {
+            StartGame(_gameCode, _gameData.ConvertAll(e => (IGameData)e), _gameConfiguration);
+        }
+            
 
         public void StartGame(MiniGameCode _gameCode, List<IGameData> _gameData,  GameConfiguration _gameConfiguration) {
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataById(_gameCode.ToString());
