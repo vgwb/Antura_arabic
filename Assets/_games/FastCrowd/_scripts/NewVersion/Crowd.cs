@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace EA4S.FastCrowd
 {
@@ -10,6 +11,9 @@ namespace EA4S.FastCrowd
     {
         public event System.Action<bool> onDropped;
 
+        public FastCrowdWalkableArea walkableArea;
+        public AnturaController antura;
+
         public LetterObjectView livingLetterPrefab;
         public GameObject puffPrefab;
 
@@ -18,9 +22,21 @@ namespace EA4S.FastCrowd
         List<FastCrowdLivingLetter> letters = new List<FastCrowdLivingLetter>();
 
         Queue<ILivingLetterData> toAdd = new Queue<ILivingLetterData>();
+
         Queue<FastCrowdLivingLetter> toDestroy = new Queue<FastCrowdLivingLetter>();
         float destroyTimer = 0;
         FastCrowdDraggableLetter dragging;
+
+        public void GetNearLetters(List<FastCrowdLivingLetter> output, Vector3 position, float radius)
+        {
+            for (int i = 0, count = letters.Count; i < count; ++i)
+            {
+                if (Vector3.Distance(letters[i].transform.position, position) < radius)
+                {
+                    output.Add(letters[i]);
+                }
+            }
+        }
 
         void Awake()
         {
@@ -79,41 +95,49 @@ namespace EA4S.FastCrowd
             letters.Clear();
         }
 
+        void SpawnLetter()
+        {
+            // Spawn!
+            LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
+            letterObjectView.transform.SetParent(transform, true);
+            Vector3 newPosition = walkableArea.GetFurthestSpawn(letters); // Find isolated spawn point
+
+            letterObjectView.transform.position = newPosition;
+            letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value*360, 0);
+            letterObjectView.Init(toAdd.Dequeue());
+
+            var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
+            livingLetter.crowd = this;
+
+            letterObjectView.gameObject.AddComponent<FastCrowdDraggableLetter>();
+            letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
+            Destroy(letterObjectView.gameObject.GetComponent<Hangable>());
+            var pos = letterObjectView.transform.position;
+            pos.y = 10;
+            letterObjectView.transform.position = pos;
+
+            letters.Add(livingLetter);
+
+            livingLetter.onDropped += (result) =>
+            {
+                if (result)
+                {
+                    letters.Remove(livingLetter);
+                    toDestroy.Enqueue(livingLetter);
+                }
+
+                if (onDropped != null)
+                    onDropped(result);
+            };
+        }
+
         void Update()
         {
             if (toAdd.Count > 0)
             {
                 if (letters.Count < MaxConcurrentLetters)
                 {
-                    // Spawn!
-                    LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
-                    letterObjectView.transform.SetParent(transform, true);
-                    Vector3 newPosition = Vector3.zero;
-                    GameplayHelper.RandomPointInWalkableArea(transform.position, 20f, out newPosition);
-                    letterObjectView.transform.position = newPosition;
-                    letterObjectView.Init(toAdd.Dequeue());
-
-                    var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
-                    letterObjectView.gameObject.AddComponent<FastCrowdDraggableLetter>();
-                    letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
-                    Destroy(letterObjectView.gameObject.GetComponent<Hangable>());
-                    var pos = letterObjectView.transform.position;
-                    pos.y = 10;
-                    letterObjectView.transform.position = pos;
-
-                    letters.Add(livingLetter);
-
-                    livingLetter.onDropped += (result) =>
-                    {
-                        if (result)
-                        {
-                            letters.Remove(livingLetter);
-                            toDestroy.Enqueue(livingLetter);
-                        }
-
-                        if (onDropped != null)
-                            onDropped(result);
-                    };
+                    SpawnLetter();
                 }
             }
 

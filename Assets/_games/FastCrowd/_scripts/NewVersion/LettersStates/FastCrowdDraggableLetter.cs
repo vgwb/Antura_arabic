@@ -31,7 +31,7 @@ public class FastCrowdDraggableLetter : MonoBehaviour
         var oldPos = letter.transform.position;
         currentY = oldPos.y;
         letter.transform.position = oldPos;
-        
+
         rayOffset = dragOffset;
 
         isDragging = true;
@@ -56,7 +56,7 @@ public class FastCrowdDraggableLetter : MonoBehaviour
         oldPos.y = currentY;
 
         currentY = Mathf.Lerp(currentY, 2, Time.deltaTime * 10.0f);
-        
+
         letter.transform.position = oldPos;
     }
 
@@ -89,6 +89,16 @@ public class FastCrowdDraggableLetter : MonoBehaviour
 
         if (isDragging)
             OnDrag();
+        else
+        {
+            if (currentDropAreaWidget != null)
+            {
+                currentDropAreaWidget.SetMatchingOutline(false, false);
+
+                currentDropAreaWidget = null;
+                currentDropArea = null;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -111,6 +121,12 @@ public class FastCrowdDraggableLetter : MonoBehaviour
                 dropArea.SetMatchingOutline(true, matching);
             }
         }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (currentDropAreaWidget == null)
+            OnTriggerEnter(other);
     }
 
     void OnTriggerExit(Collider other)
