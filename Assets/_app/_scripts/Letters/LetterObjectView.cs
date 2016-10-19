@@ -3,13 +3,15 @@ using DG.Tweening;
 using TMPro;
 using Google2u;
 
-namespace EA4S {
+namespace EA4S
+{
     /// <summary>
     /// View object for letter puppets.
     /// - init component by data
     /// - manage animation
     /// </summary>
-    public class LetterObjectView : MonoBehaviour {
+    public class LetterObjectView : MonoBehaviour
+    {
 
         #region public properties
 
@@ -75,16 +77,18 @@ namespace EA4S {
         /// <summary>
         /// Fallback function to set dummy data to letter if no data is provided.
         /// </summary>
-        void setDummyLetterObject() {
-            lettersRow letRow = letters.Instance.GetRow(letters.Instance.rowNames[0]);
-            Init(new LetterData(letters.Instance.rowNames[0], letRow));
+        void setDummyLetterObject()
+        {
+            var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
+            Init(new LetterData(letterData.GetId()));
             //Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
         }
 
         /// <summary>
         /// Called when [model changed].
         /// </summary>
-        void OnModelChanged() {
+        void OnModelChanged()
+        {
             if (model.Data.DataType == LivingLetterDataType.Image) {
                 ImageSprite.sprite = model.Data.DrawForLivingLetter;
                 ImageSprite.enabled = true;
@@ -101,7 +105,8 @@ namespace EA4S {
         /// </summary>
         /// <param name="_data">The data.</param>
         /// <param name="_behaviourSettingsOverride">The behaviour settings override.</param>
-        public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride) {
+        public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride)
+        {
             Init(_data);
             GetComponent<LetterBehaviour>().Settings = _behaviourSettingsOverride;
         }
@@ -110,7 +115,8 @@ namespace EA4S {
         /// Initializes  object with the specified data.
         /// </summary>
         /// <param name="_data">The data.</param>
-        public void Init(ILivingLetterData _data) {
+        public void Init(ILivingLetterData _data)
+        {
             Model = new LetterObject(_data);
             // Init Animation sequenceExclamationMark
             sequenceExclamationMark = DOTween.Sequence();
@@ -128,17 +134,20 @@ namespace EA4S {
         #endregion
 
         #region event subscription
-        void OnEnable() {
+        void OnEnable()
+        {
 
         }
-        void OnDisable() {
+        void OnDisable()
+        {
             Model.OnStateChanged -= OnStateChanged;
         }
         #endregion
 
         #region events handlers
 
-        void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState) {
+        void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState)
+        {
             // reset animation for Terrified_State
             if (exclamationMark && sequenceExclamationMark != null) {
                 //exclamationMark.transform.localScale = Vector3.zero;
@@ -149,7 +158,7 @@ namespace EA4S {
             }
 
             Debug.Log((int)_newState);
-            
+
             switch (_newState) {
                 case LetterObjectState.LL_idle:
                     // Random from 4 idle animations
@@ -182,7 +191,7 @@ namespace EA4S {
                 case LetterObjectState.LL_horray:
                 case LetterObjectState.LL_highfive:
                 case LetterObjectState.LL_lose:
-                case LetterObjectState.LL_get_angry:
+                //case LetterObjectState.LL_get_angry:
                 case LetterObjectState.LL_get_angry_1:
                 case LetterObjectState.LL_get_angry_2:
                 case LetterObjectState.LL_balance:
@@ -209,7 +218,7 @@ namespace EA4S {
                     break;
 
             }
-            
+
         }
 
         #endregion
@@ -220,7 +229,8 @@ namespace EA4S {
         /// Sets new state.
         /// </summary>
         /// <param name="_newState">The new state.</param>
-        public void SetState(LetterObjectState _newState) {
+        public void SetState(LetterObjectState _newState)
+        {
             Model.State = _newState;
         }
 

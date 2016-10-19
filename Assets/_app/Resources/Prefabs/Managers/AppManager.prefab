@@ -11,7 +11,6 @@ GameObject:
   - 114: {fileID: 11431742}
   - 114: {fileID: 11441512}
   - 114: {fileID: 11455790}
-  - 114: {fileID: 11483638}
   - 114: {fileID: 11444334}
   - 114: {fileID: 11453334}
   - 114: {fileID: 11405910}
@@ -67,13 +66,25 @@ MonoBehaviour:
     DoLogPlayerBehaviour: 0
     HighQualityGfx: 0
   ActualGame: 
-  StartMood: 0
-  StartMoodEval: 0
-  EndMoodEval: 0
+  DB: {fileID: 11400000, guid: e7398fb7d95a5470ab6975cb96382e96, type: 2}
+  CurrentGameManagerGO: {fileID: 0}
   Stage: 2
   LearningBlock: 4
   PlaySession: 1
   PlaySessionGameDone: 0
+  ActualMinigame:
+    Id: 
+    Variation: 
+    Status: 
+    Parent: 
+    Description: 
+    Title_En: 
+    Title_Ar: 
+    Scene: 
+    TitleNew: 
+    Team: 
+    MiniGameCode: 0
+    Available: 0
 --- !u!114 &11441512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,18 +134,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 291b156a9e7dea5479a33c683920beda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ModuleActivationState: 0
---- !u!114 &11483638
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 188774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e0a1a0c0b04dc34e9502192a1a1ae91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ModuleActivationState: 0

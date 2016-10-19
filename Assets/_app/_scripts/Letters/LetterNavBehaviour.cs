@@ -12,6 +12,7 @@ namespace EA4S {
     [RequireComponent(typeof(Rigidbody))]
     public class LetterNavBehaviour : MonoBehaviour
     {
+        public bool isAnturaMoment = false;
         public GameObject WayPointPrefab;
         NavMeshAgent agent;
         Transform wayPoint;
@@ -92,9 +93,9 @@ namespace EA4S {
         }
 
         [Task]
-        public bool IsAnturaMoment() {
-            // TODO: delete reference to single game.
-            return FastCrowd.FastCrowd.Instance.IsAnturaMoment;
+        public bool IsAnturaMoment()
+        {
+            return isAnturaMoment;
         }
 
         #endregion

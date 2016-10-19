@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 namespace EA4S
 {
     public class SampleGameContext : IGameContext
@@ -10,6 +12,7 @@ namespace EA4S
         ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
         IStarsWidget starsWidget = new SampleStarsWidget();
         IPopupWidget questionWidget = new SamplePopupWidget();
+        ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
 
         public IAudioManager GetAudioManager()
         {
@@ -39,6 +42,11 @@ namespace EA4S
         public void Reset()
         {
             inputManager.Reset();
+        }
+
+        public ICheckmarkWidget GetCheckmarkWidget()
+        {
+            return checkmarkWidget;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace EA4S.ThrowBalls
 
         public void OnPokeballLost()
         {
-            pokeballImages[--numPokeballs].sprite = pokeballOffSprite;
+            //pokeballImages[--numPokeballs].sprite = pokeballOffSprite;
         }
 
         public void OnRoundStarted(LetterData _data)

@@ -14,7 +14,7 @@ namespace EA4S.Egg
         {
             this.difficulty = difficulty;
 
-            letterProvider = new SampleLetterProvider(difficulty);
+            letterProvider = new SampleLetterProvider();
             wordProvider = new SampleWordProvider();
 
             onlyLetter = Random.Range(0, 2) == 1;

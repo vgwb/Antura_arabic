@@ -36,7 +36,7 @@ namespace EA4S.FastCrowd {
         private void FastCrowd_OnReadyForGameplayDone(ModularFramework.Modules.IGameplayInfo _gameplayInfo) {
             // TODO: move to fastcrowd manager.
             // Disable this component for living words variant
-            if (FastCrowdConfiguration.Instance.Variation == 2)
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
                 gameObject.SetActive(false);
         }
 

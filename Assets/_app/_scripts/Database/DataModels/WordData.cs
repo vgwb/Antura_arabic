@@ -1,20 +1,40 @@
-﻿using SQLite;
+﻿using System;
+using UnityEngine;
 
 namespace EA4S.Db
 {
-    public class WordData
+    [Serializable]
+    public class WordData : IData
     {
-        [PrimaryKey, AutoIncrement]
-        public string Id { get; set; }
-        public string Kind { get; set; }
-        public string Category { get; set; }
-        public string Stage { get; set; }
-        public string English { get; set; }
-        public string Word { get; set; }
-        public string Letters { get; set; }
-        public string Transliteration { get; set; }
-        public string DifficultyLevel { get; set; }
-        public string NumberOfLetters { get; set; }
-        public string Group { get; set; }
+        public string Id;
+        public string Kind;
+        public string Category;
+        public string English;
+        public string Arabic;
+        public string[] Letters;
+        public string Transliteration;
+        public int Difficulty;
+        public string Group;
+        public int Drawing;
+
+        public int NumberOfLetters { get { return Letters.Length; } }
+
+        public string GetId()
+        {
+            return Id;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0},{1},{2},{3},{4},{5}",
+                Id,
+                Kind,
+                Category,
+                English,
+                Arabic,
+                Transliteration
+                );
+        }
+
     }
 }

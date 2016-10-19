@@ -4,7 +4,7 @@ namespace EA4S.Tobogan
 {
     public class ToboganPlayState : IGameState
     {
-        CountdownTimer gameTime = new CountdownTimer(99.0f);
+        CountdownTimer gameTime = new CountdownTimer(90.0f);
         ToboganGame game;
         IAudioSource timesUpAudioSource;
 
