@@ -20,7 +20,41 @@ namespace EA4S.FastCrowd
         Queue<ILivingLetterData> toAdd = new Queue<ILivingLetterData>();
         Queue<FastCrowdLivingLetter> toDestroy = new Queue<FastCrowdLivingLetter>();
         float destroyTimer = 0;
+        FastCrowdDraggableLetter dragging;
 
+        void Awake()
+        {
+            var inputManager = FastCrowdConfiguration.Instance.Context.GetInputManager();
+
+            inputManager.onPointerDown += OnPointerDown;
+            inputManager.onPointerUp += OnPointerUp;
+        }
+
+        void OnPointerDown()
+        {
+            if (dragging != null)
+                return;
+
+            var inputManager = FastCrowdConfiguration.Instance.Context.GetInputManager();
+
+            for (int i = 0, count = letters.Count; i < count; ++i)
+            {
+                Vector3 position;
+                if (letters[i].Raycast(out position, Camera.main.ScreenPointToRay(inputManager.LastPointerPosition), 100))
+                {
+                    dragging = letters[i].GetComponent<FastCrowdDraggableLetter>();
+                    dragging.StartDragging(position - letters[i].transform.position);
+                    break;
+                }
+            }
+        }
+
+        void OnPointerUp()
+        {
+            if (dragging != null)
+                dragging.EndDragging();
+            dragging = null;
+        }
 
         public void AddLivingLetter(ILivingLetterData letter)
         {
@@ -43,6 +77,7 @@ namespace EA4S.FastCrowd
             {
                 if (letters.Count < MaxConcurrentLetters)
                 {
+                    // Spawn!
                     LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
                     letterObjectView.transform.SetParent(transform, true);
                     Vector3 newPosition = Vector3.zero;
@@ -54,6 +89,9 @@ namespace EA4S.FastCrowd
                     letterObjectView.gameObject.AddComponent<FastCrowdDraggableLetter>();
                     letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
                     Destroy(letterObjectView.gameObject.GetComponent<Hangable>());
+                    var pos = letterObjectView.transform.position;
+                    pos.y = 10;
+                    letterObjectView.transform.position = pos;
 
                     letters.Add(livingLetter);
 
@@ -84,7 +122,7 @@ namespace EA4S.FastCrowd
                     puffGo.SetActive(true);
 
                     var t = toDestroy.Dequeue();
-                    puffGo.transform.position = t.transform.position + Vector3.up*3;
+                    puffGo.transform.position = t.transform.position + Vector3.up * 3;
                     Destroy(t.gameObject);
                 }
             }
