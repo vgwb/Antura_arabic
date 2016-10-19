@@ -117,6 +117,9 @@ namespace EA4S
         // Ride Rocket
         LL_ride_rocket_idle = 81,
         LL_ride_rocket_horray = 85,
+        // Crouching
+        LL_crouching = 91,
+        LL_crouching_up = 93,
 
         // to be check
         FrontOfCamera_State,
