@@ -80,7 +80,7 @@ namespace EA4S
         void setDummyLetterObject()
         {
             var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
-            Init(new LetterData(letterData.GetId(), letterData));
+            Init(new LetterData(letterData.GetId()));
             //Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
         }
 
@@ -191,7 +191,7 @@ namespace EA4S
                 case LetterObjectState.LL_horray:
                 case LetterObjectState.LL_highfive:
                 case LetterObjectState.LL_lose:
-                case LetterObjectState.LL_get_angry:
+                //case LetterObjectState.LL_get_angry:
                 case LetterObjectState.LL_get_angry_1:
                 case LetterObjectState.LL_get_angry_2:
                 case LetterObjectState.LL_balance:

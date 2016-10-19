@@ -4,7 +4,7 @@
     {
         // Game configuration
         public IGameContext Context { get; set; }
-        public IQuestionProvider PipeQuestions { get; set; }
+        public IQuestionProvider FindRightLetterQuestions { get; set; }
         #region Game configurations
         public float Difficulty { get; set; }
         public int Variation { get; set; }
@@ -33,7 +33,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            PipeQuestions = new SampleQuestionProvider();
+            FindRightLetterQuestions = new SampleQuestionProvider();
             Context = new SampleGameContext();
             Difficulty = 0.5f;
             Variation = 1;
@@ -41,5 +41,21 @@
             MaxNumbOfWrongLettersNoise = 3;
             PlayTime = 90;
         }
+
+        #region external configuration call
+        public static void SetConfiguration(float _difficulty, int _variation) {
+            instance = new FastCrowdConfiguration() {
+                Difficulty = _difficulty,
+                Variation = _variation,
+            };
+        }
+        public static void SetConfiguration(float _difficulty, int _variation, float _playTime) {
+            instance = new FastCrowdConfiguration() {
+                Difficulty = _difficulty,
+                Variation = _variation,
+                PlayTime = _playTime,
+            };
+        }
+        #endregion
     }
 }

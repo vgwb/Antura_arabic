@@ -7,6 +7,7 @@
         public IQuestionProvider PipeQuestions { get; set; }
 
         public float Difficulty { get; set; }
+        public int Variation { get; set; }
 
         public int GetDiscreteDifficulty(int maximum)
         {
