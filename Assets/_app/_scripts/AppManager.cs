@@ -77,12 +77,15 @@ namespace EA4S
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
+
+            // PlayerProfileModule Install override
+            PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
         }
 
         void CachingLetterData()
         {
             foreach (var letterData in DB.FindAllLetterData()) {
-                Letters.Add(new LetterData(letterData.GetId(), letterData));
+                Letters.Add(new LetterData(letterData.GetId()));
             }
         }
 

@@ -42,9 +42,9 @@ namespace ModularFramework.Modules {
         /// <summary>
         /// List of Available players profiles.
         /// </summary>
-        public PlayersData Players {
-            get { return ConcreteModuleImplementation.Players; }
-            set { ConcreteModuleImplementation.Players = value; }
+        public GlobalOptions Options {
+            get { return ConcreteModuleImplementation.Options; }
+            set { ConcreteModuleImplementation.Options = value; }
         }
 
         public bool MultipleProfileSupported = false;
@@ -131,26 +131,30 @@ namespace ModularFramework.Modules {
         }
 
         /// <summary>
-        /// Load all player profile.
+        /// Load all global options included list of players profiles.
         /// </summary>
         /// <returns></returns>
-        public PlayersData LoadAllPlayerProfiles() {
-            return ConcreteModuleImplementation.LoadAllPlayerProfiles();
+        //public IGlobalOptions LoadGlobalOptions<T>() where T : IGlobalOptions {
+        //    return ConcreteModuleImplementation.LoadGlobalOptions<T>();
+        //}
+
+        public GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions {
+            return ConcreteModuleImplementation.LoadGlobalOptions<T>(_defaultOptions);
         }
 
         /// <summary>
         /// Store alla player profiles.
         /// </summary>
-        public void SaveAllPlayerProfiles() {
-            ConcreteModuleImplementation.SaveAllPlayerProfiles();
+        public void SaveAllOptions() {
+            ConcreteModuleImplementation.SaveAllOptions();
         }
 
         /// <summary>
         /// WARNING! Delete all stored profiles and set actual profile to null.
         /// </summary>
         public void DeleteAllPlayerProfiles() {
-            Players.AvailablePlayers.Clear();
-            SaveAllPlayerProfiles();
+            Options.AvailablePlayers.Clear();
+            SaveAllOptions();
             ActivePlayer = null;
         }
     }
@@ -163,7 +167,7 @@ namespace ModularFramework.Modules {
     /// </summary>
     public interface IPlayerProfileModule : IModule<IPlayerProfileModule> {
         IPlayerProfile ActivePlayer { get; set; }
-        PlayersData Players { get; set; }
+        GlobalOptions Options { get; set; }
         // Player creation
         IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
         void DeletePlayer(string _playerId);
@@ -175,17 +179,22 @@ namespace ModularFramework.Modules {
         void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null);
         IPlayerProfile LoadPlayerSettings<T>(string _playerId) where T : IPlayerProfile;
         // Save and load Players
-        PlayersData LoadAllPlayerProfiles();
-        void SaveAllPlayerProfiles();
+        //IGlobalOptions LoadGlobalOptions<T>() where T : IGlobalOptions;
+        GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions;
+        void SaveAllOptions();
     }
 
-    /// <summary>
-    /// Data struct to store organized data info for players profiles into module.
-    /// </summary>
-    [Serializable]
-    public class PlayersData {
-        public string Dummy;
-        public List<string> AvailablePlayers;
+    ///// <summary>
+    ///// Data struct to store organized data info for players profiles into module.
+    ///// </summary>
+    //[Serializable]
+    //public class PlayersData {
+    //    public string Dummy;
+    //    public List<string> AvailablePlayers;
+    //}
+
+    public class GlobalOptions {
+        public List<string> AvailablePlayers = new List<string>();
     }
 
     /// <summary>

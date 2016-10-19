@@ -107,7 +107,7 @@ namespace EA4S
         LL_horray = 61,
         LL_highfive = 63,
         LL_lose = 65,
-        LL_get_angry = 67, // Generic angry expression
+        //LL_get_angry = 67, // Generic angry expression
         LL_get_angry_1 = 68,
         LL_get_angry_2 = 69,
         // Balance
