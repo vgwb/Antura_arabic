@@ -14,6 +14,8 @@ namespace EA4S.FastCrowd
         public WordComposer wordComposer;
 
         public List<ILivingLetterData> CurrentChallenge = new List<ILivingLetterData>();
+        public List<ILivingLetterData> NoiseData = new List<ILivingLetterData>();
+
         public IQuestionPack CurrentQuestion = null; // optional
 
         public int CurrentScore { get; private set; }

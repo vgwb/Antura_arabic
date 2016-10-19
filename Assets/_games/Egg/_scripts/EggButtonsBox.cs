@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Egg
 {
     public class EggButtonsBox : MonoBehaviour
     {
+        public Transform anturaOut;
+
         GameObject eggButtonPrefab;
 
         List<EggButton> eggButtons = new List<EggButton>();
@@ -13,9 +16,15 @@ namespace EA4S.Egg
 
         int buttonCount;
 
-        public void Initialize(GameObject eggButtonPrefab)
+        IAudioManager audioManager;
+
+        Action<ILivingLetterData> buttonsCallback;
+
+        public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager, Action<ILivingLetterData> buttonsCallback)
         {
             this.eggButtonPrefab = eggButtonPrefab;
+            this.audioManager = audioManager;
+            this.buttonsCallback = buttonsCallback;
         }
 
         public void AddButton(ILivingLetterData letterData)
@@ -23,6 +32,8 @@ namespace EA4S.Egg
             EggButton eggButton = CreateButton();
 
             eggButton.SetAnswer(letterData);
+
+            eggButtons.Add(eggButton);
         }
 
         public void RemoveButtons()
@@ -39,7 +50,26 @@ namespace EA4S.Egg
         {
             EggButton eggButton = GameObject.Instantiate(eggButtonPrefab).GetComponent<EggButton>();
             eggButton.transform.SetParent(transform, false);
+            eggButton.gameObject.SetActive(false);
+            eggButton.Initialize(audioManager, buttonsCallback);
+            eggButton.DisableInput();
             return eggButton;
+        }
+
+        public void ShowButtons()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].gameObject.SetActive(true);
+            }
+        }
+
+        public void HideButtons()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].gameObject.SetActive(false);
+            }
         }
 
         public void SetButtonsOnPosition()
@@ -57,11 +87,64 @@ namespace EA4S.Egg
 
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
-                int index = Random.Range(0, buttonsIndex.Count);
+                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
-                eggButtons[currentIndex].transform.position = buttonsPosition[i];
+                eggButtons[currentIndex].transform.localPosition = buttonsPosition[i];
+                eggButtons[currentIndex].positionIndex = i;
+            }
+        }
+
+        public void AnturaButtonOut(Action endCallback, float duration, float delay)
+        {
+            List<EggButton> buttons = GetButtons(true);
+
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (i == buttons.Count - 1)
+                {
+                    buttons[i].MoveTo(anturaOut.localPosition, duration, (i * 0.1f) + delay, endCallback);
+                }
+                else
+                {
+                    buttons[i].MoveTo(anturaOut.localPosition, duration, (i * 0.1f) + delay);
+                }
+
+                buttons[i].ScaleTo(0f, duration, (i * 0.1f) + delay);
+            }
+        }
+
+        public void AnturaButtonIn(Action endCallback, float duration, float delay)
+        {
+            buttonCount = eggButtons.Count;
+
+            Vector3[] buttonsPosition = CalculateButtonPositions();
+
+            List<int> buttonsIndex = new List<int>();
+
+            for (int i = 0; i < buttonCount; i++)
+            {
+                buttonsIndex.Add(i);
+            }
+
+            for (int i = 0; i < buttonsPosition.Length; i++)
+            {
+                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
+                int currentIndex = buttonsIndex[index];
+                buttonsIndex.RemoveAt(index);
+
+                if (i == buttonsPosition.Length - 1)
+                {
+                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, (i * 0.1f) + delay, endCallback);
+                }
+                else
+                {
+                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, (i * 0.1f) + delay);
+                }
+
+                eggButtons[currentIndex].positionIndex = i;
+                eggButtons[currentIndex].ScaleTo(1f, duration, (i * 0.1f) + delay);
             }
         }
 
@@ -73,7 +156,7 @@ namespace EA4S.Egg
 
             Vector3 currentPosition = Vector3.zero;
 
-            float positionUp = eggSizeDelta.y + (buttonDistance / 2f);
+            float positionUp = (eggSizeDelta.y + buttonDistance) / 2f;
             float positionDown = -positionUp;
 
             int upLineLength = 0;
@@ -129,7 +212,7 @@ namespace EA4S.Egg
             }
             else
             {
-                float currentHorizontal = ((size * number) + (buttonDistance * (number - 1)) / 2f);
+                float currentHorizontal = -(((size + buttonDistance) * (number - 1)) / 2f);
 
                 for (int i = 0; i < number; i++)
                 {
@@ -143,6 +226,69 @@ namespace EA4S.Egg
             }
 
             return horizontalPositions;
+        }
+
+        public List<EggButton> GetButtons(bool inPositionOrder)
+        {
+            if (inPositionOrder)
+            {
+                List<EggButton> buttons = new List<EggButton>();
+
+                while (buttons.Count < eggButtons.Count)
+                {
+                    EggButton eB = null;
+
+                    for (int i = 0; i < eggButtons.Count; i++)
+                    {
+                        if (eggButtons[i].positionIndex == buttons.Count)
+                        {
+                            eB = eggButtons[i];
+                            break;
+                        }
+                    }
+
+                    buttons.Add(eB);
+                }
+
+                return buttons;
+            }
+            else
+            {
+                return eggButtons;
+            }
+        }
+
+        public void EnableButtonsInput()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].EnableInput();
+            }
+        }
+
+        public void DisableButtonsInput()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].DisableInput();
+            }
+        }
+
+        public void LightUpButtons(bool playAudio, bool inPositionOrder, float duration, float delay, Action endCallback)
+        {
+            List<EggButton> buttons = GetButtons(inPositionOrder);
+
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (i == buttons.Count - 1)
+                {
+                    buttons[i].LightUp(playAudio, duration, delay + (i * 1f), endCallback);
+                }
+                else
+                {
+                    buttons[i].LightUp(playAudio, duration, delay + (i * 1f), null);
+                }
+            }
         }
     }
 }
