@@ -39,6 +39,8 @@ namespace EA4S.ThrowBalls
         public GameObject endGameCanvas;
         public StarFlowers starFlowers;
 
+        public GameObject ringEffectTest;
+
         protected override void Awake()
         {
             base.Awake();
@@ -53,7 +55,7 @@ namespace EA4S.ThrowBalls
             AppManager.Instance.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
 
-            UnityEngine.Random.seed = DateTime.Now.GetHashCode();
+            UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
 
             // Layer 8 = Terrain. Layer 12 = Pokeball.
             Physics.IgnoreLayerCollision(8, 12);
@@ -79,14 +81,14 @@ namespace EA4S.ThrowBalls
 
             ResetScene();
 
-            //StartCoroutine("StartNewRound");
+            StartCoroutine("StartNewRound");
 
-            PokeballController.instance.Enable();
+            ringEffectTest.GetComponent<RingEffectController>().Animate(0);
 
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
         }
-        
+
         protected override void ReadyForGameplay()
         {
             base.ReadyForGameplay();
@@ -101,23 +103,16 @@ namespace EA4S.ThrowBalls
         {
             UIController.instance.Reset();
 
-            ArrayList positionIndices = new ArrayList();
-            for (int i = 0; i < Constants.LETTER_POSITIONS.Length; i++)
-            {
-                positionIndices.Add(i);
-            }
-
             foreach (LetterController letterController in letterControllers)
             {
                 letterController.Reset();
                 letterController.DisableProps();
             }
 
-            foreach (GameObject letter in letterPool)
+            for (int i = 0; i < letterPool.Length; i++)
             {
-                int randIndex = UnityEngine.Random.Range(0, positionIndices.Count);
-                letter.transform.position = Constants.LETTER_POSITIONS[(int)positionIndices[randIndex]];
-                positionIndices.RemoveAt(randIndex);
+                GameObject letter = letterPool[i];
+                letter.transform.position = Constants.LETTER_POSITIONS[i];
                 letter.SetActive(false);
             }
 
@@ -408,6 +403,11 @@ namespace EA4S.ThrowBalls
                 default:
                     return LetterController.PropVariation.Nothing;
             }
+        }
+
+        public Vector3 GetPositionOfLetter(int index)
+        {
+            return letterControllers[index].gameObject.transform.position;
         }
     }
 
