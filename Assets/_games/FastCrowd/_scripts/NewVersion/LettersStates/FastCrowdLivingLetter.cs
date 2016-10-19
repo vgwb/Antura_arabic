@@ -12,7 +12,6 @@ public class FastCrowdLivingLetter : MonoBehaviour
 
     public LetterWalkingState WalkingState { get; private set; }
     public LetterIdleState IdleState { get; private set; }
-    public LetterStealthState StealthState { get; private set; }
     public LetterFallingState FallingState { get; private set; }
     public LetterHangingState HangingState { get; private set; }
 
@@ -21,13 +20,16 @@ public class FastCrowdLivingLetter : MonoBehaviour
 
     Collider[] colliders;
 
+    public Crowd crowd;
+    public FastCrowdWalkableArea walkableArea { get { return crowd.walkableArea; } }
+    public AnturaController antura { get { return crowd.antura; } }
+
     void Awake()
     {
         colliders = GetComponentsInChildren<Collider>();
 
         WalkingState = new LetterWalkingState(this);
         IdleState = new LetterIdleState(this);
-        StealthState = new LetterStealthState(this);
         ScaredState = new LetterScaredState(this);
         FallingState = new LetterFallingState(this);
         HangingState = new LetterHangingState(this);
@@ -35,9 +37,20 @@ public class FastCrowdLivingLetter : MonoBehaviour
         SetCurrentState(FallingState);
     }
 
+    void Start()
+    {
+
+    }
+
     void Update()
     {
         stateManager.Update(Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, antura.transform.position) < 10.0f)
+        {
+            Scare(antura.transform.position, 5);
+            return;
+        }
     }
 
     void FixedUpdate()
@@ -79,7 +92,10 @@ public class FastCrowdLivingLetter : MonoBehaviour
     {
         ScaredState.ScaredDuration = scareTime;
         ScaredState.ScareSource = scareSource;
-        SetCurrentState(ScaredState);
+
+        if (GetCurrentState() == IdleState ||
+            GetCurrentState() == WalkingState)
+            SetCurrentState(ScaredState);
     }
 
     void OnDestroy()
@@ -99,5 +115,45 @@ public class FastCrowdLivingLetter : MonoBehaviour
             if (onDropped != null)
                 onDropped(matching);
         }
+    }
+
+    public void LookAt(Vector3 position)
+    {
+        LerpLookAt(position, 1);
+    }
+
+    public void LerpLookAt(Vector3 position, float t)
+    {
+        Vector3 targetDir3D = (transform.position - position);
+        if (targetDir3D.sqrMagnitude < 0.001f)
+            return;
+
+        Vector2 targetDir = new Vector2(targetDir3D.x, targetDir3D.z);
+        Vector2 letterDir = new Vector2(transform.forward.x, transform.forward.z);
+
+        targetDir.Normalize();
+        letterDir.Normalize();
+
+        var desiredAngle = AngleCounterClockwise(targetDir, Vector2.down);
+        var currentAngle = AngleCounterClockwise(letterDir, Vector2.up);
+
+        currentAngle = Mathf.LerpAngle(currentAngle, desiredAngle, t);
+
+        transform.rotation = Quaternion.AngleAxis(currentAngle * Mathf.Rad2Deg, Vector3.up);
+    }
+
+    static float Cross(Vector2 a, Vector2 b)
+    {
+        return a.x * b.y - a.y * b.x;
+    }
+
+    static float AngleCounterClockwise(Vector2 a, Vector2 b)
+    {
+        float dot = Vector2.Dot(a.normalized, b.normalized);
+        dot = Mathf.Clamp(dot, -1.0f, 1.0f);
+
+        if (Cross(a, b) >= 0)
+            return Mathf.Acos(dot);
+        return Mathf.PI * 2 - Mathf.Acos(dot);
     }
 }
