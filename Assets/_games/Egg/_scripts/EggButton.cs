@@ -115,12 +115,22 @@ namespace EA4S.Egg
         {
             endScaleCallback = endCallback;
 
+            if(scaleTweener != null)
+            {
+                scaleTweener.Kill();
+            }
+
             scaleTweener = transform.DOScale(scale, duration).SetDelay(delay).OnComplete(delegate () { if (endScaleCallback != null) endScaleCallback(); });
         }
 
         public void MoveTo(Vector3 position, float duration, float delay = 0f, Action endCallback = null)
         {
             endMoveCallback = endCallback;
+
+            if(moveTweener != null)
+            {
+                moveTweener.Kill();
+            }
 
             moveTweener = transform.DOLocalMove(position, duration).SetDelay(delay).OnComplete(delegate () { if (endMoveCallback != null) endMoveCallback(); });
         }
