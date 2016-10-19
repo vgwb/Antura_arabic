@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using Google2u;
 using UniRx;
 using EA4S.API;
 
@@ -77,12 +76,15 @@ namespace EA4S
                 IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
+
+            // PlayerProfileModule Install override
+            PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
         }
 
         void CachingLetterData()
         {
             foreach (var letterData in DB.FindAllLetterData()) {
-                Letters.Add(new LetterData(letterData.GetId(), letterData));
+                Letters.Add(new LetterData(letterData.GetId()));
             }
         }
 

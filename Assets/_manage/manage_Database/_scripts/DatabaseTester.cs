@@ -4,13 +4,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using ArabicSupport;
 
 namespace EA4S.Db.Management
 {
     public class DatabaseTester : MonoBehaviour
     {
+#if UNITY_EDITOR
         public DatabaseLoader DBLoader;
+#endif
         private DatabaseManager db;
 
         public Text OutputText;
@@ -26,8 +27,10 @@ namespace EA4S.Db.Management
 
         public void ImportAll()
         {
+#if UNITY_EDITOR
             DBLoader.LoadDatabase();
-            LogAllDataCounts();
+            DumpAllDataCounts();
+#endif
         }
 
         public void RegenerateRuntimeDB()
@@ -39,7 +42,7 @@ namespace EA4S.Db.Management
 
         #region Specific Logs
 
-        public void LogAllDataCounts()
+        public void DumpAllDataCounts()
         {
             string output = "";
             output += ("N letters: " + db.FindAllLetterData().Count) + "\n";
@@ -54,128 +57,132 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
-        public void LogAllLetterData()
+        public void DumpAllLetterData()
         {
-            LogAllData<LetterData>(db.FindAllLetterData());
+            DumpAllData(db.FindAllLetterData());
         }
 
-        public void LogAllWordData()
+        public void DumpAllWordData()
         {
-            LogAllData<WordData>(db.FindAllWordData());
+            DumpAllData(db.FindAllWordData());
         }
 
-        public void LogAllPhraseData()
+        public void DumpAllPhraseData()
         {
-            LogAllData<PhraseData>(db.FindAllPhraseData());
+            DumpAllData(db.FindAllPhraseData());
         }
 
-        public void LogAllPlaySessionData()
+        public void DumpAllPlaySessionData()
         {
-            LogAllData<PlaySessionData>(db.FindAllPlaySessionData());
+            DumpAllData(db.FindAllPlaySessionData());
         }
 
-        public void LogAllStageData()
+        public void DumpAllStageData()
         {
-            LogAllData<StageData>(db.FindAllStageData());
+            DumpAllData(db.FindAllStageData());
         }
 
-        public void LogAllLocalizationData()
+        public void DumpAllLocalizationData()
         {
-            LogAllData<LocalizationData>(db.FindAllLocalizationData());
+            DumpAllData(db.FindAllLocalizationData());
         }
 
-        public void LogAllMiniGameData()
+        public void DumpAllMiniGameData()
         {
-            LogAllData<MiniGameData>(db.FindAllMiniGameData());
+            DumpAllData(db.FindAllMiniGameData());
         }
 
-        public void LogAllAssessmentData()
+        public void DumpAllAssessmentData()
         {
-            LogAllData<AssessmentData>(db.FindAllAssessmentData());
+            DumpAllData(db.FindAllAssessmentData());
         }
 
-        public void LogAllLogData()
+        public void DumpAllLogData()
         {
-            LogAllData<LogData>(db.FindAllLogData());
+            DumpAllData(db.FindAllLogData());
         }
 
-        public void LogLetterById(string id)
+        public void DumpLetterById(string id)
         {
             IData data = db.GetLetterDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogWordById(string id)
+        public void DumpWordById(string id)
         {
-            IData data = db.GetWordDataById(id);
-            LogDataById(id, data);
+            var data = db.GetWordDataById(id);
+            var arabic_text = data.Arabic;
+            PrintArabicOutput(arabic_text);
+            DumpDataById(id, data);
         }
 
-        public void LogPhraseById(string id)
+        public void DumpPhraseById(string id)
         {
             IData data = db.GetPhraseDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogMiniGameById(string id)
+        public void DumpMiniGameById(string id)
         {
             IData data = db.GetMiniGameDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogStageById(string id)
+        public void DumpStageById(string id)
         {
             IData data = db.GetStageDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogPlaySessionById(string id)
+        public void DumpPlaySessionById(string id)
         {
             IData data = db.GetPlaySessionDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogAssessmentById(string id)
+        public void DumpAssessmentById(string id)
         {
             IData data = db.GetAssessmentDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogLocalizationById(string id)
+        public void DumpLocalizationById(string id)
         {
             IData data = db.GetLocalizationDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogRewardById(string id)
+        public void DumpRewardById(string id)
         {
             IData data = db.GetRewardDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        public void LogLogDataById(string id)
+        public void DumpLogDataById(string id)
         {
             IData data = db.GetLogDataById(id);
-            LogDataById(id, data);
+            DumpDataById(id, data);
         }
 
-        #endregion
 
-        #region Log - specific tests
 
-        public void LogArabicWord(string id)
+        public void DumpArabicWord(string id)
         {
             var data = db.GetWordDataById(id);
             var arabic_text = data.Arabic;
             PrintArabicOutput(arabic_text);
         }
 
-        public void LogActiveMinigames()
+        public void DumpActiveMinigames()
         {
             var all_minigames = db.FindAllMiniGameData();
             var active_minigames = db.FindAllActiveMinigames();
             PrintOutput(active_minigames.Count + " active minigames out of " + all_minigames.Count);
         }
+
+        #endregion
+
+        #region Log
 
         public void TestInsertLogData()
         {
@@ -195,33 +202,29 @@ namespace EA4S.Db.Management
 
         public void TestLINQLogData()
         {
-            List<LogData> list = this.db.FindAllLogData(x => x.Score > 5f); 
-            LogAllData(list);
+            List<LogData> list = this.db.FindAllLogData(x => x.Score > 5f);
+            DumpAllData(list);
         }
 
         #endregion
 
-        #region Inner Logs
+        #region Inner Dumps
 
-        public void LogAllData<T>(List<T> list) where T : IData
+        public void DumpAllData<T>(List<T> list) where T : IData
         {
             string output = "";
-            foreach (var data in list)
-            {
+            foreach (var data in list) {
                 output += (data.GetId() + ": " + data.ToString()) + "\n";
             }
             PrintOutput(output); ;
         }
 
-        public void LogDataById(string id, IData data)
+        public void DumpDataById(string id, IData data)
         {
             string output = "";
-            if (data != null)
-            { 
+            if (data != null) {
                 output += (data.GetId() + ": " + data.ToString());
-            }
-            else
-            {
+            } else {
                 output += "No data with ID " + id;
             }
             PrintOutput(output);
@@ -236,23 +239,11 @@ namespace EA4S.Db.Management
             Debug.Log(output);
             OutputText.text = output;
         }
-   
+
         void PrintArabicOutput(string output)
         {
-            string fixed_output = ReverseText(ArabicFixer.Fix(output));
-            Debug.Log(fixed_output);
-            OutputTextArabic.text = fixed_output;
-        }
-
-        string ReverseText(string text)
-        {
-            char[] cArray = text.ToCharArray();
-            string reverse = String.Empty;
-            for (int i = cArray.Length - 1; i > -1; i--)
-            {
-                reverse += cArray[i];
-            }
-            return reverse;
+            //Debug.Log(fixed_output);
+            OutputTextArabic.text = ArabicAlphabetHelper.PrepareStringForDisplay(output);
         }
 
         #endregion

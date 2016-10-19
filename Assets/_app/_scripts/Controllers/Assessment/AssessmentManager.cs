@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using DG.Tweening;
-using Google2u;
 
 namespace EA4S
 {

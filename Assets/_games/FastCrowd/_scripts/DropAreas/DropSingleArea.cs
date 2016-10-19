@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Google2u;
 using TMPro;
 
 namespace EA4S {

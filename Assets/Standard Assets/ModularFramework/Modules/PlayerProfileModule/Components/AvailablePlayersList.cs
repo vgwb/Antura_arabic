@@ -129,7 +129,7 @@ namespace ModularFramework.Components {
         #endregion
 
         void GetPlayers() {
-            PlayersIds = GameManager.Instance.PlayerProfile.LoadAllPlayerProfiles().AvailablePlayers;
+            //PlayersIds = GameManager.Instance.PlayerProfile.LoadGlobalOptions().AvailablePlayers;
         }
     }
 }
