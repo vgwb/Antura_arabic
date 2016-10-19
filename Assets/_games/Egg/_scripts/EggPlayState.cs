@@ -70,6 +70,25 @@
                 if(nextStateTimer <= 0f)
                 {
                     toNextState = false;
+
+                    if(game.stagePositiveResult)
+                    {
+                        ILivingLetterData runLetterData;
+
+                        WordData questionWordData = game.questionManager.GetQuestionWordData();
+
+                        if (questionWordData == null)
+                        {
+                            runLetterData = game.questionManager.GetlLetterDataSequence()[0];
+                        }
+                        else
+                        {
+                            runLetterData = questionWordData;
+                        }
+
+                        game.runLettersBox.AddRunLetter(runLetterData);
+                    }
+
                     game.SetCurrentState(game.ResultState);
                 }
             }
