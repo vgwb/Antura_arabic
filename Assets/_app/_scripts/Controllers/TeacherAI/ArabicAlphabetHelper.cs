@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using ArabicSupport;
 
 namespace EA4S
 {
@@ -8,6 +9,16 @@ namespace EA4S
     {
 
         public static List<string> LetterExceptions = new List<string>() { "0627", "062F", "0630", "0631", "0632", "0648", "0623" };
+
+        /// <summary>
+        /// Prepares the string for display (say fro mArabic into TMPro Text
+        /// </summary>
+        /// <returns>The string for display.</returns>
+        /// <param name="">.</param>
+        public static string PrepareStringForDisplay(string str)
+        {
+            return GenericUtilites.ReverseText(ArabicFixer.Fix(str));
+        }
 
         /// <summary>
         /// Return single letter string start from unicode hexa code.

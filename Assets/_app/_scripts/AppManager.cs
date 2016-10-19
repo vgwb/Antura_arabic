@@ -56,18 +56,17 @@ namespace EA4S
 
             AdditionalSetup();
 
+            InitDataAI();
+
             CachingLetterData();
 
             GameSettings.HighQualityGfx = false;
-
-            InitDataAI();
 
             ResetProgressionData();
 
             this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
                 OnPlaySessionValueChange();
             });
-
 
         }
 

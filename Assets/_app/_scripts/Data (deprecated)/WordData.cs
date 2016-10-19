@@ -8,8 +8,6 @@ namespace EA4S
     public class WordData : ILivingLetterData
     {
 
-        Database db;
-
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Word; }
         }

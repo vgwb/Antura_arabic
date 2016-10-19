@@ -6,20 +6,20 @@ namespace EA4S.Db
     [Serializable]
     public class PlaySessionData : IData
     {
-        public string Id { get; set; }
-        public int Stage { get; set; }
-        public int LearningBlock { get; set; }
-        public int PlaySession { get; set; }
-        public string Description { get; set; }
-        public DidacticalFocus Focus { get; set; }
-        public string[] Letters { get; set; }
-        public string[] Words { get; set; }
-        public string[] Words_previous { get; set; }
-        public string[] Phrases { get; set; }
-        public string[] Phrases_previous { get; set; }
-        public AssessmentType AssessmentType { get; set; }
-        public string AssessmentData { get; set; }
-        public List<MiniGameInPlaySession> Minigames { get; set; }
+        public string Id;
+        public int Stage;
+        public int LearningBlock;
+        public int PlaySession;
+        public string Description;
+        public DidacticalFocus Focus;
+        public string[] Letters;
+        public string[] Words;
+        public string[] Words_previous;
+        public string[] Phrases;
+        public string[] Phrases_previous;
+        public AssessmentType AssessmentType;
+        public string AssessmentData;
+        public List<MiniGameInPlaySession> Minigames;
 
         public string GetId()
         {
