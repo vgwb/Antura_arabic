@@ -10,7 +10,8 @@ namespace EA4S.FastCrowd
         NavMeshAgent agent;
         Transform wayPoint;
         public Vector3 HidePosition = new Vector3(25, 0, -20);
-        public bool IsAnturaTime = false;
+        public bool IsAnturaTime { get; private set; }
+
         float nextAnturaBarkTime;
 
         // Use this for initialization
@@ -26,19 +27,23 @@ namespace EA4S.FastCrowd
         // Update is called once per frame
         void Update()
         {
-            if (IsAnturaTime && Time.time > nextAnturaBarkTime) {
+            if (IsAnturaTime && Time.time > nextAnturaBarkTime)
+            {
                 prepareNextAnturaBark();
                 AudioManager.I.PlaySfx(Sfx.DogBarking);
             }
         }
 
-        void setAnturaTime(bool _isAnturaTime)
+        public void SetAnturaTime(bool _isAnturaTime)
         {
             IsAnturaTime = _isAnturaTime;
-            if (IsAnturaTime) {
+            if (IsAnturaTime)
+            {
                 RepositioningWaypoint();
                 prepareNextAnturaBark();
-            } else {
+            }
+            else
+            {
                 agent.SetDestination(HidePosition);
             }
         }
@@ -51,7 +56,8 @@ namespace EA4S.FastCrowd
         void OnTriggerEnter(Collider other)
         {
             //void OnTriggerEnter(Collider other) {
-            if (agent && wayPoint && other == wayPoint.GetComponent<Collider>() && IsAnturaTime) {
+            if (agent && wayPoint && other == wayPoint.GetComponent<Collider>() && IsAnturaTime)
+            {
                 RepositioningWaypoint();
             }
         }
@@ -60,7 +66,8 @@ namespace EA4S.FastCrowd
         {
             if (!agent)
                 return;
-            if (wayPoint && other == wayPoint.GetComponent<Collider>() && IsAnturaTime) {
+            if (wayPoint && other == wayPoint.GetComponent<Collider>() && IsAnturaTime)
+            {
                 RepositioningWaypoint();
             }
         }
@@ -71,7 +78,8 @@ namespace EA4S.FastCrowd
                 return;
             Vector3 randomValidPosition;
             //RandomPoint(Target.position, 10f, out randomValidPosition);
-            do {
+            do
+            {
                 GameplayHelper.RandomPointInWalkableArea(transform.position, 30f, out randomValidPosition, _areaMask);
                 wayPoint.position = randomValidPosition;
             } while (randomValidPosition == Vector3.zero);
@@ -83,7 +91,8 @@ namespace EA4S.FastCrowd
         /// </summary>
         void OnDrawGizmos()
         {
-            if (wayPoint != null) {
+            if (wayPoint != null)
+            {
                 Gizmos.color = Color.blue;
                 Gizmos.DrawLine(transform.position, wayPoint.position);
             }
@@ -98,12 +107,13 @@ namespace EA4S.FastCrowd
         private void GameplayTimer_OnCustomEvent(GameplayTimer.CustomEventData _data)
         {
             //Debug.LogFormat("Custom Event {0} at {1} sec.", _data.Name, _data.Time);
-            switch (_data.Name) {
+            switch (_data.Name)
+            {
                 case "AnturaStart":
-                    setAnturaTime(true);
+                    SetAnturaTime(true);
                     break;
                 case "AnturaEnd":
-                    setAnturaTime(false);
+                    SetAnturaTime(false);
                     break;
                 default:
                     break;

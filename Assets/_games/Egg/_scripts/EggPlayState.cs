@@ -196,7 +196,7 @@
             }
             else
             {
-                game.Context.GetAudioManager().PlayWord(questionWordData.Key);
+                game.Context.GetAudioManager().PlayWord(questionWordData);
             }
 
             toNextState = true;

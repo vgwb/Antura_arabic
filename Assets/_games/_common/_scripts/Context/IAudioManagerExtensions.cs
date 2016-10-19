@@ -1,5 +1,4 @@
-﻿
-namespace EA4S
+﻿namespace EA4S
 {
     public static class IGameContextExtensions
     {

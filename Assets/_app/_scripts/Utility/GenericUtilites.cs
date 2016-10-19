@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace EA4S
 {
     static class GenericUtilites
     {
+
+        static readonly System.Random _random = new System.Random(DateTime.Now.Millisecond);
+        public static T GetRandom<T>(this IList<T> list)
+        {
+            return list[_random.Next(0, list.Count)];
+        }
+
         public static T GetRandomEnum<T>()
         {
             System.Array A = System.Enum.GetValues(typeof(T));
@@ -22,5 +30,6 @@ namespace EA4S
             }
             return reverse;
         }
+
     }
 }

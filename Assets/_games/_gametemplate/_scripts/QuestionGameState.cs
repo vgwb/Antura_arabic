@@ -11,7 +11,7 @@
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true);
+            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
         }
 
         public void ExitState()

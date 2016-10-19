@@ -15,7 +15,9 @@
 
             // Show questions description
             var popupWidget = game.Context.GetPopupWidget();
-            popupWidget.Show(OnPopupCloseRequested, ToboganConfiguration.Instance.PipeQuestions.GetDescription(), true);
+            popupWidget.Show();
+            popupWidget.SetButtonCallback(OnPopupCloseRequested);
+            popupWidget.SetMessage(ToboganConfiguration.Instance.PipeQuestions.GetDescription(), true);
         }
 
         void OnPopupCloseRequested()

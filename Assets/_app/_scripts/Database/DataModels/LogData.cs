@@ -3,25 +3,58 @@ using System;
 
 namespace EA4S.Db
 {
-    public class LogData
+    public enum LogDataType
     {
-        public string Session = string.Empty;
-        public string Time = string.Empty;
-        public string Area = string.Empty;
-        public string Context = string.Empty;
-        public string Action = string.Empty;
-        public string RawData = string.Empty;
+        Info,
+        PlayData,
+        LearnData,
+        MoodData
+    }
+
+    public enum LogPlaySkill
+    {
+        Precision = 0,
+        Reaction = 1,
+        Memory = 2,
+        Logic = 3,
+        Rhythm = 4,
+        Musicality = 5,
+        Sight = 6
+    }
+
+    [System.Serializable]
+    public class LogData : IData
+    {
+        public string Id { get; set; }
+        public string Session { get; set; }
+        public string Time { get; set; }
+        public int PlayerID { get; set; }
+        public LogDataType Type { get; set; }
+        public LogPlaySkill PlaySkill { get; set; }
+        public string Context { get; set; }
+        public string Action { get; set; }
+        public float Score { get; set; }
+        public string RawData { get; set; }
+
+        public string GetId()
+        {
+            return Id;
+        }
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{3},{4},{5},{6}" + Environment.NewLine,
+            return string.Format("S{0},T{1},P{2},T{3},PS{4},C{5},A{6},S{7},RD{8}",
                 Session,
                 Time,
-                Area,
+                PlayerID,
+                Type,
+                PlaySkill,
                 Context,
                 Action,
+                Score,
                 RawData
                 );
         }
+
     }
 }

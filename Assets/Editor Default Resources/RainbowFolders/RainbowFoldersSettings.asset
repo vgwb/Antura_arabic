@@ -32,6 +32,10 @@ MonoBehaviour:
     Type: 1
     SmallIcon: {fileID: 2800000, guid: 0b7e8970cd9b4d548883dc5b4f4997c0, type: 3}
     LargeIcon: {fileID: 2800000, guid: ca744735eea12d84b8369b456104295c, type: 3}
+  - Key: Assets/_manage
+    Type: 1
+    SmallIcon: {fileID: 2800000, guid: 6ecc649ba46fa2c448d60a663be30ffd, type: 3}
+    LargeIcon: {fileID: 2800000, guid: 7ce51c638aeaa3840ab61c4a4af3885b, type: 3}
   - Key: Assets/_games/Egg
     Type: 1
     SmallIcon: {fileID: 2800000, guid: e4d497fd8f72b5241b762a7ed649ee83, type: 3}
@@ -61,6 +65,18 @@ MonoBehaviour:
     SmallIcon: {fileID: 2800000, guid: e4d497fd8f72b5241b762a7ed649ee83, type: 3}
     LargeIcon: {fileID: 2800000, guid: 0532ea3a1890c8946b6d842beeab51b8, type: 3}
   - Key: Assets/_games/ThrowBalls
+    Type: 1
+    SmallIcon: {fileID: 2800000, guid: e4d497fd8f72b5241b762a7ed649ee83, type: 3}
+    LargeIcon: {fileID: 2800000, guid: 0532ea3a1890c8946b6d842beeab51b8, type: 3}
+  - Key: Assets/_dev/dev_Database/_scenes
+    Type: 1
+    SmallIcon: {fileID: 2800000, guid: e4d497fd8f72b5241b762a7ed649ee83, type: 3}
+    LargeIcon: {fileID: 2800000, guid: 0532ea3a1890c8946b6d842beeab51b8, type: 3}
+  - Key: Assets/_dev/dev_Database/Resources
+    Type: 1
+    SmallIcon: {fileID: 2800000, guid: e4d497fd8f72b5241b762a7ed649ee83, type: 3}
+    LargeIcon: {fileID: 2800000, guid: 0532ea3a1890c8946b6d842beeab51b8, type: 3}
+  - Key: Assets/_games/Scanner
     Type: 1
     SmallIcon: {fileID: 2800000, guid: e4d497fd8f72b5241b762a7ed649ee83, type: 3}
     LargeIcon: {fileID: 2800000, guid: 0532ea3a1890c8946b6d842beeab51b8, type: 3}
