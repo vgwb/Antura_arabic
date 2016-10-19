@@ -229,6 +229,9 @@ namespace EA4S.API {
                 case MiniGameCode.DontWakeUp:
                     break;
                 case MiniGameCode.Egg:
+                    Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    //Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData.ConvertAll(o => (FindRightDataQuestionPack)o), miniGameData.Description);
+                    Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     break;
@@ -524,7 +527,6 @@ namespace EA4S.API {
             // Todo: Save on db
         }
         #endregion
-
 
         #region Playsession Logs
 
