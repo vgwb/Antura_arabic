@@ -1,5 +1,12 @@
 ﻿namespace EA4S.Tobogan
 {
+    public enum ToboganVariation : int
+    {
+        LetterInAWord = 1,
+        SunMoon = 2,
+        SingularPluralDual = 3
+    }
+
     public class ToboganConfiguration : IGameConfiguration
     {
         // Game configuration
@@ -7,6 +14,7 @@
         public IQuestionProvider PipeQuestions { get; set; }
 
         public float Difficulty { get; set; }
+        public ToboganVariation Variation { get; set; }
 
         public int GetDiscreteDifficulty(int maximum)
         {

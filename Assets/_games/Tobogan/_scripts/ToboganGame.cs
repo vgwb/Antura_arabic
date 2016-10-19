@@ -84,6 +84,8 @@ namespace EA4S.Tobogan
 
         void OnResult(bool result)
         {
+            Context.GetCheckmarkWidget().Show(result);
+
             if (result)
             {
                 ++CurrentScore;

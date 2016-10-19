@@ -7,7 +7,28 @@ namespace EA4S
     {
         public int AnturaCurrentPreset;
 
-        public PlayerProfile() {
+        #region Mood
+
+        /// <summary>
+        /// False if not executed start mood eval.
+        /// </summary>
+        [HideInInspector]
+        public bool StartMood = false;
+        /// <summary>
+        /// Start Mood value. Values 0,1,2,3,4.
+        /// </summary>
+        [HideInInspector]
+        public int StartMoodEval = 0;
+        /// <summary>
+        /// End Mood value. Values 0,1,2,3,4.
+        /// </summary>
+        [HideInInspector]
+        public int EndMoodEval = 0;
+
+        #endregion
+
+        public PlayerProfile()
+        {
             Reset();
         }
 

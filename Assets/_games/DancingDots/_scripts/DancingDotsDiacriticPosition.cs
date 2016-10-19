@@ -25,26 +25,14 @@ namespace EA4S.DancingDots
 		void Start () {
 		}
 
-		private Color32 SetAlpha(Color32 color, byte alpha)
-		{
-			if (alpha >= 0 && alpha <= 255)
-			{
-				return new Color32(color.r, color.g, color.b, alpha);
-			}
-			else
-			{
-				return color;
-			}
-		}
-
 		public void Hide()
 		{
-			diacriticText.color = SetAlpha(diacriticText.color,0);
+			diacriticText.color = DancingDotsGameManager.instance.SetAlpha(diacriticText.color,0);
 		}
 
 		public void Show()
 		{
-			diacriticText.color = SetAlpha(diacriticText.color,DancingDotsGameManager.instance.dotHintAlpha);
+			diacriticText.color = DancingDotsGameManager.instance.SetAlpha(diacriticText.color,DancingDotsGameManager.instance.dotHintAlpha);
 		}
 
 		public void CheckPosition()

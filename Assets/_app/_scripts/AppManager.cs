@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using Google2u;
 using UniRx;
 using EA4S.API;
 
@@ -10,7 +9,7 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.6.2";
+        public const string AppVersion = "0.6.3a";
 
         new public AppSettings GameSettings = new AppSettings();
 
@@ -24,30 +23,10 @@ namespace EA4S
         public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
         public string ActualGame = string.Empty;
 
-        #region Mood
-
-        /// <summary>
-        /// False if not executed start mood eval.
-        /// </summary>
-        [HideInInspector]
-        public bool StartMood = false;
-        /// <summary>
-        /// Start Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int StartMoodEval = 0;
-        /// <summary>
-        /// End Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int EndMoodEval = 0;
-
-        #endregion
-
         public List<LetterData> Letters = new List<LetterData>();
 
         public TeacherAI Teacher;
-        public Database DB;
+        public DatabaseManager DB;
         public EA4S.PlayerProfile Player;
         public GameObject CurrentGameManagerGO;
 
@@ -61,7 +40,7 @@ namespace EA4S
         public void InitDataAI()
         {
             if (DB == null)
-                DB = new Database();
+                DB = new DatabaseManager("1");  // @todo: player ID should be passed here
             if (Teacher == null)
                 Teacher = new TeacherAI();
             if (Player == null)
@@ -76,18 +55,17 @@ namespace EA4S
 
             AdditionalSetup();
 
+            InitDataAI();
+
             CachingLetterData();
 
             GameSettings.HighQualityGfx = false;
-
-            InitDataAI();
 
             ResetProgressionData();
 
             this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
                 OnPlaySessionValueChange();
             });
-
 
         }
 
@@ -99,14 +77,14 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
-
+            // PlayerProfileModule Install override
+            PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
         }
 
         void CachingLetterData()
         {
-            foreach (string rowName in letters.Instance.rowNames) {
-                lettersRow letRow = letters.Instance.GetRow(rowName);
-                Letters.Add(new LetterData(rowName, letRow));
+            foreach (var letterData in DB.FindAllLetterData()) {
+                Letters.Add(new LetterData(letterData.GetId()));
             }
         }
 
@@ -127,7 +105,7 @@ namespace EA4S
         public bool IsAssessmentTime { get { return PlaySession == 3; } }
         // Change this to change position of assessment in the alpha.
         [HideInInspector]
-        public MinigameData ActualMinigame;
+        public Db.MiniGameData ActualMinigame;
 
 
         public void ResetProgressionData()
@@ -142,24 +120,24 @@ namespace EA4S
         /// <summary>
         /// Give right game. Alpha version.
         /// </summary>
-        public MinigameData GetMiniGameForActualPlaySession()
+        public Db.MiniGameData GetMiniGameForActualPlaySession()
         {
-            MinigameData miniGame = null;
+            Db.MiniGameData miniGame = null;
             switch (PlaySession) {
                 case 1:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd");
+                        miniGame = DB.GetMiniGameDataById("FastCrowd_letter");
                     else
-                        miniGame = DB.gameData.Find(g => g.Code == "balloons");
+                        miniGame = DB.GetMiniGameDataById("Balloons_spelling");
                     break;
                 case 2:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.gameData.Find(g => g.Code == "fastcrowd_words");
+                        miniGame = DB.GetMiniGameDataById("FastCrowd_words");
                     else
-                        miniGame = DB.gameData.Find(g => g.Code == "dontwakeup");
+                        miniGame = DB.GetMiniGameDataById("Tobogan");
                     break;
                 case 3:
-                    miniGame = new MinigameData("Assessment", "Assessment", "Assessment", "app_Assessment", true);
+                    miniGame = DB.GetMiniGameDataById("Assessment");
                     break;
             }
             ActualMinigame = miniGame;
