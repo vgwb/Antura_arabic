@@ -5,13 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 using EA4S;
 using ModularFramework.Core;
-using ModularFramework.Modules;
-using ModularFramework.Helpers;
-using Google2u;
+
 
 namespace EA4S.DontWakeUp
 {
-    public enum How2Die {
+    public enum How2Die
+    {
         Null,
         TouchedDog,
         TouchedAlarm,
@@ -24,7 +23,7 @@ namespace EA4S.DontWakeUp
     {
         [Header("Scene Setup")]
         public Music SceneMusic;
- 
+
         [Header("Test / Debug")]
         public int StartingLevel;
 
@@ -49,7 +48,7 @@ namespace EA4S.DontWakeUp
         [HideInInspector]
         public MinigameState currentState;
 
-        [Header("Game Vars")]   
+        [Header("Game Vars")]
         public int currentRound;
 
         int LivesLeft;
@@ -67,8 +66,7 @@ namespace EA4S.DontWakeUp
         #region Overrides
         new public GameDontWakeUpGameplayInfo GameplayInfo;
 
-        new public static DontWakeUpManager Instance
-        {
+        new public static DontWakeUpManager Instance {
             get { return SubGame.Instance as DontWakeUpManager; }
         }
 
@@ -164,14 +162,14 @@ namespace EA4S.DontWakeUp
         {
             //Debug.Log("ClickedNext()");
             switch (currentState) {
-//                case MinigameState.GameIntro:
-//                    if (TutorialIndex > 1) {
-//                        TutorialIndex = TutorialIndex - 1;
-//                        ShowTutorialLine();
-//                    } else {
-//                        GameIntroFinished();
-//                    }
-//                    break;
+                //                case MinigameState.GameIntro:
+                //                    if (TutorialIndex > 1) {
+                //                        TutorialIndex = TutorialIndex - 1;
+                //                        ShowTutorialLine();
+                //                    } else {
+                //                        GameIntroFinished();
+                //                    }
+                //                    break;
                 case MinigameState.RoundIntro:
                     WidgetSubtitles.I.Close();
                     WidgetPopupWindow.I.Show(false);
@@ -376,7 +374,7 @@ namespace EA4S.DontWakeUp
             currentRound = currentRound + 1;
             StartCurrentRound();
         }
-            
+
         // called by callback in camera
         public void CameraReady()
         {

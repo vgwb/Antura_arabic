@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using ModularFramework.Helpers;
 
 namespace EA4S
 {
@@ -51,8 +50,8 @@ namespace EA4S
                 }
             }
 
-            WordData returnWord = returnList.GetRandomElement();
-            Debug.Log("Word: " + returnWord.Key);
+            WordData returnWord = returnList.GetRandom();
+            // Debug.Log("Word: " + returnWord.Key);
             AppManager.Instance.ActualGameplayWordAlreadyUsed.Add(returnWord);
             return returnWord;
         }
