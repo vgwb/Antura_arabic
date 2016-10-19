@@ -36,22 +36,5 @@ namespace EA4S.Db
                 );
         }
 
-        #region API
-
-        /// <summary>
-        /// Living Letter Text To Display.
-        /// </summary>
-        public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.ParseWord(Arabic, AppManager.Instance.Letters); }
-        }
-
-        /// <summary>
-        /// Return draw of word.
-        /// </summary>
-        public Sprite DrawForLivingLetter {
-            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Id); }
-        }
-
-        #endregion
     }
 }
