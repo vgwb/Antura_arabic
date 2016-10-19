@@ -2333,6 +2333,46 @@ Prefab:
       propertyPath: m_Height
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013927319314, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013927319314, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011217409888, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011217409888, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011217409888, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011217409888, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011217409888, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011217409888, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
   m_IsPrefabParent: 0
@@ -10240,7 +10280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0a1a0c0b04dc34e9502192a1a1ae91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModuleActivationState: 0
 --- !u!114 &1906256980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10295,6 +10334,18 @@ MonoBehaviour:
   LearningBlock: 4
   PlaySession: 1
   PlaySessionGameDone: 0
+  ActualMinigame:
+    Id: 
+    Variation: 
+    Status: 
+    Parent: 
+    Description: 
+    Title_En: 
+    Title_Ar: 
+    Scene: 
+    TitleNew: 
+    Team: 
+    Available: 0
 --- !u!4 &1906256983
 Transform:
   m_ObjectHideFlags: 0
