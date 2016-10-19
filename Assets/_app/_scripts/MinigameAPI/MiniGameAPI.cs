@@ -398,6 +398,14 @@ namespace EA4S.API {
             inputManager.Reset();
         }
 
+        #region CheckmarkWidget provider
+        public ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
+        public ICheckmarkWidget GetCheckmarkWidget()
+        {
+            return checkmarkWidget;
+        }
+        #endregion
+
         #region Context Presets
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {

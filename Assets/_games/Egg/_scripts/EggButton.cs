@@ -81,11 +81,11 @@ namespace EA4S.Egg
             {
                 if (livingLetterData.DataType == LivingLetterDataType.Letter)
                 {
-                    audioManager.PlayLetter(((LetterData)livingLetterData).Key);
+                    audioManager.PlayLetter(((LetterData)livingLetterData));
                 }
                 else if (livingLetterData.DataType == LivingLetterDataType.Word)
                 {
-                    audioManager.PlayWord(((WordData)livingLetterData).Key);
+                    audioManager.PlayWord(((WordData)livingLetterData));
                 }
             }).SetDelay(delay);
         }
