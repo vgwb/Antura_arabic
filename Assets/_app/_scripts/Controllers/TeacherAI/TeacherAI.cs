@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
-using Google2u;
 
 namespace EA4S
 {
@@ -22,15 +21,15 @@ namespace EA4S
 
         }
 
-        public List<MinigameData> GimmeGoodMinigames()
+        public List<Db.MiniGameData> GimmeGoodMinigames()
         {
-            return AppManager.Instance.DB.gameData;
+            return AppManager.Instance.DB.FindAllActiveMinigames();
         }
 
-        public wordsRow GimmeAGoodWord()
+        public Db.WordData GimmeAGoodWord()
         {
             int index = Random.Range(0, bodyPartsWords.Length - 1);
-            return words.Instance.GetRow(bodyPartsWords[index]);
+            return AppManager.Instance.DB.GetWordDataById(bodyPartsWords[index]);
         }
 
         /// <summary>
@@ -60,8 +59,8 @@ namespace EA4S
 
         public LetterData GimmeARandomLetter()
         {
-            int index = Random.Range(0, AppManager.Instance.Letters.Count - 1);
-            return AppManager.Instance.Letters[index];
+            var RandomLetterData = AppManager.Instance.DB.GetLetterDataByRandom();
+            return new LetterData(RandomLetterData.GetId());
         }
 
         List<WordData> getVocabularySubset(string[] _goodWords)

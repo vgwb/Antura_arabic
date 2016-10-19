@@ -5,7 +5,8 @@ using System.Collections;
 using TMPro;
 using ArabicSupport;
 using DG.Tweening;
-using Google2u;
+using EA4S;
+using EA4S.Db;
 
 namespace EA4S
 {
@@ -68,16 +69,13 @@ namespace EA4S
             GlobalUI.Init();
 
             IsShown = _doShow;
-            if (_doShow)
-            {
+            if (_doShow) {
                 clicked = false;
                 if (_immediate)
                     I.showTween.Complete();
                 else
                     I.showTween.PlayForward();
-            }
-            else
-            {
+            } else {
                 if (_immediate)
                     I.showTween.Rewind();
                 else
@@ -124,9 +122,9 @@ namespace EA4S
             currentCallback = callback;
             ButtonGO.SetActive(callback != null);
 
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.English;
 
             AudioManager.I.PlayDialog(SentenceId);
 
@@ -140,15 +138,14 @@ namespace EA4S
             currentCallback = callback;
             ButtonGO.SetActive(callback != null);
 
-            if (image2show != null)
-            {
+            if (image2show != null) {
                 TutorialImageGO.GetComponent<Image>().sprite = image2show;
                 TutorialImageGO.SetActive(true);
             }
 
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(sentenceId);
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.English;
 
             AudioManager.I.PlayDialog(sentenceId);
 
@@ -165,15 +162,14 @@ namespace EA4S
             MarkOK.SetActive(result);
             MarkKO.SetActive(!result);
 
-            if (image2show != null)
-            {
+            if (image2show != null) {
                 TutorialImageGO.GetComponent<Image>().sprite = image2show;
                 TutorialImageGO.SetActive(true);
             }
 
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(sentenceId);
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(sentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.English;
 
             AudioManager.I.PlayDialog(sentenceId);
 
@@ -222,9 +218,9 @@ namespace EA4S
             currentCallback = callback;
             ButtonGO.SetActive(callback != null);
 
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.English;
 
             //AudioManager.I.PlayDialog(SentenceId);
 
@@ -243,9 +239,9 @@ namespace EA4S
             MarkOK.SetActive(result);
             MarkKO.SetActive(!result);
 
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.English;
 
             //AudioManager.I.PlayDialog(SentenceId);
 
@@ -325,23 +321,20 @@ namespace EA4S
 
         public void SetTitleSentence(string SentenceId)
         {
-            LocalizationDataRow row = LocalizationData.Instance.GetRow(SentenceId);
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.GetStringData("Arabic"), false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.GetStringData("English");
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
+            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
+            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.English;
         }
 
         public void SetWord(string wordCode, string arabicWord)
         {
-            if (wordCode != "")
-            {
+            if (wordCode != "") {
                 WordTextGO.SetActive(true);
                 DrawingImageGO.SetActive(true);
                 // here set both word and drawing 
                 WordTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(arabicWord, false, false);
                 DrawingImageGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
-            }
-            else
-            {
+            } else {
                 WordTextGO.SetActive(false);
                 DrawingImageGO.SetActive(false);
             }

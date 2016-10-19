@@ -33,14 +33,18 @@ namespace ModularFramework.Modules
 
         #region IModule Implementation
         public IPlayerProfileModule ConcreteModuleImplementation { get; set; }
-        private PlayersData players;
-        public PlayersData Players {
-            get {
-                if (players == null)
-                    players = LoadAllPlayerProfiles();
-                return players;
+        private GlobalOptions options;
+        public GlobalOptions Options {
+            get { return options; }
+            set {
+                if(value != options) { 
+                    options = value;
+                    // Auto save at any change
+                    SaveAllOptions();
+                } else { 
+                    options = value;
+                }
             }
-            set { players = value; }
         }
 
         public IModuleSettings Settings { get; set; }
@@ -60,10 +64,10 @@ namespace ModularFramework.Modules
         /// <param name="_extProfile"></param>
         /// <returns></returns>
         public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
-            if (!Players.AvailablePlayers.Exists(p => p == _newPlayer.Id)) {
-                Players.AvailablePlayers.Add(_newPlayer.Id);
+            if (!Options.AvailablePlayers.Exists(p => p == _newPlayer.Id)) {
+                Options.AvailablePlayers.Add(_newPlayer.Id);
                 SavePlayerSettings(_newPlayer);
-                SaveAllPlayerProfiles();
+                SaveAllOptions();
             }
             return _newPlayer;
         }
@@ -73,7 +77,7 @@ namespace ModularFramework.Modules
         /// </summary>
         /// <param name="_playerId"></param>
         public void DeletePlayer(string _playerId) {
-            Players.AvailablePlayers.Remove(_playerId);
+            Options.AvailablePlayers.Remove(_playerId);
         }
 
         /// <summary>
@@ -93,7 +97,7 @@ namespace ModularFramework.Modules
         }
 
         /// <summary>
-        /// Save player settings on PlayerPrefs (do not update list of players).
+        /// Save player settings on PlayerPrefs (do not update list of players and global options).
         /// </summary>
         /// <param name="_newPlayer"></param>
         /// <param name="_extProfile"></param>
@@ -113,7 +117,7 @@ namespace ModularFramework.Modules
         /// </summary>
         /// <param name="_playerId"></param>
         public void SetActivePlayer<T>(string _playerId) where T : IPlayerProfile {
-            if (!Players.AvailablePlayers.Exists(p => p == _playerId)) // If player is not in active players list...
+            if (!Options.AvailablePlayers.Exists(p => p == _playerId)) // If player is not in active players list...
                 return;
             IPlayerProfile pp = LoadPlayerSettings<T>(_playerId);
             if (pp == null) {
@@ -135,33 +139,46 @@ namespace ModularFramework.Modules
             return _newPlayer;
         }
 
+        ///// <summary>
+        ///// Loads the global options.
+        ///// </summary>
+        ///// <returns></returns>
+        //public IGlobalOptions LoadGlobalOptions<T>() where T : IGlobalOptions {
+        //    return LoadGlobalOptions<T>(Activator.CreateInstance<T>());
+        //}
+
         /// <summary>
-        /// Return the list of all availables player profiles.
+        /// Loads the global options with default fallback value.
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="_defaultOptions">The default options.</param>
         /// <returns></returns>
-        public PlayersData LoadAllPlayerProfiles()
-        {
+        public GlobalOptions LoadGlobalOptions<T>(T _defaultOptions) where T : GlobalOptions {
             string serializedObjs;
-            if (PlayerPrefs.HasKey(PLAYERS_PREFS_KEY)) {
-                serializedObjs = PlayerPrefs.GetString(PLAYERS_PREFS_KEY);
-                return JsonUtility.FromJson<PlayersData>(serializedObjs);
+            if (PlayerPrefs.HasKey(OPTIONS_PREFS_KEY)) {
+                serializedObjs = PlayerPrefs.GetString(OPTIONS_PREFS_KEY);
+                Options = JsonUtility.FromJson<T>(serializedObjs);
+                return options;
             } else {
                 // Players list not created yet.
-                return new PlayersData();
+                Options = _defaultOptions;
+                LoadGlobalOptions<T>(_defaultOptions);
+                SaveAllOptions();
+                return _defaultOptions;
             }
         }
 
         /// <summary>
         /// Save all player profiles.
         /// </summary>
-        public void SaveAllPlayerProfiles() {
-            string serializedObjs = JsonUtility.ToJson(Players);
-            PlayerPrefs.SetString(PLAYERS_PREFS_KEY, serializedObjs);
+        public void SaveAllOptions() {
+            string serializedObjs = JsonUtility.ToJson(Options);
+            PlayerPrefs.SetString(OPTIONS_PREFS_KEY, serializedObjs);
             PlayerPrefs.Save();
         }
 
         #region Data Store
-        const string PLAYERS_PREFS_KEY = "PLAYERS";
+        const string OPTIONS_PREFS_KEY = "OPTIONS";
         const string PLAYER_PREFS_KEY = "PLAYER";
 
         /// <summary>

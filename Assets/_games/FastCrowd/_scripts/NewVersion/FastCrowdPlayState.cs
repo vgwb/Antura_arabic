@@ -28,20 +28,13 @@ namespace EA4S.FastCrowd
 
             // Generate wrong answers
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
-            int maxRetries = 100;
+
             for (int i = 0; 
                 i < FastCrowdConfiguration.Instance.MaxNumbOfWrongLettersNoise && 
                 i < game.QuestionNumber &&
-                maxRetries > 0; i++)
+                i < game.NoiseData.Count; i++)
             {
-                --maxRetries; // prevent deadlocks
-                WordData newWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                if (!wrongAnswers.Contains(newWord) && !game.CurrentChallenge.Contains(newWord))
-                {
-                    wrongAnswers.Add(newWord);
-                }
-                else
-                    i--;
+                wrongAnswers.Add(game.NoiseData[i]);
             }
 
             if (game.CurrentChallenge != null)

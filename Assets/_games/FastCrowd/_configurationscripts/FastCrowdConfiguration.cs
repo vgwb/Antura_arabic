@@ -13,16 +13,7 @@
     {
         // Game configuration
         public IGameContext Context { get; set; }
-
-        // For Spelling, Words, Counting (words of the numbers)
-        public ILivingLetterDataProvider WordsProvider { get; set; }
-
-        // For Alphabet
-        public ILivingLetterDataProvider LetterProvider { get; set; }
-
-        // For Letter
-        public IQuestionProvider QuestionProvider { get; set; }
-
+        public IQuestionProvider Questions { get; set; }
         #region Game configurations
         public float Difficulty { get; set; }
         public FastCrowdVariation Variation { get; set; }
@@ -51,8 +42,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            WordsProvider = new SampleWordProvider();
-            LetterProvider = new SampleLetterProvider();
+            Questions = new SampleQuestionProvider();
             Context = new SampleGameContext();
             Difficulty = 0.5f;
             Variation = FastCrowdVariation.Words;
@@ -60,5 +50,21 @@
             MaxNumbOfWrongLettersNoise = 3;
             PlayTime = 90;
         }
+
+        #region external configuration call
+        public static void SetConfiguration(float _difficulty, int _variation) {
+            instance = new FastCrowdConfiguration() {
+                Difficulty = _difficulty,
+                Variation = (FastCrowdVariation)_variation,
+            };
+        }
+        public static void SetConfiguration(float _difficulty, int _variation, float _playTime) {
+            instance = new FastCrowdConfiguration() {
+                Difficulty = _difficulty,
+                Variation = (FastCrowdVariation)_variation,
+                PlayTime = _playTime,
+            };
+        }
+        #endregion
     }
 }

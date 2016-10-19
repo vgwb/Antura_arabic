@@ -6,7 +6,6 @@ namespace EA4S.Egg
 {
     public class EggLivingLetter : MonoBehaviour
     {
-
         const string idleAnimation = "idle";
         const string holdAnimation = "hold";
         const string runAnimation = "run";
