@@ -9,21 +9,29 @@ namespace EA4S.ThrowBalls
         public static readonly Vector3 POKEBALL_POSITION = new Vector3(-1.14f, 3.8f, -20f);
         public const float VELOCITY_SQUARED_LAUNCH_THRESOLD = 16;
         public const int TOUCH_BUFFER_SIZE = 5;
+        private readonly Vector3 POKEBALL_LETTER_CENTER_OFFSET = new Vector3(0, 3.3f, 0);
 
         public static PokeballController instance;
         public Rigidbody rigidBody;
+        public GameObject ringEffectPrefab;
 
+        public enum ChargeStrength
+        {
+            None, Low, Medium, High
+        };
+        private ChargeStrength chargeStrength;
         private Vector3 touchOffset;
         private float cameraDistance;
         private List<Vector3> touchPositionsInPx;
         private List<float> touchSpeedsInPxPerSecs;
+        private Vector3 touchOrigin;
 
-        private float stopWhenYIsEqualToMe = 0;
         private float yVelocity = 0;
         private float zVelocity = 0;
         private Vector3 launchPoint;
-
-        Vector3 letterPos = new Vector3(0, 1.8f, 29.5f);
+        private bool isLaunched;
+        private Vector3 target;
+        private float timeOfLaunch;
 
         #region Temporary mouse control variables
 
@@ -33,6 +41,10 @@ namespace EA4S.ThrowBalls
         private Vector3 lastPosition;
         public List<Vector3> positions;
         public List<float> times;
+        public AudioSource audioSource;
+        public AudioClip pokeballLowClip;
+        public AudioClip pokeballMedClip;
+        public AudioClip pokeballHighClip;
 
         #endregion
 
@@ -45,6 +57,8 @@ namespace EA4S.ThrowBalls
 
             positions = new List<Vector3>();
             times = new List<float>();
+
+            rigidBody.maxAngularVelocity = 100;
         }
 
         void Start()
@@ -57,7 +71,6 @@ namespace EA4S.ThrowBalls
         public void Reset()
         {
             transform.position = POKEBALL_POSITION;
-            rigidBody.isKinematic = true;
             touchPositionsInPx.Clear();
             touchSpeedsInPxPerSecs.Clear();
 
@@ -66,6 +79,16 @@ namespace EA4S.ThrowBalls
             lastPosition = new Vector3(POKEBALL_POSITION.x, POKEBALL_POSITION.y, POKEBALL_POSITION.z);
             positions.Clear();
             times.Clear();
+            
+            rigidBody.isKinematic = true;
+            rigidBody.angularVelocity = new Vector3(0, 0, 0);
+            rigidBody.velocity = new Vector3(0, 0, 0);
+            rigidBody.isKinematic = false;
+            isLaunched = false;
+
+            chargeStrength = ChargeStrength.None;
+            ParticleSystemController.instance.OnPositionUpdate(POKEBALL_POSITION);
+            ParticleSystemController.instance.OnChargeStrengthUpdate(chargeStrength);
         }
 
         public void Enable()
@@ -85,7 +108,7 @@ namespace EA4S.ThrowBalls
 
             pos.y = Constants.GRAVITY.y * Mathf.Pow(time, 2);
             pos.y /= 2;
-            pos.y += yVelocity * time + launchPoint.y - letterPos.y;
+            pos.y += yVelocity * time + launchPoint.y - target.y;
 
             pos.z = launchPoint.z + zVelocity * time;
 
@@ -94,7 +117,7 @@ namespace EA4S.ThrowBalls
 
         void FixedUpdate()
         {
-            if (!rigidBody.isKinematic)
+            if (isLaunched)
             {
                 rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
 
@@ -108,9 +131,11 @@ namespace EA4S.ThrowBalls
 
         void Update()
         {
-            if (transform.position.y <= stopWhenYIsEqualToMe)
+            ParticleSystemController.instance.OnPositionUpdate(transform.position);
+
+            if (isLaunched)
             {
-                rigidBody.isKinematic = true;
+                //transform.position = ComputePosition(Time.time - timeOfLaunch);
             }
 
             else
@@ -220,6 +245,7 @@ namespace EA4S.ThrowBalls
             Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
             touchOffset.x = transform.position.x - mousePosInWorldUnits.x;
             touchOffset.y = transform.position.y - mousePosInWorldUnits.y;
+            touchOrigin = mousePosInWorldUnits;
         }
         void OnMouseDrag()
         {
@@ -251,7 +277,74 @@ namespace EA4S.ThrowBalls
                 times.Add(Time.time);
             }
             transform.position = position;
+
+            float threshold = 1.5f;
+            float unitYDistance = 3.5f;
+            float unitYRotation = Mathf.PI * 2;
+            float deltaY = position.y - touchOrigin.y;
+
+            if (deltaY > unitYDistance * 2 + threshold)
+            {
+                SetChargeStrength(ChargeStrength.High);
+                rigidBody.angularVelocity = new Vector3(unitYRotation * 6, 0, 0);
+            }
+
+            else if (deltaY > unitYDistance + threshold)
+            {
+                SetChargeStrength(ChargeStrength.Medium);
+                rigidBody.angularVelocity = new Vector3(unitYRotation * 3.25f, 0, 0);
+            }
+
+            else if (deltaY > threshold)
+            {
+                SetChargeStrength(ChargeStrength.Low);
+                rigidBody.angularVelocity = new Vector3(unitYRotation * 1.5f, 0, 0);
+            }
+
+            else
+            {
+                SetChargeStrength(ChargeStrength.None);
+                rigidBody.angularVelocity = new Vector3(0, 0, 0);
+            }
+
+            
         }
+
+        void SetChargeStrength(ChargeStrength chargeStrength)
+        {
+            if (chargeStrength == this.chargeStrength)
+            {
+                return;
+            }
+
+            audioSource.Stop();
+
+            switch (chargeStrength)
+            {
+                case ChargeStrength.None:
+                    break;
+                case ChargeStrength.Low:
+                    audioSource.PlayOneShot(pokeballLowClip);
+                    break;
+                case ChargeStrength.Medium:
+                    audioSource.PlayOneShot(pokeballMedClip);
+                    break;
+                case ChargeStrength.High:
+                    audioSource.PlayOneShot(pokeballHighClip);
+                    break;
+                default:
+                    break;
+            }
+
+            this.chargeStrength = chargeStrength;
+
+            ParticleSystemController.instance.OnChargeStrengthUpdate(chargeStrength);
+
+            GameObject ringEffect = (GameObject)Instantiate(ringEffectPrefab, transform.position, Quaternion.Euler(90, 0, 0));
+            ringEffect.SetActive(true);
+            ringEffect.GetComponent<RingEffectController>().Animate(chargeStrength);
+        }
+
         void OnMouseUp()
         {
             /*if (velocity.sqrMagnitude < VELOCITY_SQUARED_LAUNCH_THRESOLD)
@@ -286,27 +379,55 @@ namespace EA4S.ThrowBalls
             rigidBody.AddForce(new Vector3(flickDirection.x * magnitude * 0.7f, flickDirection.y * magnitude * 0.7f, 0.7f * magnitude), ForceMode.VelocityChange);
             rigidBody.AddTorque(new Vector3(flickDirection.x * velocity.x, flickDirection.y * velocity.y, 80), ForceMode.VelocityChange);*/
 
-            
+            velocity = (positions[positions.Count - 1] - positions[0]) / Screen.dpi;
+            velocity /= times[times.Count - 1] - times[0];
+            velocity *= 3;
+            flickDirection.Normalize();
+            float magnitude = velocity.magnitude;
+            magnitude = Mathf.Clamp(magnitude, 20, 100);
+
+
+            Vector3 letterPos = new Vector3();
+
+            switch (chargeStrength)
+            {
+                case ChargeStrength.None:
+                    break;
+                case ChargeStrength.Low:
+                    letterPos = ThrowBallsGameManager.Instance.GetPositionOfLetter(0);
+                    break;
+                case ChargeStrength.Medium:
+                    letterPos = ThrowBallsGameManager.Instance.GetPositionOfLetter(1);
+                    break;
+                case ChargeStrength.High:
+                    letterPos = ThrowBallsGameManager.Instance.GetPositionOfLetter(2);
+                    break;
+                default:
+                    break;
+            }
+
+            target = letterPos + POKEBALL_LETTER_CENTER_OFFSET;
 
             float velocityY = 50f;
-            float velocityZ = letterPos.z - transform.position.z;
+            float velocityZ = target.z - transform.position.z;
 
             velocityZ *= Constants.GRAVITY.y;
 
-            float factor = (-1 * velocityY) - Mathf.Sqrt(Mathf.Pow(velocityY, 2) - (2 * (transform.position.y - letterPos.y) * Constants.GRAVITY.y));
+            float factor = (-1 * velocityY) - Mathf.Sqrt(Mathf.Pow(velocityY, 2) - (2 * (transform.position.y - target.y) * Constants.GRAVITY.y));
             factor = Mathf.Pow(factor, -1);
 
             velocityZ *= factor;
 
             rigidBody.isKinematic = false;
-            rigidBody.AddForceAtPosition(new Vector3(0, velocityY, velocityZ), transform.position, ForceMode.Impulse);
-
-            stopWhenYIsEqualToMe = letterPos.y;
+            rigidBody.AddForceAtPosition(new Vector3(flickDirection.x * velocityZ, velocityY, velocityZ), transform.position, ForceMode.VelocityChange);
 
             yVelocity = velocityY;
             zVelocity = velocityZ;
 
             launchPoint = transform.position;
+
+            isLaunched = true;
+            timeOfLaunch = Time.time;
         }
 
         #endregion
