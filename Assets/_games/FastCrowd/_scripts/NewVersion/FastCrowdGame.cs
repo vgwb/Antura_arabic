@@ -83,6 +83,8 @@ namespace EA4S.FastCrowd
 
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
                 wordComposer.gameObject.SetActive(false);
+
+            Physics.gravity = Vector3.up * -40;
         }
 
 

@@ -21,9 +21,12 @@ public class FastCrowdLivingLetter : MonoBehaviour
 
     LetterObjectView thisView;
 
+    Collider[] colliders;
+
     void Awake()
     {
         thisView = GetComponent<LetterObjectView>();
+        colliders = GetComponentsInChildren<Collider>();
 
         WalkingState = new LetterWalkingState(this);
         IdleState = new LetterIdleState(this);
@@ -32,7 +35,7 @@ public class FastCrowdLivingLetter : MonoBehaviour
         FallingState = new LetterFallingState(this);
         HangingState = new LetterHangingState(this);
 
-        SetCurrentState(IdleState);
+        SetCurrentState(FallingState);
     }
 
     void Update()
@@ -45,16 +48,31 @@ public class FastCrowdLivingLetter : MonoBehaviour
         stateManager.UpdatePhysics(Time.fixedDeltaTime);
     }
 
+    public bool Raycast(out Vector3 position, Ray ray, float maxDistance)
+    {
+        for (int i = 0, count = colliders.Length; i < count; ++i)
+        {
+            RaycastHit info;
+            if (colliders[i].Raycast(ray, out info, maxDistance))
+            {
+                position = info.point;
+                return true;
+            }
+        }
+        position = Vector3.zero;
+        return false;
+    }
+
     public void SetCurrentState(LetterState letterState)
     {
         stateManager.CurrentState = letterState;
     }
-    
+
     public LetterState GetCurrentState()
     {
         return (LetterState)stateManager.CurrentState;
     }
-    
+
     /// <summary>
     /// Scare time is the duration of being in scared state
     /// </summary>

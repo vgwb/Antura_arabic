@@ -7549,6 +7549,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1411710101}
+  - 114: {fileID: 1411710102}
   m_Layer: 0
   m_Name: WalkableArea
   m_TagString: Untagged
@@ -7572,6 +7573,17 @@ Transform:
   - {fileID: 886257704}
   m_Father: {fileID: 1642340483}
   m_RootOrder: 4
+--- !u!114 &1411710102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1411710100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e1e8fe7799e7d439dd5cfc4e750e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1448568310
 Prefab:
   m_ObjectHideFlags: 0
