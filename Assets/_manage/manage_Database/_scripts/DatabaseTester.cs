@@ -9,7 +9,9 @@ namespace EA4S.Db.Management
 {
     public class DatabaseTester : MonoBehaviour
     {
+#if UNITY_EDITOR
         public DatabaseLoader DBLoader;
+#endif
         private DatabaseManager db;
 
         public Text OutputText;
@@ -25,8 +27,10 @@ namespace EA4S.Db.Management
 
         public void ImportAll()
         {
+#if UNITY_EDITOR
             DBLoader.LoadDatabase();
             DumpAllDataCounts();
+#endif
         }
 
         public void RegenerateRuntimeDB()
