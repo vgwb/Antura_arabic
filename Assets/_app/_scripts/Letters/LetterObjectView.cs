@@ -157,7 +157,7 @@ namespace EA4S
                 }
             }
 
-            Debug.Log((int)_newState);
+            //Debug.Log((int)_newState);
 
             switch (_newState) {
                 case LetterObjectState.LL_idle:

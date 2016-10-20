@@ -61,7 +61,6 @@ Shader "Unlit/MeterDot"
 				col.a *= smoothstep(_Base, _Base + 0.1, i.worldY);
 				col.a *= (1 - smoothstep(_Base + _Height - 0.1, _Base + _Height, i.worldY));
 
-
 				return col;
 			}
 			ENDCG

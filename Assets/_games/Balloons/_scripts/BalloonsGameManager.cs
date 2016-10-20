@@ -513,7 +513,7 @@ namespace Balloons
 
                 switch (howDied) {
                     case How2Die.TimeEnd:
-                        sentence = "game_balloons_fail_time";
+                        sentence = TextID.TIMES_UP.ToString();
                         WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailTime);
                         break;
                     case How2Die.WrongBalloon:
