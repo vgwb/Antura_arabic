@@ -202,11 +202,11 @@ namespace EA4S.API {
         ////}
 
         public void StartGame(MiniGameCode _gameCode, List<FindRightDataQuestionPack> _gameData, GameConfiguration _gameConfiguration) {
-            StartGame(_gameCode, _gameData.ConvertAll(e => (IGameData)e), _gameConfiguration);
-        }
+        //    StartGame(_gameCode, _gameData.ConvertAll(e => (IGameData)e), _gameConfiguration);
+        //}
             
 
-        public void StartGame(MiniGameCode _gameCode, List<IGameData> _gameData,  GameConfiguration _gameConfiguration) {
+        //public void StartGame(MiniGameCode _gameCode, List<IGameData> _gameData,  GameConfiguration _gameConfiguration) {
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataById(_gameCode.ToString());
 
             switch (_gameCode) {
@@ -229,6 +229,9 @@ namespace EA4S.API {
                 case MiniGameCode.DontWakeUp:
                     break;
                 case MiniGameCode.Egg:
+                    Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    //Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData.ConvertAll(o => (FindRightDataQuestionPack)o), miniGameData.Description);
+                    Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     break;
@@ -270,14 +273,14 @@ namespace EA4S.API {
                     break;
                 case MiniGameCode.Tobogan_letters:
                     Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    Tobogan.ToboganConfiguration.Instance.Variation = 1;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData.ConvertAll(o => (FindRightDataQuestionPack)o), miniGameData.Description);
+                    Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.LetterInAWord;
+                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.Tobogan_words:
                     Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    Tobogan.ToboganConfiguration.Instance.Variation = 2;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData.ConvertAll(o => (FindRightDataQuestionPack)o), miniGameData.Description);
+                    Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.SunMoon;
+                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 default:
@@ -532,7 +535,6 @@ namespace EA4S.API {
             // Todo: Save on db
         }
         #endregion
-
 
         #region Playsession Logs
 

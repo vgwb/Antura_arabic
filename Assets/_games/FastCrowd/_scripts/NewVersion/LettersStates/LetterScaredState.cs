@@ -9,11 +9,15 @@ namespace EA4S.FastCrowd
         public float ScaredDuration = 1.0f;
         public Vector3 ScareSource;
 
+        const float SCARED_RUN_SPEED = 8.0f;
+
         float scaredTimer;
-        
+
+        FastCrowdLetterMovement movement;
+            
         public LetterScaredState(FastCrowdLivingLetter letter) : base(letter)
         {
-
+            movement = letter.GetComponent<FastCrowdLetterMovement>();
         }
 
         public override void EnterState()
@@ -30,6 +34,25 @@ namespace EA4S.FastCrowd
 
         public override void Update(float delta)
         {
+            // Run-away from danger!
+            Vector3 runDirection = letter.transform.position - ScareSource;
+            runDirection.y = 0;
+            runDirection.Normalize();
+
+            movement.MoveAmount(runDirection.normalized * SCARED_RUN_SPEED * delta);
+            movement.LerpLookAt(letter.transform.position + runDirection, 4 * delta);
+
+            if (Vector3.Distance(letter.transform.position, letter.antura.transform.position) < 20.0f)
+            {
+                letter.Scare(letter.antura.transform.position, 5);
+                return;
+            }
+
+            if (Vector3.Distance(letter.transform.position, ScareSource) > 10.0f)
+            {
+                scaredTimer = Mathf.Min(0.5f, scaredTimer);
+            }
+
             scaredTimer -= delta;
 
             if (scaredTimer <= 0)

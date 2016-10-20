@@ -3,6 +3,7 @@ using EA4S;
 using EA4S.FastCrowd;
 using UnityEngine;
 
+[RequireComponent(typeof(FastCrowdLetterMovement))]
 public class FastCrowdLivingLetter : MonoBehaviour
 {
     public event System.Action onDestroy;
@@ -12,7 +13,6 @@ public class FastCrowdLivingLetter : MonoBehaviour
 
     public LetterWalkingState WalkingState { get; private set; }
     public LetterIdleState IdleState { get; private set; }
-    public LetterStealthState StealthState { get; private set; }
     public LetterFallingState FallingState { get; private set; }
     public LetterHangingState HangingState { get; private set; }
 
@@ -21,13 +21,16 @@ public class FastCrowdLivingLetter : MonoBehaviour
 
     Collider[] colliders;
 
+    public Crowd crowd;
+    public FastCrowdWalkableArea walkableArea { get { return crowd.walkableArea; } }
+    public AnturaController antura { get { return crowd.antura; } }
+
     void Awake()
     {
         colliders = GetComponentsInChildren<Collider>();
 
         WalkingState = new LetterWalkingState(this);
         IdleState = new LetterIdleState(this);
-        StealthState = new LetterStealthState(this);
         ScaredState = new LetterScaredState(this);
         FallingState = new LetterFallingState(this);
         HangingState = new LetterHangingState(this);
@@ -35,9 +38,31 @@ public class FastCrowdLivingLetter : MonoBehaviour
         SetCurrentState(FallingState);
     }
 
+    void Start()
+    {
+
+    }
+
     void Update()
     {
         stateManager.Update(Time.deltaTime);
+
+        // Just to be safe
+        var currentState = GetCurrentState();
+        if (currentState != HangingState && currentState != FallingState)
+        {
+            var oldPos = transform.position;
+
+            if (oldPos.y != 0)
+                oldPos.y = 0;
+            transform.position = oldPos;
+        }
+
+        if (Vector3.Distance(transform.position, antura.transform.position) < 15.0f)
+        {
+            Scare(antura.transform.position, 5);
+            return;
+        }
     }
 
     void FixedUpdate()
@@ -79,7 +104,10 @@ public class FastCrowdLivingLetter : MonoBehaviour
     {
         ScaredState.ScaredDuration = scareTime;
         ScaredState.ScareSource = scareSource;
-        SetCurrentState(ScaredState);
+
+        if (GetCurrentState() == IdleState ||
+            GetCurrentState() == WalkingState)
+            SetCurrentState(ScaredState);
     }
 
     void OnDestroy()
