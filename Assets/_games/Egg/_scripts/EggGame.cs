@@ -11,6 +11,7 @@ namespace EA4S.Egg
         public AnturaEggController antura;
         public GameObject letterObjectPrefab;
         public EggRunLettersBox runLettersBox;
+        public GameObject anturaPrefab;
 
         public const int numberOfStage = 4;
         public int currentStage { get; set; }
@@ -68,6 +69,7 @@ namespace EA4S.Egg
             eggController.Initialize(letterObjectPrefab, eggBox.GetEggLocalPositions());
             eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), PlayState.OnEggButtonPressed);
             runLettersBox.Initialize(letterObjectPrefab);
+            antura.Initialize(anturaPrefab);
         }
     }
 
