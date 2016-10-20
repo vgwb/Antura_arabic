@@ -43,7 +43,7 @@ namespace EA4S
                 {
                     var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
 
-                    if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter))
+                    if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                     {
                         wrongAnswers.Add(letter);
                     }
@@ -52,6 +52,14 @@ namespace EA4S
                 var currentPack = new SampleQuestionPack(newWordData, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
+        }
+
+        static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
+        {
+            for (int i = 0, count = list.Count; i < count; ++i)
+                if (list[i].Key == letter.Key)
+                    return true;
+            return false;
         }
 
         public string GetDescription()
