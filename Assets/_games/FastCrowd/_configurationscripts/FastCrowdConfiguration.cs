@@ -1,6 +1,6 @@
 ﻿namespace EA4S.FastCrowd
 {
-    public enum FastCrowdVariation
+    public enum FastCrowdVariation : int
     {
         Spelling = 1,
         Words = 2,

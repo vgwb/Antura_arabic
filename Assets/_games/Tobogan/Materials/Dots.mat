@@ -96,7 +96,7 @@ Material:
       second: 1
     - first:
         name: _Height
-      second: 5.3157063
+      second: 0
     - first:
         name: _Metallic
       second: 0

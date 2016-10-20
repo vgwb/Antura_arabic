@@ -273,13 +273,13 @@ namespace EA4S.API {
                     break;
                 case MiniGameCode.Tobogan_letters:
                     Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    Tobogan.ToboganConfiguration.Instance.Variation = 1;
+                    Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.LetterInAWord;
                     Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.Tobogan_words:
                     Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    Tobogan.ToboganConfiguration.Instance.Variation = 2;
+                    Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.SunMoon;
                     Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
