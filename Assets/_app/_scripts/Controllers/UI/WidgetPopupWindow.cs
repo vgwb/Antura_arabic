@@ -252,7 +252,7 @@ namespace EA4S
 
         public void ShowTimeUp(Action callback)
         {
-            ShowSentence(callback, "game_time_up", gameTimeUpSprite);
+            ShowSentence(callback, TextID.TIMES_UP.ToString(), gameTimeUpSprite);
         }
 
         public void Init(string introText, string wordCode, string arabicWord)
