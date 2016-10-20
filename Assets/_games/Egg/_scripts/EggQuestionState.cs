@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace EA4S.Egg
 {
@@ -15,7 +16,9 @@ namespace EA4S.Egg
         {
             game.eggButtonBox.RemoveButtons();
 
-            game.questionManager.StartNewQuestion();
+            bool onlyLetter = Random.Range(0, 2) == 0;
+
+            game.questionManager.StartNewQuestion(game.gameDifficulty, onlyLetter);
             game.eggController.Reset();
 
             game.Context.GetPopupWidget().Show(OnPopupCloseRequested, "Question Description", true);
@@ -64,18 +67,20 @@ namespace EA4S.Egg
         {
             WordData questionWordData = game.questionManager.GetQuestionWordData();
 
+            bool noColor = game.gameDifficulty > 2;
+
             if (questionWordData == null)
             {
                 game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
                 game.Context.GetAudioManager().PlayLetter(((LetterData)game.questionManager.GetlLetterDataSequence()[0]));
                 game.eggController.StartTrembling();
 
-                game.eggButtonBox.LightUpButtons(true, true, 1f, 2f, OnLightUpButtonsComplete);
+                game.eggButtonBox.LightUpButtons(noColor, true, true, 1f, 2f, OnLightUpButtonsComplete);
             }
             else
             {
                 game.eggController.eggLivingLetter.SetLetter(questionWordData);
-                game.eggButtonBox.LightUpButtons(true, false, 1f, 1f, OnLightUpButtonsComplete);
+                game.eggButtonBox.LightUpButtons(noColor, true, false, 1f, 1f, OnLightUpButtonsComplete);
             }
         }
 
