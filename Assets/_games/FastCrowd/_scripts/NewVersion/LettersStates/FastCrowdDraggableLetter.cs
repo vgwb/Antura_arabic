@@ -8,16 +8,21 @@ using EA4S.FastCrowd;
 public class FastCrowdDraggableLetter : MonoBehaviour
 {
     FastCrowdLivingLetter letter;
+    FastCrowdLetterMovement movement;
     DropAreaWidget currentDropAreaWidget;
     DropSingleArea currentDropArea;
 
     Vector3 rayOffset;
     bool isDragging = false;
     float currentY = 0;
+    
+    float overrideDirectionY;
+    bool hasValidY = false;
 
     void Awake()
     {
         letter = GetComponent<FastCrowdLivingLetter>();
+        movement = letter.GetComponent<FastCrowdLetterMovement>();
     }
 
     void OnDestroy()
@@ -31,8 +36,10 @@ public class FastCrowdDraggableLetter : MonoBehaviour
         var oldPos = letter.transform.position;
         currentY = oldPos.y;
         letter.transform.position = oldPos;
-        
+
         rayOffset = dragOffset;
+
+        movement.EnableSweep = false;
 
         isDragging = true;
     }
@@ -45,6 +52,7 @@ public class FastCrowdDraggableLetter : MonoBehaviour
             letter.DropOnArea(currentDropAreaWidget);
 
         isDragging = false;
+        movement.EnableSweep = true;
     }
 
     void OnDrag()
@@ -52,15 +60,19 @@ public class FastCrowdDraggableLetter : MonoBehaviour
         if (letter.GetCurrentState() != letter.HangingState)
             letter.SetCurrentState(letter.HangingState);
 
-        var oldPos = ComputePointedPosition(rayOffset);
-        oldPos.y = currentY;
+        Vector3 oldPos;
 
-        currentY = Mathf.Lerp(currentY, 2, Time.deltaTime * 10.0f);
-        
-        letter.transform.position = oldPos;
+        if (ComputePointedPosition(out oldPos, rayOffset))
+        {
+            oldPos.y = currentY;
+
+            currentY = Mathf.Lerp(currentY, 1.5f, Time.deltaTime * 10.0f);
+
+            movement.MoveTo(oldPos);
+        }
     }
 
-    Vector3 ComputePointedPosition(Vector3 rayOffset)
+    bool ComputePointedPosition(out Vector3 output, Vector3 rayOffset)
     {
         var screenRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -68,17 +80,32 @@ public class FastCrowdDraggableLetter : MonoBehaviour
         o -= rayOffset;
         screenRay.origin = o;
 
-        if (screenRay.direction.y != 0)
+        var direction = screenRay.direction;
+
+        if (Mathf.Abs(direction.y) > 0.1f)
         {
-            float t = -screenRay.origin.y / screenRay.direction.y;
-
-            Vector3 pos = screenRay.origin + t * screenRay.direction;
-            pos.y = 0;
-
-            return pos;
+            overrideDirectionY = direction.y;
+            hasValidY = true;
         }
 
-        return Vector3.zero;
+        if (hasValidY)
+        {
+            direction.y = overrideDirectionY;
+
+            float t = -screenRay.origin.y / direction.y;
+
+            Vector3 pos = screenRay.origin + t * direction;
+            pos.y = 0;
+
+            pos = letter.crowd.walkableArea.GetNearestPoint(pos);
+            pos.y = 0;
+
+            output = pos;
+            return true;
+        }
+
+        output = Vector3.zero;
+        return false;
     }
 
 
@@ -89,6 +116,16 @@ public class FastCrowdDraggableLetter : MonoBehaviour
 
         if (isDragging)
             OnDrag();
+        else
+        {
+            if (currentDropAreaWidget != null)
+            {
+                currentDropAreaWidget.SetMatchingOutline(false, false);
+
+                currentDropAreaWidget = null;
+                currentDropArea = null;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -111,6 +148,12 @@ public class FastCrowdDraggableLetter : MonoBehaviour
                 dropArea.SetMatchingOutline(true, matching);
             }
         }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (currentDropAreaWidget == null)
+            OnTriggerEnter(other);
     }
 
     void OnTriggerExit(Collider other)

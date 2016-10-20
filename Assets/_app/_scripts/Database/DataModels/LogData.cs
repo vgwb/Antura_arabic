@@ -6,9 +6,10 @@ namespace EA4S.Db
     public enum LogDataType
     {
         Info,
-        PlayData,
-        LearnData,
-        MoodData
+        Play,
+        Learn,
+        Mood,
+        Assessment
     }
 
     public enum LogPlaySkill

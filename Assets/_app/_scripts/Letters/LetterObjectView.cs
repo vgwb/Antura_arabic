@@ -197,6 +197,8 @@ namespace EA4S
                 case LetterObjectState.LL_balance:
                 case LetterObjectState.LL_balance_L:
                 case LetterObjectState.LL_balance_R:
+                case LetterObjectState.LL_crouching:
+                case LetterObjectState.LL_crouching_up:
                 case LetterObjectState.LL_ride_rocket_idle:
                 case LetterObjectState.LL_ride_rocket_horray:
                     Anim.SetInteger("State", (int)_newState);

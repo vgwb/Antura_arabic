@@ -1,4 +1,6 @@
-﻿namespace EA4S.FastCrowd
+﻿using UnityEngine;
+
+namespace EA4S.FastCrowd
 {
     public class LetterIdleState : LetterState
     {
