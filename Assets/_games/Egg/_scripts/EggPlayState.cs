@@ -1,4 +1,6 @@
-﻿namespace EA4S.Egg
+﻿using UnityEngine;
+
+namespace EA4S.Egg
 {
     public class EggPlayState : IGameState
     {
@@ -10,10 +12,10 @@
         int questionProgress;
         int correctAnswers;
 
-        bool anturaEntered;
-
         float nextStateTimer;
         bool toNextState;
+
+        float anturaProbabilityOfIn;
 
         public EggPlayState(EggGame game)
         {
@@ -42,7 +44,22 @@
 
             EnableAllGameplayInput();
 
-            anturaEntered = false;
+            if(game.gameDifficulty < 2)
+            {
+                anturaProbabilityOfIn = 0f;
+            }
+            else if(game.gameDifficulty < 4)
+            {
+                anturaProbabilityOfIn = 0.20f;
+            }
+            else if(game.gameDifficulty < 5)
+            {
+                anturaProbabilityOfIn = 0.40f;
+            }
+            else
+            {
+                anturaProbabilityOfIn = 0.60f;
+            }
 
             nextStateTimer = 2f;
             toNextState = false;
@@ -91,26 +108,6 @@
 
         }
 
-        void AnturaExit()
-        {
-            game.antura.Exit(EnableAllGameplayInput);
-        }
-
-        void AnturaEnter()
-        {
-            game.antura.Enter(AnturaButtonsOut);
-        }
-
-        void AnturaButtonsOut()
-        {
-            game.eggButtonBox.AnturaButtonOut(AnturaButtonsIn, 0.5f, 1f);
-        }
-
-        void AnturaButtonsIn()
-        {
-            game.eggButtonBox.AnturaButtonIn(AnturaExit, 0.5f, 1f);
-        }
-
         public void OnEggButtonPressed(ILivingLetterData letterData)
         {
             if (letterData == game.questionManager.GetlLetterDataSequence()[letterOnSequence])
@@ -136,10 +133,14 @@
 
         void NegativeFeedback()
         {
-            if(!anturaEntered)
+            if(!game.eggController.isNextToExit)
             {
-                anturaEntered = true;
-                AnturaEnter();
+                float anturaStartEnter = Random.Range(0f, 1f);
+
+                if (anturaStartEnter < anturaProbabilityOfIn)
+                {
+                    AnturaEnter();
+                }
             }
 
             letterOnSequence = 0;
@@ -151,16 +152,24 @@
             game.eggController.MoveNext(1f, EnableAllGameplayInput);
         }
 
-        void EnableAllGameplayInput()
+        void AnturaExit()
         {
-            game.eggButtonBox.EnableButtonsInput();
-            game.eggController.EnableInput();
+            game.antura.Exit(EnableAllGameplayInput);
         }
 
-        void DisableAllGameplayInput()
+        void AnturaEnter()
         {
-            game.eggButtonBox.DisableButtonsInput();
-            game.eggController.DisableInput();
+            game.antura.Enter(AnturaButtonsOut);
+        }
+
+        void AnturaButtonsOut()
+        {
+            game.eggButtonBox.AnturaButtonOut(AnturaButtonsIn, 0.5f, 1f);
+        }
+
+        void AnturaButtonsIn()
+        {
+            game.eggButtonBox.AnturaButtonIn(AnturaExit, 0.5f, 1f);
         }
 
         void OnEggExitComplete()
@@ -185,7 +194,7 @@
             }
             else
             {
-                game.eggButtonBox.LightUpButtons(true, false, 1f, 1f, OnLightUpButtonsComplete);
+                game.eggButtonBox.LightUpButtons(false, true, false, 1f, 1f, OnLightUpButtonsComplete);
             }
 
         }
@@ -196,7 +205,7 @@
 
             if (questionWordData == null)
             {
-                game.eggButtonBox.GetButtons(false)[0].LightUp(true, 1f, 1, null);
+                game.eggButtonBox.GetButtons(false)[0].LightUp(false, true, 1f, 1, null);
             }
             else
             {
@@ -204,6 +213,18 @@
             }
 
             toNextState = true;
+        }
+
+        void EnableAllGameplayInput()
+        {
+            game.eggButtonBox.EnableButtonsInput();
+            game.eggController.EnableInput();
+        }
+
+        void DisableAllGameplayInput()
+        {
+            game.eggButtonBox.DisableButtonsInput();
+            game.eggController.DisableInput();
         }
     }
 }

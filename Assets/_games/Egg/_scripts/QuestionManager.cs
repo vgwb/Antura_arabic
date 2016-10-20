@@ -15,12 +15,17 @@ namespace EA4S.Egg
             this.game = game;
         }
 
-        public void StartNewQuestion()
+        public void StartNewQuestion(int difficulty, bool onlyLetter)
         {
             quetionWordData = null;
             lLetterDataSequence.Clear();
 
-            ILivingLetterData lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
+            if(difficulty > 5)
+            {
+                difficulty = 5;
+            }
+
+            ILivingLetterData lLetterData = GetNextData(onlyLetter);
 
             if (lLetterData.DataType == LivingLetterDataType.Word)
             {
@@ -33,17 +38,24 @@ namespace EA4S.Egg
             }
             else if (lLetterData.DataType == LivingLetterDataType.Letter)
             {
-                while (lLetterDataSequence.Count < 6)
+                while (lLetterDataSequence.Count < 3 + difficulty)
                 {
                     lLetterDataSequence.Add(lLetterData);
 
                     do
                     {
-                        lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
+                        lLetterData = GetNextData(onlyLetter);
                     } while (lLetterDataSequence.Contains(lLetterData));
 
                 }
             }
+        }
+
+        ILivingLetterData GetNextData(bool onlyLetter)
+        {
+            ((SampleEggQuestionProvider)EggConfiguration.Instance.QuestionProvider).SetOnlyLetter(onlyLetter);
+
+            return EggConfiguration.Instance.QuestionProvider.GetNextData();
         }
 
         public List<ILivingLetterData> GetlLetterDataSequence()

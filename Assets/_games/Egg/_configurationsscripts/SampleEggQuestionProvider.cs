@@ -20,11 +20,13 @@ namespace EA4S.Egg
             onlyLetter = Random.Range(0, 2) == 1;
         }
 
+        public void SetOnlyLetter(bool onlyLetter)
+        {
+            this.onlyLetter = onlyLetter;
+        }
+
         public ILivingLetterData GetNextData()
         {
-            //onlyLetter = true;
-            onlyLetter = false;
-
             if (onlyLetter)
             {
                 return letterProvider.GetNextData();
