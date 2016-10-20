@@ -87,6 +87,8 @@ namespace EA4S.FastCrowd
                 // In spelling and letter, increment score only when the full question is completed
                 game.IncrementScore();
             }
+
+            game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
         }
 
         void StopAntura()
@@ -124,7 +126,7 @@ namespace EA4S.FastCrowd
         public void Update(float delta)
         {
             gameTime.Update(delta);
-            game.timerText.text = String.Format("{0:0}", gameTime.Time);
+            game.timerText.text = ((int)gameTime.Time).ToString();
 
             anturaTimer -= delta;
 
