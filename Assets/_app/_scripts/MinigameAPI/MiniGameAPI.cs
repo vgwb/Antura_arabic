@@ -201,12 +201,12 @@ namespace EA4S.API {
         //    }
         ////}
 
-        public void StartGame(MiniGameCode _gameCode, List<FindRightDataQuestionPack> _gameData, GameConfiguration _gameConfiguration) {
+        //public void StartGame(MiniGameCode _gameCode, List<FindRightDataQuestionPack> _gameData, GameConfiguration _gameConfiguration) {
         //    StartGame(_gameCode, _gameData.ConvertAll(e => (IGameData)e), _gameConfiguration);
         //}
             
 
-        //public void StartGame(MiniGameCode _gameCode, List<IGameData> _gameData,  GameConfiguration _gameConfiguration) {
+        public void StartGame(MiniGameCode _gameCode, List<IQuestionPack> _gameData,  GameConfiguration _gameConfiguration) {
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataById(_gameCode.ToString());
 
             switch (_gameCode) {
@@ -230,7 +230,7 @@ namespace EA4S.API {
                     break;
                 case MiniGameCode.Egg:
                     Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    //Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData.ConvertAll(o => (FindRightDataQuestionPack)o), miniGameData.Description);
+                    Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
@@ -437,12 +437,12 @@ namespace EA4S.API {
     public class FindRightLetterQuestionProvider : IQuestionProvider {
 
         #region properties
-        List<FindRightDataQuestionPack> questions = new List<FindRightDataQuestionPack>();
+        List<IQuestionPack> questions = new List<IQuestionPack>();
         string description;
         int currentQuestion;
         #endregion
 
-        public FindRightLetterQuestionProvider(List<FindRightDataQuestionPack> _questionsPack, string descriptions) {
+        public FindRightLetterQuestionProvider(List<IQuestionPack> _questionsPack, string descriptions) {
             currentQuestion = 0;
             description = "Antura Questions";
 
