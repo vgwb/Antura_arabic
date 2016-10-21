@@ -9,6 +9,8 @@ namespace EA4S.Tobogan
     {
         ToboganGame game;
 
+        public bool Enabled = false;
+
         bool initialized = false;
 
         QuestionLivingLetter questionLivingLetter;
@@ -146,7 +148,7 @@ namespace EA4S.Tobogan
         {
             PipeAnswer pipeAnswer = game.pipesAnswerController.GetCurrentPipeAnswer();
 
-            if (pipeAnswer != null)
+            if (pipeAnswer != null && Enabled)
             {
                 bool isCorrectAnswer = pipeAnswer.IsCorrectAnswer;
 
@@ -190,7 +192,7 @@ namespace EA4S.Tobogan
 
         void OnPointerDown()
         {
-            if (questionLivingLetter != null)
+            if (Enabled && questionLivingLetter != null)
             {
                 var pointerPosition = game.Context.GetInputManager().LastPointerPosition;
                 var screenRay = game.tubesCamera.ScreenPointToRay(pointerPosition);

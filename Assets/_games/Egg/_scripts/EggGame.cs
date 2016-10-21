@@ -3,7 +3,7 @@
 namespace EA4S.Egg
 {
     /*
-     * 		
+     * 	
         livilli di difficoltà
         0	numero tasti lettera 3
 		1	numero tasti lettera 4, sequenza

@@ -11,7 +11,7 @@ namespace EA4S.ThrowBalls
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 3;
-        public const int MAX_NUM_POKEBALLS = 300;
+        public const int MAX_NUM_POKEBALLS = 30000;
 
         new public static ThrowBallsGameManager Instance;
         new public ThrowBallsGameplayInfo GameplayInfo;
@@ -117,7 +117,7 @@ namespace EA4S.ThrowBalls
             }
 
             // Sort the letters according to y axis position:
-            for (int i = 0; i < letterPool.Length; i++)
+            /*for (int i = 0; i < letterPool.Length; i++)
             {
                 for (int j = 0; j < i; j++)
                 {
@@ -133,7 +133,7 @@ namespace EA4S.ThrowBalls
                         letterControllers[j] = tempController;
                     }
                 }
-            }
+            }*/
 
             pokeBallController.Reset();
 
@@ -224,6 +224,9 @@ namespace EA4S.ThrowBalls
 
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
+
+            return;
+
             if (isRoundOngoing)
             {
                 numRoundsWon++;
