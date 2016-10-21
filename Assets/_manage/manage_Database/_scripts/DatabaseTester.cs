@@ -45,7 +45,7 @@ namespace EA4S.Db.Management
             output += ("N minigames: " + db.FindAllMiniGameData().Count) + "\n";
             output += ("N stages: " + db.FindAllStageData().Count) + "\n";
             output += ("N playsessions: " + db.FindAllPlaySessionData().Count) + "\n";
-            output += ("N assessments: " + db.FindAllAssessmentData().Count) + "\n";
+            //output += ("N assessments: " + db.FindAllAssessmentData().Count) + "\n";
             output += ("N localizations: " + db.FindAllLocalizationData().Count) + "\n";
             output += ("N rewards: " + db.FindAllRewardData().Count) + "\n";
             PrintOutput(output);
@@ -278,14 +278,13 @@ namespace EA4S.Db.Management
         // Test query: get just the MoodValues (with a custom result class) from all LogMoodData entries
         public void TestQuery_SingleTable3()
         {
-            var tableName = this.db.GetTableName<LogMoodData>();
             SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
 
             string targetPlaySessionId = "\"5\"";
-            string query = "select MoodValue from \"" + tableName + "\" where Session = " + targetPlaySessionId;
+            string query = "select LogMoodData.MoodValue from LogMoodData where LogMoodData.Session = " + targetPlaySessionId;
             List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
 
-            string output = "Test values N: " + list.Count;
+            string output = "Test values N: " + list.Count + "\n";
             foreach(var obj in list)
             {
                 output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
@@ -293,16 +292,17 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
-
         // Test query: join LogMoodData and LogPlayData by PlayerId (fake), match where they have the same PlayerId, return MoodData
         public void TestQuery_JoinTables()
         {
+            var table1Name = this.db.GetTableName<LogMoodData>();
+            var table2Name = this.db.GetTableName<LogPlayData>();
             SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
 
-            string query = "select MoodValue FROM LogMoodData JOIN LogPlayData ON LogMoodData.PlayerId = LogPlayData.PlayerId";
+            string query = "select LogMoodData.MoodValue from LogMoodData inner join LogPlayData on LogMoodData.PlayerId = LogPlayData.PlayerId where LogMoodData.Session = \"5\"";
             List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
 
-            string output = "";
+            string output = "Test values N: " + list.Count + "\n";
             foreach (var obj in list)
             {
                 output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
