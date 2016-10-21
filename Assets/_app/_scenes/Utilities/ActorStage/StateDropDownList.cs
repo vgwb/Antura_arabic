@@ -10,10 +10,10 @@ namespace EA4S.Test {
 
         new void Start() {
             options.Clear();
-            options.AddRange(addOptionsFromEnum<LetterObjectState>());
+            options.AddRange(addOptionsFromEnum<LLAnimationStates>());
             onValueChanged.AddListener(delegate {
                 foreach (var l in FindObjectsOfType<LetterObjectView>()) {
-                    l.SetState((LetterObjectState)Enum.Parse(typeof(LetterObjectState), options[value].text));
+                    l.SetState((LLAnimationStates)Enum.Parse(typeof(LLAnimationStates), options[value].text));
                 }
             });
 

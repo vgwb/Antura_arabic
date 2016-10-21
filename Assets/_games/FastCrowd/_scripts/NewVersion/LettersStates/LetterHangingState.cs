@@ -19,7 +19,7 @@ namespace EA4S.FastCrowd
         {
 
             // set letter animation
-            letter.gameObject.GetComponent<LetterObjectView>().Model.State = LetterObjectState.LL_drag_idle;
+            letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_drag_idle;
         }
 
         public override void ExitState()

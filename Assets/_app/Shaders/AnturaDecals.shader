@@ -52,11 +52,11 @@ Shader "Antura/Decal" {
 
 		void surf(Input IN, inout SurfaceOutputSpecularAntura o) 
 		{
-			fixed4 overmap = tex2D(_OverTex, IN.uv_OverTex)*tex2D(_Occlusion, IN.uv_Occlusion).a;
+			fixed4 overmap = tex2D(_OverTex, IN.uv_OverTex);
 
 			fixed3 overColor = overmap.r*_OverColorR + overmap.g*_OverColorG + overmap.b*_OverColorB;
 
-			o.Albedo = overColor;
+			o.Albedo = overColor*tex2D(_Occlusion, IN.uv_Occlusion).a;
 			o.Alpha = overmap.a;
 
 			o.Gloss = _Specular;
