@@ -25,7 +25,7 @@ namespace EA4S.Db
         {
 
 #if UNITY_EDITOR
-            var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
+            var dbPath = string.Format(@"{0}/{1}", Application.persistentDataPath, DatabaseName);
 #else
         // check if file exists in Application.persistentDataPath
         var filepath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
@@ -56,22 +56,35 @@ namespace EA4S.Db
         var dbPath = filepath;
 #endif
             _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
-            Debug.Log("Database final PATH: " + dbPath);
+            //Debug.Log("Database final PATH: " + dbPath);
         }
 
 
         #region Creation
 
-        public void CreateDB()
+        public void GenerateTables(bool create, bool drop)
         {
-            // @note: create the DB here (for now only has LogData)
-            RecreateTable<LogData>();
+            // @note: define the DB structure here
+            GenerateTable<LogData>(create, drop);
         }
 
-        private void RecreateTable<T>()
+        private void GenerateTable<T>(bool create, bool drop)
         {
-            _connection.DropTable<T>();
-            _connection.CreateTable<T>();
+            if (drop) _connection.DropTable<T>();
+            if (create) _connection.CreateTable<T>();
+        }
+
+        public void CreateAllTables()
+        {
+            GenerateTables(true, false);
+        }
+        public void DropAllTables()
+        {
+            GenerateTables(false, true);
+        }
+        public void RecreateAllTables()
+        {
+            GenerateTables(true, true);
         }
 
         #endregion
@@ -112,6 +125,19 @@ namespace EA4S.Db
         {
             return new List<T>(_connection.Table<T>().Where(expression));
         }
+
+        public List<T> FindByQuery<T>(string query) where T : IData, new()
+        {
+            return  _connection.Query<T>(query);
+        }
+
+
+        /*public List<T> Query<T>(string query) where T : IData, new()
+        {
+            return _connection.Query<T>();
+        }
+        var query = string.Format("drop table if exists \"{0}\"", map.TableName);
+        */
 
         #endregion
 

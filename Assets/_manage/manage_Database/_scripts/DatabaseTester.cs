@@ -19,8 +19,7 @@ namespace EA4S.Db.Management
 
         void Awake()
         {
-            string playerId = "1";
-            this.db = new DatabaseManager(playerId);
+            this.db = new DatabaseManager();
         }
 
         #region Main Actions
@@ -33,14 +32,9 @@ namespace EA4S.Db.Management
 #endif
         }
 
-        public void RegenerateRuntimeDB()
-        {
-            db.RegenerateRuntimeDB();
-        }
-
         #endregion
 
-        #region Specific Logs
+        #region Test static data
 
         public void DumpAllDataCounts()
         {
@@ -122,10 +116,10 @@ namespace EA4S.Db.Management
             DumpDataById(id, data);
         }
 
-        public void DumpMiniGameById(string id)
+        public void DumpMiniGameByCode(MiniGameCode code)
         {
-            IData data = db.GetMiniGameDataById(id);
-            DumpDataById(id, data);
+            IData data = db.GetMiniGameDataByCode(code);
+            DumpDataById(data.GetId(), data);
         }
 
         public void DumpStageById(string id)
@@ -164,8 +158,6 @@ namespace EA4S.Db.Management
             DumpDataById(id, data);
         }
 
-
-
         public void DumpArabicWord(string id)
         {
             var data = db.GetWordDataById(id);
@@ -182,7 +174,7 @@ namespace EA4S.Db.Management
 
         #endregion
 
-        #region Log
+        #region Test logged data
 
         public void TestInsertLogData()
         {
@@ -206,7 +198,57 @@ namespace EA4S.Db.Management
             DumpAllData(list);
         }
 
+        public void TestQuery_Join()
+        {
+            List<LogData> list = this.db.FindAllLogData(x => x.Score > 5f);
+            DumpAllData(list);
+        }
+
+        public void TestQuery_MoodProgression()
+        {
+            List<LogData> list = this.db.FindLogDataByQuery("select *");
+            DumpAllData(list);
+        }
+
+        public void TestQuery_NPlayTimes()
+        {
+            MiniGameCode code = MiniGameCode.AlphabetSong;
+            //this.db.QueryLogData
+            //List<LogData> list = this.db.Query(x => x.Score > 5f);
+            //DumpAllData(list);
+        }
+
+        public void TestQuery_PlaySessionWeek()
+        {
+            string playSessionId = "1.2.1";
+            // List<LogData> list = this.db.Query(x => x.Score > 5f);
+            //  DumpAllData(list);
+        }
         #endregion
+
+        #region Profiles
+
+        public void LoadProfile(int profileId)
+        {
+            this.db.LoadProfile(profileId);
+            PrintOutput("Loading profile " + profileId);
+        }
+
+        public void CreateCurrentProfile()
+        {
+            this.db.CreateProfile();
+            PrintOutput("Creating tables for selected profile");
+        }
+
+        public void DeleteCurrentProfile()
+        {
+            this.db.DropProfile();
+            PrintOutput("Deleting tables for current selected profile");
+        }
+
+        #endregion
+
+
 
         #region Inner Dumps
 
@@ -237,7 +279,7 @@ namespace EA4S.Db.Management
         void PrintOutput(string output)
         {
             Debug.Log(output);
-            OutputText.text = output;
+            OutputText.text = output.Substring(0,Mathf.Min(1000,output.Length));
         }
 
         void PrintArabicOutput(string output)

@@ -10,22 +10,38 @@ namespace EA4S
         private Database db;
         private DBService dbService;
 
-        public DatabaseManager(string playerId)
+        public DatabaseManager()
         {
             db = Resources.Load<Database>("EA4S.Database");
-            OpenRuntimeDB(playerId);
         }
 
-        #region Runtime DB
+        #region Profile
+        int currentProfileId = 0;
+        bool profileLoaded = false;
 
-        public void OpenRuntimeDB(string playerId)
+        public void LoadProfile(int profileId)
         {
-            this.dbService = new DBService("EA4S_Database" + "_" + playerId + ".bytes");
+            this.dbService = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
+            profileLoaded = true;
+            this.currentProfileId = profileId;
         }
-
-        public void RegenerateRuntimeDB()
+        public void UnloadCurrentProfile()
         {
-            this.dbService.CreateDB();
+            this.dbService = null;
+            profileLoaded = false;
+            this.currentProfileId = 0;
+        }
+        public void CreateProfile()
+        {
+            this.dbService.CreateAllTables();
+        }
+        public void RecreteProfile()
+        {
+            this.dbService.RecreateAllTables();
+        }
+        public void DropProfile()
+        {
+            this.dbService.DropAllTables();
         }
 
         #endregion
@@ -44,6 +60,10 @@ namespace EA4S
         public EA4S.Db.LogData GetLogDataById(string id)
         {
             return dbService.FindLogDataById(id);
+        }
+        public List<EA4S.Db.LogData> FindLogDataByQuery(string query)
+        {
+            return dbService.FindByQuery<EA4S.Db.LogData>(query);
         }
 
         #endregion
@@ -161,7 +181,11 @@ namespace EA4S
             return new List<RewardData>(db.GetRewardTable().Values);
         }
 
-        public MiniGameData GetMiniGameDataById(string id)
+        public MiniGameData GetMiniGameDataByCode(MiniGameCode code)
+        {
+            return GetMiniGameDataById(code.ToString());
+        }
+        private MiniGameData GetMiniGameDataById(string id)
         {
             return db.GetById<MiniGameData>(db.GetMiniGameTable(), id);
         }
