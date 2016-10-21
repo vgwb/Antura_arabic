@@ -10,6 +10,7 @@ namespace EA4S.FastCrowd
 
         public DropAreaWidget dropContainer;
         public Crowd crowd;
+        public WordComposer wordComposer;
 
         void Start()
         {
@@ -23,23 +24,35 @@ namespace EA4S.FastCrowd
                 OnCompleted();
         }
 
-        void OnLetterDropped(bool result)
+        void OnLetterDropped(ILivingLetterData data, bool result)
         {
             if (OnDropped != null)
                 OnDropped(result);
 
             if (result)
+            {
                 dropContainer.AdvanceArea();
+
+                if (data is LetterData)
+                    wordComposer.AddLetter(data);
+            }
         }
 
-        public void StartQuestion(List<ILivingLetterData> nextChallenge, List<ILivingLetterData> wrongAnswers)
+        public void StartQuestion(List<ILivingLetterData> nextChallenge, List<ILivingLetterData> wrongAnswers, int id)
         {
             Clean();
-
-            foreach (var correctAnswer in nextChallenge)
+            
+            for (int i = 0; i < nextChallenge.Count; ++i)
             {
+                var correctAnswer = nextChallenge[i];
+
                 // Add drop areas
-                dropContainer.AddDropArea(correctAnswer);
+                if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
+                    dropContainer.AddDropText(correctAnswer, id.ToString());
+                else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+                    dropContainer.AddDropData(correctAnswer, true);
+                else
+                    dropContainer.AddDropData(correctAnswer, false);
 
                 // Add living letters
                 crowd.AddLivingLetter(correctAnswer);
@@ -76,6 +89,7 @@ namespace EA4S.FastCrowd
 
         public void Clean()
         {
+            wordComposer.Clean();
             dropContainer.Clean();
             crowd.Clean();
         }
