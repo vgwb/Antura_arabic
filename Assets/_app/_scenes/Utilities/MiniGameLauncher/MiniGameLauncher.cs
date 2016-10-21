@@ -105,15 +105,18 @@ namespace EA4S.Test {
                 case MiniGameCode.DontWakeUp:
                     break;
                 case MiniGameCode.Egg:
-                    // Dummy logic for question creation
+                    //
                     question = AppManager.Instance.Teacher.GimmeAGoodWordData();
                     letters = GetLettersFromWord(question as WordData);
                     foreach (var l in letters) {
                         correctAnswers.Add(l);
                     }
-                    letters = GetLettersNotContained(letters, 7);
-                    foreach (var l in letters) {
-                        wrongAnswers.Add(l);
+                    // The AI in definitive version must check the difficulty threshold (0.5f in example) to determine gameplayType without passing wrongAnswers
+                    if (float.Parse(FindObjectsOfType<InputField>().First(n => n.name == "Difficulty").text) < 0.5f) {
+                        letters = GetLettersNotContained(letters, 7);
+                        foreach (var l in letters) {
+                            wrongAnswers.Add(l);
+                        }
                     }
                     // QuestionPack creation
                     questionPack = new FindRightDataQuestionPack(question, wrongAnswers, correctAnswers);

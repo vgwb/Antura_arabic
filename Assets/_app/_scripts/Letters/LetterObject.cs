@@ -8,11 +8,11 @@ namespace EA4S
     /// Old data for this letter.
     /// Old state for this letter.
     /// </summary>
-    public class LetterObject {
+    public class LLController {
 
         public ILivingLetterData Data;
 
-        public LetterObject(ILivingLetterData _data) {
+        public LLController(ILivingLetterData _data) {
             Data = _data;
         }
 
@@ -21,12 +21,12 @@ namespace EA4S
         /// <summary>
         /// Old State.
         /// </summary>
-        public LetterObjectState OldState = LetterObjectState.LL_idle;
+        public LLAnimationStates OldState = LLAnimationStates.LL_idle;
 
         /// <summary>
         /// State
         /// </summary>
-        public LetterObjectState State {
+        public LLAnimationStates State {
             get { return state; }
             set {
                 if (state != value) {
@@ -39,12 +39,12 @@ namespace EA4S
                 //    state = value;
             }
         }
-        private LetterObjectState state = LetterObjectState.LL_idle;
+        private LLAnimationStates state = LLAnimationStates.LL_idle;
 
         #endregion
 
         #region events
-        public delegate void StateEvent(LetterObjectState _oldState, LetterObjectState _newState);
+        public delegate void StateEvent(LLAnimationStates _oldState, LLAnimationStates _newState);
 
         public StateEvent OnStateChanged;
         #endregion
@@ -72,7 +72,7 @@ namespace EA4S
         //}
     }
 
-    public enum LetterObjectState {
+    public enum LLAnimationStates {
         // Idle
         LL_idle = 0, // Generic idle
         LL_idle_1 = 1,

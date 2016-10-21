@@ -114,43 +114,43 @@ namespace EA4S {
                 return;
             switch (_stateName) {
                 case "Idle":
-                    View.Model.State = LetterObjectState.LL_idle;
+                    View.Model.State = LLAnimationStates.LL_idle;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.IdleDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Walk":
-                    View.Model.State = LetterObjectState.LL_walk;
+                    View.Model.State = LLAnimationStates.LL_walk;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.WalkDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Run":
-                    View.Model.State = LetterObjectState.LL_run;
+                    View.Model.State = LLAnimationStates.LL_run;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.RunDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "Ninja":
-                    View.Model.State = LetterObjectState.Ninja_State;
+                    View.Model.State = LLAnimationStates.Ninja_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.NinjaDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "TurnFrontOfCamera":
-                    View.Model.State = LetterObjectState.FrontOfCamera_State;
+                    View.Model.State = LLAnimationStates.FrontOfCamera_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(0.4f, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
                 case "GoOut":
-                    View.Model.State = LetterObjectState.GoOut_State;
+                    View.Model.State = LLAnimationStates.GoOut_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = 3.0f;
                     Wait(runtimeWaitTime);
                     break;
                 case "BumpOut":
-                    View.Model.State = LetterObjectState.BumpOut_State;
+                    View.Model.State = LLAnimationStates.BumpOut_State;
                     if (Task.current.isStarting)
                         runtimeWaitTime = 1.0f;
                     Wait(runtimeWaitTime);
