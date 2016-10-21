@@ -40,7 +40,7 @@ namespace EA4S.FastCrowd
 
 
             if (game.CurrentChallenge != null)
-                game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
+                game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData, game.QuestionNumber);
             else
                 game.QuestionManager.Clean();
 

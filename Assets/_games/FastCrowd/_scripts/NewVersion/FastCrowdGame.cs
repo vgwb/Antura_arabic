@@ -11,7 +11,6 @@ namespace EA4S.FastCrowd
 
         public TextMeshProUGUI timerText;
         public AnturaController antura;
-        public WordComposer wordComposer;
 
         public List<ILivingLetterData> CurrentChallenge = new List<ILivingLetterData>();
         public List<ILivingLetterData> NoiseData = new List<ILivingLetterData>();
@@ -83,8 +82,10 @@ namespace EA4S.FastCrowd
 
             Physics.gravity = new Vector3(0, -10, 0);
 
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
-                wordComposer.gameObject.SetActive(false);
+            QuestionManager.wordComposer.gameObject.SetActive(
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter
+                );
 
             Physics.gravity = Vector3.up * -40;
         }
@@ -106,7 +107,7 @@ namespace EA4S.FastCrowd
 
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
             {
-                var question = CurrentChallenge[0];
+                var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetWord((WordData)question);
                 Context.GetAudioManager().PlayWord((WordData)question);
             }
@@ -126,6 +127,26 @@ namespace EA4S.FastCrowd
                 }
 
                 popupWidget.SetMessage(stringListOfWords, true);
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
+            {
+                popupWidget.SetTitle("", false);
+                popupWidget.SetMessage("Alphabet!", false);
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            {
+                popupWidget.SetTitle("Identify the 4 shapes", false);
+
+                var question = CurrentQuestion.GetQuestion();
+                popupWidget.SetMessage(question.TextForLivingLetter, true);
+                Context.GetAudioManager().PlayLetter((LetterData)question);
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
+            {
+                popupWidget.SetTitle("", false);
+                var question = CurrentQuestion.GetQuestion();
+                popupWidget.SetMessage("Number " + QuestionNumber, true);
+                Context.GetAudioManager().PlayWord((WordData)question);
             }
         }
     }
