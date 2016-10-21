@@ -30,6 +30,7 @@ namespace EA4S.Test {
                 case MiniGameCode.FastCrowd_letter:
                 case MiniGameCode.FastCrowd_spelling:
                 case MiniGameCode.FastCrowd_words:
+                case MiniGameCode.FastCrowd_counting:
                 case MiniGameCode.Tobogan_letters:
                 case MiniGameCode.Tobogan_words:
                     packsCount = 10;
@@ -43,7 +44,6 @@ namespace EA4S.Test {
                 case MiniGameCode.ColorTickle:
                 case MiniGameCode.DancingDots:
                 case MiniGameCode.DontWakeUp:
-                case MiniGameCode.FastCrowd_counting:
                 case MiniGameCode.HiddenSource:
                 case MiniGameCode.HideSeek:
                 case MiniGameCode.MakeFriends:
@@ -138,7 +138,7 @@ namespace EA4S.Test {
                             i--;
                     }
                     // QuestionPack creation
-                    questionPack = new FindRightDataQuestionPack(null, wrongAnswers, correctAnswers);
+                    questionPack = new FindRightDataQuestionPack(word, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.FastCrowd_letter:
                     // Dummy logic for question creation

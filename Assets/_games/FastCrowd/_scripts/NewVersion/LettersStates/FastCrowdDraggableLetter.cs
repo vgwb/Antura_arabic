@@ -143,7 +143,8 @@ public class FastCrowdDraggableLetter : MonoBehaviour
                 currentDropAreaWidget = dropArea;
                 currentDropArea = singleArea;
 
-                bool matching = dropArea.GetActiveData().Key == GetComponent<LetterObjectView>().Model.Data.Key;
+                //bool matching = dropArea.GetActiveData().Key == GetComponent<LetterObjectView>().Model.Data.Key;
+                bool matching = dropArea.GetActiveData() == GetComponent<LetterObjectView>().Model.Data;
 
                 dropArea.SetMatchingOutline(true, matching);
             }
