@@ -9,7 +9,7 @@ namespace EA4S.FastCrowd
     /// </summary>
     public class Crowd : MonoBehaviour
     {
-        public event System.Action<bool> onDropped;
+        public event System.Action<ILivingLetterData, bool> onDropped;
 
         public FastCrowdWalkableArea walkableArea;
         public AnturaController antura;
@@ -136,7 +136,7 @@ namespace EA4S.FastCrowd
                 }
 
                 if (onDropped != null)
-                    onDropped(result);
+                    onDropped(letterObjectView.Model.Data, result);
             };
         }
 

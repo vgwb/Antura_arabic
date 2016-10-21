@@ -391,7 +391,6 @@ MonoBehaviour:
   QuestionManager: {fileID: 101744382}
   timerText: {fileID: 1688102983}
   antura: {fileID: 754174488}
-  wordComposer: {fileID: 987215974}
   QuestionNumber: 0
   isTimesUp: 0
 --- !u!114 &101744382
@@ -407,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropContainer: {fileID: 1599871828}
   crowd: {fileID: 101744383}
+  wordComposer: {fileID: 987215974}
 --- !u!114 &101744383
 MonoBehaviour:
   m_ObjectHideFlags: 0
