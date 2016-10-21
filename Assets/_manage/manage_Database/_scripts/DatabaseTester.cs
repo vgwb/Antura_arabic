@@ -91,7 +91,7 @@ namespace EA4S.Db.Management
             DumpAllData(db.FindAllAssessmentData());
         }
 
-        public void DumpAllLogData()
+        public void DumpAllLogInfoData()
         {
             DumpAllData(db.FindAllLogInfoData());
         }
@@ -174,22 +174,75 @@ namespace EA4S.Db.Management
 
         #endregion
 
-        #region Test logged data
+        #region Test Insert Log Data
 
-        public void TestInsertLogData()
+        public void TestInsertLogInfoData()
         {
-            LogInfoData newData = new LogInfoData();
+            var newData = new LogInfoData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Time = Time.time.ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
-            this.db.InsertLogData(newData);
-
-            PrintOutput("Inserted new LogData: " + newData.ToString());
+            this.db.InsertLogInfoData(newData);
+            PrintOutput("Inserted new LogInfoData: " + newData.ToString());
         }
 
+        public void TestInsertLogLearnData()
+        {
+            var newData = new LogLearnData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+            newData.Score = UnityEngine.Random.Range(0f, 10f);
+
+            this.db.InsertLogLearnData(newData);
+            PrintOutput("Inserted new LogLearnData: " + newData.ToString());
+        }
+
+        public void TestInsertLogMoodData()
+        {
+            var newData = new LogMoodData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+
+            this.db.InsertLogMoodData(newData);
+            PrintOutput("Inserted new LogMoodData: " + newData.ToString());
+        }
+
+        public void TestInsertLogPlayData()
+        {
+            var newData = new LogPlayData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+
+            this.db.InsertLogPlayData(newData);
+            PrintOutput("Inserted new LogPlayData: " + newData.ToString());
+        }
+
+        public void TestInsertLogScoreData()
+        {
+            var newData = new LogScoreData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+
+            this.db.InsertLogScoreData(newData);
+            PrintOutput("Inserted new LogScoreData: " + newData.ToString());
+        }
+
+        #endregion
+
+        #region Test Query Log Data
+
+        // Test that uses a simple select expression on a single table
         public void TestLINQLogData()
         {
             List<LogInfoData> list = this.db.FindAllLogInfoData(x => x.Score > 5f);
@@ -204,7 +257,8 @@ namespace EA4S.Db.Management
 
         public void TestQuery_MoodProgression()
         {
-            List<LogInfoData> list = this.db.FindLogInfoDataByQuery("select *");
+            //GetByPrimaryKeySql = string.Format("select * from \"{0}\" where \"{1}\" = ?", TableName, PK.Name);
+            List<LogMoodData> list = this.db.FindLogMoodDataByQuery(string.Format("select * from \"{0}\"", typeof(LogMoodData).Name));
             DumpAllData(list);
         }
 

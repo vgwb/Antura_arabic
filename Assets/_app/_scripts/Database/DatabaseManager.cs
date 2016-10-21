@@ -65,15 +65,47 @@ namespace EA4S
         {
             return dbService.FindByQuery<LogInfoData>(query);
         }
+        public List<LogLearnData> FindLogLearnDataByQuery(string query)
+        {
+            return dbService.FindByQuery<LogLearnData>(query);
+        }
+        public List<LogMoodData> FindLogMoodDataByQuery(string query)
+        {
+            return dbService.FindByQuery<LogMoodData>(query);
+        }
+        public List<LogPlayData> FindLogPlayDataByQuery(string query)
+        {
+            return dbService.FindByQuery<LogPlayData>(query);
+        }
+        public List<LogScoreData> FindLogScoreDataByQuery(string query)
+        {
+            return dbService.FindByQuery<LogScoreData>(query);
+        }
 
         #endregion
 
 
         #region Specific Runtime Inserts
 
-        public void InsertLogData(EA4S.Db.LogInfoData data)
+        public void InsertLogInfoData(LogInfoData data)
         {
-            dbService.Insert<EA4S.Db.LogInfoData>(data);
+            dbService.Insert(data);
+        }
+        public void InsertLogLearnData(LogLearnData data)
+        {
+            dbService.Insert(data);
+        }
+        public void InsertLogMoodData(LogMoodData data)
+        {
+            dbService.Insert(data);
+        }
+        public void InsertLogPlayData(LogPlayData data)
+        {
+            dbService.Insert(data);
+        }
+        public void InsertLogScoreData(LogScoreData data)
+        {
+            dbService.Insert(data);
         }
 
         #endregion
