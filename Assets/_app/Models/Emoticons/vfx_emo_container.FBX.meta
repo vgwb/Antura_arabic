@@ -115,6 +115,8 @@ ModelImporter:
     4300010: vfx_emo_Kinetic_line_inside_04
     4300012: vfx_emo_Kinetic_line_inside_05
     4300014: vfx_emo_happy
+    7400000: EM_Container_Close
+    7400002: EM_Container_Open
     9500000: //RootNode
     13700000: vfx_emo_bk_inside
     13700002: vfx_emo_bk_outside
@@ -143,7 +145,301 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: EM_Container_Open
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: vfx_emo_bk_inside
+        weight: 1
+      - path: vfx_emo_bk_outside
+        weight: 1
+      - path: vfx_emo_bone_01
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04/vfx_emo_bone_05
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04/vfx_emo_bone_05/Bone009
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04/vfx_emo_bone_05/Bone009/Bone010
+        weight: 1
+      - path: vfx_emo_bone_01 1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015/Bone016
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015/Bone016/Bone017
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015/Bone016/Bone017/Bone018
+        weight: 1
+      - path: vfx_emo_content_ scale
+        weight: 1
+      - path: vfx_emo_content_ scale/vfx_emo_happy
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_01
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_02
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_03
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_04
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_05
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01/vfx_emo_Kinetic_line_bone_01
+          5
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01/vfx_emo_Kinetic_line_bone_01
+          5/vfx_emo_Kinetic_line_bone_03
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01/vfx_emo_Kinetic_line_bone_01
+          5/vfx_emo_Kinetic_line_bone_03/vfx_emo_Kinetic_line_bone_04
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1/vfx_emo_Kinetic_line_bone_02
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1/vfx_emo_Kinetic_line_bone_02/vfx_emo_Kinetic_line_bone_03
+          1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1/vfx_emo_Kinetic_line_bone_02/vfx_emo_Kinetic_line_bone_03
+          1/vfx_emo_Kinetic_line_bone_04 1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2/vfx_emo_Kinetic_line_bone_02
+          1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2/vfx_emo_Kinetic_line_bone_02
+          1/vfx_emo_Kinetic_line_bone_03 2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2/vfx_emo_Kinetic_line_bone_02
+          1/vfx_emo_Kinetic_line_bone_03 2/vfx_emo_Kinetic_line_bone_04 2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3/vfx_emo_Kinetic_line_bone_02
+          2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3/vfx_emo_Kinetic_line_bone_02
+          2/vfx_emo_Kinetic_line_bone_03 3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3/vfx_emo_Kinetic_line_bone_02
+          2/vfx_emo_Kinetic_line_bone_03 3/vfx_emo_Kinetic_line_bone_04 3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4/vfx_emo_Kinetic_line_bone_02
+          3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4/vfx_emo_Kinetic_line_bone_02
+          3/vfx_emo_Kinetic_line_bone_03 4
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4/vfx_emo_Kinetic_line_bone_02
+          3/vfx_emo_Kinetic_line_bone_03 4/vfx_emo_Kinetic_line_bone_04 4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 10
+    - serializedVersion: 16
+      name: EM_Container_Close
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: vfx_emo_bk_inside
+        weight: 1
+      - path: vfx_emo_bk_outside
+        weight: 1
+      - path: vfx_emo_bone_01
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04/vfx_emo_bone_05
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04/vfx_emo_bone_05/Bone009
+        weight: 1
+      - path: vfx_emo_bone_01/vfx_emo_bone_02/vfx_emo_bone_03/vfx_emo_bone_04/vfx_emo_bone_05/Bone009/Bone010
+        weight: 1
+      - path: vfx_emo_bone_01 1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015/Bone016
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015/Bone016/Bone017
+        weight: 1
+      - path: vfx_emo_bone_01 1/vfx_emo_bone_02 1/vfx_emo_bone_03 1/vfx_emo_bone_04
+          1/Bone015/Bone016/Bone017/Bone018
+        weight: 1
+      - path: vfx_emo_content_ scale
+        weight: 1
+      - path: vfx_emo_content_ scale/vfx_emo_happy
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_01
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_02
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_03
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_04
+        weight: 1
+      - path: vfx_emo_Kinetic_line_inside_05
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01/vfx_emo_Kinetic_line_bone_01
+          5
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01/vfx_emo_Kinetic_line_bone_01
+          5/vfx_emo_Kinetic_line_bone_03
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_01/vfx_emo_Kinetic_line_bone_01/vfx_emo_Kinetic_line_bone_01
+          5/vfx_emo_Kinetic_line_bone_03/vfx_emo_Kinetic_line_bone_04
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1/vfx_emo_Kinetic_line_bone_02
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1/vfx_emo_Kinetic_line_bone_02/vfx_emo_Kinetic_line_bone_03
+          1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_02/vfx_emo_Kinetic_line_bone_01 1/vfx_emo_Kinetic_line_bone_02/vfx_emo_Kinetic_line_bone_03
+          1/vfx_emo_Kinetic_line_bone_04 1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2/vfx_emo_Kinetic_line_bone_02
+          1
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2/vfx_emo_Kinetic_line_bone_02
+          1/vfx_emo_Kinetic_line_bone_03 2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_03/vfx_emo_Kinetic_line_bone_01 2/vfx_emo_Kinetic_line_bone_02
+          1/vfx_emo_Kinetic_line_bone_03 2/vfx_emo_Kinetic_line_bone_04 2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3/vfx_emo_Kinetic_line_bone_02
+          2
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3/vfx_emo_Kinetic_line_bone_02
+          2/vfx_emo_Kinetic_line_bone_03 3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_04/vfx_emo_Kinetic_line_bone_01 3/vfx_emo_Kinetic_line_bone_02
+          2/vfx_emo_Kinetic_line_bone_03 3/vfx_emo_Kinetic_line_bone_04 3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4/vfx_emo_Kinetic_line_bone_02
+          3
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4/vfx_emo_Kinetic_line_bone_02
+          3/vfx_emo_Kinetic_line_bone_03 4
+        weight: 1
+      - path: vfx_emo_Kinetic_line_mover_05/vfx_emo_Kinetic_line_bone_01 4/vfx_emo_Kinetic_line_bone_02
+          3/vfx_emo_Kinetic_line_bone_03 4/vfx_emo_Kinetic_line_bone_04 4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 10
     isReadable: 1
   meshes:
     lODScreenPercentages: []
