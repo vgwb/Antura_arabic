@@ -178,13 +178,11 @@ namespace EA4S.Db.Management
 
         public void TestInsertLogData()
         {
-            LogData newData = new LogData();
+            LogInfoData newData = new LogInfoData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Time = Time.time.ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
-            newData.PlaySkill = LogPlaySkill.Musicality;
-            newData.Type = LogDataType.Info;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
             this.db.InsertLogData(newData);
@@ -194,7 +192,7 @@ namespace EA4S.Db.Management
 
         public void TestLINQLogData()
         {
-            List<LogData> list = this.db.FindAllLogData(x => x.Score > 5f);
+            List<LogInfoData> list = this.db.FindAllLogData(x => x.Score > 5f);
             DumpAllData(list);
         }
 

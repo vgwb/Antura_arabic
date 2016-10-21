@@ -49,15 +49,15 @@ namespace EA4S
 
         #region Specific Runtime Queries
 
-        public List<EA4S.Db.LogData> FindAllLogData()
+        public List<EA4S.Db.LogInfoData> FindAllLogData()
         {
-            return dbService.FindAll<EA4S.Db.LogData>();
+            return dbService.FindAll<EA4S.Db.LogInfoData>();
         }
-        public List<EA4S.Db.LogData> FindAllLogData(System.Linq.Expressions.Expression<Func<EA4S.Db.LogData, bool>> expression)
+        public List<EA4S.Db.LogInfoData> FindAllLogData(System.Linq.Expressions.Expression<Func<EA4S.Db.LogInfoData, bool>> expression)
         {
-            return dbService.FindAll<EA4S.Db.LogData>(expression);
+            return dbService.FindAll<EA4S.Db.LogInfoData>(expression);
         }
-        public EA4S.Db.LogData GetLogDataById(string id)
+        public EA4S.Db.LogInfoData GetLogDataById(string id)
         {
             return dbService.FindLogDataById(id);
         }
@@ -71,9 +71,9 @@ namespace EA4S
 
         #region Specific Runtime Inserts
 
-        public void InsertLogData(EA4S.Db.LogData data)
+        public void InsertLogData(EA4S.Db.LogInfoData data)
         {
-            dbService.Insert<EA4S.Db.LogData>(data);
+            dbService.Insert<EA4S.Db.LogInfoData>(data);
         }
 
         #endregion
