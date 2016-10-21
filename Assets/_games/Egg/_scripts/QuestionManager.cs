@@ -55,7 +55,8 @@ namespace EA4S.Egg
         {
             ((SampleEggQuestionProvider)EggConfiguration.Instance.QuestionProvider).SetOnlyLetter(onlyLetter);
 
-            return EggConfiguration.Instance.QuestionProvider.GetNextData();
+            //return EggConfiguration.Instance.QuestionProvider.GetNextData();
+            return null;
         }
 
         public List<ILivingLetterData> GetlLetterDataSequence()
