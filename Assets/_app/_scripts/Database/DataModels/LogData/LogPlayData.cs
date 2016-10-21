@@ -35,7 +35,7 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},T{3},PS{4},C{5},A{6},S{7},RD{8}",
+            return string.Format("S{0},T{1},P{2},PS{3},C{4},A{5},S{6},RD{7}",
                 Session,
                 Time,
                 PlayerID,

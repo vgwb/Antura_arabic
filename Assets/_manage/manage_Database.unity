@@ -616,7 +616,7 @@ Prefab:
     - target: {fileID: 114000011292703070, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_Text
-      value: 'Query: Join Test'
+      value: 'Query: MoodData ordered by MoodValue'
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -636,7 +636,7 @@ Prefab:
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TestLINQLogData
+      value: TestQuery_SingleTable1
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -755,7 +755,7 @@ Prefab:
     - target: {fileID: 114000011292703070, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_Text
-      value: 'Query: Last week play'
+      value: 'Query: Join - custom query'
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -775,7 +775,7 @@ Prefab:
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TestLINQLogData
+      value: TestQuery_JoinTables
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -1213,7 +1213,7 @@ Prefab:
     - target: {fileID: 114000011292703070, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_Text
-      value: 'Query: Mood progression'
+      value: 'Query: MoodValues - custom query'
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -1233,7 +1233,7 @@ Prefab:
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TestLINQLogData
+      value: TestQuery_SingleTable3
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -4025,7 +4025,7 @@ MonoBehaviour:
     phraseDataAsset: {fileID: 4900000, guid: 86e883ecf93ba463dbfa5c330c9cc625, type: 3}
     stageDataAsset: {fileID: 4900000, guid: 2280fef01e0bf4d419255415f79fc3f5, type: 3}
     rewardDataAsset: {fileID: 4900000, guid: 28558aba1a33c44e1ae18b52e76f1677, type: 3}
-  database: {fileID: 0}
+  database: {fileID: 11400000, guid: e7398fb7d95a5470ab6975cb96382e96, type: 2}
   verbose: 1
 --- !u!4 &767385205
 Transform:
@@ -4800,7 +4800,7 @@ Prefab:
     - target: {fileID: 114000011292703070, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_Text
-      value: 'Query: N times of minigame'
+      value: 'Query: N PlayData for a given PlaySession'
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
@@ -4820,7 +4820,7 @@ Prefab:
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TestLINQLogData
+      value: TestQuery_SingleTable2
       objectReference: {fileID: 0}
     - target: {fileID: 114000014187559028, guid: a898bf7b2a9ca4b71804c0342fe7ae88,
         type: 2}

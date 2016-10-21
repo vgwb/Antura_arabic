@@ -65,7 +65,11 @@ namespace EA4S.Db
         public void GenerateTables(bool create, bool drop)
         {
             // @note: define the DB structure here
-            GenerateTable<LogData>(create, drop);
+            GenerateTable<LogInfoData>(create, drop);
+            GenerateTable<LogLearnData>(create, drop);
+            GenerateTable<LogMoodData>(create, drop);
+            GenerateTable<LogPlayData>(create, drop);
+            GenerateTable<LogScoreData>(create, drop);
         }
 
         private void GenerateTable<T>(bool create, bool drop)
@@ -103,34 +107,55 @@ namespace EA4S.Db
 
         #endregion
 
-        #region Find
+        #region Find (simple queries)
 
+        // Get one entry by ID
         public LogInfoData FindLogInfoDataById(string target_id)
         {
             return _connection.Table<LogInfoData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
 
         // @note: this cannot be used as the current SQLite implementation does not support Parameter expression nodes in LINQ
+        // Get one entry by ID
         public T FindById<T>(string target_id) where T : IData, new()
         {
             return _connection.Table<T>().Where((x) => (x.GetId().Equals(target_id))).FirstOrDefault();
         }
 
+        // select * from (Ttable)
         public List<T> FindAll<T>() where T : IData, new()
         {
             return new List<T>(_connection.Table<T>());
         }
 
+        // select * from (Ttable) where (expression)
         public List<T> FindAll<T>(Expression<Func<T, bool>> expression) where T : IData, new()
         {
             return new List<T>(_connection.Table<T>().Where(expression));
         }
 
-        public List<T> FindByQuery<T>(string query) where T : IData, new()
+        // (query) from (Ttable)
+        public List<T> FindByQuery<T>(string customQuery) where T : IData, new()
         {
-            return  _connection.Query<T>(query);
+            return _connection.Query<T>(customQuery);
         }
 
+        public string GetTableName<T>()
+        {
+            return _connection.GetMapping<T>().TableName;
+        }
+
+        // (query) from (Ttable) with a custom result
+        public List<object> FindByQueryCustom(TableMapping mapping, string customQuery)
+        {
+            return _connection.Query(mapping, customQuery);
+        }
+
+        // entry point for custom queries
+        public TableQuery<T> CreateQuery<T>() where T : IData, new()
+        {
+            return _connection.Table<T>();
+        }
 
         /*public List<T> Query<T>(string query) where T : IData, new()
         {

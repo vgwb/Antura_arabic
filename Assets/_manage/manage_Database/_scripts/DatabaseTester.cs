@@ -209,6 +209,7 @@ namespace EA4S.Db.Management
             newData.Time = Time.time.ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
+            newData.MoodValue = UnityEngine.Random.Range(0, 20);
 
             this.db.InsertLogMoodData(newData);
             PrintOutput("Inserted new LogMoodData: " + newData.ToString());
@@ -242,40 +243,73 @@ namespace EA4S.Db.Management
 
         #region Test Query Log Data
 
-        // Test that uses a simple select expression on a single table
+        // Test that uses a simple select/where expression on a single table
         public void TestLINQLogData()
         {
             List<LogInfoData> list = this.db.FindAllLogInfoData(x => x.Score > 5f);
             DumpAllData(list);
         }
 
-        public void TestQuery_Join()
+        // Test query: get all MoodData, ordered by MoodValue
+        public void TestQuery_SingleTable1()
         {
-            List<LogInfoData> list = this.db.FindAllLogInfoData(x => x.Score > 5f);
+            var tableName = this.db.GetTableName<LogMoodData>();
+            string query = "select * from \"" + tableName + "\" order by MoodValue";
+            List<LogMoodData> list = this.db.FindLogMoodDataByQuery(query);
             DumpAllData(list);
         }
 
-        public void TestQuery_MoodProgression()
+        // Test query: get number of LogPlayData for a given PlaySession with a high enough score
+        public void TestQuery_SingleTable2()
         {
-            //GetByPrimaryKeySql = string.Format("select * from \"{0}\" where \"{1}\" = ?", TableName, PK.Name);
-            List<LogMoodData> list = this.db.FindLogMoodDataByQuery(string.Format("select * from \"{0}\"", typeof(LogMoodData).Name));
-            DumpAllData(list);
+            var tableName = this.db.GetTableName<LogPlayData>();
+            string targetPlaySessionId = "\"5\"";
+            string query = "select * from \"" + tableName + "\" where Session = " + targetPlaySessionId;
+            List<LogPlayData> list = this.db.FindLogPlayDataByQuery(query);
+            PrintOutput("Number of play data for PlaySession " + targetPlaySessionId + ": " + list.Count);
         }
 
-        public void TestQuery_NPlayTimes()
+
+        public class TestQueryResult
         {
-            MiniGameCode code = MiniGameCode.AlphabetSong;
-            //this.db.QueryLogData
-            //List<LogData> list = this.db.Query(x => x.Score > 5f);
-            //DumpAllData(list);
+            public int MoodValue { get; set; }
         }
 
-        public void TestQuery_PlaySessionWeek()
+        // Test query: get just the MoodValues (with a custom result class) from all LogMoodData entries
+        public void TestQuery_SingleTable3()
         {
-            string playSessionId = "1.2.1";
-            // List<LogData> list = this.db.Query(x => x.Score > 5f);
-            //  DumpAllData(list);
+            var tableName = this.db.GetTableName<LogMoodData>();
+            SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
+
+            string targetPlaySessionId = "\"5\"";
+            string query = "select MoodValue from \"" + tableName + "\" where Session = " + targetPlaySessionId;
+            List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
+
+            string output = "Test values N: " + list.Count;
+            foreach(var obj in list)
+            {
+                output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
+            }
+            PrintOutput(output);
         }
+
+
+        // Test query: join LogMoodData and LogPlayData by PlayerId (fake), match where they have the same PlayerId, return MoodData
+        public void TestQuery_JoinTables()
+        {
+            SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
+
+            string query = "select MoodValue FROM LogMoodData JOIN LogPlayData ON LogMoodData.PlayerId = LogPlayData.PlayerId";
+            List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
+
+            string output = "";
+            foreach (var obj in list)
+            {
+                output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
+            }
+            PrintOutput(output);
+        }
+
         #endregion
 
         #region Profiles
