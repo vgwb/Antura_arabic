@@ -38,7 +38,7 @@ namespace EA4S.FastCrowd
             }
         }
 
-        void Awake()
+        void Start()
         {
             var inputManager = FastCrowdConfiguration.Instance.Context.GetInputManager();
 

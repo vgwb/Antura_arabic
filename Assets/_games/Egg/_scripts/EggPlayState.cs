@@ -10,7 +10,6 @@
         int questionProgress;
         int correctAnswers;
 
-        bool anturaEnter;
         bool anturaEntered;
 
         float nextStateTimer;
@@ -43,7 +42,6 @@
 
             EnableAllGameplayInput();
 
-            anturaEnter = false;
             anturaEntered = false;
 
             nextStateTimer = 2f;
@@ -57,12 +55,6 @@
 
         public void Update(float delta)
         {
-            if(anturaEnter && !anturaEntered)
-            {
-                anturaEntered = true;
-                AnturaOut();
-            }
-
             if(toNextState)
             {
                 nextStateTimer -= delta;
@@ -99,16 +91,24 @@
 
         }
 
-        void AnturaOut()
+        void AnturaExit()
         {
-            game.antura.Bark();
-            DisableAllGameplayInput();
-            game.eggButtonBox.AnturaButtonOut(AnturaIn, 0.5f, 1f);
+            game.antura.Exit(EnableAllGameplayInput);
         }
 
-        void AnturaIn()
+        void AnturaEnter()
         {
-            game.eggButtonBox.AnturaButtonIn(EnableAllGameplayInput, 0.5f, 1f);
+            game.antura.Enter(AnturaButtonsOut);
+        }
+
+        void AnturaButtonsOut()
+        {
+            game.eggButtonBox.AnturaButtonOut(AnturaButtonsIn, 0.5f, 1f);
+        }
+
+        void AnturaButtonsIn()
+        {
+            game.eggButtonBox.AnturaButtonIn(AnturaExit, 0.5f, 1f);
         }
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
@@ -136,7 +136,11 @@
 
         void NegativeFeedback()
         {
-            anturaEnter = true;
+            if(!anturaEntered)
+            {
+                anturaEntered = true;
+                AnturaEnter();
+            }
 
             letterOnSequence = 0;
 
