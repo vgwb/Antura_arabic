@@ -33,14 +33,14 @@ namespace EA4S.FastCrowd
             if (running)
             {
                 // set letter animation
-                letter.gameObject.GetComponent<LetterObjectView>().Model.State = LetterObjectState.LL_run_happy;
+                letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_run_happy;
                 speed = RUN_SPEED;
             }
             else
             {
 
                 // set letter animation
-                letter.gameObject.GetComponent<LetterObjectView>().Model.State = LetterObjectState.LL_walk;
+                letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_walk;
                 speed = WALK_SPEED;
             }
 

@@ -25,7 +25,7 @@ namespace EA4S.FastCrowd
             scaredTimer = ScaredDuration;
 
             // set letter animation
-            letter.gameObject.GetComponent<LetterObjectView>().Model.State = LetterObjectState.LL_run_fear;
+            letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_run_fear;
         }
 
         public override void ExitState()
