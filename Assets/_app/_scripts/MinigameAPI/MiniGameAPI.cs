@@ -126,7 +126,7 @@ namespace EA4S.API {
         #region Gameplay Management
 
         public void StartGame(MiniGameCode _gameCode, List<IQuestionPack> _gameData,  GameConfiguration _gameConfiguration) {
-            MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataById(_gameCode.ToString());
+            MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataByCode(_gameCode);
             string miniGameScene = miniGameData.Scene;
 
             switch (_gameCode) {
