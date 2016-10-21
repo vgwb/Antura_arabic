@@ -89,10 +89,6 @@ namespace EA4S
         {
             return dbService.FindByQuery<LogMoodData>(query);
         }
-        public string GetTableName<T>()
-        {
-            return dbService.GetTableName<T>();
-        }
 
         public List<LogPlayData> FindLogPlayDataByQuery(string query)
         {
@@ -109,6 +105,11 @@ namespace EA4S
             return dbService.FindByQueryCustom(mapping, query);
         }
 
+        // Utilities
+        public string GetTableName<T>()
+        {
+            return dbService.GetTableName<T>();
+        }
 
         #endregion
 
@@ -191,10 +192,10 @@ namespace EA4S
             return db.FindAll<StageData>(db.GetStageTable(), predicate);
         }
 
-        public List<AssessmentData> FindAllAssessmentData(Predicate<AssessmentData> predicate)
+       /* public List<AssessmentData> FindAllAssessmentData(Predicate<AssessmentData> predicate)
         {
             return db.FindAll<AssessmentData>(db.GetAssessmentTable(), predicate);
-        }
+        }*/
 
         public List<LocalizationData> FindAllLocalizationData(Predicate<LocalizationData> predicate)
         {
@@ -231,10 +232,10 @@ namespace EA4S
             return new List<StageData>(db.GetStageTable().Values);
         }
 
-        public List<AssessmentData> FindAllAssessmentData()
+        /*public List<AssessmentData> FindAllAssessmentData()
         {
             return new List<AssessmentData>(db.GetAssessmentTable().Values);
-        }
+        }*/
 
         public List<LocalizationData> FindAllLocalizationData()
         {
@@ -294,10 +295,10 @@ namespace EA4S
             return db.GetById<StageData>(db.GetStageTable(), id);
         }
 
-        public AssessmentData GetAssessmentDataById(string id)
+        /*public AssessmentData GetAssessmentDataById(string id)
         {
             return db.GetById<AssessmentData>(db.GetAssessmentTable(), id);
-        }
+        }*/
 
         public LocalizationData GetLocalizationDataById(string id)
         {
