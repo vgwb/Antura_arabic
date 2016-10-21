@@ -3,13 +3,23 @@ using UnityEngine;
 
 namespace EA4S
 {
+    public enum LetterDataForm : int
+    {
+        ISOLATED,
+        INITIAL,
+        MEDIAL,
+        FINAL
+    }
+
     public class LetterData : ILivingLetterData
     {
-        public LivingLetterDataType DataType {
+        public LivingLetterDataType DataType
+        {
             get { return LivingLetterDataType.Letter; }
         }
 
-        public string Key {
+        public string Key
+        {
             get { return key; }
             set { key = value; }
         }
@@ -18,6 +28,8 @@ namespace EA4S
         public string Initial_Unicode;
         public string Medial_Unicode;
         public string Final_Unicode;
+
+        public LetterDataForm ShowAs = LetterDataForm.ISOLATED;
 
         private string key;
 
@@ -31,20 +43,36 @@ namespace EA4S
             Final_Unicode = _letRow.Final_Unicode;
         }
 
-        public LetterData(string _keyRow) {
+        public LetterData(string _keyRow)
+        {
             chargeLetterData(_keyRow, AppManager.Instance.DB.GetLetterDataById(_keyRow));
-            
+
         }
 
         #region API
         /// <summary>
         /// Living Letter Text To Display.
         /// </summary>
-        public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.GetLetterFromUnicode(Isolated_Unicode); }
+        public string TextForLivingLetter
+        {
+            get
+            {
+                switch (ShowAs)
+                {
+                    case LetterDataForm.INITIAL:
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Initial_Unicode);
+                    case LetterDataForm.MEDIAL:
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Medial_Unicode);
+                    case LetterDataForm.FINAL:
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Final_Unicode);
+                    default:
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Isolated_Unicode);
+                }
+            }
         }
 
-        public Sprite DrawForLivingLetter {
+        public Sprite DrawForLivingLetter
+        {
             get { return null; }
         }
         #endregion

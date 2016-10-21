@@ -7,6 +7,7 @@
 Shader "Antura/Dog" {
 	Properties{
 		_MainTex("Base (RGB) Glossiness (A)", 2D) = "white" {}
+		_Occlusion("Occlusion (A)", 2D) = "white" {}
 		_BaseColor("Base Color", Color) = (1,1,1,1)
 
 		_Shininess("Shininess", Range(0.03, 1)) = 0.078125
@@ -25,6 +26,7 @@ Shader "Antura/Dog" {
 #include "LightningSpecular.cginc"
 
 		sampler2D _MainTex;
+		sampler2D _Occlusion;
 
 		half _Shininess;
 		half _Specular;
@@ -36,10 +38,11 @@ Shader "Antura/Dog" {
 
 		struct Input {
 			half2 uv2_MainTex;
+			half2 uv_Occlusion;
 		};
 
 		void surf(Input IN, inout SurfaceOutputSpecularAntura o) {
-			fixed4 baseColor = tex2D(_MainTex, IN.uv2_MainTex);
+			fixed4 baseColor = tex2D(_MainTex, IN.uv2_MainTex)*tex2D(_Occlusion, IN.uv_Occlusion).a;
 			baseColor.rgb *= _BaseColor;
 			
 			o.Albedo = baseColor.rgb;
