@@ -51,7 +51,6 @@ namespace EA4S.Db.Management
             output += ("N minigames: " + db.FindAllMiniGameData().Count) + "\n";
             output += ("N stages: " + db.FindAllStageData().Count) + "\n";
             output += ("N playsessions: " + db.FindAllPlaySessionData().Count) + "\n";
-            output += ("N assessments: " + db.FindAllAssessmentData().Count) + "\n";
             output += ("N localizations: " + db.FindAllLocalizationData().Count) + "\n";
             output += ("N rewards: " + db.FindAllRewardData().Count) + "\n";
             PrintOutput(output);
@@ -92,10 +91,6 @@ namespace EA4S.Db.Management
             DumpAllData(db.FindAllMiniGameData());
         }
 
-        public void DumpAllAssessmentData()
-        {
-            DumpAllData(db.FindAllAssessmentData());
-        }
 
         public void DumpAllLogData()
         {
@@ -137,12 +132,6 @@ namespace EA4S.Db.Management
         public void DumpPlaySessionById(string id)
         {
             IData data = db.GetPlaySessionDataById(id);
-            DumpDataById(id, data);
-        }
-
-        public void DumpAssessmentById(string id)
-        {
-            IData data = db.GetAssessmentDataById(id);
             DumpDataById(id, data);
         }
 

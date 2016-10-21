@@ -6,13 +6,15 @@ using System.Linq;
 using System;
 using EA4S.Db;
 
-namespace EA4S.API {
+namespace EA4S.API
+{
 
     /// <summary>
     /// TODO: this API implementation will be replaced by dependency injection pattern implementation.
     /// </summary>
     /// <seealso cref="ModularFramework.Core.Singleton{EA4S.API.MiniGameAPI}" />
-    public class MiniGameAPI : Singleton<MiniGameAPI> {
+    public class MiniGameAPI : Singleton<MiniGameAPI>
+    {
 
         #region Learning course 
 
@@ -29,7 +31,8 @@ namespace EA4S.API {
         /// Return all information needed from minigame to setup gameplay session.
         /// </summary>
         /// <returns></returns>
-        public PlaySessionInfo GetPlaySessionInfo() {
+        public PlaySessionInfo GetPlaySessionInfo()
+        {
             PlaySessionInfo playSessionInfo = new PlaySessionInfo();
             // TODO
             return playSessionInfo;
@@ -39,7 +42,8 @@ namespace EA4S.API {
         /// 
         /// </summary>
         /// <param name="_result"></param>
-        public void PushPlaySessionResult(PlaySessionResult _result) {
+        public void PushPlaySessionResult(PlaySessionResult _result)
+        {
             // TODO
         }
 
@@ -48,7 +52,8 @@ namespace EA4S.API {
         /// </summary>
         /// <param name="_letterId"></param>
         /// <returns></returns>
-        public string GetArabicLetter(string _letterId) {
+        public string GetArabicLetter(string _letterId)
+        {
             // TODO
             return "";
         }
@@ -57,7 +62,8 @@ namespace EA4S.API {
         /// Return List of Letter Data valid for this gameplay and actual profile data.
         /// </summary>
         /// <returns></returns>
-        public List<LetterData> GetValidLetters(int _amount = -1) {
+        public List<LetterData> GetValidLetters(int _amount = -1)
+        {
             // TODO
             return new List<LetterData>();
         }
@@ -67,7 +73,8 @@ namespace EA4S.API {
         /// </summary>
         /// <param name="_amount"></param>
         /// <returns></returns>
-        public List<WordData> GetValidWorlds(int _amount = -1) {
+        public List<WordData> GetValidWorlds(int _amount = -1)
+        {
             // TODO
             return new List<WordData>();
         }
@@ -83,7 +90,8 @@ namespace EA4S.API {
         /// <param name="_context"></param>
         /// <param name="_action"></param>
         /// <param name="_data"></param>
-        public void Log(string _area, string _context, string _action, string _data) {
+        public void Log(string _area, string _context, string _action, string _data)
+        {
             LoggerEA4S.Log(_area, _context, _action, _data);
         }
 
@@ -116,7 +124,8 @@ namespace EA4S.API {
         /// <param name="_prefId"></param>
         /// <param name="_themeId"></param>
         /// <returns></returns>
-        public GameObject GetAsset(string _prefId, int _themeId) {
+        public GameObject GetAsset(string _prefId, int _themeId)
+        {
             // TODO
             return null;
         }
@@ -125,12 +134,14 @@ namespace EA4S.API {
 
         #region Gameplay Management
 
-        public void StartGame(MiniGameCode _gameCode, List<IQuestionPack> _gameData,  GameConfiguration _gameConfiguration) {
+        public void StartGame(MiniGameCode _gameCode, List<IQuestionPack> _gameData, GameConfiguration _gameConfiguration)
+        {
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataById(_gameCode.ToString());
             string miniGameScene = miniGameData.Scene;
 
             switch (_gameCode) {
-                case MiniGameCode.Assessment:
+                case MiniGameCode.Assessment_Letters:
+                case MiniGameCode.Assessment_LettersMatchShape:
                     break;
                 case MiniGameCode.AlphabetSong:
                     break;
@@ -234,7 +245,7 @@ namespace EA4S.API {
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 default:
-                    Debug.LogWarningFormat("Minigame selected {0} not found.", _gameCode.ToString() );
+                    Debug.LogWarningFormat("Minigame selected {0} not found.", _gameCode.ToString());
                     break;
             }
 
@@ -246,14 +257,15 @@ namespace EA4S.API {
 
         #endregion
 
-    }    
+    }
 
     #region Data Structures
 
     /// <summary>
     /// Information needed from minigame to setup gameplay session.
     /// </summary>
-    public class PlaySessionInfo {
+    public class PlaySessionInfo
+    {
 
         /// <summary>
         /// List of learning objectives to use in the game (letters, words, etc).
@@ -272,7 +284,8 @@ namespace EA4S.API {
     /// <summary>
     /// Information used to comunicate result of minigame gameplay session.
     /// </summary>
-    public class PlaySessionResult {
+    public class PlaySessionResult
+    {
         /// <summary>
         /// Number of stars based on playsession result.
         /// 0 = negative result.
@@ -283,7 +296,8 @@ namespace EA4S.API {
 
     }
 
-    public class ProfileInfoForMinigame {
+    public class ProfileInfoForMinigame
+    {
 
     }
 
@@ -295,12 +309,14 @@ namespace EA4S.API {
     /// Default Context for Antura Minigame.
     /// </summary>
     /// <seealso cref="EA4S.IGameContext" />
-    public class AnturaMinigameContext : IGameContext {
-        
+    public class AnturaMinigameContext : IGameContext
+    {
+
         #region Log Manager 
         public ILogManager logManager = new AnturaLogManager();
 
-        public ILogManager GetLogManager() {
+        public ILogManager GetLogManager()
+        {
             return logManager;
         }
         #endregion
@@ -308,7 +324,8 @@ namespace EA4S.API {
         #region AudioManager provider
         public IAudioManager audioManager = new SampleAudioManager();
 
-        public IAudioManager GetAudioManager() {
+        public IAudioManager GetAudioManager()
+        {
             return audioManager;
         }
         #endregion
@@ -316,7 +333,8 @@ namespace EA4S.API {
         #region InputManger provider
         public IInputManager inputManager = new SampleInputManager();
 
-        public IInputManager GetInputManager() {
+        public IInputManager GetInputManager()
+        {
             return inputManager;
         }
         #endregion
@@ -324,7 +342,8 @@ namespace EA4S.API {
         #region SubTitle provider
         public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
 
-        public IStarsWidget GetStarsWidget() {
+        public IStarsWidget GetStarsWidget()
+        {
             return starsWidget;
         }
         #endregion
@@ -332,19 +351,22 @@ namespace EA4S.API {
         #region StarsWidget provider
         public IStarsWidget starsWidget = new SampleStarsWidget();
 
-        public ISubtitlesWidget GetSubtitleWidget() {
+        public ISubtitlesWidget GetSubtitleWidget()
+        {
             return subtitleWidget;
         }
         #endregion
 
         #region PopupWidget provider
         public IPopupWidget questionWidget = new SamplePopupWidget();
-        public IPopupWidget GetPopupWidget() {
+        public IPopupWidget GetPopupWidget()
+        {
             return questionWidget;
         }
         #endregion
 
-        public void Reset() {
+        public void Reset()
+        {
             inputManager.Reset();
         }
 
@@ -384,7 +406,8 @@ namespace EA4S.API {
     /// Default IQuestionProvider that find the right letter question.
     /// </summary>
     /// <seealso cref="EA4S.IQuestionProvider" />
-    public class FindRightLetterQuestionProvider : IQuestionProvider {
+    public class FindRightLetterQuestionProvider : IQuestionProvider
+    {
 
         #region properties
         List<IQuestionPack> questions = new List<IQuestionPack>();
@@ -392,14 +415,16 @@ namespace EA4S.API {
         int currentQuestion;
         #endregion
 
-        public FindRightLetterQuestionProvider(List<IQuestionPack> _questionsPack, string descriptions) {
+        public FindRightLetterQuestionProvider(List<IQuestionPack> _questionsPack, string descriptions)
+        {
             currentQuestion = 0;
             description = "Antura Questions";
 
             questions.AddRange(_questionsPack);
         }
 
-        public string GetDescription() {
+        public string GetDescription()
+        {
             return description;
         }
 
@@ -407,7 +432,8 @@ namespace EA4S.API {
         /// Provide me another question.
         /// </summary>
         /// <returns></returns>
-        IQuestionPack IQuestionProvider.GetNextQuestion() {
+        IQuestionPack IQuestionProvider.GetNextQuestion()
+        {
             currentQuestion++;
 
             if (currentQuestion >= questions.Count)
@@ -424,7 +450,8 @@ namespace EA4S.API {
     /// One data question data, many right answare data, many answare data.
     /// </summary>
     /// <seealso cref="EA4S.IQuestionPack" />
-    public class FindRightDataQuestionPack : IQuestionPack {
+    public class FindRightDataQuestionPack : IQuestionPack
+    {
         ILivingLetterData questionSentence;
         IEnumerable<ILivingLetterData> wrongAnswersSentence;
         IEnumerable<ILivingLetterData> correctAnswersSentence;
@@ -435,21 +462,25 @@ namespace EA4S.API {
         /// <param name="questionSentence">The question sentence.</param>
         /// <param name="wrongAnswersSentence">The wrong answers sentence.</param>
         /// <param name="correctAnswersSentence">The correct answers sentence.</param>
-        public FindRightDataQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence) {
+        public FindRightDataQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence)
+        {
             this.questionSentence = questionSentence;
             this.wrongAnswersSentence = wrongAnswersSentence;
             this.correctAnswersSentence = correctAnswersSentence;
         }
 
-        ILivingLetterData IQuestionPack.GetQuestion() {
+        ILivingLetterData IQuestionPack.GetQuestion()
+        {
             return questionSentence;
         }
 
-        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers() {
+        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers()
+        {
             return wrongAnswersSentence;
         }
 
-        public IEnumerable<ILivingLetterData> GetCorrectAnswers() {
+        public IEnumerable<ILivingLetterData> GetCorrectAnswers()
+        {
             return correctAnswersSentence;
         }
     }
@@ -460,7 +491,8 @@ namespace EA4S.API {
     /// <summary>
     /// Concrete implementation of log manager to store on db.
     /// </summary>
-    public class AnturaLogManager : ILogManager {
+    public class AnturaLogManager : ILogManager
+    {
 
         #region Log API for AI
         /// <summary>
@@ -468,7 +500,8 @@ namespace EA4S.API {
         /// </summary>
         /// <param name="_questionPack"></param>
         /// <param name="_isPositiveResult"></param>
-        public void OnAnswer(IQuestionPack _questionPack, bool _isPositiveResult) {
+        public void OnAnswer(IQuestionPack _questionPack, bool _isPositiveResult)
+        {
             // Todo: Save on db
         }
 
@@ -477,18 +510,21 @@ namespace EA4S.API {
         /// </summary>
         /// <param name="_data"></param>
         /// <param name="_isPositiveResult"></param>
-        public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult) {
+        public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult)
+        {
             // Todo: Save on db
         }
 
-        public void OnGameplaySessionResult(int _valuation) {
+        public void OnGameplaySessionResult(int _valuation)
+        {
             // Todo: Save on db
         }
         #endregion
 
         #region Playsession Logs
 
-        public void OnGameplayEvent(PlayerAbilities _ability, bool _isPositive) {
+        public void OnGameplayEvent(PlayerAbilities _ability, bool _isPositive)
+        {
             switch (_ability) {
                 case PlayerAbilities.precision:
                     break;
@@ -511,7 +547,8 @@ namespace EA4S.API {
         /// <param name="_context"></param>
         /// <param name="_action"></param>
         /// <param name="_data"></param>
-        public void Log(string _area, string _context, string _action, string _data) {
+        public void Log(string _area, string _context, string _action, string _data)
+        {
             LoggerEA4S.Log(_area, _context, _action, _data);
         }
         #endregion
@@ -522,7 +559,8 @@ namespace EA4S.API {
     /// TODO: change location for this.
     /// Player abilities categories to trace player actions.
     /// </summary>
-    public enum PlayerAbilities {
+    public enum PlayerAbilities
+    {
         precision,
         speed,
     }
