@@ -22,6 +22,8 @@ namespace EA4S.Test {
 
             switch (miniGameCodeSelected) {
                 case MiniGameCode.Egg:
+                    packsCount = 4;
+                    break;
                 case MiniGameCode.FastCrowd_alphabet:
                     packsCount = 1;
                     break;
@@ -109,7 +111,7 @@ namespace EA4S.Test {
                     foreach (var l in letters) {
                         correctAnswers.Add(l);
                     }
-                    letters = GetLettersNotContained(letters, 2);
+                    letters = GetLettersNotContained(letters, 7);
                     foreach (var l in letters) {
                         wrongAnswers.Add(l);
                     }
@@ -126,22 +128,21 @@ namespace EA4S.Test {
                     break;
                 case MiniGameCode.FastCrowd_counting:
                     // Dummy logic for question creation
-                    question = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    letters = GetLettersFromWord(question as WordData);
-                    foreach (var l in letters) {
-                        correctAnswers.Add(l);
-                    }
-                    letters = GetLettersNotContained(letters, 2);
-                    foreach (var l in letters) {
-                        wrongAnswers.Add(l);
+                    WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    correctAnswers.Add(word);
+                    for (int i = 0; i < 10; i++) {
+                        WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!correctAnswers.Contains(wrongWord))
+                            wrongAnswers.Add(wrongWord);
+                        else
+                            i--;
                     }
                     // QuestionPack creation
-                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, correctAnswers);
+                    questionPack = new FindRightDataQuestionPack(null, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.FastCrowd_letter:
                     // Dummy logic for question creation
                     question = AppManager.Instance.Teacher.GimmeARandomLetter();
-                    correctAnswers.Add((LetterData)question);
                     letters = GetLettersNotContained(letters, 3); // TODO: auto generation in game
                     foreach (var l in letters) {
                         wrongAnswers.Add(l);
@@ -166,16 +167,16 @@ namespace EA4S.Test {
                 case MiniGameCode.FastCrowd_words:
                     // Dummy logic for question creation
                     for (int i = 0; i < 4; i++) {
-                        WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                        if (!correctAnswers.Contains(word))
-                            correctAnswers.Add(word);
+                        WordData correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!correctAnswers.Contains(correctWord))
+                            correctAnswers.Add(correctWord);
                         else
                             i--;
                     }
                     for (int i = 0; i < 2; i++) {
-                        WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                        if (!correctAnswers.Contains(word))
-                            wrongAnswers.Add(word);
+                        WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!correctAnswers.Contains(wrongWord))
+                            wrongAnswers.Add(wrongWord);
                         else
                             i--;
                     }

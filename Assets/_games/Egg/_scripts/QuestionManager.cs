@@ -17,33 +17,33 @@ namespace EA4S.Egg
 
         public void StartNewQuestion()
         {
-            quetionWordData = null;
-            lLetterDataSequence.Clear();
+            //quetionWordData = null;
+            //lLetterDataSequence.Clear();
 
-            ILivingLetterData lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
+            //ILivingLetterData lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
 
-            if (lLetterData.DataType == LivingLetterDataType.Word)
-            {
-                quetionWordData = ((WordData)lLetterData);
+            //if (lLetterData.DataType == LivingLetterDataType.Word)
+            //{
+            //    quetionWordData = ((WordData)lLetterData);
 
-                foreach (LetterData letter in ArabicAlphabetHelper.LetterDataListFromWord(quetionWordData.Word, AppManager.Instance.Letters))
-                {
-                    lLetterDataSequence.Add(letter);
-                }
-            }
-            else if (lLetterData.DataType == LivingLetterDataType.Letter)
-            {
-                while (lLetterDataSequence.Count < 6)
-                {
-                    lLetterDataSequence.Add(lLetterData);
+            //    foreach (LetterData letter in ArabicAlphabetHelper.LetterDataListFromWord(quetionWordData.Word, AppManager.Instance.Letters))
+            //    {
+            //        lLetterDataSequence.Add(letter);
+            //    }
+            //}
+            //else if (lLetterData.DataType == LivingLetterDataType.Letter)
+            //{
+            //    while (lLetterDataSequence.Count < 6)
+            //    {
+            //        lLetterDataSequence.Add(lLetterData);
 
-                    do
-                    {
-                        lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
-                    } while (lLetterDataSequence.Contains(lLetterData));
+            //        do
+            //        {
+            //            lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
+            //        } while (lLetterDataSequence.Contains(lLetterData));
 
-                }
-            }
+            //    }
+            //}
         }
 
         public List<ILivingLetterData> GetlLetterDataSequence()
