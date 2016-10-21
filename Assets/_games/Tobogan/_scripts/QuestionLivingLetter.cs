@@ -63,21 +63,21 @@ namespace EA4S.Tobogan
 
         public void PlayIdleAnimation()
         {
-            letter.Model.State = LetterObjectState.LL_idle_1;
+            letter.Model.State = LLAnimationStates.LL_idle_1;
 
             livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayWalkAnimation()
         {
-            letter.Model.State = LetterObjectState.LL_walk;
+            letter.Model.State = LLAnimationStates.LL_walk;
 
             livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayHoldAnimation()
         {
-            letter.Model.State = LetterObjectState.LL_drag_idle;
+            letter.Model.State = LLAnimationStates.LL_drag_idle;
 
             livingLetterTransform.localPosition = holdPosition;
         }

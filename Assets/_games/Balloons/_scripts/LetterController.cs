@@ -15,7 +15,7 @@ namespace Balloons
         public LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
-        public LetterObject LetterModel;
+        public LLController LetterModel;
         public TMP_Text LetterView;
 
         [Header("Letter Parameters")]
@@ -72,7 +72,7 @@ namespace Balloons
 
         public void Init(LetterData _data)
         {
-            LetterModel = new LetterObject(_data);
+            LetterModel = new LLController(_data);
             LetterView.text = _data.TextForLivingLetter; 
         }
 
