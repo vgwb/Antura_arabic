@@ -5,7 +5,7 @@ namespace EA4S.Db
 {
 
     [System.Serializable]
-    public class LogScoresData : IData
+    public class LogScoreData : IData
     {
         public string Id { get; set; }
         public string Session { get; set; }
