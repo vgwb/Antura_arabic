@@ -30,17 +30,23 @@ namespace EA4S
         /// <value>
         /// The model.
         /// </value>
-        public LetterObject Model {
-            get {
+        public LetterObject Model
+        {
+            get
+            {
                 if (model == null)
                     setDummyLetterObject();
                 return model;
             }
-            set {
-                if (model != value) {
+            set
+            {
+                if (model != value)
+                {
                     model = value;
                     OnModelChanged();
-                } else {
+                }
+                else
+                {
                     model = value;
                 }
             }
@@ -51,8 +57,10 @@ namespace EA4S
         /// <summary>
         /// Animator
         /// </summary>
-        public Animator Anim {
-            get {
+        public Animator Anim
+        {
+            get
+            {
                 if (!anim)
                     anim = GetComponentInChildren<Animator>();
                 return anim;
@@ -89,14 +97,25 @@ namespace EA4S
         /// </summary>
         void OnModelChanged()
         {
-            if (model.Data.DataType == LivingLetterDataType.Image) {
-                ImageSprite.sprite = model.Data.DrawForLivingLetter;
-                ImageSprite.enabled = true;
-                Lable.enabled = false;
-            } else {
+            if (model.Data == null)
+            {
                 ImageSprite.enabled = false;
-                Lable.enabled = true;
-                Lable.text = Model.Data.TextForLivingLetter;
+                Lable.enabled = false;
+            }
+            else
+            {
+                if (model.Data.DataType == LivingLetterDataType.Image)
+                {
+                    ImageSprite.sprite = model.Data.DrawForLivingLetter;
+                    ImageSprite.enabled = true;
+                    Lable.enabled = false;
+                }
+                else
+                {
+                    ImageSprite.enabled = false;
+                    Lable.enabled = true;
+                    Lable.text = Model.Data.TextForLivingLetter;
+                }
             }
         }
 
@@ -121,7 +140,8 @@ namespace EA4S
             // Init Animation sequenceExclamationMark
             sequenceExclamationMark = DOTween.Sequence();
             sequenceExclamationMark.SetLoops(-1);
-            if (exclamationMark) {
+            if (exclamationMark)
+            {
                 // Sequence
                 sequenceExclamationMark.Append(exclamationMark.DOShakePosition(0.9f));
                 sequenceExclamationMark.Pause();
@@ -149,9 +169,11 @@ namespace EA4S
         void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState)
         {
             // reset animation for Terrified_State
-            if (exclamationMark && sequenceExclamationMark != null) {
+            if (exclamationMark && sequenceExclamationMark != null)
+            {
                 //exclamationMark.transform.localScale = Vector3.zero;
-                if (sequenceExclamationMark.IsPlaying()) {
+                if (sequenceExclamationMark.IsPlaying())
+                {
                     sequenceExclamationMark.Pause();
                     exclamationMark.DOScale(0, 0.3f);
                 }
@@ -159,7 +181,8 @@ namespace EA4S
 
             //Debug.Log((int)_newState);
 
-            switch (_newState) {
+            switch (_newState)
+            {
                 case LetterObjectState.LL_idle:
                     // Random from 4 idle animations
                     Anim.SetInteger("State", Random.Range(1, 4));

@@ -8,18 +8,10 @@ namespace EA4S.Tobogan
 {
     class QuestionLivingLetter : MonoBehaviour
     {
-        const string idleAnimation = "idle";
-        const string holdAnimation = "hold";
-        const string runAnimation = "run";
-        const string walkAnimation = "walk";
-        const string ninjaAnimation = "ninja";
-
         public Transform livingLetterTransform;
         public BoxCollider boxCollider;
 
-        public Animator AnturaAnimator;
-
-        public TextMeshPro livingLetterText;
+        public LetterObjectView letter;
 
         Tweener moveTweener;
         Tweener rotationTweener;
@@ -36,6 +28,8 @@ namespace EA4S.Tobogan
         float maxY;
 
         bool dropLetter;
+        bool dragging = false;
+        Vector3 dragOffset = Vector3.zero;
 
         public event Action onMouseUpLetter;
 
@@ -48,8 +42,8 @@ namespace EA4S.Tobogan
         {
             normalPosition = livingLetterTransform.localPosition;
 
-            holdPosition.x = normalPosition.x + 1f;
-            holdPosition.y = normalPosition.y + 5f;
+            holdPosition.x = normalPosition.x;
+            holdPosition.y = normalPosition.y;
         }
 
         public void Initialize(Camera tubesCamera, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition, Transform[] letterPositions)
@@ -57,7 +51,7 @@ namespace EA4S.Tobogan
             this.tubesCamera = tubesCamera;
             this.letterPositions = letterPositions;
 
-            cameraDistance = Vector3.Distance(tubesCamera.transform.position, letterPositions[letterPositions.Length-1].position);
+            cameraDistance = Vector3.Distance(tubesCamera.transform.position, letterPositions[letterPositions.Length - 1].position);
 
             minX = downLeftMaxPosition.x;
             maxX = upRightMaxPosition.x;
@@ -69,47 +63,33 @@ namespace EA4S.Tobogan
 
         public void PlayIdleAnimation()
         {
-            PlayAnimation(idleAnimation);
+            letter.Model.State = LetterObjectState.LL_idle_1;
 
             livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayWalkAnimation()
         {
-            PlayAnimation(walkAnimation);
+            letter.Model.State = LetterObjectState.LL_walk;
 
             livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayHoldAnimation()
         {
-            PlayAnimation(holdAnimation);
+            letter.Model.State = LetterObjectState.LL_drag_idle;
 
             livingLetterTransform.localPosition = holdPosition;
         }
 
-        void PlayAnimation(string animation)
-        {
-            AnturaAnimator.Play(animation);
-        }
-
         public void SetQuestionText(ILivingLetterData livingLetterData)
         {
-            if (livingLetterData.DataType == LivingLetterDataType.Letter)
-            {
-                livingLetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LetterData)livingLetterData).Isolated_Unicode);
-            }
-            else
-            {
-                //livingLetterText.text = GenericUtilites.ReverseText(ArabicFixer.Fix(((WordData)livingLetterData).TextForLivingLetter, false, false));
-                //livingLetterText.text = ArabicFixer.Fix(((WordData)livingLetterData).TextForLivingLetter, false, false);
-                livingLetterText.text = ArabicFixer.Fix(((WordData)livingLetterData).Word, false, false);
-            }
+            letter.Init(livingLetterData);
         }
 
         public void ClearQuestionText()
         {
-            livingLetterText.text = "";
+            letter.Init(null);
         }
 
         void MoveTo(Vector3 position, float duration)
@@ -169,7 +149,7 @@ namespace EA4S.Tobogan
 
             currentPosition++;
 
-            if(currentPosition >= letterPositions.Length)
+            if (currentPosition >= letterPositions.Length)
             {
                 currentPosition = 0;
             }
@@ -179,44 +159,57 @@ namespace EA4S.Tobogan
 
         public void OnPointerDown(Vector2 pointerPosition)
         {
-            OnPointerDrag(pointerPosition);
+            if (!dragging)
+            {
+                dragging = true;
 
-            PlayHoldAnimation();
+                Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
+                Vector3 world = tubesCamera.ScreenToWorldPoint(mousePosition);
+                dragOffset = world - transform.position;
+
+                OnPointerDrag(pointerPosition);
+
+                PlayHoldAnimation();
+            }
         }
 
         public void OnPointerDrag(Vector2 pointerPosition)
         {
-            dropLetter = false;
+            if (dragging)
+            {
+                dropLetter = false;
 
-            Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
+                Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
 
-            Vector3 local = transform.localPosition;
-            transform.position = tubesCamera.ScreenToWorldPoint(mousePosition);
-            local.x = transform.localPosition.x;
-            local.y = transform.localPosition.y - 2.5f;
+                transform.position = tubesCamera.ScreenToWorldPoint(mousePosition);
 
-            transform.localPosition = ClampPositionToStage(local);
+                transform.position = ClampPositionToStage(transform.position - dragOffset);
+            }
         }
 
         public void OnPointerUp()
         {
-            dropLetter = true;
-
-            PlayIdleAnimation();
-
-            if (onMouseUpLetter != null)
+            if (dragging)
             {
-                onMouseUpLetter();
+                dragging = false;
+                dropLetter = true;
+
+                PlayIdleAnimation();
+
+                if (onMouseUpLetter != null)
+                {
+                    onMouseUpLetter();
+                }
             }
         }
 
         void Drop(float delta)
         {
-            Vector3 dropPosition = transform.localPosition;
+            Vector3 dropPosition = transform.position;
 
             dropPosition += Physics.gravity * delta;
 
-            transform.localPosition = ClampPositionToStage(dropPosition);
+            transform.position = ClampPositionToStage(dropPosition);
         }
 
         void Update()
