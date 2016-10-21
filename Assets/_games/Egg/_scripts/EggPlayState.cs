@@ -26,7 +26,7 @@ namespace EA4S.Egg
         {
             letterOnSequence = 0;
 
-            gameModeOneLetter = game.questionManager.GetQuestionWordData() == null;
+            gameModeOneLetter = !game.questionManager.IsSequence();
 
             questionProgress = 0;
 
@@ -44,15 +44,15 @@ namespace EA4S.Egg
 
             EnableAllGameplayInput();
 
-            if(game.gameDifficulty < 2)
+            if(game.gameDifficulty < 0.25f)
             {
                 anturaProbabilityOfIn = 0f;
             }
-            else if(game.gameDifficulty < 4)
+            else if(game.gameDifficulty < 0.5f)
             {
                 anturaProbabilityOfIn = 0.20f;
             }
-            else if(game.gameDifficulty < 5)
+            else if(game.gameDifficulty < 0.75f)
             {
                 anturaProbabilityOfIn = 0.40f;
             }
@@ -84,16 +84,7 @@ namespace EA4S.Egg
                     {
                         ILivingLetterData runLetterData;
 
-                        WordData questionWordData = game.questionManager.GetQuestionWordData();
-
-                        if (questionWordData == null)
-                        {
-                            runLetterData = game.questionManager.GetlLetterDataSequence()[0];
-                        }
-                        else
-                        {
-                            runLetterData = questionWordData;
-                        }
+                        runLetterData = game.questionManager.GetlLetterDataSequence()[0];
 
                         game.runLettersBox.AddRunLetter(runLetterData);
                     }
@@ -128,6 +119,16 @@ namespace EA4S.Egg
             }
 
             questionProgress++;
+
+            if ((questionProgress / correctAnswers) == 1f)
+            {
+                game.Context.GetAudioManager().PlaySound(Sfx.Hit);
+            }
+            else
+            {
+                game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
+            }
+            
             game.eggController.Cracking(questionProgress / correctAnswers);
         }
 
@@ -186,32 +187,27 @@ namespace EA4S.Egg
             DisableAllGameplayInput();
             game.stagePositiveResult = true;
 
-            WordData questionWordData = game.questionManager.GetQuestionWordData();
-
-            if (questionWordData == null)
-            {
-                OnLightUpButtonsComplete();
-            }
-            else
+            bool isSequence = game.questionManager.IsSequence();
+            
+            if (isSequence)
             {
                 game.eggButtonBox.LightUpButtons(false, true, false, 1f, 1f, OnLightUpButtonsComplete);
             }
-
+            else
+            {
+                OnLightUpButtonsComplete();
+            }
         }
 
         void OnLightUpButtonsComplete()
         {
-            WordData questionWordData = game.questionManager.GetQuestionWordData();
+            bool isSequence = game.questionManager.IsSequence();
 
-            if (questionWordData == null)
+            if(!isSequence)
             {
                 game.eggButtonBox.GetButtons(false)[0].LightUp(false, true, 1f, 1, null);
             }
-            else
-            {
-                game.Context.GetAudioManager().PlayWord(questionWordData);
-            }
-
+            
             toNextState = true;
         }
 
