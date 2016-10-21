@@ -49,21 +49,21 @@ namespace EA4S
 
         #region Specific Runtime Queries
 
-        public List<EA4S.Db.LogInfoData> FindAllLogData()
+        public List<LogInfoData> FindAllLogInfoData()
         {
-            return dbService.FindAll<EA4S.Db.LogInfoData>();
+            return dbService.FindAll<LogInfoData>();
         }
-        public List<EA4S.Db.LogInfoData> FindAllLogData(System.Linq.Expressions.Expression<Func<EA4S.Db.LogInfoData, bool>> expression)
+        public List<LogInfoData> FindAllLogInfoData(System.Linq.Expressions.Expression<Func<LogInfoData, bool>> expression)
         {
-            return dbService.FindAll<EA4S.Db.LogInfoData>(expression);
+            return dbService.FindAll<LogInfoData>(expression);
         }
-        public EA4S.Db.LogInfoData GetLogDataById(string id)
+        public LogInfoData GetLogInfoDataById(string id)
         {
-            return dbService.FindLogDataById(id);
+            return dbService.FindLogInfoDataById(id);
         }
-        public List<EA4S.Db.LogData> FindLogDataByQuery(string query)
+        public List<LogInfoData> FindLogInfoDataByQuery(string query)
         {
-            return dbService.FindByQuery<EA4S.Db.LogData>(query);
+            return dbService.FindByQuery<LogInfoData>(query);
         }
 
         #endregion

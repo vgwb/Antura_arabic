@@ -93,7 +93,7 @@ namespace EA4S.Db.Management
 
         public void DumpAllLogData()
         {
-            DumpAllData(db.FindAllLogData());
+            DumpAllData(db.FindAllLogInfoData());
         }
 
         public void DumpLetterById(string id)
@@ -154,7 +154,7 @@ namespace EA4S.Db.Management
 
         public void DumpLogDataById(string id)
         {
-            IData data = db.GetLogDataById(id);
+            IData data = db.GetLogInfoDataById(id);
             DumpDataById(id, data);
         }
 
@@ -192,19 +192,19 @@ namespace EA4S.Db.Management
 
         public void TestLINQLogData()
         {
-            List<LogInfoData> list = this.db.FindAllLogData(x => x.Score > 5f);
+            List<LogInfoData> list = this.db.FindAllLogInfoData(x => x.Score > 5f);
             DumpAllData(list);
         }
 
         public void TestQuery_Join()
         {
-            List<LogData> list = this.db.FindAllLogData(x => x.Score > 5f);
+            List<LogInfoData> list = this.db.FindAllLogInfoData(x => x.Score > 5f);
             DumpAllData(list);
         }
 
         public void TestQuery_MoodProgression()
         {
-            List<LogData> list = this.db.FindLogDataByQuery("select *");
+            List<LogInfoData> list = this.db.FindLogInfoDataByQuery("select *");
             DumpAllData(list);
         }
 
