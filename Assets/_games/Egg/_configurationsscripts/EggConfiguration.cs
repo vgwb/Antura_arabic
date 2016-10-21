@@ -4,7 +4,7 @@
     {
         // Game configuration
         public IGameContext Context { get; set; }
-        public ILivingLetterDataProvider QuestionProvider { get; set; }
+        public IQuestionProvider QuestionProvider { get; set; }
         public float Difficulty { get; set; }
 
         /////////////////
@@ -27,7 +27,7 @@
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new SampleGameContext();
             Difficulty = 0.5f;
-            QuestionProvider = new SampleEggQuestionProvider(Difficulty);
+            QuestionProvider = null;//new SampleEggQuestionProvider(Difficulty);
         }
 
     }

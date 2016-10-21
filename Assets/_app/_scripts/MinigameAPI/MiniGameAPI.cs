@@ -149,9 +149,9 @@ namespace EA4S.API {
                 case MiniGameCode.DontWakeUp:
                     break;
                 case MiniGameCode.Egg:
-                    //Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    //Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
-                    //Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
