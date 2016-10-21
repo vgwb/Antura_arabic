@@ -5,7 +5,7 @@ using System.Linq;
 namespace EA4S
 {
     /// <summary>
-    /// This sample class generates 10 quizzes of type "I give you a word, you say what words it contains"
+    /// This sample class generates 32 quizzes of type "I give you a word, you say what letters it contains"
     /// </summary>
     public class SampleQuestionProvider : IQuestionProvider
     {
@@ -21,12 +21,16 @@ namespace EA4S
             description = "Questions description";
 
             // 10 QuestionPacks
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 32; i++)
             {
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
                 WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+
+                if (newWordData == null)
+                    return;
+
                 foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Word, AppManager.Instance.Letters))
                 {
                     correctAnswers.Add(letterData);
@@ -39,7 +43,7 @@ namespace EA4S
                 {
                     var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
 
-                    if (!correctAnswers.Contains(letter) && !wrongAnswers.Contains(letter))
+                    if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                     {
                         wrongAnswers.Add(letter);
                     }
@@ -48,6 +52,14 @@ namespace EA4S
                 var currentPack = new SampleQuestionPack(newWordData, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
             }
+        }
+
+        static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
+        {
+            for (int i = 0, count = list.Count; i < count; ++i)
+                if (list[i].Key == letter.Key)
+                    return true;
+            return false;
         }
 
         public string GetDescription()

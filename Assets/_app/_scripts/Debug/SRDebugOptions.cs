@@ -88,6 +88,14 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
+    [Category("Manage")]
+    public void Database()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("manage_Database");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
     //[Category("Minigame")]
     //public void DontWakeUp()
     //{

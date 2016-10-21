@@ -20,6 +20,9 @@ namespace EA4S
         public static WidgetPopupWindow WidgetPopupWindow { get; private set; }
         public static WidgetSubtitles WidgetSubtitles { get; private set; }
         public static PauseMenu PauseMenu { get; private set; }
+
+        public ActionFeedbackComponent ActionFeedback { get; private set; }
+
         const string ResourceId = "Prefabs/UI/GlobalUI";
 
         public static void Init()
@@ -42,6 +45,7 @@ namespace EA4S
             WidgetPopupWindow = StoreAndAwake<WidgetPopupWindow>();
             WidgetSubtitles = StoreAndAwake<WidgetSubtitles>();
             PauseMenu = StoreAndAwake<PauseMenu>();
+            ActionFeedback = StoreAndAwake<ActionFeedbackComponent>();
         }
 
         void OnDestroy()

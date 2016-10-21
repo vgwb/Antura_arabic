@@ -66,15 +66,15 @@ namespace EA4S.Egg
 
             if (questionWordData == null)
             {
-                game.eggController.eggLivingLetter.SetQuestionText(game.questionManager.GetlLetterDataSequence()[0]);
-                game.Context.GetAudioManager().PlayLetter(((LetterData)game.questionManager.GetlLetterDataSequence()[0]).Key);
+                game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
+                game.Context.GetAudioManager().PlayLetter(((LetterData)game.questionManager.GetlLetterDataSequence()[0]));
                 game.eggController.StartTrembling();
 
                 game.eggButtonBox.LightUpButtons(true, true, 1f, 2f, OnLightUpButtonsComplete);
             }
             else
             {
-                game.eggController.eggLivingLetter.SetQuestionText(questionWordData);
+                game.eggController.eggLivingLetter.SetLetter(questionWordData);
                 game.eggButtonBox.LightUpButtons(true, false, 1f, 1f, OnLightUpButtonsComplete);
             }
         }
