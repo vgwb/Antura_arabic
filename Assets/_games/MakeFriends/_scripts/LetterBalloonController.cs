@@ -44,8 +44,6 @@ namespace EA4S.MakeFriends
             balloonRenderer.material.color = color;
         }
             
-
-
         public void EnterScene(bool correctChoice)
         {
             if (correctChoice)
