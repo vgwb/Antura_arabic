@@ -1276,6 +1276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9318e38eec81ed341a78e24acd622ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAnturaMoment: 0
   WayPointPrefab: {fileID: 100402, guid: 47233fdcbec51bb4d9682ca9adafa6b6, type: 2}
   LockCameraPH: {fileID: 0}
   HidePositionRight: {x: 25, y: 0, z: -20}

@@ -29,9 +29,10 @@ namespace EA4S.Egg
 
         Vector3[] eggPositions;
 
-        public void Initialize(Vector3[] eggPositions)
+        public void Initialize(GameObject letterObjectViewPrefab,  Vector3[] eggPositions)
         {
             this.eggPositions = eggPositions;
+            eggLivingLetter.Initialize(letterObjectViewPrefab);
         }
 
         public void Reset()
@@ -80,6 +81,8 @@ namespace EA4S.Egg
         public void Crack()
         {
             eggLivingLetter.gameObject.SetActive(true);
+            eggLivingLetter.PlayIdleAnimation();
+
             egg.gameObject.SetActive(false);
 
             if (onEggCrackComplete != null)

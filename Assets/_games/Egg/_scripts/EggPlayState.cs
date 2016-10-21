@@ -10,7 +10,6 @@
         int questionProgress;
         int correctAnswers;
 
-        bool anturaEnter;
         bool anturaEntered;
 
         float nextStateTimer;
@@ -43,7 +42,6 @@
 
             EnableAllGameplayInput();
 
-            anturaEnter = false;
             anturaEntered = false;
 
             nextStateTimer = 2f;
@@ -57,12 +55,6 @@
 
         public void Update(float delta)
         {
-            if(anturaEnter && !anturaEntered)
-            {
-                anturaEntered = true;
-                AnturaOut();
-            }
-
             if(toNextState)
             {
                 nextStateTimer -= delta;
@@ -70,6 +62,25 @@
                 if(nextStateTimer <= 0f)
                 {
                     toNextState = false;
+
+                    if(game.stagePositiveResult)
+                    {
+                        ILivingLetterData runLetterData;
+
+                        WordData questionWordData = game.questionManager.GetQuestionWordData();
+
+                        if (questionWordData == null)
+                        {
+                            runLetterData = game.questionManager.GetlLetterDataSequence()[0];
+                        }
+                        else
+                        {
+                            runLetterData = questionWordData;
+                        }
+
+                        game.runLettersBox.AddRunLetter(runLetterData);
+                    }
+
                     game.SetCurrentState(game.ResultState);
                 }
             }
@@ -80,16 +91,24 @@
 
         }
 
-        void AnturaOut()
+        void AnturaExit()
         {
-            game.antura.Bark();
-            DisableAllGameplayInput();
-            game.eggButtonBox.AnturaButtonOut(AnturaIn, 0.5f, 1f);
+            game.antura.Exit(EnableAllGameplayInput);
         }
 
-        void AnturaIn()
+        void AnturaEnter()
         {
-            game.eggButtonBox.AnturaButtonIn(EnableAllGameplayInput, 0.5f, 1f);
+            game.antura.Enter(AnturaButtonsOut);
+        }
+
+        void AnturaButtonsOut()
+        {
+            game.eggButtonBox.AnturaButtonOut(AnturaButtonsIn, 0.5f, 1f);
+        }
+
+        void AnturaButtonsIn()
+        {
+            game.eggButtonBox.AnturaButtonIn(AnturaExit, 0.5f, 1f);
         }
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
@@ -117,7 +136,11 @@
 
         void NegativeFeedback()
         {
-            anturaEnter = true;
+            if(!anturaEntered)
+            {
+                anturaEntered = true;
+                AnturaEnter();
+            }
 
             letterOnSequence = 0;
 
@@ -177,7 +200,7 @@
             }
             else
             {
-                game.Context.GetAudioManager().PlayWord(questionWordData.Key);
+                game.Context.GetAudioManager().PlayWord(questionWordData);
             }
 
             toNextState = true;

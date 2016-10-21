@@ -18,6 +18,9 @@
         public static readonly TextID ASSESSMENT_RESULT_VERYGOOD = new TextID("assessment_result_verygood");
         public static readonly TextID ASSESSMENT_RESULT_RETRY = new TextID("assessment_result_retry");
 
+        public static readonly TextID WELL_DONE = new TextID("comment_welldone");
+        public static readonly TextID TIMES_UP = new TextID("game_generic_timeup");
+
         // ...
 
         public static TextID GetTextIDFromStars(int stars)

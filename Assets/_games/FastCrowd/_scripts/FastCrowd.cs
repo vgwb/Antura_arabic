@@ -60,7 +60,7 @@ namespace EA4S.FastCrowd
         #region Runtime Variables
 
         public TMPro.TextMeshProUGUI RightWordsCounter;
-        public bool IsAnturaMoment = false;
+
         /// <summary>
         /// Actual word.
         /// </summary>
@@ -109,14 +109,14 @@ namespace EA4S.FastCrowd
             // New variations
             VariationPrefix = "";
             switch (FastCrowdConfiguration.Instance.Variation) {
-                case 1:
+                case FastCrowdVariation.Spelling:
                     VariationPrefix = "";
                     break;
-                case 2:
+                case FastCrowdVariation.Words:
                     VariationPrefix = "_words";
                     break;
                 default:
-                    FastCrowdConfiguration.Instance.Variation = 1;
+                    FastCrowdConfiguration.Instance.Variation = FastCrowdVariation.Spelling;
                     break;
             }
 
@@ -158,7 +158,7 @@ namespace EA4S.FastCrowd
             // data from db 
             dataList = new List<ILivingLetterData>();
             string sepLetters = string.Empty;
-            if (FastCrowdConfiguration.Instance.Variation == 1) {
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                 ActualWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                 AudioManager.I.PlayWord(ActualWord.Key);
                 LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "newWord", ActualWord.Key);
@@ -178,7 +178,7 @@ namespace EA4S.FastCrowd
             }
 
             // popup info 
-            if (FastCrowdConfiguration.Instance.Variation == 1) {
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                 localizationData = LocalizationManager.GetLocalizationData("game_fastcrowd_findword");
                 //row.GetStringData("English");
                 PopupMission.Show(new PopupMissionComponent.Data() {
@@ -224,7 +224,7 @@ namespace EA4S.FastCrowd
                 GameplayHelper.RandomPointInWalkableArea(TerrainTrans.position, 20f, out newPosition);
                 letterObjectView.transform.position = newPosition;
                 // Get random data element of different type according with game variation type
-                if (FastCrowdConfiguration.Instance.Variation == 1) {
+                if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                     letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), FastCrowdConfiguration.Instance.BehaviourSettings);
                 } else {
                     letterObjectView.Init(WordData.GetRandomWord(), FastCrowdConfiguration.Instance.BehaviourSettings);
@@ -235,7 +235,7 @@ namespace EA4S.FastCrowd
 
         void sceneClean()
         {
-            DropAreaContainer.clean();
+            DropAreaContainer.Clean();
             foreach (LetterObjectView item in TerrainTrans.GetComponentsInChildren<LetterObjectView>()) {
                 GameObject.Destroy(item.gameObject);
             }
@@ -268,7 +268,7 @@ namespace EA4S.FastCrowd
         {
             switch (tutorialState) {
                 case 3:
-                    if (FastCrowdConfiguration.Instance.Variation == 1) {
+                    if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                         WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro1");
                         WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
                     } else {
@@ -277,7 +277,7 @@ namespace EA4S.FastCrowd
                     }
                     break;
                 case 2:
-                    if (FastCrowdConfiguration.Instance.Variation == 1) {
+                    if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                         WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro2");
                         WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
                     } else {
@@ -287,7 +287,7 @@ namespace EA4S.FastCrowd
                     break;
                 case 1:
                     WidgetSubtitles.I.DisplaySentence("game_fastcrowd_intro3");
-                    if (FastCrowdConfiguration.Instance.Variation == 1) {
+                    if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                         WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImage);
                     } else {
                         WidgetPopupWindow.I.ShowTutorial(TutorialNextStep, TutorialImageWords);
@@ -365,12 +365,12 @@ namespace EA4S.FastCrowd
         /// All action for BlockCompleted event for any variation.
         /// </summary>
         /// <param name="_variant"></param>
-        void ObjectiveBlockCompletedSequence(int _variant)
+        void ObjectiveBlockCompletedSequence(FastCrowdVariation _variant)
         {
             round++;
             switch (_variant) {
 
-                case 1:
+                case FastCrowdVariation.Spelling:
                     LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "wordFinished", ActualWord.Key);
                     LoggerEA4S.Save();
                     AudioManager.I.PlayWord(ActualWord.Key);
@@ -382,7 +382,7 @@ namespace EA4S.FastCrowd
                         Title = string.Format("{0}", ArabicFixer.Fix(localizationData.Arabic, false, false), CompletedWords.Count),
                         MainTextToDisplay = ActualWord.TextForLivingLetter,
                         Type = PopupMissionComponent.PopupType.Mission_Completed,
-                        DrawSprite = FastCrowdConfiguration.Instance.Variation == 2 ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                        DrawSprite = FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
                     }
                         , delegate () {
                             ActualWord = null;
@@ -395,7 +395,7 @@ namespace EA4S.FastCrowd
                         });
                     break;
 
-                case 2:
+                case FastCrowdVariation.Words:
                     string stringListOfWords = string.Empty;
                     foreach (var w in dataList)
                         stringListOfWords += w.TextForLivingLetter + " ";
@@ -405,7 +405,7 @@ namespace EA4S.FastCrowd
                         Title = string.Format("{0}", ArabicFixer.Fix(localizationData.Arabic, false, false), CompletedWords.Count),
                         MainTextToDisplay = stringListOfWords,
                         Type = PopupMissionComponent.PopupType.Mission_Completed,
-                        DrawSprite = FastCrowdConfiguration.Instance.Variation == 2 ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
+                        DrawSprite = FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words ? null : Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + ActualWord.Key),
                     }
                         , delegate () {
                             ActualWord = null;
@@ -440,7 +440,7 @@ namespace EA4S.FastCrowd
         private void Droppable_OnRightMatch(LetterObjectView _letterView)
         {
             LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "goodLetterDrop", _letterView.Model.Data.Key);
-            if (FastCrowdConfiguration.Instance.Variation == 1) {
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                 ActionFeedback.Show(true);
                 AudioManager.I.PlayLetter(_letterView.Model.Data.Key);
             } else {
@@ -487,11 +487,17 @@ namespace EA4S.FastCrowd
             //Debug.LogFormat("Custom Event {0} at {1} sec.", _data.Name, _data.Time);
             switch (_data.Name) {
                 case "AnturaStart":
-                    IsAnturaMoment = true;
+                    foreach (LetterNavBehaviour item in TerrainTrans.GetComponentsInChildren<LetterNavBehaviour>())
+                    {
+                        item.isAnturaMoment = true;
+                    }
                     AudioManager.I.PlayMusic(Music.MainTheme);
                     break;
                 case "AnturaEnd":
-                    IsAnturaMoment = false;
+                    foreach (LetterNavBehaviour item in TerrainTrans.GetComponentsInChildren<LetterNavBehaviour>())
+                    {
+                        item.isAnturaMoment = false;
+                    }
                     AudioManager.I.PlayMusic(Music.Theme3);
                     break;
                 default:
