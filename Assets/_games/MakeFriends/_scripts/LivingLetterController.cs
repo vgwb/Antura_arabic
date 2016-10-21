@@ -14,7 +14,7 @@ namespace EA4S.MakeFriends
         public Rigidbody body;
         public GameObject angerGraphic;
         public LetterData letterData;
-        public LetterObject letterObject;
+        public EA4S.LLController letterObject;
         public TMP_Text tmpText;
         [Range(-1, 1)]
         public int entranceDirection;

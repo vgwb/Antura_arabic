@@ -7,14 +7,14 @@ namespace EA4S
     public class BaseBehaviour : MonoBehaviour, IBehaviour
     {
 
-        public LetterObject Model;
+        public LLController Model;
 
         void OnEnable()
         {
             OnStartBehaviour();
         }
 
-        public void StartBehaviour(LetterObject _model)
+        public void StartBehaviour(LLController _model)
         {
             Model = _model;
             OnStartBehaviour();

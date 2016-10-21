@@ -17,17 +17,17 @@ namespace EA4S.Egg
 
         public void PlayIdleAnimation()
         {
-            livingLetter.Model.State = LetterObjectState.LL_idle_1;
+            livingLetter.Model.State = LLAnimationStates.LL_idle_1;
         }
 
         public void PlayWalkAnimation()
         {
-            livingLetter.Model.State = LetterObjectState.LL_walk;
+            livingLetter.Model.State = LLAnimationStates.LL_walk;
         }
 
         public void PlayHorrayAnimation()
         {
-            livingLetter.Model.State = LetterObjectState.LL_horray;
+            livingLetter.Model.State = LLAnimationStates.LL_horray;
         }
 
         public void SetLetter(ILivingLetterData livingLetterData)

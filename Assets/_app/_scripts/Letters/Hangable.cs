@@ -80,7 +80,7 @@ namespace EA4S {
                     this.gameObject.layer = 2;
                 }
                 OnDrag = true;
-                letterView.Model.State = LetterObjectState.LL_drag_idle;
+                letterView.Model.State = LLAnimationStates.LL_drag_idle;
             } else { // not in hold state (not check if is in finish hold state, it is called in mouse up event)
                 this.gameObject.layer = 9;
                 OnDrag = false;
