@@ -63,7 +63,7 @@ namespace EA4S
 
         public List<MiniGameData> FindAllActiveMinigames()
         {
-            return FindAllMiniGameData((x) => (x.Available));
+            return FindAllMiniGameData((x) => (x.Available && x.Type == MiniGameType.MiniGame));
         }
 
         #endregion
@@ -106,10 +106,6 @@ namespace EA4S
             return db.FindAll<StageData>(db.GetStageTable(), predicate);
         }
 
-        public List<AssessmentData> FindAllAssessmentData(Predicate<AssessmentData> predicate)
-        {
-            return db.FindAll<AssessmentData>(db.GetAssessmentTable(), predicate);
-        }
 
         public List<LocalizationData> FindAllLocalizationData(Predicate<LocalizationData> predicate)
         {
@@ -146,10 +142,6 @@ namespace EA4S
             return new List<StageData>(db.GetStageTable().Values);
         }
 
-        public List<AssessmentData> FindAllAssessmentData()
-        {
-            return new List<AssessmentData>(db.GetAssessmentTable().Values);
-        }
 
         public List<LocalizationData> FindAllLocalizationData()
         {
@@ -203,11 +195,6 @@ namespace EA4S
         public StageData GetStageDataById(string id)
         {
             return db.GetById<StageData>(db.GetStageTable(), id);
-        }
-
-        public AssessmentData GetAssessmentDataById(string id)
-        {
-            return db.GetById<AssessmentData>(db.GetAssessmentTable(), id);
         }
 
         public LocalizationData GetLocalizationDataById(string id)
