@@ -65,7 +65,7 @@ namespace EA4S.Db
         public void CreateDB()
         {
             // @note: create the DB here (for now only has LogData)
-            RecreateTable<LogData>();
+            RecreateTable<LogInfoData>();
         }
 
         private void RecreateTable<T>()
@@ -92,9 +92,9 @@ namespace EA4S.Db
 
         #region Find
 
-        public LogData FindLogDataById(string target_id)
+        public LogInfoData FindLogDataById(string target_id)
         {
-            return _connection.Table<LogData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
+            return _connection.Table<LogInfoData>().Where((x) => (x.Id.Equals(target_id))).FirstOrDefault();
         }
 
         // @note: this cannot be used as the current SQLite implementation does not support Parameter expression nodes in LINQ
