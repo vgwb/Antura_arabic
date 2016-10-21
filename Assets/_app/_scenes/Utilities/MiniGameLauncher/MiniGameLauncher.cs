@@ -141,8 +141,13 @@ namespace EA4S.Test {
                 case MiniGameCode.FastCrowd_letter:
                     // Dummy logic for question creation
                     question = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    correctAnswers.Add((LetterData)question);
+                    letters = GetLettersNotContained(letters, 3); // TODO: auto generation in game
+                    foreach (var l in letters) {
+                        wrongAnswers.Add(l);
+                    }
                     // QuestionPack creation
-                    questionPack = new FindRightDataQuestionPack(question, null, null);
+                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.FastCrowd_spelling: // var 1
                     // Dummy logic for question creation
@@ -160,16 +165,22 @@ namespace EA4S.Test {
                     break;
                 case MiniGameCode.FastCrowd_words:
                     // Dummy logic for question creation
-                    question = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < 4; i++) {
                         WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                        if (word != question)
-                            correctAnswers.Add(question);
+                        if (!correctAnswers.Contains(word))
+                            correctAnswers.Add(word);
+                        else
+                            i--;
+                    }
+                    for (int i = 0; i < 2; i++) {
+                        WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!correctAnswers.Contains(word))
+                            wrongAnswers.Add(word);
                         else
                             i--;
                     }
                     // QuestionPack creation
-                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, correctAnswers);
+                    questionPack = new FindRightDataQuestionPack(null, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.HiddenSource:
                     break;
@@ -226,6 +237,18 @@ namespace EA4S.Test {
 
         WordData GetWord() {
             return AppManager.Instance.Teacher.GimmeAGoodWordData();
+        }
+
+        List<WordData> GetWordsNotContained(List<WordData> _WordsToAvoid, int _count) {
+            List<WordData> wordListToReturn = new List<WordData>();
+            for (int i = 0; i < _count; i++) {
+                var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+
+                if (!_WordsToAvoid.Contains(word) && !wordListToReturn.Contains(word)) {
+                    wordListToReturn.Add(word);
+                }
+            }
+            return wordListToReturn;
         }
 
         List<LetterData> GetLettersFromWord(WordData _word) {
