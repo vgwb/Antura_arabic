@@ -21,7 +21,7 @@ namespace EA4S.Egg
             game.questionManager.StartNewQuestion(game.gameDifficulty, onlyLetter);
             game.eggController.Reset();
 
-            game.Context.GetPopupWidget().Show(OnPopupCloseRequested, "Question Description", true);
+            game.Context.GetPopupWidget().Show(OnPopupCloseRequested, game.questionManager.GetQuestionDescription(), true);
         }
 
         public void ExitState()
@@ -65,22 +65,31 @@ namespace EA4S.Egg
 
         void ShowQuestionSequence()
         {
-            WordData questionWordData = game.questionManager.GetQuestionWordData();
+            bool noColor = (game.gameDifficulty >= 0.25f && game.gameDifficulty < 0.5f) || game.gameDifficulty >= 0.75f;
 
-            bool noColor = game.gameDifficulty > 2;
-
-            if (questionWordData == null)
+            bool isSequence = game.questionManager.IsSequence();
+            
+            if(isSequence)
             {
                 game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
-                game.Context.GetAudioManager().PlayLetter(((LetterData)game.questionManager.GetlLetterDataSequence()[0]));
-                game.eggController.StartTrembling();
 
-                game.eggButtonBox.LightUpButtons(noColor, true, true, 1f, 2f, OnLightUpButtonsComplete);
+                game.eggButtonBox.LightUpButtons(noColor, true, false, 1f, 1f, OnLightUpButtonsComplete);
             }
             else
             {
-                game.eggController.eggLivingLetter.SetLetter(questionWordData);
-                game.eggButtonBox.LightUpButtons(noColor, true, false, 1f, 1f, OnLightUpButtonsComplete);
+                game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
+
+                game.Context.GetAudioManager().PlayLetter(((LetterData)game.questionManager.GetlLetterDataSequence()[0]));
+                game.eggController.StartTrembling();
+                
+                if(noColor)
+                {
+                    OnLightUpButtonsComplete();
+                }
+                else
+                {
+                    game.eggButtonBox.LightUpButtons(false, true, true, 1f, 2f, OnLightUpButtonsComplete);
+                }
             }
         }
 

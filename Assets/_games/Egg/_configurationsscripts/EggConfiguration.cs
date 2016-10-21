@@ -26,8 +26,8 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new SampleGameContext();
-            Difficulty = 0.8f;
-            QuestionProvider = null;//new SampleEggQuestionProvider(Difficulty);
+            Difficulty = 0.2f;
+            QuestionProvider = new SampleEggQuestionProvider(Difficulty);
         }
 
     }

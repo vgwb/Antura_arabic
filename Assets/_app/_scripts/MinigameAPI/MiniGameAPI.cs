@@ -152,6 +152,7 @@ namespace EA4S.API {
                     Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    miniGameScene = "game_Egg";
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
