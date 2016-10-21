@@ -15,95 +15,17 @@ namespace EA4S.Test {
             options.Clear();
             options.AddRange(addOptionsFromEnum<MiniGameCode>());
             onValueChanged.AddListener(delegate {
-                // Example minigame call
-                MiniGameCode miniGameCodeSelected = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), options[value].text);
-
-                float difficulty = float.Parse(FindObjectsOfType<InputField>().First(n => n.name == "Difficulty").text);
-
-
-                MiniGameAPI.Instance.StartGame(
-                    miniGameCodeSelected,
-                    CreateQuestionPacksDummyAI(10, QuestionPackType.type_1),
-                    new GameConfiguration(difficulty)
-                );
+                
                 
             });
 
         }
 
-        List<IQuestionPack> CreateQuestionPacksDummyAI(int _questionNumber, QuestionPackType _packType) {
-            List<IQuestionPack> questionPackList = new List<IQuestionPack>();
-            for (int i = 0; i < _questionNumber; i++) {
-                questionPackList.Add(CreateQuestionPack(_packType));
-            }
-            return questionPackList;
-        }
 
-        IQuestionPack CreateQuestionPack(QuestionPackType _packType) {
-            IQuestionPack questionPack = null;
-            ILivingLetterData question;
-            List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
-            List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
-            List<LetterData> letters;
-            //var wrongAnswers;
-            switch (_packType) {
-                case QuestionPackType.type_1:
-                    // Dummy logic for question creation
-                    question = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    letters = GetLettersFromWord(question as WordData);
-                    foreach (var l in letters) {
-                        correctAnswers.Add(l);
-                    }
-                    letters = GetLettersNotContained(letters, 8);
-                    foreach (var l in letters) {
-                        wrongAnswers.Add(l);
-                    }
-                    // QuestionPack creation
-                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, wrongAnswers);
-                    break;
-                case QuestionPackType.type_2:
-                    break;
-                case QuestionPackType.type_3:
-                    break;
-                default:
-                    break;
-            }
-
-            return questionPack;
-
-            
-        }
-        #region Test Helpers
-
-        WordData GetWord() {
-            return AppManager.Instance.Teacher.GimmeAGoodWordData();
-        }
-
-        List<LetterData> GetLettersFromWord(WordData _word) {
-            List<LetterData> letters = new List<LetterData>();
-            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Word, AppManager.Instance.Letters)) {
-                letters.Add(letterData);
-            }
-            return letters;
-        }
-
-        List<LetterData> GetLettersNotContained(List<LetterData> _lettersToAvoid, int _count) {
-            List<LetterData> letterListToReturn = new List<LetterData>();
-            for (int i = 0; i < _count; i++) {
-                var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
-
-                if (!_lettersToAvoid.Contains(letter) && !letterListToReturn.Contains(letter)) {
-                    letterListToReturn.Add(letter);
-                }
-            }
-            return letterListToReturn;
-        }
-
-        #endregion
 
 
         public enum QuestionPackType {
-            type_1, // Word, letters, letters
+            type_1, // Word, letters (contained in question), letters (not contained in question)
             type_2,
             type_3,
         }
