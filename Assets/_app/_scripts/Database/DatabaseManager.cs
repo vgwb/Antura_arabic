@@ -7,8 +7,13 @@ namespace EA4S
 {
     public class DatabaseManager
     {
+        // DB references
         private Database db;
         private DBService dbService;
+
+        // Profile
+        int currentProfileId = 0;
+        bool profileLoaded = false;
 
         public DatabaseManager()
         {
@@ -16,8 +21,6 @@ namespace EA4S
         }
 
         #region Profile
-        int currentProfileId = 0;
-        bool profileLoaded = false;
 
         public void LoadProfile(int profileId)
         {
@@ -25,20 +28,24 @@ namespace EA4S
             profileLoaded = true;
             this.currentProfileId = profileId;
         }
+
         public void UnloadCurrentProfile()
         {
             this.dbService = null;
             profileLoaded = false;
             this.currentProfileId = 0;
         }
+
         public void CreateProfile()
         {
             this.dbService.CreateAllTables();
         }
-        public void RecreteProfile()
+
+        public void RecreateProfile()
         {
             this.dbService.RecreateAllTables();
         }
+
         public void DropProfile()
         {
             this.dbService.DropAllTables();
@@ -49,60 +56,86 @@ namespace EA4S
 
         #region Specific Runtime Queries
 
+        // Find all
         public List<LogInfoData> FindAllLogInfoData()
         {
             return dbService.FindAll<LogInfoData>();
         }
+
+        // Find all (expression)
         public List<LogInfoData> FindAllLogInfoData(System.Linq.Expressions.Expression<Func<LogInfoData, bool>> expression)
         {
-            return dbService.FindAll<LogInfoData>(expression);
+            return dbService.FindAll(expression);
         }
+
+        // Get by id
         public LogInfoData GetLogInfoDataById(string id)
         {
             return dbService.FindLogInfoDataById(id);
         }
+
+        // Query
         public List<LogInfoData> FindLogInfoDataByQuery(string query)
         {
             return dbService.FindByQuery<LogInfoData>(query);
         }
+
         public List<LogLearnData> FindLogLearnDataByQuery(string query)
         {
             return dbService.FindByQuery<LogLearnData>(query);
         }
+
         public List<LogMoodData> FindLogMoodDataByQuery(string query)
         {
             return dbService.FindByQuery<LogMoodData>(query);
         }
+        public string GetTableName<T>()
+        {
+            return dbService.GetTableName<T>();
+        }
+
         public List<LogPlayData> FindLogPlayDataByQuery(string query)
         {
             return dbService.FindByQuery<LogPlayData>(query);
         }
+
         public List<LogScoreData> FindLogScoreDataByQuery(string query)
         {
             return dbService.FindByQuery<LogScoreData>(query);
         }
+
+        public List<object> FindCustomDataByQuery(SQLite.TableMapping mapping, string query)
+        {
+            return dbService.FindByQueryCustom(mapping, query);
+        }
+
 
         #endregion
 
 
         #region Specific Runtime Inserts
 
+        // Insert
         public void InsertLogInfoData(LogInfoData data)
         {
             dbService.Insert(data);
         }
+
         public void InsertLogLearnData(LogLearnData data)
         {
             dbService.Insert(data);
         }
+
         public void InsertLogMoodData(LogMoodData data)
         {
             dbService.Insert(data);
         }
+
         public void InsertLogPlayData(LogPlayData data)
         {
             dbService.Insert(data);
         }
+
         public void InsertLogScoreData(LogScoreData data)
         {
             dbService.Insert(data);
