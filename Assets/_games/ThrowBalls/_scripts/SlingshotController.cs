@@ -50,6 +50,8 @@ namespace EA4S.ThrowBalls
         // The Y coordinate of the point of impact:
         private float pointOfImpactY = 1.1f;
 
+        float peakY = 0;
+
         void Awake()
         {
             instance = this;
@@ -62,6 +64,19 @@ namespace EA4S.ThrowBalls
             {
                 UpdatePointOfImpact();
                 UpdateArc();
+            }
+
+            else
+            {
+                if (ballController.transform.position.y > peakY)
+                {
+                    peakY = ballController.transform.position.y;
+                }
+
+                else
+                {
+                    Debug.Log("peak y is " + peakY);
+                }
             }
         }
 
@@ -87,9 +102,12 @@ namespace EA4S.ThrowBalls
             distanceToImpactPoint.y = 0;
             //ballPosition.z = ballPosition.z;
 
-            float xScale = distanceToImpactPoint.magnitude/2;
-            float yScale = 5;
-            float zScale = 15;
+            float hypotheticalYVelocity = (((pointOfImpact.z - minLaunchZ) / (zLaunchRange)) * (maxYLaunchVelocity - minYLaunchVelocity)) + minYLaunchVelocity;
+            float hypotheticalYPeak = -0.5f * Mathf.Pow(hypotheticalYVelocity, 2) * Constants.GRAVITY_INVERSE.y + ballPosition.y;
+
+            float xScale = distanceToImpactPoint.magnitude / 2;
+            float yScale = 15;
+            float zScale = hypotheticalYPeak;
 
             arc.transform.localScale = new Vector3(xScale, yScale, zScale);
 
@@ -116,6 +134,8 @@ namespace EA4S.ThrowBalls
 
             float zVelocity = (pointOfImpact.z - ballPosition.z) * velocityFactor;
             float xVelocity = (pointOfImpact.x - ballPosition.x) * velocityFactor;
+
+            Debug.Log("Launching with a y velocity of " + yVelocity + "at y = " + ballPosition.y);
 
             return new Vector3(xVelocity, yVelocity, zVelocity);
         }
