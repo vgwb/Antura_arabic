@@ -74,9 +74,6 @@ namespace EA4S
         public float MergedElementsDistance = 1;
         [HideInInspector]
         public bool IsMerged;
-        [HideInInspector]
-        public DropSingleArea ActualDropArea;
-        //DropState dropState = DropState.off;
         #endregion
 
         #region Init
