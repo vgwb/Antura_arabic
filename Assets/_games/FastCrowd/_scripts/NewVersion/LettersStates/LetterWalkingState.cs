@@ -84,7 +84,7 @@ namespace EA4S.FastCrowd
             if (stuckTimer <= 0)
             {
                 // change direction
-                target = letter.crowd.walkableArea.GetNearestPoint(letter.transform.position - distance);
+                target = letter.crowd.walkableArea.GetNearestPoint(letter.transform.position - 2*distance);
                 stuckTimer = STUCK_THRESHOLD;
             }
 
