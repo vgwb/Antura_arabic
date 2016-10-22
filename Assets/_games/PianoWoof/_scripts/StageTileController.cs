@@ -13,14 +13,14 @@ namespace EA4S.PianoWoof
     public class StageTileController : MonoBehaviour
     {
         public GameObject[] lights;
-        public LetterObject letterObject;
+        public LLController letterObject;
         public TMPro.TMP_Text letterText;
         public TMPro.TMP_Text tileText;
 
 
         public void SetLetter(LetterData _data)
         {
-            letterObject = new LetterObject(_data);
+            letterObject = new LLController(_data);
             var text = _data.TextForLivingLetter;
             letterText.text = text;
             //tileText.text = text;

@@ -14,6 +14,9 @@ namespace EA4S.MakeFriends
         public GameObject letterPickerBlocker;
 
         [HideInInspector]
+        public LetterChoiceController letterChoiceBeingDragged;
+
+        [HideInInspector]
         public List<LetterChoiceController> IdleLetterPrompts
         {
             get { return new List<LetterChoiceController>(letterChoices).FindAll(choice => choice.isActiveAndEnabled && choice.State == LetterChoiceController.ChoiceState.IDLE); }

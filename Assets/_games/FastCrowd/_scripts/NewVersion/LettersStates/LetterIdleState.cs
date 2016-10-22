@@ -15,7 +15,7 @@ namespace EA4S.FastCrowd
             // Set letter animation
             letter.gameObject.GetComponent<LetterObjectView>().Model.State =
                 //    (LetterObjectState)UnityEngine.Random.Range((int)LetterObjectState.LL_idle, (int)LetterObjectState.LL_idle_5);
-                LetterObjectState.LL_idle_1;
+                LLAnimationStates.LL_idle_1;
 
             // Wait a random time in idle
             timer = 2.0f + 3.0f*UnityEngine.Random.value;

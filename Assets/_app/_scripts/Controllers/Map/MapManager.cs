@@ -89,7 +89,7 @@ namespace EA4S
 
         public void Zoom()
         {
-            ChangeCamera();
+            //ChangeCamera();
         }
 
         // called by callback in camera

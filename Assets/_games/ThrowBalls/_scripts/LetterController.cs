@@ -170,13 +170,13 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
-                if (tag == Constants.TAG_CORRECT_LETTER)
+                /*if (tag == Constants.TAG_CORRECT_LETTER)
                 {
                     ThrowBallsGameManager.Instance.OnCorrectLetterHit(this);
                 }
 
                 else
-                {
+                {*/
                     animator.Play("run");
                     if (animationResetter != null)
                     {
@@ -184,7 +184,7 @@ namespace EA4S.ThrowBalls
                     }
                     animationResetter = ResetAnimation();
                     StartCoroutine(animationResetter);
-                }
+                //}
             }
 
             else if (collision.gameObject.tag == Constants.TAG_RAIL)

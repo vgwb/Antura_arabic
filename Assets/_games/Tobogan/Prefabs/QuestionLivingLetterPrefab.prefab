@@ -1158,8 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livingLetterTransform: {fileID: 4000012418328370}
   boxCollider: {fileID: 65000013607426084}
-  AnturaAnimator: {fileID: 95000012556893588}
-  livingLetterText: {fileID: 114000013110944292}
+  letter: {fileID: 0}
 --- !u!114 &114000011568781694
 MonoBehaviour:
   m_ObjectHideFlags: 1

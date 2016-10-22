@@ -18,14 +18,34 @@
             var question = provider.GetNextQuestion();
             game.CurrentQuestion = question;
 
-            foreach (var l in question.GetCorrectAnswers())
-                game.CurrentChallenge.Add(l);
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            {
+                for (int i = 0; i < 3; ++i)
+                {
+                    LetterData data = new LetterData(question.GetQuestion().Key);
 
-            if (FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Alphabet)
+                    if (i == 0)
+                        data.ShowAs = LetterDataForm.INITIAL;
+                    else if (i == 1)
+                        data.ShowAs = LetterDataForm.MEDIAL;
+                    else if (i == 2)
+                        data.ShowAs = LetterDataForm.FINAL;
+
+                    game.CurrentChallenge.Add(data);
+                }
+            }
+            else
+            {
+                foreach (var l in question.GetCorrectAnswers())
+                    game.CurrentChallenge.Add(l);
+            }
+
+            //if (FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Alphabet)
             {
                 // Add wrong data too
-                foreach (var l in question.GetWrongAnswers())
-                    game.NoiseData.Add(l);
+                if (question.GetWrongAnswers() != null)
+                    foreach (var l in question.GetWrongAnswers())
+                        game.NoiseData.Add(l);
             }
 
             ++game.QuestionNumber;

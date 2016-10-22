@@ -253,7 +253,7 @@ namespace EA4S.FastCrowd
             DropSingleArea dropSingleArea = Instantiate(DropSingleAreaPref);
             dropSingleArea.transform.SetParent(DropAreaContainer.transform, false);
             dropSingleArea.transform.position = Camera.main.transform.position;
-            dropSingleArea.Init(_letterData, DropAreaContainer);
+            dropSingleArea.Init(_letterData, DropAreaContainer, true);
 
         }
 
