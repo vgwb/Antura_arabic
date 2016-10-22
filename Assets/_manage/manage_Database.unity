@@ -2525,7 +2525,7 @@ MonoBehaviour:
     phraseDataAsset: {fileID: 4900000, guid: 86e883ecf93ba463dbfa5c330c9cc625, type: 3}
     stageDataAsset: {fileID: 4900000, guid: 2280fef01e0bf4d419255415f79fc3f5, type: 3}
     rewardDataAsset: {fileID: 4900000, guid: 28558aba1a33c44e1ae18b52e76f1677, type: 3}
-  database: {fileID: 11400000, guid: c4da0bb938822491bbc15befe3ba54b0, type: 2}
+  database: {fileID: 11400000, guid: 3da256171a2e343f3b40e2bbd650b289, type: 2}
   verbose: 1
 --- !u!4 &767385205
 Transform:
