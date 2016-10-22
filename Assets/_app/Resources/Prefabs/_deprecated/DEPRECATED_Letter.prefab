@@ -52,7 +52,7 @@ GameObject:
   - 114: {fileID: 11481976}
   - 54: {fileID: 5405068}
   m_Layer: 0
-  m_Name: Letter
+  m_Name: DEPRECATED_Letter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
