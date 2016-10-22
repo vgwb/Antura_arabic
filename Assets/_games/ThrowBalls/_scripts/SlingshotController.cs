@@ -13,12 +13,6 @@ namespace EA4S.ThrowBalls
 
         private PokeballController ballController;
 
-        // One of the fixed pivots of the slingshot:
-        private Vector3 pivot1;
-
-        // The other fixed pivot:
-        private Vector3 pivot2;
-
         // The center of the slingshot.
         // For normal behavior, it should be the average of both pivots:
         private Vector3 center = new Vector3(0, 6, -20);
