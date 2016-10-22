@@ -11,7 +11,7 @@ namespace EA4S.ThrowBalls
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 3;
-        public const int MAX_NUM_POKEBALLS = 30000;
+        public const int MAX_NUM_BALLS = 30000;
 
         new public static ThrowBallsGameManager Instance;
         new public ThrowBallsGameplayInfo GameplayInfo;
@@ -19,8 +19,8 @@ namespace EA4S.ThrowBalls
         public GameObject[] letterPool;
         private LetterController[] letterControllers;
 
-        public GameObject pokeBall;
-        public PokeballController pokeBallController;
+        public GameObject ball;
+        public BallController ballController;
 
         public GameObject letterWithPropsPrefab;
 
@@ -32,7 +32,7 @@ namespace EA4S.ThrowBalls
 
         // Round number is 1-based. (Round 1, round 2,...)
         private int roundNumber = 1;
-        private int numPokeballs = MAX_NUM_POKEBALLS;
+        private int numBalls = MAX_NUM_BALLS;
 
         private int numRoundsWon = 0;
 
@@ -55,7 +55,7 @@ namespace EA4S.ThrowBalls
 
             UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
 
-            // Layer 8 = Terrain. Layer 12 = Pokeball.
+            // Layer 8 = Terrain. Layer 12 = Ball.
             Physics.IgnoreLayerCollision(8, 12);
 
             foreach (Collider collider in environment.GetComponentsInChildren<Collider>())
@@ -131,9 +131,9 @@ namespace EA4S.ThrowBalls
                 }
             }*/
 
-            pokeBallController.Reset();
+            ballController.Reset();
 
-            numPokeballs = MAX_NUM_POKEBALLS;
+            numBalls = MAX_NUM_BALLS;
 
             isRoundOngoing = false;
         }
@@ -214,7 +214,7 @@ namespace EA4S.ThrowBalls
                     break;
             }
 
-            PokeballController.instance.Enable();
+            BallController.instance.Enable();
             UIController.instance.Enable();
         }
 
@@ -227,7 +227,7 @@ namespace EA4S.ThrowBalls
             {
                 numRoundsWon++;
                 StartCoroutine(ShowWinSequence(correctLetterCntrl));
-                pokeBallController.Disable();
+                ballController.Disable();
 
                 isRoundOngoing = false;
             }
@@ -238,7 +238,7 @@ namespace EA4S.ThrowBalls
             if (isRoundOngoing)
             {
                 DisplayRoundResult(false);
-                pokeBallController.Disable();
+                ballController.Disable();
 
                 isRoundOngoing = false;
             }
@@ -265,16 +265,16 @@ namespace EA4S.ThrowBalls
             DisplayRoundResult(true);
         }
 
-        public void OnPokeballLost()
+        public void OnBallLost()
         {
             if (isRoundOngoing)
             {
-                numPokeballs--;
-                UIController.instance.OnPokeballLost();
+                numBalls--;
+                UIController.instance.OnBallLost();
 
-                if (numPokeballs == 0)
+                if (numBalls == 0)
                 {
-                    PokeballController.instance.Disable();
+                    BallController.instance.Disable();
                     OnRoundLost();
                 }
             }

@@ -10,15 +10,11 @@ namespace EA4S.ThrowBalls
         public GameObject ball;
         public GameObject greenCross;
         public GameObject arc;
-        public GameObject centerObj;
+        public GameObject center;
 
-        private PokeballController ballController;
+        private BallController ballController;
         private LineRenderer lineRenderer;
         private LineRenderer projectedLineRenderer;
-
-        // The center of the slingshot.
-        // For normal behavior, it should be the average of both pivots:
-        private Vector3 center = new Vector3(0, 6, -20);
 
         // The range of the projectile's point of impact's Z coordinate after it has been launched:
         private float zLaunchRange = 24;
@@ -53,7 +49,7 @@ namespace EA4S.ThrowBalls
         void Awake()
         {
             instance = this;
-            ballController = ball.GetComponent<PokeballController>();
+            ballController = ball.GetComponent<BallController>();
             lineRenderer = GetComponent<LineRenderer>();
         }
 
@@ -70,12 +66,12 @@ namespace EA4S.ThrowBalls
 
         private void UpdateOriginLine()
         {
-            lineRenderer.SetPositions(new Vector3[] { ballController.transform.position, centerObj.transform.position });
+            lineRenderer.SetPositions(new Vector3[] { ballController.transform.position, center.transform.position });
 
-            Vector3 direction = centerObj.transform.position - ballController.transform.position;
+            Vector3 direction = center.transform.position - ballController.transform.position;
             direction.y = 0;
 
-            Vector3 projectedCenter = centerObj.transform.position;
+            Vector3 projectedCenter = center.transform.position;
             projectedCenter.y = 1.2f;
             projectedCenter.z += 5f;
 
@@ -84,7 +80,7 @@ namespace EA4S.ThrowBalls
             ProjectLineRendererController.instance.SetPoints(new Vector3[] { projectedCenter, projectedCenter + direction });
         }
 
-        private void UpdatePointOfImpact()
+        /*private void UpdatePointOfImpact()
         {
             Vector3 pokeballPosition = ball.transform.position;
 
@@ -97,13 +93,13 @@ namespace EA4S.ThrowBalls
             pointOfImpact = new Vector3(pointOfImpactX, pointOfImpactY, pointOfImpactZ);
 
             greenCross.transform.position = pointOfImpact;
-        }
+        }*/
 
         private void UpdateLaunchForce()
         {
             Vector3 ballPosition = ball.transform.position;
 
-            launchForce = centerObj.transform.position - ballPosition;
+            launchForce = center.transform.position - ballPosition;
             launchForce *= 15;
         }
 

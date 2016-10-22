@@ -75,8 +75,8 @@ namespace EA4S.ThrowBalls
 
             if (!hit)
             {
-                PokeballController.instance.Reset();
-                ThrowBallsGameManager.Instance.OnPokeballLost();
+                BallController.instance.Reset();
+                ThrowBallsGameManager.Instance.OnBallLost();
                 hit = true;
             }
             
