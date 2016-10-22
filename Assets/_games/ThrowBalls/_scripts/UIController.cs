@@ -30,7 +30,7 @@ namespace EA4S.ThrowBalls
 
         public void Reset()
         {
-            numPokeballs = ThrowBallsGameManager.MAX_NUM_POKEBALLS;
+            numPokeballs = ThrowBallsGameManager.MAX_NUM_BALLS;
 
             foreach (Image image in pokeballImages)
             {
@@ -42,7 +42,7 @@ namespace EA4S.ThrowBalls
             StopAllCoroutines();
         }
 
-        public void OnPokeballLost()
+        public void OnBallLost()
         {
             //pokeballImages[--numPokeballs].sprite = pokeballOffSprite;
         }

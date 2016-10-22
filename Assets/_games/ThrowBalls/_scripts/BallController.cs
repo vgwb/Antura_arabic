@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace EA4S.ThrowBalls
 {
-    public class PokeballController : MonoBehaviour
+    public class BallController : MonoBehaviour
     {
-        public static readonly Vector3 POKEBALL_POSITION = new Vector3(0, 5.25f, -20f);
+        public static readonly Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
 
-        public static PokeballController instance;
+        public static BallController instance;
 
         public Rigidbody rigidBody;
         public bool IsLaunched
@@ -41,7 +41,7 @@ namespace EA4S.ThrowBalls
 
         public void Reset()
         {
-            transform.position = POKEBALL_POSITION;
+            transform.position = INITIAL_BALL_POSITION;
 
             rigidBody.isKinematic = true;
             rigidBody.angularVelocity = new Vector3(0, 0, 0);
@@ -70,7 +70,7 @@ namespace EA4S.ThrowBalls
 
                 if (transform.position.y < -9)
                 {
-                    ThrowBallsGameManager.Instance.OnPokeballLost();
+                    ThrowBallsGameManager.Instance.OnBallLost();
                     Reset();
                 }
             }
@@ -101,8 +101,8 @@ namespace EA4S.ThrowBalls
                             Vector3 touchPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, cameraDistance));
 
                             float yzFactor = 1 - (touch.position.y / Screen.height) * 3;
-                            touchPosInWorldUnits.y = POKEBALL_POSITION.y - yzFactor * yzStretchRange;
-                            touchPosInWorldUnits.z = POKEBALL_POSITION.z - yzFactor * yzStretchRange;
+                            touchPosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
+                            touchPosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
 
                             transform.position = touchPosInWorldUnits;
                         }
@@ -148,8 +148,8 @@ namespace EA4S.ThrowBalls
             Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
 
             float yzFactor = 1 - (Input.mousePosition.y / Screen.height) * 3;
-            mousePosInWorldUnits.y = POKEBALL_POSITION.y - yzFactor * yzStretchRange;
-            mousePosInWorldUnits.z = POKEBALL_POSITION.z - yzFactor * yzStretchRange;
+            mousePosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
+            mousePosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
 
             transform.position = mousePosInWorldUnits;
         }
