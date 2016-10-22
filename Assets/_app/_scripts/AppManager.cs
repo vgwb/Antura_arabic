@@ -40,7 +40,7 @@ namespace EA4S
         public void InitDataAI()
         {
             if (DB == null)
-                DB = new DatabaseManager("1");  // @todo: player ID should be passed here
+                DB = new DatabaseManager(); 
             if (Teacher == null)
                 Teacher = new TeacherAI();
             if (Player == null)
@@ -126,18 +126,18 @@ namespace EA4S
             switch (PlaySession) {
                 case 1:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.GetMiniGameDataById("FastCrowd_letter");
+                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
                     else
-                        miniGame = DB.GetMiniGameDataById("Balloons_spelling");
+                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
                     break;
                 case 2:
                     if (PlaySessionGameDone == 0)
-                        miniGame = DB.GetMiniGameDataById("FastCrowd_words");
+                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
                     else
-                        miniGame = DB.GetMiniGameDataById("Tobogan");
+                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
                     break;
                 case 3:
-                    miniGame = DB.GetMiniGameDataById("Assessment");
+                    miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
                     break;
             }
             ActualMinigame = miniGame;
