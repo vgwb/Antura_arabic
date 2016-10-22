@@ -1,6 +1,8 @@
 fileFormatVersion: 2
-guid: cde44b92d7fb4874ba38792c34378dee
-timeCreated: 1476800220
+guid: d6edf5ce3dc95064c9977bf347d71411
+labels:
+- Core
+timeCreated: 1476691151
 licenseType: Free
 DefaultImporter:
   userData: 
