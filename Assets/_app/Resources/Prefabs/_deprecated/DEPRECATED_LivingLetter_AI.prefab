@@ -463,7 +463,7 @@ GameObject:
   - 195: {fileID: 195000011270161732}
   - 114: {fileID: 114000010010630644}
   m_Layer: 0
-  m_Name: LivingLetter_AI
+  m_Name: DEPRECATED_LivingLetter_AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

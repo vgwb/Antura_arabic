@@ -70,7 +70,7 @@ GameObject:
   - 4: {fileID: 471690}
   - 114: {fileID: 11477802}
   m_Layer: 0
-  m_Name: LivingLetterPrefab
+  m_Name: DEPRECATED_LivingLetterPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

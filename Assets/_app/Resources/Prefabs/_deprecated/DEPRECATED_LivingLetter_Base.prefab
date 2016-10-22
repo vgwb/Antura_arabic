@@ -114,7 +114,7 @@ GameObject:
   - 95: {fileID: 95000013235523844}
   - 65: {fileID: 65000012173527136}
   m_Layer: 0
-  m_Name: LivingLetter_Base
+  m_Name: DEPRECATED_LivingLetter_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
