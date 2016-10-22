@@ -7,48 +7,25 @@ namespace EA4S
 {
     public class DatabaseManager
     {
-        // DB references
         private Database db;
         private DBService dbService;
 
-        // Profile
-        int currentProfileId = 0;
-        bool profileLoaded = false;
-
-        public DatabaseManager()
+        public DatabaseManager(string playerId)
         {
             db = Resources.Load<Database>("EA4S.Database");
+            OpenRuntimeDB(playerId);
         }
 
-        #region Profile
+        #region Runtime DB
 
-        public void LoadProfile(int profileId)
+        public void OpenRuntimeDB(string playerId)
         {
-            this.dbService = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
-            profileLoaded = true;
-            this.currentProfileId = profileId;
+            this.dbService = new DBService("EA4S_Database" + "_" + playerId + ".bytes");
         }
 
-        public void UnloadCurrentProfile()
+        public void RegenerateRuntimeDB()
         {
-            this.dbService = null;
-            profileLoaded = false;
-            this.currentProfileId = 0;
-        }
-
-        public void CreateProfile()
-        {
-            this.dbService.CreateAllTables();
-        }
-
-        public void RecreateProfile()
-        {
-            this.dbService.RecreateAllTables();
-        }
-
-        public void DropProfile()
-        {
-            this.dbService.DropAllTables();
+            this.dbService.CreateDB();
         }
 
         #endregion
@@ -56,59 +33,17 @@ namespace EA4S
 
         #region Specific Runtime Queries
 
-        // Find all
-        public List<LogInfoData> FindAllLogInfoData()
+        public List<EA4S.Db.LogInfoData> FindAllLogData()
         {
-            return dbService.FindAll<LogInfoData>();
+            return dbService.FindAll<EA4S.Db.LogInfoData>();
         }
-
-        // Find all (expression)
-        public List<LogInfoData> FindAllLogInfoData(System.Linq.Expressions.Expression<Func<LogInfoData, bool>> expression)
+        public List<EA4S.Db.LogInfoData> FindAllLogData(System.Linq.Expressions.Expression<Func<EA4S.Db.LogInfoData, bool>> expression)
         {
-            return dbService.FindAll(expression);
+            return dbService.FindAll<EA4S.Db.LogInfoData>(expression);
         }
-
-        // Get by id
-        public LogInfoData GetLogInfoDataById(string id)
+        public EA4S.Db.LogInfoData GetLogDataById(string id)
         {
-            return dbService.FindLogInfoDataById(id);
-        }
-
-        // Query
-        public List<LogInfoData> FindLogInfoDataByQuery(string query)
-        {
-            return dbService.FindByQuery<LogInfoData>(query);
-        }
-
-        public List<LogLearnData> FindLogLearnDataByQuery(string query)
-        {
-            return dbService.FindByQuery<LogLearnData>(query);
-        }
-
-        public List<LogMoodData> FindLogMoodDataByQuery(string query)
-        {
-            return dbService.FindByQuery<LogMoodData>(query);
-        }
-
-        public List<LogPlayData> FindLogPlayDataByQuery(string query)
-        {
-            return dbService.FindByQuery<LogPlayData>(query);
-        }
-
-        public List<LogScoreData> FindLogScoreDataByQuery(string query)
-        {
-            return dbService.FindByQuery<LogScoreData>(query);
-        }
-
-        public List<object> FindCustomDataByQuery(SQLite.TableMapping mapping, string query)
-        {
-            return dbService.FindByQueryCustom(mapping, query);
-        }
-
-        // Utilities
-        public string GetTableName<T>()
-        {
-            return dbService.GetTableName<T>();
+            return dbService.FindLogDataById(id);
         }
 
         #endregion
@@ -116,30 +51,9 @@ namespace EA4S
 
         #region Specific Runtime Inserts
 
-        // Insert
-        public void InsertLogInfoData(LogInfoData data)
+        public void InsertLogData(EA4S.Db.LogInfoData data)
         {
-            dbService.Insert(data);
-        }
-
-        public void InsertLogLearnData(LogLearnData data)
-        {
-            dbService.Insert(data);
-        }
-
-        public void InsertLogMoodData(LogMoodData data)
-        {
-            dbService.Insert(data);
-        }
-
-        public void InsertLogPlayData(LogPlayData data)
-        {
-            dbService.Insert(data);
-        }
-
-        public void InsertLogScoreData(LogScoreData data)
-        {
-            dbService.Insert(data);
+            dbService.Insert<EA4S.Db.LogInfoData>(data);
         }
 
         #endregion
@@ -149,7 +63,7 @@ namespace EA4S
 
         public List<MiniGameData> FindAllActiveMinigames()
         {
-            return FindAllMiniGameData((x) => (x.Available));
+            return FindAllMiniGameData((x) => (x.Available && x.Type == MiniGameType.MiniGame));
         }
 
         #endregion
@@ -192,10 +106,6 @@ namespace EA4S
             return db.FindAll<StageData>(db.GetStageTable(), predicate);
         }
 
-       /* public List<AssessmentData> FindAllAssessmentData(Predicate<AssessmentData> predicate)
-        {
-            return db.FindAll<AssessmentData>(db.GetAssessmentTable(), predicate);
-        }*/
 
         public List<LocalizationData> FindAllLocalizationData(Predicate<LocalizationData> predicate)
         {
@@ -232,10 +142,6 @@ namespace EA4S
             return new List<StageData>(db.GetStageTable().Values);
         }
 
-        /*public List<AssessmentData> FindAllAssessmentData()
-        {
-            return new List<AssessmentData>(db.GetAssessmentTable().Values);
-        }*/
 
         public List<LocalizationData> FindAllLocalizationData()
         {
@@ -247,11 +153,7 @@ namespace EA4S
             return new List<RewardData>(db.GetRewardTable().Values);
         }
 
-        public MiniGameData GetMiniGameDataByCode(MiniGameCode code)
-        {
-            return GetMiniGameDataById(code.ToString());
-        }
-        private MiniGameData GetMiniGameDataById(string id)
+        public MiniGameData GetMiniGameDataById(string id)
         {
             return db.GetById<MiniGameData>(db.GetMiniGameTable(), id);
         }
@@ -294,11 +196,6 @@ namespace EA4S
         {
             return db.GetById<StageData>(db.GetStageTable(), id);
         }
-
-        /*public AssessmentData GetAssessmentDataById(string id)
-        {
-            return db.GetById<AssessmentData>(db.GetAssessmentTable(), id);
-        }*/
 
         public LocalizationData GetLocalizationDataById(string id)
         {

@@ -6,6 +6,21 @@ using System.Collections.Generic;
 using EA4S;
 using ModularFramework.Core;
 
+namespace EA4S
+{
+    public enum DontWakeUpMinigameState
+    {
+        Initializing,
+        GameIntro,
+        RoundIntro,
+        Playing,
+        Paused,
+        RoundEnd,
+        GameEnd,
+        Result,
+        Award
+    }
+}
 
 namespace EA4S.DontWakeUp
 {
@@ -46,7 +61,7 @@ namespace EA4S.DontWakeUp
         public WordData currentWord;
 
         [HideInInspector]
-        public MinigameState currentState;
+        public DontWakeUpMinigameState currentState;
 
         [Header("Game Vars")]
         public int currentRound;
@@ -81,7 +96,7 @@ namespace EA4S.DontWakeUp
         {
             base.Start();
 
-            currentState = MinigameState.Initializing;
+            currentState = DontWakeUpMinigameState.Initializing;
             RoundsTotal = Levels.Length;
             currentRound = StartingLevel;
             currentLevel = currentRound;
@@ -100,17 +115,17 @@ namespace EA4S.DontWakeUp
             SceneTransitioner.Close();
 
             //StartCurrentRound();
-            currentState = MinigameState.GameIntro;
+            currentState = DontWakeUpMinigameState.GameIntro;
             Invoke("GameIntro", 2);
         }
 
         public void DoPause(bool status)
         {
             Debug.Log("GameDontWakeUp DoPause() " + status);
-            if (currentState == MinigameState.Playing) {
-                currentState = MinigameState.Paused;
-            } else if (currentState == MinigameState.Paused) {
-                currentState = MinigameState.Playing;
+            if (currentState == DontWakeUpMinigameState.Playing) {
+                currentState = DontWakeUpMinigameState.Paused;
+            } else if (currentState == DontWakeUpMinigameState.Paused) {
+                currentState = DontWakeUpMinigameState.Playing;
             }
         }
 
@@ -170,17 +185,17 @@ namespace EA4S.DontWakeUp
                 //                        GameIntroFinished();
                 //                    }
                 //                    break;
-                case MinigameState.RoundIntro:
+                case DontWakeUpMinigameState.RoundIntro:
                     WidgetSubtitles.I.Close();
                     WidgetPopupWindow.I.Show(false);
-                    currentState = MinigameState.Playing;
+                    currentState = DontWakeUpMinigameState.Playing;
                     break;
             }
         }
 
         public void InitRound()
         {
-            currentState = MinigameState.RoundIntro;
+            currentState = DontWakeUpMinigameState.RoundIntro;
 
             UpdateLivesContainer();
             SetupLevel();
@@ -214,8 +229,8 @@ namespace EA4S.DontWakeUp
 
         public void RoundLost(How2Die how)
         {
-            if (currentState != MinigameState.RoundEnd) {
-                currentState = MinigameState.RoundEnd;
+            if (currentState != DontWakeUpMinigameState.RoundEnd) {
+                currentState = DontWakeUpMinigameState.RoundEnd;
                 resetDanger();
                 myLetter.SetActive(false);
 
@@ -299,7 +314,7 @@ namespace EA4S.DontWakeUp
 
         public void RoundWon()
         {
-            currentState = MinigameState.Paused;
+            currentState = DontWakeUpMinigameState.Paused;
             myLetter.SetActive(false);
             LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
             if (currentRound < RoundsTotal) {
@@ -311,7 +326,7 @@ namespace EA4S.DontWakeUp
 
         public void GameWon()
         {
-            currentState = MinigameState.GameEnd;
+            currentState = DontWakeUpMinigameState.GameEnd;
             StopSceneSounds();
             AudioManager.I.PlaySfx(Sfx.Win);
 
@@ -325,7 +340,7 @@ namespace EA4S.DontWakeUp
         public void GameLost()
         {
             WidgetPopupWindow.I.Close();
-            currentState = MinigameState.GameEnd;
+            currentState = DontWakeUpMinigameState.GameEnd;
             StopSceneSounds();
 
             StartCoroutine(EndGame_ShowResults(0));
@@ -378,7 +393,7 @@ namespace EA4S.DontWakeUp
         // called by callback in camera
         public void CameraReady()
         {
-            if (currentState != MinigameState.RoundEnd) {
+            if (currentState != DontWakeUpMinigameState.RoundEnd) {
                 InitRound();
             }
         }
@@ -400,7 +415,7 @@ namespace EA4S.DontWakeUp
 
         void Update()
         {
-            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == DontWakeUpMinigameState.Playing) {
                 if (inDanger) {
                     if (dangerCause == How2Die.TooFast) {
                         // toofast danger speed in faster!
