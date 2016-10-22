@@ -82,12 +82,6 @@ namespace EA4S.Db.Management
             }
 
             {
-                Debug.Log("Loading Assessment...");
-                var adapter = new AssessmentParser();
-                adapter.Parse(DBInputData.assessmentDataAsset.text, database, database.GetAssessmentTable());
-            }
-
-            {
                 Debug.Log("Loading Localization...");
                 var adapter = new LocalizationParser();
                 adapter.Parse(DBInputData.localizationDataAsset.text, database, database.GetLocalizationTable());
