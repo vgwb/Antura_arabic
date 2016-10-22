@@ -137,7 +137,7 @@ namespace EA4S
                         miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
                     break;
                 case 3:
-                    miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Assessment);
+                    miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
                     break;
             }
             ActualMinigame = miniGame;
