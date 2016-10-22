@@ -96,7 +96,7 @@ namespace EA4S.FastCrowd
             isAnturaRunning = false;
             game.antura.SetAnturaTime(false);
             // Schedule next exit
-            anturaTimer = UnityEngine.Mathf.Lerp(20, 30, 1 - FastCrowdConfiguration.Instance.Difficulty);
+            anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
 
             // TEMP
             foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
@@ -112,7 +112,7 @@ namespace EA4S.FastCrowd
             isAnturaRunning = true;
             game.antura.SetAnturaTime(true);
             // Schedule next duration
-            anturaTimer = UnityEngine.Mathf.Lerp(10, 20, 1 - FastCrowdConfiguration.Instance.Difficulty);
+            anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
 
             // TEMP
             foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())

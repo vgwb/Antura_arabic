@@ -170,40 +170,30 @@ namespace EA4S.API
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Alphabet;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_counting:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Counting;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_letter:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_spelling:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Spelling;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_words:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Words;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.HiddenSource:
                     break;
