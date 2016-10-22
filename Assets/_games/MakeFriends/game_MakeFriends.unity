@@ -620,7 +620,8 @@ MonoBehaviour:
   celebrationPosition: {x: 5, y: 0, z: 0}
   friendlyExitPosition: {x: 20, y: 0, z: 0}
   entranceRotation: {x: 0, y: 220, z: 0}
-  exitRotation: {x: 0, y: 140, z: 0}
+  exitRotation_readable: {x: 0, y: 140, z: 0}
+  exitRotation_unreadable: {x: 0, y: 40, z: 0}
   friendlyExitRotation: {x: 0, y: 140, z: 0}
   entranceDuration: 1.5
   celebrationDuration: 2
@@ -628,6 +629,7 @@ MonoBehaviour:
   speakDelay: 1.5
   movingAwayDuration: 1.5
   livingLetter: {fileID: 0}
+  exitRotation: {x: 0, y: 140, z: 0}
 --- !u!1 &309765300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,7 +1050,6 @@ MonoBehaviour:
   starFlowers: {fileID: 1030534976}
   sceneCamera: {fileID: 1235573570}
   numberOfRounds: 6
-  letterPickerEntranceDelay: 4
   uiDelay: 4
   endCameraPosition: {x: 0, y: 40, z: 5}
   endCameraRotation: {x: 45, y: 0, z: 0}
@@ -1057,6 +1058,8 @@ MonoBehaviour:
   letterBalloonContainer: {fileID: 1611480543}
   FxParticlesPoof: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
   dropZone: {fileID: 750450658}
+  overrideDifficulty: 0
+  difficultySetting: 0
   GameplayInfo:
     GameId: 
     PlayTime: 0
@@ -1328,7 +1331,8 @@ MonoBehaviour:
   celebrationPosition: {x: -5, y: 0, z: 0}
   friendlyExitPosition: {x: 20, y: 0, z: 0}
   entranceRotation: {x: 0, y: 140, z: 0}
-  exitRotation: {x: 0, y: 220, z: 0}
+  exitRotation_readable: {x: 0, y: 220, z: 0}
+  exitRotation_unreadable: {x: 0, y: -40, z: 0}
   friendlyExitRotation: {x: 0, y: 140, z: 0}
   entranceDuration: 1.5
   celebrationDuration: 2
@@ -1336,6 +1340,7 @@ MonoBehaviour:
   speakDelay: 0.5
   movingAwayDuration: 1.5
   livingLetter: {fileID: 0}
+  exitRotation: {x: 0, y: 220, z: 0}
 --- !u!1 &583027427
 GameObject:
   m_ObjectHideFlags: 0
@@ -3509,7 +3514,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 87.5}
-  m_SizeDelta: {x: 0, y: 175}
+  m_SizeDelta: {x: -100, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1307650151
 MonoBehaviour:

@@ -24,8 +24,15 @@ namespace EA4S.MakeFriends
         public GameObject letterBalloonContainer;
         public GameObject FxParticlesPoof;
         public DropZoneController dropZone;
+        [Header("Difficulty Override")]
+        public bool overrideDifficulty;
+        public MakeFriendsVariation difficultySetting;
         new public static MakeFriendsGameManager Instance;
+        [Header("Gameplay Info")]
         new public MakeFriendsGameplayInfo GameplayInfo;
+
+        [HideInInspector]
+        public MakeFriendsConfiguration Configuration { get { return MakeFriendsConfiguration.Instance; } }
 
         private LL_WordData wordData1;
         private List<LL_LetterData> wordLetters1 = new List<LL_LetterData>();
@@ -57,6 +64,7 @@ namespace EA4S.MakeFriends
             AppManager.Instance.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
 
+            AudioManager.I.PlayMusic(Music.Relax);
             Play();
 
             //Random.seed = System.DateTime.Now.GetHashCode();
@@ -251,6 +259,7 @@ namespace EA4S.MakeFriends
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.CORRECT;
                 //letterChoice.SpawnBalloon(true);
+                AudioManager.I.PlaySfx(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
 
                 if (!correctChoices.Contains(letterChoice.letterData))
@@ -271,6 +280,7 @@ namespace EA4S.MakeFriends
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.WRONG;
                 //letterChoice.SpawnBalloon(false);
+                AudioManager.I.PlaySfx(Sfx.LetterSad);
                 dropZone.AnimateWrong();
                 leftArea.MoveAwayAngrily();
                 rightArea.MoveAwayAngrily();

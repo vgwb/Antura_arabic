@@ -8,7 +8,7 @@ namespace EA4S.MakeFriends
 {
     public class LivingLetterController : MonoBehaviour
     {
-        public GameObject container;
+        public bool focusOnTouch;
         public Animator animator;
         public Collider letterCollider;
         public Rigidbody body;
@@ -16,8 +16,8 @@ namespace EA4S.MakeFriends
         public LL_LetterData letterData;
         public EA4S.LLController letterObject;
         public TMP_Text tmpText;
-        [Range(-1, 1)]
-        public int entranceDirection;
+        [HideInInspector]
+        public GameObject container;
         [HideInInspector]
         public LL_WordData wordData;
 
@@ -71,7 +71,10 @@ namespace EA4S.MakeFriends
             if (!isWalking && !isFocusing)
             {
                 SpeakWord();
-                Focus();
+                if (focusOnTouch)
+                {
+                    Focus();
+                }
             }
         }
 
