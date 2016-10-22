@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: tube_interior_material
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: dbddd04f5ebbcf24caa6c82f5fd4d166, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -104,8 +104,14 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Shininess
+      second: 0.096
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
+    - first:
+        name: _Specular
+      second: 0.705
     - first:
         name: _SpecularHighlights
       second: 1
@@ -121,7 +127,16 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.7647059, g: 0.7229363, b: 0.691609, a: 1}
+      second: {r: 0.63235295, g: 0.6110974, b: 0.5951557, a: 1}
+    - first:
+        name: _Emission
+      second: {r: 0, g: 0, b: 0, a: 0}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.5147059, g: 0.5147059, b: 0.5147059, a: 1}
+    - first:
+        name: _SpecularColor
+      second: {r: 0.75, g: 0.75, b: 0.75, a: 0}

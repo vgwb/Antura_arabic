@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
+using System;
 
 namespace EA4S.FastCrowd {
 
@@ -20,7 +21,11 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// 
         /// </summary>
-        public void UpdateWord() {
+        public void UpdateWord()
+        {
+            if (!isActiveAndEnabled)
+                return;
+
             string word = string.Empty;
             foreach (LetterData letter in CompletedLetters) {
                 word += letter.Isolated;
@@ -29,6 +34,22 @@ namespace EA4S.FastCrowd {
             WordLabel.SetText(word, false);
         }
 
+        public void AddLetter(ILivingLetterData data)
+        {
+            if (!isActiveAndEnabled)
+                return;
+
+            StartCoroutine(AddLetter(data, 1.3f));
+        }
+        
+        public void Clean()
+        {
+            CompletedLetters = new List<LetterData>();
+            UpdateWord();
+
+            StopAllCoroutines();
+        }
+        
         #endregion
 
         #region event subscription delegates
@@ -41,20 +62,20 @@ namespace EA4S.FastCrowd {
         }
 
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
-            StartCoroutine(AddLetter(_letterView, 1.3f));
+            StartCoroutine(AddLetter(_letterView.Model.Data, 1.3f));
         }
 
-        IEnumerator AddLetter(LetterObjectView _letterView, float _delay) {
+        IEnumerator AddLetter(ILivingLetterData data, float _delay)
+        {
             yield return new WaitForSeconds(_delay);
-            CompletedLetters.Add(_letterView.Model.Data as LetterData);
+            CompletedLetters.Add(data as LetterData);
             AudioManager.I.PlaySfx(EA4S.Sfx.Hit);
             transform.DOShakeScale(1.5f);
-            UpdateWord(); 
+            UpdateWord();
         }
 
         private void DropContainer_OnObjectiveBlockCompleted() {
-            CompletedLetters = new List<LetterData>();
-            UpdateWord();
+            Clean();
         }
 
         #endregion

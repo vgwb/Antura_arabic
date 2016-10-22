@@ -2,6 +2,18 @@
 
 namespace EA4S.Egg
 {
+    /*
+     * 	
+        livilli di difficoltà
+        < 0.25f	    numero tasti lettera 3
+		< 0.50f	    numero tasti lettera 4, sequenza
+		< 0.75f	    numero tasti lettera 5, sequenza, antura
+		3	        numero tasti lettera 6, sequenza, antura, tasti non illuminati
+		4	        numero tasti lettera 7, sequenza, antura + 1, tasti non illuminati
+		5	        numero tasti lettara 8, sequenza, antura + 2, tasti non illuminati
+     * 
+     */
+
     public class EggGame : MiniGame
     {
         public EggBox eggBox;
@@ -11,6 +23,7 @@ namespace EA4S.Egg
         public AnturaEggController antura;
         public GameObject letterObjectPrefab;
         public EggRunLettersBox runLettersBox;
+        public GameObject anturaPrefab;
 
         public const int numberOfStage = 4;
         public int currentStage { get; set; }
@@ -32,6 +45,11 @@ namespace EA4S.Egg
 
                 return 3;
             }
+        }
+
+        public float gameDifficulty
+        {
+            get { return EggConfiguration.Instance.Difficulty; }
         }
 
         public bool stagePositiveResult { get; set; }
@@ -68,6 +86,7 @@ namespace EA4S.Egg
             eggController.Initialize(letterObjectPrefab, eggBox.GetEggLocalPositions());
             eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), PlayState.OnEggButtonPressed);
             runLettersBox.Initialize(letterObjectPrefab);
+            antura.Initialize(anturaPrefab);
         }
     }
 

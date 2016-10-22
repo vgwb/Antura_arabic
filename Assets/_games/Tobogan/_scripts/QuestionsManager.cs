@@ -9,6 +9,8 @@ namespace EA4S.Tobogan
     {
         ToboganGame game;
 
+        public bool Enabled = false;
+
         bool initialized = false;
 
         QuestionLivingLetter questionLivingLetter;
@@ -95,6 +97,10 @@ namespace EA4S.Tobogan
             {
                 QuestionLivingLetter questionLetter = CreateQuestionLivingLetter();
 
+                questionLetter.ClearQuestionText();
+                questionLetter.PlayIdleAnimation();
+                questionLetter.EnableCollider(false);
+
                 questionLetter.GoToPosition(i);
 
                 livingLetters.Add(questionLetter);
@@ -104,8 +110,10 @@ namespace EA4S.Tobogan
         QuestionLivingLetter CreateQuestionLivingLetter()
         {
             QuestionLivingLetter newQuestionLivingLetter = GameObject.Instantiate(game.questionLivingLetterPrefab).GetComponent<QuestionLivingLetter>();
-            newQuestionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.upRightMaxPosition.localPosition,
-                game.questionLivingLetterBox.downLeftMaxPosition.localPosition, game.questionLivingLetterBox.lettersPosition);
+            newQuestionLivingLetter.gameObject.SetActive(true);
+
+            newQuestionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.upRightMaxPosition.position,
+                game.questionLivingLetterBox.downLeftMaxPosition.position, game.questionLivingLetterBox.lettersPosition);
             newQuestionLivingLetter.transform.SetParent(game.questionLivingLetterBox.transform);
             newQuestionLivingLetter.onMouseUpLetter += CheckAnswer;
 
@@ -146,7 +154,7 @@ namespace EA4S.Tobogan
         {
             PipeAnswer pipeAnswer = game.pipesAnswerController.GetCurrentPipeAnswer();
 
-            if (pipeAnswer != null)
+            if (pipeAnswer != null && Enabled)
             {
                 bool isCorrectAnswer = pipeAnswer.IsCorrectAnswer;
 
@@ -190,7 +198,7 @@ namespace EA4S.Tobogan
 
         void OnPointerDown()
         {
-            if (questionLivingLetter != null)
+            if (Enabled && questionLivingLetter != null)
             {
                 var pointerPosition = game.Context.GetInputManager().LastPointerPosition;
                 var screenRay = game.tubesCamera.ScreenPointToRay(pointerPosition);

@@ -47,3 +47,5 @@ EditorBuildSettings:
     path: Assets/_games/Tobogan/game_Tobogan.unity
   - enabled: 1
     path: Assets/_manage/manage_Database.unity
+  - enabled: 1
+    path: Assets/_games/FastCrowd/game_FastCrowd_New.unity

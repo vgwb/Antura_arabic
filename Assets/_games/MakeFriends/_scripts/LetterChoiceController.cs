@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Core;
@@ -8,15 +9,18 @@ using TMPro;
 
 namespace EA4S.MakeFriends
 {
-    public class LetterChoiceController : MonoBehaviour
+    public class LetterChoiceController : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        public TMP_Text LetterLabel;
+        public TMP_Text LetterText;
         public Animator animator;
         public Image image;
         public Button button;
+        public CanvasGroup canvasGroup;
 
         [HideInInspector]
         public LetterData letterData;
+        [HideInInspector]
+        public bool wasChosen;
 
         public enum ChoiceState
         {
@@ -24,7 +28,7 @@ namespace EA4S.MakeFriends
             CORRECT,
             WRONG
         }
-        private ChoiceState _state;
+
         public ChoiceState State
         {
             get { return _state; }
@@ -38,26 +42,79 @@ namespace EA4S.MakeFriends
             }
         }
 
+        private ChoiceState _state;
+        private bool disabled;
+        private Vector2 initialPosition = Vector2.zero;
+
 
         public void Init(LetterData _letterData)
         {
             Reset();
             letterData = _letterData;
-            LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Isolated_Unicode);
+            LetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Isolated_Unicode);
         }
 
-        public void ClickAction()
+        public void OnPointerDown(PointerEventData eventData)
         {
-            Disable();
+            if (disabled)
+            {
+                return;
+            }
+
+            //Disable();
             SpeakLetter();
-            MakeFriendsGameManager.Instance.OnClickedLetterChoice(this);
+            //MakeFriendsGameManager.Instance.OnClickedLetterChoice(this);
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            if (disabled)
+            {
+                return;
+            }
+
+            initialPosition = transform.position;
+            MakeFriendsGameManager.Instance.letterPicker.letterChoiceBeingDragged = this;
+            canvasGroup.blocksRaycasts = false;
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (disabled)
+            {
+                return;
+            }
+
+            transform.position = eventData.position;
+
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (disabled)
+            {
+                return;
+            }
+            
+            if (wasChosen)
+            {
+                Disable();
+                MakeFriendsGameManager.Instance.OnLetterChoiceSelected(this);
+            }
+            else
+            {
+                transform.position = initialPosition;
+            }
+
+            MakeFriendsGameManager.Instance.letterPicker.letterChoiceBeingDragged = null;
+            canvasGroup.blocksRaycasts = true;
         }
 
         public void SpeakLetter()
         {
             if (letterData != null && letterData.Key != null)
             {
-               AudioManager.I.PlayLetter(letterData.Key);
+                AudioManager.I.PlayLetter(letterData.Key);
             }
         }
 
@@ -76,16 +133,19 @@ namespace EA4S.MakeFriends
 
         private void Disable()
         {
+            disabled = true;
             image.enabled = false;
             button.enabled = false;
-            LetterLabel.enabled = false;
+            LetterText.enabled = false;
         }
 
         private void Reset()
         {
+            disabled = false;
+            wasChosen = false;
             image.enabled = true;
             button.enabled = true;
-            LetterLabel.enabled = true;
+            LetterText.enabled = true;
             State = ChoiceState.IDLE;
         }
 

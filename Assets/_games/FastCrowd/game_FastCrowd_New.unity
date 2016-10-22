@@ -42,7 +42,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -391,7 +391,6 @@ MonoBehaviour:
   QuestionManager: {fileID: 101744382}
   timerText: {fileID: 1688102983}
   antura: {fileID: 754174488}
-  wordComposer: {fileID: 987215974}
   QuestionNumber: 0
   isTimesUp: 0
 --- !u!114 &101744382
@@ -407,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropContainer: {fileID: 1599871828}
   crowd: {fileID: 101744383}
+  wordComposer: {fileID: 987215974}
 --- !u!114 &101744383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3790,6 +3790,28 @@ Prefab:
     - target: {fileID: 126296, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
       propertyPath: m_Name
       value: Environment Lighting
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010830544318, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010480914444, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010684126046, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108000010379347226, guid: 25204511df7ed9b4897034df9466e2f4,
+        type: 2}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 108000012859444562, guid: 25204511df7ed9b4897034df9466e2f4,
+        type: 2}
+      propertyPath: m_RenderMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
@@ -8136,6 +8158,18 @@ Prefab:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 562aa999dc8e5814a99dc3d001db2dc8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 562aa999dc8e5814a99dc3d001db2dc8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 562aa999dc8e5814a99dc3d001db2dc8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 562aa999dc8e5814a99dc3d001db2dc8, type: 3}
   m_IsPrefabParent: 0
@@ -10527,7 +10561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967287
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &2017327309
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -17,12 +17,13 @@ namespace EA4S.MakeFriends
         public StarFlowers starFlowers;
         public GameObject sceneCamera;
         public int numberOfRounds;
-        public float letterPickerEntranceDelay;
+        public float uiDelay;
         public Vector3 endCameraPosition;
         public Vector3 endCameraRotation;
         public GameObject letterBalloonPrefab;
         public GameObject letterBalloonContainer;
         public GameObject FxParticlesPoof;
+        public DropZoneController dropZone;
         new public static MakeFriendsGameManager Instance;
         new public MakeFriendsGameplayInfo GameplayInfo;
 
@@ -98,6 +99,7 @@ namespace EA4S.MakeFriends
             SetLetterChoices();
             SpawnLivingLetters();
             ShowLetterPicker();
+            ShowDropZone();
         }
 
         private void SetNewWords()
@@ -212,10 +214,20 @@ namespace EA4S.MakeFriends
             rightArea.MakeEntrance();
         }
 
+        private void ShowDropZone()
+        {
+            dropZone.Appear(uiDelay);
+        }
+
+        private void HideDropZone()
+        {
+            dropZone.Disappear();
+        }
+
         private void ShowLetterPicker()
         {
             letterPicker.Block();
-            letterPicker.ShowAndUnblockDelayed(letterPickerEntranceDelay);
+            letterPicker.ShowAndUnblockDelayed(uiDelay);
         }
 
         private void HideLetterPicker()
@@ -231,28 +243,35 @@ namespace EA4S.MakeFriends
             Play();
         }
 
-        public void OnClickedLetterChoice(LetterChoiceController letterChoice)
+        public void OnLetterChoiceSelected(LetterChoiceController letterChoice)
         {
             letterPicker.BlockForSeconds(2f);
 
             if (commonLetters.Contains(letterChoice.letterData))
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.CORRECT;
-                letterChoice.SpawnBalloon(true);
+                //letterChoice.SpawnBalloon(true);
+                dropZone.AnimateCorrect();
 
                 if (!correctChoices.Contains(letterChoice.letterData))
                 {
                     correctChoices.Add(letterChoice.letterData);
                 }
+
                 if (correctChoices.Count >= commonLetters.Count)
                 {
                     EndRound(true);
+                }
+                else
+                {
+                    dropZone.ResetLetter(3f);
                 }
             }
             else
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.WRONG;
-                letterChoice.SpawnBalloon(false);
+                //letterChoice.SpawnBalloon(false);
+                dropZone.AnimateWrong();
                 leftArea.MoveAwayAngrily();
                 rightArea.MoveAwayAngrily();
 
@@ -297,6 +316,7 @@ namespace EA4S.MakeFriends
                 rightArea.GoToFriendsZone(FriendsZonesManager.instance.currentZone);
                 FriendsZonesManager.instance.IncrementCurrentZone();
                 yield return new WaitForSeconds(winDelay2);
+                HideDropZone();
                 WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
             }
             else
@@ -305,6 +325,7 @@ namespace EA4S.MakeFriends
 
                 AudioManager.I.PlaySfx(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
+                HideDropZone();
                 WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
             }
         }
@@ -321,6 +342,7 @@ namespace EA4S.MakeFriends
             wordLetters2.Clear();
 
             letterPicker.Reset();
+            dropZone.Reset();
             leftArea.Reset();
             rightArea.Reset();
         }
