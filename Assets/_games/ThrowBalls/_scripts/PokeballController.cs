@@ -7,17 +7,10 @@ namespace EA4S.ThrowBalls
     public class PokeballController : MonoBehaviour
     {
         public static readonly Vector3 POKEBALL_POSITION = new Vector3(-1.14f, 3.8f, -20f);
-        public const float VELOCITY_SQUARED_LAUNCH_THRESOLD = 16;
-        public const int TOUCH_BUFFER_SIZE = 6;
-        private readonly Vector3 POKEBALL_LETTER_CENTER_OFFSET = new Vector3(0, 3.3f, 0);
 
         public static PokeballController instance;
-        public Rigidbody rigidBody;
-        public GameObject ringEffectPrefab;
-        public TrailRendererController greenTrailRenderer;
-        public TrailRendererController yellowTrailRenderer;
-        public TrailRendererController redTrailRenderer;
 
+        public Rigidbody rigidBody;
         public bool IsLaunched
         {
             get
@@ -26,49 +19,13 @@ namespace EA4S.ThrowBalls
             }
         }
 
-        public enum ChargeStrength
-        {
-            None, Low, Medium, High
-        };
-        private ChargeStrength chargeStrength;
-        private float cameraDistance;
-        private List<Vector3> touchPositionsInPx;
-        private List<float> touchSpeedsInInchesPerSecs;
-        private Vector3 touchOrigin;
-
-        private float yVelocity = 0;
-        private float zVelocity = 0;
-        private Vector3 launchPoint;
         private bool isLaunched;
-        private Vector3 target;
-        private float timeOfLaunch;
-
         private bool isHeld;
-
-        #region Temporary mouse control variables
-
-        private Vector3 flickDirection;
-        private Vector3 flickOrigin;
-        private Vector3 velocity;
-        private Vector3 lastPosition;
-        public List<Vector3> positions;
-        public List<float> times;
-        public AudioSource audioSource;
-        public AudioClip pokeballLowClip;
-        public AudioClip pokeballMedClip;
-        public AudioClip pokeballHighClip;
-
-        #endregion
+        private float cameraDistance;
 
         void Awake()
         {
             instance = this;
-
-            touchPositionsInPx = new List<Vector3>();
-            touchSpeedsInInchesPerSecs = new List<float>();
-
-            positions = new List<Vector3>();
-            times = new List<float>();
 
             rigidBody.maxAngularVelocity = 100;
         }
@@ -83,28 +40,12 @@ namespace EA4S.ThrowBalls
         public void Reset()
         {
             transform.position = POKEBALL_POSITION;
-            touchPositionsInPx.Clear();
-            touchSpeedsInInchesPerSecs.Clear();
-
-            flickDirection = new Vector3(0, 0, 0);
-            velocity = new Vector3(0, 0, 0);
-            lastPosition = new Vector3(POKEBALL_POSITION.x, POKEBALL_POSITION.y, POKEBALL_POSITION.z);
-            positions.Clear();
-            times.Clear();
-
+            
             rigidBody.isKinematic = true;
             rigidBody.angularVelocity = new Vector3(0, 0, 0);
             rigidBody.velocity = new Vector3(0, 0, 0);
             rigidBody.isKinematic = false;
             isLaunched = false;
-
-            chargeStrength = ChargeStrength.None;
-            ParticleSystemController.instance.OnPositionUpdate(POKEBALL_POSITION);
-            ParticleSystemController.instance.OnChargeStrengthUpdate(chargeStrength);
-
-            greenTrailRenderer.SetIsFollowPokeball(false);
-            yellowTrailRenderer.SetIsFollowPokeball(false);
-            redTrailRenderer.SetIsFollowPokeball(false);
 
             isHeld = false;
         }
@@ -117,20 +58,6 @@ namespace EA4S.ThrowBalls
         public void Disable()
         {
             gameObject.SetActive(false);
-        }
-
-        public Vector3 ComputePosition(float time)
-        {
-            Vector3 pos = new Vector3();
-            pos.x = transform.position.x;
-
-            pos.y = Constants.GRAVITY.y * Mathf.Pow(time, 2);
-            pos.y /= 2;
-            pos.y += yVelocity * time + launchPoint.y - target.y;
-
-            pos.z = launchPoint.z + zVelocity * time;
-
-            return pos;
         }
 
         void FixedUpdate()
@@ -203,7 +130,6 @@ namespace EA4S.ThrowBalls
             }
 
             Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
-            touchOrigin = mousePosInWorldUnits;
         }
         void OnMouseDrag()
         {
