@@ -6,7 +6,7 @@ namespace EA4S.ThrowBalls
 {
     public class PokeballController : MonoBehaviour
     {
-        public static readonly Vector3 POKEBALL_POSITION = new Vector3(-1.14f, 3.8f, -20f);
+        public static readonly Vector3 POKEBALL_POSITION = new Vector3(0, 5.25f, -20f);
 
         public static PokeballController instance;
 
@@ -23,6 +23,8 @@ namespace EA4S.ThrowBalls
         private bool isHeld;
         private float cameraDistance;
 
+        private float yzStretchRange = 3f;
+
         void Awake()
         {
             instance = this;
@@ -36,11 +38,11 @@ namespace EA4S.ThrowBalls
 
             Reset();
         }
-        
+
         public void Reset()
         {
             transform.position = POKEBALL_POSITION;
-            
+
             rigidBody.isKinematic = true;
             rigidBody.angularVelocity = new Vector3(0, 0, 0);
             rigidBody.velocity = new Vector3(0, 0, 0);
@@ -97,6 +99,11 @@ namespace EA4S.ThrowBalls
                         if (isHeld)
                         {
                             Vector3 touchPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, cameraDistance));
+
+                            float yzFactor = 1 - (touch.position.y / Screen.height) * 3;
+                            touchPosInWorldUnits.y = POKEBALL_POSITION.y - yzFactor * yzStretchRange;
+                            touchPosInWorldUnits.z = POKEBALL_POSITION.z - yzFactor * yzStretchRange;
+
                             transform.position = touchPosInWorldUnits;
                         }
 
@@ -139,6 +146,11 @@ namespace EA4S.ThrowBalls
             }
 
             Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
+
+            float yzFactor = 1 - (Input.mousePosition.y / Screen.height) * 3;
+            mousePosInWorldUnits.y = POKEBALL_POSITION.y - yzFactor * yzStretchRange;
+            mousePosInWorldUnits.z = POKEBALL_POSITION.z - yzFactor * yzStretchRange;
+
             transform.position = mousePosInWorldUnits;
         }
 

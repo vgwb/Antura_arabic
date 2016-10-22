@@ -10,8 +10,11 @@ namespace EA4S.ThrowBalls
         public GameObject ball;
         public GameObject greenCross;
         public GameObject arc;
+        public GameObject centerObj;
 
         private PokeballController ballController;
+        private LineRenderer lineRenderer;
+        private LineRenderer projectedLineRenderer;
 
         // The center of the slingshot.
         // For normal behavior, it should be the average of both pivots:
@@ -51,16 +54,34 @@ namespace EA4S.ThrowBalls
         {
             instance = this;
             ballController = ball.GetComponent<PokeballController>();
+            lineRenderer = GetComponent<LineRenderer>();
         }
 
         void FixedUpdate()
         {
             if (!ballController.IsLaunched)
             {
-                UpdatePointOfImpact();
+                UpdateOriginLine();
+                //UpdatePointOfImpact();
                 UpdateLaunchForce();
-                UpdateArc();
+                //UpdateArc();
             }
+        }
+
+        private void UpdateOriginLine()
+        {
+            lineRenderer.SetPositions(new Vector3[] { ballController.transform.position, centerObj.transform.position });
+
+            Vector3 direction = centerObj.transform.position - ballController.transform.position;
+            direction.y = 0;
+
+            Vector3 projectedCenter = centerObj.transform.position;
+            projectedCenter.y = 1.2f;
+            projectedCenter.z += 5f;
+
+            direction *= 4;
+
+            ProjectLineRendererController.instance.SetPoints(new Vector3[] { projectedCenter, projectedCenter + direction });
         }
 
         private void UpdatePointOfImpact()
@@ -79,6 +100,14 @@ namespace EA4S.ThrowBalls
         }
 
         private void UpdateLaunchForce()
+        {
+            Vector3 ballPosition = ball.transform.position;
+
+            launchForce = centerObj.transform.position - ballPosition;
+            launchForce *= 15;
+        }
+
+        private void UpdateLaunchForceOld()
         {
             Vector3 ballPosition = ball.transform.position;
 

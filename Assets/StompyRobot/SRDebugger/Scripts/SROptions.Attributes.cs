@@ -54,7 +54,17 @@ public partial class SROptions
 
     [Category("MakeFriends")]
     public EA4S.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
-    
+
+    private bool showProjection = false;
+
+    // Options will be grouped by category
+    [Category("ThrowBalls")]
+    public bool ShowProjection
+    {
+        get { return showProjection; }
+        set { showProjection = value; }
+    }
+
     private float elasticity = 4.5f;
 
     // Options will be grouped by category
