@@ -27,7 +27,7 @@ public class Constants
 
     public static readonly Vector3 GRAVITY = new Vector3(0, -150f, 0);
 
-    // This is since in some Update methods, we need to divide by gravity.
+    // This exists since in some Update methods, we need to divide by gravity.
     // Division is much more expensive than multiplication, so do the division once and store it here:
     public static readonly Vector3 GRAVITY_INVERSE = new Vector3(0, 1f / -150f, 0);
 }
