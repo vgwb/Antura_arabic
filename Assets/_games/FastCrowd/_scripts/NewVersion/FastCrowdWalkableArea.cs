@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FastCrowdWalkableArea : MonoBehaviour
 {
     public GameObject[] spawnPoints;
-    Collider[] colliders;
+    BoxCollider[] colliders;
+
+    // Use a different collider for random targets
+    public BoxCollider[] walkingTargets;
+    
 
     void Awake()
     {
-        colliders = GetComponentsInChildren<Collider>(false);
+        colliders = GetComponentsInChildren<BoxCollider>(false);
     }
 
     public Vector3 GetFurthestSpawn(List<FastCrowdLivingLetter> letters)
@@ -40,8 +43,12 @@ public class FastCrowdWalkableArea : MonoBehaviour
 
     public Vector3 GetRandomPosition()
     {
-        Vector3 randomPosition;
-        EA4S.GameplayHelper.RandomPointInWalkableArea(transform.position, 20f, out randomPosition);
+        BoxCollider randomCollider = walkingTargets[Random.Range(0, walkingTargets.Length)];
+
+        Vector3 randomLocalPos = 0.5f * (Vector3.right * Random.value * randomCollider.size.x + Vector3.up * Random.value * randomCollider.size.y);
+        Vector3 randomPosition = randomCollider.transform.TransformPoint(randomLocalPos);
+        randomPosition.y = 0;
+
         return randomPosition;
     }
 
@@ -53,7 +60,11 @@ public class FastCrowdWalkableArea : MonoBehaviour
 
         for (int i = 0, count = colliders.Length; i < count; ++i)
         {
-            var nearPos = colliders[i].ClosestPointOnBounds(pos);
+            var localPos = colliders[i].transform.InverseTransformPoint(pos);
+            var colliderSize = colliders[i].size;
+            localPos.x = Mathf.Clamp(localPos.x, -colliderSize.x * 0.5f, colliderSize.x * 0.5f);
+            localPos.y = Mathf.Clamp(localPos.y, -colliderSize.y * 0.5f, colliderSize.y * 0.5f);
+            var nearPos = colliders[i].transform.TransformPoint(localPos);
 
             float distance = Vector3.Distance(nearPos, pos);
             if (distance < nearestDistance)
@@ -65,7 +76,7 @@ public class FastCrowdWalkableArea : MonoBehaviour
 
         return nearest;
     }
-    
+
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {

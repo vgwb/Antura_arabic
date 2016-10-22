@@ -124,7 +124,7 @@ namespace EA4S.FastCrowd
             // put here start logic
 
             // LOG: Start //
-            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "start", FastCrowdConfiguration.Instance.PlayTime.ToString());
+            LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "start", "60");
             LoggerEA4S.Save();
             AudioManager.I.PlayMusic(Music.Relax);
 
@@ -133,7 +133,7 @@ namespace EA4S.FastCrowd
 
             //GameplayTimer.Instance.StartTimer(GameplayInfo.PlayTime);
             var AnturaTimea = UnityEngine.Random.Range(30, 50);
-            GameplayTimer.Instance.StartTimer(FastCrowdConfiguration.Instance.PlayTime,
+            GameplayTimer.Instance.StartTimer(60,
                 new List<GameplayTimer.CustomEventData>()
                 {
                     new GameplayTimer.CustomEventData() { Name = "AnturaStart", Time = AnturaTimea },
@@ -168,7 +168,7 @@ namespace EA4S.FastCrowd
                 }
                 ;
             } else { // word variation
-                for (int i = 0; i < FastCrowdConfiguration.Instance.MaxNumbOfWrongLettersNoise; i++) {
+                for (int i = 0; i < 3; i++) {
                     LL_WordData newWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                     if (!dataList.Contains(newWord)) {
                         dataList.Add(newWord);
@@ -216,7 +216,7 @@ namespace EA4S.FastCrowd
             }
 
             // Add other random livingletters
-            for (int i = 0; i < (round < FastCrowdConfiguration.Instance.MaxNumbOfWrongLettersNoise ? round : FastCrowdConfiguration.Instance.MaxNumbOfWrongLettersNoise); i++) {
+            for (int i = 0; i < (round < 3 ? round : 3); i++) {
                 LetterObjectView letterObjectView = Instantiate(LetterPref);
                 //letterObjectView.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f); // TODO: check for alternative solution!
                 letterObjectView.transform.SetParent(TerrainTrans, true);
@@ -553,12 +553,6 @@ namespace EA4S.FastCrowd
         #region events
 
         public delegate void ObjectiveSetup(LL_WordData _wordData);
-
-        /// <summary>
-        /// Called every time a new word objective is created.
-        /// </summary>
-        public static event ObjectiveSetup OnNewWordObjective;
-
 
         public delegate void SubGameEvent(IGameplayInfo _gameplayInfo);
 

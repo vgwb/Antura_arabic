@@ -130,9 +130,9 @@ namespace EA4S.Test
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     // Dummy logic for get fake full ordered alphabet.
-                    for (int i = 0; i < 28; i++) {
-                        correctAnswers.Add(AppManager.Instance.Teacher.GimmeARandomLetter());
-                    }
+                    foreach( var letter in AppManager.Instance.DB.FindAllLetterData())
+                        correctAnswers.Add(new LL_LetterData(letter.GetId()));
+                    
                     // QuestionPack creation
                     questionPack = new FindRightDataQuestionPack(null, null, correctAnswers);
                     break;
@@ -178,14 +178,14 @@ namespace EA4S.Test
                     // Dummy logic for question creation
                     for (int i = 0; i < 4; i++) {
                         LL_WordData correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                        if (!correctAnswers.Contains(correctWord))
+                        if (!CheckIfContains(correctAnswers, correctWord))
                             correctAnswers.Add(correctWord);
                         else
                             i--;
                     }
                     for (int i = 0; i < 2; i++) {
                         LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                        if (!correctAnswers.Contains(wrongWord))
+                        if (!CheckIfContains(correctAnswers, wrongWord))
                             wrongAnswers.Add(wrongWord);
                         else
                             i--;
@@ -257,7 +257,7 @@ namespace EA4S.Test
             for (int i = 0; i < _count; i++) {
                 var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
 
-                if (!_WordsToAvoid.Contains(word) && !wordListToReturn.Contains(word)) {
+                if (!CheckIfContains(_WordsToAvoid, word) && !CheckIfContains(wordListToReturn, word)) {
                     wordListToReturn.Add(word);
                 }
             }
@@ -279,11 +279,37 @@ namespace EA4S.Test
             for (int i = 0; i < _count; i++) {
                 var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
 
-                if (!_lettersToAvoid.Contains(letter) && !letterListToReturn.Contains(letter)) {
+                if (!CheckIfContains(_lettersToAvoid, letter) && !CheckIfContains(letterListToReturn, letter)) {
                     letterListToReturn.Add(letter);
                 }
             }
             return letterListToReturn;
+        }
+
+
+        static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
+        {
+            for (int i = 0, count = list.Count; i < count; ++i)
+                if (list[i].Key == letter.Key)
+                    return true;
+            return false;
+        }
+
+
+        static bool CheckIfContains(List<LL_LetterData> list, ILivingLetterData letter)
+        {
+            for (int i = 0, count = list.Count; i < count; ++i)
+                if (list[i].Key == letter.Key)
+                    return true;
+            return false;
+        }
+
+        static bool CheckIfContains(List<LL_WordData> list, ILivingLetterData letter)
+        {
+            for (int i = 0, count = list.Count; i < count; ++i)
+                if (list[i].Key == letter.Key)
+                    return true;
+            return false;
         }
 
         #endregion
