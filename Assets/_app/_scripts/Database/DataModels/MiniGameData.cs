@@ -2,11 +2,18 @@
 
 namespace EA4S.Db
 {
+    public enum MiniGameType
+    {
+        MiniGame = 1,
+        Assessment = 2
+    }
+
     [Serializable]
     public class MiniGameData : IData
     {
         // Source
         public string Id;
+        public MiniGameType Type;
         public string Variation;
         public string Status;
         public string Parent;
@@ -14,8 +21,6 @@ namespace EA4S.Db
         public string Title_En;
         public string Title_Ar;
         public string Scene;
-        public string TitleNew;
-        public string Team;
 
         // Derived
         //public MiniGameCode MiniGameCode;   // @note: we could just get rid of the Id and use this instead
@@ -28,7 +33,7 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("[Minigame: id={0}, status={1},  title_en={2}, title_ar={3}]", Id, Status, Title_En, Title_Ar);
+            return string.Format("[Minigame: id={0}, type={4}, status={1},  title_en={2}, title_ar={3}]", Id, Status, Title_En, Title_Ar, Type.ToString());
         }
 
         public string GetIconResourcePath()
