@@ -198,6 +198,16 @@ public partial class SROptions
         get { return yVelocity_High; }
         set { yVelocity_High = value; }
     }
+
+    private float elasticity = 4.5f;
+
+    // Options will be grouped by category
+    [Category("ThrowBalls")]
+    public float Elasticity
+    {
+        get { return elasticity; }
+        set { elasticity = value; }
+    }
 }
 
 #if NETFX_CORE
