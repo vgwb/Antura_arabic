@@ -6,14 +6,17 @@ using System.Linq;
 using EA4S.API;
 using System.Collections.Generic;
 
-namespace EA4S.Test {
+namespace EA4S.Test
+{
 
-    public class MiniGameLauncher : MonoBehaviour {
+    public class MiniGameLauncher : MonoBehaviour
+    {
 
         public MiniGamesDropDownList MiniGamesDropDownList;
         public Button LaunchButton;
 
-        public void LaunchGame() {
+        public void LaunchGame()
+        {
             // Example minigame call
             MiniGameCode miniGameCodeSelected = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), MiniGamesDropDownList.options[MiniGamesDropDownList.value].text);
             float difficulty = float.Parse(FindObjectsOfType<InputField>().First(n => n.name == "Difficulty").text);
@@ -35,7 +38,8 @@ namespace EA4S.Test {
                 case MiniGameCode.Tobogan_words:
                     packsCount = 10;
                     break;
-                case MiniGameCode.Assessment:
+                case MiniGameCode.Assessment_Letters:
+                case MiniGameCode.Assessment_LettersMatchShape:
                 case MiniGameCode.AlphabetSong:
                 case MiniGameCode.Balloons_counting:
                 case MiniGameCode.Balloons_letter:
@@ -70,7 +74,8 @@ namespace EA4S.Test {
 
         }
 
-        List<IQuestionPack> CreateQuestionPacksDummyAI(MiniGameCode _miniGameCode, int _questionNumber) {
+        List<IQuestionPack> CreateQuestionPacksDummyAI(MiniGameCode _miniGameCode, int _questionNumber)
+        {
             List<IQuestionPack> questionPackList = new List<IQuestionPack>();
             for (int i = 0; i < _questionNumber; i++) {
                 questionPackList.Add(CreateQuestionPack(_miniGameCode));
@@ -78,7 +83,8 @@ namespace EA4S.Test {
             return questionPackList;
         }
 
-        IQuestionPack CreateQuestionPack(MiniGameCode _miniGameCode) {
+        IQuestionPack CreateQuestionPack(MiniGameCode _miniGameCode)
+        {
             IQuestionPack questionPack = null;
             ILivingLetterData question;
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
@@ -86,7 +92,8 @@ namespace EA4S.Test {
             List<LetterData> letters = new List<LetterData>();
 
             switch (_miniGameCode) {
-                case MiniGameCode.Assessment:
+                case MiniGameCode.Assessment_Letters:
+                case MiniGameCode.Assessment_LettersMatchShape:
                     break;
                 case MiniGameCode.AlphabetSong:
                     break;
@@ -239,11 +246,13 @@ namespace EA4S.Test {
 
         #region Test Helpers
 
-        WordData GetWord() {
+        WordData GetWord()
+        {
             return AppManager.Instance.Teacher.GimmeAGoodWordData();
         }
 
-        List<WordData> GetWordsNotContained(List<WordData> _WordsToAvoid, int _count) {
+        List<WordData> GetWordsNotContained(List<WordData> _WordsToAvoid, int _count)
+        {
             List<WordData> wordListToReturn = new List<WordData>();
             for (int i = 0; i < _count; i++) {
                 var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
@@ -255,7 +264,8 @@ namespace EA4S.Test {
             return wordListToReturn;
         }
 
-        List<LetterData> GetLettersFromWord(WordData _word) {
+        List<LetterData> GetLettersFromWord(WordData _word)
+        {
             List<LetterData> letters = new List<LetterData>();
             foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Word, AppManager.Instance.Letters)) {
                 letters.Add(letterData);
@@ -263,7 +273,8 @@ namespace EA4S.Test {
             return letters;
         }
 
-        List<LetterData> GetLettersNotContained(List<LetterData> _lettersToAvoid, int _count) {
+        List<LetterData> GetLettersNotContained(List<LetterData> _lettersToAvoid, int _count)
+        {
             List<LetterData> letterListToReturn = new List<LetterData>();
             for (int i = 0; i < _count; i++) {
                 var letter = AppManager.Instance.Teacher.GimmeARandomLetter();

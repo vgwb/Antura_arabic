@@ -51,7 +51,6 @@ namespace EA4S.Db.Management
             output += ("N minigames: " + db.FindAllMiniGameData().Count) + "\n";
             output += ("N stages: " + db.FindAllStageData().Count) + "\n";
             output += ("N playsessions: " + db.FindAllPlaySessionData().Count) + "\n";
-            output += ("N assessments: " + db.FindAllAssessmentData().Count) + "\n";
             output += ("N localizations: " + db.FindAllLocalizationData().Count) + "\n";
             output += ("N rewards: " + db.FindAllRewardData().Count) + "\n";
             PrintOutput(output);
@@ -92,10 +91,6 @@ namespace EA4S.Db.Management
             DumpAllData(db.FindAllMiniGameData());
         }
 
-        public void DumpAllAssessmentData()
-        {
-            DumpAllData(db.FindAllAssessmentData());
-        }
 
         public void DumpAllLogData()
         {
@@ -140,12 +135,6 @@ namespace EA4S.Db.Management
             DumpDataById(id, data);
         }
 
-        public void DumpAssessmentById(string id)
-        {
-            IData data = db.GetAssessmentDataById(id);
-            DumpDataById(id, data);
-        }
-
         public void DumpLocalizationById(string id)
         {
             IData data = db.GetLocalizationDataById(id);
@@ -186,13 +175,11 @@ namespace EA4S.Db.Management
 
         public void TestInsertLogData()
         {
-            LogData newData = new LogData();
+            LogInfoData newData = new LogInfoData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Time = Time.time.ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
-            newData.PlaySkill = LogPlaySkill.Musicality;
-            newData.Type = LogDataType.Info;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
             this.db.InsertLogData(newData);
@@ -202,7 +189,7 @@ namespace EA4S.Db.Management
 
         public void TestLINQLogData()
         {
-            List<LogData> list = this.db.FindAllLogData(x => x.Score > 5f);
+            List<LogInfoData> list = this.db.FindAllLogData(x => x.Score > 5f);
             DumpAllData(list);
         }
 

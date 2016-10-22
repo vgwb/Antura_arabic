@@ -12,6 +12,7 @@ namespace EA4S.Db.Management
 
             data.Id = ToString(dict["Id"]);
             data.Variation = ToString(dict["Variation"]);
+            data.Type = ParseEnum<MiniGameType>(data, dict["Type"]);
 
             ValidateStatus(data, dict["Status"]);
             data.Status = ToString(dict["Status"]);
@@ -23,8 +24,8 @@ namespace EA4S.Db.Management
             data.Title_En = ToString(dict["Title_En"]);
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);
-            data.TitleNew = ToString(dict["TitleNew"]);
-            data.Team = ToString(dict["Team"]);
+            //data.TitleNew = ToString(dict["TitleNew"]);
+            //data.Team = ToString(dict["Team"]);
 
             //data.MiniGameCode = ParseEnum<MiniGameCode>(data, dict["Id"]);
             data.Available = data.Status == "active";
@@ -35,7 +36,7 @@ namespace EA4S.Db.Management
         private void ValidateParent(MiniGameData data, object json_object)
         {
             if ((string)json_object != "") // Empty is fine
-            {    
+            {
                 // We try to parse the parent as a MiniGameCode enum, triggering validation if this cannot be done.
                 ParseEnum<MiniGameCode>(data, json_object);
             }
@@ -44,9 +45,8 @@ namespace EA4S.Db.Management
         {
             // Status must be one of a given list
             string target_string = ToString(json_object);
-            List<string> correct_strings = new List<string> { "", "dev", "standby", "active"};
-            if (!correct_strings.Contains(target_string))
-            {
+            List<string> correct_strings = new List<string> { "", "dev", "standby", "active" };
+            if (!correct_strings.Contains(target_string)) {
                 LogValidation(data, "Status value is not among the avaliable ones (" + target_string + " found)");
             }
         }
