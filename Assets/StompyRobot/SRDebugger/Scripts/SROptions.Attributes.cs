@@ -48,7 +48,13 @@ public partial class SROptions
             Name = name;
         }
     }
-    
+
+    [Category("MakeFriends")]
+    public bool MakeFriendsUseDifficulty { get; set; }
+
+    [Category("MakeFriends")]
+    public EA4S.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
+
     private float highStrengthThreshold = 50f;
 
     // Options will be grouped by category

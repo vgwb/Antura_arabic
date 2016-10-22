@@ -972,13 +972,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde69a38359164693be942d081141c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 0}
+  focusOnTouch: 1
   animator: {fileID: 95000011802780290}
   letterCollider: {fileID: 65000013213567370}
   body: {fileID: 54000010789812972}
   angerGraphic: {fileID: 1000010484402890}
   tmpText: {fileID: 114000013945294600}
-  entranceDirection: 1
+  container: {fileID: 0}
 --- !u!114 &114000013945294600
 MonoBehaviour:
   m_ObjectHideFlags: 1
