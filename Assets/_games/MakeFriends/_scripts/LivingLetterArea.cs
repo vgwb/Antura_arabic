@@ -32,7 +32,7 @@ namespace EA4S.MakeFriends
             nextMovingAwayPosition = startingPosition + (offscreenPosition - startingPosition) / 3f;
         }
 
-        public void SpawnLivingLetter(WordData wordData)
+        public void SpawnLivingLetter(LL_WordData wordData)
         {
             var instance = Instantiate(livingLetterPrefab, offscreenPosition, Quaternion.Euler(entranceRotation), this.transform) as GameObject;
             livingLetter = instance.GetComponent<LivingLetterController>();

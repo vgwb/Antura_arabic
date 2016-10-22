@@ -27,17 +27,17 @@ namespace EA4S.MakeFriends
         new public static MakeFriendsGameManager Instance;
         new public MakeFriendsGameplayInfo GameplayInfo;
 
-        private WordData wordData1;
-        private List<LetterData> wordLetters1 = new List<LetterData>();
+        private LL_WordData wordData1;
+        private List<LL_LetterData> wordLetters1 = new List<LL_LetterData>();
 
-        private WordData wordData2;
-        private List<LetterData> wordLetters2 = new List<LetterData>();
+        private LL_WordData wordData2;
+        private List<LL_LetterData> wordLetters2 = new List<LL_LetterData>();
 
-        private List<LetterData> commonLetters = new List<LetterData>();
-        private List<LetterData> uncommonLetters = new List<LetterData>();
-        private List<LetterData> choiceLetters = new List<LetterData>();
-        private List<LetterData> correctChoices = new List<LetterData>();
-        private List<LetterData> incorrectChoices = new List<LetterData>();
+        private List<LL_LetterData> commonLetters = new List<LL_LetterData>();
+        private List<LL_LetterData> uncommonLetters = new List<LL_LetterData>();
+        private List<LL_LetterData> choiceLetters = new List<LL_LetterData>();
+        private List<LL_LetterData> correctChoices = new List<LL_LetterData>();
+        private List<LL_LetterData> incorrectChoices = new List<LL_LetterData>();
         private int currentRound = 0;
 
         private int friendships = 0;
@@ -178,7 +178,7 @@ namespace EA4S.MakeFriends
             // Get other random letters (without repetition)
             for (int i = 0; i < vacantChoiceLettersCount; i++)
             {
-                LetterData letter;
+                LL_LetterData letter;
                 do
                 {
                     if (i < uncommonLetters.Count)

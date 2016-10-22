@@ -86,7 +86,7 @@ namespace EA4S
         void setDummyLetterObject()
         {
             var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
-            Init(new LetterData(letterData.GetId()));
+            Init(new LL_LetterData(letterData.GetId()));
             //Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
         }
 

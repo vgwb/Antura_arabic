@@ -6,7 +6,7 @@ namespace EA4S
 {
     public class SamplePopupWidget : IPopupWidget
     {
-        public void Show(System.Action callback, TextID text, bool markResult, WordData word = null)
+        public void Show(System.Action callback, TextID text, bool markResult, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWordWithMark(callback, text.ToString(), word, markResult);
@@ -14,7 +14,7 @@ namespace EA4S
                 WidgetPopupWindow.I.ShowSentenceWithMark(callback, text.ToString(), markResult, null);
         }
 
-        public void Show(System.Action callback, TextID text, WordData word = null)
+        public void Show(System.Action callback, TextID text, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWord(callback, text.ToString(), word);
@@ -22,7 +22,7 @@ namespace EA4S
                 WidgetPopupWindow.I.ShowSentence(callback, text.ToString());
         }
 
-        public void Show(System.Action callback, string text, bool markResult, WordData word = null)
+        public void Show(System.Action callback, string text, bool markResult, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWordWithMark(callback, text, word, markResult);
@@ -30,7 +30,7 @@ namespace EA4S
                 WidgetPopupWindow.I.ShowSentenceWithMark(callback, text, markResult, null);
         }
 
-        public void Show(System.Action callback, string text, WordData word = null)
+        public void Show(System.Action callback, string text, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWord(callback, text, word);
@@ -99,9 +99,9 @@ namespace EA4S
             WidgetPopupWindow.I.SetImage(image);
         }
 
-        public void SetWord(WordData data)
+        public void SetWord(LL_WordData data)
         {
-            WidgetPopupWindow.I.SetWord(data.Key, ((WordData)data).Word);
+            WidgetPopupWindow.I.SetWord(data.Key, ((LL_WordData)data).Word);
         }
     }
 }

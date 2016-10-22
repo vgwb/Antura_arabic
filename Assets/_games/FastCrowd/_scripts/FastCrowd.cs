@@ -46,7 +46,7 @@ namespace EA4S.FastCrowd
         public int MinLettersOnField = 10;
         //List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
 
-        public List<WordData> CompletedWords = new List<WordData>();
+        public List<LL_WordData> CompletedWords = new List<LL_WordData>();
 
         [Header("References")]
         public StarFlowers StarUI;
@@ -64,7 +64,7 @@ namespace EA4S.FastCrowd
         /// <summary>
         /// Actual word.
         /// </summary>
-        WordData ActualWord;
+        LL_WordData ActualWord;
         /// <summary>
         /// Actual round element data (letter of word, group of words, etc...).
         /// </summary>
@@ -169,7 +169,7 @@ namespace EA4S.FastCrowd
                 ;
             } else { // word variation
                 for (int i = 0; i < FastCrowdConfiguration.Instance.MaxNumbOfWrongLettersNoise; i++) {
-                    WordData newWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    LL_WordData newWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                     if (!dataList.Contains(newWord)) {
                         dataList.Add(newWord);
                     } else
@@ -227,7 +227,7 @@ namespace EA4S.FastCrowd
                 if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling) {
                     letterObjectView.Init(AppManager.Instance.Letters.GetRandomElement(), FastCrowdConfiguration.Instance.BehaviourSettings);
                 } else {
-                    letterObjectView.Init(WordData.GetRandomWord(), FastCrowdConfiguration.Instance.BehaviourSettings);
+                    letterObjectView.Init(LL_WordData.GetRandomWord(), FastCrowdConfiguration.Instance.BehaviourSettings);
                 }
             }
             DropAreaContainer.SetupDone();
@@ -448,7 +448,7 @@ namespace EA4S.FastCrowd
                 LoggerEA4S.Save();
                 ActionFeedback.Show(true);
                 AudioManager.I.PlayWord(_letterView.Model.Data.Key);
-                CompletedWords.Add(_letterView.Model.Data as WordData);
+                CompletedWords.Add(_letterView.Model.Data as LL_WordData);
             }
         }
 
@@ -552,7 +552,7 @@ namespace EA4S.FastCrowd
 
         #region events
 
-        public delegate void ObjectiveSetup(WordData _wordData);
+        public delegate void ObjectiveSetup(LL_WordData _wordData);
 
         /// <summary>
         /// Called every time a new word objective is created.

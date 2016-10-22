@@ -47,7 +47,7 @@ namespace EA4S.ThrowBalls
             //pokeballImages[--numPokeballs].sprite = pokeballOffSprite;
         }
 
-        public void OnRoundStarted(LetterData _data)
+        public void OnRoundStarted(LL_LetterData _data)
         {
             letterHint.SetActive(true);
             letterHintText.text = _data.TextForLivingLetter;

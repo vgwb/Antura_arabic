@@ -89,7 +89,7 @@ namespace EA4S.Test
             ILivingLetterData question;
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
-            List<LetterData> letters = new List<LetterData>();
+            List<LL_LetterData> letters = new List<LL_LetterData>();
 
             switch (_miniGameCode) {
                 case MiniGameCode.Assessment_Letters:
@@ -114,7 +114,7 @@ namespace EA4S.Test
                 case MiniGameCode.Egg:
                     //
                     question = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    letters = GetLettersFromWord(question as WordData);
+                    letters = GetLettersFromWord(question as LL_WordData);
                     foreach (var l in letters) {
                         correctAnswers.Add(l);
                     }
@@ -138,10 +138,10 @@ namespace EA4S.Test
                     break;
                 case MiniGameCode.FastCrowd_counting:
                     // Dummy logic for question creation
-                    WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    LL_WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
                     correctAnswers.Add(word);
                     for (int i = 0; i < 10; i++) {
-                        WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!correctAnswers.Contains(wrongWord))
                             wrongAnswers.Add(wrongWord);
                         else
@@ -163,7 +163,7 @@ namespace EA4S.Test
                 case MiniGameCode.FastCrowd_spelling: // var 1
                     // Dummy logic for question creation
                     question = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    letters = GetLettersFromWord(question as WordData);
+                    letters = GetLettersFromWord(question as LL_WordData);
                     foreach (var l in letters) {
                         correctAnswers.Add(l);
                     }
@@ -177,14 +177,14 @@ namespace EA4S.Test
                 case MiniGameCode.FastCrowd_words:
                     // Dummy logic for question creation
                     for (int i = 0; i < 4; i++) {
-                        WordData correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        LL_WordData correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!correctAnswers.Contains(correctWord))
                             correctAnswers.Add(correctWord);
                         else
                             i--;
                     }
                     for (int i = 0; i < 2; i++) {
-                        WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!correctAnswers.Contains(wrongWord))
                             wrongAnswers.Add(wrongWord);
                         else
@@ -224,7 +224,7 @@ namespace EA4S.Test
                 case MiniGameCode.Tobogan_letters:
                     // Dummy logic for question creation
                     question = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    letters = GetLettersFromWord(question as WordData);
+                    letters = GetLettersFromWord(question as LL_WordData);
                     foreach (var l in letters) {
                         correctAnswers.Add(l);
                         break; //get alway first (only for test)
@@ -246,14 +246,14 @@ namespace EA4S.Test
 
         #region Test Helpers
 
-        WordData GetWord()
+        LL_WordData GetWord()
         {
             return AppManager.Instance.Teacher.GimmeAGoodWordData();
         }
 
-        List<WordData> GetWordsNotContained(List<WordData> _WordsToAvoid, int _count)
+        List<LL_WordData> GetWordsNotContained(List<LL_WordData> _WordsToAvoid, int _count)
         {
-            List<WordData> wordListToReturn = new List<WordData>();
+            List<LL_WordData> wordListToReturn = new List<LL_WordData>();
             for (int i = 0; i < _count; i++) {
                 var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
 
@@ -264,18 +264,18 @@ namespace EA4S.Test
             return wordListToReturn;
         }
 
-        List<LetterData> GetLettersFromWord(WordData _word)
+        List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
         {
-            List<LetterData> letters = new List<LetterData>();
+            List<LL_LetterData> letters = new List<LL_LetterData>();
             foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Word, AppManager.Instance.Letters)) {
                 letters.Add(letterData);
             }
             return letters;
         }
 
-        List<LetterData> GetLettersNotContained(List<LetterData> _lettersToAvoid, int _count)
+        List<LL_LetterData> GetLettersNotContained(List<LL_LetterData> _lettersToAvoid, int _count)
         {
-            List<LetterData> letterListToReturn = new List<LetterData>();
+            List<LL_LetterData> letterListToReturn = new List<LL_LetterData>();
             for (int i = 0; i < _count; i++) {
                 var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
 
