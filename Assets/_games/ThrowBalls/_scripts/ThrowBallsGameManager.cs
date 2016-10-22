@@ -39,8 +39,6 @@ namespace EA4S.ThrowBalls
         public GameObject endGameCanvas;
         public StarFlowers starFlowers;
 
-        public GameObject ringEffectTest;
-
         protected override void Awake()
         {
             base.Awake();
@@ -82,8 +80,6 @@ namespace EA4S.ThrowBalls
             ResetScene();
 
             StartCoroutine("StartNewRound");
-
-            ringEffectTest.GetComponent<RingEffectController>().Animate(0);
 
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
