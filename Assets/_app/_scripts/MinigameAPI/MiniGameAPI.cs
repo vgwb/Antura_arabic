@@ -62,10 +62,10 @@ namespace EA4S.API
         /// Return List of Letter Data valid for this gameplay and actual profile data.
         /// </summary>
         /// <returns></returns>
-        public List<LetterData> GetValidLetters(int _amount = -1)
+        public List<LL_LetterData> GetValidLetters(int _amount = -1)
         {
             // TODO
-            return new List<LetterData>();
+            return new List<LL_LetterData>();
         }
 
         /// <summary>
@@ -73,10 +73,10 @@ namespace EA4S.API
         /// </summary>
         /// <param name="_amount"></param>
         /// <returns></returns>
-        public List<WordData> GetValidWorlds(int _amount = -1)
+        public List<LL_WordData> GetValidWorlds(int _amount = -1)
         {
             // TODO
-            return new List<WordData>();
+            return new List<LL_WordData>();
         }
 
         #endregion

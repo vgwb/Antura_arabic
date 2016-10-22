@@ -148,7 +148,7 @@ namespace EA4S.ThrowBalls
 
             List<string> currentLettersInPlay = new List<string>();
 
-            LetterData correctLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
+            LL_LetterData correctLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
 
             AudioManager.I.PlayLetter(correctLetter.Key);
 
@@ -182,7 +182,7 @@ namespace EA4S.ThrowBalls
                 {
                     letterObj.tag = Constants.TAG_WRONG_LETTER;
 
-                    LetterData wrongLetter;
+                    LL_LetterData wrongLetter;
 
                     do
                     {

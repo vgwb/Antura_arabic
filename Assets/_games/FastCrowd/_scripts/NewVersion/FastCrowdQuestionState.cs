@@ -22,7 +22,7 @@
             {
                 for (int i = 0; i < 3; ++i)
                 {
-                    LetterData data = new LetterData(question.GetQuestion().Key);
+                    LL_LetterData data = new LL_LetterData(question.GetQuestion().Key);
 
                     if (i == 0)
                         data.ShowAs = LetterDataForm.INITIAL;

@@ -52,9 +52,9 @@ namespace Balloons
 
         public static BalloonsGameManager instance;
 
-        private WordData wordData;
+        private LL_WordData wordData;
         private string word;
-        private List<LetterData> wordLetters;
+        private List<LL_LetterData> wordLetters;
         private int currentRound = 0;
         private int remainingLives;
         private int correctWords = 0;
@@ -333,7 +333,7 @@ namespace Balloons
                     letter.Init(wordLetters[requiredLetterIndex]);
                 } else {
                     // Set a random letter that is not a required letter
-                    LetterData randomLetter;
+                    LL_LetterData randomLetter;
                     do {
                         randomLetter = AppManager.Instance.Letters.GetRandomElement();
                     } while (wordLetters.Contains(randomLetter));

@@ -20,10 +20,10 @@ namespace EA4S
         /// <summary>
         /// Tmp var to store actual gameplay word already used.
         /// </summary>
-        public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
+        public List<LL_WordData> ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
         public string ActualGame = string.Empty;
 
-        public List<LetterData> Letters = new List<LetterData>();
+        public List<LL_LetterData> Letters = new List<LL_LetterData>();
 
         public TeacherAI Teacher;
         public DatabaseManager DB;
@@ -84,7 +84,7 @@ namespace EA4S
         void CachingLetterData()
         {
             foreach (var letterData in DB.FindAllLetterData()) {
-                Letters.Add(new LetterData(letterData.GetId()));
+                Letters.Add(new LL_LetterData(letterData.GetId()));
             }
         }
 
@@ -197,7 +197,7 @@ namespace EA4S
         public void OnMinigameStart()
         {
             // reset for already used word.
-            ActualGameplayWordAlreadyUsed = new List<WordData>();
+            ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
         }
 
         #endregion

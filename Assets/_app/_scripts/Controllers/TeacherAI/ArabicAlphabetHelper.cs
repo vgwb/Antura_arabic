@@ -51,9 +51,9 @@ namespace EA4S
         /// <param name="_vocabulary"></param>
         /// <param name="_revertOrder">Return in list position 0 most right letter in input string and last the most left.</param>
         /// <returns></returns>
-        public static List<LetterData> LetterDataListFromWord(string _word, List<LetterData> _vocabulary, bool _revertOrder = false)
+        public static List<LL_LetterData> LetterDataListFromWord(string _word, List<LL_LetterData> _vocabulary, bool _revertOrder = false)
         {
-            List<LetterData> returnList = new List<LetterData>();
+            List<LL_LetterData> returnList = new List<LL_LetterData>();
 
             char[] chars = _word.ToCharArray();
             if (_revertOrder)
@@ -61,7 +61,7 @@ namespace EA4S
             for (int i = 0; i < chars.Length; i++) {
                 char ch = chars[i];
                 string unicodeString = GetHexaUnicodeFromChar(ch);
-                LetterData let = _vocabulary.Find(l => l.Isolated_Unicode == unicodeString);
+                LL_LetterData let = _vocabulary.Find(l => l.Isolated_Unicode == unicodeString);
                 if (let != null)
                     returnList.Add(let);
             }
@@ -75,15 +75,15 @@ namespace EA4S
         /// <param name="_vocabulary"></param>
         /// <param name="_revertOrder"></param>
         /// <returns></returns>
-        public static string ParseWord(string _word, List<LetterData> _vocabulary, bool _revertOrder = false)
+        public static string ParseWord(string _word, List<LL_LetterData> _vocabulary, bool _revertOrder = false)
         {
             string returnString = string.Empty;
             bool exceptionActive = false;
-            List<LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
+            List<LL_LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
             if (letters.Count == 1)
                 return returnString = ArabicAlphabetHelper.GetLetterFromUnicode(letters[0].Isolated_Unicode);
             for (int i = 0; i < letters.Count; i++) {
-                LetterData let = letters[i];
+                LL_LetterData let = letters[i];
 
                 /// Exceptions
                 if (exceptionActive) {
