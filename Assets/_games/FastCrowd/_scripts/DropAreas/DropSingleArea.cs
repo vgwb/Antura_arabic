@@ -17,7 +17,7 @@ namespace EA4S {
             DropContain = _dropContainer;
             DropContain.Aree.Add(this);
             Data = _data;
-            if (asImage && !(_data is LetterData))
+            if (asImage && !(_data is LL_LetterData))
             {
                 LetterLable.text = string.Empty;
                 DrawSprite.gameObject.SetActive(true);

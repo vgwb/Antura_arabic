@@ -12,7 +12,7 @@ namespace Balloons
         public Animator animator;
         public Collider letterCollider;
         public Rigidbody body;
-        public LetterData letter;
+        public LL_LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
         public LLController LetterModel;
@@ -70,7 +70,7 @@ namespace Balloons
             }
         }
 
-        public void Init(LetterData _data)
+        public void Init(LL_LetterData _data)
         {
             LetterModel = new LLController(_data);
             LetterView.text = _data.TextForLivingLetter; 

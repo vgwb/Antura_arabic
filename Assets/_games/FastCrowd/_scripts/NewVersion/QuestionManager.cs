@@ -35,7 +35,7 @@ namespace EA4S.FastCrowd
             {
                 dropContainer.AdvanceArea();
 
-                if (data is LetterData)
+                if (data is LL_LetterData)
                     wordComposer.AddLetter(data);
             }
         }

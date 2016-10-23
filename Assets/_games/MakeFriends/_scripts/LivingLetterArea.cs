@@ -13,7 +13,8 @@ namespace EA4S.MakeFriends
         public Vector3 celebrationPosition;
         public Vector3 friendlyExitPosition;
         public Vector3 entranceRotation;
-        public Vector3 exitRotation;
+        public Vector3 exitRotation_readable;
+        public Vector3 exitRotation_unreadable;
         public Vector3 friendlyExitRotation;
         public float entranceDuration;
         public float celebrationDuration;
@@ -23,6 +24,8 @@ namespace EA4S.MakeFriends
 
         [HideInInspector]
         public LivingLetterController livingLetter;
+        [SerializeField]
+        private Vector3 exitRotation;
 
         private Vector3 nextMovingAwayPosition;
 
@@ -32,12 +35,32 @@ namespace EA4S.MakeFriends
             nextMovingAwayPosition = startingPosition + (offscreenPosition - startingPosition) / 3f;
         }
 
-        public void SpawnLivingLetter(WordData wordData)
+        private void AdjustForDifficulty()
         {
+            exitRotation = exitRotation_readable;
+
+            if (MakeFriendsGameManager.Instance.Configuration.Variation != MakeFriendsVariation.EASY)
+            {
+                exitRotation = exitRotation_unreadable;    
+            }
+
+            if (livingLetter != null)
+            {
+                livingLetter.focusOnTouch = MakeFriendsGameManager.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
+            }
+        }
+
+        public void SpawnLivingLetter(LL_WordData wordData)
+        {
+            AdjustForDifficulty();
+
             var instance = Instantiate(livingLetterPrefab, offscreenPosition, Quaternion.Euler(entranceRotation), this.transform) as GameObject;
             livingLetter = instance.GetComponent<LivingLetterController>();
             livingLetter.Init(wordData);
             livingLetter.container = this.gameObject;
+            livingLetter.focusOnTouch = MakeFriendsGameManager.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
+
+            AdjustForDifficulty();
         }
 
         public void MakeEntrance()
@@ -47,6 +70,8 @@ namespace EA4S.MakeFriends
 
         public void MakeFriendlyExit()
         {
+            AdjustForDifficulty();
+
             livingLetter.MakeFriendlyExit(friendlyExitPosition, friendlyExitRotation, friendlyExitDuration);
         }
 
@@ -54,7 +79,7 @@ namespace EA4S.MakeFriends
         {
             livingLetter.GoToFriendsZone(zone, left);
         }
-            
+
         public void MoveAwayAngrily()
         {
             livingLetter.MoveAwayAngrily(nextMovingAwayPosition, exitRotation, movingAwayDuration, 1f);
