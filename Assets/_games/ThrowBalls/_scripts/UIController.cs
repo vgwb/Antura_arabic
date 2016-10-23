@@ -30,11 +30,11 @@ namespace EA4S.ThrowBalls
 
         public void Reset()
         {
-            numPokeballs = ThrowBallsGameManager.MAX_NUM_POKEBALLS;
+            numPokeballs = ThrowBallsGameManager.MAX_NUM_BALLS;
 
             foreach (Image image in pokeballImages)
             {
-                image.sprite = pokeballOnSprite;
+                image.enabled = true;
             }
             
             letterHint.SetActive(false);
@@ -42,12 +42,12 @@ namespace EA4S.ThrowBalls
             StopAllCoroutines();
         }
 
-        public void OnPokeballLost()
+        public void OnBallLost()
         {
-            //pokeballImages[--numPokeballs].sprite = pokeballOffSprite;
+            pokeballImages[--numPokeballs].enabled = false;
         }
 
-        public void OnRoundStarted(LetterData _data)
+        public void OnRoundStarted(LL_LetterData _data)
         {
             letterHint.SetActive(true);
             letterHintText.text = _data.TextForLivingLetter;

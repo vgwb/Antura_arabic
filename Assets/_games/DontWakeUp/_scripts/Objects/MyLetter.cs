@@ -88,7 +88,7 @@ namespace EA4S.DontWakeUp
 
         void OnTriggerEnter(Collider other)
         {
-            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == DontWakeUpMinigameState.Playing) {
                 //Debug.Log("OnTriggerEnter " + other.gameObject.name);
                 // GameDontWakeUp.Instance.dangering.InDanger(false);
                 //colliding = true;
@@ -107,7 +107,7 @@ namespace EA4S.DontWakeUp
 
         void OnTriggerStay(Collider other)
         {
-            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == DontWakeUpMinigameState.Playing) {
                 //Debug.Log("OnTriggerStay " + other.gameObject.name);
                 //            if (other.gameObject.tag == "Obstacle") {
                 //                GameDontWakeUp.Instance.dangering.InDanger(true);
@@ -127,7 +127,7 @@ namespace EA4S.DontWakeUp
 
         void OnTriggerExit(Collider other)
         {
-            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == DontWakeUpMinigameState.Playing) {
                 //Debug.Log("OnTriggerExit " + other.gameObject.name);
                 if (other.gameObject.tag == "Alert") {
                     DontWakeUpManager.Instance.InDanger(false, How2Die.Null);
@@ -190,7 +190,7 @@ namespace EA4S.DontWakeUp
 
         void Update()
         {
-            if (DontWakeUpManager.Instance.currentState == MinigameState.Playing) {
+            if (DontWakeUpManager.Instance.currentState == DontWakeUpMinigameState.Playing) {
                 if (Input.GetMouseButtonDown(0)) {
                     RaycastHit hit;
                     Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));

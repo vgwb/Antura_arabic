@@ -194,7 +194,7 @@ namespace EA4S
         }
 
 
-        public void ShowStringAndWord(Action callback, string text, WordData wordData)
+        public void ShowStringAndWord(Action callback, string text, LL_WordData wordData)
         {
             ResetContents();
 
@@ -211,7 +211,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceAndWord(Action callback, string SentenceId, WordData wordData)
+        public void ShowSentenceAndWord(Action callback, string SentenceId, LL_WordData wordData)
         {
             ResetContents();
 
@@ -229,7 +229,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceAndWordWithMark(Action callback, string SentenceId, WordData wordData, bool result)
+        public void ShowSentenceAndWordWithMark(Action callback, string SentenceId, LL_WordData wordData, bool result)
         {
             ResetContents();
 

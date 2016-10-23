@@ -3,7 +3,10 @@ using System.Collections;
 
 namespace EA4S
 {
-    public class PlayerProfile
+    /// <summary>
+    /// TODO: to be deleted during final app lifecycle refactoring.
+    /// </summary>
+    public class PlayerProfile_deprecated
     {
         public int AnturaCurrentPreset;
 
@@ -27,7 +30,7 @@ namespace EA4S
 
         #endregion
 
-        public PlayerProfile()
+        public PlayerProfile_deprecated()
         {
             Reset();
         }

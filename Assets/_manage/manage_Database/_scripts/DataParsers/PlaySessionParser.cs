@@ -23,9 +23,6 @@ namespace EA4S.Db.Management
             data.Phrases = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases"], db.GetPhraseTable());
             data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.GetPhraseTable());
 
-            data.AssessmentType = AssessmentType.Alphabet; // TODO: (sometimes it is empty!) ParseEnum<AssessmentType>(data, (string)dict["AssesmentType"]);
-            data.AssessmentData = ToString(dict["AssessmentData"]);
-
             data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
 
             return data;

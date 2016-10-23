@@ -677,7 +677,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011863820504}
-  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
+  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: 349.52292, y: 224.35536, z: 185.02641}
@@ -972,13 +972,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde69a38359164693be942d081141c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 0}
+  focusOnTouch: 1
   animator: {fileID: 95000011802780290}
   letterCollider: {fileID: 65000013213567370}
   body: {fileID: 54000010789812972}
   angerGraphic: {fileID: 1000010484402890}
   tmpText: {fileID: 114000013945294600}
-  entranceDirection: 1
+  container: {fileID: 0}
 --- !u!114 &114000013945294600
 MonoBehaviour:
   m_ObjectHideFlags: 1

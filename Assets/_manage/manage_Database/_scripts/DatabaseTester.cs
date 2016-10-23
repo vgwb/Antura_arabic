@@ -19,8 +19,7 @@ namespace EA4S.Db.Management
 
         void Awake()
         {
-            string playerId = "1";
-            this.db = new DatabaseManager(playerId);
+            this.db = new DatabaseManager();
         }
 
         #region Main Actions
@@ -31,11 +30,6 @@ namespace EA4S.Db.Management
             DBLoader.LoadDatabase();
             DumpAllDataCounts();
 #endif
-        }
-
-        public void RegenerateRuntimeDB()
-        {
-            db.RegenerateRuntimeDB();
         }
 
         #endregion
@@ -51,7 +45,6 @@ namespace EA4S.Db.Management
             output += ("N minigames: " + db.FindAllMiniGameData().Count) + "\n";
             output += ("N stages: " + db.FindAllStageData().Count) + "\n";
             output += ("N playsessions: " + db.FindAllPlaySessionData().Count) + "\n";
-            output += ("N assessments: " + db.FindAllAssessmentData().Count) + "\n";
             output += ("N localizations: " + db.FindAllLocalizationData().Count) + "\n";
             output += ("N rewards: " + db.FindAllRewardData().Count) + "\n";
             PrintOutput(output);
@@ -92,14 +85,9 @@ namespace EA4S.Db.Management
             DumpAllData(db.FindAllMiniGameData());
         }
 
-        public void DumpAllAssessmentData()
+        public void DumpAllLogInfoData()
         {
-            DumpAllData(db.FindAllAssessmentData());
-        }
-
-        public void DumpAllLogData()
-        {
-            DumpAllData(db.FindAllLogData());
+            DumpAllData(db.FindAllLogInfoData());
         }
 
         public void DumpLetterById(string id)
@@ -122,10 +110,10 @@ namespace EA4S.Db.Management
             DumpDataById(id, data);
         }
 
-        public void DumpMiniGameById(string id)
+        public void DumpMiniGameByCode(MiniGameCode code)
         {
-            IData data = db.GetMiniGameDataById(id);
-            DumpDataById(id, data);
+            IData data = db.GetMiniGameDataByCode(code);
+            DumpDataById(data.GetId(), data);
         }
 
         public void DumpStageById(string id)
@@ -137,12 +125,6 @@ namespace EA4S.Db.Management
         public void DumpPlaySessionById(string id)
         {
             IData data = db.GetPlaySessionDataById(id);
-            DumpDataById(id, data);
-        }
-
-        public void DumpAssessmentById(string id)
-        {
-            IData data = db.GetAssessmentDataById(id);
             DumpDataById(id, data);
         }
 
@@ -160,10 +142,9 @@ namespace EA4S.Db.Management
 
         public void DumpLogDataById(string id)
         {
-            IData data = db.GetLogDataById(id);
+            IData data = db.GetLogInfoDataById(id);
             DumpDataById(id, data);
         }
-
 
 
         public void DumpArabicWord(string id)
@@ -182,28 +163,161 @@ namespace EA4S.Db.Management
 
         #endregion
 
-        #region Log
+        #region Test Insert Log Data
 
-        public void TestInsertLogData()
+        public void TestInsertLogInfoData()
         {
-            LogData newData = new LogData();
+            var newData = new LogInfoData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Time = Time.time.ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
-            newData.PlaySkill = LogPlaySkill.Musicality;
-            newData.Type = LogDataType.Info;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
-            this.db.InsertLogData(newData);
-
-            PrintOutput("Inserted new LogData: " + newData.ToString());
+            this.db.InsertLogInfoData(newData);
+            PrintOutput("Inserted new LogInfoData: " + newData.ToString());
         }
 
+        public void TestInsertLogLearnData()
+        {
+            var newData = new LogLearnData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+            newData.Score = UnityEngine.Random.Range(0f, 10f);
+
+            this.db.InsertLogLearnData(newData);
+            PrintOutput("Inserted new LogLearnData: " + newData.ToString());
+        }
+
+        public void TestInsertLogMoodData()
+        {
+            var newData = new LogMoodData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+            newData.MoodValue = UnityEngine.Random.Range(0, 20);
+
+            this.db.InsertLogMoodData(newData);
+            PrintOutput("Inserted new LogMoodData: " + newData.ToString());
+        }
+
+        public void TestInsertLogPlayData()
+        {
+            var newData = new LogPlayData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+
+            this.db.InsertLogPlayData(newData);
+            PrintOutput("Inserted new LogPlayData: " + newData.ToString());
+        }
+
+        public void TestInsertLogScoreData()
+        {
+            var newData = new LogScoreData();
+            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
+            newData.Time = Time.time.ToString();
+            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.PlayerID = 1;
+
+            this.db.InsertLogScoreData(newData);
+            PrintOutput("Inserted new LogScoreData: " + newData.ToString());
+        }
+
+        #endregion
+
+        #region Test Query Log Data
+
+        // Test that uses a simple select/where expression on a single table
         public void TestLINQLogData()
         {
-            List<LogData> list = this.db.FindAllLogData(x => x.Score > 5f);
+            List<LogInfoData> list = this.db.FindAllLogInfoData(x => x.Score > 5f);
             DumpAllData(list);
+        }
+
+        // Test query: get all MoodData, ordered by MoodValue
+        public void TestQuery_SingleTable1()
+        {
+            var tableName = this.db.GetTableName<LogMoodData>();
+            string query = "select * from \"" + tableName + "\" order by MoodValue";
+            List<LogMoodData> list = this.db.FindLogMoodDataByQuery(query);
+            DumpAllData(list);
+        }
+
+        // Test query: get number of LogPlayData for a given PlaySession with a high enough score
+        public void TestQuery_SingleTable2()
+        {
+            var tableName = this.db.GetTableName<LogPlayData>();
+            string targetPlaySessionId = "\"5\"";
+            string query = "select * from \"" + tableName + "\" where Session = " + targetPlaySessionId;
+            List<LogPlayData> list = this.db.FindLogPlayDataByQuery(query);
+            PrintOutput("Number of play data for PlaySession " + targetPlaySessionId + ": " + list.Count);
+        }
+
+
+        public class TestQueryResult
+        {
+            public int MoodValue { get; set; }
+        }
+
+        // Test query: get just the MoodValues (with a custom result class) from all LogMoodData entries
+        public void TestQuery_SingleTable3()
+        {
+            SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
+
+            string targetPlaySessionId = "\"5\"";
+            string query = "select LogMoodData.MoodValue from LogMoodData where LogMoodData.Session = " + targetPlaySessionId;
+            List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
+
+            string output = "Test values N: " + list.Count + "\n";
+            foreach (var obj in list)
+            {
+                output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
+            }
+            PrintOutput(output);
+        }
+
+
+        // Test query: join LogMoodData and LogPlayData by PlayerId (fake), match where they have the same PlayerId, return MoodData
+        public void TestQuery_JoinTables()
+        {
+            SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
+
+            string query = "select LogMoodData.MoodValue from LogMoodData inner join LogPlayData on LogMoodData.PlayerId = LogPlayData.PlayerId where LogMoodData.Session = \"5\"";
+            List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
+
+            string output = "Test values N: " + list.Count + "\n";
+            foreach (var obj in list)
+            {
+                output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
+            }
+            PrintOutput(output);
+        }
+
+        #endregion
+
+        #region Profiles
+
+        public void LoadProfile(int profileId)
+        {
+            this.db.LoadProfile(profileId);
+            PrintOutput("Loading profile " + profileId);
+        }
+
+        public void CreateCurrentProfile()
+        {
+            this.db.CreateProfile();
+            PrintOutput("Creating tables for selected profile");
+        }
+
+        public void DeleteCurrentProfile()
+        {
+            this.db.DropProfile();
+            PrintOutput("Deleting tables for current selected profile");
         }
 
         #endregion
@@ -216,7 +330,7 @@ namespace EA4S.Db.Management
             foreach (var data in list) {
                 output += (data.GetId() + ": " + data.ToString()) + "\n";
             }
-            PrintOutput(output); ;
+            PrintOutput(output);
         }
 
         public void DumpDataById(string id, IData data)
@@ -230,19 +344,18 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
-        #endregion
+        #endregion 
 
         #region Utilities
 
         void PrintOutput(string output)
         {
             Debug.Log(output);
-            OutputText.text = output;
+            OutputText.text = output.Substring(0, Mathf.Min(1000, output.Length));
         }
 
         void PrintArabicOutput(string output)
         {
-            //Debug.Log(fixed_output);
             OutputTextArabic.text = ArabicAlphabetHelper.PrepareStringForDisplay(output);
         }
 

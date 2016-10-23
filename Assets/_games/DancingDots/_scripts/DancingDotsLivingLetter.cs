@@ -36,7 +36,7 @@ namespace EA4S.DancingDots
 
 		TextMeshPro fullText;
 
-		LetterData letterData;
+		LL_LetterData letterData;
 
 		void Start()
 		{
