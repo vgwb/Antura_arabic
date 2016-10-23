@@ -12,7 +12,7 @@ namespace EA4S {
         public ScrollRect PlayerSelectables;
         public ScrollRect AvailableAvatars;
 
-        AnturaGlobalOptions globalOptions;
+        
 
         // Use this for initialization
         void Start() {
@@ -26,11 +26,11 @@ namespace EA4S {
                 rect.anchoredPosition = new Vector3((dim * i) + dim / 2, - dim / 2, 0);
             }
             
-            globalOptions = new AnturaGlobalOptions() { AvailablePlayers = new List<string>() { } };
-            globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AnturaGlobalOptions>(globalOptions) as AnturaGlobalOptions;
+            AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
 
             // Visual containers reorder
-            foreach (string playerKey in globalOptions.AvailablePlayers) {
+            foreach (string playerKey in AppManager.Instance.GameSettings.AvailablePlayers) {
                 Transform t = AvailableAvatars.content.FindChild(playerKey);
                 if (t)
                     t.SetParent(PlayerSelectables.content, false);
@@ -39,7 +39,7 @@ namespace EA4S {
 
         public void CreatePlayer(int _id) {
             AppManager.Instance.PlayerProfile.CreateNewPlayer(
-                new AnturaPlayerProfile() {
+                new PlayerProfile() {
                     Key = _id.ToString(),
                     Id = _id,
                     AvatarId = _id,
@@ -47,14 +47,14 @@ namespace EA4S {
         }
 
         public void SelectPlayerProfile(string _ppKey) {
-            if (globalOptions.AvailablePlayers.Contains(_ppKey)) {
-                AppManager.Instance.PlayerProfile.SetActivePlayer<AnturaPlayerProfile>(_ppKey);
+            if (AppManager.Instance.GameSettings.AvailablePlayers.Contains(_ppKey)) {
+                AppManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(_ppKey);
             } else {
                 CreatePlayer(int.Parse(_ppKey));
-                globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AnturaGlobalOptions>(globalOptions) as AnturaGlobalOptions;
+                AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             }
             // Visual containers reorder
-            foreach (string playerKey in globalOptions.AvailablePlayers) {
+            foreach (string playerKey in AppManager.Instance.GameSettings.AvailablePlayers) {
                 Transform t = AvailableAvatars.content.FindChild(playerKey);
                 if(t)
                     t.SetParent(PlayerSelectables.content, false);
