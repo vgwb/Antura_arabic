@@ -40,7 +40,6 @@ GameObject:
   - 114: {fileID: 114000013799797046}
   - 114: {fileID: 114000012473518256}
   - 114: {fileID: 114000010393948834}
-  - 114: {fileID: 114000012865845360}
   m_Layer: 5
   m_Name: ButtonPlaySoundTest
   m_TagString: Untagged
@@ -87,14 +86,14 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -140,17 +139,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114000012865845360
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014012673800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46166ce67a26442db9ade5df3591bc8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000013799797046
 MonoBehaviour:
   m_ObjectHideFlags: 1
