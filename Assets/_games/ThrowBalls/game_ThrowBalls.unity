@@ -2457,7 +2457,7 @@ GameObject:
   - 222: {fileID: 693580536}
   - 114: {fileID: 693580535}
   m_Layer: 5
-  m_Name: Pokeball3
+  m_Name: BallIcon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2500,7 +2500,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 53914387adf65bb4285c0afe97cd8096, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3370,7 +3370,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 390cc52f5f8896f4b8fffbdc9b23d9b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 390cc52f5f8896f4b8fffbdc9b23d9b6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3947,7 +3947,7 @@ GameObject:
   - 222: {fileID: 1181451183}
   - 114: {fileID: 1181451182}
   m_Layer: 5
-  m_Name: Pokeball1
+  m_Name: BallIcon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3990,7 +3990,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 53914387adf65bb4285c0afe97cd8096, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4047,7 +4047,7 @@ GameObject:
   - 222: {fileID: 1185106964}
   - 114: {fileID: 1185106963}
   m_Layer: 5
-  m_Name: Pokeball2
+  m_Name: BallIcon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4090,7 +4090,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 53914387adf65bb4285c0afe97cd8096, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5688,8 +5688,8 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 3, y: 4, z: 3}
-  - {x: 9, y: 1, z: -6}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     startWidth: 0.5
     endWidth: 0.5
@@ -6391,7 +6391,7 @@ MonoBehaviour:
   - {fileID: 1181451182}
   - {fileID: 1185106963}
   - {fileID: 693580535}
-  pokeballOnSprite: {fileID: 21300000, guid: 53914387adf65bb4285c0afe97cd8096, type: 3}
+  pokeballOnSprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
   pokeballOffSprite: {fileID: 21300000, guid: 32d067cf2772877458843d041b146d24, type: 3}
   letterHint: {fileID: 45078644}
   letterHintText: {fileID: 8357688}
@@ -6569,7 +6569,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1895825788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.25, z: -19.98}
+  m_LocalPosition: {x: 0, y: 3, z: -20}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -7237,19 +7237,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.6885094
+      value: -0.68850946
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607113
+      value: 0.040607117
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.71819454
+      value: 0.7181946
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220874
+      value: 0.09220875
       objectReference: {fileID: 0}
     - target: {fileID: 1000012776724264, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_Name

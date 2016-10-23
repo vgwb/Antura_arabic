@@ -6,8 +6,7 @@ namespace EA4S.ThrowBalls
 {
     public class BallController : MonoBehaviour
     {
-        public static readonly Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
-
+        public static Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
         public static BallController instance;
 
         public Rigidbody rigidBody;
@@ -35,6 +34,8 @@ namespace EA4S.ThrowBalls
         void Start()
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
+
+            INITIAL_BALL_POSITION.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
 
             Reset();
         }
@@ -98,9 +99,11 @@ namespace EA4S.ThrowBalls
                     case TouchPhase.Moved:
                         if (isHeld)
                         {
-                            Vector3 touchPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, cameraDistance));
+                            float clampedInputY = touch.position.y > Screen.height / 3 ? Screen.height / 3 : touch.position.y;
 
-                            float yzFactor = 1 - (touch.position.y / Screen.height) * 3;
+                            Vector3 touchPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, clampedInputY, cameraDistance));
+
+                            float yzFactor = 1 - (clampedInputY / Screen.height) * 3;
                             touchPosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
                             touchPosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
 
@@ -145,9 +148,11 @@ namespace EA4S.ThrowBalls
                 return;
             }
 
-            Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
+            float clampedInputY = Input.mousePosition.y > Screen.height / 3 ? Screen.height / 3 : Input.mousePosition.y;
 
-            float yzFactor = 1 - (Input.mousePosition.y / Screen.height) * 3;
+            Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, clampedInputY, cameraDistance));
+
+            float yzFactor = 1 - (clampedInputY / Screen.height) * 3;
             mousePosInWorldUnits.y = INITIAL_BALL_POSITION.y - yzFactor * yzStretchRange;
             mousePosInWorldUnits.z = INITIAL_BALL_POSITION.z - yzFactor * yzStretchRange;
 
