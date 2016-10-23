@@ -11,7 +11,7 @@ namespace EA4S.ThrowBalls
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 3;
-        public const int MAX_NUM_BALLS = 30000;
+        public const int MAX_NUM_BALLS = 3;
 
         new public static ThrowBallsGameManager Instance;
         new public ThrowBallsGameplayInfo GameplayInfo;
@@ -220,9 +220,6 @@ namespace EA4S.ThrowBalls
 
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
-
-            return;
-
             if (isRoundOngoing)
             {
                 numRoundsWon++;
@@ -257,7 +254,8 @@ namespace EA4S.ThrowBalls
 
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
-            correctLetterCntrl.MoveTo(0, 6.44f, -29.4f);
+            correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
+            correctLetterCntrl.transform.rotation = Quaternion.Euler(-29, 180, 0);
             correctLetterCntrl.Show();
 
             yield return new WaitForSeconds(1.3f);
@@ -368,7 +366,7 @@ namespace EA4S.ThrowBalls
 
         private LetterController.MotionVariation GetMotionOfRound()
         {
-            switch (roundNumber)
+            switch (numRoundsWon + 1)
             {
                 case 1:
                     return LetterController.MotionVariation.Idle;
@@ -387,7 +385,7 @@ namespace EA4S.ThrowBalls
 
         private LetterController.PropVariation GetPropOfRound()
         {
-            switch (roundNumber)
+            switch (numRoundsWon + 1)
             {
                 case 1:
                     return LetterController.PropVariation.Nothing;

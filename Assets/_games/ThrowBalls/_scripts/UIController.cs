@@ -34,7 +34,7 @@ namespace EA4S.ThrowBalls
 
             foreach (Image image in pokeballImages)
             {
-                image.sprite = pokeballOnSprite;
+                image.enabled = true;
             }
             
             letterHint.SetActive(false);
@@ -44,7 +44,7 @@ namespace EA4S.ThrowBalls
 
         public void OnBallLost()
         {
-            //pokeballImages[--numPokeballs].sprite = pokeballOffSprite;
+            pokeballImages[--numPokeballs].enabled = false;
         }
 
         public void OnRoundStarted(LL_LetterData _data)

@@ -57,7 +57,7 @@ namespace EA4S.ThrowBalls
         {
             Vector3 centerPosition = center.transform.position;
             float cameraDistance = Mathf.Abs(Camera.main.transform.position.z - centerPosition.z);
-            cameraDistance = 24f;
+            cameraDistance = 23f;
             centerPosition.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
             center.transform.position = centerPosition;
         }
@@ -82,9 +82,6 @@ namespace EA4S.ThrowBalls
 
             Vector3 projectedCenter = ball.transform.position;
             projectedCenter.y = 1.2f;
-            //projectedCenter.z += 4;
-
-            //direction *= 4;
 
             ProjectLineRendererController.instance.SetPoints(new Vector3[] { projectedCenter, projectedCenter + direction });
         }
