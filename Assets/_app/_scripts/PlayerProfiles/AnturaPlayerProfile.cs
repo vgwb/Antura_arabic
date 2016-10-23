@@ -5,7 +5,7 @@ using ModularFramework.Modules;
 namespace EA4S {
 
     [Serializable]
-    public class AnturaPlayerProfile : IPlayerProfile {
+    public class PlayerProfile : IPlayerProfile {
 
         public string Key { get; set; }
         public int Id;

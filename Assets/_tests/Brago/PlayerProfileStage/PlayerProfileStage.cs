@@ -20,7 +20,7 @@ namespace EA4S.Test {
 
             if (AvailablePlayersId.Count == 0) {
                 AppManager.Instance.PlayerProfile.CreateNewPlayer(
-                    new AnturaPlayerProfile() {
+                    new PlayerProfile() {
                         Key = (globalOptions.AvailablePlayers.Count + 1).ToString(),
                         Id = globalOptions.AvailablePlayers.Count + 1,
                         AvatarId = globalOptions.AvailablePlayers.Count + 1,
@@ -29,9 +29,9 @@ namespace EA4S.Test {
 
             AvailablePlayersId = AppManager.Instance.PlayerProfile.Options.AvailablePlayers;
             if (AvailablePlayersId.Count > 0)
-                AppManager.Instance.PlayerProfile.SetActivePlayer<AnturaPlayerProfile>(AvailablePlayersId[0]);
+                AppManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(AvailablePlayersId[0]);
 
-            AnturaPlayerProfile player = AppManager.Instance.PlayerProfile.ActivePlayer as AnturaPlayerProfile;
+            PlayerProfile player = AppManager.Instance.PlayerProfile.ActivePlayer as PlayerProfile;
 
             //Debug.LogFormat("{1}{0}{2}{0}{3}{0}{4}{0}", Environment.NewLine, player.Id, player.Name, player.Age);
             //AppManager.Instance.PlayerProfile.DeleteAllPlayerProfiles();
