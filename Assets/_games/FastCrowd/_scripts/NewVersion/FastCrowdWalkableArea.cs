@@ -5,11 +5,15 @@ using UnityEngine;
 public class FastCrowdWalkableArea : MonoBehaviour
 {
     public GameObject[] spawnPoints;
-    Collider[] colliders;
+    BoxCollider[] colliders;
+
+    // Use a different collider for random targets
+    public BoxCollider[] walkingTargets;
+    
 
     void Awake()
     {
-        colliders = GetComponentsInChildren<Collider>(false);
+        colliders = GetComponentsInChildren<BoxCollider>(false);
     }
 
     public Vector3 GetFurthestSpawn(List<FastCrowdLivingLetter> letters)
@@ -38,22 +42,51 @@ public class FastCrowdWalkableArea : MonoBehaviour
         return bestSpawn;
     }
 
+    public bool IsInside(Vector3 pos, bool limitToWalkingTargets)
+    {
+        var colliderSet = limitToWalkingTargets ? walkingTargets : colliders;
+
+        for (int i = 0, count = colliderSet.Length; i < count; ++i)
+        {
+            var localPos = colliderSet[i].transform.InverseTransformPoint(pos) - colliderSet[i].center;
+            var colliderSize = colliderSet[i].size;
+
+            if (localPos.x >= -colliderSize.x * 0.5f &&
+                localPos.x <= colliderSize.x * 0.5f &&
+                localPos.y >= -colliderSize.y * 0.5f &&
+                localPos.y <= colliderSize.y * 0.5f)
+                return true;
+        }
+
+        return false;
+    }
+
     public Vector3 GetRandomPosition()
     {
-        Vector3 randomPosition;
-        EA4S.GameplayHelper.RandomPointInWalkableArea(transform.position, 20f, out randomPosition);
+        BoxCollider randomCollider = walkingTargets[UnityEngine.Random.Range(0, walkingTargets.Length)];
+
+        Vector3 randomLocalPos = (Vector3.right * (UnityEngine.Random.value - 0.5f) * randomCollider.size.x + Vector3.up * (UnityEngine.Random.value - 0.5f) * randomCollider.size.y) + randomCollider.center;
+        Vector3 randomPosition = randomCollider.transform.TransformPoint(randomLocalPos);
+        randomPosition.y = 0;
+
         return randomPosition;
     }
 
 
-    public Vector3 GetNearestPoint(Vector3 pos)
+    public Vector3 GetNearestPoint(Vector3 pos, bool limitToWalkingTargets = false)
     {
         Vector3 nearest = pos;
         float nearestDistance = float.PositiveInfinity;
 
-        for (int i = 0, count = colliders.Length; i < count; ++i)
+        var colliderSet = limitToWalkingTargets ? walkingTargets : colliders;
+
+        for (int i = 0, count = colliderSet.Length; i < count; ++i)
         {
-            var nearPos = colliders[i].ClosestPointOnBounds(pos);
+            var localPos = colliderSet[i].transform.InverseTransformPoint(pos) - colliderSet[i].center;
+            var colliderSize = colliderSet[i].size;
+            localPos.x = Mathf.Clamp(localPos.x, -colliderSize.x * 0.5f, colliderSize.x * 0.5f);
+            localPos.y = Mathf.Clamp(localPos.y, -colliderSize.y * 0.5f, colliderSize.y * 0.5f);
+            var nearPos = colliderSet[i].transform.TransformPoint(localPos + colliderSet[i].center);
 
             float distance = Vector3.Distance(nearPos, pos);
             if (distance < nearestDistance)
@@ -65,7 +98,7 @@ public class FastCrowdWalkableArea : MonoBehaviour
 
         return nearest;
     }
-    
+
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
