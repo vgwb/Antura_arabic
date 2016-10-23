@@ -20,7 +20,7 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},T{3}",
+            return string.Format("S{0},T{1},P{2},MV{3}",
                 Session,
                 Time,
                 PlayerID,

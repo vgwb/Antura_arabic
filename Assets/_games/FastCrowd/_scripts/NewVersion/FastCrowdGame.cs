@@ -108,8 +108,8 @@ namespace EA4S.FastCrowd
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
             {
                 var question = CurrentQuestion.GetQuestion();
-                popupWidget.SetWord((WordData)question);
-                Context.GetAudioManager().PlayWord((WordData)question);
+                popupWidget.SetWord((LL_WordData)question);
+                Context.GetAudioManager().PlayWord((LL_WordData)question);
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
             {
@@ -118,7 +118,7 @@ namespace EA4S.FastCrowd
                 {
                     Debug.Log(CurrentChallenge[i]);
 
-                    var word = ((WordData)CurrentChallenge[i]).Word;
+                    var word = ((LL_WordData)CurrentChallenge[i]).Word;
 
                     if (i == 0)
                     stringListOfWords = word;
@@ -139,14 +139,14 @@ namespace EA4S.FastCrowd
 
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetMessage(question.TextForLivingLetter, true);
-                Context.GetAudioManager().PlayLetter((LetterData)question);
+                Context.GetAudioManager().PlayLetter((LL_LetterData)question);
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
             {
                 popupWidget.SetTitle("", false);
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetMessage("Number " + QuestionNumber, true);
-                Context.GetAudioManager().PlayWord((WordData)question);
+                Context.GetAudioManager().PlayWord((LL_WordData)question);
             }
         }
     }

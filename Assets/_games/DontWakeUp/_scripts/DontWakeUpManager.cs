@@ -58,7 +58,7 @@ namespace EA4S.DontWakeUp
         public Sprite FailFall;
 
         [HideInInspector]
-        public WordData currentWord;
+        public LL_WordData currentWord;
 
         [HideInInspector]
         public DontWakeUpMinigameState currentState;

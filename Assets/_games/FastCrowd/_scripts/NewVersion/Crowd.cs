@@ -70,7 +70,16 @@ namespace EA4S.FastCrowd
             }
 
             if (dragging != null)
+            {
                 dragging.StartDragging(draggingPosition - dragging.transform.position);
+
+                var data = dragging.GetComponent<LetterObjectView>().Model.Data;
+
+                if (data is LL_LetterData)
+                    FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetter((LL_LetterData)data);
+                else if (data is LL_WordData)
+                    FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayWord((LL_WordData)data);
+            }
         }
 
         void OnPointerUp()

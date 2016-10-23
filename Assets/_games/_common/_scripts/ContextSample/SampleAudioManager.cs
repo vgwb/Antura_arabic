@@ -29,14 +29,14 @@ namespace EA4S
             }
         }
 
-        public IAudioSource PlayLetter(LetterData letterId)
+        public IAudioSource PlayLetter(LL_LetterData letterId)
         {
             AudioManager.I.PlayLetter(letterId.Key);
             return new SampleAudioSource(null);
 
         }
 
-        public IAudioSource PlayWord(WordData wordId)
+        public IAudioSource PlayWord(LL_WordData wordId)
         {
             AudioManager.I.PlayWord(wordId.Key);
             return new SampleAudioSource(null);

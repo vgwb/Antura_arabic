@@ -79,7 +79,7 @@ namespace EA4S.Egg
             {
                 game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
 
-                game.Context.GetAudioManager().PlayLetter(((LetterData)game.questionManager.GetlLetterDataSequence()[0]));
+                game.Context.GetAudioManager().PlayLetter(((LL_LetterData)game.questionManager.GetlLetterDataSequence()[0]));
                 game.eggController.StartTrembling();
                 
                 if(noColor)
