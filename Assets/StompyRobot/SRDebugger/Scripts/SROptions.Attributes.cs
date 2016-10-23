@@ -65,7 +65,7 @@ public partial class SROptions
         set { showProjection = value; }
     }
 
-    private float elasticity = 4.5f;
+    private float elasticity = 17f;
 
     // Options will be grouped by category
     [Category("ThrowBalls")]
