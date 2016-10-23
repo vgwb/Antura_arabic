@@ -53,6 +53,8 @@ namespace EA4S.ThrowBalls
 
         private MotionVariation motionVariation;
 
+        public GameObject shadow;
+
         // Use this for initialization
         void Start()
         {
@@ -77,13 +79,16 @@ namespace EA4S.ThrowBalls
             {
                 case PropVariation.StaticPileOfCrates:
                     cratePileController.Enable();
+                    shadow.SetActive(false);
                     break;
                 case PropVariation.SwervingPileOfCrates:
                     cratePileController.Enable();
                     cratePileController.SetSwerving();
+                    shadow.SetActive(false);
                     break;
                 case PropVariation.Bush:
                     bushController.Enable();
+                    shadow.SetActive(false);
                     break;
                 default:
                     break;
@@ -172,21 +177,21 @@ namespace EA4S.ThrowBalls
             {
                 AudioManager.I.PlaySfx(Sfx.BallHit);
 
-                /*if (tag == Constants.TAG_CORRECT_LETTER)
+                if (tag == Constants.TAG_CORRECT_LETTER)
                 {
                     ThrowBallsGameManager.Instance.OnCorrectLetterHit(this);
                 }
 
                 else
-                {*/
-                animator.Play("run");
+                {
+                    animator.Play("run");
                     if (animationResetter != null)
                     {
                         StopCoroutine(animationResetter);
                     }
                     animationResetter = ResetAnimation();
                     StartCoroutine(animationResetter);
-                //}
+                }
             }
 
             else if (collision.gameObject.tag == Constants.TAG_RAIL)
@@ -328,6 +333,11 @@ namespace EA4S.ThrowBalls
                     if (transform.rotation.eulerAngles.z != 0 && !isProppingUp)
                     {
                         PropUp(0.2f);
+                    }
+
+                    if (Mathf.Approximately(transform.rotation.eulerAngles.z, 0) && !isProppingUp)
+                    {
+                        shadow.SetActive(true);
                     }
                 }
 
@@ -503,6 +513,7 @@ namespace EA4S.ThrowBalls
             isGrounded = false;
             isStill = false;
             SetIsColliderEnabled(true);
+            shadow.SetActive(true);
         }
     }
 }
