@@ -22,6 +22,9 @@ namespace EA4S.Maze
 
 		// Update is called once per frame
 		void Update () {
+			if (character.characterIsMoving)
+				return;
+			
 			if(isInside) {
 				character.calculateMovementAndRotation();
 			}
