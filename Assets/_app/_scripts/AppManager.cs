@@ -9,8 +9,6 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.6.4";
-
         new public AppSettings GameSettings = new AppSettings();
 
         new public static AppManager Instance {
@@ -39,6 +37,7 @@ namespace EA4S
 
         public void InitDataAI()
         {
+
             if (DB == null)
                 DB = new DatabaseManager(); 
             if (Teacher == null)

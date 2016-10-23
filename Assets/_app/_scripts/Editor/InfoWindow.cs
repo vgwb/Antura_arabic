@@ -17,7 +17,7 @@ namespace EA4S.Editor
         void OnGUI()
         {
             this.titleContent.text = "EA4S Antura";
-            EditorGUILayout.LabelField("Hi there! I'm Antura and i'm version " + AppManager.AppVersion);
+            EditorGUILayout.LabelField("Hi there! I'm Antura and i'm version " + Config.AppVersion);
 
             DrawFooterLayout(Screen.width - 15);
         }
@@ -31,11 +31,11 @@ namespace EA4S.Editor
             width = width - margin * 2;
 
             if (GUILayout.Button("GitHub", GUILayout.Width(width / 2f - margin))) {
-                Application.OpenURL(EA4S.Config.Current.Url_Github_Repository);
+                Application.OpenURL(Config.UrlGithubRepository);
         }
 
             if (GUILayout.Button("Trello", GUILayout.Width(width / 2f - margin))) {
-                Application.OpenURL(EA4S.Config.Current.Url_Trello);
+                Application.OpenURL(Config.UrlTrello);
             }
 
             EditorGUILayout.EndHorizontal();
