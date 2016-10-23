@@ -23,7 +23,7 @@ using System;
 namespace ModularFramework.Modules {
     [Serializable]
     public class PlayerProfile : IPlayerProfile {
-        public string Id { get; set; }
+        public string Key { get; set; }
         public string Email;
         public int Age;
         public int ProgressionRate = 0;

@@ -18,7 +18,7 @@ namespace EA4S.PianoWoof
         public TMPro.TMP_Text tileText;
 
 
-        public void SetLetter(LetterData _data)
+        public void SetLetter(LL_LetterData _data)
         {
             letterObject = new LLController(_data);
             var text = _data.TextForLivingLetter;

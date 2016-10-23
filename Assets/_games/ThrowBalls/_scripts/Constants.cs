@@ -16,8 +16,8 @@ public class Constants
     /*public static readonly Vector3[] LETTER_POSITIONS = new Vector3[] { new Vector3(-6.72f, 6.75f -3.5f, -12f + 4.5f),
         new Vector3(12.1f, 10.7f -3.5f, 1.5f + 4.5f), new Vector3(0f, 16.7f -3.5f, 20.34f)};*/
 
-    public static readonly Vector3[] LETTER_POSITIONS = new Vector3[] { new Vector3(-6.9025f, 0.56f, -5.274f),
-        new Vector3(12.386f, 0.51f, 5.688f), new Vector3(0f, 0.51f, 20.34f)};
+    public static readonly Vector3[] LETTER_POSITIONS = new Vector3[] { new Vector3(-13.6725f, 0.56f, -8.246f),
+        new Vector3(17.0414f, 0.51f, 3.493f), new Vector3(0f, 0.51f, 13.23f)};
 
     public const string TAG_CORRECT_LETTER = "CorrectLetter";
     public const string TAG_WRONG_LETTER = "WrongLetter";
@@ -27,7 +27,7 @@ public class Constants
 
     public static readonly Vector3 GRAVITY = new Vector3(0, -150f, 0);
 
-    // This is since in some Update methods, we need to divide by gravity.
+    // This exists since in some Update methods, we need to divide by gravity.
     // Division is much more expensive than multiplication, so do the division once and store it here:
     public static readonly Vector3 GRAVITY_INVERSE = new Vector3(0, 1f / -150f, 0);
 }

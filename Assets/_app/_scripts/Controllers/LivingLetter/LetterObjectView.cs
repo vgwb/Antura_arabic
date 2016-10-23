@@ -74,9 +74,6 @@ namespace EA4S
         public float MergedElementsDistance = 1;
         [HideInInspector]
         public bool IsMerged;
-        [HideInInspector]
-        public DropSingleArea ActualDropArea;
-        //DropState dropState = DropState.off;
         #endregion
 
         #region Init
@@ -86,7 +83,7 @@ namespace EA4S
         void setDummyLetterObject()
         {
             var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
-            Init(new LetterData(letterData.GetId()));
+            Init(new LL_LetterData(letterData.GetId()));
             //Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
         }
 

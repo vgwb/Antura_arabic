@@ -32,7 +32,7 @@ namespace EA4S
         public GameObject TextGO;
         TextMeshPro myText;
 
-        LetterData letterData;
+        LL_LetterData letterData;
 
         void Start()
         {

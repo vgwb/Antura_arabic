@@ -25,7 +25,7 @@ namespace EA4S
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                LL_WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
 
                 if (newWordData == null)
                     return;

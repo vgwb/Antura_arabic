@@ -64,8 +64,8 @@ namespace ModularFramework.Modules
         /// <param name="_extProfile"></param>
         /// <returns></returns>
         public IPlayerProfile CreateNewPlayer(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null) {
-            if (!Options.AvailablePlayers.Exists(p => p == _newPlayer.Id)) {
-                Options.AvailablePlayers.Add(_newPlayer.Id);
+            if (!Options.AvailablePlayers.Exists(p => p == _newPlayer.Key)) {
+                Options.AvailablePlayers.Add(_newPlayer.Key);
                 SavePlayerSettings(_newPlayer);
                 SaveAllOptions();
             }
@@ -88,7 +88,7 @@ namespace ModularFramework.Modules
             if (PlayerPrefs.HasKey(GetStoreKeyForPlayer(_playerId))) {
                 string serializableProfile = PlayerPrefs.GetString(GetStoreKeyForPlayer(_playerId));
                 IPlayerProfile returnProfile = JsonUtility.FromJson<T>(serializableProfile);
-                returnProfile.Id = _playerId;
+                returnProfile.Key = _playerId;
                 return returnProfile;
             } else {
                 Debug.LogFormat("Profile {0} not found.", _playerId);
@@ -103,12 +103,12 @@ namespace ModularFramework.Modules
         /// <param name="_extProfile"></param>
         public void SavePlayerSettings(IPlayerProfile _newPlayer, IPlayerExtendedProfile _extProfile = null)
         {
-            string storeKey = GetStoreKeyForPlayer(_newPlayer.Id);
+            string storeKey = GetStoreKeyForPlayer(_newPlayer.Key);
             string serializedObjs = JsonUtility.ToJson(_newPlayer);
             if (serializedObjs != null)
                 PlayerPrefs.SetString(storeKey, serializedObjs);
             else
-                Debug.Log("Unable to serialize player profile : " + _newPlayer.Id);
+                Debug.Log("Unable to serialize player profile : " + _newPlayer.Key);
             PlayerPrefs.Save();
         }
 
