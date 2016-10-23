@@ -170,6 +170,8 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
+                AudioManager.I.PlaySfx(Sfx.BallHit);
+
                 /*if (tag == Constants.TAG_CORRECT_LETTER)
                 {
                     ThrowBallsGameManager.Instance.OnCorrectLetterHit(this);
@@ -177,7 +179,7 @@ namespace EA4S.ThrowBalls
 
                 else
                 {*/
-                    animator.Play("run");
+                animator.Play("run");
                     if (animationResetter != null)
                     {
                         StopCoroutine(animationResetter);
