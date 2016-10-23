@@ -35,6 +35,7 @@ namespace EA4S.ThrowBalls
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
 
+            cameraDistance = 24;
             INITIAL_BALL_POSITION.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
 
             Reset();
