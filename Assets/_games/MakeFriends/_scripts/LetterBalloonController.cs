@@ -16,7 +16,7 @@ namespace EA4S.MakeFriends
         public Renderer balloonRenderer;
         public Animator animator;
         [HideInInspector]
-        public LetterData letterData;
+        public LL_LetterData letterData;
 
         private struct MoveParameters
         {
@@ -33,7 +33,7 @@ namespace EA4S.MakeFriends
         }
             
 
-        public void Init(LetterData _data)
+        public void Init(LL_LetterData _data)
         {
             letterData = _data;
             displayedText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Isolated_Unicode);

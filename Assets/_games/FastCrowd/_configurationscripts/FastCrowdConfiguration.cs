@@ -17,8 +17,6 @@
         #region Game configurations
         public float Difficulty { get; set; }
         public FastCrowdVariation Variation { get; set; }
-        public float PlayTime { get; set; }
-        public int MaxNumbOfWrongLettersNoise { get; set; }
         #endregion
         #region Behaviour configurations
         public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
@@ -58,8 +56,6 @@
             Context = new SampleGameContext();
             Difficulty = 0.5f;
             BehaviourSettings = new LetterBehaviour.BehaviourSettings();
-            MaxNumbOfWrongLettersNoise = 3;
-            PlayTime = 90;
         }
 
         #region external configuration call
@@ -67,13 +63,6 @@
             instance = new FastCrowdConfiguration() {
                 Difficulty = _difficulty,
                 Variation = (FastCrowdVariation)_variation,
-            };
-        }
-        public static void SetConfiguration(float _difficulty, int _variation, float _playTime) {
-            instance = new FastCrowdConfiguration() {
-                Difficulty = _difficulty,
-                Variation = (FastCrowdVariation)_variation,
-                PlayTime = _playTime,
             };
         }
         #endregion

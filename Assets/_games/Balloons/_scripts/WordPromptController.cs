@@ -18,7 +18,7 @@ namespace Balloons
         }
 
 
-        public void DisplayWord(List<LetterData> wordLetters)
+        public void DisplayWord(List<LL_LetterData> wordLetters)
         {
             for (int i = 0; i < wordLetters.Count; i++)
             {

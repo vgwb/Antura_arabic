@@ -3,7 +3,6 @@
 
     public enum MiniGameCode
     {
-        Assessment = 31,
         AlphabetSong = 5,
         Balloons_counting = 6,
         Balloons_letter = 7,
@@ -33,20 +32,17 @@
         ThrowBalls_letters = 27,
         ThrowBalls_words = 28,
         Tobogan_letters = 29,
-        Tobogan_words = 30
-    }
-
-    public enum MinigameState
-    {
-        Initializing,
-        GameIntro,
-        RoundIntro,
-        Playing,
-        Paused,
-        RoundEnd,
-        GameEnd,
-        Result,
-        Award
+        Tobogan_words = 30,
+        Assessment_Letters = 31,
+        Assessment_LettersMatchShape = 32,
+        Assessment_3 = 33,
+        Assessment_4 = 34,
+        Assessment_5 = 35,
+        Assessment_Alphabet = 36,
+        Assessment_7 = 37,
+        Assessment_8 = 38,
+        Assessment_9 = 39,
+        Assessment_10 = 40
     }
 
 }

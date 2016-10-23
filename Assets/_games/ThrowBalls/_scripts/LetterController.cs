@@ -33,7 +33,7 @@ namespace EA4S.ThrowBalls
 
         private float yEquilibrium;
 
-        private LetterData letterData;
+        private LL_LetterData letterData;
 
         private IEnumerator customGravityCoroutine;
         private IEnumerator propUpCoroutine;
@@ -52,6 +52,8 @@ namespace EA4S.ThrowBalls
         private bool isStill = false;
 
         private MotionVariation motionVariation;
+
+        public GameObject shadow;
 
         // Use this for initialization
         void Start()
@@ -77,13 +79,16 @@ namespace EA4S.ThrowBalls
             {
                 case PropVariation.StaticPileOfCrates:
                     cratePileController.Enable();
+                    shadow.SetActive(false);
                     break;
                 case PropVariation.SwervingPileOfCrates:
                     cratePileController.Enable();
                     cratePileController.SetSwerving();
+                    shadow.SetActive(false);
                     break;
                 case PropVariation.Bush:
                     bushController.Enable();
+                    shadow.SetActive(false);
                     break;
                 default:
                     break;
@@ -155,13 +160,13 @@ namespace EA4S.ThrowBalls
             return Mathf.Abs(vector1.x - vector2.x) <= threshold && Mathf.Abs(vector1.y - vector2.y) <= threshold && Mathf.Abs(vector1.z - vector2.z) <= threshold;
         }
 
-        public void SetLetter(LetterData _data)
+        public void SetLetter(LL_LetterData _data)
         {
             letterData = _data;
             letterTextView.text = letterData.TextForLivingLetter;
         }
 
-        public LetterData GetLetter()
+        public LL_LetterData GetLetter()
         {
             return letterData;
         }
@@ -170,6 +175,8 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL)
             {
+                AudioManager.I.PlaySfx(Sfx.BallHit);
+
                 if (tag == Constants.TAG_CORRECT_LETTER)
                 {
                     ThrowBallsGameManager.Instance.OnCorrectLetterHit(this);
@@ -326,6 +333,11 @@ namespace EA4S.ThrowBalls
                     if (transform.rotation.eulerAngles.z != 0 && !isProppingUp)
                     {
                         PropUp(0.2f);
+                    }
+
+                    if (Mathf.Approximately(transform.rotation.eulerAngles.z, 0) && !isProppingUp)
+                    {
+                        shadow.SetActive(true);
                     }
                 }
 
@@ -501,6 +513,7 @@ namespace EA4S.ThrowBalls
             isGrounded = false;
             isStill = false;
             SetIsColliderEnabled(true);
+            shadow.SetActive(true);
         }
     }
 }

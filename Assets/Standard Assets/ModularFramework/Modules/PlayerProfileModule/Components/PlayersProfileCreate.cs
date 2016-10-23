@@ -48,11 +48,11 @@ namespace ModularFramework.Components {
         /// <param name="closeWindow">If true close this window after creation.</param>
         public void CreateNewPlayerProfile(bool closeWindow) {
             IPlayerProfile newPP = GameManager.Instance.PlayerProfile.CreateNewPlayer(new PlayerProfile() {
-                Id = Username.text,
+                Key = Username.text,
             });
             if (closeWindow)
                 GameManager.Instance.UIModule.HideUIContainer(Key);
-            GameManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(newPP.Id);
+            GameManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(newPP.Key);
         }
 
         #endregion

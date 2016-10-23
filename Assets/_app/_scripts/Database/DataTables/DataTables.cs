@@ -2,7 +2,7 @@
 namespace EA4S.Db
 {
     [System.Serializable]
-    public class MiniGameTable : SerializableDataTable<MiniGameData>{}
+    public class MiniGameTable : SerializableDataTable<MiniGameData> { }
 
     [System.Serializable]
     public class LetterTable : SerializableDataTable<LetterData> { }
@@ -12,9 +12,6 @@ namespace EA4S.Db
 
     [System.Serializable]
     public class PlaySessionTable : SerializableDataTable<PlaySessionData> { }
-
-    [System.Serializable]
-    public class AssessmentTable : SerializableDataTable<AssessmentData> { }
 
     [System.Serializable]
     public class LocalizationTable : SerializableDataTable<LocalizationData> { }
