@@ -7,7 +7,7 @@ namespace EA4S.Db.Management
     public class DatabaseLoader : MonoBehaviour
     {
         public DatabaseInputData inputData;
-        public Database database;
+        private Database database;
         public bool verbose;
 
         #region Loading
@@ -18,6 +18,8 @@ namespace EA4S.Db.Management
         public void LoadDatabase()
         {
             if (verbose) Debug.Log("Loading data from JSON files...");
+            this.database = Resources.Load<Database>("EA4S.Database");
+
             LoadDataFrom(inputData);
 
             if (verbose) Debug.Log("Finished loading!");
@@ -77,12 +79,6 @@ namespace EA4S.Db.Management
                 Debug.Log("Loading Rewards...");
                 var adapter = new RewardParser();
                 adapter.Parse(DBInputData.rewardDataAsset.text, database, database.GetRewardTable());
-            }
-
-            {
-                Debug.Log("Loading Assessment...");
-                var adapter = new AssessmentParser();
-                adapter.Parse(DBInputData.assessmentDataAsset.text, database, database.GetAssessmentTable());
             }
 
             {

@@ -8,42 +8,80 @@ namespace EA4S.Egg
 
         List<ILivingLetterData> lLetterDataSequence = new List<ILivingLetterData>();
 
-        WordData quetionWordData;
+        string questionDescription;
+
+        bool sequence;
 
         public QuestionManager(EggGame game)
         {
             this.game = game;
         }
 
-        public void StartNewQuestion()
+        public void StartNewQuestion(float difficulty, bool onlyLetter)
         {
-            //quetionWordData = null;
-            //lLetterDataSequence.Clear();
+            sequence = false;
 
-            //ILivingLetterData lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
+            lLetterDataSequence.Clear();
 
-            //if (lLetterData.DataType == LivingLetterDataType.Word)
-            //{
-            //    quetionWordData = ((WordData)lLetterData);
+            IQuestionPack questionPack = EggConfiguration.Instance.QuestionProvider.GetNextQuestion();
 
-            //    foreach (LetterData letter in ArabicAlphabetHelper.LetterDataListFromWord(quetionWordData.Word, AppManager.Instance.Letters))
-            //    {
-            //        lLetterDataSequence.Add(letter);
-            //    }
-            //}
-            //else if (lLetterData.DataType == LivingLetterDataType.Letter)
-            //{
-            //    while (lLetterDataSequence.Count < 6)
-            //    {
-            //        lLetterDataSequence.Add(lLetterData);
+            questionDescription = EggConfiguration.Instance.QuestionProvider.GetDescription();
 
-            //        do
-            //        {
-            //            lLetterData = EggConfiguration.Instance.QuestionProvider.GetNextData();
-            //        } while (lLetterDataSequence.Contains(lLetterData));
+            List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
+            List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-            //    }
-            //}
+            foreach (ILivingLetterData letterData in questionPack.GetCorrectAnswers())
+            {
+                correctAnswers.Add(letterData);
+            }
+
+            foreach (ILivingLetterData letterData in questionPack.GetWrongAnswers())
+            {
+                wrongAnswers.Add(letterData);
+            }
+
+            if (wrongAnswers.Count == 0)
+            {
+                sequence = true;
+            }
+
+            int numberOfLetters = 2; 
+
+            numberOfLetters += ((int)(difficulty * 5) + 1);
+
+            if (numberOfLetters > 8)
+            {
+                numberOfLetters = 8;
+            }
+
+            if (!sequence)
+            {
+                lLetterDataSequence.Add(correctAnswers[0]);
+
+                numberOfLetters += -1;
+
+                if (numberOfLetters > wrongAnswers.Count)
+                {
+                    numberOfLetters = wrongAnswers.Count;
+                }
+
+                for (int i = 0; i < numberOfLetters; i++)
+                {
+                    lLetterDataSequence.Add(wrongAnswers[i]);
+                }
+            }
+            else
+            {
+                if (numberOfLetters > correctAnswers.Count)
+                {
+                    numberOfLetters = correctAnswers.Count;
+                }
+
+                for (int i = 0; i < numberOfLetters; i++)
+                {
+                    lLetterDataSequence.Add(correctAnswers[i]);
+                }
+            }
         }
 
         public List<ILivingLetterData> GetlLetterDataSequence()
@@ -51,9 +89,14 @@ namespace EA4S.Egg
             return lLetterDataSequence;
         }
 
-        public WordData GetQuestionWordData()
+        public bool IsSequence()
         {
-            return quetionWordData;
+            return sequence;
         }
+
+        public string GetQuestionDescription()
+        {
+            return questionDescription;
+        } 
     }
 }

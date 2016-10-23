@@ -7,41 +7,52 @@
         Relax = 2,
         Lullaby = 3,
         Theme3 = 4,
-        Theme4 = 5
+        Theme4 = 5,
+        Theme6 = 6,
+        Theme7 = 7
     }
 
     public enum Sfx
     {
-        Hit,
-        BaloonPop,
-        DangerClock,
-        DangerClockLong,
-        GameTitle,
-        Win,
-        Lose,
-        UIPopup,
-        UIButtonClick,
-        UIPauseIn,
-        UIPauseOut,
-        CameraMovement,
-        AlarmClock,
-        LetterAngry,
-        LetterHappy,
-        LetterSad,
-        LetterHold,
-        LetterFear,
-        WalkieTalkie,
-        WheelStart,
-        WheelTick,
-        DogBarking,
-        DogSnoring,
-        DogSnorting,
-        OK,
-        KO,
-        Transition,
-        StarFlower,
-        StampOK,
-        Splat
+        AlarmClock = 13,
+        BallHit = 31,
+        BaloonPop = 2,
+        BushRustlingIn = 32,
+        BushRustlingOut = 33,
+        CameraMovement = 12,
+        CrateLandOnground = 34,
+        DangerClock = 3,
+        DangerClockLong = 4,
+        DogBarking = 22,
+        DogSnoring = 23,
+        DogSnorting = 24,
+        GameTitle = 5,
+        Hit = 1,
+        KO = 26,
+        LetterAngry = 14,
+        LetterFear = 18,
+        LetterHappy = 15,
+        LetterHold = 17,
+        LetterSad = 16,
+        Lose = 7,
+        OK = 25,
+        PipeBlowIn = 35,
+        PipeBlowOut = 36,
+        Poof = 37,
+        ScreenHit = 38,
+        Splat = 30,
+        StampOK = 29,
+        StarFlower = 28,
+        ThrowObj = 39,
+        Transition = 27,
+        UIButtonClick = 9,
+        UIPauseIn = 10,
+        UIPauseOut = 11,
+        UIPopup = 8,
+        WalkieTalkie = 19,
+        WheelStart = 20,
+        WheelTick = 21,
+        Win = 6
     }
 
     class AudioConfig
@@ -68,6 +79,12 @@
                     break;
                 case Music.Theme4:
                     eventName = "Music4";
+                    break;
+                case Music.Theme6:
+                    eventName = "Music6";
+                    break;
+                case Music.Theme7:
+                    eventName = "Music7";
                     break;
             }
             return eventName;
@@ -166,6 +183,33 @@
                     break;
                 case Sfx.Splat:
                     eventName = "Sfx/Splat";
+                    break;
+                case Sfx.BallHit:
+                    eventName = "Sfx/BallHit";
+                    break;
+                case Sfx.BushRustlingIn:
+                    eventName = "Sfx/BushRustlingIn";
+                    break;
+                case Sfx.BushRustlingOut:
+                    eventName = "Sfx/BushRustlingOut";
+                    break;
+                case Sfx.CrateLandOnground:
+                    eventName = "Sfx/CrateLandOnground";
+                    break;
+                case Sfx.PipeBlowIn:
+                    eventName = "Sfx/PipeBlowIn";
+                    break;
+                case Sfx.PipeBlowOut:
+                    eventName = "Sfx/PipeBlowOut";
+                    break;
+                case Sfx.Poof:
+                    eventName = "Sfx/Poof";
+                    break;
+                case Sfx.ScreenHit:
+                    eventName = "Sfx/ScreenHit";
+                    break;
+                case Sfx.ThrowObj:
+                    eventName = "Sfx/ThrowObj";
                     break;
             }
             return eventName;

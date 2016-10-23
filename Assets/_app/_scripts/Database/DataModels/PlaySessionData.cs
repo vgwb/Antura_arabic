@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace EA4S.Db
 {
+
     [Serializable]
     public class PlaySessionData : IData
     {
@@ -17,8 +18,6 @@ namespace EA4S.Db
         public string[] Words_previous;
         public string[] Phrases;
         public string[] Phrases_previous;
-        public AssessmentType AssessmentType;
-        public string AssessmentData;
         public List<MiniGameInPlaySession> Minigames;
 
         public string GetId()
@@ -37,7 +36,6 @@ namespace EA4S.Db
             }
             return output;
         }
-
     }
 
     [Serializable]

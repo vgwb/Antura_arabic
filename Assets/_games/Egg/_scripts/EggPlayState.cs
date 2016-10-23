@@ -1,4 +1,6 @@
-﻿namespace EA4S.Egg
+﻿using UnityEngine;
+
+namespace EA4S.Egg
 {
     public class EggPlayState : IGameState
     {
@@ -10,10 +12,10 @@
         int questionProgress;
         int correctAnswers;
 
-        bool anturaEntered;
-
         float nextStateTimer;
         bool toNextState;
+
+        float anturaProbabilityOfIn;
 
         public EggPlayState(EggGame game)
         {
@@ -24,7 +26,7 @@
         {
             letterOnSequence = 0;
 
-            gameModeOneLetter = game.questionManager.GetQuestionWordData() == null;
+            gameModeOneLetter = !game.questionManager.IsSequence();
 
             questionProgress = 0;
 
@@ -42,7 +44,22 @@
 
             EnableAllGameplayInput();
 
-            anturaEntered = false;
+            if(game.gameDifficulty < 0.25f)
+            {
+                anturaProbabilityOfIn = 0f;
+            }
+            else if(game.gameDifficulty < 0.5f)
+            {
+                anturaProbabilityOfIn = 0.20f;
+            }
+            else if(game.gameDifficulty < 0.75f)
+            {
+                anturaProbabilityOfIn = 0.40f;
+            }
+            else
+            {
+                anturaProbabilityOfIn = 0.60f;
+            }
 
             nextStateTimer = 2f;
             toNextState = false;
@@ -67,16 +84,7 @@
                     {
                         ILivingLetterData runLetterData;
 
-                        WordData questionWordData = game.questionManager.GetQuestionWordData();
-
-                        if (questionWordData == null)
-                        {
-                            runLetterData = game.questionManager.GetlLetterDataSequence()[0];
-                        }
-                        else
-                        {
-                            runLetterData = questionWordData;
-                        }
+                        runLetterData = game.questionManager.GetlLetterDataSequence()[0];
 
                         game.runLettersBox.AddRunLetter(runLetterData);
                     }
@@ -89,26 +97,6 @@
         public void UpdatePhysics(float delta)
         {
 
-        }
-
-        void AnturaExit()
-        {
-            game.antura.Exit(EnableAllGameplayInput);
-        }
-
-        void AnturaEnter()
-        {
-            game.antura.Enter(AnturaButtonsOut);
-        }
-
-        void AnturaButtonsOut()
-        {
-            game.eggButtonBox.AnturaButtonOut(AnturaButtonsIn, 0.5f, 1f);
-        }
-
-        void AnturaButtonsIn()
-        {
-            game.eggButtonBox.AnturaButtonIn(AnturaExit, 0.5f, 1f);
         }
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
@@ -131,15 +119,29 @@
             }
 
             questionProgress++;
+
+            if ((questionProgress / correctAnswers) == 1f)
+            {
+                game.Context.GetAudioManager().PlaySound(Sfx.Hit);
+            }
+            else
+            {
+                game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
+            }
+            
             game.eggController.Cracking(questionProgress / correctAnswers);
         }
 
         void NegativeFeedback()
         {
-            if(!anturaEntered)
+            if(!game.eggController.isNextToExit)
             {
-                anturaEntered = true;
-                AnturaEnter();
+                float anturaStartEnter = Random.Range(0f, 1f);
+
+                if (anturaStartEnter < anturaProbabilityOfIn)
+                {
+                    AnturaEnter();
+                }
             }
 
             letterOnSequence = 0;
@@ -151,16 +153,24 @@
             game.eggController.MoveNext(1f, EnableAllGameplayInput);
         }
 
-        void EnableAllGameplayInput()
+        void AnturaExit()
         {
-            game.eggButtonBox.EnableButtonsInput();
-            game.eggController.EnableInput();
+            game.antura.Exit(EnableAllGameplayInput);
         }
 
-        void DisableAllGameplayInput()
+        void AnturaEnter()
         {
-            game.eggButtonBox.DisableButtonsInput();
-            game.eggController.DisableInput();
+            game.antura.Enter(AnturaButtonsOut);
+        }
+
+        void AnturaButtonsOut()
+        {
+            game.eggButtonBox.AnturaButtonOut(AnturaButtonsIn, 0.5f, 1f);
+        }
+
+        void AnturaButtonsIn()
+        {
+            game.eggButtonBox.AnturaButtonIn(AnturaExit, 0.5f, 1f);
         }
 
         void OnEggExitComplete()
@@ -177,33 +187,40 @@
             DisableAllGameplayInput();
             game.stagePositiveResult = true;
 
-            WordData questionWordData = game.questionManager.GetQuestionWordData();
-
-            if (questionWordData == null)
+            bool isSequence = game.questionManager.IsSequence();
+            
+            if (isSequence)
             {
-                OnLightUpButtonsComplete();
+                game.eggButtonBox.LightUpButtons(false, true, false, 1f, 1f, OnLightUpButtonsComplete);
             }
             else
             {
-                game.eggButtonBox.LightUpButtons(true, false, 1f, 1f, OnLightUpButtonsComplete);
+                OnLightUpButtonsComplete();
             }
-
         }
 
         void OnLightUpButtonsComplete()
         {
-            WordData questionWordData = game.questionManager.GetQuestionWordData();
+            bool isSequence = game.questionManager.IsSequence();
 
-            if (questionWordData == null)
+            if(!isSequence)
             {
-                game.eggButtonBox.GetButtons(false)[0].LightUp(true, 1f, 1, null);
+                game.eggButtonBox.GetButtons(false)[0].LightUp(false, true, 1f, 1, null);
             }
-            else
-            {
-                game.Context.GetAudioManager().PlayWord(questionWordData);
-            }
-
+            
             toNextState = true;
+        }
+
+        void EnableAllGameplayInput()
+        {
+            game.eggButtonBox.EnableButtonsInput();
+            game.eggController.EnableInput();
+        }
+
+        void DisableAllGameplayInput()
+        {
+            game.eggButtonBox.DisableButtonsInput();
+            game.eggController.DisableInput();
         }
     }
 }

@@ -17,8 +17,6 @@ namespace EA4S.Db
         [SerializeField]
         private PlaySessionTable playSessionTable;
         [SerializeField]
-        private AssessmentTable assessmentTable;
-        [SerializeField]
         private LocalizationTable localizationTable;
         [SerializeField]
         private PhraseTable phraseTable;
@@ -30,17 +28,16 @@ namespace EA4S.Db
 
         #region Access
 
-        public List<T> FindAll<T>(SerializableDataTable<T> table, Predicate<T> predicate) where T : IData 
+        public List<T> FindAll<T>(SerializableDataTable<T> table, Predicate<T> predicate) where T : IData
         {
             List<T> allValues = new List<T>(table.Values);
             List<T> filtered = allValues.FindAll(predicate);
             return filtered;
         }
 
-        public T GetById<T>(SerializableDataTable<T> table, string id) where T : IData 
+        public T GetById<T>(SerializableDataTable<T> table, string id) where T : IData
         {
-            if (!table.ContainsKey(id))
-            {
+            if (!table.ContainsKey(id)) {
                 Debug.LogWarning("Cannot find id '" + id + "' in talbe " + table.GetType().Name);
                 return default(T);
             }
@@ -59,7 +56,6 @@ namespace EA4S.Db
         public MiniGameTable GetMiniGameTable() { return this.minigameTable; }
         public StageTable GetStageTable() { return this.stageTable; }
         public PlaySessionTable GetPlaySessionTable() { return this.playSessionTable; }
-        public AssessmentTable GetAssessmentTable() { return this.assessmentTable; }
         public RewardTable GetRewardTable() { return this.rewardTable; }
         public LocalizationTable GetLocalizationTable() { return this.localizationTable; }
 
@@ -78,7 +74,6 @@ namespace EA4S.Db
             yield return GetTable(DatabaseCategory.MiniGames);
             yield return GetTable(DatabaseCategory.Stages);
             yield return GetTable(DatabaseCategory.PlaySessions);
-            yield return GetTable(DatabaseCategory.Assessments);
             yield return GetTable(DatabaseCategory.Rewards);
             yield return GetTable(DatabaseCategory.Localizations);
         }
@@ -86,15 +81,13 @@ namespace EA4S.Db
         private IDataTable GetTable(DatabaseCategory category)
         {
             IDataTable table = null;
-            switch (category)
-            {
+            switch (category) {
                 case DatabaseCategory.Letters: table = this.letterTable; break;
                 case DatabaseCategory.Words: table = this.wordTable; break;
                 case DatabaseCategory.Phrases: table = this.phraseTable; break;
                 case DatabaseCategory.MiniGames: table = this.minigameTable; break;
                 case DatabaseCategory.Stages: table = this.stageTable; break;
                 case DatabaseCategory.PlaySessions: table = this.playSessionTable; break;
-                case DatabaseCategory.Assessments: table = this.assessmentTable; break;
                 case DatabaseCategory.Rewards: table = this.rewardTable; break;
                 case DatabaseCategory.Localizations: table = this.localizationTable; break;
             }
@@ -115,7 +108,6 @@ namespace EA4S.Db
         Stages = 11,
         PlaySessions = 12,
 
-        Assessments = 20,
         Localizations = 30,
         Rewards = 40
     }
