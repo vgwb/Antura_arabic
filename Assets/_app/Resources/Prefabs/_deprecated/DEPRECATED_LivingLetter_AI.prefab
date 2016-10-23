@@ -1101,7 +1101,6 @@ MonoBehaviour:
   exclamationMark: {fileID: 4000014080457710}
   MergedElementsDistance: 1
   IsMerged: 0
-  ActualDropArea: {fileID: 0}
 --- !u!114 &114000012958142486
 MonoBehaviour:
   m_ObjectHideFlags: 1
