@@ -53,6 +53,15 @@ namespace EA4S.ThrowBalls
             lineRenderer = GetComponent<LineRenderer>();
         }
 
+        void Start()
+        {
+            Vector3 centerPosition = center.transform.position;
+            float cameraDistance = Mathf.Abs(Camera.main.transform.position.z - centerPosition.z);
+
+            centerPosition.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
+            center.transform.position = centerPosition;
+        }
+
         void FixedUpdate()
         {
             if (!ballController.IsLaunched)
@@ -100,7 +109,7 @@ namespace EA4S.ThrowBalls
             Vector3 ballPosition = ball.transform.position;
 
             launchForce = center.transform.position - ballPosition;
-            launchForce *= 15;
+            launchForce *= SROptions.Current.Elasticity;
         }
 
         private void UpdateLaunchForceOld()
