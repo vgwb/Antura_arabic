@@ -84,5 +84,33 @@ namespace EA4S
             }
             return returnList;
         }
+
+
+        /// <summary>
+        /// Give right game. Alpha version.
+        /// </summary>
+        public Db.MiniGameData GetMiniGameForActualPlaySession()
+        {
+            Db.MiniGameData miniGame = null;
+            switch (AppManager.Instance.PlaySession) {
+                case 1:
+                    if (AppManager.Instance.PlaySessionGameDone == 0)
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
+                    else
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
+                    break;
+                case 2:
+                    if (AppManager.Instance.PlaySessionGameDone == 0)
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
+                    else
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
+                    break;
+                case 3:
+                    miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
+                    break;
+            }
+            AppManager.Instance.ActualMinigame = miniGame;
+            return miniGame;
+        }
     }
 }

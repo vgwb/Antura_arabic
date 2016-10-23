@@ -117,33 +117,6 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Give right game. Alpha version.
-        /// </summary>
-        public Db.MiniGameData GetMiniGameForActualPlaySession()
-        {
-            Db.MiniGameData miniGame = null;
-            switch (PlaySession) {
-                case 1:
-                    if (PlaySessionGameDone == 0)
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
-                    else
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
-                    break;
-                case 2:
-                    if (PlaySessionGameDone == 0)
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
-                    else
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
-                    break;
-                case 3:
-                    miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
-                    break;
-            }
-            ActualMinigame = miniGame;
-            return miniGame;
-        }
-
-        /// <summary>
         /// Set result and return next scene name.
         /// </summary>
         /// <returns>return next scene name.</returns>
