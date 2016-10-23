@@ -205,7 +205,7 @@ namespace ModularFramework.Modules {
     }
 
     public interface IPlayerProfile {
-        string Id { get; set; }
+        string Key { get; set; }
     }
 
     #endregion

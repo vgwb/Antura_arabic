@@ -10,8 +10,8 @@ namespace EA4S.Test {
     public class PlayerProfileStage : MonoBehaviour {
 
         void Start() {
-            MyGlobalOptions opt = new MyGlobalOptions() { AvailablePlayers = new List<string>() { } };
-            AppManager.Instance.PlayerProfile.LoadGlobalOptions<MyGlobalOptions>(opt);
+            AnturaGlobalOptions globalOptions = new AnturaGlobalOptions() { AvailablePlayers = new List<string>() { } };
+            globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AnturaGlobalOptions>(globalOptions) as AnturaGlobalOptions;
 
             List<string> AvailablePlayersId;
             Debug.Log(JsonUtility.ToJson(AppManager.Instance.PlayerProfile.Options));
@@ -20,28 +20,27 @@ namespace EA4S.Test {
 
             if (AvailablePlayersId.Count == 0) {
                 AppManager.Instance.PlayerProfile.CreateNewPlayer(
-                    new MyPlayerProfile() {
-                        Id = "A_" + System.DateTime.Now.TimeOfDay.ToString(),
-                        Name = "Name_" + System.DateTime.Now.TimeOfDay.ToString(),
-                        Lastname = "Lastname_" + System.DateTime.Now.TimeOfDay.ToString(),
-                        Age = 10,
+                    new AnturaPlayerProfile() {
+                        Key = (globalOptions.AvailablePlayers.Count + 1).ToString(),
+                        Id = globalOptions.AvailablePlayers.Count + 1,
+                        AvatarId = globalOptions.AvailablePlayers.Count + 1,
                     });
             }
 
             AvailablePlayersId = AppManager.Instance.PlayerProfile.Options.AvailablePlayers;
             if (AvailablePlayersId.Count > 0)
-                AppManager.Instance.PlayerProfile.SetActivePlayer<MyPlayerProfile>(AvailablePlayersId[0]);
+                AppManager.Instance.PlayerProfile.SetActivePlayer<AnturaPlayerProfile>(AvailablePlayersId[0]);
 
-            MyPlayerProfile player = AppManager.Instance.PlayerProfile.ActivePlayer as MyPlayerProfile;
+            AnturaPlayerProfile player = AppManager.Instance.PlayerProfile.ActivePlayer as AnturaPlayerProfile;
 
-            Debug.LogFormat("{1}{0}{2}{0}{3}{0}{4}{0}", Environment.NewLine, player.Id, player.Name, player.Lastname, player.Age);
+            //Debug.LogFormat("{1}{0}{2}{0}{3}{0}{4}{0}", Environment.NewLine, player.Id, player.Name, player.Age);
             //AppManager.Instance.PlayerProfile.DeleteAllPlayerProfiles();
         }
     }
 
     [Serializable]
     public class MyPlayerProfile : ModularFramework.Modules.IPlayerProfile {
-        public string Id { get; set; }
+        public string Key { get; set; }
 
         public string Name;
         public string Lastname;

@@ -390,7 +390,6 @@ MonoBehaviour:
   exclamationMark: {fileID: 0}
   MergedElementsDistance: 1
   IsMerged: 0
-  ActualDropArea: {fileID: 0}
 --- !u!222 &22226684
 CanvasRenderer:
   m_ObjectHideFlags: 1
