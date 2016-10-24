@@ -18,7 +18,7 @@ namespace EA4S.Db
 
         public string PlaySession { get; set; }
         public MiniGameCode MiniGame { get; set; }
-        public string Table { get; set; } // word, letter, phrases
+        public string TableName { get; set; } // word, letter, phrases (see DbTables enum)
         public string ElementId { get; set; }
         public float Score { get; set; } // -1.0 (bad)... 1.0 (perfect)
 
@@ -35,7 +35,7 @@ namespace EA4S.Db
                 PlayerID,
                 PlaySession,
                 MiniGame,
-                Table,
+                TableName,
                 ElementId,
                 Score
                 );
