@@ -16,6 +16,7 @@ namespace EA4S
     /// To create and start it automatically, just call the static <see cref="Show"/> method.
     /// When the user has opened all bubbles and the app should move on, the <see cref="OnComplete"/> event will be dispatched.
     /// </summary>
+    [RequireComponent(typeof(GamesSelectorTrailsManager))]
     public class GamesSelector : MonoBehaviour
     {
         #region Events
@@ -25,18 +26,23 @@ namespace EA4S
 
         #endregion
 
+        [Tooltip("Delay between the moment the last bubble is opened and the OnComplete event is dispatched")]
+        public float EndDelay = 2;
         [Header("Debug")]
         public bool SimulateForDebug; // If TRUE creates games list for debug
 
         const string ResourceID = "GamesSelector";
-        const string ResourcePath = ResourceID;
+        const string ResourcePath = "Prefabs/UI/" + ResourceID;
         static GamesSelector instance;
+        GamesSelectorTrailsManager trailsManager;
         List<MiniGameData> games; // Set by Show
         GamesSelectorBubble mainBubble;
         readonly List<GamesSelectorBubble> bubbles = new List<GamesSelectorBubble>();
+        TrailRenderer currTrail;
         Camera cam;
         Transform camT;
-        bool active, isDragging;
+        bool cutAllowed = true;
+        bool isDragging;
         int totOpenedBubbles;
         Sequence showTween;
 
@@ -47,17 +53,21 @@ namespace EA4S
             instance = this;
             cam = Camera.main;
             camT = cam.transform;
+            trailsManager = this.GetComponent<GamesSelectorTrailsManager>();
         }
 
         void Start()
         {
             if (SimulateForDebug) {
-                games = new List<MiniGameData>();
-                for (int i = 0; i < 3; ++i) {
-                    MiniGameData mgData = new MiniGameData() { Id = "fastcrowd" };
-                    games.Add(mgData);
-                }
+                games = new List<MiniGameData>() {
+                    new MiniGameData() { Id = "fastcrowd" },
+                    new MiniGameData() { Id = "dancingdots" },
+                    new MiniGameData() { Id = "balloons" }
+                };
                 Show(games);
+            } else if (mainBubble == null) {
+                mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
+                mainBubble.gameObject.SetActive(false);
             }
         }
 
@@ -70,23 +80,40 @@ namespace EA4S
 
         void Update()
         {
-            if (!active || !Input.GetMouseButton(0) && !Input.GetMouseButtonUp(0)) return;
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Destroy(this.gameObject);
+                instance = null;
+                Show(new List<MiniGameData>() {
+                    new MiniGameData() { Id = "fastcrowd" },
+                    new MiniGameData() { Id = "dancingdots" },
+                    new MiniGameData() { Id = "balloons" }
+                });
+                return;
+            }
+#endif
+
+            if (!Input.GetMouseButton(0) && !Input.GetMouseButtonUp(0)) return;
 
             Vector3 mouseP = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -camT.transform.position.z));
             if (Input.GetMouseButtonDown(0)) {
                 // Start drag/click
                 isDragging = true;
+                currTrail = trailsManager.Spawn(mouseP);
             }
-            if (isDragging) UpdateDragging(mouseP);
+            if (isDragging) Update_Dragging(mouseP);
             if (Input.GetMouseButtonUp(0)) {
                 // Stop drag/click
                 isDragging = false;
+                trailsManager.Despawn(currTrail);
+                currTrail = null;
             }
         }
 
-        void UpdateDragging(Vector3 _mouseP)
+        void Update_Dragging(Vector3 _mouseP)
         {
-            Update_CheckHitBubble(_mouseP);
+            trailsManager.SetPosition(currTrail, _mouseP);
+            if (cutAllowed) Update_CheckHitBubble(_mouseP);
         }
 
         void Update_CheckHitBubble(Vector3 _mouseP)
@@ -107,7 +134,8 @@ namespace EA4S
             totOpenedBubbles++;
             if (totOpenedBubbles == bubbles.Count) {
                 // All bubbles opened: final routine
-                active = false;
+                cutAllowed = false;
+                this.StartCoroutine(CO_EndCoroutine());
             }
         }
 
@@ -130,6 +158,7 @@ namespace EA4S
                 go.name = ResourceID;
                 gs = go.GetComponent<GamesSelector>();
             }
+            gs.SimulateForDebug = false;
             gs.games = _games;
             gs.ResetAndLayout();
             gs.StartCoroutine(gs.CO_AnimateEntrance());
@@ -151,7 +180,7 @@ namespace EA4S
             // Layout
             const float bubblesDist = 0.1f;
             int totBubbles = games.Count;
-            float bubbleW = mainBubble.Bg.GetComponent<Renderer>().bounds.size.x;
+            float bubbleW = mainBubble.Main.GetComponent<Renderer>().bounds.size.x;
             float area = totBubbles * bubbleW + (totBubbles - 1) * bubblesDist;
             float startX = -area * 0.5f + bubbleW * 0.5f;
             for (int i = 0; i < totBubbles; ++i) {
@@ -175,7 +204,14 @@ namespace EA4S
             }
             yield return showTween.WaitForCompletion();
 
-            active = true;
+            cutAllowed = true;
+        }
+
+        IEnumerator CO_EndCoroutine()
+        {
+            yield return new WaitForSeconds(EndDelay);
+            Debug.Log("GamesSelector > Complete");
+            DispatchOnComplete();
         }
 
         #endregion
