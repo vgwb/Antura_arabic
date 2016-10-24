@@ -10,8 +10,8 @@ namespace EA4S.Test {
     public class PlayerProfileStage : MonoBehaviour {
 
         void Start() {
-            AnturaGlobalOptions globalOptions = new AnturaGlobalOptions() { AvailablePlayers = new List<string>() { } };
-            globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AnturaGlobalOptions>(globalOptions) as AnturaGlobalOptions;
+            GlobalOptions globalOptions = new GlobalOptions() { AvailablePlayers = new List<string>() { } };
+            globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<GlobalOptions>(globalOptions) as GlobalOptions;
 
             List<string> AvailablePlayersId;
             Debug.Log(JsonUtility.ToJson(AppManager.Instance.PlayerProfile.Options));

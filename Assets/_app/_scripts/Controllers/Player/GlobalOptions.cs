@@ -1,6 +1,6 @@
 ﻿using ModularFramework.Modules;
 
-public class AnturaGlobalOptions : GlobalOptions {
+public class GlobalOptions : ModularFramework.Modules.GlobalOptions {
     public int LastActivePlayerId;
 }
 

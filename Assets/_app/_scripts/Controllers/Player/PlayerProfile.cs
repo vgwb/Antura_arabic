@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine.UI;
 using ModularFramework.Modules;
+using UnityEngine;
 
 namespace EA4S {
 
@@ -30,6 +31,34 @@ namespace EA4S {
         public float Rhythm;
         public float Musicality;
         public float Sight;
-        
+
+        public JourneyPosition MaxJourneyPosition;
+        public JourneyPosition ActualJourneyPosition;
+
+        #region Oldies
+        public int AnturaCurrentPreset;
+
+        #region Mood
+        /// <summary>
+        /// False if not executed start mood eval.
+        /// </summary>
+        [HideInInspector]
+        public bool StartMood = false;
+        /// <summary>
+        /// Start Mood value. Values 0,1,2,3,4.
+        /// </summary>
+        [HideInInspector]
+        public int StartMoodEval = 0;
+        /// <summary>
+        /// End Mood value. Values 0,1,2,3,4.
+        /// </summary>
+        [HideInInspector]
+        public int EndMoodEval = 0;
+        #endregion
+
+        public void Reset() {
+            AnturaCurrentPreset = 0;
+        }
+        #endregion
     }
 }
