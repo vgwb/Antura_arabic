@@ -82,6 +82,12 @@ namespace EA4S
 
         void Update()
         {
+            if (Time.timeScale <= 0) {
+                // Prevent actions when pause menu is open
+                if (isDragging) StopDrag();
+                return;
+            }
+
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.R)) {
                 Destroy(this.gameObject);
@@ -108,9 +114,7 @@ namespace EA4S
             if (isDragging) Update_Dragging(mouseP);
             if (Input.GetMouseButtonUp(0)) {
                 // Stop drag/click
-                isDragging = false;
-                trailsManager.Despawn(currTrail);
-                currTrail = null;
+                StopDrag();
             }
         }
 
@@ -192,6 +196,15 @@ namespace EA4S
                 GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
                 bubble.Setup(games[i].GetIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
                 bubbles.Add(bubble);
+            }
+        }
+
+        void StopDrag()
+        {
+            isDragging = false;
+            if (currTrail != null) {
+                trailsManager.Despawn(currTrail);
+                currTrail = null;
             }
         }
 
