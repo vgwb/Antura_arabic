@@ -6,9 +6,12 @@ namespace EA4S.Db
 
     public enum InfoEvent
     {
-        AppStarted = 1,
-        AppClosed = 2,
-        Book = 3
+        ProfileCreated = 1,
+
+        AppStarted = 20,
+        AppClosed = 21,
+
+        Book = 30,
     }
 
 
@@ -18,10 +21,9 @@ namespace EA4S.Db
         public string Id { get; set; }
         public string Session { get; set; }
         public int Timestamp { get; set; }
-        public int PlayerID { get; set; }
 
         public InfoEvent Event { get; set; }
-        public string Description { get; set; }
+        public string Parameters { get; set; } // playerId:0, rewardType:2
 
         public string GetId()
         {
@@ -30,12 +32,11 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("T{0},T{1},P{2},E{3},D{4}",
+            return string.Format("T{0},T{1},E{3},PARS{4}",
                 Session,
                 Timestamp,
-                PlayerID, 
                 Event,
-                Description
+                Parameters
             );
         }
 

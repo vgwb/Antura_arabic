@@ -130,15 +130,9 @@ namespace EA4S
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
             int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
-            
             string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}", (int)minigameCode, fromTimestamp);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
-
-            // Debug for confirmation:
-            //Debug.Log("FROM TIMESTAMP : " + GenericUtilites.FromTimestamp(fromTimestamp));
-            //foreach (var data in list) Debug.Log(GenericUtilites.FromTimestamp(data.Timestamp));
-
             return scores;
         }
 
@@ -149,6 +143,22 @@ namespace EA4S
             return list;
         }
 
+        public List<ScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
+        {
+            // First, get all play sessions given a stage
+            List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
+            List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
+
+            // Then, get all scores of all play sessions
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions'");
+            List<ScoreData> all_playsession_list = dbManager.FindScoreDataByQuery(query);
+
+            // At last, filter by the given stage
+            List<ScoreData> stage_playsession_list = all_playsession_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+
+            return stage_playsession_list;
+        }
+
         public List<LogMoodData> GetLastMoodData(int number)
         {
             string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number); 
@@ -156,30 +166,28 @@ namespace EA4S
             return list;
         }
 
-        // @note: shows how to work on the dynamic and static db together
-        public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode)
+        public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode) // also play session
         {
+            // @note: this code shows how to work on the dynamic and static db together
             string query = string.Format("SELECT * FROM LogLearnData WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}", (int)assessmentCode);
-            List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
-            List<string> ids_list = list.ConvertAll(x => x.ElementId);
-            foreach (var l in list) Debug.Log(l.MiniGame);
-            List<LetterData> letters = dbManager.FindLetterData(x => ids_list.Contains(x.Id));
+            List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
+            List<string> letter_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
+            List<LetterData> letters = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
             return letters;
         }
 
-        // @note: shows how to work on the dynamic and static db together
         public List<WordData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
         {
             string query = string.Format("SELECT * FROM LogLearnData WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}", (int)assessmentCode);
-            List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
-            List<string> ids_list = list.ConvertAll(x => x.ElementId);
-            List<WordData> words = dbManager.FindWordData(x => ids_list.Contains(x.Id));
+            List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
+            List<string> words_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
+            List<WordData> words = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
             return words;
         }
 
-        // @note: shows how to work with playerprofile as well as the database
-        public List<LogPlayData> GetAllScoresForCurrentProgress()
+        public List<LogPlayData> GetScoreHistoryForCurrentJourneyPosition()
         {
+            // @note: shows how to work with playerprofile as well as the database
             JourneyPosition currentJourneyPosition = playerProfile.ActualJourneyPosition;
             string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'", (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
