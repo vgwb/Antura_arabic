@@ -42,8 +42,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_games/Maze/game_Maze.unity
   - enabled: 1
+    path: Assets/_games/Scanner/game_Scanner.unity
+  - enabled: 1
     path: Assets/_games/ThrowBalls/game_ThrowBalls.unity
   - enabled: 1
     path: Assets/_games/Tobogan/game_Tobogan.unity
   - enabled: 1
-    path: Assets/_manage/manage_Database.unity
+    path: Assets/_manage/manage_Database/manage_Database.unity

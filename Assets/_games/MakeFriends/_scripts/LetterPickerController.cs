@@ -23,7 +23,7 @@ namespace EA4S.MakeFriends
         }
 
 
-        public void DisplayLetters(List<LetterData> letters)
+        public void DisplayLetters(List<LL_LetterData> letters)
         {
             for (int i = 0; i < letters.Count; i++)
             {

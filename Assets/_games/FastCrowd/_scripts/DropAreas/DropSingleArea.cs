@@ -13,18 +13,32 @@ namespace EA4S {
         Vector3 enabledPos, disabledPos;
 
         #region Api
-        public void Init(ILivingLetterData _data, DropContainer _dropContainer) {
+        public void Init(ILivingLetterData _data, DropContainer _dropContainer, bool asImage) {
             DropContain = _dropContainer;
             DropContain.Aree.Add(this);
             Data = _data;
-            if (_data.DataType == LivingLetterDataType.Letter) {
+            if (asImage && !(_data is LL_LetterData))
+            {
+                LetterLable.text = string.Empty;
+                DrawSprite.gameObject.SetActive(true);
+                DrawSprite.sprite = Data.DrawForLivingLetter;
+            } else
+            {
                 LetterLable.text = Data.TextForLivingLetter;
                 DrawSprite.gameObject.SetActive(false);
-            } else {
-                LetterLable.text = string.Empty;
-                DrawSprite.gameObject.SetActive(true); 
-                DrawSprite.sprite = Data.DrawForLivingLetter;
             }
+
+            AreaState = State.disabled;
+        }
+
+        public void Init(ILivingLetterData _data, string text, DropContainer _dropContainer)
+        {
+            DropContain = _dropContainer;
+            DropContain.Aree.Add(this);
+            Data = _data;
+
+            LetterLable.text = text;
+            DrawSprite.gameObject.SetActive(false);
 
             AreaState = State.disabled;
         }

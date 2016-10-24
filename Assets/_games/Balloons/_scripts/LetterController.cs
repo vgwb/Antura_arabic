@@ -12,10 +12,10 @@ namespace Balloons
         public Animator animator;
         public Collider letterCollider;
         public Rigidbody body;
-        public LetterData letter;
+        public LL_LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
-        public LetterObject LetterModel;
+        public LLController LetterModel;
         public TMP_Text LetterView;
 
         [Header("Letter Parameters")]
@@ -70,9 +70,9 @@ namespace Balloons
             }
         }
 
-        public void Init(LetterData _data)
+        public void Init(LL_LetterData _data)
         {
-            LetterModel = new LetterObject(_data);
+            LetterModel = new LLController(_data);
             LetterView.text = _data.TextForLivingLetter; 
         }
 

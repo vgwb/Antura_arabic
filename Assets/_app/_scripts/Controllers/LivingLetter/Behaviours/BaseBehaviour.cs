@@ -1,0 +1,44 @@
+﻿using UnityEngine;
+using System.Collections;
+using System;
+
+namespace EA4S
+{
+    public class BaseBehaviour : MonoBehaviour, IBehaviour
+    {
+
+        public LLController Model;
+
+        void OnEnable()
+        {
+            OnStartBehaviour();
+        }
+
+        public void StartBehaviour(LLController _model)
+        {
+            Model = _model;
+            OnStartBehaviour();
+        }
+
+        void Update()
+        {
+            OnUpdateBehaviour();
+        }
+
+        void OnDisable()
+        {
+            OnEndBehaviour();
+        }
+
+        public virtual void OnStartBehaviour() { }
+        public virtual void OnUpdateBehaviour() { }
+        public virtual void OnEndBehaviour() { }
+    }
+
+    public interface IBehaviour
+    {
+        void OnStartBehaviour();
+        void OnUpdateBehaviour();
+        void OnEndBehaviour();
+    }
+}

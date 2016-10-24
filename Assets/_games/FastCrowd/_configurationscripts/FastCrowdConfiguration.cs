@@ -17,8 +17,6 @@
         #region Game configurations
         public float Difficulty { get; set; }
         public FastCrowdVariation Variation { get; set; }
-        public float PlayTime { get; set; }
-        public int MaxNumbOfWrongLettersNoise { get; set; }
         #endregion
         #region Behaviour configurations
         public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
@@ -43,23 +41,21 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
-            //Questions = new SampleQuestionProvider();
+            Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
             //Variation = FastCrowdVariation.Alphabet;
-            //Variation = FastCrowdVariation.Spelling;
+            Variation = FastCrowdVariation.Spelling;
 
             //Questions = new SampleQuestionWithWordsProvider();
             //Variation = FastCrowdVariation.Counting;
 
-            Questions = new SampleQuestionWordsVariationProvider();
-            Variation = FastCrowdVariation.Words;
+            //Questions = new SampleQuestionWordsVariationProvider();
+            //Variation = FastCrowdVariation.Words;
 
 
             Context = new SampleGameContext();
             Difficulty = 0.5f;
             BehaviourSettings = new LetterBehaviour.BehaviourSettings();
-            MaxNumbOfWrongLettersNoise = 3;
-            PlayTime = 90;
         }
 
         #region external configuration call
@@ -67,13 +63,6 @@
             instance = new FastCrowdConfiguration() {
                 Difficulty = _difficulty,
                 Variation = (FastCrowdVariation)_variation,
-            };
-        }
-        public static void SetConfiguration(float _difficulty, int _variation, float _playTime) {
-            instance = new FastCrowdConfiguration() {
-                Difficulty = _difficulty,
-                Variation = (FastCrowdVariation)_variation,
-                PlayTime = _playTime,
             };
         }
         #endregion

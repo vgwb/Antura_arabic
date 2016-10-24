@@ -62,10 +62,10 @@ namespace EA4S.API
         /// Return List of Letter Data valid for this gameplay and actual profile data.
         /// </summary>
         /// <returns></returns>
-        public List<LetterData> GetValidLetters(int _amount = -1)
+        public List<LL_LetterData> GetValidLetters(int _amount = -1)
         {
             // TODO
-            return new List<LetterData>();
+            return new List<LL_LetterData>();
         }
 
         /// <summary>
@@ -73,10 +73,10 @@ namespace EA4S.API
         /// </summary>
         /// <param name="_amount"></param>
         /// <returns></returns>
-        public List<WordData> GetValidWorlds(int _amount = -1)
+        public List<LL_WordData> GetValidWorlds(int _amount = -1)
         {
             // TODO
-            return new List<WordData>();
+            return new List<LL_WordData>();
         }
 
         #endregion
@@ -160,49 +160,40 @@ namespace EA4S.API
                 case MiniGameCode.DontWakeUp:
                     break;
                 case MiniGameCode.Egg:
-                    //Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    //Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
-                    //Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    miniGameScene = "game_Egg";
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Alphabet;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_counting:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Counting;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_letter:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_spelling:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Spelling;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.FastCrowd_words:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Words;
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    // Scene name override to test new version
-                    miniGameScene = miniGameData.Scene + "_new";
                     break;
                 case MiniGameCode.HiddenSource:
                     break;
@@ -550,6 +541,14 @@ namespace EA4S.API
         public void Log(string _area, string _context, string _action, string _data)
         {
             LoggerEA4S.Log(_area, _context, _action, _data);
+        }
+        #endregion
+
+        #region Test
+        public void TestDb() {
+            AppManager.Instance.DB.Insert(new LogInfoData() {
+                
+            });
         }
         #endregion
 

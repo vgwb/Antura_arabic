@@ -244,7 +244,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 46564987}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 3
   startDelay:
     scalar: 0
@@ -282,12 +282,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 1
   scalingMode: 1
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2704,6 +2705,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 1753173591}
   Marker1: {fileID: 964386297}
   Marker2: {fileID: 2128849207}
+  SnoozingParticles: {fileID: 0}
 --- !u!1 &189563426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,6 +3041,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c12cc064b064731a32b372b4764914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinRotationOffset: -24
+  MaxRotationOffset: 24
+  MinDuration: 1
+  MaxDuration: 3
 --- !u!1 &293811319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,6 +3320,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 1393394740}
   Marker1: {fileID: 705160762}
   Marker2: {fileID: 2041280664}
+  SnoozingParticles: {fileID: 0}
 --- !u!1001 &384233420
 Prefab:
   m_ObjectHideFlags: 0
@@ -3443,6 +3450,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 946941409}
   Marker1: {fileID: 1596142554}
   Marker2: {fileID: 1332343681}
+  SnoozingParticles: {fileID: 0}
 --- !u!1001 &412886637
 Prefab:
   m_ObjectHideFlags: 0
@@ -5167,7 +5175,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -172.809}
   m_Children: []
   m_Father: {fileID: 919318538}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!212 &730759336
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5407,50 +5415,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 491954, guid: 428741834f5334c728a088a22f7492a8, type: 2}
   m_PrefabInternal: {fileID: 783673210}
---- !u!1 &804933874
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 804933876}
-  - 114: {fileID: 804933875}
-  m_Layer: 0
-  m_Name: QHierarchyObjectList
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &804933875
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 804933874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 845e8bd83609e3549af5a311ad811681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockedObjects: []
-  editModeVisibileObjects: []
-  editModeInvisibleObjects: []
-  wireframeHiddenObjects: []
---- !u!4 &804933876
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 804933874}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1 &824761582
 GameObject:
   m_ObjectHideFlags: 0
@@ -7776,6 +7740,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 1214702000}
   Marker1: {fileID: 1277661019}
   Marker2: {fileID: 2050677274}
+  SnoozingParticles: {fileID: 0}
 --- !u!1 &1253120628
 GameObject:
   m_ObjectHideFlags: 0
@@ -8010,6 +7975,7 @@ MonoBehaviour:
   LevelCamera: {fileID: 2093575121}
   Marker1: {fileID: 656825146}
   Marker2: {fileID: 616691857}
+  SnoozingParticles: {fileID: 0}
 --- !u!1001 &1310810043
 Prefab:
   m_ObjectHideFlags: 0
@@ -9334,7 +9300,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 919318538}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!212 &1544103945
 SpriteRenderer:
   m_ObjectHideFlags: 0

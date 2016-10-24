@@ -9,7 +9,7 @@ namespace EA4S.FastCrowd
     /// </summary>
     public class Crowd : MonoBehaviour
     {
-        public event System.Action<bool> onDropped;
+        public event System.Action<ILivingLetterData, bool> onDropped;
 
         public FastCrowdWalkableArea walkableArea;
         public AnturaController antura;
@@ -70,7 +70,16 @@ namespace EA4S.FastCrowd
             }
 
             if (dragging != null)
+            {
                 dragging.StartDragging(draggingPosition - dragging.transform.position);
+
+                var data = dragging.GetComponent<LetterObjectView>().Model.Data;
+
+                if (data is LL_LetterData)
+                    FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetter((LL_LetterData)data);
+                else if (data is LL_WordData)
+                    FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayWord((LL_WordData)data);
+            }
         }
 
         void OnPointerUp()
@@ -136,7 +145,7 @@ namespace EA4S.FastCrowd
                 }
 
                 if (onDropped != null)
-                    onDropped(result);
+                    onDropped(letterObjectView.Model.Data, result);
             };
         }
 
