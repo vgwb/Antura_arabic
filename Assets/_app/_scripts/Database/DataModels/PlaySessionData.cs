@@ -11,6 +11,7 @@ namespace EA4S.Db
         public int Stage;
         public int LearningBlock;
         public int PlaySession;
+        public string Type;
         public string Description;
         public DidacticalFocus Focus;
         public string[] Letters;

@@ -87,6 +87,35 @@ namespace EA4S
             return returnList;
         }
 
+
+        /// <summary>
+        /// Give right game. Alpha version.
+        /// </summary>
+        public Db.MiniGameData GetMiniGameForActualPlaySession()
+        {
+            Db.MiniGameData miniGame = null;
+            switch (AppManager.Instance.PlaySession)
+            {
+                case 1:
+                    if (AppManager.Instance.PlaySessionGameDone == 0)
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
+                    else
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
+                    break;
+                case 2:
+                    if (AppManager.Instance.PlaySessionGameDone == 0)
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
+                    else
+                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
+                    break;
+                case 3:
+                    miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
+                    break;
+            }
+            AppManager.Instance.ActualMinigame = miniGame;
+            return miniGame;
+        }
+
         #endregion
 
 
@@ -98,7 +127,7 @@ namespace EA4S
             int toTimestamp = nLastDays;
 
             string query = string.Format("select * from LogScoreData where Timestamp > {0} and MiniGameId = {1}", toTimestamp, minigameId);
-            List<Db.LogScoreData> list = AppManager.Instance.DB.FindLogScoreDataByQuery(query);
+            List<Db.ScoreData> list = AppManager.Instance.DB.FindScoreDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
 
             // Test log
@@ -128,31 +157,5 @@ namespace EA4S
         #endregion
 
 
-        /// <summary>
-        /// Give right game. Alpha version.
-        /// </summary>
-        public Db.MiniGameData GetMiniGameForActualPlaySession()
-        {
-            Db.MiniGameData miniGame = null;
-            switch (AppManager.Instance.PlaySession) {
-                case 1:
-                    if (AppManager.Instance.PlaySessionGameDone == 0)
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
-                    else
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
-                    break;
-                case 2:
-                    if (AppManager.Instance.PlaySessionGameDone == 0)
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
-                    else
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
-                    break;
-                case 3:
-                    miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
-                    break;
-            }
-            AppManager.Instance.ActualMinigame = miniGame;
-            return miniGame;
-        }
     }
 }
