@@ -546,7 +546,7 @@ namespace EA4S.API
 
         #region Test
         public void TestDb() {
-            AppManager.Instance.DB.InsertLogInfoData(new LogInfoData() {
+            AppManager.Instance.DB.Insert(new LogInfoData() {
                 
             });
         }
