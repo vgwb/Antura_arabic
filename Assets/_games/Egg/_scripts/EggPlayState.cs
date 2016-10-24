@@ -206,6 +206,8 @@ namespace EA4S.Egg
                 }
             }
 
+            game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
+
             letterOnSequence = 0;
 
             questionProgress = 0;
