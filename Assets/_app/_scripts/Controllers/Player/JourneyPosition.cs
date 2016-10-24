@@ -1,6 +1,6 @@
 ﻿namespace EA4S {
     [System.Serializable]
-    public class ProgressState {
+    public class JourneyPosition {
 
         public int Stage = 1;
         public int LearningBlock = 1;
