@@ -117,4 +117,28 @@ public partial class SROptions
         AppManager.Instance.ToggleQualitygfx();
         SRDebug.Instance.HideDebugPanel();
     }
+
+    /// MakeFriends
+    [Category("MakeFriends")]
+    public bool MakeFriendsUseDifficulty { get; set; }
+
+    [Category("MakeFriends")]
+    public EA4S.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
+
+    /// ThrowBalls
+    private bool ThrowBallsShowProjection = true;
+    [Category("ThrowBalls")]
+    public bool ShowProjection
+    {
+        get { return ThrowBallsShowProjection; }
+        set { ThrowBallsShowProjection = value; }
+    }
+
+    private float ThrowBallselasticity = 17f;
+    [Category("ThrowBalls")]
+    public float Elasticity
+    {
+        get { return ThrowBallselasticity; }
+        set { ThrowBallselasticity = value; }
+    }
 }
