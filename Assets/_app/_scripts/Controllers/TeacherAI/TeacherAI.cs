@@ -20,6 +20,8 @@ namespace EA4S
 
         }
 
+        #region Stefano's queries
+
         public List<Db.MiniGameData> GimmeGoodMinigames()
         {
             return AppManager.Instance.DB.FindAllActiveMinigames();
@@ -70,5 +72,47 @@ namespace EA4S
             }
             return returnList;
         }
+
+        #endregion
+
+
+        #region MiniGames queries
+
+        public List<float> GetLatestScoresForMiniGame(MiniGameCode code, int nLastDays)
+        {
+            string minigameId = code.ToString();
+            int toTimestamp = nLastDays;
+
+            string query = string.Format("select * from LogScoreData where Timestamp > {0} and MiniGameId = {1}", toTimestamp, minigameId);
+            List<Db.LogScoreData> list = AppManager.Instance.DB.FindLogScoreDataByQuery(query);
+            List<float> scores = list.ConvertAll(x => x.Score);
+
+            // Test log
+            string output = "Scores:\n";
+            foreach (var score in scores) output += score.ToString() + "\n";
+            Debug.Log(output);
+
+            return scores;
+        }
+
+        #endregion
+
+        #region Assessment queries
+
+        #endregion
+
+        #region Journeymap queries
+
+        #endregion
+
+        #region Mood queries
+
+        #endregion
+
+        #region Frequency of use queries
+
+        #endregion
+
+
     }
 }
