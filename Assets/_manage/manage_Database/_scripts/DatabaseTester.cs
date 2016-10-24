@@ -25,7 +25,10 @@ namespace EA4S.Db.Management
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
             this.dbManager = new DatabaseManager();
+
             this.playerProfile = new PlayerProfile();
+            playerProfile.ActualJourneyPosition = new JourneyPosition();    // test
+
             this.teacherAI = new TeacherAI(dbManager, playerProfile);
         }
 
@@ -224,14 +227,14 @@ namespace EA4S.Db.Management
             newData.Timestamp = GenericUtilites.GetTimestampForNow();
             newData.PlayerID = 1;
 
-            newData.PlaySession = "0.0.0";
-            newData.MiniGame = MiniGameCode.Balloons_counting;
+            newData.PlaySession = "1.1.1";
+            newData.MiniGame = MiniGameCode.Assessment_Letters;
 
             bool useLetter = RND.value > 0.5f;
             newData.TableName = useLetter ? "LetterData" : "WordData";
             newData.ElementId = useLetter
-                ? GenericUtilites.GetRandom(dbManager.GetAllWordData()).GetId()
-                : GenericUtilites.GetRandom(dbManager.GetAllLetterData()).GetId();
+                ? GenericUtilites.GetRandom(dbManager.GetAllLetterData()).GetId()
+                : GenericUtilites.GetRandom(dbManager.GetAllWordData()).GetId();
 
             newData.PlayerID = 1;
             newData.Score = RND.Range(-1f, 1f);
@@ -259,13 +262,13 @@ namespace EA4S.Db.Management
             var newData = new LogPlayData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
-            newData.Timestamp = GenericUtilites.GetRelativeTimestampFromNow(RND.Range(0, 5));
+            newData.Timestamp = GenericUtilites.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             newData.PlayerID = 1;
 
-            newData.PlaySession = "0.0.0";
+            newData.PlaySession = "1.1.1";
             newData.MiniGame = MiniGameCode.Balloons_counting;
             newData.Score = RND.Range(0, 1f);
-            newData.Action = PlayEvent.Skill;
+            newData.Action = RND.value > 0.5f ? PlayEvent.GameFinished : PlayEvent.Skill;
             newData.PlaySkill = PlaySkill.Logic;
             newData.RawData = "TEST";
 
@@ -279,19 +282,35 @@ namespace EA4S.Db.Management
 
             int rndTableValue = RND.Range(0, 7);
             DbTables rndTable = DbTables.Letters;
+            string rndId = "";
             switch (rndTableValue)
             {
-                case 0: rndTable = DbTables.Letters; break;
-                case 1: rndTable = DbTables.Words; break;
-                case 2: rndTable = DbTables.Phrases; break;
-                case 3: rndTable = DbTables.MiniGames; break;
-                case 4: rndTable = DbTables.PlaySessions; break;
-                case 5: rndTable = DbTables.Stages; break;
-                case 6: rndTable = DbTables.Rewards; break;
+                case 0:
+                    rndTable = DbTables.Letters;
+                    rndId = GenericUtilites.GetRandom(dbManager.GetAllLetterData()).GetId();
+                    break;
+                case 1: rndTable = DbTables.Words;
+                    rndId = GenericUtilites.GetRandom(dbManager.GetAllWordData()).GetId();
+                    break;
+                case 2: rndTable = DbTables.Phrases;
+                    rndId = GenericUtilites.GetRandom(dbManager.GetAllPhraseData()).GetId();
+                    break; ;
+                case 3: rndTable = DbTables.MiniGames;
+                    rndId = GenericUtilites.GetRandom(dbManager.GetAllMiniGameData()).GetId();
+                    break;
+                case 4: rndTable = DbTables.PlaySessions;
+                    rndId = GenericUtilites.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
+                    break;
+                case 5: rndTable = DbTables.Stages;
+                    rndId = GenericUtilites.GetRandom(dbManager.GetAllStageData()).GetId();
+                    break;
+                case 6: rndTable = DbTables.Rewards;
+                    rndId = GenericUtilites.GetRandom(dbManager.GetAllRewardData()).GetId();
+                    break;
             }
 
             newData.TableName = (rndTable).ToString();
-            newData.ElementId = MiniGameCode.Balloons_counting.ToString();
+            newData.ElementId = rndId;
             newData.PlayerID = 1;
 
             newData.Score = RND.Range(0f, 1f);
@@ -422,7 +441,7 @@ namespace EA4S.Db.Management
         {
             var list = teacherAI.GetAllScoresForCurrentProgress();
 
-            string output = "All score entries for the current progress in the PlayerProfile:\n";
+            string output = "All score entries for the current progress (" + playerProfile.ActualJourneyPosition.ToString() + ") in the PlayerProfile:\n";
             foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
             PrintOutput(output);
         }

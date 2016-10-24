@@ -127,14 +127,17 @@ namespace EA4S
 
         #region MiniGames queries
 
-        public List<float> GetLatestScoresForMiniGame(MiniGameCode code, int nLastDays)
+        public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
-            string minigameId = code.ToString();
             int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
-
-            string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}", minigameId, fromTimestamp);
-            List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
+            
+            string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}", (int)minigameCode, fromTimestamp);
+            List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
+
+            // Debug for confirmation:
+            //Debug.Log("FROM TIMESTAMP : " + GenericUtilites.FromTimestamp(fromTimestamp));
+            //foreach (var data in list) Debug.Log(GenericUtilites.FromTimestamp(data.Timestamp));
 
             return scores;
         }
@@ -154,30 +157,31 @@ namespace EA4S
         }
 
         // @note: shows how to work on the dynamic and static db together
-        public List<LogLearnData> GetFailedAssessmentLetters(MiniGameCode assessmentCode)
+        public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode)
         {
-            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = '{0}' AND TableName = 'LetterData' AND Score < 0", assessmentCode);
+            string query = string.Format("SELECT * FROM LogLearnData WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}", (int)assessmentCode);
             List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
-            List<string> ids_list = list.ConvertAll(x => x.Id);
-            dbManager.FindLetterData(x => ids_list.Contains(x.Id));
-            return list;
+            List<string> ids_list = list.ConvertAll(x => x.ElementId);
+            foreach (var l in list) Debug.Log(l.MiniGame);
+            List<LetterData> letters = dbManager.FindLetterData(x => ids_list.Contains(x.Id));
+            return letters;
         }
 
         // @note: shows how to work on the dynamic and static db together
-        public List<LogLearnData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
+        public List<WordData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
         {
-            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = '{0}' AND TableName = 'WordData' AND Score < 0", assessmentCode);
+            string query = string.Format("SELECT * FROM LogLearnData WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}", (int)assessmentCode);
             List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
-            List<string> ids_list = list.ConvertAll(x => x.Id);
-            dbManager.FindWordData(x => ids_list.Contains(x.Id));
-            return list;
+            List<string> ids_list = list.ConvertAll(x => x.ElementId);
+            List<WordData> words = dbManager.FindWordData(x => ids_list.Contains(x.Id));
+            return words;
         }
 
         // @note: shows how to work with playerprofile as well as the database
         public List<LogPlayData> GetAllScoresForCurrentProgress()
         {
             JourneyPosition currentJourneyPosition = playerProfile.ActualJourneyPosition;
-            string query = string.Format("SELECT * FROM LogPlayData WHERE TableName = 'PlaySessionData' AND PlayEvent = {0} AND ElementId = '{1}'", PlayEvent.GameFinished, currentJourneyPosition.ToString());
+            string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'", (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
         }
