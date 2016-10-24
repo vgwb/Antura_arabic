@@ -3,26 +3,25 @@ using System;
 
 namespace EA4S.Db
 {
-    public enum LogDataType
+
+    public enum InfoEvent
     {
-        Info,
-        Play,
-        Learn,
-        Mood,
-        Assessment
+        AppStarted = 1,
+        AppClosed = 2,
+        Book = 3
     }
+
 
     [System.Serializable]
     public class LogInfoData : IData
     {
         public string Id { get; set; }
         public string Session { get; set; }
-        public string Time { get; set; }
+        public int Timestamp { get; set; }
         public int PlayerID { get; set; }
-        public string Context { get; set; }
-        public string Action { get; set; }
-        public float Score { get; set; }
-        public string RawData { get; set; }
+
+        public InfoEvent Event { get; set; }
+        public string Description { get; set; }
 
         public string GetId()
         {
@@ -33,13 +32,11 @@ namespace EA4S.Db
         {
             return string.Format("S{0},T{1},P{2},T{3},PS{4},C{5},A{6}",
                 Session,
-                Time,
+                Timestamp,
                 PlayerID,
-                Context,
-                Action,
-                Score,
-                RawData
-                );
+                Event,
+                Description
+            );
         }
 
     }
