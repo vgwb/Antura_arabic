@@ -177,8 +177,8 @@ namespace EA4S
         // @note: shows how to work with playerprofile as well as the database
         public List<LogPlayData> GetAllScoresForCurrentProgress()
         {
-            ProgressState currentProgress = playerProfile.ActualProgress;
-            string playsession_id = currentProgress.Stage + "." + currentProgress.LearningBlock + "." + currentProgress.PlaySession;
+            JourneyPosition currentJourneyPosition = playerProfile.ActualJourneyPosition;
+            string playsession_id = currentJourneyPosition.Stage + "." + currentJourneyPosition.LearningBlock + "." + currentJourneyPosition.PlaySession;
             string query = string.Format("SELECT * FROM LogPlayData WHERE Table = PlaySessionData AND PlayEvent = {0} AND ElementId = {1}", PlayEvent.GameFinished, playsession_id);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
