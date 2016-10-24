@@ -104,7 +104,6 @@ namespace EA4S
                 // Start drag/click
                 isDragging = true;
                 currTrail = trailsManager.Spawn(mouseP);
-                tutorial.Stop();
             }
             if (isDragging) Update_Dragging(mouseP);
             if (Input.GetMouseButtonUp(0)) {
@@ -135,6 +134,7 @@ namespace EA4S
             }
             if (hitBubble == null) return;
 
+            if (tutorial.isPlaying) tutorial.Stop();
             hitBubble.Open();
             totOpenedBubbles++;
             if (totOpenedBubbles == bubbles.Count) {
