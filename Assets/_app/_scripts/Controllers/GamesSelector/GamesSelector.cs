@@ -89,7 +89,9 @@ namespace EA4S
                 Show(new List<MiniGameData>() {
                     new MiniGameData() { Id = "fastcrowd" },
                     new MiniGameData() { Id = "dancingdots" },
-                    new MiniGameData() { Id = "balloons" }
+                    new MiniGameData() { Id = "balloons" },
+                    new MiniGameData() { Id = "balloons" },
+                new MiniGameData() { Id = "maze" }
                 });
                 return;
             }
