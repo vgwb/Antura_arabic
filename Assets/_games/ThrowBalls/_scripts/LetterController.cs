@@ -515,5 +515,13 @@ namespace EA4S.ThrowBalls
             SetIsColliderEnabled(true);
             shadow.SetActive(true);
         }
+
+        void OnMouseDown()
+        {
+            if (ThrowBallsGameManager.Instance.isRoundOngoing)
+            {
+                AudioManager.I.PlayLetter(letterData.Key);
+            }
+        }
     }
 }
