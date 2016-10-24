@@ -75,7 +75,7 @@ namespace EA4S
         {
             if (instance == this) instance = null;
             this.StopAllCoroutines();
-            showTween.Kill();
+            showTween.Kill(true);
         }
 
         void Update()
@@ -200,7 +200,8 @@ namespace EA4S
             for (int i = 0; i < bubbles.Count; ++i) {
                 GamesSelectorBubble bubble = bubbles[i];
                 bubble.gameObject.SetActive(true);
-                showTween.Insert(i * 0.05f, bubble.transform.DOScale(0.0001f, 0.6f).From().SetEase(Ease.OutElastic, 1, 0));
+                showTween.Insert(i * 0.05f, bubble.transform.DOScale(0.0001f, 0.6f).From().SetEase(Ease.OutElastic, 1, 0))
+                    .InsertCallback(i * 0.1f, ()=> AudioManager.I.PlaySfx(Sfx.BaloonPop));
             }
             yield return showTween.WaitForCompletion();
 
