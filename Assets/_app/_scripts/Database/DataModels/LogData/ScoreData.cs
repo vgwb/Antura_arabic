@@ -25,10 +25,10 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},T{3},PS{4},C{5}",
-                PlayerID,
+            return string.Format("T{0},E{1},P{2},S{3}",
                 Table,
                 ElementId,
+                PlayerID,
                 Score
                 );
         }

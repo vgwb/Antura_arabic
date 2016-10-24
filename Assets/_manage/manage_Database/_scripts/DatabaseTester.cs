@@ -5,21 +5,26 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
+using RND = UnityEngine.Random;
+
 namespace EA4S.Db.Management
 {
     public class DatabaseTester : MonoBehaviour
     {
 #if UNITY_EDITOR
-        public DatabaseLoader DBLoader;
+        private DatabaseLoader dbLoader;
 #endif
-        private DatabaseManager db;
+        private DatabaseManager dbManager;
+        private TeacherAI teacherAI;
 
         public Text OutputText;
         public TextMeshProUGUI OutputTextArabic;
 
         void Awake()
         {
-            this.db = new DatabaseManager();
+            this.dbLoader = GetComponentInChildren<DatabaseLoader>();
+            this.dbManager = new DatabaseManager();
+            this.teacherAI = new TeacherAI(dbManager);
         }
 
         #region Main Actions
@@ -27,7 +32,7 @@ namespace EA4S.Db.Management
         public void ImportAll()
         {
 #if UNITY_EDITOR
-            DBLoader.LoadDatabase();
+            dbLoader.LoadDatabase();
             DumpAllDataCounts();
 #endif
         }
@@ -39,66 +44,86 @@ namespace EA4S.Db.Management
         public void DumpAllDataCounts()
         {
             string output = "";
-            output += ("N letters: " + db.GetAllLetterData().Count) + "\n";
-            output += ("N words: " + db.FindAllWordData().Count) + "\n";
-            output += ("N phrases: " + db.FindAllPhraseData().Count) + "\n";
-            output += ("N minigames: " + db.GetAllMiniGameData().Count) + "\n";
-            output += ("N stages: " + db.FindAllStageData().Count) + "\n";
-            output += ("N playsessions: " + db.FindAllPlaySessionData().Count) + "\n";
-            output += ("N localizations: " + db.FindAllLocalizationData().Count) + "\n";
-            output += ("N rewards: " + db.FindAllRewardData().Count) + "\n";
+            output += ("N letters: " + dbManager.GetAllLetterData().Count) + "\n";
+            output += ("N words: " + dbManager.GetAllWordData().Count) + "\n";
+            output += ("N phrases: " + dbManager.GetAllPhraseData().Count) + "\n";
+            output += ("N minigames: " + dbManager.GetAllMiniGameData().Count) + "\n";
+            output += ("N stages: " + dbManager.GetAllStageData().Count) + "\n";
+            output += ("N playsessions: " + dbManager.GetAllPlaySessionData().Count) + "\n";
+            output += ("N localizations: " + dbManager.GetAllLocalizationData().Count) + "\n";
+            output += ("N rewards: " + dbManager.GetAllRewardData().Count) + "\n";
             PrintOutput(output);
         }
 
         public void DumpAllLetterData()
         {
-            DumpAllData(db.GetAllLetterData());
+            DumpAllData(dbManager.GetAllLetterData());
         }
 
         public void DumpAllWordData()
         {
-            DumpAllData(db.FindAllWordData());
+            DumpAllData(dbManager.GetAllWordData());
         }
 
         public void DumpAllPhraseData()
         {
-            DumpAllData(db.FindAllPhraseData());
+            DumpAllData(dbManager.GetAllPhraseData());
         }
 
         public void DumpAllPlaySessionData()
         {
-            DumpAllData(db.FindAllPlaySessionData());
+            DumpAllData(dbManager.GetAllPlaySessionData());
         }
 
         public void DumpAllStageData()
         {
-            DumpAllData(db.FindAllStageData());
+            DumpAllData(dbManager.GetAllStageData());
         }
 
         public void DumpAllLocalizationData()
         {
-            DumpAllData(db.FindAllLocalizationData());
+            DumpAllData(dbManager.GetAllLocalizationData());
         }
 
         public void DumpAllMiniGameData()
         {
-            DumpAllData(db.GetAllMiniGameData());
+            DumpAllData(dbManager.GetAllMiniGameData());
         }
 
         public void DumpAllLogInfoData()
         {
-            DumpAllData(db.GetAllLogInfoData());
+            DumpAllData(dbManager.GetAllLogInfoData());
+        }
+
+        public void DumpAllLogLearnData()
+        {
+            DumpAllData(dbManager.GetAllLogLearnData());
+        }
+
+        public void DumpAllLogMoodData()
+        {
+            DumpAllData(dbManager.GetAllLogMoodData());
+        }
+
+        public void DumpAllLogPlayData()
+        {
+            DumpAllData(dbManager.GetAllLogPlayData());
+        }
+
+        public void DumpAllScoreData()
+        {
+            DumpAllData(dbManager.GetAllScoreData());
         }
 
         public void DumpLetterById(string id)
         {
-            IData data = db.GetLetterDataById(id);
+            IData data = dbManager.GetLetterDataById(id);
             DumpDataById(id, data);
         }
 
         public void DumpWordById(string id)
         {
-            var data = db.GetWordDataById(id);
+            var data = dbManager.GetWordDataById(id);
             var arabic_text = data.Arabic;
             PrintArabicOutput(arabic_text);
             DumpDataById(id, data);
@@ -106,58 +131,58 @@ namespace EA4S.Db.Management
 
         public void DumpPhraseById(string id)
         {
-            IData data = db.GetPhraseDataById(id);
+            IData data = dbManager.GetPhraseDataById(id);
             DumpDataById(id, data);
         }
 
         public void DumpMiniGameByCode(MiniGameCode code)
         {
-            IData data = db.GetMiniGameDataByCode(code);
+            IData data = dbManager.GetMiniGameDataByCode(code);
             DumpDataById(data.GetId(), data);
         }
 
         public void DumpStageById(string id)
         {
-            IData data = db.GetStageDataById(id);
+            IData data = dbManager.GetStageDataById(id);
             DumpDataById(id, data);
         }
 
         public void DumpPlaySessionById(string id)
         {
-            IData data = db.GetPlaySessionDataById(id);
+            IData data = dbManager.GetPlaySessionDataById(id);
             DumpDataById(id, data);
         }
 
         public void DumpLocalizationById(string id)
         {
-            IData data = db.GetLocalizationDataById(id);
+            IData data = dbManager.GetLocalizationDataById(id);
             DumpDataById(id, data);
         }
 
         public void DumpRewardById(string id)
         {
-            IData data = db.GetRewardDataById(id);
+            IData data = dbManager.GetRewardDataById(id);
             DumpDataById(id, data);
         }
 
         public void DumpLogDataById(string id)
         {
-            IData data = db.GetLogInfoDataById(id);
+            IData data = dbManager.GetLogInfoDataById(id);
             DumpDataById(id, data);
         }
 
 
         public void DumpArabicWord(string id)
         {
-            var data = db.GetWordDataById(id);
+            var data = dbManager.GetWordDataById(id);
             var arabic_text = data.Arabic;
             PrintArabicOutput(arabic_text);
         }
 
         public void DumpActiveMinigames()
         {
-            var all_minigames = db.GetAllMiniGameData();
-            var active_minigames = db.GetActiveMinigames();
+            var all_minigames = dbManager.GetAllMiniGameData();
+            var active_minigames = dbManager.GetActiveMinigames();
             PrintOutput(active_minigames.Count + " active minigames out of " + all_minigames.Count);
         }
 
@@ -165,15 +190,27 @@ namespace EA4S.Db.Management
 
         #region Test Insert Log Data
 
+        public void PopulateDatabaseRandomly()
+        {
+            for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogInfoData();
+            for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogLearnData();
+            for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogMoodData();
+            for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogPlayData();
+            for (int i = 0; i < RND.Range(20, 40); i++) TestInsertScoreData();
+        }
+
         public void TestInsertLogInfoData()
         {
             var newData = new LogInfoData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericUtilites.GetTimestampForNow();
             newData.PlayerID = 1;
 
-            this.db.Insert(newData);
+            newData.Event = InfoEvent.Book;
+            newData.Description = "TEST INFO";
+
+            this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogInfoData: " + newData.ToString());
         }
 
@@ -181,12 +218,23 @@ namespace EA4S.Db.Management
         {
             var newData = new LogLearnData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericUtilites.GetTimestampForNow();
             newData.PlayerID = 1;
-            newData.Score = UnityEngine.Random.Range(0f, 10f);
 
-            this.db.Insert(newData);
+            newData.PlaySession = "1.1.1";
+            newData.MiniGame = MiniGameCode.Balloons_letter;
+
+            bool useLetter = RND.value > 0.5f;
+            newData.Table = useLetter ? "LetterData" : "WordData";
+            newData.ElementId = useLetter
+                ? GenericUtilites.GetRandom(dbManager.GetAllWordData()).GetId()
+                : GenericUtilites.GetRandom(dbManager.GetAllLetterData()).GetId();
+
+            newData.PlayerID = 1;
+            newData.Score = RND.Range(-1f, 1f);
+
+            this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogLearnData: " + newData.ToString());
         }
 
@@ -194,12 +242,13 @@ namespace EA4S.Db.Management
         {
             var newData = new LogMoodData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericUtilites.GetTimestampForNow();
             newData.PlayerID = 1;
-            newData.MoodValue = UnityEngine.Random.Range(0, 20);
 
-            this.db.Insert(newData);
+            newData.MoodValue = RND.Range(0, 20);
+
+            this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogMoodData: " + newData.ToString());
         }
 
@@ -207,24 +256,32 @@ namespace EA4S.Db.Management
         {
             var newData = new LogPlayData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            newData.Timestamp = GenericUtilites.GetRelativeTimestampFromNow(RND.Range(0, 5));
             newData.PlayerID = 1;
 
-            this.db.Insert(newData);
+            newData.PlaySession = "1.1.1";
+            newData.MiniGame = MiniGameCode.Balloons_letter;
+            newData.Score = RND.Range(0, 1f);
+            newData.Action = PlayEvent.Skill;
+            newData.PlaySkill = PlaySkill.Logic;
+            newData.RawData = "TEST";
+
+            this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());
         }
 
         public void TestInsertScoreData()
         {
             var newData = new ScoreData();
-            newData.PlayerID = 1;
-            newData.Score = UnityEngine.Random.Range(0f, 1f);
             newData.Table = DbTables.MiniGames.ToString();
-            newData.ElementId = MiniGameCode.Balloons_spelling.ToString();
+            newData.ElementId = MiniGameCode.Balloons_counting.ToString();
+            newData.PlayerID = 1;
 
-            this.db.Insert(newData);
-            PrintOutput("Inserted new LogData: " + newData.ToString());
+            newData.Score = RND.Range(0f, 1f);
+
+            this.dbManager.Insert(newData);
+            PrintOutput("Inserted new ScoreData: " + newData.ToString());
         }
 
         #endregion
@@ -234,26 +291,26 @@ namespace EA4S.Db.Management
         // Test that uses a simple select/where expression on a single table
         public void TestLINQLogData()
         {
-            List<LogInfoData> list = this.db.FindLogInfoData(x => x.Timestamp > 1000);
+            List<LogInfoData> list = this.dbManager.FindLogInfoData(x => x.Timestamp > 1000);
             DumpAllData(list);
         }
 
         // Test query: get all MoodData, ordered by MoodValue
         public void TestQuery_SingleTable1()
         {
-            var tableName = this.db.GetTableName<LogMoodData>();
+            var tableName = this.dbManager.GetTableName<LogMoodData>();
             string query = "select * from \"" + tableName + "\" order by MoodValue";
-            List<LogMoodData> list = this.db.FindLogMoodDataByQuery(query);
+            List<LogMoodData> list = this.dbManager.FindLogMoodDataByQuery(query);
             DumpAllData(list);
         }
 
         // Test query: get number of LogPlayData for a given PlaySession with a high enough score
         public void TestQuery_SingleTable2()
         {
-            var tableName = this.db.GetTableName<LogPlayData>();
+            var tableName = this.dbManager.GetTableName<LogPlayData>();
             string targetPlaySessionId = "\"5\"";
             string query = "select * from \"" + tableName + "\" where Session = " + targetPlaySessionId;
-            List<LogPlayData> list = this.db.FindLogPlayDataByQuery(query);
+            List<LogPlayData> list = this.dbManager.FindLogPlayDataByQuery(query);
             PrintOutput("Number of play data for PlaySession " + targetPlaySessionId + ": " + list.Count);
         }
 
@@ -270,7 +327,7 @@ namespace EA4S.Db.Management
 
             string targetPlaySessionId = "\"5\"";
             string query = "select LogMoodData.MoodValue from LogMoodData where LogMoodData.Session = " + targetPlaySessionId;
-            List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
+            List<object> list = this.dbManager.FindCustomDataByQuery(resultMapping, query);
 
             string output = "Test values N: " + list.Count + "\n";
             foreach (var obj in list)
@@ -287,13 +344,52 @@ namespace EA4S.Db.Management
             SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
 
             string query = "select LogMoodData.MoodValue from LogMoodData inner join LogPlayData on LogMoodData.PlayerId = LogPlayData.PlayerId where LogMoodData.Session = \"5\"";
-            List<object> list = this.db.FindCustomDataByQuery(resultMapping, query);
+            List<object> list = this.dbManager.FindCustomDataByQuery(resultMapping, query);
 
             string output = "Test values N: " + list.Count + "\n";
             foreach (var obj in list)
             {
                 output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
             }
+            PrintOutput(output);
+        }
+        #endregion
+
+        #region Teacher
+
+        public void Teacher_LatestScores()
+        {
+            var scores = teacherAI.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
+
+            string output = "Scores:\n";
+            foreach (var score in scores) output += score.ToString() + "\n";
+            PrintOutput(output);
+        }
+
+        public void Teacher_LastNMoods()
+        {
+            var list = teacherAI.GetLastMoodData(10);
+
+            string output = "Latest 10 moods:\n";
+            foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.ToString() + "\n";
+            PrintOutput(output);
+        } 
+
+        public void Teacher_FailedAssessmentLetters()
+        {
+            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_Letters);
+
+            string output = "Failed letters for assessment 'Letters':\n";
+            foreach (var data in list) output += data.ToString() + "\n";
+            PrintOutput(output);
+        }
+
+        public void Teacher_FailedAssessmentWords()
+        {
+            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_Letters);
+
+            string output = "Failed words for assessment 'Letters':\n";
+            foreach (var data in list) output += data.ToString() + "\n";
             PrintOutput(output);
         }
 
@@ -303,19 +399,19 @@ namespace EA4S.Db.Management
 
         public void LoadProfile(int profileId)
         {
-            this.db.LoadDynamicDb(profileId);
+            this.dbManager.LoadDynamicDb(profileId);
             PrintOutput("Loading profile " + profileId);
         }
 
         public void CreateCurrentProfile()
         {
-            this.db.CreateProfile();
+            this.dbManager.CreateProfile();
             PrintOutput("Creating tables for selected profile");
         }
 
         public void DeleteCurrentProfile()
         {
-            this.db.DropProfile();
+            this.dbManager.DropProfile();
             PrintOutput("Deleting tables for current selected profile");
         }
 

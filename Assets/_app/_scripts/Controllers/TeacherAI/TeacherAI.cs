@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using EA4S.Db;
 
 namespace EA4S
 {
     public class TeacherAI
     {
+        private DatabaseManager dbManager;
         string[] bodyPartsWords;
         List<LL_WordData> availableVocabulary = new List<LL_WordData>();
 
-        public TeacherAI()
+        public TeacherAI(DatabaseManager _dbManager)
         {
+            this.dbManager = _dbManager;
+
             // Debug.Log("AI exists");
 
             bodyPartsWords = new[]
@@ -24,13 +28,13 @@ namespace EA4S
 
         public List<Db.MiniGameData> GimmeGoodMinigames()
         {
-            return AppManager.Instance.DB.GetActiveMinigames();
+            return dbManager.GetActiveMinigames();
         }
 
         public Db.WordData GimmeAGoodWord()
         {
             int index = Random.Range(0, bodyPartsWords.Length - 1);
-            return AppManager.Instance.DB.GetWordDataById(bodyPartsWords[index]);
+            return dbManager.GetWordDataById(bodyPartsWords[index]);
         }
 
         /// <summary>
@@ -60,7 +64,7 @@ namespace EA4S
 
         public LL_LetterData GimmeARandomLetter()
         {
-            var RandomLetterData = AppManager.Instance.DB.GetLetterDataByRandom();
+            var RandomLetterData = dbManager.GetLetterDataByRandom();
             return new LL_LetterData(RandomLetterData.GetId());
         }
 
@@ -74,7 +78,7 @@ namespace EA4S
         public List<Db.LetterData> GimmeSimilarLetters(Db.LetterData letter, int howMany)
         {
             List<Db.LetterData> returnList = new List<Db.LetterData>();
-            returnList.Add(AppManager.Instance.DB.GetLetterDataByRandom());
+            returnList.Add(dbManager.GetLetterDataByRandom());
             return returnList;
         }
 
@@ -98,18 +102,18 @@ namespace EA4S
             {
                 case 1:
                     if (AppManager.Instance.PlaySessionGameDone == 0)
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
+                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
                     else
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
+                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
                     break;
                 case 2:
                     if (AppManager.Instance.PlaySessionGameDone == 0)
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
+                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
                     else
-                        miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
+                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
                     break;
                 case 3:
-                    miniGame = AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
+                    miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
                     break;
             }
             AppManager.Instance.ActualMinigame = miniGame;
@@ -124,19 +128,41 @@ namespace EA4S
         public List<float> GetLatestScoresForMiniGame(MiniGameCode code, int nLastDays)
         {
             string minigameId = code.ToString();
-            int toTimestamp = nLastDays;
+            int toTimestamp = GenericUtilites.GetTimestampForNow();
+            int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
 
-            string query = string.Format("select * from LogScoreData where Timestamp > {0} and MiniGameId = {1}", toTimestamp, minigameId);
-            List<Db.ScoreData> list = AppManager.Instance.DB.FindScoreDataByQuery(query);
+            string query = string.Format("SELECT * FROM LogPlayData WHERE Timestamp > {0} AND Timestamp < {1} AND Table = MiniGame AND ElementId = {2}", fromTimestamp, toTimestamp, minigameId);
+            List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
-
-            // Test log
-            string output = "Scores:\n";
-            foreach (var score in scores) output += score.ToString() + "\n";
-            Debug.Log(output);
 
             return scores;
         }
+
+        public List<LogMoodData> GetLastMoodData(int number)
+        {
+            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number); 
+            List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
+            return list;
+        }
+
+        public List<LogLearnData> GetFailedAssessmentLetters(MiniGameCode assessmentCode)
+        {
+            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = LetterData AND Score < 0", assessmentCode);
+            List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
+            List<string> ids_list = list.ConvertAll(x => x.Id);
+            dbManager.FindLetterData(x => ids_list.Contains(x.Id));
+            return list;
+        }
+
+        public List<LogLearnData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
+        {
+            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = WordData AND Score < 0", assessmentCode);
+            List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
+            List<string> ids_list = list.ConvertAll(x => x.Id);
+            dbManager.FindWordData(x => ids_list.Contains(x.Id));
+            return list;
+        }
+
 
         #endregion
 

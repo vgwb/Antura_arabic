@@ -29,10 +29,22 @@ namespace EA4S
             return reverse;
         }
 
-        public static double GetTimestamp()
+
+        private static DateTime TIME_START = new DateTime(1970, 1, 1, 0, 0, 0);
+        public static int GetRelativeTimestampFromNow(int deltaDays)
         {
-            var timeSpan = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0));
-            return timeSpan.TotalSeconds;
+            var timeSpan = new TimeSpan(deltaDays, 0, 0, 0, 0);
+            return GetTimestampForNow() + (int)timeSpan.TotalSeconds;
+        }
+        public static int GetTimestampForNow()
+        {
+            var timeSpan = (DateTime.UtcNow - TIME_START);
+            return (int)timeSpan.TotalSeconds;
+        }
+        public static DateTime FromTimestamp(int timestamp)
+        {
+            var span = TimeSpan.FromSeconds(timestamp);
+            return TIME_START + span;
         }
 
     }

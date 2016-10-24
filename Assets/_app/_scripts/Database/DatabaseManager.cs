@@ -62,6 +62,26 @@ namespace EA4S
             return dynamicDb.FindAll<LogInfoData>();
         }
 
+        public List<LogMoodData> GetAllLogMoodData()
+        {
+            return dynamicDb.FindAll<LogMoodData>();
+        }
+
+        public List<LogLearnData> GetAllLogLearnData()
+        {
+            return dynamicDb.FindAll<LogLearnData>();
+        }
+
+        public List<LogPlayData> GetAllLogPlayData()
+        {
+            return dynamicDb.FindAll<LogPlayData>();
+        }
+
+        public List<ScoreData> GetAllScoreData()
+        {
+            return dynamicDb.FindAll<ScoreData>();
+        }
+
         // Find all (expression)
         public List<LogInfoData> FindLogInfoData(System.Linq.Expressions.Expression<Func<LogInfoData, bool>> expression)
         {
@@ -157,62 +177,62 @@ namespace EA4S
             //return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
-        public List<EA4S.Db.WordData> FindAllWordData(Predicate<EA4S.Db.WordData> predicate)
+        public List<EA4S.Db.WordData> FindWordData(Predicate<EA4S.Db.WordData> predicate)
         {
             return staticDb.FindAll<EA4S.Db.WordData>(staticDb.GetWordTable(), predicate);
         }
 
-        public List<PhraseData> FindAllPhraseData(Predicate<PhraseData> predicate)
+        public List<PhraseData> FindPhraseData(Predicate<PhraseData> predicate)
         {
             return staticDb.FindAll<PhraseData>(staticDb.GetPhraseTable(), predicate);
         }
 
-        public List<PlaySessionData> FindAllPlaySessionData(Predicate<PlaySessionData> predicate)
+        public List<PlaySessionData> FindPlaySessionData(Predicate<PlaySessionData> predicate)
         {
             return staticDb.FindAll<PlaySessionData>(staticDb.GetPlaySessionTable(), predicate);
         }
 
-        public List<StageData> FindAllStageData(Predicate<StageData> predicate)
+        public List<StageData> FindStageData(Predicate<StageData> predicate)
         {
             return staticDb.FindAll<StageData>(staticDb.GetStageTable(), predicate);
         }
 
-        public List<LocalizationData> FindAllLocalizationData(Predicate<LocalizationData> predicate)
+        public List<LocalizationData> FindLocalizationData(Predicate<LocalizationData> predicate)
         {
             return staticDb.FindAll<LocalizationData>(staticDb.GetLocalizationTable(), predicate);
         }
 
-        public List<RewardData> FindAllRewardData(Predicate<RewardData> predicate)
+        public List<RewardData> FindRewardData(Predicate<RewardData> predicate)
         {
             return staticDb.FindAll<RewardData>(staticDb.GetRewardTable(), predicate);
         }
 
-        public List<EA4S.Db.WordData> FindAllWordData()
+        public List<EA4S.Db.WordData> GetAllWordData()
         {
             return new List<EA4S.Db.WordData>(staticDb.GetWordTable().Values);
         }
 
-        public List<PhraseData> FindAllPhraseData()
+        public List<PhraseData> GetAllPhraseData()
         {
             return new List<PhraseData>(staticDb.GetPhraseTable().Values);
         }
 
-        public List<PlaySessionData> FindAllPlaySessionData()
+        public List<PlaySessionData> GetAllPlaySessionData()
         {
             return new List<PlaySessionData>(staticDb.GetPlaySessionTable().Values);
         }
 
-        public List<StageData> FindAllStageData()
+        public List<StageData> GetAllStageData()
         {
             return new List<StageData>(staticDb.GetStageTable().Values);
         }
 
-        public List<LocalizationData> FindAllLocalizationData()
+        public List<LocalizationData> GetAllLocalizationData()
         {
             return new List<LocalizationData>(staticDb.GetLocalizationTable().Values);
         }
 
-        public List<RewardData> FindAllRewardData()
+        public List<RewardData> GetAllRewardData()
         {
             return new List<RewardData>(staticDb.GetRewardTable().Values);
         }
@@ -235,7 +255,7 @@ namespace EA4S
         public WordData GetWordDataByRandom()
         {
             // TODO now locked to body parts for retrocompatibility
-            var wordslist = FindAllWordData((x) => (x.Category == "body_parts"));
+            var wordslist = FindWordData((x) => (x.Category == "body_parts"));
             return GenericUtilites.GetRandom(wordslist);
         }
 
