@@ -30,6 +30,9 @@ namespace EA4S.FastCrowd
         {
             bool running = UnityEngine.Random.value < 0.5f;
 
+            if (!letter.walkableArea.IsInside(letter.transform.position, true))
+                running = true;
+
             if (running)
             {
                 // set letter animation
@@ -84,7 +87,7 @@ namespace EA4S.FastCrowd
             if (stuckTimer <= 0)
             {
                 // change direction
-                target = letter.crowd.walkableArea.GetNearestPoint(letter.transform.position - 2*distance);
+                target = letter.crowd.walkableArea.GetNearestPoint(letter.transform.position - 2*distance, true);
                 stuckTimer = STUCK_THRESHOLD;
             }
 

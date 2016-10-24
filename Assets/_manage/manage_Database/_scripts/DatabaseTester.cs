@@ -174,7 +174,7 @@ namespace EA4S.Db.Management
             newData.PlayerID = 1;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
-            this.db.InsertLogInfoData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogInfoData: " + newData.ToString());
         }
 
@@ -187,7 +187,7 @@ namespace EA4S.Db.Management
             newData.PlayerID = 1;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
-            this.db.InsertLogLearnData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogLearnData: " + newData.ToString());
         }
 
@@ -200,7 +200,7 @@ namespace EA4S.Db.Management
             newData.PlayerID = 1;
             newData.MoodValue = UnityEngine.Random.Range(0, 20);
 
-            this.db.InsertLogMoodData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogMoodData: " + newData.ToString());
         }
 
@@ -212,7 +212,7 @@ namespace EA4S.Db.Management
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
 
-            this.db.InsertLogPlayData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());
         }
 
@@ -224,7 +224,7 @@ namespace EA4S.Db.Management
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
 
-            this.db.InsertLogScoreData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogScoreData: " + newData.ToString());
         }
 

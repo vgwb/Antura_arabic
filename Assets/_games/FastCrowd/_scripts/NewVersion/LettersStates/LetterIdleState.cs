@@ -18,7 +18,7 @@ namespace EA4S.FastCrowd
                 LLAnimationStates.LL_idle_1;
 
             // Wait a random time in idle
-            timer = 2.0f + 3.0f*UnityEngine.Random.value;
+            timer = 1.0f + 3.0f*UnityEngine.Random.value;
         }
 
         public override void ExitState()
