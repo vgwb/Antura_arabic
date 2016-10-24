@@ -1,43 +1,35 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine.UI;
+using ModularFramework.Modules;
 
-namespace EA4S
-{
-    /// <summary>
-    /// TODO: to be deleted during final app lifecycle refactoring.
-    /// </summary>
-    public class PlayerProfile_deprecated
-    {
-        public int AnturaCurrentPreset;
+namespace EA4S {
 
-        #region Mood
+    [Serializable]
+    public class PlayerProfile : IPlayerProfile {
 
-        /// <summary>
-        /// False if not executed start mood eval.
-        /// </summary>
-        [HideInInspector]
-        public bool StartMood = false;
-        /// <summary>
-        /// Start Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int StartMoodEval = 0;
-        /// <summary>
-        /// End Mood value. Values 0,1,2,3,4.
-        /// </summary>
-        [HideInInspector]
-        public int EndMoodEval = 0;
+        public string Key { get; set; }
+        public int Id;
+        public int AvatarId;
+        public int Age;
+        public string Name;
 
-        #endregion
+        // Mood (1 to 5 indicators)
+        public float MainMood = 3f;
+        public float Impatient = 3f;
+        public float Impulsive = 3f;
+        public float Genius = 3f;
+        public float Bored = 3f;
+        public float Collector = 3f;
+        public float Frustrated = 3f;
 
-        public PlayerProfile_deprecated()
-        {
-            Reset();
-        }
-
-        public void Reset()
-        {
-            AnturaCurrentPreset = 0;
-        }
+        // PlaySkills
+        public float Precision;
+        public float Reaction;
+        public float Memory;
+        public float Logic;
+        public float Rhythm;
+        public float Musicality;
+        public float Sight;
+        
     }
 }
