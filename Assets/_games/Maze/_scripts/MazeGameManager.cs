@@ -41,8 +41,10 @@ namespace EA4S.Maze
 		public int health = 4;
 		public GameObject cracks;
 		List<GameObject> _cracks;
-		List<GameObject> lines;
+		//List<GameObject> lines;
+		public List<Vector3> pointsList;
 
+		public List<LineRenderer> lines;
 
 		int correctLetters = 0;
 		int wrongLetters = 0;
@@ -78,7 +80,12 @@ namespace EA4S.Maze
 				child.gameObject.SetActive (false);
 				_cracks.Add (child.gameObject);
 			}
-			lines = new List<GameObject>();
+			//lines = new List<GameObject>();
+
+			lines = new List<LineRenderer> ();
+
+
+
 
 			currentLetterIndex = 0;
 			roundNumber.text = "#" + (currentLetterIndex + 1);
@@ -89,6 +96,26 @@ namespace EA4S.Maze
 
 			//init first letter
 			initCurrentLetter();
+
+		}
+
+		public void addLine()
+		{
+			
+			pointsList = new List<Vector3> ();
+			GameObject go = new GameObject ();
+			go.transform.position = new Vector3 (0, 0, -0.2f);
+			LineRenderer line = go.AddComponent<LineRenderer> ();
+			//line.material = new Material (Shader.Find ("Particles/Additive"));
+			line.SetVertexCount (0);
+			line.SetWidth (0.6f, 0.6f);
+			//line.SetColors (Color.green, Color.green);
+			//line.useWorldSpace = true;    
+
+			line.material = new Material(Shader.Find("Unlit/Color"));
+			line.material.color = Color.red;
+
+			lines.Add (line);
 
 		}
 
@@ -141,6 +168,7 @@ namespace EA4S.Maze
 					restartCurrentLetter (won);
 				}
 			} else {
+				addLine ();
 				currentCharacter.nextPath ();
 				currentTutorial.moveToNextPath ();
 			}
@@ -171,19 +199,28 @@ namespace EA4S.Maze
 				AudioManager.I.PlaySfx (Sfx.Lose);
 
 			currentPrefab.SendMessage("moveOut",won);
+
+			hideCracks ();
+			removeLines ();
+
 			initCurrentLetter ();
 		
 
 
-			hideCracks ();
-			removeLines ();
+
+
 		}
 
 		void removeLines()
 		{
-			foreach (GameObject line in lines)
+			foreach(LineRenderer line in lines)		
+				line.SetVertexCount (0);
+			lines = new List<LineRenderer> ();
+			pointsList.RemoveRange (0, pointsList.Count);
+
+			/*foreach (GameObject line in lines)
 				Destroy (line);
-			lines = new List<GameObject>();
+			lines = new List<GameObject>();*/
 		}
 
 		void hideCracks()
@@ -197,6 +234,7 @@ namespace EA4S.Maze
 
 		void initCurrentLetter()
 		{
+			addLine ();
 			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex],Vector3.zero, Quaternion.identity);
 			foreach (Transform child in currentPrefab.transform) {
 				if (child.name == "Mazecharacter")
@@ -253,21 +291,32 @@ namespace EA4S.Maze
 			Camera.main.transform.position = originalCamPos;
 		}
 
+		public void appendToLine(Vector3 mousePos)
+		{
+			if (!pointsList.Contains (mousePos)) {
+				//mousePos.z = -0.1071415f;
+				pointsList.Add (mousePos);
+				lines[lines.Count-1].SetVertexCount (pointsList.Count);
+				lines[lines.Count-1].SetPosition (pointsList.Count - 1, (Vector3)pointsList [pointsList.Count - 1]);
+			}
+		}
 		public void DrawLine(Vector3 start, Vector3 end, Color color)
 		{
+			/*
 			start.z = end.z = -0.1f;//-0.1f;
 			GameObject myLine = new GameObject();
 			myLine.transform.position = start;
 			myLine.AddComponent<LineRenderer>();
 			LineRenderer lr = myLine.GetComponent<LineRenderer>();
 			lr.material = new Material(Shader.Find("Unlit/Color"));
-			lr.SetColors(color, color);
+			lr.material.color = color;
+			//lr.SetColors(color, color);
 
 			lr.SetWidth(0.3f, 0.3f);
 			lr.SetPosition(0, start);
 			lr.SetPosition(1, end);
 
-			lines.Add(myLine);
+			lines.Add(myLine);*/
 		}
 
 		private void EndGame()

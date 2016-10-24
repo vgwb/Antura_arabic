@@ -9,8 +9,6 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        public const string AppVersion = "0.6.3a";
-
         new public AppSettings GameSettings = new AppSettings();
 
         new public static AppManager Instance {
@@ -20,14 +18,14 @@ namespace EA4S
         /// <summary>
         /// Tmp var to store actual gameplay word already used.
         /// </summary>
-        public List<WordData> ActualGameplayWordAlreadyUsed = new List<WordData>();
+        public List<LL_WordData> ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
         public string ActualGame = string.Empty;
 
-        public List<LetterData> Letters = new List<LetterData>();
+        public List<LL_LetterData> Letters = new List<LL_LetterData>();
 
         public TeacherAI Teacher;
         public DatabaseManager DB;
-        public EA4S.PlayerProfile Player;
+        public EA4S.PlayerProfile_deprecated Player;
         public GameObject CurrentGameManagerGO;
 
         #region Init
@@ -39,12 +37,13 @@ namespace EA4S
 
         public void InitDataAI()
         {
+
             if (DB == null)
                 DB = new DatabaseManager(); 
             if (Teacher == null)
                 Teacher = new TeacherAI();
             if (Player == null)
-                Player = new EA4S.PlayerProfile();
+                Player = new EA4S.PlayerProfile_deprecated();
         }
 
         protected override void GameSetup()
@@ -83,8 +82,8 @@ namespace EA4S
 
         void CachingLetterData()
         {
-            foreach (var letterData in DB.FindAllLetterData()) {
-                Letters.Add(new LetterData(letterData.GetId()));
+            foreach (var letterData in DB.GetAllLetterData()) {
+                Letters.Add(new LL_LetterData(letterData.GetId()));
             }
         }
 
@@ -115,33 +114,6 @@ namespace EA4S
             PlaySession = 1;
             PlaySessionGameDone = 0;
             Player.Reset();
-        }
-
-        /// <summary>
-        /// Give right game. Alpha version.
-        /// </summary>
-        public Db.MiniGameData GetMiniGameForActualPlaySession()
-        {
-            Db.MiniGameData miniGame = null;
-            switch (PlaySession) {
-                case 1:
-                    if (PlaySessionGameDone == 0)
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
-                    else
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
-                    break;
-                case 2:
-                    if (PlaySessionGameDone == 0)
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
-                    else
-                        miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
-                    break;
-                case 3:
-                    miniGame = DB.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
-                    break;
-            }
-            ActualMinigame = miniGame;
-            return miniGame;
         }
 
         /// <summary>
@@ -197,21 +169,11 @@ namespace EA4S
         public void OnMinigameStart()
         {
             // reset for already used word.
-            ActualGameplayWordAlreadyUsed = new List<WordData>();
+            ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
         }
 
         #endregion
 
-    }
-
-    /// <summary>
-    /// Game Setting Extension class.
-    /// </summary>
-    [System.Serializable]
-    public class AppSettings : GameSettings
-    {
-        public bool DoLogPlayerBehaviour;
-        public bool HighQualityGfx;
     }
 
 }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
+using System;
 
 namespace EA4S.FastCrowd {
 
     public class WordComposer : MonoBehaviour {
 
         WordFlexibleContainer WordLabel;
-        List<LetterData> CompletedLetters = new List<LetterData>();
+        List<LL_LetterData> CompletedLetters = new List<LL_LetterData>();
 
         void Start() {
             WordLabel = GetComponent<WordFlexibleContainer>();
@@ -20,15 +21,35 @@ namespace EA4S.FastCrowd {
         /// <summary>
         /// 
         /// </summary>
-        public void UpdateWord() {
+        public void UpdateWord()
+        {
+            if (!isActiveAndEnabled)
+                return;
+
             string word = string.Empty;
-            foreach (LetterData letter in CompletedLetters) {
+            foreach (LL_LetterData letter in CompletedLetters) {
                 word += letter.Isolated;
             }
             word = ArabicAlphabetHelper.ParseWord(word, AppManager.Instance.Letters);
             WordLabel.SetText(word, false);
         }
 
+        public void AddLetter(ILivingLetterData data)
+        {
+            if (!isActiveAndEnabled)
+                return;
+
+            StartCoroutine(AddLetter(data, 1.3f));
+        }
+        
+        public void Clean()
+        {
+            CompletedLetters = new List<LL_LetterData>();
+            UpdateWord();
+
+            StopAllCoroutines();
+        }
+        
         #endregion
 
         #region event subscription delegates
@@ -41,20 +62,20 @@ namespace EA4S.FastCrowd {
         }
 
         private void Droppable_OnRightMatch(LetterObjectView _letterView) {
-            StartCoroutine(AddLetter(_letterView, 1.3f));
+            StartCoroutine(AddLetter(_letterView.Model.Data, 1.3f));
         }
 
-        IEnumerator AddLetter(LetterObjectView _letterView, float _delay) {
+        IEnumerator AddLetter(ILivingLetterData data, float _delay)
+        {
             yield return new WaitForSeconds(_delay);
-            CompletedLetters.Add(_letterView.Model.Data as LetterData);
+            CompletedLetters.Add(data as LL_LetterData);
             AudioManager.I.PlaySfx(EA4S.Sfx.Hit);
             transform.DOShakeScale(1.5f);
-            UpdateWord(); 
+            UpdateWord();
         }
 
         private void DropContainer_OnObjectiveBlockCompleted() {
-            CompletedLetters = new List<LetterData>();
-            UpdateWord();
+            Clean();
         }
 
         #endregion

@@ -1,37 +1,57 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace EA4S.FastCrowd
 {
     public class AnturaController : MonoBehaviour
     {
+        public GameObject[] targetPositions;
+        public Transform HidePosition;
+        Vector3 target;
+        public const float ANTURA_SPEED = 20.0f;
 
-        public GameObject WayPointPrefab;
-        NavMeshAgent agent;
-        Transform wayPoint;
-        public Vector3 HidePosition = new Vector3(25, 0, -20);
         public bool IsAnturaTime { get; private set; }
 
-        float nextAnturaBarkTime;
+        float nextAnturaBarkTimer;
 
-        // Use this for initialization
         void Start()
         {
-            agent = GetComponentInChildren<NavMeshAgent>();
-            wayPoint = Instantiate<Transform>(WayPointPrefab.transform);
-            wayPoint.name = "AnturaWP";
-            wayPoint.position = new Vector3(-18, 0, -10);
-            agent.SetDestination(HidePosition);
+            transform.position = HidePosition.position;
+            target = HidePosition.position;
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (IsAnturaTime && Time.time > nextAnturaBarkTime)
+            var distance = target - transform.position;
+            distance.y = 0;
+
+            if (IsAnturaTime)
             {
-                prepareNextAnturaBark();
-                AudioManager.I.PlaySfx(Sfx.DogBarking);
+                if (nextAnturaBarkTimer <= 0)
+                {
+                    PrepareNextAnturaBark();
+                    AudioManager.I.PlaySfx(Sfx.DogBarking);
+                }
+                else
+                    nextAnturaBarkTimer -= Time.deltaTime;
             }
+
+            if (distance.sqrMagnitude < 0.1f)
+            {
+                // reached
+                if (IsAnturaTime)
+                    SetRandomTarget();
+            }
+            else
+            {
+                distance.Normalize();
+                transform.position += distance * Vector3.Dot(distance, transform.forward) * ANTURA_SPEED * Time.deltaTime;
+                MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 3);
+            }
+        }
+
+        void SetRandomTarget()
+        {
+            target = targetPositions[Random.Range(0, targetPositions.Length)].transform.position;
         }
 
         public void SetAnturaTime(bool _isAnturaTime)
@@ -39,101 +59,24 @@ namespace EA4S.FastCrowd
             IsAnturaTime = _isAnturaTime;
             if (IsAnturaTime)
             {
-                RepositioningWaypoint();
-                prepareNextAnturaBark();
+                SetRandomTarget();
+                PrepareNextAnturaBark();
             }
             else
-            {
-                agent.SetDestination(HidePosition);
-            }
+                target = HidePosition.position;
         }
 
-        void prepareNextAnturaBark()
+        void PrepareNextAnturaBark()
         {
-            nextAnturaBarkTime = Time.time + Random.Range(1, 3);
+            nextAnturaBarkTimer = Random.Range(1, 3);
         }
 
-        void OnTriggerEnter(Collider other)
-        {
-            //void OnTriggerEnter(Collider other) {
-            if (agent && wayPoint && other == wayPoint.GetComponent<Collider>() && IsAnturaTime)
-            {
-                RepositioningWaypoint();
-            }
-        }
-
-        void OnTriggerStay(Collider other)
-        {
-            if (!agent)
-                return;
-            if (wayPoint && other == wayPoint.GetComponent<Collider>() && IsAnturaTime)
-            {
-                RepositioningWaypoint();
-            }
-        }
-
-        void RepositioningWaypoint(int _areaMask = 1)
-        {
-            if (!wayPoint)
-                return;
-            Vector3 randomValidPosition;
-            //RandomPoint(Target.position, 10f, out randomValidPosition);
-            do
-            {
-                GameplayHelper.RandomPointInWalkableArea(transform.position, 30f, out randomValidPosition, _areaMask);
-                wayPoint.position = randomValidPosition;
-            } while (randomValidPosition == Vector3.zero);
-            agent.SetDestination(wayPoint.position);
-        }
-
-        /// <summary>
-        /// Debug waypoint.
-        /// </summary>
+#if UNITY_EDITOR
         void OnDrawGizmos()
         {
-            if (wayPoint != null)
-            {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawLine(transform.position, wayPoint.position);
-            }
+            foreach (var spawn in targetPositions)
+                Gizmos.DrawSphere(spawn.transform.position, 0.8f);
         }
-
-        #region events delegates
-
-        /// <summary>
-        /// Timer custom events delegates.
-        /// </summary>
-        /// <param name="_data"></param>
-        private void GameplayTimer_OnCustomEvent(GameplayTimer.CustomEventData _data)
-        {
-            //Debug.LogFormat("Custom Event {0} at {1} sec.", _data.Name, _data.Time);
-            switch (_data.Name)
-            {
-                case "AnturaStart":
-                    SetAnturaTime(true);
-                    break;
-                case "AnturaEnd":
-                    SetAnturaTime(false);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        #endregion
-
-        #region events subscription
-
-        void OnEnable()
-        {
-            GameplayTimer.OnCustomEvent += GameplayTimer_OnCustomEvent;
-        }
-
-        void OnDisable()
-        {
-            GameplayTimer.OnCustomEvent -= GameplayTimer_OnCustomEvent;
-        }
-
-        #endregion
+#endif
     }
 }

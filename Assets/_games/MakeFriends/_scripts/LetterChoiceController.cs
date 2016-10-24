@@ -18,7 +18,7 @@ namespace EA4S.MakeFriends
         public CanvasGroup canvasGroup;
 
         [HideInInspector]
-        public LetterData letterData;
+        public LL_LetterData letterData;
         [HideInInspector]
         public bool wasChosen;
 
@@ -47,7 +47,7 @@ namespace EA4S.MakeFriends
         private Vector2 initialPosition = Vector2.zero;
 
 
-        public void Init(LetterData _letterData)
+        public void Init(LL_LetterData _letterData)
         {
             Reset();
             letterData = _letterData;

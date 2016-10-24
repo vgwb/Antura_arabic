@@ -5,6 +5,20 @@ using System.Collections.Generic;
 
 namespace EA4S.Db
 {
+    public enum DbTables
+    {
+        Letters = 1,
+        Words = 2,
+        Phrases = 3,
+
+        MiniGames = 10,
+        Stages = 11,
+        PlaySessions = 12,
+
+        Localizations = 30,
+        Rewards = 40
+    }
+
     // @note: we use these serialized tables for faster access
     public class Database : ScriptableObject
     {
@@ -30,8 +44,8 @@ namespace EA4S.Db
 
         public List<T> FindAll<T>(SerializableDataTable<T> table, Predicate<T> predicate) where T : IData
         {
-            List<T> allValues = new List<T>(table.Values);
-            List<T> filtered = allValues.FindAll(predicate);
+            var allValues = new List<T>(table.Values);
+            var filtered = allValues.FindAll(predicate);
             return filtered;
         }
 
@@ -60,56 +74,44 @@ namespace EA4S.Db
         public LocalizationTable GetLocalizationTable() { return this.localizationTable; }
 
         // @note: interface for common use using categories
-        public IData GetData(DatabaseCategory category, string id)
+        public IData GetData(DbTables tables, string id)
         {
-            var table = GetTable(category);
+            var table = GetTable(tables);
             return table.GetValue(id);
         }
 
         public IEnumerable<IDataTable> GetAllTables()
         {
-            yield return GetTable(DatabaseCategory.Letters);
-            yield return GetTable(DatabaseCategory.Words);
-            yield return GetTable(DatabaseCategory.Phrases);
-            yield return GetTable(DatabaseCategory.MiniGames);
-            yield return GetTable(DatabaseCategory.Stages);
-            yield return GetTable(DatabaseCategory.PlaySessions);
-            yield return GetTable(DatabaseCategory.Rewards);
-            yield return GetTable(DatabaseCategory.Localizations);
+            yield return GetTable(DbTables.Letters);
+            yield return GetTable(DbTables.Words);
+            yield return GetTable(DbTables.Phrases);
+            yield return GetTable(DbTables.MiniGames);
+            yield return GetTable(DbTables.Stages);
+            yield return GetTable(DbTables.PlaySessions);
+            yield return GetTable(DbTables.Rewards);
+            yield return GetTable(DbTables.Localizations);
         }
 
-        private IDataTable GetTable(DatabaseCategory category)
+        private IDataTable GetTable(DbTables tables)
         {
             IDataTable table = null;
-            switch (category) {
-                case DatabaseCategory.Letters: table = this.letterTable; break;
-                case DatabaseCategory.Words: table = this.wordTable; break;
-                case DatabaseCategory.Phrases: table = this.phraseTable; break;
-                case DatabaseCategory.MiniGames: table = this.minigameTable; break;
-                case DatabaseCategory.Stages: table = this.stageTable; break;
-                case DatabaseCategory.PlaySessions: table = this.playSessionTable; break;
-                case DatabaseCategory.Rewards: table = this.rewardTable; break;
-                case DatabaseCategory.Localizations: table = this.localizationTable; break;
+            switch (tables) {
+                case DbTables.Letters: table = letterTable; break;
+                case DbTables.Words: table = wordTable; break;
+                case DbTables.Phrases: table = phraseTable; break;
+                case DbTables.MiniGames: table = minigameTable; break;
+                case DbTables.Stages: table = stageTable; break;
+                case DbTables.PlaySessions: table = playSessionTable; break;
+                case DbTables.Rewards: table = rewardTable; break;
+                case DbTables.Localizations: table = localizationTable; break;
+                default:
+                    throw new ArgumentOutOfRangeException("tables", tables, null);
             }
             return table;
         }
 
         #endregion
 
-    }
-
-    public enum DatabaseCategory
-    {
-        Letters = 1,
-        Words = 2,
-        Phrases = 3,
-
-        MiniGames = 10,
-        Stages = 11,
-        PlaySessions = 12,
-
-        Localizations = 30,
-        Rewards = 40
     }
 
 }
