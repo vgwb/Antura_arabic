@@ -54,7 +54,7 @@ namespace EA4S
         #endregion
 
 
-        #region Specific Runtime Queries
+        #region Specific Dynamic Queries
 
         // Find all
         public List<LogInfoData> GetAllLogInfoData()
@@ -114,32 +114,13 @@ namespace EA4S
         #endregion
 
 
-        #region Specific Runtime Inserts
+        #region Dynamic Inserts
 
         // Insert
-        public void InsertLogInfoData(LogInfoData data)
-        {
-            dynamicDb.Insert(data);
-        }
 
-        public void InsertLogLearnData(LogLearnData data)
+        public void Insert<T>(T data) where T : IData, new()
         {
-            dynamicDb.Insert(data);
-        }
-
-        public void InsertLogMoodData(LogMoodData data)
-        {
-            dynamicDb.Insert(data);
-        }
-
-        public void InsertLogPlayData(LogPlayData data)
-        {
-            dynamicDb.Insert(data);
-        }
-
-        public void InsertLogScoreData(LogScoreData data)
-        {
-            dynamicDb.Insert(data);
+            dynamicDb.Insert<T>(data);
         }
 
         #endregion

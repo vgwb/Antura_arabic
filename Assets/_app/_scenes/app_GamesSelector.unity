@@ -395,7 +395,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 487864, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 487864, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -453,13 +453,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 2104996691}
   - 212: {fileID: 2104996692}
+  - 135: {fileID: 2104996693}
   m_Layer: 0
   m_Name: Cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2104996691
 Transform:
   m_ObjectHideFlags: 0
@@ -506,3 +507,15 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!135 &2104996693
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2104996690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.28
+  m_Center: {x: 0, y: 0, z: 0}
