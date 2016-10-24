@@ -20,8 +20,8 @@ namespace EA4S
 
         void OnDestroy()
         {
-            shakeTween.Kill();
-            openTween.Kill();
+            shakeTween.Kill(true);
+            openTween.Kill(true);
         }
 
         #endregion
@@ -50,6 +50,7 @@ namespace EA4S
                 PouffParticleSys.Play();
                 shakeTween.Kill(true);
                 openTween = Main.transform.DOPunchRotation(new Vector3(0, 0, 45), 0.75f);
+                AudioManager.I.PlaySfx(Sfx.Poof);
             } else {
                 PouffParticleSys.Stop();
                 PouffParticleSys.Clear();
