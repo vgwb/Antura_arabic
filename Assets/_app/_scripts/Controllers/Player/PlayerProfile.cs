@@ -32,8 +32,8 @@ namespace EA4S {
         public float Musicality;
         public float Sight;
 
-        public ProgressState MaxProgress;
-        public ProgressState ActualProgress;
+        public JourneyPosition MaxJourneyPosition;
+        public JourneyPosition ActualJourneyPosition;
 
         #region Oldies
         public int AnturaCurrentPreset;
