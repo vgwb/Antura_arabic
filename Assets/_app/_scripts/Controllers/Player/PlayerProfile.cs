@@ -32,15 +32,8 @@ namespace EA4S {
         public float Musicality;
         public float Sight;
 
-        // Max progression point
-        public int Stage = 3; // testing values
-        public int LearningBlock = 2; // testing values
-        public int PlaySession = 1; // testing values
-
-        // Last Playsession played
-        public int ActualStage = 1;
-        public int ActualLearningBlock = 1;
-        public int ActualPlaySession = 1;
+        public ProgressState MaxProgress;
+        public ProgressState ActualProgress;
 
         #region Oldies
         public int AnturaCurrentPreset;
