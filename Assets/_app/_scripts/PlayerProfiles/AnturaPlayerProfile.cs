@@ -13,17 +13,16 @@ namespace EA4S {
         public int Age;
         public string Name;
 
-        // Psyco (1 to 5 indicators)
-        public int MainMood = 3;
-        public int Impatient = 3;
-        public int Impulsive = 3;
-        public int Genius = 3;
-        public int Bored = 3;
-        public int Collector = 3;
-        public int Frustrated = 3;
+        // Mood (1 to 5 indicators)
+        public float MainMood = 3f;
+        public float Impatient = 3f;
+        public float Impulsive = 3f;
+        public float Genius = 3f;
+        public float Bored = 3f;
+        public float Collector = 3f;
+        public float Frustrated = 3f;
 
-
-        // Skills
+        // PlaySkills
         public float Precision;
         public float Reaction;
         public float Memory;
