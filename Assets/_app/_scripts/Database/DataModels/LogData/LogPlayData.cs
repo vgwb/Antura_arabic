@@ -4,27 +4,36 @@ using System;
 namespace EA4S.Db
 {
 
-    public enum LogPlaySkill
+    public enum PlaySkill
     {
-        Precision = 0,
-        Reaction = 1,
-        Memory = 2,
-        Logic = 3,
-        Rhythm = 4,
-        Musicality = 5,
-        Sight = 6
+        None = 0,
+        Precision = 1,
+        Reaction = 2,
+        Memory = 3,
+        Logic = 4,
+        Rhythm = 5,
+        Musicality = 6,
+        Sight = 7
+    }
+
+    public enum PlayEvent
+    {
+        GameStarted = 0,
+        GameFinished = 1,
+        Skill = 2
     }
 
     [System.Serializable]
     public class LogPlayData : IData
     {
         public string Id { get; set; }
-        public string Session { get; set; }
-        public string Time { get; set; }
-        public int PlayerID { get; set; }
-        public LogPlaySkill PlaySkill { get; set; }
-        public string Context { get; set; }
-        public string Action { get; set; }
+        public string Session { get; set; } // DailySession Id
+        public int Timestamp { get; set; }
+
+        public string PlaySession { get; set; }
+        public MiniGameCode MiniGame { get; set; }
+        public PlayEvent PlayEvent { get; set; }
+        public PlaySkill PlaySkill { get; set; }
         public float Score { get; set; }
         public string RawData { get; set; }
 
@@ -35,13 +44,13 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},PS{3},C{4},A{5},S{6},RD{7}",
+            return string.Format("S{0},T{1},PS{2},MG{3},PE{4},SK{5},S{6},RD{7}",
                 Session,
-                Time,
-                PlayerID,
+                Timestamp,
+                PlaySession,
+                MiniGame,
+                PlayEvent,
                 PlaySkill,
-                Context,
-                Action,
                 Score,
                 RawData
                 );

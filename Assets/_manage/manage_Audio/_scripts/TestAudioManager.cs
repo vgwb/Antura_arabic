@@ -77,7 +77,7 @@ namespace EA4S
             btnGO.GetComponentInChildren<Text>().text = "Stop Dialog";
             btnGO.GetComponent<Button>().onClick.AddListener(StopCurrentLocalization);
 
-            foreach (var loc in AppManager.Instance.DB.FindAllLocalizationData()) {
+            foreach (var loc in AppManager.Instance.DB.GetAllLocalizationData()) {
                 //Debug.Log(sfx.ToString());
                 btnGO = Instantiate(PlayButtonPrefab);
                 btnGO.transform.SetParent(PanelLocalization.transform, false);

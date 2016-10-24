@@ -22,7 +22,7 @@ GameObject:
   - 33: {fileID: 33000014098641596}
   - 23: {fileID: 23000011142527372}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Dot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
