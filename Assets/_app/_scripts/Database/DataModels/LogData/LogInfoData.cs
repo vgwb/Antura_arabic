@@ -33,7 +33,8 @@ namespace EA4S.Db
             return string.Format("T{0},T{1},P{2},E{3},D{4}",
                 Session,
                 Timestamp,
-                PlayerID, Event,
+                PlayerID, 
+                Event,
                 Description
             );
         }

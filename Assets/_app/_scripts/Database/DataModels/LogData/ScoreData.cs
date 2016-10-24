@@ -12,7 +12,7 @@ namespace EA4S.Db
     [System.Serializable]
     public class ScoreData : IData
     {
-        public string Table { get; set; } //key
+        public string TableName { get; set; } // key
         public string ElementId { get; set; } // key
 
         public int PlayerID { get; set; }
@@ -20,13 +20,13 @@ namespace EA4S.Db
 
         public string GetId()
         {
-            return Table+"."+ElementId;
+            return TableName+"."+ElementId;
         }
 
         public override string ToString()
         {
             return string.Format("T{0},E{1},P{2},S{3}",
-                Table,
+                TableName,
                 ElementId,
                 PlayerID,
                 Score

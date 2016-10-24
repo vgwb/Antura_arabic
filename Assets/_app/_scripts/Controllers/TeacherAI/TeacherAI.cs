@@ -130,14 +130,20 @@ namespace EA4S
         public List<float> GetLatestScoresForMiniGame(MiniGameCode code, int nLastDays)
         {
             string minigameId = code.ToString();
-            int toTimestamp = GenericUtilites.GetTimestampForNow();
             int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
 
-            string query = string.Format("SELECT * FROM LogPlayData WHERE Timestamp > {0} AND Table = MiniGame AND ElementId = {2}", fromTimestamp, minigameId);
+            string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}", minigameId, fromTimestamp);
             List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
 
             return scores;
+        }
+
+        public List<ScoreData> GetCurrentScoreForAllPlaySessions()
+        {
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions' ORDER BY ElementId "); 
+            List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
+            return list;
         }
 
         public List<LogMoodData> GetLastMoodData(int number)
@@ -147,17 +153,10 @@ namespace EA4S
             return list;
         }
 
-        public List<ScoreData> GetCurrentScoreForAllPlaySessions()
-        {
-            string query = string.Format("SELECT * FROM ScoreData WHERE Table = PlaySessionData ORDER BY ElementId");
-            List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
-            return list;
-        }
-
         // @note: shows how to work on the dynamic and static db together
         public List<LogLearnData> GetFailedAssessmentLetters(MiniGameCode assessmentCode)
         {
-            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = LetterData AND Score < 0", assessmentCode);
+            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = '{0}' AND TableName = 'LetterData' AND Score < 0", assessmentCode);
             List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
             List<string> ids_list = list.ConvertAll(x => x.Id);
             dbManager.FindLetterData(x => ids_list.Contains(x.Id));
@@ -167,7 +166,7 @@ namespace EA4S
         // @note: shows how to work on the dynamic and static db together
         public List<LogLearnData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
         {
-            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = WordData AND Score < 0", assessmentCode);
+            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = '{0}' AND TableName = 'WordData' AND Score < 0", assessmentCode);
             List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
             List<string> ids_list = list.ConvertAll(x => x.Id);
             dbManager.FindWordData(x => ids_list.Contains(x.Id));
@@ -178,8 +177,7 @@ namespace EA4S
         public List<LogPlayData> GetAllScoresForCurrentProgress()
         {
             JourneyPosition currentJourneyPosition = playerProfile.ActualJourneyPosition;
-            string playsession_id = currentJourneyPosition.Stage + "." + currentJourneyPosition.LearningBlock + "." + currentJourneyPosition.PlaySession;
-            string query = string.Format("SELECT * FROM LogPlayData WHERE Table = PlaySessionData AND PlayEvent = {0} AND ElementId = {1}", PlayEvent.GameFinished, playsession_id);
+            string query = string.Format("SELECT * FROM LogPlayData WHERE TableName = 'PlaySessionData' AND PlayEvent = {0} AND ElementId = '{1}'", PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
         }

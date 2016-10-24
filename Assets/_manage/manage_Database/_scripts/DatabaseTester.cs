@@ -198,7 +198,7 @@ namespace EA4S.Db.Management
             for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogLearnData();
             for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogMoodData();
             for (int i = 0; i < RND.Range(10, 20); i++) TestInsertLogPlayData();
-            for (int i = 0; i < RND.Range(20, 40); i++) TestInsertScoreData();
+            for (int i = 0; i < RND.Range(40, 60); i++) TestInsertScoreData();
         }
 
         public void TestInsertLogInfoData()
@@ -224,11 +224,11 @@ namespace EA4S.Db.Management
             newData.Timestamp = GenericUtilites.GetTimestampForNow();
             newData.PlayerID = 1;
 
-            newData.PlaySession = "1.1.1";
-            newData.MiniGame = MiniGameCode.Balloons_letter;
+            newData.PlaySession = "0.0.0";
+            newData.MiniGame = MiniGameCode.Balloons_counting;
 
             bool useLetter = RND.value > 0.5f;
-            newData.Table = useLetter ? "LetterData" : "WordData";
+            newData.TableName = useLetter ? "LetterData" : "WordData";
             newData.ElementId = useLetter
                 ? GenericUtilites.GetRandom(dbManager.GetAllWordData()).GetId()
                 : GenericUtilites.GetRandom(dbManager.GetAllLetterData()).GetId();
@@ -262,8 +262,8 @@ namespace EA4S.Db.Management
             newData.Timestamp = GenericUtilites.GetRelativeTimestampFromNow(RND.Range(0, 5));
             newData.PlayerID = 1;
 
-            newData.PlaySession = "1.1.1";
-            newData.MiniGame = MiniGameCode.Balloons_letter;
+            newData.PlaySession = "0.0.0";
+            newData.MiniGame = MiniGameCode.Balloons_counting;
             newData.Score = RND.Range(0, 1f);
             newData.Action = PlayEvent.Skill;
             newData.PlaySkill = PlaySkill.Logic;
@@ -276,7 +276,21 @@ namespace EA4S.Db.Management
         public void TestInsertScoreData()
         {
             var newData = new ScoreData();
-            newData.Table = DbTables.MiniGames.ToString();
+
+            int rndTableValue = RND.Range(0, 7);
+            DbTables rndTable = DbTables.Letters;
+            switch (rndTableValue)
+            {
+                case 0: rndTable = DbTables.Letters; break;
+                case 1: rndTable = DbTables.Words; break;
+                case 2: rndTable = DbTables.Phrases; break;
+                case 3: rndTable = DbTables.MiniGames; break;
+                case 4: rndTable = DbTables.PlaySessions; break;
+                case 5: rndTable = DbTables.Stages; break;
+                case 6: rndTable = DbTables.Rewards; break;
+            }
+
+            newData.TableName = (rndTable).ToString();
             newData.ElementId = MiniGameCode.Balloons_counting.ToString();
             newData.PlayerID = 1;
 
@@ -359,21 +373,21 @@ namespace EA4S.Db.Management
 
         #region Teacher
 
-        public void Teacher_LatestScores()
-        {
-            var scores = teacherAI.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
-
-            string output = "Scores:\n";
-            foreach (var score in scores) output += score.ToString() + "\n";
-            PrintOutput(output);
-        }
-
         public void Teacher_LastNMoods()
         {
             var list = teacherAI.GetLastMoodData(10);
 
             string output = "Latest 10 moods:\n";
             foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.ToString() + "\n";
+            PrintOutput(output);
+        }
+
+        public void Teacher_LatestScores()
+        {
+            var scores = teacherAI.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
+
+            string output = "Scores:\n";
+            foreach (var score in scores) output += score.ToString() + "\n";
             PrintOutput(output);
         }
 
