@@ -30,12 +30,18 @@ namespace EA4S
         /// <param name="_mood"></param>
         public void MoodSelected(int _mood)
         {
+            // @deprecated: remove LoggerEA4S
             if (AppManager.Instance.PlaySession > 2)
                 // End mood eval
                 LoggerEA4S.Log("app", "mood", "end", _mood.ToString());
             else
                 // start mood eval
                 LoggerEA4S.Log("app", "mood", "start", _mood.ToString());
+
+            // Log into the DB
+            var logData = new Db.LogMoodData();
+            logData.Initialise(_mood, 1);
+            AppManager.Instance.DB.Insert(logData);
 
             LoggerEA4S.Save();
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);

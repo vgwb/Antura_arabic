@@ -14,6 +14,14 @@ namespace EA4S.Db
 
         public float MoodValue { get; set; }
 
+        public void Initialise(int _mood, int _playerId)
+        {
+            this.Id = "TODO?";
+            this.MoodValue = _mood;
+            this.PlayerID = _playerId;
+            this.Timestamp = GenericUtilites.GetTimestampForNow();
+        }
+
         public string GetId()
         {
             return Id;
