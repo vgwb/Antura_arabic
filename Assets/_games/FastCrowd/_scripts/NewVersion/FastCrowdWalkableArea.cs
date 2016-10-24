@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FastCrowdWalkableArea : MonoBehaviour
@@ -41,11 +42,30 @@ public class FastCrowdWalkableArea : MonoBehaviour
         return bestSpawn;
     }
 
+    public bool IsInside(Vector3 pos, bool limitToWalkingTargets)
+    {
+        var colliderSet = limitToWalkingTargets ? walkingTargets : colliders;
+
+        for (int i = 0, count = colliderSet.Length; i < count; ++i)
+        {
+            var localPos = colliderSet[i].transform.InverseTransformPoint(pos) - colliderSet[i].center;
+            var colliderSize = colliderSet[i].size;
+
+            if (localPos.x >= -colliderSize.x * 0.5f &&
+                localPos.x <= colliderSize.x * 0.5f &&
+                localPos.y >= -colliderSize.y * 0.5f &&
+                localPos.y <= colliderSize.y * 0.5f)
+                return true;
+        }
+
+        return false;
+    }
+
     public Vector3 GetRandomPosition()
     {
-        BoxCollider randomCollider = walkingTargets[Random.Range(0, walkingTargets.Length)];
+        BoxCollider randomCollider = walkingTargets[UnityEngine.Random.Range(0, walkingTargets.Length)];
 
-        Vector3 randomLocalPos = 0.5f * (Vector3.right * Random.value * randomCollider.size.x + Vector3.up * Random.value * randomCollider.size.y);
+        Vector3 randomLocalPos = (Vector3.right * (UnityEngine.Random.value - 0.5f) * randomCollider.size.x + Vector3.up * (UnityEngine.Random.value - 0.5f) * randomCollider.size.y) + randomCollider.center;
         Vector3 randomPosition = randomCollider.transform.TransformPoint(randomLocalPos);
         randomPosition.y = 0;
 
@@ -53,18 +73,20 @@ public class FastCrowdWalkableArea : MonoBehaviour
     }
 
 
-    public Vector3 GetNearestPoint(Vector3 pos)
+    public Vector3 GetNearestPoint(Vector3 pos, bool limitToWalkingTargets = false)
     {
         Vector3 nearest = pos;
         float nearestDistance = float.PositiveInfinity;
 
-        for (int i = 0, count = colliders.Length; i < count; ++i)
+        var colliderSet = limitToWalkingTargets ? walkingTargets : colliders;
+
+        for (int i = 0, count = colliderSet.Length; i < count; ++i)
         {
-            var localPos = colliders[i].transform.InverseTransformPoint(pos);
-            var colliderSize = colliders[i].size;
+            var localPos = colliderSet[i].transform.InverseTransformPoint(pos) - colliderSet[i].center;
+            var colliderSize = colliderSet[i].size;
             localPos.x = Mathf.Clamp(localPos.x, -colliderSize.x * 0.5f, colliderSize.x * 0.5f);
             localPos.y = Mathf.Clamp(localPos.y, -colliderSize.y * 0.5f, colliderSize.y * 0.5f);
-            var nearPos = colliders[i].transform.TransformPoint(localPos);
+            var nearPos = colliderSet[i].transform.TransformPoint(localPos + colliderSet[i].center);
 
             float distance = Vector3.Distance(nearPos, pos);
             if (distance < nearestDistance)
