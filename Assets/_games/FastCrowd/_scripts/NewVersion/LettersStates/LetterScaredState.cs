@@ -14,6 +14,7 @@ namespace EA4S.FastCrowd
         float scaredTimer;
 
         FastCrowdLetterMovement movement;
+        Vector3 reenterTarget;
             
         public LetterScaredState(FastCrowdLivingLetter letter) : base(letter)
         {
@@ -26,6 +27,7 @@ namespace EA4S.FastCrowd
 
             // set letter animation
             letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_run_fear;
+            reenterTarget = letter.walkableArea.GetRandomPosition();
         }
 
         public override void ExitState()
@@ -34,21 +36,13 @@ namespace EA4S.FastCrowd
 
         public override void Update(float delta)
         {
-            // Run-away from danger!
-            Vector3 runDirection = letter.transform.position - ScareSource;
-            runDirection.y = 0;
-            runDirection.Normalize();
-
-            movement.MoveAmount(runDirection.normalized * SCARED_RUN_SPEED * delta);
-            movement.LerpLookAt(letter.transform.position + runDirection, 4 * delta);
-
+            // Stay scared if danger is near
             if (Vector3.Distance(letter.transform.position, letter.antura.transform.position) < 20.0f)
             {
-                letter.Scare(letter.antura.transform.position, 5);
-                return;
+                ScaredDuration = 3;
+                ScareSource = letter.antura.transform.position;
             }
-
-            if (Vector3.Distance(letter.transform.position, ScareSource) > 10.0f)
+            else if (Vector3.Distance(letter.transform.position, ScareSource) > 10.0f)
             {
                 scaredTimer = Mathf.Min(0.5f, scaredTimer);
             }
@@ -56,7 +50,18 @@ namespace EA4S.FastCrowd
             scaredTimer -= delta;
 
             if (scaredTimer <= 0)
+            {
                 letter.SetCurrentState(letter.WalkingState);
+                return;
+            }
+
+            // Run-away from danger!
+            Vector3 runDirection = letter.transform.position - ScareSource;
+            runDirection.y = 0;
+            runDirection.Normalize();
+
+            movement.MoveAmount(runDirection * SCARED_RUN_SPEED * delta);
+            movement.LerpLookAt(letter.transform.position + runDirection, 4 * delta);
         }
 
         public override void UpdatePhysics(float delta)

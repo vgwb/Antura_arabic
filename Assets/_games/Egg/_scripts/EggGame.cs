@@ -83,7 +83,7 @@ namespace EA4S.Egg
             currentStage = 0;
             correctStages = 0;
 
-            eggController.Initialize(letterObjectPrefab, eggBox.GetEggLocalPositions());
+            eggController.Initialize(letterObjectPrefab, eggBox.GetEggLocalPositions(), PlayState.OnEggPressed);
             eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), PlayState.OnEggButtonPressed);
             runLettersBox.Initialize(letterObjectPrefab);
             antura.Initialize(anturaPrefab);

@@ -16,6 +16,8 @@ namespace EA4S.FastCrowd
         {
             dropContainer.OnComplete += OnContainerComplete;
             crowd.onDropped += OnLetterDropped;
+
+            crowd.MaxConcurrentLetters = Mathf.RoundToInt(4 + FastCrowdConfiguration.Instance.Difficulty * 4);
         }
 
         void OnContainerComplete()

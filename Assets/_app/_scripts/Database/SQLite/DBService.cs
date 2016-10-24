@@ -69,7 +69,7 @@ namespace EA4S.Db
             GenerateTable<LogLearnData>(create, drop);
             GenerateTable<LogMoodData>(create, drop);
             GenerateTable<LogPlayData>(create, drop);
-            GenerateTable<LogScoreData>(create, drop);
+            GenerateTable<ScoreData>(create, drop);
         }
 
         private void GenerateTable<T>(bool create, bool drop)

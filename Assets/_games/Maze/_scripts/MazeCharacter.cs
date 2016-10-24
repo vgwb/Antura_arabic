@@ -70,6 +70,13 @@ namespace EA4S.Maze
 
 		}
 
+		public void toggleVisibility(bool value) {
+			// toggles the visibility of this gameobject and all it's children
+			Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+			foreach (Renderer r in renderers)
+				r.enabled = value;
+		}
+
 		public void initialize()
 		{
 			initialPosition = transform.position;
@@ -270,7 +277,7 @@ namespace EA4S.Maze
 			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 			transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);
 
-	
+			toggleVisibility (false);
 		}
 
 		public bool canMouseBeDown()
@@ -333,6 +340,8 @@ namespace EA4S.Maze
 
 			//print ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude);
 			if ((_fruits [_fruits.Count - 1].transform.position - targetPos).sqrMagnitude < 0.5f) {
+
+				toggleVisibility (true);
 				initMovement ();
 				MazeGameManager.Instance.timer.StopTimer ();
 			}
