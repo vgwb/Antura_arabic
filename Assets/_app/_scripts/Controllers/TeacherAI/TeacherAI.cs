@@ -22,7 +22,7 @@ namespace EA4S
 
         public List<Db.MiniGameData> GimmeGoodMinigames()
         {
-            return AppManager.Instance.DB.FindAllActiveMinigames();
+            return AppManager.Instance.DB.GetActiveMinigames();
         }
 
         public Db.WordData GimmeAGoodWord()
