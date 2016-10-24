@@ -8,12 +8,14 @@ namespace EA4S
     public class TeacherAI
     {
         private DatabaseManager dbManager;
+        private PlayerProfile playerProfile;
         string[] bodyPartsWords;
         List<LL_WordData> availableVocabulary = new List<LL_WordData>();
 
-        public TeacherAI(DatabaseManager _dbManager)
+        public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             this.dbManager = _dbManager;
+            this.playerProfile = _playerProfile;
 
             // Debug.Log("AI exists");
 
@@ -131,7 +133,7 @@ namespace EA4S
             int toTimestamp = GenericUtilites.GetTimestampForNow();
             int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
 
-            string query = string.Format("SELECT * FROM LogPlayData WHERE Timestamp > {0} AND Timestamp < {1} AND Table = MiniGame AND ElementId = {2}", fromTimestamp, toTimestamp, minigameId);
+            string query = string.Format("SELECT * FROM LogPlayData WHERE Timestamp > {0} AND Table = MiniGame AND ElementId = {2}", fromTimestamp, minigameId);
             List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
 
@@ -145,6 +147,14 @@ namespace EA4S
             return list;
         }
 
+        public List<ScoreData> GetCurrentScoreForAllPlaySessions()
+        {
+            string query = string.Format("SELECT * FROM ScoreData AND Table = PlaySessionData ORDER BY ElementId");
+            List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
+            return list;
+        }
+
+        // @note: shows how to work on the dynamic and static db together
         public List<LogLearnData> GetFailedAssessmentLetters(MiniGameCode assessmentCode)
         {
             string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = LetterData AND Score < 0", assessmentCode);
@@ -154,6 +164,7 @@ namespace EA4S
             return list;
         }
 
+        // @note: shows how to work on the dynamic and static db together
         public List<LogLearnData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
         {
             string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = WordData AND Score < 0", assessmentCode);
@@ -163,7 +174,15 @@ namespace EA4S
             return list;
         }
 
-
+        // @note: shows how to work with playerprofile as well as the database
+        public List<LogLearnData> GetProgress(MiniGameCode assessmentCode)
+        {
+            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = WordData AND Score < 0", assessmentCode);
+            List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
+            List<string> ids_list = list.ConvertAll(x => x.Id);
+            dbManager.FindWordData(x => ids_list.Contains(x.Id));
+            return list;
+        }
         #endregion
 
         #region Assessment queries

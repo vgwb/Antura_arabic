@@ -16,6 +16,7 @@ namespace EA4S.Db.Management
 #endif
         private DatabaseManager dbManager;
         private TeacherAI teacherAI;
+        private PlayerProfile playerProfile;
 
         public Text OutputText;
         public TextMeshProUGUI OutputTextArabic;
@@ -24,7 +25,8 @@ namespace EA4S.Db.Management
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
             this.dbManager = new DatabaseManager();
-            this.teacherAI = new TeacherAI(dbManager);
+            this.playerProfile = new PlayerProfile();
+            this.teacherAI = new TeacherAI(dbManager, playerProfile);
         }
 
         #region Main Actions
@@ -373,7 +375,16 @@ namespace EA4S.Db.Management
             string output = "Latest 10 moods:\n";
             foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.ToString() + "\n";
             PrintOutput(output);
-        } 
+        }
+
+        public void Teacher_AllPlaySessionScores()
+        {
+            var list = teacherAI.GetCurrentScoreForAllPlaySessions();
+
+            string output = "All play session scores:\n";
+            foreach (var data in list) output += data.ElementId + ": " + data.Score + "\n";
+            PrintOutput(output);
+        }
 
         public void Teacher_FailedAssessmentLetters()
         {
@@ -393,6 +404,14 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
+        public void Teacher_CursorSequence()
+        {
+            //var list = teacherAI.GetProgress();
+
+            // string output = "Failed words for assessment 'Letters':\n";
+            // foreach (var data in list) output += data.ToString() + "\n";
+            // PrintOutput(output);
+        }
         #endregion
 
         #region Profiles
