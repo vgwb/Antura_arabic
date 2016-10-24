@@ -27,7 +27,7 @@ namespace EA4S.FastCrowd
 
                 for (int j=0; j<3; ++j)
                 {
-                    WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    LL_WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
 
                     correctAnswers.Add(newWordData);
                 }

@@ -5,6 +5,7 @@ namespace EA4S
     {
         IAudioManager GetAudioManager();
         IInputManager GetInputManager();
+        ILogManager GetLogManager();
 
         ISubtitlesWidget GetSubtitleWidget();
         IStarsWidget GetStarsWidget();

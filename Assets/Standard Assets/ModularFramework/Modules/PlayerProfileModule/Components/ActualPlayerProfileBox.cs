@@ -34,7 +34,7 @@ namespace ModularFramework.Components {
             // Bind with text
             GameManager.Instance.Modules.PlayerProfile.ObserveEveryValueChanged(x => x.ActivePlayer).Subscribe(_ => {
                 if(GameManager.Instance != null && GameManager.Instance.Modules.PlayerProfile.ActivePlayer != null) { 
-                    UsernameLable.text = GameManager.Instance.Modules.PlayerProfile.ActivePlayer.Id;
+                    UsernameLable.text = GameManager.Instance.Modules.PlayerProfile.ActivePlayer.Key;
 
                     Modules.PlayerProfile profile = GameManager.Instance.Modules.PlayerProfile.ActivePlayer as Modules.PlayerProfile;
                     ProgressionLevelLable.text = profile.ProgressionRate.ToString();

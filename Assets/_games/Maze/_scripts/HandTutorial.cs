@@ -11,6 +11,9 @@ namespace EA4S.Maze
 
 		//support mutliple paths:
 		public List<GameObject> pathsToFollow;
+		public List<GameObject> linesToShow;
+		public List<GameObject> numbersToShow;
+
 		private List<Vector3> wayPoints = new List<Vector3> ();
 
 		private int currentPath = 0;
@@ -25,6 +28,12 @@ namespace EA4S.Maze
 			//hide the path
 			foreach(GameObject pathToFollow in pathsToFollow)
 				pathToFollow.SetActive(false);
+
+			foreach(GameObject lineToShow in linesToShow)
+				lineToShow.SetActive(false);
+
+			foreach(GameObject numberToShow in numbersToShow)
+				numberToShow.SetActive(false);
 
 			gameObject.SetActive (false);
 		}
@@ -72,6 +81,9 @@ namespace EA4S.Maze
 			gameObject.SetActive (true);
 			wayPoints = new List<Vector3> ();
 			//construct the path waypoints:
+			pathsToFollow[currentPath].SetActive(true);
+			numbersToShow [currentPath].SetActive (true);
+			linesToShow [currentPath].SetActive (true);
 			foreach (Transform child in pathsToFollow[currentPath].transform) {
 				wayPoints.Add (child.transform.position);
 			}
@@ -86,6 +98,9 @@ namespace EA4S.Maze
 		public void moveToNextPath()
 		{
 			if (currentPath < pathsToFollow.Count - 1) {
+				pathsToFollow [currentPath].SetActive (false);
+				numbersToShow [currentPath].SetActive (false);
+				linesToShow [currentPath].SetActive (false);
 				currentPath++;
 				setWayPoints ();
 			}

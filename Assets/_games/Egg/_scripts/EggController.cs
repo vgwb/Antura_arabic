@@ -17,8 +17,8 @@ namespace EA4S.Egg
         public Action onEggCrackComplete;
         public Action onEggExitComplete;
 
-        Tween moveTweener;
-        Tween rotationTweener;
+        Tween moveEggTween;
+        Tween rotationEggTween;
 
         Transform eggTransform;
 
@@ -48,8 +48,8 @@ namespace EA4S.Egg
 
         public void MoveNext(float duration, Action callback)
         {
-            if (moveTweener != null) { moveTweener.Kill(); }
-            if (rotationTweener != null) { rotationTweener.Kill(); }
+            if (moveEggTween != null) { moveEggTween.Kill(); }
+            if (rotationEggTween != null) { rotationEggTween.Kill(); }
 
             currentPosition++;
 
@@ -60,7 +60,21 @@ namespace EA4S.Egg
 
             currentRotation.z += 90f;
 
-            TransformTo(eggPositions[currentPosition], currentRotation, duration, callback);
+            bool inOutRotation = currentPosition == 1 || currentPosition == eggPositions.Length - 1;
+
+            TransformTo(eggPositions[currentPosition], inOutRotation, currentRotation, duration, callback);
+        }
+
+        public bool isNextToExit
+        {
+            get
+            {
+                if (currentPosition == eggPositions.Length - 2)
+                    return true;
+
+                return false;
+            }
+
         }
 
         public void ResetCrack()
@@ -93,12 +107,12 @@ namespace EA4S.Egg
 
         void MoveTo(Vector3 position, float duration)
         {
-            if (moveTweener != null)
+            if (moveEggTween != null)
             {
-                moveTweener.Kill();
+                moveEggTween.Kill();
             }
 
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate ()
+            moveEggTween = transform.DOLocalMove(position, duration).OnComplete(delegate ()
             {
                 if (endTransformToCallback != null) endTransformToCallback();
 
@@ -110,33 +124,77 @@ namespace EA4S.Egg
             });
         }
 
-        void RoteteTo(Vector3 rotation, float duration)
+        void InOutRotation(Vector3 rotation, float duration)
         {
-            if (rotationTweener != null)
+            if (rotationEggTween != null)
             {
-                rotationTweener.Kill();
+                rotationEggTween.Kill();
             }
 
-            rotationTweener = egg.transform.DORotate(rotation, duration);
+            rotationEggTween = DOTween.To(() => egg.transform.eulerAngles.z, z => egg.transform.eulerAngles = new Vector3(egg.transform.eulerAngles.x, egg.transform.eulerAngles.y, z), rotation.z + 1080f, duration * 0.95f)
+                .OnComplete(delegate ()
+                {
+                    BouncingRotation(0.5f);
+                });
         }
 
-        void TransformTo(Vector3 localPosition, Vector3 rotation, float duration, Action callback)
+        void RoteteTo(Vector3 rotation, float duration)
+        {
+            if (rotationEggTween != null)
+            {
+                rotationEggTween.Kill();
+            }
+
+            rotationEggTween = egg.transform.DORotate(rotation, duration * 0.93f).OnComplete(delegate()
+            {
+                BouncingRotation();
+            });
+        }
+
+        void BouncingRotation(float duration = 0.8f)
+        {
+            float firstStepValue = 5f;
+            float secondStepValue = -2.5f;
+
+            Vector3 rotationFirstStep = Vector3.zero;
+            rotationFirstStep.z += firstStepValue;
+            Vector3 rotationSecondStep = Vector3.zero;
+            rotationSecondStep.z += secondStepValue;
+
+            rotationEggTween = transform.DORotate(rotationFirstStep, (duration / 10f) * 5f).OnComplete(delegate ()
+            {
+                rotationEggTween = transform.DORotate(rotationSecondStep, (duration / 10f) * 4f).OnComplete(delegate ()
+                {
+                    rotationEggTween = transform.DORotate(Vector3.zero, (duration / 10f) * 2f);
+                });
+            });
+        }
+
+        void TransformTo(Vector3 localPosition, bool inOutRotation, Vector3 rotation, float duration, Action callback)
         {
             MoveTo(localPosition, duration);
-            RoteteTo(rotation, duration);
+            if(inOutRotation)
+            {
+                InOutRotation(rotation, duration);
+            }
+            else
+            {
+                RoteteTo(rotation, duration);
+            }
 
             endTransformToCallback = callback;
         }
 
         void GoToPosition(int positionNumber, Vector3 rotation)
         {
-            if (moveTweener != null) { moveTweener.Kill(); }
-            if (rotationTweener != null) { rotationTweener.Kill(); }
+            if (moveEggTween != null) { moveEggTween.Kill(); }
+            if (rotationEggTween != null) { rotationEggTween.Kill(); }
 
             currentPosition = positionNumber;
 
             transform.localPosition = eggPositions[currentPosition];
             egg.transform.eulerAngles = rotation;
+            transform.eulerAngles = Vector3.zero;
         }
 
         public void EnableInput()

@@ -39,10 +39,10 @@ namespace EA4S.Db.Management
         public void DumpAllDataCounts()
         {
             string output = "";
-            output += ("N letters: " + db.FindAllLetterData().Count) + "\n";
+            output += ("N letters: " + db.GetAllLetterData().Count) + "\n";
             output += ("N words: " + db.FindAllWordData().Count) + "\n";
             output += ("N phrases: " + db.FindAllPhraseData().Count) + "\n";
-            output += ("N minigames: " + db.FindAllMiniGameData().Count) + "\n";
+            output += ("N minigames: " + db.GetAllMiniGameData().Count) + "\n";
             output += ("N stages: " + db.FindAllStageData().Count) + "\n";
             output += ("N playsessions: " + db.FindAllPlaySessionData().Count) + "\n";
             output += ("N localizations: " + db.FindAllLocalizationData().Count) + "\n";
@@ -52,7 +52,7 @@ namespace EA4S.Db.Management
 
         public void DumpAllLetterData()
         {
-            DumpAllData(db.FindAllLetterData());
+            DumpAllData(db.GetAllLetterData());
         }
 
         public void DumpAllWordData()
@@ -82,12 +82,12 @@ namespace EA4S.Db.Management
 
         public void DumpAllMiniGameData()
         {
-            DumpAllData(db.FindAllMiniGameData());
+            DumpAllData(db.GetAllMiniGameData());
         }
 
         public void DumpAllLogInfoData()
         {
-            DumpAllData(db.FindAllLogInfoData());
+            DumpAllData(db.GetAllLogInfoData());
         }
 
         public void DumpLetterById(string id)
@@ -156,8 +156,8 @@ namespace EA4S.Db.Management
 
         public void DumpActiveMinigames()
         {
-            var all_minigames = db.FindAllMiniGameData();
-            var active_minigames = db.FindAllActiveMinigames();
+            var all_minigames = db.GetAllMiniGameData();
+            var active_minigames = db.GetActiveMinigames();
             PrintOutput(active_minigames.Count + " active minigames out of " + all_minigames.Count);
         }
 
@@ -174,7 +174,7 @@ namespace EA4S.Db.Management
             newData.PlayerID = 1;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
-            this.db.InsertLogInfoData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogInfoData: " + newData.ToString());
         }
 
@@ -187,7 +187,7 @@ namespace EA4S.Db.Management
             newData.PlayerID = 1;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
 
-            this.db.InsertLogLearnData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogLearnData: " + newData.ToString());
         }
 
@@ -200,7 +200,7 @@ namespace EA4S.Db.Management
             newData.PlayerID = 1;
             newData.MoodValue = UnityEngine.Random.Range(0, 20);
 
-            this.db.InsertLogMoodData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogMoodData: " + newData.ToString());
         }
 
@@ -212,7 +212,7 @@ namespace EA4S.Db.Management
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
 
-            this.db.InsertLogPlayData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());
         }
 
@@ -224,7 +224,7 @@ namespace EA4S.Db.Management
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
 
-            this.db.InsertLogScoreData(newData);
+            this.db.Insert(newData);
             PrintOutput("Inserted new LogScoreData: " + newData.ToString());
         }
 
@@ -235,7 +235,7 @@ namespace EA4S.Db.Management
         // Test that uses a simple select/where expression on a single table
         public void TestLINQLogData()
         {
-            List<LogInfoData> list = this.db.FindAllLogInfoData(x => x.Score > 5f);
+            List<LogInfoData> list = this.db.FindLogInfoData(x => x.Score > 5f);
             DumpAllData(list);
         }
 
@@ -304,7 +304,7 @@ namespace EA4S.Db.Management
 
         public void LoadProfile(int profileId)
         {
-            this.db.LoadProfile(profileId);
+            this.db.LoadDynamicDb(profileId);
             PrintOutput("Loading profile " + profileId);
         }
 

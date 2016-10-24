@@ -12,17 +12,17 @@ namespace EA4S
         void SetMessage(string text, bool isArabic);
         void SetTitle(TextID text);
         void SetImage(Sprite image);
-        void SetWord(WordData data); // Modifies Text + Image      
+        void SetWord(LL_WordData data); // Modifies Text + Image      
         void SetMark(bool visible, bool correct);  
         void Hide();
 
         void ShowTimeUp(System.Action callback);
 
         [Obsolete("Using manual configuration", false)]
-        void Show(System.Action callback, TextID text, bool markResult, WordData word = null);
+        void Show(System.Action callback, TextID text, bool markResult, LL_WordData word = null);
 
         [Obsolete("Using manual configuration", false)]
-        void Show(System.Action callback, TextID text, WordData word = null);
+        void Show(System.Action callback, TextID text, LL_WordData word = null);
 
         [Obsolete("Using manual configuration", false)]
         void Show(System.Action callback, string text, bool isArabic);

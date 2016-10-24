@@ -71,12 +71,23 @@ namespace EA4S.FastCrowd
             DropContainer.OnObjectiveBlockCompleted -= OnCompleted;
         }
 
-        public void AddDropArea(ILivingLetterData newElement)
+        public void AddDropText(ILivingLetterData newElement, string text)
         {
             DropSingleArea dropSingleArea = Instantiate(dropAreaPrefab);
             dropSingleArea.transform.SetParent(transform, false);
             dropSingleArea.transform.position = Camera.main.transform.position;
-            dropSingleArea.Init(newElement, container);
+            dropSingleArea.Init(newElement, text, container);
+            container.SetupDone(); // not-optimal but simpler to use
+
+            letters[newElement] = dropSingleArea;
+        }
+
+        public void AddDropData(ILivingLetterData newElement, bool asImage)
+        {
+            DropSingleArea dropSingleArea = Instantiate(dropAreaPrefab);
+            dropSingleArea.transform.SetParent(transform, false);
+            dropSingleArea.transform.position = Camera.main.transform.position;
+            dropSingleArea.Init(newElement, container, asImage);
             container.SetupDone(); // not-optimal but simpler to use
 
             letters[newElement] = dropSingleArea;
