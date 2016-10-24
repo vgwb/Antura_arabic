@@ -90,12 +90,12 @@ namespace EA4S.Egg
 
         void PlayIdleAnimation()
         {
-            letterObject.Model.State = LetterObjectState.LL_idle_1;
+            letterObject.Model.State = LLAnimationStates.LL_idle_1;
         }
 
         void PlayRunAnimation()
         {
-            letterObject.Model.State = LetterObjectState.LL_run_happy;
+            letterObject.Model.State = LLAnimationStates.LL_run_happy;
         }
 
         public void DestroyRunLetter()

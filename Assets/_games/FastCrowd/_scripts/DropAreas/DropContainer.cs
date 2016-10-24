@@ -121,11 +121,6 @@ namespace EA4S
         public delegate void ObjectiveEvent();
 
         /// <summary>
-        /// Happens when a peace of objective completed. Ex: Letter match (peace of block objective -> word).
-        /// </summary>
-        public static event ObjectiveEvent OnObjectivePeaceCompleted;
-
-        /// <summary>
         /// Happens when a peace of objective completed. Ex: Word match completed (word is a block objective).
         /// </summary>
         public static event ObjectiveEvent OnObjectiveBlockCompleted;

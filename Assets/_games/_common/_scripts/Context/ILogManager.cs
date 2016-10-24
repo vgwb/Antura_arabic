@@ -24,6 +24,9 @@
         /// <param name="_isPositive">if set to <c>true</c> [is positive].</param>
         void OnGameplayEvent(API.PlayerAbilities _ability, bool _isPositive);
 
+        // TODO rename to ~MinigameSession~
+        void OnGameplaySessionResult(int _valuation);
+        
         /// <summary>
         /// 
         /// </summary>

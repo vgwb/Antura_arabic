@@ -97,6 +97,10 @@ namespace EA4S.Tobogan
             {
                 QuestionLivingLetter questionLetter = CreateQuestionLivingLetter();
 
+                questionLetter.ClearQuestionText();
+                questionLetter.PlayIdleAnimation();
+                questionLetter.EnableCollider(false);
+
                 questionLetter.GoToPosition(i);
 
                 livingLetters.Add(questionLetter);
@@ -106,8 +110,10 @@ namespace EA4S.Tobogan
         QuestionLivingLetter CreateQuestionLivingLetter()
         {
             QuestionLivingLetter newQuestionLivingLetter = GameObject.Instantiate(game.questionLivingLetterPrefab).GetComponent<QuestionLivingLetter>();
-            newQuestionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.upRightMaxPosition.localPosition,
-                game.questionLivingLetterBox.downLeftMaxPosition.localPosition, game.questionLivingLetterBox.lettersPosition);
+            newQuestionLivingLetter.gameObject.SetActive(true);
+
+            newQuestionLivingLetter.Initialize(game.tubesCamera, game.questionLivingLetterBox.upRightMaxPosition.position,
+                game.questionLivingLetterBox.downLeftMaxPosition.position, game.questionLivingLetterBox.lettersPosition);
             newQuestionLivingLetter.transform.SetParent(game.questionLivingLetterBox.transform);
             newQuestionLivingLetter.onMouseUpLetter += CheckAnswer;
 

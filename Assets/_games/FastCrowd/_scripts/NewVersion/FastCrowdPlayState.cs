@@ -15,7 +15,7 @@ namespace EA4S.FastCrowd
         {
             this.game = game;
 
-            gameTime = new CountdownTimer(FastCrowdConfiguration.Instance.PlayTime);
+            gameTime = new CountdownTimer(UnityEngine.Mathf.Lerp(90.0f, 60.0f, FastCrowdConfiguration.Instance.Difficulty));
             gameTime.onTimesUp += OnTimesUp;
 
             gameTime.Reset();
@@ -40,7 +40,7 @@ namespace EA4S.FastCrowd
 
 
             if (game.CurrentChallenge != null)
-                game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
+                game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData, game.QuestionNumber);
             else
                 game.QuestionManager.Clean();
 
@@ -96,7 +96,7 @@ namespace EA4S.FastCrowd
             isAnturaRunning = false;
             game.antura.SetAnturaTime(false);
             // Schedule next exit
-            anturaTimer = UnityEngine.Random.Range(20, 30);
+            anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
 
             // TEMP
             foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
@@ -112,7 +112,7 @@ namespace EA4S.FastCrowd
             isAnturaRunning = true;
             game.antura.SetAnturaTime(true);
             // Schedule next duration
-            anturaTimer = UnityEngine.Random.Range(10, 20);
+            anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
 
             // TEMP
             foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())

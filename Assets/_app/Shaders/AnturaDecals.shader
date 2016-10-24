@@ -7,6 +7,7 @@
 Shader "Antura/Decal" {
 	Properties{
 		_OverTex("Color (RGB) Multiply-Overwrite (A)", 2D) = "white" {}
+		_Occlusion("Occlusion (A)", 2D) = "white" {}
 		_OverColorR("Color R", Color) = (1,1,1,1)
 		_OverColorG("Color G", Color) = (1,1,1,1)
 		_OverColorB("Color B", Color) = (1,1,1,1)
@@ -30,6 +31,7 @@ Shader "Antura/Decal" {
 #include "LightningSpecular.cginc"
 
 		sampler2D _OverTex;
+		sampler2D _Occlusion;
 
 		half _Shininess;
 		half _Specular;
@@ -45,6 +47,7 @@ Shader "Antura/Decal" {
 
 		struct Input {
 			half2 uv_OverTex;
+			half2 uv_Occlusion;
 		};
 
 		void surf(Input IN, inout SurfaceOutputSpecularAntura o) 
@@ -53,7 +56,7 @@ Shader "Antura/Decal" {
 
 			fixed3 overColor = overmap.r*_OverColorR + overmap.g*_OverColorG + overmap.b*_OverColorB;
 
-			o.Albedo = overColor;
+			o.Albedo = overColor*tex2D(_Occlusion, IN.uv_Occlusion).a;
 			o.Alpha = overmap.a;
 
 			o.Gloss = _Specular;

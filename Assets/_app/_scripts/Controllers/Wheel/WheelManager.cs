@@ -54,7 +54,7 @@ namespace EA4S
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
             Debug.Log("numberOfGames " + numberOfGames);
-            gameIndexToForceSelect = gameData.FindIndex(a => a.Id == AppManager.Instance.GetMiniGameForActualPlaySession().Id);
+            gameIndexToForceSelect = gameData.FindIndex(a => a.Id == AppManager.Instance.Teacher.GetMiniGameForActualPlaySession().Id);
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -124,7 +124,7 @@ namespace EA4S
         {
             /* Alpha static logic */
             if (isGameSelected) {
-                Db.MiniGameData miniGame = AppManager.Instance.GetMiniGameForActualPlaySession();
+                Db.MiniGameData miniGame = AppManager.Instance.Teacher.GetMiniGameForActualPlaySession();
                 if (miniGame.Id == "fastcrowd" || miniGame.Id == "fastcrowd_words") {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
                     if (miniGame.Id == "fastcrowd") {

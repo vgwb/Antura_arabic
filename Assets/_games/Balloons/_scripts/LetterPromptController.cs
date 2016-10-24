@@ -12,7 +12,7 @@ namespace Balloons
     public class LetterPromptController : MonoBehaviour
     {
         public TMP_Text LetterLabel;
-        public LetterData Data;
+        public LL_LetterData Data;
         public Animator animator;
 
         public enum PromptState
@@ -36,7 +36,7 @@ namespace Balloons
         }
 
 
-        public void Init(LetterData _letterData)
+        public void Init(LL_LetterData _letterData)
         {
             Data = _letterData;
             LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
