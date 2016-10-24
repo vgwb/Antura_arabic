@@ -404,13 +404,13 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
-        public void Teacher_CursorSequence()
+        public void Teacher_ScoreCurrentProgress()
         {
-            //var list = teacherAI.GetProgress();
+            var list = teacherAI.GetAllScoresForCurrentProgress();
 
-            // string output = "Failed words for assessment 'Letters':\n";
-            // foreach (var data in list) output += data.ToString() + "\n";
-            // PrintOutput(output);
+            string output = "All score entries for the current progress in the PlayerProfile:\n";
+            foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
+            PrintOutput(output);
         }
         #endregion
 

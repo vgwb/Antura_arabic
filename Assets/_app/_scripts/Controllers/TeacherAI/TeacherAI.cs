@@ -149,7 +149,7 @@ namespace EA4S
 
         public List<ScoreData> GetCurrentScoreForAllPlaySessions()
         {
-            string query = string.Format("SELECT * FROM ScoreData AND Table = PlaySessionData ORDER BY ElementId");
+            string query = string.Format("SELECT * FROM ScoreData WHERE Table = PlaySessionData ORDER BY ElementId");
             List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
             return list;
         }
@@ -175,12 +175,12 @@ namespace EA4S
         }
 
         // @note: shows how to work with playerprofile as well as the database
-        public List<LogLearnData> GetProgress(MiniGameCode assessmentCode)
+        public List<LogPlayData> GetAllScoresForCurrentProgress()
         {
-            string query = string.Format("SELECT * FROM LogLearnData WHERE MiniGame = {0} AND Table = WordData AND Score < 0", assessmentCode);
-            List<LogLearnData> list = dbManager.FindLogLearnDataByQuery(query);
-            List<string> ids_list = list.ConvertAll(x => x.Id);
-            dbManager.FindWordData(x => ids_list.Contains(x.Id));
+            ProgressState currentProgress = playerProfile.ActualProgress;
+            string playsession_id = currentProgress.Stage + "." + currentProgress.LearningBlock + "." + currentProgress.PlaySession;
+            string query = string.Format("SELECT * FROM LogPlayData WHERE Table = PlaySessionData AND PlayEvent = {0} AND ElementId = {1}", PlayEvent.GameFinished, playsession_id);
+            List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
         }
         #endregion
