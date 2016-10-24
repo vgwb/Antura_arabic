@@ -32,7 +32,7 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("T{0},T{1},E{3},PARS{4}",
+            return string.Format("T{0},T{1},E{2},PARS{3}",
                 Session,
                 Timestamp,
                 Event,
