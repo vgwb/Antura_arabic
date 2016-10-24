@@ -17,6 +17,12 @@ namespace EA4S.Egg
 
         float anturaProbabilityOfIn;
 
+        float inputButtonTime = 0.3f;
+        float inputButtonTimer;
+        int inputButtonCount;
+        int inputButtonMax = 4;
+        bool progressInput;
+
         public EggPlayState(EggGame game)
         {
             this.game = game;
@@ -44,15 +50,15 @@ namespace EA4S.Egg
 
             EnableAllGameplayInput();
 
-            if(game.gameDifficulty < 0.25f)
+            if (game.gameDifficulty < 0.25f)
             {
                 anturaProbabilityOfIn = 0f;
             }
-            else if(game.gameDifficulty < 0.5f)
+            else if (game.gameDifficulty < 0.5f)
             {
                 anturaProbabilityOfIn = 0.20f;
             }
-            else if(game.gameDifficulty < 0.75f)
+            else if (game.gameDifficulty < 0.75f)
             {
                 anturaProbabilityOfIn = 0.40f;
             }
@@ -63,24 +69,28 @@ namespace EA4S.Egg
 
             nextStateTimer = 2f;
             toNextState = false;
+
+            inputButtonTimer = 0f;
+            inputButtonCount = 0;
+            progressInput = false;
         }
 
         public void ExitState()
         {
-            
+
         }
 
         public void Update(float delta)
         {
-            if(toNextState)
+            if (toNextState)
             {
                 nextStateTimer -= delta;
-                
-                if(nextStateTimer <= 0f)
+
+                if (nextStateTimer <= 0f)
                 {
                     toNextState = false;
 
-                    if(game.stagePositiveResult)
+                    if (game.stagePositiveResult)
                     {
                         ILivingLetterData runLetterData;
 
@@ -92,6 +102,31 @@ namespace EA4S.Egg
                     game.SetCurrentState(game.ResultState);
                 }
             }
+
+            inputButtonTimer -= delta;
+
+            if (progressInput)
+            {
+                game.eggController.StartTrembling();
+
+                progressInput = false;
+                if (inputButtonTimer >= 0)
+                {
+                    inputButtonCount++;
+                }
+                else
+                {
+                    inputButtonCount = 0;
+                }
+
+                if (inputButtonCount >= inputButtonMax)
+                {
+                    inputButtonCount = 0;
+                    PositiveFeedback();
+                }
+
+                inputButtonTimer = inputButtonTime;
+            }
         }
 
         public void UpdatePhysics(float delta)
@@ -101,13 +136,40 @@ namespace EA4S.Egg
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
         {
+            bool isSequence = game.questionManager.IsSequence();
+
             if (letterData == game.questionManager.GetlLetterDataSequence()[letterOnSequence])
             {
-                PositiveFeedback();
+                if (isSequence)
+                {
+                    PositiveFeedback();
+                }
+                else
+                {
+                    progressInput = true;
+                }
             }
             else
             {
                 NegativeFeedback();
+            }
+        }
+
+        public void OnEggPressed()
+        {
+            DisableAllGameplayInput();
+
+            bool isSequence = game.questionManager.IsSequence();
+
+            if (isSequence)
+            {
+                game.eggButtonBox.LightUpButtons(true, true, false, 1f, 1f, EnableAllGameplayInput);
+            }
+            else
+            {
+                game.Context.GetAudioManager().PlayLetter(((LL_LetterData)game.questionManager.GetlLetterDataSequence()[0]));
+
+                EnableAllGameplayInput();
             }
         }
 
@@ -128,13 +190,13 @@ namespace EA4S.Egg
             {
                 game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
             }
-            
+
             game.eggController.Cracking(questionProgress / correctAnswers);
         }
 
         void NegativeFeedback()
         {
-            if(!game.eggController.isNextToExit)
+            if (!game.eggController.isNextToExit)
             {
                 float anturaStartEnter = Random.Range(0f, 1f);
 
@@ -188,7 +250,7 @@ namespace EA4S.Egg
             game.stagePositiveResult = true;
 
             bool isSequence = game.questionManager.IsSequence();
-            
+
             if (isSequence)
             {
                 game.eggButtonBox.LightUpButtons(false, true, false, 1f, 1f, OnLightUpButtonsComplete);
@@ -203,11 +265,11 @@ namespace EA4S.Egg
         {
             bool isSequence = game.questionManager.IsSequence();
 
-            if(!isSequence)
+            if (!isSequence)
             {
                 game.eggButtonBox.GetButtons(false)[0].LightUp(false, true, 1f, 1, null);
             }
-            
+
             toNextState = true;
         }
 
