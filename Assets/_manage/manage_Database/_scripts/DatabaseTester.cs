@@ -169,10 +169,9 @@ namespace EA4S.Db.Management
         {
             var newData = new LogInfoData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Time = Time.time.ToString();
+            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
-            newData.Score = UnityEngine.Random.Range(0f, 10f);
 
             this.db.Insert(newData);
             PrintOutput("Inserted new LogInfoData: " + newData.ToString());
@@ -182,7 +181,7 @@ namespace EA4S.Db.Management
         {
             var newData = new LogLearnData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Time = Time.time.ToString();
+            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
             newData.Score = UnityEngine.Random.Range(0f, 10f);
@@ -195,7 +194,7 @@ namespace EA4S.Db.Management
         {
             var newData = new LogMoodData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Time = Time.time.ToString();
+            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
             newData.MoodValue = UnityEngine.Random.Range(0, 20);
@@ -208,7 +207,7 @@ namespace EA4S.Db.Management
         {
             var newData = new LogPlayData();
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Time = Time.time.ToString();
+            newData.Timestamp = (int)GenericUtilites.GetTimestamp();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.PlayerID = 1;
 
@@ -218,10 +217,7 @@ namespace EA4S.Db.Management
 
         public void TestInsertLogScoreData()
         {
-            var newData = new LogScoreData();
-            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
-            newData.Time = Time.time.ToString();
-            newData.Session = UnityEngine.Random.Range(0, 10).ToString();
+            var newData = new ScoreData();
             newData.PlayerID = 1;
 
             this.db.Insert(newData);
@@ -235,7 +231,7 @@ namespace EA4S.Db.Management
         // Test that uses a simple select/where expression on a single table
         public void TestLINQLogData()
         {
-            List<LogInfoData> list = this.db.FindLogInfoData(x => x.Score > 5f);
+            List<LogInfoData> list = this.db.FindLogInfoData(x => x.Timestamp > 1000);
             DumpAllData(list);
         }
 

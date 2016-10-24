@@ -54,7 +54,7 @@ namespace EA4S
         #endregion
 
 
-        #region Specific Dynamic Queries
+        #region Specific Runtime Queries
 
         // Find all
         public List<LogInfoData> GetAllLogInfoData()
@@ -95,9 +95,9 @@ namespace EA4S
             return dynamicDb.FindByQuery<LogPlayData>(query);
         }
 
-        public List<LogScoreData> FindLogScoreDataByQuery(string query)
+        public List<ScoreData> FindLogScoreDataByQuery(string query)
         {
-            return dynamicDb.FindByQuery<LogScoreData>(query);
+            return dynamicDb.FindByQuery<ScoreData>(query);
         }
 
         public List<object> FindCustomDataByQuery(SQLite.TableMapping mapping, string query)
@@ -114,13 +114,32 @@ namespace EA4S
         #endregion
 
 
-        #region Dynamic Inserts
+        #region Specific Runtime Inserts
 
         // Insert
-
-        public void Insert<T>(T data) where T : IData, new()
+        public void InsertLogInfoData(LogInfoData data)
         {
-            dynamicDb.Insert<T>(data);
+            dynamicDb.Insert(data);
+        }
+
+        public void InsertLogLearnData(LogLearnData data)
+        {
+            dynamicDb.Insert(data);
+        }
+
+        public void InsertLogMoodData(LogMoodData data)
+        {
+            dynamicDb.Insert(data);
+        }
+
+        public void InsertLogPlayData(LogPlayData data)
+        {
+            dynamicDb.Insert(data);
+        }
+
+        public void InsertLogScoreData(ScoreData data)
+        {
+            dynamicDb.Insert(data);
         }
 
         #endregion

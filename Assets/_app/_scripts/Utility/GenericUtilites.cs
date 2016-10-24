@@ -29,5 +29,11 @@ namespace EA4S
             return reverse;
         }
 
+        public static double GetTimestamp()
+        {
+            var timeSpan = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0));
+            return timeSpan.TotalSeconds;
+        }
+
     }
 }
