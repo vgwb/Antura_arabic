@@ -14,6 +14,7 @@ namespace EA4S
         public SpriteRenderer Finger;
         public TrailRenderer[] trails;
 
+        public bool isPlaying { get; private set; }
         Tween showTween, moveTween;
         Sequence trailTimeTween;
         float defFingerZ;
@@ -46,6 +47,7 @@ namespace EA4S
 
         public void Play(List<GamesSelectorBubble> _bubbles)
         {
+            isPlaying = true;
             moveTween.Kill();
             Finger.gameObject.SetActive(true);
 
@@ -74,6 +76,7 @@ namespace EA4S
 
         public void Stop()
         {
+            isPlaying = false;
             this.StopAllCoroutines();
             moveTween.Kill();
             showTween.PlayBackwards();
