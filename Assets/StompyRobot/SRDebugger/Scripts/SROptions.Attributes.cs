@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 public partial class SROptions
 {
@@ -47,32 +46,6 @@ public partial class SROptions
         {
             Name = name;
         }
-    }
-
-    [Category("MakeFriends")]
-    public bool MakeFriendsUseDifficulty { get; set; }
-
-    [Category("MakeFriends")]
-    public EA4S.MakeFriends.MakeFriendsVariation MakeFriendsDifficulty { get; set; }
-
-    private bool showProjection = true;
-
-    // Options will be grouped by category
-    [Category("ThrowBalls")]
-    public bool ShowProjection
-    {
-        get { return showProjection; }
-        set { showProjection = value; }
-    }
-
-    private float elasticity = 17f;
-
-    // Options will be grouped by category
-    [Category("ThrowBalls")]
-    public float Elasticity
-    {
-        get { return elasticity; }
-        set { elasticity = value; }
     }
 }
 
