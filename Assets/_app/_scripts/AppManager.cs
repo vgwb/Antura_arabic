@@ -25,7 +25,7 @@ namespace EA4S
 
         public TeacherAI Teacher;
         public DatabaseManager DB;
-        public EA4S.PlayerProfile_deprecated Player;
+        public PlayerProfile Player;
         public GameObject CurrentGameManagerGO;
 
         #region Init
@@ -43,7 +43,7 @@ namespace EA4S
             if (Teacher == null)
                 Teacher = new TeacherAI();
             if (Player == null)
-                Player = new EA4S.PlayerProfile_deprecated();
+                Player = new PlayerProfile();
         }
 
         protected override void GameSetup()
