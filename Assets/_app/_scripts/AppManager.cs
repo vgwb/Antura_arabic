@@ -41,7 +41,7 @@ namespace EA4S
             if (DB == null)
                 DB = new DatabaseManager(); 
             if (Teacher == null)
-                Teacher = new TeacherAI();
+                Teacher = new TeacherAI(this.DB);
             if (Player == null)
                 Player = new EA4S.PlayerProfile_deprecated();
         }

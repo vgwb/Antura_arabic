@@ -29,10 +29,11 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},T{3},PS{4},C{5},C{6}",
+            return string.Format("S{0},T{1},P{2},PS{3},MG{4},T{5},E{6},S{7}",
                 Session,
                 Timestamp,
                 PlayerID,
+                PlaySession,
                 MiniGame,
                 Table,
                 ElementId,

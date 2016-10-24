@@ -45,12 +45,14 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},PS{3},C{4},A{5},S{6},RD{7}",
+            return string.Format("S{0},T{1},P{2},PS{3},MG{4},A{5},SK{6},S{7},RD{8}",
                 Session,
                 Timestamp,
                 PlayerID,
-                PlaySkill,
+                PlaySession,
+                MiniGame,
                 Action,
+                PlaySkill,
                 Score,
                 RawData
                 );
