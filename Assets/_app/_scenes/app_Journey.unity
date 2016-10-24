@@ -441,11 +441,11 @@ MonoBehaviour:
   - {fileID: 287926040}
   - {fileID: 183222759}
   CurrentSteps:
-  - {fileID: 506164680}
-  - {fileID: 176054307}
+  - {fileID: 363636010}
+  - {fileID: 458624796}
   - {fileID: 477357742}
   - {fileID: 909829987}
-  - {fileID: 239796230}
+  - {fileID: 1898037008}
   Player: {fileID: 76312636}
   ZoomCameraGO: {fileID: 1651395146}
 --- !u!4 &33363800
@@ -1115,7 +1115,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_Name
-      value: Pin_prefab (3)
+      value: MapPin_prefab 3
       objectReference: {fileID: 0}
     - target: {fileID: 417134, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1990,7 +1990,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_Name
-      value: Pin_prefab (5)
+      value: MapPin_prefab 5
       objectReference: {fileID: 0}
     - target: {fileID: 417134, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2648,10 +2648,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 236027919}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &239796230 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 144998, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
-  m_PrefabInternal: {fileID: 183222757}
 --- !u!1 &251396605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,19 +5809,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_LocalScale.x
@@ -6428,7 +6424,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_Name
-      value: Pin_prefab (2)
+      value: MapPin_prefab 2
       objectReference: {fileID: 0}
     - target: {fileID: 417134, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9319,7 +9315,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_Name
-      value: Pin_prefab (4)
+      value: MapPin_prefab 4
       objectReference: {fileID: 0}
     - target: {fileID: 417134, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11011,8 +11007,8 @@ Transform:
   m_PrefabParentObject: {fileID: 487864, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1651395146}
-  m_LocalRotation: {x: 0.24592268, y: -0.35253128, z: 0.096399546, w: 0.8977477}
-  m_LocalPosition: {x: 19.173546, y: 16.6987, z: -1.682617}
+  m_LocalRotation: {x: -0.08338775, y: 0.23014179, z: -0.019795254, w: -0.96937585}
+  m_LocalPosition: {x: 42.643402, y: 13.059189, z: -22.107933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 30.631899, y: -42.8839, z: -0.020399999}
   m_Children: []
@@ -12661,7 +12657,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_Name
-      value: Pin_prefab (6)
+      value: MapPin_prefab 6
       objectReference: {fileID: 0}
     - target: {fileID: 417134, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
