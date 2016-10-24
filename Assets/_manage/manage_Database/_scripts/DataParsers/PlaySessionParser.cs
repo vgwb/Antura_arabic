@@ -13,9 +13,9 @@ namespace EA4S.Db.Management
             data.Stage = ToInt(dict["Stage"]);
             data.LearningBlock = ToInt(dict["LearningBlock"]);
             data.PlaySession = ToInt(dict["PlaySession"]);
-            data.Type = ToString(dict["Type"]);
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
 
+            data.Type = ToString(dict["Type"]);
             data.Focus = DidacticalFocus.Letters; // TODO: (sometimes it is empty!) ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);
 
             data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
