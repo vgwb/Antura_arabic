@@ -11,28 +11,28 @@ namespace EA4S.Db.Management
             var data = new MiniGameData();
 
             data.Id = ToString(dict["Id"]);
+            data.Main = ToString(dict["Main"]);
             data.Variation = ToString(dict["Variation"]);
             data.Type = ParseEnum<MiniGameType>(data, dict["Type"]);
 
-            ValidateStatus(data, dict["Status"]);
-            data.Status = ToString(dict["Status"]);
+            //ValidateStatus(data, dict["Status"]);
+            //data.Status = ToString(dict["Status"]);
 
-            ValidateParent(data, dict["Parent"]);
-            data.Parent = ToString(dict["Parent"]);
+            //ValidateParent(data, dict["Parent"]);
+            //data.Parent = ToString(dict["Parent"]);
 
             data.Description = ToString(dict["Description"]);
             data.Title_En = ToString(dict["Title_En"]);
             data.Title_Ar = ToString(dict["Title_Ar"]);
             data.Scene = ToString(dict["Scene"]);
-            //data.TitleNew = ToString(dict["TitleNew"]);
-            //data.Team = ToString(dict["Team"]);
 
             //data.MiniGameCode = ParseEnum<MiniGameCode>(data, dict["Id"]);
-            data.Available = data.Status == "active";
+            data.Available = ToString(dict["Status"]) == "active";
 
             return data;
         }
 
+        // DEPRECATED: no more parents
         private void ValidateParent(MiniGameData data, object json_object)
         {
             if ((string)json_object != "") // Empty is fine
@@ -41,6 +41,8 @@ namespace EA4S.Db.Management
                 ParseEnum<MiniGameCode>(data, json_object);
             }
         }
+
+        // DEPRECATED: no more status
         private void ValidateStatus(MiniGameData data, object json_object)
         {
             // Status must be one of a given list

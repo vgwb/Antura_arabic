@@ -14,9 +14,10 @@ namespace EA4S.Db
         // Source
         public string Id;
         public MiniGameType Type;
+        public string Main;
         public string Variation;
-        public string Status;
-        public string Parent;
+        //public string Status; // deprecated
+        //public string Parent; ; // deprecated
         public string Description;
         public string Title_En;
         public string Title_Ar;
@@ -33,7 +34,7 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("[Minigame: id={0}, type={4}, status={1},  title_en={2}, title_ar={3}]", Id, Status, Title_En, Title_Ar, Type.ToString());
+            return string.Format("[Minigame: id={0}, type={4}, available={1},  title_en={2}, title_ar={3}]", Id, Available, Title_En, Title_Ar, Type.ToString());
         }
 
         public string GetIconResourcePath()

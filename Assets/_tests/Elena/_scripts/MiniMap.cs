@@ -6,33 +6,27 @@ namespace EA4S.TestE
 {
     public class MiniMap : MonoBehaviour
     {
+        [Header("Letter")]
         public GameObject letter;
+
+        [Header("Cameras")]
         public GameObject[] cameraM;
-        public Transform pos1;
-        public Transform pos2;
-        public Transform pos3;
-        public int numSteps;
-        public GameObject sphere;
-        public Vector3[] posSteps;
+
+        [Header("Pines")]
+        public Transform[] posPines;
+        public int numStepsBetweenPines;
+        public GameObject dot;
+        public Vector3[] posDots;
+        public Vector3 pinLeft, pinRight;
         Quaternion rot;
 
         void Awake()
         {
 
-            Vector3 p1 = pos1.position;
-            Vector3 p2 = pos2.position;
+            pinLeft = posPines[0].position;
+            pinRight = posPines[1].position;
 
-            int i = 0;
-            posSteps = new Vector3[numSteps];
-            float step = 1f / (numSteps + 1);
-            for (float perc = step; perc < 1f; perc += step)
-            {
-                Vector3 v = Vector3.Lerp(p1, p2, perc);
-                posSteps[i] = v;
-                i++;
-                rot.eulerAngles = new Vector3(90, 0, 0);
-                Instantiate(sphere, v, rot);
-            }
+            CalculateStepsBetweenPines(pinLeft, pinRight);
 
             CameraGameplayController.I.MoveToPosition(cameraM[0].transform.position, cameraM[0].transform.rotation);
         }
@@ -42,32 +36,36 @@ namespace EA4S.TestE
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
+
                 if (Physics.Raycast(ray, out hit))
                 {
                     if(hit.collider.name == "pin-11")
                     {
-                        Vector3 p1 = pos2.position;
-                        Vector3 p2 = pos3.position;
+                        pinLeft = posPines[1].position;
+                        pinRight = posPines[2].position;
 
-                        int i = 0;
-                        posSteps = new Vector3[numSteps];
-                        float step = 1f / (numSteps + 1);
-                        for (float perc = step; perc < 1f; perc += step)
-                        {
-                            Vector3 v = Vector3.Lerp(p1, p2, perc);
-                            posSteps[i] = v;
-                            i++;
-                            rot.eulerAngles = new Vector3(90, 0, 0);
-                            Instantiate(sphere, v, rot);
-                        }
+                        CalculateStepsBetweenPines(pinLeft, pinRight);
 
                         CameraGameplayController.I.MoveToPosition(cameraM[1].transform.position, cameraM[1].transform.rotation);
-                        letter.GetComponent<AnturaMovement>().pos = 0;
-                        letter.GetComponent<AnturaMovement>().v = posSteps[0];
-                        letter.transform.LookAt(pos3);
+
+                        letter.GetComponent<LetterMovement>().ResetPosLetter(2, pinRight);
                     }
 
                 }
+            }
+        }
+        void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
+        {
+            int i = 0;
+            posDots = new Vector3[numStepsBetweenPines];
+            float step = 1f / (numStepsBetweenPines + 1);
+            for (float perc = step; perc < 1f; perc += step)
+            {
+                Vector3 v = Vector3.Lerp(p1, p2, perc);
+                posDots[i] = v;
+                i++;
+                rot.eulerAngles = new Vector3(90, 0, 0);
+                Instantiate(dot, v, rot);
             }
         }
     }
