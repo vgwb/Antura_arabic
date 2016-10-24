@@ -14,7 +14,9 @@ namespace EA4S.Db
 
         public float MoodValue { get; set; }
 
-        public void Initialise(int _mood, int _playerId)
+        public LogMoodData() : this(0,0) {}
+
+        public LogMoodData(int _mood, int _playerId)
         {
             this.Id = "TODO?";
             this.MoodValue = _mood;
