@@ -14,6 +14,7 @@ namespace EA4S.MakeFriends
     {
         // Game configuration
         public IGameContext Context { get; set; }
+        public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
 
