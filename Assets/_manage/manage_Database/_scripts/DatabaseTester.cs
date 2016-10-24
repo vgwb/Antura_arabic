@@ -210,10 +210,9 @@ namespace EA4S.Db.Management
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilites.GetTimestampForNow();
-            newData.PlayerID = 1;
 
             newData.Event = InfoEvent.Book;
-            newData.Description = "TEST INFO";
+            newData.Parameters = "test:1";
 
             this.dbManager.Insert(newData);
             PrintOutput("Inserted new LogInfoData: " + newData.ToString());
@@ -225,7 +224,6 @@ namespace EA4S.Db.Management
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilites.GetTimestampForNow();
-            newData.PlayerID = 1;
 
             newData.PlaySession = "1.1.1";
             newData.MiniGame = MiniGameCode.Assessment_Letters;
@@ -236,7 +234,6 @@ namespace EA4S.Db.Management
                 ? GenericUtilites.GetRandom(dbManager.GetAllLetterData()).GetId()
                 : GenericUtilites.GetRandom(dbManager.GetAllWordData()).GetId();
 
-            newData.PlayerID = 1;
             newData.Score = RND.Range(-1f, 1f);
 
             this.dbManager.Insert(newData);
@@ -249,7 +246,6 @@ namespace EA4S.Db.Management
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilites.GetTimestampForNow();
-            newData.PlayerID = 1;
 
             newData.MoodValue = RND.Range(0, 20);
 
@@ -263,12 +259,11 @@ namespace EA4S.Db.Management
             newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilites.GetRelativeTimestampFromNow(-RND.Range(0, 5));
-            newData.PlayerID = 1;
 
             newData.PlaySession = "1.1.1";
             newData.MiniGame = MiniGameCode.Balloons_counting;
             newData.Score = RND.Range(0, 1f);
-            newData.Action = RND.value > 0.5f ? PlayEvent.GameFinished : PlayEvent.Skill;
+            newData.PlayEvent = RND.value > 0.5f ? PlayEvent.GameFinished : PlayEvent.Skill;
             newData.PlaySkill = PlaySkill.Logic;
             newData.RawData = "TEST";
 
@@ -311,7 +306,6 @@ namespace EA4S.Db.Management
 
             newData.TableName = (rndTable).ToString();
             newData.ElementId = rndId;
-            newData.PlayerID = 1;
 
             newData.Score = RND.Range(0f, 1f);
 
@@ -437,11 +431,11 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
-        public void Teacher_ScoreCurrentProgress()
+        public void Teacher_ScoreHistoryCurrentJourneyPosition()
         {
-            var list = teacherAI.GetAllScoresForCurrentProgress();
+            var list = teacherAI.GetScoreHistoryForCurrentJourneyPosition();
 
-            string output = "All score entries for the current progress (" + playerProfile.ActualJourneyPosition.ToString() + ") in the PlayerProfile:\n";
+            string output = "Score history for the current journey position (" + playerProfile.ActualJourneyPosition.ToString() + ") in the PlayerProfile:\n";
             foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
             PrintOutput(output);
         }

@@ -15,7 +15,6 @@ namespace EA4S.Db
         public string TableName { get; set; } // key
         public string ElementId { get; set; } // key
 
-        public int PlayerID { get; set; }
         public float Score { get; set; } // 0 ... 1.0, or 1f,2f,3f per PlaySession
 
         public string GetId()
@@ -25,10 +24,9 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("T{0},E{1},P{2},S{3}",
+            return string.Format("T{0},E{1},S{2}",
                 TableName,
                 ElementId,
-                PlayerID,
                 Score
                 );
         }

@@ -14,7 +14,6 @@ namespace EA4S.Db
         public string Id { get; set; }
         public string Session { get; set; } // DailySession Id
         public int Timestamp { get; set; }
-        public int PlayerID { get; set; }
 
         public string PlaySession { get; set; }
         public MiniGameCode MiniGame { get; set; }
@@ -29,10 +28,9 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},PS{3},MG{4},T{5},E{6},S{7}",
+            return string.Format("S{0},T{1},PS{2},MG{3},T{4},E{5},S{6}",
                 Session,
                 Timestamp,
-                PlayerID,
                 PlaySession,
                 MiniGame,
                 TableName,

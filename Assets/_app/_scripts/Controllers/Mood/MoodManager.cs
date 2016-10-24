@@ -39,7 +39,7 @@ namespace EA4S
                 LoggerEA4S.Log("app", "mood", "start", _mood.ToString());
 
             // Log into the DB
-            AppManager.Instance.DB.Insert(new Db.LogMoodData(_mood, 1));
+            AppManager.Instance.DB.Insert(new Db.LogMoodData(_mood));
 
             LoggerEA4S.Save();
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);

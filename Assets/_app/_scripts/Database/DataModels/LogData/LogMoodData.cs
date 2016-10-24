@@ -10,17 +10,15 @@ namespace EA4S.Db
         public string Id { get; set; }
         public string Session { get; set; }
         public int Timestamp { get; set; }
-        public int PlayerID { get; set; }
 
         public float MoodValue { get; set; }
 
-        public LogMoodData() : this(0,0) {}
+        public LogMoodData() : this(0) {}
 
-        public LogMoodData(int _mood, int _playerId)
+        public LogMoodData(int _mood)
         {
-            this.Id = "TODO?";
+            this.Id = "TODO?";  // @TODO: give a unique auto-incrementing ID? (maybe just let SQLite do that)
             this.MoodValue = _mood;
-            this.PlayerID = _playerId;
             this.Timestamp = GenericUtilites.GetTimestampForNow();
         }
 
@@ -31,10 +29,9 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("S{0},T{1},P{2},MV{3}",
+            return string.Format("S{0},T{1},MV{2}",
                 Session,
                 Timestamp,
-                PlayerID,
                 MoodValue
                 );
         }
