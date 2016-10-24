@@ -35,6 +35,7 @@ namespace EA4S
         const string ResourcePath = "Prefabs/UI/" + ResourceID;
         static GamesSelector instance;
         GamesSelectorTrailsManager trailsManager;
+        GamesSelectorTutorial tutorial;
         List<MiniGameData> games; // Set by Show
         GamesSelectorBubble mainBubble;
         readonly List<GamesSelectorBubble> bubbles = new List<GamesSelectorBubble>();
@@ -54,6 +55,7 @@ namespace EA4S
             cam = Camera.main;
             camT = cam.transform;
             trailsManager = this.GetComponent<GamesSelectorTrailsManager>();
+            tutorial = this.GetComponentInChildren<GamesSelectorTutorial>(true);
         }
 
         void Start()
@@ -100,6 +102,7 @@ namespace EA4S
                 // Start drag/click
                 isDragging = true;
                 currTrail = trailsManager.Spawn(mouseP);
+                tutorial.Stop();
             }
             if (isDragging) Update_Dragging(mouseP);
             if (Input.GetMouseButtonUp(0)) {
@@ -205,7 +208,7 @@ namespace EA4S
             }
             yield return showTween.WaitForCompletion();
 
-            cutAllowed = true;
+            if (totOpenedBubbles == 0) tutorial.Play(bubbles);
         }
 
         IEnumerator CO_EndCoroutine()
