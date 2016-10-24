@@ -7,7 +7,7 @@ namespace EA4S
     /// Game Setting Extension class.
     /// </summary>
     [System.Serializable]
-    public class AppSettings : GlobalOptions
+    public class AppSettings : ModularFramework.Modules.GlobalOptions
     {
         public bool DoLogPlayerBehaviour;
         public bool HighQualityGfx;

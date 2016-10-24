@@ -130,7 +130,7 @@ namespace EA4S.Test
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     // Dummy logic for get fake full ordered alphabet.
-                    foreach( var letter in AppManager.Instance.DB.FindAllLetterData())
+                    foreach( var letter in AppManager.Instance.DB.GetAllLetterData())
                         correctAnswers.Add(new LL_LetterData(letter.GetId()));
                     
                     // QuestionPack creation

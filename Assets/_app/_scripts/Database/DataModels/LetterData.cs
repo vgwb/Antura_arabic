@@ -22,6 +22,11 @@ namespace EA4S.Db
         public string Medial_Unicode;
         public string Final_Unicode;
 
+        public override string ToString()
+        {
+            return Id + ": " + Isolated;
+        }
+
         public string GetId()
         {
             return Id;
