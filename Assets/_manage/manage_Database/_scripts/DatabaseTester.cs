@@ -215,13 +215,16 @@ namespace EA4S.Db.Management
             PrintOutput("Inserted new LogPlayData: " + newData.ToString());
         }
 
-        public void TestInsertLogScoreData()
+        public void TestInsertScoreData()
         {
             var newData = new ScoreData();
             newData.PlayerID = 1;
+            newData.Score = UnityEngine.Random.Range(0f, 1f);
+            newData.Table = DbTables.MiniGames.ToString();
+            newData.ElementId = MiniGameCode.Balloons_spelling.ToString();
 
             this.db.Insert(newData);
-            PrintOutput("Inserted new LogScoreData: " + newData.ToString());
+            PrintOutput("Inserted new LogData: " + newData.ToString());
         }
 
         #endregion
