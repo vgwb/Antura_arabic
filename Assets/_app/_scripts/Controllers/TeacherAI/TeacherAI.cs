@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S.Db;
 
 namespace EA4S
@@ -9,9 +10,12 @@ namespace EA4S
     {
         public static TeacherAI I;
 
-        private DatabaseManager dbManager;
+         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
         string[] bodyPartsWords;
+
+        private List<MiniGameData> MiniGamesInPlaySession;
+
         List<LL_WordData> availableVocabulary = new List<LL_WordData>();
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
@@ -101,33 +105,39 @@ namespace EA4S
 
         public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
         {
-            List<MiniGameData> miniGames = new List<MiniGameData>();
-            switch (AppManager.Instance.PlaySession)
+            MiniGamesInPlaySession = new List<MiniGameData>();
+            switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession)
             {
                 case 1:
                     //miniGames = AppManager.Instance.DB.GetPlaySessionDataById("1.1.1")
-                    miniGames.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
-                    miniGames.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters));
-                    miniGames.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_letter));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.DancingDots));
                     break;
                 case 2:
-                    miniGames.Add(new MiniGameData() {Id = "FastCrowd_letters"});
-                    miniGames.Add(new MiniGameData() {Id = "Tobogan_letters"});
-                    miniGames.Add(new MiniGameData() {Id = "balloons"});
-                    miniGames.Add(new MiniGameData() {Id = "balloons"});
-                    miniGames.Add(new MiniGameData() {Id = "maze"});
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Egg));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_letter));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Maze));
                     break;
                 case 3:
-                    //miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_spelling));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.ThrowBalls_letters));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.MakeFriends));
+                    break;
+                case 4:
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.DancingDots));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_words));
+                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling));
                     break;
             }
             //AppManager.Instance.ActualMinigame = miniGame;
-            return miniGames;
+            return MiniGamesInPlaySession;
         }
 
         public MiniGameData GetCurrentMiniGameData()
         {
-            return AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet);
+            return MiniGamesInPlaySession.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
         }
 
         /// <summary>
@@ -136,7 +146,7 @@ namespace EA4S
         public Db.MiniGameData GetMiniGameForActualPlaySession()
         {
             Db.MiniGameData miniGame = null;
-            switch (AppManager.Instance.PlaySession)
+            switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession)
             {
                 case 1:
                     if (AppManager.Instance.PlaySessionGameDone == 0)
@@ -232,7 +242,7 @@ namespace EA4S
         public List<LogPlayData> GetScoreHistoryForCurrentJourneyPosition()
         {
             // @note: shows how to work with playerprofile as well as the database
-            JourneyPosition currentJourneyPosition = playerProfile.ActualJourneyPosition;
+            JourneyPosition currentJourneyPosition = playerProfile.CurrentJourneyPosition;
             string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'",
                 (int) PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);

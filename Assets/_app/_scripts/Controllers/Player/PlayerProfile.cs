@@ -33,7 +33,8 @@ namespace EA4S {
         public float Sight;
 
         public JourneyPosition MaxJourneyPosition;
-        public JourneyPosition ActualJourneyPosition;
+        public JourneyPosition CurrentJourneyPosition;
+        public int CurrentMiniGameInPlaySession;
 
         #region Oldies
         public int AnturaCurrentPreset;
@@ -58,6 +59,8 @@ namespace EA4S {
 
         public void Reset() {
             AnturaCurrentPreset = 0;
+            CurrentJourneyPosition = new JourneyPosition(1,1,1);
+            CurrentMiniGameInPlaySession = 0;
         }
         #endregion
     }

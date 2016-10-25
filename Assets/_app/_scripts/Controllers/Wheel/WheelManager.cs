@@ -65,7 +65,7 @@ namespace EA4S
 
             showGameIcon(-1);
 
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
+            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
             if (AppManager.Instance.PlaySessionGameDone >= 1)
             {
                 tutorialIndex = 20;
