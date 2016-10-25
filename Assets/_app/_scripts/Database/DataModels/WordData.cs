@@ -52,7 +52,7 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3},{4},{5}",
+            return string.Format("{0},{1},{2},{3},{4}",
                 Id,
                 Kind,
                 Category,
