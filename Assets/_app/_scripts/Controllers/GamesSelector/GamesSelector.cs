@@ -195,6 +195,7 @@ namespace EA4S
             for (int i = 0; i < totBubbles; ++i) {
                 GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
                 bubble.Setup(games[i].GetIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
+                Debug.Log("ResetAndLayout " + games[i].GetId() + " " + games[i].GetIconResourcePath());
                 bubbles.Add(bubble);
             }
         }

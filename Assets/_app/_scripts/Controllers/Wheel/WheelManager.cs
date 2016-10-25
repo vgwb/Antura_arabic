@@ -12,11 +12,9 @@ namespace EA4S
 {
     public class WheelManager : MonoBehaviour
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
+        [Header("Scene Setup")] public Music SceneMusic;
 
-        [Header("References")]
-        public Antura AnturaController;
+        [Header("References")] public Antura AnturaController;
         public static WheelManager Instance;
         public WheelController WheelCntrl;
 
@@ -36,6 +34,7 @@ namespace EA4S
         bool isGameSelected;
 
         List<Db.MiniGameData> gameData = new List<Db.MiniGameData>();
+
         /// <summary>
         /// Index (refered to gameData list) of the only game selectable for the actual playsession.
         /// </summary>
@@ -54,7 +53,8 @@ namespace EA4S
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
             Debug.Log("numberOfGames " + numberOfGames);
-            gameIndexToForceSelect = gameData.FindIndex(a => a.Id == AppManager.Instance.Teacher.GetMiniGameForActualPlaySession().Id);
+            gameIndexToForceSelect =
+                gameData.FindIndex(a => a.Id == AppManager.Instance.Teacher.GetMiniGameForActualPlaySession().Id);
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -66,9 +66,12 @@ namespace EA4S
             showGameIcon(-1);
 
             Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
-            if (AppManager.Instance.PlaySessionGameDone >= 1) {
+            if (AppManager.Instance.PlaySessionGameDone >= 1)
+            {
                 tutorialIndex = 20;
-            } else {
+            }
+            else
+            {
                 tutorialIndex = 10;
             }
 
@@ -76,11 +79,13 @@ namespace EA4S
 
             SceneTransitioner.Close();
             ShowTutor();
+            ShowGameSelector();
         }
 
         public void ShowTutor()
         {
-            switch (tutorialIndex) {
+            switch (tutorialIndex)
+            {
                 case 10:
                     tutorialIndex++;
                     WidgetSubtitles.I.DisplaySentence("wheel_A1", 2, true, ShowTutor);
@@ -100,7 +105,6 @@ namespace EA4S
                 case 14:
                     tutorialIndex++;
                     WidgetSubtitles.I.DisplaySentence("wheel_A5", 1, true);
-
                     break;
                 case 20:
                     tutorialIndex++;
@@ -114,6 +118,16 @@ namespace EA4S
             StopSounds();
         }
 
+        private void ShowGameSelector()
+        {
+            GamesSelector.OnComplete += GoToMinigame;
+            GamesSelector.Show(TeacherAI.I.GetMiniGamesForCurrentPlaySession());
+        }
+
+        private void GoToMinigame()
+        {
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(TeacherAI.I.GetCurrentMiniGameData().Scene);
+        }
 
         public void StopSounds()
         {
@@ -123,20 +137,28 @@ namespace EA4S
         public void OnPopuplicked()
         {
             /* Alpha static logic */
-            if (isGameSelected) {
+            if (isGameSelected)
+            {
                 Db.MiniGameData miniGame = AppManager.Instance.Teacher.GetMiniGameForActualPlaySession();
-                if (miniGame.Id == "fastcrowd" || miniGame.Id == "fastcrowd_words") {
+                if (miniGame.Id == "fastcrowd" || miniGame.Id == "fastcrowd_words")
+                {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
-                    if (miniGame.Id == "fastcrowd") {
+                    if (miniGame.Id == "fastcrowd")
+                    {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
-                    } else {
+                    }
+                    else
+                    {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words;
                     }
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
                 }
-                if (miniGame.Id == "fastcrowd_words") {
+                if (miniGame.Id == "fastcrowd_words")
+                {
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd_tutorialWords");
-                } else {
+                }
+                else
+                {
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.Scene + "_tutorial");
                 }
             }
@@ -168,18 +190,19 @@ namespace EA4S
             TutorialArrow.SetActive(false);
             WidgetSubtitles.I.Close();
             AudioManager.I.PlaySfx(Sfx.WheelStart);
-
         }
 
         public void OnWheelStopped()
         {
             AudioManager.I.StopSfx(Sfx.WheelStart);
-            GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
+            GameIcon.GetComponent<Image>().sprite =
+                Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
             AudioManager.I.PlayMusic(Music.Relax);
             isGameSelected = true;
             ShakePopup();
 
-            switch (gameData[currentGameIndex].Id) {
+            switch (gameData[currentGameIndex].Id)
+            {
                 case "FastCrowd_spelling":
                     WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowd", 2, true);
                     break;
@@ -201,10 +224,10 @@ namespace EA4S
 
         public void OnRadiusTrigger(int number, Color _color)
         {
-
-
-            if (WheelCntrl.isRotating) {
-                if (number != currentGameIndex) {
+            if (WheelCntrl.isRotating)
+            {
+                if (number != currentGameIndex)
+                {
                     currentGameIndex = (number % numberOfGames);
                     //Debug.Log("OnRadiusTrigger" + currentSector);
 
@@ -219,16 +242,18 @@ namespace EA4S
             // if isQuiteStopped and is correct game perform a super breck to select this game.
             if (WheelCntrl.isQuiteStopped && currentGameIndex == gameIndexToForceSelect)
                 WheelCntrl.IsBrakeForceEnhanced = true;
-
         }
 
         void showGameIcon(int index)
         {
-            if (index >= 0) {
+            if (index >= 0)
+            {
                 GameIcon.SetActive(true);
                 labelText.text = ArabicFixer.Fix(gameData[index].Title_Ar, false, false);
                 GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[index].GetIconResourcePath());
-            } else {
+            }
+            else
+            {
                 labelText.text = "";
                 GameIcon.SetActive(false);
             }
