@@ -15,7 +15,7 @@ namespace EA4S
         private DBService dynamicDb;
 
         // Profile
-        bool dbLoaded;
+        //bool dbLoaded;
 
         public DatabaseManager(bool useTestDatabase)
         {
@@ -35,13 +35,13 @@ namespace EA4S
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
             dynamicDb.RecreateAllTables();
-            dbLoaded = true;
+            //dbLoaded = true;
         }
 
         public void UnloadCurrentProfile()
         {
             dynamicDb = null;
-            dbLoaded = false;
+            //dbLoaded = false;
         }
 
         public void CreateProfile()
