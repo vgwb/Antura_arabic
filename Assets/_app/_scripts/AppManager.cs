@@ -113,8 +113,8 @@ namespace EA4S
 
                 if (Player.CurrentMiniGameInPlaySession >= (Teacher.MiniGamesInPlaySession.Count - 1)) {
                     // end playsession
-                    Player.CurrentJourneyPosition.PlaySession = 0;
-                    Player.CurrentMiniGameInPlaySession = 0;
+                    //Player.CurrentJourneyPosition.PlaySession = 0;
+                    //Player.CurrentMiniGameInPlaySession = 0;
                     returnString = "app_Rewards";
                 } else {
                     // next game in this playsession
@@ -127,13 +127,14 @@ namespace EA4S
                 // special cases
                 if (actualSceneName == "assessment") {
                     Player.CurrentJourneyPosition.LearningBlock++;
-                    Player.CurrentJourneyPosition.PlaySession = 0;
+                    Player.CurrentJourneyPosition.PlaySession = 1;
                     Player.CurrentMiniGameInPlaySession = 0;
                     returnString = "app_Journey";
                 }
                 if (actualSceneName == "rewards") {
                     Player.CurrentJourneyPosition.PlaySession++;
                     Player.CurrentMiniGameInPlaySession = 0;
+                    Debug.Log("New PlaySession = " + Player.CurrentJourneyPosition.PlaySession);
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
                 }
 
