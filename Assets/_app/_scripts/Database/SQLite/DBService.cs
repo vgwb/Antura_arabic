@@ -55,13 +55,16 @@ namespace EA4S.Db
 
         var dbPath = filepath;
 #endif
-            _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+            // Try to open an existing DB connection, or create a new DB if it does not exist already
+            try {
+                _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
+            }
+            catch
+            {
+                _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+                RecreateAllTables();
+            }
             //Debug.Log("Database final PATH: " + dbPath);
-        }
-
-        public bool OpenDatabase(bool createIfNotExisting = true)
-        {
-            return false;
         }
 
         #region Creation
