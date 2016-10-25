@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public static class GenericUtilites
+    public static class GenericUtilities
     {
         private static readonly Random _random = new Random(DateTime.Now.Millisecond);
         public static T GetRandom<T>(this IList<T> list)

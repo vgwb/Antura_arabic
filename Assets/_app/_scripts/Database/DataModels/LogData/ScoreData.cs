@@ -31,7 +31,7 @@ namespace EA4S.Db
             this.TableName = table.ToString();
             this.Id = TableName + "." + ElementId;
             this.Score = score;
-            this.LastAccessTimestamp = GenericUtilites.GetTimestampForNow();
+            this.LastAccessTimestamp = GenericUtilities.GetTimestampForNow();
         }
 
         public string GetId()
