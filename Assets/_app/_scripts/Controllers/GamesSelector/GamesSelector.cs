@@ -35,6 +35,7 @@ namespace EA4S
         const string ResourcePath = "Prefabs/UI/" + ResourceID;
         static GamesSelector instance;
         GamesSelectorTrailsManager trailsManager;
+        GamesSelectorTutorial tutorial;
         List<MiniGameData> games; // Set by Show
         GamesSelectorBubble mainBubble;
         readonly List<GamesSelectorBubble> bubbles = new List<GamesSelectorBubble>();
@@ -54,6 +55,7 @@ namespace EA4S
             cam = Camera.main;
             camT = cam.transform;
             trailsManager = this.GetComponent<GamesSelectorTrailsManager>();
+            tutorial = this.GetComponentInChildren<GamesSelectorTutorial>(true);
         }
 
         void Start()
@@ -80,6 +82,12 @@ namespace EA4S
 
         void Update()
         {
+            if (Time.timeScale <= 0) {
+                // Prevent actions when pause menu is open
+                if (isDragging) StopDrag();
+                return;
+            }
+
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.R)) {
                 Destroy(this.gameObject);
@@ -106,9 +114,7 @@ namespace EA4S
             if (isDragging) Update_Dragging(mouseP);
             if (Input.GetMouseButtonUp(0)) {
                 // Stop drag/click
-                isDragging = false;
-                trailsManager.Despawn(currTrail);
-                currTrail = null;
+                StopDrag();
             }
         }
 
@@ -132,6 +138,7 @@ namespace EA4S
             }
             if (hitBubble == null) return;
 
+            if (tutorial.isPlaying) tutorial.Stop();
             hitBubble.Open();
             totOpenedBubbles++;
             if (totOpenedBubbles == bubbles.Count) {
@@ -188,7 +195,17 @@ namespace EA4S
             for (int i = 0; i < totBubbles; ++i) {
                 GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
                 bubble.Setup(games[i].GetIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
+                Debug.Log("ResetAndLayout " + games[i].GetId() + " " + games[i].GetIconResourcePath());
                 bubbles.Add(bubble);
+            }
+        }
+
+        void StopDrag()
+        {
+            isDragging = false;
+            if (currTrail != null) {
+                trailsManager.Despawn(currTrail);
+                currTrail = null;
             }
         }
 
@@ -207,7 +224,7 @@ namespace EA4S
             }
             yield return showTween.WaitForCompletion();
 
-            cutAllowed = true;
+            if (totOpenedBubbles == 0) tutorial.Play(bubbles);
         }
 
         IEnumerator CO_EndCoroutine()
