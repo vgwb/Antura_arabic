@@ -196,13 +196,17 @@ namespace EA4S.Egg
 
         void NegativeFeedback()
         {
+            DisableAllGameplayInput();
+
+            bool goAntura = false;
+
             if (!game.eggController.isNextToExit)
             {
                 float anturaStartEnter = Random.Range(0f, 1f);
 
                 if (anturaStartEnter < anturaProbabilityOfIn)
                 {
-                    AnturaEnter();
+                    goAntura = true;
                 }
             }
 
@@ -213,8 +217,15 @@ namespace EA4S.Egg
             questionProgress = 0;
             game.eggController.ResetCrack();
 
-            DisableAllGameplayInput();
-            game.eggController.MoveNext(1f, EnableAllGameplayInput);
+            if (goAntura)
+            {
+                AnturaEnter();
+                game.eggController.MoveNext(1f, null);
+            }
+            else
+            {
+                game.eggController.MoveNext(1f, EnableAllGameplayInput);
+            }
         }
 
         void AnturaExit()
