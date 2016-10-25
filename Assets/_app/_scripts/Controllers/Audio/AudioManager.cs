@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Fabric;
 
 namespace EA4S
 {
 
     public class AudioManager : MonoBehaviour
     {
+        const string LETTERS_PREFIX = "VOX/Letters/";
+        const string WORDS_PREFIX = "VOX/Words/";
+
         public static AudioManager I;
         static System.Action OnNotifyEndAudio;
 
@@ -13,11 +18,24 @@ namespace EA4S
 
         bool musicEnabled = true;
         Music currentMusic;
+        
+        Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
 
         void Awake()
         {
             I = this;
+
             musicEnabled = true;
+
+            // Collect all Event name -> Audio clip pairs
+            var components = transform.GetComponentsInChildren<AudioComponent>(true);
+            foreach (var c in components)
+            {
+                var listener = c.GetComponent<EventListener>();
+
+                if (listener != null)
+                    eventToComponent[listener._eventName] = c;
+            }
         }
 
         void OnApplicationPause(bool pauseStatus)
@@ -109,12 +127,12 @@ namespace EA4S
 
         public void PlayLetter(string letterId)
         {
-            Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + letterId);
+            Fabric.EventManager.Instance.PostEvent(LETTERS_PREFIX + letterId);
         }
 
         public void PlayWord(string wordId)
         {
-            Fabric.EventManager.Instance.PostEvent("VOX/Words/" + wordId);
+            Fabric.EventManager.Instance.PostEvent(WORDS_PREFIX + wordId);
         }
 
         void StopSound(string eventName)
@@ -150,5 +168,17 @@ namespace EA4S
             //}
         }
 
+
+        public AudioClip GetAudioClip(Sfx sfx)
+        {
+            Fabric.AudioComponent audioComponent = null;
+
+            if (eventToComponent.TryGetValue(AudioConfig.GetSfxEventName(sfx), out audioComponent))
+            {
+                return audioComponent.AudioClip;
+            }
+
+            return null;
+        }
     }
 }

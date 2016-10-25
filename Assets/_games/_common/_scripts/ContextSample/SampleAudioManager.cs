@@ -1,10 +1,12 @@
-﻿
-using System;
+﻿using DG.DeAudio;
+using UnityEngine;
 
 namespace EA4S
 {
     public class SampleAudioManager : IAudioManager
     {
+        DeAudioGroup sfxGroup = new DeAudioGroup(DeAudioGroupId.FX);
+
         Music currentMusic;
         bool musicEnabled;
         public bool MusicEnabled
@@ -32,20 +34,23 @@ namespace EA4S
         public IAudioSource PlayLetter(LL_LetterData letterId)
         {
             AudioManager.I.PlayLetter(letterId.Key);
-            return new SampleAudioSource(null);
+            //return new SampleAudioSource(null);
+            return null;
 
         }
 
         public IAudioSource PlayWord(LL_WordData wordId)
         {
             AudioManager.I.PlayWord(wordId.Key);
-            return new SampleAudioSource(null);
+            //return new SampleAudioSource(null);
+            return null;
         }
 
         public IAudioSource PlayText(TextID text)
         {
             AudioManager.I.PlayDialog(text.ToString());
-            return new SampleAudioSource(null);
+            //return new SampleAudioSource(null);
+            return null;
         }
 
         public void PlayMusic(Music music)
@@ -56,11 +61,16 @@ namespace EA4S
 
         public IAudioSource PlaySound(Sfx sfx)
         {
-            // WARNING: An Audio Manager should return an Audio source, in order to manage multiple sounds using the same clip (eg. multiple bouncing balls etc.)
-            // MUST BE IMPLEMENTED IN THE CURRENT AUDIO MANAGER
-            AudioManager.I.PlaySfx(sfx);
+            AudioClip clip = AudioManager.I.GetAudioClip(sfx);
 
-            return new SampleAudioSource(sfx);
+            var source = sfxGroup.Play(clip);
+
+            return new SampleAudioSource(source, sfxGroup);
+        }
+
+        public UnityEngine.AudioClip GetAudioClip(Sfx sfx)
+        {
+            return AudioManager.I.GetAudioClip(sfx);
         }
 
         public void StopMusic()

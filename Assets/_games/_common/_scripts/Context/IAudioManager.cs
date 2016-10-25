@@ -12,5 +12,7 @@
         IAudioSource PlayLetter(LL_LetterData letterId);
         IAudioSource PlayWord(LL_WordData wordId);
         IAudioSource PlayText(TextID text);
+
+        UnityEngine.AudioClip GetAudioClip(Sfx sfx);
     }
 }
