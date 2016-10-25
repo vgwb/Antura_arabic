@@ -142,7 +142,7 @@ namespace EA4S
             return MiniGamesInPlaySession.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
         }
 
-        public List<Db.MiniGameData> GetMiniGameForActualPlaySession_AI(string playSessionId, int numberToSelect)
+        public List<Db.MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
         {
             return this.minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
