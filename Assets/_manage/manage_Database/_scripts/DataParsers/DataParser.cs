@@ -30,8 +30,10 @@ namespace EA4S.Db.Management
         protected T ParseEnum<T>(D data, object enum_object)
         {
             string enum_string = ToString(enum_object);
+            if (enum_string == "") enum_string = "None";
             T parsed_enum = default(T);
-            try {
+            try
+            {
                 parsed_enum = (T)System.Enum.Parse(typeof(T), enum_string);
             } catch {
                 LogValidation(data, "field valued '" + enum_string + "', not available as an enum value for type " + typeof(T).ToString() + ".");
