@@ -7,6 +7,8 @@ namespace EA4S
 {
     public class TeacherAI
     {
+        public static TeacherAI I;
+
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
         string[] bodyPartsWords;
@@ -14,6 +16,7 @@ namespace EA4S
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
+            I = this;
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
 
@@ -23,7 +26,6 @@ namespace EA4S
             {
                 "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
             };
-
         }
 
         #region Stefano's queries
@@ -50,10 +52,13 @@ namespace EA4S
                 availableVocabulary = getVocabularySubset(bodyPartsWords);
 
             List<LL_WordData> returnList = new List<LL_WordData>();
-            if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count) // if already used all available words... restart.
+            if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
+                // if already used all available words... restart.
                 AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
-            foreach (LL_WordData w in availableVocabulary) {
-                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w)) {
+            foreach (LL_WordData w in availableVocabulary)
+            {
+                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
+                {
                     returnList.Add(w); // Only added if not already used
                 }
             }
@@ -87,12 +92,43 @@ namespace EA4S
         List<LL_WordData> getVocabularySubset(string[] _goodWords)
         {
             List<LL_WordData> returnList = new List<LL_WordData>();
-            foreach (string wordKey in _goodWords) {
+            foreach (string wordKey in _goodWords)
+            {
                 returnList.Add(LL_WordData.GetWordDataByKeyRow(wordKey));
             }
             return returnList;
         }
 
+        public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
+        {
+            List<MiniGameData> miniGames = new List<MiniGameData>();
+            switch (AppManager.Instance.PlaySession)
+            {
+                case 1:
+                    //miniGames = AppManager.Instance.DB.GetPlaySessionDataById("1.1.1")
+                    miniGames.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
+                    miniGames.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters));
+                    miniGames.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_letter));
+                    break;
+                case 2:
+                    miniGames.Add(new MiniGameData() {Id = "FastCrowd_letters"});
+                    miniGames.Add(new MiniGameData() {Id = "Tobogan_letters"});
+                    miniGames.Add(new MiniGameData() {Id = "balloons"});
+                    miniGames.Add(new MiniGameData() {Id = "balloons"});
+                    miniGames.Add(new MiniGameData() {Id = "maze"});
+                    break;
+                case 3:
+                    //miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
+                    break;
+            }
+            //AppManager.Instance.ActualMinigame = miniGame;
+            return miniGames;
+        }
+
+        public MiniGameData GetCurrentMiniGameData()
+        {
+            return AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet);
+        }
 
         /// <summary>
         /// Give right game. Alpha version.
@@ -124,13 +160,13 @@ namespace EA4S
 
         #endregion
 
-
         #region MiniGames queries
 
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
             int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
-            string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}", (int)minigameCode, fromTimestamp);
+            string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}",
+                (int) minigameCode, fromTimestamp);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
             return scores;
@@ -138,7 +174,7 @@ namespace EA4S
 
         public List<ScoreData> GetCurrentScoreForAllPlaySessions()
         {
-            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions' ORDER BY ElementId "); 
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions' ORDER BY ElementId ");
             List<ScoreData> list = dbManager.FindScoreDataByQuery(query);
             return list;
         }
@@ -146,7 +182,8 @@ namespace EA4S
         public List<ScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
         {
             // First, get all play sessions given a stage
-            List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
+            List<PlaySessionData> eligiblePlaySessionData_list =
+                this.dbManager.FindPlaySessionData(x => x.Stage == stage);
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores of all play sessions
@@ -154,14 +191,15 @@ namespace EA4S
             List<ScoreData> all_playsession_list = dbManager.FindScoreDataByQuery(query);
 
             // At last, filter by the given stage
-            List<ScoreData> stage_playsession_list = all_playsession_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            List<ScoreData> stage_playsession_list =
+                all_playsession_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
 
             return stage_playsession_list;
         }
 
         public List<LogMoodData> GetLastMoodData(int number)
         {
-            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number); 
+            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number);
             List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
             return list;
         }
@@ -169,7 +207,10 @@ namespace EA4S
         public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode) // also play session
         {
             // @note: this code shows how to work on the dynamic and static db together
-            string query = string.Format("SELECT * FROM LogLearnData WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}", (int)assessmentCode);
+            string query =
+                string.Format(
+                    "SELECT * FROM LogLearnData WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}",
+                    (int) assessmentCode);
             List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
             List<string> letter_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
             List<LetterData> letters = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
@@ -178,7 +219,10 @@ namespace EA4S
 
         public List<WordData> GetFailedAssessmentWords(MiniGameCode assessmentCode)
         {
-            string query = string.Format("SELECT * FROM LogLearnData WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}", (int)assessmentCode);
+            string query =
+                string.Format(
+                    "SELECT * FROM LogLearnData WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}",
+                    (int) assessmentCode);
             List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
             List<string> words_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
             List<WordData> words = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
@@ -189,10 +233,12 @@ namespace EA4S
         {
             // @note: shows how to work with playerprofile as well as the database
             JourneyPosition currentJourneyPosition = playerProfile.ActualJourneyPosition;
-            string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'", (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
+            string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'",
+                (int) PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
         }
+
         #endregion
 
         #region Assessment queries
@@ -210,7 +256,5 @@ namespace EA4S
         #region Frequency of use queries
 
         #endregion
-
-
     }
 }
