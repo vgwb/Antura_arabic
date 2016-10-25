@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using UniRx;
 using EA4S.API;
 
 namespace EA4S
@@ -26,6 +26,7 @@ namespace EA4S
         public TeacherAI Teacher;
         public DatabaseManager DB;
         public PlayerProfile Player;
+        public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
 
         #region Init
@@ -39,33 +40,24 @@ namespace EA4S
         {
 
             if (DB == null)
-                DB = new DatabaseManager(); 
+                DB = new DatabaseManager();
             if (Player == null)
                 Player = new PlayerProfile();
             if (Teacher == null)
                 Teacher = new TeacherAI(this.DB, this.Player);
+            if (GameLauncher == null)
+                GameLauncher = new MiniGameLauncher();
         }
 
         protected override void GameSetup()
         {
             base.GameSetup();
-
             gameObject.AddComponent<MiniGameAPI>();
-
             AdditionalSetup();
-
             InitDataAI();
-
             CachingLetterData();
-
             GameSettings.HighQualityGfx = false;
-
             ResetProgressionData();
-
-            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
-                OnPlaySessionValueChange();
-            });
-
         }
 
         void AdditionalSetup()
@@ -91,28 +83,21 @@ namespace EA4S
 
         #region Game Progression
 
-        [HideInInspector]
-        public int Stage = 2;
-        [HideInInspector]
-        public int LearningBlock = 4;
-        [HideInInspector]
-        public int PlaySession = 1;
-        [HideInInspector]
-        public int PlaySessionGameDone = 0;
 
         [HideInInspector]
-        public bool IsAssessmentTime { get { return PlaySession == 3; } }
+        public bool IsAssessmentTime {
+            get {
+                return Player.CurrentJourneyPosition.PlaySession == 5;
+            }
+        }
+
         // Change this to change position of assessment in the alpha.
         [HideInInspector]
-        public Db.MiniGameData ActualMinigame;
+        public Db.MiniGameData CurrentMinigame;
 
 
         public void ResetProgressionData()
         {
-            Stage = 2;
-            LearningBlock = 4;
-            PlaySession = 1;
-            PlaySessionGameDone = 0;
             Player.Reset();
         }
 
@@ -124,21 +109,35 @@ namespace EA4S
         {
             string returnString = "app_Start";
             if (actualSceneName == "") {
-                if (PlaySessionGameDone > 0) { // end playsession
-                    PlaySession++;
-                    PlaySessionGameDone = 0;
+                // from MiniGame
+
+                if (Player.CurrentMiniGameInPlaySession >= (Teacher.MiniGamesInPlaySession.Count - 1)) {
+                    // end playsession
+                    //Player.CurrentJourneyPosition.PlaySession = 0;
+                    //Player.CurrentMiniGameInPlaySession = 0;
                     returnString = "app_Rewards";
                 } else {
                     // next game in this playsession
-                    PlaySessionGameDone++;
+                    Player.CurrentMiniGameInPlaySession++;
                     //Debug.Log("MiniGameDone PlaySessionGameDone = " + PlaySessionGameDone);
-                    returnString = "app_Wheel";
+                    MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+                    AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
                 }
             } else {
                 // special cases
                 if (actualSceneName == "assessment") {
-                    PlaySession++;
+                    Player.CurrentJourneyPosition.LearningBlock++;
+                    Player.CurrentJourneyPosition.PlaySession = 1;
+                    Player.CurrentMiniGameInPlaySession = 0;
+                    returnString = "app_Journey";
                 }
+                if (actualSceneName == "rewards") {
+                    Player.CurrentJourneyPosition.PlaySession++;
+                    Player.CurrentMiniGameInPlaySession = 0;
+                    Debug.Log("New PlaySession = " + Player.CurrentJourneyPosition.PlaySession);
+                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
+                }
+
             }
             return returnString;
         }
@@ -146,11 +145,11 @@ namespace EA4S
         ///// <summary>
         ///// Called when playSession value changes.
         ///// </summary>
-        void OnPlaySessionValueChange()
-        {
-            LoggerEA4S.Log("app", "PlaySession", "changed", PlaySession.ToString());
-            LoggerEA4S.Save();
-        }
+        //        void OnPlaySessionValueChange()
+        //        {
+        //            LoggerEA4S.Log("app", "PlaySession", "changed", PlaySession.ToString());
+        //            LoggerEA4S.Save();
+        //        }
 
         #endregion
 
