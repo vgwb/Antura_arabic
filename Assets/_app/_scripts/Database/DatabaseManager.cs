@@ -158,7 +158,7 @@ namespace EA4S
         
         public List<MiniGameData> GetAllMiniGameData()
         {
-            return new List<MiniGameData>(staticDb.GetMiniGameTable().Values);
+            return new List<MiniGameData>(staticDb.GetMiniGameTable().GetValuesTyped());
         }
 
         public List<MiniGameData> FindMiniGameData(Predicate<MiniGameData> predicate)
@@ -209,32 +209,32 @@ namespace EA4S
 
         public List<EA4S.Db.WordData> GetAllWordData()
         {
-            return new List<EA4S.Db.WordData>(staticDb.GetWordTable().Values);
+            return new List<EA4S.Db.WordData>(staticDb.GetWordTable().GetValuesTyped());
         }
 
         public List<PhraseData> GetAllPhraseData()
         {
-            return new List<PhraseData>(staticDb.GetPhraseTable().Values);
+            return new List<PhraseData>(staticDb.GetPhraseTable().GetValuesTyped());
         }
 
         public List<PlaySessionData> GetAllPlaySessionData()
         {
-            return new List<PlaySessionData>(staticDb.GetPlaySessionTable().Values);
+            return new List<PlaySessionData>(staticDb.GetPlaySessionTable().GetValuesTyped());
         }
 
         public List<StageData> GetAllStageData()
         {
-            return new List<StageData>(staticDb.GetStageTable().Values);
+            return new List<StageData>(staticDb.GetStageTable().GetValuesTyped());
         }
 
         public List<LocalizationData> GetAllLocalizationData()
         {
-            return new List<LocalizationData>(staticDb.GetLocalizationTable().Values);
+            return new List<LocalizationData>(staticDb.GetLocalizationTable().GetValuesTyped());
         }
 
         public List<RewardData> GetAllRewardData()
         {
-            return new List<RewardData>(staticDb.GetRewardTable().Values);
+            return new List<RewardData>(staticDb.GetRewardTable().GetValuesTyped());
         }
 
         public MiniGameData GetMiniGameDataByCode(MiniGameCode code)

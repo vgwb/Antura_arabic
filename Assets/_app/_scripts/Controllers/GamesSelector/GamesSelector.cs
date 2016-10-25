@@ -54,7 +54,7 @@ namespace EA4S
             if (SimulateForDebug) {
                 games = new List<MiniGameData>();
                 for (int i = 0; i < 3; ++i) {
-                    MiniGameData mgData = new MiniGameData() { Id = "fastcrowd" };
+                    MiniGameData mgData = new MiniGameData() {  Code = MiniGameCode.FastCrowd_alphabet };
                     games.Add(mgData);
                 }
                 Show(games);

@@ -44,7 +44,7 @@ namespace EA4S.Db.Management
                 }
 
                 var minigameStruct = new MiniGameInPlaySession();
-                minigameStruct.MiniGame_Id = enum_string;
+                minigameStruct.MiniGameCode = (MiniGameCode)enum_i;
                 minigameStruct.Weight = (string)dict[enum_string] == "" ? 0 : ToInt(dict[enum_string]);
                 list.Add(minigameStruct);
             }
