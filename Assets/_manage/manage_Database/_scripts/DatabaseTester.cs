@@ -28,10 +28,10 @@ namespace EA4S.Db.Management
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
             this.dbManager = new DatabaseManager(useTestDatabase);
 
-            this.playerProfile = new PlayerProfile();
-            playerProfile.ActualJourneyPosition = new JourneyPosition();    // test
+            playerProfile = new PlayerProfile();
+            playerProfile.CurrentJourneyPosition = new JourneyPosition(1,1,1);    // test
 
-            this.teacherAI = new TeacherAI(dbManager, playerProfile);
+            teacherAI = new TeacherAI(dbManager, playerProfile);
         }
 
         #region Main Actions
@@ -53,7 +53,7 @@ namespace EA4S.Db.Management
 
         public void DumpAllDataCounts()
         {
-            string output = "";
+            var output = "";
             output += ("N letters: " + dbManager.GetAllLetterData().Count) + "\n";
             output += ("N words: " + dbManager.GetAllWordData().Count) + "\n";
             output += ("N phrases: " + dbManager.GetAllPhraseData().Count) + "\n";
@@ -440,7 +440,7 @@ namespace EA4S.Db.Management
         {
             var list = teacherAI.GetScoreHistoryForCurrentJourneyPosition();
 
-            string output = "Score history for the current journey position (" + playerProfile.ActualJourneyPosition.ToString() + ") in the PlayerProfile:\n";
+            string output = "Score history for the current journey position (" + playerProfile.CurrentJourneyPosition.ToString() + ") in the PlayerProfile:\n";
             foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
             PrintOutput(output);
         }

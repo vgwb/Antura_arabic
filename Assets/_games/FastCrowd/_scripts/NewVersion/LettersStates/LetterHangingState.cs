@@ -36,7 +36,7 @@ namespace EA4S.FastCrowd
                 near[i].Scare(letter.transform.position, 2);
 
             // Face Camera!
-            movement.LerpLookAt(Camera.main.transform.position, 3*delta);
+            movement.LerpLookAt(Camera.main.transform.position, 8*delta);
         }
 
         public override void UpdatePhysics(float delta)
