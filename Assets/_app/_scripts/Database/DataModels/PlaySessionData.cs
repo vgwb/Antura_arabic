@@ -33,7 +33,7 @@ namespace EA4S.Db
             output += "\n MiniGames:";
             foreach (var minigame in Minigames) {
                 if (minigame.Weight == 0) continue;
-                output += "\n      " + minigame.MiniGame_Id + ": \t" + minigame.Weight;
+                output += "\n      " + minigame.MiniGameCode + ": \t" + minigame.Weight;
             }
             return output;
         }
@@ -42,7 +42,7 @@ namespace EA4S.Db
     [Serializable]
     public struct MiniGameInPlaySession
     {
-        public string MiniGame_Id;
+        public MiniGameCode MiniGameCode;
         public int Weight;
     }
 

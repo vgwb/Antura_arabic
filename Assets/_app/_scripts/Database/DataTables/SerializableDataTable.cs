@@ -2,7 +2,7 @@
 
 namespace EA4S.Db
 {
-    public class SerializableDataTable<K> : SerializableDictionary<string, K>, IDataTable where K : IData
+    public class SerializableDataTable<K> : List<K>, IDataTable where K : IData
     {
         public List<IData> GetList()
         {
@@ -11,7 +11,15 @@ namespace EA4S.Db
 
         public IEnumerable<IData> GetValues()
         {
-            foreach (var value in this.Values)
+            foreach (var value in this)
+            {
+                yield return value;
+            }
+        }
+
+        public IEnumerable<K> GetValuesTyped()
+        {
+            foreach (var value in this)
             {
                 yield return value;
             }
@@ -19,9 +27,7 @@ namespace EA4S.Db
 
         public IData GetValue(string id)
         {
-            if (!this.ContainsKey(id))
-                return null;
-            return this[id];
+            return Find(x => x.GetId() == id);
         }
 
         public int GetDataCount()

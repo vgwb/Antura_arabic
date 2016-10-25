@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EA4S.Db.Management
 {
-    public abstract class DataParser<D, Dtable> where D : IData where Dtable : IDictionary<string, D>
+    public abstract class DataParser<D, Dtable> where D : IData where Dtable : SerializableDataTable<D>
     {
         public void Parse(string json, Database db, Dtable table)
         {
@@ -15,12 +15,13 @@ namespace EA4S.Db.Management
                 var dict = row as Dictionary<string, object>;
                 var data = CreateData(dict, db);
 
-                if (table.ContainsKey(data.GetId())) {
+                var value = table.GetValue(data.GetId());
+                if (value != null) {
                     LogValidation(data, "found multiple ID.");
                     continue;
                 }
 
-                table.Add(data.GetId(), data);
+                table.Add(data);
             }
         }
 
@@ -38,7 +39,7 @@ namespace EA4S.Db.Management
             return parsed_enum;
         }
 
-        protected string[] ParseIDArray<OtherD, OtherDTable>(D data, string array_string, OtherDTable table) where OtherDTable : IDictionary<string, OtherD> where OtherD : IData
+        protected string[] ParseIDArray<OtherD, OtherDTable>(D data, string array_string, OtherDTable table) where OtherDTable : SerializableDataTable<OtherD> where OtherD : IData
         {
             if (table == null) {
                 LogValidation(data, "Table of type " + typeof(OtherDTable).Name + " was null!");
@@ -48,7 +49,8 @@ namespace EA4S.Db.Management
             if (array_string == "") return new string[0];  // skip if empty (could happen if the string was empty)    
             foreach (var vi in array) {
                 var v = vi.Trim(); // remove spaces
-                if (!table.ContainsKey(v)) {
+                var value = table.GetValue(v);
+                if (value == null) {
                     LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + v);
                 }
             }
