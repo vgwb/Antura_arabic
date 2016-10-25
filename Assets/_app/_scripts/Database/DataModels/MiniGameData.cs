@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using Fabric;
 
 namespace EA4S.Db
 {
@@ -39,8 +41,9 @@ namespace EA4S.Db
 
         public string GetIconResourcePath()
         {
+
 //            return "Images/GameIcons/minigame_icon_" + Id;
-            return "Images/GameIcons/minigameIco_" + Id;
+            return "Images/GameIcons/minigame_Ico_" + Main;
         }
 
     }
