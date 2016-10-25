@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
@@ -11,9 +13,7 @@ namespace EA4S.Db.Management
 {
     public class DatabaseTester : MonoBehaviour
     {
-#if UNITY_EDITOR
         private DatabaseLoader dbLoader;
-#endif
         private DatabaseManager dbManager;
         private TeacherAI teacherAI;
         private PlayerProfile playerProfile;
@@ -21,10 +21,12 @@ namespace EA4S.Db.Management
         public Text OutputText;
         public TextMeshProUGUI OutputTextArabic;
 
+        public bool useTestDatabase;
+
         void Awake()
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
-            this.dbManager = new DatabaseManager();
+            this.dbManager = new DatabaseManager(useTestDatabase);
 
             this.playerProfile = new PlayerProfile();
             playerProfile.ActualJourneyPosition = new JourneyPosition();    // test
@@ -36,10 +38,13 @@ namespace EA4S.Db.Management
 
         public void ImportAll()
         {
-#if UNITY_EDITOR
             dbLoader.LoadDatabase();
             DumpAllDataCounts();
-#endif
+        }
+
+        public void CopyCurrentDatabaseForTesting()
+        {
+            dbLoader.CopyCurrentDatabaseForTesting();
         }
 
         #endregion
@@ -503,3 +508,4 @@ namespace EA4S.Db.Management
         #endregion
     }
 }
+#endif

@@ -7,6 +7,9 @@ namespace EA4S
 {
     public class DatabaseManager
     {
+        public const string STATIC_DATABASE_NAME = "EA4s.Database";
+        public const string STATIC_DATABASE_NAME_TEST = STATIC_DATABASE_NAME + "_Test";
+
         // DB references
         private readonly Database staticDb;
         private DBService dynamicDb;
@@ -14,9 +17,14 @@ namespace EA4S
         // Profile
         bool dbLoaded;
 
-        public DatabaseManager()
+        public DatabaseManager(bool useTestDatabase)
         {
-            staticDb = Resources.Load<Database>("EA4S.Database");
+            var staticDbNameToLoad = STATIC_DATABASE_NAME;
+            if (useTestDatabase)
+            {
+                staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;
+            } 
+            staticDb = Resources.Load<Database>(staticDbNameToLoad);
 
             // SAFE MODE: we load the profileId '1' for now to make everything work
             LoadDynamicDb(1);
@@ -52,7 +60,6 @@ namespace EA4S
         }
 
         #endregion
-
 
         #region Specific Dynamic Queries
 
@@ -134,12 +141,17 @@ namespace EA4S
         #endregion
 
 
-        #region Specific Dynamic Inserts
+        #region Specific Dynamic Inserts and Updates
 
-        // Insert
         public void Insert<T>(T data) where T : IData, new()
         {
             dynamicDb.Insert(data);
+        }
+
+        public void UpdateScoreData(DbTables table, string elementId, int score)
+        {
+            ScoreData data = new ScoreData(elementId, table, score);
+            dynamicDb.InsertOrReplace(data);
         }
 
         #endregion
