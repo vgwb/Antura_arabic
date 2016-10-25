@@ -248,7 +248,7 @@ namespace EA4S
         {
             // @note: shows how to work with playerprofile as well as the database
             JourneyPosition currentJourneyPosition = playerProfile.CurrentJourneyPosition;
-            string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'",
+            string query = string.Format("SELECT * FROM LogPlayData WHERE PlayEvent = {0} AND PlaySession = '{1}'",
                 (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
