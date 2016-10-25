@@ -20,10 +20,9 @@ namespace EA4S
         public DatabaseManager(bool useTestDatabase)
         {
             var staticDbNameToLoad = STATIC_DATABASE_NAME;
-            if (useTestDatabase)
-            {
+            if (useTestDatabase) {
                 staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;
-            } 
+            }
             staticDb = Resources.Load<Database>(staticDbNameToLoad);
 
             // SAFE MODE: we load the profileId '1' for now to make everything work
@@ -36,7 +35,7 @@ namespace EA4S
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
             dynamicDb.RecreateAllTables();
-                dbLoaded = true;
+            dbLoaded = true;
         }
 
         public void UnloadCurrentProfile()
@@ -168,7 +167,7 @@ namespace EA4S
         #endregion
 
         #region Specific Static Queries
-        
+
         public List<MiniGameData> GetAllMiniGameData()
         {
             return new List<MiniGameData>(staticDb.GetMiniGameTable().GetValuesTyped());
@@ -186,7 +185,7 @@ namespace EA4S
 
         public List<EA4S.Db.LetterData> GetAllLetterData()
         {
-            return FindLetterData((x) => (x.Kind == "letter"));
+            return FindLetterData((x) => (x.Kind == LetterKind.Letter));
             //return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
@@ -268,7 +267,7 @@ namespace EA4S
         public WordData GetWordDataByRandom()
         {
             // TODO now locked to body parts for retrocompatibility
-            var wordslist = FindWordData((x) => (x.Category == "body_parts"));
+            var wordslist = FindWordData((x) => (x.Category == WordCategory.BodyPart));
             return GenericUtilites.GetRandom(wordslist);
         }
 
