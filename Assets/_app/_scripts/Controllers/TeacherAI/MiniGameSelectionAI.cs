@@ -5,6 +5,13 @@ namespace EA4S
 {
     public class MiniGameSelectionAI
     {
+        // Configuration
+        private const float PLAY_SESSION_WEIGHT = 1f;
+        private const float RECENT_PLAY_WEIGHT = 1f;
+
+        private const int DAYS_FOR_MAXIMUM_RECENT_PLAY_MALUS = 4;   // Days at which we get the maximum malus for a recent play weight
+
+        // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
 
@@ -12,18 +19,6 @@ namespace EA4S
         {
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
-        }
-
-        public struct WeightedMiniGameData
-        {
-            public Db.MiniGameData data;
-            public float weight;
-
-            public WeightedMiniGameData(Db.MiniGameData _data)
-            {
-                this.data = _data;
-                weight = 0;
-            }
         }
 
         public List<Db.MiniGameData> PerformSelection(string playSessionId, int numberToSelect)
@@ -43,44 +38,52 @@ namespace EA4S
             // Get all minigame data, filter by availability (from the static DB)
             List<Db.MiniGameData> minigame_data_list = dbManager.FindMiniGameData(x => x.Available && minigame_id_list.Contains(x.GetId()));
 
-            // Create the weighted mini game list
-            List<WeightedMiniGameData> weightedMiniGames_list = new List<WeightedMiniGameData>();
-            minigame_data_list.ConvertAll<WeightedMiniGameData>(x => new WeightedMiniGameData(x));
-            foreach (var data in minigame_data_list)
-            {
-                var weightedMiniGame = new WeightedMiniGameData();
-                weightedMiniGame.data = data;
-                weightedMiniGames_list.Add(weightedMiniGame);
-            }
+            // Create the weights list too
+            List<float> weights_list = new List<float>(minigame_data_list.Count);
 
             // Retrieve the current score data (state) for each minigame (from the dynamic DB)
             List<Db.ScoreData> minigame_score_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'MiniGames'");
 
+            //UnityEngine.Debug.Log("M GAME SCORE LIST: " + minigame_score_list.Count);
+            //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);
+
             // Determine the final weight for each minigame
-            foreach (var weightedData in weightedMiniGames_list)
+            string debugString = "";
+            foreach (var minigame_data in minigame_data_list)
             {
-                var minigameData = weightedData.data;
                 float cumulativeWeight = 0;
+                var minigame_scoredata = minigame_score_list.Find(x => x.ElementId == minigame_data.GetId());
+                int daysSinceLastScore = 0;
+                if (minigame_scoredata != null)
+                {
+                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(minigame_scoredata.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
+                    daysSinceLastScore = timespanFromLastScoreToNow.Days;
+                }
+                debugString += minigame_data.Code + " --- \t";
 
-                // Consider PlaySession Weight
-                float playsessionWeight = playsession_weights_dict[minigameData.Code];
-                cumulativeWeight += playsessionWeight;
+                // PlaySession Weight [0,1]
+                float playSessionWeight = playsession_weights_dict[minigame_data.Code] / 100f; //  [0-100]
+                cumulativeWeight += playSessionWeight * PLAY_SESSION_WEIGHT;
+                debugString += " PSw: " + playSessionWeight * PLAY_SESSION_WEIGHT +"("+playSessionWeight+")";
 
-                // Retrieve the score data
-                var minigame_scoredata = minigame_score_list.Find(x => x.ElementId == minigameData.GetId());
+                // RecentPlay Weight  [1,0]
+                const float dayLinerWeightDecrease = 1f/DAYS_FOR_MAXIMUM_RECENT_PLAY_MALUS;
+                float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
+                float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
+                cumulativeWeight += recentPlayWeight * RECENT_PLAY_WEIGHT;
+                debugString += " RPw: " + recentPlayWeight * RECENT_PLAY_WEIGHT + "(" + recentPlayWeight + ")";
 
-                // Consider RecentPlay Weight
-                const float dayLinerWeightDecrease = -0.25f;
-                //  var timespanFromLastScoreToNow = GenericUtilites.GetTimeSpanBetween(minigame_scoredata.LastAccessTimestamp, GenericUtilites.GetTimestampForNow());
-                //  int daysSinceLastScore = timespanFromLastScoreToNow.Days;
-                //  float recentPlayWeight = daysSinceLastScore * dayLinerWeightDecrease;
-               // cumulativeWeight += recentPlayWeight;
+                // Save cumulative weight
+                weights_list.Add(cumulativeWeight);
+                debugString += " TOTw: " + cumulativeWeight;
+                debugString += "\n";
             }
+            UnityEngine.Debug.Log(debugString);
 
-            // Choose N minigames based on these weights (without re-immission)
-            float total_weight = 0;
+            // Choose N minigames based on these weights
+            var chosenMiniGames = RandomHelper.RouletteSelectNonRepeating<Db.MiniGameData>(minigame_data_list, weights_list, numberToSelect);
 
-            return new List<Db.MiniGameData>();
+            return chosenMiniGames;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace EA4S
 {
     public class DatabaseManager
     {
-        public const string STATIC_DATABASE_NAME = "EA4s.Database";
+        public const string STATIC_DATABASE_NAME = "EA4S.Database";
         public const string STATIC_DATABASE_NAME_TEST = STATIC_DATABASE_NAME + "_Test";
 
         // DB references
@@ -148,11 +148,22 @@ namespace EA4S
             dynamicDb.Insert(data);
         }
 
-        public void UpdateScoreData(DbTables table, string elementId, int score)
+        public void InsertOrReplace<T>(T data) where T : IData, new()
+        {
+            dynamicDb.InsertOrReplace(data);
+        }
+
+        public void UpdateScoreData(DbTables table, string elementId, float score)
         {
             ScoreData data = new ScoreData(elementId, table, score);
             dynamicDb.InsertOrReplace(data);
         }
+        public void UpdateScoreData(DbTables table, string elementId, float score, int timestamp)
+        {
+            ScoreData data = new ScoreData(elementId, table, score, timestamp);
+            dynamicDb.InsertOrReplace(data);
+        }
+
 
         #endregion
 

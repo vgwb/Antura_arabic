@@ -212,7 +212,6 @@ namespace EA4S.Db.Management
         public void TestInsertLogInfoData()
         {
             var newData = new LogInfoData();
-            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilities.GetTimestampForNow();
 
@@ -226,7 +225,6 @@ namespace EA4S.Db.Management
         public void TestInsertLogLearnData()
         {
             var newData = new LogLearnData();
-            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilities.GetTimestampForNow();
 
@@ -248,7 +246,6 @@ namespace EA4S.Db.Management
         public void TestInsertLogMoodData()
         {
             var newData = new LogMoodData();
-            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilities.GetTimestampForNow();
 
@@ -261,7 +258,6 @@ namespace EA4S.Db.Management
         public void TestInsertLogPlayData()
         {
             var newData = new LogPlayData();
-            newData.Id = UnityEngine.Random.Range(0f, 999).ToString();
             newData.Session = UnityEngine.Random.Range(0, 10).ToString();
             newData.Timestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
 
@@ -278,8 +274,6 @@ namespace EA4S.Db.Management
 
         public void TestInsertScoreData()
         {
-            var newData = new ScoreData();
-
             int rndTableValue = RND.Range(0, 7);
             DbTables rndTable = DbTables.Letters;
             string rndId = "";
@@ -289,33 +283,37 @@ namespace EA4S.Db.Management
                     rndTable = DbTables.Letters;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
-                case 1: rndTable = DbTables.Words;
+                case 1:
+                    rndTable = DbTables.Words;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllWordData()).GetId();
                     break;
-                case 2: rndTable = DbTables.Phrases;
+                case 2:
+                    rndTable = DbTables.Phrases;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllPhraseData()).GetId();
                     break; ;
-                case 3: rndTable = DbTables.MiniGames;
+                case 3:
+                    rndTable = DbTables.MiniGames;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllMiniGameData()).GetId();
                     break;
-                case 4: rndTable = DbTables.PlaySessions;
+                case 4:
+                    rndTable = DbTables.PlaySessions;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
                     break;
-                case 5: rndTable = DbTables.Stages;
+                case 5:
+                    rndTable = DbTables.Stages;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllStageData()).GetId();
                     break;
-                case 6: rndTable = DbTables.Rewards;
+                case 6:
+                    rndTable = DbTables.Rewards;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllRewardData()).GetId();
                     break;
             }
 
-            newData.TableName = (rndTable).ToString();
-            newData.ElementId = rndId;
+            var lastAccessTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
+            var score = RND.Range(0f, 1f);
 
-            newData.Score = RND.Range(0f, 1f);
-
-            this.dbManager.Insert(newData);
-            PrintOutput("Inserted new ScoreData: " + newData.ToString());
+            this.dbManager.UpdateScoreData(rndTable, rndId, score, lastAccessTimestamp);
+            PrintOutput("Inserted (or replaced) new ScoreData: " + lastAccessTimestamp.ToString());
         }
 
         #endregion
@@ -444,6 +442,17 @@ namespace EA4S.Db.Management
             foreach (var data in list) output += GenericUtilities.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
             PrintOutput(output);
         }
+
+        public void Teacher_PerformMiniGameSelection()
+        {
+            var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
+            var list = teacherAI.SelectMiniGamesForPlaySession(currentJourneyPositionId, 2);
+
+            string output = "Minigames selected (" + currentJourneyPositionId + "):\n";
+            foreach (var data in list) output += data.Code + "\n";
+            PrintOutput(output);
+        }
+
         #endregion
 
         #region Profiles

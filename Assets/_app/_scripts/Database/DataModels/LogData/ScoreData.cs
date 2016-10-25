@@ -19,19 +19,22 @@ namespace EA4S.Db
         public string ElementId { get; set; } 
 
         public float Score { get; set; } // 0 ... 1.0, or 1f,2f,3f per PlaySession
-        public float LastAccessTimestamp { get; set; }
+        public int LastAccessTimestamp { get; set; }
 
         public ScoreData()
         {
 
         }
-        public ScoreData(string elementId, DbTables table, float score)
+        public ScoreData(string elementId, DbTables table, float score) : this(elementId,table,score, GenericUtilities.GetTimestampForNow())
+        {
+        }
+        public ScoreData(string elementId, DbTables table, float score, int timestamp)
         {
             this.ElementId = elementId;
             this.TableName = table.ToString();
             this.Id = TableName + "." + ElementId;
             this.Score = score;
-            this.LastAccessTimestamp = GenericUtilities.GetTimestampForNow();
+            this.LastAccessTimestamp = timestamp;
         }
 
         public string GetId()
