@@ -123,7 +123,7 @@ namespace EA4S
                 switch (_bt.Type) {
                     case MenuButtonType.Back: // Exit
                         OpenMenu(false);
-                        AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+                        AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
                         break;
                     case MenuButtonType.MusicToggle: // Music on/off
                         AudioManager.I.ToggleMusic();
