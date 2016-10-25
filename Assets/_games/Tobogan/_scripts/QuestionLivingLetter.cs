@@ -163,6 +163,13 @@ namespace EA4S.Tobogan
             {
                 dragging = true;
 
+                var data = letter.Model.Data;
+
+                if (data is LL_LetterData)
+                    ToboganConfiguration.Instance.Context.GetAudioManager().PlayLetter((LL_LetterData)data);
+                else if (data is LL_WordData)
+                    ToboganConfiguration.Instance.Context.GetAudioManager().PlayWord((LL_WordData)data);
+
                 Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
                 Vector3 world = tubesCamera.ScreenToWorldPoint(mousePosition);
                 dragOffset = world - transform.position;

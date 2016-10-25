@@ -9,7 +9,7 @@ namespace EA4S.Egg
         public EggLivingLetter eggLivingLetter;
         public GameObject egg;
 
-        public Collider eggCollider;
+        public EggControllerCollider eggCollider;
 
         public TremblingTube tremblingEgg;
         float tremblingTimer;
@@ -17,10 +17,12 @@ namespace EA4S.Egg
         public Action onEggCrackComplete;
         public Action onEggExitComplete;
 
-        Tween moveEggTween;
-        Tween rotationEggTween;
+        public AnimationCurve inMoveCurve;
+        public AnimationCurve outMoveCurve;
 
-        Transform eggTransform;
+        Tween moveEggParentTween;
+        Tween moveEggTeewn;
+        Tween rotationEggTween;
 
         Action endTransformToCallback;
 
@@ -29,10 +31,12 @@ namespace EA4S.Egg
 
         Vector3[] eggPositions;
 
-        public void Initialize(GameObject letterObjectViewPrefab,  Vector3[] eggPositions)
+        public void Initialize(GameObject letterObjectViewPrefab, Vector3[] eggPositions, Action eggPressedCallback)
         {
             this.eggPositions = eggPositions;
             eggLivingLetter.Initialize(letterObjectViewPrefab);
+            eggCollider.Initizlize(eggPressedCallback);
+            eggCollider.DisableCollider();
         }
 
         public void Reset()
@@ -48,7 +52,7 @@ namespace EA4S.Egg
 
         public void MoveNext(float duration, Action callback)
         {
-            if (moveEggTween != null) { moveEggTween.Kill(); }
+            if (moveEggParentTween != null) { moveEggParentTween.Kill(); }
             if (rotationEggTween != null) { rotationEggTween.Kill(); }
 
             currentPosition++;
@@ -60,9 +64,20 @@ namespace EA4S.Egg
 
             currentRotation.z += 90f;
 
+            AnimationCurve moveCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+            if (currentPosition == 1)
+            {
+                moveCurve = inMoveCurve;
+            }
+            else if (currentPosition == eggPositions.Length - 1)
+            {
+                moveCurve = outMoveCurve;
+            }
+
             bool inOutRotation = currentPosition == 1 || currentPosition == eggPositions.Length - 1;
 
-            TransformTo(eggPositions[currentPosition], inOutRotation, currentRotation, duration, callback);
+            TransformTo(eggPositions[currentPosition], inOutRotation, moveCurve, currentRotation, duration, callback);
         }
 
         public bool isNextToExit
@@ -105,14 +120,14 @@ namespace EA4S.Egg
             }
         }
 
-        void MoveTo(Vector3 position, float duration)
+        void MoveTo(Vector3 position, float duration, AnimationCurve moveCurve)
         {
-            if (moveEggTween != null)
+            if (moveEggParentTween != null)
             {
-                moveEggTween.Kill();
+                moveEggParentTween.Kill();
             }
 
-            moveEggTween = transform.DOLocalMove(position, duration).OnComplete(delegate ()
+            moveEggParentTween = transform.DOLocalMove(position, duration).OnComplete(delegate ()
             {
                 if (endTransformToCallback != null) endTransformToCallback();
 
@@ -121,7 +136,9 @@ namespace EA4S.Egg
                     onEggExitComplete();
                 }
 
-            });
+            })
+            ;
+            //.SetEase(moveCurve);
         }
 
         void InOutRotation(Vector3 rotation, float duration)
@@ -131,7 +148,7 @@ namespace EA4S.Egg
                 rotationEggTween.Kill();
             }
 
-            rotationEggTween = DOTween.To(() => egg.transform.eulerAngles.z, z => egg.transform.eulerAngles = new Vector3(egg.transform.eulerAngles.x, egg.transform.eulerAngles.y, z), rotation.z + 1080f, duration * 0.95f)
+            rotationEggTween = DOTween.To(() => egg.transform.eulerAngles.z, z => egg.transform.eulerAngles = new Vector3(egg.transform.eulerAngles.x, egg.transform.eulerAngles.y, z), rotation.z + 720f, duration * 0.95f)
                 .OnComplete(delegate ()
                 {
                     BouncingRotation(0.5f);
@@ -145,7 +162,7 @@ namespace EA4S.Egg
                 rotationEggTween.Kill();
             }
 
-            rotationEggTween = egg.transform.DORotate(rotation, duration * 0.93f).OnComplete(delegate()
+            rotationEggTween = egg.transform.DORotate(rotation, duration * 0.93f).OnComplete(delegate ()
             {
                 BouncingRotation();
             });
@@ -170,10 +187,11 @@ namespace EA4S.Egg
             });
         }
 
-        void TransformTo(Vector3 localPosition, bool inOutRotation, Vector3 rotation, float duration, Action callback)
+        void TransformTo(Vector3 localPosition, bool inOutRotation, AnimationCurve moveAnimationCurve, Vector3 rotation, float duration, Action callback)
         {
-            MoveTo(localPosition, duration);
-            if(inOutRotation)
+            MoveTo(localPosition, duration, moveAnimationCurve);
+
+            if (inOutRotation)
             {
                 InOutRotation(rotation, duration);
             }
@@ -187,7 +205,7 @@ namespace EA4S.Egg
 
         void GoToPosition(int positionNumber, Vector3 rotation)
         {
-            if (moveEggTween != null) { moveEggTween.Kill(); }
+            if (moveEggParentTween != null) { moveEggParentTween.Kill(); }
             if (rotationEggTween != null) { rotationEggTween.Kill(); }
 
             currentPosition = positionNumber;
@@ -199,12 +217,12 @@ namespace EA4S.Egg
 
         public void EnableInput()
         {
-            eggCollider.enabled = true;
+            eggCollider.EnableCollider();
         }
 
         public void DisableInput()
         {
-            eggCollider.enabled = false;
+            eggCollider.DisableCollider();
         }
 
         void Update()
@@ -218,6 +236,33 @@ namespace EA4S.Egg
             {
                 tremblingEgg.Trembling = false;
             }
+        }
+
+        public void LateUpdate()
+        {
+            float minY = 2.5f;
+            float maxY = 4f;
+
+            float maxDelta = maxY - minY;
+
+            float zRotation = egg.transform.eulerAngles.z % 360f;
+
+            float newYPosition = minY;
+
+            if (zRotation <= 180)
+            {
+                newYPosition += maxDelta * (zRotation / 180f);
+            }
+            else
+            {
+                newYPosition += maxDelta * ((360 - zRotation) / 180f);
+            }
+
+            Vector3 newPosition = egg.transform.localPosition;
+
+            newPosition.y = newYPosition;
+
+            egg.transform.localPosition = newPosition;
         }
 
         public void StartTrembling()

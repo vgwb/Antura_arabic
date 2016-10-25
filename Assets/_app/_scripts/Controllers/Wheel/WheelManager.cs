@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ModularFramework.Core;
 using TMPro;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ArabicSupport;
@@ -36,6 +37,7 @@ namespace EA4S
         bool isGameSelected;
 
         List<Db.MiniGameData> gameData = new List<Db.MiniGameData>();
+
         /// <summary>
         /// Index (refered to gameData list) of the only game selectable for the actual playsession.
         /// </summary>
@@ -54,7 +56,7 @@ namespace EA4S
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
             Debug.Log("numberOfGames " + numberOfGames);
-            gameIndexToForceSelect = gameData.FindIndex(a => a.Code == AppManager.Instance.Teacher.GetMiniGameForActualPlaySession().Code);
+            gameIndexToForceSelect = gameData.FindIndex(a => a.Code == AppManager.Instance.Teacher.GetCurrentMiniGameData().Code);
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -65,8 +67,8 @@ namespace EA4S
 
             showGameIcon(-1);
 
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
-            if (AppManager.Instance.PlaySessionGameDone >= 1) {
+            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+            if (AppManager.Instance.Player.CurrentMiniGameInPlaySession >= 1) {
                 tutorialIndex = 20;
             } else {
                 tutorialIndex = 10;
@@ -76,6 +78,7 @@ namespace EA4S
 
             SceneTransitioner.Close();
             ShowTutor();
+            ShowGameSelector();
         }
 
         public void ShowTutor()
@@ -100,7 +103,6 @@ namespace EA4S
                 case 14:
                     tutorialIndex++;
                     WidgetSubtitles.I.DisplaySentence("wheel_A5", 1, true);
-
                     break;
                 case 20:
                     tutorialIndex++;
@@ -114,6 +116,18 @@ namespace EA4S
             StopSounds();
         }
 
+        private void ShowGameSelector()
+        {
+            GamesSelector.OnComplete += GoToMinigame;
+            GamesSelector.Show(TeacherAI.I.GetMiniGamesForCurrentPlaySession());
+        }
+
+        private void GoToMinigame()
+        {
+            MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+            AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
+            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(TeacherAI.I.GetCurrentMiniGameData().Scene);
+        }
 
         public void StopSounds()
         {
@@ -124,7 +138,7 @@ namespace EA4S
         {
             /* Alpha static logic */
             if (isGameSelected) {
-                Db.MiniGameData miniGame = AppManager.Instance.Teacher.GetMiniGameForActualPlaySession();
+                Db.MiniGameData miniGame = AppManager.Instance.Teacher.GetCurrentMiniGameData();
                 if (miniGame.Code == MiniGameCode.FastCrowd_letter|| miniGame.Code == MiniGameCode.FastCrowd_words) {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
                     if (miniGame.Code == MiniGameCode.FastCrowd_letter) {
@@ -168,13 +182,13 @@ namespace EA4S
             TutorialArrow.SetActive(false);
             WidgetSubtitles.I.Close();
             AudioManager.I.PlaySfx(Sfx.WheelStart);
-
         }
 
         public void OnWheelStopped()
         {
             AudioManager.I.StopSfx(Sfx.WheelStart);
-            GameIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
+            GameIcon.GetComponent<Image>().sprite =
+                Resources.Load<Sprite>(gameData[currentGameIndex].GetIconResourcePath());
             AudioManager.I.PlayMusic(Music.Relax);
             isGameSelected = true;
             ShakePopup();
@@ -201,8 +215,6 @@ namespace EA4S
 
         public void OnRadiusTrigger(int number, Color _color)
         {
-
-
             if (WheelCntrl.isRotating) {
                 if (number != currentGameIndex) {
                     currentGameIndex = (number % numberOfGames);
@@ -219,7 +231,6 @@ namespace EA4S
             // if isQuiteStopped and is correct game perform a super breck to select this game.
             if (WheelCntrl.isQuiteStopped && currentGameIndex == gameIndexToForceSelect)
                 WheelCntrl.IsBrakeForceEnhanced = true;
-
         }
 
         void showGameIcon(int index)

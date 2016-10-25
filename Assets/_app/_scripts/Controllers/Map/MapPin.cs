@@ -4,7 +4,7 @@ using EA4S;
 
 namespace EA4S
 {
-    public class Pin : MonoBehaviour
+    public class MapPin : MonoBehaviour
     {
         public int Number;
         public Transform RopeNode;
