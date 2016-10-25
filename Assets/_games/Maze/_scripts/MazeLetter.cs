@@ -17,7 +17,8 @@ namespace EA4S.Maze
 		void Start () {
 
 			isInside = false;
-
+			character.toggleVisibility (false);
+			//character.gameObject.SetActive (false);
 		}
 
 		// Update is called once per frame
@@ -53,7 +54,8 @@ namespace EA4S.Maze
 			if (!MazeGameManager.Instance.tutorialForLetterisComplete() || !isInside)
 				return;
 			isInside =  false;
-
+			character.toggleVisibility (true);
+			//character.gameObject.SetActive (true);
 			character.initMovement ();
 
 			MazeGameManager.Instance.timer.StopTimer ();
