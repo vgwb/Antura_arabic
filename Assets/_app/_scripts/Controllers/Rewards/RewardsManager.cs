@@ -86,12 +86,7 @@ namespace EA4S
 
         public void Continue()
         {
-            // if we just did Assestment then go mood
-            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) > 3) {
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
-            } else {
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
-            }
+            AppManager.Instance.MiniGameDone("rewards");
         }
 
     }
