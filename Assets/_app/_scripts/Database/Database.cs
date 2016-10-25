@@ -93,7 +93,7 @@ namespace EA4S.Db
             yield return GetTable(DbTables.Localizations);
         }
 
-        private IDataTable GetTable(DbTables tables)
+        public IDataTable GetTable(DbTables tables)
         {
             IDataTable table = null;
             switch (tables) {

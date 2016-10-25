@@ -28,6 +28,7 @@ namespace EA4S
         public PlayerProfile Player;
         public GameObject CurrentGameManagerGO;
 
+
         #region Init
 
         public string IExist()
@@ -39,7 +40,7 @@ namespace EA4S
         {
 
             if (DB == null)
-                DB = new DatabaseManager(); 
+                DB = new DatabaseManager(this.GameSettings.UseTestDatabase); 
             if (Player == null)
                 Player = new PlayerProfile();
             if (Teacher == null)

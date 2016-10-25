@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    internal static class GenericUtilites
+    public static class GenericUtilites
     {
         private static readonly Random _random = new Random(DateTime.Now.Millisecond);
         public static T GetRandom<T>(this IList<T> list)
@@ -29,7 +29,7 @@ namespace EA4S
             return reverse;
         }
 
-
+        #region DateTime
         private static DateTime TIME_START = new DateTime(1970, 1, 1, 0, 0, 0);
         public static int GetRelativeTimestampFromNow(int deltaDays)
         {
@@ -46,6 +46,11 @@ namespace EA4S
             var span = TimeSpan.FromSeconds(timestamp);
             return TIME_START + span;
         }
+        public static TimeSpan GetTimeSpanBetween(int timestamp_from, int timestamp_to)
+        {
+            return FromTimestamp(timestamp_to) - FromTimestamp(timestamp_from);
+        }
 
+        #endregion
     }
 }

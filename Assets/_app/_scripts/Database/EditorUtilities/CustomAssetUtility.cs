@@ -1,9 +1,19 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using System.IO;
 
 public static class CustomAssetUtility
 {
+    public static T CreateAsset<T>(string targetPath, string assetName) where T : ScriptableObject
+    {
+        T asset = ScriptableObject.CreateInstance<T>();
+        string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(targetPath + "/" + assetName + ".asset");
+        AssetDatabase.CreateAsset(asset, assetPathAndName);
+        AssetDatabase.SaveAssets();
+        return asset;
+    }
+
     public static T CreateAsset<T>() where T : ScriptableObject
     {
         T asset = ScriptableObject.CreateInstance<T>();
@@ -25,3 +35,4 @@ public static class CustomAssetUtility
         return asset;
     }
 }
+#endif

@@ -59,6 +59,10 @@ namespace EA4S.Db
             //Debug.Log("Database final PATH: " + dbPath);
         }
 
+        public bool OpenDatabase(bool createIfNotExisting = true)
+        {
+            return false;
+        }
 
         #region Creation
 
@@ -98,6 +102,11 @@ namespace EA4S.Db
         public void Insert<T>(T data) where T : IData, new()
         {
             _connection.Insert(data);
+        }
+
+        public void InsertOrReplace<T>(T data) where T : IData, new()
+        {
+            _connection.InsertOrReplace(data);
         }
 
         public void InsertAll<T>(System.Collections.IEnumerable objects) where T : IData, new()
