@@ -23,7 +23,7 @@ namespace EA4S
             I = this;
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
-
+            MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
             // Debug.Log("AI exists");
 
             bodyPartsWords = new[]

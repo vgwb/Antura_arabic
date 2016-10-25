@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using ModularFramework.Modules;
 using UnityEngine;
 
-namespace EA4S {
+namespace EA4S
+{
 
     [Serializable]
-    public class PlayerProfile : IPlayerProfile {
+    public class PlayerProfile : IPlayerProfile
+    {
 
         public string Key { get; set; }
         public int Id;
@@ -57,9 +59,10 @@ namespace EA4S {
         public int EndMoodEval = 0;
         #endregion
 
-        public void Reset() {
+        public void Reset()
+        {
             AnturaCurrentPreset = 0;
-            CurrentJourneyPosition = new JourneyPosition(1,1,1);
+            CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
             CurrentMiniGameInPlaySession = 0;
         }
         #endregion

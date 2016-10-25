@@ -111,7 +111,7 @@ namespace EA4S
             if (actualSceneName == "") {
                 // from MiniGame
 
-                if (Player.CurrentMiniGameInPlaySession > Teacher.MiniGamesInPlaySession.Count) {
+                if (Player.CurrentMiniGameInPlaySession >= Teacher.MiniGamesInPlaySession.Count) {
                     // end playsession
                     Player.CurrentJourneyPosition.PlaySession++;
                     Player.CurrentMiniGameInPlaySession = 0;
