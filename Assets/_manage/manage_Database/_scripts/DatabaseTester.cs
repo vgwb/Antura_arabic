@@ -29,7 +29,7 @@ namespace EA4S.Db.Management
             dbManager = new DatabaseManager();
 
             playerProfile = new PlayerProfile();
-            playerProfile.ActualJourneyPosition = new JourneyPosition();    // test
+            playerProfile.CurrentJourneyPosition = new JourneyPosition(1,1,1);    // test
 
             teacherAI = new TeacherAI(dbManager, playerProfile);
         }
@@ -437,7 +437,7 @@ namespace EA4S.Db.Management
         {
             var list = teacherAI.GetScoreHistoryForCurrentJourneyPosition();
 
-            string output = "Score history for the current journey position (" + playerProfile.ActualJourneyPosition.ToString() + ") in the PlayerProfile:\n";
+            string output = "Score history for the current journey position (" + playerProfile.CurrentJourneyPosition.ToString() + ") in the PlayerProfile:\n";
             foreach (var data in list) output += GenericUtilites.FromTimestamp(data.Timestamp) + ": " + data.Score + "\n";
             PrintOutput(output);
         }

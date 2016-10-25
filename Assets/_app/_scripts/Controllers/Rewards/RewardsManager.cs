@@ -15,19 +15,19 @@ namespace EA4S
         void Start()
         {
             AudioManager.I.PlayMusic(Music.Theme4);
-            Debug.Log("RewardsManager playsession: " + AppManager.Instance.PlaySession);
+            Debug.Log("RewardsManager playsession: " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
 
             // here we set the Rewards base on current progression level (playsession -1 because Rewards appear when playsession is already incremented)
-            if ((AppManager.Instance.PlaySession - 1) == 1) {
+            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) == 1) {
                 AppManager.Instance.Player.AnturaCurrentPreset = 1;
 
                 tutorialIndex = 10;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "1");
-            } else if ((AppManager.Instance.PlaySession - 1) == 2) {
+            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) == 2) {
                 AppManager.Instance.Player.AnturaCurrentPreset = 2;
                 tutorialIndex = 20;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "2");
-            } else if ((AppManager.Instance.PlaySession - 1) > 2) {
+            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) > 2) {
                 AppManager.Instance.Player.AnturaCurrentPreset = 3;
                 tutorialIndex = 30;
                 LoggerEA4S.Log("app", "Reward", "get_reward", "3");
@@ -87,7 +87,7 @@ namespace EA4S
         public void Continue()
         {
             // if we just did Assestment then go mood
-            if ((AppManager.Instance.PlaySession) > 3) {
+            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) > 3) {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
             } else {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");

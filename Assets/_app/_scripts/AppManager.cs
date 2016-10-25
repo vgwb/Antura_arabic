@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ModularFramework.Core;
 using ModularFramework.Modules;
-using UniRx;
 using EA4S.API;
 
 namespace EA4S
@@ -62,9 +61,9 @@ namespace EA4S
 
             ResetProgressionData();
 
-            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
-                OnPlaySessionValueChange();
-            });
+//            this.ObserveEveryValueChanged(x => PlaySession).Subscribe(_ => {
+//                OnPlaySessionValueChange();
+//            });
 
         }
 
@@ -92,16 +91,10 @@ namespace EA4S
         #region Game Progression
 
         [HideInInspector]
-        public int Stage = 2;
-        [HideInInspector]
-        public int LearningBlock = 4;
-        [HideInInspector]
-        public int PlaySession = 1;
-        [HideInInspector]
         public int PlaySessionGameDone = 0;
 
         [HideInInspector]
-        public bool IsAssessmentTime { get { return PlaySession == 3; } }
+        public bool IsAssessmentTime { get { return Player.CurrentJourneyPosition.PlaySession == 3; } }
         // Change this to change position of assessment in the alpha.
         [HideInInspector]
         public Db.MiniGameData ActualMinigame;
@@ -109,9 +102,6 @@ namespace EA4S
 
         public void ResetProgressionData()
         {
-            Stage = 2;
-            LearningBlock = 4;
-            PlaySession = 1;
             PlaySessionGameDone = 0;
             Player.Reset();
         }
@@ -125,7 +115,7 @@ namespace EA4S
             string returnString = "app_Start";
             if (actualSceneName == "") {
                 if (PlaySessionGameDone > 0) { // end playsession
-                    PlaySession++;
+                    Player.CurrentJourneyPosition.PlaySession++;
                     PlaySessionGameDone = 0;
                     returnString = "app_Rewards";
                 } else {
@@ -137,7 +127,7 @@ namespace EA4S
             } else {
                 // special cases
                 if (actualSceneName == "assessment") {
-                    PlaySession++;
+                    Player.CurrentJourneyPosition.PlaySession++;
                 }
             }
             return returnString;
@@ -146,11 +136,11 @@ namespace EA4S
         ///// <summary>
         ///// Called when playSession value changes.
         ///// </summary>
-        void OnPlaySessionValueChange()
-        {
-            LoggerEA4S.Log("app", "PlaySession", "changed", PlaySession.ToString());
-            LoggerEA4S.Save();
-        }
+//        void OnPlaySessionValueChange()
+//        {
+//            LoggerEA4S.Log("app", "PlaySession", "changed", PlaySession.ToString());
+//            LoggerEA4S.Save();
+//        }
 
         #endregion
 

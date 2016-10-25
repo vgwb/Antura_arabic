@@ -25,12 +25,12 @@ namespace EA4S
         {
             AudioManager.I.PlayMusic(SceneMusic);
             ShowProgression();
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.PlaySession);
-            if ((AppManager.Instance.PlaySession) == 1) {
+            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 1) {
                 tutorialIndex = 10;
-            } else if ((AppManager.Instance.PlaySession) == 2) {
+            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 2) {
                 tutorialIndex = 20;
-            } else if ((AppManager.Instance.PlaySession) > 2) {
+            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) > 2) {
                 tutorialIndex = 30;
             }
 
@@ -113,13 +113,13 @@ namespace EA4S
 
         void ShowProgression()
         {
-            CurrentSteps[0].SetActive(AppManager.Instance.PlaySession > 0);
-            CurrentSteps[1].SetActive(AppManager.Instance.PlaySession > 0);
-            CurrentSteps[2].SetActive(AppManager.Instance.PlaySession > 1);
-            CurrentSteps[3].SetActive(AppManager.Instance.PlaySession > 2);
-            CurrentSteps[4].SetActive(AppManager.Instance.PlaySession > 3);
+            CurrentSteps[0].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 0);
+            CurrentSteps[1].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 0);
+            CurrentSteps[2].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 1);
+            CurrentSteps[3].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 2);
+            CurrentSteps[4].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 3);
 
-            Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.PlaySession].transform.position;
+            Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.Player.CurrentJourneyPosition.PlaySession].transform.position;
 
             Player.transform.position = new Vector3(currentDotPosition.x, currentDotPosition.y + 4.6f, currentDotPosition.z);
 
