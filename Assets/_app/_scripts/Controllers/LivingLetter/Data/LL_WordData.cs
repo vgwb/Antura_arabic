@@ -18,7 +18,6 @@ namespace EA4S
 
         public string Kind;
         public string Category;
-        public string Stage;
         public string English;
         public string Word;
         public string Letters;
@@ -32,15 +31,14 @@ namespace EA4S
         public LL_WordData(string _keyRow, Db.WordData _wordRow)
         {
             Key = _keyRow;
-            Kind = _wordRow.Kind;
-            Category = _wordRow.Category;
-            English = _wordRow.English;
+            Kind = _wordRow.Kind.ToString();
+            Category = _wordRow.Category.ToString();
+            English = _keyRow;
             Word = _wordRow.Arabic;
             Letters = _wordRow.Letters.ToString();
             Transliteration = _wordRow.Transliteration;
             DifficultyLevel = _wordRow.Difficulty.ToString();
             NumberOfLetters = _wordRow.NumberOfLetters.ToString();
-            Group = _wordRow.Group;
         }
 
         #region API
