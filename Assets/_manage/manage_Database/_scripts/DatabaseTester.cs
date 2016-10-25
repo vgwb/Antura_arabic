@@ -377,6 +377,7 @@ namespace EA4S.Db.Management
         {
             SQLite.TableMapping resultMapping = new SQLite.TableMapping(typeof(TestQueryResult));
 
+            // TODO: this query won't work anymore as there is no more PlayerID
             string query = "select LogMoodData.MoodValue from LogMoodData inner join LogPlayData on LogMoodData.PlayerId = LogPlayData.PlayerId where LogMoodData.Session = \"5\"";
             List<object> list = this.dbManager.FindCustomDataByQuery(resultMapping, query);
 
@@ -393,6 +394,7 @@ namespace EA4S.Db.Management
 
         public void Teacher_LastNMoods()
         {
+            Debug.Log(teacherAI);
             var list = teacherAI.GetLastMoodData(10);
 
             string output = "Latest 10 moods:\n";
