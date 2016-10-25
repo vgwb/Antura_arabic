@@ -5,6 +5,7 @@ namespace EA4S.Db
 {
     public enum DidacticalFocus
     {
+        None = 0,
         Letters = 1,
         Shapes = 2,
         Words = 3,
