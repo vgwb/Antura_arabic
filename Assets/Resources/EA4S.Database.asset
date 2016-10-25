@@ -13,365 +13,405 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameTable:
     innerList:
-    - Code: 5
+    - Title_En: The Alphabet Song
+      Code: 5
       Available: 0
       Type: 1
       Main: AlphabetSong
       Variation: 
       Description: video
-      Title_En: The Alphabet Song
+      IntroArabic: 
       Title_Ar: "\u0623\u063A\u0646\u064A\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: 
-    - Code: 6
+    - Title_En: Balloons (counting)
+      Code: 6
       Available: 0
       Type: 1
       Main: Balloons
       Variation: counting
       Description: 
-      Title_En: Balloons
+      IntroArabic: 
       Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0627\u0631\u0642\u0627\u0645"
       Scene: game_Balloons
-    - Code: 7
+    - Title_En: Balloons (letters)
+      Code: 7
       Available: 0
       Type: 1
       Main: Balloons
       Variation: letters
       Description: 
-      Title_En: Balloons
+      IntroArabic: 
       Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: game_Balloons
-    - Code: 3
+    - Title_En: Balloons (spelling)
+      Code: 3
       Available: 1
       Type: 1
       Main: Balloons
       Variation: spelling
       Description: 
-      Title_En: Balloons
+      IntroArabic: 
       Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u062A\u0647\u062C\u0626\u0629"
       Scene: game_Balloons
-    - Code: 8
+    - Title_En: Balloons (words)
+      Code: 8
       Available: 0
       Type: 1
       Main: Balloons
       Variation: words
       Description: 
-      Title_En: Balloons
+      IntroArabic: 
       Title_Ar: "\u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A \u0648 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       Scene: game_Balloons
-    - Code: 9
+    - Title_En: Color Tickle
+      Code: 9
       Available: 0
       Type: 1
       Main: ColorTickle
       Variation: 
       Description: 
-      Title_En: Color Tickle
+      IntroArabic: 
       Title_Ar: "\u062F\u063A\u062F\u063A\u0627\u062A \u0645\u0644\u0648\u0646\u0629"
       Scene: 
-    - Code: 10
+    - Title_En: Dancing Dots
+      Code: 10
       Available: 1
       Type: 1
       Main: DancingDots
       Variation: 
       Description: 
-      Title_En: Dancing Dots
+      IntroArabic: 
       Title_Ar: "\u062D\u0644\u0628\u0629 \u0627\u0644\u0631\u0642\u0635"
       Scene: game_DancingDots
-    - Code: 2
+    - Title_En: Don't Wake Up
+      Code: 2
       Available: 0
       Type: 1
       Main: DontWakeUp
       Variation: 
       Description: 
-      Title_En: Don't Wake Up
+      IntroArabic: 
       Title_Ar: "\u0644\u0627 \u062A\u0648\u0642\u0638 \u0639\u0646\u062A\u0648\u0631\u0629"
       Scene: game_DontWakeUp
-    - Code: 11
+    - Title_En: The Egg
+      Code: 11
       Available: 1
       Type: 1
       Main: Egg
       Variation: 
       Description: 
-      Title_En: The Egg
+      IntroArabic: 
       Title_Ar: "\u0628\u064A\u0636\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: game_Egg
-    - Code: 12
+    - Title_En: Fast Crowd (alphabet)
+      Code: 12
       Available: 1
       Type: 1
       Main: FastCrowd
       Variation: alphabet
       Description: 
-      Title_En: Fast Crowd
+      IntroArabic: 
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u062D\u0631\u0648\u0641 \u0627\u0644\u0627\u0628\u062C\u062F\u064A\u0629"
       Scene: game_FastCrowd
-    - Code: 13
+    - Title_En: Fast Crowd (counting)
+      Code: 13
       Available: 1
       Type: 1
       Main: FastCrowd
       Variation: counting
       Description: 
-      Title_En: Fast Crowd
+      IntroArabic: 
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0627\u0631\u0642\u0627\u0645"
       Scene: game_FastCrowd
-    - Code: 14
+    - Title_En: Fast Crowd (letters)
+      Code: 14
       Available: 1
       Type: 1
       Main: FastCrowd
       Variation: letters
       Description: 
-      Title_En: Fast Crowd
+      IntroArabic: 
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: game_FastCrowd
-    - Code: 1
+    - Title_En: Fast Crowd (spelling)
+      Code: 1
       Available: 1
       Type: 1
       Main: FastCrowd
       Variation: spelling
       Description: 
-      Title_En: Fast Crowd
+      IntroArabic: 
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u062A\u0647\u062C\u0626\u0629"
       Scene: game_FastCrowd
-    - Code: 4
+    - Title_En: Fast Crowd (words)
+      Code: 4
       Available: 1
       Type: 1
       Main: FastCrowd
       Variation: words
       Description: 
-      Title_En: Fast Crowd
+      IntroArabic: 
       Title_Ar: "\u062C\u0645\u0627\u0647\u064A\u0631 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       Scene: game_FastCrowd
-    - Code: 15
+    - Title_En: Hidden Source
+      Code: 15
       Available: 0
       Type: 1
       Main: HiddenSource
       Variation: 
       Description: 
-      Title_En: Hidden Source
+      IntroArabic: 
       Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0645\u0646\u0632\u0644"
       Scene: 
-    - Code: 16
+    - Title_En: Hide & Seek
+      Code: 16
       Available: 0
       Type: 1
       Main: HideSeek
       Variation: 
       Description: 
-      Title_En: Hide & Seek
+      IntroArabic: 
       Title_Ar: "\u0627\u0644\u063A\u0645\u064A\u0636\u0629"
       Scene: 
-    - Code: 17
+    - Title_En: Make Friends
+      Code: 17
       Available: 1
       Type: 1
       Main: MakeFriends
       Variation: 
       Description: 
-      Title_En: Make Friends
+      IntroArabic: 
       Title_Ar: "\u0634\u0631\u0627\u0631\u0629 \u0627\u0644\u0635\u062F\u0627\u0642\u0629"
       Scene: game_MakeFriends
-    - Code: 18
+    - Title_En: Maze
+      Code: 18
       Available: 1
       Type: 1
       Main: Maze
       Variation: 
       Description: 
-      Title_En: Maze
+      IntroArabic: 
       Title_Ar: "\u0645\u062A\u0627\u0647\u0629 \u0627\u0644\u0635\u0627\u0631\u0648\u062E"
       Scene: game_Maze
-    - Code: 19
+    - Title_En: Missing Letters
+      Code: 19
       Available: 0
       Type: 1
       Main: MissingLetter
       Variation: 
       Description: 
-      Title_En: Missing Letters
+      IntroArabic: 
       Title_Ar: 
       Scene: 
-    - Code: 20
+    - Title_En: Missing Letters (phrases)
+      Code: 20
       Available: 0
       Type: 1
       Main: MissingLetter
       Variation: phrases
       Description: 
-      Title_En: Missing Letters
+      IntroArabic: 
       Title_Ar: 
       Scene: 
-    - Code: 21
+    - Title_En: Mixed Letters
+      Code: 21
       Available: 0
       Type: 1
       Main: MixedLetters
       Variation: alphabet
       Description: 
-      Title_En: Mixed Letters
+      IntroArabic: 
       Title_Ar: "\u0633\u0644\u0637\u0629 \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: 
-    - Code: 22
+    - Title_En: Mixed Letters (spelling)
+      Code: 22
       Available: 0
       Type: 1
       Main: MixedLetters
       Variation: spelling
       Description: 
-      Title_En: Mixed Letters
+      IntroArabic: 
       Title_Ar: "\u0633\u0644\u0637\u0629 \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       Scene: 
-    - Code: 23
+    - Title_En: Sick Letter
+      Code: 23
       Available: 0
       Type: 1
       Main: SickLetter
       Variation: 
       Description: 
-      Title_En: Sick Letter
+      IntroArabic: 
       Title_Ar: "\u0627\u0644\u0636\u064A\u0641 \u0627\u0644\u063A\u0627\u0645\u0636"
       Scene: 
-    - Code: 24
+    - Title_En: Reading Game
+      Code: 24
       Available: 0
       Type: 1
       Main: ReadingGame
       Variation: 
       Description: 
-      Title_En: Reading Game
+      IntroArabic: 
       Title_Ar: 
       Scene: 
-    - Code: 25
+    - Title_En: Scanner
+      Code: 25
       Available: 0
       Type: 1
       Main: Scanner
       Variation: 
       Description: 
-      Title_En: Scanner
+      IntroArabic: 
       Title_Ar: "\u0641\u0627\u062D\u0635 \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0636\u0648\u0626\u064A"
       Scene: game_Scanner
-    - Code: 26
+    - Title_En: Scanner (phrases)
+      Code: 26
       Available: 0
       Type: 1
       Main: Scanner
       Variation: phrases
       Description: 
-      Title_En: Scanner
+      IntroArabic: 
       Title_Ar: "\u0641\u0627\u062D\u0635 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0627\u0644\u0636\u0648\u0626\u064A"
       Scene: game_Scanner
-    - Code: 27
+    - Title_En: Throw Balls (letters)
+      Code: 27
       Available: 1
       Type: 1
       Main: ThrowBalls
       Variation: letters
       Description: 
-      Title_En: Throw Balls
+      IntroArabic: 
       Title_Ar: "\u0635\u064A\u062F \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: game_ThrowBalls
-    - Code: 28
+    - Title_En: Throw Balls (words)
+      Code: 28
       Available: 0
       Type: 1
       Main: ThrowBalls
       Variation: words
       Description: 
-      Title_En: Throw Balls
+      IntroArabic: 
       Title_Ar: "\u0635\u064A\u062F \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       Scene: game_ThrowBalls
-    - Code: 29
+    - Title_En: Tobogan (letters)
+      Code: 29
       Available: 1
       Type: 1
       Main: Tobogan
       Variation: letters
       Description: 
-      Title_En: Tobogan
+      IntroArabic: 
       Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641"
       Scene: game_Tobogan
-    - Code: 30
+    - Title_En: Tobogan (words)
+      Code: 30
       Available: 0
       Type: 1
       Main: Tobogan
       Variation: words
       Description: 
-      Title_En: Tobogan
+      IntroArabic: 
       Title_Ar: "\u0628\u0631\u062C \u0627\u0644\u0643\u0644\u0645\u0627\u062A"
       Scene: game_Tobogan
-    - Code: 100
+    - Title_En: Rearranging Letters
+      Code: 100
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Rearranging Letters
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 101
+    - Title_En: Matching Letter Shape
+      Code: 101
       Available: 1
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Matching Letter Shape
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 102
+    - Title_En: Break It Up
+      Code: 102
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Break It Up
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 103
+    - Title_En: Memory Match
+      Code: 103
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Memory Match
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 104
+    - Title_En: Word Builder
+      Code: 104
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Word Builder
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 105
+    - Title_En: Alphabetize
+      Code: 105
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Alphabetize
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 106
+    - Title_En: Classification
+      Code: 106
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Classification
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 107
+    - Title_En: Listen and Locate
+      Code: 107
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Listen and Locate
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 108
+    - Title_En: Fill in the Gaps
+      Code: 108
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Fill in the Gaps
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
-    - Code: 109
+    - Title_En: Definitions
+      Code: 109
       Available: 0
       Type: 2
       Main: 
       Variation: 
       Description: 
-      Title_En: Definitions
+      IntroArabic: 
       Title_Ar: 
       Scene: app_Assessment
   letterTable:
