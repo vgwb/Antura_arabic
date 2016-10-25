@@ -10,11 +10,11 @@ namespace EA4S
     {
         public static TeacherAI I;
 
-         private DatabaseManager dbManager;
+        private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
         string[] bodyPartsWords;
 
-        private List<MiniGameData> MiniGamesInPlaySession;
+        public List<MiniGameData> MiniGamesInPlaySession;
 
         List<LL_WordData> availableVocabulary = new List<LL_WordData>();
 
@@ -59,10 +59,8 @@ namespace EA4S
             if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
                 // if already used all available words... restart.
                 AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
-            foreach (LL_WordData w in availableVocabulary)
-            {
-                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
-                {
+            foreach (LL_WordData w in availableVocabulary) {
+                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w)) {
                     returnList.Add(w); // Only added if not already used
                 }
             }
@@ -96,8 +94,7 @@ namespace EA4S
         List<LL_WordData> getVocabularySubset(string[] _goodWords)
         {
             List<LL_WordData> returnList = new List<LL_WordData>();
-            foreach (string wordKey in _goodWords)
-            {
+            foreach (string wordKey in _goodWords) {
                 returnList.Add(LL_WordData.GetWordDataByKeyRow(wordKey));
             }
             return returnList;
@@ -106,8 +103,7 @@ namespace EA4S
         public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
         {
             MiniGamesInPlaySession = new List<MiniGameData>();
-            switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession)
-            {
+            switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) {
                 case 1:
                     //miniGames = AppManager.Instance.DB.GetPlaySessionDataById("1.1.1")
                     MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
@@ -137,36 +133,36 @@ namespace EA4S
 
         public MiniGameData GetCurrentMiniGameData()
         {
+            MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
             return MiniGamesInPlaySession.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
         }
 
         /// <summary>
         /// Give right game. Alpha version.
         /// </summary>
-        public Db.MiniGameData GetMiniGameForActualPlaySession()
-        {
-            Db.MiniGameData miniGame = null;
-            switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession)
-            {
-                case 1:
-                    if (AppManager.Instance.PlaySessionGameDone == 0)
-                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
-                    else
-                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
-                    break;
-                case 2:
-                    if (AppManager.Instance.PlaySessionGameDone == 0)
-                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
-                    else
-                        miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
-                    break;
-                case 3:
-                    miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
-                    break;
-            }
-            AppManager.Instance.ActualMinigame = miniGame;
-            return miniGame;
-        }
+        //public Db.MiniGameData GetMiniGameForActualPlaySession()
+        //{
+        //    Db.MiniGameData miniGame = null;
+        //    switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) {
+        //        case 1:
+        //            if (AppManager.Instance.PlaySessionGameDone == 0)
+        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
+        //            else
+        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
+        //            break;
+        //        case 2:
+        //            if (AppManager.Instance.PlaySessionGameDone == 0)
+        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
+        //            else
+        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
+        //            break;
+        //        case 3:
+        //            miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
+        //            break;
+        //    }
+        //    AppManager.Instance.CurrentMinigame = miniGame;
+        //    return miniGame;
+        //}
 
         #endregion
 
@@ -176,7 +172,7 @@ namespace EA4S
         {
             int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
             string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}",
-                (int) minigameCode, fromTimestamp);
+                (int)minigameCode, fromTimestamp);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             List<float> scores = list.ConvertAll(x => x.Score);
             return scores;
@@ -220,7 +216,7 @@ namespace EA4S
             string query =
                 string.Format(
                     "SELECT * FROM LogLearnData WHERE TableName = 'LetterData' AND Score < 0 and MiniGame = {0}",
-                    (int) assessmentCode);
+                    (int)assessmentCode);
             List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
             List<string> letter_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
             List<LetterData> letters = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
@@ -232,7 +228,7 @@ namespace EA4S
             string query =
                 string.Format(
                     "SELECT * FROM LogLearnData WHERE TableName = 'WordData' AND Score < 0 and MiniGame = {0}",
-                    (int) assessmentCode);
+                    (int)assessmentCode);
             List<LogLearnData> logLearnData_list = dbManager.FindLogLearnDataByQuery(query);
             List<string> words_ids_list = logLearnData_list.ConvertAll(x => x.ElementId);
             List<WordData> words = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
@@ -244,7 +240,7 @@ namespace EA4S
             // @note: shows how to work with playerprofile as well as the database
             JourneyPosition currentJourneyPosition = playerProfile.CurrentJourneyPosition;
             string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'",
-                (int) PlayEvent.GameFinished, currentJourneyPosition.ToString());
+                (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;
         }
