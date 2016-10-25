@@ -44,18 +44,19 @@ namespace EA4S.Db
 
         public List<T> FindAll<T>(SerializableDataTable<T> table, Predicate<T> predicate) where T : IData
         {
-            var allValues = new List<T>(table.Values);
+            var allValues = new List<T>(table.GetValuesTyped());
             var filtered = allValues.FindAll(predicate);
             return filtered;
         }
 
         public T GetById<T>(SerializableDataTable<T> table, string id) where T : IData
         {
-            if (!table.ContainsKey(id)) {
+            T value = (T)table.GetValue(id);
+            if (value == null) {
                 Debug.LogWarning("Cannot find id '" + id + "' in talbe " + table.GetType().Name);
                 return default(T);
             }
-            return table[id];
+            return value;
         }
 
         public IEnumerable<List<IData>> GetAllData()
