@@ -12,10 +12,14 @@ namespace EA4S
         string[] bodyPartsWords;
         List<LL_WordData> availableVocabulary = new List<LL_WordData>();
 
+        MiniGameSelectionAI minigameSelectionAI;
+
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
+
+            this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
 
             // Debug.Log("AI exists");
 
@@ -23,7 +27,6 @@ namespace EA4S
             {
                 "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
             };
-
         }
 
         #region Stefano's queries
@@ -120,6 +123,11 @@ namespace EA4S
             }
             AppManager.Instance.ActualMinigame = miniGame;
             return miniGame;
+        }
+
+        public List<Db.MiniGameData> GetMiniGameForActualPlaySession_AI(string playSessionId, int numberToSelect)
+        {
+            return this.minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
         #endregion
