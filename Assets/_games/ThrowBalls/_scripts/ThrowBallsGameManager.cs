@@ -28,7 +28,7 @@ namespace EA4S.ThrowBalls
 
         public GameObject environment;
 
-        private bool isRoundOngoing;
+        public bool isRoundOngoing;
 
         // Round number is 1-based. (Round 1, round 2,...)
         private int roundNumber = 1;
@@ -80,6 +80,8 @@ namespace EA4S.ThrowBalls
             ResetScene();
 
             StartCoroutine("StartNewRound");
+
+            AudioManager.I.PlayMusic(Music.MainTheme);
 
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();

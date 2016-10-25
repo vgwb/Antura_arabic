@@ -33,16 +33,16 @@
         ThrowBalls_words = 28,
         Tobogan_letters = 29,
         Tobogan_words = 30,
-        Assessment_Letters = 31,
-        Assessment_LettersMatchShape = 32,
-        Assessment_3 = 33,
-        Assessment_4 = 34,
-        Assessment_5 = 35,
-        Assessment_Alphabet = 36,
-        Assessment_7 = 37,
-        Assessment_8 = 38,
-        Assessment_9 = 39,
-        Assessment_10 = 40
+        Assessment_Letters = 100,
+        Assessment_LettersMatchShape = 101,
+        Assessment_3 = 102,
+        Assessment_4 = 103,
+        Assessment_5 = 104,
+        Assessment_Alphabet = 105,
+        Assessment_7 = 106,
+        Assessment_8 = 107,
+        Assessment_9 = 108,
+        Assessment_10 = 109
     }
 
 }
