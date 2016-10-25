@@ -34,7 +34,6 @@ namespace EA4S
         public void LoadDynamicDb(int profileId)
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
-            dynamicDb.RecreateAllTables();
             //dbLoaded = true;
         }
 
