@@ -114,10 +114,10 @@ namespace EA4S
         void ShowProgression()
         {
             CurrentSteps[0].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 0);
-            CurrentSteps[1].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 0);
-            CurrentSteps[2].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 1);
-            CurrentSteps[3].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 2);
-            CurrentSteps[4].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 3);
+            CurrentSteps[1].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 1);
+            CurrentSteps[2].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 2);
+            CurrentSteps[3].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 3);
+            CurrentSteps[4].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 4);
 
             Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.Player.CurrentJourneyPosition.PlaySession].transform.position;
 
@@ -156,8 +156,7 @@ namespace EA4S
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
-            for (int i = 0; i < scoreData_list.Count; i++)
-            {
+            for (int i = 0; i < scoreData_list.Count; i++) {
                 var data = AppManager.Instance.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Score));
             }
