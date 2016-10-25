@@ -17,7 +17,7 @@ namespace EA4S
         /// <param name="">.</param>
         public static string PrepareStringForDisplay(string str)
         {
-            return GenericUtilites.ReverseText(ArabicFixer.Fix(str));
+            return GenericUtilities.ReverseText(ArabicFixer.Fix(str));
         }
 
         /// <summary>

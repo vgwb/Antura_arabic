@@ -19,7 +19,7 @@ namespace EA4S.Db
         {
             this.Id = "TODO?";  // @TODO: give a unique auto-incrementing ID? (maybe just let SQLite do that)
             this.MoodValue = _mood;
-            this.Timestamp = GenericUtilites.GetTimestampForNow();
+            this.Timestamp = GenericUtilities.GetTimestampForNow();
         }
 
         public string GetId()
