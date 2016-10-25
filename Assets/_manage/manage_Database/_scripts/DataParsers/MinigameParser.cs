@@ -10,7 +10,7 @@ namespace EA4S.Db.Management
         {
             var data = new MiniGameData();
 
-            data.Id = ToString(dict["Id"]);
+            data.Code = ParseEnum<MiniGameCode>(data, dict["Id"]);
             data.Main = ToString(dict["Main"]);
             data.Variation = ToString(dict["Variation"]);
             data.Type = ParseEnum<MiniGameType>(data, dict["Type"]);
