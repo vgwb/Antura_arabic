@@ -12,15 +12,14 @@ namespace EA4S.Db
     public class MiniGameData : IData
     {
         // Source
+        public string Title_En;
         public MiniGameCode Code;
         public bool Available;
         public MiniGameType Type;
         public string Main;
         public string Variation;
-        //public string Status; // deprecated
-        //public string Parent; ; // deprecated
         public string Description;
-        public string Title_En;
+        public string IntroArabic;
         public string Title_Ar;
         public string Scene;
 
@@ -38,8 +37,6 @@ namespace EA4S.Db
 
         public string GetIconResourcePath()
         {
-
-//            return "Images/GameIcons/minigame_icon_" + Id;
             return "Images/GameIcons/minigameIco_" + Main;
         }
 
