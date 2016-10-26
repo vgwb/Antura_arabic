@@ -16,7 +16,7 @@ namespace EA4S
                 gameObject.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
             } else {
                 //                gameObject.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(text, false, false);
-                gameObject.GetComponent<TextMeshPro>().text = GenericUtilites.ReverseText(ArabicFixer.Fix(text, false, false));
+                gameObject.GetComponent<TextMeshPro>().text = GenericUtilities.ReverseText(ArabicFixer.Fix(text, false, false));
             }
         }
     }
