@@ -118,7 +118,7 @@ namespace EA4S.FastCrowd
                 {
                     Debug.Log(CurrentChallenge[i]);
 
-                    var word = ((LL_WordData)CurrentChallenge[i]).Word;
+                    var word = ((LL_WordData)CurrentChallenge[i]).Data.Arabic;
 
                     if (i == 0)
                     stringListOfWords = word;

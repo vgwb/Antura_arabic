@@ -100,14 +100,14 @@ namespace EA4S.Tobogan
                 answerText.gameObject.SetActive(true);
                 //answerImage.gameObject.SetActive(false);
 
-                answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Isolated_Unicode);
+                answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
             }
             else if (livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 answerText.gameObject.SetActive(true);
                 //answerImage.gameObject.SetActive(false);
 
-                answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Word, false, false);
+                answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
             }
             //else
             //{

@@ -51,13 +51,13 @@ namespace EA4S.Egg
             {
                 buttonText.gameObject.SetActive(true);
 
-                buttonText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Isolated_Unicode);
+                buttonText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
             }
             else if (livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 buttonText.gameObject.SetActive(true);
 
-                buttonText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Word, false, false);
+                buttonText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
             }
         }
 
