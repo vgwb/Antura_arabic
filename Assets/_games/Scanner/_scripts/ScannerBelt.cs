@@ -9,14 +9,28 @@ namespace EA4S.Scanner
 		public float speed = 0.2f;
 		public Transform spawnPoint;
 		public Transform endPoint;
-		
-		void FixedUpdate()
+
+		void Start()
 		{
-			transform.Translate(speed,0,0);
-			if (speed > 0 && transform.position.x > endPoint.position.x ||
-				speed < 0 && transform.position.x < endPoint.position.x )
+			if (speed > 0)
 			{
-				transform.position = spawnPoint.position;
+				foreach(Transform beltPiece in this.transform)
+				{
+					beltPiece.tag = "Belt";
+				}
+			}
+		}
+
+		void Update()
+		{
+			foreach (Transform beltPiece in this.transform)
+			{
+				beltPiece.Translate(speed * Time.deltaTime,0,0);
+				if (speed > 0 && beltPiece.position.x > endPoint.position.x ||
+					speed < 0 && beltPiece.position.x < endPoint.position.x )
+				{
+					beltPiece.position = spawnPoint.position;
+				}
 			}
 		}
 	}

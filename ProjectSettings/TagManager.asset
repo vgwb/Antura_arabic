@@ -15,6 +15,7 @@ TagManager:
   - CorrectLetter
   - WrongLetter
   - Rail
+  - Belt
   layers:
   - Default
   - TransparentFX
