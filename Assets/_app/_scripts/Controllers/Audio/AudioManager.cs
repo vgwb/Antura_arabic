@@ -20,6 +20,7 @@ namespace EA4S
         Music currentMusic;
         
         Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
+        Dictionary<string, Fabric.RandomComponent> eventToRndComponent = new Dictionary<string, Fabric.RandomComponent>();
 
         void Awake()
         {
@@ -35,6 +36,15 @@ namespace EA4S
 
                 if (listener != null)
                     eventToComponent[listener._eventName] = c;
+            }
+
+            var rndcomponents = transform.GetComponentsInChildren<RandomComponent>(true);
+            foreach (var c in rndcomponents)
+            {
+                var listener = c.GetComponent<EventListener>();
+
+                if (listener != null)
+                    eventToRndComponent[listener._eventName] = c;
             }
         }
 
@@ -168,14 +178,38 @@ namespace EA4S
             //}
         }
 
+        public AudioClip GetAudioClip(ILivingLetterData letterData)
+        {
+            if (letterData.DataType == LivingLetterDataType.Letter)
+                return GetAudioClip(LETTERS_PREFIX + letterData.Key);
+            else if (letterData.DataType == LivingLetterDataType.Word)
+                return GetAudioClip(WORDS_PREFIX + letterData.Key);
+            return null;
+        }
 
         public AudioClip GetAudioClip(Sfx sfx)
         {
+            return GetAudioClip(AudioConfig.GetSfxEventName(sfx));
+        }
+
+        AudioClip GetAudioClip(string eventName)
+        {
             Fabric.AudioComponent audioComponent = null;
 
-            if (eventToComponent.TryGetValue(AudioConfig.GetSfxEventName(sfx), out audioComponent))
+            if (eventToComponent.TryGetValue(eventName, out audioComponent))
             {
                 return audioComponent.AudioClip;
+            }
+            
+            Fabric.RandomComponent rndComponent = null;
+
+            if (eventToRndComponent.TryGetValue(eventName, out rndComponent))
+            {
+                var child = rndComponent.GetChildComponents();
+
+                Fabric.AudioComponent c = child.GetRandom() as AudioComponent;
+                if (c != null)
+                    return c.AudioClip;
             }
 
             return null;
