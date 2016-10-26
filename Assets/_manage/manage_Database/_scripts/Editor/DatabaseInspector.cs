@@ -7,12 +7,10 @@ namespace EA4S.Db.Management.Editor
     [CustomEditor(typeof(Database))]
     public class DatabaseLoaderInspector : UnityEditor.Editor
     {
-        DatabaseLoader src;
         SerializedObject sobj;
 
         void OnEnable()
         {
-            src = target as DatabaseLoader;
             sobj = new SerializedObject(target);
         }
 

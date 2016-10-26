@@ -9,5 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d2b2cc58e67e4093ae0ebb1919d5089, type: 3}
-  m_Name: EA4s.Database_Test
+  m_Name: EA4S.Database_Test
   m_EditorClassIdentifier: 
+  minigameTable:
+    innerList: []
+  letterTable:
+    innerList: []
+  wordTable:
+    innerList: []
+  playSessionTable:
+    innerList: []
+  localizationTable:
+    innerList: []
+  phraseTable:
+    innerList: []
+  stageTable:
+    innerList: []
+  rewardTable:
+    innerList: []

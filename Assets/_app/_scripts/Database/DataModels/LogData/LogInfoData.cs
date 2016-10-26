@@ -18,16 +18,29 @@ namespace EA4S.Db
     [System.Serializable]
     public class LogInfoData : IData
     {
-        public string Id { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         public string Session { get; set; }
         public int Timestamp { get; set; }
 
         public InfoEvent Event { get; set; }
         public string Parameters { get; set; } // playerId:0, rewardType:2
 
+        public LogInfoData()
+        {
+        }
+
+        public LogInfoData(string _Session, InfoEvent _Event, PlaySkill _PlaySkill, string _Parameters)
+        {
+            this.Session = _Session;
+            this.Event = _Event;
+            this.Parameters = _Parameters;
+            this.Timestamp = GenericUtilities.GetTimestampForNow();
+        }
+
         public string GetId()
         {
-            return Id;
+            return Id.ToString();
         }
 
         public override string ToString()

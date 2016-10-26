@@ -7,7 +7,7 @@ namespace EA4S
 {
     public class DatabaseManager
     {
-        public const string STATIC_DATABASE_NAME = "EA4s.Database";
+        public const string STATIC_DATABASE_NAME = "EA4S.Database";
         public const string STATIC_DATABASE_NAME_TEST = STATIC_DATABASE_NAME + "_Test";
 
         // DB references
@@ -15,7 +15,7 @@ namespace EA4S
         private DBService dynamicDb;
 
         // Profile
-        bool dbLoaded;
+        //bool dbLoaded;
 
         public DatabaseManager(bool useTestDatabase)
         {
@@ -34,14 +34,13 @@ namespace EA4S
         public void LoadDynamicDb(int profileId)
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
-            dynamicDb.RecreateAllTables();
-            dbLoaded = true;
+            //dbLoaded = true;
         }
 
         public void UnloadCurrentProfile()
         {
             dynamicDb = null;
-            dbLoaded = false;
+            //dbLoaded = false;
         }
 
         public void CreateProfile()
@@ -148,11 +147,22 @@ namespace EA4S
             dynamicDb.Insert(data);
         }
 
-        public void UpdateScoreData(DbTables table, string elementId, int score)
+        public void InsertOrReplace<T>(T data) where T : IData, new()
+        {
+            dynamicDb.InsertOrReplace(data);
+        }
+
+        public void UpdateScoreData(DbTables table, string elementId, float score)
         {
             ScoreData data = new ScoreData(elementId, table, score);
             dynamicDb.InsertOrReplace(data);
         }
+        public void UpdateScoreData(DbTables table, string elementId, float score, int timestamp)
+        {
+            ScoreData data = new ScoreData(elementId, table, score, timestamp);
+            dynamicDb.InsertOrReplace(data);
+        }
+
 
         #endregion
 
@@ -268,7 +278,7 @@ namespace EA4S
         {
             // TODO now locked to body parts for retrocompatibility
             var wordslist = FindWordData((x) => (x.Category == WordCategory.BodyPart));
-            return GenericUtilites.GetRandom(wordslist);
+            return GenericUtilities.GetRandom(wordslist);
         }
 
         public LetterData GetLetterDataById(string id)
@@ -279,7 +289,7 @@ namespace EA4S
         public LetterData GetLetterDataByRandom()
         {
             var letterslist = GetAllLetterData();
-            return GenericUtilites.GetRandom(letterslist);
+            return GenericUtilities.GetRandom(letterslist);
         }
 
         public PhraseData GetPhraseDataById(string id)
