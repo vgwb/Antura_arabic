@@ -9,7 +9,12 @@ namespace EA4S.Egg
         public EggLivingLetter eggLivingLetter;
         public GameObject egg;
 
+        public EggPiece[] eggPieces;
+
         public EggControllerCollider eggCollider;
+
+        public Transform notRotatedObjects;
+        Vector3 notRotation = new Vector3(0f, 0f, 0f);
 
         public TremblingTube tremblingEgg;
         float tremblingTimer;
@@ -46,6 +51,8 @@ namespace EA4S.Egg
 
             eggLivingLetter.gameObject.SetActive(false);
             egg.gameObject.SetActive(true);
+
+            ResetCrack();
 
             tremblingTimer = 0f;
         }
@@ -94,12 +101,22 @@ namespace EA4S.Egg
 
         public void ResetCrack()
         {
-
+            for (int i = 0; i < eggPieces.Length; i++)
+            {
+                eggPieces[i].Reset();
+            }
         }
 
         public void Cracking(float progress)
         {
             StartTrembling();
+
+            int eggPiecesProgress = (int)(progress * eggPieces.Length);
+
+            for (int i = 0; i < eggPiecesProgress; i++)
+            {
+                eggPieces[i].Poof();
+            }
 
             if (progress == 1f)
             {
@@ -241,7 +258,7 @@ namespace EA4S.Egg
         public void LateUpdate()
         {
             float minY = 2.5f;
-            float maxY = 4f;
+            float maxY = 4.1f;
 
             float maxDelta = maxY - minY;
 
@@ -249,20 +266,49 @@ namespace EA4S.Egg
 
             float newYPosition = minY;
 
+            //if (zRotation <= 180)
+            //{
+            //    newYPosition += maxDelta * (zRotation / 180f);
+            //}
+            //else
+            //{
+            //    newYPosition += maxDelta * ((360 - zRotation) / 180f);
+            //}
+
             if (zRotation <= 180)
             {
-                newYPosition += maxDelta * (zRotation / 180f);
+                if (zRotation < 90f)
+                {
+                    zRotation = 0f;
+                }
+                else
+                {
+                    zRotation += -90f;
+                }
             }
             else
             {
-                newYPosition += maxDelta * ((360 - zRotation) / 180f);
+                zRotation += -180f;
+
+                if (zRotation <= 90f)
+                {
+                    zRotation = 90f - zRotation;
+                }
+                else
+                {
+                    zRotation = 0f;
+                }
             }
+
+            newYPosition += maxDelta * (zRotation / 90f);
 
             Vector3 newPosition = egg.transform.localPosition;
 
             newPosition.y = newYPosition;
 
             egg.transform.localPosition = newPosition;
+
+            notRotatedObjects.eulerAngles = notRotation;
         }
 
         public void StartTrembling()
