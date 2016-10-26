@@ -68,7 +68,7 @@ namespace EA4S.DontWakeUp
             DrawingGO.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
             DrawingGO.SetActive(false);
             TextGO.SetActive(true);
-            TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(DontWakeUpManager.Instance.currentWord.Word, false, false);
+            TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(DontWakeUpManager.Instance.currentWord.Data.Arabic, false, false);
 
             //startingY = transform.position.y;
 
