@@ -982,7 +982,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013769838380}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.56, y: 4.78, z: -0.72}
+  m_LocalPosition: {x: -3.56, y: 4.78, z: -1}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1385,7 +1385,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010218628170}
-  m_LocalRotation: {x: -0.68850946, y: 0.040607117, z: 0.7181946, w: 0.09220875}
+  m_LocalRotation: {x: -0.6885094, y: 0.040607113, z: 0.71819454, w: 0.09220874}
   m_LocalPosition: {x: 0.1043229, y: 0.103943594, z: 1.287589}
   m_LocalScale: {x: 0.99999964, y: 1, z: 1.0000005}
   m_LocalEulerAnglesHint: {x: -10.6786995, y: -87.1645, z: 175.5333}
@@ -2800,6 +2800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 114000013457814486}
+  idleSeconds: 0
 --- !u!114 &114000010533390518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2963,6 +2964,7 @@ MonoBehaviour:
   - {fileID: 1000013565437136}
   numbersToShow:
   - {fileID: 1000010880348142}
+  isStopped: 0
 --- !u!114 &114000012663701366
 MonoBehaviour:
   m_ObjectHideFlags: 1

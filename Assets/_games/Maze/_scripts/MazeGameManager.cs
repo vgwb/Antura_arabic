@@ -37,7 +37,7 @@ namespace EA4S.Maze
 
 
 		int currentLetterIndex;
-		GameObject currentPrefab;
+		public GameObject currentPrefab;
 		public int health = 4;
 		public GameObject cracks;
 		List<GameObject> _cracks;
@@ -112,8 +112,8 @@ namespace EA4S.Maze
 			//line.SetColors (Color.green, Color.green);
 			//line.useWorldSpace = true;    
 
-			line.material = new Material(Shader.Find("Unlit/Color"));
-			line.material.color = Color.red;
+			line.material = new Material(Shader.Find("Unlit/TransparentColor"));
+			line.material.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
 
 			lines.Add (line);
 
@@ -144,6 +144,16 @@ namespace EA4S.Maze
 			return currentTutorial.isComplete ();
 		}
 
+		public void showAllCracks()
+		{
+			if (health == 0)
+				return;
+			
+			for (int i = 0; i < _cracks.Count; ++i)
+				_cracks [i].SetActive (true);
+			StartCoroutine (shakeCamera (0.5f, 0.5f));
+
+		}
 		public void wasHit()
 		{
 			_cracks [_cracks.Count- health].SetActive (true);
@@ -176,6 +186,7 @@ namespace EA4S.Maze
 
 		public void lostCurrentLetter()
 		{
+			
 			wrongLetters++;
 			currentLetterIndex++;
 			if (currentLetterIndex == prefabs.Count) {

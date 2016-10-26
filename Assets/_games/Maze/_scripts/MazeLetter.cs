@@ -13,6 +13,8 @@ namespace EA4S.Maze
 
 		bool isInside;
 
+		public float idleSeconds = 0;
+
 		// Use this for initialization
 		void Start () {
 
@@ -25,6 +27,22 @@ namespace EA4S.Maze
 		void Update () {
 			if (character.characterIsMoving)
 				return;
+
+			//should we replay tutorial?
+			if (!isInside) {
+				if (MazeGameManager.Instance.currentTutorial != null && 
+					MazeGameManager.Instance.currentTutorial.isStopped == false &&
+					MazeGameManager.Instance.currentTutorial.isCurrentTutorialDone() == true) {
+
+					idleSeconds += Time.deltaTime;
+
+					if (idleSeconds >= 5) {
+						idleSeconds = 0;
+						MazeGameManager.Instance.currentTutorial.showCurrentTutorial ();
+					}
+				}
+			}
+
 			
 			if(isInside) {
 				character.calculateMovementAndRotation();
@@ -33,14 +51,20 @@ namespace EA4S.Maze
 
 		void OnMouseDown()
 		{
-			
 
-			if (character.characterIsMoving || !MazeGameManager.Instance.tutorialForLetterisComplete())
+			//if (!MazeGameManager.Instance.tutorialForLetterisComplete ()) {
+				//force:
+				
+			//}
+
+			if (character.characterIsMoving/* || !MazeGameManager.Instance.tutorialForLetterisComplete()*/)
 				return;
 
 			//check if input is within range
 			if(!character.canMouseBeDown()) return;
 
+			idleSeconds = 0;
+			MazeGameManager.Instance.currentTutorial.stopCurrentTutorial();
 
 			//inform that we are inside the collision
 			isInside =  true;

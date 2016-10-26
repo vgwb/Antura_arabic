@@ -1255,6 +1255,7 @@ MonoBehaviour:
   pedagogic: 0.5
   idleTime: 7
   roundNumber: {fileID: 207166661}
+  currentPrefab: {fileID: 0}
   health: 4
   cracks: {fileID: 174049808}
   pointsList: []
