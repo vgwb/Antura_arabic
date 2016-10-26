@@ -162,9 +162,9 @@ namespace EA4S.FastCrowd
                 ActualWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                 AudioManager.I.PlayWord(ActualWord.Key);
                 LoggerEA4S.Log("minigame", "fastcrowd" + VariationPrefix, "newWord", ActualWord.Key);
-                foreach (var data in ArabicAlphabetHelper.LetterDataListFromWord(ActualWord.Word, AppManager.Instance.Letters)) {
+                foreach (var data in ArabicAlphabetHelper.LetterDataListFromWord(ActualWord.Data.Arabic, AppManager.Instance.Letters)) {
                     dataList.Add(data);
-                    sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(data.Isolated_Unicode) + " ";
+                    sepLetters += ArabicAlphabetHelper.GetLetterFromUnicode(data.Data.Isolated_Unicode) + " ";
                 }
                 ;
             } else { // word variation
@@ -184,7 +184,7 @@ namespace EA4S.FastCrowd
                 PopupMission.Show(new PopupMissionComponent.Data() {
                     // Find the word
                     Title = string.Format("{1}", ArabicFixer.Fix(localizationData.Arabic, false, false), CompletedWords.Count + 1),
-                    MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Word, AppManager.Instance.Letters), sepLetters),
+                    MainTextToDisplay = string.Format("{0}", ArabicAlphabetHelper.ParseWord(ActualWord.Data.Arabic, AppManager.Instance.Letters), sepLetters),
                     Type = PopupMissionComponent.PopupType.New_Mission,
                     DrawSprite = ActualWord.DrawForLivingLetter,
                 });

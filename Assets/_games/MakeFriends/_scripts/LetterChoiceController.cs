@@ -51,7 +51,7 @@ namespace EA4S.MakeFriends
         {
             Reset();
             letterData = _letterData;
-            LetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Isolated_Unicode);
+            LetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
         }
 
         public void OnPointerDown(PointerEventData eventData)
