@@ -221,7 +221,7 @@ namespace EA4S.DontWakeUp
 
             DangerDog.I.Hide();
 
-            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Word);
+            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Data.Arabic);
 
             currentLevelController.SetWord();
             ChangeCamera(false);
