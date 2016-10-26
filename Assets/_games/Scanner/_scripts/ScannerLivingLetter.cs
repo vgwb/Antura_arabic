@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScannerLivingLetter : MonoBehaviour {
+namespace EA4S.Scanner
+{
 
-	public Animator animator;
+	public class ScannerLivingLetter : MonoBehaviour {
 
-	public float slideSpeed = 0.2f;
+		public Animator animator;
 
-	// Use this for initialization
-	void Start () {
-		animator.Play("LL_lose");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		transform.Translate(slideSpeed, -slideSpeed/2,0);
+		public float slideSpeed = 0.2f;
+
+		// Use this for initialization
+		void Start () {
+			animator.Play("LL_lose");
+		}
+
+		// Update is called once per frame
+		void Update () {
+			transform.Translate(slideSpeed, -slideSpeed/2,0);
+		}
 	}
 }
