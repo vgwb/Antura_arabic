@@ -389,6 +389,7 @@ GameObject:
   - 114: {fileID: 11439158}
   - 114: {fileID: 11481754}
   - 114: {fileID: 11431106}
+  - 114: {fileID: 114000010424636218}
   m_Layer: 0
   m_Name: FabricAudioManger
   m_TagString: Untagged
@@ -28465,6 +28466,33 @@ MonoBehaviour:
   _syncWithMusicTime: 0
   _markers: []
   _regions: []
+--- !u!114 &114000010424636218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1667931054, guid: 800d57314097a8744a3ebf47377658a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logInfo: 0
+  fooAudioGroups:
+  - mixerGroup: {fileID: 0}
+    id: 3
+    maxSources: -1
+    preallocate: 8
+    recycle: 1
+    fooVolume: 1
+  - mixerGroup: {fileID: 0}
+    id: 7
+    maxSources: -1
+    preallocate: 8
+    recycle: 1
+    fooVolume: 1
+  fooGlobalVolume: 1
+  inspectorUpdater: 0
 --- !u!114 &114000010432079928
 MonoBehaviour:
   m_ObjectHideFlags: 1

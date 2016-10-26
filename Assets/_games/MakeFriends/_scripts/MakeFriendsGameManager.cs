@@ -119,10 +119,10 @@ namespace EA4S.MakeFriends
                 uncommonLetters.Clear();
 
                 wordData1 = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                wordLetters1 = ArabicAlphabetHelper.LetterDataListFromWord(wordData1.Word, AppManager.Instance.Letters);
+                wordLetters1 = ArabicAlphabetHelper.LetterDataListFromWord(wordData1.Data.Arabic, AppManager.Instance.Letters);
 
                 wordData2 = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                wordLetters2 = ArabicAlphabetHelper.LetterDataListFromWord(wordData2.Word, AppManager.Instance.Letters);
+                wordLetters2 = ArabicAlphabetHelper.LetterDataListFromWord(wordData2.Data.Arabic, AppManager.Instance.Letters);
 
                 // Find common letters (without repetition)
                 for (int i = 0; i < wordLetters1.Count; i++)
