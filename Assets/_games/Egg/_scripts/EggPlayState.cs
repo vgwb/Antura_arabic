@@ -191,7 +191,7 @@ namespace EA4S.Egg
                 game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
             }
 
-            game.eggController.Cracking(questionProgress / correctAnswers);
+            game.eggController.Cracking( (float)questionProgress / (float)correctAnswers );
         }
 
         void NegativeFeedback()

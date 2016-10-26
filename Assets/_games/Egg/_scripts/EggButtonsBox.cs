@@ -220,13 +220,13 @@ namespace EA4S.Egg
             }
             else
             {
-                float currentHorizontal = -(((size + buttonDistance) * (number - 1)) / 2f);
+                float currentHorizontal = (((size + buttonDistance) * (number - 1)) / 2f);
 
                 for (int i = 0; i < number; i++)
                 {
                     if (i != 0)
                     {
-                        currentHorizontal += size + buttonDistance;
+                        currentHorizontal -= size + buttonDistance;
                     }
 
                     horizontalPositions[i] = currentHorizontal;
