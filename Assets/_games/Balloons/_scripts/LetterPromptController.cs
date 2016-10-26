@@ -39,7 +39,7 @@ namespace Balloons
         public void Init(LL_LetterData _letterData)
         {
             Data = _letterData;
-            LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
+            LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Data.Isolated_Unicode);
         }
 
         void OnStateChanged()
