@@ -5,7 +5,8 @@ namespace EA4S
 {
     public class SampleAudioManager : IAudioManager
     {
-        DeAudioGroup sfxGroup = new DeAudioGroup(DeAudioGroupId.FX);
+        DeAudioGroup wordsLettersGroup;
+        DeAudioGroup sfxGroup;
 
         Music currentMusic;
         bool musicEnabled;
@@ -31,26 +32,43 @@ namespace EA4S
             }
         }
 
+        public IAudioSource PlayLetterData(ILivingLetterData id, bool stopAllLetters = false)
+        {
+            AudioClip clip = AudioManager.I.GetAudioClip(id);
+
+            if (sfxGroup == null)
+                sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
+
+            if (stopAllLetters)
+                sfxGroup.Stop();
+
+            var source = sfxGroup.Play(clip);
+
+            return new SampleAudioSource(source, sfxGroup);
+
+        }
+
         public IAudioSource PlayLetter(LL_LetterData letterId)
         {
-            AudioManager.I.PlayLetter(letterId.Key);
-            //return new SampleAudioSource(null);
-            return null;
-
+            return PlayLetterData(letterId);
         }
 
         public IAudioSource PlayWord(LL_WordData wordId)
         {
-            AudioManager.I.PlayWord(wordId.Key);
-            //return new SampleAudioSource(null);
-            return null;
+            return PlayLetterData(wordId);
         }
 
-        public IAudioSource PlayText(TextID text)
+        public void PlayText(TextID text)
         {
-            AudioManager.I.PlayDialog(text.ToString());
-            //return new SampleAudioSource(null);
-            return null;
+            PlayDialogue(text, null);
+        }
+
+        public void PlayDialogue(TextID text, System.Action callback = null)
+        {
+            if (callback == null)
+                AudioManager.I.PlayDialog(text.ToString());
+            else
+                AudioManager.I.PlayDialog(text.ToString(), callback);
         }
 
         public void PlayMusic(Music music)
@@ -62,6 +80,9 @@ namespace EA4S
         public IAudioSource PlaySound(Sfx sfx)
         {
             AudioClip clip = AudioManager.I.GetAudioClip(sfx);
+
+            if (sfxGroup == null)
+                sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
 
             var source = sfxGroup.Play(clip);
 

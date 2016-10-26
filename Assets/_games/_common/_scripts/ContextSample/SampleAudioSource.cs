@@ -29,7 +29,7 @@ namespace EA4S
 
             set
             {
-                //source.loop = value;
+                source.loop = value;
             }
         }
 
