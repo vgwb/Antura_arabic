@@ -38,6 +38,10 @@ namespace EA4S.Scanner
 
 		public int allowedFailedMoves = 3;
 
+		public LetterObjectView letterObjectView;
+
+		public ScannerLivingLetter scannerLL;
+
 		public ScannerSuitcase[] suitcases;
 
 		private int numberOfRoundsWon = 0;
@@ -91,19 +95,19 @@ namespace EA4S.Scanner
 		{
 			yield return new WaitForSeconds(1f);
 //			Vector3 pos = antura.transform.position;
-//			// Move antura off screen because SetActive is reseting the animation to running
+			// Move antura off screen because SetActive is reseting the animation to running
 //			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-//			do
-//			{
-//				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
+			do
+			{
+				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
 //				CreatePoof(pos, 2f, false);
-//				yield return new WaitForSeconds(0.4f);
+				yield return new WaitForSeconds(0.4f);
 //				antura.transform.position = pos;
 //
-//				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
+				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
 //				CreatePoof(pos, 2f, false);
 //				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-//			} while (isPlaying);
+			} while (isPlaying);
 
 		}
 
@@ -146,6 +150,9 @@ namespace EA4S.Scanner
 
 			numberOfRoundsPlayed++;
 
+			LL_WordData wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+
+			letterObjectView.Init(wordData);
 
 			Debug.Log("[Scanner] Round: " + numberOfRoundsPlayed);
 			numberOfFailedMoves = 0;
