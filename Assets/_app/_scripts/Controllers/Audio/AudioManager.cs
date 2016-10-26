@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Fabric;
 
 namespace EA4S
 {
 
     public class AudioManager : MonoBehaviour
     {
+        const string LETTERS_PREFIX = "VOX/Letters/";
+        const string WORDS_PREFIX = "VOX/Words/";
+
         public static AudioManager I;
         static System.Action OnNotifyEndAudio;
 
@@ -13,11 +18,34 @@ namespace EA4S
 
         bool musicEnabled = true;
         Music currentMusic;
+        
+        Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
+        Dictionary<string, Fabric.RandomComponent> eventToRndComponent = new Dictionary<string, Fabric.RandomComponent>();
 
         void Awake()
         {
             I = this;
+
             musicEnabled = true;
+
+            // Collect all Event name -> Audio clip pairs
+            var components = transform.GetComponentsInChildren<AudioComponent>(true);
+            foreach (var c in components)
+            {
+                var listener = c.GetComponent<EventListener>();
+
+                if (listener != null)
+                    eventToComponent[listener._eventName] = c;
+            }
+
+            var rndcomponents = transform.GetComponentsInChildren<RandomComponent>(true);
+            foreach (var c in rndcomponents)
+            {
+                var listener = c.GetComponent<EventListener>();
+
+                if (listener != null)
+                    eventToRndComponent[listener._eventName] = c;
+            }
         }
 
         void OnApplicationPause(bool pauseStatus)
@@ -109,12 +137,12 @@ namespace EA4S
 
         public void PlayLetter(string letterId)
         {
-            Fabric.EventManager.Instance.PostEvent("VOX/Letters/" + letterId);
+            Fabric.EventManager.Instance.PostEvent(LETTERS_PREFIX + letterId);
         }
 
         public void PlayWord(string wordId)
         {
-            Fabric.EventManager.Instance.PostEvent("VOX/Words/" + wordId);
+            Fabric.EventManager.Instance.PostEvent(WORDS_PREFIX + wordId);
         }
 
         void StopSound(string eventName)
@@ -150,5 +178,41 @@ namespace EA4S
             //}
         }
 
+        public AudioClip GetAudioClip(ILivingLetterData letterData)
+        {
+            if (letterData.DataType == LivingLetterDataType.Letter)
+                return GetAudioClip(LETTERS_PREFIX + letterData.Key);
+            else if (letterData.DataType == LivingLetterDataType.Word)
+                return GetAudioClip(WORDS_PREFIX + letterData.Key);
+            return null;
+        }
+
+        public AudioClip GetAudioClip(Sfx sfx)
+        {
+            return GetAudioClip(AudioConfig.GetSfxEventName(sfx));
+        }
+
+        AudioClip GetAudioClip(string eventName)
+        {
+            Fabric.AudioComponent audioComponent = null;
+
+            if (eventToComponent.TryGetValue(eventName, out audioComponent))
+            {
+                return audioComponent.AudioClip;
+            }
+            
+            Fabric.RandomComponent rndComponent = null;
+
+            if (eventToRndComponent.TryGetValue(eventName, out rndComponent))
+            {
+                var child = rndComponent.GetChildComponents();
+
+                Fabric.AudioComponent c = child.GetRandom() as AudioComponent;
+                if (c != null)
+                    return c.AudioClip;
+            }
+
+            return null;
+        }
     }
 }

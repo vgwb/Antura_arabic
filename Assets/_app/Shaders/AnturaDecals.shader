@@ -54,7 +54,7 @@ Shader "Antura/Decal" {
 		{
 			fixed4 overmap = tex2D(_OverTex, IN.uv_OverTex);
 
-			fixed3 overColor = overmap.r*_OverColorR + overmap.g*_OverColorG + overmap.b*_OverColorB;
+			fixed3 overColor = saturate(overmap.r*_OverColorR + overmap.g*_OverColorG + overmap.b*_OverColorB);
 
 			o.Albedo = overColor*tex2D(_Occlusion, IN.uv_Occlusion).a;
 			o.Alpha = overmap.a;
