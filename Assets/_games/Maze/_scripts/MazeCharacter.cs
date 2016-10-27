@@ -39,6 +39,8 @@ namespace EA4S.Maze
 		List<GameObject> _fruits;
 		int currentFruitList = 0;
 
+	
+
 
 		int currentFruitIndex;
 
@@ -106,12 +108,24 @@ namespace EA4S.Maze
 				return;
 			
 			//Fruits [currentFruitList].SetActive (true);
+			int count = 0;
+
 			foreach (Transform child in Fruits[currentFruitList].transform) {
 				//child.gameObject.SetActive (i==0||i==1? true:false);
+
+				if(count > 0)
+					child.gameObject.GetComponent<Renderer> ().material.color = Color.red;
+
+				child.gameObject.AddComponent<MazeArrow> ();
+				if (count == 0) {
+					child.gameObject.transform.localScale = new Vector3 (3, 3, 3);
+					child.gameObject.GetComponent<MazeArrow> ().pingPong = true;
+				}
+
 				child.gameObject.name = "fruit_" + (i++);
 				child.gameObject.GetComponent<BoxCollider> ().enabled = false;
 				_fruits.Add (child.gameObject);
-
+				++count;
 			}
 			currentFruitIndex = 0;
 		}
@@ -142,6 +156,9 @@ namespace EA4S.Maze
 				if (index == currentFruitIndex) {
 					_fruits [currentFruitIndex].GetComponent<BoxCollider> ().enabled = false;
 
+					//lerp
+					_fruits [currentFruitIndex].GetComponent<MazeArrow> ().pingPong = false;
+					_fruits [currentFruitIndex].GetComponent<MazeArrow> ().tweenToColor = true;
 
 					//_fruits [currentFruitIndex].SetActive (false);
 					currentFruitIndex++;
@@ -159,6 +176,7 @@ namespace EA4S.Maze
 		void OnTriggerExit(Collider other)
 		{
 			print ("trigger exit " + other.gameObject.name);
+			print ("Current letter " + MazeGameManager.Instance.currentPrefab.name);
 
 			if (other.gameObject.name == "MazeLetter") {
 				//if the character completely exits the maze letter:
@@ -210,6 +228,7 @@ namespace EA4S.Maze
 		{
 			//stop for a second and restart the level:
 			StartCoroutine(waitAndPerformCallback(1,()=>{
+				MazeGameManager.Instance.showAllCracks();
 				donotHandleBorderCollision = true;
 				characterIsMoving = false;
 			},
@@ -313,7 +332,7 @@ namespace EA4S.Maze
 			//if(victory) return;
 
 			Vector3 previousPosition = targetPos;
-			float distance = transform.position.z - Camera.main.transform.position.z;
+			float distance =  (-0.1f) - Camera.main.transform.position.z;
 			targetPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
 			targetPos = Camera.main.ScreenToWorldPoint(targetPos);
 
@@ -354,13 +373,19 @@ namespace EA4S.Maze
 		{
 			
 
-			if (characterIsMoving) {
-				transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*5);
-				var dir = transform.position - characterWayPoints[currentCharacterWayPoint+1];
-				var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-				targetRotation =  Quaternion.AngleAxis(angle, Vector3.forward) * initialRotation;
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
+
+			if (characterIsMoving) {
+				transform.position = Vector3.MoveTowards (transform.position, characterWayPoints[currentCharacterWayPoint], Time.deltaTime*10);
+
+				if (currentCharacterWayPoint + 3 < characterWayPoints.Count) {
+					var dir = transform.position - characterWayPoints [currentCharacterWayPoint + 3];
+					var angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg;
+
+					targetRotation = Quaternion.AngleAxis (angle, Vector3.forward) * initialRotation;
+
+					transform.rotation = Quaternion.RotateTowards (transform.rotation, targetRotation, 5);
+				}
 				//transform.LookAt(characterWayPoints[currentCharacterWayPoint+1]);
 
 				if((transform.position - characterWayPoints[currentCharacterWayPoint]).magnitude == 0 && currentCharacterWayPoint < characterWayPoints.Count-1){
