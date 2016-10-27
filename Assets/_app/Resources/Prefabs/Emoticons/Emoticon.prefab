@@ -1594,8 +1594,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f608acfe15fda4fa242f3e49783af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: 2
+  Color1: 9
+  Tone1: 0
+  Color2: 9
+  Tone2: 0
+  Color3: 9
+  Tone3: 0
   anim: {fileID: 95000010778597178}
   EmoticonParentBone: {fileID: 4000012545563374}
+  Internal:
+  - {fileID: 137000012683264462}
+  External:
+  - {fileID: 137000012919234566}
+  Cinetic:
+  - {fileID: 137000011097685178}
+  - {fileID: 137000013605304772}
+  - {fileID: 137000013547527802}
+  - {fileID: 137000012824843474}
+  - {fileID: 137000010836383886}
 --- !u!137 &137000010836383886
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

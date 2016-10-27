@@ -1,18 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 namespace EA4S {
-
     public class EmoticonsController : MonoBehaviour {
 
         const string EMOTICON_PREFS_PATH = "Prefabs/Emoticons/";
 
+        [Header("Emoticon icon type")]
+        public Emoticons Icon = Emoticons.vfx_emo_happy;
+
+        [Header("Container internal color")]
+        public PaletteColors Color1 = PaletteColors.white;
+        public PaletteTone Tone1 = PaletteTone.light;
+        PaletteType Type = PaletteType.diffuse_saturated;
+
+        [Header("Container external color")]
+        public PaletteColors Color2 = PaletteColors.white;
+        public PaletteTone Tone2 = PaletteTone.light;
+        PaletteType Type2 = PaletteType.diffuse_saturated;
+
+        [Header("Container cinetic lines color")]
+        public PaletteColors Color3 = PaletteColors.white;
+        public PaletteTone Tone3 = PaletteTone.light;
+        PaletteType Type3 = PaletteType.diffuse_saturated;
+
+        [Header("Components")]
         public Animator anim;
         public Transform EmoticonParentBone;
+        
+        public SkinnedMeshRenderer[] Internal, External, Cinetic;
+
+
 
         // Use this for initialization
         void Start() {
+            transform.DOScale(0, 0);
             CleanEmoticonIcons();
+
         }
 
         void CleanEmoticonIcons() {
@@ -28,6 +53,13 @@ namespace EA4S {
             }
         }
 
+        void changeMaterials(Material _material, SkinnedMeshRenderer[] _meshRenderer) {
+            foreach (var item in _meshRenderer) {
+                SkinnedMeshRenderer m = item.gameObject.GetComponent<SkinnedMeshRenderer>();
+                m.materials = new Material[]{ _material };
+            }
+        }
+
         public void SetEmoticon(Emoticons _emoticons, bool _open = false) {
             GameObject Et;
             CleanEmoticonIcons();
@@ -39,7 +71,6 @@ namespace EA4S {
                 case Emoticons.vfx_emo_negative:
                 case Emoticons.vfx_emo_positive:
                     Et = Instantiate(Resources.Load(EMOTICON_PREFS_PATH + _emoticons.ToString()),EmoticonParentBone, false) as GameObject;
-                    //scaleToOneAllChildren(Et.transform);
                     break;
                 default:
                     Debug.LogWarningFormat("Emoticons {0} not found!", _emoticons.ToString());
@@ -60,7 +91,10 @@ namespace EA4S {
             }
 
             if (Input.GetKeyDown(KeyCode.Space)) {
-                Open(!anim.GetBool("IsOpen"));
+                changeMaterials(MaterialManager.LoadMaterial(Color1, Tone1), Internal);
+                changeMaterials(MaterialManager.LoadMaterial(Color2, Tone2), External);
+                changeMaterials(MaterialManager.LoadMaterial(Color3, Tone3), Cinetic);
+                SetEmoticon(Icon, true);
             }
             if (Input.GetKeyDown(KeyCode.Z)) {
                 SetEmoticon(Emoticons.vfx_emo_angry, true);
@@ -82,9 +116,15 @@ namespace EA4S {
             }
         }
 
+        #region API
         public void Open(bool _isOpen) {
+            if (_isOpen)
+                transform.DOScale(1, 0.1f);
             anim.SetBool("IsOpen", _isOpen);
+            if (!_isOpen)
+                transform.DOScale(0, 0.1f);
         }
+        #endregion
     }
 
     public enum Emoticons {
