@@ -120,13 +120,5 @@ namespace EA4S
         // Crouching
         LL_crouching = 91,
         LL_crouching_up = 93,
-
-        // to be check
-        FrontOfCamera_State,
-        GoOut_State,
-        BumpOut_State,
-
-        // deprecated
-        Ninja_State,
     }
 }

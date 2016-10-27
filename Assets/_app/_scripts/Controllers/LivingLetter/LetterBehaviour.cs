@@ -131,30 +131,6 @@ namespace EA4S {
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.RunDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
                     break;
-                case "Ninja":
-                    View.Model.State = LLAnimationStates.Ninja_State;
-                    if (Task.current.isStarting)
-                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.NinjaDuration, Settings.DurationRandomDelta);
-                    Wait(runtimeWaitTime);
-                    break;
-                case "TurnFrontOfCamera":
-                    View.Model.State = LLAnimationStates.FrontOfCamera_State;
-                    if (Task.current.isStarting)
-                        runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(0.4f, Settings.DurationRandomDelta);
-                    Wait(runtimeWaitTime);
-                    break;
-                case "GoOut":
-                    View.Model.State = LLAnimationStates.GoOut_State;
-                    if (Task.current.isStarting)
-                        runtimeWaitTime = 3.0f;
-                    Wait(runtimeWaitTime);
-                    break;
-                case "BumpOut":
-                    View.Model.State = LLAnimationStates.BumpOut_State;
-                    if (Task.current.isStarting)
-                        runtimeWaitTime = 1.0f;
-                    Wait(runtimeWaitTime);
-                    break;
                 default:
                     Task.current.Succeed();
                     break;

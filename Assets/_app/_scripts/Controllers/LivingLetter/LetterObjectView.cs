@@ -221,18 +221,6 @@ namespace EA4S
                 case LLAnimationStates.LL_ride_rocket_horray:
                     Anim.SetInteger("State", (int)_newState);
                     break;
-                case LLAnimationStates.FrontOfCamera_State:
-                    // Verify
-                    break;
-                case LLAnimationStates.GoOut_State:
-                    // Verify
-                    break;
-                case LLAnimationStates.Ninja_State:
-                    // Verify
-                    break;
-                case LLAnimationStates.BumpOut_State:
-                    // Verify
-                    break;
                 default:
                     // No specific visual behaviour for this state
                     break;
