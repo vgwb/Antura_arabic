@@ -28,7 +28,7 @@ namespace EA4S.FastCrowd {
 
             string word = string.Empty;
             foreach (LL_LetterData letter in CompletedLetters) {
-                word += letter.Isolated;
+                word += letter.Data.Isolated;
             }
             word = ArabicAlphabetHelper.ParseWord(word, AppManager.Instance.Letters);
             WordLabel.SetText(word, false);

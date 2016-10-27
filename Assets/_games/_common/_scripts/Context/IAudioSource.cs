@@ -6,6 +6,7 @@ namespace EA4S
         bool Loop { get; set; }
         float Pitch { get; set; }
         float Volume { get; set; }
+        float Duration { get; }
 
         bool IsPlaying { get; }
 

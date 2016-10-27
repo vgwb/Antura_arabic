@@ -62,7 +62,7 @@ namespace EA4S.MakeFriends
         public void Init(LL_WordData _data)
         {
             wordData = _data;
-            var text = ArabicFixer.Fix(_data.Word);
+            var text = ArabicFixer.Fix(_data.Data.Arabic);
             tmpText.text = text;
         }
 
