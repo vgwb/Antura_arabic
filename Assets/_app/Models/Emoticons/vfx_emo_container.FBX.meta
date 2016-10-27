@@ -118,6 +118,7 @@ ModelImporter:
     7400000: EM_Container_Close
     7400002: EM_Container_Open
     9500000: //RootNode
+    11100000: //RootNode
     13700000: vfx_emo_bk_inside
     13700002: vfx_emo_bk_outside
     13700004: vfx_emo_Kinetic_line_inside_01
@@ -477,7 +478,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
