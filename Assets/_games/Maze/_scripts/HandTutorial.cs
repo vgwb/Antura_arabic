@@ -21,9 +21,13 @@ namespace EA4S.Maze
 
 
 		private bool isMovingOnPath = false;
+		public bool isStopped = false;
 
+		private Vector3 startingPosition;
 		// Use this for initialization
 		void Start () {
+
+			startingPosition = new Vector3(-1,-1,-1);
 
 			//hide the path
 			foreach(GameObject pathToFollow in pathsToFollow)
@@ -70,14 +74,28 @@ namespace EA4S.Maze
 
 		public void showCurrentTutorial()
 		{
+			if(startingPosition.x != -1 && startingPosition.y != -1 && startingPosition.z != -1)
+				gameObject.transform.position = startingPosition;
 			gameObject.SetActive (true);
 			isMovingOnPath = true;
 			setWayPoints ();
 			
 		}
 
+		public void stopCurrentTutorial()
+		{
+			
+			wayPoints.Clear ();
+			gameObject.SetActive (false);
+
+			//set tutorial done:
+			isMovingOnPath = false;
+			isStopped = true;
+		}
+
 		void setWayPoints()
 		{
+			
 			gameObject.SetActive (true);
 			wayPoints = new List<Vector3> ();
 			//construct the path waypoints:
@@ -87,6 +105,7 @@ namespace EA4S.Maze
 			foreach (Transform child in pathsToFollow[currentPath].transform) {
 				wayPoints.Add (child.transform.position);
 			}
+			startingPosition = wayPoints[0];
 			currentWayPoint = 0;
 		}
 
@@ -95,9 +114,11 @@ namespace EA4S.Maze
 			return currentPath == pathsToFollow.Count - 1;
 		}
 
+
 		public void moveToNextPath()
 		{
 			if (currentPath < pathsToFollow.Count - 1) {
+				isStopped = false;
 				pathsToFollow [currentPath].SetActive (false);
 				numbersToShow [currentPath].SetActive (false);
 				linesToShow [currentPath].SetActive (false);
