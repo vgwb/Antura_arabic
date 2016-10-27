@@ -24,7 +24,7 @@ namespace EA4S.Egg
 
         public int positionIndex { get; set; }
 
-        Action lightUpCallback;
+        Action playButtonAudioCallback;
         IAudioManager audioManager;
 
         bool inputEnabled = false;
@@ -61,35 +61,35 @@ namespace EA4S.Egg
             }
         }
 
-        public void LightUp(bool noColor, bool playAudio, float duration, float delay = 0f, Action callback = null)
+        public float PlayButtonAudio(bool lightUp, float delay = 0f, Action callback = null)
         {
-            lightUpCallback = callback;
+            playButtonAudioCallback = callback;
+
+            IAudioSource audioSource = audioManager.PlayLetterData(livingLetterData);
+            audioSource.Stop();
+
+            float duration = audioSource.Duration;
 
             if (colorTweener != null)
                 colorTweener.Kill();
 
-            Color newColor = noColor ? colorStandard : colorLightUp;
+            Color newColor = lightUp ? colorLightUp : colorStandard;
 
             colorTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, newColor, duration / 2f).OnComplete(delegate ()
             {
                 colorTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, colorStandard, duration / 2f).OnComplete(delegate ()
                 {
-                    if (lightUpCallback != null)
+                    if (playButtonAudioCallback != null)
                     {
-                        lightUpCallback();
+                        playButtonAudioCallback();
                     }
                 });
             }).OnStart(delegate ()
             {
-                if (livingLetterData.DataType == LivingLetterDataType.Letter)
-                {
-                    audioManager.PlayLetter(((LL_LetterData)livingLetterData));
-                }
-                else if (livingLetterData.DataType == LivingLetterDataType.Word)
-                {
-                    audioManager.PlayWord(((LL_WordData)livingLetterData));
-                }
+                audioSource = audioManager.PlayLetterData(livingLetterData);
             }).SetDelay(delay);
+
+            return duration;
         }
 
         void OnButtonPressed()
@@ -117,7 +117,7 @@ namespace EA4S.Egg
         {
             endScaleCallback = endCallback;
 
-            if(scaleTweener != null)
+            if (scaleTweener != null)
             {
                 scaleTweener.Kill();
             }
@@ -129,7 +129,7 @@ namespace EA4S.Egg
         {
             endMoveCallback = endCallback;
 
-            if(moveTweener != null)
+            if (moveTweener != null)
             {
                 moveTweener.Kill();
             }

@@ -282,20 +282,20 @@ namespace EA4S.Egg
             }
         }
 
-        public void LightUpButtons(bool noColor, bool playAudio, bool inPositionOrder, float duration, float delay, Action endCallback)
+        public void PlayButtonsAudio(bool lightUp, bool inPositionOrder, float delay, Action endCallback)
         {
             List<EggButton> buttons = GetButtons(inPositionOrder);
+
+            Action callback = null;
 
             for (int i = 0; i < buttons.Count; i++)
             {
                 if (i == buttons.Count - 1)
                 {
-                    buttons[i].LightUp(noColor, playAudio, duration, delay + (i * 1f), endCallback);
+                    callback = endCallback;
                 }
-                else
-                {
-                    buttons[i].LightUp(noColor, playAudio, duration, delay + (i * 1f), null);
-                }
+
+                delay += buttons[i].PlayButtonAudio(lightUp, delay, callback);
             }
         }
     }

@@ -59,6 +59,14 @@ namespace EA4S
             }
         }
 
+
+        public float Duration {
+            get
+            {
+                return source.duration;
+            }
+        }
+
         public void Stop()
         {
             if (source != null)
