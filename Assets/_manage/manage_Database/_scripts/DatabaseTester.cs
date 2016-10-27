@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 
 using RND = UnityEngine.Random;
 
@@ -19,7 +18,7 @@ namespace EA4S.Db.Management
         private PlayerProfile playerProfile;
 
         public Text OutputText;
-        public TextMeshProUGUI OutputTextArabic;
+        public TextRender OutputTextArabic;
 
         public bool useTestDatabase;
 
@@ -29,7 +28,7 @@ namespace EA4S.Db.Management
             this.dbManager = new DatabaseManager(useTestDatabase);
 
             playerProfile = new PlayerProfile();
-            playerProfile.CurrentJourneyPosition = new JourneyPosition(1,1,1);    // test
+            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);    // test
 
             teacherAI = new TeacherAI(dbManager, playerProfile);
         }
@@ -277,8 +276,7 @@ namespace EA4S.Db.Management
             int rndTableValue = RND.Range(0, 7);
             DbTables rndTable = DbTables.Letters;
             string rndId = "";
-            switch (rndTableValue)
-            {
+            switch (rndTableValue) {
                 case 0:
                     rndTable = DbTables.Letters;
                     rndId = GenericUtilities.GetRandom(dbManager.GetAllLetterData()).GetId();
@@ -362,8 +360,7 @@ namespace EA4S.Db.Management
             List<object> list = this.dbManager.FindCustomDataByQuery(resultMapping, query);
 
             string output = "Test values N: " + list.Count + "\n";
-            foreach (var obj in list)
-            {
+            foreach (var obj in list) {
                 output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
             }
             PrintOutput(output);
@@ -379,8 +376,7 @@ namespace EA4S.Db.Management
             List<object> list = this.dbManager.FindCustomDataByQuery(resultMapping, query);
 
             string output = "Test values N: " + list.Count + "\n";
-            foreach (var obj in list)
-            {
+            foreach (var obj in list) {
                 output += ("Test value: " + (obj as TestQueryResult).MoodValue) + "\n";
             }
             PrintOutput(output);
@@ -511,7 +507,7 @@ namespace EA4S.Db.Management
 
         void PrintArabicOutput(string output)
         {
-            OutputTextArabic.text = ArabicAlphabetHelper.PrepareStringForDisplay(output);
+            OutputTextArabic.text = output;//ArabicAlphabetHelper.PrepareStringForDisplay(output);
         }
 
         #endregion
