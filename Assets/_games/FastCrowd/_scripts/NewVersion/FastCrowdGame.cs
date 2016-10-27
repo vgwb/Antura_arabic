@@ -24,19 +24,70 @@ namespace EA4S.FastCrowd
         [HideInInspector]
         public bool isTimesUp;
 
-        const int STARS_1_THRESHOLD = 3;
-        const int STARS_2_THRESHOLD = 6;
-        const int STARS_3_THRESHOLD = 9;
+        int stars1Threshold
+        {
+            get
+            {
+                switch (FastCrowdConfiguration.Instance.Variation)
+                {
+                    case FastCrowdVariation.Words:
+                        return 8;
+                    case FastCrowdVariation.Counting:
+                        return 5;
+                    case FastCrowdVariation.Alphabet:
+                        return 5;
+                    default:
+                        return 3;
+                }
+            }
+        }
+
+        int stars2Threshold
+        {
+            get
+            {
+                switch (FastCrowdConfiguration.Instance.Variation)
+                {
+                    case FastCrowdVariation.Words:
+                        return 12;
+                    case FastCrowdVariation.Counting:
+                        return 10;
+                    case FastCrowdVariation.Alphabet:
+                        return 10;
+                    default:
+                        return 5;
+                }
+            }
+        }
+
+        int stars3Threshold
+        {
+            get
+            {
+                switch (FastCrowdConfiguration.Instance.Variation)
+                {
+                    case FastCrowdVariation.Words:
+                        return 16;
+                    case FastCrowdVariation.Counting:
+                        return 15;
+                    case FastCrowdVariation.Alphabet:
+                        return 15;
+                    default:
+                        return 7;
+                }
+            }
+        }
+
 
         public int CurrentStars
         {
             get
             {
-                if (CurrentScore < STARS_1_THRESHOLD)
+                if (CurrentScore < stars1Threshold)
                     return 0;
-                if (CurrentScore < STARS_2_THRESHOLD)
+                if (CurrentScore < stars2Threshold)
                     return 1;
-                if (CurrentScore < STARS_3_THRESHOLD)
+                if (CurrentScore < stars3Threshold)
                     return 2;
                 return 3;
             }
@@ -83,8 +134,7 @@ namespace EA4S.FastCrowd
             Physics.gravity = new Vector3(0, -10, 0);
 
             QuestionManager.wordComposer.gameObject.SetActive(
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
-                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter
+                FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling
                 );
 
             Physics.gravity = Vector3.up * -40;
@@ -121,7 +171,7 @@ namespace EA4S.FastCrowd
                     var word = ((LL_WordData)CurrentChallenge[i]).Data.Arabic;
 
                     if (i == 0)
-                    stringListOfWords = word;
+                        stringListOfWords = word;
                     else
                         stringListOfWords = word + " " + stringListOfWords;
                 }
@@ -135,7 +185,7 @@ namespace EA4S.FastCrowd
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
             {
-                popupWidget.SetTitle("Identify the 4 shapes", false);
+                popupWidget.SetTitle("Identify the shapes of the letter", false);
 
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetMessage(question.TextForLivingLetter, true);
