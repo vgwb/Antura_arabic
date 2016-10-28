@@ -27,8 +27,8 @@ namespace EA4S.MissingLetter
 
             mQstPos = mGame.mQuestionCamera.position + new Vector3(0, mGame.mQuestionHeightOffset, 20);
             mAnsPos = mGame.mAnswerCamera.position + new Vector3(0, mGame.mAnswerHeightOffset, 20);
+            mGame.mLetterPrefab.GetComponent<LetterBehaviour>().mfDistanceBetweenLetters = mGame.mfDistanceBetweenLetters;
 
-            //TODO only one pool -> problem because setting the positions of qst/ans on prefabs
             int maxSentenceSize = 5;
             int qstPoolSize = 3;
             qstPoolSize *= (mRoundType == RoundType.WORD) ? 1 : maxSentenceSize;
@@ -54,12 +54,17 @@ namespace EA4S.MissingLetter
                 NextSentenceQuestion();
             }
 
-            EnterCurrentScene();
+
+            if (mGame.GetCurrentState() == mGame.PlayState) {
+                EnterCurrentScene();
+            }
+            
         }
 
         public void Terminate()
         {
-            ExitCurrentScene();
+            if(mGame.mCurrentRound < mGame.mRoundsLimit)
+                ExitCurrentScene();
         }
 
 
@@ -72,31 +77,31 @@ namespace EA4S.MissingLetter
 
             GameObject oQuestion = mQuestionPool.GetElement();
 
-            m_iCorrectAnswerIndex = RemoveLetterFromWord((LL_WordData)questionData);
+            miCorrectAnswerIndex = RemoveLetterFromWord((LL_WordData)questionData);
 
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
-            qstBehaviour.onLetterClick += qstBehaviour.Speak;
+            //qstBehaviour.onLetterClick += qstBehaviour.Speak; DELETE
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
 
             mCurrentQuestionScene.Add(oQuestion);
 
-            GameObject _correctAnswerObject = mAnswerPool.GetElement();
-            LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
-            corrAnsBheaviour.Reset();
-            corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(m_iCorrectAnswerIndex);
-            corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
-            //corrAnsBheaviour.onLetterClick += corrAnsBheaviour.Speak;
-            corrAnsBheaviour.onLetterClick_s += OnAnswerClicked;
+            //GameObject _correctAnswerObject = mAnswerPool.GetElement();
+            //LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
+            //corrAnsBheaviour.Reset();
+            //corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(m_iCorrectAnswerIndex);
+            //corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
+            ////corrAnsBheaviour.onLetterClick += corrAnsBheaviour.Speak;
+            //corrAnsBheaviour.onLetterClick_s += OnAnswerClicked;
 
-            mCurrentAnswerScene.Add(_correctAnswerObject);
+            //mCurrentAnswerScene.Add(_correctAnswerObject);
 
             //add other old correct answers to wrong answers
             for(int i=0; i < _correctAnswers.Count; ++i)
             {
-                if(i!= m_iCorrectAnswerIndex)
+                if(i!= miCorrectAnswerIndex)
                 {
                     _wrongAnswers.Add(_correctAnswers.ElementAt(i));
                 }
@@ -108,8 +113,8 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.Reset();
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
-                //wrongAnsBheaviour.onLetterClick += wrongAnsBheaviour.Speak;
-                wrongAnsBheaviour.onLetterClick_s += OnAnswerClicked;
+                //wrongAnsBheaviour.onLetterClick += wrongAnsBheaviour.Speak; DELETE
+                wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
 
                 mCurrentAnswerScene.Add(_wrongAnswerObject);
             }
@@ -127,7 +132,7 @@ namespace EA4S.MissingLetter
             var _wrongAnswers = mCurrQuestionPack.GetWrongAnswers();
             var _correctAnswers = mCurrQuestionPack.GetCorrectAnswers();
 
-            m_iCorrectAnswerIndex = RemoveWordFromSentences(questionData);
+            miCorrectAnswerIndex = RemoveWordFromSentences(questionData);
 
             foreach(LL_WordData _word in questionData)
             {
@@ -146,7 +151,7 @@ namespace EA4S.MissingLetter
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
 
             corrAnsBheaviour.Reset();
-            corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(m_iCorrectAnswerIndex);
+            corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(miCorrectAnswerIndex);
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
             mCurrentAnswerScene.Add(_correctAnswerObject);
@@ -166,7 +171,6 @@ namespace EA4S.MissingLetter
         }
 
         void EnterCurrentScene() {
-            //Debug.Log("New Question/Answers are running IN");
             Vector3 startPos = mQstPos + new Vector3(mGame.mQuestionINOffset, 0, 0);
             foreach (GameObject _obj in mCurrentQuestionScene) {
                 _obj.GetComponent<LetterBehaviour>().EnterScene();
@@ -182,7 +186,6 @@ namespace EA4S.MissingLetter
 
         void ExitCurrentScene() {
             if (mCurrQuestionPack != null) {
-                //Debug.Log("Current Question/Answers are running OUT");
 
                 if(mRoundType == RoundType.WORD)
                 {
@@ -218,27 +221,34 @@ namespace EA4S.MissingLetter
 
         void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
-            if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key) {
+
+            if(/*mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key*/true) {
                 Debug.Log("Yes! Correct Answer");
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
+
+                DoWinAnimations(_key);
             }
             else {
                 Debug.Log("Noo :( Wrong Answer");
                 AudioManager.I.PlaySfx(Sfx.LetterSad);
+
+                DoLoseAnimations(_key);
             }
 
+            //TODO think how to delay the calls (waiting to show some wins animations)
             if (onAnswered != null) {
-                onAnswered(mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key);
+                //onAnswered(mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key);
+                onAnswered(true);
             }
         }
 
         int RemoveLetterFromWord(LL_WordData word)
         {
-            char[] caQuestion = ArabicFixer.Fix(word.Word, false, false).ToCharArray();
+            char[] caQuestion = ArabicFixer.Fix(word.Data.Arabic, false, false).ToCharArray();
             int index = UnityEngine.Random.Range(0, caQuestion.Length);
-            m_sRemovedData = caQuestion[index].ToString();
+            msRemovedData = caQuestion[index].ToString();
             caQuestion[index] = ' ';
-            word.Word = caQuestion.ToString();
+            word.Data.Arabic = caQuestion.ToString();
             return index;
         }
 
@@ -246,36 +256,56 @@ namespace EA4S.MissingLetter
         {
             int index = UnityEngine.Random.Range(0, sentence.Count());
             LL_WordData result = sentence.ElementAt(index);
-            m_sRemovedData = sentence[index].Word;
-            sentence[index].Word = "";
+            msRemovedData = sentence[index].Data.Arabic;
+            sentence[index].Data.Arabic = "";
             return index;
         }
 
         void RestoreRemovedLetter()
         {
             LL_WordData word = (LL_WordData)mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().LetterData;
-            word.Word = word.Word.Replace(' ', m_sRemovedData[0]);
+            word.Data.Arabic = word.Data.Arabic.Replace(' ', msRemovedData[0]);
         }
 
         void RestoreRemovedWord()
         {
-            LL_WordData word = (LL_WordData)mCurrentQuestionScene[m_iCorrectAnswerIndex].GetComponent<LetterBehaviour>().LetterData;
-            word.Word = m_sRemovedData;
+            LL_WordData word = (LL_WordData)mCurrentQuestionScene[miCorrectAnswerIndex].GetComponent<LetterBehaviour>().LetterData;
+            word.Data.Arabic = msRemovedData;
         }
 
 
-        public void ShuffleLetters()
+        public void ShuffleLetters(float duration)
         {
             mCurrentAnswerScene.Shuffle();
             for(int i=0; i < mCurrentAnswerScene.Count; ++i)
             {
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count);
+                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration);
             }
+        }
+
+        private void DoWinAnimations(string _key)
+        {
+            for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
+            {
+                if(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == _key)
+                {
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_ride_rocket_horray);
+                }
+                else
+                {
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_twirl);
+                }
+            }
+        }
+            
+        private void DoLoseAnimations(string _key)
+        {
+
         }
 
         #region VARS
 
-        MissingLetterGame mGame;
+        private MissingLetterGame mGame;
 
         private IQuestionPack mCurrQuestionPack;
 
@@ -288,15 +318,15 @@ namespace EA4S.MissingLetter
         private Vector3 mAnsPos;
         private Vector3 mQstPos;
 
-        private int m_iCorrectAnswerIndex;
-        private string m_sRemovedData;
+        private int miCorrectAnswerIndex;
+        private string msRemovedData;
 
         public event Action<bool> onAnswered;
 
         public enum RoundType
         {
             WORD = 0,
-            SENTENCE
+            SENTENCE = 1
         }
 
         private RoundType mRoundType;
