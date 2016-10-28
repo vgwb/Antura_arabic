@@ -33,7 +33,7 @@ namespace EA4S.Egg
             outPositions[0] = leftOutPosition;
             outPositions[1] = rightOutPosition;
 
-            letterObject = GameObject.Instantiate(letterObjectPrefab).GetComponent<LetterObjectView>();
+            letterObject = UnityEngine.Object.Instantiate(letterObjectPrefab).GetComponent<LetterObjectView>();
             letterObject.transform.SetParent(parent);
             letterObject.Init(letterData);
 
@@ -101,7 +101,7 @@ namespace EA4S.Egg
 
         public void DestroyRunLetter()
         {
-            GameObject.Destroy(letterObject.gameObject);
+            UnityEngine.Object.Destroy(letterObject.gameObject);
         }
 
         void CalcNextRotationAndPosition()
