@@ -338,7 +338,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012060397654, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
       propertyPath: m_Name
-      value: LivingLetterTickleTest
+      value: LivingLetterTickleTest_deprecated
       objectReference: {fileID: 0}
     - target: {fileID: 1000012060397654, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
       propertyPath: m_IsActive
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  m_LetterPrefab: {fileID: 114000012246178318, guid: f563be86f163e014bbbcee186b44a26f,
+  m_LetterPrefab: {fileID: 114000010869263054, guid: 1b25171b478604a4ea9e3f79293a93b9,
     type: 2}
   m_ColorsCanvas: {fileID: 1073064550}
 --- !u!4 &1090601310
@@ -401,6 +401,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1001 &1550808658
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000016292068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000013282090710, guid: 1b25171b478604a4ea9e3f79293a93b9,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013352566352, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_Name
+      value: LivingLetterTickleTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013352566352, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1687271591
 Prefab:
   m_ObjectHideFlags: 0

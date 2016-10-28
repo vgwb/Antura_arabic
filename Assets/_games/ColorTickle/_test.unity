@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ed11f67d02ef7459a178e44fe55947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livinglettertxt: {fileID: 181201529}
+  livinglettertxt: {fileID: 0}
   OutlineThickness: 0
   FontSize: 10
   Text: 1
@@ -138,12 +138,6 @@ MonoBehaviour:
   color:
     serializedVersion: 2
     rgba: 1974000
---- !u!114 &181201529 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012246178318, guid: f563be86f163e014bbbcee186b44a26f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1049216288}
-  m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
 --- !u!1001 &186472237
 Prefab:
   m_ObjectHideFlags: 0
@@ -248,7 +242,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &768781500
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,76 +330,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1001 &1049216288
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000016292068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013251552410, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 33000012285084146, guid: f563be86f163e014bbbcee186b44a26f,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010130955556, guid: f563be86f163e014bbbcee186b44a26f,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010130955556, guid: f563be86f163e014bbbcee186b44a26f,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012060397654, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_Name
-      value: LivingLetterTickleTest
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012060397654, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65000011860238484, guid: f563be86f163e014bbbcee186b44a26f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f563be86f163e014bbbcee186b44a26f, type: 2}
-  m_IsPrefabParent: 0
 --- !u!223 &1073064550 stripped
 Canvas:
   m_PrefabParentObject: {fileID: 223000012171509496, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
@@ -472,7 +396,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -492,7 +416,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012057605554, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000013282090710, guid: 1b25171b478604a4ea9e3f79293a93b9,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114000013236453108, guid: 1b25171b478604a4ea9e3f79293a93b9,
         type: 2}
@@ -502,41 +431,6 @@ Prefab:
     - target: {fileID: 114000013236453108, guid: 1b25171b478604a4ea9e3f79293a93b9,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 33000013282090710, guid: 1b25171b478604a4ea9e3f79293a93b9,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 95000010227958796, guid: 1b25171b478604a4ea9e3f79293a93b9,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013236453108, guid: 1b25171b478604a4ea9e3f79293a93b9,
-        type: 2}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013236453108, guid: 1b25171b478604a4ea9e3f79293a93b9,
-        type: 2}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013236453108, guid: 1b25171b478604a4ea9e3f79293a93b9,
-        type: 2}
-      propertyPath: m_fontColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013236453108, guid: 1b25171b478604a4ea9e3f79293a93b9,
-        type: 2}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013236453108, guid: 1b25171b478604a4ea9e3f79293a93b9,
-        type: 2}
-      propertyPath: m_fontColor.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -592,7 +486,7 @@ Prefab:
     - target: {fileID: 224000014235349238, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224000014235349238, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
         type: 2}
@@ -672,6 +566,21 @@ Prefab:
     - target: {fileID: 114000010795364816, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
         type: 2}
       propertyPath: m_Colors.Array.data[2].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011851314460, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
+        type: 2}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011851314460, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
+        type: 2}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010455772292, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
+        type: 2}
+      propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
