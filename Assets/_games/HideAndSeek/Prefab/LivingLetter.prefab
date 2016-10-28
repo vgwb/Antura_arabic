@@ -977,7 +977,7 @@ MonoBehaviour:
   idleTime: 1
   ray: 5
   minMove: 2.5
-  livingLetterText: {fileID: 114000011971922510}
+  view: {fileID: 0}
 --- !u!137 &137000012906390494
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

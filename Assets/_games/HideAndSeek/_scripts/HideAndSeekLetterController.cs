@@ -13,8 +13,8 @@ public class HideAndSeekLetterController : MonoBehaviour {
 		public static event TouchAction onLetterTouched;
 	// Use this for initialization
 	void Start () {
-			pos1 = transform.position;
-			anim = GetComponent<Animator>();
+			
+			//anim = GetComponent<Animator>();
 			coll = GetComponent<Collider> ();
             
             
@@ -33,7 +33,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 						
 						if (idleTime < 1.5f)
 						{
-							anim.SetFloat ("speed", 0.8f);
+							//anim.SetFloat ("speed", 0.8f);
 							fase = 2;
 							startTime = Time.time;
 
@@ -42,7 +42,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 						else 
 						{
 							fase++;
-							anim.SetFloat ("speed", 0f);
+							//anim.SetFloat ("speed", 0f);
 							timeToWait = Time.time + idleTime;
 						}
 
@@ -54,7 +54,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 					
 					fase++;
 					startTime = Time.time;
-					anim.SetFloat("speed",0.8f);
+					//anim.SetFloat("speed",0.8f);
 
 				
 				}
@@ -63,7 +63,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 					if (transform.position.x == pos1.x && transform.position.y == pos1.y) 
 					{
 						fase = 0;
-						anim.SetFloat("speed",0f);
+						//anim.SetFloat("speed",0f);
 						isMoving = false;
 						coll.enabled = false;
 
@@ -74,6 +74,10 @@ public class HideAndSeekLetterController : MonoBehaviour {
 		
 		}
 
+        public void SetStartPosition()
+        {
+            pos1 = transform.position;
+        }
 
 		public void Move(){
 			if (!isMoving) {
@@ -92,7 +96,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 
 
 				pos2 = pos1 + new Vector3 ( temp.x,temp.y,0);
-				anim.SetFloat("speed",0.6f);
+				//anim.SetFloat("speed",0.6f);
 				startTime = Time.time;
 				isMoving = true;
 				coll.enabled = true;
@@ -102,24 +106,13 @@ public class HideAndSeekLetterController : MonoBehaviour {
 		void OnMouseDown()
 		{
 			if (onLetterTouched != null) {
-				onLetterTouched (id);
+                AudioManager.I.PlayLetter(view.Model.Data.Key);
+                onLetterTouched (id);
 			}
 
 		}
 
-        public void SetQuestionText(ILivingLetterData livingLetterData)
-        {
-            if (livingLetterData.DataType == LivingLetterDataType.Letter)
-            {
-                livingLetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LetterData)livingLetterData).Isolated_Unicode);
-            }
-            else
-            {
-                //livingLetterText.text = GenericUtilites.ReverseText(ArabicFixer.Fix(((WordData)livingLetterData).TextForLivingLetter, false, false));
-                //livingLetterText.text = ArabicFixer.Fix(((WordData)livingLetterData).TextForLivingLetter, false, false);
-                livingLetterText.text = ArabicFixer.Fix(((WordData)livingLetterData).Arabic, false, false);
-            }
-        }
+       
 
         //var
         public int id;
@@ -138,7 +131,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 		private float speed = 0.33f;
 		private Animator anim;
 
-        public TextMeshPro livingLetterText;
+        public LetterObjectView view;
 
     }
 }
