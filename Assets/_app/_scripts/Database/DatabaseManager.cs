@@ -25,7 +25,13 @@ namespace EA4S
             }
             staticDb = Resources.Load<Database>(staticDbNameToLoad);
 
-            // SAFE MODE: we load the profileId '1' for now to make everything work
+            // SAFE MODE: we need to make sure that the db has some entires, otherwise there is something wrong
+            if(staticDb.GetPlaySessionTable().GetDataCount() == 0)
+            {
+                throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
+            }
+
+            // SAFE MODE: we load the dynamic profileId '1' for now to make sure everything works correctly
             LoadDynamicDb(1);
         }
 
