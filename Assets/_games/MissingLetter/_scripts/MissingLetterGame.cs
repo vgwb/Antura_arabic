@@ -100,6 +100,7 @@ namespace EA4S.MissingLetter
 
         public void OnResult(bool result)
         {
+            Context.GetCheckmarkWidget().Show(result);
             mCurrentRound++;
 
             if (mCurrentRound >= mRoundsLimit)

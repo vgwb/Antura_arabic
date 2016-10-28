@@ -11,10 +11,14 @@ namespace EA4S.MissingLetter
 
         private Antura mAntura;
 
-            float xDest = -80;
+        //TODO start end position serialize??
+        float xDest, xDist;
+
         // Use this for initialization
         void Start()
         {
+            xDest = -50;
+            xDist = transform.position.x + 50;
             mAntura = GetComponent<Antura>();
             Assert.IsNotNull<Antura>(mAntura, "Add Antura Script to " + name);
         }
@@ -26,7 +30,8 @@ namespace EA4S.MissingLetter
             mAntura.SetAnimation(AnturaAnim.Run);
             transform.LookAt(transform.position + Vector3.right * xDest);
             transform.DOLocalMoveX(xDest, 8).OnComplete(delegate {  mAntura.SetAnimation(AnturaAnim.SitBreath); }) ;
-            xDest = -xDest;
+            xDest = -xDist;
+            xDist *= -1;
         }
     }
 }

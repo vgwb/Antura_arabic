@@ -678,8 +678,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010947186408}
   - 114: {fileID: 114000012345645560}
-  - 136: {fileID: 136000014271981636}
-  - 114: {fileID: 114000010390836606}
   m_Layer: 0
   m_Name: LivingLetter
   m_TagString: Untagged
@@ -1327,7 +1325,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012684832182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.37938, y: 62.899284, z: 200.33481}
+  m_LocalPosition: {x: -113.28131, y: 12.32555, z: -246.54613}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1614,8 +1612,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 8}
-  m_Center: {x: 0, y: 3.5, z: 0}
+  m_Size: {x: 3, y: 3.0000002, z: 1.0765479}
+  m_Center: {x: 0, y: 3.5000002, z: 0.0051244097}
 --- !u!95 &95000012908222664
 Animator:
   serializedVersion: 3
@@ -1633,23 +1631,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010390836606
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013402953660}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e18c5be521578c34689ac9a69742c743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DragOverLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  OnDrag: 0
-  ToBeRelease: 0
-  HoldThreshold: 0.1
 --- !u!114 &114000010860749572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1777,9 +1758,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_kfDistanceBetweenLetters: 8
   mLetter: {fileID: 114000012345645560}
-  m_v3StartPosition: {x: -90, y: -32.8, z: 20}
-  m_v3CenterPosition: {x: -30, y: -32.8, z: 20}
-  m_v3EndPosition: {x: 0, y: -32.8, z: 20}
+  m_v3StartPosition: {x: -90, y: -34, z: 20}
+  m_v3CenterPosition: {x: -30, y: -34, z: 20}
+  m_v3EndPosition: {x: 0, y: -34, z: 20}
 --- !u!114 &114000012345645560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1816,19 +1797,6 @@ MonoBehaviour:
     width: 3
     height: 3
   m_margins: {x: 0, y: 0, z: 0, w: 0.58}
---- !u!136 &136000014271981636
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013402953660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 2.5
-  m_Height: 12
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137000012257655540
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
