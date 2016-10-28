@@ -8,7 +8,8 @@ namespace EA4S.Db
         Noun = 1,
         Adjective = 2,
         Verb = 3,
-        Article = 4
+        Adverb = 4,
+        Article = 5
     }
 
     public enum WordCategory

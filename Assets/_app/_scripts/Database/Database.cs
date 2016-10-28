@@ -53,7 +53,7 @@ namespace EA4S.Db
         {
             T value = (T)table.GetValue(id);
             if (value == null) {
-                Debug.LogWarning("Cannot find id '" + id + "' in talbe " + table.GetType().Name);
+                Debug.LogWarning("Cannot find id '" + id + "' in table " + table.GetType().Name);
                 return default(T);
             }
             return value;
