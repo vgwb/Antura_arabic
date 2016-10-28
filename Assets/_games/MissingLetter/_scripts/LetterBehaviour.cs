@@ -178,17 +178,21 @@ namespace EA4S.MissingLetter
             mCollider.enabled = false;
             Vector3 newPos = CalculatePos(_idxPos, maxItemsInScreen);
             
-            if((gameObject.transform.position - newPos).magnitude < 0.1f)
-            {
-                return;
-            }
+            //if((gameObject.transform.position - newPos).magnitude < 0.1f)
+            //{
+            //    PlayAnimation(LLAnimationStates.LL_run_fear);
+            //    transform.DORotate(Vector3.up * 360, 2).OnComplete(
+            //        delegate { transform.DORotate(Vector3.up * 180, 2); }
+            //        );
+            //    return;
+            //}
 
             Vector3 dist = (gameObject.transform.position - newPos) / 2;
 
             Vector3 pivot = gameObject.transform.position - dist;
 
             //dist is only on x
-            float radius = dist.x;
+            float radius = dist.x + 0.1f;
 
             float accuracy = 4f;
             for (int i=1; i <= accuracy; ++i)
@@ -201,7 +205,7 @@ namespace EA4S.MissingLetter
                 positions.Add(p);
             }
 
-            PlayAnimation(LLAnimationStates.LL_run_fear); ;
+            PlayAnimation(LLAnimationStates.LL_run_fear);
             transform.DOLookAt(positions[0], 1f);
 
             TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), 4, PathType.CatmullRom);
