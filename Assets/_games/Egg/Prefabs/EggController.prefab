@@ -78,22 +78,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000011660241096
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000010569809590}
-  - 114: {fileID: 114000012388090050}
-  m_Layer: 0
-  m_Name: EggLivingLetterPrefab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000012089527578
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,19 +213,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010740115674}
   m_RootOrder: 0
---- !u!4 &4000010569809590
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011660241096}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000014156200322}
-  m_RootOrder: 1
 --- !u!4 &4000010740115674
 Transform:
   m_ObjectHideFlags: 1
@@ -326,7 +297,7 @@ Transform:
   - {fileID: 4000013918088216}
   - {fileID: 4000013151423502}
   m_Father: {fileID: 4000014156200322}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &4000013918088216
 Transform:
   m_ObjectHideFlags: 1
@@ -352,7 +323,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010740115674}
-  - {fileID: 4000010569809590}
   - {fileID: 4000013698731800}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -621,7 +591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b1383400358b94ba43a026dd375b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggLivingLetter: {fileID: 114000012388090050}
+  eggLivingLetterPrefab: {fileID: 1000010645763082, guid: 6d74d2759692d26468ee8bfb178051b0,
+    type: 2}
   egg: {fileID: 1000012089527578}
   eggPieces:
   - {fileID: 114000011557483584}
@@ -630,6 +601,7 @@ MonoBehaviour:
   - {fileID: 114000010248178044}
   eggCollider: {fileID: 114000013224825940}
   notRotatedObjects: {fileID: 4000013698731800}
+  eggShadow: {fileID: 1000013639075238}
   tremblingEgg: {fileID: 114000012988120450}
   eggParticleWin: {fileID: 1000010349007260}
   inMoveCurve:
@@ -678,17 +650,6 @@ MonoBehaviour:
   pieceRenderer: {fileID: 23000013248830144}
   eggRigidbody: {fileID: 54000011088297808}
   poofPrefab: {fileID: 1000012701035900, guid: d6f1b602b13115040a04b4fa83fdfa67, type: 2}
---- !u!114 &114000012388090050
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011660241096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d25880b5486088419c5708c2c5f3dd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012738742998
 MonoBehaviour:
   m_ObjectHideFlags: 1
