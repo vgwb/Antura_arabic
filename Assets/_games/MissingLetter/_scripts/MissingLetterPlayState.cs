@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 namespace EA4S.MissingLetter
 {
@@ -46,12 +47,20 @@ namespace EA4S.MissingLetter
             gameTime.Stop();
         }
 
+
+        IEnumerator ShuffleDelay(float duration, float delayTime)
+        {
+            yield return new WaitForSeconds(delayTime);
+            game.m_RoundManager.ShuffleLetters(duration);
+        }
+
         public void Update(float delta)
         {
             if (Input.GetButtonDown("Jump"))
             {
-                game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene();
-                game.m_RoundManager.ShuffleLetters();
+                float duration = 7;
+                game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(duration);
+                game.StartCoroutine(ShuffleDelay(duration / 2, duration / 6));
             }
 
             game.timerText.text = String.Format("{0:0}", gameTime.Time);

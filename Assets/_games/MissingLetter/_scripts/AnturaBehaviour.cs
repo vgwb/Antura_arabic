@@ -9,29 +9,27 @@ namespace EA4S.MissingLetter
 {
     public class AnturaBehaviour : MonoBehaviour {
 
+        [SerializeField]
+        private Transform mStart, mEnd;
+
+        private Transform nextPos;
         private Antura mAntura;
 
-        //TODO start end position serialize??
-        float xDest, xDist;
-
-        // Use this for initialization
         void Start()
         {
-            xDest = -50;
-            xDist = transform.position.x + 50;
             mAntura = GetComponent<Antura>();
             Assert.IsNotNull<Antura>(mAntura, "Add Antura Script to " + name);
+            transform.position = mStart.position;
+            nextPos = mEnd;
         }
 
-        //TODO serialize movement time, switch the antura forward
-        public void EnterScene()
+        public void EnterScene(float duration)
         {
             mAntura.BarkWhenRunning = true;
             mAntura.SetAnimation(AnturaAnim.Run);
-            transform.LookAt(transform.position + Vector3.right * xDest);
-            transform.DOLocalMoveX(xDest, 8).OnComplete(delegate {  mAntura.SetAnimation(AnturaAnim.SitBreath); }) ;
-            xDest = -xDist;
-            xDist *= -1;
+            transform.LookAt(transform.position + Vector3.right * (nextPos.position.x - transform.position.x));
+            transform.DOMove(nextPos.position, duration).OnComplete(delegate {  mAntura.SetAnimation(AnturaAnim.SitBreath); }) ;
+            nextPos = nextPos == mStart ? mEnd : mStart;
         }
     }
 }
