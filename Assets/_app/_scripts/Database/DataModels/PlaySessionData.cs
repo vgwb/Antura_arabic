@@ -9,7 +9,8 @@ namespace EA4S.Db
         Letters = 1,
         Symbols = 2,
         Words = 3,
-        Phrases = 4
+        Phrases = 4,
+        Sounds = 5
     }
 
     [Serializable]
