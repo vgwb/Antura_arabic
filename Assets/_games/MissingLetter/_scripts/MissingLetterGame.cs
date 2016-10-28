@@ -29,6 +29,8 @@ namespace EA4S.MissingLetter
 
         public int mNumberOfPossibleAnswers = 4;
 
+        public GameObject mAnturaRef;
+
         //[SerializeField]
         //private float m_kfDistanceBetweenLetters = 8.0f;
 

@@ -50,6 +50,7 @@ namespace EA4S.MissingLetter
         {
             if (Input.GetButtonDown("Jump"))
             {
+                game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene();
                 game.m_RoundManager.ShuffleLetters();
             }
 
