@@ -284,7 +284,7 @@ namespace EA4S
         {
             // TODO now locked to body parts for retrocompatibility
             var wordslist = FindWordData((x) => (x.Category == WordCategory.BodyPart));
-            return RandomHelper.GetRandom(wordslist);
+            return GenericUtilities.GetRandom(wordslist);
         }
 
         public LetterData GetLetterDataById(string id)
@@ -295,7 +295,7 @@ namespace EA4S
         public LetterData GetLetterDataByRandom()
         {
             var letterslist = GetAllLetterData();
-            return RandomHelper.GetRandom(letterslist);
+            return GenericUtilities.GetRandom(letterslist);
         }
 
         public PhraseData GetPhraseDataById(string id)
