@@ -127,27 +127,6 @@ namespace EA4S
 
         #endregion
 
-        #region event subscription
-
-        void OnEnable()
-        {
-            Droppable.OnRightMatch += Droppable_OnRightMatch;
-            Droppable.OnWrongMatch += Droppable_OnWrongMatch;
-        }
-
-        void OnDisable()
-        {
-            Droppable.OnRightMatch -= Droppable_OnRightMatch;
-            Droppable.OnWrongMatch -= Droppable_OnWrongMatch;
-        }
-
-        void OnDestroy()
-        {
-            
-        }
-
-        #endregion
-
         #region results events delegates
 
         private void Droppable_OnWrongMatch(LetterObjectView _letterView)

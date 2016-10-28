@@ -107,7 +107,7 @@ public partial class SROptions
     [Category("Shortcuts")]
     public void EndFastCrowdGame()
     {
-        EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
+  //      EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
         SRDebug.Instance.HideDebugPanel();
     }
 

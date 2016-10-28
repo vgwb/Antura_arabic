@@ -141,13 +141,17 @@ namespace EA4S
             if (isGameSelected) {
                 Db.MiniGameData miniGame = AppManager.Instance.Teacher.GetCurrentMiniGameData();
                 if (miniGame.Id == "fastcrowd" || miniGame.Id == "fastcrowd_words") {
+                    /*
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
                     if (miniGame.Id == "fastcrowd") {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
                     } else {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words;
                     }
+
+
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
+                */
                 }
                 if (miniGame.Id == "fastcrowd_words") {
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd_tutorialWords");
