@@ -18,11 +18,17 @@ namespace EA4S
 
         List<LL_WordData> availableVocabulary = new List<LL_WordData>();
 
+        // AI engines
+        MiniGameSelectionAI minigameSelectionAI;
+
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             I = this;
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
+        
+            this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
+
             MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
             // Debug.Log("AI exists");
 
@@ -102,33 +108,32 @@ namespace EA4S
 
         public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
         {
-            MiniGamesInPlaySession = new List<MiniGameData>();
-            switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) {
+            var miniGamesInPlaySession = new List<MiniGameData>();
+            switch (this.playerProfile.CurrentJourneyPosition.PlaySession) {
                 case 1:
-                    //miniGames = AppManager.Instance.DB.GetPlaySessionDataById("1.1.1")
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.DancingDots));
+                    //_MiniGamesInPlaySession = this.dbManager.GetPlaySessionDataById("1.1.1")
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
                     break;
                 case 2:
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Egg));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_letter));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Maze));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Egg));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_letter));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Maze));
                     break;
                 case 3:
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_spelling));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.ThrowBalls_letters));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.MakeFriends));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_spelling));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.ThrowBalls_letters));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.MakeFriends));
                     break;
                 case 4:
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.DancingDots));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Tobogan_words));
-                    MiniGamesInPlaySession.Add(AppManager.Instance.DB.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_words));
+                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling));
                     break;
             }
-            //AppManager.Instance.ActualMinigame = miniGame;
-            return MiniGamesInPlaySession;
+            return miniGamesInPlaySession;
         }
 
         public MiniGameData GetCurrentMiniGameData()
@@ -137,40 +142,19 @@ namespace EA4S
             return MiniGamesInPlaySession.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
         }
 
-        /// <summary>
-        /// Give right game. Alpha version.
-        /// </summary>
-        //public Db.MiniGameData GetMiniGameForActualPlaySession()
-        //{
-        //    Db.MiniGameData miniGame = null;
-        //    switch (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) {
-        //        case 1:
-        //            if (AppManager.Instance.PlaySessionGameDone == 0)
-        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_letter);
-        //            else
-        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling);
-        //            break;
-        //        case 2:
-        //            if (AppManager.Instance.PlaySessionGameDone == 0)
-        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words);
-        //            else
-        //                miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters);
-        //            break;
-        //        case 3:
-        //            miniGame = dbManager.GetMiniGameDataByCode(MiniGameCode.Assessment_Alphabet);
-        //            break;
-        //    }
-        //    AppManager.Instance.CurrentMinigame = miniGame;
-        //    return miniGame;
-        //}
+        public List<Db.MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
+        {
+            return this.minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
+        }
 
         #endregion
+
 
         #region MiniGames queries
 
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
-            int fromTimestamp = GenericUtilites.GetRelativeTimestampFromNow(-nLastDays);
+            int fromTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-nLastDays);
             string query = string.Format("SELECT * FROM LogPlayData WHERE MiniGame = '{0}' AND Timestamp < {1}",
                 (int)minigameCode, fromTimestamp);
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
@@ -239,7 +223,7 @@ namespace EA4S
         {
             // @note: shows how to work with playerprofile as well as the database
             JourneyPosition currentJourneyPosition = playerProfile.CurrentJourneyPosition;
-            string query = string.Format("SELECT * FROM LogPlayData WHERE Action = {0} AND PlaySession = '{1}'",
+            string query = string.Format("SELECT * FROM LogPlayData WHERE PlayEvent = {0} AND PlaySession = '{1}'",
                 (int)PlayEvent.GameFinished, currentJourneyPosition.ToString());
             List<LogPlayData> list = dbManager.FindLogPlayDataByQuery(query);
             return list;

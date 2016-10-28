@@ -11,6 +11,11 @@ namespace EA4S.Db
         public string Title_Ar;
         public string Description;
 
+        public override string ToString()
+        {
+            return Id + ": " + Title_En;
+        }
+
         public string GetId()
         {
             return Id;
