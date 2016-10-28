@@ -10,6 +10,7 @@ namespace EA4S.HideAndSeek
 		 IEnumerable<ILivingLetterData> listOfLetters;
 
         public ILivingLetterData answer;
+        public List<ILivingLetterData> list;
 
 		public HideAndSeekQuestionsPack (IEnumerable<ILivingLetterData> listOfLetters,IEnumerable<ILivingLetterData> correctAnswer)
 
@@ -17,11 +18,23 @@ namespace EA4S.HideAndSeek
 			this.correctAnswer = correctAnswer;
 			this.listOfLetters = listOfLetters;
 
+            foreach( ILivingLetterData x in correctAnswer)
+            {
+                answer = x;
+            }
+            //correctAnswer.GetEnumerator().MoveNext();
+            //answer = correctAnswer.GetEnumerator().Current;
+            //list = (List <ILivingLetterData> )listOfLetters;
 
-            //answer = (ILivingLetterData)correctAnswer;
-          
-            
-		}
+            list = new List<ILivingLetterData>();
+
+            foreach (ILivingLetterData x in listOfLetters)
+            {
+                list.Add(x);
+            }
+
+
+        }
 
 		IEnumerable<ILivingLetterData> IQuestionPack.GetCorrectAnswers()
 		{
@@ -45,5 +58,10 @@ namespace EA4S.HideAndSeek
             return answer;
         }
 
-	}
+        public List<ILivingLetterData> GetLetters()
+        {
+            return list;
+        }
+
+    }
 }

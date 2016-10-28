@@ -5,32 +5,32 @@ using System.Linq;
 
 namespace EA4S.HideAndSeek
 {
-	public class HideAndSeekQuestionsProvider : IQuestionProvider {
+	public class HideAndSeekQuestionsProvider : MonoBehaviour, IQuestionProvider {
 
 	List<HideAndSeekQuestionsPack> questions = new List<HideAndSeekQuestionsPack>();
 
 	string description;
     int currentQuestion;
 
-		public HideAndSeekQuestionsProvider()
+		public void Start()
 	{
 		currentQuestion = 0;
 
 		int numbersOfLetters = 3;
 		
 		description = "Hide and Seek Description";
-		
-		float difficulty = HideAndSeekConfiguration.Instance.Difficulty;
+
+            float difficulty = HideAndSeekConfiguration.Instance.Difficulty;
 			Debug.Log ("Difficulty " + difficulty); //afwffasafsfsa
-		
-			if (difficulty <= 0.4f  && difficulty > 0.2f)
-				numbersOfLetters = 4;
-			else if (difficulty <= 0.6f)
-				numbersOfLetters = 5;
-			else if (difficulty <= 0.8f)
-				numbersOfLetters = 6;
-			else if (difficulty <= 1.0f)
-				numbersOfLetters = 7;
+
+            if (difficulty <= 0.4f && difficulty > 0.2f)
+                numbersOfLetters = 4;
+            else if (difficulty <= 0.6f)
+                numbersOfLetters = 5;
+            else if (difficulty <= 0.8f)
+                numbersOfLetters = 6;
+            else if (difficulty <= 1.0f)
+                numbersOfLetters = 7;
 
 		
 			for (int i = 0; i < 15; i++)
@@ -88,15 +88,15 @@ namespace EA4S.HideAndSeek
 
 	IQuestionPack IQuestionProvider.GetNextQuestion()
 	{
-            currentQuestion++;
+            /*     currentQuestion++;
 
-            if (currentQuestion >= questions.Count)
-                currentQuestion = 0;
-
-            return questions[currentQuestion];
+                 if (currentQuestion >= questions.Count)
+                     currentQuestion = 0;
+     */
+            return null; //questions[currentQuestion];
 	}
 
-        /*public IQuestionPack GetQuestion()
+        public IQuestionPack GetQuestion()
         {
             currentQuestion++;
 
@@ -104,6 +104,6 @@ namespace EA4S.HideAndSeek
                 currentQuestion = 0;
 
             return questions[currentQuestion];
-        }*/
+        }
 }
 }

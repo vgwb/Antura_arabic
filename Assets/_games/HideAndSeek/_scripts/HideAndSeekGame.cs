@@ -21,6 +21,8 @@ namespace EA4S.HideAndSeek
         [HideInInspector]
         public bool isTimesUp;
 
+        public bool inGame = false;
+
         protected override void OnInitialize(IGameContext context)
         {
             IntroductionState = new IntroductionGameState(this);

@@ -6,7 +6,7 @@ namespace EA4S.HideAndSeek
     {
 		HideAndSeekGame game;
 
-        CountdownTimer gameTime = new CountdownTimer(30.0f);
+        CountdownTimer gameTime = new CountdownTimer(60.0f);
         IAudioSource timesUpAudioSource;
 
         bool hurryUpSfx;
@@ -16,8 +16,6 @@ namespace EA4S.HideAndSeek
             this.game = game;
 
             gameTime.onTimesUp += OnTimesUp;
-
-            // have to register EndGame to the death event in game (when i do the last error this event will be triggered)
         }
 
         public void EnterState()
@@ -31,6 +29,9 @@ namespace EA4S.HideAndSeek
             hurryUpSfx = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+
+            game.inGame = true;
+            game.GameManager.SetTime();
         }
 
         public void ExitState()
@@ -42,6 +43,9 @@ namespace EA4S.HideAndSeek
             gameTime.Stop();
 
             game.Context.GetAudioManager().StopMusic();
+
+            game.inGame = false;
+            game.GameManager.enabled = false;
         }
 
         public void Update(float delta)
@@ -69,12 +73,8 @@ namespace EA4S.HideAndSeek
         {
             // Time's up!
             game.isTimesUp = true;
-            EndGame();
-        }
-
-        void EndGame()
-        {
             game.SetCurrentState(game.ResultState);
         }
+
     }
 }
