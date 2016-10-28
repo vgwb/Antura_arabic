@@ -34,8 +34,6 @@ namespace EA4S
                         fromList.RemoveAt(element_index);
                         weightsList.RemoveAt(element_index);
                         chosenList.Add(chosenItem);
-
-                        UnityEngine.Debug.Log("CHOSEN: " + chosenItem.ToString());
                         break;
                     }
                 }
