@@ -104,8 +104,14 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Shininess
+      second: 0.078125
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
+    - first:
+        name: _Specular
+      second: 0.5
     - first:
         name: _SpecularHighlights
       second: 1
@@ -128,3 +134,6 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _SpecularColor
+      second: {r: 0, g: 0, b: 0, a: 0}
