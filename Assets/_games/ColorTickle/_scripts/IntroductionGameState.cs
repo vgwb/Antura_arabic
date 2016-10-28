@@ -12,6 +12,8 @@ namespace EA4S.ColorTickle
         ColorTickleGame game;
         float timer = 1;
 
+        
+
         public IntroductionGameState(ColorTickleGame game)
         {
             this.game = game;
@@ -21,8 +23,6 @@ namespace EA4S.ColorTickle
         {
             game.currentLetter = LetterObjectView.Instantiate(game.m_LetterPrefab);
             game.currentLetter.Init(AppManager.Instance.Letters.GetRandomElement());
-            //game.m_MyLetter.Lable.enableAutoSizing = false;
-            //game.m_MyLetter.Lable.fontSize = 50.0f;           
         }
 
         public void ExitState()
@@ -37,9 +37,7 @@ namespace EA4S.ColorTickle
             {
                 game.SetCurrentState(game.PlayState);
             }
-
-
-
+				
         }
 
         public void UpdatePhysics(float delta)

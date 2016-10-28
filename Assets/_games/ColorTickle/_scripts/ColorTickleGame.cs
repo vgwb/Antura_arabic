@@ -9,23 +9,39 @@ namespace EA4S.ColorTickle
 {
     public class ColorTickleGame : MiniGame
     {
+        #region PUBLIC MEMBERS
         public LetterObjectView m_LetterPrefab;
+        [SerializeField]
+        private Canvas m_ColorsCanvas;
+
+        // GAME STATES
         public IntroductionGameState IntroductionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         //public QuestionGameState QuestionState { get; private set; }
         //public ResultGameState ResultState { get; private set; }
-        
-        public Canvas m_ColorsCanvas;
-        //public Color m_ColorBrush;
 
-        
+        #endregion
+
+        #region PRIVATE MEMBERS
+
         private LetterObjectView m_MyLetter;
+
+        #endregion
+
+        #region GETTER/SETTER
 
         public LetterObjectView currentLetter
         {
             get { return m_MyLetter; }
             set { m_MyLetter = value; }
         }
+
+        public Canvas colorsCanvas
+        {
+            get { return m_ColorsCanvas; }
+        }
+
+        #endregion
 
         protected override void OnInitialize(IGameContext context)
         {
