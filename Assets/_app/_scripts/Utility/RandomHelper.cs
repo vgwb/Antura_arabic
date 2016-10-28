@@ -1,28 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace EA4S
 {
     public static class RandomHelper
     {
-        private static readonly Random _random = new Random(DateTime.Now.Millisecond);
-        public static T GetRandom<T>(this IList<T> list)
-        {
-            if (list.Count == 0)
-            {
-                throw new System.Exception("Cannot get a random element from the list as count is zero.");
-            }
-            return list[_random.Next(0, list.Count)];
-        }
-
-        public static T GetRandomEnum<T>()
-        {
-            var A = Enum.GetValues(typeof(T));
-            var V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
-            return V;
-        }
-
 
         public static List<T> RouletteSelectNonRepeating<T>(List<T> fromList, List<float> weightsList, int numberToSelect)
         {
@@ -52,7 +34,8 @@ namespace EA4S
                         fromList.RemoveAt(element_index);
                         weightsList.RemoveAt(element_index);
                         chosenList.Add(chosenItem);
-                        //UnityEngine.Debug.Log("CHOSEN: " + chosenItem.ToString());
+
+                        UnityEngine.Debug.Log("CHOSEN: " + chosenItem.ToString());
                         break;
                     }
                 }
