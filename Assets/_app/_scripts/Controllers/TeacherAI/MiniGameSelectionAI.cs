@@ -1,19 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Handles the selection of what minigames to play during a playsession
     /// </summary>
     public class MiniGameSelectionAI
     {
-        // Configuration
-        private const float PLAY_SESSION_WEIGHT = 1f;
-        private const float RECENT_PLAY_WEIGHT = 1f;
-
-        private const int DAYS_FOR_MAXIMUM_RECENT_PLAY_MALUS = 4;   // Days at which we get the maximum malus for a recent play weight
-
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
@@ -71,15 +65,15 @@ namespace EA4S
 
                 // PlaySession Weight [0,1]
                 float playSessionWeight = playsession_weights_dict[minigame_data.Code] / 100f; //  [0-100]
-                cumulativeWeight += playSessionWeight * PLAY_SESSION_WEIGHT;
-                debugString += " PSw: " + playSessionWeight * PLAY_SESSION_WEIGHT +"("+playSessionWeight+")";
+                cumulativeWeight += playSessionWeight * ConfigAI.minigame_playSessionWeight;
+                debugString += " PSw: " + playSessionWeight * ConfigAI.minigame_playSessionWeight + "("+playSessionWeight+")";
 
                 // RecentPlay Weight  [1,0]
-                const float dayLinerWeightDecrease = 1f/DAYS_FOR_MAXIMUM_RECENT_PLAY_MALUS;
+                const float dayLinerWeightDecrease = 1f/ConfigAI.daysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
-                cumulativeWeight += recentPlayWeight * RECENT_PLAY_WEIGHT;
-                debugString += " RPw: " + recentPlayWeight * RECENT_PLAY_WEIGHT + "(" + recentPlayWeight + ")";
+                cumulativeWeight += recentPlayWeight * ConfigAI.minigame_recentPlayWeight;
+                debugString += " RPw: " + recentPlayWeight * ConfigAI.minigame_recentPlayWeight + "(" + recentPlayWeight + ")";
 
                 // Save cumulative weight
                 weights_list.Add(cumulativeWeight);
