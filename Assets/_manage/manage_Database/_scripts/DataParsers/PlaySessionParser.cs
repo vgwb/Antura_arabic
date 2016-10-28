@@ -16,7 +16,7 @@ namespace EA4S.Db.Management
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
             data.Description = ToString(dict["Description"]);
             data.IntroArabic = ToString(dict["IntroArabic"]);
-            data.Reward = ToString(dict["Reward"]);
+            data.Reward = ParseID<RewardData, RewardTable>(data, (string)dict["Reward"], db.GetRewardTable());
 
             data.Type = ToString(dict["Type"]);
             data.Focus = ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);

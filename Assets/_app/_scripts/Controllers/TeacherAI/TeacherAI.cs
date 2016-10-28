@@ -10,8 +10,10 @@ namespace EA4S
     {
         public static TeacherAI I;
 
+        // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
+
         string[] bodyPartsWords;
 
         public List<MiniGameData> MiniGamesInPlaySession;
@@ -187,12 +189,9 @@ namespace EA4S
             return stage_playsession_list;
         }
 
-        public List<LogMoodData> GetLastMoodData(int number)
-        {
-            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number);
-            List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
-            return list;
-        }
+        #endregion
+
+        #region Assessment queries
 
         public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode) // also play session
         {
@@ -219,6 +218,10 @@ namespace EA4S
             return words;
         }
 
+        #endregion
+
+        #region Journeymap queries
+
         public List<LogPlayData> GetScoreHistoryForCurrentJourneyPosition()
         {
             // @note: shows how to work with playerprofile as well as the database
@@ -231,20 +234,16 @@ namespace EA4S
 
         #endregion
 
-        #region Assessment queries
-
-        #endregion
-
-        #region Journeymap queries
-
-        #endregion
-
         #region Mood queries
 
-        #endregion
+        public List<LogMoodData> GetLastMoodData(int number)
+        {
+            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number);
+            List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
+            return list;
+        }
 
-        #region Frequency of use queries
-
         #endregion
+        
     }
 }

@@ -22,7 +22,7 @@ namespace EA4S.Db
         public string Type;
         public string Description;
         public string IntroArabic;
-        public string Reward; //TODO
+        public string Reward;
         public DidacticalFocus Focus;
         public string[] Letters;
         public string[] Words;

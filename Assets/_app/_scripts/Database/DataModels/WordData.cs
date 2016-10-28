@@ -40,7 +40,6 @@ namespace EA4S.Db
         public string Arabic;
         public string[] Letters;
         public LetterSymbol[] Symbols; //TODO
-        public string Transliteration;
         public int Difficulty;
         public int Drawing;
 
@@ -53,12 +52,11 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3},{4}",
+            return string.Format("{0},{1},{2},{3}",
                 Id,
                 Kind,
                 Category,
-                Arabic,
-                Transliteration
+                Arabic
                 );
         }
 
