@@ -27,6 +27,8 @@ namespace EA4S.Egg
             antura.transform.localEulerAngles = Vector3.zero;
             antura.transform.localScale = Vector3.one;
 
+            ChengeGameObjectLayer(antura.gameObject);
+
             antura.ClickToBark = false;
             antura.ClickToChangeDress = false;
         }
@@ -37,7 +39,7 @@ namespace EA4S.Egg
             antura.SetAnimation(AnturaAnim.StandExcitedBreath);
             barkingTimer = 3f;
         }
-        
+
         void Update()
         {
             if (IsWaken)
@@ -66,6 +68,21 @@ namespace EA4S.Egg
             moveEndCallback = callback;
 
             moveTween = antura.transform.DOMove(position, duration).OnComplete(delegate () { if (moveEndCallback != null) moveEndCallback(); });
+        }
+
+        void ChengeGameObjectLayer(GameObject go)
+        {
+            go.layer = LayerMask.NameToLayer("Ball");
+
+            int childCount = go.transform.childCount;
+
+            if (childCount > 0)
+            {
+                for (int i = 0; i < childCount; i++)
+                {
+                    ChengeGameObjectLayer(go.transform.GetChild(i).gameObject);
+                }
+            }
         }
     }
 }

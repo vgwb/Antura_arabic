@@ -17,28 +17,20 @@ namespace EA4S
             get { return LivingLetterDataType.Letter; }
         }
 
+        private string key;
         public string Key {
             get { return key; }
             set { key = value; }
         }
-        public string Isolated_Unicode;
-        public string Isolated;
-        public string Initial_Unicode;
-        public string Medial_Unicode;
-        public string Final_Unicode;
+
+        public Db.LetterData Data;
 
         public LetterDataForm ShowAs = LetterDataForm.ISOLATED;
-
-        private string key;
 
         protected void chargeLetterData(string _keyRow, Db.LetterData _letRow)
         {
             Key = _keyRow;
-            Isolated = _letRow.Isolated;
-            Isolated_Unicode = _letRow.Isolated_Unicode;
-            Initial_Unicode = _letRow.Initial_Unicode;
-            Medial_Unicode = _letRow.Medial_Unicode;
-            Final_Unicode = _letRow.Final_Unicode;
+            Data = _letRow;
         }
 
         public LL_LetterData(string _keyRow)
@@ -55,13 +47,13 @@ namespace EA4S
             get {
                 switch (ShowAs) {
                     case LetterDataForm.INITIAL:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Initial_Unicode);
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Initial_Unicode);
                     case LetterDataForm.MEDIAL:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Medial_Unicode);
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Medial_Unicode);
                     case LetterDataForm.FINAL:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Final_Unicode);
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Final_Unicode);
                     default:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Isolated_Unicode);
+                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
                 }
             }
         }
