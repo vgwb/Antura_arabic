@@ -17,8 +17,10 @@ namespace EA4S.MissingLetter
 
         void Start()
         {
-            Assert.IsNotNull<LetterObjectView>(mLetter, "LetterView Not Set");
-            gameObject.GetComponent<Collider>().enabled = false;
+            Assert.IsNotNull<LetterObjectView>(mLetter, "LetterView Not Set in " + name);
+            mCollider = gameObject.GetComponent<Collider>();
+            Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
+            mCollider.enabled = false;
         }
 
         void PlayAnimation(LLAnimationStates animation)
@@ -143,7 +145,7 @@ namespace EA4S.MissingLetter
         {
             Vector3 dir = (m_v3CenterPosition - m_v3StartPosition).normalized;
             Vector3 _GoalPos = CalculatePos(_idxPos, maxItemsInScreen);
-            endTransformToCallback += delegate { gameObject.GetComponent<Collider>().enabled = true; };
+            endTransformToCallback += delegate { mCollider.enabled = true; };
 
             //move and rotate letter
             gameObject.transform.forward = dir;
@@ -159,7 +161,7 @@ namespace EA4S.MissingLetter
 
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
-            gameObject.GetComponent<Collider>().enabled = false;
+            mCollider.enabled = false;
 
             Vector3 dir = (m_v3CenterPosition - m_v3CenterPosition).normalized;
 
@@ -173,7 +175,7 @@ namespace EA4S.MissingLetter
 
         public void ChangePos(int _idxPos, int maxItemsInScreen)
         {
-
+            mCollider.enabled = false;
             Vector3 newPos = CalculatePos(_idxPos, maxItemsInScreen);
             
             if((gameObject.transform.position - newPos).magnitude < 0.1f)
@@ -204,13 +206,14 @@ namespace EA4S.MissingLetter
 
             TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), 4, PathType.CatmullRom);
             value.OnWaypointChange(delegate (int wayPoint) {
-                if (wayPoint < positions.Count- 1)
+                if (wayPoint < positions.Count)
                     transform.DOLookAt(positions[wayPoint], 1f);
             });
             value.OnComplete(delegate {
                 transform.DOLookAt(transform.position + Vector3.back, 1f);
                 positions.Clear();
                 PlayAnimation(LLAnimationStates.LL_idle_1);
+                mCollider.enabled = true;
             });
         }
 
@@ -241,8 +244,9 @@ namespace EA4S.MissingLetter
         [SerializeField]
         private float m_kfDistanceBetweenLetters = 8.0f;
 
-        Tweener moveTweener;
-        Tweener rotationTweener;
+        private Tweener moveTweener;
+        private Tweener rotationTweener;
+        private Collider mCollider;
 
         protected ILivingLetterData mLetterData;
 

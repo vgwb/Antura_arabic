@@ -83,15 +83,15 @@ namespace EA4S.MissingLetter
 
             mCurrentQuestionScene.Add(oQuestion);
 
-            GameObject _correctAnswerObject = mAnswerPool.GetElement();
-            LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
-            corrAnsBheaviour.Reset();
-            corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(m_iCorrectAnswerIndex);
-            corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
-            //corrAnsBheaviour.onLetterClick += corrAnsBheaviour.Speak;
-            corrAnsBheaviour.onLetterClick_s += OnAnswerClicked;
+            //GameObject _correctAnswerObject = mAnswerPool.GetElement();
+            //LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
+            //corrAnsBheaviour.Reset();
+            //corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(m_iCorrectAnswerIndex);
+            //corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
+            ////corrAnsBheaviour.onLetterClick += corrAnsBheaviour.Speak;
+            //corrAnsBheaviour.onLetterClick_s += OnAnswerClicked;
 
-            mCurrentAnswerScene.Add(_correctAnswerObject);
+            //mCurrentAnswerScene.Add(_correctAnswerObject);
 
             //add other old correct answers to wrong answers
             for(int i=0; i < _correctAnswers.Count; ++i)
@@ -232,35 +232,37 @@ namespace EA4S.MissingLetter
             }
         }
 
+        //TODO refactoring
         int RemoveLetterFromWord(LL_WordData word)
         {
-            char[] caQuestion = ArabicFixer.Fix(word.Word, false, false).ToCharArray();
+            char[] caQuestion = ArabicFixer.Fix(word.Data.Arabic, false, false).ToCharArray();
             int index = UnityEngine.Random.Range(0, caQuestion.Length);
             m_sRemovedData = caQuestion[index].ToString();
             caQuestion[index] = ' ';
-            word.Word = caQuestion.ToString();
+            word.Data.Arabic = caQuestion.ToString();
             return index;
         }
 
+        //TODO refactoring
         int RemoveWordFromSentences(List<LL_WordData> sentence)
         {
             int index = UnityEngine.Random.Range(0, sentence.Count());
             LL_WordData result = sentence.ElementAt(index);
-            m_sRemovedData = sentence[index].Word;
-            sentence[index].Word = "";
+            m_sRemovedData = sentence[index].Data.Arabic;
+            sentence[index].Data.Arabic = "";
             return index;
         }
 
         void RestoreRemovedLetter()
         {
             LL_WordData word = (LL_WordData)mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().LetterData;
-            word.Word = word.Word.Replace(' ', m_sRemovedData[0]);
+            word.Data.Arabic = word.Data.Arabic.Replace(' ', m_sRemovedData[0]);
         }
 
         void RestoreRemovedWord()
         {
             LL_WordData word = (LL_WordData)mCurrentQuestionScene[m_iCorrectAnswerIndex].GetComponent<LetterBehaviour>().LetterData;
-            word.Word = m_sRemovedData;
+            word.Data.Arabic = m_sRemovedData;
         }
 
 
