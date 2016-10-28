@@ -15,6 +15,8 @@ namespace EA4S
         public const float WALKING_SPEED = 0.0f;
         public const float RUN_SPEED = 1.0f;
 
+        float idleTimer = 3;
+
         #region public properties
 
         [Header("GO Elements")]
@@ -100,6 +102,8 @@ namespace EA4S
         /// <param name="_data">The data.</param>
         public void Init(ILivingLetterData _data)
         {
+            idleTimer = Random.Range(3, 8);
+
             model = new LLController(_data);
 
             // Init state change listener
@@ -151,7 +155,6 @@ namespace EA4S
 
         }
 
-        float idleTimer = 3;
         void Update()
         {
             if (model != null)
