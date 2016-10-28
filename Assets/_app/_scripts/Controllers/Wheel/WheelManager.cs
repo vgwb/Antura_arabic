@@ -135,8 +135,8 @@ namespace EA4S
         }
 
         public void OnPopuplicked()
-        {
-            /* Alpha static logic */
+        { /*
+            // Alpha static logic
             if (isGameSelected) {
                 Db.MiniGameData miniGame = AppManager.Instance.Teacher.GetCurrentMiniGameData();
                 if (miniGame.Code == MiniGameCode.FastCrowd_letter|| miniGame.Code == MiniGameCode.FastCrowd_words) {
@@ -154,7 +154,7 @@ namespace EA4S
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.Scene + "_tutorial");
                 }
             }
-            /*
+           
             Debug.Log("Wheel start game: " + gameData[currentGameIndex].Code);
             if (isGameSelected) {
                 if (gameData[currentGameIndex].Code == "fastcrowd" || gameData[currentGameIndex].Code == "fastcrowd_words") {
