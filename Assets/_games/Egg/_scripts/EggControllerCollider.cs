@@ -7,12 +7,7 @@ namespace EA4S.Egg
     {
         public Collider eggCollider;
 
-        Action pressedCallback;
-
-        public void Initizlize(Action pressedCallback)
-        {
-            this.pressedCallback = pressedCallback;
-        }
+        public Action pressedCallback;
 
         public void EnableCollider()
         {

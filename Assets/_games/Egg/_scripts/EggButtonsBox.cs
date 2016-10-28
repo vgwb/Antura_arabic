@@ -51,7 +51,7 @@ namespace EA4S.Egg
 
         EggButton CreateButton()
         {
-            EggButton eggButton = GameObject.Instantiate(eggButtonPrefab).GetComponent<EggButton>();
+            EggButton eggButton = Instantiate(eggButtonPrefab).GetComponent<EggButton>();
             eggButton.transform.SetParent(transform, false);
             eggButton.gameObject.SetActive(false);
             eggButton.Initialize(audioManager, buttonsCallback);
