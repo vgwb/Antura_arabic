@@ -56,7 +56,7 @@ namespace EA4S.ColorTickle
         private void SetBrushColor(Color color)
         {
             //game.m_ColorBrush = color;
-            game.currentLetter.GetComponent<TMPTextColoring>().SetBrushColor(color);
+            game.currentLetter.GetComponent<ColoringParameters>().SetBrushColor(color);
             Debug.Log("New BrushColor :" + game.currentLetter);
         }
 
