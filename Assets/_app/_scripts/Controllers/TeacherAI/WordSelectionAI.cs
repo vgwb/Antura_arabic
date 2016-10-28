@@ -1,19 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S
+namespace EA4S.Teacher
 {
     /// <summary>
     /// Handles the selection of what words a minigame should use, given a playsession
     /// </summary>
     public class WordSelectionAI 
     {
-        // Configuration
-        private const float SCORE_WEIGHT = 1f;
-        private const float RECENT_PLAY_WEIGHT = 1f;
-
-        private const int DAYS_FOR_MAXIMUM_RECENT_PLAY_MALUS = 4;   // Days at which we get the maximum malus for a recent play weight
-
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
@@ -92,7 +86,7 @@ namespace EA4S
 
                 // Score Weight [0,1]: higher the lower the score [-1,1] is
                 var scoreWeight = 0.5f * (1 - currentWordScore);
-                cumulativeWeight += scoreWeight * SCORE_WEIGHT;
+                cumulativeWeight += scoreWeight * ConfigAI.word_scoreWeight;
 
                 // Always skip letters that have a score weight of zero
                 if (scoreWeight == 0)
@@ -101,10 +95,10 @@ namespace EA4S
                 }
 
                 // RecentPlay Weight  [1,0]: higher the more in the past we saw that word
-                const float dayLinerWeightDecrease = 1f / DAYS_FOR_MAXIMUM_RECENT_PLAY_MALUS;
+                const float dayLinerWeightDecrease = 1f / ConfigAI.daysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
-                cumulativeWeight += recentPlayWeight * RECENT_PLAY_WEIGHT;
+                cumulativeWeight += recentPlayWeight * ConfigAI.word_recentPlayWeight;
 
                 //UnityEngine.Debug.Log("Word " + word_Id + " score: " + currentWordScore + " days " + daysSinceLastScore);
 
