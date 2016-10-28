@@ -10,6 +10,11 @@ namespace EA4S.Db
         public string Title;
         public RewardCategory Category;
 
+        public override string ToString()
+        {
+            return Id + ": " + Title;
+        }
+
         public string GetId()
         {
             return Id;
