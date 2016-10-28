@@ -10,14 +10,13 @@ namespace EA4S.MissingLetter
 {
     public class MissingLetterGame : MiniGame
     {
+        public GameObject mLetterPrefab;
+        public GameObject mAnturaRef;
 
         public TextMeshProUGUI timerText;
 
-        public GameObject mLetterPrefab;
-
         public Transform mQuestionCamera;
         public Transform mAnswerCamera;
-
 
         public float mQuestionINOffset = 20;
         public float mQuestionOUTOffset = -30;
@@ -29,8 +28,7 @@ namespace EA4S.MissingLetter
 
         public int mNumberOfPossibleAnswers = 4;
 
-        //[SerializeField]
-        //private float m_kfDistanceBetweenLetters = 8.0f;
+        public float mfDistanceBetweenLetters = 8.0f;
 
         [HideInInspector]
         public RoundManager m_RoundManager;
@@ -98,6 +96,7 @@ namespace EA4S.MissingLetter
 
         public void OnResult(bool result)
         {
+            Context.GetCheckmarkWidget().Show(result);
             mCurrentRound++;
 
             if (mCurrentRound >= mRoundsLimit)
