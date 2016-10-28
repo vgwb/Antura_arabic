@@ -25,26 +25,5 @@ namespace EA4S.Db.Management
             return data;
         }
 
-        //// DEPRECATED: no more parents
-        //private void ValidateParent(MiniGameData data, object json_object)
-        //{
-        //    if ((string)json_object != "") // Empty is fine
-        //    {
-        //        // We try to parse the parent as a MiniGameCode enum, triggering validation if this cannot be done.
-        //        ParseEnum<MiniGameCode>(data, json_object);
-        //    }
-        //}
-
-        //// DEPRECATED: no more status
-        //private void ValidateStatus(MiniGameData data, object json_object)
-        //{
-        //    // Status must be one of a given list
-        //    string target_string = ToString(json_object);
-        //    List<string> correct_strings = new List<string> { "", "dev", "standby", "active" };
-        //    if (!correct_strings.Contains(target_string)) {
-        //        LogValidation(data, "Status value is not among the avaliable ones (" + target_string + " found)");
-        //    }
-        //}
-
     }
 }

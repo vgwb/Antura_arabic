@@ -18,7 +18,6 @@ namespace EA4S.Db.Management
             // TODO: should instead be an array of ID, but we need to solve the european-to-arabic matching!
             data.Letters = new string[] { (string)(dict["Letters"]) }; // ParseIDArray<LetterData, LetterTable>(data, (string)(dict["Letters"]), db.letterTable);
 
-            data.Transliteration = ToString(dict["Transliteration"]);
             data.Difficulty = ToInt(dict["Difficulty"]);
             data.Drawing = ToInt(dict["Drawing"]);
 

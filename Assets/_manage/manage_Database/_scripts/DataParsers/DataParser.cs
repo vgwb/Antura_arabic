@@ -41,6 +41,17 @@ namespace EA4S.Db.Management
             return parsed_enum;
         }
 
+        protected string ParseID<OtherD, OtherDTable>(D data, string id_string, OtherDTable table) where OtherDTable : SerializableDataTable<OtherD> where OtherD : IData
+        {
+            id_string = id_string.Trim(); // remove spaces
+            var value = table.GetValue(id_string);
+            if (value == null)
+            {
+                LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + id_string);
+            }
+            return id_string;
+        }
+
         protected string[] ParseIDArray<OtherD, OtherDTable>(D data, string array_string, OtherDTable table) where OtherDTable : SerializableDataTable<OtherD> where OtherD : IData
         {
             if (table == null) {
@@ -49,11 +60,11 @@ namespace EA4S.Db.Management
 
             var array = array_string.Split(',');
             if (array_string == "") return new string[0];  // skip if empty (could happen if the string was empty)    
-            foreach (var vi in array) {
-                var v = vi.Trim(); // remove spaces
-                var value = table.GetValue(v);
+            foreach (var id_string in array) {
+                var id_string_trimmed = id_string.Trim(); // remove spaces
+                var value = table.GetValue(id_string_trimmed);
                 if (value == null) {
-                    LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + v);
+                    LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + id_string);
                 }
             }
             return array;
