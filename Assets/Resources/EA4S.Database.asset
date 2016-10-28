@@ -416,23 +416,7 @@ MonoBehaviour:
       Scene: app_Assessment
   letterTable:
     innerList:
-    - Id: alef
-      Number: 1
-      Title: alif
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 0
-      Sound: aa
-      Isolated: "\u0627"
-      Initial: "\u0627"
-      Medial: "\uFE8E"
-      Final: "\uFE8E"
-      Isolated_Unicode: 0627
-      Initial_Unicode: FE8D
-      Medial_Unicode: FE8E
-      Final_Unicode: FE8E
-    - Id: beh
+    - Id: baa
       Number: 2
       Title: "b\u0101\u2019"
       Kind: 1
@@ -448,39 +432,7 @@ MonoBehaviour:
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-    - Id: teh
-      Number: 3
-      Title: "t\u0101\u2019"
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 1
-      Sound: t
-      Isolated: "\u062A\u200E"
-      Initial: "\u062A\u0640\u200E"
-      Medial: "\u0640\u062A\u0640\u200E"
-      Final: "\u0640\u062A\u200E"
-      Isolated_Unicode: 062A
-      Initial_Unicode: FE97
-      Medial_Unicode: FE98
-      Final_Unicode: FE96
-    - Id: the
-      Number: 4
-      Title: "th\u0101\u2019"
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 1
-      Sound: th
-      Isolated: "\u062B\u200E"
-      Initial: "\u062B\u0640\u200E"
-      Medial: "\u0640\u062B\u0640\u200E"
-      Final: "\u0640\u062B\u200E"
-      Isolated_Unicode: 062B
-      Initial_Unicode: FE9B
-      Medial_Unicode: FE9C
-      Final_Unicode: FE9A
-    - Id: jeem
+    - Id: jiim
       Number: 5
       Title: "j\u012Bm"
       Kind: 1
@@ -512,7 +464,7 @@ MonoBehaviour:
       Initial_Unicode: FEA3
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
-    - Id: khah
+    - Id: khaa
       Number: 7
       Title: "kh\u0101\u2019"
       Kind: 1
@@ -528,7 +480,151 @@ MonoBehaviour:
       Initial_Unicode: FEA7
       Medial_Unicode: FEA8
       Final_Unicode: FEA6
-    - Id: dal
+    - Id: ayn
+      Number: 18
+      Title: "\u2018ayn"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 2
+      Sound: x
+      Isolated: "\u0639\u200E"
+      Initial: "\u0639\u0640\u200E"
+      Medial: "\u0640\u0639\u0640\u200E"
+      Final: "\u0640\u0639\u200E"
+      Isolated_Unicode: 0639
+      Initial_Unicode: FECB
+      Medial_Unicode: FECC
+      Final_Unicode: FECA
+    - Id: ghayn
+      Number: 19
+      Title: ghayn
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 2
+      Sound: gh
+      Isolated: "\u063A\u200E"
+      Initial: "\u063A\u0640\u200E"
+      Medial: "\u0640\u063A\u0640\u200E"
+      Final: "\u0640\u063A\u200E"
+      Isolated_Unicode: 063A
+      Initial_Unicode: FECF
+      Medial_Unicode: FED0
+      Final_Unicode: FECE
+    - Id: faa
+      Number: 20
+      Title: "f\u0101\u2019"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 2
+      Sound: f
+      Isolated: "\u0641\u200E"
+      Initial: "\u0641\u0640\u200E"
+      Medial: "\u0640\u0641\u0640\u200E"
+      Final: "\u0640\u0641\u200E"
+      Isolated_Unicode: 0641
+      Initial_Unicode: FED3
+      Medial_Unicode: FED4
+      Final_Unicode: FED2
+    - Id: qaaf
+      Number: 21
+      Title: "q\u0101f"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 2
+      Sound: q
+      Isolated: "\u0642\u200E"
+      Initial: "\u0642\u0640\u200E"
+      Medial: "\u0640\u0642\u0640\u200E"
+      Final: "\u0640\u0642\u200E"
+      Isolated_Unicode: 0642
+      Initial_Unicode: FED7
+      Medial_Unicode: FED8
+      Final_Unicode: FED6
+    - Id: kaaf
+      Number: 22
+      Title: "k\u0101f"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 2
+      Sound: k
+      Isolated: "\u0643\u200E"
+      Initial: "\u0643\u0640\u200E"
+      Medial: "\u0640\u0643\u0640\u200E"
+      Final: "\u0640\u0643\u200E"
+      Isolated_Unicode: 0643
+      Initial_Unicode: FEDB
+      Medial_Unicode: FEDC
+      Final_Unicode: FEDA
+    - Id: miim
+      Number: 24
+      Title: "m\u012Bm"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 2
+      Sound: m
+      Isolated: "\u0645\u200E"
+      Initial: "\u0645\u0640\u200E"
+      Medial: "\u0640\u0645\u0640\u200E"
+      Final: "\u0640\u0645\u200E"
+      Isolated_Unicode: 0645
+      Initial_Unicode: FEE3
+      Medial_Unicode: FEE4
+      Final_Unicode: FEE2
+    - Id: haa
+      Number: 26
+      Title: "h\u0101\u2019"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 2
+      Sound: h
+      Isolated: "\u0647\u200E"
+      Initial: "\u0647\u0640\u200E"
+      Medial: "\u0640\u0647\u0640\u200E"
+      Final: "\u0640\u0647\u200E"
+      Isolated_Unicode: 0647
+      Initial_Unicode: FEEB
+      Medial_Unicode: FEEC
+      Final_Unicode: FEEA
+    - Id: tah
+      Number: 3
+      Title: "t\u0101\u2019"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 1
+      Sound: t
+      Isolated: "\u062A\u200E"
+      Initial: "\u062A\u0640\u200E"
+      Medial: "\u0640\u062A\u0640\u200E"
+      Final: "\u0640\u062A\u200E"
+      Isolated_Unicode: 062A
+      Initial_Unicode: FE97
+      Medial_Unicode: FE98
+      Final_Unicode: FE96
+    - Id: thaa
+      Number: 4
+      Title: "th\u0101\u2019"
+      Kind: 1
+      Type: 2
+      Notes: 
+      SunMoon: 1
+      Sound: th
+      Isolated: "\u062B\u200E"
+      Initial: "\u062B\u0640\u200E"
+      Medial: "\u0640\u062B\u0640\u200E"
+      Final: "\u0640\u062B\u200E"
+      Isolated_Unicode: 062B
+      Initial_Unicode: FE9B
+      Medial_Unicode: FE9C
+      Final_Unicode: FE9A
+    - Id: daal
       Number: 8
       Title: "d\u0101l"
       Kind: 1
@@ -544,7 +640,7 @@ MonoBehaviour:
       Initial_Unicode: FEA9
       Medial_Unicode: FEAA
       Final_Unicode: FEAA
-    - Id: thal
+    - Id: dhaal
       Number: 9
       Title: "dh\u0101l"
       Kind: 1
@@ -560,7 +656,7 @@ MonoBehaviour:
       Initial_Unicode: FEAB
       Medial_Unicode: FEAC
       Final_Unicode: FEAC
-    - Id: reh
+    - Id: raa
       Number: 10
       Title: "r\u0101\u2019"
       Kind: 1
@@ -592,7 +688,7 @@ MonoBehaviour:
       Initial_Unicode: FEAF
       Medial_Unicode: FEB0
       Final_Unicode: FEB0
-    - Id: seen
+    - Id: siin
       Number: 12
       Title: "s\u012Bn"
       Kind: 1
@@ -608,7 +704,7 @@ MonoBehaviour:
       Initial_Unicode: FEB3
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
-    - Id: sheen
+    - Id: shiin
       Number: 13
       Title: "sh\u012Bn"
       Kind: 1
@@ -624,12 +720,12 @@ MonoBehaviour:
       Initial_Unicode: FEB7
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
-    - Id: sad
+    - Id: saad
       Number: 14
       Title: "\u1E63\u0101d"
       Kind: 1
       Type: 3
-      Notes: 
+      Notes: Consonant
       SunMoon: 1
       Sound: S
       Isolated: "\u0635\u200E"
@@ -640,12 +736,12 @@ MonoBehaviour:
       Initial_Unicode: FEBB
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
-    - Id: dad
+    - Id: daad
       Number: 15
       Title: "\u1E0D\u0101d"
       Kind: 1
       Type: 3
-      Notes: 
+      Notes: Consonant
       SunMoon: 1
       Sound: D
       Isolated: "\u0636\u200E"
@@ -656,12 +752,12 @@ MonoBehaviour:
       Initial_Unicode: FEBF
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
-    - Id: tah
+    - Id: taa
       Number: 16
       Title: "\u1E6D\u0101\u2019"
       Kind: 1
       Type: 3
-      Notes: 
+      Notes: Consonant
       SunMoon: 1
       Sound: T
       Isolated: "\u0637\u200E"
@@ -672,12 +768,12 @@ MonoBehaviour:
       Initial_Unicode: FEC3
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
-    - Id: zah
+    - Id: dhaa
       Number: 17
-      Title: "\u1E93\u0101\u2019"
+      Title: "\u1E0Dh\u0101\u2019"
       Kind: 1
       Type: 3
-      Notes: 
+      Notes: Consonant
       SunMoon: 1
       Sound: DH
       Isolated: "\u0638\u200E"
@@ -688,87 +784,7 @@ MonoBehaviour:
       Initial_Unicode: FEC7
       Medial_Unicode: FEC8
       Final_Unicode: FEC6
-    - Id: ain
-      Number: 18
-      Title: "\u2018ayn"
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 2
-      Sound: x
-      Isolated: "\u0639\u200E"
-      Initial: "\u0639\u0640\u200E"
-      Medial: "\u0640\u0639\u0640\u200E"
-      Final: "\u0640\u0639\u200E"
-      Isolated_Unicode: 0639
-      Initial_Unicode: FECB
-      Medial_Unicode: FECC
-      Final_Unicode: FECA
-    - Id: ghain
-      Number: 19
-      Title: ghayn
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 2
-      Sound: gh
-      Isolated: "\u063A\u200E"
-      Initial: "\u063A\u0640\u200E"
-      Medial: "\u0640\u063A\u0640\u200E"
-      Final: "\u0640\u063A\u200E"
-      Isolated_Unicode: 063A
-      Initial_Unicode: FECF
-      Medial_Unicode: FED0
-      Final_Unicode: FECE
-    - Id: feh
-      Number: 20
-      Title: "f\u0101\u2019"
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 2
-      Sound: f
-      Isolated: "\u0641\u200E"
-      Initial: "\u0641\u0640\u200E"
-      Medial: "\u0640\u0641\u0640\u200E"
-      Final: "\u0640\u0641\u200E"
-      Isolated_Unicode: 0641
-      Initial_Unicode: FED3
-      Medial_Unicode: FED4
-      Final_Unicode: FED2
-    - Id: qaf
-      Number: 21
-      Title: "q\u0101f"
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 2
-      Sound: q
-      Isolated: "\u0642\u200E"
-      Initial: "\u0642\u0640\u200E"
-      Medial: "\u0640\u0642\u0640\u200E"
-      Final: "\u0640\u0642\u200E"
-      Isolated_Unicode: 0642
-      Initial_Unicode: FED7
-      Medial_Unicode: FED8
-      Final_Unicode: FED6
-    - Id: kaf
-      Number: 22
-      Title: "k\u0101f"
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 2
-      Sound: k
-      Isolated: "\u0643\u200E"
-      Initial: "\u0643\u0640\u200E"
-      Medial: "\u0640\u0643\u0640\u200E"
-      Final: "\u0640\u0643\u200E"
-      Isolated_Unicode: 0643
-      Initial_Unicode: FEDB
-      Medial_Unicode: FEDC
-      Final_Unicode: FEDA
-    - Id: lam
+    - Id: laam
       Number: 23
       Title: "l\u0101m"
       Kind: 1
@@ -784,23 +800,7 @@ MonoBehaviour:
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
-    - Id: meem
-      Number: 24
-      Title: "m\u012Bm"
-      Kind: 1
-      Type: 2
-      Notes: 
-      SunMoon: 2
-      Sound: m
-      Isolated: "\u0645\u200E"
-      Initial: "\u0645\u0640\u200E"
-      Medial: "\u0640\u0645\u0640\u200E"
-      Final: "\u0640\u0645\u200E"
-      Isolated_Unicode: 0645
-      Initial_Unicode: FEE3
-      Medial_Unicode: FEE4
-      Final_Unicode: FEE2
-    - Id: noon
+    - Id: nuun
       Number: 25
       Title: "n\u016Bn"
       Kind: 1
@@ -816,23 +816,23 @@ MonoBehaviour:
       Initial_Unicode: FEE7
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
-    - Id: heh
-      Number: 26
-      Title: "h\u0101\u2019"
+    - Id: alef
+      Number: 1
+      Title: alif
       Kind: 1
-      Type: 2
+      Type: 1
       Notes: 
-      SunMoon: 2
-      Sound: h
-      Isolated: "\u0647\u200E"
-      Initial: "\u0647\u0640\u200E"
-      Medial: "\u0640\u0647\u0640\u200E"
-      Final: "\u0640\u0647\u200E"
-      Isolated_Unicode: 0647
-      Initial_Unicode: FEEB
-      Medial_Unicode: FEEC
-      Final_Unicode: FEEA
-    - Id: waw
+      SunMoon: 0
+      Sound: aa
+      Isolated: "\u0627"
+      Initial: "\u0627"
+      Medial: "\uFE8E"
+      Final: "\uFE8E"
+      Isolated_Unicode: 0627
+      Initial_Unicode: FE8D
+      Medial_Unicode: FE8E
+      Final_Unicode: FE8E
+    - Id: waaw
       Number: 27
       Title: "w\u0101w"
       Kind: 1
@@ -848,7 +848,7 @@ MonoBehaviour:
       Initial_Unicode: FEED
       Medial_Unicode: FEEE
       Final_Unicode: FEEE
-    - Id: yeh
+    - Id: yaa
       Number: 28
       Title: "y\u0101\u2019"
       Kind: 1
@@ -865,9 +865,9 @@ MonoBehaviour:
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
     - Id: alef_hamza_hi
-      Number: 29
+      Number: 0
       Title: alef hamza (hi)
-      Kind: 2
+      Kind: 0
       Type: 1
       Notes: variation of Alef
       SunMoon: 0
@@ -881,9 +881,9 @@ MonoBehaviour:
       Medial_Unicode: FE84
       Final_Unicode: FE84
     - Id: alef_hamza_low
-      Number: 29
+      Number: 0
       Title: alef hamza (low)
-      Kind: 2
+      Kind: 0
       Type: 1
       Notes: variation of Alef
       SunMoon: 0
@@ -896,6 +896,54 @@ MonoBehaviour:
       Initial_Unicode: FE83
       Medial_Unicode: FE84
       Final_Unicode: FE84
+    - Id: waaw_hamza
+      Number: 0
+      Title: 
+      Kind: 0
+      Type: 0
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: "\u0624"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 0676
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: yaa_hamza
+      Number: 0
+      Title: 
+      Kind: 0
+      Type: 0
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: "\u064A\u0621"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: alef_maqsura_hamza
+      Number: 0
+      Title: 
+      Kind: 0
+      Type: 0
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: "\u0626"
+      Initial: "\uFE8B"
+      Medial: 
+      Final: 
+      Isolated_Unicode: FE89
+      Initial_Unicode: FE8B
+      Medial_Unicode: FE8C
+      Final_Unicode: FE8A
     - Id: fathah
       Number: 0
       Title: "fat\u1E25ah"
@@ -948,7 +996,7 @@ MonoBehaviour:
       Number: 0
       Title: maddah
       Kind: 3
-      Type: 5
+      Type: 0
       Notes: applied just on the long vowel Alef
       SunMoon: 0
       Sound: aa
@@ -964,11 +1012,11 @@ MonoBehaviour:
       Number: 0
       Title: hamza
       Kind: 3
-      Type: 5
+      Type: 0
       Notes: applied just on the long vowels Alef, waaw, and yaa
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0621"
       Initial: 
       Medial: 
       Final: 
@@ -992,7 +1040,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: fathah tanwin
+    - Id: fathah_tanwin
       Number: 0
       Title: "fat\u1E25ah tanwin"
       Kind: 3
@@ -1008,7 +1056,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: dammah tanwin
+    - Id: dammah_tanwin
       Number: 0
       Title: dammah tanwin
       Kind: 3
@@ -1024,7 +1072,7 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: kasrah tanwin
+    - Id: kasrah_tanwin
       Number: 0
       Title: kasrah tanwin
       Kind: 3
@@ -1056,11 +1104,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: alef_maqSura
+    - Id: alef_maqsura
       Number: 0
-      Title: alef maqSura
+      Title: alef maqsura
       Kind: 2
-      Type: 5
+      Type: 0
       Notes: dotless yaa
       SunMoon: 0
       Sound: a
@@ -1072,11 +1120,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: taa_marbuTa
+    - Id: tah_marbuta
       Number: 0
-      Title: taa marbuTa
+      Title: taa marbuta
       Kind: 2
-      Type: 5
+      Type: 0
       Notes: variation of taa
       SunMoon: 0
       Sound: a
@@ -1088,11 +1136,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: laa
+    - Id: laam_alef
       Number: 0
-      Title: laa
-      Kind: 2
-      Type: 6
+      Title: laam alef
+      Kind: 0
+      Type: 0
       Notes: combination of laam & alef together
       SunMoon: 0
       Sound: laa
@@ -1100,60 +1148,19 @@ MonoBehaviour:
       Initial: 
       Medial: 
       Final: "\uFEFC"
-      Isolated_Unicode: 
+      Isolated_Unicode: FEFB
       Initial_Unicode: 
       Medial_Unicode: 
-      Final_Unicode: 
-    - Id: waw_diph
-      Number: 0
-      Title: "w\u0101w diph"
-      Kind: 4
-      Type: 0
-      Notes: "variation w\u0101w"
-      SunMoon: 0
-      Sound: aw
-      Isolated: 
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: yeh_diph
-      Number: 0
-      Title: "y\u0101\u2019 diph"
-      Kind: 4
-      Type: 0
-      Notes: "variation of y\u0101\u2019"
-      SunMoon: 0
-      Sound: ay
-      Isolated: 
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
+      Final_Unicode: FEFC
   wordTable:
     innerList:
-    - Id: sun
-      Kind: 0
-      Category: 8
-      Arabic: "\u0634\u0645\u0633"
-      Letters:
-      - 
-      Transliteration: 
-      Difficulty: 0
-      Drawing: 0
     - Id: active
       Kind: 0
       Category: 0
       Arabic: "\u0646\u0634\u064A\u0637"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0646\u0640 \u0640\u0634\u0640 \u0640\u064A\u0640 \u0640\u0637"
+      Transliteration: nasheet
       Difficulty: 0
       Drawing: 0
     - Id: agreed
@@ -1161,8 +1168,17 @@ MonoBehaviour:
       Category: 0
       Arabic: "\u0648\u0627\u0641\u064E\u0642\u064E"
       Letters:
+      - "\u0648 \u0627 \u0641\u0640\u064E \u0640\u0642\u064E"
+      Transliteration: wafaqa
+      Difficulty: 0
+      Drawing: 0
+    - Id: al
+      Kind: 0
+      Category: 0
+      Arabic: "\u0627\u0644\u0640"
+      Letters:
       - 
-      Transliteration: 
+      Transliteration: al
       Difficulty: 0
       Drawing: 0
     - Id: anger
@@ -1170,13 +1186,13 @@ MonoBehaviour:
       Category: 0
       Arabic: "\u063A\u064A\u0638"
       Letters:
-      - 
-      Transliteration: 
+      - "\u063A\u0640 \u0640\u064A\u0640 \u0640\u0638"
+      Transliteration: ghayDH
       Difficulty: 0
       Drawing: 0
     - Id: apple
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u062A\u0641\u0627\u062D"
       Letters:
       - "\u062A\u0640 \u0640\u0641\u0640 \u0640\u0627 \u062D"
@@ -1185,7 +1201,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: apricot
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u0645\u0634\u0645\u0634"
       Letters:
       - "\u0645\u0640 \u0640\u0634\u0640 \u0640\u0645\u0640 \u0640\u0634"
@@ -1197,13 +1213,13 @@ MonoBehaviour:
       Category: 0
       Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0623\u064E \u0643\u0640\u064E \u0640\u0644\u064E "
+      Transliteration: akala
       Difficulty: 0
       Drawing: 0
     - Id: aunt_father
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0639\u0645\u0629"
       Letters:
       - "\u0639\u0640 \u0640\u0645\u0640 \u0640\u0629"
@@ -1212,7 +1228,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: aunt_mother
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u062E\u0627\u0644\u0629"
       Letters:
       - "\u062E\u0640 \u0627 \u0644\u0640 \u0640\u0629"
@@ -1221,7 +1237,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: back
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0638\u0647\u0631"
       Letters:
       - "\u0638\u0640 \u0640\u0647\u0640 \u0640\u0631"
@@ -1230,7 +1246,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: banana
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u0645\u0648\u0632"
       Letters:
       - "\u0645\u0640 \u0640\u0648 \u0632"
@@ -1239,25 +1255,26 @@ MonoBehaviour:
       Drawing: 1
     - Id: bank
       Kind: 0
-      Category: 0
+      Category: 10
       Arabic: "\u0645\u0635\u0631\u0641"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u0643"
+      Transliteration: bank
       Difficulty: 0
       Drawing: 0
     - Id: basketball
       Kind: 0
-      Category: 0
+      Category: 11
       Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0633\u0644\u0629"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0643\u0640 \u0640\u0631 \u0629  \u0627 \u0644\u0640 \u0640\u0633\u0640
+        \u0640\u0644\u0640 \u0640\u0629"
+      Transliteration: kurat assalla
       Difficulty: 0
       Drawing: 0
     - Id: bear
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u062F\u0628"
       Letters:
       - "\u062F \u0628"
@@ -1269,17 +1286,17 @@ MonoBehaviour:
       Category: 0
       Arabic: "\u062C\u0645\u064A\u0644"
       Letters:
-      - 
-      Transliteration: 
+      - "\u062C\u0640 \u0640\u0645\u0640 \u0640\u064A\u0640 \u0640\u0644"
+      Transliteration: jameel
       Difficulty: 0
       Drawing: 0
     - Id: bed
       Kind: 0
-      Category: 0
+      Category: 12
       Arabic: "\u0641\u0631\u0627\u0634"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0641\u0640 \u0640\u0631 \u0627 \u0634"
+      Transliteration: firash
       Difficulty: 0
       Drawing: 0
     - Id: believed
@@ -1287,13 +1304,13 @@ MonoBehaviour:
       Category: 0
       Arabic: "\u0622\u0645\u064E\u0646\u064E"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0622 \u0645\u0640 \u0640\u0646"
+      Transliteration: aamana
       Difficulty: 0
       Drawing: 0
     - Id: belly
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0628\u0637\u0646"
       Letters:
       - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0646"
@@ -1302,11 +1319,11 @@ MonoBehaviour:
       Drawing: 0
     - Id: berry
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u062A\u0648\u062A"
       Letters:
       - "\u062A\u0640 \u0640\u0648 \u062A"
-      Transliteration: tut
+      Transliteration: tuut
       Difficulty: 1
       Drawing: 0
     - Id: big
@@ -1314,35 +1331,35 @@ MonoBehaviour:
       Category: 0
       Arabic: "\u0643\u0628\u064A\u0631"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0643\u0640 \u0640\u0628\u0640 \u0640\u064A\u0640 \u0640\u0631"
+      Transliteration: kabeer
       Difficulty: 0
       Drawing: 0
     - Id: bird
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0639\u0635\u0641\u0648\u0631"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0639\u0640 \u0640\u0635\u0640 \u0640\u0641\u0640 \u0640\u0648 \u0631"
+      Transliteration: asfuur
       Difficulty: 0
       Drawing: 0
     - Id: book
       Kind: 0
-      Category: 0
+      Category: 12
       Arabic: "\u0643\u062A\u0627\u0628"
       Letters:
       - "\u0643\u0640 \u0640\u062A\u0640 \u0640\u0627 \u0628"
-      Transliteration: kitaa
+      Transliteration: kitaab
       Difficulty: 0
       Drawing: 0
     - Id: books
       Kind: 0
-      Category: 0
+      Category: 12
       Arabic: "\u0643\u064F\u062A\u064F\u0628"
       Letters:
-      - 
-      Transliteration: 
+      - "\u0643\u064F\u0640 \u0640\u062A\u0640\u064F \u0640\u0628"
+      Transliteration: kutub
       Difficulty: 0
       Drawing: 0
     - Id: box
@@ -1351,12 +1368,12 @@ MonoBehaviour:
       Arabic: "\u0635\u0646\u062F\u0648\u0642"
       Letters:
       - 
-      Transliteration: 
+      Transliteration: sunduuq
       Difficulty: 0
       Drawing: 0
     - Id: boy
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0635\u0628\u064A"
       Letters:
       - "\u0635\u0640 \u0640\u0628\u0640 \u0640\u064A"
@@ -1383,7 +1400,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: bread
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u062E\u0628\u0632"
       Letters:
       - "\u062E\u0640 \u0640\u0628\u0640 \u0640\u0632"
@@ -1410,7 +1427,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: brother
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0623\u062E"
       Letters:
       - "\u0623 \u062E"
@@ -1428,7 +1445,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: bus
       Kind: 0
-      Category: 0
+      Category: 15
       Arabic: "\u0628\u0627\u0635"
       Letters:
       - 
@@ -1437,7 +1454,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: camel
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u062C\u0645\u0644\u064D"
       Letters:
       - 
@@ -1446,7 +1463,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: carpenter
       Kind: 0
-      Category: 0
+      Category: 7
       Arabic: "\u0646\u062C\u0651\u0627\u0631"
       Letters:
       - 
@@ -1464,7 +1481,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: carrot
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u062C\u0632\u0631"
       Letters:
       - 
@@ -1473,7 +1490,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: cat
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0647\u0631"
       Letters:
       - "\u0647\u0640 \u0640\u0631"
@@ -1491,7 +1508,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: chair
       Kind: 0
-      Category: 0
+      Category: 12
       Arabic: "\u0643\u0631\u0633\u064A"
       Letters:
       - 
@@ -1500,7 +1517,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: cheese
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u062C\u0628\u0646"
       Letters:
       - "\u062C\u0640 \u0640\u0628\u0640 \u0640\u0646"
@@ -1509,7 +1526,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: cherry
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u0643\u0631\u0632"
       Letters:
       - "\u0643\u0640 \u0640\u0631 \u0632"
@@ -1518,7 +1535,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: chest
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0635\u062F\u0631"
       Letters:
       - "\u0635\u0640 \u0640\u062F \u0631"
@@ -1581,7 +1598,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: cold_food
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0628\u0627\u0631\u062F"
       Letters:
       - "\u0628\u0640 \u0640\u0627 \u0631 \u062F"
@@ -1590,7 +1607,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_black
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0623\u0633\u0648\u062F"
       Letters:
       - 
@@ -1599,7 +1616,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_blue
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0623\u0632\u0631\u0642"
       Letters:
       - 
@@ -1608,7 +1625,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_brown
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0628\u064F\u0646\u064A"
       Letters:
       - 
@@ -1617,7 +1634,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_gold
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0630\u0647\u0628\u064A"
       Letters:
       - 
@@ -1626,7 +1643,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_green
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0623\u062E\u0636\u0631"
       Letters:
       - 
@@ -1635,7 +1652,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_orange
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
       Letters:
       - 
@@ -1644,7 +1661,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_pink
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0648\u0631\u062F\u064A"
       Letters:
       - 
@@ -1653,7 +1670,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_purple
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0628\u0646\u0641\u0633\u062C\u064A"
       Letters:
       - 
@@ -1662,7 +1679,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_red
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0623\u062D\u0645\u0631"
       Letters:
       - 
@@ -1671,7 +1688,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_silver
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0641\u0636\u064A"
       Letters:
       - 
@@ -1680,7 +1697,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_white
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0623\u0628\u064A\u0636"
       Letters:
       - 
@@ -1689,7 +1706,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: color_yellow
       Kind: 0
-      Category: 0
+      Category: 3
       Arabic: "\u0623\u0635\u0641\u0631"
       Letters:
       - 
@@ -1698,8 +1715,8 @@ MonoBehaviour:
       Drawing: 0
     - Id: copybook
       Kind: 0
-      Category: 0
-      Arabic: "\u062F\u0641\u062A\u0631"
+      Category: 12
+      Arabic: "\u062F\u0641\u062A\u064E\u0631"
       Letters:
       - "\u062F \u0641\u0640 \u0640\u062A\u0640 \u0640\u0631"
       Transliteration: daftar
@@ -1725,7 +1742,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: cucumber
       Kind: 0
-      Category: 0
+      Category: 14
       Arabic: "\u062E\u064A\u0627\u0631"
       Letters:
       - "\u062E\u0640 \u0640\u064A\u0640 \u0640\u0627 \u0631"
@@ -1743,7 +1760,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u064A\u0648\u0645"
       Letters:
       - "\u064A\u0640 \u0640\u0648 \u0645"
@@ -1752,7 +1769,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day_friday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u062C\u0645\u0639\u0629"
       Letters:
       - 
@@ -1761,7 +1778,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day_monday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u0627\u062B\u0646\u064A\u0646"
       Letters:
       - 
@@ -1770,7 +1787,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day_saturday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u0633\u0628\u062A"
       Letters:
       - 
@@ -1779,7 +1796,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day_sunday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u0623\u062D\u062F"
       Letters:
       - 
@@ -1788,7 +1805,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day_thursday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u062E\u0645\u064A\u0633"
       Letters:
       - 
@@ -1797,7 +1814,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day_tuesday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u0627\u0621"
       Letters:
       - 
@@ -1806,7 +1823,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: day_wednesday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
       Letters:
       - 
@@ -1815,7 +1832,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: deer
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u063A\u0632\u0627\u0644"
       Letters:
       - 
@@ -1824,7 +1841,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: delicious
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u062D\u0644\u0648"
       Letters:
       - "\u062D\u0640 \u0640\u0644\u0640 \u0640\u0648"
@@ -1833,8 +1850,8 @@ MonoBehaviour:
       Drawing: 0
     - Id: doctor
       Kind: 0
-      Category: 0
-      Arabic: "\u0637\u0628\u064A\u0628"
+      Category: 7
+      Arabic: "\u0637\u064E\u0628\u064A\u0628"
       Letters:
       - 
       Transliteration: 
@@ -1842,7 +1859,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: dog
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0643\u0644\u0628"
       Letters:
       - "\u0643\u0640 \u0640\u0644\u0640 \u0640\u0628"
@@ -1869,7 +1886,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: duck
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0628\u0637"
       Letters:
       - 
@@ -1878,7 +1895,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: eagle
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0646\u0633\u0631"
       Letters:
       - "\u0646\u0640 \u0640\u0633\u0640 \u0640\u0631"
@@ -1887,7 +1904,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: ear
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0627\u062F\u0646"
       Letters:
       - "\u0627 \u062F \u0646"
@@ -1896,7 +1913,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: elephant
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0641\u064A\u0644"
       Letters:
       - 
@@ -1914,7 +1931,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: eye
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0639\u064A\u0646"
       Letters:
       - "\u0639\u0640 \u0640\u064A\u0640 \u0640\u0646"
@@ -1923,7 +1940,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: face
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0648\u062C\u0647"
       Letters:
       - "\u0648 \u062C\u0640 \u0640\u0647"
@@ -1950,7 +1967,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: father
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0628\u0627\u0628\u0627"
       Letters:
       - "\u0628\u0640 \u0627 \u0628\u0640 \u0627"
@@ -1968,7 +1985,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: fig
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u062A\u064A\u0646"
       Letters:
       - "\u062A\u0640 \u0640\u064A\u0640 \u0640\u0646"
@@ -1987,7 +2004,7 @@ MonoBehaviour:
     - Id: flag
       Kind: 0
       Category: 0
-      Arabic: "\u0639\u064E\u0644\u064E\u0645"
+      Arabic: "\u0639\u0644\u064E\u0645"
       Letters:
       - 
       Transliteration: 
@@ -2013,7 +2030,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: flower
       Kind: 0
-      Category: 0
+      Category: 8
       Arabic: "\u0648\u0631\u062F"
       Letters:
       - "\u0648 \u0631 \u062F"
@@ -2022,7 +2039,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: food
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0623\u0643\u0644"
       Letters:
       - "\u0623 \u0643\u0640 \u0640\u0644"
@@ -2031,7 +2048,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: foot
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0631\u062C\u0644"
       Letters:
       - "\u0631 \u062C\u0640 \u0640\u0644"
@@ -2050,7 +2067,7 @@ MonoBehaviour:
     - Id: forest
       Kind: 0
       Category: 0
-      Arabic: "\u063A\u0627\u0628\u0629"
+      Arabic: "\u063A\u0627\u0628\u0629\u064C"
       Letters:
       - 
       Transliteration: 
@@ -2085,7 +2102,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: garlic
       Kind: 0
-      Category: 0
+      Category: 14
       Arabic: "\u062B\u0648\u0645"
       Letters:
       - "\u062B\u0640 \u0640\u0648 \u0645"
@@ -2094,7 +2111,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: girl
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0628\u0646\u062A"
       Letters:
       - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062A"
@@ -2104,7 +2121,7 @@ MonoBehaviour:
     - Id: glue
       Kind: 0
       Category: 0
-      Arabic: "\u0635\u0645\u063A"
+      Arabic: "\u0635\u064E\u0645\u063A"
       Letters:
       - 
       Transliteration: 
@@ -2112,7 +2129,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: granddaughter
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u062D\u0641\u064A\u062F\u0629"
       Letters:
       - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F \u0629"
@@ -2121,7 +2138,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: grandfather
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u062C\u062F\u0648"
       Letters:
       - "\u062C\u0640 \u0640\u062F \u0648"
@@ -2130,7 +2147,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: grandmother
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0646\u0627\u0646\u0627"
       Letters:
       - "\u0646\u0640 \u0627 \u0646\u0640 \u0627"
@@ -2139,7 +2156,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: grandson
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u062D\u0641\u064A\u062F"
       Letters:
       - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F"
@@ -2148,7 +2165,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: grapes
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u0639\u0646\u0628"
       Letters:
       - "\u0639\u0640 \u0640\u0646\u0640 \u0640\u0628"
@@ -2166,7 +2183,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: hair
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0634\u0639\u0631"
       Letters:
       - "\u0634\u0640 \u0640\u0639\u0640 \u0640\u0631"
@@ -2175,7 +2192,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: hand
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u064A\u062F"
       Letters:
       - "\u064A\u0640 \u0640\u062F"
@@ -2193,7 +2210,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: head
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0631\u0627\u0633"
       Letters:
       - "\u0631 \u0627 \u0633"
@@ -2211,8 +2228,17 @@ MonoBehaviour:
       Drawing: 0
     - Id: hospital
       Kind: 0
-      Category: 0
+      Category: 10
       Arabic: "\u0645\u0633\u062A\u0634\u0641\u0649"
+      Letters:
+      - 
+      Transliteration: 
+      Difficulty: 0
+      Drawing: 0
+    - Id: hot
+      Kind: 0
+      Category: 0
+      Arabic: "\u062D\u0627\u0631"
       Letters:
       - 
       Transliteration: 
@@ -2227,18 +2253,9 @@ MonoBehaviour:
       Transliteration: shob
       Difficulty: 1
       Drawing: 0
-    - Id: hot
-      Kind: 0
-      Category: 0
-      Arabic: "\u062D\u0627\u0631"
-      Letters:
-      - 
-      Transliteration: 
-      Difficulty: 0
-      Drawing: 0
     - Id: hot_food
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0633\u062E\u0646"
       Letters:
       - "\u0633\u0640 \u0640\u062E\u0640 \u0640\u0646"
@@ -2247,7 +2264,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: hour
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0633\u0627\u0639\u0629"
       Letters:
       - "\u0633\u0640 \u0640\u0627 \u0639\u0640 \u0640\u0629"
@@ -2265,7 +2282,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: icecream
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0628\u0648\u0638\u0629"
       Letters:
       - 
@@ -2293,7 +2310,7 @@ MonoBehaviour:
     - Id: juice
       Kind: 0
       Category: 0
-      Arabic: "\u0639\u0635\u064A\u0631"
+      Arabic: "\u0639\u064E\u0635\u064A\u0631"
       Letters:
       - 
       Transliteration: 
@@ -2301,7 +2318,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: kid
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0648\u0644\u062F"
       Letters:
       - "\u0648 \u0644\u0640 \u0640\u062F"
@@ -2337,7 +2354,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: leg
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0631\u062C\u0644"
       Letters:
       - 
@@ -2364,7 +2381,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: lion
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0623\u0633\u062F"
       Letters:
       - "\u0623 \u0633\u0640 \u0640\u062F"
@@ -2373,7 +2390,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: lion_dual
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0623\u0633\u062F\u0627\u0646"
       Letters:
       - 
@@ -2382,7 +2399,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: lion_plural
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0623\u0633\u0648\u062F"
       Letters:
       - 
@@ -2391,7 +2408,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: lions
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0623\u064F\u0633\u0648\u062F\u064C"
       Letters:
       - 
@@ -2410,7 +2427,7 @@ MonoBehaviour:
     - Id: man
       Kind: 0
       Category: 0
-      Arabic: "\u0631\u062C\u0644"
+      Arabic: "\u0631\u064E\u062C\u064F\u0644\u064D"
       Letters:
       - "\u0631 \u062C\u0640 \u0640\u0644"
       Transliteration: rajol
@@ -2418,7 +2435,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: market
       Kind: 0
-      Category: 0
+      Category: 10
       Arabic: "\u0633\u0648\u0642"
       Letters:
       - 
@@ -2445,7 +2462,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0634\u0647\u0631"
       Letters:
       - "\u0634\u0640 \u0640\u0647\u0640 \u0640\u0631"
@@ -2454,7 +2471,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_april
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0646\u064A\u0633\u0627\u0646"
       Letters:
       - 
@@ -2463,7 +2480,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_august
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0622\u0628"
       Letters:
       - 
@@ -2472,7 +2489,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_december
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u0644"
       Letters:
       - 
@@ -2481,7 +2498,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_february
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0634\u0628\u0627\u0637"
       Letters:
       - 
@@ -2490,7 +2507,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_january
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
       - 
@@ -2499,7 +2516,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_july
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u062A\u0645\u0648\u0632"
       Letters:
       - 
@@ -2508,7 +2525,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_june
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u062D\u0632\u064A\u0631\u0627\u0646"
       Letters:
       - 
@@ -2517,7 +2534,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_march
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0622\u0630\u0627\u0631"
       Letters:
       - 
@@ -2526,7 +2543,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_may
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0623\u064A\u0627\u0631"
       Letters:
       - 
@@ -2535,7 +2552,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_november
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
       - 
@@ -2544,7 +2561,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_october
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
       Letters:
       - 
@@ -2553,7 +2570,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: month_september
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0623\u064A\u0644\u0648\u0644"
       Letters:
       - 
@@ -2562,7 +2579,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: moon
       Kind: 0
-      Category: 0
+      Category: 8
       Arabic: "\u0642\u0645\u0631"
       Letters:
       - 
@@ -2571,7 +2588,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: mother
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0645\u0627\u0645\u0627"
       Letters:
       - "\u0645\u0640 \u0627 \u0645\u0640 \u0627"
@@ -2607,7 +2624,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: mouse
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0641\u0627\u0631"
       Letters:
       - "\u0641\u0640 \u0640\u0627 \u0631"
@@ -2616,7 +2633,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: mouth
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0641\u0645"
       Letters:
       - "\u0641\u0640 \u0640\u0645"
@@ -2625,7 +2642,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: nail
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0638\u0641\u0631"
       Letters:
       - 
@@ -2634,7 +2651,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: needle
       Kind: 0
-      Category: 0
+      Category: 12
       Arabic: "\u0625\u0628\u0631\u0629"
       Letters:
       - 
@@ -2652,7 +2669,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: nose
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0623\u0646\u0641"
       Letters:
       - "\u0623 \u0646\u0640 \u0640\u0641"
@@ -2661,7 +2678,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: now
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u0622\u0646"
       Letters:
       - 
@@ -2670,7 +2687,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_0
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0635\u0641\u0631"
       Letters:
       - 
@@ -2679,7 +2696,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_1
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0648\u0627\u062D\u062F"
       Letters:
       - 
@@ -2688,7 +2705,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_10
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0639\u0634\u0631\u0629"
       Letters:
       - 
@@ -2697,7 +2714,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_11
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u062D\u062F \u0639\u0634\u0631"
       Letters:
       - 
@@ -2706,7 +2723,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_12
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u062B\u0646\u064A \u0639\u0634\u0631"
       Letters:
       - 
@@ -2715,7 +2732,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_13
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062B\u0644\u0627\u062B\u0629 \u0639\u0634\u0631"
       Letters:
       - 
@@ -2724,7 +2741,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_14
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0623\u0631\u0628\u0639\u0629 \u0639\u0634\u0631"
       Letters:
       - 
@@ -2733,7 +2750,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_15
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062E\u0645\u0633\u0629 \u0639\u0634\u0631"
       Letters:
       - 
@@ -2742,7 +2759,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_16
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0633\u062A\u0629 \u0639\u0634\u0631"
       Letters:
       - 
@@ -2751,7 +2768,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_17
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0633\u0628\u0639\u0629 \u0639\u0634\u0631"
       Letters:
       - 
@@ -2760,7 +2777,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_18
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0634\u0631"
       Letters:
       - 
@@ -2769,7 +2786,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_19
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062A\u0633\u0639\u0629 \u0639\u0634\u0631"
       Letters:
       - 
@@ -2778,7 +2795,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_2
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u062B\u0646\u0627\u0646"
       Letters:
       - 
@@ -2787,7 +2804,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_20
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0639\u0634\u0631\u0648\u0646"
       Letters:
       - 
@@ -2796,7 +2813,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_3
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062B\u0644\u0627\u062B\u0629"
       Letters:
       - 
@@ -2805,7 +2822,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_4
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0623\u0631\u0628\u0639\u0629"
       Letters:
       - 
@@ -2814,7 +2831,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_5
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062E\u0645\u0633\u0629"
       Letters:
       - 
@@ -2823,7 +2840,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_6
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0633\u062A\u0629"
       Letters:
       - 
@@ -2832,7 +2849,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_7
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0633\u0628\u0639\u0629\u064C"
       Letters:
       - 
@@ -2841,7 +2858,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_8
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629"
       Letters:
       - 
@@ -2850,7 +2867,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_9
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u062A\u0633\u0639\u0629"
       Letters:
       - 
@@ -2859,7 +2876,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o1
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u0623\u0648\u0644"
       Letters:
       - 
@@ -2868,7 +2885,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o10
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u0639\u0627\u0634\u0631"
       Letters:
       - 
@@ -2877,7 +2894,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o2
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
       - 
@@ -2886,7 +2903,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o3
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u062B\u0627\u0644\u062B"
       Letters:
       - 
@@ -2895,7 +2912,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o4
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u0631\u0627\u0628\u0639"
       Letters:
       - 
@@ -2904,7 +2921,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o5
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u062E\u0627\u0645\u0633"
       Letters:
       - 
@@ -2913,7 +2930,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o6
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u0633\u0627\u062F\u0633"
       Letters:
       - 
@@ -2922,7 +2939,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o7
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u0633\u0627\u0628\u0639"
       Letters:
       - 
@@ -2931,7 +2948,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o8
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u062B\u0627\u0645\u0646"
       Letters:
       - 
@@ -2940,7 +2957,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: number_o9
       Kind: 0
-      Category: 0
+      Category: 9
       Arabic: "\u0627\u0644\u062A\u0627\u0633\u0639"
       Letters:
       - 
@@ -2958,7 +2975,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: oil
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0632\u064A\u062A"
       Letters:
       - "\u0632 \u064A\u0640 \u0640\u062A"
@@ -2967,7 +2984,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: onion
       Kind: 0
-      Category: 0
+      Category: 14
       Arabic: "\u0628\u0635\u0644"
       Letters:
       - "\u0628\u0640 \u0640\u0635\u0640 \u0640\u0644"
@@ -2976,7 +2993,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: OokaDH
       Kind: 0
-      Category: 0
+      Category: 10
       Arabic: "\u0639\u0643\u0627\u0638"
       Letters:
       - 
@@ -3003,7 +3020,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: paper
       Kind: 0
-      Category: 0
+      Category: 12
       Arabic: "\u0648\u0631\u0642"
       Letters:
       - "\u0648 \u0631 \u0642"
@@ -3012,7 +3029,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: parrot
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0628\u0628\u063A\u0627\u0621"
       Letters:
       - 
@@ -3021,16 +3038,16 @@ MonoBehaviour:
       Drawing: 0
     - Id: pear
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u0625\u0646\u062C\u0627\u0635"
       Letters:
       - 
       Transliteration: 
       Difficulty: 0
       Drawing: 0
-    - Id: pear_CHECK
+    - Id: pear_big
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u0643\u0645\u062B\u0631\u0649"
       Letters:
       - 
@@ -3048,7 +3065,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: pencil
       Kind: 0
-      Category: 0
+      Category: 12
       Arabic: "\u0642\u0644\u0645"
       Letters:
       - "\u0642\u0640 \u0640\u0644\u0640 \u0640\u0645"
@@ -3066,7 +3083,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: plum
       Kind: 0
-      Category: 0
+      Category: 6
       Arabic: "\u062E\u0648\u062E"
       Letters:
       - "\u062E\u0640 \u0640\u0648 \u062E"
@@ -3084,7 +3101,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: potato
       Kind: 0
-      Category: 0
+      Category: 14
       Arabic: "\u0628\u0637\u0627\u0637\u0627"
       Letters:
       - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0627 \u0637\u0640 \u0640\u0627"
@@ -3093,8 +3110,8 @@ MonoBehaviour:
       Drawing: 0
     - Id: rain
       Kind: 0
-      Category: 0
-      Arabic: "\u0645\u0637\u0631"
+      Category: 8
+      Arabic: "\u0645\u0637\u064E\u0631"
       Letters:
       - "\u0645\u0640 \u0640\u0637\u0640 \u0640\u0631"
       Transliteration: matar
@@ -3129,7 +3146,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: rice
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0631\u0632"
       Letters:
       - "\u0631 \u0632"
@@ -3228,7 +3245,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: scientist
       Kind: 0
-      Category: 0
+      Category: 7
       Arabic: "\u0639\u0627\u0644\u0645"
       Letters:
       - 
@@ -3264,7 +3281,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: second
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u062B\u0627\u0646\u064A\u0629"
       Letters:
       - "\u062B\u0640 \u0640\u0627 \u0646\u0640 \u0640\u064A\u0640 \u0640\u0629"
@@ -3274,7 +3291,7 @@ MonoBehaviour:
     - Id: shop
       Kind: 0
       Category: 0
-      Arabic: "\u062F\u0643\u0627\u0646"
+      Arabic: "\u062F\u0643\u0627\u0646\u064D"
       Letters:
       - 
       Transliteration: 
@@ -3282,7 +3299,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: sister
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0623\u062E\u062A"
       Letters:
       - "\u0623 \u062E\u0640 \u0640\u062A"
@@ -3318,7 +3335,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: snow
       Kind: 0
-      Category: 0
+      Category: 8
       Arabic: "\u062A\u0644\u062C"
       Letters:
       - "\u062A\u0640 \u0640\u0644\u0640 \u0640\u062C"
@@ -3363,7 +3380,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: sugar
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0633\u0643\u0631"
       Letters:
       - "\u0633\u0640 \u0640\u0643\u0640 \u0640\u0631"
@@ -3374,6 +3391,15 @@ MonoBehaviour:
       Kind: 0
       Category: 0
       Arabic: "\u0635\u064A\u0641"
+      Letters:
+      - 
+      Transliteration: 
+      Difficulty: 0
+      Drawing: 0
+    - Id: sun
+      Kind: 0
+      Category: 8
+      Arabic: "\u0634\u0645\u0633"
       Letters:
       - 
       Transliteration: 
@@ -3399,7 +3425,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: tea
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0634\u0627\u064A"
       Letters:
       - "\u0634\u0640 \u0640\u0627 \u064A"
@@ -3595,19 +3621,9 @@ MonoBehaviour:
       Transliteration: 
       Difficulty: 0
       Drawing: 0
-    - Id: the_year_2016
-      Kind: 0
-      Category: 0
-      Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
-        \u0639\u0634\u0631"
-      Letters:
-      - 
-      Transliteration: 
-      Difficulty: 0
-      Drawing: 0
     - Id: tiger
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u0646\u0645\u0631"
       Letters:
       - "\u0646\u0640 \u0640\u0645\u0640 \u0640\u0631"
@@ -3616,7 +3632,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: today
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u064A\u0648\u0645"
       Letters:
       - 
@@ -3634,7 +3650,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: tomato
       Kind: 0
-      Category: 0
+      Category: 14
       Arabic: "\u0628\u0646\u062F\u0648\u0631\u0629"
       Letters:
       - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062F \u0648 \u0631 \u0629"
@@ -3643,7 +3659,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: tomorrow
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u063A\u062F\u0627\u064B"
       Letters:
       - 
@@ -3652,7 +3668,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: tongue
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0644\u0633\u0627\u0646"
       Letters:
       - "\u0644\u0640 \u0640\u0633\u0640 \u0640\u0627 \u0646"
@@ -3661,7 +3677,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: tooth
       Kind: 0
-      Category: 0
+      Category: 2
       Arabic: "\u0633\u0646"
       Letters:
       - "\u0633\u0640 \u0640\u0646"
@@ -3679,7 +3695,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: tree
       Kind: 0
-      Category: 0
+      Category: 8
       Arabic: "\u0634\u062C\u0631"
       Letters:
       - "\u0634\u0640 \u0640\u062C\u0640 \u0640\u0631"
@@ -3697,7 +3713,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: uncle_father
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0639\u0645"
       Letters:
       - "\u0639\u0640 \u0640\u0645"
@@ -3706,7 +3722,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: uncle_mother
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u062E\u0627\u0644"
       Letters:
       - "\u062E\u0640 \u0627 \u0644"
@@ -3724,7 +3740,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: vegetables
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u062E\u0636\u0631"
       Letters:
       - "\u062E\u0640 \u0640\u0636\u0640 \u0640\u0631"
@@ -3769,7 +3785,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: water
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0645\u064A"
       Letters:
       - "\u0645\u0640 \u0640\u064A"
@@ -3778,7 +3794,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: watermelon
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0628\u0637\u064A\u062E"
       Letters:
       - 
@@ -3805,7 +3821,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: whale
       Kind: 0
-      Category: 0
+      Category: 1
       Arabic: "\u062D\u0648\u062A"
       Letters:
       - "\u062D\u0640 \u0640\u0648 \u062A"
@@ -3823,7 +3839,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: winter
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0634\u062A\u0627\u0621"
       Letters:
       - 
@@ -3841,7 +3857,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: woman
       Kind: 0
-      Category: 0
+      Category: 4
       Arabic: "\u0645\u0631\u0623\u0629"
       Letters:
       - "\u0645\u0640 \u0640\u0631 \u0623 \u0629"
@@ -3913,7 +3929,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: year
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0639\u0627\u0645"
       Letters:
       - "\u0639\u0640 \u0640\u0627 \u0645"
@@ -3922,7 +3938,7 @@ MonoBehaviour:
       Drawing: 0
     - Id: yesterday
       Kind: 0
-      Category: 0
+      Category: 13
       Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
       Letters:
       - 
@@ -3931,21 +3947,12 @@ MonoBehaviour:
       Drawing: 0
     - Id: yogurt
       Kind: 0
-      Category: 0
+      Category: 5
       Arabic: "\u0644\u0628\u0646"
       Letters:
       - "\u0644\u0640 \u0640\u0628\u0640 \u0640\u0646"
       Transliteration: laban
       Difficulty: 1
-      Drawing: 0
-    - Id: you_are_welcome
-      Kind: 0
-      Category: 0
-      Arabic: "\u0623\u0647\u0644\u0627\u064B \u0648\u0633\u0647\u0644\u0627\u064B"
-      Letters:
-      - 
-      Transliteration: 
-      Difficulty: 0
       Drawing: 0
   playSessionTable:
     innerList:
@@ -3979,11 +3986,11 @@ MonoBehaviour:
       - MiniGameCode: 9
         Weight: 1
       - MiniGameCode: 11
-        Weight: 10
+        Weight: 103
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
-        Weight: 10
+        Weight: 101
     - Id: 1.1.2
       Stage: 1
       LearningBlock: 1
@@ -3994,6 +4001,8 @@ MonoBehaviour:
       Focus: 1
       Letters:
       - alef
+      - alef_hamza_hi
+      - alef_hamza_low
       Words:
       - father
       - brother
@@ -4008,11 +4017,11 @@ MonoBehaviour:
       Phrases_previous: []
       Minigames:
       - MiniGameCode: 5
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 15
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 27
-        Weight: 10
+        Weight: 100
     - Id: 1.1.100
       Stage: 1
       LearningBlock: 1
@@ -4021,8 +4030,19 @@ MonoBehaviour:
       Description: 
       IntroArabic: 
       Focus: 1
-      Letters: []
-      Words: []
+      Letters:
+      - alef
+      - alef_hamza_hi
+      - alef_hamza_low
+      Words:
+      - father
+      - brother
+      - pear
+      - needle
+      - mother
+      - nose
+      - ' deer'
+      - sister
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -4037,9 +4057,9 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - beh
-      - teh
-      - the
+      - baa
+      - tah
+      - thaa
       Words:
       - yogurt
       - berry
@@ -4058,7 +4078,7 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 14
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 15
         Weight: 1
       - MiniGameCode: 16
@@ -4078,9 +4098,9 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - beh
-      - teh
-      - the
+      - baa
+      - tah
+      - thaa
       Words:
       - yogurt
       - berry
@@ -4167,7 +4187,7 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 23
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 27
         Weight: 1
     - Id: 1.3.2
@@ -4239,8 +4259,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - dal
-      - thal
+      - daal
+      - dhaal
       Words:
       - bear
       - ear
@@ -4265,7 +4285,7 @@ MonoBehaviour:
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 19
@@ -4283,8 +4303,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - dal
-      - thal
+      - daal
+      - dhaal
       Words:
       - bear
       - ear
@@ -4364,7 +4384,7 @@ MonoBehaviour:
       - MiniGameCode: 11
         Weight: 1
       - MiniGameCode: 12
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 14
         Weight: 1
       - MiniGameCode: 15
@@ -4556,8 +4576,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - sad
-      - dad
+      - saad
+      - daad
       Words:
       - voice
       - light
@@ -4572,7 +4592,7 @@ MonoBehaviour:
       Phrases_previous: []
       Minigames:
       - MiniGameCode: 7
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 9
         Weight: 1
       - MiniGameCode: 11
@@ -4604,8 +4624,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - sad
-      - dad
+      - saad
+      - daad
       Words:
       - voice
       - light
@@ -4667,8 +4687,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - tah
-      - zah
+      - taa
+      - dhaa
       Words:
       - rain
       - back
@@ -4701,7 +4721,7 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 21
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
@@ -4715,8 +4735,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - tah
-      - zah
+      - taa
+      - dhaa
       Words:
       - rain
       - back
@@ -4778,8 +4798,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - ain
-      - ghain
+      - ayn
+      - ghayn
       Words:
       - aunt_father
       - deer
@@ -4824,8 +4844,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - ain
-      - ghain
+      - ayn
+      - ghayn
       Words:
       - aunt_father
       - deer
@@ -4887,8 +4907,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - feh
-      - qaf
+      - faa
+      - qaaf
       Words:
       - nose
       - 'moon '
@@ -4935,8 +4955,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - feh
-      - qaf
+      - faa
+      - qaaf
       Words:
       - nose
       - 'moon '
@@ -4998,8 +5018,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - kaf
-      - lam
+      - kaaf
+      - laam
       Words:
       - sugar
       - dog
@@ -5046,8 +5066,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - kaf
-      - lam
+      - kaaf
+      - laam
       Words:
       - sugar
       - dog
@@ -5109,8 +5129,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - meem
-      - noon
+      - miim
+      - nuun
       Words:
       - mother
       - cheese
@@ -5153,8 +5173,8 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - meem
-      - noon
+      - miim
+      - nuun
       Words:
       - mother
       - cheese
@@ -5214,9 +5234,9 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - yeh
-      - waw
-      - heh
+      - yaa
+      - waaw
+      - haa
       Words:
       - cat
       - flower
@@ -5261,9 +5281,9 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 1
       Letters:
-      - yeh
-      - waw
-      - heh
+      - yaa
+      - waaw
+      - haa
       Words:
       - cat
       - flower
@@ -5324,8 +5344,8 @@ MonoBehaviour:
       Focus: 1
       Letters:
       - alef
-      - waw
-      - yeh
+      - waaw
+      - yaa
       Words:
       - aunt_mother
       - grandfather
@@ -5365,8 +5385,8 @@ MonoBehaviour:
       Focus: 1
       Letters:
       - alef
-      - waw
-      - yeh
+      - waaw
+      - yaa
       Words:
       - aunt_mother
       - grandfather
@@ -5417,7 +5437,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The two shapes of the letter \u201Calif\u201D (\u0627 \u0640\u0627)"
       IntroArabic: 
-      Focus: 2
+      Focus: 1
       Letters:
       - alef
       Words:
@@ -5458,7 +5478,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 2
+      Focus: 1
       Letters:
       - alef
       Words:
@@ -5492,20 +5512,31 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+    - Id: 2.1.100
+      Stage: 2
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Description: 
+      IntroArabic: 
+      Focus: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
     - Id: 2.2.1
       Stage: 2
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \"baa\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
+      Description: "The four shapes of the letter \"ba\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
         \ \u0628\u0640)"
       IntroArabic: 
-      Focus: 2
+      Focus: 1
       Letters:
-      - beh__Iso
-      - beh__Ini
-      - beh__Med
-      - beh__Fin
+      - baa
       Words:
       - girl
       - boy
@@ -5546,7 +5577,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -5573,6 +5604,20 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+    - Id: 2.2.100
+      Stage: 2
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Description: 
+      IntroArabic: 
+      Focus: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
     - Id: 2.3.1
       Stage: 2
       LearningBlock: 3
@@ -5581,14 +5626,16 @@ MonoBehaviour:
       Description: "The six shapes of the letter \u201Ctaa\u201D (\u062A \u0640\u062A
         \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - tah
+      - tah_marbuta
       Words:
       - fig
       - copybook
       - oil
-      - ' whale'
-      - 'second '
+      - whale
+      - second
       - woman
       Words_previous:
       - sister
@@ -5623,14 +5670,14 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - fig
       - copybook
       - oil
-      - ' whale'
-      - 'second '
+      - whale
+      - second
       - woman
       Words_previous:
       - sister
@@ -5658,19 +5705,34 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+    - Id: 2.3.100
+      Stage: 2
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Description: 
+      IntroArabic: 
+      Focus: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
     - Id: 2.4.1
       Stage: 2
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cthaa\u201D (\u062B \u0640\u062B
+      Description: "The four shapes of the letter \u201Ctha\u201D (\u062B \u0640\u062B
         \  \u0640\u062B\u0640  \u062B\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - thaa
       Words:
       - garlic
-      - pear
+      - pear_big
       - triangle
       - furniture
       Words_previous:
@@ -5706,11 +5768,11 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - garlic
-      - pear
+      - pear_big
       - triangle
       - furniture
       Words_previous:
@@ -5749,8 +5811,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cjiim\u201D (\u062C   \u0640\u062C
         \  \u0640\u062C\u0640   \u062C\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - jiim
       Words:
       - camel
       - tree
@@ -5791,7 +5854,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - camel
@@ -5834,11 +5897,12 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Chaa\u201D (\u062D  \u0640\u062D
         \ \u0640\u062D\u0640  \u062D\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - hah
       Words:
       - grandson
-      - ' meat'
+      - meat
       - won
       - apple
       Words_previous:
@@ -5876,11 +5940,11 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - grandson
-      - ' meat'
+      - meat
       - won
       - apple
       Words_previous:
@@ -5919,12 +5983,13 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Ckhaa\u201D (\u062E  \u0640\u062E
         \u0640\u062E\u0640  \u062E\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - khaa
       Words:
       - cucumber
-      - ' hot'
-      - ' watermelon'
+      - hot
+      - watermelon
       - plum
       Words_previous:
       - aunt_mother
@@ -5959,12 +6024,12 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - cucumber
-      - ' hot'
-      - ' watermelon'
+      - hot
+      - watermelon
       - plum
       Words_previous:
       - aunt_mother
@@ -6001,8 +6066,9 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The two shapes of the letter \u201Cdaal\u201D ( \u0640\u062F  \u062F)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - daal
       Words:
       - chest
       - ' hand'
@@ -6043,7 +6109,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - chest
@@ -6085,8 +6151,9 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The two shapes of the letter \u201Cdhaal\u201D (\u0640\u0630  \u0630)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - dhaal
       Words:
       - delicious
       - went
@@ -6126,7 +6193,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - delicious
@@ -6167,8 +6234,9 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The two shapes of the letter \u201Craa\u201D ( \u0640\u0631  \u0631)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - raa
       Words:
       - tiger
       - paper
@@ -6207,7 +6275,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - tiger
@@ -6249,8 +6317,9 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The two shapes of the letter \u201Czay\u201D ( \u0640\u0632  \u0632)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - zay
       Words:
       - bread
       - rice
@@ -6291,7 +6360,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - bread
@@ -6334,11 +6403,12 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Csiin\u201D (\u0633  \u0640\u0633
         \ \u0640\u0633\u0640  \u0633\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - siin
       Words:
       - hour
-      - ' eagle'
+      - eagle
       - sat
       - studied
       Words_previous:
@@ -6376,11 +6446,11 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - hour
-      - ' eagle'
+      - eagle
       - sat
       - studied
       Words_previous:
@@ -6419,11 +6489,12 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cshiin\u201D (\u0634 \u0640\u0634
         \u0640\u0634\u0640 \u0634\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - shiin
       Words:
       - hair
-      - ' apricot '
+      - apricot
       - nest
       - bed
       Words_previous:
@@ -6459,11 +6530,11 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - hair
-      - ' apricot '
+      - apricot
       - nest
       - bed
       Words_previous:
@@ -6502,12 +6573,13 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201CSaad\u201D (\u0635 \u0640\u0635
         \u0640\u0635\u0640 \u0635\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - saad
       Words:
       - box
       - onion
-      - ' scissors'
+      - scissors
       - bus
       Words_previous:
       - chest
@@ -6544,12 +6616,12 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - box
       - onion
-      - ' scissors'
+      - scissors
       - bus
       Words_previous:
       - chest
@@ -6587,16 +6659,17 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201CDaad\u201D (\u0636 \u0640\u0636
         \u0640\u0636\u0640 \u0636\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - daad
       Words:
-      - 'laughed '
+      - laughed
       - color_green
       - color_white
       - ground
       Words_previous:
       - light
-      - ' toilet'
+      - toilet
       - color_silver
       Phrases: []
       Phrases_previous: []
@@ -6628,16 +6701,16 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
-      - 'laughed '
+      - laughed
       - color_green
       - color_white
       - ground
       Words_previous:
       - light
-      - ' toilet'
+      - toilet
       - color_silver
       Phrases: []
       Phrases_previous: []
@@ -6670,12 +6743,13 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201CTaa\u201D (\u0637  \u0640\u0637
         \u0640\u0637\u0640 \u0637\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - taa
       Words:
       - flew
       - potato
-      - ' duck'
+      - duck
       - month_february
       Words_previous:
       - slow
@@ -6710,12 +6784,12 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - flew
       - potato
-      - ' duck'
+      - duck
       - month_february
       Words_previous:
       - slow
@@ -6753,8 +6827,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201CDHaa\u201D (\u0638 \u0640\u0638
         \u0640\u0638\u0640 \u0638\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - dhaa
       Words:
       - nail
       - clean
@@ -6793,7 +6868,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - nail
@@ -6834,13 +6909,14 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cayn\u201D (\u0639  \u0640\u0639
         \u0640\u0639\u0640 \u0639\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - ayn
       Words:
       - juice
       - played
       - finger
-      - ' brave'
+      - brave
       Words_previous:
       - hair
       - lentil
@@ -6876,13 +6952,13 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - juice
       - played
       - finger
-      - ' brave'
+      - brave
       Words_previous:
       - hair
       - lentil
@@ -6919,8 +6995,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cghayn\u201D (\u063A \u0640\u063A
         \u0640\u063A\u0640 \u063A\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - ghayn
       Words:
       - room
       - parrot
@@ -6959,7 +7036,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - room
@@ -7002,8 +7079,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cfaa\u201D (\u0641 \u0640\u0641
         \u0640\u0641\u0640 \u0641\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - faa
       Words:
       - farmer
       - color_yellow
@@ -7044,7 +7122,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - farmer
@@ -7087,18 +7165,19 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cqaaf\u201D (\u0642 \u0640\u0642
         \u0640\u0642\u0640 \u0642\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - qaaf
       Words:
-      - 'foot '
-      - ' field'
+      - foot
+      - field
       - agreed
       - color_blue
       Words_previous:
       - moon
       - market
       - color_orange
-      - ' paper'
+      - paper
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -7129,18 +7208,18 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
-      - 'foot '
-      - ' field'
+      - foot
+      - field
       - agreed
       - color_blue
       Words_previous:
       - moon
       - market
       - color_orange
-      - ' paper'
+      - paper
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -7172,8 +7251,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Ckaaf\u201D ( \u0643 \u0640\u0643
         \u0640\u0643\u0640 \u0643\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - kaaf
       Words:
       - month_january
       - cried
@@ -7212,7 +7292,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - month_january
@@ -7255,8 +7335,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Claam\u201D (\u0644 \u0640\u0644
         \ \u0640\u0644\u0640 \u0644\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - laam
       Words:
       - teacher
       - carried
@@ -7297,7 +7378,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - teacher
@@ -7340,8 +7421,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cmiim\u201D ( \u0645 \u0640\u0645
         \u0640\u0645\u0640 \u0645\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - miim
       Words:
       - school
       - color_red
@@ -7350,7 +7432,7 @@ MonoBehaviour:
       Words_previous:
       - tiger
       - rain
-      - 'glue '
+      - glue
       - meat
       Phrases: []
       Phrases_previous: []
@@ -7382,7 +7464,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - school
@@ -7392,7 +7474,7 @@ MonoBehaviour:
       Words_previous:
       - tiger
       - rain
-      - 'glue '
+      - glue
       - meat
       Phrases: []
       Phrases_previous: []
@@ -7425,8 +7507,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cnuun\u201D (\u0646 \u0640\u0646
         \u0640\u0646\u0640 \u0646\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - nuun
       Words:
       - carpenter
       - number_2
@@ -7465,7 +7548,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - carpenter
@@ -7508,15 +7591,16 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Chaa\u201D (\u0647  \u0640\u0647
         \u0640\u0647\u0640 \u0647\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - haa
       Words:
       - month
       - virtuous
       - lips
       Words_previous:
       - cat
-      - ' river'
+      - river
       - engineer
       - back
       - face
@@ -7550,7 +7634,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - month
@@ -7558,7 +7642,7 @@ MonoBehaviour:
       - lips
       Words_previous:
       - cat
-      - ' river'
+      - river
       - engineer
       - back
       - face
@@ -7592,8 +7676,9 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The two shapes of the letter \u201Cwaaw\u201D ( \u0640\u0648  \u0648)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - waaw
       Words:
       - face
       - bird
@@ -7634,7 +7719,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - face
@@ -7669,6 +7754,20 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+    - Id: 3.13.100
+      Stage: 3
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Description: 
+      IntroArabic: 
+      Focus: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
     - Id: 3.14.1
       Stage: 3
       LearningBlock: 14
@@ -7677,8 +7776,9 @@ MonoBehaviour:
       Description: "The four shapes of the letter \u201Cyaa\u201D (\u064A \u0640\u064A
         \u0640\u064A\u0640 \u064A\u0640)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - yaa
       Words:
       - number_8
       - color_brown
@@ -7717,7 +7817,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - number_8
@@ -7752,6 +7852,20 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
+    - Id: 3.14.100
+      Stage: 3
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Description: 
+      IntroArabic: 
+      Focus: 1
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      Minigames: []
     - Id: 4.1.1
       Stage: 4
       LearningBlock: 1
@@ -7761,7 +7875,8 @@ MonoBehaviour:
         and vocabulary,"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - fathah
       Words:
       - doctor
       Words_previous:
@@ -7776,15 +7891,15 @@ MonoBehaviour:
       Phrases_previous: []
       Minigames:
       - MiniGameCode: 1
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 3
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 4
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 7
         Weight: 1
       - MiniGameCode: 8
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 14
@@ -7796,19 +7911,19 @@ MonoBehaviour:
       - MiniGameCode: 18
         Weight: 1
       - MiniGameCode: 22
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 25
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 28
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
-        Weight: 10
+        Weight: 100
     - Id: 4.1.2
       Stage: 4
       LearningBlock: 1
@@ -7874,7 +7989,8 @@ MonoBehaviour:
         and vocabulary"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - dammah
       Words:
       - garden
       Words_previous:
@@ -7987,7 +8103,8 @@ MonoBehaviour:
         and vocabulary"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - kasrah
       Words:
       - number_6
       Words_previous:
@@ -8100,7 +8217,11 @@ MonoBehaviour:
         (\u0652)"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - sukun
       Words:
       - restaurant
       Words_previous:
@@ -8209,10 +8330,11 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 1
       Type: MiniGame
-      Description: "Same than 1 with Fathah tanwin (\u064B) (double Fathah)"
+      Description: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - fathah_tanwin
       Words:
       - of_course
       Words_previous:
@@ -8317,10 +8439,11 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 1
       Type: MiniGame
-      Description: "Same than 2 The sound of Dammah tanwin (\u064C) (double Dammah)"
+      Description: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - dammah_tanwin
       Words:
       - forest
       Words_previous:
@@ -8428,7 +8551,8 @@ MonoBehaviour:
       Description: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - kasrah_tanwin
       Words:
       - shop
       Words_previous:
@@ -8536,7 +8660,13 @@ MonoBehaviour:
       Description: The 3 diacritic + double diacritic signs.
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - fathah_tanwin
+      - dammah_tanwin
+      - kasrah_tanwin
       Words:
       - wrote
       - books
@@ -8591,7 +8721,11 @@ MonoBehaviour:
         with/without), separate. waw hamza (\u0624) and yaa hamza (\u0626)"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - waaw_hamza
+      - alef_maqsura_hamza
+      - yaa_hamza
+      - hamza
       Words:
       - sky
       - wolf
@@ -8700,7 +8834,8 @@ MonoBehaviour:
         short and long vowel"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - waaw
       Words: []
       Words_previous:
       - banana
@@ -8916,7 +9051,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Verbs
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - drank
@@ -8970,7 +9105,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - drank
@@ -9024,7 +9159,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Places
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - station
@@ -9078,7 +9213,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - station
@@ -9132,7 +9267,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Grains (food)
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - lentil
@@ -9186,7 +9321,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - lentil
@@ -9240,7 +9375,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Furniture
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - table
@@ -9299,7 +9434,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - table
@@ -9358,7 +9493,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words: []
       Words_previous: []
@@ -9404,10 +9539,11 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 1
       Type: MiniGame
-      Description: "The \u201Calif maqSura\u201D or the dotless \u201Cyaa\u201D (\u0649)"
+      Description: "The \u201Calef maqSura\u201D"
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - alef_maqsura
       Words:
       - walked
       - ' saw '
@@ -9460,7 +9596,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - walked
@@ -9512,18 +9648,19 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: "The special combination letter \u201Clam-alif\u201D (\u0644\u0627)"
+      Description: "The special combination letter \u201Claam-alef\u201D (\u0644\u0627)"
       IntroArabic: 
-      Focus: 0
-      Letters: []
-      Words:
-      - you_are_welcome
+      Focus: 1
+      Letters:
+      - laam_alef
+      Words: []
       Words_previous:
       - mountain_dual
       - worker_dual
       - the_player
       - number_3
-      Phrases: []
+      Phrases:
+      - yourwelcome
       Phrases_previous: []
       Minigames:
       - MiniGameCode: 1
@@ -9567,7 +9704,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - you_are_welcome
@@ -9576,7 +9713,8 @@ MonoBehaviour:
       - worker_dual
       - the_player
       - number_3
-      Phrases: []
+      Phrases:
+      - yourwelcome
       Phrases_previous: []
       Minigames:
       - MiniGameCode: 1
@@ -9618,10 +9756,11 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 1
       Type: MiniGame
-      Description: The madd (~)
+      Description: The maddah (~)
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - maddah
       Words:
       - melancholy
       - believed
@@ -9724,10 +9863,13 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: The 3 diacritic signs (Harakat/Tashkeel)
+      Description: The 3 diacritic signs
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - fathah
+      - kasrah
+      - dammah
       Words:
       - carrot
       - islands
@@ -9781,7 +9923,10 @@ MonoBehaviour:
       Description: The 3 double diacritic signs (Tanwin)
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - fathah_tanwin
+      - dammah_tanwin
+      - 'kasrah_tanwin '
       Words:
       - wore
       - costume
@@ -9833,7 +9978,8 @@ MonoBehaviour:
       Description: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double consonant"
       IntroArabic: 
       Focus: 0
-      Letters: []
+      Letters:
+      - shaddah
       Words:
       - uncle_father
       Words_previous:
@@ -9940,7 +10086,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Singular, dual, and plural forms of nouns
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - lion
@@ -10054,7 +10200,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Professions (emphasis singular, dual, plural)
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - scientist
@@ -10162,7 +10308,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Nature (emphasis singular, dual, plural)
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - river
@@ -10270,7 +10416,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - engineer
@@ -10331,16 +10477,41 @@ MonoBehaviour:
         - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 - \u0644 -
         \u0646"
       IntroArabic: 
-      Focus: 0
-      Letters: []
-      Words: []
-      Words_previous:
+      Focus: 1
+      Letters:
+      - baa
+      - jiim
+      - hah
+      - khaa
+      - ayn
+      - ghayn
+      - faa
+      - qaaf
+      - kaaf
+      - miim
+      - haa
+      - tah
+      - thaa
+      - daal
+      - dhaal
+      - raa
+      - zay
+      - siin
+      - shiin
+      - saad
+      - daad
+      - taa
+      - dhaa
+      - laam
+      - nuun
+      Words:
       - the_beautiful
       - the_sad
       - the_lazy
       - the_happy
       - the_active
       - the_wonderful
+      Words_previous: []
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -10385,16 +10556,16 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
-      Words: []
-      Words_previous:
+      Words:
       - the_beautiful
       - the_sad
       - the_lazy
       - the_happy
       - the_active
       - the_wonderful
+      Words_previous: []
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -10437,11 +10608,36 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 1
       Type: MiniGame
-      Description: "Sports (emphasis moon & sun consonant) the red color of the (\u0644)
-        letter means it is not pronounced which means it proceeds a sun consonant"
+      Description: Sports (emphasis moon & sun consonant) the red color of the sun&moon
+        letter means it is not pronounced which means it proceeds a sun consonant
       IntroArabic: 
-      Focus: 0
-      Letters: []
+      Focus: 1
+      Letters:
+      - baa
+      - jiim
+      - hah
+      - khaa
+      - ayn
+      - ghayn
+      - faa
+      - qaaf
+      - kaaf
+      - miim
+      - haa
+      - tah
+      - thaa
+      - daal
+      - dhaal
+      - raa
+      - zay
+      - siin
+      - shiin
+      - saad
+      - daad
+      - taa
+      - dhaa
+      - laam
+      - nuun
       Words:
       - the_ball
       - the_playground
@@ -10494,7 +10690,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 1
       Letters: []
       Words:
       - the_ball
@@ -10548,7 +10744,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Adjectives of feelings
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - ' happy '
@@ -10602,7 +10798,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - ' happy '
@@ -10656,7 +10852,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Greeting phrase
       IntroArabic: 
-      Focus: 0
+      Focus: 4
       Letters: []
       Words: []
       Words_previous: []
@@ -10674,13 +10870,13 @@ MonoBehaviour:
       - MiniGameCode: 4
         Weight: 1
       - MiniGameCode: 6
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 8
         Weight: 1
       - MiniGameCode: 10
         Weight: 1
       - MiniGameCode: 13
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 22
@@ -10688,11 +10884,11 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 24
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 25
         Weight: 1
       - MiniGameCode: 26
-        Weight: 10
+        Weight: 100
       - MiniGameCode: 27
         Weight: 1
       - MiniGameCode: 28
@@ -10708,7 +10904,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: '"Hello" and "Hi" phrases'
       IntroArabic: 
-      Focus: 0
+      Focus: 4
       Letters: []
       Words: []
       Words_previous: []
@@ -10759,7 +10955,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: '"How are you" and "Goodbye" phrases'
       IntroArabic: 
-      Focus: 0
+      Focus: 4
       Letters: []
       Words: []
       Words_previous: []
@@ -10814,7 +11010,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 'Adjectives: colors'
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - color_black
@@ -10874,7 +11070,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - color_black
@@ -10934,7 +11130,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 'Adjectives: describing nature'
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - beautiful
@@ -10988,7 +11184,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - beautiful
@@ -11042,7 +11238,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 'Adjectives: describing weather'
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - cold
@@ -11096,7 +11292,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - cold
@@ -11150,7 +11346,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Cardinal numbers 0 to 20
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - number_0
@@ -11222,7 +11418,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - number_0
@@ -11294,7 +11490,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Ordinal numbers 1 to 10 (with the definite article "al")
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - number_o1
@@ -11352,7 +11548,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - number_o1
@@ -11408,10 +11604,9 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 1
       Type: MiniGame
-      Description: "Time expressions such as \"today\" (\u0627\u0644\u064A\u0648\u0645),
-        \"yesterday\" (\u0627\u0644\u0628\u0627\u0631\u062D\u0629)"
+      Description: Time expressions such as "today" "yesterday"
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - yesterday
@@ -11465,7 +11660,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Days of the week
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - day_monday
@@ -11520,7 +11715,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - day_monday
@@ -11575,7 +11770,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: The months
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - month_march
@@ -11635,7 +11830,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - month_march
@@ -11697,8 +11892,7 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 0
       Letters: []
-      Words:
-      - the_year_2016
+      Words: []
       Words_previous:
       - number_15
       - number_16
@@ -11706,7 +11900,8 @@ MonoBehaviour:
       - number_18
       - number_19
       - number_20
-      Phrases: []
+      Phrases:
+      - the_year_2016
       Phrases_previous: []
       Minigames:
       - MiniGameCode: 1
@@ -11752,8 +11947,7 @@ MonoBehaviour:
       IntroArabic: 
       Focus: 0
       Letters: []
-      Words:
-      - the_year_2016
+      Words: []
       Words_previous:
       - number_15
       - number_16
@@ -11761,7 +11955,8 @@ MonoBehaviour:
       - number_18
       - number_19
       - number_20
-      Phrases: []
+      Phrases:
+      - the_year_2016
       Phrases_previous: []
       Minigames:
       - MiniGameCode: 1
@@ -11806,7 +12001,7 @@ MonoBehaviour:
       Description: 'Nature: Feminine and masculine: adding taa marbuta to any noun
         makes it feminine'
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - cloud
@@ -11861,7 +12056,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - cloud
@@ -11916,7 +12111,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Clothes with the definite article "al"
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - the_shirt
@@ -11970,7 +12165,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 3
       Letters: []
       Words:
       - the_shirt
@@ -12024,7 +12219,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Simple phrases
       IntroArabic: 
-      Focus: 0
+      Focus: 4
       Letters: []
       Words: []
       Words_previous: []
@@ -12086,7 +12281,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 
       IntroArabic: 
-      Focus: 0
+      Focus: 4
       Letters: []
       Words: []
       Words_previous: []
@@ -12829,6 +13024,10 @@ MonoBehaviour:
     - Id: goodbye
       English: good-bye
       Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
+    - Id: the_year_2016
+      English: 
+      Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
+        \u0639\u0634\u0631"
   stageTable:
     innerList:
     - Id: 1
