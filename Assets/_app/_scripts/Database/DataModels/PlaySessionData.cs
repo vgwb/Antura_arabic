@@ -7,7 +7,7 @@ namespace EA4S.Db
     {
         None = 0,
         Letters = 1,
-        Shapes = 2,
+        Symbols = 2,
         Words = 3,
         Phrases = 4
     }
@@ -22,6 +22,7 @@ namespace EA4S.Db
         public string Type;
         public string Description;
         public string IntroArabic;
+        public string Reward; //TODO
         public DidacticalFocus Focus;
         public string[] Letters;
         public string[] Words;
