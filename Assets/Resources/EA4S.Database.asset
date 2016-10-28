@@ -1155,7 +1155,7 @@ MonoBehaviour:
   wordTable:
     innerList:
     - Id: active
-      Kind: 0
+      Kind: 2
       Category: 0
       Arabic: "\u0646\u0634\u064A\u0637"
       Letters:
@@ -1163,17 +1163,305 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: agreed
-      Kind: 0
+    - Id: beautiful
+      Kind: 2
       Category: 0
-      Arabic: "\u0648\u0627\u0641\u064E\u0642\u064E"
+      Arabic: "\u062C\u0645\u064A\u0644"
       Letters:
-      - "\u0648 \u0627 \u0641\u0640\u064E \u0640\u0642\u064E"
+      - "\u062C\u0640 \u0640\u0645\u0640 \u0640\u064A\u0640 \u0640\u0644"
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: big
+      Kind: 2
+      Category: 0
+      Arabic: "\u0643\u0628\u064A\u0631"
+      Letters:
+      - "\u0643\u0640 \u0640\u0628\u0640 \u0640\u064A\u0640 \u0640\u0631"
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: brave
+      Kind: 2
+      Category: 0
+      Arabic: "\u0634\u062C\u0627\u0639"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: clean
+      Kind: 2
+      Category: 0
+      Arabic: "\u0646\u0638\u064A\u0641"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: cold
+      Kind: 2
+      Category: 0
+      Arabic: "\u0628\u0631\u062F"
+      Letters:
+      - "\u0628\u0640 \u0640\u0631 \u062F"
+      Symbols: []
+      Difficulty: 1
+      Drawing: 0
+    - Id: color_black
+      Kind: 2
+      Category: 3
+      Arabic: "\u0623\u0633\u0648\u062F"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_blue
+      Kind: 2
+      Category: 3
+      Arabic: "\u0623\u0632\u0631\u0642"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_brown
+      Kind: 2
+      Category: 3
+      Arabic: "\u0628\u064F\u0646\u064A"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_gold
+      Kind: 2
+      Category: 3
+      Arabic: "\u0630\u0647\u0628\u064A"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_green
+      Kind: 2
+      Category: 3
+      Arabic: "\u0623\u062E\u0636\u0631"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_orange
+      Kind: 2
+      Category: 3
+      Arabic: "\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_pink
+      Kind: 2
+      Category: 3
+      Arabic: "\u0648\u0631\u062F\u064A"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_purple
+      Kind: 2
+      Category: 3
+      Arabic: "\u0628\u0646\u0641\u0633\u062C\u064A"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_red
+      Kind: 2
+      Category: 3
+      Arabic: "\u0623\u062D\u0645\u0631"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_silver
+      Kind: 2
+      Category: 3
+      Arabic: "\u0641\u0636\u064A"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_white
+      Kind: 2
+      Category: 3
+      Arabic: "\u0623\u0628\u064A\u0636"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: color_yellow
+      Kind: 2
+      Category: 3
+      Arabic: "\u0623\u0635\u0641\u0631"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: happy
+      Kind: 2
+      Category: 0
+      Arabic: "\u0633\u0639\u064A\u062F"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: hot
+      Kind: 2
+      Category: 0
+      Arabic: "\u062D\u0627\u0631"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: hot_CHECK
+      Kind: 2
+      Category: 0
+      Arabic: "\u0634\u0648\u0628"
+      Letters:
+      - "\u0634\u0640 \u0640\u0648 \u0628"
+      Symbols: []
+      Difficulty: 1
+      Drawing: 0
+    - Id: insistent
+      Kind: 2
+      Category: 0
+      Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: lazy
+      Kind: 2
+      Category: 0
+      Arabic: "\u0643\u0633\u0648\u0644"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: light
+      Kind: 2
+      Category: 0
+      Arabic: "\u0636\u0648\u0621"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: opened
+      Kind: 2
+      Category: 0
+      Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: rainy
+      Kind: 2
+      Category: 0
+      Arabic: "\u0645\u0627\u0637\u0631"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: sad
+      Kind: 2
+      Category: 0
+      Arabic: "\u062D\u0632\u064A\u0646"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: safe
+      Kind: 2
+      Category: 0
+      Arabic: "\u0622\u0645\u0650\u0646\u0652"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: slow
+      Kind: 2
+      Category: 0
+      Arabic: "\u0628\u0637\u064A\u0621"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: small
+      Kind: 2
+      Category: 0
+      Arabic: "\u0635\u063A\u064A\u0631"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: sure
+      Kind: 2
+      Category: 0
+      Arabic: "\u0639\u0641\u0648\u0627\u064B"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: virtuous
+      Kind: 2
+      Category: 0
+      Arabic: "\u0646\u0632\u064A\u0647"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: wonderful
+      Kind: 2
+      Category: 0
+      Arabic: "\u0631\u0627\u0626\u0639"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: of_course
+      Kind: 2
+      Category: 0
+      Arabic: "\u0637\u0628\u0639\u0627\u064B"
+      Letters:
+      - 
       Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: al
-      Kind: 0
+      Kind: 5
       Category: 0
       Arabic: "\u0627\u0644\u0640"
       Letters:
@@ -1182,7 +1470,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: anger
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u063A\u064A\u0638"
       Letters:
@@ -1191,7 +1479,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: apple
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u062A\u0641\u0627\u062D"
       Letters:
@@ -1200,7 +1488,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: apricot
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u0645\u0634\u0645\u0634"
       Letters:
@@ -1208,17 +1496,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 2
       Drawing: 0
-    - Id: ate
-      Kind: 0
-      Category: 0
-      Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
-      Letters:
-      - "\u0623\u064E \u0643\u0640\u064E \u0640\u0644\u064E "
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: aunt_father
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0639\u0645\u0629"
       Letters:
@@ -1227,7 +1506,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: aunt_mother
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u062E\u0627\u0644\u0629"
       Letters:
@@ -1236,7 +1515,7 @@ MonoBehaviour:
       Difficulty: 2
       Drawing: 0
     - Id: back
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0638\u0647\u0631"
       Letters:
@@ -1245,7 +1524,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: banana
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u0645\u0648\u0632"
       Letters:
@@ -1254,7 +1533,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 1
     - Id: bank
-      Kind: 0
+      Kind: 1
       Category: 10
       Arabic: "\u0645\u0635\u0631\u0641"
       Letters:
@@ -1263,7 +1542,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: basketball
-      Kind: 0
+      Kind: 1
       Category: 11
       Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0633\u0644\u0629"
       Letters:
@@ -1273,7 +1552,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: bear
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u062F\u0628"
       Letters:
@@ -1281,17 +1560,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 1
       Drawing: 0
-    - Id: beautiful
-      Kind: 0
-      Category: 0
-      Arabic: "\u062C\u0645\u064A\u0644"
-      Letters:
-      - "\u062C\u0640 \u0640\u0645\u0640 \u0640\u064A\u0640 \u0640\u0644"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: bed
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u0641\u0631\u0627\u0634"
       Letters:
@@ -1299,17 +1569,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: believed
-      Kind: 0
-      Category: 0
-      Arabic: "\u0622\u0645\u064E\u0646\u064E"
-      Letters:
-      - "\u0622 \u0645\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: belly
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0628\u0637\u0646"
       Letters:
@@ -1318,7 +1579,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: berry
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u062A\u0648\u062A"
       Letters:
@@ -1326,17 +1587,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 1
       Drawing: 0
-    - Id: big
-      Kind: 0
-      Category: 0
-      Arabic: "\u0643\u0628\u064A\u0631"
-      Letters:
-      - "\u0643\u0640 \u0640\u0628\u0640 \u0640\u064A\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: bird
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0639\u0635\u0641\u0648\u0631"
       Letters:
@@ -1345,7 +1597,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: book
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u0643\u062A\u0627\u0628"
       Letters:
@@ -1354,7 +1606,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: books
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u0643\u064F\u062A\u064F\u0628"
       Letters:
@@ -1363,7 +1615,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: box
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0635\u0646\u062F\u0648\u0642"
       Letters:
@@ -1372,7 +1624,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: boy
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0635\u0628\u064A"
       Letters:
@@ -1381,7 +1633,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: brain
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062F\u0645\u0627\u063A"
       Letters:
@@ -1389,17 +1641,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: brave
-      Kind: 0
-      Category: 0
-      Arabic: "\u0634\u062C\u0627\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: bread
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u062E\u0628\u0632"
       Letters:
@@ -1408,7 +1651,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: breeze
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0646\u0633\u0645\u0629"
       Letters:
@@ -1417,7 +1660,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: broad_bean
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0641\u0648\u0644"
       Letters:
@@ -1426,7 +1669,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: brother
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0623\u062E"
       Letters:
@@ -1435,7 +1678,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: bulgar
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0628\u0631\u063A\u0644"
       Letters:
@@ -1444,7 +1687,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: bus
-      Kind: 0
+      Kind: 1
       Category: 15
       Arabic: "\u0628\u0627\u0635"
       Letters:
@@ -1453,7 +1696,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: camel
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u062C\u0645\u0644\u064D"
       Letters:
@@ -1462,7 +1705,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: carpenter
-      Kind: 0
+      Kind: 1
       Category: 7
       Arabic: "\u0646\u062C\u0651\u0627\u0631"
       Letters:
@@ -1470,17 +1713,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: carried
-      Kind: 0
-      Category: 0
-      Arabic: "\u062D\u064E\u0645\u064E\u0644\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: carrot
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u062C\u0632\u0631"
       Letters:
@@ -1489,7 +1723,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: cat
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0647\u0631"
       Letters:
@@ -1497,17 +1731,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 1
       Drawing: 0
-    - Id: caught
-      Kind: 0
-      Category: 0
-      Arabic: "\u0645\u064E\u0633\u064E\u0643\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: chair
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u0643\u0631\u0633\u064A"
       Letters:
@@ -1516,7 +1741,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: cheese
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u062C\u0628\u0646"
       Letters:
@@ -1525,7 +1750,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: cherry
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u0643\u0631\u0632"
       Letters:
@@ -1534,7 +1759,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: chest
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0635\u062F\u0631"
       Letters:
@@ -1543,7 +1768,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: chickpea
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062D\u0645\u0635"
       Letters:
@@ -1552,7 +1777,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: classroom
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0635\u0641"
       Letters:
@@ -1560,17 +1785,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: clean
-      Kind: 0
-      Category: 0
-      Arabic: "\u0646\u0638\u064A\u0641"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: cloud
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u063A\u064A\u0645\u0629"
       Letters:
@@ -1579,7 +1795,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: club
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u0646\u062A\u062F\u0649"
       Letters:
@@ -1587,17 +1803,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: cold
-      Kind: 0
-      Category: 0
-      Arabic: "\u0628\u0631\u062F"
-      Letters:
-      - "\u0628\u0640 \u0640\u0631 \u062F"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
     - Id: cold_food
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0628\u0627\u0631\u062F"
       Letters:
@@ -1605,116 +1812,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: color_black
-      Kind: 0
-      Category: 3
-      Arabic: "\u0623\u0633\u0648\u062F"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_blue
-      Kind: 0
-      Category: 3
-      Arabic: "\u0623\u0632\u0631\u0642"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_brown
-      Kind: 0
-      Category: 3
-      Arabic: "\u0628\u064F\u0646\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_gold
-      Kind: 0
-      Category: 3
-      Arabic: "\u0630\u0647\u0628\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_green
-      Kind: 0
-      Category: 3
-      Arabic: "\u0623\u062E\u0636\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_orange
-      Kind: 0
-      Category: 3
-      Arabic: "\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_pink
-      Kind: 0
-      Category: 3
-      Arabic: "\u0648\u0631\u062F\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_purple
-      Kind: 0
-      Category: 3
-      Arabic: "\u0628\u0646\u0641\u0633\u062C\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_red
-      Kind: 0
-      Category: 3
-      Arabic: "\u0623\u062D\u0645\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_silver
-      Kind: 0
-      Category: 3
-      Arabic: "\u0641\u0636\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_white
-      Kind: 0
-      Category: 3
-      Arabic: "\u0623\u0628\u064A\u0636"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: color_yellow
-      Kind: 0
-      Category: 3
-      Arabic: "\u0623\u0635\u0641\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: copybook
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u062F\u0641\u062A\u064E\u0631"
       Letters:
@@ -1723,7 +1822,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: costume
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0644\u0650\u0628\u0627\u0633\u0627\u064B"
       Letters:
@@ -1731,17 +1830,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: cried
-      Kind: 0
-      Category: 0
-      Arabic: "\u0628\u0643\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: cucumber
-      Kind: 0
+      Kind: 1
       Category: 14
       Arabic: "\u062E\u064A\u0627\u0631"
       Letters:
@@ -1750,7 +1840,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: cupboard
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062E\u0632\u0627\u0646\u0629"
       Letters:
@@ -1759,7 +1849,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u064A\u0648\u0645"
       Letters:
@@ -1768,7 +1858,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day_friday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u062C\u0645\u0639\u0629"
       Letters:
@@ -1777,7 +1867,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day_monday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u0627\u062B\u0646\u064A\u0646"
       Letters:
@@ -1786,7 +1876,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day_saturday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u0633\u0628\u062A"
       Letters:
@@ -1795,7 +1885,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day_sunday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u0623\u062D\u062F"
       Letters:
@@ -1804,7 +1894,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day_thursday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u062E\u0645\u064A\u0633"
       Letters:
@@ -1813,7 +1903,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day_tuesday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u0627\u0621"
       Letters:
@@ -1822,7 +1912,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: day_wednesday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
       Letters:
@@ -1831,7 +1921,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: deer
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u063A\u0632\u0627\u0644"
       Letters:
@@ -1840,7 +1930,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: delicious
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u062D\u0644\u0648"
       Letters:
@@ -1849,7 +1939,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: doctor
-      Kind: 0
+      Kind: 1
       Category: 7
       Arabic: "\u0637\u064E\u0628\u064A\u0628"
       Letters:
@@ -1858,7 +1948,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: dog
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0643\u0644\u0628"
       Letters:
@@ -1867,7 +1957,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: door
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0628\u0627\u0628"
       Letters:
@@ -1875,17 +1965,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: drank
-      Kind: 0
-      Category: 0
-      Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: duck
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0628\u0637"
       Letters:
@@ -1894,7 +1975,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: eagle
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0646\u0633\u0631"
       Letters:
@@ -1903,7 +1984,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: ear
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0627\u062F\u0646"
       Letters:
@@ -1912,7 +1993,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: elephant
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0641\u064A\u0644"
       Letters:
@@ -1921,7 +2002,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: engineer
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u0647\u0646\u062F\u0633"
       Letters:
@@ -1930,7 +2011,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: eye
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0639\u064A\u0646"
       Letters:
@@ -1939,7 +2020,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: face
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0648\u062C\u0647"
       Letters:
@@ -1948,7 +2029,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: fall
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062E\u0631\u064A\u0641"
       Letters:
@@ -1957,7 +2038,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: farmer
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0641\u0644\u0627\u062D"
       Letters:
@@ -1966,7 +2047,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: father
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0628\u0627\u0628\u0627"
       Letters:
@@ -1975,7 +2056,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: field
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062D\u0642\u0644"
       Letters:
@@ -1984,7 +2065,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: fig
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u062A\u064A\u0646"
       Letters:
@@ -1993,7 +2074,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: finger
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0625\u0635\u0628\u0639"
       Letters:
@@ -2002,7 +2083,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: flag
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0644\u064E\u0645"
       Letters:
@@ -2010,26 +2091,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: flapped
-      Kind: 0
-      Category: 0
-      Arabic: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: flew
-      Kind: 0
-      Category: 0
-      Arabic: "\u0637\u0627\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: flower
-      Kind: 0
+      Kind: 1
       Category: 8
       Arabic: "\u0648\u0631\u062F"
       Letters:
@@ -2038,7 +2101,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: food
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0623\u0643\u0644"
       Letters:
@@ -2047,7 +2110,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: foot
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0631\u062C\u0644"
       Letters:
@@ -2056,7 +2119,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: football
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0642\u062F\u0645"
       Letters:
@@ -2065,7 +2128,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: forest
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u063A\u0627\u0628\u0629\u064C"
       Letters:
@@ -2074,7 +2137,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: fridge
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062B\u0644\u0627\u062C\u0629"
       Letters:
@@ -2083,7 +2146,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: furniture
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0623\u062B\u0627\u062B"
       Letters:
@@ -2092,7 +2155,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: garden
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0628\u064F\u0633\u062A\u0627\u0646"
       Letters:
@@ -2101,7 +2164,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: garlic
-      Kind: 0
+      Kind: 1
       Category: 14
       Arabic: "\u062B\u0648\u0645"
       Letters:
@@ -2110,7 +2173,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: girl
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0628\u0646\u062A"
       Letters:
@@ -2119,7 +2182,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: glue
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0635\u064E\u0645\u063A"
       Letters:
@@ -2128,7 +2191,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: granddaughter
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u062D\u0641\u064A\u062F\u0629"
       Letters:
@@ -2137,7 +2200,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: grandfather
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u062C\u062F\u0648"
       Letters:
@@ -2146,7 +2209,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: grandmother
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0646\u0627\u0646\u0627"
       Letters:
@@ -2155,7 +2218,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: grandson
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u062D\u0641\u064A\u062F"
       Letters:
@@ -2164,7 +2227,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: grapes
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u0639\u0646\u0628"
       Letters:
@@ -2173,7 +2236,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: ground
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0623\u0631\u0636"
       Letters:
@@ -2182,7 +2245,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: hair
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0634\u0639\u0631"
       Letters:
@@ -2191,7 +2254,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: hand
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u064A\u062F"
       Letters:
@@ -2199,17 +2262,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 1
       Drawing: 0
-    - Id: happy
-      Kind: 0
-      Category: 0
-      Arabic: "\u0633\u0639\u064A\u062F"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: head
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0631\u0627\u0633"
       Letters:
@@ -2217,17 +2271,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 1
       Drawing: 0
-    - Id: hi
-      Kind: 0
-      Category: 0
-      Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: hospital
-      Kind: 0
+      Kind: 1
       Category: 10
       Arabic: "\u0645\u0633\u062A\u0634\u0641\u0649"
       Letters:
@@ -2235,26 +2280,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: hot
-      Kind: 0
-      Category: 0
-      Arabic: "\u062D\u0627\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: hot_CHECK
-      Kind: 0
-      Category: 0
-      Arabic: "\u0634\u0648\u0628"
-      Letters:
-      - "\u0634\u0640 \u0640\u0648 \u0628"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
     - Id: hot_food
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0633\u062E\u0646"
       Letters:
@@ -2263,7 +2290,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: hour
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0633\u0627\u0639\u0629"
       Letters:
@@ -2272,7 +2299,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: house
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0628\u064A\u062A"
       Letters:
@@ -2281,7 +2308,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: icecream
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0628\u0648\u0638\u0629"
       Letters:
@@ -2289,17 +2316,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: insistent
-      Kind: 0
-      Category: 0
-      Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: islands
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062C\u064F\u0632\u064F\u0631"
       Letters:
@@ -2308,7 +2326,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: juice
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u064E\u0635\u064A\u0631"
       Letters:
@@ -2317,7 +2335,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: kid
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0648\u0644\u062F"
       Letters:
@@ -2326,7 +2344,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: knowledge
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0650\u0644\u0652\u0645"
       Letters:
@@ -2334,26 +2352,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: laughed
-      Kind: 0
-      Category: 0
-      Arabic: "\u0636\u064E\u062D\u0650\u0643\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: lazy
-      Kind: 0
-      Category: 0
-      Arabic: "\u0643\u0633\u0648\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: leg
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0631\u062C\u0644"
       Letters:
@@ -2362,7 +2362,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: lentil
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u062F\u0633"
       Letters:
@@ -2370,17 +2370,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: light
-      Kind: 0
-      Category: 0
-      Arabic: "\u0636\u0648\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: lion
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0623\u0633\u062F"
       Letters:
@@ -2389,7 +2380,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: lion_dual
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0623\u0633\u062F\u0627\u0646"
       Letters:
@@ -2398,7 +2389,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: lion_plural
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0623\u0633\u0648\u062F"
       Letters:
@@ -2407,7 +2398,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: lions
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0623\u064F\u0633\u0648\u062F\u064C"
       Letters:
@@ -2416,7 +2407,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: lips
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0634\u0641\u0627\u0647"
       Letters:
@@ -2425,7 +2416,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: man
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0631\u064E\u062C\u064F\u0644\u064D"
       Letters:
@@ -2434,7 +2425,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: market
-      Kind: 0
+      Kind: 1
       Category: 10
       Arabic: "\u0633\u0648\u0642"
       Letters:
@@ -2443,7 +2434,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: meat
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0644\u062D\u0645"
       Letters:
@@ -2452,7 +2443,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: melancholy
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0643\u0622\u0628\u0629"
       Letters:
@@ -2461,7 +2452,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0634\u0647\u0631"
       Letters:
@@ -2470,7 +2461,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_april
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0646\u064A\u0633\u0627\u0646"
       Letters:
@@ -2479,7 +2470,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_august
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0622\u0628"
       Letters:
@@ -2488,7 +2479,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_december
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u0644"
       Letters:
@@ -2497,7 +2488,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_february
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0634\u0628\u0627\u0637"
       Letters:
@@ -2506,7 +2497,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_january
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
@@ -2515,7 +2506,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_july
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u062A\u0645\u0648\u0632"
       Letters:
@@ -2524,7 +2515,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_june
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u062D\u0632\u064A\u0631\u0627\u0646"
       Letters:
@@ -2533,7 +2524,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_march
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0622\u0630\u0627\u0631"
       Letters:
@@ -2542,7 +2533,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_may
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0623\u064A\u0627\u0631"
       Letters:
@@ -2551,7 +2542,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_november
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
@@ -2560,7 +2551,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_october
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
       Letters:
@@ -2569,7 +2560,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: month_september
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0623\u064A\u0644\u0648\u0644"
       Letters:
@@ -2578,7 +2569,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: moon
-      Kind: 0
+      Kind: 1
       Category: 8
       Arabic: "\u0642\u0645\u0631"
       Letters:
@@ -2587,7 +2578,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: mother
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0645\u0627\u0645\u0627"
       Letters:
@@ -2596,7 +2587,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: mountain
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062C\u0628\u0644"
       Letters:
@@ -2605,7 +2596,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: mountain_dual
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062C\u0628\u0644\u0627\u0646"
       Letters:
@@ -2614,7 +2605,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: mountain_plural
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062C\u0628\u0627\u0644"
       Letters:
@@ -2623,7 +2614,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: mouse
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0641\u0627\u0631"
       Letters:
@@ -2632,7 +2623,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: mouth
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0641\u0645"
       Letters:
@@ -2641,7 +2632,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: nail
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0638\u0641\u0631"
       Letters:
@@ -2650,7 +2641,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: needle
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u0625\u0628\u0631\u0629"
       Letters:
@@ -2659,7 +2650,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: nest
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0634"
       Letters:
@@ -2668,7 +2659,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: nose
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0623\u0646\u0641"
       Letters:
@@ -2677,7 +2668,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: now
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u0622\u0646"
       Letters:
@@ -2686,7 +2677,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_0
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0635\u0641\u0631"
       Letters:
@@ -2695,7 +2686,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_1
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0648\u0627\u062D\u062F"
       Letters:
@@ -2704,7 +2695,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_10
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0639\u0634\u0631\u0629"
       Letters:
@@ -2713,7 +2704,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_11
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u062D\u062F \u0639\u0634\u0631"
       Letters:
@@ -2722,7 +2713,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_12
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u062B\u0646\u064A \u0639\u0634\u0631"
       Letters:
@@ -2731,7 +2722,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_13
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062B\u0644\u0627\u062B\u0629 \u0639\u0634\u0631"
       Letters:
@@ -2740,7 +2731,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_14
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0623\u0631\u0628\u0639\u0629 \u0639\u0634\u0631"
       Letters:
@@ -2749,7 +2740,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_15
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062E\u0645\u0633\u0629 \u0639\u0634\u0631"
       Letters:
@@ -2758,7 +2749,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_16
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0633\u062A\u0629 \u0639\u0634\u0631"
       Letters:
@@ -2767,7 +2758,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_17
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0633\u0628\u0639\u0629 \u0639\u0634\u0631"
       Letters:
@@ -2776,7 +2767,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_18
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0634\u0631"
       Letters:
@@ -2785,7 +2776,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_19
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062A\u0633\u0639\u0629 \u0639\u0634\u0631"
       Letters:
@@ -2794,7 +2785,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_2
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u062B\u0646\u0627\u0646"
       Letters:
@@ -2803,7 +2794,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_20
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0639\u0634\u0631\u0648\u0646"
       Letters:
@@ -2812,7 +2803,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_3
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062B\u0644\u0627\u062B\u0629"
       Letters:
@@ -2821,7 +2812,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_4
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0623\u0631\u0628\u0639\u0629"
       Letters:
@@ -2830,7 +2821,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_5
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062E\u0645\u0633\u0629"
       Letters:
@@ -2839,7 +2830,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_6
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0633\u062A\u0629"
       Letters:
@@ -2848,7 +2839,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_7
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0633\u0628\u0639\u0629\u064C"
       Letters:
@@ -2857,7 +2848,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_8
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629"
       Letters:
@@ -2866,7 +2857,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_9
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u062A\u0633\u0639\u0629"
       Letters:
@@ -2875,7 +2866,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o1
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u0623\u0648\u0644"
       Letters:
@@ -2884,7 +2875,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o10
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u0639\u0627\u0634\u0631"
       Letters:
@@ -2893,7 +2884,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o2
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
@@ -2902,7 +2893,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o3
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u062B\u0627\u0644\u062B"
       Letters:
@@ -2911,7 +2902,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o4
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u0631\u0627\u0628\u0639"
       Letters:
@@ -2920,7 +2911,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o5
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u062E\u0627\u0645\u0633"
       Letters:
@@ -2929,7 +2920,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o6
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u0633\u0627\u062F\u0633"
       Letters:
@@ -2938,7 +2929,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o7
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u0633\u0627\u0628\u0639"
       Letters:
@@ -2947,7 +2938,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o8
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u062B\u0627\u0645\u0646"
       Letters:
@@ -2956,7 +2947,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: number_o9
-      Kind: 0
+      Kind: 1
       Category: 9
       Arabic: "\u0627\u0644\u062A\u0627\u0633\u0639"
       Letters:
@@ -2964,17 +2955,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: of_course
-      Kind: 0
-      Category: 0
-      Arabic: "\u0637\u0628\u0639\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: oil
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0632\u064A\u062A"
       Letters:
@@ -2983,7 +2965,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: onion
-      Kind: 0
+      Kind: 1
       Category: 14
       Arabic: "\u0628\u0635\u0644"
       Letters:
@@ -2992,7 +2974,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: OokaDH
-      Kind: 0
+      Kind: 1
       Category: 10
       Arabic: "\u0639\u0643\u0627\u0638"
       Letters:
@@ -3000,17 +2982,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: opened
-      Kind: 0
-      Category: 0
-      Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: oven
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0641\u0631\u0646"
       Letters:
@@ -3019,7 +2992,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: paper
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u0648\u0631\u0642"
       Letters:
@@ -3028,7 +3001,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: parrot
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0628\u0628\u063A\u0627\u0621"
       Letters:
@@ -3037,7 +3010,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: pear
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u0625\u0646\u062C\u0627\u0635"
       Letters:
@@ -3046,7 +3019,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: pear_big
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u0643\u0645\u062B\u0631\u0649"
       Letters:
@@ -3055,7 +3028,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: pearl
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0644\u0624\u0644\u0624"
       Letters:
@@ -3064,7 +3037,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: pencil
-      Kind: 0
+      Kind: 1
       Category: 12
       Arabic: "\u0642\u0644\u0645"
       Letters:
@@ -3072,17 +3045,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: played
-      Kind: 0
-      Category: 0
-      Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: plum
-      Kind: 0
+      Kind: 1
       Category: 6
       Arabic: "\u062E\u0648\u062E"
       Letters:
@@ -3091,7 +3055,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: policeman
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0634\u0631\u0637\u064A"
       Letters:
@@ -3100,7 +3064,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: potato
-      Kind: 0
+      Kind: 1
       Category: 14
       Arabic: "\u0628\u0637\u0627\u0637\u0627"
       Letters:
@@ -3109,7 +3073,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: rain
-      Kind: 0
+      Kind: 1
       Category: 8
       Arabic: "\u0645\u0637\u064E\u0631"
       Letters:
@@ -3117,26 +3081,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 1
       Drawing: 0
-    - Id: rainy
-      Kind: 0
-      Category: 0
-      Arabic: "\u0645\u0627\u0637\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: released
-      Kind: 0
-      Category: 0
-      Arabic: "\u062A\u064E\u0631\u064E\u0643\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: restaurant
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u0637\u0639\u064E\u0645"
       Letters:
@@ -3145,7 +3091,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: rice
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0631\u0632"
       Letters:
@@ -3154,7 +3100,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: river
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0646\u0647\u0631"
       Letters:
@@ -3163,7 +3109,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: river_dual
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0646\u0647\u0631\u0627\u0646"
       Letters:
@@ -3172,7 +3118,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: river_plural
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0623\u0646\u0647\u0627\u0631"
       Letters:
@@ -3181,7 +3127,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: room
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u063A\u0631\u0641\u0629"
       Letters:
@@ -3189,26 +3135,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: sad
-      Kind: 0
-      Category: 0
-      Arabic: "\u062D\u0632\u064A\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: safe
-      Kind: 0
-      Category: 0
-      Arabic: "\u0622\u0645\u0650\u0646\u0652"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: salt
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u0650\u0644\u0652\u062D"
       Letters:
@@ -3216,26 +3144,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: sat
-      Kind: 0
-      Category: 0
-      Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: saw
-      Kind: 0
-      Category: 0
-      Arabic: "\u0631\u0623\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: school
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u062F\u0631\u0633\u0629"
       Letters:
@@ -3244,7 +3154,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: scientist
-      Kind: 0
+      Kind: 1
       Category: 7
       Arabic: "\u0639\u0627\u0644\u0645"
       Letters:
@@ -3253,7 +3163,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: scientist_dual
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0627\u0644\u0645\u0627\u0646"
       Letters:
@@ -3262,7 +3172,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: scientist_plural
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0644\u0645\u0627\u0621"
       Letters:
@@ -3271,7 +3181,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: scissors
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u0642\u0635"
       Letters:
@@ -3280,7 +3190,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: second
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u062B\u0627\u0646\u064A\u0629"
       Letters:
@@ -3289,7 +3199,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: shop
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062F\u0643\u0627\u0646\u064D"
       Letters:
@@ -3298,7 +3208,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: sister
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0623\u062E\u062A"
       Letters:
@@ -3307,7 +3217,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: sky
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0633\u0645\u0627\u0621"
       Letters:
@@ -3315,26 +3225,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: slow
-      Kind: 0
-      Category: 0
-      Arabic: "\u0628\u0637\u064A\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: small
-      Kind: 0
-      Category: 0
-      Arabic: "\u0635\u063A\u064A\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: snow
-      Kind: 0
+      Kind: 1
       Category: 8
       Arabic: "\u062A\u0644\u062C"
       Letters:
@@ -3343,7 +3235,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: sound
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0635\u0648\u062A"
       Letters:
@@ -3352,7 +3244,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: spring
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0631\u0628\u064A\u0639"
       Letters:
@@ -3361,7 +3253,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: station
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u062D\u0637\u0629"
       Letters:
@@ -3369,17 +3261,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: studied
-      Kind: 0
-      Category: 0
-      Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: sugar
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0633\u0643\u0631"
       Letters:
@@ -3388,7 +3271,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: summer
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0635\u064A\u0641"
       Letters:
@@ -3397,7 +3280,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: sun
-      Kind: 0
+      Kind: 1
       Category: 8
       Arabic: "\u0634\u0645\u0633"
       Letters:
@@ -3405,17 +3288,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: sure
-      Kind: 0
-      Category: 0
-      Arabic: "\u0639\u0641\u0648\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: table
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0637\u0627\u0648\u0644\u0629"
       Letters:
@@ -3424,7 +3298,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: tea
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0634\u0627\u064A"
       Letters:
@@ -3433,7 +3307,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: teacher
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u0639\u0644\u0645"
       Letters:
@@ -3442,7 +3316,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: television
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u062A\u0644\u0641\u0627\u0632"
       Letters:
@@ -3450,17 +3324,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: thankyou
-      Kind: 0
-      Category: 0
-      Arabic: "\u0634\u0643\u0631\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: the_active
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0646\u0634\u064A\u0637"
       Letters:
@@ -3469,7 +3334,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_ball
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0643\u0631\u0629"
       Letters:
@@ -3478,7 +3343,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_beautiful
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u062C\u0645\u064A\u0644"
       Letters:
@@ -3487,7 +3352,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_coat
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0645\u0639\u0637\u0641"
       Letters:
@@ -3496,7 +3361,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_engineer
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0645\u0647\u0646\u062F\u0633"
       Letters:
@@ -3505,7 +3370,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_happy
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0633\u0639\u064A\u062F"
       Letters:
@@ -3514,7 +3379,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_hat
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0642\u0628\u0639\u0629"
       Letters:
@@ -3523,7 +3388,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_lazy
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0643\u0633\u0648\u0644"
       Letters:
@@ -3532,7 +3397,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_player
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0644\u0627\u0639\u0628"
       Letters:
@@ -3541,7 +3406,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_playground
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0645\u0644\u0639\u0628"
       Letters:
@@ -3550,7 +3415,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_policeman
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0634\u0631\u0637\u064A"
       Letters:
@@ -3559,7 +3424,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_sad
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u062D\u0632\u064A\u0646"
       Letters:
@@ -3568,7 +3433,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_scientist
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0639\u0627\u0644\u0645"
       Letters:
@@ -3577,7 +3442,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_shirt
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635"
       Letters:
@@ -3586,7 +3451,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_shoe
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u062D\u0630\u0627\u0621"
       Letters:
@@ -3595,7 +3460,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_trousers
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0628\u0646\u0637\u0627\u0644"
       Letters:
@@ -3604,7 +3469,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_wonderful
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0631\u0627\u0626\u0639"
       Letters:
@@ -3613,7 +3478,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: the_worker
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0627\u0644\u0639\u0627\u0645\u0644"
       Letters:
@@ -3622,7 +3487,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: tiger
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u0646\u0645\u0631"
       Letters:
@@ -3631,7 +3496,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: today
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u064A\u0648\u0645"
       Letters:
@@ -3640,7 +3505,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: toilet
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u0631\u062D\u0627\u0636"
       Letters:
@@ -3649,7 +3514,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: tomato
-      Kind: 0
+      Kind: 1
       Category: 14
       Arabic: "\u0628\u0646\u062F\u0648\u0631\u0629"
       Letters:
@@ -3658,7 +3523,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: tomorrow
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u063A\u062F\u0627\u064B"
       Letters:
@@ -3667,7 +3532,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: tongue
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0644\u0633\u0627\u0646"
       Letters:
@@ -3676,7 +3541,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: tooth
-      Kind: 0
+      Kind: 1
       Category: 2
       Arabic: "\u0633\u0646"
       Letters:
@@ -3685,7 +3550,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: tower
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0628\u0631\u062C"
       Letters:
@@ -3694,7 +3559,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: tree
-      Kind: 0
+      Kind: 1
       Category: 8
       Arabic: "\u0634\u062C\u0631"
       Letters:
@@ -3703,7 +3568,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: triangle
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0645\u062B\u0644\u062B"
       Letters:
@@ -3712,7 +3577,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: uncle_father
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0639\u0645"
       Letters:
@@ -3721,7 +3586,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: uncle_mother
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u062E\u0627\u0644"
       Letters:
@@ -3729,17 +3594,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 1
       Drawing: 0
-    - Id: understood
-      Kind: 0
-      Category: 0
-      Arabic: "\u0641\u064E\u0647\u0650\u0645\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: vegetables
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u062E\u0636\u0631"
       Letters:
@@ -3747,17 +3603,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: virtuous
-      Kind: 0
-      Category: 0
-      Arabic: "\u0646\u0632\u064A\u0647"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: voice
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0635\u0648\u062A"
       Letters:
@@ -3765,17 +3612,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: walked
-      Kind: 0
-      Category: 0
-      Arabic: "\u0645\u0634\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: washing_machine
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u063A\u0633\u0627\u0644\u0629"
       Letters:
@@ -3784,7 +3622,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: water
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0645\u064A"
       Letters:
@@ -3793,7 +3631,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: 0
     - Id: watermelon
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0628\u0637\u064A\u062E"
       Letters:
@@ -3801,26 +3639,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: welcome
-      Kind: 0
-      Category: 0
-      Arabic: "\u0623\u0647\u0644\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: went
-      Kind: 0
-      Category: 0
-      Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: whale
-      Kind: 0
+      Kind: 1
       Category: 1
       Arabic: "\u062D\u0648\u062A"
       Letters:
@@ -3829,7 +3649,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: window
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0646\u0627\u0641\u0630\u0629"
       Letters:
@@ -3838,7 +3658,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: winter
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0634\u062A\u0627\u0621"
       Letters:
@@ -3847,7 +3667,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: wolf
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0630\u0626\u0628"
       Letters:
@@ -3856,7 +3676,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: woman
-      Kind: 0
+      Kind: 1
       Category: 4
       Arabic: "\u0645\u0631\u0623\u0629"
       Letters:
@@ -3864,35 +3684,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: won
-      Kind: 0
-      Category: 0
-      Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: wonderful
-      Kind: 0
-      Category: 0
-      Arabic: "\u0631\u0627\u0626\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: wore
-      Kind: 0
-      Category: 0
-      Arabic: "\u0644\u064E\u0628\u0650\u0633\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: worker
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0627\u0645\u0644"
       Letters:
@@ -3901,7 +3694,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: worker_dual
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0627\u0645\u0644\u0627\u0646"
       Letters:
@@ -3910,7 +3703,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: worker_plural
-      Kind: 0
+      Kind: 1
       Category: 0
       Arabic: "\u0639\u0645\u0627\u0644"
       Letters:
@@ -3918,17 +3711,8 @@ MonoBehaviour:
       Symbols: []
       Difficulty: 0
       Drawing: 0
-    - Id: wrote
-      Kind: 0
-      Category: 0
-      Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
     - Id: year
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0639\u0627\u0645"
       Letters:
@@ -3937,7 +3721,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: yesterday
-      Kind: 0
+      Kind: 1
       Category: 13
       Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
       Letters:
@@ -3946,13 +3730,229 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 0
     - Id: yogurt
-      Kind: 0
+      Kind: 1
       Category: 5
       Arabic: "\u0644\u0628\u0646"
       Letters:
       - "\u0644\u0640 \u0640\u0628\u0640 \u0640\u0646"
       Symbols: []
       Difficulty: 1
+      Drawing: 0
+    - Id: agreed
+      Kind: 3
+      Category: 0
+      Arabic: "\u0648\u0627\u0641\u064E\u0642\u064E"
+      Letters:
+      - "\u0648 \u0627 \u0641\u0640\u064E \u0640\u0642\u064E"
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: ate
+      Kind: 3
+      Category: 0
+      Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
+      Letters:
+      - "\u0623\u064E \u0643\u0640\u064E \u0640\u0644\u064E "
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: believed
+      Kind: 3
+      Category: 0
+      Arabic: "\u0622\u0645\u064E\u0646\u064E"
+      Letters:
+      - "\u0622 \u0645\u0640 \u0640\u0646"
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: carried
+      Kind: 3
+      Category: 0
+      Arabic: "\u062D\u064E\u0645\u064E\u0644\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: caught
+      Kind: 3
+      Category: 0
+      Arabic: "\u0645\u064E\u0633\u064E\u0643\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: cried
+      Kind: 3
+      Category: 0
+      Arabic: "\u0628\u0643\u0649"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: drank
+      Kind: 3
+      Category: 0
+      Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: flapped
+      Kind: 3
+      Category: 0
+      Arabic: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: flew
+      Kind: 3
+      Category: 0
+      Arabic: "\u0637\u0627\u0631"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: hi
+      Kind: 3
+      Category: 0
+      Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: laughed
+      Kind: 3
+      Category: 0
+      Arabic: "\u0636\u064E\u062D\u0650\u0643\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: played
+      Kind: 3
+      Category: 0
+      Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: released
+      Kind: 3
+      Category: 0
+      Arabic: "\u062A\u064E\u0631\u064E\u0643\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: sat
+      Kind: 3
+      Category: 0
+      Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: saw
+      Kind: 3
+      Category: 0
+      Arabic: "\u0631\u0623\u0649"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: studied
+      Kind: 3
+      Category: 0
+      Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: thankyou
+      Kind: 3
+      Category: 0
+      Arabic: "\u0634\u0643\u0631\u0627\u064B"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: understood
+      Kind: 3
+      Category: 0
+      Arabic: "\u0641\u064E\u0647\u0650\u0645\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: walked
+      Kind: 3
+      Category: 0
+      Arabic: "\u0645\u0634\u0649"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: welcome
+      Kind: 3
+      Category: 0
+      Arabic: "\u0623\u0647\u0644\u0627\u064B"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: went
+      Kind: 3
+      Category: 0
+      Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: won
+      Kind: 3
+      Category: 0
+      Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: wore
+      Kind: 3
+      Category: 0
+      Arabic: "\u0644\u064E\u0628\u0650\u0633\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: wrote
+      Kind: 3
+      Category: 0
+      Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
+      Letters:
+      - 
+      Symbols: []
+      Difficulty: 0
       Drawing: 0
   playSessionTable:
     innerList:
