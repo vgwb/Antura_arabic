@@ -18,9 +18,6 @@
         public float Difficulty { get; set; }
         public FastCrowdVariation Variation { get; set; }
         #endregion
-        #region Behaviour configurations
-        public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
-        #endregion
 
         /////////////////
         // Singleton Pattern
@@ -55,7 +52,6 @@
 
             Context = new SampleGameContext();
             Difficulty = 0.5f;
-            BehaviourSettings = new LetterBehaviour.BehaviourSettings();
         }
 
         #region external configuration call
