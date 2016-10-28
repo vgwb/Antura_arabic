@@ -23,7 +23,7 @@ namespace EA4S.MissingLetter
             mCollider.enabled = false;
         }
 
-        void PlayAnimation(LLAnimationStates animation)
+        public void PlayAnimation(LLAnimationStates animation)
         {
             mLetter.Model.State = animation;
         }
@@ -68,14 +68,20 @@ namespace EA4S.MissingLetter
         void OnMouseDown()
         {
             Debug.Log("Answer Clicked: " + mLetterData.Key);
+
+            Speak();
+
             if (onLetterClick != null)
             {
-                onLetterClick();
+                Invoke("LaunchLetterClick", 0.2f);
+                //onLetterClick(mLetterData.Key);
             }
+        }
 
-            if (onLetterClick_s != null)
-            {
-                onLetterClick_s(mLetterData.Key);
+
+        private void LaunchLetterClick() {
+            if (onLetterClick != null) {
+                onLetterClick(mLetterData.Key);
             }
         }
 
@@ -117,7 +123,6 @@ namespace EA4S.MissingLetter
             gameObject.transform.rotation = Quaternion.identity;
             endTransformToCallback = null;
             onLetterClick = null;
-            onLetterClick_s = null;
         }
 
         public void SetPositions(Vector3 start, Vector3 center, Vector3 end)
@@ -156,8 +161,7 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
-            onLetterClick = null;
-            onLetterClick_s = null;
+            
 
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
@@ -257,8 +261,7 @@ namespace EA4S.MissingLetter
         public LetterObjectView mLetter;
 
         public Action endTransformToCallback;
-        public Action onLetterClick;
-        public Action<string> onLetterClick_s;
+        public Action<string> onLetterClick;
         public event Action<GameObject> onLetterBecameInvisible;
 
         //public for pool
