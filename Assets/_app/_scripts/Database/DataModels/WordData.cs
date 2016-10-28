@@ -39,6 +39,7 @@ namespace EA4S.Db
         public WordCategory Category;
         public string Arabic;
         public string[] Letters;
+        public LetterSymbol[] Symbols; //TODO
         public string Transliteration;
         public int Difficulty;
         public int Drawing;
@@ -61,5 +62,12 @@ namespace EA4S.Db
                 );
         }
 
+    }
+
+    [Serializable]
+    public struct LetterSymbol
+    {
+        public string LetterId;
+        public string SymbolId;
     }
 }
