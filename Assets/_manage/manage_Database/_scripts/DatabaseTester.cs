@@ -442,7 +442,7 @@ namespace EA4S.Db.Management
         public void Teacher_LettersOfWord()
         {
             var wordDataId = dbManager.GetWordDataByRandom().GetId();
-            var list = teacherAI.GetLettersInWordById(wordDataId);
+            var list = teacherAI.GetLettersInWord(wordDataId);
 
             string output = "Letters of word " + wordDataId + ":\n";
             foreach (var data in list) output += data.Id + "\n";
@@ -465,7 +465,7 @@ namespace EA4S.Db.Management
             var list = teacherAI.SelectWordsForPlaySession(currentJourneyPositionId, 2);
 
             string output = "Words selected (" + currentJourneyPositionId + "):\n";
-            foreach (var data in list) output += data.Code + "\n";
+            foreach (var data in list) output += data + "\n";
             PrintOutput(output);
         }
 

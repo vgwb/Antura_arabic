@@ -44,6 +44,8 @@ namespace EA4S.Db.Management
         protected string ParseID<OtherD, OtherDTable>(D data, string id_string, OtherDTable table) where OtherDTable : SerializableDataTable<OtherD> where OtherD : IData
         {
             id_string = id_string.Trim(); // remove spaces
+            if (id_string == "") return ""; // skip empties
+
             var value = table.GetValue(id_string);
             if (value == null)
             {

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Handles the selection of what minigames to play during a playsession
+    /// </summary>
     public class MiniGameSelectionAI
     {
         // Configuration
@@ -19,6 +22,11 @@ namespace EA4S
         {
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
+        }
+
+        public void InitialiseNewPlaySession()
+        {
+            // Nothing to be done here
         }
 
         public List<Db.MiniGameData> PerformSelection(string playSessionId, int numberToSelect)
@@ -81,9 +89,9 @@ namespace EA4S
             UnityEngine.Debug.Log(debugString);
 
             // Choose N minigames based on these weights
-            var chosenMiniGames = RandomHelper.RouletteSelectNonRepeating<Db.MiniGameData>(minigame_data_list, weights_list, numberToSelect);
+            var selectedMiniGameData = RandomHelper.RouletteSelectNonRepeating<Db.MiniGameData>(minigame_data_list, weights_list, numberToSelect);
 
-            return chosenMiniGames;
+            return selectedMiniGameData;
         }
     }
 }

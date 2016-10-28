@@ -1161,7 +1161,6 @@ MonoBehaviour:
       Letters:
       - "\u0646\u0640 \u0640\u0634\u0640 \u0640\u064A\u0640 \u0640\u0637"
       Symbols: []
-      Transliteration: nasheet
       Difficulty: 0
       Drawing: 0
     - Id: agreed
@@ -1171,7 +1170,6 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u0627 \u0641\u0640\u064E \u0640\u0642\u064E"
       Symbols: []
-      Transliteration: wafaqa
       Difficulty: 0
       Drawing: 0
     - Id: al
@@ -1181,7 +1179,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: al
       Difficulty: 0
       Drawing: 0
     - Id: anger
@@ -1191,7 +1188,6 @@ MonoBehaviour:
       Letters:
       - "\u063A\u0640 \u0640\u064A\u0640 \u0640\u0638"
       Symbols: []
-      Transliteration: ghayDH
       Difficulty: 0
       Drawing: 0
     - Id: apple
@@ -1201,7 +1197,6 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u0641\u0640 \u0640\u0627 \u062D"
       Symbols: []
-      Transliteration: tuffah
       Difficulty: 0
       Drawing: 0
     - Id: apricot
@@ -1211,7 +1206,6 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0634\u0640 \u0640\u0645\u0640 \u0640\u0634"
       Symbols: []
-      Transliteration: mishmosh
       Difficulty: 2
       Drawing: 0
     - Id: ate
@@ -1221,7 +1215,6 @@ MonoBehaviour:
       Letters:
       - "\u0623\u064E \u0643\u0640\u064E \u0640\u0644\u064E "
       Symbols: []
-      Transliteration: akala
       Difficulty: 0
       Drawing: 0
     - Id: aunt_father
@@ -1231,7 +1224,6 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0645\u0640 \u0640\u0629"
       Symbols: []
-      Transliteration: amma
       Difficulty: 1
       Drawing: 0
     - Id: aunt_mother
@@ -1241,7 +1233,6 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0627 \u0644\u0640 \u0640\u0629"
       Symbols: []
-      Transliteration: khala
       Difficulty: 2
       Drawing: 0
     - Id: back
@@ -1251,7 +1242,6 @@ MonoBehaviour:
       Letters:
       - "\u0638\u0640 \u0640\u0647\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: DHahr
       Difficulty: 0
       Drawing: 0
     - Id: banana
@@ -1261,7 +1251,6 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0648 \u0632"
       Symbols: []
-      Transliteration: mawz
       Difficulty: 1
       Drawing: 1
     - Id: bank
@@ -1271,7 +1260,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u0643"
       Symbols: []
-      Transliteration: bank
       Difficulty: 0
       Drawing: 0
     - Id: basketball
@@ -1282,7 +1270,6 @@ MonoBehaviour:
       - "\u0643\u0640 \u0640\u0631 \u0629  \u0627 \u0644\u0640 \u0640\u0633\u0640
         \u0640\u0644\u0640 \u0640\u0629"
       Symbols: []
-      Transliteration: kurat assalla
       Difficulty: 0
       Drawing: 0
     - Id: bear
@@ -1292,7 +1279,6 @@ MonoBehaviour:
       Letters:
       - "\u062F \u0628"
       Symbols: []
-      Transliteration: dub
       Difficulty: 1
       Drawing: 0
     - Id: beautiful
@@ -1302,7 +1288,6 @@ MonoBehaviour:
       Letters:
       - "\u062C\u0640 \u0640\u0645\u0640 \u0640\u064A\u0640 \u0640\u0644"
       Symbols: []
-      Transliteration: jameel
       Difficulty: 0
       Drawing: 0
     - Id: bed
@@ -1312,7 +1297,6 @@ MonoBehaviour:
       Letters:
       - "\u0641\u0640 \u0640\u0631 \u0627 \u0634"
       Symbols: []
-      Transliteration: firash
       Difficulty: 0
       Drawing: 0
     - Id: believed
@@ -1322,7 +1306,6 @@ MonoBehaviour:
       Letters:
       - "\u0622 \u0645\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: aamana
       Difficulty: 0
       Drawing: 0
     - Id: belly
@@ -1332,7 +1315,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: batn
       Difficulty: 1
       Drawing: 0
     - Id: berry
@@ -1342,7 +1324,6 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u0648 \u062A"
       Symbols: []
-      Transliteration: tuut
       Difficulty: 1
       Drawing: 0
     - Id: big
@@ -1352,7 +1333,6 @@ MonoBehaviour:
       Letters:
       - "\u0643\u0640 \u0640\u0628\u0640 \u0640\u064A\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: kabeer
       Difficulty: 0
       Drawing: 0
     - Id: bird
@@ -1362,7 +1342,6 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0635\u0640 \u0640\u0641\u0640 \u0640\u0648 \u0631"
       Symbols: []
-      Transliteration: asfuur
       Difficulty: 0
       Drawing: 0
     - Id: book
@@ -1372,7 +1351,6 @@ MonoBehaviour:
       Letters:
       - "\u0643\u0640 \u0640\u062A\u0640 \u0640\u0627 \u0628"
       Symbols: []
-      Transliteration: kitaab
       Difficulty: 0
       Drawing: 0
     - Id: books
@@ -1382,7 +1360,6 @@ MonoBehaviour:
       Letters:
       - "\u0643\u064F\u0640 \u0640\u062A\u0640\u064F \u0640\u0628"
       Symbols: []
-      Transliteration: kutub
       Difficulty: 0
       Drawing: 0
     - Id: box
@@ -1392,7 +1369,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: sunduuq
       Difficulty: 0
       Drawing: 0
     - Id: boy
@@ -1402,7 +1378,6 @@ MonoBehaviour:
       Letters:
       - "\u0635\u0640 \u0640\u0628\u0640 \u0640\u064A"
       Symbols: []
-      Transliteration: Sabi
       Difficulty: 0
       Drawing: 0
     - Id: brain
@@ -1412,7 +1387,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: brave
@@ -1422,7 +1396,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: bread
@@ -1432,7 +1405,6 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u0628\u0640 \u0640\u0632"
       Symbols: []
-      Transliteration: khubz
       Difficulty: 1
       Drawing: 0
     - Id: breeze
@@ -1442,7 +1414,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: broad_bean
@@ -1452,7 +1423,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: brother
@@ -1462,7 +1432,6 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u062E"
       Symbols: []
-      Transliteration: akh
       Difficulty: 1
       Drawing: 0
     - Id: bulgar
@@ -1472,7 +1441,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: bus
@@ -1482,7 +1450,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: camel
@@ -1492,7 +1459,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: carpenter
@@ -1502,7 +1468,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: carried
@@ -1512,7 +1477,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: carrot
@@ -1522,7 +1486,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: cat
@@ -1532,7 +1495,6 @@ MonoBehaviour:
       Letters:
       - "\u0647\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: hir
       Difficulty: 1
       Drawing: 0
     - Id: caught
@@ -1542,7 +1504,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: chair
@@ -1552,7 +1513,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: cheese
@@ -1562,7 +1522,6 @@ MonoBehaviour:
       Letters:
       - "\u062C\u0640 \u0640\u0628\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: jubn
       Difficulty: 1
       Drawing: 0
     - Id: cherry
@@ -1572,7 +1531,6 @@ MonoBehaviour:
       Letters:
       - "\u0643\u0640 \u0640\u0631 \u0632"
       Symbols: []
-      Transliteration: karaz
       Difficulty: 0
       Drawing: 0
     - Id: chest
@@ -1582,7 +1540,6 @@ MonoBehaviour:
       Letters:
       - "\u0635\u0640 \u0640\u062F \u0631"
       Symbols: []
-      Transliteration: Sadr
       Difficulty: 0
       Drawing: 0
     - Id: chickpea
@@ -1592,7 +1549,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: classroom
@@ -1602,7 +1558,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: clean
@@ -1612,7 +1567,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: cloud
@@ -1622,7 +1576,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: club
@@ -1632,7 +1585,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: cold
@@ -1642,7 +1594,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0631 \u062F"
       Symbols: []
-      Transliteration: bard
       Difficulty: 1
       Drawing: 0
     - Id: cold_food
@@ -1652,7 +1603,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0627 \u0631 \u062F"
       Symbols: []
-      Transliteration: bared
       Difficulty: 0
       Drawing: 0
     - Id: color_black
@@ -1662,7 +1612,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_blue
@@ -1672,7 +1621,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_brown
@@ -1682,7 +1630,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_gold
@@ -1692,7 +1639,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_green
@@ -1702,7 +1648,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_orange
@@ -1712,7 +1657,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_pink
@@ -1722,7 +1666,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_purple
@@ -1732,7 +1675,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_red
@@ -1742,7 +1684,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_silver
@@ -1752,7 +1693,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_white
@@ -1762,7 +1702,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: color_yellow
@@ -1772,7 +1711,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: copybook
@@ -1782,7 +1720,6 @@ MonoBehaviour:
       Letters:
       - "\u062F \u0641\u0640 \u0640\u062A\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: daftar
       Difficulty: 0
       Drawing: 0
     - Id: costume
@@ -1792,7 +1729,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: cried
@@ -1802,7 +1738,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: cucumber
@@ -1812,7 +1747,6 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u064A\u0640 \u0640\u0627 \u0631"
       Symbols: []
-      Transliteration: khiyar
       Difficulty: 0
       Drawing: 0
     - Id: cupboard
@@ -1822,7 +1756,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: day
@@ -1832,7 +1765,6 @@ MonoBehaviour:
       Letters:
       - "\u064A\u0640 \u0640\u0648 \u0645"
       Symbols: []
-      Transliteration: yawm
       Difficulty: 0
       Drawing: 0
     - Id: day_friday
@@ -1842,7 +1774,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: day_monday
@@ -1852,7 +1783,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: day_saturday
@@ -1862,7 +1792,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: day_sunday
@@ -1872,7 +1801,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: day_thursday
@@ -1882,7 +1810,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: day_tuesday
@@ -1892,7 +1819,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: day_wednesday
@@ -1902,7 +1828,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: deer
@@ -1912,7 +1837,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: delicious
@@ -1922,7 +1846,6 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0644\u0640 \u0640\u0648"
       Symbols: []
-      Transliteration: helu
       Difficulty: 1
       Drawing: 0
     - Id: doctor
@@ -1932,7 +1855,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: dog
@@ -1942,7 +1864,6 @@ MonoBehaviour:
       Letters:
       - "\u0643\u0640 \u0640\u0644\u0640 \u0640\u0628"
       Symbols: []
-      Transliteration: kalb
       Difficulty: 1
       Drawing: 0
     - Id: door
@@ -1952,7 +1873,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: drank
@@ -1962,7 +1882,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: duck
@@ -1972,7 +1891,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: eagle
@@ -1982,7 +1900,6 @@ MonoBehaviour:
       Letters:
       - "\u0646\u0640 \u0640\u0633\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: neser
       Difficulty: 0
       Drawing: 0
     - Id: ear
@@ -1992,7 +1909,6 @@ MonoBehaviour:
       Letters:
       - "\u0627 \u062F \u0646"
       Symbols: []
-      Transliteration: Eden
       Difficulty: 1
       Drawing: 0
     - Id: elephant
@@ -2002,7 +1918,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: engineer
@@ -2012,7 +1927,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: eye
@@ -2022,7 +1936,6 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u064A\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: ain
       Difficulty: 1
       Drawing: 0
     - Id: face
@@ -2032,7 +1945,6 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u062C\u0640 \u0640\u0647"
       Symbols: []
-      Transliteration: wajeh
       Difficulty: 0
       Drawing: 0
     - Id: fall
@@ -2042,7 +1954,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: farmer
@@ -2052,7 +1963,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: father
@@ -2062,7 +1972,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0627 \u0628\u0640 \u0627"
       Symbols: []
-      Transliteration: baba
       Difficulty: 1
       Drawing: 0
     - Id: field
@@ -2072,7 +1981,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: fig
@@ -2082,7 +1990,6 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u064A\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: tiin
       Difficulty: 0
       Drawing: 0
     - Id: finger
@@ -2092,7 +1999,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: flag
@@ -2102,7 +2008,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: flapped
@@ -2112,7 +2017,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: flew
@@ -2122,7 +2026,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: flower
@@ -2132,7 +2035,6 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u0631 \u062F"
       Symbols: []
-      Transliteration: ward
       Difficulty: 1
       Drawing: 0
     - Id: food
@@ -2142,7 +2044,6 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u0643\u0640 \u0640\u0644"
       Symbols: []
-      Transliteration: akl
       Difficulty: 0
       Drawing: 0
     - Id: foot
@@ -2152,7 +2053,6 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u062C\u0640 \u0640\u0644"
       Symbols: []
-      Transliteration: rijl
       Difficulty: 1
       Drawing: 0
     - Id: football
@@ -2162,7 +2062,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: forest
@@ -2172,7 +2071,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: fridge
@@ -2182,7 +2080,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: furniture
@@ -2192,7 +2089,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: garden
@@ -2202,7 +2098,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: garlic
@@ -2212,7 +2107,6 @@ MonoBehaviour:
       Letters:
       - "\u062B\u0640 \u0640\u0648 \u0645"
       Symbols: []
-      Transliteration: thuum
       Difficulty: 0
       Drawing: 0
     - Id: girl
@@ -2222,7 +2116,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062A"
       Symbols: []
-      Transliteration: bint
       Difficulty: 0
       Drawing: 0
     - Id: glue
@@ -2232,7 +2125,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: granddaughter
@@ -2242,7 +2134,6 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F \u0629"
       Symbols: []
-      Transliteration: hafida
       Difficulty: 0
       Drawing: 0
     - Id: grandfather
@@ -2252,7 +2143,6 @@ MonoBehaviour:
       Letters:
       - "\u062C\u0640 \u0640\u062F \u0648"
       Symbols: []
-      Transliteration: jeddo
       Difficulty: 1
       Drawing: 0
     - Id: grandmother
@@ -2262,7 +2152,6 @@ MonoBehaviour:
       Letters:
       - "\u0646\u0640 \u0627 \u0646\u0640 \u0627"
       Symbols: []
-      Transliteration: nana
       Difficulty: 1
       Drawing: 0
     - Id: grandson
@@ -2272,7 +2161,6 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F"
       Symbols: []
-      Transliteration: hafid
       Difficulty: 0
       Drawing: 0
     - Id: grapes
@@ -2282,7 +2170,6 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0646\u0640 \u0640\u0628"
       Symbols: []
-      Transliteration: "e\u2019nab"
       Difficulty: 0
       Drawing: 0
     - Id: ground
@@ -2292,7 +2179,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: hair
@@ -2302,7 +2188,6 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0639\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: "sha\u2019ar"
       Difficulty: 0
       Drawing: 0
     - Id: hand
@@ -2312,7 +2197,6 @@ MonoBehaviour:
       Letters:
       - "\u064A\u0640 \u0640\u062F"
       Symbols: []
-      Transliteration: yad
       Difficulty: 1
       Drawing: 0
     - Id: happy
@@ -2322,7 +2206,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: head
@@ -2332,7 +2215,6 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u0627 \u0633"
       Symbols: []
-      Transliteration: ras
       Difficulty: 1
       Drawing: 0
     - Id: hi
@@ -2342,7 +2224,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: hospital
@@ -2352,7 +2233,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: hot
@@ -2362,7 +2242,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: hot_CHECK
@@ -2372,7 +2251,6 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0648 \u0628"
       Symbols: []
-      Transliteration: shob
       Difficulty: 1
       Drawing: 0
     - Id: hot_food
@@ -2382,7 +2260,6 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u062E\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: sekhen
       Difficulty: 0
       Drawing: 0
     - Id: hour
@@ -2392,7 +2269,6 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u0627 \u0639\u0640 \u0640\u0629"
       Symbols: []
-      Transliteration: "sa\u2019a"
       Difficulty: 0
       Drawing: 0
     - Id: house
@@ -2402,7 +2278,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: icecream
@@ -2412,7 +2287,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: insistent
@@ -2422,7 +2296,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: islands
@@ -2432,7 +2305,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: juice
@@ -2442,7 +2314,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: kid
@@ -2452,7 +2323,6 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u0644\u0640 \u0640\u062F"
       Symbols: []
-      Transliteration: walad
       Difficulty: 0
       Drawing: 0
     - Id: knowledge
@@ -2462,7 +2332,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: laughed
@@ -2472,7 +2341,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: lazy
@@ -2482,7 +2350,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: leg
@@ -2492,7 +2359,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: lentil
@@ -2502,7 +2368,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: light
@@ -2512,7 +2377,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: lion
@@ -2522,7 +2386,6 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u0633\u0640 \u0640\u062F"
       Symbols: []
-      Transliteration: asad
       Difficulty: 0
       Drawing: 0
     - Id: lion_dual
@@ -2532,7 +2395,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: lion_plural
@@ -2542,7 +2404,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: lions
@@ -2552,7 +2413,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: lips
@@ -2562,7 +2422,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: man
@@ -2572,7 +2431,6 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u062C\u0640 \u0640\u0644"
       Symbols: []
-      Transliteration: rajol
       Difficulty: 0
       Drawing: 0
     - Id: market
@@ -2582,7 +2440,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: meat
@@ -2592,7 +2449,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: melancholy
@@ -2602,7 +2458,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month
@@ -2612,7 +2467,6 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0647\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: shahr
       Difficulty: 0
       Drawing: 0
     - Id: month_april
@@ -2622,7 +2476,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_august
@@ -2632,7 +2485,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_december
@@ -2642,7 +2494,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_february
@@ -2652,7 +2503,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_january
@@ -2662,7 +2512,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_july
@@ -2672,7 +2521,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_june
@@ -2682,7 +2530,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_march
@@ -2692,7 +2539,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_may
@@ -2702,7 +2548,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_november
@@ -2712,7 +2557,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_october
@@ -2722,7 +2566,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: month_september
@@ -2732,7 +2575,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: moon
@@ -2742,7 +2584,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: mother
@@ -2752,7 +2593,6 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0627 \u0645\u0640 \u0627"
       Symbols: []
-      Transliteration: mama
       Difficulty: 1
       Drawing: 0
     - Id: mountain
@@ -2762,7 +2602,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: mountain_dual
@@ -2772,7 +2611,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: mountain_plural
@@ -2782,7 +2620,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: mouse
@@ -2792,7 +2629,6 @@ MonoBehaviour:
       Letters:
       - "\u0641\u0640 \u0640\u0627 \u0631"
       Symbols: []
-      Transliteration: far
       Difficulty: 1
       Drawing: 0
     - Id: mouth
@@ -2802,7 +2638,6 @@ MonoBehaviour:
       Letters:
       - "\u0641\u0640 \u0640\u0645"
       Symbols: []
-      Transliteration: fam
       Difficulty: 1
       Drawing: 0
     - Id: nail
@@ -2812,7 +2647,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: needle
@@ -2822,7 +2656,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: nest
@@ -2832,7 +2665,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: nose
@@ -2842,7 +2674,6 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u0646\u0640 \u0640\u0641"
       Symbols: []
-      Transliteration: anf
       Difficulty: 1
       Drawing: 0
     - Id: now
@@ -2852,7 +2683,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_0
@@ -2862,7 +2692,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_1
@@ -2872,7 +2701,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_10
@@ -2882,7 +2710,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_11
@@ -2892,7 +2719,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_12
@@ -2902,7 +2728,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_13
@@ -2912,7 +2737,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_14
@@ -2922,7 +2746,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_15
@@ -2932,7 +2755,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_16
@@ -2942,7 +2764,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_17
@@ -2952,7 +2773,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_18
@@ -2962,7 +2782,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_19
@@ -2972,7 +2791,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_2
@@ -2982,7 +2800,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_20
@@ -2992,7 +2809,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_3
@@ -3002,7 +2818,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_4
@@ -3012,7 +2827,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_5
@@ -3022,7 +2836,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_6
@@ -3032,7 +2845,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_7
@@ -3042,7 +2854,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_8
@@ -3052,7 +2863,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_9
@@ -3062,7 +2872,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o1
@@ -3072,7 +2881,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o10
@@ -3082,7 +2890,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o2
@@ -3092,7 +2899,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o3
@@ -3102,7 +2908,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o4
@@ -3112,7 +2917,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o5
@@ -3122,7 +2926,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o6
@@ -3132,7 +2935,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o7
@@ -3142,7 +2944,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o8
@@ -3152,7 +2953,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: number_o9
@@ -3162,7 +2962,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: of_course
@@ -3172,7 +2971,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: oil
@@ -3182,7 +2980,6 @@ MonoBehaviour:
       Letters:
       - "\u0632 \u064A\u0640 \u0640\u062A"
       Symbols: []
-      Transliteration: zayt
       Difficulty: 0
       Drawing: 0
     - Id: onion
@@ -3192,7 +2989,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0635\u0640 \u0640\u0644"
       Symbols: []
-      Transliteration: baSal
       Difficulty: 0
       Drawing: 0
     - Id: OokaDH
@@ -3202,7 +2998,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: opened
@@ -3212,7 +3007,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: oven
@@ -3222,7 +3016,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: paper
@@ -3232,7 +3025,6 @@ MonoBehaviour:
       Letters:
       - "\u0648 \u0631 \u0642"
       Symbols: []
-      Transliteration: waraq
       Difficulty: 0
       Drawing: 0
     - Id: parrot
@@ -3242,7 +3034,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: pear
@@ -3252,7 +3043,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: pear_big
@@ -3262,7 +3052,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: pearl
@@ -3272,7 +3061,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: pencil
@@ -3282,7 +3070,6 @@ MonoBehaviour:
       Letters:
       - "\u0642\u0640 \u0640\u0644\u0640 \u0640\u0645"
       Symbols: []
-      Transliteration: qalam
       Difficulty: 0
       Drawing: 0
     - Id: played
@@ -3292,7 +3079,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: plum
@@ -3302,7 +3088,6 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u0648 \u062E"
       Symbols: []
-      Transliteration: khawkh
       Difficulty: 0
       Drawing: 0
     - Id: policeman
@@ -3312,7 +3097,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: potato
@@ -3322,7 +3106,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0627 \u0637\u0640 \u0640\u0627"
       Symbols: []
-      Transliteration: baTaTa
       Difficulty: 0
       Drawing: 0
     - Id: rain
@@ -3332,7 +3115,6 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0637\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: matar
       Difficulty: 1
       Drawing: 0
     - Id: rainy
@@ -3342,7 +3124,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: released
@@ -3352,7 +3133,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: restaurant
@@ -3362,7 +3142,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: rice
@@ -3372,7 +3151,6 @@ MonoBehaviour:
       Letters:
       - "\u0631 \u0632"
       Symbols: []
-      Transliteration: ruz
       Difficulty: 1
       Drawing: 0
     - Id: river
@@ -3382,7 +3160,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: river_dual
@@ -3392,7 +3169,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: river_plural
@@ -3402,7 +3178,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: room
@@ -3412,7 +3187,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: sad
@@ -3422,7 +3196,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: safe
@@ -3432,7 +3205,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: salt
@@ -3442,7 +3214,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: sat
@@ -3452,7 +3223,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: saw
@@ -3462,7 +3232,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: school
@@ -3472,7 +3241,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: scientist
@@ -3482,7 +3250,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: scientist_dual
@@ -3492,7 +3259,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: scientist_plural
@@ -3502,7 +3268,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: scissors
@@ -3512,7 +3277,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: second
@@ -3522,7 +3286,6 @@ MonoBehaviour:
       Letters:
       - "\u062B\u0640 \u0640\u0627 \u0646\u0640 \u0640\u064A\u0640 \u0640\u0629"
       Symbols: []
-      Transliteration: thaniya
       Difficulty: 0
       Drawing: 0
     - Id: shop
@@ -3532,7 +3295,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: sister
@@ -3542,7 +3304,6 @@ MonoBehaviour:
       Letters:
       - "\u0623 \u062E\u0640 \u0640\u062A"
       Symbols: []
-      Transliteration: ukht
       Difficulty: 1
       Drawing: 0
     - Id: sky
@@ -3552,7 +3313,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: slow
@@ -3562,7 +3322,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: small
@@ -3572,7 +3331,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: snow
@@ -3582,7 +3340,6 @@ MonoBehaviour:
       Letters:
       - "\u062A\u0640 \u0640\u0644\u0640 \u0640\u062C"
       Symbols: []
-      Transliteration: talj
       Difficulty: 1
       Drawing: 0
     - Id: sound
@@ -3592,7 +3349,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: spring
@@ -3602,7 +3358,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: station
@@ -3612,7 +3367,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: studied
@@ -3622,7 +3376,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: sugar
@@ -3632,7 +3385,6 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u0643\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: sukkar
       Difficulty: 1
       Drawing: 0
     - Id: summer
@@ -3642,7 +3394,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: sun
@@ -3652,7 +3403,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: sure
@@ -3662,7 +3412,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: table
@@ -3672,7 +3421,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: tea
@@ -3682,7 +3430,6 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u0627 \u064A"
       Symbols: []
-      Transliteration: shai
       Difficulty: 1
       Drawing: 0
     - Id: teacher
@@ -3692,7 +3439,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: television
@@ -3702,7 +3448,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: thankyou
@@ -3712,7 +3457,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_active
@@ -3722,7 +3466,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_ball
@@ -3732,7 +3475,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_beautiful
@@ -3742,7 +3484,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_coat
@@ -3752,7 +3493,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_engineer
@@ -3762,7 +3502,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_happy
@@ -3772,7 +3511,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_hat
@@ -3782,7 +3520,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_lazy
@@ -3792,7 +3529,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_player
@@ -3802,7 +3538,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_playground
@@ -3812,7 +3547,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_policeman
@@ -3822,7 +3556,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_sad
@@ -3832,7 +3565,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_scientist
@@ -3842,7 +3574,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_shirt
@@ -3852,7 +3583,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_shoe
@@ -3862,7 +3592,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_trousers
@@ -3872,7 +3601,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_wonderful
@@ -3882,7 +3610,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: the_worker
@@ -3892,7 +3619,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: tiger
@@ -3902,7 +3628,6 @@ MonoBehaviour:
       Letters:
       - "\u0646\u0640 \u0640\u0645\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: nemer
       Difficulty: 0
       Drawing: 0
     - Id: today
@@ -3912,7 +3637,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: toilet
@@ -3922,7 +3646,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: tomato
@@ -3932,7 +3655,6 @@ MonoBehaviour:
       Letters:
       - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062F \u0648 \u0631 \u0629"
       Symbols: []
-      Transliteration: banadora
       Difficulty: 0
       Drawing: 0
     - Id: tomorrow
@@ -3942,7 +3664,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: tongue
@@ -3952,7 +3673,6 @@ MonoBehaviour:
       Letters:
       - "\u0644\u0640 \u0640\u0633\u0640 \u0640\u0627 \u0646"
       Symbols: []
-      Transliteration: lisan
       Difficulty: 0
       Drawing: 0
     - Id: tooth
@@ -3962,7 +3682,6 @@ MonoBehaviour:
       Letters:
       - "\u0633\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: sin
       Difficulty: 1
       Drawing: 0
     - Id: tower
@@ -3972,7 +3691,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: tree
@@ -3982,7 +3700,6 @@ MonoBehaviour:
       Letters:
       - "\u0634\u0640 \u0640\u062C\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: shajar
       Difficulty: 1
       Drawing: 0
     - Id: triangle
@@ -3992,7 +3709,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: uncle_father
@@ -4002,7 +3718,6 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0645"
       Symbols: []
-      Transliteration: am
       Difficulty: 1
       Drawing: 0
     - Id: uncle_mother
@@ -4012,7 +3727,6 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0627 \u0644"
       Symbols: []
-      Transliteration: khal
       Difficulty: 1
       Drawing: 0
     - Id: understood
@@ -4022,7 +3736,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: vegetables
@@ -4032,7 +3745,6 @@ MonoBehaviour:
       Letters:
       - "\u062E\u0640 \u0640\u0636\u0640 \u0640\u0631"
       Symbols: []
-      Transliteration: khuDar
       Difficulty: 0
       Drawing: 0
     - Id: virtuous
@@ -4042,7 +3754,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: voice
@@ -4052,7 +3763,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: walked
@@ -4062,7 +3772,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: washing_machine
@@ -4072,7 +3781,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: water
@@ -4082,7 +3790,6 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u064A"
       Symbols: []
-      Transliteration: mai
       Difficulty: 1
       Drawing: 0
     - Id: watermelon
@@ -4092,7 +3799,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: welcome
@@ -4102,7 +3808,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: went
@@ -4112,7 +3817,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: whale
@@ -4122,7 +3826,6 @@ MonoBehaviour:
       Letters:
       - "\u062D\u0640 \u0640\u0648 \u062A"
       Symbols: []
-      Transliteration: huut
       Difficulty: 0
       Drawing: 0
     - Id: window
@@ -4132,7 +3835,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: winter
@@ -4142,7 +3844,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: wolf
@@ -4152,7 +3853,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: woman
@@ -4162,7 +3862,6 @@ MonoBehaviour:
       Letters:
       - "\u0645\u0640 \u0640\u0631 \u0623 \u0629"
       Symbols: []
-      Transliteration: mara
       Difficulty: 0
       Drawing: 0
     - Id: won
@@ -4172,7 +3871,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: wonderful
@@ -4182,7 +3880,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: wore
@@ -4192,7 +3889,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: worker
@@ -4202,7 +3898,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: worker_dual
@@ -4212,7 +3907,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: worker_plural
@@ -4222,7 +3916,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: wrote
@@ -4232,7 +3925,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: year
@@ -4242,7 +3934,6 @@ MonoBehaviour:
       Letters:
       - "\u0639\u0640 \u0640\u0627 \u0645"
       Symbols: []
-      Transliteration: "a\u2019am"
       Difficulty: 0
       Drawing: 0
     - Id: yesterday
@@ -4252,7 +3943,6 @@ MonoBehaviour:
       Letters:
       - 
       Symbols: []
-      Transliteration: 
       Difficulty: 0
       Drawing: 0
     - Id: yogurt
@@ -4262,7 +3952,6 @@ MonoBehaviour:
       Letters:
       - "\u0644\u0640 \u0640\u0628\u0640 \u0640\u0646"
       Symbols: []
-      Transliteration: laban
       Difficulty: 1
       Drawing: 0
   playSessionTable:
@@ -9265,7 +8954,7 @@ MonoBehaviour:
         short and long vowel"
       IntroArabic: 
       Reward: 
-      Focus: 0
+      Focus: 5
       Letters:
       - waaw
       Words: []
@@ -9321,7 +9010,7 @@ MonoBehaviour:
       Description: 
       IntroArabic: 
       Reward: 
-      Focus: 0
+      Focus: 5
       Letters: []
       Words: []
       Words_previous:
@@ -9377,7 +9066,7 @@ MonoBehaviour:
         and long vowel"
       IntroArabic: 
       Reward: 
-      Focus: 0
+      Focus: 5
       Letters: []
       Words: []
       Words_previous:
@@ -9432,7 +9121,7 @@ MonoBehaviour:
       Description: 
       IntroArabic: 
       Reward: 
-      Focus: 0
+      Focus: 5
       Letters: []
       Words: []
       Words_previous:
