@@ -54,12 +54,17 @@ namespace EA4S.MissingLetter
                 NextSentenceQuestion();
             }
 
-            EnterCurrentScene();
+
+            if (mGame.GetCurrentState() == mGame.PlayState) {
+                EnterCurrentScene();
+            }
+            
         }
 
         public void Terminate()
         {
-            ExitCurrentScene();
+            if(mGame.mCurrentRound < mGame.mRoundsLimit)
+                ExitCurrentScene();
         }
 
 
@@ -77,7 +82,7 @@ namespace EA4S.MissingLetter
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
-            qstBehaviour.onLetterClick += qstBehaviour.Speak;
+            //qstBehaviour.onLetterClick += qstBehaviour.Speak; DELETE
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
 
@@ -108,8 +113,8 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.Reset();
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
-                //wrongAnsBheaviour.onLetterClick += wrongAnsBheaviour.Speak;
-                wrongAnsBheaviour.onLetterClick_s += OnAnswerClicked;
+                //wrongAnsBheaviour.onLetterClick += wrongAnsBheaviour.Speak; DELETE
+                wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
 
                 mCurrentAnswerScene.Add(_wrongAnswerObject);
             }
@@ -216,17 +221,21 @@ namespace EA4S.MissingLetter
 
         void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
-            //if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key) {
-            if(true)
-            {
+
+            if(/*mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key*/true) {
                 Debug.Log("Yes! Correct Answer");
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
+
+                DoWinAnimations(_key);
             }
             else {
                 Debug.Log("Noo :( Wrong Answer");
                 AudioManager.I.PlaySfx(Sfx.LetterSad);
+
+                DoLoseAnimations(_key);
             }
 
+            //TODO think how to delay the calls (waiting to show some wins animations)
             if (onAnswered != null) {
                 //onAnswered(mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key);
                 onAnswered(true);
@@ -272,6 +281,26 @@ namespace EA4S.MissingLetter
             {
                 mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration);
             }
+        }
+
+        private void DoWinAnimations(string _key)
+        {
+            for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
+            {
+                if(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == _key)
+                {
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_ride_rocket_horray);
+                }
+                else
+                {
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_twirl);
+                }
+            }
+        }
+            
+        private void DoLoseAnimations(string _key)
+        {
+
         }
 
         #region VARS
