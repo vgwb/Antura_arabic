@@ -24,7 +24,7 @@ namespace EA4S.Db
         public int Timestamp { get; set; }
 
         public InfoEvent Event { get; set; }
-        public string Parameters { get; set; } // playerId:0, rewardType:2
+        public string Parameters { get; set; } // examples: "playerId:0, rewardType:2"
 
         public LogInfoData()
         {

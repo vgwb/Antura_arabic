@@ -9,6 +9,9 @@ namespace EA4S
         private static readonly Random _random = new Random(DateTime.Now.Millisecond);
         public static T GetRandom<T>(this IList<T> list)
         {
+            if (list.Count == 0) {
+                throw new System.Exception("Cannot get a random element from the list as count is zero.");
+            }
             return list[_random.Next(0, list.Count)];
         }
 

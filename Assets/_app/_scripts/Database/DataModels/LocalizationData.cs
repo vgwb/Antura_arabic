@@ -14,6 +14,11 @@ namespace EA4S.Db
         public string AudioFile;
         public string EnglishOld;
 
+        public override string ToString()
+        {
+            return Id + ": " + English;
+        }
+
         public string GetId()
         {
             return Id;
