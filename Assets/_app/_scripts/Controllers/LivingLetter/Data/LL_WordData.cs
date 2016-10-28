@@ -11,36 +11,18 @@ namespace EA4S
             get { return LivingLetterDataType.Word; }
         }
 
+        private string key;
         public string Key {
             get { return key; }
             set { key = value; }
         }
 
-        public string Kind;
-        public string Category;
-        public string Stage;
-        public string English;
-        public string Word;
-        public string Letters;
-        public string Transliteration;
-        public string DifficultyLevel;
-        public string NumberOfLetters;
-        public string Group;
-
-        private string key;
+        public Db.WordData Data;
 
         public LL_WordData(string _keyRow, Db.WordData _wordRow)
         {
             Key = _keyRow;
-            Kind = _wordRow.Kind;
-            Category = _wordRow.Category;
-            English = _wordRow.English;
-            Word = _wordRow.Arabic;
-            Letters = _wordRow.Letters.ToString();
-            Transliteration = _wordRow.Transliteration;
-            DifficultyLevel = _wordRow.Difficulty.ToString();
-            NumberOfLetters = _wordRow.NumberOfLetters.ToString();
-            Group = _wordRow.Group;
+            Data = _wordRow;
         }
 
         #region API
@@ -76,7 +58,7 @@ namespace EA4S
         /// Living Letter Text To Display.
         /// </summary>
         public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.ParseWord(Word, AppManager.Instance.Letters); }
+            get { return ArabicAlphabetHelper.ParseWord(Data.Arabic, AppManager.Instance.Letters); }
         }
 
         /// <summary>

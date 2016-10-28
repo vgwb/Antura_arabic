@@ -21,6 +21,7 @@ namespace EA4S.Maze
 		{
 			isClicked = true;
 			MazeGameManager.Instance.timer.StopTimer ();
+			MazeGameManager.Instance.currentTutorial.stopCurrentTutorial ();
 			character.setClickedDot ();
 		}
 	}

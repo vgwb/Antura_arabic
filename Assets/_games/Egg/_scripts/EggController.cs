@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Egg
@@ -9,13 +10,20 @@ namespace EA4S.Egg
         public EggLivingLetter eggLivingLetter;
         public GameObject egg;
 
+        public EggPiece[] eggPieces;
+
         public EggControllerCollider eggCollider;
+
+        public Transform notRotatedObjects;
+        Vector3 notRotation = new Vector3(0f, 0f, 0f);
 
         public TremblingTube tremblingEgg;
         float tremblingTimer;
 
         public Action onEggCrackComplete;
         public Action onEggExitComplete;
+
+        public GameObject eggParticleWin;
 
         public AnimationCurve inMoveCurve;
         public AnimationCurve outMoveCurve;
@@ -25,18 +33,39 @@ namespace EA4S.Egg
         Tween rotationEggTween;
 
         Action endTransformToCallback;
+        Action endAudioQuestion;
 
         int currentPosition;
         Vector3 currentRotation;
 
         Vector3[] eggPositions;
 
-        public void Initialize(GameObject letterObjectViewPrefab, Vector3[] eggPositions, Action eggPressedCallback)
+        IAudioManager audioManager;
+        IAudioSource audioSource;
+        List<ILivingLetterData> lLDAudioQuestion = new List<ILivingLetterData>();
+
+        int piecePoofCompleteCount = 0;
+        bool eggEggCrackCompleteSent = false;
+
+        public void Initialize(GameObject letterObjectViewPrefab, Vector3[] eggPositions, Action eggPressedCallback, IAudioManager audioManager)
         {
             this.eggPositions = eggPositions;
             eggLivingLetter.Initialize(letterObjectViewPrefab);
             eggCollider.Initizlize(eggPressedCallback);
             eggCollider.DisableCollider();
+
+            egg.gameObject.SetActive(false);
+            eggParticleWin.SetActive(false);
+
+            this.audioManager = audioManager;
+
+            piecePoofCompleteCount = 0;
+            eggEggCrackCompleteSent = false;
+
+            InitializeEggPices();
+
+            currentRotation = new Vector3(0f, 0f, -90f);
+            GoToPosition(0, currentRotation);
         }
 
         public void Reset()
@@ -47,7 +76,18 @@ namespace EA4S.Egg
             eggLivingLetter.gameObject.SetActive(false);
             egg.gameObject.SetActive(true);
 
+            eggParticleWin.SetActive(true);
+
+            ResetCrack();
+
             tremblingTimer = 0f;
+
+            QuestionParticleDisabled();
+
+            audioSource = null;
+
+            piecePoofCompleteCount = 0;
+            eggEggCrackCompleteSent = false;
         }
 
         public void MoveNext(float duration, Action callback)
@@ -89,34 +129,42 @@ namespace EA4S.Egg
 
                 return false;
             }
+        }
 
+        public void InitializeEggPices()
+        {
+            for (int i = 0; i < eggPieces.Length; i++)
+            {
+                eggPieces[i].onPoofEnd = OnPiecePoofComplete;
+            }
         }
 
         public void ResetCrack()
         {
-
+            for (int i = 0; i < eggPieces.Length; i++)
+            {
+                eggPieces[i].Reset();
+            }
         }
 
         public void Cracking(float progress)
         {
             StartTrembling();
 
-            if (progress == 1f)
+            int eggPiecesProgress = (int)(progress * eggPieces.Length);
+
+            for (int i = 0; i < eggPiecesProgress; i++)
             {
-                Crack();
-            }
-        }
+                int index = isNextToExit ? ((eggPieces.Length - 1) - i) : i;
 
-        public void Crack()
-        {
-            eggLivingLetter.gameObject.SetActive(true);
-            eggLivingLetter.PlayIdleAnimation();
+                bool poofDirRight = (i % 2 == 0);
 
-            egg.gameObject.SetActive(false);
+                if ((currentPosition == 2) && (i < 2))
+                {
+                    poofDirRight = false;
+                }
 
-            if (onEggCrackComplete != null)
-            {
-                onEggCrackComplete();
+                eggPieces[index].Poof(poofDirRight);
             }
         }
 
@@ -236,12 +284,68 @@ namespace EA4S.Egg
             {
                 tremblingEgg.Trembling = false;
             }
+
+            if (lLDAudioQuestion.Count > 0)
+            {
+                if (audioSource != null)
+                {
+                    if (!audioSource.IsPlaying)
+                    {
+                        audioSource = null;
+                    }
+                }
+                else
+                {
+                    QuestionParticleEnabled();
+
+                    ILivingLetterData letterData = lLDAudioQuestion[0];
+
+                    audioSource = audioManager.PlayLetterData(letterData);
+
+                    lLDAudioQuestion.RemoveAt(0);
+                }
+            }
+            else
+            {
+                if (audioSource != null)
+                {
+                    if (!audioSource.IsPlaying)
+                    {
+                        QuestionParticleDisabled();
+
+                        audioSource = null;
+
+                        if (endAudioQuestion != null)
+                        {
+                            endAudioQuestion();
+                        }
+                    }
+                }
+            }
+
+            if (!eggEggCrackCompleteSent)
+            {
+                if (piecePoofCompleteCount >= eggPieces.Length)
+                {
+                    eggEggCrackCompleteSent = true;
+
+                    eggLivingLetter.gameObject.SetActive(true);
+                    eggLivingLetter.PlayIdleAnimation();
+
+                    egg.gameObject.SetActive(false);
+
+                    if (onEggCrackComplete != null)
+                    {
+                        onEggCrackComplete();
+                    }
+                }
+            }
         }
 
         public void LateUpdate()
         {
             float minY = 2.5f;
-            float maxY = 4f;
+            float maxY = 4.1f;
 
             float maxDelta = maxY - minY;
 
@@ -249,25 +353,101 @@ namespace EA4S.Egg
 
             float newYPosition = minY;
 
+            //if (zRotation <= 180)
+            //{
+            //    newYPosition += maxDelta * (zRotation / 180f);
+            //}
+            //else
+            //{
+            //    newYPosition += maxDelta * ((360 - zRotation) / 180f);
+            //}
+
             if (zRotation <= 180)
             {
-                newYPosition += maxDelta * (zRotation / 180f);
+                if (zRotation < 90f)
+                {
+                    zRotation = 0f;
+                }
+                else
+                {
+                    zRotation += -90f;
+                }
             }
             else
             {
-                newYPosition += maxDelta * ((360 - zRotation) / 180f);
+                zRotation += -180f;
+
+                if (zRotation <= 90f)
+                {
+                    zRotation = 90f - zRotation;
+                }
+                else
+                {
+                    zRotation = 0f;
+                }
             }
+
+            newYPosition += maxDelta * (zRotation / 90f);
 
             Vector3 newPosition = egg.transform.localPosition;
 
             newPosition.y = newYPosition;
 
             egg.transform.localPosition = newPosition;
+
+            notRotatedObjects.eulerAngles = notRotation;
+        }
+
+        public void PlayAudioQuestion(ILivingLetterData questionDataAudio, Action endCallback)
+        {
+            List<ILivingLetterData> sigleDataAudio = new List<ILivingLetterData>();
+            sigleDataAudio.Add(questionDataAudio);
+
+            PlayAudioQuestion(sigleDataAudio, endCallback);
+        }
+
+        public void PlayAudioQuestion(IEnumerable<ILivingLetterData> questionDataAudio, Action endCallback)
+        {
+            audioSource = null;
+
+            this.endAudioQuestion = endCallback;
+
+            lLDAudioQuestion.Clear();
+
+            foreach (ILivingLetterData letterData in questionDataAudio)
+            {
+                lLDAudioQuestion.Add(letterData);
+            }
+        }
+
+        public void QuestionParticleEnabled()
+        {
+            eggParticleWin.SetActive(true);
+
+            foreach (var particles in eggParticleWin.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Play();
+            }
+        }
+
+        public void QuestionParticleDisabled()
+        {
+            foreach (var particles in eggParticleWin.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Stop();
+            }
+
+            eggParticleWin.SetActive(false);
         }
 
         public void StartTrembling()
         {
             tremblingTimer = 0.5f;
+        }
+
+        void OnPiecePoofComplete()
+        {
+            piecePoofCompleteCount++;
         }
     }
 }

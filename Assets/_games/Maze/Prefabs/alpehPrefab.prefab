@@ -2162,6 +2162,7 @@ MonoBehaviour:
   - {fileID: 1000010603744024}
   numbersToShow:
   - {fileID: 1000011798021068}
+  isStopped: 0
 --- !u!114 &114000010520115226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2338,6 +2339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 114000011646660602}
+  idleSeconds: 0
 --- !u!114 &114000013034412552
 MonoBehaviour:
   m_ObjectHideFlags: 1

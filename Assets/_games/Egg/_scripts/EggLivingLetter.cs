@@ -4,8 +4,6 @@ namespace EA4S.Egg
 {
     public class EggLivingLetter : MonoBehaviour
     {
-        public BoxCollider boxCollider;
-
         GameObject letterObjectViewPrefab;
 
         LetterObjectView livingLetter;

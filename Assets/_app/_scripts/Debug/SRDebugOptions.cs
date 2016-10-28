@@ -12,7 +12,7 @@ public partial class SROptions
     public void Home()
     {
         WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Start");
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -128,16 +128,14 @@ public partial class SROptions
     /// ThrowBalls
     private bool ThrowBallsShowProjection = true;
     [Category("ThrowBalls")]
-    public bool ShowProjection
-    {
+    public bool ShowProjection {
         get { return ThrowBallsShowProjection; }
         set { ThrowBallsShowProjection = value; }
     }
 
     private float ThrowBallselasticity = 17f;
     [Category("ThrowBalls")]
-    public float Elasticity
-    {
+    public float Elasticity {
         get { return ThrowBallselasticity; }
         set { ThrowBallselasticity = value; }
     }

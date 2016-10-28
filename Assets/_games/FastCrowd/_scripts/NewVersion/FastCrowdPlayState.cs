@@ -125,9 +125,6 @@ namespace EA4S.FastCrowd
 
         public void Update(float delta)
         {
-            gameTime.Update(delta);
-            game.timerText.text = ((int)gameTime.Time).ToString();
-
             anturaTimer -= delta;
 
             if (anturaTimer <= 0.0f)
@@ -137,6 +134,9 @@ namespace EA4S.FastCrowd
                 else
                     StartAntura();
             }
+
+            gameTime.Update(delta);
+            game.timerText.text = ((int)gameTime.Time).ToString();
         }
 
         public void UpdatePhysics(float delta)
