@@ -18,20 +18,54 @@
             var question = provider.GetNextQuestion();
             game.CurrentQuestion = question;
 
+            if (question == null)
+            {
+                game.SetCurrentState(game.EndState);
+                return;
+            }
+
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
             {
+                LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Key);
+                isolated.ShowAs = LetterDataForm.ISOLATED;
+                game.CurrentChallenge.Add(isolated);
+
                 for (int i = 0; i < 3; ++i)
                 {
                     LL_LetterData data = new LL_LetterData(question.GetQuestion().Key);
 
                     if (i == 0)
+                    {
+                        if (data.Data.Initial_Unicode == data.Data.Isolated_Unicode)
+                            continue;
+
                         data.ShowAs = LetterDataForm.INITIAL;
+                    }
                     else if (i == 1)
+                    {
+                        if (data.Data.Medial_Unicode == data.Data.Initial_Unicode ||
+                            data.Data.Medial_Unicode == data.Data.Isolated_Unicode)
+                            continue;
+
                         data.ShowAs = LetterDataForm.MEDIAL;
+                    }
                     else if (i == 2)
+                    {
+                        if (data.Data.Final_Unicode == data.Data.Initial_Unicode ||
+                            data.Data.Final_Unicode == data.Data.Medial_Unicode ||
+                            data.Data.Final_Unicode == data.Data.Isolated_Unicode)
+                            continue;
+
                         data.ShowAs = LetterDataForm.FINAL;
+                    }
 
                     game.CurrentChallenge.Add(data);
+                }
+
+                if (game.CurrentChallenge.Count < 2)
+                {
+                    game.SetCurrentState(this);
+                    return;
                 }
             }
             else

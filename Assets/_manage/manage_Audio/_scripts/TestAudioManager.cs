@@ -15,6 +15,9 @@ namespace EA4S
         public GameObject PanelLocalization;
         public GameObject PlayButtonPrefab;
 
+
+        Fabric.AudioComponent fabricComponent = null;
+
         Sfx currentSfx;
 
         void Start()
@@ -89,8 +92,7 @@ namespace EA4S
 
         #region music
 
-        public GameObject PanelMusic1
-        {
+        public GameObject PanelMusic1 {
             get { return PanelMusic; }
             set { PanelMusic = value; }
         }
@@ -171,6 +173,28 @@ namespace EA4S
 
         void Update()
         {
+
+            if (fabricComponent == null) {
+                fabricComponent = Fabric.FabricManager.Instance.GetComponentByName("FabricAudioManger_Sfx_UI_Win") as Fabric.AudioComponent;
+
+                fabricComponent.Volume = 0.5f;
+                fabricComponent.Loop = true;
+                AudioClip associatedAudioClip = fabricComponent.AudioClip;
+            }
+
+
+
+            //Fabric.Component[] components = Fabric.FabricManager.Instance.GetComponentsByName(MyEventName, LEDs[0]);
+
+            //if (components != null && components.Length > 0) {
+            //    components[0].Volume = 0.5f;
+
+            //    if (components[0].IsPlaying() == true) {
+            //        Debug.Log("Component is playing");
+            //    }
+            //}
+
+
             if (Fabric.EventManager.Instance.IsEventActive(MyEventName, LEDs[0])) {
                 LEDs[0].SetActive(true);
             } else {
