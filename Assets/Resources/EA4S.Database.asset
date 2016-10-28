@@ -867,7 +867,7 @@ MonoBehaviour:
     - Id: alef_hamza_hi
       Number: 0
       Title: alef hamza (hi)
-      Kind: 0
+      Kind: 5
       Type: 1
       Notes: variation of Alef
       SunMoon: 0
@@ -883,7 +883,7 @@ MonoBehaviour:
     - Id: alef_hamza_low
       Number: 0
       Title: alef hamza (low)
-      Kind: 0
+      Kind: 5
       Type: 1
       Notes: variation of Alef
       SunMoon: 0
@@ -899,7 +899,7 @@ MonoBehaviour:
     - Id: waaw_hamza
       Number: 0
       Title: 
-      Kind: 0
+      Kind: 5
       Type: 0
       Notes: 
       SunMoon: 0
@@ -915,7 +915,7 @@ MonoBehaviour:
     - Id: yaa_hamza
       Number: 0
       Title: 
-      Kind: 0
+      Kind: 5
       Type: 0
       Notes: 
       SunMoon: 0
@@ -931,7 +931,7 @@ MonoBehaviour:
     - Id: alef_maqsura_hamza
       Number: 0
       Title: 
-      Kind: 0
+      Kind: 5
       Type: 0
       Notes: 
       SunMoon: 0
@@ -1139,7 +1139,7 @@ MonoBehaviour:
     - Id: laam_alef
       Number: 0
       Title: laam alef
-      Kind: 0
+      Kind: 5
       Type: 0
       Notes: combination of laam & alef together
       SunMoon: 0
@@ -3979,7 +3979,7 @@ MonoBehaviour:
       Words_previous:
       - mother
       - nose
-      - ' deer'
+      - deer
       - sister
       Phrases: []
       Phrases_previous: []
@@ -4013,7 +4013,7 @@ MonoBehaviour:
       Words_previous:
       - mother
       - nose
-      - ' deer'
+      - deer
       - sister
       Phrases: []
       Phrases_previous: []
@@ -4044,7 +4044,7 @@ MonoBehaviour:
       - needle
       - mother
       - nose
-      - ' deer'
+      - deer
       - sister
       Words_previous: []
       Phrases: []
@@ -4167,7 +4167,7 @@ MonoBehaviour:
       - hah
       - khaa
       Words:
-      - ' leg'
+      - leg
       - delicious
       - uncle_father
       Words_previous:
@@ -4211,7 +4211,7 @@ MonoBehaviour:
       - hah
       - khaa
       Words:
-      - ' leg'
+      - leg
       - delicious
       - uncle_father
       Words_previous:
@@ -4386,8 +4386,8 @@ MonoBehaviour:
       - moon
       - rain
       - deer
-      - ' oil'
-      - 'leg '
+      - oil
+      - leg
       - color_blue
       Phrases: []
       Phrases_previous: []
@@ -4433,8 +4433,8 @@ MonoBehaviour:
       - moon
       - rain
       - deer
-      - ' oil'
-      - 'leg '
+      - oil
+      - leg
       - color_blue
       Phrases: []
       Phrases_previous: []
@@ -4716,11 +4716,11 @@ MonoBehaviour:
       - back
       Words_previous:
       - potato
-      - ' duck'
-      - ' nail'
+      - duck
+      - nail
       - clean
       - belly
-      - ' icecream'
+      - icecream
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -4765,11 +4765,11 @@ MonoBehaviour:
       - back
       Words_previous:
       - potato
-      - ' duck'
-      - ' nail'
+      - duck
+      - nail
       - clean
       - belly
-      - ' icecream'
+      - icecream
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -4833,7 +4833,7 @@ MonoBehaviour:
       - grapes
       - room
       - parrot
-      - ' hair'
+      - hair
       - glue
       Phrases: []
       Phrases_previous: []
@@ -4880,7 +4880,7 @@ MonoBehaviour:
       - grapes
       - room
       - parrot
-      - ' hair'
+      - hair
       - glue
       Phrases: []
       Phrases_previous: []
@@ -4939,7 +4939,7 @@ MonoBehaviour:
       - qaaf
       Words:
       - nose
-      - 'moon '
+      - moon
       Words_previous:
       - copybook
       - elephant
@@ -4988,7 +4988,7 @@ MonoBehaviour:
       - qaaf
       Words:
       - nose
-      - 'moon '
+      - moon
       Words_previous:
       - copybook
       - elephant
@@ -5282,7 +5282,7 @@ MonoBehaviour:
       - back
       - paper
       - tea
-      - ' river'
+      - river
       - hand
       Phrases: []
       Phrases_previous: []
@@ -5330,7 +5330,7 @@ MonoBehaviour:
       - back
       - paper
       - tea
-      - ' river'
+      - river
       - hand
       Phrases: []
       Phrases_previous: []
@@ -5391,10 +5391,10 @@ MonoBehaviour:
       - grandfather
       - elephant
       Words_previous:
-      - ' book'
+      - book
       - whale
       - fig
-      - 'berry '
+      - berry
       - grandson
       Phrases: []
       Phrases_previous: []
@@ -5433,10 +5433,10 @@ MonoBehaviour:
       - grandfather
       - elephant
       Words_previous:
-      - ' book'
+      - book
       - whale
       - fig
-      - 'berry '
+      - berry
       - grandson
       Phrases: []
       Phrases_previous: []
@@ -5587,7 +5587,7 @@ MonoBehaviour:
       - girl
       - boy
       - grapes
-      - ' book'
+      - book
       Words_previous:
       - cheese
       - bus
@@ -6131,14 +6131,14 @@ MonoBehaviour:
       - daal
       Words:
       - chest
-      - ' hand'
+      - hand
       Words_previous:
       - bear
-      - ' box'
+      - box
       - cold
-      - ' foot'
+      - foot
       - lentil
-      - ' flower'
+      - flower
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -6174,14 +6174,14 @@ MonoBehaviour:
       Letters: []
       Words:
       - chest
-      - ' hand'
+      - hand
       Words_previous:
       - bear
-      - ' box'
+      - box
       - cold
-      - ' foot'
+      - foot
       - lentil
-      - ' flower'
+      - flower
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -6309,7 +6309,7 @@ MonoBehaviour:
       - cold
       - chest
       - copybook
-      - ' number_4'
+      - number_4
       - color_yellow
       Phrases: []
       Phrases_previous: []
@@ -6350,7 +6350,7 @@ MonoBehaviour:
       - cold
       - chest
       - copybook
-      - ' number_4'
+      - number_4
       - color_yellow
       Phrases: []
       Phrases_previous: []
@@ -6395,7 +6395,7 @@ MonoBehaviour:
       - color_blue
       - cupboard
       - carrot
-      - 'banana '
+      - banana
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -6438,7 +6438,7 @@ MonoBehaviour:
       - color_blue
       - cupboard
       - carrot
-      - 'banana '
+      - banana
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -7346,7 +7346,7 @@ MonoBehaviour:
       - month_january
       - cried
       - caught
-      - 'released '
+      - released
       Words_previous:
       - big
       - sugar
@@ -7387,7 +7387,7 @@ MonoBehaviour:
       - month_january
       - cried
       - caught
-      - 'released '
+      - released
       Words_previous:
       - big
       - sugar
@@ -8100,7 +8100,7 @@ MonoBehaviour:
       Words:
       - garden
       Words_previous:
-      - ' color_brown'
+      - color_brown
       - teacher
       - ear
       - room
@@ -8157,7 +8157,7 @@ MonoBehaviour:
       Words:
       - garden
       Words_previous:
-      - ' color_brown'
+      - color_brown
       - teacher
       - ear
       - room
@@ -8961,8 +8961,8 @@ MonoBehaviour:
       Words_previous:
       - banana
       - sound
-      - ' light'
-      - ' flower'
+      - light
+      - flower
       - paper
       - plum
       Phrases: []
@@ -9016,8 +9016,8 @@ MonoBehaviour:
       Words_previous:
       - banana
       - sound
-      - ' light'
-      - ' flower'
+      - light
+      - flower
       - paper
       - plum
       Phrases: []
@@ -9072,7 +9072,7 @@ MonoBehaviour:
       Words_previous:
       - oil
       - house
-      - ' eye'
+      - eye
       - hand
       - anger
       - color_white
@@ -9127,7 +9127,7 @@ MonoBehaviour:
       Words_previous:
       - oil
       - house
-      - ' eye'
+      - eye
       - hand
       - anger
       - color_white
@@ -9184,7 +9184,7 @@ MonoBehaviour:
       - ate
       Words_previous:
       - drank
-      - 'sat '
+      - sat
       - studied
       Phrases: []
       Phrases_previous: []
@@ -9239,7 +9239,7 @@ MonoBehaviour:
       - ate
       Words_previous:
       - drank
-      - 'sat '
+      - sat
       - studied
       Phrases: []
       Phrases_previous: []
@@ -9405,7 +9405,7 @@ MonoBehaviour:
       - broad_bean
       Words_previous:
       - rice
-      - ' sugar'
+      - sugar
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -9460,7 +9460,7 @@ MonoBehaviour:
       - broad_bean
       Words_previous:
       - rice
-      - ' sugar'
+      - sugar
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -9680,12 +9680,12 @@ MonoBehaviour:
       - alef_maqsura
       Words:
       - walked
-      - ' saw '
+      - saw
       - club
       Words_previous:
       - cried
       - pear
-      - ' hospital'
+      - hospital
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -9735,12 +9735,12 @@ MonoBehaviour:
       Letters: []
       Words:
       - walked
-      - ' saw '
+      - saw
       - club
       Words_previous:
       - cried
       - pear
-      - ' hospital'
+      - hospital
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -10013,7 +10013,7 @@ MonoBehaviour:
       - carrot
       - islands
       - salt
-      - ' insistent'
+      - insistent
       Words_previous:
       - believed
       - safe
@@ -10066,7 +10066,7 @@ MonoBehaviour:
       Letters:
       - fathah_tanwin
       - dammah_tanwin
-      - 'kasrah_tanwin '
+      - kasrah_tanwin
       Words:
       - wore
       - costume
@@ -10233,7 +10233,7 @@ MonoBehaviour:
       Letters: []
       Words:
       - lion
-      - ' lion_dual'
+      - lion_dual
       - lion_plural
       Words_previous:
       - mountain
@@ -10291,7 +10291,7 @@ MonoBehaviour:
       Letters: []
       Words:
       - lion
-      - ' lion_dual'
+      - lion_dual
       - lion_plural
       Words_previous:
       - mountain
@@ -10574,9 +10574,9 @@ MonoBehaviour:
       - the_policeman
       Words_previous:
       - worker
-      - ' the_worker'
-      - ' scientist'
-      - ' the_scientist'
+      - the_worker
+      - scientist
+      - the_scientist
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -10794,8 +10794,8 @@ MonoBehaviour:
       - the_ball
       - the_playground
       - the_player
-      - ' football'
-      - ' basketball'
+      - football
+      - basketball
       Words_previous:
       - won
       Phrases: []
@@ -10849,8 +10849,8 @@ MonoBehaviour:
       - the_ball
       - the_playground
       - the_player
-      - ' football'
-      - ' basketball'
+      - football
+      - basketball
       Words_previous:
       - won
       Phrases: []
@@ -10901,11 +10901,11 @@ MonoBehaviour:
       Focus: 3
       Letters: []
       Words:
-      - ' happy '
+      - happy
       - sad
       - active
       - lazy
-      - ' wonderful'
+      - wonderful
       Words_previous:
       - beautiful
       Phrases: []
@@ -10956,11 +10956,11 @@ MonoBehaviour:
       Focus: 3
       Letters: []
       Words:
-      - ' happy '
+      - happy
       - sad
       - active
       - lazy
-      - ' wonderful'
+      - wonderful
       Words_previous:
       - beautiful
       Phrases: []
@@ -11299,7 +11299,7 @@ MonoBehaviour:
       - big
       - small
       Words_previous:
-      - ' wonderful'
+      - wonderful
       - rainy
       Phrases: []
       Phrases_previous: []
@@ -11354,7 +11354,7 @@ MonoBehaviour:
       - big
       - small
       Words_previous:
-      - ' wonderful'
+      - wonderful
       - rainy
       Phrases: []
       Phrases_previous: []
@@ -11406,11 +11406,11 @@ MonoBehaviour:
       Words:
       - cold
       - hot
-      - 'rainy '
+      - rainy
       Words_previous:
       - beautiful
       - clean
-      - ' wonderful'
+      - wonderful
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -11461,11 +11461,11 @@ MonoBehaviour:
       Words:
       - cold
       - hot
-      - 'rainy '
+      - rainy
       Words_previous:
       - beautiful
       - clean
-      - ' wonderful'
+      - wonderful
       Phrases: []
       Phrases_previous: []
       Minigames:
@@ -11955,7 +11955,7 @@ MonoBehaviour:
       - month_november
       - month_december
       Words_previous:
-      - ' month_january'
+      - month_january
       - month_february
       - month_september
       Phrases: []
@@ -12016,7 +12016,7 @@ MonoBehaviour:
       - month_november
       - month_december
       Words_previous:
-      - ' month_january'
+      - month_january
       - month_february
       - month_september
       Phrases: []

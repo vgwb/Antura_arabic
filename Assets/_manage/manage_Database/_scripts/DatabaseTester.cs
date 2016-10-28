@@ -28,7 +28,7 @@ namespace EA4S.Db.Management
             this.dbManager = new DatabaseManager(useTestDatabase);
 
             playerProfile = new PlayerProfile();
-            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);    // test
+            playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
 
             teacherAI = new TeacherAI(dbManager, playerProfile);
         }
@@ -462,10 +462,18 @@ namespace EA4S.Db.Management
         public void Teacher_PerformWordSelection()
         {
             var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
-            var list = teacherAI.SelectWordsForPlaySession(currentJourneyPositionId, 2);
 
-            string output = "Words selected (" + currentJourneyPositionId + "):\n";
-            foreach (var data in list) output += data + "\n";
+            int nTests = 7;
+            int nWordsPerTest = 2;
+            string output = "";
+            output = "Words selected (" + currentJourneyPositionId + "):\n";
+            for (int i = 0; i < nTests; i++)
+            {
+                var list = teacherAI.SelectWordsForPlaySession(currentJourneyPositionId, nWordsPerTest);
+                foreach (var data in list) output += data.Id + " ";
+                output += "\n";
+            }
+
             PrintOutput(output);
         }
 
