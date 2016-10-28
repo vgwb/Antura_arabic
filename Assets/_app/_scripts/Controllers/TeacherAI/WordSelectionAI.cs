@@ -42,27 +42,29 @@ namespace EA4S
             int nRemainingToSelect = numberToSelect;
 
             // First check current Words
+            //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " MAIN words");
             SelectWordsFrom(playSessionData.Words, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
 
             // ... if it's not enough, check previous Words
             if (nRemainingToSelect > 0)
             {
+                //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PREVIOUS words");
                 SelectWordsFrom(playSessionData.Words_previous, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
             }
 
             // ... if that's still not enough, check words from past sessions
             if (nRemainingToSelect > 0)
             {
-                SelectWordsFrom( GetAllWordIdsFromPreviousPlaySessions(playSessionData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+                //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PAST words");
+                SelectWordsFrom(GetAllWordIdsFromPreviousPlaySessions(playSessionData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
             }
 
             // ... if that's still not enough, there is some issue.
             if (nRemainingToSelect > 0)
             {
-                UnityEngine.Debug.LogWarning("Warning: could not find enough words for play session " + playSessionId + " (found " + (numberToSelect - nRemainingToSelect) + " out of " + (numberToSelect));
+                UnityEngine.Debug.LogWarning("Warning: could not find enough words for play session " + playSessionId + " (found " + (numberToSelect - nRemainingToSelect) + " out of " + (numberToSelect) + ")");
             }
 
-            currentAlreadyPickedLetterIds.AddRange(selectedWordData_list.ConvertAll<string>(x => x.Id));
             return selectedWordData_list;
         }
 
@@ -104,6 +106,8 @@ namespace EA4S
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
                 cumulativeWeight += recentPlayWeight * RECENT_PLAY_WEIGHT;
 
+                //UnityEngine.Debug.Log("Word " + word_Id + " score: " + currentWordScore + " days " + daysSinceLastScore);
+
                 // Save cumulative weight
                 if (cumulativeWeight <= 0)
                 {
@@ -116,14 +120,15 @@ namespace EA4S
                 wordData_list.Add(wordData);
             }
 
-            UnityEngine.Debug.Log("Number of words: " + wordData_list.Count);
+            //UnityEngine.Debug.Log("Number of words: " + wordData_list.Count);
 
             // Select some words
             if (wordData_list.Count > 0) {
                 int nToSelectFromCurrentList = UnityEngine.Mathf.Min(wordData_list.Count, nRemainingToSelect);
                 var chosenWords = RandomHelper.RouletteSelectNonRepeating(wordData_list, weights_list, nToSelectFromCurrentList);
-                nRemainingToSelect -= wordData_list.Count;
                 selectedWordData_list.AddRange(chosenWords);
+                nRemainingToSelect -= nToSelectFromCurrentList;
+                currentAlreadyPickedLetterIds.AddRange(chosenWords.ConvertAll<string>(x => x.Id));
             }
         }
 
