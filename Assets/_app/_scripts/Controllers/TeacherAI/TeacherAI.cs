@@ -22,14 +22,16 @@ namespace EA4S
 
         // AI engines
         MiniGameSelectionAI minigameSelectionAI;
+        //WordSelectionAI wordSelectionAI;
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             I = this;
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
-        
+
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
+            //this.wordSelectionAI = 
 
             MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
             // Debug.Log("AI exists");
@@ -149,8 +151,24 @@ namespace EA4S
             return this.minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
+        public List<Db.MiniGameData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
+        {
+            return null; //this.wordsSelectionAI.PerformSelection(playSessionId, numberToSelect);
+        }
+
         #endregion
 
+        #region Letter & word queries
+
+        public List<LetterData> GetLettersInWordById(string wordId)
+        {
+            WordData wordData = dbManager.GetWordDataById(wordId);
+            var letter_ids_list = new List<string>(wordData.Letters);
+            List<LetterData> list = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
+            return list;
+        }
+
+        #endregion
 
         #region MiniGames queries
 

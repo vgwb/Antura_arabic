@@ -439,12 +439,32 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
+        public void Teacher_LettersOfWord()
+        {
+            var wordDataId = dbManager.GetWordDataByRandom().GetId();
+            var list = teacherAI.GetLettersInWordById(wordDataId);
+
+            string output = "Letters of word " + wordDataId + ":\n";
+            foreach (var data in list) output += data.Id + "\n";
+            PrintOutput(output);
+        }
+
         public void Teacher_PerformMiniGameSelection()
         {
             var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
             var list = teacherAI.SelectMiniGamesForPlaySession(currentJourneyPositionId, 2);
 
             string output = "Minigames selected (" + currentJourneyPositionId + "):\n";
+            foreach (var data in list) output += data.Code + "\n";
+            PrintOutput(output);
+        }
+
+        public void Teacher_PerformWordSelection()
+        {
+            var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
+            var list = teacherAI.SelectWordsForPlaySession(currentJourneyPositionId, 2);
+
+            string output = "Words selected (" + currentJourneyPositionId + "):\n";
             foreach (var data in list) output += data.Code + "\n";
             PrintOutput(output);
         }
