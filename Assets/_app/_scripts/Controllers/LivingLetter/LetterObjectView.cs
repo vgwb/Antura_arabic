@@ -12,13 +12,14 @@ namespace EA4S
     /// </summary>
     public class LetterObjectView : MonoBehaviour
     {
+        public const float WALKING_SPEED = 0.0f;
+        public const float RUN_SPEED = 1.0f;
 
         #region public properties
 
         [Header("GO Elements")]
         public TMP_Text Lable;
         public SpriteRenderer ImageSprite;
-        public Transform exclamationMark;
 
         #endregion
 
@@ -30,32 +31,17 @@ namespace EA4S
         /// <value>
         /// The model.
         /// </value>
-        public LLController Model {
-            get {
-                if (model == null)
-                    setDummyLetterObject();
-                return model;
-            }
-            set
+        public LLController Model
+        {
+            get
             {
-                if (model != value)
-                {
-                    model = value;
-                    OnModelChanged();
-                }
-                else
-                {
-                    model = value;
-                }
+                if (model == null)
+                    InitAsDummy();
+                return model;
             }
         }
 
-        private Sequence sequenceExclamationMark;
-
-        /// <summary>
-        /// Animator
-        /// </summary>
-        public Animator Anim
+        Animator animator
         {
             get
             {
@@ -67,24 +53,18 @@ namespace EA4S
         }
         private Animator anim;
 
-        #endregion
+        System.Action onTwirlCallback;
 
-        #region properties to be verified
-        [HideInInspector]
-        public float MergedElementsDistance = 1;
-        [HideInInspector]
-        public bool IsMerged;
         #endregion
 
         #region Init
         /// <summary>
         /// Fallback function to set dummy data to letter if no data is provided.
         /// </summary>
-        void setDummyLetterObject()
+        void InitAsDummy()
         {
             var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
             Init(new LL_LetterData(letterData.GetId()));
-            //Model = new LetterObject(new LetterData(letters.Instance.rowNames[0], letRow));
         }
 
         /// <summary>
@@ -115,47 +95,18 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Initializes object with the specified data.
-        /// </summary>
-        /// <param name="_data">The data.</param>
-        /// <param name="_behaviourSettingsOverride">The behaviour settings override.</param>
-        public void Init(ILivingLetterData _data, LetterBehaviour.BehaviourSettings _behaviourSettingsOverride)
-        {
-            Init(_data);
-            GetComponent<LetterBehaviour>().Settings = _behaviourSettingsOverride;
-        }
-
-        /// <summary>
         /// Initializes  object with the specified data.
         /// </summary>
         /// <param name="_data">The data.</param>
         public void Init(ILivingLetterData _data)
         {
-            Model = new LLController(_data);
-            // Init Animation sequenceExclamationMark
-            sequenceExclamationMark = DOTween.Sequence();
-            sequenceExclamationMark.SetLoops(-1);
-            if (exclamationMark)
-            {
-                // Sequence
-                sequenceExclamationMark.Append(exclamationMark.DOShakePosition(0.9f));
-                sequenceExclamationMark.Pause();
-            }
+            model = new LLController(_data);
 
             // Init state change listener
-            Model.OnStateChanged = null;
-            Model.OnStateChanged += OnStateChanged;
-        }
-        #endregion
+            model.OnStateChanged = null;
+            model.OnStateChanged += OnStateChanged;
 
-        #region event subscription
-        void OnEnable()
-        {
-
-        }
-        void OnDisable()
-        {
-            Model.OnStateChanged -= OnStateChanged;
+            OnModelChanged();
         }
         #endregion
 
@@ -163,70 +114,65 @@ namespace EA4S
 
         void OnStateChanged(LLAnimationStates _oldState, LLAnimationStates _newState)
         {
-            // reset animation for Terrified_State
-            if (exclamationMark && sequenceExclamationMark != null)
-            {
-                //exclamationMark.transform.localScale = Vector3.zero;
-                if (sequenceExclamationMark.IsPlaying())
-                {
-                    sequenceExclamationMark.Pause();
-                    exclamationMark.DOScale(0, 0.3f);
-                }
-            }
-
             //Debug.Log((int)_newState);
+
+            animator.SetBool("dancing", false);
+            animator.SetBool("rocketing", false);
+            animator.SetBool("dragging", false);
+            animator.SetBool("dancing", false);
+            animator.SetBool("hanging", false);
 
             switch (_newState)
             {
                 case LLAnimationStates.LL_idle:
-                    // Random from 4 idle animations
-                    Anim.SetInteger("State", Random.Range(1, 4));
+                    animator.SetBool("idle", true);
                     break;
-                case LLAnimationStates.LL_idle_1:
-                case LLAnimationStates.LL_idle_2:
-                case LLAnimationStates.LL_idle_3:
-                case LLAnimationStates.LL_idle_4:
-                case LLAnimationStates.LL_idle_5:
-                case LLAnimationStates.LL_walk:
-                case LLAnimationStates.LL_walk_L:
-                case LLAnimationStates.LL_walk_R:
-                case LLAnimationStates.LL_run:
-                case LLAnimationStates.LL_run_happy:
-                case LLAnimationStates.LL_run_fear:
-                case LLAnimationStates.LL_run_fear_L:
-                case LLAnimationStates.LL_run_fear_R:
-                case LLAnimationStates.LL_drag_idle:
-                case LLAnimationStates.LL_jump_loop:
-                case LLAnimationStates.LL_jump:
-                case LLAnimationStates.LL_fall_down:
-                case LLAnimationStates.LL_land:
-                case LLAnimationStates.LL_standup:
+                case LLAnimationStates.LL_walking:
+                    animator.SetBool("idle", false);
+                    break;
+                case LLAnimationStates.LL_rocketing:
+                    animator.SetBool("rocketing", true);
+                    break;
                 case LLAnimationStates.LL_dancing:
-                case LLAnimationStates.LL_dancing_win:
-                case LLAnimationStates.LL_twirl:
-                case LLAnimationStates.LL_turn_180:
-                case LLAnimationStates.LL_win:
-                case LLAnimationStates.LL_horray:
-                case LLAnimationStates.LL_highfive:
-                case LLAnimationStates.LL_lose:
-                //case LetterObjectState.LL_get_angry:
-                case LLAnimationStates.LL_get_angry_1:
-                case LLAnimationStates.LL_get_angry_2:
-                case LLAnimationStates.LL_balance:
-                case LLAnimationStates.LL_balance_L:
-                case LLAnimationStates.LL_balance_R:
-                case LLAnimationStates.LL_crouching:
-                case LLAnimationStates.LL_crouching_up:
-                case LLAnimationStates.LL_ride_rocket_idle:
-                case LLAnimationStates.LL_ride_rocket_horray:
-                    Anim.SetInteger("State", (int)_newState);
+                    animator.SetBool("dancing", true);
                     break;
+                case LLAnimationStates.LL_dragging:
+                    animator.SetBool("dragging", true);
+                    break;
+                case LLAnimationStates.LL_hanging:
+                    animator.SetBool("hanging", true);
+                    break;
+                case LLAnimationStates.LL_limbless:
                 default:
                     // No specific visual behaviour for this state
                     break;
 
             }
 
+        }
+
+        float idleTimer = 3;
+        void Update()
+        {
+            if (model != null)
+            {
+                if (model.State == LLAnimationStates.LL_idle)
+                {
+                    idleTimer -= Time.deltaTime;
+
+                    if (idleTimer < 0.0f)
+                    {
+                        idleTimer = Random.Range(3, 8);
+                        animator.SetFloat("random", Random.value);
+                        animator.SetTrigger("doAlternative");
+                    }
+
+                }
+
+                float oldSpeed = animator.GetFloat("walkSpeed");
+
+                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, model.walkingSpeed, Time.deltaTime*4.0f));
+            }
         }
 
         #endregion
@@ -242,8 +188,116 @@ namespace EA4S
             Model.State = _newState;
         }
 
+        public bool Crouching
+        {
+            get { return Model.crouch; }
+            set
+            {
+                Model.crouch = value;
+                animator.SetBool("crouch", value);
+
+            }
+        }
+
+        public bool Falling
+        {
+            get { return Model.falling; }
+            set
+            {
+                Model.falling = value;
+                animator.SetBool("falling", value);
+
+            }
+        }
+
+        public bool HasFear
+        {
+            get { return Model.fear; }
+            set
+            {
+                Model.fear = value;
+                animator.SetBool("fear", value);
+            }
+        }
+
+        /// <summary>
+        /// Speed is 0 (walk) to 1 (running).
+        /// </summary>
+        public void SetWalkingSpeed(float speed = WALKING_SPEED)
+        {
+            Model.walkingSpeed = speed;
+        }
+
+        public void DoHorray(bool hold = false)
+        {
+            animator.SetBool("holdHorray", hold);
+            animator.SetTrigger("doHorray");
+        }
+
+        public void DoAngry()
+        {
+            animator.SetFloat("random", Random.value);
+            animator.SetTrigger("doAngry");
+        }
+
+        public void DoHighFive()
+        {
+            animator.SetTrigger("doHighFive");
+        }
+
+        public void DoDancingWin()
+        {
+            animator.SetTrigger("doDancingWin");
+        }
+
+        public void DoDancingLose()
+        {
+            animator.SetTrigger("doDancingLose");
+        }
+
+        public void ToggleDance()
+        {
+            model.State = LLAnimationStates.LL_dancing;
+            animator.SetTrigger("toggleDancing");
+        }
+
+        /// <summary>
+        /// onLetterShowingBack is called when the letter is twirling and it shows you the back;
+        /// so you can swap letter in that moment!
+        /// </summary>
+        public void DoTwirl(System.Action onLetterShowingBack)
+        {
+            onTwirlCallback = onLetterShowingBack;
+        }
+
+        public void OnJumpStart()
+        {
+            animator.SetBool("jumping", true);
+            animator.SetBool("falling", true);
+        }
+
+        public void OnJumpMaximumHeightReached()
+        {
+            animator.SetBool("jumping", false);
+            animator.SetBool("falling", true);
+        }
+
+        public void OnJumpEnded()
+        {
+            animator.SetBool("jumping", false);
+            animator.SetBool("falling", false);
+        }
+
         #endregion
 
+        void OnTwirlBack()
+        {
+            if (onTwirlCallback != null)
+            {
+                onTwirlCallback();
+                onTwirlCallback = null;
+            }
+        }
     }
 }
 

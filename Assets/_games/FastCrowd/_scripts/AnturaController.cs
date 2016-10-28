@@ -7,7 +7,7 @@ namespace EA4S.FastCrowd
         public GameObject[] targetPositions;
         public Transform HidePosition;
         Vector3 target;
-        public const float ANTURA_SPEED = 20.0f;
+        public const float ANTURA_SPEED = 15.0f;
 
         public bool IsAnturaTime { get; private set; }
 
