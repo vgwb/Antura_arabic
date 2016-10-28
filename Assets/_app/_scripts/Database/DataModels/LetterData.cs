@@ -7,7 +7,8 @@ namespace EA4S.Db
         Letter = 1,
         Special = 2,
         Symbol = 3,
-        Diphtong = 4
+        Diphtong = 4,
+        Combination = 5
     }
     public enum LetterType
     {

@@ -444,7 +444,7 @@ namespace EA4S.Db.Management
             var wordDataId = dbManager.GetWordDataByRandom().GetId();
             var list = teacherAI.GetLettersInWord(wordDataId);
 
-            string output = "Letters of word " + wordDataId + ":\n";
+            string output = list.Count + " letters in word " + wordDataId + ":\n";
             foreach (var data in list) output += data.Id + "\n";
             PrintOutput(output);
         }

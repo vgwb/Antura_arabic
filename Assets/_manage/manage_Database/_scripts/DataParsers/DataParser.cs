@@ -62,11 +62,12 @@ namespace EA4S.Db.Management
 
             var array = array_string.Split(',');
             if (array_string == "") return new string[0];  // skip if empty (could happen if the string was empty)    
-            foreach (var id_string in array) {
-                var id_string_trimmed = id_string.Trim(); // remove spaces
-                var value = table.GetValue(id_string_trimmed);
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = array[i].Trim(); // remove spaces
+                var value = table.GetValue(array[i]);
                 if (value == null) {
-                    LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + id_string);
+                    LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + array[i]);
                 }
             }
             return array;

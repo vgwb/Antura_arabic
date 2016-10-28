@@ -79,15 +79,17 @@ namespace EA4S
 
                 float cumulativeWeight = 0;
                 var word_scoreData = word_scoreData_list.Find(x => x.ElementId == word_Id);
+                float currentWordScore = 0;
                 int daysSinceLastScore = 0;
                 if (word_scoreData != null)
                 {
                     var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(word_scoreData.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
+                    currentWordScore = word_scoreData.Score;
                 }
 
                 // Score Weight [0,1]: higher the lower the score [-1,1] is
-                var scoreWeight = 0.5f * (1 - word_scoreData.Score);
+                var scoreWeight = 0.5f * (1 - currentWordScore);
                 cumulativeWeight += scoreWeight * SCORE_WEIGHT;
 
                 // Always skip letters that have a score weight of zero
@@ -114,11 +116,14 @@ namespace EA4S
                 wordData_list.Add(wordData);
             }
 
+            UnityEngine.Debug.Log("Number of words: " + wordData_list.Count);
+
             // Select some words
             if (wordData_list.Count > 0) {
                 int nToSelectFromCurrentList = UnityEngine.Mathf.Min(wordData_list.Count, nRemainingToSelect);
                 var chosenWords = RandomHelper.RouletteSelectNonRepeating(wordData_list, weights_list, nToSelectFromCurrentList);
                 nRemainingToSelect -= wordData_list.Count;
+                selectedWordData_list.AddRange(chosenWords);
             }
         }
 
