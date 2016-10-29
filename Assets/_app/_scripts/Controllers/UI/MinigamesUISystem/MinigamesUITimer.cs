@@ -2,6 +2,7 @@
 // Created: 2016/10/28
 
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,22 +11,29 @@ namespace EA4S
     public class MinigamesUITimer : ABSMinigamesUIComponent
     {
         public Image Radial;
+        public TextMeshProUGUI TfTimer;
         public Color EndColor = Color.red;
 
         public bool IsSetup { get; private set; }
+        float time;
         Sequence timerTween, shakeTween;
+        Tween endTween;
 
         #region Unity
 
         void Awake()
         {
-            if (timerTween == null) Radial.fillAmount = 0;
+            if (timerTween == null) {
+                Radial.fillAmount = 0;
+                TfTimer.text = "";
+            }
         }
 
         void OnDestroy()
         {
             timerTween.Kill();
             shakeTween.Kill();
+            endTween.Kill();
         }
 
         #endregion
@@ -40,28 +48,40 @@ namespace EA4S
         public void Setup(float _timerDuration, bool _playImmediately = false)
         {
             IsSetup = true;
+            time = _timerDuration;
 
             if (timerTween != null) {
                 timerTween.Rewind();
                 timerTween.Kill();
                 shakeTween.Kill(true);
+                endTween.Kill(true);
             }
 
+            TfTimer.text = time.ToString();
+
             // Shake tween
-            float duration = _timerDuration * 0.25f;
+            float duration = time * 0.25f;
             shakeTween = DOTween.Sequence().SetAutoKill(false)
                 .Append(this.transform.DOShakeRotation(duration, new Vector3(0, 0, 20f), 20))
                 .Join(this.transform.DOShakeScale(duration, 0.1f, 20));
             shakeTween.Complete();
 
+            // End tween
+            endTween = this.transform.DOPunchScale(Vector3.one * 0.2f, 0.5f).SetAutoKill(false).Pause();
+
             // Timer tween
             Radial.fillAmount = 0;
             timerTween = DOTween.Sequence().SetAutoKill(false)
-                .Append(Radial.DOFillAmount(1, _timerDuration).SetEase(Ease.Linear))
-                .Join(Radial.DOColor(EndColor, _timerDuration).SetEase(Ease.Linear))
+                .Append(Radial.DOFillAmount(1, time).SetEase(Ease.Linear))
+                .Join(Radial.DOColor(EndColor, time).SetEase(Ease.Linear))
                 .OnUpdate(() => {
+                    TfTimer.text = Mathf.CeilToInt(time - timerTween.Elapsed()).ToString();
                     if (timerTween.ElapsedPercentage() >= 0.75f) shakeTween.PlayBackwards();
                     else shakeTween.Complete();
+                })
+                .OnComplete(() => {
+                    shakeTween.Rewind();
+                    endTween.Restart();
                 })
                 .OnPause(() => {
                     if (!timerTween.IsComplete() && shakeTween.IsPlaying()) shakeTween.Pause();
@@ -100,6 +120,7 @@ namespace EA4S
                 return;
             }
 
+            endTween.Rewind();
             timerTween.Restart();
         }
 
@@ -111,8 +132,9 @@ namespace EA4S
                 return;
             }
 
-            timerTween.Rewind();
             shakeTween.Complete();
+            endTween.Rewind();
+            timerTween.Rewind();
         }
 
         /// <summary>Completes the timer</summary>
@@ -124,7 +146,6 @@ namespace EA4S
             }
 
             timerTween.Complete();
-            shakeTween.Rewind();
         }
 
         /// <summary>Sends the timer to the given time (in seconds)</summary>
@@ -137,6 +158,7 @@ namespace EA4S
                 return;
             }
 
+            endTween.Rewind();
             timerTween.Goto(_time, _andPlay);
         }
 
@@ -150,6 +172,7 @@ namespace EA4S
                 return;
             }
 
+            endTween.Rewind();
             timerTween.Goto(timerTween.Duration() * _percentage, _andPlay);
         }
 
