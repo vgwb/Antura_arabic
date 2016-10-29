@@ -30,6 +30,14 @@ namespace EA4S.Test
                 case MiniGameCode.FastCrowd_alphabet:
                     packsCount = 1;
                     break;
+                case MiniGameCode.DancingDots:
+                case MiniGameCode.ThrowBalls_letters:
+                case MiniGameCode.ThrowBalls_words:
+                case MiniGameCode.Maze:
+                case MiniGameCode.Balloons_counting:
+                case MiniGameCode.Balloons_letter:
+                case MiniGameCode.Balloons_spelling:
+                case MiniGameCode.Balloons_words:
                 case MiniGameCode.FastCrowd_letter:
                 case MiniGameCode.FastCrowd_spelling:
                 case MiniGameCode.FastCrowd_words:
@@ -41,17 +49,11 @@ namespace EA4S.Test
                 case MiniGameCode.Assessment_Letters:
                 case MiniGameCode.Assessment_LettersMatchShape:
                 case MiniGameCode.AlphabetSong:
-                case MiniGameCode.Balloons_counting:
-                case MiniGameCode.Balloons_letter:
-                case MiniGameCode.Balloons_spelling:
-                case MiniGameCode.Balloons_words:
                 case MiniGameCode.ColorTickle:
-                case MiniGameCode.DancingDots:
                 case MiniGameCode.DontWakeUp:
                 case MiniGameCode.HiddenSource:
                 case MiniGameCode.HideSeek:
                 case MiniGameCode.MakeFriends:
-                case MiniGameCode.Maze:
                 case MiniGameCode.MissingLetter:
                 case MiniGameCode.MissingLetter_phrases:
                 case MiniGameCode.MixedLetters_alphabet:
@@ -60,8 +62,7 @@ namespace EA4S.Test
                 case MiniGameCode.ReadingGame:
                 case MiniGameCode.Scanner:
                 case MiniGameCode.Scanner_phrase:
-                case MiniGameCode.ThrowBalls_letters:
-                case MiniGameCode.ThrowBalls_words:
+
                     break;
 
             }
@@ -98,16 +99,72 @@ namespace EA4S.Test
                 case MiniGameCode.AlphabetSong:
                     break;
                 case MiniGameCode.Balloons_counting:
+                    // Dummy logic for question creation
+                    foreach (var w in AppManager.Instance.DB.GetAllWordData().Where(w => w.Category == Db.WordCategory.Number)) {
+                        LL_WordData w_ll = new LL_WordData(w.Id, w);
+                        correctAnswers.Add(w_ll);
+                        if (correctAnswers.Count > 10)
+                            break;
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(null, null, correctAnswers);
                     break;
                 case MiniGameCode.Balloons_letter:
+                    // Dummy logic for question creation
+                    question = AppManager.Instance.Teacher.GimmeARandomLetter();
+
+                    for (int i = 0; i < 1; i++) {
+                        LL_WordData correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (CheckIfContains(GetLettersFromWord(correctWord), question))
+                            correctAnswers.Add(correctWord);
+                        else
+                            i--;
+                    }
+
+                    for (int i = 0; i < 10; i++) {
+                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!CheckIfContains(GetLettersFromWord(wrongWord), question))
+                            wrongAnswers.Add(wrongWord);
+                        else
+                            i--;
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.Balloons_spelling:
+                    // Dummy logic for question creation
+                    letters = GetLettersFromWord(AppManager.Instance.Teacher.GimmeAGoodWordData());
+                    foreach (var l in letters) {
+                        correctAnswers.Add(l);
+                    }
+                    letters = GetLettersNotContained(letters, 8);
+                    foreach (var l in letters) {
+                        wrongAnswers.Add(l);
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(null, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.Balloons_words:
+                    // Dummy logic for question creation
+                    LL_WordData balloonWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    correctAnswers.Add(balloonWord);
+                    for (int i = 0; i < 10; i++) {
+                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!correctAnswers.Contains(wrongWord))
+                            wrongAnswers.Add(wrongWord);
+                        else
+                            i--;
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(balloonWord, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.ColorTickle:
                     break;
                 case MiniGameCode.DancingDots:
+                    // Dummy logic for question creation
+                    question = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(question, null, null);
                     break;
                 case MiniGameCode.DontWakeUp:
                     break;
@@ -130,9 +187,9 @@ namespace EA4S.Test
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     // Dummy logic for get fake full ordered alphabet.
-                    foreach( var letter in AppManager.Instance.DB.GetAllLetterData())
+                    foreach (var letter in AppManager.Instance.DB.GetAllLetterData())
                         correctAnswers.Add(new LL_LetterData(letter.GetId()));
-                    
+
                     // QuestionPack creation
                     questionPack = new FindRightDataQuestionPack(null, null, correctAnswers);
                     break;
@@ -198,8 +255,31 @@ namespace EA4S.Test
                 case MiniGameCode.HideSeek:
                     break;
                 case MiniGameCode.MakeFriends:
+                    question = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    for (int i = 0; i < 2; i++) {
+                        LL_WordData correctWordMakeFriends = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!CheckIfContains(correctAnswers, correctWordMakeFriends) && CheckIfContains(GetLettersFromWord(correctWordMakeFriends), question))
+                            // if not already in list and contain question letterData
+                            correctAnswers.Add(correctWordMakeFriends);
+                        else
+                            i--;
+                    }
+                    for (int i = 0; i < 8; i++) {
+                        LL_WordData wrongWordMakeFriends = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (!CheckIfContains(GetLettersFromWord(wrongWordMakeFriends), question))
+                            // if not contain quest letter
+                            wrongAnswers.Add(wrongWordMakeFriends);
+                        else
+                            i--;
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, correctAnswers);
                     break;
                 case MiniGameCode.Maze:
+                    // Dummy logic for question creation
+                    question = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(question, null, null);
                     break;
                 case MiniGameCode.MissingLetter:
                     break;
@@ -214,12 +294,45 @@ namespace EA4S.Test
                 case MiniGameCode.ReadingGame:
                     break;
                 case MiniGameCode.Scanner:
+                    // Dummy logic for question creation
+                    question = AppManager.Instance.Teacher.GimmeAGoodWordData();
+
+                    for (int i = 0; i < 8; i++) {
+                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (wrongWord != question)
+                            wrongAnswers.Add(wrongWord);
+                        else
+                            i--;
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, null);
                     break;
                 case MiniGameCode.Scanner_phrase:
+                    // Wait Design info
                     break;
                 case MiniGameCode.ThrowBalls_letters:
+                    // Dummy logic for question creation
+                    question = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    letters = GetLettersNotContained(letters, 3);
+                    foreach (var l in letters) {
+                        wrongAnswers.Add(l);
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, null);
                     break;
                 case MiniGameCode.ThrowBalls_words:
+                    // Dummy logic for question creation
+                    question = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    
+                    for (int i = 0; i < 8; i++) {
+                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        if (wrongWord != question)
+                            wrongAnswers.Add(wrongWord);
+                        else
+                            i--;
+                    }
+                    // QuestionPack creation
+                    questionPack = new FindRightDataQuestionPack(question, wrongAnswers, null);
                     break;
                 case MiniGameCode.Tobogan_letters:
                     // Dummy logic for question creation

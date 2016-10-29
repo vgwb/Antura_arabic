@@ -2330,7 +2330,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011820159926, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 3.54
       objectReference: {fileID: 0}
     - target: {fileID: 4000011820159926, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3712,6 +3712,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &730427646
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -18.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000005960465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000005960465
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011872043532, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 43a977ee2a4a8d948b2b486f2fc22776, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &759062505
 Prefab:
@@ -6760,7 +6802,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LL_idle
+  m_Text: LL_idle_1
 --- !u!222 &1296853986
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10275,7 +10317,7 @@ RectTransform:
   m_GameObject: {fileID: 1931124056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -17.95}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1296853984}
@@ -10285,7 +10327,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 129.12004, y: 550}
+  m_AnchoredPosition: {x: 229.73, y: 69}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1931124058
@@ -10332,8 +10374,6 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: LL_idle
-      m_Image: {fileID: 0}
     - m_Text: LL_idle_1
       m_Image: {fileID: 0}
     - m_Text: LL_idle_2
@@ -10342,23 +10382,11 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: LL_idle_4
       m_Image: {fileID: 0}
-    - m_Text: LL_idle_5
-      m_Image: {fileID: 0}
     - m_Text: LL_walk
-      m_Image: {fileID: 0}
-    - m_Text: LL_walk_L
-      m_Image: {fileID: 0}
-    - m_Text: LL_walk_R
-      m_Image: {fileID: 0}
-    - m_Text: LL_run
       m_Image: {fileID: 0}
     - m_Text: LL_run_happy
       m_Image: {fileID: 0}
     - m_Text: LL_run_fear
-      m_Image: {fileID: 0}
-    - m_Text: LL_run_fear_L
-      m_Image: {fileID: 0}
-    - m_Text: LL_run_fear_R
       m_Image: {fileID: 0}
     - m_Text: LL_drag_idle
       m_Image: {fileID: 0}
@@ -10369,8 +10397,6 @@ MonoBehaviour:
     - m_Text: LL_fall_down
       m_Image: {fileID: 0}
     - m_Text: LL_land
-      m_Image: {fileID: 0}
-    - m_Text: LL_standup
       m_Image: {fileID: 0}
     - m_Text: LL_dancing
       m_Image: {fileID: 0}
@@ -10393,10 +10419,6 @@ MonoBehaviour:
     - m_Text: LL_get_angry_2
       m_Image: {fileID: 0}
     - m_Text: LL_balance
-      m_Image: {fileID: 0}
-    - m_Text: LL_balance_L
-      m_Image: {fileID: 0}
-    - m_Text: LL_balance_R
       m_Image: {fileID: 0}
     - m_Text: LL_ride_rocket_idle
       m_Image: {fileID: 0}
@@ -10744,7 +10766,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 0, y: 351}
+  m_SizeDelta: {x: 0, y: 233}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1952131576
 MonoBehaviour:

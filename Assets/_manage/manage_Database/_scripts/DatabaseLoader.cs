@@ -10,6 +10,67 @@ namespace EA4S.Db.Management
         private Database database;
         public bool verbose;
 
+        public void CopyCurrentDatabaseForTesting()
+        {
+            this.database = Resources.Load<Database>(DatabaseManager.STATIC_DATABASE_NAME);
+
+            var test_db = Resources.Load<Database>(DatabaseManager.STATIC_DATABASE_NAME_TEST);
+            if (test_db == null)
+            {
+                test_db = CustomAssetUtility.CreateAsset<Database>("Assets/Resources", DatabaseManager.STATIC_DATABASE_NAME_TEST);
+            }
+
+            {
+                var table = test_db.GetLetterTable();
+                table.Clear();
+                table.AddRange(this.database.GetLetterTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetWordTable();
+                table.Clear();
+                table.AddRange(this.database.GetWordTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetPhraseTable();
+                table.Clear();
+                table.AddRange(this.database.GetPhraseTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetLocalizationTable();
+                table.Clear();
+                table.AddRange(this.database.GetLocalizationTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetMiniGameTable();
+                table.Clear();
+                table.AddRange(this.database.GetMiniGameTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetPlaySessionTable();
+                table.Clear();
+                table.AddRange(this.database.GetPlaySessionTable().GetValuesTyped()); ;
+            }
+
+            {
+                var table = test_db.GetStageTable();
+                table.Clear();
+                table.AddRange(this.database.GetStageTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetRewardTable();
+                table.Clear();
+                table.AddRange(this.database.GetRewardTable().GetValuesTyped());
+            }
+
+            Debug.Log("Database copied");
+        }
+
         #region Loading
 
         /// <summary>
@@ -18,8 +79,8 @@ namespace EA4S.Db.Management
         public void LoadDatabase()
         {
             if (verbose) Debug.Log("Loading data from JSON files...");
-            this.database = Resources.Load<Database>("EA4S.Database");
 
+            this.database = Resources.Load<Database>(DatabaseManager.STATIC_DATABASE_NAME);
             LoadDataFrom(inputData);
 
             if (verbose) Debug.Log("Finished loading!");
