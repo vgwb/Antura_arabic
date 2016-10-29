@@ -21,6 +21,7 @@ namespace EA4S.MissingLetter
             mCollider = gameObject.GetComponent<Collider>();
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
             mCollider.enabled = false;
+            mbIsSpeaking = false;
         }
 
         public void PlayAnimation(LLAnimationStates animation)
@@ -73,8 +74,8 @@ namespace EA4S.MissingLetter
 
             if (onLetterClick != null)
             {
-                //onLetterClick(mLetterData.Key);
                 StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Key));
+                mCollider.enabled = false;
             }
         }
 
@@ -211,9 +212,10 @@ namespace EA4S.MissingLetter
         public void Speak()
         {
             Debug.Log("Speaking the word: " + mLetterData.Key);
-            if (mLetterData != null)
+            if (mLetterData != null && !mbIsSpeaking)
             {
-                if(mLetterData.DataType == LivingLetterDataType.Letter)
+                mbIsSpeaking = true;
+                if (mLetterData.DataType == LivingLetterDataType.Letter)
                 {
                     AudioManager.I.PlayLetter(mLetterData.Key);
                 }
@@ -221,7 +223,13 @@ namespace EA4S.MissingLetter
                 {
                     AudioManager.I.PlayWord(mLetterData.Key);
                 }
+                StartCoroutine(Utils.LaunchDelay(1.0f, SetIsSpeaking, false));
             }
+        }
+
+        private void SetIsSpeaking(bool _isSpeaking)
+        {
+            mbIsSpeaking = _isSpeaking;
         }
 
         #endregion
@@ -254,6 +262,7 @@ namespace EA4S.MissingLetter
         [HideInInspector]
         public Vector3 mv3EndPosition;
 
+        private bool mbIsSpeaking;
     #endregion
 
 
