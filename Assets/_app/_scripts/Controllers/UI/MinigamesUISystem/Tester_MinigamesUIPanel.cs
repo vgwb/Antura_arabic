@@ -1,13 +1,21 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
-// Created: 2016/10/28
+// Created: 2016/10/29
 
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace EA4S
 {
-    public class Tester_MinigamesUITimerPanel : MonoBehaviour
+    public class Tester_MinigamesUIPanel : MonoBehaviour
     {
+        public enum UIPanelType
+        {
+            Unset,
+            Timer,
+            Lives
+        }
+
+        public UIPanelType PanelType;
         public Button[] DisabledUntilSetup;
 
         Button[] bts;
@@ -34,8 +42,20 @@ namespace EA4S
 
         public void Refresh()
         {
+            bool isTargetUISetup = false;
+            switch (PanelType) {
+            case UIPanelType.Timer:
+                isTargetUISetup = MinigamesUI.Timer.IsSetup;
+                break;
+            case UIPanelType.Lives:
+                isTargetUISetup = MinigamesUI.Lives.IsSetup;
+                break;
+            default:
+                return;
+            }
+
             foreach (Button bt in DisabledUntilSetup) {
-                bt.interactable = MinigamesUI.Timer.IsSetup;
+                bt.interactable = isTargetUISetup;
             }
         }
 
