@@ -7,10 +7,6 @@ namespace EA4S.ColorTickle
     {
 
         #region EXPOSED MEMBERS
-        [SerializeField]
-        [Range(0, 100)]
-        private int m_iPercentageRequiredToWin = 95; //The target percentage used to determinate if the letter is finished
-
         [Header("Brush")]
 
         [SerializeField]
