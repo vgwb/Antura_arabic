@@ -162,11 +162,11 @@ namespace EA4S.MissingLetter
         public void ExitScene()
         {
             
-
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
+            mCollider.enabled = false;
 
-            Vector3 dir = (mv3CenterPosition - mv3CenterPosition).normalized;
+            Vector3 dir = (mv3EndPosition - mv3CenterPosition).normalized;
 
             Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, dir), 0);
             rot = (Vector3.Cross(Vector3.forward, dir).y < 0) ? -rot : rot;
