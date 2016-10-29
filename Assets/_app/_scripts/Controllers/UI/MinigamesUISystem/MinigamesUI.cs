@@ -85,7 +85,8 @@ namespace EA4S
         /// <para> 
         /// NOTE: calling this method when a MinigamesUI is already in the scene will destroy the current one and create a new one.
         /// </para>
-        /// NOTE: after calling this method, you will have to call the <code>Setup</code> method on each separate element.
+        /// NOTE: after calling this method, you will have to call the <code>Setup</code> method on each separate element
+        /// (except for Starbar that doesn't need it).
         /// </summary>
         /// <param name="_elements">UI elements, uses Flag enum. For example, to activate both Starbar and Timer, use:
         /// <para><code>Init(MinigamesUIElement.Starbar | MinigamesUIElement.Lives);</code></para>
