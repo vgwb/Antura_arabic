@@ -1159,7 +1159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013352566352}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 0, y: -2.5, z: -6}
+  m_LocalPosition: {x: -1, y: -2.5, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -1647,6 +1647,7 @@ MonoBehaviour:
   m_oBody: {fileID: 64000013479377596}
   m_oSurfaceRenderer: {fileID: 137000012769297538}
   m_iPixelPerUnit: 30
+  m_bEnableColor: 1
 --- !u!114 &114000010869263054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1674,7 +1675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7024b0688c4fbe3489eb211a00ca5270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_iPercentageRequiredToWin: 95
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
   m_fBrushScaling: 0.5
   m_oDrawingColor: {r: 1, g: 0, b: 0, a: 1}
@@ -1693,6 +1693,7 @@ MonoBehaviour:
   m_oTextMeshObject: {fileID: 114000013236453108}
   m_iPixelPerUnit: 30
   m_iPercentageRequiredToWin: 95
+  m_bEnableColor: 1
 --- !u!114 &114000011871043004
 MonoBehaviour:
   m_ObjectHideFlags: 1

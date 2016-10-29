@@ -21,6 +21,7 @@ namespace EA4S.MissingLetter
             mCollider = gameObject.GetComponent<Collider>();
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
             mCollider.enabled = false;
+            mbIsSpeaking = false;
         }
 
         public void PlayAnimation(LLAnimationStates animation)
@@ -73,15 +74,8 @@ namespace EA4S.MissingLetter
 
             if (onLetterClick != null)
             {
-                Invoke("LaunchLetterClick", 0.2f);
-                //onLetterClick(mLetterData.Key);
-            }
-        }
-
-
-        private void LaunchLetterClick() {
-            if (onLetterClick != null) {
-                onLetterClick(mLetterData.Key);
+                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Key));
+                mCollider.enabled = false;
             }
         }
 
@@ -161,12 +155,12 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
-            
-
+            onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
+            mCollider.enabled = false;
 
-            Vector3 dir = (mv3CenterPosition - mv3CenterPosition).normalized;
+            Vector3 dir = (mv3EndPosition - mv3CenterPosition).normalized;
 
             Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, dir), 0);
             rot = (Vector3.Cross(Vector3.forward, dir).y < 0) ? -rot : rot;
@@ -218,9 +212,10 @@ namespace EA4S.MissingLetter
         public void Speak()
         {
             Debug.Log("Speaking the word: " + mLetterData.Key);
-            if (mLetterData != null)
+            if (mLetterData != null && !mbIsSpeaking)
             {
-                if(mLetterData.DataType == LivingLetterDataType.Letter)
+                mbIsSpeaking = true;
+                if (mLetterData.DataType == LivingLetterDataType.Letter)
                 {
                     AudioManager.I.PlayLetter(mLetterData.Key);
                 }
@@ -228,7 +223,13 @@ namespace EA4S.MissingLetter
                 {
                     AudioManager.I.PlayWord(mLetterData.Key);
                 }
+                StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
+        }
+
+        private void SetIsSpeaking(bool _isSpeaking)
+        {
+            mbIsSpeaking = _isSpeaking;
         }
 
         #endregion
@@ -261,6 +262,7 @@ namespace EA4S.MissingLetter
         [HideInInspector]
         public Vector3 mv3EndPosition;
 
+        private bool mbIsSpeaking;
     #endregion
 
 

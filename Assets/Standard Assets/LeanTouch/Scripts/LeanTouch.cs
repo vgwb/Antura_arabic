@@ -258,6 +258,12 @@ namespace Lean.Touch
 		// This will return true if the input screenPosition is over any GUI elements
 		public static bool PointOverGui(Vector2 screenPosition)
 		{
+			return RaycastGui(screenPosition).isValid == true;
+		}
+
+		// This will return the RaycastResult of the input screenPosition
+		public static RaycastResult RaycastGui(Vector2 screenPosition)
+		{
 			var currentEventSystem = EventSystem.current;
 			
 			if (currentEventSystem != null)
@@ -282,10 +288,13 @@ namespace Lean.Touch
 				
 				currentEventSystem.RaycastAll(tempPointerEventData, tempRaycastResults);
 				
-				return tempRaycastResults.Count > 0;
+				if (tempRaycastResults.Count > 0)
+				{
+					return tempRaycastResults[0];
+				}
 			}
 			
-			return false;
+			return default(RaycastResult);
 		}
 
 		// This wraps GetDeltaWorldPosition to be easier to use

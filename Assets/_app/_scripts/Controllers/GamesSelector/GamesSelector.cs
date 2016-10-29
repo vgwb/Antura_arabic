@@ -62,9 +62,9 @@ namespace EA4S
         {
             if (SimulateForDebug) {
                 games = new List<MiniGameData>() {
-                    new MiniGameData() { Id = "fastcrowd" },
-                    new MiniGameData() { Id = "dancingdots" },
-                    new MiniGameData() { Id = "balloons" }
+                    new MiniGameData() { Code = MiniGameCode.FastCrowd_alphabet },
+                    new MiniGameData() { Code = MiniGameCode.DancingDots},
+                    new MiniGameData() { Code = MiniGameCode.Balloons_counting}
                 };
                 Show(games);
             } else if (mainBubble == null) {
@@ -93,11 +93,11 @@ namespace EA4S
                 Destroy(this.gameObject);
                 instance = null;
                 Show(new List<MiniGameData>() {
-                    new MiniGameData() { Id = "fastcrowd" },
-                    new MiniGameData() { Id = "dancingdots" },
-                    new MiniGameData() { Id = "balloons" },
-                    new MiniGameData() { Id = "balloons" },
-                new MiniGameData() { Id = "maze" }
+                    new MiniGameData() { Code = MiniGameCode.FastCrowd_alphabet },
+                    new MiniGameData() { Code = MiniGameCode.DancingDots  },
+                    new MiniGameData() { Code = MiniGameCode.Balloons_counting },
+                    new MiniGameData() { Code = MiniGameCode.Balloons_counting },
+                    new MiniGameData() { Code = MiniGameCode.Maze }
                 });
                 return;
             }
