@@ -129,7 +129,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 		private float startTime;
 		private Vector3 pos1;
 		private Vector3 pos2;
-		private float speed = 0.33f;
+		private float speed = 1f;
 		private Animator anim;
 
         public LetterObjectView view;

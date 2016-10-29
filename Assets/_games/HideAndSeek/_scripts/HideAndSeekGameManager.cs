@@ -249,6 +249,7 @@ namespace EA4S.HideAndSeek
 		public GameObject[] ArrayLetters;
 
         public GameObject[] LifeSprite;
+        public GameObject LifeObj;
         
 
 		private HideAndSeekLetterController script;
