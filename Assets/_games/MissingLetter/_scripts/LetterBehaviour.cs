@@ -223,7 +223,7 @@ namespace EA4S.MissingLetter
                 {
                     AudioManager.I.PlayWord(mLetterData.Key);
                 }
-                StartCoroutine(Utils.LaunchDelay(1.0f, SetIsSpeaking, false));
+                StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
         }
 
