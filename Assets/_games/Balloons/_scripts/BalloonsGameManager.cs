@@ -262,7 +262,7 @@ namespace Balloons
         private void SetNewWord()
         {
             wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
-            word = wordData.Word;
+            word = wordData.Data.Arabic;
             wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
             wordPrompt.DisplayWord(wordLetters);
 

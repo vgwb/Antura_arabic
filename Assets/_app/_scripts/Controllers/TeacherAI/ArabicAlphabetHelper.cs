@@ -17,7 +17,7 @@ namespace EA4S
         /// <param name="">.</param>
         public static string PrepareStringForDisplay(string str)
         {
-            return GenericUtilites.ReverseText(ArabicFixer.Fix(str));
+            return GenericUtilities.ReverseText(ArabicFixer.Fix(str));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace EA4S
             for (int i = 0; i < chars.Length; i++) {
                 char ch = chars[i];
                 string unicodeString = GetHexaUnicodeFromChar(ch);
-                LL_LetterData let = _vocabulary.Find(l => l.Isolated_Unicode == unicodeString);
+                LL_LetterData let = _vocabulary.Find(l => l.Data.Isolated_Unicode == unicodeString);
                 if (let != null)
                     returnList.Add(let);
             }
@@ -81,36 +81,36 @@ namespace EA4S
             bool exceptionActive = false;
             List<LL_LetterData> letters = LetterDataListFromWord(_word, _vocabulary);
             if (letters.Count == 1)
-                return returnString = ArabicAlphabetHelper.GetLetterFromUnicode(letters[0].Isolated_Unicode);
+                return returnString = ArabicAlphabetHelper.GetLetterFromUnicode(letters[0].Data.Isolated_Unicode);
             for (int i = 0; i < letters.Count; i++) {
                 LL_LetterData let = letters[i];
 
                 /// Exceptions
                 if (exceptionActive) {
                     if (i == letters.Count - 1)
-                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Isolated_Unicode);
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Data.Isolated_Unicode);
                     else
-                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Initial_Unicode);
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Data.Initial_Unicode);
                     exceptionActive = false;
                     continue;
                 }
-                if (LetterExceptions.Contains(let.Isolated_Unicode))
+                if (LetterExceptions.Contains(let.Data.Isolated_Unicode))
                     exceptionActive = true;
                 /// end Exceptions
 
                 if (let != null) {
                     if (i == 0) {
-                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Initial_Unicode);
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Data.Initial_Unicode);
                         continue;
                     } else if (i == letters.Count - 1) {
-                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Final_Unicode);
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Data.Final_Unicode);
                         continue;
                     } else {
-                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Medial_Unicode);
+                        returnString += ArabicAlphabetHelper.GetLetterFromUnicode(let.Data.Medial_Unicode);
                         continue;
                     }
                 } else {
-                    returnString += string.Format("{0}{2}{1}", "<color=red>", "</color>", ArabicAlphabetHelper.GetLetterFromUnicode(let.Isolated_Unicode));
+                    returnString += string.Format("{0}{2}{1}", "<color=red>", "</color>", ArabicAlphabetHelper.GetLetterFromUnicode(let.Data.Isolated_Unicode));
                 }
             }
             return returnString;

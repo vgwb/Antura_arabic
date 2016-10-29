@@ -29,6 +29,7 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
 
+
         #region Init
 
         public string IExist()
@@ -40,7 +41,7 @@ namespace EA4S
         {
 
             if (DB == null)
-                DB = new DatabaseManager();
+                DB = new DatabaseManager(this.GameSettings.UseTestDatabase); 
             if (Player == null)
                 Player = new PlayerProfile();
             if (Teacher == null)
@@ -107,7 +108,7 @@ namespace EA4S
         /// <returns>return next scene name.</returns>
         public string MiniGameDone(string actualSceneName = "")
         {
-            string returnString = "app_Start";
+            string returnString = "_Start";
             if (actualSceneName == "") {
                 // from MiniGame
 
@@ -129,13 +130,13 @@ namespace EA4S
                     Player.CurrentJourneyPosition.LearningBlock++;
                     Player.CurrentJourneyPosition.PlaySession = 1;
                     Player.CurrentMiniGameInPlaySession = 0;
-                    returnString = "app_Journey";
+                    returnString = "app_Map";
                 }
                 if (actualSceneName == "rewards") {
                     Player.CurrentJourneyPosition.PlaySession++;
                     Player.CurrentMiniGameInPlaySession = 0;
                     Debug.Log("New PlaySession = " + Player.CurrentJourneyPosition.PlaySession);
-                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
+                    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
                 }
 
             }

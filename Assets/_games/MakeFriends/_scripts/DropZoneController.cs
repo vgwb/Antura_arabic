@@ -39,7 +39,7 @@ namespace EA4S.MakeFriends
         public void DisplayText(LL_LetterData _letterData)
         {
             letterData = _letterData;
-            LetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Isolated_Unicode);
+            LetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
         }
 
 

@@ -28,7 +28,7 @@ namespace EA4S.DontWakeUp
                 case MarkerType.Start:
                     GetComponent<BoxCollider>().enabled = false;
                     TextGO.SetActive(true);
-                    TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(DontWakeUpManager.Instance.currentWord.Word, false, false);
+                    TextGO.GetComponent<TextMeshPro>().text = ArabicFixer.Fix(DontWakeUpManager.Instance.currentWord.Data.Arabic, false, false);
                     DrawingGO.SetActive(false);
                     break;
                 case MarkerType.Goal:

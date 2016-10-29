@@ -55,10 +55,17 @@ namespace EA4S.Db
 
         var dbPath = filepath;
 #endif
-            _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+            // Try to open an existing DB connection, or create a new DB if it does not exist already
+            try {
+                _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
+            }
+            catch
+            {
+                _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+                RecreateAllTables();
+            }
             //Debug.Log("Database final PATH: " + dbPath);
         }
-
 
         #region Creation
 
@@ -98,6 +105,11 @@ namespace EA4S.Db
         public void Insert<T>(T data) where T : IData, new()
         {
             _connection.Insert(data);
+        }
+
+        public void InsertOrReplace<T>(T data) where T : IData, new()
+        {
+            _connection.InsertOrReplace(data);
         }
 
         public void InsertAll<T>(System.Collections.IEnumerable objects) where T : IData, new()

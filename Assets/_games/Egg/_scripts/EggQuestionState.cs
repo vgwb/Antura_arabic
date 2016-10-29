@@ -65,36 +65,43 @@ namespace EA4S.Egg
 
         void ShowQuestionSequence()
         {
-            bool noColor = (game.gameDifficulty >= 0.25f && game.gameDifficulty < 0.5f) || game.gameDifficulty >= 0.75f;
+            bool lightUpButtons = game.gameDifficulty < 0.25f || (game.gameDifficulty >= 0.5f && game.gameDifficulty < 0.75f);
 
             bool isSequence = game.questionManager.IsSequence();
-            
-            if(isSequence)
-            {
-                game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
 
-                game.eggButtonBox.LightUpButtons(noColor, true, false, 1f, 1f, OnLightUpButtonsComplete);
+            if (isSequence)
+            {
+                game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence());
+
+                game.eggController.QuestionParticleEnabled();
+                game.eggButtonBox.PlayButtonsAudio(lightUpButtons, false, 0f, OnQuestionAudioComplete);
             }
             else
             {
-                game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
+                game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence()[0]);
 
-                game.Context.GetAudioManager().PlayLetter(((LL_LetterData)game.questionManager.GetlLetterDataSequence()[0]));
-                game.eggController.StartTrembling();
-                
-                if(noColor)
+                if (lightUpButtons)
                 {
-                    OnLightUpButtonsComplete();
+                    game.eggController.PlayAudioQuestion(delegate ()
+                       {
+                           game.eggController.QuestionParticleEnabled();
+
+                           game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
+                       });
+
+                    game.eggController.StartTrembling();
                 }
                 else
                 {
-                    game.eggButtonBox.LightUpButtons(false, true, true, 1f, 2f, OnLightUpButtonsComplete);
+                    game.eggController.PlayAudioQuestion(OnQuestionAudioComplete);
+                    game.eggController.StartTrembling();
                 }
             }
         }
 
-        void OnLightUpButtonsComplete()
+        void OnQuestionAudioComplete()
         {
+            game.eggController.QuestionParticleDisabled();
             game.SetCurrentState(game.PlayState);
         }
     }

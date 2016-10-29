@@ -23,6 +23,8 @@ namespace EA4S.Egg
         int inputButtonMax = 4;
         bool progressInput;
 
+        IAudioSource positiveAudioSource;
+
         public EggPlayState(EggGame game)
         {
             this.game = game;
@@ -47,6 +49,7 @@ namespace EA4S.Egg
 
             game.eggController.onEggCrackComplete = OnEggCrackComplete;
             game.eggController.onEggExitComplete = OnEggExitComplete;
+            game.eggController.onEggPressedCallback = OnEggPressed;
 
             EnableAllGameplayInput();
 
@@ -107,6 +110,7 @@ namespace EA4S.Egg
 
             if (progressInput)
             {
+                PlayPositiveAudioFeedback();
                 game.eggController.StartTrembling();
 
                 progressInput = false;
@@ -127,11 +131,6 @@ namespace EA4S.Egg
 
                 inputButtonTimer = inputButtonTime;
             }
-        }
-
-        public void UpdatePhysics(float delta)
-        {
-
         }
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
@@ -155,7 +154,7 @@ namespace EA4S.Egg
             }
         }
 
-        public void OnEggPressed()
+        void OnEggPressed()
         {
             DisableAllGameplayInput();
 
@@ -163,11 +162,12 @@ namespace EA4S.Egg
 
             if (isSequence)
             {
-                game.eggButtonBox.LightUpButtons(true, true, false, 1f, 1f, EnableAllGameplayInput);
+                game.eggController.PlayAudioQuestion(EnableAllGameplayInput);
             }
             else
             {
-                game.Context.GetAudioManager().PlayLetter(((LL_LetterData)game.questionManager.GetlLetterDataSequence()[0]));
+                game.eggController.PlayAudioQuestion(EnableAllGameplayInput);
+                game.eggController.StartTrembling();
 
                 EnableAllGameplayInput();
             }
@@ -182,27 +182,31 @@ namespace EA4S.Egg
 
             questionProgress++;
 
-            if ((questionProgress / correctAnswers) == 1f)
-            {
-                game.Context.GetAudioManager().PlaySound(Sfx.Hit);
-            }
-            else
-            {
-                game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
-            }
+            PlayPositiveAudioFeedback();
 
-            game.eggController.Cracking(questionProgress / correctAnswers);
+            float crackingProgress = (float)questionProgress / (float)correctAnswers;
+
+            game.eggController.Cracking(crackingProgress);
+
+            if (crackingProgress == 1f)
+            {
+                DisableAllGameplayInput();
+            }
         }
 
         void NegativeFeedback()
         {
+            DisableAllGameplayInput();
+
+            bool goAntura = false;
+
             if (!game.eggController.isNextToExit)
             {
                 float anturaStartEnter = Random.Range(0f, 1f);
 
                 if (anturaStartEnter < anturaProbabilityOfIn)
                 {
-                    AnturaEnter();
+                    goAntura = true;
                 }
             }
 
@@ -213,8 +217,15 @@ namespace EA4S.Egg
             questionProgress = 0;
             game.eggController.ResetCrack();
 
-            DisableAllGameplayInput();
-            game.eggController.MoveNext(1f, EnableAllGameplayInput);
+            if (goAntura)
+            {
+                AnturaEnter();
+                game.eggController.MoveNext(1f, null);
+            }
+            else
+            {
+                game.eggController.MoveNext(1f, EnableAllGameplayInput);
+            }
         }
 
         void AnturaExit()
@@ -255,23 +266,16 @@ namespace EA4S.Egg
 
             if (isSequence)
             {
-                game.eggButtonBox.LightUpButtons(false, true, false, 1f, 1f, OnLightUpButtonsComplete);
+                game.eggButtonBox.PlayButtonsAudio(true, false, 1f, OnLightUpButtonsComplete);
             }
             else
             {
-                OnLightUpButtonsComplete();
+                game.eggButtonBox.GetButtons(false)[0].PlayButtonAudio(true, 1f, OnLightUpButtonsComplete);
             }
         }
 
         void OnLightUpButtonsComplete()
         {
-            bool isSequence = game.questionManager.IsSequence();
-
-            if (!isSequence)
-            {
-                game.eggButtonBox.GetButtons(false)[0].LightUp(false, true, 1f, 1, null);
-            }
-
             toNextState = true;
         }
 
@@ -286,5 +290,17 @@ namespace EA4S.Egg
             game.eggButtonBox.DisableButtonsInput();
             game.eggController.DisableInput();
         }
+
+        void PlayPositiveAudioFeedback()
+        {
+            if (positiveAudioSource != null && positiveAudioSource.IsPlaying)
+            {
+                return;
+            }
+
+            positiveAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
+        }
+
+        public void UpdatePhysics(float delta) { }
     }
 }

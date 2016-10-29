@@ -12,22 +12,43 @@ namespace EA4S.Db
     [System.Serializable]
     public class ScoreData : IData
     {
-        public string TableName { get; set; } // key
-        public string ElementId { get; set; } // key
+        [PrimaryKey]
+        public string Id { get; set; }  // @note: with SQLite .Net we cannot have composite keys, so I created one
+
+        public string TableName { get; set; }
+        public string ElementId { get; set; } 
 
         public float Score { get; set; } // 0 ... 1.0, or 1f,2f,3f per PlaySession
+        public int LastAccessTimestamp { get; set; }
+
+        public ScoreData()
+        {
+
+        }
+        public ScoreData(string elementId, DbTables table, float score) : this(elementId,table,score, GenericUtilities.GetTimestampForNow())
+        {
+        }
+        public ScoreData(string elementId, DbTables table, float score, int timestamp)
+        {
+            this.ElementId = elementId;
+            this.TableName = table.ToString();
+            this.Id = TableName + "." + ElementId;
+            this.Score = score;
+            this.LastAccessTimestamp = timestamp;
+        }
 
         public string GetId()
         {
-            return TableName+"."+ElementId;
+            return Id;
         }
 
         public override string ToString()
         {
-            return string.Format("T{0},E{1},S{2}",
+            return string.Format("T{0},E{1},S{2},T{3}",
                 TableName,
                 ElementId,
-                Score
+                Score,
+                LastAccessTimestamp
                 );
         }
 

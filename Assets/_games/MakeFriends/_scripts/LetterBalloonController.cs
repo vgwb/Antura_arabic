@@ -36,7 +36,7 @@ namespace EA4S.MakeFriends
         public void Init(LL_LetterData _data)
         {
             letterData = _data;
-            displayedText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Isolated_Unicode);
+            displayedText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
         }
 
         public void SetColor(Color color)
