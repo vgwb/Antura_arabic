@@ -16,7 +16,7 @@ namespace EA4S.Scanner
 		private LLStatus status;
 		// Use this for initialization
 		void Start () {
-			animator.Play("LL_lose");
+			livingLetter.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_lose);
 			status = LLStatus.Sliding;
 		}
 
@@ -39,12 +39,31 @@ namespace EA4S.Scanner
 
 		IEnumerator AnimateLL()
 		{
-			string[] animations = {"LL_idle_1", "LL_idle_2","LL_idle_3","LL_idle_4","LL_run_happy"};
+
 			yield return new WaitForSeconds(1f);
+
+			int index = -1;
+			LLAnimationStates[] animations = 
+			{
+				LLAnimationStates.LL_idle_1,
+				LLAnimationStates.LL_idle_2,
+				LLAnimationStates.LL_idle_3,
+				LLAnimationStates.LL_idle_4,
+				LLAnimationStates.LL_dancing_1, 
+				LLAnimationStates.LL_run_happy,
+				LLAnimationStates.LL_turn_180,
+				LLAnimationStates.LL_twirl
+			};
+
 			do
 			{
-				animator.Play(animations[UnityEngine.Random.Range(0, animations.Length)]);
-				yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 2f));
+				int oldIndex = index;
+				do
+				{
+					index = UnityEngine.Random.Range(0, animations.Length);
+				} while (index == oldIndex);
+				livingLetter.GetComponent<LetterObjectView>().SetState(animations[index]);
+				yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 4f));
 			} while (status == LLStatus.StandingOnBelt);
 		}
 
@@ -53,11 +72,11 @@ namespace EA4S.Scanner
 			Debug.Log("Trigger entered");
 			if (status == LLStatus.Sliding)
 			{
-				if (other.tag == "Belt")
+				if (other.tag == "Scanner_Belt")
 				{
 					transform.parent = other.transform;
 					status = LLStatus.StandingOnBelt;
-					animator.Play("LL_land");
+					livingLetter.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_land);
 					StartCoroutine(RotateGO(livingLetter, new Vector3(0,180,0),1f));
 					StartCoroutine(AnimateLL());
 				}
