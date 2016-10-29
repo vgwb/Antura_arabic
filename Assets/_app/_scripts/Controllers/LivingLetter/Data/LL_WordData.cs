@@ -7,17 +7,18 @@ namespace EA4S
     public class LL_WordData : ILivingLetterData
     {
 
+        public Db.WordData Data;
+
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Word; }
         }
 
-        private string key;
         public string Key {
             get { return key; }
             set { key = value; }
         }
 
-        public Db.WordData Data;
+        private string key;
 
         public LL_WordData(string _keyRow, Db.WordData _wordRow)
         {

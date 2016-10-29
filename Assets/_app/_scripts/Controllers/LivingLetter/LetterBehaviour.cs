@@ -114,7 +114,7 @@ namespace EA4S {
                 return;
             switch (_stateName) {
                 case "Idle":
-                    View.Model.State = LLAnimationStates.LL_idle;
+                    View.Model.State = LLAnimationStates.LL_idle_1;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.IdleDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);
@@ -126,7 +126,7 @@ namespace EA4S {
                     Wait(runtimeWaitTime);
                     break;
                 case "Run":
-                    View.Model.State = LLAnimationStates.LL_run;
+                    View.Model.State = LLAnimationStates.LL_run_happy;
                     if (Task.current.isStarting)
                         runtimeWaitTime = GenericHelper.GetValueWithRandomVariation(Settings.RunDuration, Settings.DurationRandomDelta);
                     Wait(runtimeWaitTime);

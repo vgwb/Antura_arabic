@@ -170,7 +170,7 @@ namespace EA4S.DancingDots
 			LivingLetterAnim newAnimationState = LivingLetterAnim.Nothing;
 
 			while ((newAnimationState == LivingLetterAnim.Nothing) || (newAnimationState == AnimationState)) {
-				newAnimationState = GenericUtilites.GetRandomEnum<LivingLetterAnim>();
+				newAnimationState = GenericUtilities.GetRandomEnum<LivingLetterAnim>();
 			}
 
 			AnimationState = newAnimationState;

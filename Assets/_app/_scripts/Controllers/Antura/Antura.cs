@@ -245,7 +245,7 @@ namespace EA4S
             AnturaAnim newAnimationState = AnturaAnim.Nothing;
 
             while ((newAnimationState == AnturaAnim.Nothing) || (newAnimationState == AnimationState)) {
-                newAnimationState = GenericUtilites.GetRandomEnum<AnturaAnim>();
+                newAnimationState = GenericUtilities.GetRandomEnum<AnturaAnim>();
             }
 
             AnimationState = newAnimationState;
@@ -255,9 +255,9 @@ namespace EA4S
         void RandomDress()
         {
             IsPirate = (Random.Range(0, 100) > 80);
-            AnturaColor = GenericUtilites.GetRandomEnum<AnturaColors>();
-            AnturaCollar = GenericUtilites.GetRandomEnum<AnturaCollars>();
-            AnturaEye = GenericUtilites.GetRandomEnum<AnturaEyes>();
+            AnturaColor = GenericUtilities.GetRandomEnum<AnturaColors>();
+            AnturaCollar = GenericUtilities.GetRandomEnum<AnturaCollars>();
+            AnturaEye = GenericUtilities.GetRandomEnum<AnturaEyes>();
             Refresh();
         }
 
