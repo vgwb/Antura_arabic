@@ -23,6 +23,11 @@ namespace EA4S
         public TMP_Text Lable;
         public SpriteRenderer ImageSprite;
 
+        public GameObject[] normalGraphics;
+        public GameObject[] limblessGraphics;
+
+        public GameObject poofPrefab;
+
         #endregion
 
         #region runtime variables
@@ -125,6 +130,26 @@ namespace EA4S
             animator.SetBool("dragging", false);
             animator.SetBool("dancing", false);
             animator.SetBool("hanging", false);
+            animator.SetBool("idle", true);
+
+            if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless)
+            {
+                // going limbless
+                Poof();
+
+                for (int i=0; i< normalGraphics.Length; ++i)
+                    normalGraphics[i].SetActive(false);
+                for (int i = 0; i < limblessGraphics.Length; ++i)
+                    limblessGraphics[i].SetActive(true);
+            }
+            else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless)
+            {
+                Poof();
+                for (int i = 0; i < normalGraphics.Length; ++i)
+                    normalGraphics[i].SetActive(true);
+                for (int i = 0; i < limblessGraphics.Length; ++i)
+                    limblessGraphics[i].SetActive(false);
+            }
 
             switch (_newState)
             {
@@ -146,7 +171,6 @@ namespace EA4S
                 case LLAnimationStates.LL_hanging:
                     animator.SetBool("hanging", true);
                     break;
-                case LLAnimationStates.LL_limbless:
                 default:
                     // No specific visual behaviour for this state
                     break;
@@ -289,6 +313,18 @@ namespace EA4S
         {
             animator.SetBool("jumping", false);
             animator.SetBool("falling", false);
+        }
+
+        /// <summary>
+        /// Produces a poof nearby the LL
+        /// </summary>
+        public void Poof()
+        {
+            var puffGo = GameObject.Instantiate(poofPrefab);
+            puffGo.AddComponent<AutoDestroy>().duration = 2;
+            puffGo.SetActive(true);
+            puffGo.transform.position = transform.position + transform.up * 3 + transform.forward*2;
+            puffGo.transform.localScale *= 0.75f;
         }
 
         #endregion
