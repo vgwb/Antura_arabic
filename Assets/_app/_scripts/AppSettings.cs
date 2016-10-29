@@ -13,5 +13,7 @@ namespace EA4S
         public bool HighQualityGfx;
 
         public int LastActivePlayerId;
+
+        public bool UseTestDatabase;
     }
 }

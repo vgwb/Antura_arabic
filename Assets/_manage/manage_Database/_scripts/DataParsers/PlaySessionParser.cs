@@ -14,9 +14,11 @@ namespace EA4S.Db.Management
             data.LearningBlock = ToInt(dict["LearningBlock"]);
             data.PlaySession = ToInt(dict["PlaySession"]);
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
+            data.Description = ToString(dict["Description"]);
+            data.IntroArabic = ToString(dict["IntroArabic"]);
 
             data.Type = ToString(dict["Type"]);
-            data.Focus = DidacticalFocus.Letters; // TODO: (sometimes it is empty!) ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);
+            data.Focus = ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);
 
             data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
             data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
@@ -44,8 +46,14 @@ namespace EA4S.Db.Management
                 }
 
                 var minigameStruct = new MiniGameInPlaySession();
-                minigameStruct.MiniGame_Id = enum_string;
-                minigameStruct.Weight = (string)dict[enum_string] == "" ? 0 : ToInt(dict[enum_string]);
+                minigameStruct.MiniGameCode = (MiniGameCode)enum_i;
+                minigameStruct.Weight = ToInt(dict[enum_string]);
+                if (minigameStruct.Weight== 0)
+                {
+                    // Skip adding if the weight is zero
+                    continue;
+                }
+
                 list.Add(minigameStruct);
             }
             return list;

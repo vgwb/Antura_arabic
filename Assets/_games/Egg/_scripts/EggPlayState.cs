@@ -49,6 +49,7 @@ namespace EA4S.Egg
 
             game.eggController.onEggCrackComplete = OnEggCrackComplete;
             game.eggController.onEggExitComplete = OnEggExitComplete;
+            game.eggController.onEggPressedCallback = OnEggPressed;
 
             EnableAllGameplayInput();
 
@@ -132,11 +133,6 @@ namespace EA4S.Egg
             }
         }
 
-        public void UpdatePhysics(float delta)
-        {
-
-        }
-
         public void OnEggButtonPressed(ILivingLetterData letterData)
         {
             bool isSequence = game.questionManager.IsSequence();
@@ -158,7 +154,7 @@ namespace EA4S.Egg
             }
         }
 
-        public void OnEggPressed()
+        void OnEggPressed()
         {
             DisableAllGameplayInput();
 
@@ -166,11 +162,11 @@ namespace EA4S.Egg
 
             if (isSequence)
             {
-                game.eggController.PlayAudioQuestion(game.questionManager.GetlLetterDataSequence(), EnableAllGameplayInput);
+                game.eggController.PlayAudioQuestion(EnableAllGameplayInput);
             }
             else
             {
-                game.eggController.PlayAudioQuestion(game.questionManager.GetlLetterDataSequence()[0], EnableAllGameplayInput);
+                game.eggController.PlayAudioQuestion(EnableAllGameplayInput);
                 game.eggController.StartTrembling();
 
                 EnableAllGameplayInput();
@@ -304,5 +300,7 @@ namespace EA4S.Egg
 
             positiveAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
         }
+
+        public void UpdatePhysics(float delta) { }
     }
 }

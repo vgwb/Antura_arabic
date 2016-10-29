@@ -71,28 +71,29 @@ namespace EA4S.Egg
 
             if (isSequence)
             {
-                game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
+                game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence());
 
                 game.eggController.QuestionParticleEnabled();
                 game.eggButtonBox.PlayButtonsAudio(lightUpButtons, false, 0f, OnQuestionAudioComplete);
             }
             else
             {
-                game.eggController.eggLivingLetter.SetLetter(game.questionManager.GetlLetterDataSequence()[0]);
+                game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence()[0]);
 
                 if (lightUpButtons)
                 {
-                    game.eggController.PlayAudioQuestion(game.questionManager.GetlLetterDataSequence()[0], delegate ()
-                    {
-                        game.eggController.QuestionParticleEnabled();
+                    game.eggController.PlayAudioQuestion(delegate ()
+                       {
+                           game.eggController.QuestionParticleEnabled();
 
-                        game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
-                    });
+                           game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
+                       });
+
                     game.eggController.StartTrembling();
                 }
                 else
                 {
-                    game.eggController.PlayAudioQuestion(game.questionManager.GetlLetterDataSequence()[0], OnQuestionAudioComplete);
+                    game.eggController.PlayAudioQuestion(OnQuestionAudioComplete);
                     game.eggController.StartTrembling();
                 }
             }

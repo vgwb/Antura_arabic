@@ -2,16 +2,40 @@
 
 namespace EA4S.Db
 {
+    public enum LetterKind
+    {
+        Letter = 1,
+        Special = 2,
+        Symbol = 3,
+        Diphtong = 4
+    }
+    public enum LetterType
+    {
+        None = 0,
+        LongVowel = 1,
+        Consonant = 2,
+        Powerful = 3,
+        DiacriticSymbol = 4,
+        Variation = 5,
+        Combination = 6
+    }
+    public enum LetterSunMoon
+    {
+        None = 0,
+        Sun = 1,
+        Moon = 2
+    }
+
     [Serializable]
     public class LetterData : IData
     {
         public string Id;
         public int Number;
         public string Title;
-        public string Kind;
-        public string Type;
+        public LetterKind Kind;
+        public LetterType Type;
         public string Notes;
-        public string SunMoon;
+        public LetterSunMoon SunMoon;
         public string Sound;
         public string Isolated;
         public string Initial;

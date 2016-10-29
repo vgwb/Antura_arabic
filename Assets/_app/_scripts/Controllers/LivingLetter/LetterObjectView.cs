@@ -178,43 +178,31 @@ namespace EA4S
 
             switch (_newState)
             {
-                case LLAnimationStates.LL_idle:
-                    // Random from 4 idle animations
-                    Anim.SetInteger("State", Random.Range(1, 4));
-                    break;
                 case LLAnimationStates.LL_idle_1:
                 case LLAnimationStates.LL_idle_2:
                 case LLAnimationStates.LL_idle_3:
                 case LLAnimationStates.LL_idle_4:
-                case LLAnimationStates.LL_idle_5:
                 case LLAnimationStates.LL_walk:
-                case LLAnimationStates.LL_walk_L:
-                case LLAnimationStates.LL_walk_R:
-                case LLAnimationStates.LL_run:
                 case LLAnimationStates.LL_run_happy:
                 case LLAnimationStates.LL_run_fear:
-                case LLAnimationStates.LL_run_fear_L:
-                case LLAnimationStates.LL_run_fear_R:
                 case LLAnimationStates.LL_drag_idle:
                 case LLAnimationStates.LL_jump_loop:
                 case LLAnimationStates.LL_jump:
                 case LLAnimationStates.LL_fall_down:
                 case LLAnimationStates.LL_land:
-                case LLAnimationStates.LL_standup:
-                case LLAnimationStates.LL_dancing:
+                case LLAnimationStates.LL_dancing_1:
+                case LLAnimationStates.LL_dancing_2:
+                case LLAnimationStates.LL_dancing_3:
+                case LLAnimationStates.LL_dancing_4:
+                case LLAnimationStates.LL_dancing_5:
                 case LLAnimationStates.LL_dancing_win:
                 case LLAnimationStates.LL_twirl:
                 case LLAnimationStates.LL_turn_180:
-                case LLAnimationStates.LL_win:
                 case LLAnimationStates.LL_horray:
                 case LLAnimationStates.LL_highfive:
                 case LLAnimationStates.LL_lose:
-                //case LetterObjectState.LL_get_angry:
                 case LLAnimationStates.LL_get_angry_1:
                 case LLAnimationStates.LL_get_angry_2:
-                case LLAnimationStates.LL_balance:
-                case LLAnimationStates.LL_balance_L:
-                case LLAnimationStates.LL_balance_R:
                 case LLAnimationStates.LL_crouching:
                 case LLAnimationStates.LL_crouching_up:
                 case LLAnimationStates.LL_ride_rocket_idle:
