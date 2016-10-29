@@ -30,6 +30,10 @@ namespace EA4S.MissingLetter
 
         public float mfDistanceBetweenLetters = 8.0f;
 
+        public float mfAnturaAnimDuration = 7.0f;
+        public float[] mafAnturaEnterTriggers = { 0.60f, 0.25f }; // 60% and 25% of the remaining time 
+        public int miAnturaTriggersIndex = 0;
+
         [HideInInspector]
         public RoundManager m_RoundManager;
 
@@ -43,9 +47,9 @@ namespace EA4S.MissingLetter
         public int mRoundsLimit;
 
         //change value for missingletter game
-        const int STARS_1_THRESHOLD = 5;
-        const int STARS_2_THRESHOLD = 8;
-        const int STARS_3_THRESHOLD = 12;
+        const int STARS_1_THRESHOLD = 2;
+        const int STARS_2_THRESHOLD = 5;
+        const int STARS_3_THRESHOLD = 9;
 
         public int CurrentStars
         {

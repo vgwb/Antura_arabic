@@ -56,12 +56,12 @@ namespace EA4S.MissingLetter
 
         public void Update(float delta)
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-                float duration = 7;
-                game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(duration);
-                game.StartCoroutine(ShuffleDelay(duration / 2, duration / 6));
-            }
+            //if (Input.GetButtonDown("Jump"))
+            //{
+            //    float duration = 7;
+            //    game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(duration);
+            //    game.StartCoroutine(ShuffleDelay(duration / 2, duration / 6));
+            //}
 
             game.timerText.text = String.Format("{0:0}", gameTime.Time);
 
@@ -93,8 +93,8 @@ namespace EA4S.MissingLetter
 
 
         void OnRoundResult(bool _result) {
-            game.m_RoundManager.NewRound();
             game.OnResult(_result);
+            game.m_RoundManager.NewRound();
         }
 
         #region VARS

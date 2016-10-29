@@ -161,10 +161,10 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
-            
-
+            onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
+            mCollider.enabled = false;
 
             Vector3 dir = (mv3CenterPosition - mv3CenterPosition).normalized;
 
