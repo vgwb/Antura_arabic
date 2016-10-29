@@ -28,7 +28,7 @@ namespace EA4S.HideAndSeek
             if (StartNewRound && game.inGame && Time.time > time + timeToWait)
             {
 
-                ClearRound();
+                
 
                 NewRound();
             }
@@ -53,29 +53,81 @@ namespace EA4S.HideAndSeek
             }
             return -1;
         }
-		void CheckResult(int id)
+
+        void NewRoundSetup()
+        {
+           
+            StartNewRound = true;
+            SetTime();
+            WidgetPopupWindow.I.Close();
+            
+        }
+
+        private IEnumerator DelayAnimation(bool answer)
+        {
+            
+
+            var initialDelay = 1f;
+            yield return new WaitForSeconds(initialDelay);
+            
+            game.PlayState.gameTime.Stop();
+
+            if(answer)
+                WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", true, image);
+            else
+                WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", false, image);
+
+
+        }
+
+        void CheckResult(int id)
 		{
 
             if (ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>().view.Model.Data.Key == currentQuestion.GetAnswer().Key)
             {
+                ClearRound();
+                StartCoroutine(DelayAnimation(true));
+                
                 Debug.Log("Hai vintooooooo");
-                //feedback o animazione vittoria
-                StartNewRound = true;
-                SetTime();
             }
             else
             {
                 Debug.Log("Hai sbagliato");
-                // togliere simbolo vita
-                //feedback
-                if(--lives == 0)
+                RemoveLife();
+                if(lifes == 0)
                 {
-                    StartNewRound = true;
-                    // mandare lettera sbagliata a teacher?
-                    SetTime();
+                    ClearRound();
+                    StartCoroutine(DelayAnimation(false));
                 }
             }
                 
+        }
+
+        void RemoveLife()
+        {
+            switch (--lifes)
+            {
+                case 2:
+                    LifeSprite[0].SetActive(false);
+                    break;
+                case 1:
+                    LifeSprite[1].SetActive(false);
+                    break;
+                case 0:
+                    LifeSprite[2].SetActive(false);
+                    break;
+            }
+
+        }
+
+        void SetFullLife()
+        {
+            lifes = 3;
+
+            for (int i = 0; i < LifeSprite.Length; ++i)
+            {
+                LifeSprite[i].SetActive(true);
+            }
         }
 
         public void SetTime()
@@ -86,8 +138,11 @@ namespace EA4S.HideAndSeek
 
         public void ClearRound()
         {
+
+
             for(int i = 0; i < MAX_TREE; ++i)
             {
+                ArrayLetters[i].transform.position = originLettersPlaceholder.position;
                 ArrayTrees[i].GetComponent<MeshCollider>().enabled = false;
                 UsedPlaceholder[i] = false;
             }
@@ -98,9 +153,11 @@ namespace EA4S.HideAndSeek
         {
             currentQuestion = (HideAndSeekQuestionsPack)questionProvider.GetQuestion();
             StartNewRound = false;
-            lives = 3;
+            SetFullLife();
             FreePlaceholder = MAX_TREE;
             ActiveLetters = currentQuestion.GetLetters().Count;
+
+            ActiveTrees = new List<GameObject>();
 
             List<ILivingLetterData> letterList = currentQuestion.GetLetters();
 
@@ -112,9 +169,10 @@ namespace EA4S.HideAndSeek
                 int index = getRandomPlaceholder();
                 if(index != -1)
                 {
-                    
-                    ArrayTrees[index].GetComponent<MeshCollider>().enabled = true;
-                    
+
+                    ActiveTrees.Add(ArrayTrees[index]);
+       
+                    //set bool for letters for correct/wrong anim
                     ArrayLetters[i].transform.position = ArrayPlaceholder[index].transform.position;
                     HideAndSeekLetterController scriptComponent = ArrayLetters[i].GetComponent<HideAndSeekLetterController>();
                     scriptComponent.SetStartPosition();
@@ -124,8 +182,30 @@ namespace EA4S.HideAndSeek
                 
             }
             
+            WidgetPopupWindow.I.ShowSentence(BeginRound, "comment_welldone", image);
+
+        }
+
+        void BeginRound()
+        {
+            StartCoroutine(DisplayRound_Coroutine());
+        }
+
+
+        private IEnumerator DisplayRound_Coroutine()
+        {
+            WidgetPopupWindow.I.Close();
+
+            foreach(GameObject tree in ActiveTrees)
+            {
+                tree.GetComponent<MeshCollider>().enabled = true;
+            }
+
+            var winInitialDelay = 1f;
+            yield return new WaitForSeconds(winInitialDelay);
 
             AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
+            game.PlayState.gameTime.Start();
 
         }
 
@@ -153,17 +233,22 @@ namespace EA4S.HideAndSeek
 
         //var
         bool StartNewRound = true;
-        int lives;
+        int lifes;
         int ActiveLetters;
         private const int MAX_TREE = 8;
         private int FreePlaceholder;
 
 		public GameObject[] ArrayTrees;
+        private List<GameObject> ActiveTrees;
         
         public Transform[] ArrayPlaceholder;
         private bool[] UsedPlaceholder = new bool[8];
 
+        public Transform originLettersPlaceholder;
+
 		public GameObject[] ArrayLetters;
+
+        public GameObject[] LifeSprite;
         
 
 		private HideAndSeekLetterController script;
@@ -176,5 +261,7 @@ namespace EA4S.HideAndSeek
 
         public float timeToWait = 1.0f;
         private float time;
+
+        public Sprite image;
     }
 }

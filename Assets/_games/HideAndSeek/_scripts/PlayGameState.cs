@@ -6,7 +6,7 @@ namespace EA4S.HideAndSeek
     {
 		HideAndSeekGame game;
 
-        CountdownTimer gameTime = new CountdownTimer(60.0f);
+        public CountdownTimer gameTime = new CountdownTimer(60.0f);
         IAudioSource timesUpAudioSource;
 
         bool hurryUpSfx;
@@ -22,7 +22,7 @@ namespace EA4S.HideAndSeek
         {
             // Reset game timer
             gameTime.Reset();
-            gameTime.Start();
+            //gameTime.Start();
 
             game.timerText.gameObject.SetActive(true);
             game.timerText.text = "";
