@@ -52,7 +52,7 @@ namespace EA4S
             if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 2) {
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_End");
             } else {
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Journey");
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
             }
         }
 

@@ -1,18 +1,35 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using DG.Tweening;
 
 namespace EA4S.Egg
 {
-    public class EggLivingLetter : MonoBehaviour
+    public class EggLivingLetter
     {
-        public BoxCollider boxCollider;
-
-        GameObject letterObjectViewPrefab;
-
         LetterObjectView livingLetter;
 
-        public void Initialize(GameObject letterObjectViewPrefab)
+        Vector3 endPosition;
+
+        float delay;
+
+        Action endCallback;
+
+        public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 endPosition, float delay, Action endCallback)
         {
-            this.letterObjectViewPrefab = letterObjectViewPrefab;
+            livingLetter = UnityEngine.Object.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
+
+            livingLetter.transform.SetParent(parent);
+            livingLetter.transform.localPosition = startPosition;
+            livingLetter.Init(livingLetterData);
+            livingLetter.gameObject.SetActive(false);
+
+            this.endPosition = endPosition;
+
+            this.delay = delay;
+
+            this.endCallback = endCallback;
+
+            JumpToEnd();
         }
 
         public void PlayIdleAnimation()
@@ -30,18 +47,19 @@ namespace EA4S.Egg
             livingLetter.Model.State = LLAnimationStates.LL_horray;
         }
 
-        public void SetLetter(ILivingLetterData livingLetterData)
+        public void DestroyLetter()
         {
-            if(livingLetter != null)
-            {
-                Destroy(livingLetter.gameObject);
-            }
+            UnityEngine.Object.Destroy(livingLetter.gameObject);
+        }
 
-            livingLetter = GameObject.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
+        public void JumpToEnd()
+        {
+            float duration = 1f;
 
-            livingLetter.transform.SetParent(transform);
-            livingLetter.transform.localPosition = Vector3.zero;
-            livingLetter.Init(livingLetterData);
+            float jumpY = UnityEngine.Random.Range(1f, 2f);
+
+            livingLetter.transform.DOLocalJump(endPosition, 7f, 1, duration).OnComplete(delegate () { if (endCallback != null) endCallback(); })
+                .SetDelay(delay).OnStart(delegate () { livingLetter.gameObject.SetActive(true); });
         }
     }
 }

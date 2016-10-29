@@ -7,24 +7,26 @@ namespace EA4S.Db
     [System.Serializable]
     public class LogMoodData : IData
     {
-        public string Id { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         public string Session { get; set; }
         public int Timestamp { get; set; }
 
         public float MoodValue { get; set; }
 
-        public LogMoodData() : this(0) {}
+        public LogMoodData() : this(0)
+        {
+        }
 
         public LogMoodData(int _mood)
         {
-            this.Id = "TODO?";  // @TODO: give a unique auto-incrementing ID? (maybe just let SQLite do that)
             this.MoodValue = _mood;
-            this.Timestamp = GenericUtilites.GetTimestampForNow();
+            this.Timestamp = GenericUtilities.GetTimestampForNow();
         }
 
         public string GetId()
         {
-            return Id;
+            return Id.ToString();
         }
 
         public override string ToString()

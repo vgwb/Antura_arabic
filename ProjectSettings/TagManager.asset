@@ -9,12 +9,15 @@ TagManager:
   - Obstacle
   - Destination
   - Alert
-  - DotZone
-  - Diacritic
+  - DancingDots_DotZone
+  - DancingDots_Diacritic
   - Pokeball
   - CorrectLetter
   - WrongLetter
   - Rail
+  - Scanner_Belt
+  - Scanner_ScanStart
+  - Scanner_ScanEnd
   layers:
   - Default
   - TransparentFX
