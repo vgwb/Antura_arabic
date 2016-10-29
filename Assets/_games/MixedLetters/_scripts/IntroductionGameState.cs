@@ -1,4 +1,6 @@
-﻿namespace EA4S.MixedLetters
+﻿using UnityEngine;
+using System.Collections.Generic;
+namespace EA4S.MixedLetters
 {
     public class IntroductionGameState : IGameState
     {
@@ -12,6 +14,11 @@
 
         public void EnterState()
         {
+            //game.ShowDropZones(5);
+
+            game.GenerateNewWord();
+            
+            //SeparateLettersSpawnerController.instance.SpawnLetters(game.lettersInOrder);
         }
 
         public void ExitState()
@@ -20,7 +27,7 @@
 
         public void Update(float delta)
         {
-            timer -= delta;
+            //timer -= delta;
 
             if (timer < 0)
             {
