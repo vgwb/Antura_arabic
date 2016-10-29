@@ -33,7 +33,7 @@ namespace EA4S.MissingLetter
         public float mfDistanceBetweenLetters = 8.0f;
 
         public float mfAnturaAnimDuration = 7.0f;
-        public float[] mafAnturaEnterTriggers = { 0.60f, 0.25f }; // 60% and 25% of the remaining time 
+        public float[] mafAnturaEnterTriggers = { 40f, 20f }; // when remains 40 and 20 seconds left
         public int miAnturaTriggersIndex = 0;
 
         [HideInInspector]
