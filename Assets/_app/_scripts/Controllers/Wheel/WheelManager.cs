@@ -56,8 +56,7 @@ namespace EA4S
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
             Debug.Log("numberOfGames " + numberOfGames);
-            gameIndexToForceSelect =
-                gameData.FindIndex(a => a.Id == AppManager.Instance.Teacher.GetCurrentMiniGameData().Id);
+            gameIndexToForceSelect = gameData.FindIndex(a => a.Code == AppManager.Instance.Teacher.GetCurrentMiniGameData().Code);
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -140,16 +139,16 @@ namespace EA4S
             /* Alpha static logic */
             if (isGameSelected) {
                 Db.MiniGameData miniGame = AppManager.Instance.Teacher.GetCurrentMiniGameData();
-                if (miniGame.Id == "fastcrowd" || miniGame.Id == "fastcrowd_words") {
+                if (miniGame.Code == MiniGameCode.FastCrowd_letter|| miniGame.Code == MiniGameCode.FastCrowd_words) {
                     FastCrowd.FastCrowdGameplayInfo gameplayInfo = new FastCrowd.FastCrowdGameplayInfo();
-                    if (miniGame.Id == "fastcrowd") {
+                    if (miniGame.Code == MiniGameCode.FastCrowd_letter) {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_letters;
                     } else {
                         gameplayInfo.Variant = FastCrowd.FastCrowdGameplayInfo.GameVariant.living_words;
                     }
                     GameManager.Instance.Modules.GameplayModule.GameplayStart(gameplayInfo);
                 }
-                if (miniGame.Id == "fastcrowd_words") {
+                if (miniGame.Code == MiniGameCode.FastCrowd_words) {
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd_tutorialWords");
                 } else {
                     GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGame.Scene + "_tutorial");
@@ -194,17 +193,17 @@ namespace EA4S
             isGameSelected = true;
             ShakePopup();
 
-            switch (gameData[currentGameIndex].Id) {
-                case "FastCrowd_spelling":
+            switch (gameData[currentGameIndex].Code) {
+                case MiniGameCode.FastCrowd_spelling:
                     WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowd", 2, true);
                     break;
-                case "FastCrowd_words":
+                case MiniGameCode.FastCrowd_words:
                     WidgetSubtitles.I.DisplaySentence("wheel_game_fastcrowdword", 2, true);
                     break;
-                case "DontWakeUp":
+                case MiniGameCode.DontWakeUp:
                     WidgetSubtitles.I.DisplaySentence("wheel_game_dontwake", 2, true);
                     break;
-                case "Balloons_spelling":
+                case MiniGameCode.Balloons_spelling:
                     WidgetSubtitles.I.DisplaySentence("wheel_game_balloons_end", 2, true);
                     break;
             }

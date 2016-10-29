@@ -11,7 +11,8 @@ namespace EA4S.Db
     [System.Serializable]
     public class LogLearnData : IData
     {
-        public string Id { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         public string Session { get; set; } // DailySession Id
         public int Timestamp { get; set; }
 
@@ -21,9 +22,24 @@ namespace EA4S.Db
         public string ElementId { get; set; }
         public float Score { get; set; } // -1.0 (bad)... 1.0 (perfect)
 
+        public LogLearnData()
+        {
+        }
+
+        public LogLearnData(string _Session, string _PlaySession, MiniGameCode _MiniGame, DbTables _table, string _elementId, int _score)
+        {
+            this.Session = _Session;
+            this.PlaySession = _PlaySession;
+            this.MiniGame = _MiniGame;
+            this.TableName = _table.ToString();
+            this.ElementId = _elementId;
+            this.Score = _score;
+            this.Timestamp = GenericUtilities.GetTimestampForNow();
+        }
+
         public string GetId()
         {
-            return Id;
+            return Id.ToString();
         }
 
         public override string ToString()
