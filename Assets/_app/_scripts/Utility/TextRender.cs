@@ -37,9 +37,12 @@ namespace EA4S
                     gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.PrepareStringForDisplay(m_text);
                 }
             } else {
-                gameObject.GetComponent<TextMeshProUGUI>().text = m_text;
+                if (isUI) {
+                    gameObject.GetComponent<TextMeshProUGUI>().text = m_text;
+                } else {
+                    gameObject.GetComponent<TextMeshPro>().text = m_text;
+                }
             }
-
         }
     }
 }
