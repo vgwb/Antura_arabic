@@ -22,7 +22,8 @@ namespace EA4S.HideAndSeek
         {
             // Reset game timer
             gameTime.Reset();
-            //gameTime.Start();
+
+            game.GameManager.LifeObj.SetActive(true);
 
             game.timerText.gameObject.SetActive(true);
             game.timerText.text = "";
@@ -41,6 +42,8 @@ namespace EA4S.HideAndSeek
 
             game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
+
+            game.GameManager.LifeObj.SetActive(false);
 
             game.Context.GetAudioManager().StopMusic();
 

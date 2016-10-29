@@ -1360,6 +1360,7 @@ MonoBehaviour:
   - {fileID: 1529035245}
   - {fileID: 1861672638}
   - {fileID: 1806414370}
+  LifeObj: {fileID: 122560906}
   game: {fileID: 1167005736}
   questionProvider: {fileID: 1167005737}
   timeToWait: 1
