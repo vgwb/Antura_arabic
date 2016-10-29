@@ -53,7 +53,6 @@ namespace EA4S.MissingLetter
             {
                 float duration = 7;
                 game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(duration);
-                //game.StartCoroutine(ShuffleDelay(duration / 2, duration / 6));
                 game.StartCoroutine(Utils.LaunchDelay(duration / 6, game.m_RoundManager.ShuffleLetters, duration / 2));
             }
 
