@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace EA4S.MissingLetter
 {
     public class MissingLetterGame : MiniGame
     {
+
         public GameObject mLetterPrefab;
         public GameObject mAnturaRef;
 
