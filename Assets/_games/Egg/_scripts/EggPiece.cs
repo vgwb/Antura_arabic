@@ -108,7 +108,7 @@ namespace EA4S.Egg
 
             smokeTimer = smokeTime;
 
-            var poofGo = GameObject.Instantiate(poofPrefab);
+            var poofGo = Instantiate(poofPrefab);
             poofGo.AddComponent<AutoDestroy>().duration = smokeTime;
             poofGo.SetActive(true);
 
