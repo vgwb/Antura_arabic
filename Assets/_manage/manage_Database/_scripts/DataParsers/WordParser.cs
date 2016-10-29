@@ -11,9 +11,8 @@ namespace EA4S.Db.Management
             var data = new WordData();
 
             data.Id = ToString(dict["Id"]);
-            data.Kind = ToString(dict["Kind"]);
-            data.Category = ToString(dict["Category"]);
-            data.English = ToString(dict["English"]);
+            data.Kind = ParseEnum<WordKind>(data, dict["Kind"]);
+            data.Category = ParseEnum<WordCategory>(data, dict["Category"]);
             data.Arabic = ToString(dict["Arabic"]);
 
             // TODO: should instead be an array of ID, but we need to solve the european-to-arabic matching!
@@ -21,7 +20,6 @@ namespace EA4S.Db.Management
 
             data.Transliteration = ToString(dict["Transliteration"]);
             data.Difficulty = ToInt(dict["Difficulty"]);
-            data.Group = ToString(dict["Group"]);
             data.Drawing = ToInt(dict["Drawing"]);
 
             return data;

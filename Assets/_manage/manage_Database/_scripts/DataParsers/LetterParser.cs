@@ -13,10 +13,10 @@ namespace EA4S.Db.Management
             data.Id = ToString(dict["Id"]);
             data.Number = ToInt(dict["Number"]);
             data.Title = ToString(dict["Title"]);
-            data.Kind = ToString(dict["Kind"]);
-            data.Type = ToString(dict["Type"]);
+            data.Kind = ParseEnum<LetterKind>(data, dict["Kind"]);
+            data.Type = ParseEnum<LetterType>(data, dict["Type"]);
             data.Notes = ToString(dict["Notes"]);
-            data.SunMoon = ToString(dict["SunMoon"]);
+            data.SunMoon = ParseEnum<LetterSunMoon>(data, dict["SunMoon"]);
             data.Sound = ToString(dict["Sound"]);
             data.Isolated = ToString(dict["Isolated"]);
             data.Initial = ToString(dict["Initial"]);

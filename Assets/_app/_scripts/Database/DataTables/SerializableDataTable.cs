@@ -2,8 +2,27 @@
 
 namespace EA4S.Db
 {
-    public class SerializableDataTable<K> : SerializableDictionary<string, K>, IDataTable where K : IData
+    [System.Serializable]
+    public class SerializableDataTable<K> : IDataTable where K : IData
     {
+        [UnityEngine.SerializeField]
+        private List<K> innerList = new List<K>();
+
+        public void AddRange(IEnumerable<K> range)
+        {
+            this.innerList.AddRange(range);
+        }
+
+        public void Add(K data)
+        {
+            innerList.Add(data);
+        }
+
+        public void Clear()
+        {
+            innerList.Clear();
+        }
+
         public List<IData> GetList()
         {
             return new List<IData>(this.GetValues());
@@ -11,7 +30,15 @@ namespace EA4S.Db
 
         public IEnumerable<IData> GetValues()
         {
-            foreach (var value in this.Values)
+            foreach (var value in innerList)
+            {
+                yield return value;
+            }
+        }
+
+        public IEnumerable<K> GetValuesTyped()
+        {
+            foreach (var value in innerList)
             {
                 yield return value;
             }
@@ -19,14 +46,12 @@ namespace EA4S.Db
 
         public IData GetValue(string id)
         {
-            if (!this.ContainsKey(id))
-                return null;
-            return this[id];
+            return innerList.Find(x => x.GetId() == id);
         }
 
         public int GetDataCount()
         {
-            return this.Count;
+            return innerList.Count;
         }
     }
 }

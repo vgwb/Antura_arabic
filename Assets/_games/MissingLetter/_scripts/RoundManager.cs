@@ -223,22 +223,17 @@ namespace EA4S.MissingLetter
             Debug.Log("Answer: " + _key);
 
             if(/*mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key*/true) {
-                Debug.Log("Yes! Correct Answer");
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
-
                 DoWinAnimations(_key);
             }
             else {
-                Debug.Log("Noo :( Wrong Answer");
                 AudioManager.I.PlaySfx(Sfx.LetterSad);
 
                 DoLoseAnimations(_key);
             }
 
-            //TODO think how to delay the calls (waiting to show some wins animations)
             if (onAnswered != null) {
-                //onAnswered(mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key);
-                onAnswered(true);
+                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, /*mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key*/true));
             }
         }
 
@@ -296,11 +291,19 @@ namespace EA4S.MissingLetter
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_twirl);
                 }
             }
+
+            for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
+            {
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_highfive);
+            }
         }
             
         private void DoLoseAnimations(string _key)
         {
-
+            for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
+            {
+                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_lose);
+            }
         }
 
         #region VARS
