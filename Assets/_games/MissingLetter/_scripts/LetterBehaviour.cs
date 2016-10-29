@@ -73,15 +73,8 @@ namespace EA4S.MissingLetter
 
             if (onLetterClick != null)
             {
-                Invoke("LaunchLetterClick", 0.2f);
                 //onLetterClick(mLetterData.Key);
-            }
-        }
-
-
-        private void LaunchLetterClick() {
-            if (onLetterClick != null) {
-                onLetterClick(mLetterData.Key);
+                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Key));
             }
         }
 
@@ -161,7 +154,7 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
-            
+            onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
             mCollider.enabled = false;
