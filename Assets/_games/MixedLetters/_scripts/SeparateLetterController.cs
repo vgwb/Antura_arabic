@@ -89,6 +89,18 @@ namespace EA4S.MixedLetters
             rigidBody.isKinematic = isKinematic;
         }
 
+        public void SetRotation(Vector3 eulerAngles)
+        {
+            transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+        }
+
+        public void RotateCCW()
+        {
+            Vector3 rotation = transform.localEulerAngles;
+            rotation.z += 90;
+            transform.localRotation = Quaternion.Euler(rotation);
+        }
+
         public void Reset()
         {
             isBeingDragged = false;

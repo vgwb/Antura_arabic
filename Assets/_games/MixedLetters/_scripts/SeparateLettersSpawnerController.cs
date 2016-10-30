@@ -54,6 +54,7 @@ namespace EA4S.MixedLetters
                 separateLetterController.Enable();
                 separateLetterController.SetPosition(transform.position);
                 separateLetterController.SetLetter(letterToSpawn);
+                separateLetterController.SetRotation(new Vector3(0, 0, Random.Range(0, 4) * 90));
                 yield return new WaitForSeconds(0.8f);
             }
         }
