@@ -12,6 +12,8 @@ namespace EA4S.MixedLetters
 
         private bool isBeingDragged = false;
         private float cameraDistance;
+        private LL_LetterData letterData;
+        public DropZoneController droppedZone;
 
         void Start()
         {
@@ -35,6 +37,12 @@ namespace EA4S.MixedLetters
                 {
                     isBeingDragged = true;
                     SetIsKinematic(true);
+
+                    if (droppedZone != null)
+                    {
+                        droppedZone.SetDroppedLetter(null);
+                        droppedZone = null;
+                    }
                 }
             }
         }
@@ -54,8 +62,20 @@ namespace EA4S.MixedLetters
         {
             if (isBeingDragged)
             {
+                if (DropZoneController.chosenDropZone != null)
+                {
+                    droppedZone = DropZoneController.chosenDropZone;
+                    droppedZone.SetDroppedLetter(this);
+                    transform.position = droppedZone.transform.position;
+                    DropZoneController.chosenDropZone = null;
+                }
+
+                else
+                {
+                    SetIsKinematic(false);
+                }
+
                 isBeingDragged = false;
-                SetIsKinematic(false);
             }
         }
 
@@ -89,9 +109,10 @@ namespace EA4S.MixedLetters
             gameObject.SetActive(false);
         }
 
-        public void SetText(string letter)
+        public void SetLetter(LL_LetterData letterData)
         {
-            TMP_text.SetText(letter);
+            this.letterData = letterData;
+            TMP_text.SetText(letterData.TextForLivingLetter);
         }
     }
 }
