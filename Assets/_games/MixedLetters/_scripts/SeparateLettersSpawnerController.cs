@@ -53,7 +53,7 @@ namespace EA4S.MixedLetters
                 SeparateLetterController separateLetterController = separateLetterControllers[i];
                 separateLetterController.Enable();
                 separateLetterController.SetPosition(transform.position);
-                separateLetterController.SetText(letterToSpawn.TextForLivingLetter);
+                separateLetterController.SetLetter(letterToSpawn);
                 yield return new WaitForSeconds(0.8f);
             }
         }

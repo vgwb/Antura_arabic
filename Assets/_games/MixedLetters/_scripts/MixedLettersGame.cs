@@ -57,6 +57,11 @@ namespace EA4S.MixedLetters
                 dropZonePosition.x = dropZoneXStart - i * dropZoneWidthWithSpace;
                 dropZoneController.SetPosition(dropZonePosition);
             }
+
+            for (int i = numLetters; i < dropZoneControllers.Length; i++)
+            {
+                dropZoneControllers[i].Disable();
+            }
         }
 
         private void HideDropZones()
