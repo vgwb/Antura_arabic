@@ -1,0 +1,48 @@
+﻿namespace EA4S.TakeMeHome
+{
+	
+	public class TakeMeHomeConfiguration : IGameConfiguration
+	{
+		// Game configuration
+		public IGameContext Context { get; set; }
+		public ILivingLetterDataProvider Letters { get; set; }
+		#region Game configurations
+		public float Difficulty { get; set; }
+		#endregion
+		#region Behaviour configurations
+		public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
+		#endregion
+
+		/////////////////
+		// Singleton Pattern
+		static TakeMeHomeConfiguration instance;
+		public static TakeMeHomeConfiguration Instance
+		{
+			get
+			{
+				if (instance == null)
+					instance = new TakeMeHomeConfiguration();
+				return instance;
+			}
+		}
+		/////////////////
+
+		private TakeMeHomeConfiguration()
+		{
+			// Default values
+			Context = new SampleGameContext();
+			Letters = new SampleLetterProvider ();
+
+			Difficulty = 0.5f;
+			BehaviourSettings = new LetterBehaviour.BehaviourSettings();
+		}
+
+		#region external configuration call
+		public static void SetConfiguration(float _difficulty, int _variation) {
+			instance = new TakeMeHomeConfiguration() {
+				Difficulty = _difficulty
+			};
+		}
+		#endregion
+	}
+}
