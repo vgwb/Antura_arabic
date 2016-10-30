@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TMP_text: {fileID: 114000013423325362}
   rigidBody: {fileID: 54000013331899932}
+  boxCollider: {fileID: 65000010107170260}
 --- !u!114 &114000013423325362
 MonoBehaviour:
   m_ObjectHideFlags: 1

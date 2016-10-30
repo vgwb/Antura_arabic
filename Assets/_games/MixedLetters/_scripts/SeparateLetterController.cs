@@ -8,17 +8,70 @@ namespace EA4S.MixedLetters
     {
         public TMP_Text TMP_text;
         public Rigidbody rigidBody;
+        public BoxCollider boxCollider;
 
-        // Use this for initialization
+        private bool isBeingDragged = false;
+        private float cameraDistance;
+
         void Start()
         {
+            IInputManager inputManager = MixedLettersConfiguration.Instance.Context.GetInputManager();
+            inputManager.onPointerDown += OnPointerDown;
+            inputManager.onPointerDrag += OnPointerDrag;
+            inputManager.onPointerUp += OnPointerUp;
 
+            cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnPointerDown()
+        {
+            if (!isBeingDragged)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition);
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider == boxCollider)
+                {
+                    isBeingDragged = true;
+                    SetIsKinematic(true);
+                }
+            }
+        }
+
+        private void OnPointerDrag()
+        {
+            if (isBeingDragged)
+            {
+                Vector2 lastPointerPosition = MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
+                Vector3 pointerPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y, cameraDistance));
+
+                transform.position = pointerPosInWorldUnits;
+            }
+        }
+
+        private void OnPointerUp()
+        {
+            if (isBeingDragged)
+            {
+                isBeingDragged = false;
+                SetIsKinematic(false);
+            }
+        }
+
+        void FixedUpdate()
         {
             rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
+        }
+
+        private void SetIsKinematic(bool isKinematic)
+        {
+            rigidBody.isKinematic = isKinematic;
+        }
+
+        public void Reset()
+        {
+            isBeingDragged = false;
         }
 
         public void SetPosition(Vector3 position)
