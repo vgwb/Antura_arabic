@@ -118,6 +118,14 @@ namespace EA4S.MixedLetters
             }
         }
 
+        public void OnRotateLetter()
+        {
+            if (droppedLetter != null)
+            {
+                droppedLetter.RotateCCW();
+            }
+        }
+
         public void Enable()
         {
             gameObject.SetActive(true);
