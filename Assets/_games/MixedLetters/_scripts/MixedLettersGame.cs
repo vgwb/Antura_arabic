@@ -84,6 +84,14 @@ namespace EA4S.MixedLetters
             }
         }
 
+        public void OnRoundStarted(int time)
+        {
+            ShowDropZones();
+            UIController.instance.EnableTimer();
+            UIController.instance.SetTimer(time);
+            SeparateLettersSpawnerController.instance.SetLettersDraggable(true);
+        }
+
         private void HideDropZones()
         {
             foreach (DropZoneController dropZoneController in dropZoneControllers)
@@ -113,6 +121,7 @@ namespace EA4S.MixedLetters
             SeparateLettersSpawnerController.instance.ResetLetters();
             SeparateLettersSpawnerController.instance.DisableLetters();
             lettersInOrder.Clear();
+            UIController.instance.DisableTimer();
         }
 
         public void GenerateNewWord()

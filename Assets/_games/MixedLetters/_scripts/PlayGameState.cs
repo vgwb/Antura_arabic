@@ -8,6 +8,7 @@ namespace EA4S.MixedLetters
         MixedLettersGame game;
 
         float timer = 4;
+        bool timerWarningSfxPlayed = false;
         public PlayGameState(MixedLettersGame game)
         {
             this.game = game;
@@ -15,22 +16,35 @@ namespace EA4S.MixedLetters
 
         public void EnterState()
         {
+            timer = 30.99f;
+            timerWarningSfxPlayed = false;
             RoundWon = false;
-            game.ShowDropZones();
-            SeparateLettersSpawnerController.instance.SetLettersDraggable(true);
+            game.OnRoundStarted(Mathf.FloorToInt(timer));
         }
 
         public void ExitState()
         {
+            
         }
 
         public void Update(float delta)
         {
-            //timer -= delta;
+            timer -= delta;
 
             if (timer < 0 || RoundWon)
             {
                 game.SetCurrentState(game.ResultState);
+            }
+
+            else
+            {
+                UIController.instance.SetTimer(Mathf.FloorToInt(timer));
+
+                if (timer < 5 && !timerWarningSfxPlayed)
+                {
+                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
+                    timerWarningSfxPlayed = true;
+                }
             }
         }
 
