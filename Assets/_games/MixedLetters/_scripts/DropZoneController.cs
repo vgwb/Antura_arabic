@@ -53,13 +53,11 @@ namespace EA4S.MixedLetters
         public void SetDroppedLetter(SeparateLetterController letter)
         {
             droppedLetter = letter;
-            Debug.Log(droppedLetter);
             Unhighlight();
         }
 
         public void OnTriggerEnter(Collider collider)
         {
-            Debug.Log(droppedLetter);
             if (droppedLetter == null)
             {
                 Throb();
@@ -123,7 +121,15 @@ namespace EA4S.MixedLetters
             if (droppedLetter != null)
             {
                 droppedLetter.RotateCCW();
+                MixedLettersGame.instance.VerifyLetters();
             }
+        }
+
+        public void Reset()
+        {
+            droppedLetter = null;
+            Unhighlight();
+            isChosen = false;
         }
 
         public void Enable()

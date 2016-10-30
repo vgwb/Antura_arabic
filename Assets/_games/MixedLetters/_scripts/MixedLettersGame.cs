@@ -8,6 +8,8 @@ namespace EA4S.MixedLetters
 {
     public class MixedLettersGame : MiniGame
     {
+        public static MixedLettersGame instance;
+
         public IntroductionGameState IntroductionState { get; private set; }
         public QuestionGameState QuestionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
@@ -21,6 +23,8 @@ namespace EA4S.MixedLetters
 
         protected override void OnInitialize(IGameContext context)
         {
+            instance = this;
+
             IntroductionState = new IntroductionGameState(this);
             QuestionState = new QuestionGameState(this);
             PlayState = new PlayGameState(this);
@@ -93,9 +97,20 @@ namespace EA4S.MixedLetters
             }
         }
 
+        private void ResetDropZones()
+        {
+            foreach (DropZoneController dropZoneController in dropZoneControllers)
+            {
+                dropZoneController.Reset();
+            }
+        }
+
         public void ResetScene()
         {
+            ResetDropZones();
             HideDropZones();
+            DropZoneController.chosenDropZone = null;
+            SeparateLettersSpawnerController.instance.ResetLetters();
             SeparateLettersSpawnerController.instance.DisableLetters();
             lettersInOrder.Clear();
         }
@@ -104,6 +119,22 @@ namespace EA4S.MixedLetters
         {
             wordInPlay = AppManager.Instance.Teacher.GimmeAGoodWord();
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Letters));
+        }
+
+        public void VerifyLetters()
+        {
+            for (int i = 0; i < lettersInOrder.Count; i++)
+            {
+                DropZoneController dropZone = dropZoneControllers[i];
+                if (dropZone.droppedLetter == null
+                    || dropZone.droppedLetter.GetLetter().Key != lettersInOrder[i].Key
+                      || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
+                {
+                    return;
+                }
+            }
+
+            PlayGameState.RoundWon = true;
         }
     }
 }
