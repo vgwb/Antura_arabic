@@ -40,10 +40,11 @@ namespace EA4S.MixedLetters
             return MixedLettersConfiguration.Instance;
         }
 
-        public void ShowDropZones(int numLetters)
+        public void ShowDropZones()
         {
+            int numLetters = lettersInOrder.Count;
             bool isEven = numLetters % 2 == 0;
-            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 0.2f;
+            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 0.4f;
             float dropZoneXStart = isEven ? numLetters / 2 - 0.5f : Mathf.Floor(numLetters / 2);
             dropZoneXStart *= dropZoneWidthWithSpace;
 

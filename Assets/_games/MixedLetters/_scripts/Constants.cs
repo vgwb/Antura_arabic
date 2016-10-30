@@ -8,7 +8,7 @@ namespace EA4S.MixedLetters
         public static float PPU = 100;
         public static float DROP_ZONE_WIDTH = 1.4f;
         public static float DROP_ZONE_HEIGHT = 1.4f;
-        public static Vector3 GRAVITY = new Vector3(0, -150f, 0);
+        public static Vector3 GRAVITY = new Vector3(0, -40f, 0);
     }
 }
 

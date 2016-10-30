@@ -14,11 +14,10 @@ namespace EA4S.MixedLetters
 
         public void EnterState()
         {
-            //game.ShowDropZones(5);
-
             game.GenerateNewWord();
             
-            //SeparateLettersSpawnerController.instance.SpawnLetters(game.lettersInOrder);
+            SeparateLettersSpawnerController.instance.SpawnLetters(game.lettersInOrder);
+            game.ShowDropZones();
         }
 
         public void ExitState()
