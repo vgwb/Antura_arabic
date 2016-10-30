@@ -14,10 +14,10 @@ namespace EA4S.MixedLetters
 
         public void EnterState()
         {
+            timer = 4;
             game.GenerateNewWord();
-            
+
             SeparateLettersSpawnerController.instance.SpawnLetters(game.lettersInOrder);
-            game.ShowDropZones();
         }
 
         public void ExitState()
@@ -26,11 +26,11 @@ namespace EA4S.MixedLetters
 
         public void Update(float delta)
         {
-            //timer -= delta;
+            timer -= delta;
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.QuestionState);
+                game.SetCurrentState(game.PlayState);
             }
         }
 
