@@ -63,6 +63,7 @@ namespace EA4S.Db.Management
             output += ("N phrases: " + dbManager.GetAllPhraseData().Count) + "\n";
             output += ("N minigames: " + dbManager.GetAllMiniGameData().Count) + "\n";
             output += ("N stages: " + dbManager.GetAllStageData().Count) + "\n";
+            output += ("N learningblocks: " + dbManager.GetAllLearningBlockData().Count) + "\n";
             output += ("N playsessions: " + dbManager.GetAllPlaySessionData().Count) + "\n";
             output += ("N localizations: " + dbManager.GetAllLocalizationData().Count) + "\n";
             output += ("N rewards: " + dbManager.GetAllRewardData().Count) + "\n";
@@ -87,6 +88,11 @@ namespace EA4S.Db.Management
         public void DumpAllPlaySessionData()
         {
             DumpAllData(dbManager.GetAllPlaySessionData());
+        }
+
+        public void DumpAllLearningBlockData()
+        {
+            DumpAllData(dbManager.GetAllLearningBlockData());
         }
 
         public void DumpAllStageData()

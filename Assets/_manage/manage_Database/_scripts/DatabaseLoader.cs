@@ -53,7 +53,13 @@ namespace EA4S.Db.Management
             {
                 var table = test_db.GetPlaySessionTable();
                 table.Clear();
-                table.AddRange(this.database.GetPlaySessionTable().GetValuesTyped()); ;
+                table.AddRange(this.database.GetPlaySessionTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetLearningBlockTable();
+                table.Clear();
+                table.AddRange(this.database.GetLearningBlockTable().GetValuesTyped()); 
             }
 
             {
@@ -110,6 +116,12 @@ namespace EA4S.Db.Management
                 Debug.Log("Generating PlaySessions enums...");
                 var parser = new PlaySessionParser();
                 parser.RegenerateEnums(DBInputData.playSessionDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating LearningBlocks enums...");
+                var parser = new LearningBlockParser();
+                parser.RegenerateEnums(DBInputData.playSessionDataAsset.text);  // @note: LearningBlockParser works on the same table of playSessionData
             }
 
             {
@@ -178,10 +190,17 @@ namespace EA4S.Db.Management
             }
 
             {
-                // @note: depends on Letter, Word, Phrase, Minigame
+                // @note: depends on Minigame
                 Debug.Log("Loading PlaySessions...");
                 var parser = new PlaySessionParser();
                 parser.Parse(DBInputData.playSessionDataAsset.text, database, database.GetPlaySessionTable());
+            }
+
+            {
+                // @note: depends on Letter, Word, Phrase, PlaySession
+                Debug.Log("Loading LearningBlocks...");
+                var parser = new LearningBlockParser();
+                parser.Parse(DBInputData.playSessionDataAsset.text, database, database.GetLearningBlockTable());
             }
 
             {

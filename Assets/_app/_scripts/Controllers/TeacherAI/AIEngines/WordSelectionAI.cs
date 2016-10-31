@@ -26,9 +26,9 @@ namespace EA4S.Teacher
             currentAlreadyPickedLetterIds.Clear();
         }
 
-        public List<Db.WordData> PerformSelection(string playSessionId, int numberToSelect)
+        public List<Db.WordData> PerformSelection(string learningBlockId, int numberToSelect)
         {
-            Db.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
+            Db.LearningBlockData learningBlockData = dbManager.GetLearningBlockDataById(learningBlockId);
             List<Db.ScoreData> word_scoreData_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'Words'");
 
             List<Db.WordData> selectedWordData_list = new List<Db.WordData>();
@@ -37,26 +37,26 @@ namespace EA4S.Teacher
 
             // First check current Words
             //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " MAIN words");
-            SelectWordsFrom(playSessionData.Words, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+            SelectWordsFrom(learningBlockData.Words, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
 
             // ... if it's not enough, check previous Words
             if (nRemainingToSelect > 0)
             {
                 //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PREVIOUS words");
-                SelectWordsFrom(playSessionData.Words_previous, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+                SelectWordsFrom(learningBlockData.Words_previous, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
             }
 
             // ... if that's still not enough, check words from past sessions
             if (nRemainingToSelect > 0)
             {
                 //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PAST words");
-                SelectWordsFrom(dbManager.letterWordHelper.GetAllWordIdsFromPreviousPlaySessions(playSessionData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+                SelectWordsFrom(dbManager.letterWordHelper.GetAllWordIdsFromPreviousLearningBlocks(learningBlockData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
             }
 
             // ... if that's still not enough, there is some issue.
             if (nRemainingToSelect > 0)
             {
-                UnityEngine.Debug.LogWarning("Warning: could not find enough words for play session " + playSessionId + " (found " + (numberToSelect - nRemainingToSelect) + " out of " + (numberToSelect) + ")");
+                UnityEngine.Debug.LogWarning("Warning: could not find enough words for play session " + learningBlockId + " (found " + (numberToSelect - nRemainingToSelect) + " out of " + (numberToSelect) + ")");
             }
 
             return selectedWordData_list;

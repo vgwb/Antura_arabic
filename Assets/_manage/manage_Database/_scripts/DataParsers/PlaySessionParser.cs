@@ -14,20 +14,8 @@ namespace EA4S.Db.Management
             data.LearningBlock = ToInt(dict["LearningBlock"]);
             data.PlaySession = ToInt(dict["PlaySession"]);
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
-            data.Description = ToString(dict["Description"]);
-            data.Title = ToString(dict["Title"]);
-            data.IntroArabic = ToString(dict["IntroArabic"]);
-            data.Reward = ParseID<RewardData, RewardTable>(data, (string)dict["Reward"], db.GetRewardTable());
-
             data.Type = ToString(dict["Type"]);
-            data.Focus = ParseEnum<PlaySessionDataFocus>(data, (string)dict["Focus"]);
-
-            data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
-            data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
-            data.Words_previous = ParseIDArray<WordData, WordTable>(data, (string)dict["Words_previous"], db.GetWordTable());
-            data.Phrases = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases"], db.GetPhraseTable());
-            data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.GetPhraseTable());
-
+            data.Order = ParseEnum<PlaySessionDataOrder>(data, dict["Order"]);
             data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
 
             return data;
@@ -62,7 +50,7 @@ namespace EA4S.Db.Management
 
         protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
         {
-            ExtractEnum(rowdicts_list, "Focus", addNoneValue:true);
+            ExtractEnum(rowdicts_list, "Order");
         }
 
     }

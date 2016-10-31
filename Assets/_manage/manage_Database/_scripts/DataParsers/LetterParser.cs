@@ -40,7 +40,7 @@ namespace EA4S.Db.Management
             ExtractEnum(rowdicts_list, "SunMoon", addNoneValue:true);
         }
 
-        protected override void FinalValidation(LetterTable table)
+        protected override void FinalValidation(LetterTable table, Database db)
         {
             // Fields 'BaseLetter' and 'Symbol' are validated with a final validation step, since they are based on this same table
             foreach (var data in table.GetValuesTyped())

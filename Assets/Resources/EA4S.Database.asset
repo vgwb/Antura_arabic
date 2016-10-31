@@ -255,7 +255,7 @@ MonoBehaviour:
       Scene: 
     - Title_En: Scanner
       Code: 25
-      Available: 0
+      Available: 1
       Type: 1
       Main: Scanner
       Variation: 
@@ -1309,12 +1309,867 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
+    - Id: alef_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: alef
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: alef_fathah_tanwin
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: alef
+      Symbol: fathah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: alef_maddah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: alef
+      Symbol: maddah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
     - Id: ayn_fathah
       Number: 0
       Title: 
       Kind: 3
       BaseLetter: ayn
       Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: ayn_kasrah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: baa_dammah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: baa_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: baa_kasrah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: daad_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: daal_dammah_tanwin
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: daal_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: dhaal_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: faa_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: faa_sukun
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: sukun
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: haa_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: haa_kasrah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: hah_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: hah_kasrah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: hah_shaddah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: shaddah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: hamza_isolated
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: jiim_dammah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: jiim_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: jiim_shaddah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: shaddah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: kaaf_dammah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: kaaf_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: laam_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: laam_kasrah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: laam_kasrah_tanwin
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: laam_sukun
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: sukun
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: miim_dammah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: miim_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: miim_kasrah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: nuun_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: nuun_kasrah_tanwin
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: nuun_sukun
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: sukun
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: qaaf_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: raa_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: raa_kasrah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: kasrah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: saad_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: shiin_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: siin_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: taa_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: tah_dammah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: tah_marbuta_dammah_tanwin
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah_tanwin
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: zaay_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: zay_dammah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: 
+      Symbol: dammah
       Type: 0
       Tag: 
       Notes: 
@@ -4438,29 +5293,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 1
       Type: MiniGame
-      Description: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
-        location of alif, absence & different location of hamza (\u0621), in different
-        position in the word (just prononciation)"
-      Title: Trio Aleph
-      IntroArabic: 
-      Reward: DogCollarLarge
-      Focus: 1
-      Letters:
-      - alef
-      - alef_hamza_hi
-      - alef_hamza_low
-      Words:
-      - father
-      - brother
-      - pear
-      - needle
-      Words_previous:
-      - mother
-      - nose
-      - deer
-      - sister
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 9
         Weight: 1
@@ -4475,27 +5308,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: Trio Aleph
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - alef
-      - alef_hamza_hi
-      - alef_hamza_low
-      Words:
-      - father
-      - brother
-      - pear
-      - needle
-      Words_previous:
-      - mother
-      - nose
-      - deer
-      - sister
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 100
@@ -4503,60 +5316,19 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 27
         Weight: 100
-    - Id: 1.1.100
+    - Id: 1.1.0
       Stage: 1
       LearningBlock: 1
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: Trio Aleph
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - alef
-      - alef_hamza_hi
-      - alef_hamza_low
-      Words:
-      - father
-      - brother
-      - pear
-      - needle
-      Words_previous:
-      - mother
-      - nose
-      - deer
-      - sister
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.2.1
       Stage: 1
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: "The trio baa, taa, thaa (\u0628 - \u062A \u2013 \u062B): Same
-        shape, different number & location of dots"
-      Title: Trio Baa, Taa, Thaa
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - baa
-      - tah
-      - thaa
-      Words:
-      - yogurt
-      - berry
-      - snow
-      Words_previous:
-      - dog
-      - girl
-      - garlic
-      - number_2
-      - fig
-      Phrases: []
-      Phrases_previous: []
+      Order: 1
       Minigames:
       - MiniGameCode: 9
         Weight: 1
@@ -4579,27 +5351,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - baa
-      - tah
-      - thaa
-      Words:
-      - yogurt
-      - berry
-      - snow
-      Words_previous:
-      - dog
-      - girl
-      - garlic
-      - number_2
-      - fig
-      Phrases: []
-      Phrases_previous: []
+      Order: 1
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -4619,49 +5371,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.2.100
+    - Id: 1.2.0
       Stage: 1
       LearningBlock: 2
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.3.1
       Stage: 1
       LearningBlock: 3
       PlaySession: 1
       Type: MiniGame
-      Description: "The trio jiim, haa, khaa (\u062C - \u062D \u2013 \u062E): Same
-        shape, different location of a dot"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - jiim
-      - hah
-      - khaa
-      Words:
-      - leg
-      - delicious
-      - uncle_father
-      Words_previous:
-      - cheese
-      - whale
-      - sister
-      - color_red
-      - number_1
-      Phrases: []
-      Phrases_previous: []
+      Order: 1
       Minigames:
       - MiniGameCode: 9
         Weight: 1
@@ -4686,27 +5408,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - jiim
-      - hah
-      - khaa
-      Words:
-      - leg
-      - delicious
-      - uncle_father
-      Words_previous:
-      - cheese
-      - whale
-      - sister
-      - color_red
-      - number_1
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -4728,48 +5430,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.3.100
+    - Id: 1.3.0
       Stage: 1
       LearningBlock: 3
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.4.1
       Stage: 1
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: "The duo daal and dhaal (\u062F \u2013 \u0630): Same shape, absence
-        of a dot"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - daal
-      - dhaal
-      Words:
-      - bear
-      - ear
-      Words_previous:
-      - cold
-      - copybook
-      - delicious
-      - wolf
-      - flower
-      - window
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 9
         Weight: 1
@@ -4796,26 +5469,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - daal
-      - dhaal
-      Words:
-      - bear
-      - ear
-      Words_previous:
-      - cold
-      - copybook
-      - delicious
-      - wolf
-      - flower
-      - window
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -4839,48 +5493,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.4.100
+    - Id: 1.4.0
       Stage: 1
       LearningBlock: 4
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.5.1
       Stage: 1
       LearningBlock: 5
       PlaySession: 1
       Type: MiniGame
-      Description: "The duo raa and zaay (\u0631 \u2013 \u0632): Same shape, absence
-        of a dot"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - raa
-      - zay
-      Words:
-      - cold
-      - banana
-      Words_previous:
-      - moon
-      - rain
-      - deer
-      - oil
-      - leg
-      - color_blue
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 9
         Weight: 1
@@ -4909,26 +5534,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - raa
-      - zay
-      Words:
-      - cold
-      - banana
-      Words_previous:
-      - moon
-      - rain
-      - deer
-      - oil
-      - leg
-      - color_blue
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 9
         Weight: 1
@@ -4952,48 +5558,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.5.100
+    - Id: 1.5.0
       Stage: 1
       LearningBlock: 5
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.6.1
       Stage: 1
       LearningBlock: 6
       PlaySession: 1
       Type: MiniGame
-      Description: "The duo siin and shiin (\u0633 \u2013 \u0634): Same shape, absence
-        of three dots"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - siin
-      - shiin
-      Words:
-      - tooth
-      - tea
-      Words_previous:
-      - sugar
-      - eagle
-      - hair
-      - apricot
-      - nest
-      - lentil
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 9
         Weight: 1
@@ -5020,26 +5597,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - siin
-      - shiin
-      Words:
-      - tooth
-      - tea
-      Words_previous:
-      - sugar
-      - eagle
-      - hair
-      - apricot
-      - nest
-      - lentil
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -5063,48 +5621,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.6.100
+    - Id: 1.6.0
       Stage: 1
       LearningBlock: 6
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.7.1
       Stage: 1
       LearningBlock: 7
       PlaySession: 1
       Type: MiniGame
-      Description: "The Saad and Daad (\u0635 \u2013 \u0636): Same shape, absence
-        of a dot"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - saad
-      - daad
-      Words:
-      - voice
-      - light
-      Words_previous:
-      - chest
-      - box
-      - color_green
-      - color_white
-      - bus
-      - toilet
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 100
@@ -5135,26 +5664,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - saad
-      - daad
-      Words:
-      - voice
-      - light
-      Words_previous:
-      - chest
-      - box
-      - color_green
-      - color_white
-      - bus
-      - toilet
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5180,48 +5690,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.7.100
+    - Id: 1.7.0
       Stage: 1
       LearningBlock: 7
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.8.1
       Stage: 1
       LearningBlock: 8
       PlaySession: 1
       Type: MiniGame
-      Description: "The Taa and DHaa (\u0637 \u2013 \u0638): Same shape, absence of
-        a dot"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - taa
-      - dhaa
-      Words:
-      - rain
-      - back
-      Words_previous:
-      - potato
-      - duck
-      - nail
-      - clean
-      - belly
-      - icecream
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5252,26 +5733,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - taa
-      - dhaa
-      Words:
-      - rain
-      - back
-      Words_previous:
-      - potato
-      - duck
-      - nail
-      - clean
-      - belly
-      - icecream
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5297,48 +5759,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.8.100
+    - Id: 1.8.0
       Stage: 1
       LearningBlock: 8
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.9.1
       Stage: 1
       LearningBlock: 9
       PlaySession: 1
       Type: MiniGame
-      Description: "The duo ayn and ghayn (\u0639 \u2013 \u063A): Same shape, absence
-        of a dot"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - ayn
-      - ghayn
-      Words:
-      - aunt_father
-      - deer
-      Words_previous:
-      - eye
-      - grapes
-      - room
-      - parrot
-      - hair
-      - glue
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5367,26 +5800,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - ayn
-      - ghayn
-      Words:
-      - aunt_father
-      - deer
-      Words_previous:
-      - eye
-      - grapes
-      - room
-      - parrot
-      - hair
-      - glue
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -5412,48 +5826,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.9.100
+    - Id: 1.9.0
       Stage: 1
       LearningBlock: 9
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.10.1
       Stage: 1
       LearningBlock: 10
       PlaySession: 1
       Type: MiniGame
-      Description: "The duo faa and qaaf (\u0641 \u2013 \u0642): Same shape, different
-        number of dots"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - faa
-      - qaaf
-      Words:
-      - nose
-      - moon
-      Words_previous:
-      - copybook
-      - elephant
-      - paper
-      - box
-      - color_yellow
-      - field
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5484,26 +5869,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - faa
-      - qaaf
-      Words:
-      - nose
-      - moon
-      Words_previous:
-      - copybook
-      - elephant
-      - paper
-      - box
-      - color_yellow
-      - field
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5529,48 +5895,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.10.100
+    - Id: 1.10.0
       Stage: 1
       LearningBlock: 10
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.11.1
       Stage: 1
       LearningBlock: 11
       PlaySession: 1
       Type: MiniGame
-      Description: "The duo kaaf and laam (\u0643 \u2013 \u0644): Same shape, absence
-        of hamza (\u0621)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - kaaf
-      - laam
-      Words:
-      - sugar
-      - dog
-      Words_previous:
-      - book
-      - pear
-      - elephant
-      - snow
-      - big
-      - yogurt
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5601,26 +5938,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - kaaf
-      - laam
-      Words:
-      - sugar
-      - dog
-      Words_previous:
-      - book
-      - pear
-      - elephant
-      - snow
-      - big
-      - yogurt
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5646,48 +5964,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.11.100
+    - Id: 1.11.0
       Stage: 1
       LearningBlock: 11
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.12.1
       Stage: 1
       LearningBlock: 12
       PlaySession: 1
       Type: MiniGame
-      Description: "The duo miim and nuun (\u0645 \u2013 \u0646): No specific criterion,
-        just different letters"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - miim
-      - nuun
-      Words:
-      - mother
-      - cheese
-      Words_previous:
-      - moon
-      - rain
-      - girl
-      - grandmother
-      - garlic
-      - ear
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5714,26 +6003,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - miim
-      - nuun
-      Words:
-      - mother
-      - cheese
-      Words_previous:
-      - moon
-      - rain
-      - girl
-      - grandmother
-      - garlic
-      - ear
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -5757,49 +6027,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.12.100
+    - Id: 1.12.0
       Stage: 1
       LearningBlock: 12
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.13.1
       Stage: 1
       LearningBlock: 13
       PlaySession: 1
       Type: MiniGame
-      Description: "The trio haa waaw yaa (\u0647 - \u0648 - \u064A): No specific
-        criterion, jusy different letters"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - yaa
-      - waaw
-      - haa
-      Words:
-      - cat
-      - flower
-      - eye
-      Words_previous:
-      - back
-      - paper
-      - tea
-      - river
-      - hand
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5828,27 +6068,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - yaa
-      - waaw
-      - haa
-      Words:
-      - cat
-      - flower
-      - eye
-      Words_previous:
-      - back
-      - paper
-      - tea
-      - river
-      - hand
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5872,49 +6092,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.13.100
+    - Id: 1.13.0
       Stage: 1
       LearningBlock: 13
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 1.14.1
       Stage: 1
       LearningBlock: 14
       PlaySession: 1
       Type: MiniGame
-      Description: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaaw\u201D (\u0648),
-        \u201Cyaa\u201D (\u064A)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - alef
-      - waaw
-      - yaa
-      Words:
-      - aunt_mother
-      - grandfather
-      - elephant
-      Words_previous:
-      - book
-      - whale
-      - fig
-      - berry
-      - grandson
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5937,27 +6127,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - alef
-      - waaw
-      - yaa
-      Words:
-      - aunt_mother
-      - grandfather
-      - elephant
-      Words_previous:
-      - book
-      - whale
-      - fig
-      - berry
-      - grandson
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -5975,46 +6145,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 27
         Weight: 1
-    - Id: 1.14.100
+    - Id: 1.14.0
       Stage: 1
       LearningBlock: 14
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 2.1.1
       Stage: 2
       LearningBlock: 1
       PlaySession: 1
       Type: MiniGame
-      Description: "The two shapes of the letter \u201Calif\u201D (\u0627 \u0640\u0627)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - alef
-      Words:
-      - grandmother
-      - sister
-      Words_previous:
-      - furniture
-      - father
-      - cucumber
-      - bed
-      - number_4
-      - deer
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6039,25 +6182,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - alef
-      Words:
-      - grandmother
-      - sister
-      Words_previous:
-      - furniture
-      - father
-      - cucumber
-      - bed
-      - number_4
-      - deer
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -6077,47 +6202,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
-    - Id: 2.1.100
+    - Id: 2.1.0
       Stage: 2
       LearningBlock: 1
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 2.2.1
       Stage: 2
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \"ba\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
-        \ \u0628\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - baa
-      Words:
-      - girl
-      - boy
-      - grapes
-      - book
-      Words_previous:
-      - cheese
-      - bus
-      - color_brown
-      - bear
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6144,16 +6241,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6175,48 +6263,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
-    - Id: 2.2.100
+    - Id: 2.2.0
       Stage: 2
       LearningBlock: 2
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 2.3.1
       Stage: 2
       LearningBlock: 3
       PlaySession: 1
       Type: MiniGame
-      Description: "The six shapes of the letter \u201Ctaa\u201D (\u062A \u0640\u062A
-        \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - tah
-      - tah_marbuta
-      Words:
-      - fig
-      - copybook
-      - oil
-      - whale
-      - second
-      - woman
-      Words_previous:
-      - sister
-      - girl
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6243,24 +6302,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - fig
-      - copybook
-      - oil
-      - whale
-      - second
-      - woman
-      Words_previous:
-      - sister
-      - girl
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6282,47 +6324,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
-    - Id: 2.3.100
+    - Id: 2.3.0
       Stage: 2
       LearningBlock: 3
-      PlaySession: 100
+      PlaySession: 0
       Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames: []
     - Id: 2.4.1
       Stage: 2
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Ctha\u201D (\u062B \u0640\u062B
-        \  \u0640\u062B\u0640  \u062B\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - thaa
-      Words:
-      - garlic
-      - pear_big
-      - triangle
-      - furniture
-      Words_previous:
-      - number_2
-      - snow
-      - fridge
-      - number_8
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6347,24 +6361,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - garlic
-      - pear_big
-      - triangle
-      - furniture
-      Words_previous:
-      - number_2
-      - snow
-      - fridge
-      - number_8
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -6391,26 +6388,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cjiim\u201D (\u062C   \u0640\u062C
-        \  \u0640\u062C\u0640   \u062C\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - jiim
-      Words:
-      - camel
-      - tree
-      - tower
-      Words_previous:
-      - snow
-      - grandfather
-      - carpenter
-      - carrot
-      - face
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6437,24 +6415,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - camel
-      - tree
-      - tower
-      Words_previous:
-      - snow
-      - grandfather
-      - carpenter
-      - carrot
-      - face
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6481,26 +6442,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Chaa\u201D (\u062D  \u0640\u062D
-        \ \u0640\u062D\u0640  \u062D\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - hah
-      Words:
-      - grandson
-      - meat
-      - won
-      - apple
-      Words_previous:
-      - farmer
-      - field
-      - whale
-      - color_red
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6527,24 +6469,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - grandson
-      - meat
-      - won
-      - apple
-      Words_previous:
-      - farmer
-      - field
-      - whale
-      - color_red
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6571,26 +6496,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Ckhaa\u201D (\u062E  \u0640\u062E
-        \u0640\u062E\u0640  \u062E\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - khaa
-      Words:
-      - cucumber
-      - hot
-      - watermelon
-      - plum
-      Words_previous:
-      - aunt_mother
-      - sister
-      - bread
-      - cupboard
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6615,24 +6521,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - cucumber
-      - hot
-      - watermelon
-      - plum
-      Words_previous:
-      - aunt_mother
-      - sister
-      - bread
-      - cupboard
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -6659,25 +6548,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 1
       Type: MiniGame
-      Description: "The two shapes of the letter \u201Cdaal\u201D ( \u0640\u062F  \u062F)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - daal
-      Words:
-      - chest
-      - hand
-      Words_previous:
-      - bear
-      - box
-      - cold
-      - foot
-      - lentil
-      - flower
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6704,24 +6575,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - chest
-      - hand
-      Words_previous:
-      - bear
-      - box
-      - cold
-      - foot
-      - lentil
-      - flower
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6748,24 +6602,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 1
       Type: MiniGame
-      Description: "The two shapes of the letter \u201Cdhaal\u201D (\u0640\u0630  \u0630)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - dhaal
-      Words:
-      - delicious
-      - went
-      Words_previous:
-      - ear
-      - wolf
-      - window
-      - color_gold
-      - month_march
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6792,23 +6629,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - delicious
-      - went
-      Words_previous:
-      - ear
-      - wolf
-      - window
-      - color_gold
-      - month_march
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6835,25 +6656,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 1
       Type: MiniGame
-      Description: "The two shapes of the letter \u201Craa\u201D ( \u0640\u0631  \u0631)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - raa
-      Words:
-      - tiger
-      - paper
-      Words_previous:
-      - rice
-      - cold
-      - chest
-      - copybook
-      - number_4
-      - color_yellow
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6878,24 +6681,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - tiger
-      - paper
-      Words_previous:
-      - rice
-      - cold
-      - chest
-      - copybook
-      - number_4
-      - color_yellow
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -6922,25 +6708,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 1
       Type: MiniGame
-      Description: "The two shapes of the letter \u201Czay\u201D ( \u0640\u0632  \u0632)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - zay
-      Words:
-      - bread
-      - rice
-      Words_previous:
-      - oil
-      - deer
-      - color_blue
-      - cupboard
-      - carrot
-      - banana
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -6967,24 +6735,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - bread
-      - rice
-      Words_previous:
-      - oil
-      - deer
-      - color_blue
-      - cupboard
-      - carrot
-      - banana
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7011,26 +6762,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Csiin\u201D (\u0633  \u0640\u0633
-        \ \u0640\u0633\u0640  \u0633\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - siin
-      Words:
-      - hour
-      - eagle
-      - sat
-      - studied
-      Words_previous:
-      - hot
-      - tongue
-      - number_5
-      - number_6
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7057,24 +6789,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - hour
-      - eagle
-      - sat
-      - studied
-      Words_previous:
-      - hot
-      - tongue
-      - number_5
-      - number_6
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7101,26 +6816,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cshiin\u201D (\u0634 \u0640\u0634
-        \u0640\u0634\u0640 \u0634\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - shiin
-      Words:
-      - hair
-      - apricot
-      - nest
-      - bed
-      Words_previous:
-      - tea
-      - hospital
-      - number_20
-      - tree
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7145,24 +6841,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - hair
-      - apricot
-      - nest
-      - bed
-      Words_previous:
-      - tea
-      - hospital
-      - number_20
-      - tree
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -7189,26 +6868,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201CSaad\u201D (\u0635 \u0640\u0635
-        \u0640\u0635\u0640 \u0635\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - saad
-      Words:
-      - box
-      - onion
-      - scissors
-      - bus
-      Words_previous:
-      - chest
-      - juice
-      - finger
-      - boy
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7235,24 +6895,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - box
-      - onion
-      - scissors
-      - bus
-      Words_previous:
-      - chest
-      - juice
-      - finger
-      - boy
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7279,25 +6922,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201CDaad\u201D (\u0636 \u0640\u0636
-        \u0640\u0636\u0640 \u0636\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - daad
-      Words:
-      - laughed
-      - color_green
-      - color_white
-      - ground
-      Words_previous:
-      - light
-      - toilet
-      - color_silver
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7324,23 +6949,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - laughed
-      - color_green
-      - color_white
-      - ground
-      Words_previous:
-      - light
-      - toilet
-      - color_silver
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7367,26 +6976,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201CTaa\u201D (\u0637  \u0640\u0637
-        \u0640\u0637\u0640 \u0637\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - taa
-      Words:
-      - flew
-      - potato
-      - duck
-      - month_february
-      Words_previous:
-      - slow
-      - table
-      - station
-      - policeman
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7411,24 +7001,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - flew
-      - potato
-      - duck
-      - month_february
-      Words_previous:
-      - slow
-      - table
-      - station
-      - policeman
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -7455,24 +7028,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201CDHaa\u201D (\u0638 \u0640\u0638
-        \u0640\u0638\u0640 \u0638\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - dhaa
-      Words:
-      - nail
-      - clean
-      - anger
-      - OokaDH
-      - icecream
-      Words_previous:
-      - back
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7499,22 +7055,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - nail
-      - clean
-      - anger
-      - OokaDH
-      - icecream
-      Words_previous:
-      - back
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7541,26 +7082,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cayn\u201D (\u0639  \u0640\u0639
-        \u0640\u0639\u0640 \u0639\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - ayn
-      Words:
-      - juice
-      - played
-      - finger
-      - brave
-      Words_previous:
-      - hair
-      - lentil
-      - eye
-      - nest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7587,24 +7109,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - juice
-      - played
-      - finger
-      - brave
-      Words_previous:
-      - hair
-      - lentil
-      - eye
-      - nest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7631,26 +7136,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cghayn\u201D (\u063A \u0640\u063A
-        \u0640\u063A\u0640 \u063A\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - ghayn
-      Words:
-      - room
-      - parrot
-      - glue
-      - brain
-      Words_previous:
-      - deer
-      - small
-      - bulgar
-      - forest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7675,24 +7161,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - room
-      - parrot
-      - glue
-      - brain
-      Words_previous:
-      - deer
-      - small
-      - bulgar
-      - forest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -7719,26 +7188,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cfaa\u201D (\u0641 \u0640\u0641
-        \u0640\u0641\u0640 \u0641\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - faa
-      Words:
-      - farmer
-      - color_yellow
-      - classroom
-      - flapped
-      Words_previous:
-      - bed
-      - bank
-      - room
-      - elephant
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7765,24 +7215,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - farmer
-      - color_yellow
-      - classroom
-      - flapped
-      Words_previous:
-      - bed
-      - bank
-      - room
-      - elephant
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7809,26 +7242,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cqaaf\u201D (\u0642 \u0640\u0642
-        \u0640\u0642\u0640 \u0642\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - qaaf
-      Words:
-      - foot
-      - field
-      - agreed
-      - color_blue
-      Words_previous:
-      - moon
-      - market
-      - color_orange
-      - paper
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7855,24 +7269,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - foot
-      - field
-      - agreed
-      - color_blue
-      Words_previous:
-      - moon
-      - market
-      - color_orange
-      - paper
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7899,26 +7296,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Ckaaf\u201D ( \u0643 \u0640\u0643
-        \u0640\u0643\u0640 \u0643\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - kaaf
-      Words:
-      - month_january
-      - cried
-      - caught
-      - released
-      Words_previous:
-      - big
-      - sugar
-      - dog
-      - book
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -7943,24 +7321,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - month_january
-      - cried
-      - caught
-      - released
-      Words_previous:
-      - big
-      - sugar
-      - dog
-      - book
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -7987,26 +7348,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Claam\u201D (\u0644 \u0640\u0644
-        \ \u0640\u0644\u0640 \u0644\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - laam
-      Words:
-      - teacher
-      - carried
-      - month_september
-      Words_previous:
-      - played
-      - field
-      - delicious
-      - tongue
-      - mountain
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8033,24 +7375,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - teacher
-      - carried
-      - month_september
-      Words_previous:
-      - played
-      - field
-      - delicious
-      - tongue
-      - mountain
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8077,26 +7402,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cmiim\u201D ( \u0645 \u0640\u0645
-        \u0640\u0645\u0640 \u0645\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - miim
-      Words:
-      - school
-      - color_red
-      - understood
-      - day
-      Words_previous:
-      - tiger
-      - rain
-      - glue
-      - meat
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8123,24 +7429,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - school
-      - color_red
-      - understood
-      - day
-      Words_previous:
-      - tiger
-      - rain
-      - glue
-      - meat
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8167,26 +7456,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cnuun\u201D (\u0646 \u0640\u0646
-        \u0640\u0646\u0640 \u0646\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - nuun
-      Words:
-      - carpenter
-      - number_2
-      - belly
-      - tongue
-      Words_previous:
-      - color_brown
-      - window
-      - shop
-      - river
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8211,24 +7481,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - carpenter
-      - number_2
-      - belly
-      - tongue
-      Words_previous:
-      - color_brown
-      - window
-      - shop
-      - river
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -8255,26 +7508,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Chaa\u201D (\u0647  \u0640\u0647
-        \u0640\u0647\u0640 \u0647\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - haa
-      Words:
-      - month
-      - virtuous
-      - lips
-      Words_previous:
-      - cat
-      - river
-      - engineer
-      - back
-      - face
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8301,24 +7535,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - month
-      - virtuous
-      - lips
-      Words_previous:
-      - cat
-      - river
-      - engineer
-      - back
-      - face
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8345,25 +7562,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 1
       Type: MiniGame
-      Description: "The two shapes of the letter \u201Cwaaw\u201D ( \u0640\u0648  \u0648)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - waaw
-      Words:
-      - face
-      - bird
-      Words_previous:
-      - light
-      - broad_bean
-      - flower
-      - paper
-      - whale
-      - plum
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8390,24 +7589,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - face
-      - bird
-      Words_previous:
-      - light
-      - broad_bean
-      - flower
-      - paper
-      - whale
-      - plum
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8429,47 +7611,12 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
-    - Id: 3.13.100
-      Stage: 3
-      LearningBlock: 13
-      PlaySession: 100
-      Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
-      Minigames: []
     - Id: 3.14.1
       Stage: 3
       LearningBlock: 14
       PlaySession: 1
       Type: MiniGame
-      Description: "The four shapes of the letter \u201Cyaa\u201D (\u064A \u0640\u064A
-        \u0640\u064A\u0640 \u064A\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - yaa
-      Words:
-      - number_8
-      - color_brown
-      Words_previous:
-      - hand
-      - tea
-      - doctor
-      - chair
-      - eye
-      - fig
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 7
         Weight: 1
@@ -8494,24 +7641,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - number_8
-      - color_brown
-      Words_previous:
-      - hand
-      - tea
-      - doctor
-      - chair
-      - eye
-      - fig
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 5
         Weight: 1
@@ -8533,47 +7663,12 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 29
         Weight: 1
-    - Id: 3.14.100
-      Stage: 3
-      LearningBlock: 14
-      PlaySession: 100
-      Type: Assessment
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
-      Minigames: []
     - Id: 4.1.1
       Stage: 4
       LearningBlock: 1
       PlaySession: 1
       Type: MiniGame
-      Description: "The sound of Fathah (\u064E) as a short vowel, Fatha on letters,
-        and vocabulary,"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - fathah
-      Words:
-      - doctor
-      Words_previous:
-      - rain
-      - juice
-      - laughed
-      - glue
-      - copybook
-      - restaurant
-      - flag
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 100
@@ -8614,24 +7709,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - doctor
-      Words_previous:
-      - rain
-      - juice
-      - laughed
-      - glue
-      - copybook
-      - restaurant
-      - flag
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -8672,26 +7750,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: "The sound of Dammah (\u064F) as a short vowel, Dammah on letters,
-        and vocabulary"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - dammah
-      Words:
-      - garden
-      Words_previous:
-      - color_brown
-      - teacher
-      - ear
-      - room
-      - bulgar
-      - apricot
-      - chair
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -8732,24 +7791,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - garden
-      Words_previous:
-      - color_brown
-      - teacher
-      - ear
-      - room
-      - bulgar
-      - apricot
-      - chair
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -8790,26 +7832,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 1
       Type: MiniGame
-      Description: "The sound of Kasrah (\u0650) as a short vowel,  Kasrah on letters,
-        and vocabulary"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - kasrah
-      Words:
-      - number_6
-      Words_previous:
-      - tooth
-      - brain
-      - girl
-      - wolf
-      - window
-      - lips
-      - table
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -8850,24 +7873,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - number_6
-      Words_previous:
-      - tooth
-      - brain
-      - girl
-      - wolf
-      - window
-      - lips
-      - table
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -8908,29 +7914,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: "Revision of the 3 previous + The the non sound of the mute Sukun
-        (\u0652)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - fathah
-      - dammah
-      - kasrah
-      - sukun
-      Words:
-      - restaurant
-      Words_previous:
-      - duck
-      - needle
-      - apricot
-      - number_5
-      - chair
-      - bank
-      - pear
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -8971,24 +7955,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - restaurant
-      Words_previous:
-      - duck
-      - needle
-      - apricot
-      - number_5
-      - chair
-      - bank
-      - pear
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9029,23 +7996,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 1
       Type: MiniGame
-      Description: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - fathah_tanwin
-      Words:
-      - of_course
-      Words_previous:
-      - tomorrow
-      - thankyou
-      - sure
-      - hi
-      - welcome
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9086,22 +8037,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - of_course
-      Words_previous:
-      - tomorrow
-      - thankyou
-      - sure
-      - hi
-      - welcome
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9142,23 +8078,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 1
       Type: MiniGame
-      Description: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - dammah_tanwin
-      Words:
-      - forest
-      Words_previous:
-      - number_7
-      - whale
-      - voice
-      - station
-      - table
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9199,22 +8119,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - forest
-      Words_previous:
-      - number_7
-      - whale
-      - voice
-      - station
-      - table
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9255,23 +8160,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 1
       Type: MiniGame
-      Description: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - kasrah_tanwin
-      Words:
-      - shop
-      Words_previous:
-      - yogurt
-      - camel
-      - tiger
-      - bed
-      - chest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9312,22 +8201,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - shop
-      Words_previous:
-      - yogurt
-      - camel
-      - tiger
-      - bed
-      - chest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9368,28 +8242,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 1
       Type: MiniGame
-      Description: The 3 diacritic + double diacritic signs.
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - fathah
-      - dammah
-      - kasrah
-      - fathah_tanwin
-      - dammah_tanwin
-      - kasrah_tanwin
-      Words:
-      - wrote
-      - books
-      - flag
-      - knowledge
-      Words_previous:
-      - color_black
-      - lions
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9430,27 +8283,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 1
       Type: MiniGame
-      Description: "The different sound variations of hamza (\u0621) on a vowel (different
-        with/without), separate. waw hamza (\u0624) and yaa hamza (\u0626)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - waaw_hamza
-      - alef_maqsura_hamza
-      - yaa_hamza
-      - hamza
-      Words:
-      - sky
-      - wolf
-      - pearl
-      - slow
-      Words_previous:
-      - parrot
-      - light
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9491,22 +8324,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - sky
-      - wolf
-      - pearl
-      - slow
-      Words_previous:
-      - parrot
-      - light
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9547,24 +8365,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 1
       Type: MiniGame
-      Description: "The diphthong \u201Cwaaw\u201D (\u0648): different sound than
-        short and long vowel"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 3
-      Letters:
-      - waaw
-      Words: []
-      Words_previous:
-      - banana
-      - sound
-      - light
-      - flower
-      - paper
-      - plum
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9605,22 +8406,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 3
-      Letters: []
-      Words: []
-      Words_previous:
-      - banana
-      - sound
-      - light
-      - flower
-      - paper
-      - plum
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9661,23 +8447,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 1
       Type: MiniGame
-      Description: "The diphthong \u201Cyaa\u201D (\u064A): different sound than short
-        and long vowel"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 3
-      Letters: []
-      Words: []
-      Words_previous:
-      - oil
-      - house
-      - eye
-      - hand
-      - anger
-      - color_white
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9718,22 +8488,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 3
-      Letters: []
-      Words: []
-      Words_previous:
-      - oil
-      - house
-      - eye
-      - hand
-      - anger
-      - color_white
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9774,22 +8529,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 1
       Type: MiniGame
-      Description: Verbs
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - drank
-      - opened
-      - ate
-      Words_previous:
-      - drank
-      - sat
-      - studied
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9830,22 +8570,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - drank
-      - opened
-      - ate
-      Words_previous:
-      - drank
-      - sat
-      - studied
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9886,22 +8611,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 1
       Type: MiniGame
-      Description: Places
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - station
-      - bank
-      - hospital
-      - market
-      Words_previous:
-      - school
-      - club
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9942,22 +8652,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - station
-      - bank
-      - hospital
-      - market
-      Words_previous:
-      - school
-      - club
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -9998,22 +8693,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 1
       Type: MiniGame
-      Description: Grains (food)
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - lentil
-      - bulgar
-      - chickpea
-      - broad_bean
-      Words_previous:
-      - rice
-      - sugar
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10054,22 +8734,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - lentil
-      - bulgar
-      - chickpea
-      - broad_bean
-      Words_previous:
-      - rice
-      - sugar
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10110,27 +8775,7 @@ MonoBehaviour:
       LearningBlock: 15
       PlaySession: 1
       Type: MiniGame
-      Description: Furniture
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - table
-      - chair
-      - bed
-      - cupboard
-      - window
-      - door
-      - television
-      - fridge
-      - washing_machine
-      - oven
-      - toilet
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10171,27 +8816,7 @@ MonoBehaviour:
       LearningBlock: 15
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - table
-      - chair
-      - bed
-      - cupboard
-      - window
-      - door
-      - television
-      - fridge
-      - washing_machine
-      - oven
-      - toilet
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10232,16 +8857,7 @@ MonoBehaviour:
       LearningBlock: 15
       PlaySession: 3
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10282,23 +8898,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 1
       Type: MiniGame
-      Description: "The \u201Calef maqSura\u201D"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - alef_maqsura
-      Words:
-      - walked
-      - saw
-      - club
-      Words_previous:
-      - cried
-      - pear
-      - hospital
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10339,22 +8939,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - walked
-      - saw
-      - club
-      Words_previous:
-      - cried
-      - pear
-      - hospital
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10395,22 +8980,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: "The special combination letter \u201Claam-alef\u201D (\u0644\u0627)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - laam_alef
-      Words: []
-      Words_previous:
-      - mountain_dual
-      - worker_dual
-      - the_player
-      - number_3
-      Phrases:
-      - yourwelcome
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10451,21 +9021,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words: []
-      Words_previous:
-      - mountain_dual
-      - worker_dual
-      - the_player
-      - number_3
-      Phrases:
-      - yourwelcome
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10506,22 +9062,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 1
       Type: MiniGame
-      Description: The maddah (~)
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - maddah
-      Words:
-      - melancholy
-      - believed
-      - now
-      Words_previous:
-      - month_august
-      - month_march
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10562,21 +9103,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters: []
-      Words:
-      - melancholy
-      - believed
-      - now
-      Words_previous:
-      - month_august
-      - month_march
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10617,25 +9144,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: The 3 diacritic signs
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - fathah
-      - kasrah
-      - dammah
-      Words:
-      - carrot
-      - islands
-      - salt
-      - insistent
-      Words_previous:
-      - believed
-      - safe
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10676,23 +9185,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 1
       Type: MiniGame
-      Description: The 3 double diacritic signs (Tanwin)
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - fathah_tanwin
-      - dammah_tanwin
-      - kasrah_tanwin
-      Words:
-      - wore
-      - costume
-      - mouth
-      - man
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10733,23 +9226,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 1
       Type: MiniGame
-      Description: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double consonant"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 2
-      Letters:
-      - shaddah
-      Words:
-      - uncle_father
-      Words_previous:
-      - bear
-      - sugar
-      - rice
-      - grandfather
-      - station
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10790,22 +9267,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 0
-      Letters: []
-      Words:
-      - uncle_father
-      Words_previous:
-      - bear
-      - sugar
-      - rice
-      - grandfather
-      - station
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10846,25 +9308,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 1
       Type: MiniGame
-      Description: Singular, dual, and plural forms of nouns
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - lion
-      - lion_dual
-      - lion_plural
-      Words_previous:
-      - mountain
-      - mountain_dual
-      - mountain_plural
-      - worker
-      - worker_dual
-      - worker_plural
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10905,25 +9349,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 0
-      Letters: []
-      Words:
-      - lion
-      - lion_dual
-      - lion_plural
-      Words_previous:
-      - mountain
-      - mountain_dual
-      - mountain_plural
-      - worker
-      - worker_dual
-      - worker_plural
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -10964,22 +9390,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 1
       Type: MiniGame
-      Description: Professions (emphasis singular, dual, plural)
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - scientist
-      - scientist_dual
-      - scientist_plural
-      - worker
-      - worker_dual
-      - worker_plural
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11020,22 +9431,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 0
-      Letters: []
-      Words:
-      - scientist
-      - scientist_dual
-      - scientist_plural
-      - worker
-      - worker_dual
-      - worker_plural
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11076,22 +9472,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 1
       Type: MiniGame
-      Description: Nature (emphasis singular, dual, plural)
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - river
-      - river_dual
-      - river_plural
-      - mountain
-      - mountain_dual
-      - mountain_plural
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11132,22 +9513,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 0
-      Letters: []
-      Words:
-      - river
-      - river_dual
-      - river_plural
-      - mountain
-      - mountain_dual
-      - mountain_plural
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11188,24 +9554,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 1
       Type: MiniGame
-      Description: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - engineer
-      - the_engineer
-      - policeman
-      - the_policeman
-      Words_previous:
-      - worker
-      - the_worker
-      - scientist
-      - the_scientist
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11246,52 +9595,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 1
       Type: MiniGame
-      Description: "Principle (the different pronounciation of the consonant following
-        the definite article \"al\" (\u0627\u0644\u0640) \n\nmoon consonants: \u0628
-        - \u062C - \u062D - \u062E - \u0639 - \u063A - \u0641 - \u0642 - \u0643 -
-        \u0645 - \u0647 \nsun consonants: \u062A - \u062B - \u062F - \u0630 - \u0631
-        - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 - \u0644 -
-        \u0646"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - baa
-      - jiim
-      - hah
-      - khaa
-      - ayn
-      - ghayn
-      - faa
-      - qaaf
-      - kaaf
-      - miim
-      - haa
-      - tah
-      - thaa
-      - daal
-      - dhaal
-      - raa
-      - zay
-      - siin
-      - shiin
-      - saad
-      - daad
-      - taa
-      - dhaa
-      - laam
-      - nuun
-      Words:
-      - the_beautiful
-      - the_sad
-      - the_lazy
-      - the_happy
-      - the_active
-      - the_wonderful
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11332,22 +9636,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - the_beautiful
-      - the_sad
-      - the_lazy
-      - the_happy
-      - the_active
-      - the_wonderful
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11388,48 +9677,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 1
       Type: MiniGame
-      Description: Sports (emphasis moon & sun consonant) the red color of the sun&moon
-        letter means it is not pronounced which means it proceeds a sun consonant
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters:
-      - baa
-      - jiim
-      - hah
-      - khaa
-      - ayn
-      - ghayn
-      - faa
-      - qaaf
-      - kaaf
-      - miim
-      - haa
-      - tah
-      - thaa
-      - daal
-      - dhaal
-      - raa
-      - zay
-      - siin
-      - shiin
-      - saad
-      - daad
-      - taa
-      - dhaa
-      - laam
-      - nuun
-      Words:
-      - the_ball
-      - the_playground
-      - the_player
-      - football
-      - basketball
-      Words_previous:
-      - won
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11470,22 +9718,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 1
-      Letters: []
-      Words:
-      - the_ball
-      - the_playground
-      - the_player
-      - football
-      - basketball
-      Words_previous:
-      - won
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11526,22 +9759,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 1
       Type: MiniGame
-      Description: Adjectives of feelings
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - happy
-      - sad
-      - active
-      - lazy
-      - wonderful
-      Words_previous:
-      - beautiful
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11582,22 +9800,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - happy
-      - sad
-      - active
-      - lazy
-      - wonderful
-      Words_previous:
-      - beautiful
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11638,20 +9841,7 @@ MonoBehaviour:
       LearningBlock: 1
       PlaySession: 1
       Type: MiniGame
-      Description: Greeting phrase
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 5
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases:
-      - goodmorning_Q
-      - goodmorning_R
-      - goodevening_Q
-      - goodevening_R
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11692,19 +9882,7 @@ MonoBehaviour:
       LearningBlock: 2
       PlaySession: 1
       Type: MiniGame
-      Description: '"Hello" and "Hi" phrases'
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 5
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases:
-      - hi
-      - peaceonyou_Q
-      - peaceonyou_R
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11745,23 +9923,7 @@ MonoBehaviour:
       LearningBlock: 3
       PlaySession: 1
       Type: MiniGame
-      Description: '"How are you" and "Goodbye" phrases'
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 5
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases:
-      - yourwelcome
-      - howareyou
-      - fine
-      - thankyou
-      - sure
-      - seeyou
-      - goodbye
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11802,28 +9964,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 1
       Type: MiniGame
-      Description: 'Adjectives: colors'
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - color_black
-      - color_purple
-      - color_pink
-      - color_gold
-      - color_silver
-      - color_orange
-      Words_previous:
-      - color_green
-      - color_white
-      - color_yellow
-      - color_blue
-      - color_brown
-      - color_red
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11864,28 +10005,7 @@ MonoBehaviour:
       LearningBlock: 4
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - color_black
-      - color_purple
-      - color_pink
-      - color_gold
-      - color_silver
-      - color_orange
-      Words_previous:
-      - color_green
-      - color_white
-      - color_yellow
-      - color_blue
-      - color_brown
-      - color_red
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11926,22 +10046,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 1
       Type: MiniGame
-      Description: 'Adjectives: describing nature'
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - beautiful
-      - clean
-      - big
-      - small
-      Words_previous:
-      - wonderful
-      - rainy
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -11982,22 +10087,7 @@ MonoBehaviour:
       LearningBlock: 5
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - beautiful
-      - clean
-      - big
-      - small
-      Words_previous:
-      - wonderful
-      - rainy
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12038,22 +10128,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 1
       Type: MiniGame
-      Description: 'Adjectives: describing weather'
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - cold
-      - hot
-      - rainy
-      Words_previous:
-      - beautiful
-      - clean
-      - wonderful
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12094,22 +10169,7 @@ MonoBehaviour:
       LearningBlock: 6
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - cold
-      - hot
-      - rainy
-      Words_previous:
-      - beautiful
-      - clean
-      - wonderful
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12150,40 +10210,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 1
       Type: MiniGame
-      Description: Cardinal numbers 0 to 20
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - number_0
-      - number_1
-      - number_10
-      - number_11
-      - number_12
-      - number_13
-      - number_14
-      - number_15
-      - number_16
-      - number_17
-      - number_18
-      - number_19
-      - number_2
-      - number_20
-      - number_3
-      - number_4
-      - number_5
-      - number_6
-      - number_7
-      - number_8
-      - number_9
-      Words_previous:
-      - number_2
-      - number_6
-      - number_8
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12224,40 +10251,7 @@ MonoBehaviour:
       LearningBlock: 7
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - number_0
-      - number_1
-      - number_10
-      - number_11
-      - number_12
-      - number_13
-      - number_14
-      - number_15
-      - number_16
-      - number_17
-      - number_18
-      - number_19
-      - number_2
-      - number_20
-      - number_3
-      - number_4
-      - number_5
-      - number_6
-      - number_7
-      - number_8
-      - number_9
-      Words_previous:
-      - number_2
-      - number_6
-      - number_8
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12298,26 +10292,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 1
       Type: MiniGame
-      Description: Ordinal numbers 1 to 10 (with the definite article "al")
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - number_o1
-      - number_o2
-      - number_o3
-      - number_o4
-      - number_o5
-      - number_o6
-      - number_o7
-      - number_o8
-      - number_o9
-      - number_o10
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12358,26 +10333,7 @@ MonoBehaviour:
       LearningBlock: 8
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - number_o1
-      - number_o2
-      - number_o3
-      - number_o4
-      - number_o5
-      - number_o6
-      - number_o7
-      - number_o8
-      - number_o9
-      - number_o10
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12418,22 +10374,7 @@ MonoBehaviour:
       LearningBlock: 9
       PlaySession: 1
       Type: MiniGame
-      Description: Time expressions such as "today" "yesterday"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - yesterday
-      - today
-      - tomorrow
-      Words_previous:
-      - now
-      Phrases: []
-      Phrases_previous:
-      - seeyou
-      - goodbye
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12474,23 +10415,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 1
       Type: MiniGame
-      Description: Days of the week
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - day_monday
-      - day_tuesday
-      - day_wednesday
-      - day_thursday
-      - day_friday
-      - day_saturday
-      - day_sunday
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12531,23 +10456,7 @@ MonoBehaviour:
       LearningBlock: 10
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - day_monday
-      - day_tuesday
-      - day_wednesday
-      - day_thursday
-      - day_friday
-      - day_saturday
-      - day_sunday
-      Words_previous: []
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12588,28 +10497,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 1
       Type: MiniGame
-      Description: The months
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - month_march
-      - month_april
-      - month_may
-      - month_june
-      - month_july
-      - month_august
-      - month_october
-      - month_november
-      - month_december
-      Words_previous:
-      - month_january
-      - month_february
-      - month_september
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12650,28 +10538,7 @@ MonoBehaviour:
       LearningBlock: 11
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - month_march
-      - month_april
-      - month_may
-      - month_june
-      - month_july
-      - month_august
-      - month_october
-      - month_november
-      - month_december
-      Words_previous:
-      - month_january
-      - month_february
-      - month_september
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12712,23 +10579,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 1
       Type: MiniGame
-      Description: The years (in numbers)
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 0
-      Letters: []
-      Words: []
-      Words_previous:
-      - number_15
-      - number_16
-      - number_17
-      - number_18
-      - number_19
-      - number_20
-      Phrases:
-      - the_year_2016
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12769,23 +10620,7 @@ MonoBehaviour:
       LearningBlock: 12
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 0
-      Letters: []
-      Words: []
-      Words_previous:
-      - number_15
-      - number_16
-      - number_17
-      - number_18
-      - number_19
-      - number_20
-      Phrases:
-      - the_year_2016
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12826,24 +10661,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 1
       Type: MiniGame
-      Description: 'Nature: Feminine and masculine: adding taa marbuta to any noun
-        makes it feminine'
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - cloud
-      - spring
-      - summer
-      - fall
-      - winter
-      - breeze
-      Words_previous:
-      - forest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12884,23 +10702,7 @@ MonoBehaviour:
       LearningBlock: 13
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - cloud
-      - spring
-      - summer
-      - fall
-      - winter
-      - breeze
-      Words_previous:
-      - forest
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12941,22 +10743,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 1
       Type: MiniGame
-      Description: Clothes with the definite article "al"
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - the_shirt
-      - the_hat
-      - the_shoe
-      - the_coat
-      - the_trousers
-      Words_previous:
-      - costume
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -12997,22 +10784,7 @@ MonoBehaviour:
       LearningBlock: 14
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 4
-      Letters: []
-      Words:
-      - the_shirt
-      - the_hat
-      - the_shoe
-      - the_coat
-      - the_trousers
-      Words_previous:
-      - costume
-      Phrases: []
-      Phrases_previous: []
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -13053,30 +10825,7 @@ MonoBehaviour:
       LearningBlock: 15
       PlaySession: 1
       Type: MiniGame
-      Description: Simple phrases
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 5
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous:
-      - goodmorning_Q
-      - goodmorning_R
-      - goodevening_Q
-      - goodevening_R
-      - hi
-      - peaceonyou_Q
-      - peaceonyou_R
-      - yourwelcome
-      - howareyou
-      - fine
-      - thankyou
-      - sure
-      - seeyou
-      - goodbye
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -13117,30 +10866,7 @@ MonoBehaviour:
       LearningBlock: 15
       PlaySession: 2
       Type: MiniGame
-      Description: 
-      Title: 
-      IntroArabic: 
-      Reward: 
-      Focus: 5
-      Letters: []
-      Words: []
-      Words_previous: []
-      Phrases: []
-      Phrases_previous:
-      - goodmorning_Q
-      - goodmorning_R
-      - goodevening_Q
-      - goodevening_R
-      - hi
-      - peaceonyou_Q
-      - peaceonyou_R
-      - yourwelcome
-      - howareyou
-      - fine
-      - thankyou
-      - sure
-      - seeyou
-      - goodbye
+      Order: 0
       Minigames:
       - MiniGameCode: 1
         Weight: 1
@@ -13176,6 +10902,2190 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 30
         Weight: 1
+  learningBlockTable:
+    innerList:
+    - Id: 1.1
+      Stage: 1
+      LearningBlock: 1
+      NumberOfPlaySessions: 3
+      Description: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
+        location of alif, absence & different location of hamza (\u0621), in different
+        position in the word (just prononciation)"
+      Title: Trio Aleph
+      IntroArabic: 
+      Reward: DogCollarLarge
+      Focus: 1
+      Letters:
+      - alef
+      - alef_hamza_hi
+      - alef_hamza_low
+      Words:
+      - father
+      - brother
+      - pear
+      - needle
+      Words_previous:
+      - mother
+      - nose
+      - deer
+      - sister
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.2
+      Stage: 1
+      LearningBlock: 2
+      NumberOfPlaySessions: 3
+      Description: "The trio baa, taa, thaa (\u0628 - \u062A \u2013 \u062B): Same
+        shape, different number & location of dots"
+      Title: Trio baa,tah,thaa
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - baa
+      - tah
+      - thaa
+      Words:
+      - yogurt
+      - berry
+      - snow
+      Words_previous:
+      - dog
+      - girl
+      - garlic
+      - number_2
+      - fig
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.3
+      Stage: 1
+      LearningBlock: 3
+      NumberOfPlaySessions: 3
+      Description: "The trio jiim, haa, khaa (\u062C - \u062D \u2013 \u062E): Same
+        shape, different location of a dot"
+      Title: Trio jiim, hah, khaa
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - jiim
+      - hah
+      - khaa
+      Words:
+      - leg
+      - delicious
+      - uncle_father
+      Words_previous:
+      - cheese
+      - whale
+      - sister
+      - color_red
+      - number_1
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.4
+      Stage: 1
+      LearningBlock: 4
+      NumberOfPlaySessions: 3
+      Description: "The duo daal and dhaal (\u062F \u2013 \u0630): Same shape, absence
+        of a dot"
+      Title: Duo daal and dhaal
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - daal
+      - dhaal
+      Words:
+      - bear
+      - ear
+      Words_previous:
+      - cold
+      - copybook
+      - delicious
+      - wolf
+      - flower
+      - window
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.5
+      Stage: 1
+      LearningBlock: 5
+      NumberOfPlaySessions: 3
+      Description: "The duo raa and zaay (\u0631 \u2013 \u0632): Same shape, absence
+        of a dot"
+      Title: Duo raa and zay
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - raa
+      - zay
+      Words:
+      - cold
+      - banana
+      Words_previous:
+      - moon
+      - rain
+      - deer
+      - oil
+      - leg
+      - color_blue
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.6
+      Stage: 1
+      LearningBlock: 6
+      NumberOfPlaySessions: 3
+      Description: "The duo siin and shiin (\u0633 \u2013 \u0634): Same shape, absence
+        of three dots"
+      Title: Duo siin,shiin
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - siin
+      - shiin
+      Words:
+      - tooth
+      - tea
+      Words_previous:
+      - sugar
+      - eagle
+      - hair
+      - apricot
+      - nest
+      - lentil
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.7
+      Stage: 1
+      LearningBlock: 7
+      NumberOfPlaySessions: 3
+      Description: "The Saad and Daad (\u0635 \u2013 \u0636): Same shape, absence
+        of a dot"
+      Title: Duo saad,daad
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - saad
+      - daad
+      Words:
+      - voice
+      - light
+      Words_previous:
+      - chest
+      - box
+      - color_green
+      - color_white
+      - bus
+      - toilet
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.8
+      Stage: 1
+      LearningBlock: 8
+      NumberOfPlaySessions: 3
+      Description: "The Taa and DHaa (\u0637 \u2013 \u0638): Same shape, absence of
+        a dot"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - taa
+      - dhaa
+      Words:
+      - rain
+      - back
+      Words_previous:
+      - potato
+      - duck
+      - nail
+      - clean
+      - belly
+      - icecream
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.9
+      Stage: 1
+      LearningBlock: 9
+      NumberOfPlaySessions: 3
+      Description: "The duo ayn and ghayn (\u0639 \u2013 \u063A): Same shape, absence
+        of a dot"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - ayn
+      - ghayn
+      Words:
+      - aunt_father
+      - deer
+      Words_previous:
+      - eye
+      - grapes
+      - room
+      - parrot
+      - hair
+      - glue
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.10
+      Stage: 1
+      LearningBlock: 10
+      NumberOfPlaySessions: 3
+      Description: "The duo faa and qaaf (\u0641 \u2013 \u0642): Same shape, different
+        number of dots"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - faa
+      - qaaf
+      Words:
+      - nose
+      - moon
+      Words_previous:
+      - copybook
+      - elephant
+      - paper
+      - box
+      - color_yellow
+      - field
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.11
+      Stage: 1
+      LearningBlock: 11
+      NumberOfPlaySessions: 3
+      Description: "The duo kaaf and laam (\u0643 \u2013 \u0644): Same shape, absence
+        of hamza (\u0621)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - kaaf
+      - laam
+      Words:
+      - sugar
+      - dog
+      Words_previous:
+      - book
+      - pear
+      - elephant
+      - snow
+      - big
+      - yogurt
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.12
+      Stage: 1
+      LearningBlock: 12
+      NumberOfPlaySessions: 3
+      Description: "The duo miim and nuun (\u0645 \u2013 \u0646): No specific criterion,
+        just different letters"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - miim
+      - nuun
+      Words:
+      - mother
+      - cheese
+      Words_previous:
+      - moon
+      - rain
+      - girl
+      - grandmother
+      - garlic
+      - ear
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.13
+      Stage: 1
+      LearningBlock: 13
+      NumberOfPlaySessions: 3
+      Description: "The trio haa waaw yaa (\u0647 - \u0648 - \u064A): No specific
+        criterion, jusy different letters"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - yaa
+      - waaw
+      - haa
+      Words:
+      - cat
+      - flower
+      - eye
+      Words_previous:
+      - back
+      - paper
+      - tea
+      - river
+      - hand
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 1.14
+      Stage: 1
+      LearningBlock: 14
+      NumberOfPlaySessions: 3
+      Description: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaaw\u201D (\u0648),
+        \u201Cyaa\u201D (\u064A)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - alef
+      - waaw
+      - yaa
+      Words:
+      - aunt_mother
+      - grandfather
+      - elephant
+      Words_previous:
+      - book
+      - whale
+      - fig
+      - berry
+      - grandson
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.1
+      Stage: 2
+      LearningBlock: 1
+      NumberOfPlaySessions: 3
+      Description: "The two shapes of the letter \u201Calef\u201D (\u0627 \u0640\u0627)"
+      Title: alef shapes
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - alef
+      Words:
+      - grandmother
+      - sister
+      Words_previous:
+      - furniture
+      - father
+      - cucumber
+      - bed
+      - number_4
+      - deer
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.2
+      Stage: 2
+      LearningBlock: 2
+      NumberOfPlaySessions: 3
+      Description: "The four shapes of the letter \"ba\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
+        \ \u0628\u0640)"
+      Title: baa shapes
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - baa
+      Words:
+      - girl
+      - boy
+      - grapes
+      - book
+      Words_previous:
+      - cheese
+      - bus
+      - color_brown
+      - bear
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.3
+      Stage: 2
+      LearningBlock: 3
+      NumberOfPlaySessions: 3
+      Description: "The six shapes of the letter \u201Ctaa\u201D (\u062A \u0640\u062A
+        \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
+      Title: tah,tah_marbuta shapes
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - tah
+      - tah_marbuta
+      Words:
+      - fig
+      - copybook
+      - oil
+      - whale
+      - second
+      - woman
+      Words_previous:
+      - sister
+      - girl
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.4
+      Stage: 2
+      LearningBlock: 4
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Ctha\u201D (\u062B \u0640\u062B
+        \  \u0640\u062B\u0640  \u062B\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - thaa
+      Words:
+      - garlic
+      - pear_big
+      - triangle
+      - furniture
+      Words_previous:
+      - number_2
+      - snow
+      - fridge
+      - number_8
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.5
+      Stage: 2
+      LearningBlock: 5
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cjiim\u201D (\u062C   \u0640\u062C
+        \  \u0640\u062C\u0640   \u062C\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - jiim
+      Words:
+      - camel
+      - tree
+      - tower
+      Words_previous:
+      - snow
+      - grandfather
+      - carpenter
+      - carrot
+      - face
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.6
+      Stage: 2
+      LearningBlock: 6
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Chaa\u201D (\u062D  \u0640\u062D
+        \ \u0640\u062D\u0640  \u062D\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - hah
+      Words:
+      - grandson
+      - meat
+      - won
+      - apple
+      Words_previous:
+      - farmer
+      - field
+      - whale
+      - color_red
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.7
+      Stage: 2
+      LearningBlock: 7
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Ckhaa\u201D (\u062E  \u0640\u062E
+        \u0640\u062E\u0640  \u062E\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - khaa
+      Words:
+      - cucumber
+      - hot
+      - watermelon
+      - plum
+      Words_previous:
+      - aunt_mother
+      - sister
+      - bread
+      - cupboard
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.8
+      Stage: 2
+      LearningBlock: 8
+      NumberOfPlaySessions: 2
+      Description: "The two shapes of the letter \u201Cdaal\u201D ( \u0640\u062F  \u062F)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - daal
+      Words:
+      - chest
+      - hand
+      Words_previous:
+      - bear
+      - box
+      - cold
+      - foot
+      - lentil
+      - flower
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.9
+      Stage: 2
+      LearningBlock: 9
+      NumberOfPlaySessions: 2
+      Description: "The two shapes of the letter \u201Cdhaal\u201D (\u0640\u0630  \u0630)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - dhaal
+      Words:
+      - delicious
+      - went
+      Words_previous:
+      - ear
+      - wolf
+      - window
+      - color_gold
+      - month_march
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.10
+      Stage: 2
+      LearningBlock: 10
+      NumberOfPlaySessions: 2
+      Description: "The two shapes of the letter \u201Craa\u201D ( \u0640\u0631  \u0631)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - raa
+      Words:
+      - tiger
+      - paper
+      Words_previous:
+      - rice
+      - cold
+      - chest
+      - copybook
+      - number_4
+      - color_yellow
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.11
+      Stage: 2
+      LearningBlock: 11
+      NumberOfPlaySessions: 2
+      Description: "The two shapes of the letter \u201Czay\u201D ( \u0640\u0632  \u0632)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - zay
+      Words:
+      - bread
+      - rice
+      Words_previous:
+      - oil
+      - deer
+      - color_blue
+      - cupboard
+      - carrot
+      - banana
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.12
+      Stage: 2
+      LearningBlock: 12
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Csiin\u201D (\u0633  \u0640\u0633
+        \ \u0640\u0633\u0640  \u0633\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - siin
+      Words:
+      - hour
+      - eagle
+      - sat
+      - studied
+      Words_previous:
+      - hot
+      - tongue
+      - number_5
+      - number_6
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.13
+      Stage: 2
+      LearningBlock: 13
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cshiin\u201D (\u0634 \u0640\u0634
+        \u0640\u0634\u0640 \u0634\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - shiin
+      Words:
+      - hair
+      - apricot
+      - nest
+      - bed
+      Words_previous:
+      - tea
+      - hospital
+      - number_20
+      - tree
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 2.14
+      Stage: 2
+      LearningBlock: 14
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201CSaad\u201D (\u0635 \u0640\u0635
+        \u0640\u0635\u0640 \u0635\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - saad
+      Words:
+      - box
+      - onion
+      - scissors
+      - bus
+      Words_previous:
+      - chest
+      - juice
+      - finger
+      - boy
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.1
+      Stage: 3
+      LearningBlock: 1
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201CDaad\u201D (\u0636 \u0640\u0636
+        \u0640\u0636\u0640 \u0636\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - daad
+      Words:
+      - laughed
+      - color_green
+      - color_white
+      - ground
+      Words_previous:
+      - light
+      - toilet
+      - color_silver
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.2
+      Stage: 3
+      LearningBlock: 2
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201CTaa\u201D (\u0637  \u0640\u0637
+        \u0640\u0637\u0640 \u0637\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - taa
+      Words:
+      - flew
+      - potato
+      - duck
+      - month_february
+      Words_previous:
+      - slow
+      - table
+      - station
+      - policeman
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.3
+      Stage: 3
+      LearningBlock: 3
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201CDHaa\u201D (\u0638 \u0640\u0638
+        \u0640\u0638\u0640 \u0638\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - dhaa
+      Words:
+      - nail
+      - clean
+      - anger
+      - OokaDH
+      - icecream
+      Words_previous:
+      - back
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.4
+      Stage: 3
+      LearningBlock: 4
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cayn\u201D (\u0639  \u0640\u0639
+        \u0640\u0639\u0640 \u0639\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - ayn
+      Words:
+      - juice
+      - played
+      - finger
+      - brave
+      Words_previous:
+      - hair
+      - lentil
+      - eye
+      - nest
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.5
+      Stage: 3
+      LearningBlock: 5
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cghayn\u201D (\u063A \u0640\u063A
+        \u0640\u063A\u0640 \u063A\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - ghayn
+      Words:
+      - room
+      - parrot
+      - glue
+      - brain
+      Words_previous:
+      - deer
+      - small
+      - bulgar
+      - forest
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.6
+      Stage: 3
+      LearningBlock: 6
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cfaa\u201D (\u0641 \u0640\u0641
+        \u0640\u0641\u0640 \u0641\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - faa
+      Words:
+      - farmer
+      - color_yellow
+      - classroom
+      - flapped
+      Words_previous:
+      - bed
+      - bank
+      - room
+      - elephant
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.7
+      Stage: 3
+      LearningBlock: 7
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cqaaf\u201D (\u0642 \u0640\u0642
+        \u0640\u0642\u0640 \u0642\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - qaaf
+      Words:
+      - foot
+      - field
+      - agreed
+      - color_blue
+      Words_previous:
+      - moon
+      - market
+      - color_orange
+      - paper
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.8
+      Stage: 3
+      LearningBlock: 8
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Ckaaf\u201D ( \u0643 \u0640\u0643
+        \u0640\u0643\u0640 \u0643\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - kaaf
+      Words:
+      - month_january
+      - cried
+      - caught
+      - released
+      Words_previous:
+      - big
+      - sugar
+      - dog
+      - book
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.9
+      Stage: 3
+      LearningBlock: 9
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Claam\u201D (\u0644 \u0640\u0644
+        \ \u0640\u0644\u0640 \u0644\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - laam
+      Words:
+      - teacher
+      - carried
+      - month_september
+      Words_previous:
+      - played
+      - field
+      - delicious
+      - tongue
+      - mountain
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.10
+      Stage: 3
+      LearningBlock: 10
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cmiim\u201D ( \u0645 \u0640\u0645
+        \u0640\u0645\u0640 \u0645\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - miim
+      Words:
+      - school
+      - color_red
+      - understood
+      - day
+      Words_previous:
+      - tiger
+      - rain
+      - glue
+      - meat
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.11
+      Stage: 3
+      LearningBlock: 11
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cnuun\u201D (\u0646 \u0640\u0646
+        \u0640\u0646\u0640 \u0646\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - nuun
+      Words:
+      - carpenter
+      - number_2
+      - belly
+      - tongue
+      Words_previous:
+      - color_brown
+      - window
+      - shop
+      - river
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.12
+      Stage: 3
+      LearningBlock: 12
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Chaa\u201D (\u0647  \u0640\u0647
+        \u0640\u0647\u0640 \u0647\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - haa
+      Words:
+      - month
+      - virtuous
+      - lips
+      Words_previous:
+      - cat
+      - river
+      - engineer
+      - back
+      - face
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.13
+      Stage: 3
+      LearningBlock: 13
+      NumberOfPlaySessions: 2
+      Description: "The two shapes of the letter \u201Cwaaw\u201D ( \u0640\u0648  \u0648)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - waaw
+      Words:
+      - face
+      - bird
+      Words_previous:
+      - light
+      - broad_bean
+      - flower
+      - paper
+      - whale
+      - plum
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 3.14
+      Stage: 3
+      LearningBlock: 14
+      NumberOfPlaySessions: 2
+      Description: "The four shapes of the letter \u201Cyaa\u201D (\u064A \u0640\u064A
+        \u0640\u064A\u0640 \u064A\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - yaa
+      Words:
+      - number_8
+      - color_brown
+      Words_previous:
+      - hand
+      - tea
+      - doctor
+      - chair
+      - eye
+      - fig
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.1
+      Stage: 4
+      LearningBlock: 1
+      NumberOfPlaySessions: 2
+      Description: "The sound of Fathah (\u064E) as a short vowel, Fatha on letters,
+        and vocabulary,"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - fathah
+      Words:
+      - doctor
+      Words_previous:
+      - rain
+      - juice
+      - laughed
+      - glue
+      - copybook
+      - restaurant
+      - flag
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.2
+      Stage: 4
+      LearningBlock: 2
+      NumberOfPlaySessions: 2
+      Description: "The sound of Dammah (\u064F) as a short vowel, Dammah on letters,
+        and vocabulary"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - dammah
+      Words:
+      - garden
+      Words_previous:
+      - color_brown
+      - teacher
+      - ear
+      - room
+      - bulgar
+      - apricot
+      - chair
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.3
+      Stage: 4
+      LearningBlock: 3
+      NumberOfPlaySessions: 2
+      Description: "The sound of Kasrah (\u0650) as a short vowel,  Kasrah on letters,
+        and vocabulary"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - kasrah
+      Words:
+      - number_6
+      Words_previous:
+      - tooth
+      - brain
+      - girl
+      - wolf
+      - window
+      - lips
+      - table
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.4
+      Stage: 4
+      LearningBlock: 4
+      NumberOfPlaySessions: 2
+      Description: "Revision of the 3 previous + The the non sound of the mute Sukun
+        (\u0652)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - sukun
+      Words:
+      - restaurant
+      Words_previous:
+      - duck
+      - needle
+      - apricot
+      - number_5
+      - chair
+      - bank
+      - pear
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.5
+      Stage: 4
+      LearningBlock: 5
+      NumberOfPlaySessions: 2
+      Description: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - fathah_tanwin
+      Words:
+      - of_course
+      Words_previous:
+      - tomorrow
+      - thankyou
+      - sure
+      - hi
+      - welcome
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.6
+      Stage: 4
+      LearningBlock: 6
+      NumberOfPlaySessions: 2
+      Description: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - dammah_tanwin
+      Words:
+      - forest
+      Words_previous:
+      - number_7
+      - whale
+      - voice
+      - station
+      - table
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.7
+      Stage: 4
+      LearningBlock: 7
+      NumberOfPlaySessions: 2
+      Description: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - kasrah_tanwin
+      Words:
+      - shop
+      Words_previous:
+      - yogurt
+      - camel
+      - tiger
+      - bed
+      - chest
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.8
+      Stage: 4
+      LearningBlock: 8
+      NumberOfPlaySessions: 1
+      Description: The 3 diacritic + double diacritic signs.
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - fathah_tanwin
+      - dammah_tanwin
+      - kasrah_tanwin
+      Words:
+      - wrote
+      - books
+      - flag
+      - knowledge
+      Words_previous:
+      - color_black
+      - lion_plural
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.9
+      Stage: 4
+      LearningBlock: 9
+      NumberOfPlaySessions: 2
+      Description: "The different sound variations of hamza (\u0621) on a vowel (different
+        with/without), separate. waw hamza (\u0624) and yaa hamza (\u0626)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 0
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.10
+      Stage: 4
+      LearningBlock: 10
+      NumberOfPlaySessions: 2
+      Description: "The diphthong \u201Cwaaw\u201D (\u0648): different sound than
+        short and long vowel"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 3
+      Letters:
+      - waaw
+      Words: []
+      Words_previous:
+      - banana
+      - sound
+      - light
+      - flower
+      - paper
+      - plum
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.11
+      Stage: 4
+      LearningBlock: 11
+      NumberOfPlaySessions: 2
+      Description: "The diphthong \u201Cyaa\u201D (\u064A): different sound than short
+        and long vowel"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 3
+      Letters: []
+      Words: []
+      Words_previous:
+      - oil
+      - house
+      - eye
+      - hand
+      - anger
+      - color_white
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.12
+      Stage: 4
+      LearningBlock: 12
+      NumberOfPlaySessions: 2
+      Description: Verbs
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - drank
+      - opened
+      - ate
+      Words_previous:
+      - drank
+      - sat
+      - studied
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.13
+      Stage: 4
+      LearningBlock: 13
+      NumberOfPlaySessions: 2
+      Description: Places
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - station
+      - bank
+      - hospital
+      - market
+      Words_previous:
+      - school
+      - club
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.14
+      Stage: 4
+      LearningBlock: 14
+      NumberOfPlaySessions: 2
+      Description: Grains (food)
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - lentil
+      - bulgar
+      - chickpea
+      - broad_bean
+      Words_previous:
+      - rice
+      - sugar
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 4.15
+      Stage: 4
+      LearningBlock: 15
+      NumberOfPlaySessions: 3
+      Description: Furniture
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - table
+      - chair
+      - bed
+      - cupboard
+      - window
+      - door
+      - television
+      - fridge
+      - washing_machine
+      - oven
+      - toilet
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.1
+      Stage: 5
+      LearningBlock: 1
+      NumberOfPlaySessions: 2
+      Description: "The \u201Calef maqSura\u201D"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - alef_maqsura
+      Words:
+      - walked
+      - saw
+      - club
+      Words_previous:
+      - cried
+      - pear
+      - hospital
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.2
+      Stage: 5
+      LearningBlock: 2
+      NumberOfPlaySessions: 2
+      Description: "The special combination letter \u201Claam-alef\u201D (\u0644\u0627)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - laam_alef
+      Words: []
+      Words_previous:
+      - mountain_dual
+      - worker_dual
+      - the_player
+      - number_3
+      Phrases:
+      - yourwelcome
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.3
+      Stage: 5
+      LearningBlock: 3
+      NumberOfPlaySessions: 2
+      Description: The maddah (~)
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - maddah
+      Words:
+      - melancholy
+      - believed
+      - now
+      Words_previous:
+      - month_august
+      - month_march
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.4
+      Stage: 5
+      LearningBlock: 4
+      NumberOfPlaySessions: 1
+      Description: The 3 diacritic signs
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - fathah
+      - kasrah
+      - dammah
+      Words:
+      - carrot
+      - islands
+      - salt
+      - insistent
+      Words_previous:
+      - believed
+      - safe
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.5
+      Stage: 5
+      LearningBlock: 5
+      NumberOfPlaySessions: 1
+      Description: The 3 double diacritic signs (Tanwin)
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - fathah_tanwin
+      - dammah_tanwin
+      - kasrah_tanwin
+      Words:
+      - wore
+      - costume
+      - mouth
+      - man
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.6
+      Stage: 5
+      LearningBlock: 6
+      NumberOfPlaySessions: 2
+      Description: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double consonant"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 2
+      Letters:
+      - shaddah
+      Words:
+      - uncle_father
+      Words_previous:
+      - bear
+      - sugar
+      - rice
+      - grandfather
+      - station
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.7
+      Stage: 5
+      LearningBlock: 7
+      NumberOfPlaySessions: 2
+      Description: Singular, dual, and plural forms of nouns
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - lion
+      - lion_dual
+      - lion_plural
+      Words_previous:
+      - mountain
+      - mountain_dual
+      - mountain_plural
+      - worker
+      - worker_dual
+      - worker_plural
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.8
+      Stage: 5
+      LearningBlock: 8
+      NumberOfPlaySessions: 2
+      Description: Professions (emphasis singular, dual, plural)
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - scientist
+      - scientist_dual
+      - scientist_plural
+      - worker
+      - worker_dual
+      - worker_plural
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.9
+      Stage: 5
+      LearningBlock: 9
+      NumberOfPlaySessions: 2
+      Description: Nature (emphasis singular, dual, plural)
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - river
+      - river_dual
+      - river_plural
+      - mountain
+      - mountain_dual
+      - mountain_plural
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.10
+      Stage: 5
+      LearningBlock: 10
+      NumberOfPlaySessions: 1
+      Description: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - engineer
+      - the_engineer
+      - policeman
+      - the_policeman
+      Words_previous:
+      - worker
+      - the_worker
+      - scientist
+      - the_scientist
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.11
+      Stage: 5
+      LearningBlock: 11
+      NumberOfPlaySessions: 2
+      Description: "Principle (the different pronounciation of the consonant following
+        the definite article \"al\" (\u0627\u0644\u0640) \n\nmoon consonants: \u0628
+        - \u062C - \u062D - \u062E - \u0639 - \u063A - \u0641 - \u0642 - \u0643 -
+        \u0645 - \u0647 \nsun consonants: \u062A - \u062B - \u062F - \u0630 - \u0631
+        - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 - \u0644 -
+        \u0646"
+      Title: Article "al"
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - baa
+      - jiim
+      - hah
+      - khaa
+      - ayn
+      - ghayn
+      - faa
+      - qaaf
+      - kaaf
+      - miim
+      - haa
+      - tah
+      - thaa
+      - daal
+      - dhaal
+      - raa
+      - zay
+      - siin
+      - shiin
+      - saad
+      - daad
+      - taa
+      - dhaa
+      - laam
+      - nuun
+      Words:
+      - the_beautiful
+      - the_sad
+      - the_lazy
+      - the_happy
+      - the_active
+      - the_wonderful
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.12
+      Stage: 5
+      LearningBlock: 12
+      NumberOfPlaySessions: 2
+      Description: Sports (emphasis moon & sun consonant) the red color of the sun&moon
+        letter means it is not pronounced which means it proceeds a sun consonant
+      Title: moon & sun consonants
+      IntroArabic: 
+      Reward: 
+      Focus: 1
+      Letters:
+      - baa
+      - jiim
+      - hah
+      - khaa
+      - ayn
+      - ghayn
+      - faa
+      - qaaf
+      - kaaf
+      - miim
+      - haa
+      - tah
+      - thaa
+      - daal
+      - dhaal
+      - raa
+      - zay
+      - siin
+      - shiin
+      - saad
+      - daad
+      - taa
+      - dhaa
+      - laam
+      - nuun
+      Words:
+      - the_ball
+      - the_playground
+      - the_player
+      - football
+      - basketball
+      Words_previous:
+      - won
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 5.13
+      Stage: 5
+      LearningBlock: 13
+      NumberOfPlaySessions: 2
+      Description: Adjectives of feelings
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - happy
+      - sad
+      - active
+      - lazy
+      - wonderful
+      Words_previous:
+      - beautiful
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.1
+      Stage: 6
+      LearningBlock: 1
+      NumberOfPlaySessions: 1
+      Description: Greeting phrase
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 5
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases:
+      - goodmorning_Q
+      - goodmorning_R
+      - goodevening_Q
+      - goodevening_R
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.2
+      Stage: 6
+      LearningBlock: 2
+      NumberOfPlaySessions: 1
+      Description: '"Hello" and "Hi" phrases'
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 5
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases:
+      - hi
+      - peaceonyou_Q
+      - peaceonyou_R
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.3
+      Stage: 6
+      LearningBlock: 3
+      NumberOfPlaySessions: 1
+      Description: '"How are you" and "Goodbye" phrases'
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 5
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.4
+      Stage: 6
+      LearningBlock: 4
+      NumberOfPlaySessions: 2
+      Description: 'Adjectives: colors'
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - color_black
+      - color_purple
+      - color_pink
+      - color_gold
+      - color_silver
+      - color_orange
+      Words_previous:
+      - color_green
+      - color_white
+      - color_yellow
+      - color_blue
+      - color_brown
+      - color_red
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.5
+      Stage: 6
+      LearningBlock: 5
+      NumberOfPlaySessions: 2
+      Description: 'Adjectives: describing nature'
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - beautiful
+      - clean
+      - big
+      - small
+      Words_previous:
+      - wonderful
+      - rainy
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.6
+      Stage: 6
+      LearningBlock: 6
+      NumberOfPlaySessions: 2
+      Description: 'Adjectives: describing weather'
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - cold
+      - hot
+      - rainy
+      Words_previous:
+      - beautiful
+      - clean
+      - wonderful
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.7
+      Stage: 6
+      LearningBlock: 7
+      NumberOfPlaySessions: 2
+      Description: Cardinal numbers 0 to 20
+      Title: Cardinal numbers
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - number_0
+      - number_1
+      - number_10
+      - number_11
+      - number_12
+      - number_13
+      - number_14
+      - number_15
+      - number_16
+      - number_17
+      - number_18
+      - number_19
+      - number_2
+      - number_20
+      - number_3
+      - number_4
+      - number_5
+      - number_6
+      - number_7
+      - number_8
+      - number_9
+      Words_previous:
+      - number_2
+      - number_6
+      - number_8
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.8
+      Stage: 6
+      LearningBlock: 8
+      NumberOfPlaySessions: 2
+      Description: Ordinal numbers 1 to 10 (with the definite article "al")
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - number_o1
+      - number_o2
+      - number_o3
+      - number_o4
+      - number_o5
+      - number_o6
+      - number_o7
+      - number_o8
+      - number_o9
+      - number_o10
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.9
+      Stage: 6
+      LearningBlock: 9
+      NumberOfPlaySessions: 1
+      Description: Time expressions such as "today" "yesterday"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - yesterday
+      - today
+      - tomorrow
+      Words_previous:
+      - now
+      Phrases: []
+      Phrases_previous:
+      - seeyou
+      - goodbye
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.10
+      Stage: 6
+      LearningBlock: 10
+      NumberOfPlaySessions: 2
+      Description: Days of the week
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - day_monday
+      - day_tuesday
+      - day_wednesday
+      - day_thursday
+      - day_friday
+      - day_saturday
+      - day_sunday
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.11
+      Stage: 6
+      LearningBlock: 11
+      NumberOfPlaySessions: 2
+      Description: The months
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - month_march
+      - month_april
+      - month_may
+      - month_june
+      - month_july
+      - month_august
+      - month_october
+      - month_november
+      - month_december
+      Words_previous:
+      - month_january
+      - month_february
+      - month_september
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.12
+      Stage: 6
+      LearningBlock: 12
+      NumberOfPlaySessions: 2
+      Description: The years (in numbers)
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 0
+      Letters: []
+      Words: []
+      Words_previous:
+      - number_15
+      - number_16
+      - number_17
+      - number_18
+      - number_19
+      - number_20
+      Phrases:
+      - the_year_2016
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.13
+      Stage: 6
+      LearningBlock: 13
+      NumberOfPlaySessions: 2
+      Description: 'Nature: Feminine and masculine: adding taa marbuta to any noun
+        makes it feminine'
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - cloud
+      - spring
+      - summer
+      - fall
+      - winter
+      - breeze
+      Words_previous:
+      - forest
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.14
+      Stage: 6
+      LearningBlock: 14
+      NumberOfPlaySessions: 2
+      Description: Clothes with the definite article "al"
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 4
+      Letters: []
+      Words:
+      - the_shirt
+      - the_hat
+      - the_shoe
+      - the_coat
+      - the_trousers
+      Words_previous:
+      - costume
+      Phrases: []
+      Phrases_previous: []
+      AssessmentType: 
+      AssessmentData: 
+    - Id: 6.15
+      Stage: 6
+      LearningBlock: 15
+      NumberOfPlaySessions: 2
+      Description: Simple phrases
+      Title: 
+      IntroArabic: 
+      Reward: 
+      Focus: 5
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous:
+      - goodmorning_Q
+      - goodmorning_R
+      - goodevening_Q
+      - goodevening_R
+      - hi
+      - peaceonyou_Q
+      - peaceonyou_R
+      - yourwelcome
+      - howareyou
+      - fine
+      - thankyou
+      - sure
+      - seeyou
+      - goodbye
+      AssessmentType: 
+      AssessmentData: 
   localizationTable:
     innerList:
     - Id: assessment_start_A1
