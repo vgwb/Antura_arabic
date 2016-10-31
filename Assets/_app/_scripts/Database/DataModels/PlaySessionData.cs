@@ -3,15 +3,6 @@ using System.Collections.Generic;
 
 namespace EA4S.Db
 {
-    public enum DidacticalFocus
-    {
-        None = 0,
-        Letters = 1,
-        Symbols = 2,
-        Words = 3,
-        Phrases = 4,
-        Sounds = 5
-    }
 
     [Serializable]
     public class PlaySessionData : IData
@@ -24,7 +15,7 @@ namespace EA4S.Db
         public string Description;
         public string IntroArabic;
         public string Reward;
-        public DidacticalFocus Focus;
+        public PlaySessionDataFocus Focus;
         public string[] Letters;
         public string[] Words;
         public string[] Words_previous;

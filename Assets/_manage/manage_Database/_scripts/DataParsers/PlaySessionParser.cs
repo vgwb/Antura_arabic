@@ -19,7 +19,7 @@ namespace EA4S.Db.Management
             data.Reward = ParseID<RewardData, RewardTable>(data, (string)dict["Reward"], db.GetRewardTable());
 
             data.Type = ToString(dict["Type"]);
-            data.Focus = ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);
+            data.Focus = ParseEnum<PlaySessionDataFocus>(data, (string)dict["Focus"]);
 
             data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
             data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
@@ -57,6 +57,11 @@ namespace EA4S.Db.Management
                 list.Add(minigameStruct);
             }
             return list;
+        }
+
+        protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
+        {
+            ExtractEnum(rowdicts_list, "Focus", addNoneValue:true);
         }
 
     }

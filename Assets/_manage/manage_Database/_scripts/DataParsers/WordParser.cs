@@ -11,8 +11,8 @@ namespace EA4S.Db.Management
             var data = new WordData();
 
             data.Id = ToString(dict["Id"]);
-            data.Kind = ParseEnum<WordKind>(data, dict["Kind"]);
-            data.Category = ParseEnum<WordCategory>(data, dict["Category"]);
+            data.Kind = ParseEnum<WordDataKind>(data, dict["Kind"]);
+            data.Category = ParseEnum<WordDataCategory>(data, dict["Category"]);
             data.Arabic = ToString(dict["Arabic"]);
 
             // TODO: should instead be an array of ID, but we need to solve the european-to-arabic matching!
@@ -22,6 +22,12 @@ namespace EA4S.Db.Management
             data.Drawing = ToInt(dict["Drawing"]);
 
             return data;
+        }
+
+        protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
+        {
+            ExtractEnum(rowdicts_list, "Kind");
+            ExtractEnum(rowdicts_list, "Category", addNoneValue: true);
         }
     }
 }

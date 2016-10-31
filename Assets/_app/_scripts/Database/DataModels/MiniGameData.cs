@@ -2,11 +2,6 @@
 
 namespace EA4S.Db
 {
-    public enum MiniGameType
-    {
-        MiniGame = 1,
-        Assessment = 2
-    }
 
     [Serializable]
     public class MiniGameData : IData
@@ -15,7 +10,7 @@ namespace EA4S.Db
         public string Title_En;
         public MiniGameCode Code;
         public bool Available;
-        public MiniGameType Type;
+        public MiniGameDataType Type;
         public string Main;
         public string Variation;
         public string Description;

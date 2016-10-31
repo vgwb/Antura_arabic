@@ -41,6 +41,11 @@ namespace EA4S.Db.Management
             DumpAllDataCounts();
         }
 
+        public void RegenerateEnums()
+        {
+            dbLoader.RegenerateEnums();
+        }
+
         public void CopyCurrentDatabaseForTesting()
         {
             dbLoader.CopyCurrentDatabaseForTesting();
