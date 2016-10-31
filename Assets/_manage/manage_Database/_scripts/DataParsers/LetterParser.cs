@@ -14,7 +14,12 @@ namespace EA4S.Db.Management
             data.Number = ToInt(dict["Number"]);
             data.Title = ToString(dict["Title"]);
             data.Kind = ParseEnum<LetterDataKind>(data, dict["Kind"]);
+
+            //data.Components = ParseLetterComponents(dict["Components"]);
             data.Type = ParseEnum<LetterDataType>(data, dict["Type"]);
+
+            //data.Tag = ToString(dict["Tag"]);
+
             data.Notes = ToString(dict["Notes"]);
             data.SunMoon = ParseEnum<LetterDataSunMoon>(data, dict["SunMoon"]);
             data.Sound = ToString(dict["Sound"]);

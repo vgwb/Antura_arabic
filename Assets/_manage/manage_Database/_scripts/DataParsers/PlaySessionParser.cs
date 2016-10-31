@@ -15,6 +15,7 @@ namespace EA4S.Db.Management
             data.PlaySession = ToInt(dict["PlaySession"]);
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
             data.Description = ToString(dict["Description"]);
+            data.Title = ToString(dict["Title"]);
             data.IntroArabic = ToString(dict["IntroArabic"]);
             data.Reward = ParseID<RewardData, RewardTable>(data, (string)dict["Reward"], db.GetRewardTable());
 
