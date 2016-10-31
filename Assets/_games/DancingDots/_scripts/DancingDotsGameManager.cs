@@ -17,11 +17,11 @@ namespace EA4S.DancingDots
 	public class DancingDotsGameManager : MiniGameBase {
 
 		public static DancingDotsGameManager instance;
-
-
 		public Canvas endGameCanvas;
-
 		public StarFlowers starFlowers;
+
+		public const string DANCING_DOTS = "DancingDots_DotZone";
+		public const string DANCING_DIACRITICS = "DancingDots_Diacritic";
 
 		public DancingDotsLivingLetter dancingDotsLL;
 		public GameObject antura;
