@@ -173,7 +173,7 @@ namespace EA4S.Db
 
         #endregion
 
-            #region PlaySession -> Letter
+        #region PlaySession -> Letter
 
         public List<LetterData> GetLettersInPlaySession(string playSessionId, bool pastSessionsToo = false)
         {

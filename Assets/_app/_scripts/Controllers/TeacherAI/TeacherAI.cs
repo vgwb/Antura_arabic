@@ -186,7 +186,7 @@ namespace EA4S
         }
 
 
-        // todo: these could be set as list extensions
+        // @TODO: these could be set as list extensions
         public List<T> Select<T>(int numberToSelect, List<T> all_list)
         {
             return RandomHelper.RouletteSelectNonRepeating<T>(all_list, numberToSelect);
