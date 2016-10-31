@@ -33,10 +33,10 @@ namespace EA4S.Db
         public string Id;
         public int Number;
         public string Title;
-        public LetterKind Kind;
-        public LetterType Type;
+        public LetterDataKind Kind;
+        public LetterDataType Type;
         public string Notes;
-        public LetterSunMoon SunMoon;
+        public LetterDataSunMoon SunMoon;
         public string Sound;
         public string Isolated;
         public string Initial;

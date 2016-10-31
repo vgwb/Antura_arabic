@@ -25,6 +25,7 @@ namespace EA4S.Db.Management
             }
         }
 
+
         protected abstract D CreateData(Dictionary<string, object> dict, Database db);
 
         protected T ParseEnum<T>(D data, object enum_object)
@@ -96,6 +97,29 @@ namespace EA4S.Db.Management
             }
             return target_int;
         }
+        #endregion
+
+        #region  Enums
+
+        public void RegenerateEnums(string json)
+        {
+            var list = Json.Deserialize(json) as List<object>;
+            var rowdicts_list = new List<Dictionary<string, object>>();
+            foreach (var row in list)
+            {
+                var dict = row as Dictionary<string, object>;
+                rowdicts_list.Add(dict);
+            }
+            RegenerateEnums(rowdicts_list);
+        }
+
+        protected abstract void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list);
+
+        protected void ExtractEnum(List<Dictionary<string, object>> rowdicts_list, string key, bool addNoneValue = false, string customEnumName = null)
+        {
+            EnumGenerator.ExtractEnum(typeof(D).Name, key, rowdicts_list, addNoneValue, customEnumName);
+        }
+
         #endregion
 
     }

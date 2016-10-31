@@ -177,7 +177,7 @@ namespace EA4S
 
         public List<MiniGameData> GetActiveMinigames()
         {
-            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameType.MiniGame));
+            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameDataType.MiniGame));
         }
 
         #endregion
@@ -201,7 +201,7 @@ namespace EA4S
 
         public List<EA4S.Db.LetterData> GetAllLetterData()
         {
-            return FindLetterData((x) => (x.Kind == LetterKind.Letter));
+            return FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
             //return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
@@ -283,7 +283,7 @@ namespace EA4S
         public WordData GetWordDataByRandom()
         {
             // TODO now locked to body parts for retrocompatibility
-            var wordslist = FindWordData((x) => (x.Category == WordCategory.BodyPart));
+            var wordslist = FindWordData((x) => (x.Category == WordDataCategory.BodyPart));
             return GenericUtilities.GetRandom(wordslist);
         }
 

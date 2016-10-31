@@ -100,7 +100,7 @@ namespace EA4S.Test
                     break;
                 case MiniGameCode.Balloons_counting:
                     // Dummy logic for question creation
-                    foreach (var w in AppManager.Instance.DB.GetAllWordData().Where(w => w.Category == Db.WordCategory.Number)) {
+                    foreach (var w in AppManager.Instance.DB.GetAllWordData().Where(w => w.Category == Db.WordDataCategory.Number)) {
                         LL_WordData w_ll = new LL_WordData(w.Id, w);
                         correctAnswers.Add(w_ll);
                         if (correctAnswers.Count > 10)

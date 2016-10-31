@@ -16,5 +16,10 @@ namespace EA4S.Db.Management
 
             return data;
         }
+
+        protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
+        {
+        }
+
     }
 }
