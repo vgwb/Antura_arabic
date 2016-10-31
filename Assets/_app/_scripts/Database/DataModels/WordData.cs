@@ -14,7 +14,7 @@ namespace EA4S.Db
         public WordDataArticle Article;
         public string Arabic;
         public string[] Letters;
-        public LetterSymbol[] Symbols; //TODO
+        //public LetterSymbol[] Symbols; //TODO
         public int Difficulty;
         public int Drawing;
 
@@ -37,10 +37,10 @@ namespace EA4S.Db
 
     }
 
-    [Serializable]
+    /*[Serializable]
     public struct LetterSymbol
     {
         public string LetterId;
         public string SymbolId;
-    }
+    }*/
 }

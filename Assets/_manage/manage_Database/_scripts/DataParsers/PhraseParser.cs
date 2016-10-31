@@ -24,13 +24,15 @@ namespace EA4S.Db.Management
 
         protected override void FinalValidation(PhraseTable table)
         {
-            // Linked is validated with a final validation step, since it is based on this same table
-            foreach(var phraseData in table.GetValuesTyped())
+            // Field 'Linked' is validated with a final validation step, since it is based on this same table
+            foreach(var data in table.GetValuesTyped())
             {
-                if (table.GetValue(phraseData.Linked) == null)
+                if (data.Linked != "" && table.GetValue(data.Linked) == null)
                 {
-                    LogValidation(phraseData, "Cannot find id of PhraseData for Linked value " + phraseData.Linked + " (found in phrase " + phraseData.Id + ")");
+                    LogValidation(data, "Cannot find id of PhraseData for Linked value " + data.Linked + " (found in phrase " + data.Id + ")");
                 }
+                else
+                    Debug.Log("CORRECT LINKED " + data.Linked);
             }
 
         }

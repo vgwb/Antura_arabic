@@ -5,9 +5,10 @@ namespace EA4S.Db
   public enum WordDataKind
   {
       Adjective = 1,
-      Article = 2,
-      Noun = 3,
-      Verb = 4,
+      Verb = 2,
+      Article = 3,
+      Noun = 4,
+      Adverb = 5,
   }
 }
 

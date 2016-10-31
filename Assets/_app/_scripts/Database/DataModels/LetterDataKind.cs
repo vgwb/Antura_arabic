@@ -5,8 +5,8 @@ namespace EA4S.Db
   public enum LetterDataKind
   {
       Letter = 1,
-      Combination = 2,
-      Symbol = 3,
+      Symbol = 2,
+      Combination = 3,
       Special = 4,
   }
 }
