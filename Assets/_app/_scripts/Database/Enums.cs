@@ -30,6 +30,7 @@
         Scanner = 25,
         Scanner_phrase = 26,
         ThrowBalls_letters = 27,
+        ThrowBalls_letterinword = 32,
         ThrowBalls_words = 28,
         Tobogan_letters = 29,
         Tobogan_words = 30,
