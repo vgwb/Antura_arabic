@@ -18,8 +18,6 @@ namespace EA4S.Db
         public string Title_Ar;
         public string Scene;
 
-        // Derived
-
         public string GetId()
         {
             return Code.ToString();
