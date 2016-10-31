@@ -206,7 +206,7 @@
       "RewardName" : "Star Tail",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_Tail3",
+      "BoneAttach" : "dog_Tail4",
       "Material1" : "specular_saturated",
       "Material2" : "trasparent_saturated"
     },
@@ -216,7 +216,7 @@
       "RewardName" : "Umbrella",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_Tail3",
+      "BoneAttach" : "dog_Tail4",
       "Material1" : "specular_saturated",
       "Material2" : "trasparent_saturated"
     },
@@ -226,7 +226,7 @@
       "RewardName" : "Mailbox",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_Tail3",
+      "BoneAttach" : "dog_Tail4",
       "Material1" : "diffuse_saturated",
       "Material2" : "specular_saturated"
     },
@@ -236,7 +236,7 @@
       "RewardName" : "bow",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_Tail3",
+      "BoneAttach" : "dog_Tail4",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated"
     },
@@ -246,7 +246,7 @@
       "RewardName" : "Hook",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_Tail3",
+      "BoneAttach" : "dog_Tail4",
       "Material1" : "specular_saturated",
       "Material2" : "specular_saturated"
     },
@@ -256,47 +256,87 @@
       "RewardName" : "Candy stick",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_Tail3",
+      "BoneAttach" : "dog_Tail4",
       "Material1" : "trasparent_saturated",
       "Material2" : "specular_saturated"
     },
     {
       "Type" : "Reward",
-      "ID" : "reward_bow",
-      "RewardName" : "Bow",
+      "ID" : "reward_bow_R",
+      "RewardName" : "Bow R",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "BoneAttach" : "dog_R_ear04",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated"
     },
     {
       "Type" : "Reward",
-      "ID" : "reward_earring_1",
-      "RewardName" : "Earring 1",
+      "ID" : "reward_earring_1_R",
+      "RewardName" : "Earring 1 R",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "BoneAttach" : "dog_R_ear04",
       "Material1" : "specular_saturated",
       "Material2" : "specular_saturated"
     },
     {
       "Type" : "Reward",
-      "ID" : "reward_earring_2",
-      "RewardName" : "Earring 2",
+      "ID" : "reward_earring_2_R",
+      "RewardName" : "Earring 2 R",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "BoneAttach" : "dog_R_ear04",
       "Material1" : "specular_saturated",
       "Material2" : "specular_saturated"
     },
     {
       "Type" : "Reward",
-      "ID" : "reward_earring_3",
-      "RewardName" : "Earring 3",
+      "ID" : "reward_earring_3_R",
+      "RewardName" : "Earring 3 R",
       "Priority" : "",
       "Done" : "DONE",
-      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "BoneAttach" : "dog_R_ear04",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_bow_L",
+      "RewardName" : "Bow L",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_L_ear04",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_earring_1_L",
+      "RewardName" : "Earring 1 L",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_L_ear04",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_earring_2_L",
+      "RewardName" : "Earring 2 L",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_L_ear04",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_earring_3_L",
+      "RewardName" : "Earring 3 L",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_L_ear04",
       "Material1" : "specular_saturated",
       "Material2" : "specular_saturated"
     }
