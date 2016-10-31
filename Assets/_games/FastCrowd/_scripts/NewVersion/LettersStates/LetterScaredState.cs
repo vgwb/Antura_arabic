@@ -9,7 +9,7 @@ namespace EA4S.FastCrowd
         public float ScaredDuration = 1.0f;
         public Vector3 ScareSource;
 
-        const float SCARED_RUN_SPEED = 8.0f;
+        const float SCARED_RUN_SPEED = 10.0f;
 
         float scaredTimer;
 
@@ -26,12 +26,16 @@ namespace EA4S.FastCrowd
             scaredTimer = ScaredDuration;
 
             // set letter animation
-            letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_run_fear;
+            letter.gameObject.GetComponent<LetterObjectView>().HasFear = true;
+            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_walking);
+            letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.RUN_SPEED);
             reenterTarget = letter.walkableArea.GetRandomPosition();
         }
 
         public override void ExitState()
         {
+            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+            letter.gameObject.GetComponent<LetterObjectView>().HasFear = false;
         }
 
         public override void Update(float delta)

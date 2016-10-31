@@ -6,7 +6,7 @@ namespace EA4S
 
     public class ShadowController : MonoBehaviour
     {
-
+        /*
         Vector3 shadowDimNormal = new Vector3(6, 6, 6);
         Vector3 shadowDimHang = new Vector3(8, 8, 8);
 
@@ -31,5 +31,6 @@ namespace EA4S
         {
             transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
         }
+        */
     }
 }

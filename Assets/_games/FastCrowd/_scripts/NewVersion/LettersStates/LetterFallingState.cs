@@ -19,12 +19,12 @@ namespace EA4S.FastCrowd
             fallSpeed = 0;
 
             // set letter animation
-            view.Model.State = LLAnimationStates.LL_fall_down;
+            view.Falling = true;
         }
 
         public override void ExitState()
         {
-            view.Model.State = LLAnimationStates.LL_land;
+            view.Falling = false;
         }
 
         public override void Update(float delta)

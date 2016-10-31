@@ -123,7 +123,7 @@ public class FastCrowdLivingLetter : MonoBehaviour
         if (currentData != null)
         {
             //bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
-            bool matching = GetComponent<LetterObjectView>().Model.Data == currentData;
+            bool matching = GetComponent<LetterObjectView>().Data == currentData;
 
             if (onDropped != null)
                 onDropped(matching);
