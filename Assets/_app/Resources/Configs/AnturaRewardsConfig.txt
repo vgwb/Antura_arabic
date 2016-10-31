@@ -1,0 +1,303 @@
+{
+  "Antura_rewards" : [
+    {
+      "Type" : "Reward",
+      "ID" : "reward_tube_hat",
+      "RewardName" : "Tube hat",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_head",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_punk_hair",
+      "RewardName" : "Punk hair",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_head",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_viking_helm",
+      "RewardName" : "Viking helm",
+      "Priority" : "",
+      "Done" : "TO DO",
+      "BoneAttach" : "dog_head",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_robot_helm",
+      "RewardName" : "Robot helm",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_head",
+      "Material1" : "specular_saturated",
+      "Material2" : "trasparent_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_glass_punk",
+      "RewardName" : "Glass punk",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_head",
+      "Material1" : "specular_saturated",
+      "Material2" : "trasparent_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_glass_mustache",
+      "RewardName" : "Glass + mustache",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_head",
+      "Material1" : "specular_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_robot_upper_jaw",
+      "RewardName" : "Robot upper jaw",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_head",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_monocle",
+      "RewardName" : "Monocle",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_head",
+      "Material1" : "specular_saturated",
+      "Material2" : "trasparent_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_backpack",
+      "RewardName" : "Backpack",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_mobile_console",
+      "RewardName" : "Mobile console",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_shovel",
+      "RewardName" : "Shovel",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_guitar",
+      "RewardName" : "Guitar",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_collar_spike",
+      "RewardName" : "Collar spike",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_collar_bow",
+      "RewardName" : "Collar bow",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_collar_medal",
+      "RewardName" : "Collar bicolor with a medal",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_collar_diamond",
+      "RewardName" : "collar with diamond",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_spine01",
+      "Material1" : "specular_saturated",
+      "Material2" : "trasparent_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_robot_lower_jaw",
+      "RewardName" : "Robot Lower Jaw",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_jaw",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_papillon",
+      "RewardName" : "Papillon",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_jaw",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_beard_1",
+      "RewardName" : "Beard 1",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_jaw",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_beard_2",
+      "RewardName" : "Beard 2",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_jaw",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_star_tail",
+      "RewardName" : "Star Tail",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_Tail3",
+      "Material1" : "specular_saturated",
+      "Material2" : "trasparent_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_umbrella",
+      "RewardName" : "Umbrella",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_Tail3",
+      "Material1" : "specular_saturated",
+      "Material2" : "trasparent_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_mailbox",
+      "RewardName" : "Mailbox",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_Tail3",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_bow_tail",
+      "RewardName" : "bow",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_Tail3",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_hook_tail",
+      "RewardName" : "Hook",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_Tail3",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_candy_stick",
+      "RewardName" : "Candy stick",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_Tail3",
+      "Material1" : "trasparent_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_bow",
+      "RewardName" : "Bow",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "Material1" : "diffuse_saturated",
+      "Material2" : "diffuse_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_earring_1",
+      "RewardName" : "Earring 1",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_earring_2",
+      "RewardName" : "Earring 2",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    },
+    {
+      "Type" : "Reward",
+      "ID" : "reward_earring_3",
+      "RewardName" : "Earring 3",
+      "Priority" : "",
+      "Done" : "DONE",
+      "BoneAttach" : "dog_R_ear04\ndog_L_ear04",
+      "Material1" : "specular_saturated",
+      "Material2" : "specular_saturated"
+    }
+  ]}
