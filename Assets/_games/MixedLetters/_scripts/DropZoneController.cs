@@ -7,6 +7,9 @@ namespace EA4S.MixedLetters
     public class DropZoneController : MonoBehaviour
     {
         public static DropZoneController chosenDropZone;
+
+        public static float DropZoneZ = -41.5f;
+
         public SpriteRenderer spriteRenderer;
         
         private float THROB_INIT_SCALE;
