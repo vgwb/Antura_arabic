@@ -5,9 +5,9 @@ namespace EA4S.Db
   public enum LetterDataType
   {
       None = 0,
-      Consonant = 1,
-      Powerful = 2,
-      LongVowel = 3,
+      LongVowel = 1,
+      Consonant = 2,
+      Powerful = 3,
       DiacriticSymbol = 4,
   }
 }
