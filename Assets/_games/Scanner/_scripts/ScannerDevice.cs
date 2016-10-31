@@ -5,6 +5,8 @@ namespace EA4S.Scanner
 {
 	public class ScannerDevice : MonoBehaviour {
 
+		public ScannerGame game;
+
 		public float minX;
 		public float maxX;
 
@@ -17,12 +19,12 @@ namespace EA4S.Scanner
 		public Vector3 fingerOffset;
 		public float depth;
 
-		private Transform parentTransform;
+		private float timeDelta;
 
 		void Start()
 		{
 			goLight.SetActive(false);
-			parentTransform = transform.parent.transform;
+			timeDelta = 0;
 		}
 
 		public void Reset()
@@ -47,10 +49,10 @@ namespace EA4S.Scanner
 			{
 				Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-				parentTransform.position = new Vector3 (
+				transform.position = new Vector3 (
 					Mathf.Clamp(curPosition.x, minX, maxX),
-					parentTransform.position.y, 
-					parentTransform.position.z);
+					transform.position.y, 
+					transform.position.z);
 			}
 
 		}
@@ -58,9 +60,32 @@ namespace EA4S.Scanner
 		void OnMouseUp()
 		{
 			goLight.SetActive(false);
-
 			Reset();
 		}
 
+		string lastTag = "";
+
+		void OnTriggerEnter(Collider other) 
+		{
+			if (other.tag == ScannerGame.TAG_SCAN_START || other.tag == ScannerGame.TAG_SCAN_END)
+			{
+				if (timeDelta == 0 || lastTag == other.tag)
+				{
+					timeDelta = Time.time;
+					lastTag = other.tag;
+				}
+				else
+				{
+					timeDelta = Time.time - timeDelta;
+					game.PlayWord(timeDelta);
+					timeDelta = 0;
+				}
+			}
+//			else if (other.tag == ScannerGame.TAG_SCAN_END)
+//			{
+//
+//			}
+
+		}
 	}
 }

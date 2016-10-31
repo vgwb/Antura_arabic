@@ -8,7 +8,6 @@ namespace EA4S.Scanner
 
 		private enum LLStatus { Sliding, StandingOnBelt, RunningFromAntura, Angry, Happy };
 
-		public Animator animator;
 		public GameObject livingLetter;
 
 		public float slideSpeed = 2f;
@@ -16,7 +15,7 @@ namespace EA4S.Scanner
 		private LLStatus status;
 		// Use this for initialization
 		void Start () {
-            livingLetter.GetComponent<LetterObjectView>().Falling = true;
+			livingLetter.GetComponent<LetterObjectView>().Falling = true;
             status = LLStatus.Sliding;
 		}
 
@@ -64,10 +63,10 @@ namespace EA4S.Scanner
 
 		void OnTriggerEnter(Collider other) 
 		{
-			Debug.Log("Trigger entered");
+			Debug.Log("Slide Trigger entered");
 			if (status == LLStatus.Sliding)
 			{
-				if (other.tag == "Scanner_Belt")
+				if (other.tag == ScannerGame.TAG_BELT)
 				{
 					transform.parent = other.transform;
 					status = LLStatus.StandingOnBelt;
