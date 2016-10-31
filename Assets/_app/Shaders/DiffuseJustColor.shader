@@ -1,7 +1,6 @@
 ﻿Shader "Antura/JustColor/Diffuse" 
 {
 	Properties{
-		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_Color("Color", Color) = (1,1,1,1)
 		_Emission("Emission", Color) = (0,0,0,0)
 	}

@@ -97,13 +97,7 @@ namespace EA4S.FastCrowd
             game.antura.SetAnturaTime(false);
             // Schedule next exit
             anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
-
-            // TEMP
-            foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
-            {
-                item.isAnturaMoment = false;
-            }
-
+            
             game.Context.GetAudioManager().PlayMusic(Music.Theme3);
         }
 
@@ -113,12 +107,6 @@ namespace EA4S.FastCrowd
             game.antura.SetAnturaTime(true);
             // Schedule next duration
             anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
-
-            // TEMP
-            foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
-            {
-                item.isAnturaMoment = true;
-            }
             
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }

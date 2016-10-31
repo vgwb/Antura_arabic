@@ -82,7 +82,15 @@ namespace EA4S
             }
             else
             {
+                var oldPitch = source.pitch;
+                var oldVolume = source.volume;
+                var oldLoop = source.loop;
+
                 source = group.Play(clip);
+
+                source.pitch = oldPitch;
+                source.volume = oldVolume;
+                source.loop = oldLoop;
             }
         }
 

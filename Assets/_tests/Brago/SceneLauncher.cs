@@ -8,7 +8,7 @@ using EA4S.FastCrowd;
 namespace EA4S {
 
     public class SceneLauncher : OnClickButtonChangeScene {
-
+/*
         public FastCrowdGameplayInfo.GameVariant Variant;
 
         public override void OnClick() {
@@ -18,5 +18,6 @@ namespace EA4S {
 
             base.OnClick();
         }
+        */
     }
 }
