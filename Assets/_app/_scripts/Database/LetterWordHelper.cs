@@ -173,92 +173,92 @@ namespace EA4S.Db
 
         #endregion
 
-        #region PlaySession -> Letter
+        #region LearningBlock -> Letter
 
-        public List<LetterData> GetLettersInPlaySession(string playSessionId, bool pastSessionsToo = false)
+        public List<LetterData> GetLettersInLearningBlock(string lbId, bool pastSessionsToo = false)
         {
-            var playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
+            var lbData = dbManager.GetLearningBlockDataById(lbId);
 
             List<string> ids_list = new List<string>();
-            ids_list.AddRange(playSessionData.Letters);
-            if (pastSessionsToo) ids_list.AddRange(this.GetAllLetterIdsFromPreviousPlaySessions(playSessionData));
+            ids_list.AddRange(lbData.Letters);
+            if (pastSessionsToo) ids_list.AddRange(this.GetAllLetterIdsFromPreviousLearningBlocks(lbData));
 
             return ids_list.ConvertAll(x => dbManager.GetLetterDataById(x));
         }
 
-        public string[] GetAllLetterIdsFromPreviousPlaySessions(Db.PlaySessionData current_ps)
+        public string[] GetAllLetterIdsFromPreviousLearningBlocks(Db.LearningBlockData current_lb)
         {
-            // @note: this assumes that all play sessions are correctly ordered
-            var all_ps_list = dbManager.GetAllPlaySessionData();
-            int index_current_ps = all_ps_list.IndexOf(current_ps);
+            // @note: this assumes that all learning blocks are correctly ordered
+            var all_lb_list = dbManager.GetAllLearningBlockData();
+            int index_current_lb = all_lb_list.IndexOf(current_lb);
 
             List<string> all_ids = new List<string>();
-            for (int prev_ps_id = 0; prev_ps_id < index_current_ps; prev_ps_id++)
+            for (int prev_lb_id = 0; prev_lb_id < index_current_lb; prev_lb_id++)
             {
-                all_ids.AddRange(all_ps_list[prev_ps_id].Letters);
+                all_ids.AddRange(all_lb_list[prev_lb_id].Letters);
             }
 
             return all_ids.ToArray();
         }
         #endregion
 
-        #region PlaySession -> Word
+        #region LearningBlock -> Word
 
-        public List<WordData> GetWordsInPlaySession(string playSessionId, bool previousToo = false, bool pastSessionsToo = false)
+        public List<WordData> GetWordsInLearningBlock(string lbId, bool previousToo = false, bool pastSessionsToo = false)
         {
-            var playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
+            var lbData = dbManager.GetLearningBlockDataById(lbId);
 
             List<string> ids_list = new List<string>();
-            ids_list.AddRange(playSessionData.Words);
-            if (previousToo) ids_list.AddRange(playSessionData.Words_previous);
-            if (pastSessionsToo) ids_list.AddRange(this.GetAllWordIdsFromPreviousPlaySessions(playSessionData));
+            ids_list.AddRange(lbData.Words);
+            if (previousToo) ids_list.AddRange(lbData.Words_previous);
+            if (pastSessionsToo) ids_list.AddRange(this.GetAllWordIdsFromPreviousLearningBlocks(lbData));
 
             return ids_list.ConvertAll(x => dbManager.GetWordDataById(x));
         }
 
-        public string[] GetAllWordIdsFromPreviousPlaySessions(Db.PlaySessionData current_ps)
+        public string[] GetAllWordIdsFromPreviousLearningBlocks(Db.LearningBlockData current_lb)
         {
-            // @note: this assumes that all play sessions are correctly ordered
-            var all_ps_list = dbManager.GetAllPlaySessionData();
-            int index_current_ps = all_ps_list.IndexOf(current_ps);
+            // @note: this assumes that all learning blocks are correctly ordered
+            var all_lb_list = dbManager.GetAllLearningBlockData();
+            int index_current_lb = all_lb_list.IndexOf(current_lb);
 
-            List<string> allWordIds = new List<string>();
-            for (int prev_ps_id = 0; prev_ps_id < index_current_ps; prev_ps_id++)
+            List<string> all_ids = new List<string>();
+            for (int prev_lb_id = 0; prev_lb_id < index_current_lb; prev_lb_id++)
             {
-                allWordIds.AddRange(all_ps_list[prev_ps_id].Words);
-                allWordIds.AddRange(all_ps_list[prev_ps_id].Words_previous);
+                all_ids.AddRange(all_lb_list[prev_lb_id].Words);
+                all_ids.AddRange(all_lb_list[prev_lb_id].Words_previous);
             }
 
-            return allWordIds.ToArray();
+            return all_ids.ToArray();
         }
 
         #endregion
 
-        #region PlaySession -> Phrase
+        #region LearningBlock -> Phrase
 
-        public List<PhraseData> GetPhrasesInPlaySession(string playSessionId, bool previousToo = false, bool pastSessionsToo = false)
+        public List<PhraseData> GetPhrasesInLearningBlock(string lbId, bool previousToo = false, bool pastSessionsToo = false)
         {
-            var playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
+            var lbData = dbManager.GetLearningBlockDataById(lbId);
 
             List<string> ids_list = new List<string>();
-            ids_list.AddRange(playSessionData.Phrases);
-            if (previousToo) ids_list.AddRange(playSessionData.Phrases_previous);
-            if (pastSessionsToo) ids_list.AddRange(this.GetAllPhraseIdsFromPreviousPlaySessions(playSessionData));
+            ids_list.AddRange(lbData.Phrases);
+            if (previousToo) ids_list.AddRange(lbData.Phrases_previous);
+            if (pastSessionsToo) ids_list.AddRange(this.GetAllPhraseIdsFromPreviousLearningBlocks(lbData));
 
             return ids_list.ConvertAll(x => dbManager.GetPhraseDataById(x));
         }
 
-        public string[] GetAllPhraseIdsFromPreviousPlaySessions(Db.PlaySessionData current_ps)
+        public string[] GetAllPhraseIdsFromPreviousLearningBlocks(Db.LearningBlockData current_lb)
         {
-            // @note: this assumes that all play sessions are correctly ordered
-            var all_ps_list = dbManager.GetAllPlaySessionData();
-            int index_current_ps = all_ps_list.IndexOf(current_ps);
+            // @note: this assumes that all learning blocks are correctly ordered
+            var all_lb_list = dbManager.GetAllLearningBlockData();
+            int index_current_lb = all_lb_list.IndexOf(current_lb);
 
             List<string> all_ids = new List<string>();
-            for (int prev_ps_id = 0; prev_ps_id < index_current_ps; prev_ps_id++)
+            for (int prev_lb_id = 0; prev_lb_id < index_current_lb; prev_lb_id++)
             {
-                all_ids.AddRange(all_ps_list[prev_ps_id].Phrases);
-                all_ids.AddRange(all_ps_list[prev_ps_id].Phrases_previous);
+                all_ids.AddRange(all_lb_list[prev_lb_id].Phrases);
+                all_ids.AddRange(all_lb_list[prev_lb_id].Phrases_previous);
             }
 
             return all_ids.ToArray();

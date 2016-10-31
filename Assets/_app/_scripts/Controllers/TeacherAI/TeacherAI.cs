@@ -224,8 +224,7 @@ namespace EA4S
         public List<ScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
         {
             // First, get all play sessions given a stage
-            List<PlaySessionData> eligiblePlaySessionData_list =
-                this.dbManager.FindPlaySessionData(x => x.Stage == stage);
+            List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores of all play sessions

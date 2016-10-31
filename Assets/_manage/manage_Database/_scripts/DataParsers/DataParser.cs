@@ -17,20 +17,30 @@ namespace EA4S.Db.Management
 
                 var value = table.GetValue(data.GetId());
                 if (value != null) {
-                    LogValidation(data, "found multiple ID.");
+                    if (!CanHaveSameKeyMultipleTimes)
+                    {
+                        LogValidation(data, "found multiple ID.");
+                    }
                     continue;
                 }
 
                 table.Add(data);
             }
 
-            FinalValidation(table);
+            FinalValidation(table, db);
+        }
+
+        protected virtual bool CanHaveSameKeyMultipleTimes
+        {
+           get {
+                return false;
+            }
         }
 
 
         protected abstract D CreateData(Dictionary<string, object> dict, Database db);
 
-        protected virtual void FinalValidation(Dtable table) { }
+        protected virtual void FinalValidation(Dtable table, Database db) { }
 
         protected T ParseEnum<T>(D data, object enum_object)
         {

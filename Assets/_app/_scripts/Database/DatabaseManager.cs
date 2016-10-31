@@ -224,6 +224,11 @@ namespace EA4S
         {
             return staticDb.FindAll<PlaySessionData>(staticDb.GetPlaySessionTable(), predicate);
         }
+        
+        public List<LearningBlockData> FindLearningBlockData(Predicate<LearningBlockData> predicate)
+        {
+            return staticDb.FindAll<LearningBlockData>(staticDb.GetLearningBlockTable(), predicate);
+        }
 
         public List<StageData> FindStageData(Predicate<StageData> predicate)
         {
@@ -253,6 +258,11 @@ namespace EA4S
         public List<PlaySessionData> GetAllPlaySessionData()
         {
             return new List<PlaySessionData>(staticDb.GetPlaySessionTable().GetValuesTyped());
+        }
+
+        public List<LearningBlockData> GetAllLearningBlockData()
+        {
+            return new List<LearningBlockData>(staticDb.GetLearningBlockTable().GetValuesTyped());
         }
 
         public List<StageData> GetAllStageData()
@@ -311,6 +321,11 @@ namespace EA4S
         public PlaySessionData GetPlaySessionDataById(string id)
         {
             return staticDb.GetById<PlaySessionData>(staticDb.GetPlaySessionTable(), id);
+        }
+
+        public LearningBlockData GetLearningBlockDataById(string id)
+        {
+            return staticDb.GetById<LearningBlockData>(staticDb.GetLearningBlockTable(), id);
         }
 
         public StageData GetStageDataById(string id)

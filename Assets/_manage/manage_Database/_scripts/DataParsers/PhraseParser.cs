@@ -22,7 +22,7 @@ namespace EA4S.Db.Management
         {
         }
 
-        protected override void FinalValidation(PhraseTable table)
+        protected override void FinalValidation(PhraseTable table, Database db)
         {
             // Field 'Linked' is validated with a final validation step, since it is based on this same table
             foreach(var data in table.GetValuesTyped())
@@ -31,8 +31,6 @@ namespace EA4S.Db.Management
                 {
                     LogValidation(data, "Cannot find id of PhraseData for Linked value " + data.Linked + " (found in phrase " + data.Id + ")");
                 }
-                else
-                    Debug.Log("CORRECT LINKED " + data.Linked);
             }
 
         }
