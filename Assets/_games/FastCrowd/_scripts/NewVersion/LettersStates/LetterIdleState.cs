@@ -13,9 +13,7 @@ namespace EA4S.FastCrowd
         public override void EnterState()
         {
             // Set letter animation
-            letter.gameObject.GetComponent<LetterObjectView>().Model.State =
-                //    (LetterObjectState)UnityEngine.Random.Range((int)LetterObjectState.LL_idle, (int)LetterObjectState.LL_idle_5);
-                LLAnimationStates.LL_idle_1;
+            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
 
             // Wait a random time in idle
             timer = 1.0f + 3.0f*UnityEngine.Random.value;

@@ -17,14 +17,13 @@ namespace EA4S.FastCrowd
 
         public override void EnterState()
         {
-
-            // set letter animation
-            letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_drag_idle;
+            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_dragging);
             
         }
 
         public override void ExitState()
         {
+            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
         }
 
         public override void Update(float delta)
