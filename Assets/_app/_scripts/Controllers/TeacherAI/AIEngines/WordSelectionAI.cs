@@ -50,7 +50,7 @@ namespace EA4S.Teacher
             if (nRemainingToSelect > 0)
             {
                 //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PAST words");
-                SelectWordsFrom(GetAllWordIdsFromPreviousPlaySessions(playSessionData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+                SelectWordsFrom(dbManager.letterWordHelper.GetAllWordIdsFromPreviousPlaySessions(playSessionData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
             }
 
             // ... if that's still not enough, there is some issue.
@@ -126,21 +126,6 @@ namespace EA4S.Teacher
             }
         }
 
-        string[] GetAllWordIdsFromPreviousPlaySessions(Db.PlaySessionData current_ps)
-        {
-            // @note: this assumes that all play sessions are correctly ordered
-            var all_ps_list = dbManager.GetAllPlaySessionData();
-            int index_current_ps = all_ps_list.IndexOf(current_ps);
-
-            List<string> allWordIds = new List<string>();
-            for (int prev_ps_id = 0; prev_ps_id < index_current_ps; prev_ps_id++)
-            {
-                allWordIds.AddRange(all_ps_list[prev_ps_id].Words);
-                allWordIds.AddRange(all_ps_list[prev_ps_id].Words_previous);
-            }
-
-            return allWordIds.ToArray();
-        }
 
     }
 }

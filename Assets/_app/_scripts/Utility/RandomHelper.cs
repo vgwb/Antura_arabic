@@ -5,6 +5,31 @@ namespace EA4S
 {
     public static class RandomHelper
     {
+        public static List<T> RouletteSelectNonRepeating<T>(List<T> fromList, int numberToSelect)
+        {
+            if (numberToSelect > fromList.Count)
+            {
+                throw new System.Exception("Cannot select more than available with a non-repeating selection");
+            }
+
+            List<T> chosenList = new List<T>();
+
+            if (numberToSelect == fromList.Count)
+            {
+                chosenList.AddRange(fromList);
+                return chosenList;
+            }
+
+            for (int choice_index = 0; choice_index < numberToSelect; choice_index++)
+            {
+                int element_index = UnityEngine.Random.Range(0, fromList.Count);
+                T chosenItem = fromList[element_index];
+                fromList.RemoveAt(element_index);
+                chosenList.Add(chosenItem);
+            }
+
+            return chosenList;
+        }
 
         public static List<T> RouletteSelectNonRepeating<T>(List<T> fromList, List<float> weightsList, int numberToSelect)
         {
