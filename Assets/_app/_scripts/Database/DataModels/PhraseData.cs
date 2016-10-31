@@ -9,6 +9,7 @@ namespace EA4S.Db
         public string Id;
         public string English;
         public string Arabic;
+        public string Linked;
 
         public override string ToString()
         {

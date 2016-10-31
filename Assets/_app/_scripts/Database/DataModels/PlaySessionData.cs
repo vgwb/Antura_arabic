@@ -13,6 +13,7 @@ namespace EA4S.Db
         public int PlaySession;
         public string Type;
         public string Description;
+        public string Title;
         public string IntroArabic;
         public string Reward;
         public PlaySessionDataFocus Focus;
