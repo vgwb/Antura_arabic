@@ -15,6 +15,11 @@ namespace EA4S.Db.Management
                 var dict = row as Dictionary<string, object>;
                 var data = CreateData(dict, db);
 
+                if (data == null)
+                {
+                    continue;
+                }
+
                 var value = table.GetValue(data.GetId());
                 if (value != null) {
                     if (!CanHaveSameKeyMultipleTimes)
