@@ -10,11 +10,17 @@ namespace EA4S.Db.Management
         {
             var data = new PlaySessionData();
 
+            data.Type = ToString(dict["Type"]);
+
+            if (data.Type == "Assessment")  // @note: we skip assessments
+            {
+                return null;
+            }
+
             data.Stage = ToInt(dict["Stage"]);
             data.LearningBlock = ToInt(dict["LearningBlock"]);
             data.PlaySession = ToInt(dict["PlaySession"]);
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
-            data.Type = ToString(dict["Type"]);
             data.Order = ParseEnum<PlaySessionDataOrder>(data, dict["Order"]);
             data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
 
