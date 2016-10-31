@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArabicSupport;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,10 @@ namespace EA4S.MixedLetters
         public DropZoneController[] dropZoneControllers;
         public RotateButtonController[] rotateButtonControllers;
 
+        public LL_WordData wordData;
         public Db.WordData wordInPlay;
         public List<LL_LetterData> lettersInOrder;
+        public GameObject victimLL;
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -40,6 +43,8 @@ namespace EA4S.MixedLetters
             Physics.IgnoreLayerCollision(0, 5);
 
             ResetScene();
+
+            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
         }
 
         protected override IGameState GetInitialState()
@@ -56,7 +61,7 @@ namespace EA4S.MixedLetters
         {
             int numLetters = lettersInOrder.Count;
             bool isEven = numLetters % 2 == 0;
-            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 0.4f;
+            float dropZoneWidthWithSpace = Constants.DROP_ZONE_WIDTH + 0.6f;
             float dropZoneXStart = isEven ? numLetters / 2 - 0.5f : Mathf.Floor(numLetters / 2);
             dropZoneXStart *= dropZoneWidthWithSpace;
 
@@ -74,6 +79,7 @@ namespace EA4S.MixedLetters
 
                 Vector3 rotateButtonPosition = dropZonePosition;
                 rotateButtonPosition.y -= 1.35f;
+                rotateButtonPosition.z += 0.5f;
                 rotateButtonController.SetPosition(rotateButtonPosition);
             }
 
@@ -122,12 +128,19 @@ namespace EA4S.MixedLetters
             SeparateLettersSpawnerController.instance.DisableLetters();
             lettersInOrder.Clear();
             UIController.instance.DisableTimer();
+            ParticleSystemController.instance.Reset();
+            ParticleSystemController.instance.Disable();
+            AnturaController.instance.Disable();
         }
 
         public void GenerateNewWord()
         {
-            wordInPlay = AppManager.Instance.Teacher.GimmeAGoodWord();
+            wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            wordInPlay = wordData.Data;
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Letters));
+            //VictimLLController.instance.letterObjectView.Lable.SetText(ArabicFixer.Fix(wordData.TextForLivingLetter, false, false));
+            VictimLLController.instance.letterObjectView.Lable.SetText(wordData.TextForLivingLetter);
+
         }
 
         public void VerifyLetters()

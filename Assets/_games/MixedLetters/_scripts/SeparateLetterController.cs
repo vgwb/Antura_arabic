@@ -39,6 +39,13 @@ namespace EA4S.MixedLetters
                     isBeingDragged = true;
                     SetIsKinematic(true);
 
+                    if (transform.position.z != DropZoneController.DropZoneZ)
+                    {
+                        Vector3 position = transform.position;
+                        position.z = DropZoneController.DropZoneZ;
+                        transform.position = position;
+                    }
+
                     if (droppedZone != null)
                     {
                         droppedZone.SetDroppedLetter(null);
@@ -101,6 +108,11 @@ namespace EA4S.MixedLetters
             this.isDraggable = isDraggable;
         }
 
+        public void AddForce(Vector3 force, ForceMode forceMode)
+        {
+            rigidBody.AddForce(force, forceMode);
+        }
+
         public void RotateCCW()
         {
             Vector3 rotation = transform.localEulerAngles;
@@ -117,8 +129,13 @@ namespace EA4S.MixedLetters
             droppedZone = null;
         }
 
-        public void SetPosition(Vector3 position)
+        public void SetPosition(Vector3 position, bool offsetOnZ)
         {
+            if (offsetOnZ)
+            {
+                position.z -= 1f;
+            }
+
             transform.position = position;
         }
 
