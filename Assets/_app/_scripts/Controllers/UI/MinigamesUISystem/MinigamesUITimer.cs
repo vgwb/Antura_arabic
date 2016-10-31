@@ -14,7 +14,6 @@ namespace EA4S
         public TextMeshProUGUI TfTimer;
         public Color EndColor = Color.red;
 
-        public bool IsSetup { get; private set; }
         float time;
         Sequence timerTween, shakeTween;
         Tween endTween;
@@ -23,7 +22,7 @@ namespace EA4S
 
         void Awake()
         {
-            if (timerTween == null) {
+            if (!IsSetup) {
                 Radial.fillAmount = 0;
                 TfTimer.text = "";
             }
@@ -41,16 +40,15 @@ namespace EA4S
         #region Public Methods
 
         /// <summary>
-        /// Sets the duration of the timer. Call this before calling any other Timer method.
+        /// Sets the duration of the timer. Call this before calling any other method.
         /// </summary>
         /// <param name="_timerDuration">Timer duration in seconds</param>
         /// <param name="_playImmediately">If TRUE the timer starts immediately, otherwise waits for a <see cref="Play"/> call</param>
         public void Setup(float _timerDuration, bool _playImmediately = false)
         {
-            IsSetup = true;
             time = _timerDuration;
 
-            if (timerTween != null) {
+            if (!IsSetup) {
                 timerTween.Rewind();
                 timerTween.Kill();
                 shakeTween.Kill(true);
@@ -86,17 +84,15 @@ namespace EA4S
                 .OnPause(() => {
                     if (!timerTween.IsComplete() && shakeTween.IsPlaying()) shakeTween.Pause();
                 });
-
             if (!_playImmediately) timerTween.Pause();
+
+            IsSetup = true;
         }
 
         /// <summary>Plays the timer</summary>
         public void Play()
         {
-            if (timerTween == null) {
-                Debug.LogWarning("MinigamesUITimer ► Timer duration not set: call Timer.Setup first");
-                return;
-            }
+            if (!Validate("MinigamesUITimer")) return;
 
             timerTween.Play();
         }
@@ -104,10 +100,7 @@ namespace EA4S
         /// <summary>Pauses the timer</summary>
         public void Pause()
         {
-            if (timerTween == null) {
-                Debug.LogWarning("MinigamesUITimer ► Timer duration not set: call Timer.Setup first");
-                return;
-            }
+            if (!Validate("MinigamesUITimer")) return;
 
             timerTween.Pause();
         }
@@ -115,10 +108,7 @@ namespace EA4S
         /// <summary>Rewinds then restarts the timer</summary>
         public void Restart()
         {
-            if (timerTween == null) {
-                Debug.LogWarning("MinigamesUITimer ► Timer duration not set: call Timer.Setup first");
-                return;
-            }
+            if (!Validate("MinigamesUITimer")) return;
 
             endTween.Rewind();
             timerTween.Restart();
@@ -127,10 +117,7 @@ namespace EA4S
         /// <summary>Rewinds the timer and pauses it</summary>
         public void Rewind()
         {
-            if (timerTween == null) {
-                Debug.LogWarning("MinigamesUITimer ► Timer duration not set: call Timer.Setup first");
-                return;
-            }
+            if (!Validate("MinigamesUITimer")) return;
 
             shakeTween.Complete();
             endTween.Rewind();
@@ -140,10 +127,7 @@ namespace EA4S
         /// <summary>Completes the timer</summary>
         public void Complete()
         {
-            if (timerTween == null) {
-                Debug.LogWarning("MinigamesUITimer ► Timer duration not set: call Timer.Setup first");
-                return;
-            }
+            if (!Validate("MinigamesUITimer")) return;
 
             timerTween.Complete();
         }
@@ -153,10 +137,7 @@ namespace EA4S
         /// <param name="_andPlay">If TRUE also plays the timer after going to the given position, otherwise pauses it</param>
         public void Goto(float _time, bool _andPlay = false)
         {
-            if (timerTween == null) {
-                Debug.LogWarning("MinigamesUITimer ► Timer duration not set: call Timer.Setup first");
-                return;
-            }
+            if (!Validate("MinigamesUITimer")) return;
 
             endTween.Rewind();
             timerTween.Goto(_time, _andPlay);
@@ -167,10 +148,7 @@ namespace EA4S
         /// <param name="_andPlay">If TRUE also plays the timer after going to the given position, otherwise pauses it</param>
         public void GotoPercentage(float _percentage, bool _andPlay = false)
         {
-            if (timerTween == null) {
-                Debug.LogWarning("MinigamesUITimer ► Timer duration not set: call Timer.Setup first");
-                return;
-            }
+            if (!Validate("MinigamesUITimer")) return;
 
             endTween.Rewind();
             timerTween.Goto(timerTween.Duration() * _percentage, _andPlay);

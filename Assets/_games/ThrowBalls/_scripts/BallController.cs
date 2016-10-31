@@ -57,11 +57,13 @@ namespace EA4S.ThrowBalls
         public void Enable()
         {
             gameObject.SetActive(true);
+            BallShadowController.instance.Enable();
         }
 
         public void Disable()
         {
             gameObject.SetActive(false);
+            BallShadowController.instance.Disable();
         }
 
         void FixedUpdate()

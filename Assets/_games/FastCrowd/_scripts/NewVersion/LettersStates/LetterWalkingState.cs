@@ -33,17 +33,18 @@ namespace EA4S.FastCrowd
             if (!letter.walkableArea.IsInside(letter.transform.position, true))
                 running = true;
 
+            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_walking);
             if (running)
             {
                 // set letter animation
-                letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_run_happy;
+                letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.RUN_SPEED);
                 speed = RUN_SPEED;
             }
             else
             {
 
                 // set letter animation
-                letter.gameObject.GetComponent<LetterObjectView>().Model.State = LLAnimationStates.LL_walk;
+                letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.WALKING_SPEED);
                 speed = WALK_SPEED;
             }
 
@@ -57,6 +58,7 @@ namespace EA4S.FastCrowd
 
         public override void ExitState()
         {
+            letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
         }
 
         public override void Update(float delta)
