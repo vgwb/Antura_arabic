@@ -73,7 +73,7 @@ namespace EA4S.FastCrowd
             {
                 dragging.StartDragging(draggingPosition - dragging.transform.position);
 
-                var data = dragging.GetComponent<LetterObjectView>().Model.Data;
+                var data = dragging.GetComponent<LetterObjectView>().Data;
 
                 FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data);
             }
@@ -141,7 +141,7 @@ namespace EA4S.FastCrowd
                 }
 
                 if (onDropped != null)
-                    onDropped(letterObjectView.Model.Data, result);
+                    onDropped(letterObjectView.Data, result);
             };
         }
 

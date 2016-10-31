@@ -31,14 +31,19 @@ namespace EA4S
         #endregion
 
         #region runtime variables
-        private LLController model;
         /// <summary>
-        /// Gets or sets the model.
+        /// Gets the data.
         /// </summary>
-        /// <value>
-        /// The model.
-        /// </value>
-        public LLController Model
+        public ILivingLetterData Data
+        {
+            get
+            {
+                return Model.Data;
+            }
+        }
+        
+        private LLController model;
+        LLController Model
         {
             get
             {
@@ -247,6 +252,18 @@ namespace EA4S
             }
         }
 
+        public bool Horraying
+        {
+            get { return Model.hooraying; }
+            set
+            {
+                Model.hooraying = value;
+                animator.SetBool("holdHorray", value);
+            }
+        }
+
+        
+
         /// <summary>
         /// Speed is 0 (walk) to 1 (running).
         /// </summary>
@@ -255,10 +272,10 @@ namespace EA4S
             Model.walkingSpeed = speed;
         }
 
-        public void DoHorray(bool hold = false)
+        public void DoHorray()
         {
-            animator.SetBool("holdHorray", hold);
-            animator.SetTrigger("doHorray");
+            if (!Model.hooraying)
+                animator.SetTrigger("doHorray");
         }
 
         public void DoAngry()

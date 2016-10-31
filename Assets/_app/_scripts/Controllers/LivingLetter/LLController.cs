@@ -21,6 +21,7 @@ namespace EA4S
         public bool falling;
         public bool jumping;
         public bool fear;
+        public bool hooraying;
 
         #region States
 

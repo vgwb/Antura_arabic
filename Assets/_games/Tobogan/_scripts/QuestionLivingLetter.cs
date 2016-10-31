@@ -164,7 +164,7 @@ namespace EA4S.Tobogan
             {
                 dragging = true;
 
-                var data = letter.Model.Data;
+                var data = letter.Data;
 
                 ToboganConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
 
