@@ -22,7 +22,7 @@ namespace EA4S.Db
         public string[] Phrases;
         public string[] Phrases_previous;
         public string AssessmentType;
-        public string AssessmentData;
+        //        public string AssessmentData;
 
         public string GetId()
         {

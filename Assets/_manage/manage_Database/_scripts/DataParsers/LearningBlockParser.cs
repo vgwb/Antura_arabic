@@ -28,30 +28,27 @@ namespace EA4S.Db.Management
             data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.GetPhraseTable());
 
             data.AssessmentType = ToString(dict["AssessmentType"]);
-            data.AssessmentData = ToString(dict["AssessmentData"]);
+            //data.AssessmentData = ToString(dict["AssessmentData"]);
 
             return data;
         }
 
-        protected override bool CanHaveSameKeyMultipleTimes
-        {
-            get
-            {
+        protected override bool CanHaveSameKeyMultipleTimes {
+            get {
                 return true;
             }
         }
 
         protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
         {
-            ExtractEnum(rowdicts_list, "Focus", addNoneValue:true);
+            ExtractEnum(rowdicts_list, "Focus", addNoneValue: true);
         }
 
         protected override void FinalValidation(LearningBlockTable table, Database db)
         {
             // Field 'NumberOfPlaySessions' can be found only at the end
             var playSessionsList = new List<PlaySessionData>(db.GetPlaySessionTable().GetValuesTyped());
-            foreach (var data in table.GetValuesTyped())
-            {
+            foreach (var data in table.GetValuesTyped()) {
                 int nPlaySessions = playSessionsList.FindAll(x => x.Stage == data.Stage && x.LearningBlock == data.LearningBlock).Count;
                 data.NumberOfPlaySessions = nPlaySessions;
             }
