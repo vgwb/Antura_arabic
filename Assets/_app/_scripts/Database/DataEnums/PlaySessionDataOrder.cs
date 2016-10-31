@@ -4,8 +4,8 @@ namespace EA4S.Db
 {
   public enum PlaySessionDataOrder
   {
-      Sequence = 0,
-      Random = 1,
+      Sequence = 1,
+      Random = 2,
   }
 }
 
