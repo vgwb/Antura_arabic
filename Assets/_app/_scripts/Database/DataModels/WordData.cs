@@ -10,6 +10,8 @@ namespace EA4S.Db
         public string Id;
         public WordDataKind Kind;
         public WordDataCategory Category;
+        public WordDataForm Form;
+        public WordDataArticle Article;
         public string Arabic;
         public string[] Letters;
         public LetterSymbol[] Symbols; //TODO
