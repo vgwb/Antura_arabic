@@ -134,7 +134,7 @@ namespace EA4S.DancingDots
 
 			if (isDot)
 			{
-				if (other.tag == "DotZone")
+				if (other.tag == DancingDotsGameManager.DANCING_DOTS)
 				{
 					if (other.GetComponent<DancingDotsDropZone>().letters.Contains(DancingDotsGameManager.instance.currentLetter) 
 						&& DancingDotsGameManager.instance.dotsCount == dots)
@@ -145,7 +145,7 @@ namespace EA4S.DancingDots
 			}
 			else
 			{
-				if (other.tag == "Diacritic")
+				if (other.tag == DancingDotsGameManager.DANCING_DIACRITICS)
 				{
 					if (DancingDotsGameManager.instance.activeDiacritic.diacritic == diacritic)
 					{
