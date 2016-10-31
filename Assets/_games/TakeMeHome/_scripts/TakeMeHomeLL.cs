@@ -55,31 +55,32 @@ public class TakeMeHomeLL : MonoBehaviour {
 			maxY = _maxY;
 
 			dropLetter = true;
-			var data = letter.Model.Data;
+			var data = letter.Data;
 
 			TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
 		}
 
 		public void PlayIdleAnimation()
-		{
-			letter.Model.State = LLAnimationStates.LL_idle_1;
+        {
+            letter.SetState(LLAnimationStates.LL_idle);
 
 			livingLetterTransform.localPosition = normalPosition;
 		}
 
 		public void PlayWalkAnimation()
 		{
-			letter.Model.State = LLAnimationStates.LL_walk;
+			letter.SetState(LLAnimationStates.LL_walking);
+            letter.SetWalkingSpeed(LetterObjectView.WALKING_SPEED);
 
 			//livingLetterTransform.localPosition = normalPosition;
 		}
 
 		public void PlayHoldAnimation()
-		{
-			letter.Model.State = LLAnimationStates.LL_drag_idle;
+        {
+            letter.SetState(LLAnimationStates.LL_idle);
 
-			//livingLetterTransform.localPosition = holdPosition;
-		}
+            //livingLetterTransform.localPosition = holdPosition;
+        }
 
 
 
@@ -155,7 +156,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 				lastTube = null;
 				dragging = true;
 
-				var data = letter.Model.Data;
+				var data = letter.Data;
 
 				TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
 

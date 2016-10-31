@@ -114,8 +114,6 @@ namespace EA4S.TakeMeHome
 
 			letterObjectView.gameObject.AddComponent<FastCrowdDraggableLetter>();*/
 			letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
-			Destroy(letterObjectView.gameObject.GetComponent<Hangable>());
-
 
 			foreach (var collider in letterObjectView.gameObject.GetComponentsInChildren<Collider>())
 				collider.isTrigger = true;

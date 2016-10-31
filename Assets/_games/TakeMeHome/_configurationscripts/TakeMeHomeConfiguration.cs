@@ -9,9 +9,6 @@
 		#region Game configurations
 		public float Difficulty { get; set; }
 		#endregion
-		#region Behaviour configurations
-		public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
-		#endregion
 
 		/////////////////
 		// Singleton Pattern
@@ -34,7 +31,6 @@
 			Letters = new SampleLetterProvider ();
 
 			Difficulty = 0.5f;
-			BehaviourSettings = new LetterBehaviour.BehaviourSettings();
 		}
 
 		#region external configuration call
