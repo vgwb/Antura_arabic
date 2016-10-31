@@ -23,10 +23,14 @@ namespace EA4S.Db.Management
 
                 table.Add(data);
             }
+
+            FinalValidation(table);
         }
 
 
         protected abstract D CreateData(Dictionary<string, object> dict, Database db);
+
+        protected virtual void FinalValidation(Dtable table) { }
 
         protected T ParseEnum<T>(D data, object enum_object)
         {
