@@ -73,12 +73,9 @@ namespace EA4S.FastCrowd
             {
                 dragging.StartDragging(draggingPosition - dragging.transform.position);
 
-                var data = dragging.GetComponent<LetterObjectView>().Model.Data;
+                var data = dragging.GetComponent<LetterObjectView>().Data;
 
-                if (data is LL_LetterData)
-                    FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetter((LL_LetterData)data);
-                else if (data is LL_WordData)
-                    FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayWord((LL_WordData)data);
+                FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data);
             }
         }
 
@@ -112,7 +109,7 @@ namespace EA4S.FastCrowd
             Vector3 newPosition = walkableArea.GetFurthestSpawn(letters); // Find isolated spawn point
 
             letterObjectView.transform.position = newPosition;
-            letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value*360, 0);
+            letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value * 360, 0);
             letterObjectView.Init(toAdd.Dequeue());
 
             var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
@@ -128,8 +125,7 @@ namespace EA4S.FastCrowd
             characterController.height = 6;
             characterController.center = Vector3.up * 3;
             characterController.radius = 1.5f;
-
-            Destroy(letterObjectView.gameObject.GetComponent<Hangable>());
+            
             var pos = letterObjectView.transform.position;
             pos.y = 10;
             letterObjectView.transform.position = pos;
@@ -145,7 +141,7 @@ namespace EA4S.FastCrowd
                 }
 
                 if (onDropped != null)
-                    onDropped(letterObjectView.Model.Data, result);
+                    onDropped(letterObjectView.Data, result);
             };
         }
 

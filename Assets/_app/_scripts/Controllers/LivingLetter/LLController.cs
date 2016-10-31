@@ -16,30 +16,27 @@ namespace EA4S
             Data = _data;
         }
 
+        public float walkingSpeed;
+        public bool crouch;
+        public bool falling;
+        public bool jumping;
+        public bool fear;
+        public bool hooraying;
+
         #region States
 
-        /// <summary>
-        /// Old State.
-        /// </summary>
-        public LLAnimationStates OldState = LLAnimationStates.LL_idle_1;
-
-        /// <summary>
-        /// State
-        /// </summary>
         public LLAnimationStates State {
             get { return state; }
             set {
                 if (state != value) {
-                    if(OnStateChanged != null)
-                        OnStateChanged(state, value);
-                    OldState = state;
+                    var oldState = state;
                     state = value;
-                } 
-                //else
-                //    state = value;
+                    if (OnStateChanged != null)
+                        OnStateChanged(oldState, state);
+                }
             }
         }
-        private LLAnimationStates state = LLAnimationStates.LL_idle_1;
+        private LLAnimationStates state = LLAnimationStates.LL_idle;
 
         #endregion
 
@@ -48,89 +45,15 @@ namespace EA4S
 
         public StateEvent OnStateChanged;
         #endregion
-
-        ///// <summary>
-        ///// Called at any State variation.
-        ///// </summary>
-        ///// <param name="_oldState"></param>
-        ///// <param name="_newState"></param>
-        //protected virtual void OnStateChanged(LetterObjectState _oldState, LetterObjectState _newState) {
-        //    switch (_newState) {
-        //        case LetterObjectState.Idle_State:
-
-        //            break;
-        //        case LetterObjectState.Run_State:
-
-        //            break;
-        //        case LetterObjectState.Grab_State:
-
-        //            break;
-        //        default:
-        //            Debug.Log("State not found");
-        //            break;
-        //    }
-        //}
     }
 
     public enum LLAnimationStates {
-        // Idle
-        //LL_idle = 0, // Generic idle
-        LL_idle_1 = 1,
-        LL_idle_2 = 2,
-        LL_idle_3 = 3,
-        LL_idle_4 = 4,
-        // LL_idle_5 = 5,
-        // Walk or run
-        LL_walk = 10, // Generic walk
-        // LL_walk_L = 15,
-        // LL_walk_R = 16,
-        // LL_run = 21, // Generic run
-        LL_run_happy = 22,
-        LL_run_fear = 24,
-        //LL_run_fear_L = 25,
-        //LL_run_fear_R = 26,
-        // Drag
-        LL_drag_idle = 30,
-        // Vertical situations
-        LL_jump = 41,
-        LL_jump_loop = 42,
-        LL_fall_down = 43,
-        LL_land = 45,
-        //LL_standup = 48,
-        // Dance
-        LL_dancing_1 = 51, // Generic dancing
-        LL_dancing_2 = 52,
-        LL_dancing_3 = 53,
-        LL_dancing_4 = 54,
-        LL_dancing_5 = 55,
-        LL_twirl = 56,
-        LL_turn_180 = 57,
-        LL_dancing_win = 58,
-        // Win/Lose or extra espressions
-        // LL_win = 60,
-        LL_horray = 61,
-        LL_highfive = 63,
-        LL_lose = 65,
-        //LL_get_angry = 67, // Generic angry expression
-        LL_get_angry_1 = 68,
-        LL_get_angry_2 = 69,
-        // Balance
-        //LL_balance = 70,
-        //LL_balance_L = 75,
-        //LL_balance_R = 76,
-        // Ride Rocket
-        LL_ride_rocket_idle = 81,
-        LL_ride_rocket_horray = 85,
-        // Crouching
-        LL_crouching = 91,
-        LL_crouching_up = 93,
-
-        // to be check
-        FrontOfCamera_State,
-        GoOut_State,
-        BumpOut_State,
-
-        // deprecated
-        Ninja_State,
+        LL_idle,
+        LL_walking,
+        LL_dragging,
+        LL_hanging,
+        LL_dancing,
+        LL_rocketing,
+        LL_limbless
     }
 }
