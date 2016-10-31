@@ -14,6 +14,7 @@ namespace EA4S
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
+        private LetterWordHelper lwHelper;
 
         string[] bodyPartsWords;
 
@@ -30,6 +31,7 @@ namespace EA4S
             I = this;
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
+            this.lwHelper = dbManager.letterWordHelper;
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile);
@@ -91,7 +93,7 @@ namespace EA4S
 
         public LL_LetterData GimmeARandomLetter()
         {
-            var RandomLetterData = dbManager.GetLetterDataByRandom();
+            var RandomLetterData = SelectOne(dbManager.GetAllLetterData()); // dbManager.GetLetterDataByRandom();
             return new LL_LetterData(RandomLetterData.GetId());
         }
 
@@ -105,7 +107,7 @@ namespace EA4S
         public List<Db.LetterData> GimmeSimilarLetters(Db.LetterData letter, int howMany)
         {
             List<Db.LetterData> returnList = new List<Db.LetterData>();
-            returnList.Add(dbManager.GetLetterDataByRandom());
+            returnList.Add(SelectOne(dbManager.GetAllLetterData()));
             return returnList;
         }
 
@@ -170,13 +172,35 @@ namespace EA4S
 
         public List<LetterData> GetLettersInWord(string wordId)
         {
-            WordData wordData = dbManager.GetWordDataById(wordId);
-            var letter_ids_list = new List<string>(wordData.Letters);
-            List<LetterData> list = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
-            return list;
+            return lwHelper.GetLettersInWord(wordId);
+        }
+
+        public List<LetterData> SelectLettersInWord(int nToSelect, string wordId)
+        {
+            return Select(2, lwHelper.GetLettersInWord(wordId));
+        }
+
+        public List<WordData> SelectWordsWithLetters(int nToSelect, params string[] letters)
+        {
+            return Select(2, lwHelper.GetWordsWithLetters(letters));
+        }
+
+
+        // todo: these could be set as list extensions
+        public List<T> Select<T>(int numberToSelect, List<T> all_list)
+        {
+            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, numberToSelect);
+        }
+
+        public T SelectOne<T>(List<T> all_list)
+        {
+            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, 1)[0];
         }
 
         #endregion
+
+
+
 
         #region MiniGames queries
 

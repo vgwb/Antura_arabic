@@ -14,11 +14,16 @@ namespace EA4S
         private readonly Database staticDb;
         private DBService dynamicDb;
 
+        // Helpers
+        public LetterWordHelper letterWordHelper;
+
         // Profile
         //bool dbLoaded;
 
         public DatabaseManager(bool useTestDatabase)
         {
+            this.letterWordHelper = new LetterWordHelper(this);
+
             var staticDbNameToLoad = STATIC_DATABASE_NAME;
             if (useTestDatabase) {
                 staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;
@@ -292,11 +297,11 @@ namespace EA4S
             return staticDb.GetById<LetterData>(staticDb.GetLetterTable(), id);
         }
 
-        public LetterData GetLetterDataByRandom()
+        /*public LetterData GetLetterDataByRandom()
         {
             var letterslist = GetAllLetterData();
             return GenericUtilities.GetRandom(letterslist);
-        }
+        }*/
 
         public PhraseData GetPhraseDataById(string id)
         {
