@@ -13,6 +13,8 @@ namespace EA4S.Scanner
 
 		public float slideSpeed = 2f;
 
+        /*
+
 		private LLStatus status;
 		// Use this for initialization
 		void Start () {
@@ -82,5 +84,7 @@ namespace EA4S.Scanner
 				}
 			}
 		}
+
+    */
 	}
 }
