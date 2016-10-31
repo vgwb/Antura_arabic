@@ -416,11 +416,33 @@ MonoBehaviour:
       Scene: app_Assessment
   letterTable:
     innerList:
+    - Id: alef
+      Number: 1
+      Title: alif
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 1
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: aa
+      Isolated: "\u0627"
+      Initial: "\u0627"
+      Medial: "\uFE8E"
+      Final: "\uFE8E"
+      Isolated_Unicode: 0627
+      Initial_Unicode: FE8D
+      Medial_Unicode: FE8E
+      Final_Unicode: FE8E
     - Id: baa
       Number: 2
       Title: "b\u0101\u2019"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 1
       Sound: b
@@ -432,171 +454,14 @@ MonoBehaviour:
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-    - Id: jiim
-      Number: 5
-      Title: "j\u012Bm"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: j
-      Isolated: "\u062C\u200E"
-      Initial: "\u062C\u0640\u200E"
-      Medial: "\u0640\u062C\u0640\u200E"
-      Final: "\u0640\u062C\u200E"
-      Isolated_Unicode: 062C
-      Initial_Unicode: FE9F
-      Medial_Unicode: FEA0
-      Final_Unicode: FE9E
-    - Id: hah
-      Number: 6
-      Title: "\u1E25\u0101\u2019"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: H
-      Isolated: "\u062D\u200E"
-      Initial: "\u062D\u0640\u200E"
-      Medial: "\u0640\u062D\u0640\u200E"
-      Final: "\u0640\u062D\u200E"
-      Isolated_Unicode: 062D
-      Initial_Unicode: FEA3
-      Medial_Unicode: FEA4
-      Final_Unicode: FEA2
-    - Id: khaa
-      Number: 7
-      Title: "kh\u0101\u2019"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: kh
-      Isolated: "\u062E\u200E"
-      Initial: "\u062E\u0640\u200E"
-      Medial: "\u0640\u062E\u0640\u200E"
-      Final: "\u0640\u062E\u200E"
-      Isolated_Unicode: 062E
-      Initial_Unicode: FEA7
-      Medial_Unicode: FEA8
-      Final_Unicode: FEA6
-    - Id: ayn
-      Number: 18
-      Title: "\u2018ayn"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: x
-      Isolated: "\u0639\u200E"
-      Initial: "\u0639\u0640\u200E"
-      Medial: "\u0640\u0639\u0640\u200E"
-      Final: "\u0640\u0639\u200E"
-      Isolated_Unicode: 0639
-      Initial_Unicode: FECB
-      Medial_Unicode: FECC
-      Final_Unicode: FECA
-    - Id: ghayn
-      Number: 19
-      Title: ghayn
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: gh
-      Isolated: "\u063A\u200E"
-      Initial: "\u063A\u0640\u200E"
-      Medial: "\u0640\u063A\u0640\u200E"
-      Final: "\u0640\u063A\u200E"
-      Isolated_Unicode: 063A
-      Initial_Unicode: FECF
-      Medial_Unicode: FED0
-      Final_Unicode: FECE
-    - Id: faa
-      Number: 20
-      Title: "f\u0101\u2019"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: f
-      Isolated: "\u0641\u200E"
-      Initial: "\u0641\u0640\u200E"
-      Medial: "\u0640\u0641\u0640\u200E"
-      Final: "\u0640\u0641\u200E"
-      Isolated_Unicode: 0641
-      Initial_Unicode: FED3
-      Medial_Unicode: FED4
-      Final_Unicode: FED2
-    - Id: qaaf
-      Number: 21
-      Title: "q\u0101f"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: q
-      Isolated: "\u0642\u200E"
-      Initial: "\u0642\u0640\u200E"
-      Medial: "\u0640\u0642\u0640\u200E"
-      Final: "\u0640\u0642\u200E"
-      Isolated_Unicode: 0642
-      Initial_Unicode: FED7
-      Medial_Unicode: FED8
-      Final_Unicode: FED6
-    - Id: kaaf
-      Number: 22
-      Title: "k\u0101f"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: k
-      Isolated: "\u0643\u200E"
-      Initial: "\u0643\u0640\u200E"
-      Medial: "\u0640\u0643\u0640\u200E"
-      Final: "\u0640\u0643\u200E"
-      Isolated_Unicode: 0643
-      Initial_Unicode: FEDB
-      Medial_Unicode: FEDC
-      Final_Unicode: FEDA
-    - Id: miim
-      Number: 24
-      Title: "m\u012Bm"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: m
-      Isolated: "\u0645\u200E"
-      Initial: "\u0645\u0640\u200E"
-      Medial: "\u0640\u0645\u0640\u200E"
-      Final: "\u0640\u0645\u200E"
-      Isolated_Unicode: 0645
-      Initial_Unicode: FEE3
-      Medial_Unicode: FEE4
-      Final_Unicode: FEE2
-    - Id: haa
-      Number: 26
-      Title: "h\u0101\u2019"
-      Kind: 1
-      Type: 1
-      Notes: 
-      SunMoon: 1
-      Sound: h
-      Isolated: "\u0647\u200E"
-      Initial: "\u0647\u0640\u200E"
-      Medial: "\u0640\u0647\u0640\u200E"
-      Final: "\u0640\u0647\u200E"
-      Isolated_Unicode: 0647
-      Initial_Unicode: FEEB
-      Medial_Unicode: FEEC
-      Final_Unicode: FEEA
     - Id: tah
       Number: 3
       Title: "t\u0101\u2019"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: t
@@ -612,7 +477,10 @@ MonoBehaviour:
       Number: 4
       Title: "th\u0101\u2019"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: th
@@ -624,11 +492,71 @@ MonoBehaviour:
       Initial_Unicode: FE9B
       Medial_Unicode: FE9C
       Final_Unicode: FE9A
+    - Id: jiim
+      Number: 5
+      Title: "j\u012Bm"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: j
+      Isolated: "\u062C\u200E"
+      Initial: "\u062C\u0640\u200E"
+      Medial: "\u0640\u062C\u0640\u200E"
+      Final: "\u0640\u062C\u200E"
+      Isolated_Unicode: 062C
+      Initial_Unicode: FE9F
+      Medial_Unicode: FEA0
+      Final_Unicode: FE9E
+    - Id: hah
+      Number: 6
+      Title: "\u1E25\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: H
+      Isolated: "\u062D\u200E"
+      Initial: "\u062D\u0640\u200E"
+      Medial: "\u0640\u062D\u0640\u200E"
+      Final: "\u0640\u062D\u200E"
+      Isolated_Unicode: 062D
+      Initial_Unicode: FEA3
+      Medial_Unicode: FEA4
+      Final_Unicode: FEA2
+    - Id: khaa
+      Number: 7
+      Title: "kh\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: kh
+      Isolated: "\u062E\u200E"
+      Initial: "\u062E\u0640\u200E"
+      Medial: "\u0640\u062E\u0640\u200E"
+      Final: "\u0640\u062E\u200E"
+      Isolated_Unicode: 062E
+      Initial_Unicode: FEA7
+      Medial_Unicode: FEA8
+      Final_Unicode: FEA6
     - Id: daal
       Number: 8
       Title: "d\u0101l"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: d
@@ -644,7 +572,10 @@ MonoBehaviour:
       Number: 9
       Title: "dh\u0101l"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: dh
@@ -660,7 +591,10 @@ MonoBehaviour:
       Number: 10
       Title: "r\u0101\u2019"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: r
@@ -676,7 +610,10 @@ MonoBehaviour:
       Number: 11
       Title: "zayn / z\u0101y / z\u0101\u2019"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: z
@@ -692,7 +629,10 @@ MonoBehaviour:
       Number: 12
       Title: "s\u012Bn"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: s
@@ -708,7 +648,10 @@ MonoBehaviour:
       Number: 13
       Title: "sh\u012Bn"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: sh
@@ -724,8 +667,11 @@ MonoBehaviour:
       Number: 14
       Title: "\u1E63\u0101d"
       Kind: 1
-      Type: 2
-      Notes: Consonant
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
       SunMoon: 2
       Sound: S
       Isolated: "\u0635\u200E"
@@ -740,8 +686,11 @@ MonoBehaviour:
       Number: 15
       Title: "\u1E0D\u0101d"
       Kind: 1
-      Type: 2
-      Notes: Consonant
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
       SunMoon: 2
       Sound: D
       Isolated: "\u0636\u200E"
@@ -756,8 +705,11 @@ MonoBehaviour:
       Number: 16
       Title: "\u1E6D\u0101\u2019"
       Kind: 1
-      Type: 2
-      Notes: Consonant
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
       SunMoon: 2
       Sound: T
       Isolated: "\u0637\u200E"
@@ -772,8 +724,11 @@ MonoBehaviour:
       Number: 17
       Title: "\u1E0Dh\u0101\u2019"
       Kind: 1
-      Type: 2
-      Notes: Consonant
+      BaseLetter: 
+      Symbol: 
+      Type: 3
+      Tag: Consonant
+      Notes: 
       SunMoon: 2
       Sound: DH
       Isolated: "\u0638\u200E"
@@ -784,11 +739,109 @@ MonoBehaviour:
       Initial_Unicode: FEC7
       Medial_Unicode: FEC8
       Final_Unicode: FEC6
+    - Id: ayn
+      Number: 18
+      Title: "\u2018ayn"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: x
+      Isolated: "\u0639\u200E"
+      Initial: "\u0639\u0640\u200E"
+      Medial: "\u0640\u0639\u0640\u200E"
+      Final: "\u0640\u0639\u200E"
+      Isolated_Unicode: 0639
+      Initial_Unicode: FECB
+      Medial_Unicode: FECC
+      Final_Unicode: FECA
+    - Id: ghayn
+      Number: 19
+      Title: ghayn
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: gh
+      Isolated: "\u063A\u200E"
+      Initial: "\u063A\u0640\u200E"
+      Medial: "\u0640\u063A\u0640\u200E"
+      Final: "\u0640\u063A\u200E"
+      Isolated_Unicode: 063A
+      Initial_Unicode: FECF
+      Medial_Unicode: FED0
+      Final_Unicode: FECE
+    - Id: faa
+      Number: 20
+      Title: "f\u0101\u2019"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: f
+      Isolated: "\u0641\u200E"
+      Initial: "\u0641\u0640\u200E"
+      Medial: "\u0640\u0641\u0640\u200E"
+      Final: "\u0640\u0641\u200E"
+      Isolated_Unicode: 0641
+      Initial_Unicode: FED3
+      Medial_Unicode: FED4
+      Final_Unicode: FED2
+    - Id: qaaf
+      Number: 21
+      Title: "q\u0101f"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: q
+      Isolated: "\u0642\u200E"
+      Initial: "\u0642\u0640\u200E"
+      Medial: "\u0640\u0642\u0640\u200E"
+      Final: "\u0640\u0642\u200E"
+      Isolated_Unicode: 0642
+      Initial_Unicode: FED7
+      Medial_Unicode: FED8
+      Final_Unicode: FED6
+    - Id: kaaf
+      Number: 22
+      Title: "k\u0101f"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: k
+      Isolated: "\u0643\u200E"
+      Initial: "\u0643\u0640\u200E"
+      Medial: "\u0640\u0643\u0640\u200E"
+      Final: "\u0640\u0643\u200E"
+      Isolated_Unicode: 0643
+      Initial_Unicode: FEDB
+      Medial_Unicode: FEDC
+      Final_Unicode: FEDA
     - Id: laam
       Number: 23
       Title: "l\u0101m"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: l
@@ -800,11 +853,33 @@ MonoBehaviour:
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
+    - Id: miim
+      Number: 24
+      Title: "m\u012Bm"
+      Kind: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
+      Notes: 
+      SunMoon: 1
+      Sound: m
+      Isolated: "\u0645\u200E"
+      Initial: "\u0645\u0640\u200E"
+      Medial: "\u0640\u0645\u0640\u200E"
+      Final: "\u0640\u0645\u200E"
+      Isolated_Unicode: 0645
+      Initial_Unicode: FEE3
+      Medial_Unicode: FEE4
+      Final_Unicode: FEE2
     - Id: nuun
       Number: 25
       Title: "n\u016Bn"
       Kind: 1
-      Type: 1
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
       SunMoon: 2
       Sound: n
@@ -816,27 +891,33 @@ MonoBehaviour:
       Initial_Unicode: FEE7
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
-    - Id: alef
-      Number: 1
-      Title: alif
+    - Id: haa
+      Number: 26
+      Title: "h\u0101\u2019"
       Kind: 1
-      Type: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 2
+      Tag: 
       Notes: 
-      SunMoon: 0
-      Sound: aa
-      Isolated: "\u0627"
-      Initial: "\u0627"
-      Medial: "\uFE8E"
-      Final: "\uFE8E"
-      Isolated_Unicode: 0627
-      Initial_Unicode: FE8D
-      Medial_Unicode: FE8E
-      Final_Unicode: FE8E
+      SunMoon: 1
+      Sound: h
+      Isolated: "\u0647\u200E"
+      Initial: "\u0647\u0640\u200E"
+      Medial: "\u0640\u0647\u0640\u200E"
+      Final: "\u0640\u0647\u200E"
+      Isolated_Unicode: 0647
+      Initial_Unicode: FEEB
+      Medial_Unicode: FEEC
+      Final_Unicode: FEEA
     - Id: waaw
       Number: 27
       Title: "w\u0101w"
       Kind: 1
-      Type: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 1
+      Tag: 
       Notes: 
       SunMoon: 0
       Sound: w, uu
@@ -852,7 +933,10 @@ MonoBehaviour:
       Number: 28
       Title: "y\u0101\u2019"
       Kind: 1
-      Type: 3
+      BaseLetter: 
+      Symbol: 
+      Type: 1
+      Tag: 
       Notes: 
       SunMoon: 0
       Sound: y, ii
@@ -864,11 +948,204 @@ MonoBehaviour:
       Initial_Unicode: FEF3
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
+    - Id: hamza
+      Number: 0
+      Title: hamza
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: applied just on the long vowels Alef, waaw, and yaa
+      SunMoon: 0
+      Sound: 
+      Isolated: "\u0621"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: dammah
+      Number: 0
+      Title: "\u1E0Dammah"
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: short vowel
+      SunMoon: 0
+      Sound: u
+      Isolated: "\u0640\u064F"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: dammah_tanwin
+      Number: 0
+      Title: dammah tanwin
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: double dammah
+      SunMoon: 0
+      Sound: 
+      Isolated: "-\u064C"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: fathah
+      Number: 0
+      Title: "fat\u1E25ah"
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: short vowel
+      SunMoon: 0
+      Sound: a
+      Isolated: "\u0640\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: fathah_tanwin
+      Number: 0
+      Title: "fat\u1E25ah tanwin"
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: double fathah
+      SunMoon: 0
+      Sound: 
+      Isolated: "-\u064B"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: kasrah
+      Number: 0
+      Title: kasrah
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: short vowel
+      SunMoon: 0
+      Sound: i
+      Isolated: "\u0640\u0650"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: kasrah_tanwin
+      Number: 0
+      Title: kasrah tanwin
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: double kasrah
+      SunMoon: 0
+      Sound: 
+      Isolated: "-\u064D"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: maddah
+      Number: 0
+      Title: maddah
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: applied just on the long vowel Alef
+      SunMoon: 0
+      Sound: aa
+      Isolated: "\u0640\u0653"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: shaddah
+      Number: 0
+      Title: shaddah
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: doubling the consonant sound
+      SunMoon: 0
+      Sound: 
+      Isolated: "-\u0651"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: sukun
+      Number: 0
+      Title: sukun
+      Kind: 2
+      BaseLetter: 
+      Symbol: 
+      Type: 4
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: mute
+      Isolated: "-\u0652"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
     - Id: alef_hamza_hi
       Number: 0
       Title: alef hamza (hi)
-      Kind: 2
-      Type: 3
+      Kind: 3
+      BaseLetter: alef
+      Symbol: hamza
+      Type: 1
+      Tag: 
       Notes: variation of Alef
       SunMoon: 0
       Sound: Aa
@@ -883,8 +1160,11 @@ MonoBehaviour:
     - Id: alef_hamza_low
       Number: 0
       Title: alef hamza (low)
-      Kind: 2
-      Type: 3
+      Kind: 3
+      BaseLetter: alef
+      Symbol: hamza
+      Type: 1
+      Tag: 
       Notes: variation of Alef
       SunMoon: 0
       Sound: Aa
@@ -896,11 +1176,52 @@ MonoBehaviour:
       Initial_Unicode: FE83
       Medial_Unicode: FE84
       Final_Unicode: FE84
+    - Id: alef_maqsura
+      Number: 0
+      Title: alef maqsura
+      Kind: 4
+      BaseLetter: alef
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: dotless yaa
+      SunMoon: 0
+      Sound: a
+      Isolated: "\u0649"
+      Initial: 
+      Medial: 
+      Final: "\u0640\u0649"
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: alef_maqsura_hamza
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: alef
+      Symbol: 
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: "\u0626"
+      Initial: "\uFE8B"
+      Medial: 
+      Final: 
+      Isolated_Unicode: FE89
+      Initial_Unicode: FE8B
+      Medial_Unicode: FE8C
+      Final_Unicode: FE8A
     - Id: waaw_hamza
       Number: 0
       Title: 
-      Kind: 2
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
       Type: 0
+      Tag: 
       Notes: 
       SunMoon: 0
       Sound: 
@@ -915,8 +1236,11 @@ MonoBehaviour:
     - Id: yaa_hamza
       Number: 0
       Title: 
-      Kind: 2
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
       Type: 0
+      Tag: 
       Notes: 
       SunMoon: 0
       Sound: 
@@ -928,204 +1252,15 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: alef_maqsura_hamza
-      Number: 0
-      Title: 
-      Kind: 2
-      Type: 0
-      Notes: 
-      SunMoon: 0
-      Sound: 
-      Isolated: "\u0626"
-      Initial: "\uFE8B"
-      Medial: 
-      Final: 
-      Isolated_Unicode: FE89
-      Initial_Unicode: FE8B
-      Medial_Unicode: FE8C
-      Final_Unicode: FE8A
-    - Id: fathah
-      Number: 0
-      Title: "fat\u1E25ah"
-      Kind: 3
-      Type: 4
-      Notes: short vowel
-      SunMoon: 0
-      Sound: a
-      Isolated: "\u0640\u064E"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: kasrah
-      Number: 0
-      Title: kasrah
-      Kind: 3
-      Type: 4
-      Notes: short vowel
-      SunMoon: 0
-      Sound: i
-      Isolated: "\u0640\u0650"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: dammah
-      Number: 0
-      Title: "\u1E0Dammah"
-      Kind: 3
-      Type: 4
-      Notes: short vowel
-      SunMoon: 0
-      Sound: u
-      Isolated: "\u0640\u064F"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: maddah
-      Number: 0
-      Title: maddah
-      Kind: 3
-      Type: 0
-      Notes: applied just on the long vowel Alef
-      SunMoon: 0
-      Sound: aa
-      Isolated: "\u0640\u0653"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: hamza
-      Number: 0
-      Title: hamza
-      Kind: 3
-      Type: 0
-      Notes: applied just on the long vowels Alef, waaw, and yaa
-      SunMoon: 0
-      Sound: 
-      Isolated: "\u0621"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: sukun
-      Number: 0
-      Title: sukun
-      Kind: 3
-      Type: 4
-      Notes: 
-      SunMoon: 0
-      Sound: mute
-      Isolated: "-\u0652"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: fathah_tanwin
-      Number: 0
-      Title: "fat\u1E25ah tanwin"
-      Kind: 3
-      Type: 4
-      Notes: double fathah
-      SunMoon: 0
-      Sound: 
-      Isolated: "-\u064B"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: dammah_tanwin
-      Number: 0
-      Title: dammah tanwin
-      Kind: 3
-      Type: 4
-      Notes: double dammah
-      SunMoon: 0
-      Sound: 
-      Isolated: "-\u064C"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: kasrah_tanwin
-      Number: 0
-      Title: kasrah tanwin
-      Kind: 3
-      Type: 4
-      Notes: double kasrah
-      SunMoon: 0
-      Sound: 
-      Isolated: "-\u064D"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: shaddah
-      Number: 0
-      Title: shaddah
-      Kind: 3
-      Type: 4
-      Notes: doubling the consonant sound
-      SunMoon: 0
-      Sound: 
-      Isolated: "-\u0651"
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: alef_maqsura
-      Number: 0
-      Title: alef maqsura
-      Kind: 4
-      Type: 0
-      Notes: dotless yaa
-      SunMoon: 0
-      Sound: a
-      Isolated: "\u0649"
-      Initial: 
-      Medial: 
-      Final: "\u0640\u0649"
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
     - Id: tah_marbuta
       Number: 0
       Title: taa marbuta
       Kind: 4
+      BaseLetter: tah
+      Symbol: 
       Type: 0
-      Notes: variation of taa
+      Tag: 
+      Notes: variation of tah
       SunMoon: 0
       Sound: a
       Isolated: "\uFFFD\u0629"
@@ -1139,8 +1274,11 @@ MonoBehaviour:
     - Id: laam_alef
       Number: 0
       Title: laam alef
-      Kind: 2
+      Kind: 3
+      BaseLetter: 
+      Symbol: 
       Type: 0
+      Tag: 
       Notes: combination of laam & alef together
       SunMoon: 0
       Sound: laa
@@ -1152,2807 +1290,3146 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: FEFC
+    - Id: tah_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: tah
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: "\u062A\u064E"
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: ayn_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: ayn
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
   wordTable:
     innerList:
     - Id: active
       Kind: 1
-      Category: 0
+      Category: 1
+      Form: 0
+      Article: 0
       Arabic: "\u0646\u0634\u064A\u0637"
       Letters:
       - "\u0646\u0640 \u0640\u0634\u0640 \u0640\u064A\u0640 \u0640\u0637"
-      Symbols: []
       Difficulty: 0
+      Drawing: 0
+    - Id: agreed
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0648\u0627\u0641\u064E\u0642\u064E"
+      Letters:
+      - "\u0648 \u0627 \u0641\u0640\u064E \u0640\u0642\u064E"
+      Difficulty: 0
+      Drawing: 0
+    - Id: al
+      Kind: 3
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0640"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: anger
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u064A\u0638"
+      Letters:
+      - "\u063A\u0640 \u0640\u064A\u0640 \u0640\u0638"
+      Difficulty: 0
+      Drawing: 0
+    - Id: apple
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0641\u0627\u062D"
+      Letters:
+      - "\u062A\u0640 \u0640\u0641\u0640 \u0640\u0627 \u062D"
+      Difficulty: 0
+      Drawing: 0
+    - Id: apricot
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0634\u0645\u0634"
+      Letters:
+      - "\u0645\u0640 \u0640\u0634\u0640 \u0640\u0645\u0640 \u0640\u0634"
+      Difficulty: 2
+      Drawing: 0
+    - Id: ate
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
+      Letters:
+      - "\u0623\u064E \u0643\u0640\u064E \u0640\u0644\u064E "
+      Difficulty: 0
+      Drawing: 0
+    - Id: aunt_father
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0645\u0629"
+      Letters:
+      - "\u0639\u0640 \u0640\u0645\u0640 \u0640\u0629"
+      Difficulty: 1
+      Drawing: 0
+    - Id: aunt_mother
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0627\u0644\u0629"
+      Letters:
+      - "\u062E\u0640 \u0627 \u0644\u0640 \u0640\u0629"
+      Difficulty: 2
+      Drawing: 0
+    - Id: back
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0638\u0647\u0631"
+      Letters:
+      - "\u0638\u0640 \u0640\u0647\u0640 \u0640\u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: banana
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0648\u0632"
+      Letters:
+      - "\u0645\u0640 \u0640\u0648 \u0632"
+      Difficulty: 1
+      Drawing: 1
+    - Id: bank
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0635\u0631\u0641"
+      Letters:
+      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u0643"
+      Difficulty: 0
+      Drawing: 0
+    - Id: basketball
+      Kind: 4
+      Category: 6
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0633\u0644\u0629"
+      Letters:
+      - "\u0643\u0640 \u0640\u0631 \u0629  \u0627 \u0644\u0640 \u0640\u0633\u0640
+        \u0640\u0644\u0640 \u0640\u0629"
+      Difficulty: 0
+      Drawing: 0
+    - Id: bear
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u062F\u0628"
+      Letters:
+      - "\u062F \u0628"
+      Difficulty: 1
       Drawing: 0
     - Id: beautiful
       Kind: 1
-      Category: 0
+      Category: 8
+      Form: 0
+      Article: 0
       Arabic: "\u062C\u0645\u064A\u0644"
       Letters:
       - "\u062C\u0640 \u0640\u0645\u0640 \u0640\u064A\u0640 \u0640\u0644"
-      Symbols: []
       Difficulty: 0
+      Drawing: 0
+    - Id: bed
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u0631\u0627\u0634"
+      Letters:
+      - "\u0641\u0640 \u0640\u0631 \u0627 \u0634"
+      Difficulty: 0
+      Drawing: 0
+    - Id: believed
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0622\u0645\u064E\u0646\u064E"
+      Letters:
+      - "\u0622 \u0645\u0640 \u0640\u0646"
+      Difficulty: 0
+      Drawing: 0
+    - Id: belly
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0637\u0646"
+      Letters:
+      - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0646"
+      Difficulty: 1
+      Drawing: 0
+    - Id: berry
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0648\u062A"
+      Letters:
+      - "\u062A\u0640 \u0640\u0648 \u062A"
+      Difficulty: 1
       Drawing: 0
     - Id: big
       Kind: 1
-      Category: 0
+      Category: 10
+      Form: 0
+      Article: 0
       Arabic: "\u0643\u0628\u064A\u0631"
       Letters:
       - "\u0643\u0640 \u0640\u0628\u0640 \u0640\u064A\u0640 \u0640\u0631"
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: bird
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0635\u0641\u0648\u0631"
+      Letters:
+      - "\u0639\u0640 \u0640\u0635\u0640 \u0640\u0641\u0640 \u0640\u0648 \u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: book
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u062A\u0627\u0628"
+      Letters:
+      - "\u0643\u0640 \u0640\u062A\u0640 \u0640\u0627 \u0628"
+      Difficulty: 0
+      Drawing: 0
+    - Id: books
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u064F\u062A\u064F\u0628"
+      Letters:
+      - "\u0643\u064F\u0640 \u0640\u062A\u0640\u064F \u0640\u0628"
+      Difficulty: 0
+      Drawing: 0
+    - Id: box
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u0646\u062F\u0648\u0642"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: boy
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u0628\u064A"
+      Letters:
+      - "\u0635\u0640 \u0640\u0628\u0640 \u0640\u064A"
+      Difficulty: 0
+      Drawing: 0
+    - Id: brain
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u062F\u0645\u0627\u063A"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: brave
       Kind: 1
-      Category: 0
+      Category: 1
+      Form: 0
+      Article: 0
       Arabic: "\u0634\u062C\u0627\u0639"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: bread
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0628\u0632"
+      Letters:
+      - "\u062E\u0640 \u0640\u0628\u0640 \u0640\u0632"
+      Difficulty: 1
+      Drawing: 0
+    - Id: breeze
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u0633\u0645\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: broad_bean
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u0648\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: brother
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u062E"
+      Letters:
+      - "\u0623 \u062E"
+      Difficulty: 1
+      Drawing: 0
+    - Id: bulgar
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0631\u063A\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: bus
+      Kind: 4
+      Category: 13
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0627\u0635"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: camel
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u0645\u0644\u064D"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: carpenter
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u062C\u0651\u0627\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: carried
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u064E\u0645\u064E\u0644\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: carrot
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u064E\u0632\u064E\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: cat
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0647\u0631"
+      Letters:
+      - "\u0647\u0640 \u0640\u0631"
+      Difficulty: 1
+      Drawing: 0
+    - Id: caught
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u064E\u0633\u064E\u0643\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: chair
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0631\u0633\u064A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: cheese
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u0628\u0646"
+      Letters:
+      - "\u062C\u0640 \u0640\u0628\u0640 \u0640\u0646"
+      Difficulty: 1
+      Drawing: 0
+    - Id: cherry
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0631\u0632"
+      Letters:
+      - "\u0643\u0640 \u0640\u0631 \u0632"
+      Difficulty: 0
+      Drawing: 0
+    - Id: chest
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u062F\u0631"
+      Letters:
+      - "\u0635\u0640 \u0640\u062F \u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: chickpea
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0645\u0635"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: classroom
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u0641"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: clean
       Kind: 1
-      Category: 0
+      Category: 8
+      Form: 0
+      Article: 0
       Arabic: "\u0646\u0638\u064A\u0641"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: cloud
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u064A\u0645\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: club
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0646\u062A\u062F\u0649"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: cold
       Kind: 1
-      Category: 0
+      Category: 8
+      Form: 0
+      Article: 0
       Arabic: "\u0628\u0631\u062F"
       Letters:
       - "\u0628\u0640 \u0640\u0631 \u062F"
-      Symbols: []
       Difficulty: 1
+      Drawing: 0
+    - Id: cold_food
+      Kind: 1
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0627\u0631\u062F"
+      Letters:
+      - "\u0628\u0640 \u0640\u0627 \u0631 \u062F"
+      Difficulty: 0
       Drawing: 0
     - Id: color_black
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0623\u0633\u0648\u062F"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_blue
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0623\u0632\u0631\u0642"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_brown
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0628\u064F\u0646\u064A"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_gold
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0630\u0647\u0628\u064A"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_green
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0623\u062E\u0636\u0631"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_orange
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_pink
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0648\u0631\u062F\u064A"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_purple
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0628\u0646\u0641\u0633\u062C\u064A"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_red
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0623\u062D\u0645\u0631"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_silver
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0641\u0636\u064A"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_white
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0623\u0628\u064A\u0636"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: color_yellow
       Kind: 1
-      Category: 1
+      Category: 15
+      Form: 0
+      Article: 0
       Arabic: "\u0623\u0635\u0641\u0631"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
+      Drawing: 0
+    - Id: copybook
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u062F\u0641\u062A\u064E\u0631"
+      Letters:
+      - "\u062F \u0641\u0640 \u0640\u062A\u0640 \u0640\u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: costume
+      Kind: 4
+      Category: 16
+      Form: 0
+      Article: 0
+      Arabic: "\u0644\u0650\u0628\u0627\u0633\u0627\u064B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: cried
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0643\u0649"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: cucumber
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u064A\u0627\u0631"
+      Letters:
+      - "\u062E\u0640 \u0640\u064A\u0640 \u0640\u0627 \u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: cupboard
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0632\u0627\u0646\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: day
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u064A\u0648\u0645"
+      Letters:
+      - "\u064A\u0640 \u0640\u0648 \u0645"
+      Difficulty: 0
+      Drawing: 0
+    - Id: day_friday
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062C\u0645\u0639\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: day_monday
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0627\u062B\u0646\u064A\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: day_saturday
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0633\u0628\u062A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: day_sunday
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0623\u062D\u062F"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: day_thursday
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062E\u0645\u064A\u0633"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: day_tuesday
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u0627\u0621"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: day_wednesday
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: deer
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u0632\u0627\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: delicious
+      Kind: 1
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0644\u0648"
+      Letters:
+      - "\u062D\u0640 \u0640\u0644\u0640 \u0640\u0648"
+      Difficulty: 1
+      Drawing: 0
+    - Id: doctor
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0637\u064E\u0628\u064A\u0628"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: dog
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0644\u0628"
+      Letters:
+      - "\u0643\u0640 \u0640\u0644\u0640 \u0640\u0628"
+      Difficulty: 1
+      Drawing: 0
+    - Id: door
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0627\u0628"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: drank
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: duck
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0637"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: eagle
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u0633\u0631"
+      Letters:
+      - "\u0646\u0640 \u0640\u0633\u0640 \u0640\u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: ear
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0630\u0646"
+      Letters:
+      - "\u0627 \u062F \u0646"
+      Difficulty: 1
+      Drawing: 0
+    - Id: elephant
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u064A\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: engineer
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0647\u0646\u062F\u0633"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: eye
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u064A\u0646"
+      Letters:
+      - "\u0639\u0640 \u0640\u064A\u0640 \u0640\u0646"
+      Difficulty: 1
+      Drawing: 0
+    - Id: face
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0648\u062C\u0647"
+      Letters:
+      - "\u0648 \u062C\u0640 \u0640\u0647"
+      Difficulty: 0
+      Drawing: 0
+    - Id: fall
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0631\u064A\u0641"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: farmer
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u0644\u0627\u062D"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: father
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0627\u0628\u0627"
+      Letters:
+      - "\u0628\u0640 \u0627 \u0628\u0640 \u0627"
+      Difficulty: 1
+      Drawing: 0
+    - Id: field
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0642\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: fig
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u064A\u0646"
+      Letters:
+      - "\u062A\u0640 \u0640\u064A\u0640 \u0640\u0646"
+      Difficulty: 0
+      Drawing: 0
+    - Id: finger
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0625\u0635\u0628\u0639"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: flag
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0644\u064E\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: flapped
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: flew
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0637\u0627\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: flower
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0648\u0631\u062F"
+      Letters:
+      - "\u0648 \u0631 \u062F"
+      Difficulty: 1
+      Drawing: 0
+    - Id: food
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0643\u0644"
+      Letters:
+      - "\u0623 \u0643\u0640 \u0640\u0644"
+      Difficulty: 0
+      Drawing: 0
+    - Id: foot
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0642\u062F\u0645"
+      Letters:
+      - "\u0631 \u062C\u0640 \u0640\u0644"
+      Difficulty: 1
+      Drawing: 0
+    - Id: football
+      Kind: 4
+      Category: 6
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0642\u062F\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: forest
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u0627\u0628\u0629\u064C"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: fridge
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u062B\u0644\u0627\u062C\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: furniture
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u062B\u0627\u062B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: garden
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u064F\u0633\u062A\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: garlic
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062B\u0648\u0645"
+      Letters:
+      - "\u062B\u0640 \u0640\u0648 \u0645"
+      Difficulty: 0
+      Drawing: 0
+    - Id: girl
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0646\u062A"
+      Letters:
+      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062A"
+      Difficulty: 0
+      Drawing: 0
+    - Id: glue
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u064E\u0645\u063A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: granddaughter
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0641\u064A\u062F\u0629"
+      Letters:
+      - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F \u0629"
+      Difficulty: 0
+      Drawing: 0
+    - Id: grandfather
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u062F\u0648"
+      Letters:
+      - "\u062C\u0640 \u0640\u062F \u0648"
+      Difficulty: 1
+      Drawing: 0
+    - Id: grandmother
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u0627\u0646\u0627"
+      Letters:
+      - "\u0646\u0640 \u0627 \u0646\u0640 \u0627"
+      Difficulty: 1
+      Drawing: 0
+    - Id: grandson
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0641\u064A\u062F"
+      Letters:
+      - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F"
+      Difficulty: 0
+      Drawing: 0
+    - Id: grapes
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0646\u0628"
+      Letters:
+      - "\u0639\u0640 \u0640\u0646\u0640 \u0640\u0628"
+      Difficulty: 0
+      Drawing: 0
+    - Id: ground
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0631\u0636"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: hair
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0639\u0631"
+      Letters:
+      - "\u0634\u0640 \u0640\u0639\u0640 \u0640\u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: hand
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u064A\u062F"
+      Letters:
+      - "\u064A\u0640 \u0640\u062F"
+      Difficulty: 1
       Drawing: 0
     - Id: happy
       Kind: 1
-      Category: 0
+      Category: 1
+      Form: 0
+      Article: 0
       Arabic: "\u0633\u0639\u064A\u062F"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: head
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u0623\u0633"
+      Letters:
+      - "\u0631 \u0627 \u0633"
+      Difficulty: 1
+      Drawing: 0
+    - Id: hi
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: hospital
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0633\u062A\u0634\u0641\u0649"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: hot
       Kind: 1
-      Category: 0
+      Category: 8
+      Form: 0
+      Article: 0
       Arabic: "\u062D\u0627\u0631"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: hot_CHECK
       Kind: 1
       Category: 0
+      Form: 0
+      Article: 0
       Arabic: "\u0634\u0648\u0628"
       Letters:
       - "\u0634\u0640 \u0640\u0648 \u0628"
-      Symbols: []
       Difficulty: 1
+      Drawing: 0
+    - Id: hot_food
+      Kind: 1
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u062E\u0646"
+      Letters:
+      - "\u0633\u0640 \u0640\u062E\u0640 \u0640\u0646"
+      Difficulty: 0
+      Drawing: 0
+    - Id: hour
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0627\u0639\u0629"
+      Letters:
+      - "\u0633\u0640 \u0640\u0627 \u0639\u0640 \u0640\u0629"
+      Difficulty: 0
+      Drawing: 0
+    - Id: house
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u064A\u062A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: icecream
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0648\u0638\u0629"
+      Letters:
+      - 
+      Difficulty: 0
       Drawing: 0
     - Id: insistent
       Kind: 1
-      Category: 0
+      Category: 1
+      Form: 0
+      Article: 0
       Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: islands
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u064F\u0632\u064F\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: juice
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u064E\u0635\u064A\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: kid
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0648\u0644\u062F"
+      Letters:
+      - "\u0648 \u0644\u0640 \u0640\u062F"
+      Difficulty: 0
+      Drawing: 0
+    - Id: knowledge
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0650\u0644\u0652\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: laughed
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0636\u064E\u062D\u0650\u0643\u064E"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: lazy
       Kind: 1
-      Category: 0
+      Category: 1
+      Form: 0
+      Article: 0
       Arabic: "\u0643\u0633\u0648\u0644"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: leg
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u0650\u062C\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: lentil
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u062F\u0633"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: light
-      Kind: 1
+      Kind: 4
       Category: 0
+      Form: 0
+      Article: 0
       Arabic: "\u0636\u0648\u0621"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: lion
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0633\u062F"
+      Letters:
+      - "\u0623 \u0633\u0640 \u0640\u062F"
+      Difficulty: 0
+      Drawing: 0
+    - Id: lion_dual
+      Kind: 4
+      Category: 7
+      Form: 1
+      Article: 0
+      Arabic: "\u0623\u0633\u062F\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: lion_plural
+      Kind: 4
+      Category: 7
+      Form: 2
+      Article: 0
+      Arabic: "\u0623\u0633\u0648\u062F\u064C"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: lips
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0641\u0627\u0647"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: man
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u064E\u062C\u064F\u0644\u064D"
+      Letters:
+      - "\u0631 \u062C\u0640 \u0640\u0644"
+      Difficulty: 0
+      Drawing: 0
+    - Id: market
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0648\u0642"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: meat
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0644\u062D\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: melancholy
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0622\u0628\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0647\u0631"
+      Letters:
+      - "\u0634\u0640 \u0640\u0647\u0640 \u0640\u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_april
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u064A\u0633\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_august
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0622\u0628"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_december
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_february
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0628\u0627\u0637"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_january
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_july
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0645\u0648\u0632"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_june
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0632\u064A\u0631\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_march
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0622\u0630\u0627\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_may
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u064A\u0627\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_november
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_october
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: month_september
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u064A\u0644\u0648\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: moon
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0642\u0645\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: mother
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0627\u0645\u0627"
+      Letters:
+      - "\u0645\u0640 \u0627 \u0645\u0640 \u0627"
+      Difficulty: 1
+      Drawing: 0
+    - Id: mountain
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u0628\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: mountain_dual
+      Kind: 4
+      Category: 12
+      Form: 1
+      Article: 0
+      Arabic: "\u062C\u0628\u0644\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: mountain_plural
+      Kind: 4
+      Category: 12
+      Form: 2
+      Article: 0
+      Arabic: "\u062C\u0628\u0627\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: mouse
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u0623\u0631"
+      Letters:
+      - "\u0641\u0640 \u0640\u0627 \u0631"
+      Difficulty: 1
+      Drawing: 0
+    - Id: mouth
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u0645"
+      Letters:
+      - "\u0641\u0640 \u0640\u0645"
+      Difficulty: 1
+      Drawing: 0
+    - Id: nail
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0638\u0641\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: needle
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0625\u0628\u0631\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: nest
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0634"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: nose
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0646\u0641"
+      Letters:
+      - "\u0623 \u0646\u0640 \u0640\u0641"
+      Difficulty: 1
+      Drawing: 0
+    - Id: now
+      Kind: 5
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0622\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_0
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u0641\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_1
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0648\u0627\u062D\u062F"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_10
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0634\u0631\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_11
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u062D\u062F \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_12
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u062B\u0646\u064A \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_13
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062B\u0644\u0627\u062B\u0629 \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_14
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0631\u0628\u0639\u0629 \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_15
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0645\u0633\u0629 \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_16
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u062A\u0629 \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_17
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0628\u0639\u0629 \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_18
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_19
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0633\u0639\u0629 \u0639\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_2
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u062B\u0646\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_20
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0634\u0631\u0648\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_3
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062B\u0644\u0627\u062B\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_4
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0631\u0628\u0639\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_5
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0645\u0633\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_6
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u062A\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_7
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0628\u0639\u0629\u064C"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_8
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_9
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0633\u0639\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o1
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0623\u0648\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o10
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0639\u0627\u0634\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o2
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062B\u0627\u0646\u064A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o3
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062B\u0627\u0644\u062B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o4
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0631\u0627\u0628\u0639"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o5
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062E\u0627\u0645\u0633"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o6
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0633\u0627\u062F\u0633"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o7
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0633\u0627\u0628\u0639"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o8
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062B\u0627\u0645\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: number_o9
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u062A\u0627\u0633\u0639"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: of_course
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0637\u0628\u0639\u0627\u064B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: oil
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0632\u064A\u062A"
+      Letters:
+      - "\u0632 \u064A\u0640 \u0640\u062A"
+      Difficulty: 0
+      Drawing: 0
+    - Id: onion
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0635\u0644"
+      Letters:
+      - "\u0628\u0640 \u0640\u0635\u0640 \u0640\u0644"
+      Difficulty: 0
+      Drawing: 0
+    - Id: OokaDH
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0643\u0627\u0638"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: opened
-      Kind: 1
+      Kind: 2
       Category: 0
+      Form: 0
+      Article: 0
       Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
+      Drawing: 0
+    - Id: oven
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u0631\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: paper
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0648\u0631\u0642"
+      Letters:
+      - "\u0648 \u0631 \u0642"
+      Difficulty: 0
+      Drawing: 0
+    - Id: parrot
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0628\u063A\u0627\u0621"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: pear
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0625\u0646\u062C\u0627\u0635"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: pear_big
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u0645\u062B\u0631\u0649"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: pearl
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0644\u0624\u0644\u0624"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: pencil
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0642\u0644\u0645"
+      Letters:
+      - "\u0642\u0640 \u0640\u0644\u0640 \u0640\u0645"
+      Difficulty: 0
+      Drawing: 0
+    - Id: played
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: plum
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0648\u062E"
+      Letters:
+      - "\u062E\u0640 \u0640\u0648 \u062E"
+      Difficulty: 0
+      Drawing: 0
+    - Id: policeman
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0631\u0637\u064A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: potato
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0637\u0627\u0637\u0627"
+      Letters:
+      - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0627 \u0637\u0640 \u0640\u0627"
+      Difficulty: 0
+      Drawing: 0
+    - Id: rain
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0637\u064E\u0631"
+      Letters:
+      - "\u0645\u0640 \u0640\u0637\u0640 \u0640\u0631"
+      Difficulty: 1
       Drawing: 0
     - Id: rainy
       Kind: 1
-      Category: 0
+      Category: 19
+      Form: 0
+      Article: 0
       Arabic: "\u0645\u0627\u0637\u0631"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: released
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u064E\u0631\u064E\u0643\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: restaurant
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0637\u0639\u064E\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: rice
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u0632"
+      Letters:
+      - "\u0631 \u0632"
+      Difficulty: 1
+      Drawing: 0
+    - Id: river
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u0647\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: river_dual
+      Kind: 4
+      Category: 12
+      Form: 1
+      Article: 0
+      Arabic: "\u0646\u0647\u0631\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: river_plural
+      Kind: 4
+      Category: 12
+      Form: 2
+      Article: 0
+      Arabic: "\u0623\u0646\u0647\u0627\u0631"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: room
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u0631\u0641\u0629"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: sad
       Kind: 1
-      Category: 0
+      Category: 20
+      Form: 0
+      Article: 0
       Arabic: "\u062D\u0632\u064A\u0646"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: safe
       Kind: 1
-      Category: 0
+      Category: 5
+      Form: 0
+      Article: 0
       Arabic: "\u0622\u0645\u0650\u0646\u0652"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: salt
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0650\u0644\u0652\u062D"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: sat
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: saw
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u0623\u0649"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: school
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u062F\u0631\u0633\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: scientist
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0627\u0644\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: scientist_dual
+      Kind: 4
+      Category: 14
+      Form: 1
+      Article: 0
+      Arabic: "\u0639\u0627\u0644\u0645\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: scientist_plural
+      Kind: 4
+      Category: 14
+      Form: 2
+      Article: 0
+      Arabic: "\u0639\u0644\u0645\u0627\u0621"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: scissors
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0642\u0635"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: second
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u062B\u0627\u0646\u064A\u0629"
+      Letters:
+      - "\u062B\u0640 \u0640\u0627 \u0646\u0640 \u0640\u064A\u0640 \u0640\u0629"
+      Difficulty: 0
+      Drawing: 0
+    - Id: shop
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u062F\u0643\u0627\u0646\u064D"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: sister
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u062E\u062A"
+      Letters:
+      - "\u0623 \u062E\u0640 \u0640\u062A"
+      Difficulty: 1
+      Drawing: 0
+    - Id: sky
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0645\u0627\u0621"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: slow
       Kind: 1
-      Category: 0
+      Category: 8
+      Form: 0
+      Article: 0
       Arabic: "\u0628\u0637\u064A\u0621"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: small
       Kind: 1
-      Category: 0
+      Category: 10
+      Form: 0
+      Article: 0
       Arabic: "\u0635\u063A\u064A\u0631"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: snow
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0644\u062C"
+      Letters:
+      - "\u062A\u0640 \u0640\u0644\u0640 \u0640\u062C"
+      Difficulty: 1
+      Drawing: 0
+    - Id: sound
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u0648\u062A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: spring
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u0628\u064A\u0639"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: station
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u062D\u0637\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: studied
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: sugar
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0643\u0631"
+      Letters:
+      - "\u0633\u0640 \u0640\u0643\u0640 \u0640\u0631"
+      Difficulty: 1
+      Drawing: 0
+    - Id: summer
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u064A\u0641"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: sun
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0645\u0633"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: sure
-      Kind: 1
+      Kind: 5
       Category: 0
+      Form: 0
+      Article: 0
       Arabic: "\u0639\u0641\u0648\u0627\u064B"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: table
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u0637\u0627\u0648\u0644\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: tea
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0627\u064A"
+      Letters:
+      - "\u0634\u0640 \u0640\u0627 \u064A"
+      Difficulty: 1
+      Drawing: 0
+    - Id: teacher
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0639\u0644\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: television
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0644\u0641\u0627\u0632"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: thankyou
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0643\u0631\u0627\u064B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_active
+      Kind: 1
+      Category: 1
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0646\u0634\u064A\u0637"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_ball
+      Kind: 4
+      Category: 11
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0643\u0631\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_beautiful
+      Kind: 1
+      Category: 0
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u062C\u0645\u064A\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_coat
+      Kind: 4
+      Category: 16
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0645\u0639\u0637\u0641"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_engineer
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0645\u0647\u0646\u062F\u0633"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_happy
+      Kind: 1
+      Category: 1
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0633\u0639\u064A\u062F"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_hat
+      Kind: 4
+      Category: 16
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0642\u0628\u0639\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_lazy
+      Kind: 1
+      Category: 1
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0643\u0633\u0648\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_player
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0644\u0627\u0639\u0628"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_playground
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0645\u0644\u0639\u0628"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_policeman
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0634\u0631\u0637\u064A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_sad
+      Kind: 1
+      Category: 1
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u062D\u0632\u064A\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_scientist
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0639\u0627\u0644\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_shirt
+      Kind: 4
+      Category: 16
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_shoe
+      Kind: 4
+      Category: 16
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u062D\u0630\u0627\u0621"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_trousers
+      Kind: 4
+      Category: 16
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0628\u0646\u0637\u0627\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_wonderful
+      Kind: 4
+      Category: 8
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0631\u0627\u0626\u0639"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: the_worker
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0639\u0627\u0645\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: tiger
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u0645\u0631"
+      Letters:
+      - "\u0646\u0640 \u0640\u0645\u0640 \u0640\u0631"
+      Difficulty: 0
+      Drawing: 0
+    - Id: today
+      Kind: 5
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u064A\u0648\u0645"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: toilet
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0631\u062D\u0627\u0636"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: tomato
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0646\u062F\u0648\u0631\u0629"
+      Letters:
+      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062F \u0648 \u0631 \u0629"
+      Difficulty: 0
+      Drawing: 0
+    - Id: tomorrow
+      Kind: 5
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u062F\u0627\u064B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: tongue
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0644\u0633\u0627\u0646"
+      Letters:
+      - "\u0644\u0640 \u0640\u0633\u0640 \u0640\u0627 \u0646"
+      Difficulty: 0
+      Drawing: 0
+    - Id: tooth
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0646"
+      Letters:
+      - "\u0633\u0640 \u0640\u0646"
+      Difficulty: 1
+      Drawing: 0
+    - Id: tower
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0631\u062C"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: tree
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u062C\u0631"
+      Letters:
+      - "\u0634\u0640 \u0640\u062C\u0640 \u0640\u0631"
+      Difficulty: 1
+      Drawing: 0
+    - Id: triangle
+      Kind: 4
+      Category: 21
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u062B\u0644\u062B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: uncle_father
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0645"
+      Letters:
+      - "\u0639\u0640 \u0640\u0645"
+      Difficulty: 1
+      Drawing: 0
+    - Id: uncle_mother
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0627\u0644"
+      Letters:
+      - "\u062E\u0640 \u0627 \u0644"
+      Difficulty: 1
+      Drawing: 0
+    - Id: understood
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u064E\u0647\u0650\u0645\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: vegetables
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0636\u0631"
+      Letters:
+      - "\u062E\u0640 \u0640\u0636\u0640 \u0640\u0631"
       Difficulty: 0
       Drawing: 0
     - Id: virtuous
       Kind: 1
-      Category: 0
+      Category: 1
+      Form: 0
+      Article: 0
       Arabic: "\u0646\u0632\u064A\u0647"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: voice
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u0648\u062A"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: walked
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0634\u0649"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: washing_machine
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u0633\u0627\u0644\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: water
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u064A"
+      Letters:
+      - "\u0645\u0640 \u0640\u064A"
+      Difficulty: 1
+      Drawing: 0
+    - Id: watermelon
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0637\u064A\u062E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: welcome
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u0647\u0644\u0627\u064B"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: went
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: whale
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0648\u062A"
+      Letters:
+      - "\u062D\u0640 \u0640\u0648 \u062A"
+      Difficulty: 0
+      Drawing: 0
+    - Id: window
+      Kind: 4
+      Category: 9
+      Form: 0
+      Article: 0
+      Arabic: "\u0646\u0627\u0641\u0630\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: winter
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u062A\u0627\u0621"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: wolf
+      Kind: 4
+      Category: 7
+      Form: 0
+      Article: 0
+      Arabic: "\u0630\u0626\u0628"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: woman
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0631\u0623\u0629"
+      Letters:
+      - "\u0645\u0640 \u0640\u0631 \u0623 \u0629"
+      Difficulty: 0
+      Drawing: 0
+    - Id: won
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: wonderful
       Kind: 1
-      Category: 0
+      Category: 8
+      Form: 0
+      Article: 0
       Arabic: "\u0631\u0627\u0626\u0639"
       Letters:
       - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: of_course
-      Kind: 1
-      Category: 0
-      Arabic: "\u0637\u0628\u0639\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: al
-      Kind: 2
-      Category: 0
-      Arabic: "\u0627\u0644\u0640"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: anger
-      Kind: 3
-      Category: 0
-      Arabic: "\u063A\u064A\u0638"
-      Letters:
-      - "\u063A\u0640 \u0640\u064A\u0640 \u0640\u0638"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: apple
-      Kind: 3
-      Category: 2
-      Arabic: "\u062A\u0641\u0627\u062D"
-      Letters:
-      - "\u062A\u0640 \u0640\u0641\u0640 \u0640\u0627 \u062D"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: apricot
-      Kind: 3
-      Category: 2
-      Arabic: "\u0645\u0634\u0645\u0634"
-      Letters:
-      - "\u0645\u0640 \u0640\u0634\u0640 \u0640\u0645\u0640 \u0640\u0634"
-      Symbols: []
-      Difficulty: 2
-      Drawing: 0
-    - Id: aunt_father
-      Kind: 3
-      Category: 3
-      Arabic: "\u0639\u0645\u0629"
-      Letters:
-      - "\u0639\u0640 \u0640\u0645\u0640 \u0640\u0629"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: aunt_mother
-      Kind: 3
-      Category: 3
-      Arabic: "\u062E\u0627\u0644\u0629"
-      Letters:
-      - "\u062E\u0640 \u0627 \u0644\u0640 \u0640\u0629"
-      Symbols: []
-      Difficulty: 2
-      Drawing: 0
-    - Id: back
-      Kind: 3
-      Category: 4
-      Arabic: "\u0638\u0647\u0631"
-      Letters:
-      - "\u0638\u0640 \u0640\u0647\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: banana
-      Kind: 3
-      Category: 2
-      Arabic: "\u0645\u0648\u0632"
-      Letters:
-      - "\u0645\u0640 \u0640\u0648 \u0632"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 1
-    - Id: bank
-      Kind: 3
-      Category: 5
-      Arabic: "\u0645\u0635\u0631\u0641"
-      Letters:
-      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u0643"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: basketball
-      Kind: 3
-      Category: 6
-      Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0633\u0644\u0629"
-      Letters:
-      - "\u0643\u0640 \u0640\u0631 \u0629  \u0627 \u0644\u0640 \u0640\u0633\u0640
-        \u0640\u0644\u0640 \u0640\u0629"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: bear
-      Kind: 3
-      Category: 7
-      Arabic: "\u062F\u0628"
-      Letters:
-      - "\u062F \u0628"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: bed
-      Kind: 3
-      Category: 8
-      Arabic: "\u0641\u0631\u0627\u0634"
-      Letters:
-      - "\u0641\u0640 \u0640\u0631 \u0627 \u0634"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: belly
-      Kind: 3
-      Category: 4
-      Arabic: "\u0628\u0637\u0646"
-      Letters:
-      - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: berry
-      Kind: 3
-      Category: 2
-      Arabic: "\u062A\u0648\u062A"
-      Letters:
-      - "\u062A\u0640 \u0640\u0648 \u062A"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: bird
-      Kind: 3
-      Category: 7
-      Arabic: "\u0639\u0635\u0641\u0648\u0631"
-      Letters:
-      - "\u0639\u0640 \u0640\u0635\u0640 \u0640\u0641\u0640 \u0640\u0648 \u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: book
-      Kind: 3
-      Category: 8
-      Arabic: "\u0643\u062A\u0627\u0628"
-      Letters:
-      - "\u0643\u0640 \u0640\u062A\u0640 \u0640\u0627 \u0628"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: books
-      Kind: 3
-      Category: 8
-      Arabic: "\u0643\u064F\u062A\u064F\u0628"
-      Letters:
-      - "\u0643\u064F\u0640 \u0640\u062A\u0640\u064F \u0640\u0628"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: box
-      Kind: 3
-      Category: 0
-      Arabic: "\u0635\u0646\u062F\u0648\u0642"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: boy
-      Kind: 3
-      Category: 3
-      Arabic: "\u0635\u0628\u064A"
-      Letters:
-      - "\u0635\u0640 \u0640\u0628\u0640 \u0640\u064A"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: brain
-      Kind: 3
-      Category: 0
-      Arabic: "\u062F\u0645\u0627\u063A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: bread
-      Kind: 3
-      Category: 9
-      Arabic: "\u062E\u0628\u0632"
-      Letters:
-      - "\u062E\u0640 \u0640\u0628\u0640 \u0640\u0632"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: breeze
-      Kind: 3
-      Category: 0
-      Arabic: "\u0646\u0633\u0645\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: broad_bean
-      Kind: 3
-      Category: 0
-      Arabic: "\u0641\u0648\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: brother
-      Kind: 3
-      Category: 3
-      Arabic: "\u0623\u062E"
-      Letters:
-      - "\u0623 \u062E"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: bulgar
-      Kind: 3
-      Category: 0
-      Arabic: "\u0628\u0631\u063A\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: bus
-      Kind: 3
-      Category: 10
-      Arabic: "\u0628\u0627\u0635"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: camel
-      Kind: 3
-      Category: 7
-      Arabic: "\u062C\u0645\u0644\u064D"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: carpenter
-      Kind: 3
-      Category: 11
-      Arabic: "\u0646\u062C\u0651\u0627\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: carrot
-      Kind: 3
-      Category: 9
-      Arabic: "\u062C\u0632\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: cat
-      Kind: 3
-      Category: 7
-      Arabic: "\u0647\u0631"
-      Letters:
-      - "\u0647\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: chair
-      Kind: 3
-      Category: 8
-      Arabic: "\u0643\u0631\u0633\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: cheese
-      Kind: 3
-      Category: 9
-      Arabic: "\u062C\u0628\u0646"
-      Letters:
-      - "\u062C\u0640 \u0640\u0628\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: cherry
-      Kind: 3
-      Category: 2
-      Arabic: "\u0643\u0631\u0632"
-      Letters:
-      - "\u0643\u0640 \u0640\u0631 \u0632"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: chest
-      Kind: 3
-      Category: 4
-      Arabic: "\u0635\u062F\u0631"
-      Letters:
-      - "\u0635\u0640 \u0640\u062F \u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: chickpea
-      Kind: 3
-      Category: 0
-      Arabic: "\u062D\u0645\u0635"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: classroom
-      Kind: 3
-      Category: 0
-      Arabic: "\u0635\u0641"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: cloud
-      Kind: 3
-      Category: 0
-      Arabic: "\u063A\u064A\u0645\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: club
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u0646\u062A\u062F\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: cold_food
-      Kind: 3
-      Category: 9
-      Arabic: "\u0628\u0627\u0631\u062F"
-      Letters:
-      - "\u0628\u0640 \u0640\u0627 \u0631 \u062F"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: copybook
-      Kind: 3
-      Category: 8
-      Arabic: "\u062F\u0641\u062A\u064E\u0631"
-      Letters:
-      - "\u062F \u0641\u0640 \u0640\u062A\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: costume
-      Kind: 3
-      Category: 0
-      Arabic: "\u0644\u0650\u0628\u0627\u0633\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: cucumber
-      Kind: 3
-      Category: 12
-      Arabic: "\u062E\u064A\u0627\u0631"
-      Letters:
-      - "\u062E\u0640 \u0640\u064A\u0640 \u0640\u0627 \u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: cupboard
-      Kind: 3
-      Category: 0
-      Arabic: "\u062E\u0632\u0627\u0646\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day
-      Kind: 3
-      Category: 13
-      Arabic: "\u064A\u0648\u0645"
-      Letters:
-      - "\u064A\u0640 \u0640\u0648 \u0645"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day_friday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u062C\u0645\u0639\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day_monday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u0627\u062B\u0646\u064A\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day_saturday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u0633\u0628\u062A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day_sunday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u0623\u062D\u062F"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day_thursday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u062E\u0645\u064A\u0633"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day_tuesday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u0627\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: day_wednesday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: deer
-      Kind: 3
-      Category: 7
-      Arabic: "\u063A\u0632\u0627\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: delicious
-      Kind: 3
-      Category: 9
-      Arabic: "\u062D\u0644\u0648"
-      Letters:
-      - "\u062D\u0640 \u0640\u0644\u0640 \u0640\u0648"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: doctor
-      Kind: 3
-      Category: 11
-      Arabic: "\u0637\u064E\u0628\u064A\u0628"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: dog
-      Kind: 3
-      Category: 7
-      Arabic: "\u0643\u0644\u0628"
-      Letters:
-      - "\u0643\u0640 \u0640\u0644\u0640 \u0640\u0628"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: door
-      Kind: 3
-      Category: 0
-      Arabic: "\u0628\u0627\u0628"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: duck
-      Kind: 3
-      Category: 7
-      Arabic: "\u0628\u0637"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: eagle
-      Kind: 3
-      Category: 7
-      Arabic: "\u0646\u0633\u0631"
-      Letters:
-      - "\u0646\u0640 \u0640\u0633\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: ear
-      Kind: 3
-      Category: 4
-      Arabic: "\u0627\u062F\u0646"
-      Letters:
-      - "\u0627 \u062F \u0646"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: elephant
-      Kind: 3
-      Category: 7
-      Arabic: "\u0641\u064A\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: engineer
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u0647\u0646\u062F\u0633"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: eye
-      Kind: 3
-      Category: 4
-      Arabic: "\u0639\u064A\u0646"
-      Letters:
-      - "\u0639\u0640 \u0640\u064A\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: face
-      Kind: 3
-      Category: 4
-      Arabic: "\u0648\u062C\u0647"
-      Letters:
-      - "\u0648 \u062C\u0640 \u0640\u0647"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: fall
-      Kind: 3
-      Category: 0
-      Arabic: "\u062E\u0631\u064A\u0641"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: farmer
-      Kind: 3
-      Category: 0
-      Arabic: "\u0641\u0644\u0627\u062D"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: father
-      Kind: 3
-      Category: 3
-      Arabic: "\u0628\u0627\u0628\u0627"
-      Letters:
-      - "\u0628\u0640 \u0627 \u0628\u0640 \u0627"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: field
-      Kind: 3
-      Category: 0
-      Arabic: "\u062D\u0642\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: fig
-      Kind: 3
-      Category: 2
-      Arabic: "\u062A\u064A\u0646"
-      Letters:
-      - "\u062A\u0640 \u0640\u064A\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: finger
-      Kind: 3
-      Category: 0
-      Arabic: "\u0625\u0635\u0628\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: flag
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0644\u064E\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: flower
-      Kind: 3
-      Category: 14
-      Arabic: "\u0648\u0631\u062F"
-      Letters:
-      - "\u0648 \u0631 \u062F"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: food
-      Kind: 3
-      Category: 9
-      Arabic: "\u0623\u0643\u0644"
-      Letters:
-      - "\u0623 \u0643\u0640 \u0640\u0644"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: foot
-      Kind: 3
-      Category: 4
-      Arabic: "\u0631\u062C\u0644"
-      Letters:
-      - "\u0631 \u062C\u0640 \u0640\u0644"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: football
-      Kind: 3
-      Category: 0
-      Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0642\u062F\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: forest
-      Kind: 3
-      Category: 0
-      Arabic: "\u063A\u0627\u0628\u0629\u064C"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: fridge
-      Kind: 3
-      Category: 0
-      Arabic: "\u062B\u0644\u0627\u062C\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: furniture
-      Kind: 3
-      Category: 0
-      Arabic: "\u0623\u062B\u0627\u062B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: garden
-      Kind: 3
-      Category: 0
-      Arabic: "\u0628\u064F\u0633\u062A\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: garlic
-      Kind: 3
-      Category: 12
-      Arabic: "\u062B\u0648\u0645"
-      Letters:
-      - "\u062B\u0640 \u0640\u0648 \u0645"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: girl
-      Kind: 3
-      Category: 3
-      Arabic: "\u0628\u0646\u062A"
-      Letters:
-      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062A"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: glue
-      Kind: 3
-      Category: 0
-      Arabic: "\u0635\u064E\u0645\u063A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: granddaughter
-      Kind: 3
-      Category: 3
-      Arabic: "\u062D\u0641\u064A\u062F\u0629"
-      Letters:
-      - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F \u0629"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: grandfather
-      Kind: 3
-      Category: 3
-      Arabic: "\u062C\u062F\u0648"
-      Letters:
-      - "\u062C\u0640 \u0640\u062F \u0648"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: grandmother
-      Kind: 3
-      Category: 3
-      Arabic: "\u0646\u0627\u0646\u0627"
-      Letters:
-      - "\u0646\u0640 \u0627 \u0646\u0640 \u0627"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: grandson
-      Kind: 3
-      Category: 3
-      Arabic: "\u062D\u0641\u064A\u062F"
-      Letters:
-      - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: grapes
-      Kind: 3
-      Category: 2
-      Arabic: "\u0639\u0646\u0628"
-      Letters:
-      - "\u0639\u0640 \u0640\u0646\u0640 \u0640\u0628"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: ground
-      Kind: 3
-      Category: 0
-      Arabic: "\u0623\u0631\u0636"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: hair
-      Kind: 3
-      Category: 4
-      Arabic: "\u0634\u0639\u0631"
-      Letters:
-      - "\u0634\u0640 \u0640\u0639\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: hand
-      Kind: 3
-      Category: 4
-      Arabic: "\u064A\u062F"
-      Letters:
-      - "\u064A\u0640 \u0640\u062F"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: head
-      Kind: 3
-      Category: 4
-      Arabic: "\u0631\u0627\u0633"
-      Letters:
-      - "\u0631 \u0627 \u0633"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: hospital
-      Kind: 3
-      Category: 5
-      Arabic: "\u0645\u0633\u062A\u0634\u0641\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: hot_food
-      Kind: 3
-      Category: 9
-      Arabic: "\u0633\u062E\u0646"
-      Letters:
-      - "\u0633\u0640 \u0640\u062E\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: hour
-      Kind: 3
-      Category: 13
-      Arabic: "\u0633\u0627\u0639\u0629"
-      Letters:
-      - "\u0633\u0640 \u0640\u0627 \u0639\u0640 \u0640\u0629"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: house
-      Kind: 3
-      Category: 0
-      Arabic: "\u0628\u064A\u062A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: icecream
-      Kind: 3
-      Category: 9
-      Arabic: "\u0628\u0648\u0638\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: islands
-      Kind: 3
-      Category: 0
-      Arabic: "\u062C\u064F\u0632\u064F\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: juice
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u064E\u0635\u064A\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: kid
-      Kind: 3
-      Category: 3
-      Arabic: "\u0648\u0644\u062F"
-      Letters:
-      - "\u0648 \u0644\u0640 \u0640\u062F"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: knowledge
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0650\u0644\u0652\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: leg
-      Kind: 3
-      Category: 4
-      Arabic: "\u0631\u062C\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: lentil
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u062F\u0633"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: lion
-      Kind: 3
-      Category: 7
-      Arabic: "\u0623\u0633\u062F"
-      Letters:
-      - "\u0623 \u0633\u0640 \u0640\u062F"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: lion_dual
-      Kind: 3
-      Category: 7
-      Arabic: "\u0623\u0633\u062F\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: lion_plural
-      Kind: 3
-      Category: 7
-      Arabic: "\u0623\u0633\u0648\u062F"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: lions
-      Kind: 3
-      Category: 7
-      Arabic: "\u0623\u064F\u0633\u0648\u062F\u064C"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: lips
-      Kind: 3
-      Category: 0
-      Arabic: "\u0634\u0641\u0627\u0647"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: man
-      Kind: 3
-      Category: 0
-      Arabic: "\u0631\u064E\u062C\u064F\u0644\u064D"
-      Letters:
-      - "\u0631 \u062C\u0640 \u0640\u0644"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: market
-      Kind: 3
-      Category: 5
-      Arabic: "\u0633\u0648\u0642"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: meat
-      Kind: 3
-      Category: 0
-      Arabic: "\u0644\u062D\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: melancholy
-      Kind: 3
-      Category: 0
-      Arabic: "\u0643\u0622\u0628\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month
-      Kind: 3
-      Category: 13
-      Arabic: "\u0634\u0647\u0631"
-      Letters:
-      - "\u0634\u0640 \u0640\u0647\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_april
-      Kind: 3
-      Category: 13
-      Arabic: "\u0646\u064A\u0633\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_august
-      Kind: 3
-      Category: 13
-      Arabic: "\u0622\u0628"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_december
-      Kind: 3
-      Category: 13
-      Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_february
-      Kind: 3
-      Category: 13
-      Arabic: "\u0634\u0628\u0627\u0637"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_january
-      Kind: 3
-      Category: 13
-      Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_july
-      Kind: 3
-      Category: 13
-      Arabic: "\u062A\u0645\u0648\u0632"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_june
-      Kind: 3
-      Category: 13
-      Arabic: "\u062D\u0632\u064A\u0631\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_march
-      Kind: 3
-      Category: 13
-      Arabic: "\u0622\u0630\u0627\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_may
-      Kind: 3
-      Category: 13
-      Arabic: "\u0623\u064A\u0627\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_november
-      Kind: 3
-      Category: 13
-      Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_october
-      Kind: 3
-      Category: 13
-      Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: month_september
-      Kind: 3
-      Category: 13
-      Arabic: "\u0623\u064A\u0644\u0648\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: moon
-      Kind: 3
-      Category: 14
-      Arabic: "\u0642\u0645\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: mother
-      Kind: 3
-      Category: 3
-      Arabic: "\u0645\u0627\u0645\u0627"
-      Letters:
-      - "\u0645\u0640 \u0627 \u0645\u0640 \u0627"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: mountain
-      Kind: 3
-      Category: 0
-      Arabic: "\u062C\u0628\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: mountain_dual
-      Kind: 3
-      Category: 0
-      Arabic: "\u062C\u0628\u0644\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: mountain_plural
-      Kind: 3
-      Category: 0
-      Arabic: "\u062C\u0628\u0627\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: mouse
-      Kind: 3
-      Category: 7
-      Arabic: "\u0641\u0627\u0631"
-      Letters:
-      - "\u0641\u0640 \u0640\u0627 \u0631"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: mouth
-      Kind: 3
-      Category: 4
-      Arabic: "\u0641\u0645"
-      Letters:
-      - "\u0641\u0640 \u0640\u0645"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: nail
-      Kind: 3
-      Category: 4
-      Arabic: "\u0638\u0641\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: needle
-      Kind: 3
-      Category: 8
-      Arabic: "\u0625\u0628\u0631\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: nest
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0634"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: nose
-      Kind: 3
-      Category: 4
-      Arabic: "\u0623\u0646\u0641"
-      Letters:
-      - "\u0623 \u0646\u0640 \u0640\u0641"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: now
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u0622\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_0
-      Kind: 3
-      Category: 15
-      Arabic: "\u0635\u0641\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_1
-      Kind: 3
-      Category: 15
-      Arabic: "\u0648\u0627\u062D\u062F"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_10
-      Kind: 3
-      Category: 15
-      Arabic: "\u0639\u0634\u0631\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_11
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u062D\u062F \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_12
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u062B\u0646\u064A \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_13
-      Kind: 3
-      Category: 15
-      Arabic: "\u062B\u0644\u0627\u062B\u0629 \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_14
-      Kind: 3
-      Category: 15
-      Arabic: "\u0623\u0631\u0628\u0639\u0629 \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_15
-      Kind: 3
-      Category: 15
-      Arabic: "\u062E\u0645\u0633\u0629 \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_16
-      Kind: 3
-      Category: 15
-      Arabic: "\u0633\u062A\u0629 \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_17
-      Kind: 3
-      Category: 15
-      Arabic: "\u0633\u0628\u0639\u0629 \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_18
-      Kind: 3
-      Category: 15
-      Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_19
-      Kind: 3
-      Category: 15
-      Arabic: "\u062A\u0633\u0639\u0629 \u0639\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_2
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u062B\u0646\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_20
-      Kind: 3
-      Category: 15
-      Arabic: "\u0639\u0634\u0631\u0648\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_3
-      Kind: 3
-      Category: 15
-      Arabic: "\u062B\u0644\u0627\u062B\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_4
-      Kind: 3
-      Category: 15
-      Arabic: "\u0623\u0631\u0628\u0639\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_5
-      Kind: 3
-      Category: 15
-      Arabic: "\u062E\u0645\u0633\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_6
-      Kind: 3
-      Category: 15
-      Arabic: "\u0633\u062A\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_7
-      Kind: 3
-      Category: 15
-      Arabic: "\u0633\u0628\u0639\u0629\u064C"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_8
-      Kind: 3
-      Category: 15
-      Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_9
-      Kind: 3
-      Category: 15
-      Arabic: "\u062A\u0633\u0639\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o1
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u0623\u0648\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o10
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u0639\u0627\u0634\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o2
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u062B\u0627\u0646\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o3
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u062B\u0627\u0644\u062B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o4
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u0631\u0627\u0628\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o5
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u062E\u0627\u0645\u0633"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o6
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u0633\u0627\u062F\u0633"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o7
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u0633\u0627\u0628\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o8
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u062B\u0627\u0645\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: number_o9
-      Kind: 3
-      Category: 15
-      Arabic: "\u0627\u0644\u062A\u0627\u0633\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: oil
-      Kind: 3
-      Category: 9
-      Arabic: "\u0632\u064A\u062A"
-      Letters:
-      - "\u0632 \u064A\u0640 \u0640\u062A"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: onion
-      Kind: 3
-      Category: 12
-      Arabic: "\u0628\u0635\u0644"
-      Letters:
-      - "\u0628\u0640 \u0640\u0635\u0640 \u0640\u0644"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: OokaDH
-      Kind: 3
-      Category: 5
-      Arabic: "\u0639\u0643\u0627\u0638"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: oven
-      Kind: 3
-      Category: 0
-      Arabic: "\u0641\u0631\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: paper
-      Kind: 3
-      Category: 8
-      Arabic: "\u0648\u0631\u0642"
-      Letters:
-      - "\u0648 \u0631 \u0642"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: parrot
-      Kind: 3
-      Category: 7
-      Arabic: "\u0628\u0628\u063A\u0627\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: pear
-      Kind: 3
-      Category: 2
-      Arabic: "\u0625\u0646\u062C\u0627\u0635"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: pear_big
-      Kind: 3
-      Category: 2
-      Arabic: "\u0643\u0645\u062B\u0631\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: pearl
-      Kind: 3
-      Category: 0
-      Arabic: "\u0644\u0624\u0644\u0624"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: pencil
-      Kind: 3
-      Category: 8
-      Arabic: "\u0642\u0644\u0645"
-      Letters:
-      - "\u0642\u0640 \u0640\u0644\u0640 \u0640\u0645"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: plum
-      Kind: 3
-      Category: 2
-      Arabic: "\u062E\u0648\u062E"
-      Letters:
-      - "\u062E\u0640 \u0640\u0648 \u062E"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: policeman
-      Kind: 3
-      Category: 0
-      Arabic: "\u0634\u0631\u0637\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: potato
-      Kind: 3
-      Category: 12
-      Arabic: "\u0628\u0637\u0627\u0637\u0627"
-      Letters:
-      - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0627 \u0637\u0640 \u0640\u0627"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: rain
-      Kind: 3
-      Category: 14
-      Arabic: "\u0645\u0637\u064E\u0631"
-      Letters:
-      - "\u0645\u0640 \u0640\u0637\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: restaurant
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u0637\u0639\u064E\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: rice
-      Kind: 3
-      Category: 9
-      Arabic: "\u0631\u0632"
-      Letters:
-      - "\u0631 \u0632"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: river
-      Kind: 3
-      Category: 0
-      Arabic: "\u0646\u0647\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: river_dual
-      Kind: 3
-      Category: 0
-      Arabic: "\u0646\u0647\u0631\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: river_plural
-      Kind: 3
-      Category: 0
-      Arabic: "\u0623\u0646\u0647\u0627\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: room
-      Kind: 3
-      Category: 0
-      Arabic: "\u063A\u0631\u0641\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: salt
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u0650\u0644\u0652\u062D"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: school
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u062F\u0631\u0633\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: scientist
-      Kind: 3
-      Category: 11
-      Arabic: "\u0639\u0627\u0644\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: scientist_dual
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0627\u0644\u0645\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: scientist_plural
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0644\u0645\u0627\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: scissors
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u0642\u0635"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: second
-      Kind: 3
-      Category: 13
-      Arabic: "\u062B\u0627\u0646\u064A\u0629"
-      Letters:
-      - "\u062B\u0640 \u0640\u0627 \u0646\u0640 \u0640\u064A\u0640 \u0640\u0629"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: shop
-      Kind: 3
-      Category: 0
-      Arabic: "\u062F\u0643\u0627\u0646\u064D"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: sister
-      Kind: 3
-      Category: 3
-      Arabic: "\u0623\u062E\u062A"
-      Letters:
-      - "\u0623 \u062E\u0640 \u0640\u062A"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: sky
-      Kind: 3
-      Category: 0
-      Arabic: "\u0633\u0645\u0627\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: snow
-      Kind: 3
-      Category: 14
-      Arabic: "\u062A\u0644\u062C"
-      Letters:
-      - "\u062A\u0640 \u0640\u0644\u0640 \u0640\u062C"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: sound
-      Kind: 3
-      Category: 0
-      Arabic: "\u0635\u0648\u062A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: spring
-      Kind: 3
-      Category: 0
-      Arabic: "\u0631\u0628\u064A\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: station
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u062D\u0637\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: sugar
-      Kind: 3
-      Category: 9
-      Arabic: "\u0633\u0643\u0631"
-      Letters:
-      - "\u0633\u0640 \u0640\u0643\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: summer
-      Kind: 3
-      Category: 0
-      Arabic: "\u0635\u064A\u0641"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: sun
-      Kind: 3
-      Category: 14
-      Arabic: "\u0634\u0645\u0633"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: table
-      Kind: 3
-      Category: 0
-      Arabic: "\u0637\u0627\u0648\u0644\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: tea
-      Kind: 3
-      Category: 9
-      Arabic: "\u0634\u0627\u064A"
-      Letters:
-      - "\u0634\u0640 \u0640\u0627 \u064A"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: teacher
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u0639\u0644\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: television
-      Kind: 3
-      Category: 0
-      Arabic: "\u062A\u0644\u0641\u0627\u0632"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_active
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0646\u0634\u064A\u0637"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_ball
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0643\u0631\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_beautiful
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u062C\u0645\u064A\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_coat
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0645\u0639\u0637\u0641"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_engineer
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0645\u0647\u0646\u062F\u0633"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_happy
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0633\u0639\u064A\u062F"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_hat
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0642\u0628\u0639\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_lazy
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0643\u0633\u0648\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_player
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0644\u0627\u0639\u0628"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_playground
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0645\u0644\u0639\u0628"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_policeman
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0634\u0631\u0637\u064A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_sad
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u062D\u0632\u064A\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_scientist
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0639\u0627\u0644\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_shirt
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_shoe
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u062D\u0630\u0627\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_trousers
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0628\u0646\u0637\u0627\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_wonderful
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0631\u0627\u0626\u0639"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: the_worker
-      Kind: 3
-      Category: 0
-      Arabic: "\u0627\u0644\u0639\u0627\u0645\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: tiger
-      Kind: 3
-      Category: 7
-      Arabic: "\u0646\u0645\u0631"
-      Letters:
-      - "\u0646\u0640 \u0640\u0645\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: today
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u064A\u0648\u0645"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: toilet
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u0631\u062D\u0627\u0636"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: tomato
-      Kind: 3
-      Category: 12
-      Arabic: "\u0628\u0646\u062F\u0648\u0631\u0629"
-      Letters:
-      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062F \u0648 \u0631 \u0629"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: tomorrow
-      Kind: 3
-      Category: 13
-      Arabic: "\u063A\u062F\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: tongue
-      Kind: 3
-      Category: 4
-      Arabic: "\u0644\u0633\u0627\u0646"
-      Letters:
-      - "\u0644\u0640 \u0640\u0633\u0640 \u0640\u0627 \u0646"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: tooth
-      Kind: 3
-      Category: 4
-      Arabic: "\u0633\u0646"
-      Letters:
-      - "\u0633\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: tower
-      Kind: 3
-      Category: 0
-      Arabic: "\u0628\u0631\u062C"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: tree
-      Kind: 3
-      Category: 14
-      Arabic: "\u0634\u062C\u0631"
-      Letters:
-      - "\u0634\u0640 \u0640\u062C\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: triangle
-      Kind: 3
-      Category: 0
-      Arabic: "\u0645\u062B\u0644\u062B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: uncle_father
-      Kind: 3
-      Category: 3
-      Arabic: "\u0639\u0645"
-      Letters:
-      - "\u0639\u0640 \u0640\u0645"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: uncle_mother
-      Kind: 3
-      Category: 3
-      Arabic: "\u062E\u0627\u0644"
-      Letters:
-      - "\u062E\u0640 \u0627 \u0644"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: vegetables
-      Kind: 3
-      Category: 9
-      Arabic: "\u062E\u0636\u0631"
-      Letters:
-      - "\u062E\u0640 \u0640\u0636\u0640 \u0640\u0631"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: voice
-      Kind: 3
-      Category: 0
-      Arabic: "\u0635\u0648\u062A"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: washing_machine
-      Kind: 3
-      Category: 0
-      Arabic: "\u063A\u0633\u0627\u0644\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: water
-      Kind: 3
-      Category: 9
-      Arabic: "\u0645\u064A"
-      Letters:
-      - "\u0645\u0640 \u0640\u064A"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: watermelon
-      Kind: 3
-      Category: 9
-      Arabic: "\u0628\u0637\u064A\u062E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: whale
-      Kind: 3
-      Category: 7
-      Arabic: "\u062D\u0648\u062A"
-      Letters:
-      - "\u062D\u0640 \u0640\u0648 \u062A"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: window
-      Kind: 3
-      Category: 0
-      Arabic: "\u0646\u0627\u0641\u0630\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: winter
-      Kind: 3
-      Category: 13
-      Arabic: "\u0634\u062A\u0627\u0621"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: wolf
-      Kind: 3
-      Category: 0
-      Arabic: "\u0630\u0626\u0628"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: woman
-      Kind: 3
-      Category: 3
-      Arabic: "\u0645\u0631\u0623\u0629"
-      Letters:
-      - "\u0645\u0640 \u0640\u0631 \u0623 \u0629"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: worker
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0627\u0645\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: worker_dual
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0627\u0645\u0644\u0627\u0646"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: worker_plural
-      Kind: 3
-      Category: 0
-      Arabic: "\u0639\u0645\u0627\u0644"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: year
-      Kind: 3
-      Category: 13
-      Arabic: "\u0639\u0627\u0645"
-      Letters:
-      - "\u0639\u0640 \u0640\u0627 \u0645"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: yesterday
-      Kind: 3
-      Category: 13
-      Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: yogurt
-      Kind: 3
-      Category: 9
-      Arabic: "\u0644\u0628\u0646"
-      Letters:
-      - "\u0644\u0640 \u0640\u0628\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 1
-      Drawing: 0
-    - Id: agreed
-      Kind: 4
-      Category: 0
-      Arabic: "\u0648\u0627\u0641\u064E\u0642\u064E"
-      Letters:
-      - "\u0648 \u0627 \u0641\u0640\u064E \u0640\u0642\u064E"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: ate
-      Kind: 4
-      Category: 0
-      Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
-      Letters:
-      - "\u0623\u064E \u0643\u0640\u064E \u0640\u0644\u064E "
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: believed
-      Kind: 4
-      Category: 0
-      Arabic: "\u0622\u0645\u064E\u0646\u064E"
-      Letters:
-      - "\u0622 \u0645\u0640 \u0640\u0646"
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: carried
-      Kind: 4
-      Category: 0
-      Arabic: "\u062D\u064E\u0645\u064E\u0644\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: caught
-      Kind: 4
-      Category: 0
-      Arabic: "\u0645\u064E\u0633\u064E\u0643\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: cried
-      Kind: 4
-      Category: 0
-      Arabic: "\u0628\u0643\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: drank
-      Kind: 4
-      Category: 0
-      Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: flapped
-      Kind: 4
-      Category: 0
-      Arabic: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: flew
-      Kind: 4
-      Category: 0
-      Arabic: "\u0637\u0627\u0631"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: hi
-      Kind: 4
-      Category: 0
-      Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: laughed
-      Kind: 4
-      Category: 0
-      Arabic: "\u0636\u064E\u062D\u0650\u0643\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: played
-      Kind: 4
-      Category: 0
-      Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: released
-      Kind: 4
-      Category: 0
-      Arabic: "\u062A\u064E\u0631\u064E\u0643\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: sat
-      Kind: 4
-      Category: 0
-      Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: saw
-      Kind: 4
-      Category: 0
-      Arabic: "\u0631\u0623\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: studied
-      Kind: 4
-      Category: 0
-      Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: thankyou
-      Kind: 4
-      Category: 0
-      Arabic: "\u0634\u0643\u0631\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: understood
-      Kind: 4
-      Category: 0
-      Arabic: "\u0641\u064E\u0647\u0650\u0645\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: walked
-      Kind: 4
-      Category: 0
-      Arabic: "\u0645\u0634\u0649"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: welcome
-      Kind: 4
-      Category: 0
-      Arabic: "\u0623\u0647\u0644\u0627\u064B"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: went
-      Kind: 4
-      Category: 0
-      Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E"
-      Letters:
-      - 
-      Symbols: []
-      Difficulty: 0
-      Drawing: 0
-    - Id: won
-      Kind: 4
-      Category: 0
-      Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E"
-      Letters:
-      - 
-      Symbols: []
       Difficulty: 0
       Drawing: 0
     - Id: wore
-      Kind: 4
+      Kind: 2
       Category: 0
+      Form: 0
+      Article: 0
       Arabic: "\u0644\u064E\u0628\u0650\u0633\u064E"
       Letters:
       - 
-      Symbols: []
+      Difficulty: 0
+      Drawing: 0
+    - Id: worker
+      Kind: 4
+      Category: 14
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0627\u0645\u0644"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: worker_dual
+      Kind: 4
+      Category: 14
+      Form: 1
+      Article: 0
+      Arabic: "\u0639\u0627\u0645\u0644\u0627\u0646"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: worker_plural
+      Kind: 4
+      Category: 14
+      Form: 2
+      Article: 0
+      Arabic: "\u0639\u0645\u0627\u0644"
+      Letters:
+      - 
       Difficulty: 0
       Drawing: 0
     - Id: wrote
-      Kind: 4
+      Kind: 2
       Category: 0
+      Form: 0
+      Article: 0
       Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
       Letters:
       - 
-      Symbols: []
       Difficulty: 0
+      Drawing: 0
+    - Id: year
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0627\u0645"
+      Letters:
+      - "\u0639\u0640 \u0640\u0627 \u0645"
+      Difficulty: 0
+      Drawing: 0
+    - Id: yesterday
+      Kind: 5
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
+      Letters:
+      - 
+      Difficulty: 0
+      Drawing: 0
+    - Id: yogurt
+      Kind: 4
+      Category: 2
+      Form: 0
+      Article: 0
+      Arabic: "\u0644\u0628\u0646"
+      Letters:
+      - "\u0644\u0640 \u0640\u0628\u0640 \u0640\u0646"
+      Difficulty: 1
       Drawing: 0
   playSessionTable:
     innerList:
@@ -3964,6 +4441,7 @@ MonoBehaviour:
       Description: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
         location of alif, absence & different location of hamza (\u0621), in different
         position in the word (just prononciation)"
+      Title: Trio Aleph
       IntroArabic: 
       Reward: DogCollarLarge
       Focus: 1
@@ -3987,17 +4465,18 @@ MonoBehaviour:
       - MiniGameCode: 9
         Weight: 1
       - MiniGameCode: 11
-        Weight: 103
+        Weight: 100
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
-        Weight: 101
+        Weight: 100
     - Id: 1.1.2
       Stage: 1
       LearningBlock: 1
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: Trio Aleph
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4030,6 +4509,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: Trio Aleph
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4042,11 +4522,11 @@ MonoBehaviour:
       - brother
       - pear
       - needle
+      Words_previous:
       - mother
       - nose
       - deer
       - sister
-      Words_previous: []
       Phrases: []
       Phrases_previous: []
       Minigames: []
@@ -4057,6 +4537,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The trio baa, taa, thaa (\u0628 - \u062A \u2013 \u062B): Same
         shape, different number & location of dots"
+      Title: Trio Baa, Taa, Thaa
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4099,6 +4580,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4143,6 +4625,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4159,6 +4642,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The trio jiim, haa, khaa (\u062C - \u062D \u2013 \u062E): Same
         shape, different location of a dot"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4203,6 +4687,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4249,6 +4734,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4265,6 +4751,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The duo daal and dhaal (\u062F \u2013 \u0630): Same shape, absence
         of a dot"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4310,6 +4797,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4357,6 +4845,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4373,6 +4862,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The duo raa and zaay (\u0631 \u2013 \u0632): Same shape, absence
         of a dot"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4420,6 +4910,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4467,6 +4958,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4483,6 +4975,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The duo siin and shiin (\u0633 \u2013 \u0634): Same shape, absence
         of three dots"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4528,6 +5021,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4575,6 +5069,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4591,6 +5086,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The Saad and Daad (\u0635 \u2013 \u0636): Same shape, absence
         of a dot"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4640,6 +5136,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4689,6 +5186,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4705,6 +5203,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The Taa and DHaa (\u0637 \u2013 \u0638): Same shape, absence of
         a dot"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4754,6 +5253,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4803,6 +5303,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4819,6 +5320,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The duo ayn and ghayn (\u0639 \u2013 \u063A): Same shape, absence
         of a dot"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4866,6 +5368,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4915,6 +5418,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4931,6 +5435,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The duo faa and qaaf (\u0641 \u2013 \u0642): Same shape, different
         number of dots"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -4980,6 +5485,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5029,6 +5535,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5045,6 +5552,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The duo kaaf and laam (\u0643 \u2013 \u0644): Same shape, absence
         of hamza (\u0621)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5094,6 +5602,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5143,6 +5652,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5159,6 +5669,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The duo miim and nuun (\u0645 \u2013 \u0646): No specific criterion,
         just different letters"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5204,6 +5715,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5251,6 +5763,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5267,6 +5780,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The trio haa waaw yaa (\u0647 - \u0648 - \u064A): No specific
         criterion, jusy different letters"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5315,6 +5829,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5363,6 +5878,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5379,6 +5895,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaaw\u201D (\u0648),
         \u201Cyaa\u201D (\u064A)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5421,6 +5938,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5463,6 +5981,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5478,6 +5997,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The two shapes of the letter \u201Calif\u201D (\u0627 \u0640\u0627)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5520,6 +6040,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5562,6 +6083,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5578,6 +6100,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \"ba\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
         \ \u0628\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5622,6 +6145,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5657,6 +6181,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5673,6 +6198,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The six shapes of the letter \u201Ctaa\u201D (\u062A \u0640\u062A
         \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5718,6 +6244,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5761,6 +6288,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5777,6 +6305,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Ctha\u201D (\u062B \u0640\u062B
         \  \u0640\u062B\u0640  \u062B\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5819,6 +6348,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5863,6 +6393,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cjiim\u201D (\u062C   \u0640\u062C
         \  \u0640\u062C\u0640   \u062C\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5907,6 +6438,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5951,6 +6483,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Chaa\u201D (\u062D  \u0640\u062D
         \ \u0640\u062D\u0640  \u062D\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -5995,6 +6528,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6039,6 +6573,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Ckhaa\u201D (\u062E  \u0640\u062E
         \u0640\u062E\u0640  \u062E\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6081,6 +6616,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6124,6 +6660,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The two shapes of the letter \u201Cdaal\u201D ( \u0640\u062F  \u062F)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6168,6 +6705,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6211,6 +6749,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The two shapes of the letter \u201Cdhaal\u201D (\u0640\u0630  \u0630)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6254,6 +6793,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6296,6 +6836,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The two shapes of the letter \u201Craa\u201D ( \u0640\u0631  \u0631)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6338,6 +6879,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6381,6 +6923,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The two shapes of the letter \u201Czay\u201D ( \u0640\u0632  \u0632)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6425,6 +6968,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6469,6 +7013,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Csiin\u201D (\u0633  \u0640\u0633
         \ \u0640\u0633\u0640  \u0633\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6513,6 +7058,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6557,6 +7103,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cshiin\u201D (\u0634 \u0640\u0634
         \u0640\u0634\u0640 \u0634\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6599,6 +7146,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6643,6 +7191,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201CSaad\u201D (\u0635 \u0640\u0635
         \u0640\u0635\u0640 \u0635\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6687,6 +7236,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6731,6 +7281,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201CDaad\u201D (\u0636 \u0640\u0636
         \u0640\u0636\u0640 \u0636\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6774,6 +7325,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6817,6 +7369,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201CTaa\u201D (\u0637  \u0640\u0637
         \u0640\u0637\u0640 \u0637\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6859,6 +7412,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6903,6 +7457,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201CDHaa\u201D (\u0638 \u0640\u0638
         \u0640\u0638\u0640 \u0638\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6945,6 +7500,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -6987,6 +7543,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cayn\u201D (\u0639  \u0640\u0639
         \u0640\u0639\u0640 \u0639\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7031,6 +7588,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7075,6 +7633,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cghayn\u201D (\u063A \u0640\u063A
         \u0640\u063A\u0640 \u063A\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7117,6 +7676,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7161,6 +7721,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cfaa\u201D (\u0641 \u0640\u0641
         \u0640\u0641\u0640 \u0641\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7205,6 +7766,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7249,6 +7811,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cqaaf\u201D (\u0642 \u0640\u0642
         \u0640\u0642\u0640 \u0642\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7293,6 +7856,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7337,6 +7901,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Ckaaf\u201D ( \u0643 \u0640\u0643
         \u0640\u0643\u0640 \u0643\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7379,6 +7944,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7423,6 +7989,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Claam\u201D (\u0644 \u0640\u0644
         \ \u0640\u0644\u0640 \u0644\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7467,6 +8034,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7511,6 +8079,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cmiim\u201D ( \u0645 \u0640\u0645
         \u0640\u0645\u0640 \u0645\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7555,6 +8124,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7599,6 +8169,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cnuun\u201D (\u0646 \u0640\u0646
         \u0640\u0646\u0640 \u0646\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7641,6 +8212,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7685,6 +8257,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Chaa\u201D (\u0647  \u0640\u0647
         \u0640\u0647\u0640 \u0647\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7729,6 +8302,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7772,6 +8346,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The two shapes of the letter \u201Cwaaw\u201D ( \u0640\u0648  \u0648)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7816,6 +8391,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7859,6 +8435,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7875,6 +8452,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The four shapes of the letter \u201Cyaa\u201D (\u064A \u0640\u064A
         \u0640\u064A\u0640 \u064A\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7917,6 +8495,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7960,6 +8539,7 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -7976,6 +8556,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The sound of Fathah (\u064E) as a short vowel, Fatha on letters,
         and vocabulary,"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8034,6 +8615,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8092,6 +8674,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The sound of Dammah (\u064F) as a short vowel, Dammah on letters,
         and vocabulary"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8150,6 +8733,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8208,6 +8792,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The sound of Kasrah (\u0650) as a short vowel,  Kasrah on letters,
         and vocabulary"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8266,6 +8851,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8324,6 +8910,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "Revision of the 3 previous + The the non sound of the mute Sukun
         (\u0652)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8385,6 +8972,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8442,6 +9030,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "Same as 4.1 with Fathah tanwin (\u064B) (double Fathah)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8498,6 +9087,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8553,6 +9143,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "Same as 4.2 The sound of Dammah tanwin (\u064C) (double Dammah)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8609,6 +9200,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8664,6 +9256,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "Same than 3 The sound of Kasrah tanwin (\u064D) (double Kasrah)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8720,6 +9313,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8775,6 +9369,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: The 3 diacritic + double diacritic signs.
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8837,6 +9432,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The different sound variations of hamza (\u0621) on a vowel (different
         with/without), separate. waw hamza (\u0624) and yaa hamza (\u0626)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8896,6 +9492,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -8952,6 +9549,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The diphthong \u201Cwaaw\u201D (\u0648): different sound than
         short and long vowel"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 3
@@ -9008,6 +9606,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 3
@@ -9064,6 +9663,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: "The diphthong \u201Cyaa\u201D (\u064A): different sound than short
         and long vowel"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 3
@@ -9119,6 +9719,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 3
@@ -9174,6 +9775,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Verbs
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9229,6 +9831,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9284,6 +9887,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Places
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9339,6 +9943,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9394,6 +9999,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Grains (food)
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9449,6 +10055,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9504,6 +10111,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Furniture
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9564,6 +10172,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9624,6 +10233,7 @@ MonoBehaviour:
       PlaySession: 3
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -9673,6 +10283,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The \u201Calef maqSura\u201D"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -9729,6 +10340,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -9784,6 +10396,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The special combination letter \u201Claam-alef\u201D (\u0644\u0627)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -9839,6 +10452,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -9893,6 +10507,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: The maddah (~)
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -9948,6 +10563,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -10002,6 +10618,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: The 3 diacritic signs
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -10060,6 +10677,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: The 3 double diacritic signs (Tanwin)
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -10116,6 +10734,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The diacritic sign \u201Cshadda\u201D (\u0651) as a double consonant"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 2
@@ -10172,6 +10791,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 0
@@ -10227,6 +10847,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Singular, dual, and plural forms of nouns
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -10285,6 +10906,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 0
@@ -10343,6 +10965,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Professions (emphasis singular, dual, plural)
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -10398,6 +11021,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 0
@@ -10453,6 +11077,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Nature (emphasis singular, dual, plural)
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -10508,6 +11133,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 0
@@ -10563,6 +11189,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: "The definite article \u201Cal\u201D (\u0627\u0644\u0640)"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -10625,6 +11252,7 @@ MonoBehaviour:
         \u0645 - \u0647 \nsun consonants: \u062A - \u062B - \u062F - \u0630 - \u0631
         - \u0632 - \u0633 - \u0634 - \u0635 - \u0636 - \u0637 - \u0638 - \u0644 -
         \u0646"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -10705,6 +11333,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -10761,6 +11390,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: Sports (emphasis moon & sun consonant) the red color of the sun&moon
         letter means it is not pronounced which means it proceeds a sun consonant
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -10841,6 +11471,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
@@ -10896,6 +11527,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Adjectives of feelings
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -10951,6 +11583,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11006,6 +11639,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Greeting phrase
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 5
@@ -11059,6 +11693,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: '"Hello" and "Hi" phrases'
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 5
@@ -11111,6 +11746,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: '"How are you" and "Goodbye" phrases'
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 5
@@ -11167,6 +11803,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: 'Adjectives: colors'
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11228,6 +11865,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11289,6 +11927,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: 'Adjectives: describing nature'
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11344,6 +11983,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11399,6 +12039,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: 'Adjectives: describing weather'
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11454,6 +12095,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11509,6 +12151,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Cardinal numbers 0 to 20
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11582,6 +12225,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11655,6 +12299,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Ordinal numbers 1 to 10 (with the definite article "al")
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11714,6 +12359,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11773,6 +12419,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Time expressions such as "today" "yesterday"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11828,6 +12475,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Days of the week
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11884,6 +12532,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -11940,6 +12589,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: The months
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -12001,6 +12651,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -12062,6 +12713,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: The years (in numbers)
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 0
@@ -12118,6 +12770,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 0
@@ -12175,6 +12828,7 @@ MonoBehaviour:
       Type: MiniGame
       Description: 'Nature: Feminine and masculine: adding taa marbuta to any noun
         makes it feminine'
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -12231,6 +12885,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -12287,6 +12942,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Clothes with the definite article "al"
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -12342,6 +12998,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -12397,6 +13054,7 @@ MonoBehaviour:
       PlaySession: 1
       Type: MiniGame
       Description: Simple phrases
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 5
@@ -12460,6 +13118,7 @@ MonoBehaviour:
       PlaySession: 2
       Type: MiniGame
       Description: 
+      Title: 
       IntroArabic: 
       Reward: 
       Focus: 5
@@ -13166,49 +13825,64 @@ MonoBehaviour:
     - Id: goodmorning_Q
       English: good morning - question
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631"
+      Linked: goodmorning_R
     - Id: goodmorning_R
       English: good morning - reply
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u0646\u0648\u0631"
+      Linked: goodmorning_Q
     - Id: goodevening_Q
       English: good evening - question
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u062E\u064A\u0631"
+      Linked: goodevening_R
     - Id: goodevening_R
       English: good evening - reply
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u0646\u0648\u0631"
+      Linked: goodevening_Q
     - Id: hi
       English: Hi
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
+      Linked: 
     - Id: peaceonyou_Q
       English: peace upon you - question (religious)
       Arabic: "\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064A\u0643\u0645"
+      Linked: peaceonyou_R
     - Id: peaceonyou_R
       English: peace upon you - reply (religious)
       Arabic: "\u0648\u0639\u0644\u064A\u0643\u0645 \u0627\u0644\u0633\u0644\u0627\u0645"
+      Linked: peaceonyou_Q
     - Id: yourwelcome
       English: you are welcome
       Arabic: "\u0623\u0647\u0644\u0627\u064B \u0648\u0633\u0647\u0644\u0627\u064B"
+      Linked: 
     - Id: howareyou
       English: how are you doing?
       Arabic: "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643\u061F"
+      Linked: 
     - Id: fine
       English: fine
       Arabic: "\u0628\u062E\u064A\u0631"
+      Linked: 
     - Id: thankyou
       English: thank you
       Arabic: "\u0634\u0643\u0631\u0627\u064B"
+      Linked: 
     - Id: sure
       English: sure
       Arabic: "\u0639\u0641\u0648\u0627\u064B"
+      Linked: 
     - Id: seeyou
       English: see you
       Arabic: "\u0625\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621"
+      Linked: 
     - Id: goodbye
       English: good-bye
       Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
+      Linked: 
     - Id: the_year_2016
       English: 
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
         \u0639\u0634\u0631"
+      Linked: 
   stageTable:
     innerList:
     - Id: 1
@@ -13237,13 +13911,13 @@ MonoBehaviour:
       Description: '--- TBD ---'
   rewardTable:
     innerList:
-    - Id: DogCollarSmall
+    - Id: DogCollarLarge
       Title: 
       Category: 1
     - Id: DogCollarMedium
       Title: 
       Category: 1
-    - Id: DogCollarLarge
+    - Id: DogCollarSmall
       Title: 
       Category: 1
     - Id: DogPirateHat
@@ -13252,9 +13926,9 @@ MonoBehaviour:
     - Id: DogPirateHook
       Title: 
       Category: 1
-    - Id: DogSkinYellow
+    - Id: DogSkinRed
       Title: 
       Category: 2
-    - Id: DogSkinRed
+    - Id: DogSkinYellow
       Title: 
       Category: 2

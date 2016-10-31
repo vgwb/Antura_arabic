@@ -13,10 +13,8 @@ namespace EA4S.Db.Management
             data.Id = ToString(dict["Id"]);
             data.Kind = ParseEnum<WordDataKind>(data, dict["Kind"]);
             data.Category = ParseEnum<WordDataCategory>(data, dict["Category"]);
-
             data.Form = CustomParseForm(data, dict["Form"]);
             data.Article = ParseEnum<WordDataArticle>(data, dict["Article"]);
-
             data.Arabic = ToString(dict["Arabic"]);
 
             // TODO: should instead be an array of ID, but we need to solve the european-to-arabic matching!
@@ -44,7 +42,7 @@ namespace EA4S.Db.Management
         {
             ExtractEnum(rowdicts_list, "Kind");
             ExtractEnum(rowdicts_list, "Category", addNoneValue: true);
-            ExtractEnum(rowdicts_list, "Form");
+            //ExtractEnum(rowdicts_list, "Form");   // @note: cannot auto-generate or Singular won't work
             ExtractEnum(rowdicts_list, "Article", addNoneValue: true);
         }
     }

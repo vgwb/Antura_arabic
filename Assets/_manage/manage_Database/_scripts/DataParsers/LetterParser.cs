@@ -14,12 +14,10 @@ namespace EA4S.Db.Management
             data.Number = ToInt(dict["Number"]);
             data.Title = ToString(dict["Title"]);
             data.Kind = ParseEnum<LetterDataKind>(data, dict["Kind"]);
-
-            //data.Components = ParseLetterComponents(dict["Components"]);
+            data.BaseLetter = ToString(dict["BaseLetter"]);
+            data.Symbol = ToString(dict["Symbol"]);
             data.Type = ParseEnum<LetterDataType>(data, dict["Type"]);
-
-            //data.Tag = ToString(dict["Tag"]);
-
+            data.Tag = ToString(dict["Tag"]);
             data.Notes = ToString(dict["Notes"]);
             data.SunMoon = ParseEnum<LetterDataSunMoon>(data, dict["SunMoon"]);
             data.Sound = ToString(dict["Sound"]);
@@ -40,6 +38,23 @@ namespace EA4S.Db.Management
             ExtractEnum(rowdicts_list, "Kind");
             ExtractEnum(rowdicts_list, "Type", addNoneValue:true);
             ExtractEnum(rowdicts_list, "SunMoon", addNoneValue:true);
+        }
+
+        protected override void FinalValidation(LetterTable table)
+        {
+            // Fields 'BaseLetter' and 'Symbol' are validated with a final validation step, since they are based on this same table
+            foreach (var data in table.GetValuesTyped())
+            {
+                if (data.BaseLetter != "" && table.GetValue(data.BaseLetter) == null)
+                {
+                    LogValidation(data, "Cannot find id of LetterData for BaseLetter value " + data.BaseLetter + " (found in letter " + data.Id + ")");
+                }
+
+                if (data.Symbol != "" && table.GetValue(data.Symbol) == null)
+                {
+                    LogValidation(data, "Cannot find id of LetterData for Symbol value " + data.Symbol + " (found in letter " + data.Id + ")");
+                }
+            }
         }
 
     }

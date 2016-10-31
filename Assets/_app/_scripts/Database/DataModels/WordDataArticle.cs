@@ -6,7 +6,6 @@ namespace EA4S.Db
   {
       None = 0,
       Determinative = 1,
-      Indeterminative = 2,
   }
 }
 
