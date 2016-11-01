@@ -4,6 +4,8 @@ using System.Collections.Generic;
 namespace EA4S {
     public class AnturaModelManager : MonoBehaviour {
 
+        public static AnturaModelManager Instance;
+
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
         public const string ANTURA_REWARDS_MODEL_PATH = "Models/Rewards/" + "Prefabs/";
 
@@ -16,11 +18,18 @@ namespace EA4S {
         public Transform Dog_L_ear04;
 
         Transform Dog_head_pointer, Dog_spine01_pointer, Dog_jaw_pointer, Dog_Tail3_pointer, dog_R_ear04_pointer, dog_L_ear04_pointer;
+        [HideInInspector]
+        public Transform transformParent;
 
-        RewardConfig config;
+        public RewardConfig config;
+
+        void Awake() {
+            Instance = this;
+            LoadFromConfig();
+        }
 
         void Start() {
-            LoadFromConfig();
+            
         }
 
         void LoadFromConfig() {
@@ -58,7 +67,7 @@ namespace EA4S {
                     rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_MODEL_PATH + reward.ID), transformParent, false) as GameObject;
                     Dog_jaw_pointer = rewardModel.transform;
                     break;
-                case "dog_Tail3":
+                case "dog_Tail4":
                     transformParent = Dog_Tail3;
                     if (Dog_Tail3_pointer)
                         Destroy(Dog_Tail3_pointer.gameObject);
@@ -82,8 +91,6 @@ namespace EA4S {
                 default:
                     break;
             }
-
-            Debug.LogFormat("{0} -> {1}", rewardModel.transform.position, transformParent.position);
 
         }
 
