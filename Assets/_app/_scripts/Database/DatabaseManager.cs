@@ -14,11 +14,16 @@ namespace EA4S
         private readonly Database staticDb;
         private DBService dynamicDb;
 
+        // Helpers
+        public LetterWordHelper letterWordHelper;
+
         // Profile
         //bool dbLoaded;
 
         public DatabaseManager(bool useTestDatabase)
         {
+            this.letterWordHelper = new LetterWordHelper(this);
+
             var staticDbNameToLoad = STATIC_DATABASE_NAME;
             if (useTestDatabase) {
                 staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;
@@ -177,7 +182,7 @@ namespace EA4S
 
         public List<MiniGameData> GetActiveMinigames()
         {
-            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameType.MiniGame));
+            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameDataType.MiniGame));
         }
 
         #endregion
@@ -201,7 +206,7 @@ namespace EA4S
 
         public List<EA4S.Db.LetterData> GetAllLetterData()
         {
-            return FindLetterData((x) => (x.Kind == LetterKind.Letter));
+            return FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
             //return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
@@ -218,6 +223,11 @@ namespace EA4S
         public List<PlaySessionData> FindPlaySessionData(Predicate<PlaySessionData> predicate)
         {
             return staticDb.FindAll<PlaySessionData>(staticDb.GetPlaySessionTable(), predicate);
+        }
+        
+        public List<LearningBlockData> FindLearningBlockData(Predicate<LearningBlockData> predicate)
+        {
+            return staticDb.FindAll<LearningBlockData>(staticDb.GetLearningBlockTable(), predicate);
         }
 
         public List<StageData> FindStageData(Predicate<StageData> predicate)
@@ -248,6 +258,11 @@ namespace EA4S
         public List<PlaySessionData> GetAllPlaySessionData()
         {
             return new List<PlaySessionData>(staticDb.GetPlaySessionTable().GetValuesTyped());
+        }
+
+        public List<LearningBlockData> GetAllLearningBlockData()
+        {
+            return new List<LearningBlockData>(staticDb.GetLearningBlockTable().GetValuesTyped());
         }
 
         public List<StageData> GetAllStageData()
@@ -283,7 +298,7 @@ namespace EA4S
         public WordData GetWordDataByRandom()
         {
             // TODO now locked to body parts for retrocompatibility
-            var wordslist = FindWordData((x) => (x.Category == WordCategory.BodyPart));
+            var wordslist = FindWordData((x) => (x.Category == WordDataCategory.BodyPart));
             return GenericUtilities.GetRandom(wordslist);
         }
 
@@ -292,11 +307,11 @@ namespace EA4S
             return staticDb.GetById<LetterData>(staticDb.GetLetterTable(), id);
         }
 
-        public LetterData GetLetterDataByRandom()
+        /*public LetterData GetLetterDataByRandom()
         {
             var letterslist = GetAllLetterData();
             return GenericUtilities.GetRandom(letterslist);
-        }
+        }*/
 
         public PhraseData GetPhraseDataById(string id)
         {
@@ -306,6 +321,11 @@ namespace EA4S
         public PlaySessionData GetPlaySessionDataById(string id)
         {
             return staticDb.GetById<PlaySessionData>(staticDb.GetPlaySessionTable(), id);
+        }
+
+        public LearningBlockData GetLearningBlockDataById(string id)
+        {
+            return staticDb.GetById<LearningBlockData>(staticDb.GetLearningBlockTable(), id);
         }
 
         public StageData GetStageDataById(string id)

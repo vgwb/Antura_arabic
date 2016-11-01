@@ -8,19 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/_Start.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_Mood.unity
+    path: Assets/_app/_scenes/app_AnturaSpace.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_Map.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_Wheel.unity
+    path: Assets/_app/_scenes/app_Mood.unity
+  - enabled: 1
+    path: Assets/_app/_scenes/app_GameSelector.unity
+  - enabled: 1
+    path: Assets/_app/_scenes/app_Profile.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_Rewards.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_Assessment.unity
-  - enabled: 1
     path: Assets/_app/_scenes/app_End.unity
   - enabled: 1
+    path: Assets/_games/Assessments/game_Assessment.unity
+  - enabled: 1
     path: Assets/_games/Balloons/game_Balloons.unity
+  - enabled: 1
+    path: Assets/_games/ColorTickle/game_ColorTickle.unity
   - enabled: 1
     path: Assets/_games/DancingDots/game_DancingDots.unity
   - enabled: 1
@@ -28,11 +34,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_games/FastCrowd/game_FastCrowd.unity
   - enabled: 1
+    path: Assets/_games/HideAndSeek/game_HideAndSeek.unity
+  - enabled: 1
     path: Assets/_games/MakeFriends/game_MakeFriends.unity
   - enabled: 1
     path: Assets/_games/Maze/game_Maze.unity
   - enabled: 1
+    path: Assets/_games/MixedLetters/game_MixedLetters.unity
+  - enabled: 1
+    path: Assets/_games/MissingLetter/game_MissingLetter.unity
+  - enabled: 1
     path: Assets/_games/Scanner/game_Scanner.unity
+  - enabled: 1
+    path: Assets/_games/TakeMeHome/game_TakeMeHome.unity
   - enabled: 1
     path: Assets/_games/ThrowBalls/game_ThrowBalls.unity
   - enabled: 1

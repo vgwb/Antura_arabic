@@ -13,7 +13,8 @@ namespace EA4S.Db
 
         MiniGames = 10,
         Stages = 11,
-        PlaySessions = 12,
+        LearningBlocks = 12,
+        PlaySessions = 13,
 
         Localizations = 30,
         Rewards = 40
@@ -30,6 +31,8 @@ namespace EA4S.Db
         private WordTable wordTable;
         [SerializeField]
         private PlaySessionTable playSessionTable;
+        [SerializeField]
+        private LearningBlockTable learningBlockTable;
         [SerializeField]
         private LocalizationTable localizationTable;
         [SerializeField]
@@ -53,7 +56,7 @@ namespace EA4S.Db
         {
             T value = (T)table.GetValue(id);
             if (value == null) {
-                Debug.LogWarning("Cannot find id '" + id + "' in talbe " + table.GetType().Name);
+                Debug.LogWarning("Cannot find id '" + id + "' in table " + table.GetType().Name);
                 return default(T);
             }
             return value;
@@ -71,6 +74,7 @@ namespace EA4S.Db
         public MiniGameTable GetMiniGameTable() { return this.minigameTable; }
         public StageTable GetStageTable() { return this.stageTable; }
         public PlaySessionTable GetPlaySessionTable() { return this.playSessionTable; }
+        public LearningBlockTable GetLearningBlockTable() { return this.learningBlockTable; }
         public RewardTable GetRewardTable() { return this.rewardTable; }
         public LocalizationTable GetLocalizationTable() { return this.localizationTable; }
 
@@ -103,6 +107,7 @@ namespace EA4S.Db
                 case DbTables.MiniGames: table = minigameTable; break;
                 case DbTables.Stages: table = stageTable; break;
                 case DbTables.PlaySessions: table = playSessionTable; break;
+                case DbTables.LearningBlocks: table = learningBlockTable; break;
                 case DbTables.Rewards: table = rewardTable; break;
                 case DbTables.Localizations: table = localizationTable; break;
                 default:

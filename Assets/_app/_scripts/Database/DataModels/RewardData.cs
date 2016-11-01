@@ -8,7 +8,7 @@ namespace EA4S.Db
     {
         public string Id;
         public string Title;
-        public RewardCategory Category;
+        public RewardDataCategory Category;
 
         public override string ToString()
         {
@@ -19,13 +19,6 @@ namespace EA4S.Db
         {
             return Id;
         }
-    }
-
-    public enum RewardCategory
-    {
-        DogProp = 1,
-        DogSkin = 2,
-        PlayerTitle = 3
     }
 
 }

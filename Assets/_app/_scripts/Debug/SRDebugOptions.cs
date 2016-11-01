@@ -20,7 +20,7 @@ public partial class SROptions
     public void Assessment()
     {
         WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -107,7 +107,7 @@ public partial class SROptions
     [Category("Shortcuts")]
     public void EndFastCrowdGame()
     {
-  //      EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
+        //      EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
         SRDebug.Instance.HideDebugPanel();
     }
 

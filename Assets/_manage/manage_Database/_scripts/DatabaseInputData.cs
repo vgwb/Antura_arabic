@@ -10,7 +10,6 @@ namespace EA4S.Db.Management
         public TextAsset letterDataAsset;
         public TextAsset wordDataAsset;
         public TextAsset playSessionDataAsset;
-        public TextAsset assessmentDataAsset;
         public TextAsset localizationDataAsset;
         public TextAsset phraseDataAsset;
         public TextAsset stageDataAsset;
@@ -22,7 +21,6 @@ namespace EA4S.Db.Management
             if (letterDataAsset == null) return false;
             if (wordDataAsset == null) return false;
             if (playSessionDataAsset == null) return false;
-            if (assessmentDataAsset == null) return false;
             if (localizationDataAsset == null) return false;
             if (phraseDataAsset == null) return false;
             if (stageDataAsset == null) return false;
