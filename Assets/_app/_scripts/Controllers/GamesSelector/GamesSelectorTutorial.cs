@@ -52,19 +52,13 @@ namespace EA4S
             Finger.gameObject.SetActive(true);
 
             Vector3[] path = new Vector3[_bubbles.Count + 1];
-            this.transform.position = _bubbles[0].transform.position - new Vector3(2, 0, 0);
-            this.transform.SetZ(defFingerZ);
-            path[path.Length - 1] = _bubbles[_bubbles.Count - 1].transform.position + new Vector3(2, 0, 0);
-            path[path.Length - 1].z = defFingerZ;
-            for (int i = 0; i < _bubbles.Count; ++i) {
-                Vector3 wp = _bubbles[i].transform.position;
-                wp.z = defFingerZ;
-                path[i] = wp;
-            }
+            this.transform.localPosition = _bubbles[0].transform.localPosition - new Vector3(2, 0, 0);
+            path[path.Length - 1] = _bubbles[_bubbles.Count - 1].transform.localPosition + new Vector3(2, 0, 0);
+            for (int i = 0; i < _bubbles.Count; ++i) path[i] = _bubbles[i].transform.localPosition;
 
             showTween.Restart();
             moveTween = DOTween.Sequence().SetAutoKill(false)
-                .Append(this.transform.DOPath(path, 1.25f, PathType.Linear))
+                .Append(this.transform.DOLocalPath(path, 1.25f, PathType.Linear))
                 .OnComplete(() => {
                     showTween.PlayBackwards();
                     trailTimeTween.PlayForward();
