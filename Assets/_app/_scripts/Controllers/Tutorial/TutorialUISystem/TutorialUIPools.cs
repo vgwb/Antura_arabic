@@ -8,30 +8,60 @@ namespace EA4S
 {
     public class TutorialUIPools : MonoBehaviour
     {
-        public TrailRenderer TrailPrefab;
+        public TutorialUITrailGroup TrailGroupPrefab;
+        public TutorialUIProp ArrowPrefab;
 
-        [System.NonSerialized] public TutorialUI TutorialUI;
-        readonly List<TrailRenderer> trailsPool = new List<TrailRenderer>();
+        readonly List<TutorialUITrailGroup> trailsPool = new List<TutorialUITrailGroup>();
+        readonly List<TutorialUIProp> arrowsPool = new List<TutorialUIProp>();
+
+        #region Unity
+
+        void Start()
+        {
+            TrailGroupPrefab.gameObject.SetActive(false);
+            ArrowPrefab.gameObject.SetActive(false);
+        }
+
+        #endregion
 
         #region Public Methods
 
-        public TrailRenderer SpawnTrail(Vector3 _position)
+        public void DespawnAll()
         {
-            foreach (TrailRenderer tr in trailsPool) {
+            foreach (TutorialUITrailGroup tr in trailsPool) tr.Despawn();
+            foreach (TutorialUIProp arrow in arrowsPool) arrow.Hide(true);
+        }
+
+        public TutorialUITrailGroup SpawnTrailGroup(Vector3 _position, Transform _parent)
+        {
+            TutorialUITrailGroup trailG = null;
+            foreach (TutorialUITrailGroup tr in trailsPool) {
                 if (tr.gameObject.activeSelf) continue;
-                tr.transform.position = _position;
-                tr.Clear();
-                return tr;
+                trailG = tr;
+                break;
             }
-            TrailRenderer newTrail = Instantiate(TrailPrefab, _position, Quaternion.identity, TrailPrefab.transform.parent) as TrailRenderer;
-            trailsPool.Add(newTrail);
+            if (trailG == null) {
+                trailG = Instantiate(TrailGroupPrefab, _parent) as TutorialUITrailGroup;
+                trailsPool.Add(trailG);
+            }
+            trailG.Spawn(_position);
+            return trailG;
+        }
 
-            // Adapt size to camera
-            // 1 : 45 = x : fov
-            newTrail.startWidth = Camera.main.fieldOfView * TutorialUI.TrailSize / 45f;
-            newTrail.endWidth = newTrail.startWidth * 0.4f;
-
-            return newTrail;
+        public TutorialUIProp SpawnArrow(Vector3 _position, Transform _parent)
+        {
+            TutorialUIProp arrow = null;
+            foreach (TutorialUIProp arr in arrowsPool) {
+                if (arr.gameObject.activeSelf) continue;
+                arrow = arr;
+                break;
+            }
+            if (arrow == null) {
+                arrow = Instantiate(ArrowPrefab, _parent) as TutorialUIProp;
+                arrowsPool.Add(arrow);
+            }
+            arrow.Show(_parent, _position);
+            return arrow;
         }
 
         #endregion
