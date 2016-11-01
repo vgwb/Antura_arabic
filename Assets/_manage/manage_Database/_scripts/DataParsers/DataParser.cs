@@ -15,17 +15,37 @@ namespace EA4S.Db.Management
                 var dict = row as Dictionary<string, object>;
                 var data = CreateData(dict, db);
 
+                if (data == null)
+                {
+                    continue;
+                }
+
                 var value = table.GetValue(data.GetId());
                 if (value != null) {
-                    LogValidation(data, "found multiple ID.");
+                    if (!CanHaveSameKeyMultipleTimes)
+                    {
+                        LogValidation(data, "found multiple ID.");
+                    }
                     continue;
                 }
 
                 table.Add(data);
             }
+
+            FinalValidation(table, db);
         }
 
+        protected virtual bool CanHaveSameKeyMultipleTimes
+        {
+           get {
+                return false;
+            }
+        }
+
+
         protected abstract D CreateData(Dictionary<string, object> dict, Database db);
+
+        protected virtual void FinalValidation(Dtable table, Database db) { }
 
         protected T ParseEnum<T>(D data, object enum_object)
         {
@@ -41,6 +61,19 @@ namespace EA4S.Db.Management
             return parsed_enum;
         }
 
+        protected string ParseID<OtherD, OtherDTable>(D data, string id_string, OtherDTable table) where OtherDTable : SerializableDataTable<OtherD> where OtherD : IData
+        {
+            id_string = id_string.Trim(); // remove spaces
+            if (id_string == "") return ""; // skip empties
+
+            var value = table.GetValue(id_string);
+            if (value == null)
+            {
+                LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + id_string);
+            }
+            return id_string;
+        }
+
         protected string[] ParseIDArray<OtherD, OtherDTable>(D data, string array_string, OtherDTable table) where OtherDTable : SerializableDataTable<OtherD> where OtherD : IData
         {
             if (table == null) {
@@ -49,11 +82,12 @@ namespace EA4S.Db.Management
 
             var array = array_string.Split(',');
             if (array_string == "") return new string[0];  // skip if empty (could happen if the string was empty)    
-            foreach (var vi in array) {
-                var v = vi.Trim(); // remove spaces
-                var value = table.GetValue(v);
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = array[i].Trim(); // remove spaces
+                var value = table.GetValue(array[i]);
                 if (value == null) {
-                    LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + v);
+                    LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + array[i]);
                 }
             }
             return array;
@@ -82,6 +116,29 @@ namespace EA4S.Db.Management
             }
             return target_int;
         }
+        #endregion
+
+        #region  Enums
+
+        public void RegenerateEnums(string json)
+        {
+            var list = Json.Deserialize(json) as List<object>;
+            var rowdicts_list = new List<Dictionary<string, object>>();
+            foreach (var row in list)
+            {
+                var dict = row as Dictionary<string, object>;
+                rowdicts_list.Add(dict);
+            }
+            RegenerateEnums(rowdicts_list);
+        }
+
+        protected abstract void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list);
+
+        protected void ExtractEnum(List<Dictionary<string, object>> rowdicts_list, string key, bool addNoneValue = false, string customEnumName = null)
+        {
+            EnumGenerator.ExtractEnum(typeof(D).Name, key, rowdicts_list, addNoneValue, customEnumName);
+        }
+
         #endregion
 
     }

@@ -16,7 +16,7 @@ namespace EA4S.Scanner
 			{
 				foreach(Transform beltPiece in this.transform)
 				{
-					beltPiece.tag = "Belt";
+					beltPiece.tag = "Scanner_Belt";
 				}
 			}
 		}

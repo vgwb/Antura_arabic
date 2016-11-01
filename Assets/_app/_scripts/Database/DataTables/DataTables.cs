@@ -14,6 +14,9 @@ namespace EA4S.Db
     public class PlaySessionTable : SerializableDataTable<PlaySessionData> { }
 
     [System.Serializable]
+    public class LearningBlockTable : SerializableDataTable<LearningBlockData> { }
+
+    [System.Serializable]
     public class LocalizationTable : SerializableDataTable<LocalizationData> { }
 
     [System.Serializable]

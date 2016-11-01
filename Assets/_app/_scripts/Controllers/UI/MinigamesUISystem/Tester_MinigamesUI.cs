@@ -42,6 +42,9 @@ namespace EA4S
                 case Tester_MinigamesUIPanel.UIPanelType.Lives:
                     panel.gameObject.SetActive(_id == 2 || _id == 3);
                     break;
+                case Tester_MinigamesUIPanel.UIPanelType.Starbar:
+                    panel.gameObject.SetActive(true);
+                    break;
                 default:
                     continue;
                 }
@@ -66,6 +69,16 @@ namespace EA4S
 
         public void Lives_LoseALife()
         { MinigamesUI.Lives.LoseALife(); }
+
+        #endregion
+
+        #region Starbar
+
+        public void Starbar_Goto(float _percentage)
+        { MinigamesUI.Starbar.Goto(_percentage); }
+
+        public void Starbar_GotoStar(int _starIndex)
+        { MinigamesUI.Starbar.GotoStar(_starIndex); }
 
         #endregion
 

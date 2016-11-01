@@ -12,9 +12,14 @@ namespace EA4S.Db.Management
 
             data.Id = ToString(dict["Id"]);
             data.Title = ToString(dict["Title"]);
-            data.Category = ParseEnum<RewardCategory>(data, dict["Category"]);
+            data.Category = ParseEnum<RewardDataCategory>(data, dict["Category"]);
 
             return data;
+        }
+
+        protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
+        {
+            ExtractEnum(rowdicts_list, "Category");
         }
     }
 }
