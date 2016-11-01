@@ -1059,10 +1059,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012126422044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.480613, y: -1.082884, z: 6.8071103}
+  m_LocalRotation: {x: -0, y: -0.4820511, z: -0, w: 0.87614316}
+  m_LocalPosition: {x: -11.788044, y: -1.0828838, z: -16.63577}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -57.525, z: 0}
   m_Children:
   - {fileID: 4000011967616566}
   m_Father: {fileID: 0}
@@ -1717,8 +1717,8 @@ MonoBehaviour:
   Dog_spine01: {fileID: 4000011825396642}
   Dog_jaw: {fileID: 4000011268121800}
   Dog_Tail3: {fileID: 4000012961328354}
-  dog_R_ear04: {fileID: 4000011885016510}
-  dog_L_ear04: {fileID: 4000011545664440}
+  Dog_R_ear04: {fileID: 4000011885016510}
+  Dog_L_ear04: {fileID: 4000011545664440}
 --- !u!137 &137000010011665450
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
