@@ -1757,10 +1757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mLetter: {fileID: 114000012345645560}
-  mfDistanceBetweenLetters: 8
+  mfDistanceBetweenLetters: 10
   mv3StartPosition: {x: -90, y: -34, z: 20}
   mv3CenterPosition: {x: -30, y: -34, z: 20}
-  mv3EndPosition: {x: 0, y: -34, z: 20}
+  mv3EndPosition: {x: 10, y: -34, z: 20}
 --- !u!114 &114000012345645560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1774,9 +1774,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lable: {fileID: 114000010860749572}
   ImageSprite: {fileID: 212000013653794862}
-  exclamationMark: {fileID: 0}
-  MergedElementsDistance: 1
-  IsMerged: 0
+  normalGraphics: []
+  limblessGraphics: []
+  poofPrefab: {fileID: 0}
 --- !u!114 &114000014038027054
 MonoBehaviour:
   m_ObjectHideFlags: 1

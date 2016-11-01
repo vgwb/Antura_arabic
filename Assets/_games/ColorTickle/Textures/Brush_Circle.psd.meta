@@ -54,6 +54,11 @@ TextureImporter:
     textureFormat: 5
     compressionQuality: 50
     allowsAlphaSplitting: 0
+  - buildTarget: Android
+    maxTextureSize: 32
+    textureFormat: 47
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []

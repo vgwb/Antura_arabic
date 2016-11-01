@@ -106,7 +106,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 		void OnMouseDown()
 		{
 			if (onLetterTouched != null) {
-                AudioManager.I.PlayLetter(view.Model.Data.Key);
+                AudioManager.I.PlayLetter(view.Data.Key);
                 coll.enabled = false;
                 onLetterTouched (id);
 			}

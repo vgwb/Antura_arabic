@@ -1177,9 +1177,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lable: {fileID: 114000010130955556}
   ImageSprite: {fileID: 212000010513181402}
-  exclamationMark: {fileID: 4000011609860498}
-  MergedElementsDistance: 1
-  IsMerged: 0
+  normalGraphics: []
+  limblessGraphics: []
+  poofPrefab: {fileID: 0}
 --- !u!114 &114000012683066352
 MonoBehaviour:
   m_ObjectHideFlags: 1

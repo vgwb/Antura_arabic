@@ -26,12 +26,13 @@ namespace EA4S.MissingLetter
 
         public void PlayAnimation(LLAnimationStates animation)
         {
-            mLetter.Model.State = animation;
+            mLetter.SetState(animation);
         }
 
         void MoveTo(Vector3 position, float duration, bool IdleAtEnd = true)
         {
-            PlayAnimation(LLAnimationStates.LL_run_happy);
+            // TODO missing animation
+            //PlayAnimation(LLAnimationStates.LL_run_happy);
 
             if (moveTweener != null)
             {
@@ -41,7 +42,7 @@ namespace EA4S.MissingLetter
             moveTweener = transform.DOLocalMove(position, duration).OnComplete(
                 delegate () {
                     if (IdleAtEnd)
-                        PlayAnimation(LLAnimationStates.LL_idle_1);
+                        PlayAnimation(LLAnimationStates.LL_idle);
                     if (endTransformToCallback != null)
                         endTransformToCallback();
                 });
@@ -192,7 +193,8 @@ namespace EA4S.MissingLetter
                 positions.Add(p);
             }
 
-            PlayAnimation(LLAnimationStates.LL_run_fear);
+            // TODO missing animation
+            //PlayAnimation(LLAnimationStates.LL_run_fear);
             transform.DOLookAt(positions[0], 1f);
 
             TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), duration, PathType.CatmullRom);
@@ -203,7 +205,7 @@ namespace EA4S.MissingLetter
             value.OnComplete(delegate {
                 transform.DOLookAt(transform.position + Vector3.back, 1f);
                 positions.Clear();
-                PlayAnimation(LLAnimationStates.LL_idle_1);
+                PlayAnimation(LLAnimationStates.LL_idle);
                 mCollider.enabled = true;
             });
         }

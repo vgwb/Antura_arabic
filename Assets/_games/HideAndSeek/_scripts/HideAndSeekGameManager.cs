@@ -83,7 +83,7 @@ namespace EA4S.HideAndSeek
         void CheckResult(int id)
 		{
 
-            if (ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>().view.Model.Data.Key == currentQuestion.GetAnswer().Key)
+            if (ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>().view.Data.Key == currentQuestion.GetAnswer().Key)
             {
                 ClearRound();
                 StartCoroutine(DelayAnimation(true));
