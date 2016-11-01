@@ -10,22 +10,18 @@ namespace EA4S.Db.Management
         {
             var data = new PlaySessionData();
 
+            data.Type = ToString(dict["Type"]);
+
+            if (data.Type == "Assessment")  // @note: we skip assessments
+            {
+                return null;
+            }
+
             data.Stage = ToInt(dict["Stage"]);
             data.LearningBlock = ToInt(dict["LearningBlock"]);
             data.PlaySession = ToInt(dict["PlaySession"]);
             data.Id = data.Stage + "." + data.LearningBlock + "." + data.PlaySession;
-            data.Description = ToString(dict["Description"]);
-            data.IntroArabic = ToString(dict["IntroArabic"]);
-
-            data.Type = ToString(dict["Type"]);
-            data.Focus = ParseEnum<DidacticalFocus>(data, (string)dict["Focus"]);
-
-            data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
-            data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
-            data.Words_previous = ParseIDArray<WordData, WordTable>(data, (string)dict["Words_previous"], db.GetWordTable());
-            data.Phrases = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases"], db.GetPhraseTable());
-            data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.GetPhraseTable());
-
+            data.Order = ParseEnum<PlaySessionDataOrder>(data, dict["Order"]);
             data.Minigames = CustomParseMinigames(data, dict, db.GetMiniGameTable());
 
             return data;
@@ -48,8 +44,7 @@ namespace EA4S.Db.Management
                 var minigameStruct = new MiniGameInPlaySession();
                 minigameStruct.MiniGameCode = (MiniGameCode)enum_i;
                 minigameStruct.Weight = ToInt(dict[enum_string]);
-                if (minigameStruct.Weight== 0)
-                {
+                if (minigameStruct.Weight == 0) {
                     // Skip adding if the weight is zero
                     continue;
                 }
@@ -57,6 +52,11 @@ namespace EA4S.Db.Management
                 list.Add(minigameStruct);
             }
             return list;
+        }
+
+        protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
+        {
+            ExtractEnum(rowdicts_list, "Order");
         }
 
     }

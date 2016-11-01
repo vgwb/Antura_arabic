@@ -12,7 +12,8 @@ namespace EA4S
         {
             Unset,
             Timer,
-            Lives
+            Lives,
+            Starbar
         }
 
         public UIPanelType PanelType;

@@ -8,7 +8,6 @@ namespace EA4S.Scanner
 
 		private enum LLStatus { Sliding, StandingOnBelt, RunningFromAntura, Angry, Happy };
 
-		public Animator animator;
 		public GameObject livingLetter;
 
 		public float slideSpeed = 2f;
@@ -16,8 +15,8 @@ namespace EA4S.Scanner
 		private LLStatus status;
 		// Use this for initialization
 		void Start () {
-			livingLetter.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_lose);
-			status = LLStatus.Sliding;
+			livingLetter.GetComponent<LetterObjectView>().Falling = true;
+            status = LLStatus.Sliding;
 		}
 
 		// Update is called once per frame
@@ -45,14 +44,9 @@ namespace EA4S.Scanner
 			int index = -1;
 			LLAnimationStates[] animations = 
 			{
-				LLAnimationStates.LL_idle_1,
-				LLAnimationStates.LL_idle_2,
-				LLAnimationStates.LL_idle_3,
-				LLAnimationStates.LL_idle_4,
-				LLAnimationStates.LL_dancing_1, 
-				LLAnimationStates.LL_run_happy,
-				LLAnimationStates.LL_turn_180,
-				LLAnimationStates.LL_twirl
+				LLAnimationStates.LL_idle,
+				LLAnimationStates.LL_dancing, 
+				//LLAnimationStates.LL_walking
 			};
 
 			do
@@ -69,18 +63,19 @@ namespace EA4S.Scanner
 
 		void OnTriggerEnter(Collider other) 
 		{
-			Debug.Log("Trigger entered");
+			Debug.Log("Slide Trigger entered");
 			if (status == LLStatus.Sliding)
 			{
-				if (other.tag == "Scanner_Belt")
+				if (other.tag == ScannerGame.TAG_BELT)
 				{
 					transform.parent = other.transform;
 					status = LLStatus.StandingOnBelt;
-					livingLetter.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_land);
+					livingLetter.GetComponent<LetterObjectView>().Falling = false;
 					StartCoroutine(RotateGO(livingLetter, new Vector3(0,180,0),1f));
 					StartCoroutine(AnimateLL());
 				}
 			}
 		}
+        
 	}
 }
