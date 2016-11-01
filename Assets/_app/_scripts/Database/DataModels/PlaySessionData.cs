@@ -3,14 +3,6 @@ using System.Collections.Generic;
 
 namespace EA4S.Db
 {
-    public enum DidacticalFocus
-    {
-        None = 0,
-        Letters = 1,
-        Shapes = 2,
-        Words = 3,
-        Phrases = 4
-    }
 
     [Serializable]
     public class PlaySessionData : IData
@@ -20,14 +12,7 @@ namespace EA4S.Db
         public int LearningBlock;
         public int PlaySession;
         public string Type;
-        public string Description;
-        public string IntroArabic;
-        public DidacticalFocus Focus;
-        public string[] Letters;
-        public string[] Words;
-        public string[] Words_previous;
-        public string[] Phrases;
-        public string[] Phrases_previous;
+        public PlaySessionDataOrder Order;
         public List<MiniGameInPlaySession> Minigames;
 
         public string GetId()
@@ -38,7 +23,7 @@ namespace EA4S.Db
         public override string ToString()
         {
             string output = "";
-            output += string.Format("[PlaySession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
+            output += string.Format("[PlaySession: LB={0}, PS={1}]", Stage, LearningBlock, PlaySession);
             output += "\n MiniGames:";
             foreach (var minigame in Minigames) {
                 if (minigame.Weight == 0) continue;

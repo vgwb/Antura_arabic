@@ -1162,6 +1162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lable: {fileID: 114000010901255416}
   ImageSprite: {fileID: 212000014278341224}
+  normalGraphics: []
+  limblessGraphics: []
+  poofPrefab: {fileID: 0}
 --- !u!137 &137000013662908692
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
