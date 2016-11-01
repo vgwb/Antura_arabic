@@ -15,15 +15,13 @@ namespace EA4S.Db.Management
                 var dict = row as Dictionary<string, object>;
                 var data = CreateData(dict, db);
 
-                if (data == null)
-                {
+                if (data == null) {
                     continue;
                 }
 
                 var value = table.GetValue(data.GetId());
                 if (value != null) {
-                    if (!CanHaveSameKeyMultipleTimes)
-                    {
+                    if (!CanHaveSameKeyMultipleTimes) {
                         LogValidation(data, "found multiple ID.");
                     }
                     continue;
@@ -35,9 +33,8 @@ namespace EA4S.Db.Management
             FinalValidation(table, db);
         }
 
-        protected virtual bool CanHaveSameKeyMultipleTimes
-        {
-           get {
+        protected virtual bool CanHaveSameKeyMultipleTimes {
+            get {
                 return false;
             }
         }
@@ -52,8 +49,7 @@ namespace EA4S.Db.Management
             string enum_string = ToString(enum_object);
             if (enum_string == "") enum_string = "None";
             T parsed_enum = default(T);
-            try
-            {
+            try {
                 parsed_enum = (T)System.Enum.Parse(typeof(T), enum_string);
             } catch {
                 LogValidation(data, "field valued '" + enum_string + "', not available as an enum value for type " + typeof(T).ToString() + ".");
@@ -67,8 +63,7 @@ namespace EA4S.Db.Management
             if (id_string == "") return ""; // skip empties
 
             var value = table.GetValue(id_string);
-            if (value == null)
-            {
+            if (value == null) {
                 LogValidation(data, "could not find a reference inside " + typeof(OtherDTable).Name + " for ID " + id_string);
             }
             return id_string;
@@ -82,8 +77,7 @@ namespace EA4S.Db.Management
 
             var array = array_string.Split(',');
             if (array_string == "") return new string[0];  // skip if empty (could happen if the string was empty)    
-            for (int i = 0; i < array.Length; i++)
-            {
+            for (int i = 0; i < array.Length; i++) {
                 array[i] = array[i].Trim(); // remove spaces
                 var value = table.GetValue(array[i]);
                 if (value == null) {
@@ -124,8 +118,7 @@ namespace EA4S.Db.Management
         {
             var list = Json.Deserialize(json) as List<object>;
             var rowdicts_list = new List<Dictionary<string, object>>();
-            foreach (var row in list)
-            {
+            foreach (var row in list) {
                 var dict = row as Dictionary<string, object>;
                 rowdicts_list.Add(dict);
             }
@@ -136,7 +129,9 @@ namespace EA4S.Db.Management
 
         protected void ExtractEnum(List<Dictionary<string, object>> rowdicts_list, string key, bool addNoneValue = false, string customEnumName = null)
         {
+#if UNITY_EDITOR
             EnumGenerator.ExtractEnum(typeof(D).Name, key, rowdicts_list, addNoneValue, customEnumName);
+#endif
         }
 
         #endregion
