@@ -5,7 +5,7 @@ namespace EA4S.MixedLetters
     public class QuestionGameState : IGameState
     {
         MixedLettersGame game;
-        
+
         public QuestionGameState(MixedLettersGame game)
         {
             this.game = game;

@@ -11,6 +11,7 @@ namespace EA4S.MixedLetters
         public BoxCollider boxCollider;
 
         private bool isBeingDragged = false;
+        private bool isDraggable = false;
         private float cameraDistance;
         private LL_LetterData letterData;
         public DropZoneController droppedZone;
@@ -27,7 +28,7 @@ namespace EA4S.MixedLetters
 
         private void OnPointerDown()
         {
-            if (!isBeingDragged)
+            if (!isBeingDragged && isDraggable)
             {
                 Ray ray = Camera.main.ScreenPointToRay(MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition);
 
@@ -37,6 +38,13 @@ namespace EA4S.MixedLetters
                 {
                     isBeingDragged = true;
                     SetIsKinematic(true);
+
+                    if (transform.position.z != DropZoneController.DropZoneZ)
+                    {
+                        Vector3 position = transform.position;
+                        position.z = DropZoneController.DropZoneZ;
+                        transform.position = position;
+                    }
 
                     if (droppedZone != null)
                     {
@@ -68,6 +76,7 @@ namespace EA4S.MixedLetters
                     droppedZone.SetDroppedLetter(this);
                     transform.position = droppedZone.transform.position;
                     DropZoneController.chosenDropZone = null;
+                    MixedLettersGame.instance.VerifyLetters();
                 }
 
                 else
@@ -84,7 +93,7 @@ namespace EA4S.MixedLetters
             rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
         }
 
-        private void SetIsKinematic(bool isKinematic)
+        public void SetIsKinematic(bool isKinematic)
         {
             rigidBody.isKinematic = isKinematic;
         }
@@ -92,6 +101,16 @@ namespace EA4S.MixedLetters
         public void SetRotation(Vector3 eulerAngles)
         {
             transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+        }
+
+        public void SetDraggable(bool isDraggable)
+        {
+            this.isDraggable = isDraggable;
+        }
+
+        public void AddForce(Vector3 force, ForceMode forceMode)
+        {
+            rigidBody.AddForce(force, forceMode);
         }
 
         public void RotateCCW()
@@ -104,10 +123,19 @@ namespace EA4S.MixedLetters
         public void Reset()
         {
             isBeingDragged = false;
+            isDraggable = false;
+            SetIsKinematic(true);
+            SetRotation(new Vector3(0, 0, 0));
+            droppedZone = null;
         }
 
-        public void SetPosition(Vector3 position)
+        public void SetPosition(Vector3 position, bool offsetOnZ)
         {
+            if (offsetOnZ)
+            {
+                position.z -= 1f;
+            }
+
             transform.position = position;
         }
 
@@ -125,6 +153,11 @@ namespace EA4S.MixedLetters
         {
             this.letterData = letterData;
             TMP_text.SetText(letterData.TextForLivingLetter);
+        }
+
+        public LL_LetterData GetLetter()
+        {
+            return letterData;
         }
     }
 }
