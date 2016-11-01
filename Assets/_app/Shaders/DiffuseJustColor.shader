@@ -29,6 +29,6 @@
 		}
 		ENDCG
 	}
-		
-	FallBack "Mobile/Diffuse"
+
+	FallBack "Mobile/VertexLit"
 }
