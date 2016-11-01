@@ -284,17 +284,20 @@ namespace EA4S.MissingLetter
             {
                 if(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == _key)
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_ride_rocket_horray);
+                    // TODO missing animation
+                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_ride_rocket_horray);
                 }
                 else
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_twirl);
+                    // TODO missing animation
+                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_twirl);
                 }
             }
 
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_highfive);
+                // TODO missing animation
+                //mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_highfive);
             }
         }
             
@@ -302,7 +305,8 @@ namespace EA4S.MissingLetter
         {
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
             {
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_lose);
+                // TODO missing animation
+                //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_lose);
             }
         }
 
