@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.Db;
+using EA4S.Teacher;
 
 namespace EA4S
 {
@@ -10,8 +11,11 @@ namespace EA4S
     {
         public static TeacherAI I;
 
+        // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
+        private LetterWordHelper lwHelper;
+
         string[] bodyPartsWords;
 
         public List<MiniGameData> MiniGamesInPlaySession;
@@ -20,22 +24,32 @@ namespace EA4S
 
         // AI engines
         MiniGameSelectionAI minigameSelectionAI;
+        WordSelectionAI wordSelectionAI;
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             I = this;
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
-        
+            this.lwHelper = dbManager.letterWordHelper;
+
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
+            this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile);
 
             MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
-            // Debug.Log("AI exists");
+            // Debug.Log("TeacherAI exists");
 
             bodyPartsWords = new[]
             {
                 "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
             };
+        }
+
+        public void InitialiseNewPlaySession()
+        {
+            // @todo: make sure this is called when a new play session starts
+            this.minigameSelectionAI.InitialiseNewPlaySession();
+            this.wordSelectionAI.InitialiseNewPlaySession();
         }
 
         #region Stefano's queries
@@ -79,7 +93,7 @@ namespace EA4S
 
         public LL_LetterData GimmeARandomLetter()
         {
-            var RandomLetterData = dbManager.GetLetterDataByRandom();
+            var RandomLetterData = SelectOne(dbManager.GetAllLetterData()); // dbManager.GetLetterDataByRandom();
             return new LL_LetterData(RandomLetterData.GetId());
         }
 
@@ -93,7 +107,7 @@ namespace EA4S
         public List<Db.LetterData> GimmeSimilarLetters(Db.LetterData letter, int howMany)
         {
             List<Db.LetterData> returnList = new List<Db.LetterData>();
-            returnList.Add(dbManager.GetLetterDataByRandom());
+            returnList.Add(SelectOne(dbManager.GetAllLetterData()));
             return returnList;
         }
 
@@ -147,7 +161,45 @@ namespace EA4S
             return this.minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
+        public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
+        {
+            return this.wordSelectionAI.PerformSelection(playSessionId, numberToSelect);
+        }
+
         #endregion
+
+        #region Letter & word queries
+
+        public List<LetterData> GetLettersInWord(string wordId)
+        {
+            return lwHelper.GetLettersInWord(wordId);
+        }
+
+        public List<LetterData> SelectLettersInWord(int nToSelect, string wordId)
+        {
+            return Select(2, lwHelper.GetLettersInWord(wordId));
+        }
+
+        public List<WordData> SelectWordsWithLetters(int nToSelect, params string[] letters)
+        {
+            return Select(2, lwHelper.GetWordsWithLetters(letters));
+        }
+
+
+        // @TODO: these could be set as list extensions
+        public List<T> Select<T>(int numberToSelect, List<T> all_list)
+        {
+            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, numberToSelect);
+        }
+
+        public T SelectOne<T>(List<T> all_list)
+        {
+            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, 1)[0];
+        }
+
+        #endregion
+
+
 
 
         #region MiniGames queries
@@ -172,8 +224,7 @@ namespace EA4S
         public List<ScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
         {
             // First, get all play sessions given a stage
-            List<PlaySessionData> eligiblePlaySessionData_list =
-                this.dbManager.FindPlaySessionData(x => x.Stage == stage);
+            List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
             // Then, get all scores of all play sessions
@@ -187,12 +238,9 @@ namespace EA4S
             return stage_playsession_list;
         }
 
-        public List<LogMoodData> GetLastMoodData(int number)
-        {
-            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number);
-            List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
-            return list;
-        }
+        #endregion
+
+        #region Assessment queries
 
         public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode) // also play session
         {
@@ -219,6 +267,10 @@ namespace EA4S
             return words;
         }
 
+        #endregion
+
+        #region Journeymap queries
+
         public List<LogPlayData> GetScoreHistoryForCurrentJourneyPosition()
         {
             // @note: shows how to work with playerprofile as well as the database
@@ -231,20 +283,16 @@ namespace EA4S
 
         #endregion
 
-        #region Assessment queries
-
-        #endregion
-
-        #region Journeymap queries
-
-        #endregion
-
         #region Mood queries
 
+        public List<LogMoodData> GetLastMoodData(int number)
+        {
+            string query = string.Format("SELECT * FROM LogMoodData ORDER BY Timestamp LIMIT {0}", number);
+            List<LogMoodData> list = dbManager.FindLogMoodDataByQuery(query);
+            return list;
+        }
+
         #endregion
 
-        #region Frequency of use queries
-
-        #endregion
     }
 }

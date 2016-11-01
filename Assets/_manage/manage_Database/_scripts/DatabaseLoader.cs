@@ -53,7 +53,13 @@ namespace EA4S.Db.Management
             {
                 var table = test_db.GetPlaySessionTable();
                 table.Clear();
-                table.AddRange(this.database.GetPlaySessionTable().GetValuesTyped()); ;
+                table.AddRange(this.database.GetPlaySessionTable().GetValuesTyped());
+            }
+
+            {
+                var table = test_db.GetLearningBlockTable();
+                table.Clear();
+                table.AddRange(this.database.GetLearningBlockTable().GetValuesTyped()); 
             }
 
             {
@@ -71,11 +77,77 @@ namespace EA4S.Db.Management
             Debug.Log("Database copied");
         }
 
+        public void RegenerateEnums()
+        {
+            if (verbose) Debug.Log("Regenerating enums from JSON files...");
+
+            RegenerateEnumsFrom(inputData);
+
+            if (verbose) Debug.Log("Finished regenerating enums!");
+        }
+
+        private void RegenerateEnumsFrom(DatabaseInputData DBInputData)
+        {
+            {
+                Debug.Log("Generating Letters enums...");
+                var parser = new LetterParser();
+                parser.RegenerateEnums(DBInputData.letterDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating Words enums...");
+                var parser = new WordParser();
+                parser.RegenerateEnums(DBInputData.wordDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating Phrases enums...");
+                var parser = new PhraseParser();
+                parser.RegenerateEnums(DBInputData.phraseDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating MiniGames enums...");
+                var parser = new MiniGameParser();
+                parser.RegenerateEnums(DBInputData.minigameDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating PlaySessions enums...");
+                var parser = new PlaySessionParser();
+                parser.RegenerateEnums(DBInputData.playSessionDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating LearningBlocks enums...");
+                var parser = new LearningBlockParser();
+                parser.RegenerateEnums(DBInputData.playSessionDataAsset.text);  // @note: LearningBlockParser works on the same table of playSessionData
+            }
+
+            {
+                Debug.Log("Generating Localization enums...");
+                var parser = new LocalizationParser();
+                parser.RegenerateEnums(DBInputData.localizationDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating Stages enums...");
+                var parser = new StageParser();
+                parser.RegenerateEnums(DBInputData.stageDataAsset.text);
+            }
+
+            {
+                Debug.Log("Generating Rewards enums...");
+                var parser = new RewardParser();
+                parser.RegenerateEnums(DBInputData.rewardDataAsset.text);
+            }
+        }
+
         #region Loading
 
-        /// <summary>
-        /// Load all database values from scriptable objects
-        /// </summary>
+            /// <summary>
+            /// Load all database values from scriptable objects
+            /// </summary>
         public void LoadDatabase()
         {
             if (verbose) Debug.Log("Loading data from JSON files...");
@@ -94,59 +166,61 @@ namespace EA4S.Db.Management
         {
             {
                 Debug.Log("Loading Letters...");
-                var adapter = new LetterParser();
-                adapter.Parse(DBInputData.letterDataAsset.text, database, database.GetLetterTable());
+                var parser = new LetterParser();
+                parser.Parse(DBInputData.letterDataAsset.text, database, database.GetLetterTable());
             }
 
             {
                 // @note: depends on Letter
                 Debug.Log("Loading Words...");
-                var adapter = new WordParser();
-                adapter.Parse(DBInputData.wordDataAsset.text, database, database.GetWordTable());
+                var parser = new WordParser();
+                parser.Parse(DBInputData.wordDataAsset.text, database, database.GetWordTable());
             }
 
             {
                 Debug.Log("Loading Phrases...");
-                var adapter = new PhraseParser();
-                adapter.Parse(DBInputData.phraseDataAsset.text, database, database.GetPhraseTable());
+                var parser = new PhraseParser();
+                parser.Parse(DBInputData.phraseDataAsset.text, database, database.GetPhraseTable());
             }
 
             {
-                Debug.Log("Loading Minigames...");
-                var adapter = new MiniGameParser();
-                adapter.Parse(DBInputData.minigameDataAsset.text, database, database.GetMiniGameTable());
+                Debug.Log("Loading MiniGames...");
+                var parser = new MiniGameParser();
+                parser.Parse(DBInputData.minigameDataAsset.text, database, database.GetMiniGameTable());
             }
 
             {
-                // @note: depends on Letter, Word, Phrase, Minigame
+                // @note: depends on Minigame
                 Debug.Log("Loading PlaySessions...");
-                var adapter = new PlaySessionParser();
-                adapter.Parse(DBInputData.playSessionDataAsset.text, database, database.GetPlaySessionTable());
+                var parser = new PlaySessionParser();
+                parser.Parse(DBInputData.playSessionDataAsset.text, database, database.GetPlaySessionTable());
+            }
+
+            {
+                // @note: depends on Letter, Word, Phrase, PlaySession
+                Debug.Log("Loading LearningBlocks...");
+                var parser = new LearningBlockParser();
+                parser.Parse(DBInputData.playSessionDataAsset.text, database, database.GetLearningBlockTable());
             }
 
             {
                 Debug.Log("Loading Localization...");
-                var adapter = new LocalizationParser();
-                adapter.Parse(DBInputData.localizationDataAsset.text, database, database.GetLocalizationTable());
+                var parser = new LocalizationParser();
+                parser.Parse(DBInputData.localizationDataAsset.text, database, database.GetLocalizationTable());
             }
 
             {
                 Debug.Log("Loading Stages...");
-                var adapter = new StageParser();
-                adapter.Parse(DBInputData.stageDataAsset.text, database, database.GetStageTable());
+                var parser = new StageParser();
+                parser.Parse(DBInputData.stageDataAsset.text, database, database.GetStageTable());
             }
 
             {
                 Debug.Log("Loading Rewards...");
-                var adapter = new RewardParser();
-                adapter.Parse(DBInputData.rewardDataAsset.text, database, database.GetRewardTable());
+                var parser = new RewardParser();
+                parser.Parse(DBInputData.rewardDataAsset.text, database, database.GetRewardTable());
             }
 
-            {
-                Debug.Log("Loading Localization...");
-                var adapter = new LocalizationParser();
-                adapter.Parse(DBInputData.localizationDataAsset.text, database, database.GetLocalizationTable());
-            }
 
             // Save database modifications
             EditorUtility.SetDirty(database);
