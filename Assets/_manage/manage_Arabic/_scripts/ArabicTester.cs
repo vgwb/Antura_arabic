@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace EA4S.Test
 {
-    public class TeacherTester : MonoBehaviour
+    public class ArabicTester : MonoBehaviour
     {
 
 
