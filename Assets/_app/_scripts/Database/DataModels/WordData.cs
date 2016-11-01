@@ -3,43 +3,18 @@ using UnityEngine;
 
 namespace EA4S.Db
 {
-    public enum WordKind
-    {
-        Noun = 1,
-        Adjective = 2,
-        Verb = 3,
-        Article = 4
-    }
-
-    public enum WordCategory
-    {
-        None = 0,
-        Animal = 1,
-        BodyPart = 2,
-        Color = 3,
-        FamilyMember = 4,
-        Food = 5,
-        Fruit = 6,
-        Job = 7,
-        Nature = 8,
-        Number = 9,
-        Place = 10,
-        Sport = 11,
-        Thing = 12,
-        Time = 13,
-        Vegetable = 14,
-        Vehicle = 15
-    }
 
     [Serializable]
     public class WordData : IData
     {
         public string Id;
-        public WordKind Kind;
-        public WordCategory Category;
+        public WordDataKind Kind;
+        public WordDataCategory Category;
+        public WordDataForm Form;
+        public WordDataArticle Article;
         public string Arabic;
         public string[] Letters;
-        public string Transliteration;
+        //public LetterSymbol[] Symbols; //TODO
         public int Difficulty;
         public int Drawing;
 
@@ -52,14 +27,20 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3},{4}",
+            return string.Format("{0},{1},{2},{3}",
                 Id,
                 Kind,
                 Category,
-                Arabic,
-                Transliteration
+                Arabic
                 );
         }
 
     }
+
+    /*[Serializable]
+    public struct LetterSymbol
+    {
+        public string LetterId;
+        public string SymbolId;
+    }*/
 }

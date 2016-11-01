@@ -387,6 +387,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lable: {fileID: 11453920}
   ImageSprite: {fileID: 0}
+  normalGraphics: []
+  limblessGraphics: []
+  poofPrefab: {fileID: 0}
 --- !u!222 &22226684
 CanvasRenderer:
   m_ObjectHideFlags: 1
