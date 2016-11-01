@@ -16,7 +16,7 @@
             var popupWidget = game.Context.GetPopupWidget();
             popupWidget.Show();
             popupWidget.SetButtonCallback(OnQuestionCompleted);
-            popupWidget.SetMessage(HideAndSeekConfiguration.Instance.Questions.GetDescription(), true);
+            popupWidget.SetMessage("", true);
         }
 
         public void ExitState()

@@ -30,5 +30,5 @@
 		ENDCG
 	}
 		
-	FallBack "Diffuse"
+	FallBack "Mobile/Diffuse"
 }

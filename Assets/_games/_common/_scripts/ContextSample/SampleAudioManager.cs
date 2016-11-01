@@ -37,7 +37,10 @@ namespace EA4S
             AudioClip clip = AudioManager.I.GetAudioClip(id);
 
             if (sfxGroup == null)
+            {
                 sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
+                sfxGroup.mixerGroup = AudioManager.I.lettersGroup;
+            }
 
             if (stopAllLetters)
                 sfxGroup.Stop();
@@ -82,7 +85,10 @@ namespace EA4S
             AudioClip clip = AudioManager.I.GetAudioClip(sfx);
 
             if (sfxGroup == null)
+            {
                 sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
+                sfxGroup.mixerGroup = AudioManager.I.sfxGroup;
+            }
 
             var source = sfxGroup.Play(clip);
 

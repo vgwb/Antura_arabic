@@ -47,7 +47,9 @@ namespace EA4S.FastCrowd
             // Reset game timer
             gameTime.Start();
 
-            game.timerText.gameObject.SetActive(true);
+            game.Context.GetTimerWidget().Show();
+            game.Context.GetTimerWidget().SetDuration(gameTime.Duration);
+            game.Context.GetTimerWidget().SetTime(gameTime.Time);
 
             StopAntura();
         }
@@ -56,7 +58,7 @@ namespace EA4S.FastCrowd
         {
             StopAntura();
 
-            game.timerText.gameObject.SetActive(false);
+            game.Context.GetTimerWidget().Hide();
             gameTime.Stop();
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
             game.QuestionManager.OnDropped -= OnAnswerDropped;
@@ -124,7 +126,7 @@ namespace EA4S.FastCrowd
             }
 
             gameTime.Update(delta);
-            game.timerText.text = ((int)gameTime.Time).ToString();
+            game.Context.GetTimerWidget().SetTime(gameTime.Time);
         }
 
         public void UpdatePhysics(float delta)

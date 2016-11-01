@@ -15,6 +15,8 @@ namespace EA4S
 
         public void EnterState()
         {
+            game.Context.GetStarsBarWidget().Hide();
+
             int starsScore = game.StarsScore;
             if (starsScore > 3)
                 starsScore = 3;
