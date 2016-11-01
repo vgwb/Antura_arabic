@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fabric;
+using UnityEngine.Audio;
 
 namespace EA4S
 {
@@ -10,6 +11,9 @@ namespace EA4S
     {
         const string LETTERS_PREFIX = "VOX/Letters/";
         const string WORDS_PREFIX = "VOX/Words/";
+
+        public AudioMixerGroup sfxGroup;
+        public AudioMixerGroup lettersGroup;
 
         public static AudioManager I;
         static System.Action OnNotifyEndAudio;

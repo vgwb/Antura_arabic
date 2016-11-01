@@ -12,8 +12,6 @@ namespace EA4S.Tobogan
 		public Camera tubesCamera;
         public ToboganFeedbackGraphics feedbackGraphics;
 
-        public TextMeshProUGUI timerText;
-
         public QuestionsManager questionsManager;
 
         public int CurrentScore { get; private set; }
@@ -77,9 +75,9 @@ namespace EA4S.Tobogan
 
             feedbackGraphics.Initialize(questionsManager);
 
-            timerText.gameObject.SetActive(false);
-
             Physics.gravity = new Vector3(0, -80, 0);
+
+            Context.GetStarsBarWidget().Show(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
         void OnResult(bool result)
@@ -96,6 +94,8 @@ namespace EA4S.Tobogan
             {
                 CurrentScore = 0;
             }
+
+            Context.GetStarsBarWidget().SetScore(CurrentScoreRecord);
         }
     }
 }

@@ -3,8 +3,7 @@
     public enum ToboganVariation : int
     {
         LetterInAWord = 1,
-        SunMoon = 2,
-        SingularPluralDual = 3
+        SunMoon = 2
     }
 
     public class ToboganConfiguration : IGameConfiguration
@@ -43,7 +42,10 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            PipeQuestions = new SampleQuestionProvider();
+            //PipeQuestions = new SampleQuestionProvider();
+            PipeQuestions = new SunMoonQuestionProvider();
+            Variation = ToboganVariation.SunMoon;
+
             Context = new SampleGameContext();
             Difficulty = 0.0f;
         }

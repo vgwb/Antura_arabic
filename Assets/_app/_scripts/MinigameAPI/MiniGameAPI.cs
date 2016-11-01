@@ -410,6 +410,31 @@ namespace EA4S.API
         }
         #endregion
 
+        #region StarsBarWidget provider
+        IStarsBarWidget starsBarWidget = new MinigamesStarsBarWidget();
+        public IStarsBarWidget GetStarsBarWidget()
+        {
+            return starsBarWidget;
+        }
+        #endregion
+
+        #region TimerWidget provider
+        ITimerWidget timerWidget = new MinigamesTimerWidget();
+        public ITimerWidget GetTimerWidget()
+        {
+            return timerWidget;
+        }
+        #endregion
+
+        #region LivesWidget provider
+        ILivesWidget livesWidget = new MinigamesLivesWidget();
+        public ILivesWidget GetLivesWidget()
+        {
+            return livesWidget;
+        }
+        #endregion
+        
+
         #region Context Presets
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {
