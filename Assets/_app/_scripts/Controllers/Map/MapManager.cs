@@ -108,7 +108,7 @@ namespace EA4S
             if (AppManager.Instance.IsAssessmentTime)
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
             else
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GameSelector");
         }
 
         void ShowProgression()
