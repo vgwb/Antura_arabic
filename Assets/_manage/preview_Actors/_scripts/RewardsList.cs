@@ -73,16 +73,16 @@ namespace EA4S {
 
             switch (_filterString) {
                 case "dog_head":
-                    doMoveCamera(new Vector3(0.0f, 11.0f, -17.0f));
+                    doMoveCamera(new Vector3(10.0f, 14.0f, -10.0f));
                     break;
                 case "dog_spine01":
-                    doMoveCamera(new Vector3(-10.0f, 11.0f, 8.0f));
+                    doMoveCamera(new Vector3(13.0f, 13.0f, -10.0f));
                     break;
                 case "dog_jaw":
-                    doMoveCamera(new Vector3(-5.0f, 6.0f, -12.0f));
+                    doMoveCamera(new Vector3(8.0f, 8.0f, -12.0f));
                     break;
                 case "dog_Tail4":
-                    doMoveCamera(new Vector3(-7.0f, 9.0f, 8.0f));
+                    doMoveCamera(new Vector3(-12.0f, 14.0f, 8.0f));
                     break;
                 case "dog_R_ear04":
                     doMoveCamera(new Vector3(-8.0f, 9.0f, -8.0f));
