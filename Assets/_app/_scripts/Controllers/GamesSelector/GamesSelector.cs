@@ -26,6 +26,8 @@ namespace EA4S
 
         #endregion
 
+        [Tooltip("Automatically grabs the minigames list from the teacher on startup, unless Show was called directly")]
+        public bool AudoLoadMinigamesOnStartup = true;
         [Tooltip("Distance to keep from camera")]
         public float DistanceFromCamera = 14;
         [Tooltip("Delay between the moment the last bubble is opened and the OnComplete event is dispatched")]
@@ -60,23 +62,16 @@ namespace EA4S
 
         void Start()
         {
-            if (SimulateForDebug) {
-                games = new List<MiniGameData>() {
-                    new MiniGameData() { Main = MiniGameCode.Maze.ToString() },
-                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString() },
-                    new MiniGameData() { Main = MiniGameCode.Egg.ToString() }
-                };
-                Show(games);
-            } else {
-                if (mainBubble == null) {
-                    mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
-                    mainBubble.gameObject.SetActive(false);
-                }
-                if (cam == null) {
-                    cam = Camera.main;
-                    camT = Camera.main.transform;
-                }
+            if (mainBubble == null) {
+                mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
+                mainBubble.gameObject.SetActive(false);
             }
+            if (cam == null) {
+                cam = Camera.main;
+                camT = Camera.main.transform;
+            }
+
+            if (AudoLoadMinigamesOnStartup && games == null) AutoLoadMinigames();
         }
 
         void OnDestroy()
@@ -84,6 +79,7 @@ namespace EA4S
             if (instance == this) instance = null;
             this.StopAllCoroutines();
             showTween.Kill(true);
+            OnComplete -= GoToMinigame;
         }
 
         void Update()
@@ -212,7 +208,6 @@ namespace EA4S
             for (int i = 0; i < totBubbles; ++i) {
                 GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
                 bubble.Setup(games[i].GetIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
-//                Debug.Log("ResetAndLayout " + games[i].GetId() + " " + games[i].GetIconResourcePath());
                 bubbles.Add(bubble);
             }
         }
@@ -224,6 +219,19 @@ namespace EA4S
                 trailsManager.Despawn(currTrail);
                 currTrail = null;
             }
+        }
+
+        void AutoLoadMinigames()
+        {
+            AppManager.Instance.InitDataAI();
+            OnComplete += GoToMinigame;
+            Show(TeacherAI.I.GetMiniGamesForCurrentPlaySession());
+        }
+
+        void GoToMinigame()
+        {
+            MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+            AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
         }
 
         IEnumerator CO_AnimateEntrance()
