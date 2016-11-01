@@ -57,7 +57,6 @@ namespace EA4S
 
         public void SetPosition(TrailRenderer _trail, Vector3 _position)
         {
-            _position.z = defZ;
             _trail.transform.position = _position;
         }
 
