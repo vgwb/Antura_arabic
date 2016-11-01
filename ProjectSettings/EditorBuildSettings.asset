@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/app_Mood.unity
   - enabled: 1
-    path: Assets/_app/_scenes/app_GameSelector.unity
+    path: Assets/_app/_scenes/app_GamesSelector.unity
   - enabled: 1
     path: Assets/_app/_scenes/app_Profile.unity
   - enabled: 1
