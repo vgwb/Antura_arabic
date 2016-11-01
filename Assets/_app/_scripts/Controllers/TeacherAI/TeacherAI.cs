@@ -37,7 +37,7 @@ namespace EA4S
             this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile);
 
             MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
-            // Debug.Log("AI exists");
+            // Debug.Log("TeacherAI exists");
 
             bodyPartsWords = new[]
             {
@@ -293,6 +293,6 @@ namespace EA4S
         }
 
         #endregion
-        
+
     }
 }
