@@ -133,7 +133,7 @@ public partial class SROptions
         set { ThrowBallsShowProjection = value; }
     }
 
-    private float ThrowBallselasticity = 17f;
+    private float ThrowBallselasticity = 19f;
     [Category("ThrowBalls")]
     public float Elasticity {
         get { return ThrowBallselasticity; }

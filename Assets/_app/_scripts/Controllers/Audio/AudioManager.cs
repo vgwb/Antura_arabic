@@ -2,14 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fabric;
+using UnityEngine.Audio;
 
 namespace EA4S
 {
 
     public class AudioManager : MonoBehaviour
     {
-        const string LETTERS_PREFIX = "VOX/Letters/";
+        const string LETTERS_PREFIX = "VOX/Letter/";
         const string WORDS_PREFIX = "VOX/Words/";
+
+        public AudioMixerGroup sfxGroup;
+        public AudioMixerGroup lettersGroup;
 
         public static AudioManager I;
         static System.Action OnNotifyEndAudio;
@@ -18,7 +22,7 @@ namespace EA4S
 
         bool musicEnabled = true;
         Music currentMusic;
-        
+
         Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
         Dictionary<string, Fabric.RandomComponent> eventToRndComponent = new Dictionary<string, Fabric.RandomComponent>();
 
@@ -30,8 +34,7 @@ namespace EA4S
 
             // Collect all Event name -> Audio clip pairs
             var components = transform.GetComponentsInChildren<AudioComponent>(true);
-            foreach (var c in components)
-            {
+            foreach (var c in components) {
                 var listener = c.GetComponent<EventListener>();
 
                 if (listener != null)
@@ -39,8 +42,7 @@ namespace EA4S
             }
 
             var rndcomponents = transform.GetComponentsInChildren<RandomComponent>(true);
-            foreach (var c in rndcomponents)
-            {
+            foreach (var c in rndcomponents) {
                 var listener = c.GetComponent<EventListener>();
 
                 if (listener != null)
@@ -196,15 +198,13 @@ namespace EA4S
         {
             Fabric.AudioComponent audioComponent = null;
 
-            if (eventToComponent.TryGetValue(eventName, out audioComponent))
-            {
+            if (eventToComponent.TryGetValue(eventName, out audioComponent)) {
                 return audioComponent.AudioClip;
             }
-            
+
             Fabric.RandomComponent rndComponent = null;
 
-            if (eventToRndComponent.TryGetValue(eventName, out rndComponent))
-            {
+            if (eventToRndComponent.TryGetValue(eventName, out rndComponent)) {
                 var child = rndComponent.GetChildComponents();
 
                 Fabric.AudioComponent c = child.GetRandom() as AudioComponent;
