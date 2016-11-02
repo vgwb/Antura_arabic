@@ -7,7 +7,7 @@ namespace EA4S.Db
       Letter = 1,
       Symbol = 2,
       Combination = 3,
-      Special = 4,
+      LetterVariation = 4,
   }
 }
 
