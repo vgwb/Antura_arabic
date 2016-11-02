@@ -64,6 +64,10 @@ namespace EA4S
         {
             this.gameObject.SetActive(false);
             wps.Clear();
+            foreach (LineRenderer lr in Lines) {
+                lr.SetVertexCount(0);
+                lr.SetPositions(new Vector3[0]);
+            }
         }
 
         public void AddPosition(Vector3 _position)

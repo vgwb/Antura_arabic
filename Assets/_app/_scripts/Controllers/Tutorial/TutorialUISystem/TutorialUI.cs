@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Tutorial framework
+    /// </summary>
     [RequireComponent(typeof(TutorialUIPools))]
     public class TutorialUI : MonoBehaviour
     {
@@ -50,6 +53,10 @@ namespace EA4S
 
         #region Public Methods
 
+        /// <summary>
+        /// Removes and tutorial element on screen
+        /// </summary>
+        /// <param name="_destroy">If TRUE, also destroys the TutorialUI gameObject</param>
         public static void Clear(bool _destroy)
         {
             if (I == null) return;
@@ -62,12 +69,32 @@ namespace EA4S
             }
         }
 
+        /// <summary>
+        /// Draws a straight line with the given options
+        /// </summary>
+        /// <param name="_from">Starting world position</param>
+        /// <param name="_to">Ending world position</param>
+        /// <param name="_mode">Draw mode (line only, finger, arrow, arrow + finger)</param>
+        /// <param name="_persistent">If TRUE, the line will stay on screen until you <see cref="Clear"/> the TutorialUI,
+        /// otherwise it will disappear automatically</param>
+        /// <param name="_overlayed">If TRUE the line will always appear above other world elements,
+        /// otherwise it will behave as a regular world object</param>
         public static void DrawLine(Vector3 _from, Vector3 _to, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
         {
             Init();
             I.DoDrawLine(new[]{_from, _to}, PathType.Linear, _mode, _persistent, _overlayed);
         }
 
+        /// <summary>
+        /// Draws a curved line with the given options
+        /// </summary>
+        /// <param name="_path">A series of waypoints (world positions) between which the line will pass.
+        /// IMPORTANT: the line drawn between the waypoints will use a CatmullRom curve, so you don't need too many waypoint to actually draw a curve</param>
+        /// <param name="_mode">Draw mode (line only, finger, arrow, arrow + finger)</param>
+        /// <param name="_persistent">If TRUE, the line will stay on screen until you <see cref="Clear"/> the TutorialUI,
+        /// otherwise it will disappear automatically</param>
+        /// <param name="_overlayed">If TRUE the line will always appear above other world elements,
+        /// otherwise it will behave as a regular world object</param>
         public static void DrawLine(Vector3[] _path, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
         {
             Init();
