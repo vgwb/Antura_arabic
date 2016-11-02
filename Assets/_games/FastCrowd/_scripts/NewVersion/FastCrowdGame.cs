@@ -8,7 +8,7 @@ namespace EA4S.FastCrowd
     public class FastCrowdGame : MiniGame
     {
         public QuestionManager QuestionManager;
-        
+
         public AnturaController antura;
 
         public List<ILivingLetterData> CurrentChallenge = new List<ILivingLetterData>();
@@ -16,7 +16,19 @@ namespace EA4S.FastCrowd
 
         public IQuestionPack CurrentQuestion = null; // optional
 
-        public int CurrentScore { get; private set; }
+        private int currentScore;
+        public int CurrentScore
+        {
+            get
+            {
+                return currentScore;
+            }
+            private set
+            {
+                currentScore = value;
+                Context.GetOverlayWidget().SetStarsScore(currentScore);
+            }
+        }
 
         public int QuestionNumber = 0;
 
@@ -128,13 +140,14 @@ namespace EA4S.FastCrowd
             ResultState = new FastCrowdResultState(this);
             EndState = new FastCrowdEndState(this);
 
-            Physics.gravity = new Vector3(0, -10, 0);
-
             QuestionManager.wordComposer.gameObject.SetActive(
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling
                 );
 
             Physics.gravity = Vector3.up * -40;
+
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(stars1Threshold, stars2Threshold, stars3Threshold);
         }
 
 

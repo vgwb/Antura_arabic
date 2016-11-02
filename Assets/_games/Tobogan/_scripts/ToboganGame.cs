@@ -77,7 +77,8 @@ namespace EA4S.Tobogan
 
             Physics.gravity = new Vector3(0, -80, 0);
 
-            Context.GetStarsBarWidget().Show(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
         void OnResult(bool result)
@@ -95,7 +96,7 @@ namespace EA4S.Tobogan
                 CurrentScore = 0;
             }
 
-            Context.GetStarsBarWidget().SetScore(CurrentScoreRecord);
+            Context.GetOverlayWidget().SetStarsScore(CurrentScoreRecord);
         }
     }
 }

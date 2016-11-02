@@ -410,30 +410,13 @@ namespace EA4S.API
         }
         #endregion
 
-        #region StarsBarWidget provider
-        IStarsBarWidget starsBarWidget = new MinigamesStarsBarWidget();
-        public IStarsBarWidget GetStarsBarWidget()
+        #region OverlayWidget provider
+        IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
+        public IOverlayWidget GetOverlayWidget()
         {
-            return starsBarWidget;
+            return overlayWidget;
         }
         #endregion
-
-        #region TimerWidget provider
-        ITimerWidget timerWidget = new MinigamesTimerWidget();
-        public ITimerWidget GetTimerWidget()
-        {
-            return timerWidget;
-        }
-        #endregion
-
-        #region LivesWidget provider
-        ILivesWidget livesWidget = new MinigamesLivesWidget();
-        public ILivesWidget GetLivesWidget()
-        {
-            return livesWidget;
-        }
-        #endregion
-        
 
         #region Context Presets
 

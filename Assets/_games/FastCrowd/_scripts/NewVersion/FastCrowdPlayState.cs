@@ -47,9 +47,8 @@ namespace EA4S.FastCrowd
             // Reset game timer
             gameTime.Start();
 
-            game.Context.GetTimerWidget().Show();
-            game.Context.GetTimerWidget().SetDuration(gameTime.Duration);
-            game.Context.GetTimerWidget().SetTime(gameTime.Time);
+            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             StopAntura();
         }
@@ -57,8 +56,7 @@ namespace EA4S.FastCrowd
         public void ExitState()
         {
             StopAntura();
-
-            game.Context.GetTimerWidget().Hide();
+            
             gameTime.Stop();
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
             game.QuestionManager.OnDropped -= OnAnswerDropped;
@@ -126,7 +124,7 @@ namespace EA4S.FastCrowd
             }
 
             gameTime.Update(delta);
-            game.Context.GetTimerWidget().SetTime(gameTime.Time);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
         }
 
         public void UpdatePhysics(float delta)
@@ -137,6 +135,7 @@ namespace EA4S.FastCrowd
         {
             // Time's up!
             game.isTimesUp = true;
+            game.Context.GetOverlayWidget().OnClockCompleted();
             game.SetCurrentState(game.EndState);
         }
     }
