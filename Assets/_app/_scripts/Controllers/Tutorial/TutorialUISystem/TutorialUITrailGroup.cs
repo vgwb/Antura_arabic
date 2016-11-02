@@ -73,6 +73,7 @@ namespace EA4S
             Init();
             this.gameObject.SetActive(true);
             this.transform.position = _position;
+            this.transform.rotation = Quaternion.identity;
             lastPos = _position - Vector3.one;
             for (int i = 0; i < Trails.Length; ++i) {
                 TrailRenderer tr = Trails[i];

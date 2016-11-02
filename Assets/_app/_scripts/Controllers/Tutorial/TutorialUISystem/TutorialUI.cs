@@ -29,7 +29,7 @@ namespace EA4S
         const string ResourcePath = "Prefabs/UI/TutorialUI";
         const string TweenId = "TutorialUI";
         float actualDrawSpeed;
-        TutorialUITrailGroup currTrail;
+        Transform currMovingTarget;
 
         #region Unity
 
@@ -92,20 +92,43 @@ namespace EA4S
             bool hasArrow = _mode == DrawLineMode.Arrow || _mode == DrawLineMode.FingerAndArrow;
             TutorialUIProp arrow = null;
             Vector3 startPos = _path[0];
-            TutorialUITrailGroup tr = currTrail = Pools.SpawnTrailGroup(this.transform, startPos, _overlayed);
-            if (hasFinger) Finger.Show(tr.transform, startPos);
+
+            TutorialUILineGroup lr = null;
+            TutorialUITrailGroup tr = null;
+            if (_persistent) {
+                lr = Pools.SpawnLineGroup(this.transform, startPos, _overlayed);
+                currMovingTarget = lr.transform;
+            } else {
+                tr = Pools.SpawnTrailGroup(this.transform, startPos, _overlayed);
+                currMovingTarget = tr.transform;
+            }
+
+            if (hasFinger) Finger.Show(currMovingTarget, startPos);
             if (hasArrow) arrow = Pools.SpawnArrow(this.transform, startPos, _overlayed);
-            TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId)
-                .OnComplete(() => {
-                    if (hasFinger && tr == currTrail) Finger.Hide();
+
+            TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId);
+            if (_persistent) {
+                parms.OnUpdate(() => {
+                    lr.AddPosition(lr.transform.position);
                 });
-            tr.transform.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
+                parms.OnComplete(() => {
+                    if (hasFinger && lr.transform == currMovingTarget) Finger.Hide();
+                });
+            } else {
+                parms.OnComplete(() => {
+                    if (hasFinger && tr.transform == currMovingTarget) Finger.Hide();
+                });
+            }
+
+            currMovingTarget.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
             if (hasArrow) {
-                arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, arrow.transform.up)
-                    .SetAs(parms)
-                    .OnComplete(() => {
+                Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, arrow.transform.up)
+                    .SetAs(parms);
+                if (!_persistent) {
+                    t.OnComplete(() => {
                         DOVirtual.DelayedCall(Mathf.Max(tr.Time - 0.2f, 0), () => arrow.Hide(), false).SetId(TweenId);
                     });
+                }
             }
         }
 
