@@ -14,7 +14,8 @@ namespace EA4S
         public TextMeshProUGUI TfTimer;
         public Color EndColor = Color.red;
 
-        float time;
+        public float Duration { get; private set; }
+        public float Elapsed { get; private set; }
         Sequence timerTween, shakeTween;
         Tween endTween;
 
@@ -46,19 +47,20 @@ namespace EA4S
         /// <param name="_playImmediately">If TRUE the timer starts immediately, otherwise waits for a <see cref="Play"/> call</param>
         public void Setup(float _timerDuration, bool _playImmediately = false)
         {
-            time = _timerDuration;
+            Duration = _timerDuration;
+            Elapsed = 0;
 
-            if (!IsSetup) {
+            if (IsSetup) {
                 timerTween.Rewind();
                 timerTween.Kill();
                 shakeTween.Kill(true);
                 endTween.Kill(true);
             }
 
-            TfTimer.text = time.ToString();
+            TfTimer.text = Duration.ToString();
 
             // Shake tween
-            float duration = time * 0.25f;
+            float duration = Duration * 0.25f;
             shakeTween = DOTween.Sequence().SetAutoKill(false)
                 .Append(this.transform.DOShakeRotation(duration, new Vector3(0, 0, 20f), 20))
                 .Join(this.transform.DOShakeScale(duration, 0.1f, 20));
@@ -70,12 +72,14 @@ namespace EA4S
             // Timer tween
             Radial.fillAmount = 0;
             timerTween = DOTween.Sequence().SetAutoKill(false)
-                .Append(Radial.DOFillAmount(1, time).SetEase(Ease.Linear))
-                .Join(Radial.DOColor(EndColor, time).SetEase(Ease.Linear))
+                .Append(Radial.DOFillAmount(1, Duration).SetEase(Ease.Linear))
+                .Join(Radial.DOColor(EndColor, Duration).SetEase(Ease.Linear))
                 .OnUpdate(() => {
-                    TfTimer.text = Mathf.CeilToInt(time - timerTween.Elapsed()).ToString();
-                    if (timerTween.ElapsedPercentage() >= 0.75f) shakeTween.PlayBackwards();
-                    else shakeTween.Complete();
+                    Elapsed = timerTween.Elapsed();
+                    TfTimer.text = Mathf.CeilToInt(Duration - Elapsed).ToString();
+                    float elapsedPercentage = timerTween.ElapsedPercentage();
+                    float shakePercentage = elapsedPercentage < 0.75f ? 0 : (1 - elapsedPercentage) / 0.25f;
+                    shakeTween.Goto(shakeTween.Duration() * shakePercentage);
                 })
                 .OnComplete(() => {
                     shakeTween.Rewind();
@@ -138,6 +142,8 @@ namespace EA4S
         public void Goto(float _time, bool _andPlay = false)
         {
             if (!Validate("MinigamesUITimer")) return;
+            if (_time > timerTween.Duration()) _time = timerTween.Duration();
+            if (Mathf.Approximately(_time, timerTween.Elapsed())) return;
 
             endTween.Rewind();
             timerTween.Goto(_time, _andPlay);
@@ -149,6 +155,8 @@ namespace EA4S
         public void GotoPercentage(float _percentage, bool _andPlay = false)
         {
             if (!Validate("MinigamesUITimer")) return;
+            if (_percentage > 1) _percentage = 1;
+            if (Mathf.Approximately(_percentage, timerTween.ElapsedPercentage())) return;
 
             endTween.Rewind();
             timerTween.Goto(timerTween.Duration() * _percentage, _andPlay);
