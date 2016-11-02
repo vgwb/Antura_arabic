@@ -40,7 +40,12 @@ namespace EA4S {
 
         #region API
 
-        public void LoadReward(string _id) {
+        /// <summary>
+        /// Loads the reward.
+        /// </summary>
+        /// <param name="_id">The identifier.</param>
+        /// <returns></returns>
+        public GameObject LoadReward(string _id) {
             Reward reward = config.Antura_rewards.Find(r => r.ID == _id);
             string boneParent = reward.BoneAttach;
             Transform transformParent = transform;
@@ -91,7 +96,7 @@ namespace EA4S {
                 default:
                     break;
             }
-
+            return rewardModel;
         }
 
         #endregion
