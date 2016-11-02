@@ -10,40 +10,70 @@ namespace EA4S
     [RequireComponent(typeof(TutorialUIPools))]
     public class TutorialUI : MonoBehaviour
     {
+        public enum DrawLineMode
+        {
+            LineOnly,
+            Finger,
+            Arrow,
+            FingerAndArrow
+        }
+
         [Tooltip("In units x second")]
         public float DrawSpeed = 2;
-        public float TrailSize = 0.5f;
         [Header("References")]
+        public TutorialUIProp Finger;
         public TutorialUIPools Pools;
 
-        static TutorialUI I;
+        public static TutorialUI I;
+        [System.NonSerialized] public Camera Cam;
         const string ResourcePath = "Prefabs/UI/TutorialUI";
         const string TweenId = "TutorialUI";
         float actualDrawSpeed;
+        TutorialUITrailGroup currTrail;
+        Tween showFingerTween;
 
         #region Unity
 
         void Awake()
         {
             I = this;
-            Pools.TutorialUI = this;
-            actualDrawSpeed = Camera.main.fieldOfView * DrawSpeed / 45f;
+            Cam = Camera.main;
+            actualDrawSpeed = Cam.fieldOfView * DrawSpeed / 45f;
         }
 
         void OnDestroy()
         {
             if (I == this) I = null;
+            DOTween.Kill(TweenId);
         }
 
         #endregion
 
         #region Public Methods
 
-        public static void DrawLine(Vector3 _from, Vector3 _to, bool _hasEndArrow, bool _persistent)
-        { I.DoDrawLine(new[]{_from, _to}, PathType.Linear, _hasEndArrow, _persistent); }
+        public static void Clear(bool _destroy)
+        {
+            if (I == null) return;
 
-        public static void DrawLine(Vector3[] _path, bool _hasEndArrow, bool _persistent)
-        { I.DoDrawLine(_path, PathType.Linear, _hasEndArrow, _persistent); }
+            if (_destroy) Destroy(I.gameObject);
+            else {
+                DOTween.Kill(TweenId);
+                I.Finger.Hide(true);
+                I.Pools.DespawnAll();
+            }
+        }
+
+        public static void DrawLine(Vector3 _from, Vector3 _to, DrawLineMode _mode, bool _persistent)
+        {
+            Init();
+            I.DoDrawLine(new[]{_from, _to}, PathType.Linear, _mode, _persistent);
+        }
+
+        public static void DrawLine(Vector3[] _path, DrawLineMode _mode, bool _persistent)
+        {
+            Init();
+            I.DoDrawLine(_path, PathType.CatmullRom, _mode, _persistent);
+        }
 
         #endregion
 
@@ -57,15 +87,24 @@ namespace EA4S
             go.name = "[TutorialUI]";
         }
 
-        void DoDrawLine(Vector3[] _path, PathType _pathType, bool _hasEndArrow, bool _persistent)
+        void DoDrawLine(Vector3[] _path, PathType _pathType, DrawLineMode _mode, bool _persistent)
         {
-            Init();
-
-            Debug.Log("TutorialUI.DrawLine > " + _path.Length);
-            TrailRenderer tr = Pools.SpawnTrail(_path[0]);
-            TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine);
-            if (_path.Length == 2) tr.transform.DOMove(_path[1], actualDrawSpeed).SetAs(parms);
-            else tr.transform.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
+            bool hasFinger = _mode == DrawLineMode.Finger || _mode == DrawLineMode.FingerAndArrow;
+            bool hasArrow = _mode == DrawLineMode.Arrow || _mode == DrawLineMode.FingerAndArrow;
+            TutorialUIProp arrow = null;
+            Vector3 startPos = _path[0];
+            TutorialUITrailGroup tr = currTrail = Pools.SpawnTrailGroup(startPos, this.transform);
+            if (hasFinger) Finger.Show(tr.transform, startPos);
+            if (hasArrow) arrow = Pools.SpawnArrow(startPos, this.transform);
+            TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId)
+                .OnComplete(() => {
+                    if (hasFinger && tr == currTrail) Finger.Hide();
+                });
+            tr.transform.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
+            if (hasArrow) {
+                arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, arrow.transform.up)
+                    .SetAs(parms);
+            }
         }
 
         #endregion
