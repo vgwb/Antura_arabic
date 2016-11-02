@@ -69,6 +69,7 @@ namespace EA4S.MissingLetter
 
 
         void NextWordQuestion() {
+            
             mCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
             ILivingLetterData questionData = mCurrQuestionPack.GetQuestion();
 
@@ -77,29 +78,25 @@ namespace EA4S.MissingLetter
 
             GameObject oQuestion = mQuestionPool.GetElement();
 
-            miCorrectAnswerIndex = RemoveLetterFromWord((LL_WordData)questionData);
-
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
-            //qstBehaviour.onLetterClick += qstBehaviour.Speak; DELETE
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
 
             mCurrentQuestionScene.Add(oQuestion);
 
-            //GameObject _correctAnswerObject = mAnswerPool.GetElement();
-            //LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
-            //corrAnsBheaviour.Reset();
-            //corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(m_iCorrectAnswerIndex);
-            //corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
-            ////corrAnsBheaviour.onLetterClick += corrAnsBheaviour.Speak;
-            //corrAnsBheaviour.onLetterClick_s += OnAnswerClicked;
+            GameObject _correctAnswerObject = mAnswerPool.GetElement();
+            LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
+            corrAnsBheaviour.Reset();
+            corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(0);
+            corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
+            corrAnsBheaviour.onLetterClick += OnAnswerClicked;
 
-            //mCurrentAnswerScene.Add(_correctAnswerObject);
+            mCurrentAnswerScene.Add(_correctAnswerObject);
 
             //add other old correct answers to wrong answers
-            for(int i=0; i < _correctAnswers.Count; ++i)
+            for (int i=0; i < _correctAnswers.Count; ++i)
             {
                 if(i!= miCorrectAnswerIndex)
                 {
@@ -113,7 +110,6 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.Reset();
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
-                //wrongAnsBheaviour.onLetterClick += wrongAnsBheaviour.Speak; DELETE
                 wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
 
                 mCurrentAnswerScene.Add(_wrongAnswerObject);
@@ -132,7 +128,6 @@ namespace EA4S.MissingLetter
             var _wrongAnswers = mCurrQuestionPack.GetWrongAnswers();
             var _correctAnswers = mCurrQuestionPack.GetCorrectAnswers();
 
-            miCorrectAnswerIndex = RemoveWordFromSentences(questionData);
 
             foreach(LL_WordData _word in questionData)
             {
@@ -187,15 +182,6 @@ namespace EA4S.MissingLetter
         void ExitCurrentScene() {
             if (mCurrQuestionPack != null) {
 
-                if(mRoundType == RoundType.WORD)
-                {
-                    RestoreRemovedLetter();
-                }
-                else
-                {
-                    RestoreRemovedWord();
-                }
-
                 foreach (GameObject _obj in mCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
@@ -237,36 +223,36 @@ namespace EA4S.MissingLetter
             }
         }
 
-        int RemoveLetterFromWord(LL_WordData word)
-        {
-            char[] caQuestion = ArabicFixer.Fix(word.Data.Arabic, false, false).ToCharArray();
-            int index = UnityEngine.Random.Range(0, caQuestion.Length);
-            msRemovedData = caQuestion[index].ToString();
-            caQuestion[index] = ' ';
-            word.Data.Arabic = caQuestion.ToString();
-            return index;
-        }
+        //int RemoveLetterFromWord(LL_WordData word)
+        //{
+        //    char[] caQuestion = ArabicFixer.Fix(word.Data.Arabic, false, false).ToCharArray();
+        //    int index = UnityEngine.Random.Range(0, caQuestion.Length);
+        //    msRemovedData = caQuestion[index].ToString();
+        //    caQuestion[index] = ' ';
+        //    word.Data.Arabic = caQuestion.ToString();
+        //    return index;
+        //}
 
-        int RemoveWordFromSentences(List<LL_WordData> sentence)
-        {
-            int index = UnityEngine.Random.Range(0, sentence.Count());
-            LL_WordData result = sentence.ElementAt(index);
-            msRemovedData = sentence[index].Data.Arabic;
-            sentence[index].Data.Arabic = "";
-            return index;
-        }
+        //int RemoveWordFromSentences(List<LL_WordData> sentence)
+        //{
+        //    int index = UnityEngine.Random.Range(0, sentence.Count());
+        //    LL_WordData result = sentence.ElementAt(index);
+        //    msRemovedData = sentence[index].Data.Arabic;
+        //    sentence[index].Data.Arabic = "";
+        //    return index;
+        //}
 
-        void RestoreRemovedLetter()
-        {
-            LL_WordData word = (LL_WordData)mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().LetterData;
-            word.Data.Arabic = word.Data.Arabic.Replace(' ', msRemovedData[0]);
-        }
+        //void RestoreRemovedLetter()
+        //{
+        //    LL_WordData word = (LL_WordData)mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().LetterData;
+        //    word.Data.Arabic = word.Data.Arabic.Replace(' ', msRemovedData[0]);
+        //}
 
-        void RestoreRemovedWord()
-        {
-            LL_WordData word = (LL_WordData)mCurrentQuestionScene[miCorrectAnswerIndex].GetComponent<LetterBehaviour>().LetterData;
-            word.Data.Arabic = msRemovedData;
-        }
+        //void RestoreRemovedWord()
+        //{
+        //    LL_WordData word = (LL_WordData)mCurrentQuestionScene[miCorrectAnswerIndex].GetComponent<LetterBehaviour>().LetterData;
+        //    word.Data.Arabic = msRemovedData;
+        //}
 
 
         public void ShuffleLetters(float duration)
