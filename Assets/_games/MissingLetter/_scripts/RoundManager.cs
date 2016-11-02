@@ -222,7 +222,7 @@ namespace EA4S.MissingLetter
         void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
 
-            if(/*mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key*/true) {
+            if(/*mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key*/false) {
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
                 DoWinAnimations(_key);
             }
@@ -284,29 +284,33 @@ namespace EA4S.MissingLetter
             {
                 if(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == _key)
                 {
-                    // TODO missing animation
-                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_ride_rocket_horray);
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
                 }
                 else
                 {
-                    // TODO missing animation
-                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_twirl);
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoHorray();
                 }
             }
 
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
-                // TODO missing animation
-                //mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_highfive);
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
             }
         }
             
         private void DoLoseAnimations(string _key)
         {
+            for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
+            {
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
+            }
+
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
             {
-                // TODO missing animation
-                //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_lose);
+                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
             }
         }
 
