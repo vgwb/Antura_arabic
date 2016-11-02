@@ -1,6 +1,7 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/10/28
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -85,28 +86,73 @@ namespace EA4S
         #region Timer
 
         public void Timer_Setup(float _timerDuration)
-        { MinigamesUI.Timer.Setup(_timerDuration); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Setup(_timerDuration);
+        }
 
         public void Timer_Play()
-        { MinigamesUI.Timer.Play(); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Play();
+        }
+
+        public void Timer_PlayWithGoto()
+        {
+            this.StopAllCoroutines();
+            this.StartCoroutine(CO_Timer_PlayWithGoto());
+        }
 
         public void Timer_Pause()
-        { MinigamesUI.Timer.Pause(); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Pause();
+        }
 
         public void Timer_ReStart()
-        { MinigamesUI.Timer.Restart(); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Restart();
+        }
 
         public void Timer_Rewind()
-        { MinigamesUI.Timer.Rewind(); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Rewind();
+        }
 
         public void Timer_Complete()
-        { MinigamesUI.Timer.Complete(); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Complete();
+        }
 
         public void Timer_Goto(float _time)
-        { MinigamesUI.Timer.Goto(_time, true); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.Goto(_time, true);
+        }
 
         public void Timer_GotoPercentage(float _percentage)
-        { MinigamesUI.Timer.GotoPercentage(_percentage, true); }
+        {
+            this.StopAllCoroutines();
+            MinigamesUI.Timer.GotoPercentage(_percentage, true);
+        }
+
+        #endregion
+
+        #region Methods
+
+        IEnumerator CO_Timer_PlayWithGoto()
+        {
+            float time = Time.realtimeSinceStartup;
+            while (true) {
+                yield return null;
+                float elapsed = Time.realtimeSinceStartup - time;
+                time = Time.realtimeSinceStartup;
+                MinigamesUI.Timer.Goto(MinigamesUI.Timer.Elapsed + elapsed);
+            }
+        }
 
         #endregion
     }
