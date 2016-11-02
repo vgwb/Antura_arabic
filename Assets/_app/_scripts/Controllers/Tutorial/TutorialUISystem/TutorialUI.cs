@@ -30,7 +30,6 @@ namespace EA4S
         const string TweenId = "TutorialUI";
         float actualDrawSpeed;
         TutorialUITrailGroup currTrail;
-        Tween showFingerTween;
 
         #region Unity
 
@@ -63,16 +62,16 @@ namespace EA4S
             }
         }
 
-        public static void DrawLine(Vector3 _from, Vector3 _to, DrawLineMode _mode, bool _persistent)
+        public static void DrawLine(Vector3 _from, Vector3 _to, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
         {
             Init();
-            I.DoDrawLine(new[]{_from, _to}, PathType.Linear, _mode, _persistent);
+            I.DoDrawLine(new[]{_from, _to}, PathType.Linear, _mode, _persistent, _overlayed);
         }
 
-        public static void DrawLine(Vector3[] _path, DrawLineMode _mode, bool _persistent)
+        public static void DrawLine(Vector3[] _path, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
         {
             Init();
-            I.DoDrawLine(_path, PathType.CatmullRom, _mode, _persistent);
+            I.DoDrawLine(_path, PathType.CatmullRom, _mode, _persistent, _overlayed);
         }
 
         #endregion
@@ -87,15 +86,15 @@ namespace EA4S
             go.name = "[TutorialUI]";
         }
 
-        void DoDrawLine(Vector3[] _path, PathType _pathType, DrawLineMode _mode, bool _persistent)
+        void DoDrawLine(Vector3[] _path, PathType _pathType, DrawLineMode _mode, bool _persistent, bool _overlayed)
         {
             bool hasFinger = _mode == DrawLineMode.Finger || _mode == DrawLineMode.FingerAndArrow;
             bool hasArrow = _mode == DrawLineMode.Arrow || _mode == DrawLineMode.FingerAndArrow;
             TutorialUIProp arrow = null;
             Vector3 startPos = _path[0];
-            TutorialUITrailGroup tr = currTrail = Pools.SpawnTrailGroup(startPos, this.transform);
+            TutorialUITrailGroup tr = currTrail = Pools.SpawnTrailGroup(this.transform, startPos, _overlayed);
             if (hasFinger) Finger.Show(tr.transform, startPos);
-            if (hasArrow) arrow = Pools.SpawnArrow(startPos, this.transform);
+            if (hasArrow) arrow = Pools.SpawnArrow(this.transform, startPos, _overlayed);
             TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId)
                 .OnComplete(() => {
                     if (hasFinger && tr == currTrail) Finger.Hide();
@@ -103,7 +102,10 @@ namespace EA4S
             tr.transform.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
             if (hasArrow) {
                 arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, arrow.transform.up)
-                    .SetAs(parms);
+                    .SetAs(parms)
+                    .OnComplete(() => {
+                        DOVirtual.DelayedCall(Mathf.Max(tr.Time - 0.2f, 0), () => arrow.Hide(), false).SetId(TweenId);
+                    });
             }
         }
 

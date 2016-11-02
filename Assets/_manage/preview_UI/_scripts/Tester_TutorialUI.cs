@@ -20,7 +20,7 @@ namespace EA4S.Test
         public float MinPointDistance = 0.3f;
         [Header("References")]
         public Dropdown DrawModeDropdown;
-        public Toggle FingerToggle, ArrowToggle;
+        public Toggle FingerToggle, ArrowToggle, OverlayToggle;
 
         DrawMode drawMode = DrawMode.StraightLine;
         readonly List<Vector3> storedPs = new List<Vector3>();
@@ -56,10 +56,10 @@ namespace EA4S.Test
                     : TutorialUI.DrawLineMode.LineOnly;
                 switch (drawMode) {
                 case DrawMode.StraightLine:
-                    TutorialUI.DrawLine(storedPs[0], storedPs[storedPs.Count - 1], mode, false);
+                    TutorialUI.DrawLine(storedPs[0], storedPs[storedPs.Count - 1], mode, false, OverlayToggle.isOn);
                     break;
                 case DrawMode.FullCurve:
-                    TutorialUI.DrawLine(storedPs.ToArray(), mode, false);
+                    TutorialUI.DrawLine(storedPs.ToArray(), mode, false, OverlayToggle.isOn);
                     break;
                 }
                 storedPs.Clear();
