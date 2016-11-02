@@ -445,7 +445,7 @@ MonoBehaviour:
       Initial_Unicode: FE8D
       Medial_Unicode: FE8E
       Final_Unicode: FE8E
-    - Id: baa
+    - Id: beh
       Number: 2
       Title: "b\u0101\u2019"
       Kind: 1
@@ -464,7 +464,7 @@ MonoBehaviour:
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-    - Id: tah
+    - Id: teh
       Number: 3
       Title: "t\u0101\u2019"
       Kind: 1
@@ -483,7 +483,7 @@ MonoBehaviour:
       Initial_Unicode: FE97
       Medial_Unicode: FE98
       Final_Unicode: FE96
-    - Id: thaa
+    - Id: theh
       Number: 4
       Title: "th\u0101\u2019"
       Kind: 1
@@ -502,7 +502,7 @@ MonoBehaviour:
       Initial_Unicode: FE9B
       Medial_Unicode: FE9C
       Final_Unicode: FE9A
-    - Id: jiim
+    - Id: jeem
       Number: 5
       Title: "j\u012Bm"
       Kind: 1
@@ -540,7 +540,7 @@ MonoBehaviour:
       Initial_Unicode: FEA3
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
-    - Id: khaa
+    - Id: khah
       Number: 7
       Title: "kh\u0101\u2019"
       Kind: 1
@@ -559,7 +559,7 @@ MonoBehaviour:
       Initial_Unicode: FEA7
       Medial_Unicode: FEA8
       Final_Unicode: FEA6
-    - Id: daal
+    - Id: dal
       Number: 8
       Title: "d\u0101l"
       Kind: 1
@@ -578,7 +578,7 @@ MonoBehaviour:
       Initial_Unicode: FEA9
       Medial_Unicode: FEAA
       Final_Unicode: FEAA
-    - Id: dhaal
+    - Id: thal
       Number: 9
       Title: "dh\u0101l"
       Kind: 1
@@ -597,7 +597,7 @@ MonoBehaviour:
       Initial_Unicode: FEAB
       Medial_Unicode: FEAC
       Final_Unicode: FEAC
-    - Id: raa
+    - Id: reh
       Number: 10
       Title: "r\u0101\u2019"
       Kind: 1
@@ -616,7 +616,7 @@ MonoBehaviour:
       Initial_Unicode: FEAD
       Medial_Unicode: FEAE
       Final_Unicode: FEAE
-    - Id: zay
+    - Id: zain
       Number: 11
       Title: "zayn / z\u0101y / z\u0101\u2019"
       Kind: 1
@@ -635,7 +635,7 @@ MonoBehaviour:
       Initial_Unicode: FEAF
       Medial_Unicode: FEB0
       Final_Unicode: FEB0
-    - Id: siin
+    - Id: seen
       Number: 12
       Title: "s\u012Bn"
       Kind: 1
@@ -654,7 +654,7 @@ MonoBehaviour:
       Initial_Unicode: FEB3
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
-    - Id: shiin
+    - Id: sheen
       Number: 13
       Title: "sh\u012Bn"
       Kind: 1
@@ -673,7 +673,7 @@ MonoBehaviour:
       Initial_Unicode: FEB7
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
-    - Id: saad
+    - Id: sad
       Number: 14
       Title: "\u1E63\u0101d"
       Kind: 1
@@ -692,7 +692,7 @@ MonoBehaviour:
       Initial_Unicode: FEBB
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
-    - Id: daad
+    - Id: dad
       Number: 15
       Title: "\u1E0D\u0101d"
       Kind: 1
@@ -711,7 +711,7 @@ MonoBehaviour:
       Initial_Unicode: FEBF
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
-    - Id: taa
+    - Id: tah
       Number: 16
       Title: "\u1E6D\u0101\u2019"
       Kind: 1
@@ -730,7 +730,7 @@ MonoBehaviour:
       Initial_Unicode: FEC3
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
-    - Id: dhaa
+    - Id: zah
       Number: 17
       Title: "\u1E0Dh\u0101\u2019"
       Kind: 1
@@ -749,7 +749,7 @@ MonoBehaviour:
       Initial_Unicode: FEC7
       Medial_Unicode: FEC8
       Final_Unicode: FEC6
-    - Id: ayn
+    - Id: ain
       Number: 18
       Title: "\u2018ayn"
       Kind: 1
@@ -768,7 +768,7 @@ MonoBehaviour:
       Initial_Unicode: FECB
       Medial_Unicode: FECC
       Final_Unicode: FECA
-    - Id: ghayn
+    - Id: ghain
       Number: 19
       Title: ghayn
       Kind: 1
@@ -787,7 +787,7 @@ MonoBehaviour:
       Initial_Unicode: FECF
       Medial_Unicode: FED0
       Final_Unicode: FECE
-    - Id: faa
+    - Id: feh
       Number: 20
       Title: "f\u0101\u2019"
       Kind: 1
@@ -806,7 +806,7 @@ MonoBehaviour:
       Initial_Unicode: FED3
       Medial_Unicode: FED4
       Final_Unicode: FED2
-    - Id: qaaf
+    - Id: qaf
       Number: 21
       Title: "q\u0101f"
       Kind: 1
@@ -825,7 +825,7 @@ MonoBehaviour:
       Initial_Unicode: FED7
       Medial_Unicode: FED8
       Final_Unicode: FED6
-    - Id: kaaf
+    - Id: kaf
       Number: 22
       Title: "k\u0101f"
       Kind: 1
@@ -844,7 +844,7 @@ MonoBehaviour:
       Initial_Unicode: FEDB
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
-    - Id: laam
+    - Id: lam
       Number: 23
       Title: "l\u0101m"
       Kind: 1
@@ -863,7 +863,7 @@ MonoBehaviour:
       Initial_Unicode: FEDF
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
-    - Id: miim
+    - Id: meem
       Number: 24
       Title: "m\u012Bm"
       Kind: 1
@@ -882,7 +882,7 @@ MonoBehaviour:
       Initial_Unicode: FEE3
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
-    - Id: nuun
+    - Id: noon
       Number: 25
       Title: "n\u016Bn"
       Kind: 1
@@ -901,7 +901,7 @@ MonoBehaviour:
       Initial_Unicode: FEE7
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
-    - Id: haa
+    - Id: heh
       Number: 26
       Title: "h\u0101\u2019"
       Kind: 1
@@ -920,7 +920,7 @@ MonoBehaviour:
       Initial_Unicode: FEEB
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
-    - Id: waaw
+    - Id: waw
       Number: 27
       Title: "w\u0101w"
       Kind: 1
@@ -939,7 +939,7 @@ MonoBehaviour:
       Initial_Unicode: FEED
       Medial_Unicode: FEEE
       Final_Unicode: FEEE
-    - Id: yaa
+    - Id: yeh
       Number: 28
       Title: "y\u0101\u2019"
       Kind: 1
@@ -966,7 +966,7 @@ MonoBehaviour:
       Symbol: 
       Type: 0
       Tag: 
-      Notes: applied just on the long vowels Alef, waaw, and yaa
+      Notes: applied just on the long vowels Alef, waw, and yeh
       SunMoon: 0
       Sound: 
       Isolated: "\u0621"
@@ -1194,7 +1194,7 @@ MonoBehaviour:
       Symbol: 
       Type: 0
       Tag: 
-      Notes: dotless yaa
+      Notes: dotless yeh
       SunMoon: 0
       Sound: a
       Isolated: "\u0649"
@@ -1209,8 +1209,8 @@ MonoBehaviour:
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: alef
-      Symbol: 
+      BaseLetter: alef_maqsura
+      Symbol: hamza
       Type: 0
       Tag: 
       Notes: 
@@ -1224,12 +1224,12 @@ MonoBehaviour:
       Initial_Unicode: FE8B
       Medial_Unicode: FE8C
       Final_Unicode: FE8A
-    - Id: yaa_hamza
+    - Id: yeh_hamza
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
-      Symbol: 
+      BaseLetter: yeh
+      Symbol: hamza
       Type: 0
       Tag: 
       Notes: 
@@ -1243,30 +1243,30 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: tah_marbuta
+    - Id: teh_marbuta
       Number: 0
-      Title: taa marbuta
+      Title: teh marbuta
       Kind: 4
-      BaseLetter: tah
+      BaseLetter: teh
       Symbol: 
       Type: 0
       Tag: 
-      Notes: variation of tah
+      Notes: variation of teh
       SunMoon: 0
       Sound: a
       Isolated: "\uFFFD\u0629"
       Initial: 
       Medial: 
       Final: "\u0640\u0629"
-      Isolated_Unicode: 
+      Isolated_Unicode: 0629
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: laam_alef
+    - Id: lam_alef
       Number: 0
-      Title: laam alef
+      Title: lam alef
       Kind: 3
-      BaseLetter: laam
+      BaseLetter: lam
       Symbol: alef
       Type: 0
       Tag: 
@@ -1338,11 +1338,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: ayn_fathah
+    - Id: ain_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: ayn
+      BaseLetter: ain
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1357,11 +1357,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: ayn_kasrah
+    - Id: ain_kasrah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: ain
       Symbol: kasrah
       Type: 0
       Tag: 
@@ -1376,11 +1376,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: baa_dammah
+    - Id: beh_dammah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: beh
       Symbol: dammah
       Type: 0
       Tag: 
@@ -1395,11 +1395,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: baa_fathah
+    - Id: beh_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: beh
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1414,11 +1414,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: baa_kasrah
+    - Id: beh_kasrah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: beh
       Symbol: kasrah
       Type: 0
       Tag: 
@@ -1433,11 +1433,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: daad_fathah
+    - Id: dad_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: dad
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1452,11 +1452,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: daal_dammah_tanwin
+    - Id: dal_dammah_tanwin
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: dal
       Symbol: dammah_tanwin
       Type: 0
       Tag: 
@@ -1471,11 +1471,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: daal_fathah
+    - Id: dal_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: dal
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1490,11 +1490,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: dhaal_fathah
+    - Id: thal_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: thal
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1509,11 +1509,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: faa_fathah
+    - Id: feh_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: feh
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1528,11 +1528,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: faa_sukun
+    - Id: feh_sukun
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: feh
       Symbol: sukun
       Type: 0
       Tag: 
@@ -1547,11 +1547,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: haa_fathah
+    - Id: heh_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: heh
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1566,11 +1566,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: haa_kasrah
+    - Id: heh_kasrah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: heh
       Symbol: kasrah
       Type: 0
       Tag: 
@@ -1589,7 +1589,7 @@ MonoBehaviour:
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: hah
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1608,7 +1608,7 @@ MonoBehaviour:
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: hah
       Symbol: kasrah
       Type: 0
       Tag: 
@@ -1627,7 +1627,7 @@ MonoBehaviour:
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: hah
       Symbol: shaddah
       Type: 0
       Tag: 
@@ -1642,30 +1642,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: hamza_isolated
+    - Id: jeem_dammah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
-      Symbol: 
-      Type: 0
-      Tag: 
-      Notes: 
-      SunMoon: 0
-      Sound: 
-      Isolated: 
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: jiim_dammah
-      Number: 0
-      Title: 
-      Kind: 3
-      BaseLetter: 
+      BaseLetter: jeem
       Symbol: dammah
       Type: 0
       Tag: 
@@ -1680,11 +1661,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: jiim_fathah
+    - Id: jeem_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: jeem
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1699,11 +1680,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: jiim_shaddah
+    - Id: jeem_shaddah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: jeem
       Symbol: shaddah
       Type: 0
       Tag: 
@@ -1718,11 +1699,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: kaaf_dammah
+    - Id: kaf_dammah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: kaf
       Symbol: dammah
       Type: 0
       Tag: 
@@ -1737,11 +1718,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: kaaf_fathah
+    - Id: kaf_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: kaf
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1756,11 +1737,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: laam_fathah
+    - Id: lam_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: lam
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1775,11 +1756,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: laam_kasrah
+    - Id: lam_kasrah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: lam
       Symbol: kasrah
       Type: 0
       Tag: 
@@ -1794,11 +1775,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: laam_kasrah_tanwin
+    - Id: lam_kasrah_tanwin
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: lam
       Symbol: kasrah_tanwin
       Type: 0
       Tag: 
@@ -1813,11 +1794,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: laam_sukun
+    - Id: lam_sukun
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: lam
       Symbol: sukun
       Type: 0
       Tag: 
@@ -1832,11 +1813,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: miim_dammah
+    - Id: meem_dammah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: meem
       Symbol: dammah
       Type: 0
       Tag: 
@@ -1851,11 +1832,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: miim_fathah
+    - Id: meem_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: meem
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1870,11 +1851,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: miim_kasrah
+    - Id: meem_kasrah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: meem
       Symbol: kasrah
       Type: 0
       Tag: 
@@ -1889,11 +1870,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: nuun_fathah
+    - Id: noon_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: noon
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1908,11 +1889,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: nuun_kasrah_tanwin
+    - Id: noon_kasrah_tanwin
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: noon
       Symbol: kasrah_tanwin
       Type: 0
       Tag: 
@@ -1927,11 +1908,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: nuun_sukun
+    - Id: noon_sukun
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: noon
       Symbol: sukun
       Type: 0
       Tag: 
@@ -1946,11 +1927,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: qaaf_fathah
+    - Id: qaf_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: qaf
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1965,11 +1946,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: raa_fathah
+    - Id: reh_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: reh
       Symbol: fathah
       Type: 0
       Tag: 
@@ -1984,11 +1965,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: raa_kasrah
+    - Id: reh_kasrah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: reh
       Symbol: kasrah
       Type: 0
       Tag: 
@@ -2003,11 +1984,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: saad_fathah
+    - Id: sad_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: sad
       Symbol: fathah
       Type: 0
       Tag: 
@@ -2022,11 +2003,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: shiin_fathah
+    - Id: sheen_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: sheen
       Symbol: fathah
       Type: 0
       Tag: 
@@ -2041,50 +2022,12 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: siin_fathah
+    - Id: seen_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: seen
       Symbol: fathah
-      Type: 0
-      Tag: 
-      Notes: 
-      SunMoon: 0
-      Sound: 
-      Isolated: 
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: taa_fathah
-      Number: 0
-      Title: 
-      Kind: 3
-      BaseLetter: 
-      Symbol: fathah
-      Type: 0
-      Tag: 
-      Notes: 
-      SunMoon: 0
-      Sound: 
-      Isolated: 
-      Initial: 
-      Medial: 
-      Final: 
-      Isolated_Unicode: 
-      Initial_Unicode: 
-      Medial_Unicode: 
-      Final_Unicode: 
-    - Id: tah_dammah
-      Number: 0
-      Title: 
-      Kind: 3
-      BaseLetter: 
-      Symbol: dammah
       Type: 0
       Tag: 
       Notes: 
@@ -2109,6 +2052,44 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: teh_dammah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: teh
+      Symbol: dammah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
+      Isolated: 
+      Initial: 
+      Medial: 
+      Final: 
+      Isolated_Unicode: 
+      Initial_Unicode: 
+      Medial_Unicode: 
+      Final_Unicode: 
+    - Id: teh_fathah
+      Number: 0
+      Title: 
+      Kind: 3
+      BaseLetter: teh
+      Symbol: fathah
+      Type: 0
+      Tag: 
+      Notes: 
+      SunMoon: 0
+      Sound: 
       Isolated: "\u062A\u064E"
       Initial: 
       Medial: 
@@ -2117,11 +2098,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: tah_marbuta_dammah_tanwin
+    - Id: teh_marbuta_dammah_tanwin
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: teh_marbuta
       Symbol: dammah_tanwin
       Type: 0
       Tag: 
@@ -2136,12 +2117,12 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: waaw_hamza
+    - Id: waw_hamza
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
-      Symbol: 
+      BaseLetter: waw
+      Symbol: hamza
       Type: 0
       Tag: 
       Notes: 
@@ -2155,11 +2136,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: zaay_fathah
+    - Id: zain_fathah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: zain
       Symbol: fathah
       Type: 0
       Tag: 
@@ -2174,11 +2155,11 @@ MonoBehaviour:
       Initial_Unicode: 
       Medial_Unicode: 
       Final_Unicode: 
-    - Id: zay_dammah
+    - Id: zain_dammah
       Number: 0
       Title: 
       Kind: 3
-      BaseLetter: 
+      BaseLetter: zain
       Symbol: dammah
       Type: 0
       Tag: 
@@ -11097,16 +11078,16 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 2
       NumberOfPlaySessions: 2
-      Description: "The trio baa, taa, thaa (\u0628 - \u062A \u2013 \u062B): Same
+      Description: "The trio beh, teh, theh (\u0628 - \u062A \u2013 \u062B): Same
         shape, different number & location of dots"
-      Title: Trio baa,tah,thaa
+      Title: Trio beh,tah,theh
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - baa
-      - tah
-      - thaa
+      - beh
+      - teh
+      - theh
       Words:
       - yogurt
       - berry
@@ -11124,16 +11105,16 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 3
       NumberOfPlaySessions: 2
-      Description: "The trio jiim, haa, khaa (\u062C - \u062D \u2013 \u062E): Same
+      Description: "The trio jeem, hah, khah (\u062C - \u062D \u2013 \u062E): Same
         shape, different location of a dot"
-      Title: Trio jiim, hah, khaa
+      Title: Trio jeem, hah, khah
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - jiim
+      - jeem
       - hah
-      - khaa
+      - khah
       Words:
       - leg
       - delicious
@@ -11151,15 +11132,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 4
       NumberOfPlaySessions: 2
-      Description: "The duo daal and dhaal (\u062F \u2013 \u0630): Same shape, absence
+      Description: "The duo dal and thal (\u062F \u2013 \u0630): Same shape, absence
         of a dot"
-      Title: Duo daal and dhaal
+      Title: Duo dal and thal
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - daal
-      - dhaal
+      - dal
+      - thal
       Words:
       - bear
       - ear
@@ -11177,15 +11158,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 5
       NumberOfPlaySessions: 2
-      Description: "The duo raa and zaay (\u0631 \u2013 \u0632): Same shape, absence
+      Description: "The duo reh and zain (\u0631 \u2013 \u0632): Same shape, absence
         of a dot"
-      Title: Duo raa and zay
+      Title: Duo reh and zain
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - raa
-      - zay
+      - reh
+      - zain
       Words:
       - cold
       - banana
@@ -11203,15 +11184,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 6
       NumberOfPlaySessions: 2
-      Description: "The duo siin and shiin (\u0633 \u2013 \u0634): Same shape, absence
+      Description: "The duo seen and sheen (\u0633 \u2013 \u0634): Same shape, absence
         of three dots"
-      Title: Duo siin,shiin
+      Title: Duo seen,sheen
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - siin
-      - shiin
+      - seen
+      - sheen
       Words:
       - tooth
       - tea
@@ -11229,15 +11210,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 7
       NumberOfPlaySessions: 2
-      Description: "The Saad and Daad (\u0635 \u2013 \u0636): Same shape, absence
-        of a dot"
-      Title: Duo saad,daad
+      Description: "The sad and dad (\u0635 \u2013 \u0636): Same shape, absence of
+        a dot"
+      Title: Duo sad,dad
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - saad
-      - daad
+      - sad
+      - dad
       Words:
       - voice
       - light
@@ -11255,15 +11236,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 8
       NumberOfPlaySessions: 2
-      Description: "The Taa and DHaa (\u0637 \u2013 \u0638): Same shape, absence of
+      Description: "The tah and zah (\u0637 \u2013 \u0638): Same shape, absence of
         a dot"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - taa
-      - dhaa
+      - tah
+      - zah
       Words:
       - rain
       - back
@@ -11281,15 +11262,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 9
       NumberOfPlaySessions: 2
-      Description: "The duo ayn and ghayn (\u0639 \u2013 \u063A): Same shape, absence
+      Description: "The duo ain and ghain (\u0639 \u2013 \u063A): Same shape, absence
         of a dot"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - ayn
-      - ghayn
+      - ain
+      - ghain
       Words:
       - aunt_father
       - deer
@@ -11307,15 +11288,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 10
       NumberOfPlaySessions: 2
-      Description: "The duo faa and qaaf (\u0641 \u2013 \u0642): Same shape, different
+      Description: "The duo feh and qaf (\u0641 \u2013 \u0642): Same shape, different
         number of dots"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - faa
-      - qaaf
+      - feh
+      - qaf
       Words:
       - nose
       - moon
@@ -11333,15 +11314,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 11
       NumberOfPlaySessions: 2
-      Description: "The duo kaaf and laam (\u0643 \u2013 \u0644): Same shape, absence
+      Description: "The duo kaf and lam (\u0643 \u2013 \u0644): Same shape, absence
         of hamza (\u0621)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - kaaf
-      - laam
+      - kaf
+      - lam
       Words:
       - sugar
       - dog
@@ -11359,15 +11340,15 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 12
       NumberOfPlaySessions: 2
-      Description: "The duo miim and nuun (\u0645 \u2013 \u0646): No specific criterion,
+      Description: "The duo meem and noon (\u0645 \u2013 \u0646): No specific criterion,
         just different letters"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - miim
-      - nuun
+      - meem
+      - noon
       Words:
       - mother
       - cheese
@@ -11385,16 +11366,16 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 13
       NumberOfPlaySessions: 2
-      Description: "The trio haa waaw yaa (\u0647 - \u0648 - \u064A): No specific
-        criterion, jusy different letters"
+      Description: "The trio heh waw yeh (\u0647 - \u0648 - \u064A): No specific criterion,
+        jusy different letters"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - yaa
-      - waaw
-      - haa
+      - yeh
+      - waw
+      - heh
       Words:
       - cat
       - flower
@@ -11412,16 +11393,16 @@ MonoBehaviour:
       Stage: 1
       LearningBlock: 14
       NumberOfPlaySessions: 2
-      Description: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaaw\u201D (\u0648),
-        \u201Cyaa\u201D (\u064A)"
+      Description: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaw\u201D (\u0648),
+        \u201Cyeh\u201D (\u064A)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
       - alef
-      - waaw
-      - yaa
+      - waw
+      - yeh
       Words:
       - aunt_mother
       - grandfather
@@ -11463,14 +11444,14 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 2
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \"ba\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
+      Description: "The four shapes of the letter \"beh\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
         \ \u0628\u0640)"
-      Title: baa shapes
+      Title: beh shapes
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - baa
+      - beh
       Words:
       - girl
       - boy
@@ -11488,15 +11469,15 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 3
       NumberOfPlaySessions: 2
-      Description: "The six shapes of the letter \u201Ctaa\u201D (\u062A \u0640\u062A
+      Description: "\"The six shapes of the letter \u201Cteh\u201D (\u062A \u0640\u062A
         \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
-      Title: tah,tah_marbuta shapes
+      Title: teh,teh_marbuta shapes
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - tah
-      - tah_marbuta
+      - teh
+      - teh_marbuta
       Words:
       - fig
       - copybook
@@ -11514,14 +11495,14 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 4
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Ctha\u201D (\u062B \u0640\u062B
+      Description: "The four shapes of the letter \u201Ctheh\u201D (\u062B \u0640\u062B
         \  \u0640\u062B\u0640  \u062B\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - thaa
+      - theh
       Words:
       - garlic
       - pear_big
@@ -11539,14 +11520,14 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 5
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cjiim\u201D (\u062C   \u0640\u062C
+      Description: "The four shapes of the letter \u201Cjeem\u201D (\u062C   \u0640\u062C
         \  \u0640\u062C\u0640   \u062C\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - jiim
+      - jeem
       Words:
       - camel
       - tree
@@ -11564,7 +11545,7 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 6
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Chaa\u201D (\u062D  \u0640\u062D
+      Description: "The four shapes of the letter \u201Chah\u201D (\u062D  \u0640\u062D
         \ \u0640\u062D\u0640  \u062D\u0640)"
       Title: 
       IntroArabic: 
@@ -11589,14 +11570,14 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 7
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Ckhaa\u201D (\u062E  \u0640\u062E
+      Description: "The four shapes of the letter \u201Ckhah\u201D (\u062E  \u0640\u062E
         \u0640\u062E\u0640  \u062E\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - khaa
+      - khah
       Words:
       - cucumber
       - hot
@@ -11614,13 +11595,13 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 8
       NumberOfPlaySessions: 2
-      Description: "The two shapes of the letter \u201Cdaal\u201D ( \u0640\u062F  \u062F)"
+      Description: "The two shapes of the letter \u201Cdal\u201D ( \u0640\u062F  \u062F)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - daal
+      - dal
       Words:
       - chest
       - hand
@@ -11638,13 +11619,13 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 9
       NumberOfPlaySessions: 2
-      Description: "The two shapes of the letter \u201Cdhaal\u201D (\u0640\u0630  \u0630)"
+      Description: "The two shapes of the letter \u201Cthal\u201D (\u0640\u0630  \u0630)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - dhaal
+      - thal
       Words:
       - delicious
       - went
@@ -11661,13 +11642,13 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 10
       NumberOfPlaySessions: 2
-      Description: "The two shapes of the letter \u201Craa\u201D ( \u0640\u0631  \u0631)"
+      Description: "The two shapes of the letter \u201Creh\u201D ( \u0640\u0631  \u0631)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - raa
+      - reh
       Words:
       - tiger
       - paper
@@ -11685,13 +11666,13 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 11
       NumberOfPlaySessions: 2
-      Description: "The two shapes of the letter \u201Czay\u201D ( \u0640\u0632  \u0632)"
+      Description: "The two shapes of the letter \u201Czain\u201D ( \u0640\u0632  \u0632)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - zay
+      - zain
       Words:
       - bread
       - rice
@@ -11709,14 +11690,14 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 12
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Csiin\u201D (\u0633  \u0640\u0633
+      Description: "The four shapes of the letter \u201Cseen\u201D (\u0633  \u0640\u0633
         \ \u0640\u0633\u0640  \u0633\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - siin
+      - seen
       Words:
       - hour
       - eagle
@@ -11734,14 +11715,14 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 13
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cshiin\u201D (\u0634 \u0640\u0634
+      Description: "The four shapes of the letter \u201Csheen\u201D (\u0634 \u0640\u0634
         \u0640\u0634\u0640 \u0634\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - shiin
+      - sheen
       Words:
       - hair
       - apricot
@@ -11759,14 +11740,14 @@ MonoBehaviour:
       Stage: 2
       LearningBlock: 14
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201CSaad\u201D (\u0635 \u0640\u0635
+      Description: "The four shapes of the letter \u201Csad\u201D (\u0635 \u0640\u0635
         \u0640\u0635\u0640 \u0635\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - saad
+      - sad
       Words:
       - box
       - onion
@@ -11784,14 +11765,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 1
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201CDaad\u201D (\u0636 \u0640\u0636
+      Description: "The four shapes of the letter \u201Cdad\u201D (\u0636 \u0640\u0636
         \u0640\u0636\u0640 \u0636\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - daad
+      - dad
       Words:
       - laughed
       - color_green
@@ -11808,14 +11789,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 2
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201CTaa\u201D (\u0637  \u0640\u0637
+      Description: "The four shapes of the letter \u201Ctah\u201D (\u0637  \u0640\u0637
         \u0640\u0637\u0640 \u0637\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - taa
+      - tah
       Words:
       - flew
       - potato
@@ -11833,14 +11814,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 3
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201CDHaa\u201D (\u0638 \u0640\u0638
+      Description: "The four shapes of the letter \u201Czah\u201D (\u0638 \u0640\u0638
         \u0640\u0638\u0640 \u0638\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - dhaa
+      - zah
       Words:
       - nail
       - clean
@@ -11856,14 +11837,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 4
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cayn\u201D (\u0639  \u0640\u0639
+      Description: "The four shapes of the letter \u201Cain\u201D (\u0639  \u0640\u0639
         \u0640\u0639\u0640 \u0639\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - ayn
+      - ain
       Words:
       - juice
       - played
@@ -11881,14 +11862,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 5
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cghayn\u201D (\u063A \u0640\u063A
+      Description: "The four shapes of the letter \u201Cghain\u201D (\u063A \u0640\u063A
         \u0640\u063A\u0640 \u063A\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - ghayn
+      - ghain
       Words:
       - room
       - parrot
@@ -11906,14 +11887,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 6
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cfaa\u201D (\u0641 \u0640\u0641
+      Description: "The four shapes of the letter \u201Cfeh\u201D (\u0641 \u0640\u0641
         \u0640\u0641\u0640 \u0641\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - faa
+      - feh
       Words:
       - farmer
       - color_yellow
@@ -11931,14 +11912,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 7
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cqaaf\u201D (\u0642 \u0640\u0642
+      Description: "The four shapes of the letter \u201Cqaf\u201D (\u0642 \u0640\u0642
         \u0640\u0642\u0640 \u0642\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - qaaf
+      - qaf
       Words:
       - foot
       - field
@@ -11956,14 +11937,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 8
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Ckaaf\u201D ( \u0643 \u0640\u0643
+      Description: "The four shapes of the letter \u201Ckaf\u201D ( \u0643 \u0640\u0643
         \u0640\u0643\u0640 \u0643\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - kaaf
+      - kaf
       Words:
       - month_january
       - cried
@@ -11981,14 +11962,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 9
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Claam\u201D (\u0644 \u0640\u0644
+      Description: "The four shapes of the letter \u201Clam\u201D (\u0644 \u0640\u0644
         \ \u0640\u0644\u0640 \u0644\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - laam
+      - lam
       Words:
       - teacher
       - carried
@@ -12006,14 +11987,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 10
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cmiim\u201D ( \u0645 \u0640\u0645
+      Description: "The four shapes of the letter \u201Cmeem\u201D ( \u0645 \u0640\u0645
         \u0640\u0645\u0640 \u0645\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - miim
+      - meem
       Words:
       - school
       - color_red
@@ -12031,14 +12012,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 11
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cnuun\u201D (\u0646 \u0640\u0646
+      Description: "The four shapes of the letter \u201Cnoon\u201D (\u0646 \u0640\u0646
         \u0640\u0646\u0640 \u0646\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - nuun
+      - noon
       Words:
       - carpenter
       - number_2
@@ -12056,14 +12037,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 12
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Chaa\u201D (\u0647  \u0640\u0647
+      Description: "The four shapes of the letter \u201Cheh\u201D (\u0647  \u0640\u0647
         \u0640\u0647\u0640 \u0647\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - haa
+      - heh
       Words:
       - month
       - virtuous
@@ -12081,13 +12062,13 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 13
       NumberOfPlaySessions: 2
-      Description: "The two shapes of the letter \u201Cwaaw\u201D ( \u0640\u0648  \u0648)"
+      Description: "The two shapes of the letter \u201Cwaw\u201D ( \u0640\u0648  \u0648)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - waaw
+      - waw
       Words:
       - face
       - bird
@@ -12105,14 +12086,14 @@ MonoBehaviour:
       Stage: 3
       LearningBlock: 14
       NumberOfPlaySessions: 2
-      Description: "The four shapes of the letter \u201Cyaa\u201D (\u064A \u0640\u064A
+      Description: "The four shapes of the letter \u201Cyeh\u201D (\u064A \u0640\u064A
         \u0640\u064A\u0640 \u064A\u0640)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - yaa
+      - yeh
       Words:
       - number_8
       - color_brown
@@ -12327,11 +12308,11 @@ MonoBehaviour:
       LearningBlock: 9
       NumberOfPlaySessions: 2
       Description: "The different sound variations of hamza (\u0621) on a vowel (different
-        with/without), separate. waw hamza (\u0624) and yaa hamza (\u0626)"
+        with/without), separate. waw hamza (\u0624) and yeh hamza (\u0626)"
       Title: 
       IntroArabic: 
       Reward: 
-      Focus: 0
+      Focus: 2
       Letters: []
       Words: []
       Words_previous: []
@@ -12342,14 +12323,14 @@ MonoBehaviour:
       Stage: 4
       LearningBlock: 10
       NumberOfPlaySessions: 2
-      Description: "The diphthong \u201Cwaaw\u201D (\u0648): different sound than
-        short and long vowel"
+      Description: "The diphthong \u201Cwaw\u201D (\u0648): different sound than short
+        and long vowel"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 3
       Letters:
-      - waaw
+      - waw
       Words: []
       Words_previous:
       - banana
@@ -12365,7 +12346,7 @@ MonoBehaviour:
       Stage: 4
       LearningBlock: 11
       NumberOfPlaySessions: 2
-      Description: "The diphthong \u201Cyaa\u201D (\u064A): different sound than short
+      Description: "The diphthong \u201Cyeh\u201D (\u064A): different sound than short
         and long vowel"
       Title: 
       IntroArabic: 
@@ -12498,13 +12479,13 @@ MonoBehaviour:
       Stage: 5
       LearningBlock: 2
       NumberOfPlaySessions: 2
-      Description: "The special combination letter \u201Claam-alef\u201D (\u0644\u0627)"
+      Description: "The special combination letter \u201Clam-alef\u201D (\u0644\u0627)"
       Title: 
       IntroArabic: 
       Reward: 
       Focus: 1
       Letters:
-      - laam_alef
+      - lam_alef
       Words: []
       Words_previous:
       - mountain_dual
@@ -12708,31 +12689,31 @@ MonoBehaviour:
       Reward: 
       Focus: 1
       Letters:
-      - baa
-      - jiim
+      - beh
+      - jeem
       - hah
-      - khaa
-      - ayn
-      - ghayn
-      - faa
-      - qaaf
-      - kaaf
-      - miim
-      - haa
+      - khah
+      - ain
+      - ghain
+      - feh
+      - qaf
+      - kaf
+      - meem
+      - heh
       - tah
-      - thaa
-      - daal
-      - dhaal
-      - raa
-      - zay
-      - siin
-      - shiin
-      - saad
-      - daad
-      - taa
-      - dhaa
-      - laam
-      - nuun
+      - theh
+      - dal
+      - thal
+      - reh
+      - zain
+      - seen
+      - sheen
+      - sad
+      - dad
+      - teh
+      - zah
+      - lam
+      - noon
       Words:
       - the_beautiful
       - the_sad
@@ -12755,31 +12736,31 @@ MonoBehaviour:
       Reward: 
       Focus: 1
       Letters:
-      - baa
-      - jiim
+      - beh
+      - jeem
       - hah
-      - khaa
-      - ayn
-      - ghayn
-      - faa
-      - qaaf
-      - kaaf
-      - miim
-      - haa
+      - khah
+      - ain
+      - ghain
+      - feh
+      - qaf
+      - kaf
+      - meem
+      - heh
       - tah
-      - thaa
-      - daal
-      - dhaal
-      - raa
-      - zay
-      - siin
-      - shiin
-      - saad
-      - daad
-      - taa
-      - dhaa
-      - laam
-      - nuun
+      - theh
+      - dal
+      - thal
+      - reh
+      - zain
+      - seen
+      - sheen
+      - sad
+      - dad
+      - teh
+      - zah
+      - lam
+      - noon
       Words:
       - the_ball
       - the_playground
@@ -13011,7 +12992,7 @@ MonoBehaviour:
       LearningBlock: 10
       NumberOfPlaySessions: 2
       Description: Days of the week
-      Title: 
+      Title: Days of the week
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -13033,7 +13014,7 @@ MonoBehaviour:
       LearningBlock: 11
       NumberOfPlaySessions: 2
       Description: The months
-      Title: 
+      Title: The months
       IntroArabic: 
       Reward: 
       Focus: 4
@@ -13081,7 +13062,7 @@ MonoBehaviour:
       Stage: 6
       LearningBlock: 13
       NumberOfPlaySessions: 2
-      Description: 'Nature: Feminine and masculine: adding taa marbuta to any noun
+      Description: 'Nature: Feminine and masculine: adding teh marbuta to any noun
         makes it feminine'
       Title: 
       IntroArabic: 
