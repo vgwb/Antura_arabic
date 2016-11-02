@@ -49,6 +49,7 @@ namespace EA4S.Test
 
             if (Input.GetMouseButtonUp(0)) {
                 isDragging = false;
+                if (storedPs.Count > 1) storedPs.RemoveAt(storedPs.Count - 1);
                 storedPs.Add(MouseWorldPosition());
                 TutorialUI.DrawLineMode mode =
                     FingerToggle.isOn ? ArrowToggle.isOn ? TutorialUI.DrawLineMode.FingerAndArrow : TutorialUI.DrawLineMode.Finger
