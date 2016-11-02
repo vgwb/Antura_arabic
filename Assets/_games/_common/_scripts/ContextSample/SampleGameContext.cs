@@ -13,9 +13,7 @@ namespace EA4S
         IStarsWidget starsWidget = new SampleStarsWidget();
         IPopupWidget questionWidget = new SamplePopupWidget();
         ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
-        IStarsBarWidget starsBarWidget = new MinigamesStarsBarWidget();
-        ITimerWidget timerWidget = new MinigamesTimerWidget();
-        ILivesWidget livesWidget = new MinigamesLivesWidget();
+        IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
 
         public IAudioManager GetAudioManager()
         {
@@ -56,19 +54,9 @@ namespace EA4S
             return checkmarkWidget;
         }
         
-        public IStarsBarWidget GetStarsBarWidget()
+        public IOverlayWidget GetOverlayWidget()
         {
-            return starsBarWidget;
-        }
-
-        public ITimerWidget GetTimerWidget()
-        {
-            return timerWidget;
-        }
-
-        public ILivesWidget GetLivesWidget()
-        {
-            return livesWidget;
+            return overlayWidget;
         }
     }
 }
