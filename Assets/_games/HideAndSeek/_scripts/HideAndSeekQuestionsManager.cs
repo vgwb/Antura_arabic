@@ -25,13 +25,7 @@ namespace EA4S.HideAndSeek
             var question = HideAndSeekConfiguration.Instance.Questions.GetNextQuestion();
             currentQuestion = (HideAndSeekQuestionsPack)question;
         }
-
-
-
-        public string GetDescription()
-        {
-            return HideAndSeekConfiguration.Instance.Questions.GetDescription();//questionsProvider.GetDescription();
-        }
+        
 
         public HideAndSeekQuestionsPack currentQuestion;
 		//private ILivingLetterData correct;

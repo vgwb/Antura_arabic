@@ -20,8 +20,10 @@ namespace EA4S
         #region public properties
 
         [Header("GO Elements")]
+        public Transform innerTransform;
         public TMP_Text Lable;
         public SpriteRenderer ImageSprite;
+        public float maxSize = 1.5f;
 
         public GameObject[] normalGraphics;
         public GameObject[] limblessGraphics;
@@ -102,6 +104,8 @@ namespace EA4S
                     ImageSprite.enabled = false;
                     Lable.enabled = true;
                     Lable.text = Model.Data.TextForLivingLetter;
+
+                    innerTransform.localScale =  Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x/8.0f));
                 }
             }
         }

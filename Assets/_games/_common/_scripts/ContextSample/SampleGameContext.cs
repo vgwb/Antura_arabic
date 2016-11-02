@@ -13,6 +13,7 @@ namespace EA4S
         IStarsWidget starsWidget = new SampleStarsWidget();
         IPopupWidget questionWidget = new SamplePopupWidget();
         ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
+        IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
 
         public IAudioManager GetAudioManager()
         {
@@ -51,6 +52,11 @@ namespace EA4S
         public ICheckmarkWidget GetCheckmarkWidget()
         {
             return checkmarkWidget;
+        }
+        
+        public IOverlayWidget GetOverlayWidget()
+        {
+            return overlayWidget;
         }
     }
 }
