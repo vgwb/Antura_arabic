@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Test
 {
     public class Tester_MinigamesUI : MonoBehaviour
     {
