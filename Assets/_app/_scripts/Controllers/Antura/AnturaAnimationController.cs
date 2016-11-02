@@ -50,7 +50,8 @@ public class AnturaAnimationController : MonoBehaviour
         }
         set
         {
-
+            isAngry = value;
+            animator.SetBool("angry", value);
         }
     }
 
@@ -64,33 +65,34 @@ public class AnturaAnimationController : MonoBehaviour
         }
         set
         {
-
+            isExcited = value;
+            animator.SetBool("excited", value);
         }
     }
 
     public void DoBark(System.Action onCompleted = null)
     {
-
+        animator.SetTrigger("doBark");
     }
 
     public void DoSniff(System.Action onCompleted = null)
     {
-
+        animator.SetTrigger("doSniff");
     }
 
     public void DoShout(System.Action onCompleted = null)
     {
-
+        animator.SetTrigger("doShout");
     }
 
     public void DoBurp(System.Action onCompleted = null)
     {
-
+        animator.SetTrigger("doBurp");
     }
 
     public void DoSpit(System.Action onCompleted = null)
     {
-
+        animator.SetTrigger("doSpit");
     }
 
     public void OnJumpStart()
@@ -130,6 +132,33 @@ public class AnturaAnimationController : MonoBehaviour
 
     void OnStateChanged(AnturaAnimationStates oldState, AnturaAnimationStates newState)
     {
+        animator.SetBool("idle", true);
+        animator.SetBool("sitting", false);
+        animator.SetBool("sleeping", false);
+        animator.SetBool("sheeping", false);
+        animator.SetBool("sucking", false);
+        
+        switch (newState)
+        {
+            case AnturaAnimationStates.idle:
+                animator.SetBool("idle", true);
+                break;
+            case AnturaAnimationStates.sitting:
+                animator.SetBool("sitting", true);
+                break;
+            case AnturaAnimationStates.sleeping:
+                animator.SetBool("sleeping", true);
+                break;
+            case AnturaAnimationStates.sheeping:
+                animator.SetBool("sheeping", true);
+                break;
+            case AnturaAnimationStates.sucking:
+                animator.SetBool("sucking", true);
+                break;
+            default:
+                // No specific visual behaviour for this state
+                break;
 
+        }
     }
 }
