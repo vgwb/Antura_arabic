@@ -32,7 +32,7 @@ namespace EA4S
             foreach (TutorialUIProp arrow in arrowsPool) arrow.Hide(true);
         }
 
-        public TutorialUITrailGroup SpawnTrailGroup(Vector3 _position, Transform _parent)
+        public TutorialUITrailGroup SpawnTrailGroup(Transform _parent, Vector3 _position, bool _overlayed)
         {
             TutorialUITrailGroup trailG = null;
             foreach (TutorialUITrailGroup tr in trailsPool) {
@@ -44,11 +44,11 @@ namespace EA4S
                 trailG = Instantiate(TrailGroupPrefab, _parent) as TutorialUITrailGroup;
                 trailsPool.Add(trailG);
             }
-            trailG.Spawn(_position);
+            trailG.Spawn(_position, _overlayed);
             return trailG;
         }
 
-        public TutorialUIProp SpawnArrow(Vector3 _position, Transform _parent)
+        public TutorialUIProp SpawnArrow(Transform _parent, Vector3 _position, bool _overlayed)
         {
             TutorialUIProp arrow = null;
             foreach (TutorialUIProp arr in arrowsPool) {
@@ -60,7 +60,7 @@ namespace EA4S
                 arrow = Instantiate(ArrowPrefab, _parent) as TutorialUIProp;
                 arrowsPool.Add(arrow);
             }
-            arrow.Show(_parent, _position);
+            arrow.Show(_parent, _position, _overlayed);
             return arrow;
         }
 

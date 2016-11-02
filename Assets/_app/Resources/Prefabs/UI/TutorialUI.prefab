@@ -29,17 +29,16 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1000010857110546
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010535123386}
-  - 114: {fileID: 114000010274104802}
   - 114: {fileID: 114000012975135612}
   - 96: {fileID: 96000012437213764}
   m_Layer: 0
-  m_Name: Trail
+  m_Name: Subtrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +53,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011698714080}
   - 114: {fileID: 114000013250875958}
-  - 212: {fileID: 212000012593673026}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -74,6 +72,24 @@ GameObject:
   - 114: {fileID: 114000011212093976}
   m_Layer: 0
   m_Name: TutorialUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013351690264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011603931658}
+  - 114: {fileID: 114000010274104802}
+  - 114: {fileID: 114000011942965568}
+  - 96: {fileID: 96000013341196612}
+  m_Layer: 0
+  m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,11 +131,25 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010857110546}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
+  m_Father: {fileID: 4000011603931658}
+  m_RootOrder: 0
+--- !u!4 &4000011603931658
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013351690264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000010535123386}
   m_Father: {fileID: 4000013275630768}
   m_RootOrder: 2
 --- !u!4 &4000011698714080
@@ -162,7 +192,7 @@ Transform:
   m_Children:
   - {fileID: 4000012557608266}
   - {fileID: 4000011698714080}
-  - {fileID: 4000010535123386}
+  - {fileID: 4000011603931658}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!96 &96000012437213764
@@ -171,6 +201,56 @@ TrailRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010857110546}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6364353aaab0a934295fe31630612573, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_Time: 1
+  m_StartWidth: 0.25
+  m_EndWidth: 0.1
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4293297755
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4293297755
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4293297755
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4293297755
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 15107675
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+--- !u!96 &96000013341196612
+TrailRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013351690264}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -209,7 +289,7 @@ TrailRenderer:
       rgba: 4292032112
     m_Color[3]:
       serializedVersion: 2
-      rgba: 1892890224
+      rgba: 4292032112
     m_Color[4]:
       serializedVersion: 2
       rgba: 13842032
@@ -220,7 +300,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010857110546}
+  m_GameObject: {fileID: 1000013351690264}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28aa13188b3943042bcf11f287e96252, type: 3}
@@ -251,6 +331,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrailGroupPrefab: {fileID: 114000010274104802}
   ArrowPrefab: {fileID: 114000013250875958}
+--- !u!114 &114000011942965568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013351690264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8baaca83a452be45ba4b72514f1eb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortingOrder: 1
 --- !u!114 &114000012975135612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8baaca83a452be45ba4b72514f1eb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortingOrder: 1
+  SortingOrder: 2
 --- !u!114 &114000013163314734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,39 +411,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 3d0add5267580b34b8fc369a14440cf3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
---- !u!212 &212000012593673026
-SpriteRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010909777478}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 1
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
