@@ -72,7 +72,7 @@ namespace EA4S
 
         public void AddPosition(Vector3 _position)
         {
-            if (Vector3.Distance(_position, wps[wps.Count - 1]) < MinPointsDistance) return;
+            if (wps.Count > 0 && Vector3.Distance(_position, wps[wps.Count - 1]) < MinPointsDistance) return;
 
             wps.Add(_position);
             wpsArray = wps.ToArray();
