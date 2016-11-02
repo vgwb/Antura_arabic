@@ -21,6 +21,8 @@ namespace EA4S {
         // Use this for initialization
         void Start() {
             ClearList();
+            AddListenersMatColor1();
+            AddListenersMatColor2();
         }
 
         // Update is called once per frame
@@ -67,6 +69,8 @@ namespace EA4S {
         }
         #endregion
 
+        #region Reward type filter
+
         public void SetRewardTypeFilter(string _filterString) {
             RewardTypeFilter = _filterString;
             LoadRewarsList(_filterString);
@@ -93,13 +97,55 @@ namespace EA4S {
             }
         }
 
-       
-        
+        #endregion
+
+        #region Materials
+
+        [Header("Material Lists")]
+        public GridLayoutGroup MaterialGrid1;
+        public GridLayoutGroup MaterialGrid2;
+
+        public Image Material1Image;
+        public Image Material2Image;
+
+        string material1;
+        string material2;
+
+        public void SetMaterial1(string _materialName) {
+            material1 = _materialName;
+            Material1Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated);
+        }
+
+        public void SetMaterial2(string _materialName) {
+            material2 = _materialName;
+            Material2Image.material = MaterialManager.LoadMaterial(_materialName, PaletteType.specular_saturated);
+        }
+
+        void AddListenersMatColor1() {
+            foreach (Button b in MaterialGrid1.GetComponentsInChildren<Button>()) {
+                b.onClick.AddListener(delegate {
+                    SetMaterial1(b.GetComponent<Image>().material.name);
+                });
+            }
+        }
+        void AddListenersMatColor2() {
+            foreach (Button b in MaterialGrid2.GetComponentsInChildren<Button>()) {
+                b.onClick.AddListener(delegate {
+                    SetMaterial2(b.GetComponent<Image>().material.name);
+                });
+            }
+        }
+
+        #endregion
+
+        #region camera
 
         void doMoveCamera(Vector3 _position) {
             float duration = 2;
             Camera.main.transform.DOMove(_position, duration);
             
         }
+
+        #endregion
     }
 }
