@@ -67,5 +67,14 @@ namespace EA4S
             return chosenList;
         }
 
+        public static List<T> RandomSelect<T>(this List<T>  all_list, int numberToSelect)
+        {
+            return RouletteSelectNonRepeating<T>(all_list, numberToSelect);
+        }
+
+        public static T RandomSelectOne<T>(this List<T> all_list)
+        {
+            return RouletteSelectNonRepeating<T>(all_list, 1)[0];
+        }
     }
 }
