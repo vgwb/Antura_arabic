@@ -14,16 +14,11 @@ namespace EA4S
         private readonly Database staticDb;
         private DBService dynamicDb;
 
-        // Helpers
-        public LetterWordHelper letterWordHelper;
-
         // Profile
         //bool dbLoaded;
 
         public DatabaseManager(bool useTestDatabase)
         {
-            this.letterWordHelper = new LetterWordHelper(this);
-
             var staticDbNameToLoad = STATIC_DATABASE_NAME;
             if (useTestDatabase) {
                 staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;

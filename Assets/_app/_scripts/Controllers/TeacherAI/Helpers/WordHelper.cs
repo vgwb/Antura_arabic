@@ -2,13 +2,15 @@
 
 namespace EA4S.Db
 {
-    public class LetterWordHelper
+    public class WordHelper
     {
         private DatabaseManager dbManager;
+        private TeacherAI teacher;
 
-        public LetterWordHelper(DatabaseManager _dbManager)
+        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher)
         {
             this.dbManager = _dbManager;
+            this.teacher = _teacher;
         }
 
         #region Letter -> Letter
