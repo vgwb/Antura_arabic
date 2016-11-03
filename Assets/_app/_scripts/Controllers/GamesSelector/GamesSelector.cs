@@ -221,6 +221,8 @@ namespace EA4S
             }
         }
 
+        #region MiniGame Selection Getters
+
         void AutoLoadMinigames()
         {
             AppManager.Instance.InitDataAI();
@@ -233,6 +235,8 @@ namespace EA4S
             MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
             AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
         }
+
+        #endregion
 
         IEnumerator CO_AnimateEntrance()
         {
