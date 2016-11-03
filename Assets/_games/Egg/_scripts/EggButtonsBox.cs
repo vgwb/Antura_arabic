@@ -26,11 +26,15 @@ namespace EA4S.Egg
 
         Action<ILivingLetterData> buttonsCallback;
 
+        System.Random randomGenerator;
+
         public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager, Action<ILivingLetterData> buttonsCallback)
         {
             this.eggButtonPrefab = eggButtonPrefab;
             this.audioManager = audioManager;
             this.buttonsCallback = buttonsCallback;
+
+            randomGenerator = new System.Random((int)Time.realtimeSinceStartup);
         }
 
         public void AddButton(ILivingLetterData letterData)
@@ -94,7 +98,7 @@ namespace EA4S.Egg
 
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
-                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
+                int index = randomGenerator.Next(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
