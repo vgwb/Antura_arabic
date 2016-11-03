@@ -8,7 +8,7 @@ using EA4S;
 
 namespace EA4S.MakeFriends
 {
-    public class MakeFriendsGameManager : MiniGameBase
+    public class MakeFriendsGame : MiniGame
     {
         public LivingLetterArea leftArea;
         public LivingLetterArea rightArea;
@@ -16,7 +16,7 @@ namespace EA4S.MakeFriends
         public Canvas endGameCanvas;
         public StarFlowers starFlowers;
         public GameObject sceneCamera;
-        public int numberOfRounds;
+        public static int numberOfRounds = 6;
         public float uiDelay;
         public Vector3 endCameraPosition;
         public Vector3 endCameraRotation;
@@ -27,7 +27,7 @@ namespace EA4S.MakeFriends
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
-        new public static MakeFriendsGameManager Instance;
+        new public static MakeFriendsGame Instance;
         [Header("Gameplay Info")]
         new public MakeFriendsGameplayInfo GameplayInfo;
 
@@ -36,20 +36,57 @@ namespace EA4S.MakeFriends
 
         private LL_WordData wordData1;
         private List<LL_LetterData> wordLetters1 = new List<LL_LetterData>();
-
         private LL_WordData wordData2;
         private List<LL_LetterData> wordLetters2 = new List<LL_LetterData>();
-
         private List<LL_LetterData> commonLetters = new List<LL_LetterData>();
         private List<LL_LetterData> uncommonLetters = new List<LL_LetterData>();
         private List<LL_LetterData> choiceLetters = new List<LL_LetterData>();
         private List<LL_LetterData> correctChoices = new List<LL_LetterData>();
         private List<LL_LetterData> incorrectChoices = new List<LL_LetterData>();
         private int currentRound = 0;
-
         private int friendships = 0;
 
+        public MakeFriendsIntroductionGameState IntroductionState { get; private set; }
+        public MakeFriendsQuestionGameState QuestionState { get; private set; }
+        public MakeFriendsPlayGameState PlayState { get; private set; }
+        public MakeFriendsResultGameState ResultState { get; private set; }
+        public int CurrentScore { get {return friendships;} }
 
+        private readonly int STARS_1_THRESHOLD = Mathf.CeilToInt(0.33f * numberOfRounds);
+        private readonly int STARS_2_THRESHOLD = Mathf.CeilToInt(0.66f * numberOfRounds);
+        private readonly int STARS_3_THRESHOLD = numberOfRounds;
+        public int CurrentStars
+        {
+            get
+            {
+                if (CurrentScore < STARS_1_THRESHOLD)
+                    return 0;
+                if (CurrentScore < STARS_2_THRESHOLD)
+                    return 1;
+                if (CurrentScore < STARS_3_THRESHOLD)
+                    return 2;
+                return 3;
+            }
+        }
+
+        protected override void OnInitialize(IGameContext context)
+        {
+            IntroductionState = new MakeFriendsIntroductionGameState(this);
+            QuestionState = new MakeFriendsQuestionGameState(this);
+            PlayState = new MakeFriendsPlayGameState(this);
+            ResultState = new MakeFriendsResultGameState(this);
+        }
+
+        protected override IGameState GetInitialState()
+        {
+            return IntroductionState;
+        }
+
+        protected override IGameConfiguration GetConfiguration()
+        {
+            return MakeFriendsConfiguration.Instance;
+        }
+            
         protected override void Awake()
         {
             base.Awake();
