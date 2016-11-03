@@ -144,6 +144,13 @@ namespace EA4S
             }
         }
 
+        // TODO: use similar code to initialise a play session
+        private void TestInitialisePlaySessions()
+        {
+            int nMiniGames = 3; // TODO: where do I get these from?
+            AppManager.Instance.Teacher.InitialiseCurrentPlaySession(nMiniGames);
+        }
+
     }
 
 }

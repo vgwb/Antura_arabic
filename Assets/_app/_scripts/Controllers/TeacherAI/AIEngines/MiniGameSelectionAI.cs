@@ -63,7 +63,7 @@ namespace EA4S.Teacher
 
             if (numberToSelect > minigame_data_list.Count)
             {
-                throw new System.Exception("Cannot select " + numberToSelect + " minigames for play session " + playSessionData.Id);
+                throw new System.Exception("Cannot select " + numberToSelect + " minigames for play session " + playSessionData.Id + " (only " + minigame_data_list.Count + " are available)");
             }
 
             // Choose the first N minigames in the ordered list

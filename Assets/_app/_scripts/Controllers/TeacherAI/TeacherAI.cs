@@ -23,7 +23,7 @@ namespace EA4S
         WordSelectionAI wordSelectionAI;
 
         // State
-        private List<MiniGameData> currentPlaySessionMiniGames;
+        private List<MiniGameData> currentPlaySessionMiniGames = new List<MiniGameData>();
 
         #region Setup
 
@@ -38,15 +38,6 @@ namespace EA4S
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
-
-            // Debug.Log("TeacherAI exists");
-
-            // TO REMOVE
-            //MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
-            /*bodyPartsWords = new[]
-            {
-                "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
-            };*/
         }
 
         private void ResetPlaySession()
@@ -115,8 +106,9 @@ namespace EA4S
         // DEPRECATED (should now be performed through MiniGame Selection)
         public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
         {
-            int number = 2; // TODO: should be injected by the MINIGAME!
-            return this.SelectMiniGamesForCurrentPlaySession(number);
+            int number = 2; // TODO: should be injected somehow!
+            InitialiseCurrentPlaySession(number);
+            return CurrentPlaySessionMiniGames;
         }
 
         #endregion
