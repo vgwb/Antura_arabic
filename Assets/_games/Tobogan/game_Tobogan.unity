@@ -4821,7 +4821,9 @@ MonoBehaviour:
   graphics: {fileID: 116242134}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
+  signCollider: {fileID: 0}
   active: 0
+  disappearHeight: 6.5
   easeCurve:
     serializedVersion: 2
     m_Curve: []
@@ -5304,7 +5306,9 @@ MonoBehaviour:
   graphics: {fileID: 1813874826}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
+  signCollider: {fileID: 0}
   active: 0
+  disappearHeight: 6.5
   easeCurve:
     serializedVersion: 2
     m_Curve: []
@@ -18080,7 +18084,9 @@ MonoBehaviour:
   graphics: {fileID: 2142969419}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
+  signCollider: {fileID: 0}
   active: 0
+  disappearHeight: 6.5
   easeCurve:
     serializedVersion: 2
     m_Curve: []
@@ -18147,27 +18153,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011502407006, guid: 83dc25c8719051e4184214377d8dd1bf,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011502407006, guid: 83dc25c8719051e4184214377d8dd1bf,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 33000012630593014, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 33000010483668982, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010838498368, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 114000012862349020, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010838498368, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 114000012862349020, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -18177,27 +18173,27 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012862349020, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 114000010838498368, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012862349020, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 114000010838498368, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 33000010483668982, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 33000012630593014, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013139507732, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 114000011502407006, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013139507732, guid: 83dc25c8719051e4184214377d8dd1bf,
+    - target: {fileID: 114000011502407006, guid: 83dc25c8719051e4184214377d8dd1bf,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -18206,6 +18202,16 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013139507732, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013139507732, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83dc25c8719051e4184214377d8dd1bf, type: 2}
@@ -25325,7 +25331,9 @@ MonoBehaviour:
   graphics: {fileID: 539116933}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
+  signCollider: {fileID: 0}
   active: 0
+  disappearHeight: 6.5
   easeCurve:
     serializedVersion: 2
     m_Curve: []
