@@ -103,20 +103,30 @@ namespace EA4S
         }
 
 
+        bool FAKE_SELECTION = true; // @todo: this must be removed when minigames are correct!
+
         // DEPRECATED (should now be performed through MiniGame Selection)
         public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
         {
             int number = 2; // TODO: should be injected somehow!
             InitialiseCurrentPlaySession(number);
+
+            if (FAKE_SELECTION)
+            {
+                this.currentPlaySessionMiniGames.Clear();
+                this.currentPlaySessionMiniGames.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
+                this.currentPlaySessionMiniGames.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
+            } 
+
             return CurrentPlaySessionMiniGames;
         }
 
         #endregion
 
 
-        #region Interface - Letters / Words
+            #region Interface - Letters / Words
 
-        // DEPRECATED (could safely remove this! it is not used anymore!)
+            // DEPRECATED (could safely remove this! it is not used anymore!)
         public WordData GimmeAGoodWord(WordDataCategory category)
         {
             return SelectOne(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
