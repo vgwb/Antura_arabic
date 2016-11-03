@@ -43,5 +43,5 @@
 	ENDCG
 	}
 
-	FallBack "Mobile/VertexLit"
+	//FallBack "Mobile/VertexLit"
 }

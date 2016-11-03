@@ -18,7 +18,10 @@ namespace EA4S.Tobogan
 
         public Transform signTransform;
 
+        public Collider signCollider;
+
         public bool IsCorrectAnswer { get; private set; }
+        public ILivingLetterData Data { get; private set; }
 
         public event Action<PipeAnswer> onTriggerEnterPipe;
         public event Action<PipeAnswer> onTriggerExitPipe;
@@ -33,6 +36,10 @@ namespace EA4S.Tobogan
         const float EASE_DURATION = 4.0f;
         public bool ShowSign
         {
+            get
+            {
+                return showSign;
+            }
             set
             {
                 if (value == showSign)
@@ -43,7 +50,7 @@ namespace EA4S.Tobogan
             }
         }
 
-        const float DISAPPEAR_HEIGHT = 6.5f;
+        public float disappearHeight = 6.5f;
         float disappearSpeed;
 
         public AnimationCurve easeCurve;
@@ -61,7 +68,7 @@ namespace EA4S.Tobogan
                 tubeMaterials.Add(renderer.material);
 
             aspirationParticle.SetActive(true);
-            graphics.transform.localPosition = Vector3.up * DISAPPEAR_HEIGHT;
+            graphics.transform.localPosition = Vector3.up * disappearHeight;
             disappearSpeed = 4.0f + 2 * UnityEngine.Random.value;
         }
 
@@ -70,7 +77,7 @@ namespace EA4S.Tobogan
             Vector3 targetPosition = Vector3.zero;
 
             if (!active)
-                targetPosition = Vector3.up * DISAPPEAR_HEIGHT;
+                targetPosition = Vector3.up * disappearHeight;
 
             graphics.transform.localPosition = Vector3.Lerp(graphics.transform.localPosition, targetPosition, disappearSpeed * Time.deltaTime);
             
@@ -95,6 +102,7 @@ namespace EA4S.Tobogan
 
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
         {
+            Data = livingLetterData;
             if (livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 answerText.gameObject.SetActive(true);
