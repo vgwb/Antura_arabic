@@ -18,23 +18,16 @@ namespace EA4S.Db.Management
             data.Title = ToString(dict["Title"]);
             data.IntroArabic = ToString(dict["IntroArabic"]);
             data.Reward = ParseID<RewardData, RewardTable>(data, (string)dict["Reward"], db.GetRewardTable());
-
             data.Focus = ParseEnum<LearningBlockDataFocus>(data, (string)dict["Focus"]);
 
-            data.Letters = ParseIDArray<LetterData, LetterTable>(data, (string)dict["Letters"], db.GetLetterTable());
-            data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
-            data.Words_previous = ParseIDArray<WordData, WordTable>(data, (string)dict["Words_previous"], db.GetWordTable());
-            data.Phrases = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases"], db.GetPhraseTable());
-            data.Phrases_previous = ParseIDArray<PhraseData, PhraseTable>(data, (string)dict["Phrases_previous"], db.GetPhraseTable());
-
-            data.AssessmentType = ToString(dict["AssessmentType"]);
             //data.AssessmentData = ToString(dict["AssessmentData"]);
 
             return data;
         }
 
         protected override bool CanHaveSameKeyMultipleTimes {
-            get {
+            get
+            {
                 return true;
             }
         }
@@ -46,7 +39,7 @@ namespace EA4S.Db.Management
 
         protected override void FinalValidation(LearningBlockTable table, Database db)
         {
-            // Field 'NumberOfPlaySessions' can be found only at the end
+            // Field 'NumberOfPlaySessions' can be computed only at the end
             var playSessionsList = new List<PlaySessionData>(db.GetPlaySessionTable().GetValuesTyped());
             foreach (var data in table.GetValuesTyped()) {
                 int nPlaySessions = playSessionsList.FindAll(x => x.Stage == data.Stage && x.LearningBlock == data.LearningBlock).Count;

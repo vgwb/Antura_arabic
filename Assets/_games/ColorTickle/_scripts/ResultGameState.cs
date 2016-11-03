@@ -4,7 +4,7 @@
     {
         ColorTickleGame game;
 
-        float timer = 4;
+        float timer = 1;
         public ResultGameState(ColorTickleGame game)
         {
             this.game = game;
@@ -24,7 +24,7 @@
 
             if (timer < 0)
             {
-                game.EndGame(2, 100);
+                game.EndGame(0,0);
             }
         }
 

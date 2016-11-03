@@ -20,9 +20,7 @@ namespace EA4S.ColorTickle
         public void EnterState()
         {
             game.currentLetter = LetterObjectView.Instantiate(game.m_LetterPrefab);
-            game.currentLetter.Init(AppManager.Instance.Letters.GetRandomElement());
-            //game.m_MyLetter.Lable.enableAutoSizing = false;
-            //game.m_MyLetter.Lable.fontSize = 50.0f;           
+            game.currentLetter.Init(AppManager.Instance.Letters.GetRandomElement());          
         }
 
         public void ExitState()

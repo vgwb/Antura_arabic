@@ -43,8 +43,27 @@ namespace EA4S.Db.Management
         protected override void FinalValidation(LetterTable table, Database db)
         {
             // Fields 'BaseLetter' and 'Symbol' are validated with a final validation step, since they are based on this same table
+            // Also, Combination letters are validated with their BaseLetter and Symbol.
             foreach (var data in table.GetValuesTyped())
             {
+                if (data.Kind == LetterDataKind.Combination)
+                {
+                    if (data.BaseLetter == "")
+                    {
+                        LogValidation(data, "LetterData with id  " + data.Id + " is a Combination but does not have a BaseLetter.");
+                    }
+
+                    if (data.Symbol == "")
+                    {
+                        LogValidation(data, "LetterData with id  " + data.Id + " is a Combination but does not have a Symbol.");
+                    }
+
+                    if (data.Id != data.BaseLetter + "_" + data.Symbol)
+                    {
+                        LogValidation(data, "LetterData with id  " + data.Id + " is a Combination, but the BaseLetter and Symbol do not match the Id.");
+                    }
+                }
+
                 if (data.BaseLetter != "" && table.GetValue(data.BaseLetter) == null)
                 {
                     LogValidation(data, "Cannot find id of LetterData for BaseLetter value " + data.BaseLetter + " (found in letter " + data.Id + ")");

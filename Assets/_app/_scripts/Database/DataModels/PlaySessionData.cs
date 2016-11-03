@@ -15,6 +15,12 @@ namespace EA4S.Db
         public PlaySessionDataOrder Order;
         public List<MiniGameInPlaySession> Minigames;
 
+        public string[] Letters;
+        public string[] Words;
+        public string[] Words_previous;
+        public string[] Phrases;
+        public string[] Phrases_previous;
+
         public string GetId()
         {
             return Id;
