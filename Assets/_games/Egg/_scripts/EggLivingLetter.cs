@@ -8,6 +8,7 @@ namespace EA4S.Egg
     {
         LetterObjectView livingLetter;
 
+        Vector3 startPosition;
         Vector3 endPosition;
 
         float delay;
@@ -23,6 +24,7 @@ namespace EA4S.Egg
             livingLetter.Init(livingLetterData);
             livingLetter.gameObject.SetActive(false);
 
+            this.startPosition = startPosition;
             this.endPosition = endPosition;
 
             this.delay = delay;
@@ -60,8 +62,12 @@ namespace EA4S.Egg
 
             float jumpY = UnityEngine.Random.Range(1f, 2f);
 
-            livingLetter.transform.DOLocalJump(endPosition, 7f, 1, duration).OnComplete(delegate () { if (endCallback != null) endCallback(); })
-                .SetDelay(delay).OnStart(delegate () { livingLetter.gameObject.SetActive(true); });
+            livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate()
+            {
+                livingLetter.gameObject.SetActive(true);
+
+                livingLetter.transform.DOLocalJump(endPosition, 7f, 1, duration).OnComplete(delegate () { if (endCallback != null) endCallback(); }).SetEase(Ease.Linear);
+            });
         }
     }
 }

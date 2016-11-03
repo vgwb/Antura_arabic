@@ -45,8 +45,12 @@ namespace EA4S.TakeMeHome
 
 		void OnPointerUp()
 		{
+			
 			dragging = null;
+			if (_letter != null) 
+				_letter.OnPointerUp ();
 
+			/*
 			if (_letter != null) {
 
 				//check if they match or not
@@ -59,22 +63,24 @@ namespace EA4S.TakeMeHome
 					bool win = UnityEngine.Random.Range(0,1.0f) < 0.5f;
 
 					if (win) {
-						TakeMeHomeConfiguration.Instance.Context.GetAudioManager ().PlaySound (Sfx.Win);
+						AudioManager.I.PlaySfx (Sfx.Win);
 						game.IncrementScore ();
 					}
 					else
-						TakeMeHomeConfiguration.Instance.Context.GetAudioManager ().PlaySound (Sfx.Lose);
+						AudioManager.I.PlaySfx (Sfx.Lose);
+
+					//TakeMeHomeConfiguration.Instance.Context.GetAudioManager ().PlaySound (Sfx.Lose);
 
 
 					_letter.lastTube = null;
 
 
 
-					game.IncrementRound ();
+					//game.IncrementRound ();
 				}
 
 
-			}
+			}*/
 		}
 
 		void OnPointerDrag()
@@ -95,19 +101,20 @@ namespace EA4S.TakeMeHome
 		}
 
 		//uses fast crowd letter management and dragging:
-		public void spawnLetter(ILivingLetterData data)
+		public TakeMeHomeLL spawnLetter(ILivingLetterData data)
 		{
-			
+			//
+
 			LetterObjectView letterObjectView = Instantiate(LLPrefab);
 			letterObjectView.transform.SetParent(transform, true);
-			Vector3 newPosition = GetComponent<TakeMeHomeGame> ().spawnTube.transform.position;// = walkableArea.GetFurthestSpawn(letters); // Find isolated spawn point
+			Vector3 newPosition = GetComponent<TakeMeHomeGame> ().LLSpawnPosition.position;// = walkableArea.GetFurthestSpawn(letters); // Find isolated spawn point
 
 			letterObjectView.transform.position = newPosition;
 			//letterObjectView.transform.rotation = Quaternion.identity
 			letterObjectView.Init (data);
 
 			var ll = letterObjectView.gameObject.AddComponent<TakeMeHomeLL>();
-			ll.Initialize (plane.transform.position.y,letterObjectView);
+			ll.Initialize (plane.transform.position.y,letterObjectView,GetComponent<TakeMeHomeGame> ().spawnTube.transform.position);
 
 			/*/var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
 			//livingLetter.crowd = this;
@@ -127,18 +134,7 @@ namespace EA4S.TakeMeHome
 
 			_letter = (ll);
 
-			/*
-			livingLetter.onDropped += (result) =>
-			{
-				if (result)
-				{
-					//letters.Remove(livingLetter);
-					//toDestroy.Enqueue(livingLetter);
-				}
-
-				if (onDropped != null)
-					onDropped(letterObjectView.Model.Data, result);
-			};*/
+			return ll;
 		}
 	}
 }
