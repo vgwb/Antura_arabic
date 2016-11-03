@@ -299,8 +299,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010098550852}
-  m_LocalRotation: {x: 0.3814738, y: -0, z: -0, w: 0.9243797}
-  m_LocalPosition: {x: 0, y: 49.715946, z: -27.656712}
+  m_LocalRotation: {x: 0.17364822, y: -0, z: -0, w: 0.9848078}
+  m_LocalPosition: {x: 15.2, y: 19.371716, z: -43.224304}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -652,6 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cece86efb67115d46b0f7f0b03cd0c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudoLoadMinigamesOnStartup: 1
   DistanceFromCamera: 14
   EndDelay: 2
   SimulateForDebug: 0

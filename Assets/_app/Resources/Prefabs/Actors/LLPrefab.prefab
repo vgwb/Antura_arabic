@@ -1717,8 +1717,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerTransform: {fileID: 4000013224332158}
   Lable: {fileID: 114000013927319314}
   ImageSprite: {fileID: 212000010347254602}
+  maxSize: 1.5
   normalGraphics:
   - {fileID: 1000013650677724}
   - {fileID: 1000010966819802}

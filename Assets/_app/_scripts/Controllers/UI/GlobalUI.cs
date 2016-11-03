@@ -32,7 +32,7 @@ namespace EA4S
 
             GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
             go.name = "[GlobalUI]";
-            DontDestroyOnLoad(go);
+            //DontDestroyOnLoad(go);
         }
 
         void Awake()

@@ -16,12 +16,6 @@ namespace EA4S.Db
         public string IntroArabic;
         public string Reward;
         public LearningBlockDataFocus Focus;
-        public string[] Letters;
-        public string[] Words;
-        public string[] Words_previous;
-        public string[] Phrases;
-        public string[] Phrases_previous;
-        public string AssessmentType;
         //        public string AssessmentData;
 
         public string GetId()

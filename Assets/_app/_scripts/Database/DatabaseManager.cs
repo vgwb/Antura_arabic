@@ -185,6 +185,11 @@ namespace EA4S
             return FindMiniGameData((x) => (x.Available && x.Type == MiniGameDataType.MiniGame));
         }
 
+        public List<PlaySessionData> GetPlaySessionsOfLearningBlock(LearningBlockData lb)
+        {
+            return this.FindPlaySessionData(x => x.Stage == lb.Stage && x.LearningBlock == lb.LearningBlock);
+        }
+
         #endregion
 
         #region Specific Static Queries

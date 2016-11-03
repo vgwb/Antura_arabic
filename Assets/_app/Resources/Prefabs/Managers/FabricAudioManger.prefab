@@ -60,7 +60,7 @@ GameObject:
   - 114: {fileID: 11473932}
   - 114: {fileID: 11434268}
   m_Layer: 0
-  m_Name: VOX_Letters_waw
+  m_Name: VOX_Letter_waw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ GameObject:
   - 114: {fileID: 11434940}
   - 114: {fileID: 11444380}
   m_Layer: 0
-  m_Name: VOX_Letters_reh
+  m_Name: VOX_Letter_reh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ GameObject:
   - 114: {fileID: 11424508}
   - 114: {fileID: 11400550}
   m_Layer: 0
-  m_Name: VOX_Letters_dal
+  m_Name: VOX_Letter_dal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,7 +207,7 @@ GameObject:
   - 114: {fileID: 11471048}
   - 114: {fileID: 11403174}
   m_Layer: 0
-  m_Name: VOX_Letters_the
+  m_Name: VOX_Letter_theh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +256,7 @@ GameObject:
   - 114: {fileID: 11486552}
   - 114: {fileID: 11456288}
   m_Layer: 0
-  m_Name: VOX_Letters_sheen
+  m_Name: VOX_Letter_sheen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,7 +306,7 @@ GameObject:
   - 114: {fileID: 11466958}
   - 114: {fileID: 11477798}
   m_Layer: 0
-  m_Name: VOX_Letters_maddah
+  m_Name: VOX_Symbol_maddah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ GameObject:
   - 114: {fileID: 11447442}
   - 114: {fileID: 11464534}
   m_Layer: 0
-  m_Name: VOX_Letters_lam
+  m_Name: VOX_Letter_lam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -477,23 +477,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &115494
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 402168}
-  - 114: {fileID: 11433918}
-  - 114: {fileID: 11475222}
-  m_Layer: 0
-  m_Name: VOX_Letters_alef_hamza
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &115822
 GameObject:
   m_ObjectHideFlags: 1
@@ -554,7 +537,7 @@ GameObject:
   - 114: {fileID: 11429434}
   - 114: {fileID: 11425788}
   m_Layer: 0
-  m_Name: VOX_Letters_feh
+  m_Name: VOX_Letter_feh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,7 +570,7 @@ GameObject:
   - 114: {fileID: 11460628}
   - 114: {fileID: 11471850}
   m_Layer: 0
-  m_Name: VOX_Letters_beh
+  m_Name: VOX_Letter_beh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,7 +654,7 @@ GameObject:
   - 114: {fileID: 11402940}
   - 114: {fileID: 11402078}
   m_Layer: 0
-  m_Name: VOX_Letters_seen
+  m_Name: VOX_Letter_seen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,7 +754,7 @@ GameObject:
   - 114: {fileID: 11446368}
   - 114: {fileID: 11412066}
   m_Layer: 0
-  m_Name: VOX_Letters_yeh
+  m_Name: VOX_Letter_yeh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +984,7 @@ GameObject:
   - 114: {fileID: 11480052}
   - 114: {fileID: 11434838}
   m_Layer: 0
-  m_Name: VOX_Letters_hah
+  m_Name: VOX_Letter_hah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,7 +1001,7 @@ GameObject:
   - 114: {fileID: 11401614}
   - 114: {fileID: 11458650}
   m_Layer: 0
-  m_Name: VOX_Letters_heh
+  m_Name: VOX_Letter_heh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1035,7 +1018,7 @@ GameObject:
   - 114: {fileID: 11490198}
   - 114: {fileID: 11485986}
   m_Layer: 0
-  m_Name: VOX_Letters_zay
+  m_Name: VOX_Letter_zain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,7 +1035,7 @@ GameObject:
   - 114: {fileID: 11404978}
   - 114: {fileID: 11445304}
   m_Layer: 0
-  m_Name: VOX_Letters_hamza
+  m_Name: VOX_Symbol_hamza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1085,7 +1068,7 @@ GameObject:
   - 114: {fileID: 11499810}
   - 114: {fileID: 11415652}
   m_Layer: 0
-  m_Name: VOX_Letters_tah
+  m_Name: VOX_Letter_tah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1266,7 +1249,7 @@ GameObject:
   - 114: {fileID: 11477896}
   - 114: {fileID: 11411554}
   m_Layer: 0
-  m_Name: VOX_Letters_dad
+  m_Name: VOX_Letter_dad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,7 +1298,7 @@ GameObject:
   - 114: {fileID: 11434466}
   - 114: {fileID: 11465254}
   m_Layer: 0
-  m_Name: VOX_Letters_kaf
+  m_Name: VOX_Letter_kaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1641,7 +1624,7 @@ GameObject:
   - 114: {fileID: 11430726}
   - 114: {fileID: 11441508}
   m_Layer: 0
-  m_Name: VOX_Letters_sad
+  m_Name: VOX_Letter_sad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1740,7 +1723,7 @@ GameObject:
   - 114: {fileID: 11483372}
   - 114: {fileID: 11418890}
   m_Layer: 0
-  m_Name: VOX_Letters_teh
+  m_Name: VOX_Letter_teh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1773,7 +1756,7 @@ GameObject:
   - 114: {fileID: 11481380}
   - 114: {fileID: 11405250}
   m_Layer: 0
-  m_Name: VOX_Letters_dammah
+  m_Name: VOX_Symbol_dammah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1938,7 +1921,7 @@ GameObject:
   - 114: {fileID: 11438890}
   - 114: {fileID: 11484608}
   m_Layer: 0
-  m_Name: VOX_Letters_ghain
+  m_Name: VOX_Letter_ghain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2266,7 +2249,7 @@ GameObject:
   - 114: {fileID: 11460924}
   - 114: {fileID: 11436688}
   m_Layer: 0
-  m_Name: VOX_Letters_qaf
+  m_Name: VOX_Letter_qaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2364,7 +2347,7 @@ GameObject:
   - 114: {fileID: 11425414}
   - 114: {fileID: 11442760}
   m_Layer: 0
-  m_Name: VOX_Letters_jeem
+  m_Name: VOX_Letter_jeem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2445,7 +2428,7 @@ GameObject:
   - 114: {fileID: 11437338}
   - 114: {fileID: 11466506}
   m_Layer: 0
-  m_Name: VOX_Letters_zah
+  m_Name: VOX_Letter_zah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2479,7 +2462,7 @@ GameObject:
   - 114: {fileID: 11462102}
   - 114: {fileID: 11481544}
   m_Layer: 0
-  m_Name: VOX_Letters_ain
+  m_Name: VOX_Letter_ain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2545,7 +2528,7 @@ GameObject:
   - 114: {fileID: 11458630}
   - 114: {fileID: 11408768}
   m_Layer: 0
-  m_Name: VOX_Letters_noon
+  m_Name: VOX_Letter_noon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2562,7 +2545,7 @@ GameObject:
   - 114: {fileID: 11418016}
   - 114: {fileID: 11499804}
   m_Layer: 0
-  m_Name: VOX_Letters_fathah
+  m_Name: VOX_Symbol_fathah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2612,7 +2595,7 @@ GameObject:
   - 114: {fileID: 11485350}
   - 114: {fileID: 11429328}
   m_Layer: 0
-  m_Name: VOX_Letters_kasrah
+  m_Name: VOX_Symbol_kasrah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2743,7 +2726,7 @@ GameObject:
   - 114: {fileID: 11481156}
   - 114: {fileID: 11405276}
   m_Layer: 0
-  m_Name: VOX_Letters_thal
+  m_Name: VOX_Letter_thal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2808,7 +2791,7 @@ GameObject:
   - 114: {fileID: 11486316}
   - 114: {fileID: 11407040}
   m_Layer: 0
-  m_Name: VOX_Letters_khah
+  m_Name: VOX_Letter_khah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2890,7 +2873,7 @@ GameObject:
   - 114: {fileID: 11409924}
   - 114: {fileID: 11466252}
   m_Layer: 0
-  m_Name: VOX_Letters_meem
+  m_Name: VOX_Letter_meem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3000,19 +2983,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 488934}
   m_RootOrder: 1
---- !u!4 &402168
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115494}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 498528}
-  m_RootOrder: 17
 --- !u!4 &404554
 Transform:
   m_ObjectHideFlags: 1
@@ -3067,7 +3037,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 33
+  m_RootOrder: 8
 --- !u!4 &405592
 Transform:
   m_ObjectHideFlags: 1
@@ -3139,7 +3109,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 27
+  m_RootOrder: 1
 --- !u!4 &408486
 Transform:
   m_ObjectHideFlags: 1
@@ -3165,7 +3135,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 6
+  m_RootOrder: 11
 --- !u!4 &410664
 Transform:
   m_ObjectHideFlags: 1
@@ -3303,7 +3273,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 28
+  m_RootOrder: 31
 --- !u!4 &414072
 Transform:
   m_ObjectHideFlags: 1
@@ -3355,7 +3325,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 12
+  m_RootOrder: 19
 --- !u!4 &417076
 Transform:
   m_ObjectHideFlags: 1
@@ -3381,7 +3351,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 10
+  m_RootOrder: 18
 --- !u!4 &417474
 Transform:
   m_ObjectHideFlags: 1
@@ -3576,7 +3546,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 29
+  m_RootOrder: 24
 --- !u!4 &423430
 Transform:
   m_ObjectHideFlags: 1
@@ -3751,7 +3721,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 26
+  m_RootOrder: 16
 --- !u!4 &430872
 Transform:
   m_ObjectHideFlags: 1
@@ -3764,7 +3734,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 13
+  m_RootOrder: 25
 --- !u!4 &431200
 Transform:
   m_ObjectHideFlags: 1
@@ -3869,7 +3839,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 7
+  m_RootOrder: 20
 --- !u!4 &432328
 Transform:
   m_ObjectHideFlags: 1
@@ -3895,7 +3865,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 14
+  m_RootOrder: 29
 --- !u!4 &432826
 Transform:
   m_ObjectHideFlags: 1
@@ -3908,7 +3878,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 9
+  m_RootOrder: 28
 --- !u!4 &434758
 Transform:
   m_ObjectHideFlags: 1
@@ -3934,7 +3904,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 21
+  m_RootOrder: 7
 --- !u!4 &436040
 Transform:
   m_ObjectHideFlags: 1
@@ -4231,7 +4201,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 30
+  m_RootOrder: 15
 --- !u!4 &441540
 Transform:
   m_ObjectHideFlags: 1
@@ -4244,7 +4214,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 19
+  m_RootOrder: 22
 --- !u!4 &441552
 Transform:
   m_ObjectHideFlags: 1
@@ -4270,7 +4240,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 18
+  m_RootOrder: 21
 --- !u!4 &443130
 Transform:
   m_ObjectHideFlags: 1
@@ -4283,7 +4253,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 2
+  m_RootOrder: 10
 --- !u!4 &444200
 Transform:
   m_ObjectHideFlags: 1
@@ -4335,7 +4305,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &445472
 Transform:
   m_ObjectHideFlags: 1
@@ -4361,7 +4331,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 32
+  m_RootOrder: 9
 --- !u!4 &446108
 Transform:
   m_ObjectHideFlags: 1
@@ -4504,7 +4474,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 23
+  m_RootOrder: 26
 --- !u!4 &450236
 Transform:
   m_ObjectHideFlags: 1
@@ -4530,7 +4500,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 15
+  m_RootOrder: 13
 --- !u!4 &451038
 Transform:
   m_ObjectHideFlags: 1
@@ -4582,7 +4552,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 25
+  m_RootOrder: 30
 --- !u!4 &457866
 Transform:
   m_ObjectHideFlags: 1
@@ -4767,7 +4737,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 24
+  m_RootOrder: 17
 --- !u!4 &470598
 Transform:
   m_ObjectHideFlags: 1
@@ -4795,7 +4765,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &471848
 Transform:
   m_ObjectHideFlags: 1
@@ -4834,7 +4804,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &472452
 Transform:
   m_ObjectHideFlags: 1
@@ -4899,7 +4869,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 5
+  m_RootOrder: 27
 --- !u!4 &475208
 Transform:
   m_ObjectHideFlags: 1
@@ -4964,7 +4934,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 22
+  m_RootOrder: 23
 --- !u!4 &477300
 Transform:
   m_ObjectHideFlags: 1
@@ -5055,7 +5025,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 8
+  m_RootOrder: 14
 --- !u!4 &481964
 Transform:
   m_ObjectHideFlags: 1
@@ -5125,7 +5095,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 1
+  m_RootOrder: 5
 --- !u!4 &487368
 Transform:
   m_ObjectHideFlags: 1
@@ -5313,7 +5283,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 11
+  m_RootOrder: 6
 --- !u!4 &496128
 Transform:
   m_ObjectHideFlags: 1
@@ -5397,7 +5367,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 20
+  m_RootOrder: 12
 --- !u!4 &497290
 Transform:
   m_ObjectHideFlags: 1
@@ -5423,7 +5393,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 31
+  m_RootOrder: 32
 --- !u!4 &498354
 Transform:
   m_ObjectHideFlags: 1
@@ -5448,40 +5418,39 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 445204}
-  - {fileID: 485352}
-  - {fileID: 443130}
-  - {fileID: 472322}
-  - {fileID: 471636}
-  - {fileID: 475048}
-  - {fileID: 408534}
-  - {fileID: 431788}
-  - {fileID: 480380}
-  - {fileID: 432826}
-  - {fileID: 417404}
-  - {fileID: 495054}
-  - {fileID: 416828}
-  - {fileID: 430872}
-  - {fileID: 432494}
-  - {fileID: 450326}
   - {fileID: 4000012154645608}
-  - {fileID: 402168}
+  - {fileID: 408440}
+  - {fileID: 445204}
+  - {fileID: 471636}
+  - {fileID: 472322}
+  - {fileID: 485352}
+  - {fileID: 495054}
+  - {fileID: 435572}
+  - {fileID: 405526}
+  - {fileID: 446038}
+  - {fileID: 443130}
+  - {fileID: 408534}
+  - {fileID: 497166}
+  - {fileID: 450326}
+  - {fileID: 480380}
+  - {fileID: 441356}
+  - {fileID: 430510}
+  - {fileID: 470068}
+  - {fileID: 417404}
+  - {fileID: 416828}
+  - {fileID: 431788}
   - {fileID: 441918}
   - {fileID: 441540}
-  - {fileID: 497166}
-  - {fileID: 435572}
   - {fileID: 476528}
-  - {fileID: 449968}
-  - {fileID: 470068}
-  - {fileID: 455878}
-  - {fileID: 430510}
-  - {fileID: 408440}
-  - {fileID: 413746}
   - {fileID: 422948}
-  - {fileID: 441356}
+  - {fileID: 430872}
+  - {fileID: 449968}
+  - {fileID: 475048}
+  - {fileID: 432826}
+  - {fileID: 432494}
+  - {fileID: 455878}
+  - {fileID: 413746}
   - {fileID: 497302}
-  - {fileID: 446038}
-  - {fileID: 405526}
   m_Father: {fileID: 407580}
   m_RootOrder: 1
 --- !u!4 &499088
@@ -5521,7 +5490,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/dal
+  _eventName: VOX/Letter/dal
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -6142,7 +6111,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/seen
+  _eventName: VOX/Letter/seen
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -6769,7 +6738,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/the
+  _eventName: VOX/Letter/theh
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -7189,7 +7158,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/dammah
+  _eventName: VOX/Letter/dammah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -7222,7 +7191,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/thal
+  _eventName: VOX/Letter/thal
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -7395,7 +7364,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/khah
+  _eventName: VOX/Letter/khah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -7856,7 +7825,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/noon
+  _eventName: VOX/Letter/noon
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -8531,7 +8500,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/dad
+  _eventName: VOX/Letter/dad
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -8671,7 +8640,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/yeh
+  _eventName: VOX/Letter/yeh
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -9599,7 +9568,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/tah
+  _eventName: VOX/Letter/tah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -10420,7 +10389,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/teh
+  _eventName: VOX/Letter/teh
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -11889,7 +11858,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/feh
+  _eventName: VOX/Letter/feh
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -12383,7 +12352,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/kasrah
+  _eventName: VOX/Letter/kasrah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -12688,40 +12657,40 @@ MonoBehaviour:
   - Sfx/WheelTick
   - Sfx/Win
   - VOX/GameTitle
-  - VOX/Letters/ain
-  - VOX/Letters/alef
-  - VOX/Letters/alef_hamza
-  - VOX/Letters/beh
-  - VOX/Letters/dad
-  - VOX/Letters/dal
-  - VOX/Letters/dammah
-  - VOX/Letters/fathah
-  - VOX/Letters/feh
-  - VOX/Letters/ghain
-  - VOX/Letters/hah
-  - VOX/Letters/hamza
-  - VOX/Letters/heh
-  - VOX/Letters/jeem
-  - VOX/Letters/kaf
-  - VOX/Letters/kasrah
-  - VOX/Letters/khah
-  - VOX/Letters/lam
-  - VOX/Letters/maddah
-  - VOX/Letters/meem
-  - VOX/Letters/noon
-  - VOX/Letters/qaf
-  - VOX/Letters/reh
-  - VOX/Letters/sad
-  - VOX/Letters/seen
-  - VOX/Letters/sheen
-  - VOX/Letters/tah
-  - VOX/Letters/teh
-  - VOX/Letters/thal
-  - VOX/Letters/the
-  - VOX/Letters/waw
-  - VOX/Letters/yeh
-  - VOX/Letters/zah
-  - VOX/Letters/zay
+  - VOX/Letter/alef
+  - VOX/Letter/ain
+  - VOX/Letter/beh
+  - VOX/Letter/dad
+  - VOX/Letter/dal
+  - VOX/Letter/dammah
+  - VOX/Letter/dhaa
+  - VOX/Letter/zah
+  - VOX/Letter/thal
+  - VOX/Letter/feh
+  - VOX/Letter/fathah
+  - VOX/Letter/ghain
+  - VOX/Letter/heh
+  - VOX/Letter/hah
+  - VOX/Letter/hamza
+  - VOX/Letter/jeem
+  - VOX/Letter/kaf
+  - VOX/Letter/kasrah
+  - VOX/Letter/khah
+  - VOX/Letter/lam
+  - VOX/Letter/maddah
+  - VOX/Letter/meem
+  - VOX/Letter/noon
+  - VOX/Letter/qaf
+  - VOX/Letter/reh
+  - VOX/Letter/sad
+  - VOX/Letter/sheen
+  - VOX/Letter/seen
+  - VOX/Letter/tah
+  - VOX/Letter/teh
+  - VOX/Letter/theh
+  - VOX/Letter/waw
+  - VOX/Letter/yeh
+  - VOX/Letter/zain
   - VOX/Words/back
   - VOX/Words/belly
   - VOX/Words/chest
@@ -12745,7 +12714,7 @@ MonoBehaviour:
     msPerCall: 0
     timesPerFrame: 0
   _logHistorySize: 0
-  _eventMenuListFoldout: 0
+  _eventMenuListFoldout: 1
   _eventListFoldout: 1
   _forceQueueAllEvents: 0
   _eventSequencer:
@@ -13145,113 +13114,6 @@ MonoBehaviour:
   _syncWithMusicTime: 0
   _markers: []
   _regions: []
---- !u!114 &11433918
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -71199202, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numVirtualizationEvents: 100
-  _maxInstances: 1
-  _stealingBehaviour: 0
-  _minimumPlaybackInterval: 0
-  _overrideParentVolume: 0
-  _volume: 1
-  _volumeRandomization: 0
-  _mute: 0
-  _overrideParentPitch: 0
-  _pitch: 1
-  _pitchRandomization: 0
-  _override2DProperties: 0
-  _pan2D: 0
-  _pan2DRandomization: 0
-  _override3DProperties: 0
-  _priority: 128
-  _panLevel: 1
-  _spreadLevel: 0
-  _dopplerLevel: 1
-  _maxDistance: 500
-  _minDistance: 1
-  _rolloffMode: 0
-  _overrideFadeProperties: 0
-  _fadeInTime: 0
-  _fadeInCurve: 0.5
-  _fadeOutTime: 0
-  _fadeOutCurve: 0.5
-  _reverbZoneMix: 1
-  _overrideBypassProperties: 0
-  _bypassEffects: 0
-  _bypassListenerEffects: 0
-  _bypassReverbZones: 0
-  _overrideAudioMixerGroup: 0
-  _audioMixerGroup: {fileID: 0}
-  _notifyParentComponent: 0
-  _audioBusName: 
-  _overrideAudioBus: 0
-  _overrideMusicTimeSettings: 0
-  _musicTimeSettingsIndex: -1
-  _musicTempo: -1
-  _musicTimeSignatureLower: 0
-  _musicTimeSignatureUpper: 0
-  _midiProperties:
-    _overrideParentNoteTracking: 0
-    _noteTracking: 0
-    _keyRangeMin: 0
-    _keyRangeMax: 127
-    _velocityRangeMin: 0
-    _velocityRangeMax: 127
-    _channelRangeMin: 1
-    _channelRangeMax: 16
-    _rootNote: -36
-    _transpose: 0
-    _velocity: 0
-  _probability: 100
-  _multipleInstancesPerGameObject: 1
-  _componentVirtualization: 0
-  _overrideVolumeThreshold: 0
-  _volumeThreshold: 1
-  _virtualizationBehavior: 1
-  _RTPManager:
-    _parameters: []
-    _reference: {fileID: 0}
-  Guid: 
-  _componentHolder: {fileID: 0}
-  _onEventNotifyEventName: 
-  _audioClip: {fileID: 8300000, guid: 1d6cbed32039f4fbd9d12b6f19314b61, type: 3}
-  _audioClipHandle:
-    _audioClipPath: 
-    _useAudioClipPath: 1
-  _dynamicAudioClipLoading: 0
-  _dynamicAudioClipUnloadDelay: 0
-  _dynamicAsyncAudioClipLoading: 0
-  _audioClipAssetPath: 0
-  _delay: 0
-  _delayInBeats: 0
-  _loop: 0
-  _ignoreNativeLoop: 0
-  _numLoops: -1
-  _loopMarkersLoaded: 0
-  _useLoopMarkers: 1
-  _startLoopMarkerIndex: 0
-  _endLoopMarkerIndex: 1
-  _loopRegionIndex: 0
-  _randomizeStartLoopMarkerIndex: 0
-  _randomizeEndLoopMarkerIndex: 0
-  _randomizeRegionIndex: 0
-  _dontPlay: 0
-  _dontStopOnDestroy: 0
-  _ignoreVirtualization: 0
-  _randomizePosition: 0
-  _randomizeMinPosition: 0
-  _randomizeMaxPosition: 10
-  _syncWithMusicTime: 0
-  _markers: []
-  _regions: []
 --- !u!114 &11433994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13370,7 +13232,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/waw
+  _eventName: VOX/Letter/waw
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -13472,7 +13334,7 @@ MonoBehaviour:
   _audioClip: {fileID: 8300000, guid: 14c3fab6cc60d4f4b9cfc7a89339df1a, type: 3}
   _audioClipHandle:
     _audioClipPath: 
-    _useAudioClipPath: 1
+    _useAudioClipPath: 0
   _dynamicAudioClipLoading: 0
   _dynamicAudioClipUnloadDelay: 0
   _dynamicAsyncAudioClipLoading: 0
@@ -13510,7 +13372,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/hah
+  _eventName: VOX/Letter/hah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -13897,7 +13759,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/qaf
+  _eventName: VOX/Letter/qaf
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -14968,7 +14830,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/sad
+  _eventName: VOX/Letter/sad
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -15108,7 +14970,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/jeem
+  _eventName: VOX/Letter/jeem
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -15388,7 +15250,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/reh
+  _eventName: VOX/Letter/reh
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -15528,7 +15390,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/hamza
+  _eventName: VOX/Letter/hamza
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -17364,7 +17226,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/sheen
+  _eventName: VOX/Letter/sheen
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -17858,7 +17720,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/heh
+  _eventName: VOX/Letter/heh
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -18765,7 +18627,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/lam
+  _eventName: VOX/Letter/lam
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -18905,7 +18767,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/kaf
+  _eventName: VOX/Letter/kaf
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -19152,7 +19014,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/meem
+  _eventName: VOX/Letter/meem
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -19292,7 +19154,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/zah
+  _eventName: VOX/Letter/zah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -21080,7 +20942,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/beh
+  _eventName: VOX/Letter/beh
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -21361,39 +21223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventName: Sfx/OK
-  _eventID: 0
-  _overrideEventTriggerAction: 0
-  _overrideParameters:
-    _overrideIncomingEventAction: 0
-    _incomingEventAction: 0
-    _overrideEventAction: 0
-    _type: 0
-    _floatParameter: 1
-    _stringParameter: 
-    _switchPresetData:
-      _sourcePreset: 
-      _targetPreset: 
-    _dspParameterData:
-      _dspType: 0
-      _parameter: 
-      _value: 0
-      _time: 0
-      _curve: 0.5
-    _transitionToSnapshotData:
-      _snapshot: 
-      _timeToReach: 0
---- !u!114 &11475222
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/alef_hamza
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -21720,7 +21549,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/maddah
+  _eventName: VOX/Letter/maddah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -22899,7 +22728,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/ain
+  _eventName: VOX/Letter/ain
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -23328,7 +23157,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/ghain
+  _eventName: VOX/Letter/ghain
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -23501,7 +23330,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/zay
+  _eventName: VOX/Letter/zain
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -26883,7 +26712,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/fathah
+  _eventName: VOX/Letter/fathah
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:
@@ -27643,7 +27472,7 @@ GameObject:
   - 114: {fileID: 114000012116762466}
   - 114: {fileID: 114000010768400660}
   m_Layer: 0
-  m_Name: VOX_Letters_alef
+  m_Name: VOX_Letter_alef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28047,7 +27876,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 498528}
-  m_RootOrder: 16
+  m_RootOrder: 0
 --- !u!4 &4000012229010376
 Transform:
   m_ObjectHideFlags: 1
@@ -29330,7 +29159,7 @@ MonoBehaviour:
   m_Script: {fileID: 1137554331, guid: 4b4e8768ed04d6a4f98af6f4f83be984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: VOX/Letters/alef
+  _eventName: VOX/Letter/alef
   _eventID: 0
   _overrideEventTriggerAction: 0
   _overrideParameters:

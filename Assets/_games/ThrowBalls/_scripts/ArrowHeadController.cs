@@ -1,0 +1,38 @@
+﻿using UnityEngine;
+using System.Collections;
+
+namespace EA4S.ThrowBalls
+{
+    public class ArrowHeadController : MonoBehaviour
+    {
+        public static ArrowHeadController instance;
+
+        void Awake()
+        {
+            instance = this;
+        }
+
+        public void OnUpdate()
+        {
+            if (Mathf.Approximately(ArrowBodyController.instance.transform.localScale.x, 0f))
+            {
+                transform.position = new Vector3(0, -9, 0);
+                return;
+            }
+
+            Vector3 arrowBodyRotation = ArrowBodyController.instance.transform.rotation.eulerAngles;
+            Vector3 arrowHeadRotation = arrowBodyRotation;
+            arrowHeadRotation.y += 180;
+            transform.rotation = Quaternion.Euler(arrowHeadRotation);
+
+            Vector3 distanceFromHead = new Vector3();
+            distanceFromHead.x = ArrowBodyController.instance.transform.localScale.x * 1.5f + 1.5f;
+
+            Vector3 rotatedVector = new Vector3();
+            rotatedVector.x = Mathf.Cos(-Mathf.Deg2Rad * transform.localRotation.eulerAngles.y) * distanceFromHead.x - Mathf.Sin(-Mathf.Deg2Rad * transform.localRotation.eulerAngles.y) * distanceFromHead.z;
+            rotatedVector.z = Mathf.Sin(-Mathf.Deg2Rad * transform.localRotation.eulerAngles.y) * distanceFromHead.x + Mathf.Cos(-Mathf.Deg2Rad * transform.localRotation.eulerAngles.y) * distanceFromHead.z;
+
+            transform.position = ArrowBodyController.instance.transform.position + rotatedVector;
+        }
+    }
+}
