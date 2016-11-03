@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 436118476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3dc81366fcf643f8bae0f2905258433, type: 3}
+  m_Script: {fileID: 11500000, guid: ff49bd318ba6549c18f2f2b4b4cdc0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
@@ -1049,13 +1049,12 @@ MonoBehaviour:
   endGameCanvas: {fileID: 2125749105}
   starFlowers: {fileID: 1030534976}
   sceneCamera: {fileID: 1235573570}
-  numberOfRounds: 6
-  uiDelay: 4
-  endCameraPosition: {x: 0, y: 40, z: 5}
-  endCameraRotation: {x: 45, y: 0, z: 0}
+  uiDelay: 0
+  endCameraPosition: {x: 0, y: 0, z: 0}
+  endCameraRotation: {x: 0, y: 0, z: 0}
   letterBalloonPrefab: {fileID: 1000010726512004, guid: 1f083c493a8bd40289e07e176c6d96a8,
     type: 2}
-  letterBalloonContainer: {fileID: 1611480543}
+  letterBalloonContainer: {fileID: 0}
   FxParticlesPoof: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
   dropZone: {fileID: 750450658}
   overrideDifficulty: 0
