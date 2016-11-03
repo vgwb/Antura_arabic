@@ -124,12 +124,12 @@ namespace EA4S
         #endregion
 
 
-            #region Interface - Letters / Words
+        #region Interface - Letters / Words
 
-            // DEPRECATED (could safely remove this! it is not used anymore!)
+        // DEPRECATED (could safely remove this! it is not used anymore!)
         public WordData GimmeAGoodWord(WordDataCategory category)
         {
-            return SelectOne(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
+            return dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart).RandomSelectOne();
         }
 
         // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
@@ -182,7 +182,7 @@ namespace EA4S
         public List<Db.LetterData> GimmeSimilarLetters(Db.LetterData letter, int howMany)
         {
             List<Db.LetterData> returnList = new List<Db.LetterData>();
-            returnList.Add(SelectOne(dbManager.GetAllLetterData()));
+            returnList.Add(dbManager.GetAllLetterData().RandomSelectOne());
             return returnList;
         }
 
@@ -241,7 +241,7 @@ namespace EA4S
 
         public LetterData SelectRandomLetter()
         {
-            return SelectOne(dbManager.GetAllLetterData());
+            return dbManager.GetAllLetterData().RandomSelectOne();
         }
 
         public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
@@ -256,24 +256,12 @@ namespace EA4S
 
         public List<LetterData> SelectLettersInWord(int nToSelect, string wordId)
         {
-            return Select(2, wordHelper.GetLettersInWord(wordId));
+            return wordHelper.GetLettersInWord(wordId).RandomSelect(2);
         }
 
         public List<WordData> SelectWordsWithLetters(int nToSelect, params string[] letters)
         {
-            return Select(2, wordHelper.GetWordsWithLetters(letters));
-        }
-
-
-        // @TODO: these could be set as list extensions
-        public List<T> Select<T>(int numberToSelect, List<T> all_list)
-        {
-            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, numberToSelect);
-        }
-
-        public T SelectOne<T>(List<T> all_list)
-        {
-            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, 1)[0];
+            return wordHelper.GetWordsWithLetters(letters).RandomSelect(2);
         }
 
         #endregion
