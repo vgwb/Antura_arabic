@@ -12,12 +12,12 @@ namespace EA4S.Teacher
 
         // References
         private DatabaseManager dbManager;
-        private PlayerProfile playerProfile;
+        //private PlayerProfile playerProfile;
 
         public MiniGameSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             this.dbManager = _dbManager;
-            this.playerProfile = _playerProfile;
+            // this.playerProfile = _playerProfile;
         }
 
         public void InitialiseNewPlaySession()
