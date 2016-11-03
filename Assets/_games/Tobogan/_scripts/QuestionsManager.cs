@@ -37,7 +37,7 @@ namespace EA4S.Tobogan
             {
                 initialized = true;
 
-                game.pipesAnswerController.Initialize();
+                game.pipesAnswerController.Initialize(game);
                 CreateQuestionLivingLetters();
 
                 questionLetterIndex = livingLetters.Count - 1;

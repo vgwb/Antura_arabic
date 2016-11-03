@@ -36,18 +36,18 @@ namespace EA4S
         {
             AudioClip clip = AudioManager.I.GetAudioClip(id);
 
-            if (sfxGroup == null)
+            if (wordsLettersGroup == null)
             {
-                sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
-                sfxGroup.mixerGroup = AudioManager.I.lettersGroup;
+                wordsLettersGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Custom0);
+                wordsLettersGroup.mixerGroup = AudioManager.I.lettersGroup;
             }
 
             if (stopAllLetters)
-                sfxGroup.Stop();
+                wordsLettersGroup.Stop();
 
-            var source = sfxGroup.Play(clip);
+            var source = wordsLettersGroup.Play(clip);
 
-            return new SampleAudioSource(source, sfxGroup);
+            return new SampleAudioSource(source, wordsLettersGroup);
 
         }
 
