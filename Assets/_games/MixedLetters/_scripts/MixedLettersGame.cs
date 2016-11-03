@@ -142,7 +142,7 @@ namespace EA4S.MixedLetters
             wordInPlay = wordData.Data;
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Letters));
             VictimLLController.instance.letterObjectView.Lable.SetText(wordData.TextForLivingLetter);
-
+            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayWord(wordData);
         }
 
         public void VerifyLetters()

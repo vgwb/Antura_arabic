@@ -1,4 +1,6 @@
-﻿namespace EA4S.MixedLetters
+﻿using System.Linq;
+
+namespace EA4S.MixedLetters
 {
     public class ResultGameState : IGameState
     {
