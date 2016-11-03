@@ -78,7 +78,7 @@ namespace EA4S.MixedLetters
                 rotateButtonController.Enable();
 
                 Vector3 rotateButtonPosition = dropZonePosition;
-                rotateButtonPosition.y -= 1.35f;
+                rotateButtonPosition.y += 2.2f;
                 rotateButtonPosition.z += 0.5f;
                 rotateButtonController.SetPosition(rotateButtonPosition);
             }
