@@ -145,7 +145,7 @@ namespace EA4S.Egg
 
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
-                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
+                int index = randomGenerator.Next(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
