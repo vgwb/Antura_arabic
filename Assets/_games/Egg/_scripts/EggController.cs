@@ -11,6 +11,8 @@ namespace EA4S.Egg
         GameObject letterObjectViewPrefab;
         Vector3[] lettersMaxPositions;
 
+        public GameObject emoticonPrefab;
+
         public GameObject egg;
 
         public EggPiece[] eggPieces;
@@ -19,6 +21,7 @@ namespace EA4S.Egg
 
         public Transform notRotatedObjects;
         Vector3 notRotation = new Vector3(0f, 0f, 0f);
+        public Transform emoticonsScale;
 
         public GameObject eggShadow;
 
@@ -60,6 +63,8 @@ namespace EA4S.Egg
         int piecePoofCompleteCount = 0;
         bool eggEggCrackCompleteSent = false;
 
+        EggEmoticonsController emoticonsController;
+
         public void Initialize(GameObject letterObjectViewPrefab, Vector3[] eggPositions, Vector3[] lettersMaxPositions, IAudioManager audioManager)
         {
             this.letterObjectViewPrefab = letterObjectViewPrefab;
@@ -80,6 +85,8 @@ namespace EA4S.Egg
 
             currentRotation = new Vector3(0f, 0f, -90f);
             GoToPosition(0, currentRotation);
+
+            emoticonsController = new EggEmoticonsController(emoticonsScale, emoticonPrefab);
         }
 
         public void Reset()
@@ -353,6 +360,11 @@ namespace EA4S.Egg
                     }
                 }
             }
+
+            if(emoticonsController != null)
+            {
+                emoticonsController.Update(Time.deltaTime);
+            }
         }
 
         public void LateUpdate()
@@ -524,6 +536,21 @@ namespace EA4S.Egg
         void OnLettersJumpComplete()
         {
 
+        }
+
+        public void EmoticonHappy()
+        {
+            emoticonsController.EmoticonHappy();
+        }
+
+        public void EmoticonPositive()
+        {
+            emoticonsController.EmoticonPositive();
+        }
+
+        public void EmoticonNegative()
+        {
+            emoticonsController.EmoticonNegative();
         }
     }
 }

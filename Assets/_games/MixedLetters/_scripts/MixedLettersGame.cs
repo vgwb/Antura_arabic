@@ -24,6 +24,9 @@ namespace EA4S.MixedLetters
         public List<LL_LetterData> lettersInOrder;
         public GameObject victimLL;
 
+        public int roundNumber = 0;
+        public int numRoundsWon = 0;
+
         protected override void OnInitialize(IGameContext context)
         {
             instance = this;
@@ -78,7 +81,7 @@ namespace EA4S.MixedLetters
                 rotateButtonController.Enable();
 
                 Vector3 rotateButtonPosition = dropZonePosition;
-                rotateButtonPosition.y -= 1.35f;
+                rotateButtonPosition.y += 2.2f;
                 rotateButtonPosition.z += 0.5f;
                 rotateButtonController.SetPosition(rotateButtonPosition);
             }
@@ -138,9 +141,8 @@ namespace EA4S.MixedLetters
             wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
             wordInPlay = wordData.Data;
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Letters));
-            //VictimLLController.instance.letterObjectView.Lable.SetText(ArabicFixer.Fix(wordData.TextForLivingLetter, false, false));
             VictimLLController.instance.letterObjectView.Lable.SetText(wordData.TextForLivingLetter);
-
+            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayWord(wordData);
         }
 
         public void VerifyLetters()
@@ -157,6 +159,7 @@ namespace EA4S.MixedLetters
             }
 
             PlayGameState.RoundWon = true;
+            numRoundsWon++;
         }
     }
 }
