@@ -23,6 +23,11 @@ namespace EA4S {
 
         public RewardConfig config;
 
+        /// <summary>
+        /// The actual rewards for place positions.
+        /// </summary>
+        List<Reward> actualRewardsForPositions = new List<Reward>();
+
         void Awake() {
             Instance = this;
             LoadFromConfig();
@@ -38,15 +43,32 @@ namespace EA4S {
             config = JsonUtility.FromJson<RewardConfig>(configString);
         }
 
+        /// <summary>
+        /// Adds reward to active rewards list and if already exist reward for same bone and category substitute it.
+        /// </summary>
+        /// <param name="_reward">The reward.</param>
+        void AddRewardActiveRewardsList(Reward _reward) {
+            Reward oldRewardInList = actualRewardsForPositions.Find(r => r.BoneAttach == _reward.BoneAttach && r.Category == _reward.Category);
+            if (oldRewardInList != null) {
+                actualRewardsForPositions.Remove(oldRewardInList);
+            }
+            actualRewardsForPositions.Add(_reward);
+        }
+
         #region API
 
         /// <summary>
-        /// Loads the reward.
+        /// Loads the reward on model.
         /// </summary>
         /// <param name="_id">The identifier.</param>
         /// <returns></returns>
         public GameObject LoadReward(string _id) {
             Reward reward = config.Antura_rewards.Find(r => r.ID == _id);
+            if (reward == null) {
+                Debug.LogFormat("Reward {0} not found!", _id);
+                return null;
+            }
+            AddRewardActiveRewardsList(reward);
             string boneParent = reward.BoneAttach;
             Transform transformParent = transform;
             GameObject rewardModel = null;
@@ -98,30 +120,29 @@ namespace EA4S {
             }
             return rewardModel;
         }
-
-        #endregion
-
-        #region structures
-
-        [Serializable]
-        public class RewardConfig {
-            public List<Reward> Antura_rewards;
-        }
-
-        [Serializable]
-        public class Reward {
-            //public string Type;
-            public string ID;
-            public string RewardName;
-            //public string Priority;
-            //public string Done;
-            public string BoneAttach;
-            public string Material1;
-            public string Material2;
-        }
-
         #endregion
     }
 
+    #region reward structures
 
+    [Serializable]
+    public class RewardConfig {
+        public List<Reward> Antura_rewards;
+    }
+
+    [Serializable]
+    public class Reward {
+        //public string Type;
+        public string ID;
+        public string RewardName;
+        //public string Priority;
+        //public string Done;
+        public string BoneAttach;
+        public string Material1;
+        public string Material2;
+        public string Category;
+        public string RemTongue;
+    }
+
+    #endregion
 }
