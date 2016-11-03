@@ -74,6 +74,7 @@ namespace EA4S.MixedLetters
                 throwLetterToTheRight = !throwLetterToTheRight;
 
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.ThrowObj);
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetter(letterToSpawn);
 
                 yield return new WaitForSeconds(0.75f);
             }

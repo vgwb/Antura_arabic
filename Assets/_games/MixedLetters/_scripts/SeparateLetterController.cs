@@ -51,6 +51,8 @@ namespace EA4S.MixedLetters
                         droppedZone.SetDroppedLetter(null);
                         droppedZone = null;
                     }
+
+                    MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetter(letterData);
                 }
             }
         }
