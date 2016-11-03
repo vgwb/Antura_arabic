@@ -62,7 +62,7 @@ namespace EA4S.ColorTickle
                 //check for ray collision
                 if (m_oBody.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity))
                 {
-                    Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
+                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
 
                     if (OnBodyHit != null)
                     {
