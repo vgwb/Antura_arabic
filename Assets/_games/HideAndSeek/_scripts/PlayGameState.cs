@@ -23,13 +23,18 @@ namespace EA4S.HideAndSeek
             // Reset game timer
             gameTime.Reset();
 
-            game.GameManager.LifeObj.SetActive(true);
+           // game.GameManager.LifeObj.SetActive(true);
 
-            game.timerText.gameObject.SetActive(true);
-            game.timerText.text = "";
+            //game.timerText.gameObject.SetActive(true);
+           // game.timerText.text = "";
             hurryUpSfx = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+
+            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+
+            game.Context.GetOverlayWidget().SetMaxLives(3); 
 
             game.inGame = true;
             game.GameManager.SetTime();
@@ -40,10 +45,10 @@ namespace EA4S.HideAndSeek
             if (timesUpAudioSource != null)
                 timesUpAudioSource.Stop();
 
-            game.timerText.gameObject.SetActive(false);
+            //game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
 
-            game.GameManager.LifeObj.SetActive(false);
+            //game.GameManager.LifeObj.SetActive(false);
 
             game.Context.GetAudioManager().StopMusic();
 
@@ -53,7 +58,8 @@ namespace EA4S.HideAndSeek
 
         public void Update(float delta)
         {
-            game.timerText.text = String.Format("{0:0}", gameTime.Time);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+            //game.timerText.text = String.Format("{0:0}", gameTime.Time);
 
             if (!hurryUpSfx)
             {
