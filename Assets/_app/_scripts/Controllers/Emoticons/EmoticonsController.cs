@@ -82,7 +82,8 @@ namespace EA4S {
             }
         }
 
-        void Update() {
+        // TEST
+        /*void Update() {
             if (Input.anyKeyDown) {
                 if (anim.GetBool("IsOpen")) {
                     Open(false);
@@ -114,7 +115,7 @@ namespace EA4S {
             if (Input.GetKeyDown(KeyCode.N)) {
                 SetEmoticon(Emoticons.vfx_emo_negative, true);
             }
-        }
+        }*/
 
         #region API
         public void Open(bool _isOpen) {
