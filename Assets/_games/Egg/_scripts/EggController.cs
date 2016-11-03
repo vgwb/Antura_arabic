@@ -350,7 +350,7 @@ namespace EA4S.Egg
                 {
                     eggEggCrackCompleteSent = true;
 
-                    ShowQuestionLetters();
+                    ShowEndLetters();
 
                     EggShow(false);
 
@@ -481,7 +481,7 @@ namespace EA4S.Egg
             egg.SetActive(show);
         }
 
-        void ShowQuestionLetters()
+        void ShowEndLetters()
         {
             EggLivingLetter letter;
 
