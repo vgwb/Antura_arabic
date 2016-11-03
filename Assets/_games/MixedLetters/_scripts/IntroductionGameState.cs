@@ -27,6 +27,8 @@ namespace EA4S.MixedLetters
             Vector3 victimLLPosition = VictimLLController.instance.transform.position;
             victimLLPosition.x = Random.Range(0, 40) % 2 == 0 ? 0.5f : -0.5f;
             VictimLLController.instance.SetPosition(victimLLPosition);
+
+            game.roundNumber++;
         }
 
         public void ExitState()
