@@ -8,6 +8,8 @@ namespace EA4S.Teacher
     /// </summary>
     public class MiniGameSelectionAI
     {
+        private static bool VERBOSE = false;
+
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
@@ -25,11 +27,56 @@ namespace EA4S.Teacher
 
         public List<Db.MiniGameData> PerformSelection(string playSessionId, int numberToSelect)
         {
-            Dictionary<MiniGameCode, float> playsession_weights_dict = new Dictionary<MiniGameCode, float>();
+            Db.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
 
+            List<Db.MiniGameData> selectedMiniGameData = null;
+            switch (playSessionData.Order)
+            {
+                case Db.PlaySessionDataOrder.Sequence:
+                    selectedMiniGameData = PerformSelection_Sequence(playSessionData, numberToSelect);
+                    break;
+                case Db.PlaySessionDataOrder.Random:
+                    selectedMiniGameData = PerformSelection_Random(playSessionData, numberToSelect);
+                    break;
+            }
+
+            return selectedMiniGameData;
+        }
+
+        private List<Db.MiniGameData> PerformSelection_Sequence(Db.PlaySessionData playSessionData, int numberToSelect)
+        {
+            // Get all minigame codes for the given playsession
+            // ... also, use the weights to determine insertion order (used to determine the sequential order)
+            SortedDictionary<float, MiniGameCode> ordered_minigamecodes = new SortedDictionary<float, MiniGameCode>();
+            foreach (var minigameInPlaySession in playSessionData.Minigames)
+            {
+                ordered_minigamecodes[minigameInPlaySession.Weight] = minigameInPlaySession.MiniGameCode;
+            }
+
+            // Get, in order, each minigame data
+            List<Db.MiniGameData> minigame_data_list = new List<Db.MiniGameData>();
+            foreach(var orderedPair in ordered_minigamecodes)
+            {
+                var data = dbManager.GetMiniGameDataByCode(orderedPair.Value);
+                minigame_data_list.Add(data);
+            }
+
+            if (numberToSelect > minigame_data_list.Count)
+            {
+                throw new System.Exception("Cannot select " + numberToSelect + " minigames for play session " + playSessionData.Id);
+            }
+
+            // Choose the first N minigames in the ordered list
+            var selectedMiniGameData = minigame_data_list.GetRange(0, numberToSelect);
+            return selectedMiniGameData;
+        }
+
+
+        private List<Db.MiniGameData> PerformSelection_Random(Db.PlaySessionData playSessionData, int numberToSelect)
+        { 
             // Get all minigames ids for the given playsession (from PlaySessionData)
             // ... also, keep the weights around
-            Db.PlaySessionData playSessionData = dbManager.GetPlaySessionDataById(playSessionId);
+            Dictionary<MiniGameCode, float> playsession_weights_dict = new Dictionary<MiniGameCode, float>();
             List<string> minigame_id_list = new List<string>();
             foreach(var minigameInPlaySession in playSessionData.Minigames)
             {
@@ -80,12 +127,13 @@ namespace EA4S.Teacher
                 debugString += " TOTw: " + cumulativeWeight;
                 debugString += "\n";
             }
-            UnityEngine.Debug.Log(debugString);
+            if (VERBOSE) UnityEngine.Debug.Log(debugString);
 
             // Choose N minigames based on these weights
             var selectedMiniGameData = RandomHelper.RouletteSelectNonRepeating<Db.MiniGameData>(minigame_data_list, weights_list, numberToSelect);
 
             return selectedMiniGameData;
         }
+
     }
 }

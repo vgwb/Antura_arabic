@@ -4,7 +4,10 @@
 	{
 		TakeMeHomeGame game;
 
-		float timer = 1;
+		int currentShownTubes = 2;
+
+
+
 		public TakeMeHomeIntroductionState(TakeMeHomeGame game)
 		{
 			this.game = game;
@@ -14,11 +17,11 @@
 
 		public void EnterState()
 		{
-			game.InitTubes ();
+			game.IncrementRound();
 
-			//game.
-
-			game.Context.GetAudioManager().PlayMusic(Music.Theme3);
+			if (game.currentRound > 6) {
+				game.SetCurrentState(game.EndState);
+			}
 		}
 
 		public void ExitState()
@@ -27,10 +30,8 @@
 
 		public void Update(float delta)
 		{
-			timer -= delta;
-
-			if (timer < 0)
-			{
+			if (game.currentLetter != null && !game.currentLetter.isMoving) {
+				game.currentLetter.isDraggable = true;
 				game.SetCurrentState(game.PlayState);
 			}
 		}

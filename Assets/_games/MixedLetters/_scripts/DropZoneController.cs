@@ -15,6 +15,7 @@ namespace EA4S.MixedLetters
         private float THROB_INIT_SCALE;
         private float THROB_SCALE_MULTIPLIER = 1.2f;
         private float THROB_PERIOD = 0.33f;
+        private float LETTER_SWAP_DROP_OFFSET = -1f;
         private IEnumerator throbAnimation;
         private bool isChosen = false;
         public SeparateLetterController droppedLetter;
@@ -55,19 +56,28 @@ namespace EA4S.MixedLetters
 
         public void SetDroppedLetter(SeparateLetterController letter)
         {
+            if (letter != null && droppedLetter != null)
+            {
+                Vector3 position = transform.position;
+                position.y += LETTER_SWAP_DROP_OFFSET;
+                droppedLetter.SetPosition(position, false);
+                droppedLetter.SetIsKinematic(false);
+                droppedLetter.droppedZone = null;
+            }
+
             droppedLetter = letter;
             Unhighlight();
         }
 
         public void OnTriggerEnter(Collider collider)
         {
-            if (droppedLetter == null)
-            {
+            //if (droppedLetter == null)
+            //{
                 Throb();
                 isChosen = true;
                 chosenDropZone = this;
                 Highlight();
-            }
+            //}
         }
 
         public void OnTriggerExit(Collider collider)

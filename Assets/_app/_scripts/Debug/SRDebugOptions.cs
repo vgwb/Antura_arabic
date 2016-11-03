@@ -33,10 +33,10 @@ public partial class SROptions
     }
 
     [Category("Minigame")]
-    public void FastCrowd()
+    public void ColorTickle()
     {
         WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_ColorTickle");
         SRDebug.Instance.HideDebugPanel();
     }
 
@@ -57,6 +57,23 @@ public partial class SROptions
     }
 
     [Category("Minigame")]
+    public void FastCrowd()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void HideAndSeek()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_HideAndSeek");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+
+    [Category("Minigame")]
     public void MakeFriends()
     {
         WidgetPopupWindow.I.Close();
@@ -69,6 +86,38 @@ public partial class SROptions
     {
         WidgetPopupWindow.I.Close();
         GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Maze");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void MissingLetter()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_MissingLetter");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void MixedLetters()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_MixedLetters");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void Scanner()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Scanner");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void TakeMeHome()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_TakeMeHome");
         SRDebug.Instance.HideDebugPanel();
     }
 
