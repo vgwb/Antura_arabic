@@ -25,7 +25,7 @@ namespace EA4S.Egg
 
             IQuestionPack questionPack = EggConfiguration.Instance.QuestionProvider.GetNextQuestion();
 
-            questionDescription = EggConfiguration.Instance.QuestionProvider.GetDescription();
+            questionDescription = "";
 
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();

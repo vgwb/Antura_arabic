@@ -17,7 +17,7 @@
             var popupWidget = game.Context.GetPopupWidget();
             popupWidget.Show();
             popupWidget.SetButtonCallback(OnPopupCloseRequested);
-            popupWidget.SetMessage(ToboganConfiguration.Instance.PipeQuestions.GetDescription(), true);
+            popupWidget.SetMessage("", true);
         }
 
         void OnPopupCloseRequested()
