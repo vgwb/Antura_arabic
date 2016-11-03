@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EA4S.Db
 {
@@ -78,7 +77,6 @@ namespace EA4S.Db
         }
 
         #endregion
-
 
         #region Word -> Word
 
@@ -161,7 +159,6 @@ namespace EA4S.Db
 
         #endregion
 
-
         #region Phrase -> Phrase
 
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
@@ -173,60 +170,90 @@ namespace EA4S.Db
 
         #endregion
 
-        #region LearningBlock -> Letter
+        #region LearningBlock / PlaySession -> Letter
 
-        public List<LetterData> GetLettersInLearningBlock(string lbId, bool pastSessionsToo = false)
+        public List<LetterData> GetLettersInLearningBlock(string lbId, bool pastBlocksToo = false)
         {
             var lbData = dbManager.GetLearningBlockDataById(lbId);
+            var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
 
-            List<string> ids_list = new List<string>();
-            ids_list.AddRange(lbData.Letters);
-            if (pastSessionsToo) ids_list.AddRange(this.GetAllLetterIdsFromPreviousLearningBlocks(lbData));
+            HashSet<LetterData> letterData_set = new HashSet<LetterData>();
+            foreach (var psData in psData_list)
+            {
+                var ps_letterData = GetLettersInPlaySession(psData.Id, pastBlocksToo);
+                letterData_set.UnionWith(ps_letterData);
+            }
+            return new List<LetterData>(letterData_set);
+        }
 
+        public List<LetterData> GetLettersInPlaySession(string psId, bool pastSessionsToo = false)
+        {
+            var psData = dbManager.GetPlaySessionDataById(psId);
+
+            HashSet<string> ids_set = new HashSet<string>();
+            ids_set.UnionWith(psData.Letters);
+            if (pastSessionsToo) ids_set.UnionWith(this.GetAllLetterIdsFromPreviousPlaySessions(psData));
+
+            List<string> ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetLetterDataById(x));
         }
 
-        public string[] GetAllLetterIdsFromPreviousLearningBlocks(Db.LearningBlockData current_lb)
+        public string[] GetAllLetterIdsFromPreviousPlaySessions(PlaySessionData current_ps)
         {
-            // @note: this assumes that all learning blocks are correctly ordered
-            var all_lb_list = dbManager.GetAllLearningBlockData();
-            int index_current_lb = all_lb_list.IndexOf(current_lb);
+            // @note: this assumes that all play sessions are correctly ordered
+            var all_ps_list = dbManager.GetAllPlaySessionData();
+            int current_id = all_ps_list.IndexOf(current_ps);
 
             List<string> all_ids = new List<string>();
-            for (int prev_lb_id = 0; prev_lb_id < index_current_lb; prev_lb_id++)
+            for (int prev_id = 0; prev_id < current_id; prev_id++)
             {
-                all_ids.AddRange(all_lb_list[prev_lb_id].Letters);
+                all_ids.AddRange(all_ps_list[prev_id].Letters);
             }
 
             return all_ids.ToArray();
         }
         #endregion
 
-        #region LearningBlock -> Word
+        #region LearningBlock / PlaySession -> Word
 
-        public List<WordData> GetWordsInLearningBlock(string lbId, bool previousToo = false, bool pastSessionsToo = false)
+        public List<WordData> GetWordsInLearningBlock(string lbId, bool previousToo = true, bool pastBlocksToo = false)
         {
             var lbData = dbManager.GetLearningBlockDataById(lbId);
+            var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
 
-            List<string> ids_list = new List<string>();
-            ids_list.AddRange(lbData.Words);
-            if (previousToo) ids_list.AddRange(lbData.Words_previous);
-            if (pastSessionsToo) ids_list.AddRange(this.GetAllWordIdsFromPreviousLearningBlocks(lbData));
+            HashSet<WordData> wordData_set = new HashSet<WordData>();
+            foreach(var psData in psData_list)
+            {
+                var ps_wordData = GetWordsInPlaySession(psData.Id, previousToo, pastBlocksToo);
+                wordData_set.UnionWith(ps_wordData);
+            }
+            return new List<WordData>(wordData_set);
+        }
 
+        public List<WordData> GetWordsInPlaySession(string psId, bool previousToo = false, bool pastSessionsToo = false)
+        {
+            var psData = dbManager.GetPlaySessionDataById(psId);
+
+            HashSet<string> ids_set = new HashSet<string>();
+            ids_set.UnionWith(psData.Words);
+            if (previousToo) ids_set.UnionWith(psData.Words_previous);
+            if (pastSessionsToo) ids_set.UnionWith(this.GetAllWordIdsFromPreviousPlaySessions(psData));
+
+            List<string> ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetWordDataById(x));
         }
 
-        public string[] GetAllWordIdsFromPreviousLearningBlocks(Db.LearningBlockData current_lb)
+        public string[] GetAllWordIdsFromPreviousPlaySessions(PlaySessionData current_ps)
         {
-            // @note: this assumes that all learning blocks are correctly ordered
-            var all_lb_list = dbManager.GetAllLearningBlockData();
-            int index_current_lb = all_lb_list.IndexOf(current_lb);
+            // @note: this assumes that all play sessions are correctly ordered
+            var all_ps_list = dbManager.GetAllPlaySessionData();
+            int current_id = all_ps_list.IndexOf(current_ps);
 
             List<string> all_ids = new List<string>();
-            for (int prev_lb_id = 0; prev_lb_id < index_current_lb; prev_lb_id++)
+            for (int prev_id = 0; prev_id < current_id; prev_id++)
             {
-                all_ids.AddRange(all_lb_list[prev_lb_id].Words);
-                all_ids.AddRange(all_lb_list[prev_lb_id].Words_previous);
+                all_ids.AddRange(all_ps_list[prev_id].Words);
+                all_ids.AddRange(all_ps_list[prev_id].Words_previous);
             }
 
             return all_ids.ToArray();
@@ -234,31 +261,46 @@ namespace EA4S.Db
 
         #endregion
 
-        #region LearningBlock -> Phrase
+        #region LearningBlock / PlaySession -> Phrase
 
-        public List<PhraseData> GetPhrasesInLearningBlock(string lbId, bool previousToo = false, bool pastSessionsToo = false)
+        public List<PhraseData> GePhrasesInLearningBlock(string lbId, bool previousToo = true, bool pastBlocksToo = false)
         {
             var lbData = dbManager.GetLearningBlockDataById(lbId);
+            var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
 
-            List<string> ids_list = new List<string>();
-            ids_list.AddRange(lbData.Phrases);
-            if (previousToo) ids_list.AddRange(lbData.Phrases_previous);
-            if (pastSessionsToo) ids_list.AddRange(this.GetAllPhraseIdsFromPreviousLearningBlocks(lbData));
+            HashSet<PhraseData> phraseData_set = new HashSet<PhraseData>();
+            foreach (var psData in psData_list)
+            {
+                var ps_phraseData = GetPhrasesInPlaySession(psData.Id, previousToo, pastBlocksToo);
+                phraseData_set.UnionWith(ps_phraseData);
+            }
+            return new List<PhraseData>(phraseData_set);
+        }
 
+        public List<PhraseData> GetPhrasesInPlaySession(string lbId, bool previousToo = false, bool pastSessionsToo = false)
+        {
+            var psData = dbManager.GetPlaySessionDataById(lbId);
+
+            HashSet<string> ids_set = new HashSet<string>();
+            ids_set.UnionWith(psData.Phrases);
+            if (previousToo) ids_set.UnionWith(psData.Phrases_previous);
+            if (pastSessionsToo) ids_set.UnionWith(this.GetAllPhraseIdsFromPreviousPlaySessions(psData));
+
+            List<string> ids_list = new List<string>(ids_set);
             return ids_list.ConvertAll(x => dbManager.GetPhraseDataById(x));
         }
 
-        public string[] GetAllPhraseIdsFromPreviousLearningBlocks(Db.LearningBlockData current_lb)
+        public string[] GetAllPhraseIdsFromPreviousPlaySessions(PlaySessionData current_ps)
         {
-            // @note: this assumes that all learning blocks are correctly ordered
-            var all_lb_list = dbManager.GetAllLearningBlockData();
-            int index_current_lb = all_lb_list.IndexOf(current_lb);
+            // @note: this assumes that all play sessions are correctly ordered
+            var all_ps_list = dbManager.GetAllPlaySessionData();
+            int current_id = all_ps_list.IndexOf(current_ps);
 
             List<string> all_ids = new List<string>();
-            for (int prev_lb_id = 0; prev_lb_id < index_current_lb; prev_lb_id++)
+            for (int prev_id = 0; prev_id < current_id; prev_id++)
             {
-                all_ids.AddRange(all_lb_list[prev_lb_id].Phrases);
-                all_ids.AddRange(all_lb_list[prev_lb_id].Phrases_previous);
+                all_ids.AddRange(all_ps_list[prev_id].Phrases);
+                all_ids.AddRange(all_ps_list[prev_id].Phrases_previous);
             }
 
             return all_ids.ToArray();

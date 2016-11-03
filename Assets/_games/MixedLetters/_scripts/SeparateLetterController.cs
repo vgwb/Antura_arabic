@@ -139,6 +139,12 @@ namespace EA4S.MixedLetters
             transform.position = position;
         }
 
+        public void SetPosition(Vector3 position)
+        {
+
+            transform.position = position;
+        }
+
         public void Enable()
         {
             gameObject.SetActive(true);

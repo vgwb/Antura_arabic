@@ -2,6 +2,7 @@
 using DG.Tweening;
 using TMPro;
 using System;
+using System.Collections;
 using ArabicSupport;
 namespace EA4S.TakeMeHome
 {
@@ -9,6 +10,8 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		public GameObject plane;
 		public bool isDragged;
+		public bool isMoving;
+		public bool isDraggable;
 
 		public Transform livingLetterTransform;
 		public BoxCollider boxCollider;
@@ -26,8 +29,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 		float maxY;
 
 		bool dropLetter;
-		bool dragging = false;
+		bool clampPosition;
+		public bool dragging = false;
 		Vector3 dragOffset = Vector3.zero;
+		Vector3 tubeSpawnPosition;
+		public bool respawn;
 
 		public event Action onMouseUpLetter;
 
@@ -43,28 +49,34 @@ public class TakeMeHomeLL : MonoBehaviour {
 			normalPosition = transform.localPosition;
 			livingLetterTransform = transform;
 			holdPosition.x = normalPosition.x;
+			isMoving = false;
+			isDraggable = false;
 			holdPosition.y = normalPosition.y;
 			lastTube = null;
+			respawn = true;
 		}
 
-		public void Initialize(float _maxY, LetterObjectView _letter)
+		public void Initialize(float _maxY, LetterObjectView _letter, Vector3 tubePosition)
 		{
-			
-			cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
+			tubeSpawnPosition = tubePosition;
+
+			cameraDistance =  (transform.position.z) - Camera.main.transform.position.z;
+
+			//cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
 			letter = _letter;
 			maxY = _maxY;
 
-			dropLetter = true;
-			var data = letter.Data;
+			dropLetter = false;
 
-			TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
+			clampPosition = false;
+
 		}
 
 		public void PlayIdleAnimation()
         {
             letter.SetState(LLAnimationStates.LL_idle);
 
-			livingLetterTransform.localPosition = normalPosition;
+			//livingLetterTransform.localPosition = normalPosition;
 		}
 
 		public void PlayWalkAnimation()
@@ -84,19 +96,36 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 
 
-		void MoveTo(Vector3 position, float duration)
+		public void MoveTo(Vector3 position, float duration)
 		{
+			isMoving = true;
 			PlayWalkAnimation();
+
+			transform.rotation = Quaternion.Euler (new Vector3 (0, -90, 0));
 
 			if (moveTweener != null)
 			{
 				moveTweener.Kill();
 			}
 
-			moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () { PlayIdleAnimation(); if (endTransformToCallback != null) endTransformToCallback(); });
+			moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () { 
+				PlayIdleAnimation(); 
+				if (endTransformToCallback != null) endTransformToCallback();
+
+				//play audio
+				TakeMeHomeConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letter.Data, true);
+				RotateTo(new Vector3 (0, 180, 0),0.5f);
+				isMoving = false;
+			});
 		}
 
-		void RoteteTo(Vector3 rotation, float duration)
+		public void MoveBy(Vector3 position, float duration)
+		{
+			MoveTo (transform.position + position, duration);
+		}
+
+
+		void RotateTo(Vector3 rotation, float duration)
 		{
 			if (rotationTweener != null)
 			{
@@ -109,7 +138,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		void TransformTo(Transform transformTo, float duration, Action callback)
 		{
 			MoveTo(transformTo.localPosition, duration);
-			RoteteTo(transformTo.eulerAngles, duration);
+			RotateTo(transformTo.eulerAngles, duration);
 
 			endTransformToCallback = callback;
 		}
@@ -151,6 +180,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		public void OnPointerDown(Vector2 pointerPosition)
 		{
+			if (isMoving || !isDraggable)
+				return;
+			
 			if (!dragging)
 			{
 				lastTube = null;
@@ -208,10 +240,19 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 			dropPosition += Physics.gravity * delta;
 
-			Debug.Log (transform.position.y);
 
-			transform.position = ClampPositionToStage(dropPosition);
-			Debug.Log (transform.position.y);
+			if(clampPosition) transform.position = ClampPositionToStage(dropPosition);
+			else transform.position = dropPosition;//ClampPositionToStage(dropPosition);
+
+			//free fall:
+			if (!clampPosition) {
+				if (respawn && transform.position.y < (maxY - 20)) {
+					AudioManager.I.PlaySfx (Sfx.Splat);
+					//transform.position = 
+					transform.position = tubeSpawnPosition;
+					clampPosition = true;
+				}
+			}
 		}
 
 		void Update()
@@ -226,13 +267,124 @@ public class TakeMeHomeLL : MonoBehaviour {
 		{
 			Vector3 clampedPosition = unclampedPosition;
 
-			clampedPosition.z = -15;
+			
 
-			if(!isDragged)
+			if(!dragging)
 				clampedPosition.y = clampedPosition.y < maxY ? maxY : clampedPosition.y;
 
+			if (clampedPosition.y == maxY) {
+				dropLetter = false;
+				clampPosition = false;
+
+			}
+			
 			return clampedPosition;
 		}
+
+		private void moveUp()
+		{
+			if (lastTube == null)
+				return;
+			
+			if (moveTweener != null)
+			{
+				moveTweener.Kill();
+			}
+
+			moveTweener = transform.DOLocalMove(transform.position + lastTube.transform.up*30, 1).OnComplete(delegate () { 
+				PlayIdleAnimation(); 
+				if (endTransformToCallback != null) endTransformToCallback();
+
+				transform.rotation = Quaternion.Euler (new Vector3 (0, 180, 0));
+				transform.position = tubeSpawnPosition;
+				clampPosition = true;
+				dropLetter = true;
+				isMoving = false;
+			});
+		}
+
+		public void panicAndRun()
+		{
+			isMoving = true;
+			isDraggable = false;
+			dropLetter = false;
+
+			RotateTo(new Vector3 (0, -90, 0),0.5f);
+
+
+			letter.SetState(LLAnimationStates.LL_walking);
+			letter.SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+
+			if (moveTweener != null)
+			{
+				moveTweener.Kill();
+			}
+
+			moveTweener = transform.DOLocalMove(transform.position - (new Vector3(10,0,0)), 1).OnComplete(delegate () { 
+				PlayIdleAnimation();
+				respawn = false;
+				clampPosition = false;
+				dropLetter = true;
+				isMoving = false;
+			});
+
+		}
+
+
+		public void followTube(bool win)
+		{
+			
+
+
+
+			isMoving = true;
+			isDraggable = false;
+			dropLetter = false;
+
+			if (win) {
+				letter.Poof ();
+				letter.DoHighFive ();
+				StartCoroutine (waitForSeconds (2));
+
+				return;
+			}
+
+
+
+
+		
+			moveUp ();
+		
+
+
+		}
+
+		IEnumerator waitForSeconds(float seconds)
+		{
+			yield return new WaitForSeconds (seconds);
+			moveUp ();
+
+		}
+
+		IEnumerator waitForSecondsAndJump(float seconds)
+		{
+			yield return new WaitForSeconds (seconds);
+			letter.SetState(LLAnimationStates.LL_walking);
+			letter.SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+
+			if (moveTweener != null)
+			{
+				moveTweener.Kill();
+			}
+
+			moveTweener = transform.DOLocalMove(transform.position - (new Vector3(5,0,0)), 1).OnComplete(delegate () { 
+				
+				clampPosition = false;
+				dropLetter = true;
+				isMoving = false;
+			});
+		}
+
 
 		public void EnableCollider(bool enable)
 		{

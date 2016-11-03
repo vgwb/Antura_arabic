@@ -102,12 +102,13 @@ namespace EA4S.Tobogan
 
                 answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
             }
-            else if (livingLetterData.DataType == LivingLetterDataType.Letter)
+            else if (livingLetterData.DataType == LivingLetterDataType.Word)
             {
                 answerText.gameObject.SetActive(true);
-                //answerImage.gameObject.SetActive(false);
+                //answerImage.gameObject.SetActive(true);
 
                 answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
+                //answerImage.sprite = livingLetterData.DrawForLivingLetter;
             }
             //else
             //{

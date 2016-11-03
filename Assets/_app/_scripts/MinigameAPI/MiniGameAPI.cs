@@ -410,6 +410,14 @@ namespace EA4S.API
         }
         #endregion
 
+        #region OverlayWidget provider
+        IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
+        public IOverlayWidget GetOverlayWidget()
+        {
+            return overlayWidget;
+        }
+        #endregion
+
         #region Context Presets
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {

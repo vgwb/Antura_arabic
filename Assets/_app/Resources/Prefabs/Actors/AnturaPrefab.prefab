@@ -1304,7 +1304,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172746}
-  m_LocalRotation: {x: 0.7398478, y: 0.661285, z: 0.07463016, w: -0.09878135}
+  m_LocalRotation: {x: 0.73984784, y: 0.66128504, z: 0.07463017, w: -0.098781355}
   m_LocalPosition: {x: 0.03431945, y: 0.044092182, z: 0.093643494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -14.1742, y: -178.8053, z: 96.27}
@@ -1484,7 +1484,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169820}
-  m_LocalRotation: {x: -0.661285, y: 0.7398478, z: -0.09878135, w: -0.07463016}
+  m_LocalRotation: {x: -0.661285, y: 0.7398478, z: -0.09878133, w: -0.07463016}
   m_LocalPosition: {x: 0.03431945, y: 0.044092182, z: -0.093643494}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 14.1742, y: 178.8053, z: -83.729996}
@@ -2859,6 +2859,7 @@ MonoBehaviour:
   BarkWhenRunning: 0
   AnimationState: 2
   IsPirate: 1
+  IsBarking: 0
   AnturaCollar: 1
   AnturaColor: 0
   AnturaEye: 0
@@ -2917,7 +2918,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 8386973761bff4314ac438ff54e21bd8, type: 3}
+  m_Mesh: {fileID: 4300000, guid: da3c3806b859dd548a29af8f3f7313ce, type: 3}
   m_Bones:
   - {fileID: 473506}
   - {fileID: 426026}
@@ -2960,7 +2961,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300002, guid: 8386973761bff4314ac438ff54e21bd8, type: 3}
+  m_Mesh: {fileID: 4300002, guid: da3c3806b859dd548a29af8f3f7313ce, type: 3}
   m_Bones:
   - {fileID: 445124}
   - {fileID: 422572}

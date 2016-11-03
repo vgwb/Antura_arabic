@@ -9,7 +9,6 @@ namespace EA4S.FastCrowd
     {
         public QuestionManager QuestionManager;
 
-        public TextMeshProUGUI timerText;
         public AnturaController antura;
 
         public List<ILivingLetterData> CurrentChallenge = new List<ILivingLetterData>();
@@ -17,7 +16,19 @@ namespace EA4S.FastCrowd
 
         public IQuestionPack CurrentQuestion = null; // optional
 
-        public int CurrentScore { get; private set; }
+        private int currentScore;
+        public int CurrentScore
+        {
+            get
+            {
+                return currentScore;
+            }
+            private set
+            {
+                currentScore = value;
+                Context.GetOverlayWidget().SetStarsScore(currentScore);
+            }
+        }
 
         public int QuestionNumber = 0;
 
@@ -129,15 +140,14 @@ namespace EA4S.FastCrowd
             ResultState = new FastCrowdResultState(this);
             EndState = new FastCrowdEndState(this);
 
-            timerText.gameObject.SetActive(false);
-
-            Physics.gravity = new Vector3(0, -10, 0);
-
             QuestionManager.wordComposer.gameObject.SetActive(
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling
                 );
 
             Physics.gravity = Vector3.up * -40;
+
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(stars1Threshold, stars2Threshold, stars3Threshold);
         }
 
 
@@ -159,7 +169,7 @@ namespace EA4S.FastCrowd
             {
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetWord((LL_WordData)question);
-                Context.GetAudioManager().PlayWord((LL_WordData)question);
+                Context.GetAudioManager().PlayLetterData(question);
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
             {
@@ -189,14 +199,14 @@ namespace EA4S.FastCrowd
 
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetMessage(question.TextForLivingLetter, true);
-                Context.GetAudioManager().PlayLetter((LL_LetterData)question);
+                Context.GetAudioManager().PlayLetterData(question);
             }
             else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
             {
                 popupWidget.SetTitle("", false);
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetMessage("Number " + QuestionNumber, true);
-                Context.GetAudioManager().PlayWord((LL_WordData)question);
+                Context.GetAudioManager().PlayLetterData(question);
             }
         }
     }

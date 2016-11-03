@@ -3,46 +3,57 @@
 	public class TakeMeHomePlayState : IGameState {
 
 		TakeMeHomeGame game;
-		CountdownTimer gameTime;
 
-		float timer = 1;
+		public CountdownTimer anturaTimer;
 		public TakeMeHomePlayState(TakeMeHomeGame game)
 		{
 			this.game = game;
-			gameTime = new CountdownTimer(UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
-			gameTime.onTimesUp += OnTimesUp;
-
-			gameTime.Reset();
 
 		}
 
 		public void EnterState()
 		{
-			gameTime.Start();
+			game.gameTime.Start();
 
 			game.timerText.gameObject.SetActive(true);
 			game.roundText.gameObject.SetActive(true);
 
 
+			anturaTimer = new CountdownTimer(10);
+			anturaTimer.onTimesUp += OnTimesUp;
 
-
-			game.IncrementRound ();
+			anturaTimer.Reset();
+			anturaTimer.Start();
 		}
 
 		public void ExitState()
 		{
-			game.timerText.gameObject.SetActive(false);
-			game.roundText.gameObject.SetActive(false);
-			gameTime.Stop();
+			//game.timerText.gameObject.SetActive(false);
+			//game.roundText.gameObject.SetActive(false);
+			anturaTimer.Stop ();
+			game.gameTime.Stop();
 		}
 
 		public void Update(float delta)
 		{
-			gameTime.Update(delta);
-			game.timerText.text = ((int)gameTime.Time).ToString();
+			game.gameTime.Update(delta);
+			anturaTimer.Update (delta);
+			game.timerText.text = ((int)game.gameTime.Time).ToString();
 
-			if (game.currentRound > 6) {
-				game.SetCurrentState(game.EndState);
+			if (game.currentLetter.dragging) {
+				anturaTimer.Reset ();
+				anturaTimer.Start ();
+			}
+				
+				
+				
+			//check if we placed the CurrentLetter:
+			if (!game.currentLetter.dragging && game.currentLetter.lastTube != null) {
+				
+
+				game.SetCurrentState(game.ResetState);
+
+
 			}
 		}
 
@@ -52,9 +63,8 @@
 
 		void OnTimesUp()
 		{
-			// Time's up!
-			game.isTimesUp = true;
-			game.SetCurrentState(game.EndState);
+			game.SetCurrentState(game.AntureState);
 		}
+
 	}
 }
