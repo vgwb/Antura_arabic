@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.Db;
@@ -23,11 +22,10 @@ namespace EA4S
         MiniGameSelectionAI minigameSelectionAI;
         WordSelectionAI wordSelectionAI;
 
+        // State
+        private List<MiniGameData> currentPlaySessionMiniGames;
 
-        // TO REMOVE
-        string[] bodyPartsWords;
-        public List<MiniGameData> MiniGamesInPlaySession;
-        List<LL_WordData> availableVocabulary = new List<LL_WordData>();
+        #region Setup
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
@@ -35,7 +33,7 @@ namespace EA4S
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
 
-            this.wordHelper =  new WordHelper(_dbManager, this);
+            this.wordHelper = new WordHelper(_dbManager, this);
             this.journeyHelper = new JourneyHelper(_dbManager, this);
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
@@ -44,36 +42,102 @@ namespace EA4S
             // Debug.Log("TeacherAI exists");
 
             // TO REMOVE
-            MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
-            bodyPartsWords = new[]
+            //MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
+            /*bodyPartsWords = new[]
             {
                 "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
-            };
+            };*/
         }
 
-        public void InitialiseNewPlaySession()
+        private void ResetPlaySession()
         {
-            // @todo: make sure this is called when a new play session starts
+            this.currentPlaySessionMiniGames.Clear();
+
             this.minigameSelectionAI.InitialiseNewPlaySession();
             this.wordSelectionAI.InitialiseNewPlaySession();
         }
 
-        #region Stefano's queries
-        // TO REMOVE!!!!!!
-        // TO REMOVE!!!!!!
-        // TO REMOVE!!!!!!
+        #endregion
 
-        public List<Db.MiniGameData> GimmeGoodMinigames()
+        #region Interface - MapManager
+
+        // TODO: call this from the MapManager
+        public List<Db.MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
+        {
+            ResetPlaySession();
+            this.currentPlaySessionMiniGames = this.SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            return currentPlaySessionMiniGames;
+        }
+
+        #endregion
+
+        #region Interface - MiniGame Getters
+
+        // TODO: call this to get all minigame data for the current play session
+        public List<MiniGameData> CurrentPlaySessionMiniGames
+        {
+            get { 
+                return currentPlaySessionMiniGames;
+            }
+        }
+
+        // TODO: call this to get the current single minigame data
+        public MiniGameData CurrentMiniGame
+        {
+            get
+            {
+                return currentPlaySessionMiniGames.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
+            }
+        }
+
+        // DEPRECATED (should now use CurrentPlaySessionMiniGames)
+        public List<MiniGameData> MiniGamesInPlaySession
+        {
+            get
+            {
+                return currentPlaySessionMiniGames;
+            }
+        }
+
+        // DEPRECATED (use CurrentMiniGameData instead)
+        public MiniGameData GetCurrentMiniGameData()
+        {
+            return CurrentMiniGame;
+        }
+
+        // DEPRECATED (should now be performed through MiniGame Selection)
+        public List<MiniGameData> GimmeGoodMinigames()
         {
             return dbManager.GetActiveMinigames();
         }
 
-        public Db.WordData GimmeAGoodWord()
+
+        // DEPRECATED (should now be performed through MiniGame Selection)
+        public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
         {
-            int index = Random.Range(0, bodyPartsWords.Length - 1);
-            return dbManager.GetWordDataById(bodyPartsWords[index]);
+            int number = 2; // TODO: should be injected by the MINIGAME!
+            return this.SelectMiniGamesForCurrentPlaySession(number);
         }
 
+        #endregion
+
+
+        #region Interface - Letters / Words
+
+        // DEPRECATED (could safely remove this! it is not used anymore!)
+        public WordData GimmeAGoodWord(WordDataCategory category)
+        {
+            return SelectOne(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
+        }
+
+        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
+        public LL_LetterData GimmeARandomLetter()
+        {
+            var data = this.SelectRandomLetter();
+            return BuildLetterData_LL(data);
+        }
+
+        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
         /// <summary>
         /// Return WordData from a list of available data.
         /// </summary>
@@ -81,15 +145,19 @@ namespace EA4S
         public LL_WordData GimmeAGoodWordData()
         {
             // init vocabulary
-            if (availableVocabulary.Count == 0)
-                availableVocabulary = getVocabularySubset(bodyPartsWords);
+            var availableVocabulary = BuildWordData_LL_Set(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
 
             List<LL_WordData> returnList = new List<LL_WordData>();
             if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
+            { 
                 // if already used all available words... restart.
                 AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
-            foreach (LL_WordData w in availableVocabulary) {
-                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w)) {
+            }
+
+            foreach (LL_WordData w in availableVocabulary)
+            {
+                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
+                {
                     returnList.Add(w); // Only added if not already used
                 }
             }
@@ -100,12 +168,8 @@ namespace EA4S
             return returnWord;
         }
 
-        public LL_LetterData GimmeARandomLetter()
-        {
-            var RandomLetterData = SelectOne(dbManager.GetAllLetterData()); // dbManager.GetLetterDataByRandom();
-            return new LL_LetterData(RandomLetterData.GetId());
-        }
 
+        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
         /// <summary>
         /// TODO
         /// Gimmes n similar letters to the current.
@@ -120,54 +184,49 @@ namespace EA4S
             return returnList;
         }
 
-        List<LL_WordData> getVocabularySubset(string[] _goodWords)
+        #endregion
+
+        #region WordData -> LL_WordData helpers
+
+        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
+        private LL_LetterData BuildLetterData_LL(LetterData data)
+        {
+            return new LL_LetterData(data.GetId());
+        }
+
+        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
+        private LL_WordData BuildWordData_LL(WordData data)
+        {
+            return new LL_WordData(data.GetId(), data);
+        }
+
+        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
+        private List<LL_WordData> BuildWordData_LL_Set(List<WordData> data_list)
         {
             List<LL_WordData> returnList = new List<LL_WordData>();
-            foreach (string wordKey in _goodWords) {
-                returnList.Add(LL_WordData.GetWordDataByKeyRow(wordKey));
+            foreach (var data in data_list)
+            {
+                returnList.Add(BuildWordData_LL(data));
             }
             return returnList;
         }
 
-        public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
-        {
-            var miniGamesInPlaySession = new List<MiniGameData>();
-            switch (this.playerProfile.CurrentJourneyPosition.PlaySession) {
-                case 1:
-                    //_MiniGamesInPlaySession = this.dbManager.GetPlaySessionDataById("1.1.1")
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
-                    break;
-                case 2:
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Egg));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_letter));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Maze));
-                    break;
-                case 3:
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_spelling));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.ThrowBalls_letters));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.MakeFriends));
-                    break;
-                case 4:
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_words));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling));
-                    break;
-            }
-            return miniGamesInPlaySession;
-        }
-
-        public MiniGameData GetCurrentMiniGameData()
-        {
-            MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
-            return MiniGamesInPlaySession.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
-        }
-
         #endregion
 
+
+        // HELPER (move to JourneyHelper?)
+        private string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
+        {
+            return journeyPosition.Stage + "." + journeyPosition.LearningBlock + "." + journeyPosition.PlaySession;
+        }
+      
         #region MiniGame Selection queries
+
+        private List<Db.MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
+        {
+            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+            return this.SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
+        }
 
         public List<Db.MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
         {
@@ -177,6 +236,11 @@ namespace EA4S
         #endregion
 
         #region Letter/Word Selection queries
+
+        public LetterData SelectRandomLetter()
+        {
+            return SelectOne(dbManager.GetAllLetterData());
+        }
 
         public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
         {
