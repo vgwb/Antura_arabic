@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EA4S
+namespace EA4S.Test
 {
     public class Tester_TutorialUI : MonoBehaviour
     {
@@ -20,7 +20,7 @@ namespace EA4S
         public float MinPointDistance = 0.3f;
         [Header("References")]
         public Dropdown DrawModeDropdown;
-        public Toggle FingerToggle, ArrowToggle;
+        public Toggle FingerToggle, ArrowToggle, PersistenToggle, OverlayToggle;
 
         DrawMode drawMode = DrawMode.StraightLine;
         readonly List<Vector3> storedPs = new List<Vector3>();
@@ -49,6 +49,7 @@ namespace EA4S
 
             if (Input.GetMouseButtonUp(0)) {
                 isDragging = false;
+                if (storedPs.Count > 1) storedPs.RemoveAt(storedPs.Count - 1);
                 storedPs.Add(MouseWorldPosition());
                 TutorialUI.DrawLineMode mode =
                     FingerToggle.isOn ? ArrowToggle.isOn ? TutorialUI.DrawLineMode.FingerAndArrow : TutorialUI.DrawLineMode.Finger
@@ -56,10 +57,10 @@ namespace EA4S
                     : TutorialUI.DrawLineMode.LineOnly;
                 switch (drawMode) {
                 case DrawMode.StraightLine:
-                    TutorialUI.DrawLine(storedPs[0], storedPs[storedPs.Count - 1], mode, false);
+                    TutorialUI.DrawLine(storedPs[0], storedPs[storedPs.Count - 1], mode, PersistenToggle.isOn, OverlayToggle.isOn);
                     break;
                 case DrawMode.FullCurve:
-                    TutorialUI.DrawLine(storedPs.ToArray(), mode, false);
+                    TutorialUI.DrawLine(storedPs.ToArray(), mode, PersistenToggle.isOn, OverlayToggle.isOn);
                     break;
                 }
                 storedPs.Clear();

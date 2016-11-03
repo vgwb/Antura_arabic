@@ -111,6 +111,7 @@ namespace EA4S.Egg
             if (progressInput)
             {
                 PlayPositiveAudioFeedback();
+                game.eggController.EmoticonPositive();
                 game.eggController.StartTrembling();
 
                 progressInput = false;
@@ -187,10 +188,16 @@ namespace EA4S.Egg
             float crackingProgress = (float)questionProgress / (float)correctAnswers;
 
             game.eggController.Cracking(crackingProgress);
+            
 
             if (crackingProgress == 1f)
             {
+                game.eggController.EmoticonHappy();
                 DisableAllGameplayInput();
+            }
+            else
+            {
+                game.eggController.EmoticonPositive();
             }
         }
 
@@ -209,6 +216,8 @@ namespace EA4S.Egg
                     goAntura = true;
                 }
             }
+
+            game.eggController.EmoticonNegative();
 
             game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
 

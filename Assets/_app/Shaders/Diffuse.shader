@@ -1,13 +1,13 @@
 ﻿Shader "Antura/Diffuse" {
 	Properties {
-		_MainTex ("Albedo (RGB)", 2D) = "white" {}	
+		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Color("Color", Color) = (1,1,1,1)
 		_Emission("Emission", Color) = (0,0,0,0)
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		LOD 150
-		
+
 		CGPROGRAM
 		#pragma surface surf Lambert noforwardadd
 
@@ -29,6 +29,6 @@
 		}
 		ENDCG
 	}
-			
-	FallBack "Mobile/Diffuse"
+
+	FallBack "Diffuse"
 }
