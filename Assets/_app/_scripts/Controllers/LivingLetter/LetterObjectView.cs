@@ -163,6 +163,7 @@ namespace EA4S
             switch (_newState)
             {
                 case LLAnimationStates.LL_idle:
+                case LLAnimationStates.LL_still:
                     animator.SetBool("idle", true);
                     break;
                 case LLAnimationStates.LL_walking:

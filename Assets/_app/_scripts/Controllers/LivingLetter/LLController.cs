@@ -47,7 +47,9 @@ namespace EA4S
         #endregion
     }
 
-    public enum LLAnimationStates {
+    public enum LLAnimationStates
+    {
+        LL_still, // it's like idle, but does not trigger random animations
         LL_idle,
         LL_walking,
         LL_dragging,
