@@ -61,6 +61,18 @@ ModelImporter:
     100106: dog_tongue4
     100108: //RootNode
     100110: dog_Up_Lip
+    100112: dog_Tail1 1
+    100114: dog_Tail1 2
+    100116: dog_Tail1 3
+    100118: dog_Tail2 1
+    100120: dog_Tail2 2
+    100122: dog_Tail2 3
+    100124: dog_Tail3 1
+    100126: dog_Tail3 2
+    100128: dog_Tail3 3
+    100130: dog_Tail4 1
+    100132: dog_Tail4 2
+    100134: dog_Tail4 3
     400000: dog
     400002: dog_EyeBrow1
     400004: dog_EyeBrow2
@@ -117,6 +129,18 @@ ModelImporter:
     400106: dog_tongue4
     400108: //RootNode
     400110: dog_Up_Lip
+    400112: dog_Tail1 1
+    400114: dog_Tail1 2
+    400116: dog_Tail1 3
+    400118: dog_Tail2 1
+    400120: dog_Tail2 2
+    400122: dog_Tail2 3
+    400124: dog_Tail3 1
+    400126: dog_Tail3 2
+    400128: dog_Tail3 3
+    400130: dog_Tail4 1
+    400132: dog_Tail4 2
+    400134: dog_Tail4 3
     4300000: dog_REyeLid
     4300002: dog_tongue
     4300004: dog_LEyeLid

@@ -1772,8 +1772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerTransform: {fileID: 0}
   Lable: {fileID: 114000010860749572}
   ImageSprite: {fileID: 212000013653794862}
+  maxSize: 1.5
   normalGraphics: []
   limblessGraphics: []
   poofPrefab: {fileID: 0}
