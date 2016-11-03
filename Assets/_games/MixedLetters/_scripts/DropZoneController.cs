@@ -134,6 +134,7 @@ namespace EA4S.MixedLetters
             if (droppedLetter != null)
             {
                 droppedLetter.RotateCCW();
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.WheelTick);
                 MixedLettersGame.instance.VerifyLetters();
             }
         }
