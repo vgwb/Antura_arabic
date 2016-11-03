@@ -20,6 +20,8 @@ namespace EA4S.MixedLetters
         private bool isChosen = false;
         public SeparateLetterController droppedLetter;
 
+        public Sfx sfx;
+
         void Awake()
         {
         }
@@ -27,6 +29,7 @@ namespace EA4S.MixedLetters
         void Start()
         {
             THROB_INIT_SCALE = transform.localScale.x;
+            sfx = Sfx.DogSnorting;
         }
 
         // Update is called once per frame
@@ -134,6 +137,7 @@ namespace EA4S.MixedLetters
             if (droppedLetter != null)
             {
                 droppedLetter.RotateCCW();
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(sfx);
                 MixedLettersGame.instance.VerifyLetters();
             }
         }
