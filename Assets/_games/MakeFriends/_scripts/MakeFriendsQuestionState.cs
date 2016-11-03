@@ -1,17 +1,22 @@
 ﻿namespace EA4S.MakeFriends
 {
-    public class MakeFriendsQuestionGameState : IGameState
+    public class MakeFriendsQuestionState : IGameState
     {
         MakeFriendsGame game;
         
-        public MakeFriendsQuestionGameState(MakeFriendsGame game)
+        public MakeFriendsQuestionState(MakeFriendsGame game)
         {
             this.game = game;
         }
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
+            //game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
+            // Show questions description
+            var popupWidget = game.Context.GetPopupWidget();
+            popupWidget.Show();
+            popupWidget.SetButtonCallback(OnQuestionCompleted);
+            popupWidget.SetMessage("", true);
         }
 
         public void ExitState()

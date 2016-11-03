@@ -1,11 +1,11 @@
 ﻿namespace EA4S.MakeFriends
 {
-    public class MakeFriendsPlayGameState : IGameState
+    public class MakeFriendsResultState : IGameState
     {
         MakeFriendsGame game;
 
-        float timer = 4;
-        public MakeFriendsPlayGameState(MakeFriendsGame game)
+        float timer = 1.5f;
+        public MakeFriendsResultState(MakeFriendsGame game)
         {
             this.game = game;
         }
@@ -24,7 +24,8 @@
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.ResultState);
+                game.endGameCanvas.gameObject.SetActive(true);
+                game.EndGame(game.CurrentStars, game.CurrentScore);
             }
         }
 

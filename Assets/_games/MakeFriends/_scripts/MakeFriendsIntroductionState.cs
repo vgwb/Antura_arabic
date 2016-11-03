@@ -1,11 +1,11 @@
 ﻿namespace EA4S.MakeFriends
 {
-    public class MakeFriendsIntroductionGameState : IGameState
+    public class MakeFriendsIntroductionState : IGameState
     {
         MakeFriendsGame game;
 
-        float timer = 4;
-        public MakeFriendsIntroductionGameState(MakeFriendsGame game)
+        float timer = 1;
+        public MakeFriendsIntroductionState(MakeFriendsGame game)
         {
             this.game = game;
         }
