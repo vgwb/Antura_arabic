@@ -53,6 +53,7 @@ namespace EA4S.Egg
             livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate ()
             {
                 livingLetter.gameObject.SetActive(true);
+                livingLetter.Poof();
                 livingLetter.OnJumpStart();
 
                 float timeToJumpStart = 0.15f;
