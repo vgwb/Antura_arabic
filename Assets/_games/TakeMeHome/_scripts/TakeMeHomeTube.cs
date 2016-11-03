@@ -28,7 +28,7 @@ public class TakeMeHomeTube : MonoBehaviour {
 			{
 				moveTweener.Kill();
 			}
-
+			AudioManager.I.PlaySfx (Sfx.Hit);
 			moveTweener = transform.DOShakePosition (0.5f, 0.5f,5).OnComplete(delegate () { transform.position = originalPosition; });
 		}
 	}

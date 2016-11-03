@@ -8,6 +8,7 @@ namespace EA4S
         ILogManager GetLogManager();
 
         ISubtitlesWidget GetSubtitleWidget();
+        IOverlayWidget GetOverlayWidget();
         IStarsWidget GetStarsWidget();
         IPopupWidget GetPopupWidget();
         ICheckmarkWidget GetCheckmarkWidget();

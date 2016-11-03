@@ -10,10 +10,5 @@
         /// Provide me another question
         /// </summary>
         IQuestionPack GetNextQuestion();
-
-        /// <summary>
-        /// Provide me the description of this question set
-        /// </summary>
-        string GetDescription();
     }
 }
