@@ -68,6 +68,13 @@ namespace EA4S.Tobogan
             livingLetterTransform.localPosition = normalPosition;
         }
 
+        public void PlayStillAnimation()
+        {
+            letter.SetState(LLAnimationStates.LL_still);
+
+            livingLetterTransform.localPosition = normalPosition;
+        }
+
         public void PlayWalkAnimation()
         {
             letter.SetState(LLAnimationStates.LL_walking);
@@ -102,7 +109,16 @@ namespace EA4S.Tobogan
                 moveTweener.Kill();
             }
 
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () { PlayIdleAnimation(); if (endTransformToCallback != null) endTransformToCallback(); });
+            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () 
+            {
+                if (letter.Data == null)
+                    PlayStillAnimation();
+                else
+                    PlayIdleAnimation();
+
+                if (endTransformToCallback != null)
+                    endTransformToCallback();
+            });
         }
 
         void RoteteTo(Vector3 rotation, float duration)
