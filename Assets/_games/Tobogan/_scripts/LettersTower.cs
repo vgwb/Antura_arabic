@@ -9,16 +9,16 @@ namespace EA4S.Tobogan
         public bool IsLetterFalling { get { return fallingLetter != null; } }
 
         // The tower is a stack of letters, that could be crash
-        private List<LivingLetter> stackedLetters = new List<LivingLetter>();
-        Dictionary<LivingLetter, System.Action> releasedCallbacks = new Dictionary<LivingLetter, System.Action>();
+        private List<LivingLetterRagdoll> stackedLetters = new List<LivingLetterRagdoll>();
+        Dictionary<LivingLetterRagdoll, System.Action> releasedCallbacks = new Dictionary<LivingLetterRagdoll, System.Action>();
 
         public const float LETTER_HEIGHT = 4.8f;
         public float TowerFullHeight { get { return stackedLetters.Count * LETTER_HEIGHT; } }
         public GameObject letterPrefab;
 
         // Used to manage the backlog in the tube and the falling letter
-        public Queue<LivingLetter> backlogTube = new Queue<LivingLetter>();
-        public LivingLetter fallingLetter;
+        public Queue<LivingLetterRagdoll> backlogTube = new Queue<LivingLetterRagdoll>();
+        LivingLetterRagdoll fallingLetter;
         float tremblingTimer = 0;
 
         public bool testAddLetter = false;
@@ -77,7 +77,7 @@ namespace EA4S.Tobogan
 
             newLetter.SetActive(false);
 
-            var letterComponent = newLetter.GetComponent<LivingLetter>();
+            var letterComponent = newLetter.GetComponent<LivingLetterRagdoll>();
             backlogTube.Enqueue(letterComponent);
 
             if (onLetterReleased != null)
@@ -294,7 +294,7 @@ namespace EA4S.Tobogan
             return elasticForce;
         }
 
-        void UpdateFallingLetter(LivingLetter letter)
+        void UpdateFallingLetter(LivingLetterRagdoll letter)
         {
             remainingFallingTime -= Time.deltaTime;
 
@@ -333,6 +333,12 @@ namespace EA4S.Tobogan
             if (fallingLetter == null)
                 return;
 
+            fallingLetter.GetComponentInChildren<LetterObjectView>().Falling = false;
+            fallingLetter.GetComponentInChildren<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
+
+            for (int i=0; i< stackedLetters.Count; ++i)
+                stackedLetters[i].GetComponentInChildren<LetterObjectView>().SetState(LLAnimationStates.LL_still);
+
             currentHeight += LETTER_HEIGHT;
             stackedLetters.Add(fallingLetter);
             var currentFallingLetter = fallingLetter;
@@ -357,12 +363,13 @@ namespace EA4S.Tobogan
             swingAmountFactor += 20.0f;
         }
 
-        void SpawnLetter(LivingLetter letter)
+        void SpawnLetter(LivingLetterRagdoll letter)
         {
             remainingFallingTime = fallingTime;
             letter.transform.position = transform.position + fallingSpawnHeight * Vector3.up;
             letter.gameObject.SetActive(true);
             fallingLetter = letter;
+            letter.GetComponentInChildren<LetterObjectView>().Falling = true;
             spawnTimer = 0;
         }
 

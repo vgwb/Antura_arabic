@@ -4,6 +4,7 @@
     {
         ToboganGame game;
 
+        float timer;
         public ToboganQuestionState(ToboganGame game)
         {
             this.game = game;
@@ -12,27 +13,22 @@
         public void EnterState()
         {
             game.questionsManager.Initialize();
-
-            // Show questions description
-            var popupWidget = game.Context.GetPopupWidget();
-            popupWidget.Show();
-            popupWidget.SetButtonCallback(OnPopupCloseRequested);
-            popupWidget.SetMessage("", true);
-        }
-
-        void OnPopupCloseRequested()
-        {
-            game.SetCurrentState(game.PlayState);
+            timer = 2;
         }
 
         public void ExitState()
         {
-            game.Context.GetPopupWidget().Hide();
         }
 
         public void Update(float delta)
         {
+            timer -= delta;
 
+            if (timer < 0)
+            {
+                game.SetCurrentState(game.PlayState);
+                return;
+            }
         }
 
         public void UpdatePhysics(float delta)

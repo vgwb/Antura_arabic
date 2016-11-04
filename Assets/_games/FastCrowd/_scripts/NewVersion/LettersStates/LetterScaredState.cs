@@ -14,7 +14,6 @@ namespace EA4S.FastCrowd
         float scaredTimer;
 
         FastCrowdLetterMovement movement;
-        Vector3 reenterTarget;
             
         public LetterScaredState(FastCrowdLivingLetter letter) : base(letter)
         {
@@ -29,7 +28,6 @@ namespace EA4S.FastCrowd
             letter.gameObject.GetComponent<LetterObjectView>().HasFear = true;
             letter.gameObject.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_walking);
             letter.gameObject.GetComponent<LetterObjectView>().SetWalkingSpeed(LetterObjectView.RUN_SPEED);
-            reenterTarget = letter.walkableArea.GetRandomPosition();
         }
 
         public override void ExitState()
