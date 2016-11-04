@@ -22,6 +22,7 @@ namespace EA4S.MissingLetter
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
             mCollider.enabled = false;
             mbIsSpeaking = false;
+            mLetter.SetWalkingSpeed(1);
         }
 
         public void PlayAnimation(LLAnimationStates animation)
@@ -31,8 +32,8 @@ namespace EA4S.MissingLetter
 
         void MoveTo(Vector3 position, float duration, bool IdleAtEnd = true)
         {
-            // TODO missing animation
-            //PlayAnimation(LLAnimationStates.LL_run_happy);
+            PlayAnimation(LLAnimationStates.LL_walking);
+            mLetter.SetWalkingSpeed(1);
 
             if (moveTweener != null)
             {
@@ -42,7 +43,7 @@ namespace EA4S.MissingLetter
             moveTweener = transform.DOLocalMove(position, duration).OnComplete(
                 delegate () {
                     if (IdleAtEnd)
-                        PlayAnimation(LLAnimationStates.LL_idle);
+                        PlayAnimation(m_oDefaultIdleAnimation);
                     if (endTransformToCallback != null)
                         endTransformToCallback();
                 });
@@ -193,8 +194,11 @@ namespace EA4S.MissingLetter
                 positions.Add(p);
             }
 
-            // TODO missing animation
-            //PlayAnimation(LLAnimationStates.LL_run_fear);
+            
+            PlayAnimation(LLAnimationStates.LL_walking);
+            mLetter.SetWalkingSpeed(1);
+            mLetter.HasFear = true;
+
             transform.DOLookAt(positions[0], 1f);
 
             TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), duration, PathType.CatmullRom);
@@ -205,7 +209,7 @@ namespace EA4S.MissingLetter
             value.OnComplete(delegate {
                 transform.DOLookAt(transform.position + Vector3.back, 1f);
                 positions.Clear();
-                PlayAnimation(LLAnimationStates.LL_idle);
+                PlayAnimation(m_oDefaultIdleAnimation);
                 mCollider.enabled = true;
             });
         }
@@ -265,9 +269,11 @@ namespace EA4S.MissingLetter
         public Vector3 mv3EndPosition;
 
         private bool mbIsSpeaking;
-    #endregion
+
+        public LLAnimationStates m_oDefaultIdleAnimation { get; set; }
+        #endregion
 
 
 
-}
+    }
 }

@@ -8,7 +8,8 @@ namespace EA4S.ColorTickle
 
         #region EXPOSED MEMBERS
         [Header("Brush")]
-
+        [SerializeField]
+        private string m_szBrushName; //Name of the brush, used just to distinguish multiple brushes
         [SerializeField]
         private Texture2D m_tBrushShape; //The texture defining the brush shape (alpha>0 are the shape)
         [SerializeField]
@@ -22,6 +23,12 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region GETTER/SETTER
+        public string brushName
+        {
+            get { return m_szBrushName; }
+            set { m_szBrushName = value; }
+        }
+
         public Texture2D brushShape
         {
             get { return m_tBrushShape; }
