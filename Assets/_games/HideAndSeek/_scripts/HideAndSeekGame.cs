@@ -16,12 +16,34 @@ namespace EA4S.HideAndSeek
 
         //public TextMeshProUGUI timerText;
 
+        public int CurrentScore { get; private set; }
+
+
         public HideAndSeekGameManager GameManager;
 
         [HideInInspector]
         public bool isTimesUp;
 
         public bool inGame = false;
+
+        const int STARS_1_THRESHOLD = 2;
+        const int STARS_2_THRESHOLD = 5;
+        const int STARS_3_THRESHOLD = 9;
+
+        
+        public int CurrentStars
+        {
+            get
+            {
+                if (CurrentScore < STARS_1_THRESHOLD)
+                    return 0;
+                if (CurrentScore < STARS_2_THRESHOLD)
+                    return 1;
+                if (CurrentScore < STARS_3_THRESHOLD)
+                    return 2;
+                return 3;
+            }
+        }
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -35,7 +57,12 @@ namespace EA4S.HideAndSeek
             Debug.Log(GameManager.gameObject.name);
 
             Context.GetOverlayWidget().Initialize(true, true, true);
-//            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+        }
+
+        public void ResetScore()
+        {
+            CurrentScore = 0;
         }
 
         protected override IGameState GetInitialState()
@@ -46,6 +73,12 @@ namespace EA4S.HideAndSeek
         protected override IGameConfiguration GetConfiguration()
         {
 			return HideAndSeekConfiguration.Instance;
+        }
+
+        public void OnResult()
+        {
+           
+            Context.GetOverlayWidget().SetStarsScore(++CurrentScore);
         }
     }
 }
