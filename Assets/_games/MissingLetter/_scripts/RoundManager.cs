@@ -81,6 +81,9 @@ namespace EA4S.MissingLetter
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
+            //!!!work in progress replace removed letter
+            qstBehaviour.ReplaceWithSpecialChar();
+
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
 
@@ -182,6 +185,8 @@ namespace EA4S.MissingLetter
         void ExitCurrentScene() {
             if (mCurrQuestionPack != null) {
 
+                ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+
                 foreach (GameObject _obj in mCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
@@ -208,7 +213,7 @@ namespace EA4S.MissingLetter
         void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
 
-            if(/*mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key*/false) {
+            if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key) {
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
                 DoWinAnimations(_key);
             }
@@ -219,41 +224,9 @@ namespace EA4S.MissingLetter
             }
 
             if (onAnswered != null) {
-                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, /*mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key*/true));
+                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key));
             }
         }
-
-        //int RemoveLetterFromWord(LL_WordData word)
-        //{
-        //    char[] caQuestion = ArabicFixer.Fix(word.Data.Arabic, false, false).ToCharArray();
-        //    int index = UnityEngine.Random.Range(0, caQuestion.Length);
-        //    msRemovedData = caQuestion[index].ToString();
-        //    caQuestion[index] = ' ';
-        //    word.Data.Arabic = caQuestion.ToString();
-        //    return index;
-        //}
-
-        //int RemoveWordFromSentences(List<LL_WordData> sentence)
-        //{
-        //    int index = UnityEngine.Random.Range(0, sentence.Count());
-        //    LL_WordData result = sentence.ElementAt(index);
-        //    msRemovedData = sentence[index].Data.Arabic;
-        //    sentence[index].Data.Arabic = "";
-        //    return index;
-        //}
-
-        //void RestoreRemovedLetter()
-        //{
-        //    LL_WordData word = (LL_WordData)mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().LetterData;
-        //    word.Data.Arabic = word.Data.Arabic.Replace(' ', msRemovedData[0]);
-        //}
-
-        //void RestoreRemovedWord()
-        //{
-        //    LL_WordData word = (LL_WordData)mCurrentQuestionScene[miCorrectAnswerIndex].GetComponent<LetterBehaviour>().LetterData;
-        //    word.Data.Arabic = msRemovedData;
-        //}
-
 
         public void ShuffleLetters(float duration)
         {
@@ -270,8 +243,8 @@ namespace EA4S.MissingLetter
             {
                 if(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == _key)
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                 }
                 else
                 {
@@ -289,14 +262,14 @@ namespace EA4S.MissingLetter
         {
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                 mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
             }
 
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
             {
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                 mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
+                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
             }
         }
 
@@ -320,14 +293,15 @@ namespace EA4S.MissingLetter
 
         public event Action<bool> onAnswered;
 
-        public enum RoundType
-        {
-            WORD = 0,
-            SENTENCE = 1
-        }
 
         private RoundType mRoundType;
         #endregion
 
+    }
+
+    public enum RoundType
+    {
+        WORD = 0,
+        SENTENCE = 1
     }
 }

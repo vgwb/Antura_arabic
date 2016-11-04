@@ -25,6 +25,12 @@ namespace EA4S.MissingLetter
             mLetter.SetWalkingSpeed(1);
         }
 
+        //!!! work in progress replace removed letter, tmp solution
+        public void ReplaceWithSpecialChar()
+        {
+            mLetter.Lable.text = mLetter.Lable.text.Replace(AppManager.Instance.DB.GetLetterDataById("alef").Isolated, "_");
+        }
+
         public void PlayAnimation(LLAnimationStates animation)
         {
             mLetter.SetState(animation);
