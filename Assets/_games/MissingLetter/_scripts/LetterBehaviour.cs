@@ -43,7 +43,7 @@ namespace EA4S.MissingLetter
             moveTweener = transform.DOLocalMove(position, duration).OnComplete(
                 delegate () {
                     if (IdleAtEnd)
-                        PlayAnimation(LLAnimationStates.LL_idle);
+                        PlayAnimation(m_oDefaultIdleAnimation);
                     if (endTransformToCallback != null)
                         endTransformToCallback();
                 });
@@ -209,7 +209,7 @@ namespace EA4S.MissingLetter
             value.OnComplete(delegate {
                 transform.DOLookAt(transform.position + Vector3.back, 1f);
                 positions.Clear();
-                PlayAnimation(LLAnimationStates.LL_idle);
+                PlayAnimation(m_oDefaultIdleAnimation);
                 mCollider.enabled = true;
             });
         }
@@ -269,9 +269,11 @@ namespace EA4S.MissingLetter
         public Vector3 mv3EndPosition;
 
         private bool mbIsSpeaking;
-    #endregion
+
+        public LLAnimationStates m_oDefaultIdleAnimation { get; set; }
+        #endregion
 
 
 
-}
+    }
 }

@@ -41,10 +41,14 @@ namespace EA4S.MissingLetter
 
         }
 
+        public void SetTutorial(bool _enabled) {
+            this.m_bTutorialEnabled = _enabled;
+        }
+
         public void NewRound()
         {
             ExitCurrentScene();
-
+            
             if (mRoundType == RoundType.WORD)
             {
                 NextWordQuestion();
@@ -55,10 +59,9 @@ namespace EA4S.MissingLetter
             }
 
 
-            if (mGame.GetCurrentState() == mGame.PlayState) {
+            if (mGame.GetCurrentState() == mGame.PlayState || m_bTutorialEnabled) {
                 EnterCurrentScene();
             }
-            
         }
 
         public void Terminate()
@@ -67,6 +70,21 @@ namespace EA4S.MissingLetter
                 ExitCurrentScene();
         }
 
+        public GameObject GetCorrectLLObject()
+        {
+            foreach (GameObject _obj in mCurrentAnswerScene) {
+                if(_obj.GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key)
+                {
+                    return _obj;
+                }
+            }
+            return null;
+        }
+
+        public ILivingLetterData GetCorrectLetterData()
+        {
+            return mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex);
+        }
 
         void NextWordQuestion() {
             
@@ -83,6 +101,7 @@ namespace EA4S.MissingLetter
             qstBehaviour.LetterData = questionData;
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
+            qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
 
             mCurrentQuestionScene.Add(oQuestion);
 
@@ -92,6 +111,7 @@ namespace EA4S.MissingLetter
             corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(0);
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
             corrAnsBheaviour.onLetterClick += OnAnswerClicked;
+            corrAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
 
             mCurrentAnswerScene.Add(_correctAnswerObject);
 
@@ -111,7 +131,7 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
                 wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
-
+                wrongAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
                 mCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
@@ -208,18 +228,18 @@ namespace EA4S.MissingLetter
         void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
 
-            if(/*mCurrQuestionPack.GetCorrectAnswers().ElementAt(m_iCorrectAnswerIndex).Key == _key*/false) {
+            if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key) {
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
                 DoWinAnimations(_key);
             }
-            else {
+            else if(!m_bTutorialEnabled) {
                 AudioManager.I.PlaySfx(Sfx.LetterSad);
 
                 DoLoseAnimations(_key);
             }
 
             if (onAnswered != null) {
-                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, /*mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key*/true));
+                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key));
             }
         }
 
@@ -327,6 +347,8 @@ namespace EA4S.MissingLetter
         }
 
         private RoundType mRoundType;
+        private bool m_bTutorialEnabled;
+
         #endregion
 
     }

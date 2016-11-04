@@ -15,12 +15,12 @@ namespace EA4S.MissingLetter
             this.game = game;
 
             gameTime.onTimesUp += OnTimesUp;
-
-            game.m_RoundManager.onAnswered += OnRoundResult;
+            
         }
 
         public void EnterState()
         {
+            game.m_RoundManager.onAnswered += OnRoundResult;
             game.mIsTimesUp = false;
             game.ResetScore();
 
@@ -33,7 +33,7 @@ namespace EA4S.MissingLetter
 
             hurryUpSfx = false;
 
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
 
             game.m_RoundManager.NewRound();
         }
