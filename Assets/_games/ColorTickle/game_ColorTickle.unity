@@ -2696,6 +2696,12 @@ Prefab:
       propertyPath: m_AnturaController
       value: 
       objectReference: {fileID: 1017208833}
+    - target: {fileID: 114000013493082588, guid: e63175941f7154444bf3608253b4de18,
+        type: 2}
+      propertyPath: m_LetterPrefab
+      value: 
+      objectReference: {fileID: 114000011715073254, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e63175941f7154444bf3608253b4de18, type: 2}
   m_IsPrefabParent: 0
@@ -4733,12 +4739,17 @@ Prefab:
     - target: {fileID: 114000010883071480, guid: 1b25171b478604a4ea9e3f79293a93b9,
         type: 2}
       propertyPath: m_fBrushScaling
-      value: 10
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114000010895556654, guid: 1b25171b478604a4ea9e3f79293a93b9,
         type: 2}
       propertyPath: m_iPixelPerUnit
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010883071480, guid: 1b25171b478604a4ea9e3f79293a93b9,
+        type: 2}
+      propertyPath: m_szBrushName
+      value: LetterBrush
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b25171b478604a4ea9e3f79293a93b9, type: 2}

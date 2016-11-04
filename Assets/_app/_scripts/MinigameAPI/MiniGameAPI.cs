@@ -214,6 +214,8 @@ namespace EA4S.API
                     FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
+                case MiniGameCode.TakeMeHome:
+                    break;
                 case MiniGameCode.HiddenSource:
                     break;
                 case MiniGameCode.HideSeek:
@@ -594,9 +596,10 @@ namespace EA4S.API
         #endregion
 
         #region Test
-        public void TestDb() {
+        public void TestDb()
+        {
             AppManager.Instance.DB.Insert(new LogInfoData() {
-                
+
             });
         }
         #endregion
