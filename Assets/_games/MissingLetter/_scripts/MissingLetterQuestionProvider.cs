@@ -10,8 +10,7 @@ namespace EA4S.MissingLetter
     public class MissingLetterQuestionProvider : IQuestionProvider
     {
 
-        List<SampleQuestionPack> questions = new List<SampleQuestionPack>();
-        string msDescription;
+        static string msDescription = "Missing Letter Question Provider";
         int mcurrentQuestion;
         RoundType mQuestionType = RoundType.WORD;
         LL_WordData mDataToRestore;
@@ -56,12 +55,15 @@ namespace EA4S.MissingLetter
             var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Letters);
             int index = UnityEngine.Random.Range(0, Letters.Count);
          
-            //!!! work in progress replace removed letter
+            //add correct letter answer
             correctAnswers.Add(Letters[index]);
+            //save original word
             mRemovedElement = word.Data.Arabic;
+            //remove correct letter
             string sQuestion = word.Data.Arabic;
             sQuestion = sQuestion.Remove(index,1);
-            sQuestion = sQuestion.Insert(index, AppManager.Instance.DB.GetLetterDataById("alef").Isolated);
+            //sQuestion = sQuestion.Insert(index, "\u25A0");
+            sQuestion = sQuestion.Insert(index, "_");
             word.Data.Arabic = sQuestion;
             Debug.Log("Orginal Word :" + mRemovedElement);
 
@@ -83,7 +85,7 @@ namespace EA4S.MissingLetter
                 }
             }
 
-            IQuestionPack questionPack = new SampleQuestionPack(word, correctAnswers, wrongAnswers);
+            IQuestionPack questionPack = new SampleQuestionPack(word, wrongAnswers, correctAnswers);
             return questionPack;
         }
 
@@ -115,7 +117,7 @@ namespace EA4S.MissingLetter
                 }
             }
 
-            IQuestionPack questionPack = new SampleQuestionPack(question[0], correctAnswers, wrongAnswers);
+            IQuestionPack questionPack = new SampleQuestionPack(question[0], wrongAnswers, correctAnswers);
             return questionPack;
         }
 
