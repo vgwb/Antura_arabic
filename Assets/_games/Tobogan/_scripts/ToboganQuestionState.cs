@@ -14,6 +14,8 @@
         {
             game.questionsManager.Initialize();
             timer = 2;
+
+            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
         public void ExitState()

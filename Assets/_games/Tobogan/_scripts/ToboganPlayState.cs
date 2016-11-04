@@ -34,8 +34,6 @@ namespace EA4S.Tobogan
 
             hurryUpSfx = false;
 
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
-
             game.questionsManager.Enabled = true;
         }
 
