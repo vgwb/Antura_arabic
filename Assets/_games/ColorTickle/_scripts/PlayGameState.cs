@@ -18,8 +18,6 @@ namespace EA4S.ColorTickle
 
         private ColorsUIManager m_ColorsUIManager;
         private Button m_PercentageLetterColoredButton;
-        private Button m_TimerButton;
-        private Button m_LivesButton;
 
         private int m_PercentageLetterColored;
         private bool m_Tickle;
@@ -29,13 +27,18 @@ namespace EA4S.ColorTickle
         private float m_BurshDistanceCovered;
         private float m_DelayCheckVelocity;
 
-        private float m_Timer;
+        private float m_ClockTime;
         private int m_Lives;
         private bool m_LifeLost = false;
         private float m_TimeOutsideLetterwithBrush = 0;
 
         private TMPTextColoring m_TMPTextColoringLetter;
         private SurfaceColoring m_SurfaceColoringLetter;
+
+
+        private bool m_FirstLetter = true;
+
+        private int m_Rounds;
 
         #endregion
 
@@ -46,13 +49,14 @@ namespace EA4S.ColorTickle
 
         public void EnterState()
         {
+            m_Rounds = game.rounds;
             m_Lives = game.lives;
-            m_Timer = game.timer;
+            m_ClockTime = game.clockTime;
+
 
             InitGameUI();
-
             InitLetter();
-
+            
             game.anturaController.isEnable = true;
             game.anturaController.letterPosition = game.currentLetter.transform.position;
 
@@ -65,20 +69,19 @@ namespace EA4S.ColorTickle
 
         public void Update(float delta)
         {
-            m_TimerButton.GetComponentInChildren<Text>().text = Mathf.FloorToInt(m_Timer) + " seconds";
-            m_LivesButton.GetComponentInChildren<Text>().text = m_Lives + " lives";
-
-            if (m_Timer < 0 || m_Lives == 0)
+            if (m_ClockTime < 0 || m_Lives <= 0)
             {
-                Debug.Log("You have lost");
-                ExitPlayGameState();
+                ResetState();
                 game.SetCurrentState(game.ResultState);
+                Debug.Log("You have lost");
             }
             else
             {
                 if (m_StartToPaint)
                 {
-                    m_Timer -= delta;                   
+                    m_ClockTime -= delta;
+                    game.gameUI.SetClockTime(m_ClockTime);
+                                       
                     LifeCounter(delta);
 
                     TickleController(delta);
@@ -87,11 +90,20 @@ namespace EA4S.ColorTickle
 
                     CalcPercentageLetterColored();
                     m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = m_PercentageLetterColored + "%";
+
                     if (m_PercentageLetterColored >= 100)
                     {
+                        if (m_Rounds <= 0)
+                        {
+                            ResetState();
+                            game.SetCurrentState(game.ResultState);
+                        }
+                        else
+                        {
+                            m_Rounds--;
+                            //game.SetCurrentState(game.IntroductionState);   
+                        }
                         Debug.Log("You win!!!!");
-                        ExitPlayGameState();
-                        game.SetCurrentState(game.ResultState);
                     }
                 }
             }           
@@ -121,15 +133,18 @@ namespace EA4S.ColorTickle
 
         private void BodyTouched()
         {
-            if (m_HitState != eHitState.HIT_LETTERINSIDE)
-            {               
-                m_HitState = eHitState.HIT_LETTEROUTSIDE;               
-                TicklesLetter();               
-            }
-            else
+            if (m_StartToPaint)
             {
-                m_HitState = eHitState.HIT_LETTERINSIDE_AND_BODY;
-                m_LifeLost = false;
+                if (m_HitState != eHitState.HIT_LETTERINSIDE)
+                {
+                    m_HitState = eHitState.HIT_LETTEROUTSIDE;
+                    TicklesLetter();
+                }
+                else
+                {
+                    m_HitState = eHitState.HIT_LETTERINSIDE_AND_BODY;
+                    m_LifeLost = false;
+                }
             }
         }
 
@@ -141,13 +156,21 @@ namespace EA4S.ColorTickle
                 // Call this function before we set m_HitState = HIT_LETTERINSIDE 
                 TrackBrushDistanceCovered();
                 m_HitState = eHitState.HIT_LETTERINSIDE;
-                m_StartToPaint = true;
+                if (!m_StartToPaint)
+                {
+                    m_StartToPaint = true;
+                    m_TMPTextColoringLetter.enableColor = true;
+                    m_SurfaceColoringLetter.enableColor = true;
+                }
             }
             //when the hit is outside
             else
             {
-                m_HitState = eHitState.HIT_LETTEROUTSIDE;
-                TicklesLetter();
+                if (m_StartToPaint)
+                {
+                    m_HitState = eHitState.HIT_LETTEROUTSIDE;
+                    TicklesLetter();
+                }
             }
         }
 
@@ -200,6 +223,7 @@ namespace EA4S.ColorTickle
                     m_Lives--;
                     m_LifeLost = true;
                     m_TimeOutsideLetterwithBrush = 0.0f;
+                    game.gameUI.SetLives(m_Lives);
                     Debug.Log("You have lost one life");
                 }
             }
@@ -219,8 +243,6 @@ namespace EA4S.ColorTickle
                     m_HitState = eHitState.HIT_NONE;
                     m_Tickle = false;
                     game.currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
-                    //m_TMPTextColoringLetter.enableColor = true;
-                    //m_SurfaceColoringLetter.enableColor = true;
                 }
             }
         }
@@ -241,33 +263,42 @@ namespace EA4S.ColorTickle
 
         private void InitGameUI()
         {
-            m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
-            m_ColorsUIManager.SetBrushColor += SetBrushColor;
-            m_LivesButton = GameObject.Find("LivesButton").GetComponent<Button>();
-            m_LivesButton.GetComponentInChildren<Text>().text = m_Lives + " lives";
-            m_TimerButton = GameObject.Find("TimerButton").GetComponent<Button>();
-            m_TimerButton.GetComponentInChildren<Text>().text = m_Timer + " seconds";
+            if (m_FirstLetter)
+            {
+                m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
+                m_ColorsUIManager.SetBrushColor += SetBrushColor;
+            }
+
             m_PercentageLetterColoredButton = GameObject.Find("PercentageButton").GetComponent<Button>();
             m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = "0 %";
         }
 
         private void InitLetter()
         {
+            if (m_FirstLetter)
+            {              
+                m_TMPTextColoringLetter = game.currentLetter.GetComponent<TMPTextColoring>();
+                m_SurfaceColoringLetter = game.currentLetter.GetComponent<SurfaceColoring>();
+                m_TMPTextColoringLetter.OnShapeHit += ShapeTouched;
+                m_SurfaceColoringLetter.OnBodyHit += BodyTouched;
+                //m_TMPTextColoringLetter.enableColor = false;
+                //m_SurfaceColoringLetter.enableColor = false;
+                m_FirstLetter = false;
+            }
+
             SetBrushColor(m_ColorsUIManager.defaultColor);
-            m_TMPTextColoringLetter = game.currentLetter.GetComponent<TMPTextColoring>();
-            m_SurfaceColoringLetter = game.currentLetter.GetComponent<SurfaceColoring>();
-            m_TMPTextColoringLetter.OnShapeHit += ShapeTouched;
-            m_SurfaceColoringLetter.OnBodyHit += BodyTouched;
+            game.currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
         }
 
-        private void ExitPlayGameState()
+        private void ResetState()
         {
             game.currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
-            m_TMPTextColoringLetter.enableColor = false;
-            m_SurfaceColoringLetter.enableColor = false;
             m_ColorsUIManager.SetBrushColor -= SetBrushColor;
             m_TMPTextColoringLetter.OnShapeHit -= ShapeTouched;
             m_SurfaceColoringLetter.OnBodyHit -= BodyTouched;
+            m_TMPTextColoringLetter.enableColor = false;
+            m_SurfaceColoringLetter.enableColor = false;
+            game.anturaController.isEnable = false;
         }
 
         #endregion

@@ -55,8 +55,9 @@ MonoBehaviour:
   m_LetterPrefab: {fileID: 114000010869263054, guid: 1b25171b478604a4ea9e3f79293a93b9,
     type: 2}
   m_ColorsCanvas: {fileID: 0}
-  m_LivesCanvas: {fileID: 0}
   m_AnimatorTickleState: 10
   m_Lives: 3
-  m_Timer: 20
-  m_BrushLimitVelocity: 150
+  m_ClockTime: 10
+  m_BrushLimitVelocity: 500
+  m_AnturaController: {fileID: 0}
+  m_Rounds: 0

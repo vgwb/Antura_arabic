@@ -18,11 +18,14 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private int m_Lives = 3;
         [SerializeField]
-        private float m_Timer = 20;
+        private float m_ClockTime = 20;
         [SerializeField]
         private float m_BrushLimitVelocity = 150.0f;
         [SerializeField]
         private AnturaController m_AnturaController;
+        [SerializeField]
+        private int m_Rounds = 3;
+
 
 
         // GAME STATES
@@ -36,6 +39,7 @@ namespace EA4S.ColorTickle
         #region PRIVATE MEMBERS
 
         private LetterObjectView m_MyLetter;
+        IOverlayWidget m_GameUI;
 
         #endregion
 
@@ -52,6 +56,12 @@ namespace EA4S.ColorTickle
             get { return m_ColorsCanvas; }
         }
 
+        public IOverlayWidget gameUI
+        {
+            get { return m_GameUI; }
+            set { m_GameUI = value; }
+        }
+
         public int animatorTickleState
         {
             get { return m_AnimatorTickleState; }
@@ -62,9 +72,9 @@ namespace EA4S.ColorTickle
             get { return m_Lives; }
         }
 
-        public float timer
+        public float clockTime
         {
-            get { return m_Timer; }
+            get { return m_ClockTime; }
         }
 
         public float brushLimitVelocity
@@ -76,6 +86,13 @@ namespace EA4S.ColorTickle
         {
             get { return m_AnturaController; }
         }
+
+        public int rounds
+        {
+            get { return m_Rounds; }
+            set { m_Rounds = value; }
+        }
+
 
         #endregion
 
