@@ -67,6 +67,11 @@ namespace EA4S.ColorTickle
             get { return m_bEnableColor; }
             set { m_bEnableColor = value; }
         }
+
+        public int percentageRequiredToWin
+        {
+            get { return m_iPercentageRequiredToWin; }
+        }
         #endregion
 
         #region INTERNALS
@@ -100,7 +105,7 @@ namespace EA4S.ColorTickle
                 //check for ray collision
                 if (m_oLetterMeshCollider.Raycast(_mouseRay,out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
                 {
-                    Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
+                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
 
                     //Now we find out which color we hitted to check if we are inside the letter outline
                     //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect)
@@ -110,7 +115,7 @@ namespace EA4S.ColorTickle
                     if (m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y).a == 0)
                     {
                     
-                        Debug.Log("OUTSIDE!!!Color Hitted " + m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y) + " at coordinates: " + m_oRayHit.textureCoord.x + " " + m_oRayHit.textureCoord.y);
+                        //Debug.Log("OUTSIDE!!!Color Hitted " + m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y) + " at coordinates: " + m_oRayHit.textureCoord.x + " " + m_oRayHit.textureCoord.y);
 
                         if (OnShapeHit != null)
                         {
@@ -121,7 +126,7 @@ namespace EA4S.ColorTickle
                     else 
                     {
 
-                        Debug.Log("COLORING!!!");
+                        //Debug.Log("COLORING!!!");
 
                         ColorLetterTexturePoint(m_oRayHit.textureCoord); //paint a single brush
 

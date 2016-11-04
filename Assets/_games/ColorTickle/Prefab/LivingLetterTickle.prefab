@@ -1624,7 +1624,7 @@ Animator:
   m_GameObject: {fileID: 1000012998449152}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6977925c7cebe5248a6abfd20fd6c8e1, type: 3}
-  m_Controller: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
+  m_Controller: {fileID: 9100000, guid: f44c554f34065b347a38ed2a1329e671, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1646,7 +1646,7 @@ MonoBehaviour:
   m_oBrush: {fileID: 114000010883071480}
   m_oBody: {fileID: 64000013479377596}
   m_oSurfaceRenderer: {fileID: 137000012769297538}
-  m_iPixelPerUnit: 30
+  m_iPixelPerUnit: 50
   m_bEnableColor: 1
 --- !u!114 &114000010869263054
 MonoBehaviour:
@@ -1659,8 +1659,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerTransform: {fileID: 0}
   Lable: {fileID: 114000013236453108}
   ImageSprite: {fileID: 212000012232130104}
+  maxSize: 1.5
   normalGraphics: []
   limblessGraphics: []
   poofPrefab: {fileID: 0}
@@ -1676,7 +1678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
-  m_fBrushScaling: 0.5
+  m_fBrushScaling: 0.2
   m_oDrawingColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114000010895556654
 MonoBehaviour:
@@ -1691,8 +1693,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_oBrush: {fileID: 114000010883071480}
   m_oTextMeshObject: {fileID: 114000013236453108}
-  m_iPixelPerUnit: 30
-  m_iPercentageRequiredToWin: 95
+  m_iPixelPerUnit: 50
+  m_iPercentageRequiredToWin: 80
   m_bEnableColor: 1
 --- !u!114 &114000011871043004
 MonoBehaviour:
