@@ -22,11 +22,11 @@ namespace EA4S.HideAndSeek
         {
             // Reset game timer
             gameTime.Reset();
-
-           // game.GameManager.LifeObj.SetActive(true);
+            game.ResetScore();
+            // game.GameManager.LifeObj.SetActive(true);
 
             //game.timerText.gameObject.SetActive(true);
-           // game.timerText.text = "";
+            // game.timerText.text = "";
             hurryUpSfx = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
