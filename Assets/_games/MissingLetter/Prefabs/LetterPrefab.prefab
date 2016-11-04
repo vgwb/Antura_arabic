@@ -141,7 +141,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012486201278}
   - 114: {fileID: 114000011094189142}
-  - 136: {fileID: 136000013241055148}
   - 95: {fileID: 95000012418133774}
   m_Layer: 0
   m_Name: LLPrefab
@@ -1937,19 +1936,6 @@ MonoBehaviour:
   mv3StartPosition: {x: -90, y: -34, z: 20}
   mv3CenterPosition: {x: -30, y: -34, z: 20}
   mv3EndPosition: {x: 10, y: -34, z: 20}
---- !u!136 &136000013241055148
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010578116544}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2.5
-  m_Height: 12
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137000010619016512
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
