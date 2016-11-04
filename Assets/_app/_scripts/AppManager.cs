@@ -41,13 +41,14 @@ namespace EA4S
         {
 
             if (DB == null)
-                DB = new DatabaseManager(this.GameSettings.UseTestDatabase); 
+                DB = new DatabaseManager(this.GameSettings.UseTestDatabase);
             if (Player == null)
                 Player = new PlayerProfile();
             if (Teacher == null)
                 Teacher = new TeacherAI(this.DB, this.Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher();
+            gameObject.AddComponent<DebugManager>();
         }
 
         protected override void GameSetup()

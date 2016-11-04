@@ -27,6 +27,7 @@
             else
             {
                 game.eggButtonBox.RemoveButtons();
+                game.Context.GetAudioManager().StopMusic();
                 game.EndGame(game.CurrentStars, game.correctStages);
             }
         }

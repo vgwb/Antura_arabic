@@ -8,6 +8,14 @@ using ModularFramework.Core;
 
 public partial class SROptions
 {
+
+    [Category("MiniGames options")]
+    public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
+    [Category("MiniGames options")]
+    public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
+    [Category("MiniGames options")]
+    public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
+
     [Category("Scenes")]
     public void Home()
     {
@@ -24,141 +32,197 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Minigame")]
-    public void Balloons()
+    public void LaunchMinigame(MiniGameCode minigameCode)
     {
         WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Balloons");
+        DebugManager.I.LaunchMinigGame(minigameCode);
         SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Minigame")]
+    public void BalloonsLetter()
+    {
+        LaunchMinigame(MiniGameCode.Balloons_letter);
+    }
+
+    [Category("Minigame")]
+    public void BalloonsWords()
+    {
+        LaunchMinigame(MiniGameCode.Balloons_words);
+    }
+
+    [Category("Minigame")]
+    public void BalloonsCounting()
+    {
+        LaunchMinigame(MiniGameCode.Balloons_counting);
+    }
+
+    [Category("Minigame")]
+    public void BalloonsSpelling()
+    {
+        LaunchMinigame(MiniGameCode.Balloons_spelling);
     }
 
     [Category("Minigame")]
     public void ColorTickle()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_ColorTickle");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.ColorTickle);
     }
 
     [Category("Minigame")]
     public void DancingDots()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DancingDots");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.DancingDots);
     }
 
     [Category("Minigame")]
     public void Egg()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Egg");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.Egg);
     }
 
     [Category("Minigame")]
-    public void FastCrowd()
+    public void FastCrowdWords()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_FastCrowd");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.FastCrowd_words);
+    }
+
+    [Category("Minigame")]
+    public void FastCrowdLetter()
+    {
+        LaunchMinigame(MiniGameCode.FastCrowd_letter);
+    }
+
+    [Category("Minigame")]
+    public void FastCrowdAlphabet()
+    {
+        LaunchMinigame(MiniGameCode.FastCrowd_alphabet);
+    }
+
+    [Category("Minigame")]
+    public void FastCrowdCounting()
+    {
+        LaunchMinigame(MiniGameCode.FastCrowd_counting);
+    }
+
+    [Category("Minigame")]
+    public void FastCrowdSPelling()
+    {
+        LaunchMinigame(MiniGameCode.FastCrowd_spelling);
     }
 
     [Category("Minigame")]
     public void HideAndSeek()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_HideAndSeek");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.HideSeek);
     }
 
 
     [Category("Minigame")]
     public void MakeFriends()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_MakeFriends");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.MakeFriends);
     }
 
     [Category("Minigame")]
     public void Maze()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Maze");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.Maze);
     }
 
     [Category("Minigame")]
     public void MissingLetter()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_MissingLetter");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.MissingLetter);
     }
 
     [Category("Minigame")]
-    public void MixedLetters()
+    public void MissingLetterPhrases()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_MixedLetters");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.MissingLetter_phrases);
+    }
+
+    [Category("Minigame")]
+    public void MixedLettersSpelling()
+    {
+        LaunchMinigame(MiniGameCode.MixedLetters_spelling);
+    }
+
+    [Category("Minigame")]
+    public void MixedLettersAlphabet()
+    {
+        LaunchMinigame(MiniGameCode.MixedLetters_alphabet);
     }
 
     [Category("Minigame")]
     public void Scanner()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Scanner");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.Scanner);
+    }
+
+    [Category("Minigame")]
+    public void ScannerPhrase()
+    {
+        LaunchMinigame(MiniGameCode.Scanner_phrase);
     }
 
     [Category("Minigame")]
     public void TakeMeHome()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_TakeMeHome");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.TakeMeHome);
     }
 
     [Category("Minigame")]
-    public void ThrowBalls()
+    public void ThrowBallsWOrds()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_ThrowBalls");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.ThrowBalls_words);
     }
 
     [Category("Minigame")]
-    public void Tobogan()
+    public void ThrowBallsLetters()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Tobogan");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.ThrowBalls_letters);
+    }
+    [Category("Minigame")]
+    public void ThrowBallsLetterInWord()
+    {
+        LaunchMinigame(MiniGameCode.ThrowBalls_letterinword);
     }
 
-    [Category("Manage")]
-    public void Database()
+    [Category("Minigame")]
+    public void ToboganWords()
     {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("manage_Database");
-        SRDebug.Instance.HideDebugPanel();
+        LaunchMinigame(MiniGameCode.Tobogan_words);
     }
 
-    //[Category("Minigame")]
-    //public void DontWakeUp()
+    [Category("Minigame")]
+    public void ToboganLetters()
+    {
+        LaunchMinigame(MiniGameCode.Tobogan_letters);
+    }
+
+    //[Category("Manage")]
+    //public void Database()
     //{
     //    WidgetPopupWindow.I.Close();
-    //    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
+    //    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("manage_Database");
     //    SRDebug.Instance.HideDebugPanel();
     //}
 
-    [Category("Shortcuts")]
-    public void EndFastCrowdGame()
-    {
-        //      EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
-        SRDebug.Instance.HideDebugPanel();
-    }
+    ////[Category("Minigame")]
+    ////public void DontWakeUp()
+    ////{
+    ////    WidgetPopupWindow.I.Close();
+    ////    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
+    ////    SRDebug.Instance.HideDebugPanel();
+    ////}
+
+    //[Category("Shortcuts")]
+    //public void EndFastCrowdGame()
+    //{
+    //    //      EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
+    //    SRDebug.Instance.HideDebugPanel();
+    //}
 
     [Category("Options")]
     public void ToggleQuality()

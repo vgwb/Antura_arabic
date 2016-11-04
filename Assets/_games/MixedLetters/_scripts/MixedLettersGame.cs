@@ -44,6 +44,7 @@ namespace EA4S.MixedLetters
             }
 
             Physics.IgnoreLayerCollision(0, 5);
+            Physics.IgnoreLayerCollision(12, 11);
 
             ResetScene();
 

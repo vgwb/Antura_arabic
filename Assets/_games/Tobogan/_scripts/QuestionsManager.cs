@@ -37,7 +37,7 @@ namespace EA4S.Tobogan
             {
                 initialized = true;
 
-                game.pipesAnswerController.Initialize();
+                game.pipesAnswerController.Initialize(game);
                 CreateQuestionLivingLetters();
 
                 questionLetterIndex = livingLetters.Count - 1;
@@ -98,7 +98,7 @@ namespace EA4S.Tobogan
                 QuestionLivingLetter questionLetter = CreateQuestionLivingLetter();
 
                 questionLetter.ClearQuestionText();
-                questionLetter.PlayIdleAnimation();
+                questionLetter.PlayStillAnimation();
                 questionLetter.EnableCollider(false);
 
                 questionLetter.GoToPosition(i);
@@ -125,7 +125,7 @@ namespace EA4S.Tobogan
             for (int i = 0; i < livingLetters.Count; i++)
             {
                 livingLetters[i].ClearQuestionText();
-                livingLetters[i].PlayIdleAnimation();
+                livingLetters[i].PlayStillAnimation();
                 livingLetters[i].EnableCollider(false);
             }
         }

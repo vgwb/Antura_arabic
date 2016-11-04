@@ -1,11 +1,11 @@
-﻿namespace EA4S.Egg
+﻿namespace EA4S.MakeFriends
 {
-    public class EggIntroductionState : IGameState
+    public class MakeFriendsIntroductionState : IGameState
     {
-        EggGame game;
+        MakeFriendsGame game;
 
         float timer = 1;
-        public EggIntroductionState(EggGame game)
+        public MakeFriendsIntroductionState(MakeFriendsGame game)
         {
             this.game = game;
         }
@@ -16,7 +16,6 @@
 
         public void ExitState()
         {
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
         public void Update(float delta)
@@ -26,7 +25,6 @@
             if (timer < 0)
             {
                 game.SetCurrentState(game.QuestionState);
-                return;
             }
         }
 

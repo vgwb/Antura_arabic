@@ -187,6 +187,11 @@ namespace EA4S.Egg
 
                 eggPieces[index].Poof(poofDirRight);
             }
+
+            if(progress == 1f)
+            {
+                ShowEndLetters();
+            }
         }
 
         void MoveTo(Vector3 position, float duration, AnimationCurve moveCurve)
@@ -350,7 +355,7 @@ namespace EA4S.Egg
                 {
                     eggEggCrackCompleteSent = true;
 
-                    ShowQuestionLetters();
+                    //ShowEndLetters();
 
                     EggShow(false);
 
@@ -481,9 +486,11 @@ namespace EA4S.Egg
             egg.SetActive(show);
         }
 
-        void ShowQuestionLetters()
+        void ShowEndLetters()
         {
             EggLivingLetter letter;
+
+            float startDelay = 0.7f;
 
             float jumpDelay = 0.5f;
 
@@ -498,7 +505,7 @@ namespace EA4S.Egg
                     jumpCallback = OnLettersJumpComplete;
                 }
 
-                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, questionData[i], transform.localPosition, lettersEndPositions[i], jumpDelay * i, jumpCallback);
+                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, questionData[i], transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, jumpCallback);
 
                 eggLivingLetters.Add(letter);
             }
