@@ -67,7 +67,7 @@ namespace EA4S.HideAndSeek
         {
             
 
-            var initialDelay = 1f;
+            var initialDelay = 3f;
             yield return new WaitForSeconds(initialDelay);
             
             game.PlayState.gameTime.Stop();
@@ -77,28 +77,33 @@ namespace EA4S.HideAndSeek
             else
                 WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", false, image);
 
-
+            //ArrayLetters[letterInAnimation].transform.position = originLettersPlaceholder.position;
         }
 
         void CheckResult(int id)
 		{
-
-            if (ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>().view.Data.Key == currentQuestion.GetAnswer().Key)
+            letterInAnimation = GetIdFromPosition(id);
+            HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
+            if (script.view.Data.Key == currentQuestion.GetAnswer().Key)
             {
-                ClearRound();
+                //ClearRound();
                 StartCoroutine(DelayAnimation(true));
-                
+                script.resultAnimation(true);
                 Debug.Log("Hai vintooooooo");
             }
             else
             {
                 Debug.Log("Hai sbagliato");
                 RemoveLife();
-                if(lifes == 0)
+                script.resultAnimation(false);
+                if (lifes == 0)
                 {
-                    ClearRound();
+                    
+                   // ClearRound();
                     StartCoroutine(DelayAnimation(false));
+                    
                 }
+               
             }
                 
         }
@@ -108,13 +113,16 @@ namespace EA4S.HideAndSeek
             switch (--lifes)
             {
                 case 2:
-                    LifeSprite[0].SetActive(false);
+                    game.Context.GetOverlayWidget().SetLives(2);
+                    //LifeSprite[0].SetActive(false);
                     break;
                 case 1:
-                    LifeSprite[1].SetActive(false);
+                    game.Context.GetOverlayWidget().SetLives(1);
+                    //LifeSprite[1].SetActive(false);
                     break;
                 case 0:
-                    LifeSprite[2].SetActive(false);
+                    game.Context.GetOverlayWidget().SetLives(0);
+                    //LifeSprite[2].SetActive(false);
                     break;
             }
 
@@ -124,10 +132,12 @@ namespace EA4S.HideAndSeek
         {
             lifes = 3;
 
+            game.Context.GetOverlayWidget().SetLives(3);
+            /*
             for (int i = 0; i < LifeSprite.Length; ++i)
             {
                 LifeSprite[i].SetActive(true);
-            }
+            }*/
         }
 
         public void SetTime()
@@ -142,15 +152,20 @@ namespace EA4S.HideAndSeek
 
             for(int i = 0; i < MAX_TREE; ++i)
             {
-                ArrayLetters[i].transform.position = originLettersPlaceholder.position;
-                ArrayTrees[i].GetComponent<MeshCollider>().enabled = false;
+                //if(i != letterInAnimation)
+                    ArrayLetters[i].transform.position = originLettersPlaceholder.position;
+                ArrayLetters[i].GetComponent<HideAndSeekLetterController>().ResetLetter();
+                ArrayTrees[i].GetComponent<Collider>().enabled = false;
                 UsedPlaceholder[i] = false;
+
             }
             
         }
 
         public void NewRound()
         {
+            ClearRound();
+
             currentQuestion = (HideAndSeekQuestionsPack)questionProvider.GetQuestion();
             StartNewRound = false;
             SetFullLife();
@@ -175,7 +190,7 @@ namespace EA4S.HideAndSeek
                     //set bool for letters for correct/wrong anim
                     ArrayLetters[i].transform.position = ArrayPlaceholder[index].transform.position;
                     HideAndSeekLetterController scriptComponent = ArrayLetters[i].GetComponent<HideAndSeekLetterController>();
-                    scriptComponent.SetStartPosition();
+                    scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
                     ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Init(letterList[i]);
                 }
@@ -248,8 +263,10 @@ namespace EA4S.HideAndSeek
 
 		public GameObject[] ArrayLetters;
 
-        public GameObject[] LifeSprite;
-        public GameObject LifeObj;
+        private int letterInAnimation = -1;
+
+        //public GameObject[] LifeSprite;
+        //public GameObject LifeObj;
         
 
 		private HideAndSeekLetterController script;

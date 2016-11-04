@@ -17,6 +17,8 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private int m_iPixelPerUnit = 5; //The number of pixels to fit in 1 unit
         [SerializeField]
+        private Color m_oBaseColor = Color.white; //The base color for the texture to color
+        [SerializeField]
         private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
         #endregion
 
@@ -57,12 +59,12 @@ namespace EA4S.ColorTickle
 
                 Ray _mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition); //Ray with direction camera->screenpoint
 
-                Debug.DrawRay(_mouseRay.origin, _mouseRay.direction * 100, Color.yellow, 10);
+                //Debug.DrawRay(_mouseRay.origin, _mouseRay.direction * 100, Color.yellow, 10);
 
                 //check for ray collision
                 if (m_oBody.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity))
                 {
-                    Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
+                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
 
                     if (OnBodyHit != null)
                     {
@@ -74,6 +76,16 @@ namespace EA4S.ColorTickle
                     
                 }
             }
+        }
+        #endregion
+
+        #region PUBLIC FUNCTIONS
+        /// <summary>
+        /// Reset the component by reinitializing it.
+        /// </summary>
+        public void Reset()
+        {
+            SetupBodyColorTexture(); //prepare the texture of the body
         }
         #endregion
 
@@ -89,10 +101,10 @@ namespace EA4S.ColorTickle
                 Mathf.FloorToInt(m_oBody.sharedMesh.bounds.size.z * m_iPixelPerUnit),
                 TextureFormat.ARGB32,
                 false);
-            m_tBodyTexture.SetPixels(TextureUtilities.FillTextureWithColor(m_tBodyTexture, Color.white)); //initialiaze it to white
+            m_tBodyTexture.SetPixels(TextureUtilities.FillTextureWithColor(m_tBodyTexture, m_oBaseColor)); //initialiaze it to white
             m_tBodyTexture.Apply();
 
-            Debug.Log("Body Tex size are " + m_tBodyTexture.width + "," + m_tBodyTexture.height);
+            //Debug.Log("Body Tex size are " + m_tBodyTexture.width + "," + m_tBodyTexture.height);
 
             //link the body texture as the material's main texture
             m_oSurfaceRenderer.material.SetTexture("_MainTex", m_tBodyTexture);

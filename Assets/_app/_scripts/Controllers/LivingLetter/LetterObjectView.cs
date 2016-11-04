@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using Google2u;
 
 namespace EA4S
 {
@@ -43,7 +42,7 @@ namespace EA4S
                 return Model.Data;
             }
         }
-        
+
         private LLController model;
         LLController Model
         {
@@ -105,7 +104,8 @@ namespace EA4S
                     Lable.enabled = true;
                     Lable.text = Model.Data.TextForLivingLetter;
 
-                    innerTransform.localScale =  Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x/8.0f));
+                    if(innerTransform)
+                        innerTransform.localScale =  Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x/8.0f));
                 }
             }
         }
@@ -267,7 +267,7 @@ namespace EA4S
             }
         }
 
-        
+
 
         /// <summary>
         /// Speed is 0 (walk) to 1 (running).
@@ -361,4 +361,3 @@ namespace EA4S
         }
     }
 }
-
