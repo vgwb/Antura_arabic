@@ -106,6 +106,8 @@ namespace EA4S.TakeMeHome
 			//
 
 			LetterObjectView letterObjectView = Instantiate(LLPrefab);
+			letterObjectView.gameObject.SetActive (true);
+			letterObjectView.transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
 			letterObjectView.transform.SetParent(transform, true);
 			Vector3 newPosition = GetComponent<TakeMeHomeGame> ().LLSpawnPosition.position;// = walkableArea.GetFurthestSpawn(letters); // Find isolated spawn point
 

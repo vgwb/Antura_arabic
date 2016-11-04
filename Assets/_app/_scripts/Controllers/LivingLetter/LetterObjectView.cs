@@ -105,7 +105,8 @@ namespace EA4S
                     Lable.enabled = true;
                     Lable.text = Model.Data.TextForLivingLetter;
 
-                    innerTransform.localScale =  Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x/8.0f));
+                    if(innerTransform)
+                        innerTransform.localScale =  Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x/8.0f));
                 }
             }
         }
@@ -134,6 +135,7 @@ namespace EA4S
         {
             //Debug.Log((int)_newState);
 
+            animator.SetBool("walking", false);
             animator.SetBool("dancing", false);
             animator.SetBool("rocketing", false);
             animator.SetBool("dragging", false);
@@ -163,10 +165,11 @@ namespace EA4S
             switch (_newState)
             {
                 case LLAnimationStates.LL_idle:
+                case LLAnimationStates.LL_still:
                     animator.SetBool("idle", true);
                     break;
                 case LLAnimationStates.LL_walking:
-                    animator.SetBool("idle", false);
+                    animator.SetBool("walking", true);
                     break;
                 case LLAnimationStates.LL_rocketing:
                     animator.SetBool("rocketing", true);

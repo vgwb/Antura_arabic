@@ -74,7 +74,7 @@ namespace EA4S.MakeFriends
             }
 
             initialPosition = transform.position;
-            MakeFriendsGameManager.Instance.letterPicker.letterChoiceBeingDragged = this;
+            MakeFriendsGame.Instance.letterPicker.letterChoiceBeingDragged = this;
             canvasGroup.blocksRaycasts = false;
         }
 
@@ -99,14 +99,14 @@ namespace EA4S.MakeFriends
             if (wasChosen)
             {
                 Disable();
-                MakeFriendsGameManager.Instance.OnLetterChoiceSelected(this);
+                MakeFriendsGame.Instance.OnLetterChoiceSelected(this);
             }
             else
             {
                 transform.position = initialPosition;
             }
 
-            MakeFriendsGameManager.Instance.letterPicker.letterChoiceBeingDragged = null;
+            MakeFriendsGame.Instance.letterPicker.letterChoiceBeingDragged = null;
             canvasGroup.blocksRaycasts = true;
         }
 
@@ -125,7 +125,7 @@ namespace EA4S.MakeFriends
 
         public void SpawnBalloon(bool correctChoice)
         {
-            var balloon = Instantiate(MakeFriendsGameManager.Instance.letterBalloonPrefab, MakeFriendsGameManager.Instance.letterBalloonContainer.transform.position, Quaternion.identity, MakeFriendsGameManager.Instance.letterBalloonContainer.transform) as GameObject;
+            var balloon = Instantiate(MakeFriendsGame.Instance.letterBalloonPrefab, MakeFriendsGame.Instance.letterBalloonContainer.transform.position, Quaternion.identity, MakeFriendsGame.Instance.letterBalloonContainer.transform) as GameObject;
             var balloonController = balloon.GetComponent<LetterBalloonController>();
             balloonController.Init(letterData);
             balloonController.EnterScene(correctChoice);

@@ -17,7 +17,7 @@ namespace EA4S.MakeFriends
 
         public void OnDrop(PointerEventData eventData)
         {
-            var draggedLetter = MakeFriendsGameManager.Instance.letterPicker.letterChoiceBeingDragged;
+            var draggedLetter = MakeFriendsGame.Instance.letterPicker.letterChoiceBeingDragged;
 
             if (draggedLetter != null)
             {
@@ -28,7 +28,7 @@ namespace EA4S.MakeFriends
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            var draggedLetter = MakeFriendsGameManager.Instance.letterPicker.letterChoiceBeingDragged;
+            var draggedLetter = MakeFriendsGame.Instance.letterPicker.letterChoiceBeingDragged;
 
             if (draggedLetter != null)
             {

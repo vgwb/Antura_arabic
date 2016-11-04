@@ -17,10 +17,12 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private int m_iPixelPerUnit = 5; //The number of pixels to fit in 1 unit
         [SerializeField]
-        [Range(0, 100)]
-        private int m_iPercentageRequiredToWin = 95; //The target percentage used to determinate if the letter is finished
+        private Color m_oBaseColor = Color.white; //The base color for the texture to color
         [SerializeField]
         private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
+        [SerializeField]
+        [Range(0, 100)]
+        private int m_iPercentageRequiredToWin = 95; //The target percentage used to determinate if the letter is finished
         #endregion
 
         #region PRIVATE MEMBERS
@@ -67,6 +69,11 @@ namespace EA4S.ColorTickle
             get { return m_bEnableColor; }
             set { m_bEnableColor = value; }
         }
+
+        public int percentageRequiredToWin
+        {
+            get { return m_iPercentageRequiredToWin; }
+        }
         #endregion
 
         #region INTERNALS
@@ -84,23 +91,23 @@ namespace EA4S.ColorTickle
             SetupLetterColorTexture(); //prepare the texture to color upon succesfull raycast
 
             SetupLetterTexture(); //prepare the scaled letter texture used for 1:1 matching
-            
+
         }
 
         void Update()
         {
-           
+
             if (Input.GetMouseButton(0)) //On touch 
             {
 
                 Ray _mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition); //Ray with direction camera->screenpoint
 
-                Debug.DrawRay(_mouseRay.origin, _mouseRay.direction * 100, Color.yellow, 10);
+                //Debug.DrawRay(_mouseRay.origin, _mouseRay.direction * 100, Color.yellow, 10);
 
                 //check for ray collision
-                if (m_oLetterMeshCollider.Raycast(_mouseRay,out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
+                if (m_oLetterMeshCollider.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
                 {
-                    Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
+                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
 
                     //Now we find out which color we hitted to check if we are inside the letter outline
                     //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect)
@@ -109,19 +116,19 @@ namespace EA4S.ColorTickle
                     //If we are outside the letter
                     if (m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y).a == 0)
                     {
-                    
-                        Debug.Log("OUTSIDE!!!Color Hitted " + m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y) + " at coordinates: " + m_oRayHit.textureCoord.x + " " + m_oRayHit.textureCoord.y);
 
+                        //Debug.Log("OUTSIDE!!!Color Hitted " + m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y) + " at coordinates: " + m_oRayHit.textureCoord.x + " " + m_oRayHit.textureCoord.y);
+                        //Debug.Log("OUTSIDE!!!");
                         if (OnShapeHit != null)
                         {
                             OnShapeHit(false);
                         }
                     }
                     //else color the texture
-                    else 
+                    else
                     {
 
-                        Debug.Log("COLORING!!!");
+                        //Debug.Log("COLORING!!!");
 
                         ColorLetterTexturePoint(m_oRayHit.textureCoord); //paint a single brush
 
@@ -134,7 +141,7 @@ namespace EA4S.ColorTickle
                     }
 
                     //launch event for letter completation
-                    if(GetRachedCoverage()*100 >= m_iPercentageRequiredToWin && OnShapeCompleted!=null)
+                    if (GetRachedCoverage() * 100 >= m_iPercentageRequiredToWin && OnShapeCompleted != null)
                     {
                         OnShapeCompleted();
                     }
@@ -151,6 +158,24 @@ namespace EA4S.ColorTickle
         public float GetRachedCoverage()
         {
             return m_iCurrentShapePixelsColored / (float)m_iTotalShapePixels;
+        }
+
+        /// <summary>
+        /// Reset the component by reinitializing it.
+        /// </summary>
+        public void Reset()
+        {
+            if (m_oTextMeshObject.fontMaterial.mainTexture is Texture2D)
+            {
+                m_tBaseLetterTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
+
+            }
+
+            SetupLetterMeshCollider(); //prepare the letter mesh for the raycast
+
+            SetupLetterColorTexture(); //prepare the texture to color upon succesfull raycast
+
+            SetupLetterTexture(); //prepare the scaled letter texture used for 1:1 matching
         }
         #endregion
 
@@ -175,17 +200,17 @@ namespace EA4S.ColorTickle
                 _iCounter += Mathf.CeilToInt(_aLetterShapeMatrix[idx].a) * (1 - Mathf.FloorToInt(_aColoredMatrix[idx].grayscale));
             }
 
-            Debug.Log("Completation check: " + _iCounter + "/" + m_iTotalShapePixels);
+            //Debug.Log("Completation check: " + _iCounter + "/" + m_iTotalShapePixels);
 
             if (_iCounter >= m_iTotalShapePixels * m_iPercentageRequiredToWin / 100f)
             {
-                Debug.Log("SUCCESS!!! Required number was: " + (m_iTotalShapePixels * m_iPercentageRequiredToWin / 100f));
+                //Debug.Log("SUCCESS!!! Required number was: " + (m_iTotalShapePixels * m_iPercentageRequiredToWin / 100f));
                 return true;
             }
 
             return false;
         }
-       
+
 
         #region MEMBERS INITIALIZATIONS
 
@@ -233,10 +258,10 @@ namespace EA4S.ColorTickle
                 Mathf.FloorToInt(Mathf.Abs(_meshVertices[0].y - _meshVertices[1].y) * m_iPixelPerUnit),
                 TextureFormat.ARGB32,
                 false);
-            m_tLetterDynamicTexture.SetPixels(TextureUtilities.FillTextureWithColor(m_tLetterDynamicTexture, Color.white)); //initialiaze it to white
+            m_tLetterDynamicTexture.SetPixels(TextureUtilities.FillTextureWithColor(m_tLetterDynamicTexture, m_oBaseColor)); //initialiaze it to white
             m_tLetterDynamicTexture.Apply();
 
-            Debug.Log("Dynamic Tex size are " + m_tLetterDynamicTexture.width + "," + m_tLetterDynamicTexture.height);
+            //Debug.Log("Dynamic Tex size are " + m_tLetterDynamicTexture.width + "," + m_tLetterDynamicTexture.height);
 
             //link the dynamic texture to the TextMeshPro Text as the material's face texture 
             m_oTextMeshObject.fontMaterial.SetTexture("_FaceTex", m_tLetterDynamicTexture);
@@ -289,7 +314,7 @@ namespace EA4S.ColorTickle
         private void ColorLetterTexturePoint(Vector2 targetUV)
         {
 
-            if(!m_bEnableColor)
+            if (!m_bEnableColor)
             {
                 return;
             }
@@ -344,8 +369,8 @@ namespace EA4S.ColorTickle
                 //Blend brush color with texture
                 _fAlphaOver = _aColors_BrushClampedShape[idx].a;
                 _fAlphaBack = _aColors_CurrentDynamicTex[idx].a;
-                _aColors_BrushClampedShape[idx] = _aColors_BrushClampedShape[idx] * _fAlphaOver + _aColors_CurrentDynamicTex[idx] * _fAlphaBack*(1 - _fAlphaOver);
-                _aColors_BrushClampedShape[idx].a = _fAlphaOver + _fAlphaBack*(1 - _fAlphaOver);
+                _aColors_BrushClampedShape[idx] = _aColors_BrushClampedShape[idx] * _fAlphaOver + _aColors_CurrentDynamicTex[idx] * _fAlphaBack * (1 - _fAlphaOver);
+                _aColors_BrushClampedShape[idx].a = _fAlphaOver + _fAlphaBack * (1 - _fAlphaOver);
             }
 
             //finally color the texture with the resulting matrix
@@ -358,3 +383,4 @@ namespace EA4S.ColorTickle
 
     }
 }
+

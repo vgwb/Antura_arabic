@@ -34,18 +34,6 @@ namespace EA4S.Egg
             JumpToEnd();
         }
 
-        public void PlayIdleAnimation()
-        {
-            //livingLetter.SetState(LLAnimationStates.LL_normal);
-            //livingLetter.SetIdle();
-        }
-
-        public void PlayWalkAnimation()
-        {
-            //livingLetter.SetState.State = LLAnimationStates.LL_walk;
-            //livingLetter.SetWalking();
-        }
-
         public void PlayHorrayAnimation()
         {
             livingLetter.DoHorray();
@@ -62,11 +50,23 @@ namespace EA4S.Egg
 
             float jumpY = UnityEngine.Random.Range(1f, 2f);
 
-            livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate()
+            livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate ()
             {
                 livingLetter.gameObject.SetActive(true);
+                livingLetter.Poof();
+                livingLetter.OnJumpStart();
 
-                livingLetter.transform.DOLocalJump(endPosition, 7f, 1, duration).OnComplete(delegate () { if (endCallback != null) endCallback(); }).SetEase(Ease.Linear);
+                float timeToJumpStart = 0.15f;
+                float timeToJumpEnd = 0.4f;
+
+                Sequence animationSequence = DOTween.Sequence();
+                animationSequence.AppendInterval(timeToJumpStart);
+                animationSequence.AppendCallback(delegate () { livingLetter.transform.DOLocalJump(endPosition, 7f, 1, duration).OnComplete(delegate () { if (endCallback != null) endCallback(); }).SetEase(Ease.Linear); });
+                animationSequence.AppendInterval(duration - timeToJumpEnd);
+                animationSequence.AppendCallback(delegate () { livingLetter.OnJumpEnded(); });
+                animationSequence.AppendInterval(timeToJumpEnd);
+                animationSequence.OnComplete(delegate () { livingLetter.DoHorray(); });
+                animationSequence.Play();
             });
         }
     }

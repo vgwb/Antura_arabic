@@ -978,6 +978,7 @@ MonoBehaviour:
   ray: 5
   minMove: 2.5
   view: {fileID: 0}
+  walkDuration: 2
 --- !u!137 &137000012906390494
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

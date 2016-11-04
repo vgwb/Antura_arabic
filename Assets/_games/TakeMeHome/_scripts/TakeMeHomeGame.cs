@@ -212,7 +212,7 @@ namespace EA4S.TakeMeHome
 
 			//antura.GetComponent<AnturaCo
 
-			antura.GetComponent<TakeMeHomeAntura> ().SetAnturaTime (true, currentLetter.transform.position - new Vector3(5,0,0));
+			antura.GetComponent<TakeMeHomeAntura> ().SetAnturaTime (true, new Vector3(5.16f,-6.42f,-15));
 		}
 
 
