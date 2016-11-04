@@ -7,8 +7,7 @@ namespace EA4S
 {
     public static class ArabicAlphabetHelper
     {
-
-        public static List<string> LetterExceptions = new List<string>() { "0627", "062F", "0630", "0631", "0632", "0648", "0623" };
+        private static List<string> LetterExceptions = new List<string>() { "0627", "062F", "0630", "0631", "0632", "0648", "0623" };
 
         /// <summary>
         /// Prepares the string for display (say fro mArabic into TMPro Text
