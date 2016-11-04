@@ -27,7 +27,7 @@ namespace EA4S
             GameConfiguration configuration = new GameConfiguration(difficulty);
 
             MiniGameAPI.Instance.StartGame(miniGameCode, questionPacks, configuration);
-        }
+        } 
     }
 
 }

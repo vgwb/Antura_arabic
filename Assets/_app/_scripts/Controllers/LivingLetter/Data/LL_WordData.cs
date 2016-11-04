@@ -20,10 +20,10 @@ namespace EA4S
 
         private string key;
 
-        public LL_WordData(string _keyRow, Db.WordData _wordRow)
+        public LL_WordData(string _keyRow, Db.WordData _data)
         {
             Key = _keyRow;
-            Data = _wordRow;
+            Data = _data;
         }
 
         #region API

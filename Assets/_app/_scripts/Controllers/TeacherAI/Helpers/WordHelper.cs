@@ -90,10 +90,15 @@ namespace EA4S.Db
 
         #region Word -> Word
 
-        public List<WordData> GetWordsNotIn(params string[] tabooArray)
+
+        private List<WordData> GetWordsNotIn(List<string> tabooList)
         {
-            var tabooList = new List<string>(tabooArray);
             return dbManager.FindWordData(x => !tabooList.Contains(x.Id));
+        }
+        public List<WordData> GetWordsNotIn(params WordData[] tabooArray)
+        {
+            var tabooList = new List<WordData>(tabooArray);
+            return GetWordsNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
         public List<WordData> GetWordsByCategory(WordDataCategory choice)
