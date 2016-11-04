@@ -28,6 +28,8 @@ namespace EA4S.MissingLetter
             gameTime.Reset();
             gameTime.Start();
 
+            game.Context.GetOverlayWidget().Initialize(true, true, false);
+
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 

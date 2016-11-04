@@ -86,7 +86,7 @@ namespace EA4S.MissingLetter
             ResultState = new MissingLetterResultState(this);
             TutorialState = new MissingLetterTutorialState(this);
 
-            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().Initialize(false, false, false);
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
@@ -126,6 +126,7 @@ namespace EA4S.MissingLetter
         new void OnDisable()
         {
             base.OnDisable();
+            //restore the removed letter
             ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
         }
 
