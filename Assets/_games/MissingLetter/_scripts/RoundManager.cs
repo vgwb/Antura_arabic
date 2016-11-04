@@ -38,7 +38,6 @@ namespace EA4S.MissingLetter
             int ansPoolSize = mGame.mNumberOfPossibleAnswers * 4;
             mGame.mLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(mAnsPos + Vector3.right * mGame.mAnswerINOffset, mAnsPos, mAnsPos + Vector3.right * mGame.mAnswerOUTOffset);
             mAnswerPool = new GameObjectPool(mGame.mLetterPrefab, ansPoolSize, false);
-
         }
 
         public void SetTutorial(bool _enabled) {
@@ -47,6 +46,7 @@ namespace EA4S.MissingLetter
 
         public void NewRound()
         {
+            mGame.m_bInIdle = false;
             ExitCurrentScene();
             
             if (mRoundType == RoundType.WORD)
@@ -228,8 +228,8 @@ namespace EA4S.MissingLetter
 
         void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
-
-            if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key) {
+            mGame.SetInIdle(false);
+            if (mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key) {
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
                 DoWinAnimations(_key);
             }
@@ -246,6 +246,8 @@ namespace EA4S.MissingLetter
             if (onAnswered != null) {
                 mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key));
             }
+
+            mGame.StartCoroutine(Utils.LaunchDelay(2.5f, mGame.SetInIdle, true));
         }
 
         //int RemoveLetterFromWord(LL_WordData word)
@@ -353,7 +355,6 @@ namespace EA4S.MissingLetter
 
         private RoundType mRoundType;
         private bool m_bTutorialEnabled;
-
         #endregion
 
     }
