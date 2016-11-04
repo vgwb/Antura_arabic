@@ -45,8 +45,7 @@
 
             if (timer < 0)
             {
-                game.EndGame(2, 100);
-                // game.EndGame(game.CurrentStars, game.CurrentScoreRecord);
+                 game.EndGame(game.CurrentStars, game.CurrentScore);
             }
         }
 
