@@ -8,6 +8,14 @@ using ModularFramework.Core;
 
 public partial class SROptions
 {
+
+    [Category("MiniGames options")]
+    public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
+    [Category("MiniGames options")]
+    public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
+    [Category("MiniGames options")]
+    public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
+
     [Category("Scenes")]
     public void Home()
     {
