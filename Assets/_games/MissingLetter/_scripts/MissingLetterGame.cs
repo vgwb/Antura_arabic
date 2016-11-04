@@ -71,6 +71,7 @@ namespace EA4S.MissingLetter
         public MissingLetterQuestionState QuestionState { get; private set; }
         public MissingLetterPlayState PlayState { get; private set; }
         public MissingLetterResultState ResultState { get; private set; }
+        public MissingLetterTutorialState TutorialState { get; private set; }
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -82,7 +83,7 @@ namespace EA4S.MissingLetter
             QuestionState = new MissingLetterQuestionState(this);
             PlayState = new MissingLetterPlayState(this);
             ResultState = new MissingLetterResultState(this);
-
+            TutorialState = new MissingLetterTutorialState(this);
         }
 
         protected override IGameState GetInitialState()
