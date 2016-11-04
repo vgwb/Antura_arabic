@@ -182,7 +182,7 @@ namespace EA4S
 
         public List<PlaySessionData> GetPlaySessionsOfLearningBlock(LearningBlockData lb)
         {
-            return this.FindPlaySessionData(x => x.Stage == lb.Stage && x.LearningBlock == lb.LearningBlock);
+            return FindPlaySessionData(x => x.Stage == lb.Stage && x.LearningBlock == lb.LearningBlock);
         }
 
         #endregion
@@ -196,58 +196,58 @@ namespace EA4S
 
         public List<MiniGameData> FindMiniGameData(Predicate<MiniGameData> predicate)
         {
-            return staticDb.FindAll<MiniGameData>(staticDb.GetMiniGameTable(), predicate);
+            return staticDb.FindAll(staticDb.GetMiniGameTable(), predicate);
         }
 
-        public List<EA4S.Db.LetterData> FindLetterData(Predicate<LetterData> predicate)
+        public List<LetterData> FindLetterData(Predicate<LetterData> predicate)
         {
-            return staticDb.FindAll<EA4S.Db.LetterData>(staticDb.GetLetterTable(), predicate);
+            return staticDb.FindAll(staticDb.GetLetterTable(), predicate);
         }
 
-        public List<EA4S.Db.LetterData> GetAllLetterData()
+        public List<LetterData> GetAllLetterData()
         {
             return FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
             //return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
-        public List<EA4S.Db.WordData> FindWordData(Predicate<EA4S.Db.WordData> predicate)
+        public List<WordData> FindWordData(Predicate<WordData> predicate)
         {
-            return staticDb.FindAll<EA4S.Db.WordData>(staticDb.GetWordTable(), predicate);
+            return staticDb.FindAll(staticDb.GetWordTable(), predicate);
         }
 
         public List<PhraseData> FindPhraseData(Predicate<PhraseData> predicate)
         {
-            return staticDb.FindAll<PhraseData>(staticDb.GetPhraseTable(), predicate);
+            return staticDb.FindAll(staticDb.GetPhraseTable(), predicate);
         }
 
         public List<PlaySessionData> FindPlaySessionData(Predicate<PlaySessionData> predicate)
         {
-            return staticDb.FindAll<PlaySessionData>(staticDb.GetPlaySessionTable(), predicate);
+            return staticDb.FindAll(staticDb.GetPlaySessionTable(), predicate);
         }
-        
+
         public List<LearningBlockData> FindLearningBlockData(Predicate<LearningBlockData> predicate)
         {
-            return staticDb.FindAll<LearningBlockData>(staticDb.GetLearningBlockTable(), predicate);
+            return staticDb.FindAll(staticDb.GetLearningBlockTable(), predicate);
         }
 
         public List<StageData> FindStageData(Predicate<StageData> predicate)
         {
-            return staticDb.FindAll<StageData>(staticDb.GetStageTable(), predicate);
+            return staticDb.FindAll(staticDb.GetStageTable(), predicate);
         }
 
         public List<LocalizationData> FindLocalizationData(Predicate<LocalizationData> predicate)
         {
-            return staticDb.FindAll<LocalizationData>(staticDb.GetLocalizationTable(), predicate);
+            return staticDb.FindAll(staticDb.GetLocalizationTable(), predicate);
         }
 
         public List<RewardData> FindRewardData(Predicate<RewardData> predicate)
         {
-            return staticDb.FindAll<RewardData>(staticDb.GetRewardTable(), predicate);
+            return staticDb.FindAll(staticDb.GetRewardTable(), predicate);
         }
 
-        public List<EA4S.Db.WordData> GetAllWordData()
+        public List<WordData> GetAllWordData()
         {
-            return new List<EA4S.Db.WordData>(staticDb.GetWordTable().GetValuesTyped());
+            return new List<WordData>(staticDb.GetWordTable().GetValuesTyped());
         }
 
         public List<PhraseData> GetAllPhraseData()
@@ -287,24 +287,24 @@ namespace EA4S
 
         private MiniGameData GetMiniGameDataById(string id)
         {
-            return staticDb.GetById<MiniGameData>(staticDb.GetMiniGameTable(), id);
+            return staticDb.GetById(staticDb.GetMiniGameTable(), id);
         }
 
         public WordData GetWordDataById(string id)
         {
-            return staticDb.GetById<WordData>(staticDb.GetWordTable(), id);
+            return staticDb.GetById(staticDb.GetWordTable(), id);
         }
 
         public WordData GetWordDataByRandom()
         {
             // TODO now locked to body parts for retrocompatibility
             var wordslist = FindWordData((x) => (x.Category == WordDataCategory.BodyPart));
-            return GenericUtilities.GetRandom(wordslist);
+            return wordslist.GetRandom();
         }
 
         public LetterData GetLetterDataById(string id)
         {
-            return staticDb.GetById<LetterData>(staticDb.GetLetterTable(), id);
+            return staticDb.GetById(staticDb.GetLetterTable(), id);
         }
 
         /*public LetterData GetLetterDataByRandom()
@@ -315,32 +315,32 @@ namespace EA4S
 
         public PhraseData GetPhraseDataById(string id)
         {
-            return staticDb.GetById<PhraseData>(staticDb.GetPhraseTable(), id);
+            return staticDb.GetById(staticDb.GetPhraseTable(), id);
         }
 
         public PlaySessionData GetPlaySessionDataById(string id)
         {
-            return staticDb.GetById<PlaySessionData>(staticDb.GetPlaySessionTable(), id);
+            return staticDb.GetById(staticDb.GetPlaySessionTable(), id);
         }
 
         public LearningBlockData GetLearningBlockDataById(string id)
         {
-            return staticDb.GetById<LearningBlockData>(staticDb.GetLearningBlockTable(), id);
+            return staticDb.GetById(staticDb.GetLearningBlockTable(), id);
         }
 
         public StageData GetStageDataById(string id)
         {
-            return staticDb.GetById<StageData>(staticDb.GetStageTable(), id);
+            return staticDb.GetById(staticDb.GetStageTable(), id);
         }
 
         public LocalizationData GetLocalizationDataById(string id)
         {
-            return staticDb.GetById<LocalizationData>(staticDb.GetLocalizationTable(), id);
+            return staticDb.GetById(staticDb.GetLocalizationTable(), id);
         }
 
         public RewardData GetRewardDataById(string id)
         {
-            return staticDb.GetById<RewardData>(staticDb.GetRewardTable(), id);
+            return staticDb.GetById(staticDb.GetRewardTable(), id);
         }
 
         #endregion
