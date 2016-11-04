@@ -10,12 +10,13 @@ namespace EA4S.MissingLetter
     public class MissingLetterQuestionProvider : IQuestionProvider
     {
 
-        List<MissingLetterQuestionPack> questions = new List<MissingLetterQuestionPack>();
-        string description;
-        int currentQuestion;
-        RoundManager.RoundType mQuestionType = RoundManager.RoundType.WORD;
+        static string msDescription = "Missing Letter Question Provider";
+        int mcurrentQuestion;
+        RoundType mQuestionType = RoundType.WORD;
+        LL_WordData mDataToRestore;
+        string mRemovedElement;
         
-        public void SetType(RoundManager.RoundType type)
+        public void SetType(RoundType type)
         {
             mQuestionType = type;
         }
@@ -30,12 +31,12 @@ namespace EA4S.MissingLetter
 
         public string GetDescription()
         {
-            return description;
+            return msDescription;
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()
         {
-            if(mQuestionType == RoundManager.RoundType.WORD)
+            if(mQuestionType == RoundType.WORD)
             {
                 return MakeWordQuestion();
             }
@@ -47,30 +48,24 @@ namespace EA4S.MissingLetter
 
         IQuestionPack MakeWordQuestion()
         {
-            List<ILivingLetterData> question = new List<ILivingLetterData>();
             LL_WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            mDataToRestore = word;
 
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Letters);
             int index = UnityEngine.Random.Range(0, Letters.Count);
-
-            //TODO 
-            //WORD void sometimes ???????? fix
-            if(Letters.Count > 0)
-            {
-                correctAnswers.Add(Letters[index]);
-
-                string sQuestion = word.Data.Arabic;
-                sQuestion = sQuestion.Remove(index,1);
-                sQuestion = sQuestion.Insert(index, " ");
-                word.Data.Arabic = sQuestion;
-                question.Add(word);
-            }
-            else
-            {
-                question.Add(word);
-                correctAnswers.Add(AppManager.Instance.Teacher.GimmeARandomLetter());
-            }
+         
+            //add correct letter answer
+            correctAnswers.Add(Letters[index]);
+            //save original word
+            mRemovedElement = word.Data.Arabic;
+            //remove correct letter
+            string sQuestion = word.Data.Arabic;
+            sQuestion = sQuestion.Remove(index,1);
+            //sQuestion = sQuestion.Insert(index, "\u25A0");
+            sQuestion = sQuestion.Insert(index, "_");
+            word.Data.Arabic = sQuestion;
+            Debug.Log("Orginal Word :" + mRemovedElement);
 
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
             for(int i=0; i< Letters.Count; ++i)
@@ -90,7 +85,7 @@ namespace EA4S.MissingLetter
                 }
             }
 
-            IQuestionPack questionPack = new MissingLetterQuestionPack(question, correctAnswers, wrongAnswers);
+            IQuestionPack questionPack = new SampleQuestionPack(word, wrongAnswers, correctAnswers);
             return questionPack;
         }
 
@@ -122,8 +117,13 @@ namespace EA4S.MissingLetter
                 }
             }
 
-            IQuestionPack questionPack = new MissingLetterQuestionPack(question, correctAnswers, wrongAnswers);
+            IQuestionPack questionPack = new SampleQuestionPack(question[0], wrongAnswers, correctAnswers);
             return questionPack;
+        }
+
+        public void Restore()
+        {
+            mDataToRestore.Data.Arabic = mRemovedElement;
         }
 
     }

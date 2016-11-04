@@ -9,7 +9,6 @@ namespace EA4S.MissingLetter
     public class MissingLetterPlayState : IGameState
     {
         
-
         public MissingLetterPlayState(MissingLetterGame game)
         {
             this.game = game;
@@ -24,16 +23,13 @@ namespace EA4S.MissingLetter
             game.mIsTimesUp = false;
             game.ResetScore();
 
-            // Reset game timer
+            hurryUpSfx = false;
+
             gameTime.Reset();
             gameTime.Start();
 
-            game.timerText.gameObject.SetActive(true);
-            game.timerText.text = "";
-
-            hurryUpSfx = false;
-
-            //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             game.m_RoundManager.NewRound();
             game.StartCoroutine(Utils.LaunchDelay(2.0f, game.SetInIdle, true));
@@ -44,7 +40,6 @@ namespace EA4S.MissingLetter
             if (timesUpAudioSource != null)
                 timesUpAudioSource.Stop();
 
-            game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
         }
 
@@ -63,7 +58,8 @@ namespace EA4S.MissingLetter
                 }
             }
 
-            game.timerText.text = String.Format("{0:0}", gameTime.Time);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+
 
             if (!hurryUpSfx)
             {
@@ -88,6 +84,7 @@ namespace EA4S.MissingLetter
         {
             // Time's up!
             game.mIsTimesUp = true;
+            game.Context.GetOverlayWidget().OnClockCompleted();
             game.SetCurrentState(game.ResultState);
         }
 

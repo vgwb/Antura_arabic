@@ -99,6 +99,11 @@ namespace EA4S.MissingLetter
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
+
+            //tmp solution for remove letter
+            LL_WordData tmp = (LL_WordData)qstBehaviour.LetterData;
+            qstBehaviour.mLetter.Lable.text = tmp.Data.Arabic;
+
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
             qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
@@ -114,15 +119,6 @@ namespace EA4S.MissingLetter
             corrAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
 
             mCurrentAnswerScene.Add(_correctAnswerObject);
-
-            //add other old correct answers to wrong answers
-            for (int i=0; i < _correctAnswers.Count; ++i)
-            {
-                if(i!= miCorrectAnswerIndex)
-                {
-                    _wrongAnswers.Add(_correctAnswers.ElementAt(i));
-                }
-            }
 
             for (int i = 1; i < mGame.mNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i) {
                 GameObject _wrongAnswerObject = mAnswerPool.GetElement();
@@ -203,6 +199,8 @@ namespace EA4S.MissingLetter
         void ExitCurrentScene() {
             if (mCurrQuestionPack != null) {
 
+                ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+
                 foreach (GameObject _obj in mCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
@@ -228,8 +226,9 @@ namespace EA4S.MissingLetter
 
         void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
+
             mGame.SetInIdle(false);
-            if (mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key) {
+            if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key) {
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
                 DoWinAnimations(_key);
             }
@@ -244,43 +243,11 @@ namespace EA4S.MissingLetter
 
 
             if (onAnswered != null) {
-                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key));
+                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key));
             }
 
             mGame.StartCoroutine(Utils.LaunchDelay(2.5f, mGame.SetInIdle, true));
         }
-
-        //int RemoveLetterFromWord(LL_WordData word)
-        //{
-        //    char[] caQuestion = ArabicFixer.Fix(word.Data.Arabic, false, false).ToCharArray();
-        //    int index = UnityEngine.Random.Range(0, caQuestion.Length);
-        //    msRemovedData = caQuestion[index].ToString();
-        //    caQuestion[index] = ' ';
-        //    word.Data.Arabic = caQuestion.ToString();
-        //    return index;
-        //}
-
-        //int RemoveWordFromSentences(List<LL_WordData> sentence)
-        //{
-        //    int index = UnityEngine.Random.Range(0, sentence.Count());
-        //    LL_WordData result = sentence.ElementAt(index);
-        //    msRemovedData = sentence[index].Data.Arabic;
-        //    sentence[index].Data.Arabic = "";
-        //    return index;
-        //}
-
-        //void RestoreRemovedLetter()
-        //{
-        //    LL_WordData word = (LL_WordData)mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().LetterData;
-        //    word.Data.Arabic = word.Data.Arabic.Replace(' ', msRemovedData[0]);
-        //}
-
-        //void RestoreRemovedWord()
-        //{
-        //    LL_WordData word = (LL_WordData)mCurrentQuestionScene[miCorrectAnswerIndex].GetComponent<LetterBehaviour>().LetterData;
-        //    word.Data.Arabic = msRemovedData;
-        //}
-
 
         public void ShuffleLetters(float duration)
         {
@@ -347,15 +314,15 @@ namespace EA4S.MissingLetter
 
         public event Action<bool> onAnswered;
 
-        public enum RoundType
-        {
-            WORD = 0,
-            SENTENCE = 1
-        }
-
         private RoundType mRoundType;
         private bool m_bTutorialEnabled;
         #endregion
 
+    }
+
+    public enum RoundType
+    {
+        WORD = 0,
+        SENTENCE = 1
     }
 }
