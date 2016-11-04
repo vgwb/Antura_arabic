@@ -59,7 +59,8 @@ namespace EA4S.MissingLetter
             }
 
 
-            if (mGame.GetCurrentState() == mGame.PlayState || m_bTutorialEnabled) {
+            if (mGame.GetCurrentState() == mGame.PlayState || m_bTutorialEnabled)
+            {
                 EnterCurrentScene();
             }
         }
@@ -73,7 +74,7 @@ namespace EA4S.MissingLetter
         public GameObject GetCorrectLLObject()
         {
             foreach (GameObject _obj in mCurrentAnswerScene) {
-                if(_obj.GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key)
+                if(_obj.GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
                 {
                     return _obj;
                 }
@@ -83,7 +84,7 @@ namespace EA4S.MissingLetter
 
         public ILivingLetterData GetCorrectLetterData()
         {
-            return mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex);
+            return mCurrQuestionPack.GetCorrectAnswers().ElementAt(0);
         }
 
         void NextWordQuestion() {
@@ -116,6 +117,7 @@ namespace EA4S.MissingLetter
             corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(0);
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
             corrAnsBheaviour.onLetterClick += OnAnswerClicked;
+
             corrAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
 
             mCurrentAnswerScene.Add(_correctAnswerObject);
@@ -126,9 +128,11 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.Reset();
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
+
                 if(!m_bTutorialEnabled)
                     wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
                 wrongAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
+
                 mCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
@@ -163,7 +167,7 @@ namespace EA4S.MissingLetter
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
 
             corrAnsBheaviour.Reset();
-            corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(miCorrectAnswerIndex);
+            corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(0);
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
             mCurrentAnswerScene.Add(_correctAnswerObject);
@@ -224,7 +228,7 @@ namespace EA4S.MissingLetter
             _obj.GetComponent<LetterBehaviour>().onLetterBecameInvisible -= OnAnswerLetterBecameInvisible;
         }
 
-        void OnAnswerClicked(string _key) {
+        public void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
 
             if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key) {
@@ -306,7 +310,6 @@ namespace EA4S.MissingLetter
         private Vector3 mAnsPos;
         private Vector3 mQstPos;
 
-        private int miCorrectAnswerIndex;
         private string msRemovedData;
 
         public event Action<bool> onAnswered;
