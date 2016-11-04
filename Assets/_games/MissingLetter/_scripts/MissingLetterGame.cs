@@ -53,6 +53,8 @@ namespace EA4S.MissingLetter
         const int STARS_2_THRESHOLD = 5;
         const int STARS_3_THRESHOLD = 9;
 
+        public bool m_bInIdle;
+
         public int CurrentStars
         {
             get
@@ -85,6 +87,7 @@ namespace EA4S.MissingLetter
             PlayState = new MissingLetterPlayState(this);
             ResultState = new MissingLetterResultState(this);
             TutorialState = new MissingLetterTutorialState(this);
+            m_bInIdle = true;
         }
 
         protected override IGameState GetInitialState()
@@ -119,5 +122,8 @@ namespace EA4S.MissingLetter
 
         }
 
+        public void SetInIdle(bool _idle) {
+            m_bInIdle = _idle;
+        }
     }
 }
