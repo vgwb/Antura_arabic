@@ -99,8 +99,10 @@ namespace EA4S.MissingLetter
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
-            //!!!work in progress replace removed letter
-            qstBehaviour.ReplaceWithSpecialChar();
+
+            //tmp solution for remove letter
+            LL_WordData tmp = (LL_WordData)qstBehaviour.LetterData;
+            qstBehaviour.mLetter.Lable.text = tmp.Data.Arabic;
 
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
@@ -117,15 +119,6 @@ namespace EA4S.MissingLetter
             corrAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
 
             mCurrentAnswerScene.Add(_correctAnswerObject);
-
-            //add other old correct answers to wrong answers
-            for (int i=0; i < _correctAnswers.Count; ++i)
-            {
-                if(i!= miCorrectAnswerIndex)
-                {
-                    _wrongAnswers.Add(_correctAnswers.ElementAt(i));
-                }
-            }
 
             for (int i = 1; i < mGame.mNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i) {
                 GameObject _wrongAnswerObject = mAnswerPool.GetElement();
@@ -263,8 +256,8 @@ namespace EA4S.MissingLetter
             {
                 if(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == _key)
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
                 }
                 else
                 {
@@ -282,14 +275,14 @@ namespace EA4S.MissingLetter
         {
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
                 mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
             }
 
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
             {
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
                 mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
             }
         }
 
@@ -312,7 +305,6 @@ namespace EA4S.MissingLetter
         private string msRemovedData;
 
         public event Action<bool> onAnswered;
-
 
         private RoundType mRoundType;
         private bool m_bTutorialEnabled;

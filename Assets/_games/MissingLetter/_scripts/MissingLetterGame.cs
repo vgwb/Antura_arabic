@@ -84,6 +84,9 @@ namespace EA4S.MissingLetter
             PlayState = new MissingLetterPlayState(this);
             ResultState = new MissingLetterResultState(this);
             TutorialState = new MissingLetterTutorialState(this);
+
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
         protected override IGameState GetInitialState()
@@ -116,6 +119,13 @@ namespace EA4S.MissingLetter
                 ++mCurrentScore;
             }
 
+            Context.GetOverlayWidget().SetStarsScore(mCurrentScore);
+        }
+
+        new void OnDisable()
+        {
+            base.OnDisable();
+            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
         }
 
     }
