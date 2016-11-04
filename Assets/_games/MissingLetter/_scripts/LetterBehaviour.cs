@@ -194,9 +194,10 @@ namespace EA4S.MissingLetter
                 positions.Add(p);
             }
 
-            // TODO run fear
+            
             PlayAnimation(LLAnimationStates.LL_walking);
             mLetter.SetWalkingSpeed(1);
+            mLetter.HasFear = true;
 
             transform.DOLookAt(positions[0], 1f);
 
