@@ -20,7 +20,7 @@
 
         void OnPopupCloseRequested()
         {
-            game.SetCurrentState(game.PlayState);
+            game.SetCurrentState(game.TutorialState);
         }
 
         public void ExitState()
@@ -30,7 +30,7 @@
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.PlayState);
+            game.SetCurrentState(game.TutorialState);
         }
 
         public void Update(float delta)
