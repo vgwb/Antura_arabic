@@ -84,7 +84,7 @@ Material:
       second: 0.5
     - first:
         name: _FaceDilate
-      second: 0.7
+      second: 0
     - first:
         name: _FaceUVSpeedX
       second: 0
@@ -126,7 +126,7 @@ Material:
       second: 0
     - first:
         name: _OutlineWidth
-      second: 0.3
+      second: 0.08
     - first:
         name: _PerspectiveFilter
       second: 0.875
@@ -138,10 +138,10 @@ Material:
       second: 0.8333333
     - first:
         name: _ScaleRatioB
-      second: 0.25
+      second: 0.8333333
     - first:
         name: _ScaleRatioC
-      second: 0.25
+      second: 0.8333333
     - first:
         name: _ScaleX
       second: 1
