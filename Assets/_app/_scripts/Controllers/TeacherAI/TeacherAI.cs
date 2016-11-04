@@ -56,7 +56,7 @@ namespace EA4S
         public List<Db.MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
         {
             ResetPlaySession();
-            this.currentPlaySessionMiniGames = this.SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            this.currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
             return currentPlaySessionMiniGames;
         }
 
@@ -108,8 +108,8 @@ namespace EA4S
         // DEPRECATED (should now be performed through MiniGame Selection)
         public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
         {
-            int number = 2; // TODO: should be injected somehow!
-            InitialiseCurrentPlaySession(number);
+            int numberOfMinigame = 3; // TODO: should be injected somehow!
+            InitialiseCurrentPlaySession(numberOfMinigame);
 
             if (FAKE_SELECTION)
             {
