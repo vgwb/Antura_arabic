@@ -53,6 +53,8 @@ namespace EA4S.MissingLetter
         const int STARS_2_THRESHOLD = 5;
         const int STARS_3_THRESHOLD = 9;
 
+        public bool m_bInIdle;
+
         public int CurrentStars
         {
             get
@@ -88,6 +90,8 @@ namespace EA4S.MissingLetter
 
             Context.GetOverlayWidget().Initialize(false, false, false);
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+
+			m_bInIdle = true;
         }
 
         protected override IGameState GetInitialState()
@@ -128,7 +132,10 @@ namespace EA4S.MissingLetter
             base.OnDisable();
             //restore the removed letter
             ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
-        }
+		}
 
+        public void SetInIdle(bool _idle) {
+            m_bInIdle = _idle;
+        }
     }
 }
