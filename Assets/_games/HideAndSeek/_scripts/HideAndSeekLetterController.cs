@@ -20,6 +20,29 @@ public class HideAndSeekLetterController : MonoBehaviour {
             
 	}
 
+        public void resultAnimation(bool win)
+        {
+            //view.SetState(LLAnimationStates.LL_dancing);
+            if (moveTweener != null)
+            {
+                moveTweener.Kill();
+            }
+
+            if(win)
+            {
+                view.DoDancingWin();
+            }
+            else
+            {
+               view.DoDancingLose();
+         
+            }
+            
+
+        }
+
+       
+
         void MoveTo(Vector3 position, float duration)
         {
             view.SetState(LLAnimationStates.LL_walking);
@@ -54,6 +77,15 @@ public class HideAndSeekLetterController : MonoBehaviour {
                     //if (endTransformToCallback != null)
                     //    endTransformToCallback();
                 });
+        }
+
+        public void ResetLetter()
+        {
+            GetComponent<Animator>().SetTrigger("doReset");
+            view.SetState(LLAnimationStates.LL_idle);
+            isArrived = false;
+            isMoving = false;
+            isClickable = false;
         }
 
         void Update (){

@@ -63,42 +63,53 @@ namespace EA4S.HideAndSeek
             
         }
 
+        public void RepeatAudio()
+        {
+            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
+        }
+
         private IEnumerator DelayAnimation(bool answer)
         {
-            
+            game.PlayState.gameTime.Stop();
 
-            var initialDelay = 1f;
+            var initialDelay = 3f;
             yield return new WaitForSeconds(initialDelay);
             
-            game.PlayState.gameTime.Stop();
+            
 
             if(answer)
                 WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", true, image);
             else
                 WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", false, image);
 
-
+            //ArrayLetters[letterInAnimation].transform.position = originLettersPlaceholder.position;
         }
 
         void CheckResult(int id)
 		{
-
-            if (ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>().view.Data.Key == currentQuestion.GetAnswer().Key)
+            letterInAnimation = GetIdFromPosition(id);
+            HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
+            if (script.view.Data.Key == currentQuestion.GetAnswer().Key)
             {
-                ClearRound();
+                LockTrees();
                 StartCoroutine(DelayAnimation(true));
-                
-                Debug.Log("Hai vintooooooo");
+                script.resultAnimation(true);
+                Debug.Log("winner");
+                game.OnResult();
             }
             else
             {
-                Debug.Log("Hai sbagliato");
+                Debug.Log("WRONG!");
                 RemoveLife();
-                if(lifes == 0)
+                script.resultAnimation(false);
+                if (lifes == 0)
                 {
-                    ClearRound();
+
+                    LockTrees();
                     StartCoroutine(DelayAnimation(false));
+                    
                 }
+               
             }
                 
         }
@@ -140,26 +151,36 @@ namespace EA4S.HideAndSeek
             time = Time.time;
         }
 
-
+        public void LockTrees()
+        {
+            for (int i = 0; i < MAX_OBJECT; ++i)
+            {
+                ArrayTrees[i].GetComponent<Collider>().enabled = false;
+            }
+        }
         public void ClearRound()
         {
 
 
-            for(int i = 0; i < MAX_TREE; ++i)
+            for(int i = 0; i < MAX_OBJECT; ++i)
             {
-                ArrayLetters[i].transform.position = originLettersPlaceholder.position;
-                ArrayTrees[i].GetComponent<Collider>().enabled = false;
+                //if(i != letterInAnimation)
+                    ArrayLetters[i].transform.position = originLettersPlaceholder.position;
+                ArrayLetters[i].GetComponent<HideAndSeekLetterController>().ResetLetter();
                 UsedPlaceholder[i] = false;
+
             }
             
         }
 
         public void NewRound()
         {
+            ClearRound();
+
             currentQuestion = (HideAndSeekQuestionsPack)questionProvider.GetQuestion();
             StartNewRound = false;
             SetFullLife();
-            FreePlaceholder = MAX_TREE;
+            FreePlaceholder = MAX_OBJECT;
             ActiveLetters = currentQuestion.GetLetters().Count;
 
             ActiveTrees = new List<GameObject>();
@@ -240,18 +261,20 @@ namespace EA4S.HideAndSeek
         bool StartNewRound = true;
         int lifes;
         int ActiveLetters;
-        private const int MAX_TREE = 8;
+        private const int MAX_OBJECT = 8;
         private int FreePlaceholder;
 
 		public GameObject[] ArrayTrees;
         private List<GameObject> ActiveTrees;
         
         public Transform[] ArrayPlaceholder;
-        private bool[] UsedPlaceholder = new bool[8];
+        private bool[] UsedPlaceholder = new bool[MAX_OBJECT];
 
         public Transform originLettersPlaceholder;
 
 		public GameObject[] ArrayLetters;
+
+        private int letterInAnimation = -1;
 
         //public GameObject[] LifeSprite;
         //public GameObject LifeObj;
