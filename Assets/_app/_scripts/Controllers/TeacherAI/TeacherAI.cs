@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.Db;
@@ -7,64 +6,111 @@ using EA4S.Teacher;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Handles logic that represent the Teacher's expert system:
+    /// - selects minigames according to a given progression flow
+    /// - selects question packs according to the given profression flow
+    /// - selects minigame difficulty according to the player's status
+    /// </summary>
     public class TeacherAI
     {
         public static TeacherAI I;
 
+        // Temporary configuration
+        private static int NUMBER_OF_MINIGAMES_PER_PLAYSESSION = 3;
+
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
-        private LetterWordHelper lwHelper;
 
-        string[] bodyPartsWords;
+        // Helpers
+        public WordHelper wordHelper;
+        public JourneyHelper journeyHelper;
 
-        public List<MiniGameData> MiniGamesInPlaySession;
-
-        List<LL_WordData> availableVocabulary = new List<LL_WordData>();
-
-        // AI engines
+        // Selection engines
         MiniGameSelectionAI minigameSelectionAI;
         WordSelectionAI wordSelectionAI;
+
+        // State
+        private List<MiniGameData> currentPlaySessionMiniGames = new List<MiniGameData>();
+
+        #region Setup
 
         public TeacherAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             I = this;
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
-            this.lwHelper = dbManager.letterWordHelper;
+
+            this.wordHelper = new WordHelper(_dbManager, this);
+            this.journeyHelper = new JourneyHelper(_dbManager, this);
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
-            this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile);
-
-            MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
-            // Debug.Log("TeacherAI exists");
-
-            bodyPartsWords = new[]
-            {
-                "mouth", "tooth", "eye", "nose", "hand", "foot", "belly", "hair", "face", "tongue", "chest", "back"
-            };
+            this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
         }
 
-        public void InitialiseNewPlaySession()
+        private void ResetPlaySession()
         {
-            // @todo: make sure this is called when a new play session starts
+            this.currentPlaySessionMiniGames.Clear();
+
             this.minigameSelectionAI.InitialiseNewPlaySession();
             this.wordSelectionAI.InitialiseNewPlaySession();
         }
 
-        #region Stefano's queries
+        #endregion
 
-        public List<Db.MiniGameData> GimmeGoodMinigames()
+        #region Interface - PlaySession & MiniGame Selection
+
+        public List<MiniGameData> InitialiseCurrentPlaySession()
         {
-            return dbManager.GetActiveMinigames();
+            return InitialiseCurrentPlaySession(NUMBER_OF_MINIGAMES_PER_PLAYSESSION);
         }
 
-        public Db.WordData GimmeAGoodWord()
+        private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
         {
-            int index = Random.Range(0, bodyPartsWords.Length - 1);
-            return dbManager.GetWordDataById(bodyPartsWords[index]);
+            ResetPlaySession();
+            this.currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            return currentPlaySessionMiniGames;
         }
 
+        #endregion
+
+        #region Interface - Current MiniGame Getters
+
+        public List<MiniGameData> CurrentPlaySessionMiniGames
+        {
+            get
+            { 
+                return currentPlaySessionMiniGames;
+            }
+        }
+
+        public MiniGameData CurrentMiniGame
+        {
+            get
+            {
+                return currentPlaySessionMiniGames.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
+            }
+        }
+
+        #endregion
+
+        #region Interface - Letters / Words
+
+        // DEPRECATED (could safely remove this! it is not used anymore!)
+        public WordData GimmeAGoodWord(WordDataCategory category)
+        {
+            return dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart).RandomSelectOne();
+        }
+
+        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
+        public LL_LetterData GimmeARandomLetter()
+        {
+            var data = this.SelectRandomLetter();
+            return BuildLetterData_LL(data);
+        }
+
+        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
         /// <summary>
         /// Return WordData from a list of available data.
         /// </summary>
@@ -72,15 +118,19 @@ namespace EA4S
         public LL_WordData GimmeAGoodWordData()
         {
             // init vocabulary
-            if (availableVocabulary.Count == 0)
-                availableVocabulary = getVocabularySubset(bodyPartsWords);
+            var availableVocabulary = BuildWordData_LL_Set(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
 
             List<LL_WordData> returnList = new List<LL_WordData>();
             if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
+            { 
                 // if already used all available words... restart.
                 AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
-            foreach (LL_WordData w in availableVocabulary) {
-                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w)) {
+            }
+
+            foreach (LL_WordData w in availableVocabulary)
+            {
+                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
+                {
                     returnList.Add(w); // Only added if not already used
                 }
             }
@@ -91,12 +141,8 @@ namespace EA4S
             return returnWord;
         }
 
-        public LL_LetterData GimmeARandomLetter()
-        {
-            var RandomLetterData = SelectOne(dbManager.GetAllLetterData()); // dbManager.GetLetterDataByRandom();
-            return new LL_LetterData(RandomLetterData.GetId());
-        }
 
+        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
         /// <summary>
         /// TODO
         /// Gimmes n similar letters to the current.
@@ -107,58 +153,77 @@ namespace EA4S
         public List<Db.LetterData> GimmeSimilarLetters(Db.LetterData letter, int howMany)
         {
             List<Db.LetterData> returnList = new List<Db.LetterData>();
-            returnList.Add(SelectOne(dbManager.GetAllLetterData()));
+            returnList.Add(dbManager.GetAllLetterData().RandomSelectOne());
             return returnList;
         }
 
-        List<LL_WordData> getVocabularySubset(string[] _goodWords)
+        #endregion
+
+        #region Interface - Difficulty
+
+        public float GetCurrentDifficulty()
         {
-            List<LL_WordData> returnList = new List<LL_WordData>();
-            foreach (string wordKey in _goodWords) {
-                returnList.Add(LL_WordData.GetWordDataByKeyRow(wordKey));
-            }
-            return returnList;
+            // @todo: implement this
+            // @todo: use the debug value if needed, injected b DebygManager.I.Difficulty
+            return 0.5f;   
         }
 
-        public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
+        #endregion
+
+        #region WordData -> LL_WordData helpers
+
+        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
+        public LL_LetterData BuildLetterData_LL(LetterData data)
         {
-            var miniGamesInPlaySession = new List<MiniGameData>();
-            switch (this.playerProfile.CurrentJourneyPosition.PlaySession) {
-                case 1:
-                    //_MiniGamesInPlaySession = this.dbManager.GetPlaySessionDataById("1.1.1")
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
-                    break;
-                case 2:
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Egg));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_letter));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Maze));
-                    break;
-                case 3:
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_spelling));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.ThrowBalls_letters));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_letters));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.MakeFriends));
-                    break;
-                case 4:
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_words));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Tobogan_words));
-                    miniGamesInPlaySession.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.Balloons_spelling));
-                    break;
-            }
-            return miniGamesInPlaySession;
+            return new LL_LetterData(data.GetId());
         }
 
-        public MiniGameData GetCurrentMiniGameData()
+        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
+        public List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
         {
-            MiniGamesInPlaySession = GetMiniGamesForCurrentPlaySession();
-            return MiniGamesInPlaySession.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
+            return data_list.ConvertAll<ILivingLetterData>(x => BuildLetterData_LL(x)); 
+        }
+        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
+        public LL_WordData BuildWordData_LL(WordData data)
+        {
+            return new LL_WordData(data.GetId(), data);
+        }
+
+        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
+        public List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
+        {
+            return data_list.ConvertAll<ILivingLetterData>(x => BuildWordData_LL(x));
+        }
+
+        #endregion
+
+
+        // HELPER (move to JourneyHelper?)
+        private string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
+        {
+            return journeyPosition.Stage + "." + journeyPosition.LearningBlock + "." + journeyPosition.PlaySession;
+        }
+      
+        #region MiniGame Selection queries
+
+        private List<Db.MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
+        {
+            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+            return SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
         }
 
         public List<Db.MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
         {
-            return this.minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
+            return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
+        }
+
+        #endregion
+
+        #region Letter/Word Selection queries
+
+        public LetterData SelectRandomLetter()
+        {
+            return dbManager.GetAllLetterData().RandomSelectOne();
         }
 
         public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
@@ -166,43 +231,24 @@ namespace EA4S
             return this.wordSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
-        #endregion
-
-        #region Letter & word queries
-
         public List<LetterData> GetLettersInWord(string wordId)
         {
-            return lwHelper.GetLettersInWord(wordId);
+            return wordHelper.GetLettersInWord(wordId);
         }
 
         public List<LetterData> SelectLettersInWord(int nToSelect, string wordId)
         {
-            return Select(2, lwHelper.GetLettersInWord(wordId));
+            return wordHelper.GetLettersInWord(wordId).RandomSelect(2);
         }
 
         public List<WordData> SelectWordsWithLetters(int nToSelect, params string[] letters)
         {
-            return Select(2, lwHelper.GetWordsWithLetters(letters));
-        }
-
-
-        // @TODO: these could be set as list extensions
-        public List<T> Select<T>(int numberToSelect, List<T> all_list)
-        {
-            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, numberToSelect);
-        }
-
-        public T SelectOne<T>(List<T> all_list)
-        {
-            return RandomHelper.RouletteSelectNonRepeating<T>(all_list, 1)[0];
+            return wordHelper.GetWordsWithLetters(letters).RandomSelect(2);
         }
 
         #endregion
 
-
-
-
-        #region MiniGames queries
+        #region Score Log queries
 
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
@@ -223,24 +269,53 @@ namespace EA4S
 
         public List<ScoreData> GetCurrentScoreForPlaySessionsOfStage(int stage)
         {
-            // First, get all play sessions given a stage
+            // First, get all data given a stage
             List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage);
             List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
 
-            // Then, get all scores of all play sessions
+            // Then, get all scores
             string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions'");
-            List<ScoreData> all_playsession_list = dbManager.FindScoreDataByQuery(query);
+            List<ScoreData> all_score_list = dbManager.FindScoreDataByQuery(query);
 
             // At last, filter by the given stage
-            List<ScoreData> stage_playsession_list =
-                all_playsession_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            List<ScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            return filtered_score_list;
+        }
 
-            return stage_playsession_list;
+        public List<ScoreData> GetCurrentScoreForPlaySessionsOfStageAndLearningBlock(int stage, int learningBlock)
+        {
+            // First, get all data given a stage
+            List<PlaySessionData> eligiblePlaySessionData_list = this.dbManager.FindPlaySessionData(x => x.Stage == stage && x.LearningBlock == learningBlock); // TODO: make this readily available!
+            List<string> eligiblePlaySessionData_id_list = eligiblePlaySessionData_list.ConvertAll(x => x.Id);
+
+            // Then, get all scores
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'PlaySessions'");
+            List<ScoreData> all_score_list = dbManager.FindScoreDataByQuery(query);
+
+            // At last, filter
+            List<ScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
+            return filtered_score_list;
+        }
+        
+
+        public List<ScoreData> GetCurrentScoreForLearningBlocksOfStage(int stage)
+        {
+            // First, get all data given a stage
+            List<LearningBlockData> eligibleLearningBlockData_list = this.dbManager.FindLearningBlockData(x => x.Stage == stage);
+            List<string> eligibleLearningBlockData_id_list = eligibleLearningBlockData_list.ConvertAll(x => x.Id);
+
+            // Then, get all scores
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'LearningBlock'");
+            List<ScoreData> all_score_list = dbManager.FindScoreDataByQuery(query);
+
+            // At last, filter by the given stage
+            List<ScoreData> filtered_score_list = all_score_list.FindAll(x => eligibleLearningBlockData_id_list.Contains(x.ElementId));
+            return filtered_score_list;
         }
 
         #endregion
 
-        #region Assessment queries
+        #region Assessment Log queries
 
         public List<LetterData> GetFailedAssessmentLetters(MiniGameCode assessmentCode) // also play session
         {
@@ -269,7 +344,7 @@ namespace EA4S
 
         #endregion
 
-        #region Journeymap queries
+        #region Journeymap Log queries
 
         public List<LogPlayData> GetScoreHistoryForCurrentJourneyPosition()
         {
@@ -283,7 +358,7 @@ namespace EA4S
 
         #endregion
 
-        #region Mood queries
+        #region Mood Log queries
 
         public List<LogMoodData> GetLastMoodData(int number)
         {
