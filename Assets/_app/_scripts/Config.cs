@@ -7,7 +7,7 @@ namespace EA4S
 {
     public static class Config
     {
-        public const string AppVersion = "0.10.28b";
+        public const string AppVersion = "0.11.04";
 
 
 #if UNITY_EDITOR
