@@ -6,7 +6,7 @@ using ArabicSupport;
 
 namespace EA4S.Tobogan
 {
-    class QuestionLivingLetter : MonoBehaviour
+    public class QuestionLivingLetter : MonoBehaviour
     {
         public Transform livingLetterTransform;
         public BoxCollider boxCollider;
