@@ -7,7 +7,7 @@ using System;
 
 namespace EA4S {
 
-    public class RewardsList : MonoBehaviour {
+    public class RewardsUI : MonoBehaviour {
 
         #region life cycle
         void Awake() {
@@ -41,7 +41,11 @@ namespace EA4S {
         [HideInInspector]
         public string RewardTypeFilter = "";
 
-        AnturaModelManager.Reward actualReward;
+        /// <summary>
+        /// The actual reward enabled for material modification.
+        /// </summary>
+        Reward actualReward;
+
         GameObject actualRewardGO;
 
         void ClearList() {
@@ -54,13 +58,13 @@ namespace EA4S {
 
         void LoadRewarsList(string _position = "") {
             ClearList();
-            List<AnturaModelManager.Reward> rewards;
+            List<Reward> rewards;
             if (_position != "")
                 rewards = AnturaModelManager.Instance.config.Antura_rewards.FindAll(r => r.BoneAttach == _position);
             else
                 rewards = AnturaModelManager.Instance.config.Antura_rewards;
 
-            foreach (AnturaModelManager.Reward reward in rewards) {
+            foreach (Reward reward in rewards) {
                 Button b = Instantiate<Button>(ElementPrefab.GetComponent<Button>());
                 b.transform.SetParent(ElementContainer.transform);
                 b.GetComponentInChildren<Text>().text = reward.RewardName;
@@ -83,7 +87,6 @@ namespace EA4S {
         void LoadRewardOnDog(string _name) {
             actualReward = AnturaModelManager.Instance.config.Antura_rewards.Find(r => r.RewardName == _name);
             actualRewardGO = AnturaModelManager.Instance.LoadReward(actualReward.ID);
-
             foreach (var color in actualRewardGO.GetComponentsInChildren<MeshRenderer>()) {
                 if (color.name == "color_1") {
                     color.materials = new Material[] { MaterialManager.LoadMaterial(material1, (PaletteType)Enum.Parse(typeof(PaletteType), actualReward.Material1)) };
@@ -92,6 +95,8 @@ namespace EA4S {
                 }
             }
         }
+
+
         #endregion
 
         #region Reward type filter
