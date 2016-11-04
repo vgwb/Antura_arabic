@@ -597,8 +597,9 @@ GameObject:
   - 114: {fileID: 114000010895556654}
   - 114: {fileID: 114000010883071480}
   - 114: {fileID: 114000010337627472}
+  - 114: {fileID: 114000011248121100}
   m_Layer: 0
-  m_Name: LivingLetterTickle
+  m_Name: LivingLetterTickle_deprecated2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,7 +1160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013352566352}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -1, y: -2.5, z: -6}
+  m_LocalPosition: {x: 0, y: -2.5, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -1624,7 +1625,7 @@ Animator:
   m_GameObject: {fileID: 1000012998449152}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6977925c7cebe5248a6abfd20fd6c8e1, type: 3}
-  m_Controller: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
+  m_Controller: {fileID: 9100000, guid: f44c554f34065b347a38ed2a1329e671, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1647,6 +1648,7 @@ MonoBehaviour:
   m_oBody: {fileID: 64000013479377596}
   m_oSurfaceRenderer: {fileID: 137000012769297538}
   m_iPixelPerUnit: 30
+  m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
 --- !u!114 &114000010869263054
 MonoBehaviour:
@@ -1677,9 +1679,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7024b0688c4fbe3489eb211a00ca5270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_szBrushName: LetterBrush
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
   m_fBrushScaling: 0.5
-  m_oDrawingColor: {r: 1, g: 0, b: 0, a: 1}
+  m_oDrawingColor: {r: 0.6666667, g: 0, b: 0, a: 1}
 --- !u!114 &114000010895556654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1694,8 +1697,24 @@ MonoBehaviour:
   m_oBrush: {fileID: 114000010883071480}
   m_oTextMeshObject: {fileID: 114000013236453108}
   m_iPixelPerUnit: 30
-  m_iPercentageRequiredToWin: 95
+  m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
+  m_iPercentageRequiredToWin: 95
+--- !u!114 &114000011248121100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013352566352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7024b0688c4fbe3489eb211a00ca5270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_szBrushName: BodyBrush
+  m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
+  m_fBrushScaling: 0.5
+  m_oDrawingColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114000011871043004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1761,10 +1780,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 26
+  m_fontSize: 20.05
   m_fontSizeBase: 26
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 16
   m_fontSizeMax: 60
   m_fontStyle: 0

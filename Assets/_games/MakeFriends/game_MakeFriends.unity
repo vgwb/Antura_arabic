@@ -626,7 +626,7 @@ MonoBehaviour:
   entranceDuration: 1.5
   celebrationDuration: 2
   friendlyExitDuration: 0.75
-  speakDelay: 1.5
+  speakDelay: 1.25
   movingAwayDuration: 1.5
   livingLetter: {fileID: 0}
   exitRotation: {x: 0, y: 140, z: 0}
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 436118476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3dc81366fcf643f8bae0f2905258433, type: 3}
+  m_Script: {fileID: 11500000, guid: ff49bd318ba6549c18f2f2b4b4cdc0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
@@ -1049,8 +1049,7 @@ MonoBehaviour:
   endGameCanvas: {fileID: 2125749105}
   starFlowers: {fileID: 1030534976}
   sceneCamera: {fileID: 1235573570}
-  numberOfRounds: 6
-  uiDelay: 4
+  uiDelay: 3.5
   endCameraPosition: {x: 0, y: 40, z: 5}
   endCameraRotation: {x: 45, y: 0, z: 0}
   letterBalloonPrefab: {fileID: 1000010726512004, guid: 1f083c493a8bd40289e07e176c6d96a8,
@@ -1337,7 +1336,7 @@ MonoBehaviour:
   entranceDuration: 1.5
   celebrationDuration: 2
   friendlyExitDuration: 0.75
-  speakDelay: 0.5
+  speakDelay: 0.25
   movingAwayDuration: 1.5
   livingLetter: {fileID: 0}
   exitRotation: {x: 0, y: 220, z: 0}
@@ -1852,7 +1851,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 70ed7c0941fff474698ff368c77606d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ffd0d18f270a348feb473345d847e727, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

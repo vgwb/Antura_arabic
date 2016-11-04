@@ -10,7 +10,10 @@ namespace EA4S.ColorTickle
     public class IntroductionGameState : IGameState
     {
         ColorTickleGame game;
+
         float timer = 1;
+
+        bool m_FirstLetter = true;
 
         public IntroductionGameState(ColorTickleGame game)
         {
@@ -19,10 +22,27 @@ namespace EA4S.ColorTickle
 
         public void EnterState()
         {
-            game.currentLetter = LetterObjectView.Instantiate(game.m_LetterPrefab);
+            IGameContext gameCotext = ColorTickleConfiguration.Instance.Context;
+            game.gameUI = gameCotext.GetOverlayWidget();
+            game.gameUI.Initialize(false, true, true);
+            game.gameUI.SetMaxLives(game.lives);
+            game.gameUI.SetClockDuration(game.clockTime);
+
+            if (m_FirstLetter)
+            {
+                game.currentLetter = LetterObjectView.Instantiate(game.m_LetterPrefab);
+                m_FirstLetter = false;
+            }
+            else
+            {
+                //Destroy previous Letter
+                //Istantiate a new Letter 
+            }
+
             game.currentLetter.Init(AppManager.Instance.Letters.GetRandomElement());
-            //game.m_MyLetter.Lable.enableAutoSizing = false;
-            //game.m_MyLetter.Lable.fontSize = 50.0f;           
+
+            //game.currentLetter.GetComponent<TMPTextColoring>().enableColor = false;
+            //game.currentLetter.GetComponent<SurfaceColoring>().enableColor = false;
         }
 
         public void ExitState()
@@ -37,9 +57,6 @@ namespace EA4S.ColorTickle
             {
                 game.SetCurrentState(game.PlayState);
             }
-
-
-
         }
 
         public void UpdatePhysics(float delta)

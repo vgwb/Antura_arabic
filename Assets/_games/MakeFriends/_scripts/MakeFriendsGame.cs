@@ -8,7 +8,7 @@ using EA4S;
 
 namespace EA4S.MakeFriends
 {
-    public class MakeFriendsGameManager : MiniGameBase
+    public class MakeFriendsGame : MiniGame
     {
         public LivingLetterArea leftArea;
         public LivingLetterArea rightArea;
@@ -16,7 +16,7 @@ namespace EA4S.MakeFriends
         public Canvas endGameCanvas;
         public StarFlowers starFlowers;
         public GameObject sceneCamera;
-        public int numberOfRounds;
+        public static int numberOfRounds = 6;
         public float uiDelay;
         public Vector3 endCameraPosition;
         public Vector3 endCameraRotation;
@@ -27,7 +27,7 @@ namespace EA4S.MakeFriends
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
-        new public static MakeFriendsGameManager Instance;
+        new public static MakeFriendsGame Instance;
         [Header("Gameplay Info")]
         new public MakeFriendsGameplayInfo GameplayInfo;
 
@@ -36,19 +36,61 @@ namespace EA4S.MakeFriends
 
         private LL_WordData wordData1;
         private List<LL_LetterData> wordLetters1 = new List<LL_LetterData>();
-
         private LL_WordData wordData2;
         private List<LL_LetterData> wordLetters2 = new List<LL_LetterData>();
-
         private List<LL_LetterData> commonLetters = new List<LL_LetterData>();
         private List<LL_LetterData> uncommonLetters = new List<LL_LetterData>();
         private List<LL_LetterData> choiceLetters = new List<LL_LetterData>();
         private List<LL_LetterData> correctChoices = new List<LL_LetterData>();
         private List<LL_LetterData> incorrectChoices = new List<LL_LetterData>();
         private int currentRound = 0;
-
         private int friendships = 0;
 
+        public MakeFriendsIntroductionState IntroductionState { get; private set; }
+
+        public MakeFriendsQuestionState QuestionState { get; private set; }
+
+        public MakeFriendsPlayState PlayState { get; private set; }
+
+        public MakeFriendsResultState ResultState { get; private set; }
+
+        public int CurrentScore { get { return friendships; } }
+
+        private readonly int STARS_1_THRESHOLD = Mathf.CeilToInt(0.33f * numberOfRounds);
+        private readonly int STARS_2_THRESHOLD = Mathf.CeilToInt(0.66f * numberOfRounds);
+        private readonly int STARS_3_THRESHOLD = numberOfRounds;
+
+        public int CurrentStars
+        {
+            get
+            {
+                if (CurrentScore < STARS_1_THRESHOLD)
+                    return 0;
+                if (CurrentScore < STARS_2_THRESHOLD)
+                    return 1;
+                if (CurrentScore < STARS_3_THRESHOLD)
+                    return 2;
+                return 3;
+            }
+        }
+
+        protected override void OnInitialize(IGameContext context)
+        {
+            IntroductionState = new MakeFriendsIntroductionState(this);
+            QuestionState = new MakeFriendsQuestionState(this);
+            PlayState = new MakeFriendsPlayState(this);
+            ResultState = new MakeFriendsResultState(this);
+        }
+
+        protected override IGameState GetInitialState()
+        {
+            return IntroductionState;
+        }
+
+        protected override IGameConfiguration GetConfiguration()
+        {
+            return MakeFriendsConfiguration.Instance;
+        }
 
         protected override void Awake()
         {
@@ -63,30 +105,23 @@ namespace EA4S.MakeFriends
             AppManager.Instance.InitDataAI();
             AppManager.Instance.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
-
-            AudioManager.I.PlayMusic(Music.Relax);
-            Play();
+            PlayIdleMusic();
 
             //Random.seed = System.DateTime.Now.GetHashCode();
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
         }
-
-        protected override void ReadyForGameplay()
+            
+        public void PlayActiveMusic()
         {
-            base.ReadyForGameplay();
+            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
         }
 
-        protected override void OnDisable()
+        public void PlayIdleMusic()
         {
-            base.OnDisable();
+            MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
         }
-
-        protected override void OnMinigameQuit()
-        {
-            base.OnMinigameQuit();
-        }
-
+            
         public void Play()
         {
             currentRound++;
@@ -301,9 +336,9 @@ namespace EA4S.MakeFriends
         private IEnumerator EndRound_Coroutine(bool win)
         {
             var winDelay1 = 2f;
-            var winDelay2 = 2f;
+            var winDelay2 = 1.5f;
             var friendlyExitDelay = leftArea.friendlyExitDuration;
-            var loseDelay = 2f;
+            var loseDelay = 1.5f;
 
             HideLetterPicker();
 
@@ -367,6 +402,7 @@ namespace EA4S.MakeFriends
             var delay1 = 1f;
             yield return new WaitForSeconds(delay1);
 
+            PlayIdleMusic();
             Reset();
 
             // Zoom out camera
@@ -388,34 +424,33 @@ namespace EA4S.MakeFriends
                 yield return new WaitForFixedUpdate();
             }
                 
-            //uiCanvas.gameObject.SetActive(false);
-            endGameCanvas.gameObject.SetActive(true);
+//            endGameCanvas.gameObject.SetActive(true);
+//
+//            int numberOfStars = 0;
+//
+//            if (friendships <= 0)
+//            {
+//                numberOfStars = 0;
+//                WidgetSubtitles.I.DisplaySentence("game_result_retry");
+//            }
+//            else if ((float)friendships / numberOfRounds < 0.5f)
+//            {
+//                numberOfStars = 1;
+//                WidgetSubtitles.I.DisplaySentence("game_result_fair");
+//            }
+//            else if (friendships < numberOfRounds)
+//            {
+//                numberOfStars = 2;
+//                WidgetSubtitles.I.DisplaySentence("game_result_good");
+//            }
+//            else
+//            {
+//                numberOfStars = 3;
+//                WidgetSubtitles.I.DisplaySentence("game_result_great");
+//            }
+//            starFlowers.Show(numberOfStars);
 
-            int numberOfStars = 0;
-
-            if (friendships <= 0)
-            {
-                numberOfStars = 0;
-                WidgetSubtitles.I.DisplaySentence("game_result_retry");
-            }
-            else if ((float)friendships / numberOfRounds < 0.5f)
-            {
-                numberOfStars = 1;
-                WidgetSubtitles.I.DisplaySentence("game_result_fair");
-            }
-            else if (friendships < numberOfRounds)
-            {
-                numberOfStars = 2;
-                WidgetSubtitles.I.DisplaySentence("game_result_good");
-            }
-            else
-            {
-                numberOfStars = 3;
-                WidgetSubtitles.I.DisplaySentence("game_result_great");
-            }
-
-            Debug.Log("Stars: " + numberOfStars);
-            starFlowers.Show(numberOfStars);
+            PlayState.OnResult();
         }
     }
 

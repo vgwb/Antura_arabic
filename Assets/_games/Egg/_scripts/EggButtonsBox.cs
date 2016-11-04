@@ -11,6 +11,9 @@ namespace EA4S.Egg
         public AnimationCurve normalAnimationCurve;
         public AnimationCurve anturaInAnimationCurve;
 
+        public Color[] buttonColors;
+        List<Color> availableButtonColors = new List<Color>();
+
         GameObject eggButtonPrefab;
 
         List<EggButton> eggButtons = new List<EggButton>();
@@ -23,11 +26,15 @@ namespace EA4S.Egg
 
         Action<ILivingLetterData> buttonsCallback;
 
+        System.Random randomGenerator;
+
         public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager, Action<ILivingLetterData> buttonsCallback)
         {
             this.eggButtonPrefab = eggButtonPrefab;
             this.audioManager = audioManager;
             this.buttonsCallback = buttonsCallback;
+
+            randomGenerator = new System.Random((int)Time.realtimeSinceStartup);
         }
 
         public void AddButton(ILivingLetterData letterData)
@@ -55,6 +62,7 @@ namespace EA4S.Egg
             eggButton.transform.SetParent(transform, false);
             eggButton.gameObject.SetActive(false);
             eggButton.Initialize(audioManager, buttonsCallback);
+            eggButton.colorLightUp = GetButtonColor();
             eggButton.DisableInput();
             return eggButton;
         }
@@ -90,7 +98,7 @@ namespace EA4S.Egg
 
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
-                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
+                int index = randomGenerator.Next(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
@@ -137,7 +145,7 @@ namespace EA4S.Egg
 
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
-                int index = UnityEngine.Random.Range(0, buttonsIndex.Count);
+                int index = randomGenerator.Next(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
@@ -297,6 +305,27 @@ namespace EA4S.Egg
 
                 delay += buttons[i].PlayButtonAudio(lightUp, delay, callback);
             }
+        }
+
+        Color GetButtonColor()
+        {
+            Color newColor;
+
+            if(availableButtonColors.Count <= 0)
+            {
+                for(int i=0; i<buttonColors.Length; i++)
+                {
+                    availableButtonColors.Add(buttonColors[i]);
+                }
+            }
+
+            int colorIndex = UnityEngine.Random.Range(0, availableButtonColors.Count);
+
+            newColor = availableButtonColors[colorIndex];
+
+            availableButtonColors.RemoveAt(colorIndex);
+
+            return newColor;
         }
     }
 }

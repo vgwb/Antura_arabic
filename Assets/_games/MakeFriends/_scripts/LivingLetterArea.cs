@@ -39,14 +39,14 @@ namespace EA4S.MakeFriends
         {
             exitRotation = exitRotation_readable;
 
-            if (MakeFriendsGameManager.Instance.Configuration.Variation != MakeFriendsVariation.EASY)
+            if (MakeFriendsGame.Instance.Configuration.Variation != MakeFriendsVariation.EASY)
             {
                 exitRotation = exitRotation_unreadable;    
             }
 
             if (livingLetter != null)
             {
-                livingLetter.focusOnTouch = MakeFriendsGameManager.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
+                livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
             }
         }
 
@@ -58,7 +58,7 @@ namespace EA4S.MakeFriends
             livingLetter = instance.GetComponent<LivingLetterController>();
             livingLetter.Init(wordData);
             livingLetter.container = this.gameObject;
-            livingLetter.focusOnTouch = MakeFriendsGameManager.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
+            livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
 
             AdjustForDifficulty();
         }
