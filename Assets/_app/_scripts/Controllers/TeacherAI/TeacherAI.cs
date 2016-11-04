@@ -10,6 +10,9 @@ namespace EA4S
     {
         public static TeacherAI I;
 
+        // Temporary configuration
+        private static int NUMBER_OF_MINIGAMES_PER_PLAYSESSION = 3;
+
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
@@ -50,10 +53,14 @@ namespace EA4S
 
         #endregion
 
-        #region Interface - MapManager
+        #region Interface - PlaySession & MiniGame Selection
 
-        // TODO: call this from the MapManager
-        public List<Db.MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
+        public List<MiniGameData> InitialiseCurrentPlaySession()
+        {
+            return InitialiseCurrentPlaySession(NUMBER_OF_MINIGAMES_PER_PLAYSESSION);
+        }
+
+        private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
         {
             ResetPlaySession();
             this.currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
@@ -62,17 +69,16 @@ namespace EA4S
 
         #endregion
 
-        #region Interface - MiniGame Getters
+        #region Interface - Current MiniGame Getters
 
-        // TODO: call this to get all minigame data for the current play session
         public List<MiniGameData> CurrentPlaySessionMiniGames
         {
-            get { 
+            get
+            { 
                 return currentPlaySessionMiniGames;
             }
         }
 
-        // TODO: call this to get the current single minigame data
         public MiniGameData CurrentMiniGame
         {
             get
@@ -81,48 +87,7 @@ namespace EA4S
             }
         }
 
-        // DEPRECATED (should now use CurrentPlaySessionMiniGames)
-        public List<MiniGameData> MiniGamesInPlaySession
-        {
-            get
-            {
-                return currentPlaySessionMiniGames;
-            }
-        }
-
-        // DEPRECATED (use CurrentMiniGameData instead)
-        public MiniGameData GetCurrentMiniGameData()
-        {
-            return CurrentMiniGame;
-        }
-
-        // DEPRECATED (should now be performed through MiniGame Selection)
-        public List<MiniGameData> GimmeGoodMinigames()
-        {
-            return dbManager.GetActiveMinigames();
-        }
-
-
-        bool FAKE_SELECTION = true; // @todo: this must be removed when minigames are correct!
-
-        // DEPRECATED (should now be performed through MiniGame Selection)
-        public List<MiniGameData> GetMiniGamesForCurrentPlaySession()
-        {
-            int numberOfMinigame = 3; // TODO: should be injected somehow!
-            InitialiseCurrentPlaySession(numberOfMinigame);
-
-            if (FAKE_SELECTION)
-            {
-                this.currentPlaySessionMiniGames.Clear();
-                this.currentPlaySessionMiniGames.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.FastCrowd_alphabet));
-                this.currentPlaySessionMiniGames.Add(this.dbManager.GetMiniGameDataByCode(MiniGameCode.DancingDots));
-            } 
-
-            return CurrentPlaySessionMiniGames;
-        }
-
         #endregion
-
 
         #region Interface - Letters / Words
 
@@ -227,12 +192,12 @@ namespace EA4S
         private List<Db.MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
         {
             var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
-            return this.SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
+            return SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
         }
 
         public List<Db.MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
         {
-            return this.minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
+            return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
         #endregion

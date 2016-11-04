@@ -52,11 +52,13 @@ namespace EA4S
 
         void Start()
         {
+            /* DEPRECATED
             AppManager.Instance.InitDataAI();
             gameData = AppManager.Instance.Teacher.GimmeGoodMinigames();
             numberOfGames = gameData.Count;
             Debug.Log("numberOfGames " + numberOfGames);
-            gameIndexToForceSelect = gameData.FindIndex(a => a.Code == AppManager.Instance.Teacher.GetCurrentMiniGameData().Code);
+            gameIndexToForceSelect = gameData.FindIndex(a => a.Code == AppManager.Instance.Teacher.CurrentMiniGame.Code);
+            */
 
             currentGameIndex = 0;
             PopupImage = Popup.GetComponent<Image>();
@@ -119,12 +121,12 @@ namespace EA4S
         private void ShowGameSelector()
         {
             GamesSelector.OnComplete += GoToMinigame;
-            GamesSelector.Show(TeacherAI.I.GetMiniGamesForCurrentPlaySession());
+            GamesSelector.Show(TeacherAI.I.CurrentPlaySessionMiniGames);
         }
 
         private void GoToMinigame()
         {
-            MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+            MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;
             AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
             //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(TeacherAI.I.GetCurrentMiniGameData().Scene);
         }

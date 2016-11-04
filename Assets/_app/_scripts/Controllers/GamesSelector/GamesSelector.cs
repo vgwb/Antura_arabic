@@ -225,14 +225,13 @@ namespace EA4S
 
         void AutoLoadMinigames()
         {
-            AppManager.Instance.InitDataAI();
             OnComplete += GoToMinigame;
-            Show(TeacherAI.I.GetMiniGamesForCurrentPlaySession());
+            Show(TeacherAI.I.CurrentPlaySessionMiniGames);
         }
 
         void GoToMinigame()
         {
-            MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+            MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;
             AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
         }
 

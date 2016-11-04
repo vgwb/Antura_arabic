@@ -105,6 +105,8 @@ namespace EA4S
 
         public void Play()
         {
+            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
+
             if (AppManager.Instance.IsAssessmentTime)
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
             else
@@ -142,13 +144,6 @@ namespace EA4S
             {
                 Debug.Log(info.data + ": " + info.score);
             }
-        }
-
-        // TODO: use similar code to initialise a play session
-        private void TestInitialisePlaySessions()
-        {
-            int nMiniGames = 3; // TODO: where do I get these from?
-            AppManager.Instance.Teacher.InitialiseCurrentPlaySession(nMiniGames);
         }
 
     }
