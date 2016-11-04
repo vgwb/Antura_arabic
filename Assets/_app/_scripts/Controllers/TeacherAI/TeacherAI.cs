@@ -173,26 +173,26 @@ namespace EA4S
         #region WordData -> LL_WordData helpers
 
         // HELPER (could be in the new "MiniGameLauncher SYSTEM")
-        private LL_LetterData BuildLetterData_LL(LetterData data)
+        public LL_LetterData BuildLetterData_LL(LetterData data)
         {
             return new LL_LetterData(data.GetId());
         }
 
+        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
+        public List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
+        {
+            return data_list.ConvertAll<ILivingLetterData>(x => BuildLetterData_LL(x)); 
+        }
         // HELPER (could be in the new "MiniGameLauncher SYSTEM")
-        private LL_WordData BuildWordData_LL(WordData data)
+        public LL_WordData BuildWordData_LL(WordData data)
         {
             return new LL_WordData(data.GetId(), data);
         }
 
         // HELPER (should be in the new "MiniGameLauncher SYSTEM")
-        private List<LL_WordData> BuildWordData_LL_Set(List<WordData> data_list)
+        public List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
         {
-            List<LL_WordData> returnList = new List<LL_WordData>();
-            foreach (var data in data_list)
-            {
-                returnList.Add(BuildWordData_LL(data));
-            }
-            return returnList;
+            return data_list.ConvertAll<ILivingLetterData>(x => BuildWordData_LL(x));
         }
 
         #endregion
