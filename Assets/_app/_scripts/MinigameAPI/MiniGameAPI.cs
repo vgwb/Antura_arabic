@@ -144,6 +144,7 @@ namespace EA4S.API
                 case MiniGameCode.Assessment_LettersMatchShape:
                     break;
                 case MiniGameCode.AlphabetSong:
+                    // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Balloons_counting:
                     Balloons.BalloonsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
@@ -171,7 +172,7 @@ namespace EA4S.API
                     break;
                 case MiniGameCode.ColorTickle:
                     ColorTickle.ColorTickleConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    //ColorTickle.ColorTickleConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    ColorTickle.ColorTickleConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     ColorTickle.ColorTickleConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.DancingDots:
@@ -220,7 +221,7 @@ namespace EA4S.API
                     break;
                 case MiniGameCode.TakeMeHome:
                     TakeMeHome.TakeMeHomeConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    //TakeMeHome.TakeMeHomeConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    TakeMeHome.TakeMeHomeConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     TakeMeHome.TakeMeHomeConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.HiddenSource:
@@ -243,18 +244,27 @@ namespace EA4S.API
                     break;
                 case MiniGameCode.MissingLetter:
                     MissingLetter.MissingLetterConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    //MissingLetter.MissingLetterConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    MissingLetter.MissingLetterConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     MissingLetter.MissingLetterConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.MissingLetter_phrases:
+                    // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.MixedLetters_alphabet:
+                    MixedLetters.MixedLettersConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    MixedLetters.MixedLettersConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    MixedLetters.MixedLettersConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.MixedLetters_spelling:
+                    // Not present in production pipeline
                     break;
                 case MiniGameCode.SickLetter:
+                    SickLetter.SickLetterConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    SickLetter.SickLetterConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    SickLetter.SickLetterConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.ReadingGame:
+                    // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Scanner:
                     Scanner.ScannerConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;

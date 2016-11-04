@@ -4,6 +4,7 @@
     {
         // Game configuration
         public IGameContext Context { get; set; }
+        public IQuestionProvider Questions { get; set; }
         public IQuestionProvider PipeQuestions { get; set; }
 
         public float Difficulty { get; set; }
