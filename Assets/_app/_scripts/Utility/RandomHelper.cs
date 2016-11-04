@@ -12,7 +12,7 @@ namespace EA4S
                 throw new System.Exception("Cannot select more than available with a non-repeating selection");
             }
 
-            List<T> chosenList = new List<T>();
+            var chosenList = new List<T>();
 
             if (numberToSelect == fromList.Count)
             {
@@ -20,10 +20,10 @@ namespace EA4S
                 return chosenList;
             }
 
-            for (int choice_index = 0; choice_index < numberToSelect; choice_index++)
+            for (var choice_index = 0; choice_index < numberToSelect; choice_index++)
             {
-                int element_index = UnityEngine.Random.Range(0, fromList.Count);
-                T chosenItem = fromList[element_index];
+                var element_index = UnityEngine.Random.Range(0, fromList.Count);
+                var chosenItem = fromList[element_index];
                 fromList.RemoveAt(element_index);
                 chosenList.Add(chosenItem);
             }
@@ -38,24 +38,24 @@ namespace EA4S
                 throw new System.Exception("Cannot select more than available with a non-repeating selection");
             }
 
-            List<T> chosenList = new List<T>();
+            var chosenList = new List<T>();
 
             if (numberToSelect == fromList.Count) { 
                 chosenList.AddRange(fromList);
                 return chosenList;
             }
 
-            for (int choice_index=0; choice_index < numberToSelect; choice_index++)
+            for (var choice_index=0; choice_index < numberToSelect; choice_index++)
             {
-                float totalWeight = weightsList.Sum();
-                float choiceValue = UnityEngine.Random.value * totalWeight;
+                var totalWeight = weightsList.Sum();
+                var choiceValue = UnityEngine.Random.value * totalWeight;
                 float cumulativeWeight = 0;
-                for (int element_index = 0; element_index < fromList.Count; element_index++)
+                for (var element_index = 0; element_index < fromList.Count; element_index++)
                 {
                     cumulativeWeight += weightsList[element_index];
                     if (choiceValue <= cumulativeWeight)
                     {
-                        T chosenItem = fromList[element_index];
+                        var chosenItem = fromList[element_index];
                         fromList.RemoveAt(element_index);
                         weightsList.RemoveAt(element_index);
                         chosenList.Add(chosenItem);
