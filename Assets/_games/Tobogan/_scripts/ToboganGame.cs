@@ -8,6 +8,7 @@ namespace EA4S.Tobogan
     {
         public PipesAnswerController pipesAnswerController;
         public GameObject questionLivingLetterPrefab;
+        public FixedHeightShadow shadowPrefab;
         public QuestionLivingLettersBox questionLivingLetterBox;
 		public Camera tubesCamera;
         public ToboganFeedbackGraphics feedbackGraphics;

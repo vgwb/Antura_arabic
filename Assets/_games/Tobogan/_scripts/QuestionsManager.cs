@@ -117,6 +117,11 @@ namespace EA4S.Tobogan
             newQuestionLivingLetter.transform.SetParent(game.questionLivingLetterBox.transform);
             newQuestionLivingLetter.onMouseUpLetter += CheckAnswer;
 
+            var shadow = GameObject.Instantiate(game.shadowPrefab);
+            shadow.transform.SetParent(newQuestionLivingLetter.transform);
+            shadow.gameObject.SetActive(true);
+            shadow.Initialize(newQuestionLivingLetter.transform, game.pipesAnswerController.basePosition.position.y);
+
             return newQuestionLivingLetter;
         }
 

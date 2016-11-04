@@ -6,6 +6,7 @@ namespace EA4S.Tobogan
     public class PipesAnswerController : MonoBehaviour
     {
         public PipeAnswer[] pipeAnswers;
+        public Transform basePosition;
 
         ToboganGame game;
         float hidingProbability;
