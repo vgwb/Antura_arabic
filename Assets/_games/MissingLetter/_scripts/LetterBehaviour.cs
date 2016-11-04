@@ -17,7 +17,7 @@ namespace EA4S.MissingLetter
 
         void Start()
         {
-            Assert.IsNotNull<LetterObjectView>(mLetter, "LetterView Not Set in " + name);
+            //Assert.IsNotNull<LetterObjectView>(mLetter, "LetterView Not Set in " + name);
             mCollider = gameObject.GetComponent<Collider>();
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
             mCollider.enabled = false;
@@ -236,6 +236,10 @@ namespace EA4S.MissingLetter
         private void SetIsSpeaking(bool _isSpeaking)
         {
             mbIsSpeaking = _isSpeaking;
+        }
+
+        public void SetEnableCollider(bool _enabled) {
+            mCollider.enabled = _enabled;
         }
 
         #endregion
