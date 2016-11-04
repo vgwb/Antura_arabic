@@ -1,11 +1,11 @@
-﻿namespace EA4S.Egg
+﻿namespace EA4S.MakeFriends
 {
-    public class EggIntroductionState : IGameState
+    public class MakeFriendsResultState : IGameState
     {
-        EggGame game;
+        MakeFriendsGame game;
 
-        float timer = 1;
-        public EggIntroductionState(EggGame game)
+        float timer = 1.5f;
+        public MakeFriendsResultState(MakeFriendsGame game)
         {
             this.game = game;
         }
@@ -16,7 +16,6 @@
 
         public void ExitState()
         {
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
         public void Update(float delta)
@@ -25,8 +24,8 @@
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.QuestionState);
-                return;
+                game.endGameCanvas.gameObject.SetActive(true);
+                game.EndGame(game.CurrentStars, game.CurrentScore);
             }
         }
 

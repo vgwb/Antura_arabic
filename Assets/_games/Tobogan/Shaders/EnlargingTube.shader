@@ -39,5 +39,5 @@ Shader "Custom/EnlargingTube" {
 		}
 		ENDCG
 	}
-	FallBack "Diffuse"
+		//FallBack "Diffuse"
 }

@@ -223,6 +223,10 @@ public class TakeMeHomeLL : MonoBehaviour {
 				dragging = false;
 				dropLetter = true;
 
+				//check if position should clamp:
+				if (transform.position.x > 3 && transform.position.y > maxY)
+					clampPosition = true;
+
 				PlayIdleAnimation();
 
 				if (onMouseUpLetter != null)
@@ -320,7 +324,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 				moveTweener.Kill();
 			}
 
-			moveTweener = transform.DOLocalMove(transform.position - (new Vector3(10,0,0)), 1).OnComplete(delegate () { 
+			moveTweener = transform.DOLocalMove(new Vector3(2,-6.52f,-15), 1).OnComplete(delegate () { 
 				PlayIdleAnimation();
 				respawn = false;
 				clampPosition = false;
@@ -393,6 +397,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		void OnTriggerEnter(Collider other)
 		{
+			if (!dragging) {
+				lastTube = null;
+				return;
+			}
+			
 			TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube> ();
 			if (!tube)
 				return;
@@ -403,6 +412,10 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		void OnTriggerExit(Collider other)
 		{
+			//if (!dragging)
+			//	return;
+
+
 			TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube> ();
 			if (!tube)
 				return;

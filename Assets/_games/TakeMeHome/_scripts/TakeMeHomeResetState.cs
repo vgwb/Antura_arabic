@@ -15,6 +15,7 @@
 		{
 			
 			if (game.currentLetter.lastTube == null) {
+				win = false;
 				game.currentLetter.respawn = true;
 				return;
 			}
