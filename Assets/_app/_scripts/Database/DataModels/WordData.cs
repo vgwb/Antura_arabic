@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace EA4S.Db
 {
-
     [Serializable]
-    public class WordData : IData
+    public class WordData : IData, IConvertibleToLivingLetterData
     {
         public string Id;
         public WordDataKind Kind;
@@ -33,6 +32,11 @@ namespace EA4S.Db
                 Category,
                 Arabic
                 );
+        }
+
+        public ILivingLetterData ConvertToLivingLetterData()
+        {
+            return new LL_WordData(GetId(), this);
         }
 
     }

@@ -232,6 +232,7 @@ namespace EA4S
         void GoToMinigame()
         {
             MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;
+            //myGameCode = MiniGameCode.Egg;  // SET THIS TO TET SPECIFIC MINIGAMES IN THE MAIN PROGRESSION FLOW
             AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
         }
 

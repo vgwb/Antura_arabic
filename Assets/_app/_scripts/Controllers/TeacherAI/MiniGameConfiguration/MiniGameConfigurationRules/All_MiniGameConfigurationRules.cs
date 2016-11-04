@@ -1,5 +1,6 @@
 ﻿using EA4S.API;
 using System.Collections.Generic;
+using System;
 
 namespace EA4S.MiniGameConfiguration
 {
@@ -13,6 +14,12 @@ namespace EA4S.MiniGameConfiguration
         public All_MiniGameConfigurationRules(MiniGameCode _code)
         {
             code = _code;
+        }
+
+        public QuestionPackData CreateQuestionPackData()
+        {
+            // @note: this is the new interface. Every minigame is being converted so this is here just for backwards compatibility.
+            throw new NotImplementedException();
         }
 
         public int GetQuestionPackCount()

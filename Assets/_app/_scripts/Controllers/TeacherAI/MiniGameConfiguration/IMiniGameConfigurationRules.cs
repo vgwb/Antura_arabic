@@ -7,7 +7,8 @@ namespace EA4S.MiniGameConfiguration
     public interface IMiniGameConfigurationRules
     {
         int GetQuestionPackCount();
-        IQuestionPack CreateQuestionPack();
+        IQuestionPack CreateQuestionPack(); // DEPRECATED
+        QuestionPackData CreateQuestionPackData();
     }
 
 }
