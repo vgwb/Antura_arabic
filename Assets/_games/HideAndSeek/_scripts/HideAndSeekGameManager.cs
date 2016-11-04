@@ -67,7 +67,7 @@ namespace EA4S.HideAndSeek
         {
             
 
-            var initialDelay = 1f;
+            var initialDelay = 3f;
             yield return new WaitForSeconds(initialDelay);
             
             game.PlayState.gameTime.Stop();
@@ -77,28 +77,33 @@ namespace EA4S.HideAndSeek
             else
                 WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", false, image);
 
-
+            //ArrayLetters[letterInAnimation].transform.position = originLettersPlaceholder.position;
         }
 
         void CheckResult(int id)
 		{
-
-            if (ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>().view.Data.Key == currentQuestion.GetAnswer().Key)
+            letterInAnimation = GetIdFromPosition(id);
+            HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
+            if (script.view.Data.Key == currentQuestion.GetAnswer().Key)
             {
-                ClearRound();
+                //ClearRound();
                 StartCoroutine(DelayAnimation(true));
-                
+                script.resultAnimation(true);
                 Debug.Log("Hai vintooooooo");
             }
             else
             {
                 Debug.Log("Hai sbagliato");
                 RemoveLife();
-                if(lifes == 0)
+                script.resultAnimation(false);
+                if (lifes == 0)
                 {
-                    ClearRound();
+                    
+                   // ClearRound();
                     StartCoroutine(DelayAnimation(false));
+                    
                 }
+               
             }
                 
         }
@@ -147,15 +152,20 @@ namespace EA4S.HideAndSeek
 
             for(int i = 0; i < MAX_TREE; ++i)
             {
-                ArrayLetters[i].transform.position = originLettersPlaceholder.position;
+                //if(i != letterInAnimation)
+                    ArrayLetters[i].transform.position = originLettersPlaceholder.position;
+                ArrayLetters[i].GetComponent<HideAndSeekLetterController>().ResetLetter();
                 ArrayTrees[i].GetComponent<Collider>().enabled = false;
                 UsedPlaceholder[i] = false;
+
             }
             
         }
 
         public void NewRound()
         {
+            ClearRound();
+
             currentQuestion = (HideAndSeekQuestionsPack)questionProvider.GetQuestion();
             StartNewRound = false;
             SetFullLife();
@@ -252,6 +262,8 @@ namespace EA4S.HideAndSeek
         public Transform originLettersPlaceholder;
 
 		public GameObject[] ArrayLetters;
+
+        private int letterInAnimation = -1;
 
         //public GameObject[] LifeSprite;
         //public GameObject LifeObj;
