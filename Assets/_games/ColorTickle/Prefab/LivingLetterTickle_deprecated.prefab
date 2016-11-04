@@ -1175,8 +1175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerTransform: {fileID: 0}
   Lable: {fileID: 114000010130955556}
   ImageSprite: {fileID: 212000010513181402}
+  maxSize: 1.5
   normalGraphics: []
   limblessGraphics: []
   poofPrefab: {fileID: 0}
@@ -1194,8 +1196,9 @@ MonoBehaviour:
   m_oBrush: {fileID: 0}
   m_oTextMeshObject: {fileID: 114000010130955556}
   m_iPixelPerUnit: 30
-  m_iPercentageRequiredToWin: 95
+  m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
+  m_iPercentageRequiredToWin: 95
 --- !u!137 &137000012491501076
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

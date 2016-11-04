@@ -8,30 +8,6 @@ using ModularFramework.Core;
 
 public partial class SROptions
 {
-
-    [Category("MiniGames options")]
-    public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
-    [Category("MiniGames options")]
-    public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
-    [Category("MiniGames options")]
-    public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
-
-    [Category("Scenes")]
-    public void Home()
-    {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
-        SRDebug.Instance.HideDebugPanel();
-    }
-
-    [Category("Scenes")]
-    public void Assessment()
-    {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
-        SRDebug.Instance.HideDebugPanel();
-    }
-
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
         WidgetPopupWindow.I.Close();
@@ -39,163 +15,206 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    [Category("Minigame")]
+    //[Category("MiniGames options")]
+    //[NumberRange(1, 6)]
+    //[Sort(0)]
+    //public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
+
+    //[Category("MiniGames options")]
+    //[NumberRange(1, 6)]
+    //[Sort(0)]
+    //public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
+
+    [Category("Minigames")]
+    [Sort(1)]
+    public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
+
+
+    [Category("Minigames")]
+    [Sort(11)]
     public void BalloonsLetter()
     {
         LaunchMinigame(MiniGameCode.Balloons_letter);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(11)]
     public void BalloonsWords()
     {
         LaunchMinigame(MiniGameCode.Balloons_words);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(11)]
     public void BalloonsCounting()
     {
         LaunchMinigame(MiniGameCode.Balloons_counting);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(11)]
     public void BalloonsSpelling()
     {
         LaunchMinigame(MiniGameCode.Balloons_spelling);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(12)]
     public void ColorTickle()
     {
         LaunchMinigame(MiniGameCode.ColorTickle);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(13)]
     public void DancingDots()
     {
         LaunchMinigame(MiniGameCode.DancingDots);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(14)]
     public void Egg()
     {
         LaunchMinigame(MiniGameCode.Egg);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(15)]
     public void FastCrowdWords()
     {
         LaunchMinigame(MiniGameCode.FastCrowd_words);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(15)]
     public void FastCrowdLetter()
     {
         LaunchMinigame(MiniGameCode.FastCrowd_letter);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(15)]
     public void FastCrowdAlphabet()
     {
         LaunchMinigame(MiniGameCode.FastCrowd_alphabet);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(15)]
     public void FastCrowdCounting()
     {
         LaunchMinigame(MiniGameCode.FastCrowd_counting);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(15)]
     public void FastCrowdSPelling()
     {
         LaunchMinigame(MiniGameCode.FastCrowd_spelling);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(16)]
     public void HideAndSeek()
     {
         LaunchMinigame(MiniGameCode.HideSeek);
     }
 
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(17)]
     public void MakeFriends()
     {
         LaunchMinigame(MiniGameCode.MakeFriends);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(18)]
     public void Maze()
     {
         LaunchMinigame(MiniGameCode.Maze);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(19)]
     public void MissingLetter()
     {
         LaunchMinigame(MiniGameCode.MissingLetter);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(19)]
     public void MissingLetterPhrases()
     {
         LaunchMinigame(MiniGameCode.MissingLetter_phrases);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(20)]
     public void MixedLettersSpelling()
     {
         LaunchMinigame(MiniGameCode.MixedLetters_spelling);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(20)]
     public void MixedLettersAlphabet()
     {
         LaunchMinigame(MiniGameCode.MixedLetters_alphabet);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(21)]
     public void Scanner()
     {
         LaunchMinigame(MiniGameCode.Scanner);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(21)]
     public void ScannerPhrase()
     {
         LaunchMinigame(MiniGameCode.Scanner_phrase);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(22)]
     public void TakeMeHome()
     {
         LaunchMinigame(MiniGameCode.TakeMeHome);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(23)]
     public void ThrowBallsWOrds()
     {
         LaunchMinigame(MiniGameCode.ThrowBalls_words);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(23)]
     public void ThrowBallsLetters()
     {
         LaunchMinigame(MiniGameCode.ThrowBalls_letters);
     }
-    [Category("Minigame")]
+
+    [Category("Minigames")]
+    [Sort(23)]
     public void ThrowBallsLetterInWord()
     {
         LaunchMinigame(MiniGameCode.ThrowBalls_letterinword);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(24)]
     public void ToboganWords()
     {
         LaunchMinigame(MiniGameCode.Tobogan_words);
     }
 
-    [Category("Minigame")]
+    [Category("Minigames")]
+    [Sort(24)]
     public void ToboganLetters()
     {
         LaunchMinigame(MiniGameCode.Tobogan_letters);
@@ -209,7 +228,7 @@ public partial class SROptions
     //    SRDebug.Instance.HideDebugPanel();
     //}
 
-    ////[Category("Minigame")]
+    ////[Category("Minigames")]
     ////public void DontWakeUp()
     ////{
     ////    WidgetPopupWindow.I.Close();
@@ -224,7 +243,27 @@ public partial class SROptions
     //    SRDebug.Instance.HideDebugPanel();
     //}
 
+
+    [Category("Scenes")]
+    [Sort(50)]
+    public void Home()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
+    [Category("Scenes")]
+    [Sort(50)]
+    public void Assessment()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
+        SRDebug.Instance.HideDebugPanel();
+    }
+
     [Category("Options")]
+    [Sort(50)]
     public void ToggleQuality()
     {
         AppManager.Instance.ToggleQualitygfx();
