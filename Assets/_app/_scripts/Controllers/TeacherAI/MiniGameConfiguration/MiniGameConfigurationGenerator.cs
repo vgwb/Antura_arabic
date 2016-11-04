@@ -22,6 +22,9 @@ namespace EA4S.MiniGameConfiguration
             IMiniGameConfigurationRules selectedRules = null;
             switch (_miniGameCode)
             {
+                case MiniGameCode.Egg:
+                    selectedRules = new Egg_MiniGameConfigurationRules();
+                    break;
                 default:
                     selectedRules = new All_MiniGameConfigurationRules(_miniGameCode);
                     break;
@@ -55,10 +58,11 @@ namespace EA4S.MiniGameConfiguration
             return new List<IQuestionPack>();
         }
 
-        public class QuestionPackData
-        {
-            // TODO: implement
-        }
-
     }
+
+    public class QuestionPackData
+    {
+        // TODO: implement
+    }
+
 }

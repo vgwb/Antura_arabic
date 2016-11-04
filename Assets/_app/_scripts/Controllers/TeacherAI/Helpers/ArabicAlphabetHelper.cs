@@ -45,6 +45,36 @@ namespace EA4S
         }
 
         /// <summary>
+        /// Returns the list of letters found in a word string
+        /// </summary>
+        /// <param name="_word"></param>
+        /// <param name="_vocabulary"></param>
+        /// <param name="_revertOrder">Return in list position 0 most right letter in input string and last the most left.</param>
+        /// <returns></returns>
+        public static List<string> LetterDataList(string _word, List<Db.LetterData> _vocabulary, bool _revertOrder = false)
+        {
+            List<string> returnList = new List<string>();
+
+            char[] chars = _word.ToCharArray();
+            if (_revertOrder)
+            {
+                Array.Reverse(chars);
+            }
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                char ch = chars[i];
+                string unicodeString = GetHexaUnicodeFromChar(ch);
+                Db.LetterData letterData =  _vocabulary.Find(l => l.Isolated_Unicode == unicodeString);
+                if (letterData != null)
+                    returnList.Add(letterData.Id);
+            }
+
+            return returnList;
+        }
+
+
+        /// <summary>
         /// Return list of letter data for any letter of param word.
         /// </summary>
         /// <param name="_word"></param>

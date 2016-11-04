@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace EA4S.MiniGameConfiguration
 {
     /// <summary>
-    /// Given a minigame, handles the generation of question packs
+    /// The old minigame configuration rules that uses a big switch to define the rules
     /// </summary>
     public class All_MiniGameConfigurationRules : IMiniGameConfigurationRules
     {
