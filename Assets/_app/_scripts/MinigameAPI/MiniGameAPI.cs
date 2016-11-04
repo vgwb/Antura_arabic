@@ -170,6 +170,9 @@ namespace EA4S.API
                     Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.ColorTickle:
+                    ColorTickle.ColorTickleConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    //ColorTickle.ColorTickleConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    ColorTickle.ColorTickleConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.DancingDots:
                     DancingDots.DancingDotsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
@@ -177,6 +180,7 @@ namespace EA4S.API
                     DancingDots.DancingDotsConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.DontWakeUp:
+                    // 
                     break;
                 case MiniGameCode.Egg:
                     Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
@@ -215,10 +219,17 @@ namespace EA4S.API
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.TakeMeHome:
+                    TakeMeHome.TakeMeHomeConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    //TakeMeHome.TakeMeHomeConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    TakeMeHome.TakeMeHomeConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.HiddenSource:
+                    // It has now become TakeMeHome
                     break;
                 case MiniGameCode.HideSeek:
+                    HideAndSeek.HideAndSeekConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    HideAndSeek.HideAndSeekConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    HideAndSeek.HideAndSeekConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.MakeFriends:
                     MakeFriends.MakeFriendsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
@@ -231,6 +242,9 @@ namespace EA4S.API
                     Maze.MazeConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.MissingLetter:
+                    MissingLetter.MissingLetterConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    //MissingLetter.MissingLetterConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    MissingLetter.MissingLetterConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.MissingLetter_phrases:
                     break;
