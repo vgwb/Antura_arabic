@@ -8,10 +8,14 @@ namespace EA4S.ColorTickle
     {
 
         #region PUBLIC MEMBERS
+        [SerializeField]
+        private Button m_SampleButton;
+        [SerializeField]
+        private float m_ButtonSelectedSizeScale = 2.0f;
 
-        public Button m_SampleButton;
         [Header("Max Colors = 10")]
         public Color[] m_Colors;
+
         public event System.Action<Color> SetBrushColor;
 
         #endregion
@@ -19,35 +23,29 @@ namespace EA4S.ColorTickle
         #region PRIVATE MEMBERS
 
         private Button[] m_Buttons;
-        private float m_PanelHeight;
-        private float m_PanelWidth;
-        private float m_DistBetwButtons;
         private int m_NumberOfColors;
-        private Color m_SelectedColor;
+        private int m_PreviousColor;
+        private Vector2 m_DefaultButtonSize;
 
         #endregion
 
-        public Color SelectedColor
+        #region GETTER/SETTERS
+
+        public Color defaultColor
         {
-            get { return m_SelectedColor; }
-            set { m_SelectedColor = SelectedColor; }
+            get { return m_Buttons[0].image.color; }
         }
 
+        #endregion
+
         // Use this for initialization
-        void Start()
-        {
-
+        void Awake()
+		{
             m_NumberOfColors = m_Colors.Length;
-
-            Debug.Log(m_NumberOfColors);
-
             m_Buttons = new Button[m_NumberOfColors];
 
-            m_PanelHeight = gameObject.GetComponent<RectTransform>().rect.height;
-
-            m_DistBetwButtons = m_PanelHeight / m_NumberOfColors;
-
-            //Debug.Log(m_DistBetwButtons);
+			float PanelHeight = gameObject.GetComponent<RectTransform>().rect.height;
+			float DistBetwButtons = PanelHeight / m_NumberOfColors;
 
             for (int i = 0; i < m_NumberOfColors; ++i)
             {
@@ -55,13 +53,19 @@ namespace EA4S.ColorTickle
 
                 m_Buttons[i].transform.SetParent(gameObject.transform);
                 m_Buttons[i].transform.position = gameObject.transform.position;
-                m_Buttons[i].transform.position += new Vector3(0, m_PanelHeight / 2 + (m_DistBetwButtons / 2) - (m_DistBetwButtons * (1 + i)), 0);
+                m_Buttons[i].transform.position += new Vector3(0, PanelHeight / 2 + (DistBetwButtons / 2) - (DistBetwButtons * (1 + i)), 0);
+	
                 m_Colors[i].a = 255.0f;
                 m_Buttons[i].image.color = m_Colors[i];
 
                 int buttonNumber = i;
                 m_Buttons[i].onClick.AddListener(delegate { ButtonClick(buttonNumber); });
             }
+
+            m_DefaultButtonSize = m_Buttons[0].image.rectTransform.sizeDelta;
+
+            m_Buttons[0].image.rectTransform.sizeDelta *= m_ButtonSelectedSizeScale;
+            m_PreviousColor = 0;
         }
 
         // Update is called once per frame
@@ -73,12 +77,14 @@ namespace EA4S.ColorTickle
 
         void ButtonClick(int buttonNumber)
         {
+            m_Buttons[m_PreviousColor].image.rectTransform.sizeDelta = m_DefaultButtonSize;
+            m_PreviousColor = buttonNumber;
+            m_Buttons[buttonNumber].image.rectTransform.sizeDelta *= m_ButtonSelectedSizeScale;
+
             if (SetBrushColor != null)
             {
                 SetBrushColor(m_Buttons[buttonNumber].image.color);
             }
-
-            //Debug.Log(m_SelectedColor);
         }
     }
 }

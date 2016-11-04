@@ -22,6 +22,7 @@ namespace EA4S.MissingLetter
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
             mCollider.enabled = false;
             mbIsSpeaking = false;
+            mLetter.SetWalkingSpeed(1);
         }
 
         public void PlayAnimation(LLAnimationStates animation)
@@ -31,8 +32,8 @@ namespace EA4S.MissingLetter
 
         void MoveTo(Vector3 position, float duration, bool IdleAtEnd = true)
         {
-            // TODO missing animation
-            //PlayAnimation(LLAnimationStates.LL_run_happy);
+            PlayAnimation(LLAnimationStates.LL_walking);
+            mLetter.SetWalkingSpeed(1);
 
             if (moveTweener != null)
             {
@@ -193,8 +194,10 @@ namespace EA4S.MissingLetter
                 positions.Add(p);
             }
 
-            // TODO missing animation
-            //PlayAnimation(LLAnimationStates.LL_run_fear);
+            // TODO run fear
+            PlayAnimation(LLAnimationStates.LL_walking);
+            mLetter.SetWalkingSpeed(1);
+
             transform.DOLookAt(positions[0], 1f);
 
             TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), duration, PathType.CatmullRom);
