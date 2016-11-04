@@ -115,6 +115,22 @@ namespace EA4S.Egg
             colorTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, colorStandard, 1f);
         }
 
+        public void SetOnPressedColor()
+        {
+            if (colorTweener != null)
+                colorTweener.Kill();
+
+            buttonImage.color = colorLightUp;
+        }
+
+        public void SetOnStandardColor()
+        {
+            if (colorTweener != null)
+                colorTweener.Kill();
+
+            buttonImage.color = colorStandard;
+        }
+
         public void EnableInput()
         {
             inputEnabled = true;

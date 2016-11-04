@@ -143,6 +143,7 @@ namespace EA4S.Egg
                 if (isSequence)
                 {
                     PositiveFeedback();
+                    game.eggButtonBox.GetEggButton(letterData).SetOnPressedColor();
                 }
                 else
                 {
@@ -163,7 +164,7 @@ namespace EA4S.Egg
 
             game.eggController.EmoticonInterrogative();
 
-            game.eggController.PlayAudioQuestion(delegate() { game.eggController.EmoticonClose(); EnableAllGameplayInput(); });
+            game.eggController.PlayAudioQuestion(delegate () { game.eggController.EmoticonClose(); EnableAllGameplayInput(); });
         }
 
         void PositiveFeedback()
@@ -180,7 +181,6 @@ namespace EA4S.Egg
             float crackingProgress = (float)questionProgress / (float)correctAnswers;
 
             game.eggController.Cracking(crackingProgress);
-
 
             if (crackingProgress == 1f)
             {
@@ -217,6 +217,7 @@ namespace EA4S.Egg
 
             questionProgress = 0;
             game.eggController.ResetCrack();
+            game.eggButtonBox.SetButtonsOnStandardColor();
 
             if (goAntura)
             {
@@ -254,6 +255,7 @@ namespace EA4S.Egg
             DisableAllGameplayInput();
             game.stagePositiveResult = false;
             toNextState = true;
+            game.eggButtonBox.SetButtonsOnStandardColor();
         }
 
         void OnEggCrackComplete()
@@ -262,6 +264,8 @@ namespace EA4S.Egg
 
             DisableAllGameplayInput();
             game.stagePositiveResult = true;
+
+            game.eggButtonBox.SetButtonsOnStandardColor();
 
             bool isSequence = game.questionManager.IsSequence();
 
@@ -277,6 +281,18 @@ namespace EA4S.Egg
 
         void OnLightUpButtonsComplete()
         {
+            bool isSequence = game.questionManager.IsSequence();
+
+            if (isSequence)
+            {
+                game.eggButtonBox.SetButtonsOnPressedColor();
+            }
+            else
+            {
+                game.eggButtonBox.GetEggButton(game.questionManager.GetlLetterDataSequence()[0]).SetOnPressedColor();
+
+            }
+
             toNextState = true;
         }
 
