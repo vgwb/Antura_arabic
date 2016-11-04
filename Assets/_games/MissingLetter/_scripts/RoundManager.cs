@@ -130,7 +130,8 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.Reset();
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
-                wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
+                if(!m_bTutorialEnabled)
+                    wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
                 wrongAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
                 mCurrentAnswerScene.Add(_wrongAnswerObject);
             }
@@ -232,11 +233,15 @@ namespace EA4S.MissingLetter
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
                 DoWinAnimations(_key);
             }
-            else if(!m_bTutorialEnabled) {
+            else {
                 AudioManager.I.PlaySfx(Sfx.LetterSad);
-
                 DoLoseAnimations(_key);
             }
+
+            foreach (GameObject _obj in mCurrentAnswerScene) {
+                _obj.GetComponent<LetterBehaviour>().SetEnableCollider(false);
+            }
+
 
             if (onAnswered != null) {
                 mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, mCurrQuestionPack.GetCorrectAnswers().ElementAt(miCorrectAnswerIndex).Key == _key));
