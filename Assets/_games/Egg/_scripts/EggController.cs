@@ -559,5 +559,15 @@ namespace EA4S.Egg
         {
             emoticonsController.EmoticonNegative();
         }
+
+        public void EmoticonInterrogative()
+        {
+            emoticonsController.EmoticonInterrogative();
+        }
+
+        public void EmoticonClose()
+        {
+            emoticonsController.CloseEmoticons();
+        }
     }
 }
