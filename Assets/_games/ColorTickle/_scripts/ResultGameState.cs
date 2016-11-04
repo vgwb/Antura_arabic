@@ -1,4 +1,7 @@
-﻿namespace EA4S.ColorTickle
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+namespace EA4S.ColorTickle
 {
     public class ResultGameState : IGameState
     {
@@ -12,6 +15,7 @@
 
         public void EnterState()
         {
+            Debug.Log("Result State activated");
         }
 
         public void ExitState()

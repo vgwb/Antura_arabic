@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_oBody: {fileID: 64000013479377596}
   m_oSurfaceRenderer: {fileID: 137000012769297538}
   m_iPixelPerUnit: 50
-  m_bEnableColor: 1
+  m_bEnableColor: 0
 --- !u!114 &114000010869263054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_oTextMeshObject: {fileID: 114000013236453108}
   m_iPixelPerUnit: 50
   m_iPercentageRequiredToWin: 80
-  m_bEnableColor: 1
+  m_bEnableColor: 0
 --- !u!114 &114000011871043004
 MonoBehaviour:
   m_ObjectHideFlags: 1
