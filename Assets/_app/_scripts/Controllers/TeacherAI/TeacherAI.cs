@@ -6,6 +6,12 @@ using EA4S.Teacher;
 
 namespace EA4S
 {
+    /// <summary>
+    /// Handles logic that represent the Teacher's expert system:
+    /// - selects minigames according to a given progression flow
+    /// - selects question packs according to the given profression flow
+    /// - selects minigame difficulty according to the player's status
+    /// </summary>
     public class TeacherAI
     {
         public static TeacherAI I;
@@ -149,6 +155,17 @@ namespace EA4S
             List<Db.LetterData> returnList = new List<Db.LetterData>();
             returnList.Add(dbManager.GetAllLetterData().RandomSelectOne());
             return returnList;
+        }
+
+        #endregion
+
+        #region Interface - Difficulty
+
+        public float GetCurrentDifficulty()
+        {
+            // @todo: implement this
+            // @todo: use the debug value if needed, injected b DebygManager.I.Difficulty
+            return 0.5f;   
         }
 
         #endregion
