@@ -76,6 +76,7 @@ namespace EA4S.MissingLetter
         protected override void OnInitialize(IGameContext context)
         {
             mCurrentRound = 0;
+
             m_RoundManager = new RoundManager(this);
             m_RoundManager.Initialize();
 
