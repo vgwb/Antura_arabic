@@ -2517,9 +2517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ceca266ca0d43f281c15a3f789d36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
-  spawnPoint: {fileID: 1136810442}
-  endPoint: {fileID: 1994604106}
 --- !u!1 &482952225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7856,7 +7853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  mLetterPrefab: {fileID: 1000012684832182, guid: 3bd0fbd479b3d02408b2040810aa9ee9,
+  mLetterPrefab: {fileID: 1000011051535624, guid: 3bd0fbd479b3d02408b2040810aa9ee9,
     type: 2}
   mAnturaRef: {fileID: 894209526}
   timerText: {fileID: 1086424280}
@@ -7870,6 +7867,11 @@ MonoBehaviour:
   mAnswerHeightOffset: -4
   mNumberOfPossibleAnswers: 4
   mfDistanceBetweenLetters: 10
+  mfAnturaAnimDuration: 7
+  mafAnturaEnterTriggers:
+  - 40
+  - 20
+  miAnturaTriggersIndex: 0
   mIsTimesUp: 0
   mRoundsLimit: 10
 --- !u!4 &1213377334
@@ -10177,9 +10179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ceca266ca0d43f281c15a3f789d36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
-  spawnPoint: {fileID: 378042906}
-  endPoint: {fileID: 1830046515}
 --- !u!1 &1535762668 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ad1b286db806fea4f85a9b90b2b5965b, type: 3}
@@ -10922,9 +10921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ceca266ca0d43f281c15a3f789d36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  spawnPoint: {fileID: 1727342065}
-  endPoint: {fileID: 615879232}
 --- !u!1 &1674210505
 GameObject:
   m_ObjectHideFlags: 0
@@ -14845,9 +14841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ceca266ca0d43f281c15a3f789d36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  spawnPoint: {fileID: 985274929}
-  endPoint: {fileID: 617384096}
 --- !u!1001 &2080389794
 Prefab:
   m_ObjectHideFlags: 0
