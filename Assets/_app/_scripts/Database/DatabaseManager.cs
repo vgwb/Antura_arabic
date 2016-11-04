@@ -7,18 +7,36 @@ namespace EA4S
 {
     public class DatabaseManager
     {
+        public const string STATIC_DATABASE_NAME = "EA4S.Database";
+        public const string STATIC_DATABASE_NAME_TEST = STATIC_DATABASE_NAME + "_Test";
+
         // DB references
         private readonly Database staticDb;
         private DBService dynamicDb;
 
+        // Helpers
+        public LetterWordHelper letterWordHelper;
+
         // Profile
-        bool dbLoaded;
+        //bool dbLoaded;
 
-        public DatabaseManager()
+        public DatabaseManager(bool useTestDatabase)
         {
-            staticDb = Resources.Load<Database>("EA4S.Database");
+            this.letterWordHelper = new LetterWordHelper(this);
 
-            // SAFE MODE: we load the profileId '1' for now to make everything work
+            var staticDbNameToLoad = STATIC_DATABASE_NAME;
+            if (useTestDatabase) {
+                staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;
+            }
+            staticDb = Resources.Load<Database>(staticDbNameToLoad);
+
+            // SAFE MODE: we need to make sure that the db has some entires, otherwise there is something wrong
+            if(staticDb.GetPlaySessionTable().GetDataCount() == 0)
+            {
+                throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
+            }
+
+            // SAFE MODE: we load the dynamic profileId '1' for now to make sure everything works correctly
             LoadDynamicDb(1);
         }
 
@@ -27,14 +45,13 @@ namespace EA4S
         public void LoadDynamicDb(int profileId)
         {
             dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
-            dynamicDb.RecreateAllTables();
-                dbLoaded = true;
+            //dbLoaded = true;
         }
 
         public void UnloadCurrentProfile()
         {
             dynamicDb = null;
-            dbLoaded = false;
+            //dbLoaded = false;
         }
 
         public void CreateProfile()
@@ -53,7 +70,6 @@ namespace EA4S
         }
 
         #endregion
-
 
         #region Specific Dynamic Queries
 
@@ -135,13 +151,29 @@ namespace EA4S
         #endregion
 
 
-        #region Specific Dynamic Inserts
+        #region Specific Dynamic Inserts and Updates
 
-        // Insert
         public void Insert<T>(T data) where T : IData, new()
         {
             dynamicDb.Insert(data);
         }
+
+        public void InsertOrReplace<T>(T data) where T : IData, new()
+        {
+            dynamicDb.InsertOrReplace(data);
+        }
+
+        public void UpdateScoreData(DbTables table, string elementId, float score)
+        {
+            ScoreData data = new ScoreData(elementId, table, score);
+            dynamicDb.InsertOrReplace(data);
+        }
+        public void UpdateScoreData(DbTables table, string elementId, float score, int timestamp)
+        {
+            ScoreData data = new ScoreData(elementId, table, score, timestamp);
+            dynamicDb.InsertOrReplace(data);
+        }
+
 
         #endregion
 
@@ -150,16 +182,21 @@ namespace EA4S
 
         public List<MiniGameData> GetActiveMinigames()
         {
-            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameType.MiniGame));
+            return FindMiniGameData((x) => (x.Available && x.Type == MiniGameDataType.MiniGame));
+        }
+
+        public List<PlaySessionData> GetPlaySessionsOfLearningBlock(LearningBlockData lb)
+        {
+            return this.FindPlaySessionData(x => x.Stage == lb.Stage && x.LearningBlock == lb.LearningBlock);
         }
 
         #endregion
 
         #region Specific Static Queries
-        
+
         public List<MiniGameData> GetAllMiniGameData()
         {
-            return new List<MiniGameData>(staticDb.GetMiniGameTable().Values);
+            return new List<MiniGameData>(staticDb.GetMiniGameTable().GetValuesTyped());
         }
 
         public List<MiniGameData> FindMiniGameData(Predicate<MiniGameData> predicate)
@@ -174,7 +211,7 @@ namespace EA4S
 
         public List<EA4S.Db.LetterData> GetAllLetterData()
         {
-            return FindLetterData((x) => (x.Kind == "letter"));
+            return FindLetterData((x) => (x.Kind == LetterDataKind.Letter));
             //return new List<EA4S.Db.LetterData>(db.GetLetterTable().Values);
         }
 
@@ -191,6 +228,11 @@ namespace EA4S
         public List<PlaySessionData> FindPlaySessionData(Predicate<PlaySessionData> predicate)
         {
             return staticDb.FindAll<PlaySessionData>(staticDb.GetPlaySessionTable(), predicate);
+        }
+        
+        public List<LearningBlockData> FindLearningBlockData(Predicate<LearningBlockData> predicate)
+        {
+            return staticDb.FindAll<LearningBlockData>(staticDb.GetLearningBlockTable(), predicate);
         }
 
         public List<StageData> FindStageData(Predicate<StageData> predicate)
@@ -210,32 +252,37 @@ namespace EA4S
 
         public List<EA4S.Db.WordData> GetAllWordData()
         {
-            return new List<EA4S.Db.WordData>(staticDb.GetWordTable().Values);
+            return new List<EA4S.Db.WordData>(staticDb.GetWordTable().GetValuesTyped());
         }
 
         public List<PhraseData> GetAllPhraseData()
         {
-            return new List<PhraseData>(staticDb.GetPhraseTable().Values);
+            return new List<PhraseData>(staticDb.GetPhraseTable().GetValuesTyped());
         }
 
         public List<PlaySessionData> GetAllPlaySessionData()
         {
-            return new List<PlaySessionData>(staticDb.GetPlaySessionTable().Values);
+            return new List<PlaySessionData>(staticDb.GetPlaySessionTable().GetValuesTyped());
+        }
+
+        public List<LearningBlockData> GetAllLearningBlockData()
+        {
+            return new List<LearningBlockData>(staticDb.GetLearningBlockTable().GetValuesTyped());
         }
 
         public List<StageData> GetAllStageData()
         {
-            return new List<StageData>(staticDb.GetStageTable().Values);
+            return new List<StageData>(staticDb.GetStageTable().GetValuesTyped());
         }
 
         public List<LocalizationData> GetAllLocalizationData()
         {
-            return new List<LocalizationData>(staticDb.GetLocalizationTable().Values);
+            return new List<LocalizationData>(staticDb.GetLocalizationTable().GetValuesTyped());
         }
 
         public List<RewardData> GetAllRewardData()
         {
-            return new List<RewardData>(staticDb.GetRewardTable().Values);
+            return new List<RewardData>(staticDb.GetRewardTable().GetValuesTyped());
         }
 
         public MiniGameData GetMiniGameDataByCode(MiniGameCode code)
@@ -256,8 +303,8 @@ namespace EA4S
         public WordData GetWordDataByRandom()
         {
             // TODO now locked to body parts for retrocompatibility
-            var wordslist = FindWordData((x) => (x.Category == "body_parts"));
-            return GenericUtilites.GetRandom(wordslist);
+            var wordslist = FindWordData((x) => (x.Category == WordDataCategory.BodyPart));
+            return GenericUtilities.GetRandom(wordslist);
         }
 
         public LetterData GetLetterDataById(string id)
@@ -265,11 +312,11 @@ namespace EA4S
             return staticDb.GetById<LetterData>(staticDb.GetLetterTable(), id);
         }
 
-        public LetterData GetLetterDataByRandom()
+        /*public LetterData GetLetterDataByRandom()
         {
             var letterslist = GetAllLetterData();
-            return GenericUtilites.GetRandom(letterslist);
-        }
+            return GenericUtilities.GetRandom(letterslist);
+        }*/
 
         public PhraseData GetPhraseDataById(string id)
         {
@@ -279,6 +326,11 @@ namespace EA4S
         public PlaySessionData GetPlaySessionDataById(string id)
         {
             return staticDb.GetById<PlaySessionData>(staticDb.GetPlaySessionTable(), id);
+        }
+
+        public LearningBlockData GetLearningBlockDataById(string id)
+        {
+            return staticDb.GetById<LearningBlockData>(staticDb.GetLearningBlockTable(), id);
         }
 
         public StageData GetStageDataById(string id)

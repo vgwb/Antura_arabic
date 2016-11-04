@@ -19,6 +19,8 @@ namespace EA4S.ColorTickle
         [SerializeField]
         [Range(0, 100)]
         private int m_iPercentageRequiredToWin = 95; //The target percentage used to determinate if the letter is finished
+        [SerializeField]
+        private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
         #endregion
 
         #region PRIVATE MEMBERS
@@ -30,12 +32,10 @@ namespace EA4S.ColorTickle
         private Vector2[] m_aUVLetterInMainTexture; //The original UVs of the letter's base texture
         private int m_iTotalShapePixels = 0; //The number of pixels in the m_tBaseLetterTextureScaledToDynamic to constitute the letter body
         private int m_iCurrentShapePixelsColored = 0; //The number of pixels on the letter shape colored
-        private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
-
         #endregion
 
         #region EVENTS
-        public event Action OnTouchOutside; //event launched upon touching the face/letter
+        public event Action<bool> OnShapeHit; //event launched upon touching the face/letter
         public event Action OnShapeCompleted; //event launched upon reaching the requested percentage of coverage for the letter
         #endregion
 
@@ -66,6 +66,11 @@ namespace EA4S.ColorTickle
         {
             get { return m_bEnableColor; }
             set { m_bEnableColor = value; }
+        }
+
+        public int percentageRequiredToWin
+        {
+            get { return m_iPercentageRequiredToWin; }
         }
         #endregion
 
@@ -100,32 +105,37 @@ namespace EA4S.ColorTickle
                 //check for ray collision
                 if (m_oLetterMeshCollider.Raycast(_mouseRay,out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
                 {
-                    Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
+                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
 
                     //Now we find out which color we hitted to check if we are inside the letter outline
                     //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect)
                     Vector2 fullUV = TextureUtilities.CombineSubUV(m_oRayHit.textureCoord, m_aUVLetterInMainTexture[0], m_aUVLetterInMainTexture[1].y - m_aUVLetterInMainTexture[0].y, m_aUVLetterInMainTexture[2].x - m_aUVLetterInMainTexture[1].x);
 
-                    //If we are outside the letter launch event
+                    //If we are outside the letter
                     if (m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y).a == 0)
                     {
                     
-                        Debug.Log("OUTSIDE!!!Color Hitted " + m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y) + " at coordinates: " + m_oRayHit.textureCoord.x + " " + m_oRayHit.textureCoord.y);
+                        //Debug.Log("OUTSIDE!!!Color Hitted " + m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y) + " at coordinates: " + m_oRayHit.textureCoord.x + " " + m_oRayHit.textureCoord.y);
 
-                        if (OnTouchOutside != null)
+                        if (OnShapeHit != null)
                         {
-                            OnTouchOutside();
+                            OnShapeHit(false);
                         }
                     }
                     //else color the texture
                     else 
                     {
 
-                        Debug.Log("COLORING!!!");
+                        //Debug.Log("COLORING!!!");
 
                         ColorLetterTexturePoint(m_oRayHit.textureCoord); //paint a single brush
 
                         //CheckLetterCompletation(); //check for letter coverage
+
+                        if (OnShapeHit != null)
+                        {
+                            OnShapeHit(true);
+                        }
                     }
 
                     //launch event for letter completation

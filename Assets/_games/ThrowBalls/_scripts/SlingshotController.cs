@@ -83,7 +83,9 @@ namespace EA4S.ThrowBalls
             Vector3 projectedCenter = ball.transform.position;
             projectedCenter.y = 1.2f;
 
-            ProjectLineRendererController.instance.SetPoints(new Vector3[] { projectedCenter, projectedCenter + direction });
+            //ProjectLineRendererController.instance.SetPoints(new Vector3[] { projectedCenter, projectedCenter + direction });
+            ArrowBodyController.instance.OnUpdateDistance(direction);
+            ArrowHeadController.instance.OnUpdate();
         }
 
         /*private void UpdatePointOfImpact()
@@ -107,6 +109,11 @@ namespace EA4S.ThrowBalls
 
             launchForce = center.transform.position - ballPosition;
             launchForce *= SROptions.Current.Elasticity;
+        }
+
+        public Vector3 GetSlingshotCenterPosition()
+        {
+            return center.transform.position;
         }
 
         private void UpdateLaunchForceOld()

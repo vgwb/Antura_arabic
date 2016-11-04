@@ -8,10 +8,13 @@ namespace EA4S.Db
         public string Id;
         public int Number;
         public string Title;
-        public string Kind;
-        public string Type;
+        public LetterDataKind Kind;
+        public string BaseLetter;
+        public string Symbol;
+        public LetterDataType Type;
+        public string Tag;
         public string Notes;
-        public string SunMoon;
+        public LetterDataSunMoon SunMoon;
         public string Sound;
         public string Isolated;
         public string Initial;

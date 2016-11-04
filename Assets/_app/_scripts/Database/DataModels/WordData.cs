@@ -3,18 +3,19 @@ using UnityEngine;
 
 namespace EA4S.Db
 {
+
     [Serializable]
     public class WordData : IData
     {
         public string Id;
-        public string Kind;
-        public string Category;
-        public string English;
+        public WordDataKind Kind;
+        public WordDataCategory Category;
+        public WordDataForm Form;
+        public WordDataArticle Article;
         public string Arabic;
         public string[] Letters;
-        public string Transliteration;
+        //public LetterSymbol[] Symbols; //TODO
         public int Difficulty;
-        public string Group;
         public int Drawing;
 
         public int NumberOfLetters { get { return Letters.Length; } }
@@ -26,15 +27,20 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("{0},{1},{2},{3},{4},{5}",
+            return string.Format("{0},{1},{2},{3}",
                 Id,
                 Kind,
                 Category,
-                English,
-                Arabic,
-                Transliteration
+                Arabic
                 );
         }
 
     }
+
+    /*[Serializable]
+    public struct LetterSymbol
+    {
+        public string LetterId;
+        public string SymbolId;
+    }*/
 }

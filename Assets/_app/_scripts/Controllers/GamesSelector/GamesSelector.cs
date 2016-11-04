@@ -26,6 +26,10 @@ namespace EA4S
 
         #endregion
 
+        [Tooltip("Automatically grabs the minigames list from the teacher on startup, unless Show was called directly")]
+        public bool AudoLoadMinigamesOnStartup = true;
+        [Tooltip("Distance to keep from camera")]
+        public float DistanceFromCamera = 14;
         [Tooltip("Delay between the moment the last bubble is opened and the OnComplete event is dispatched")]
         public float EndDelay = 2;
         [Header("Debug")]
@@ -52,25 +56,22 @@ namespace EA4S
         void Awake()
         {
             instance = this;
-            cam = Camera.main;
-            camT = cam.transform;
             trailsManager = this.GetComponent<GamesSelectorTrailsManager>();
             tutorial = this.GetComponentInChildren<GamesSelectorTutorial>(true);
         }
 
         void Start()
         {
-            if (SimulateForDebug) {
-                games = new List<MiniGameData>() {
-                    new MiniGameData() { Id = "fastcrowd" },
-                    new MiniGameData() { Id = "dancingdots" },
-                    new MiniGameData() { Id = "balloons" }
-                };
-                Show(games);
-            } else if (mainBubble == null) {
+            if (mainBubble == null) {
                 mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
                 mainBubble.gameObject.SetActive(false);
             }
+            if (cam == null) {
+                cam = Camera.main;
+                camT = Camera.main.transform;
+            }
+
+            if (AudoLoadMinigamesOnStartup && games == null) AutoLoadMinigames();
         }
 
         void OnDestroy()
@@ -78,6 +79,7 @@ namespace EA4S
             if (instance == this) instance = null;
             this.StopAllCoroutines();
             showTween.Kill(true);
+            OnComplete -= GoToMinigame;
         }
 
         void Update()
@@ -93,11 +95,11 @@ namespace EA4S
                 Destroy(this.gameObject);
                 instance = null;
                 Show(new List<MiniGameData>() {
-                    new MiniGameData() { Id = "fastcrowd" },
-                    new MiniGameData() { Id = "dancingdots" },
-                    new MiniGameData() { Id = "balloons" },
-                    new MiniGameData() { Id = "balloons" },
-                new MiniGameData() { Id = "maze" }
+                    new MiniGameData() { Main = MiniGameCode.Maze.ToString() },
+                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString() },
+                    new MiniGameData() { Main = MiniGameCode.MakeFriends.ToString() },
+                    new MiniGameData() { Main = MiniGameCode.Egg.ToString() },
+                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString() }
                 });
                 return;
             }
@@ -105,7 +107,7 @@ namespace EA4S
 
             if (!Input.GetMouseButton(0) && !Input.GetMouseButtonUp(0)) return;
 
-            Vector3 mouseP = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -camT.transform.position.z));
+            Vector3 mouseP = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane + 10));
             if (Input.GetMouseButtonDown(0)) {
                 // Start drag/click
                 isDragging = true;
@@ -126,7 +128,7 @@ namespace EA4S
 
         void Update_CheckHitBubble(Vector3 _mouseP)
         {
-            _mouseP.z -= 10;
+            _mouseP += -camT.forward * 3;
             RaycastHit hit;
             if (!Physics.Raycast(new Ray(_mouseP, camT.forward), out hit)) return;
 
@@ -148,6 +150,13 @@ namespace EA4S
             }
         }
 
+        void LateUpdate()
+        {
+            // Adapt to camera
+            this.transform.rotation = camT.rotation;
+            this.transform.position = camT.position + camT.forward * DistanceFromCamera;
+        }
+
         #endregion
 
         #region Public Methods
@@ -155,9 +164,11 @@ namespace EA4S
         /// <summary>
         /// Instantiates and starts the GamesSelector routine,
         /// or just resets and starts it if it's already present in the scene.
+        /// The selector will automatically adapt to the position of the main camera (or the given one).
         /// </summary>
         /// <param name="_games">The list of selected games, ordered as they will happen in the session</param>
-        public static void Show(List<MiniGameData> _games)
+        /// <param name="_cam">Camera to use. If NULL uses main camera automatically</param>
+        public static void Show(List<MiniGameData> _games, Camera _cam = null)
         {
             GamesSelector gs;
             if (instance != null) {
@@ -169,6 +180,8 @@ namespace EA4S
             }
             gs.SimulateForDebug = false;
             gs.games = _games;
+            gs.cam = _cam == null ? Camera.main : _cam;
+            gs.camT = gs.cam.transform;
             gs.ResetAndLayout();
             gs.StartCoroutine(gs.CO_AnimateEntrance());
         }
@@ -195,7 +208,6 @@ namespace EA4S
             for (int i = 0; i < totBubbles; ++i) {
                 GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
                 bubble.Setup(games[i].GetIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
-                Debug.Log("ResetAndLayout " + games[i].GetId() + " " + games[i].GetIconResourcePath());
                 bubbles.Add(bubble);
             }
         }
@@ -207,6 +219,19 @@ namespace EA4S
                 trailsManager.Despawn(currTrail);
                 currTrail = null;
             }
+        }
+
+        void AutoLoadMinigames()
+        {
+            AppManager.Instance.InitDataAI();
+            OnComplete += GoToMinigame;
+            Show(TeacherAI.I.GetMiniGamesForCurrentPlaySession());
+        }
+
+        void GoToMinigame()
+        {
+            MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+            AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
         }
 
         IEnumerator CO_AnimateEntrance()
@@ -230,7 +255,7 @@ namespace EA4S
         IEnumerator CO_EndCoroutine()
         {
             yield return new WaitForSeconds(EndDelay);
-            Debug.Log("GamesSelector > Complete");
+            Debug.Log("<b>GamesSelector</b> > Complete");
             DispatchOnComplete();
         }
 

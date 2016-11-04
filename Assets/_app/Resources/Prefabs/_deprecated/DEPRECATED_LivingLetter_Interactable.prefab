@@ -379,7 +379,6 @@ GameObject:
   - 114: {fileID: 114000012033063196}
   - 95: {fileID: 95000011365805430}
   - 65: {fileID: 65000011182226132}
-  - 114: {fileID: 114000012621655718}
   m_Layer: 0
   m_Name: DEPRECATED_LivingLetter_Interactable
   m_TagString: Untagged
@@ -1163,26 +1162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lable: {fileID: 114000010901255416}
   ImageSprite: {fileID: 212000014278341224}
-  exclamationMark: {fileID: 4000013940432554}
-  MergedElementsDistance: 1
-  IsMerged: 0
---- !u!114 &114000012621655718
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013405985368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e18c5be521578c34689ac9a69742c743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DragOverLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  OnDrag: 0
-  ToBeRelease: 0
-  HoldThreshold: 0.25
+  normalGraphics: []
+  limblessGraphics: []
+  poofPrefab: {fileID: 0}
 --- !u!137 &137000013662908692
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

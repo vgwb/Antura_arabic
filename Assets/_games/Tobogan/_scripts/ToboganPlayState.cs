@@ -28,8 +28,10 @@ namespace EA4S.Tobogan
             gameTime.Reset();
             gameTime.Start();
 
-            game.timerText.gameObject.SetActive(true);
-            game.timerText.text = "";
+            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+
+
             hurryUpSfx = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
@@ -44,8 +46,7 @@ namespace EA4S.Tobogan
 
             if (timesUpAudioSource != null)
                 timesUpAudioSource.Stop();
-
-            game.timerText.gameObject.SetActive(false);
+            
             gameTime.Stop();
             game.pipesAnswerController.HidePipes();
         }
@@ -59,7 +60,7 @@ namespace EA4S.Tobogan
                 return;
             }
 
-            game.timerText.text = String.Format("{0:0}", gameTime.Time);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             if(!hurryUpSfx)
             {
@@ -85,6 +86,7 @@ namespace EA4S.Tobogan
         {
             // Time's up!
             game.isTimesUp = true;
+            game.Context.GetOverlayWidget().OnClockCompleted();
             game.SetCurrentState(game.ResultState);
         }
     }

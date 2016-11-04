@@ -14,6 +14,7 @@ namespace EA4S.MakeFriends
     {
         // Game configuration
         public IGameContext Context { get; set; }
+        public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
 
@@ -22,9 +23,9 @@ namespace EA4S.MakeFriends
             get
             {
                 // GameManager Override
-                if (MakeFriendsGameManager.Instance.overrideDifficulty)
+                if (MakeFriendsGame.Instance.overrideDifficulty)
                 {
-                    switch (MakeFriendsGameManager.Instance.difficultySetting)
+                    switch (MakeFriendsGame.Instance.difficultySetting)
                     {
                         case MakeFriendsVariation.EASY:
                             Difficulty = EASY_THRESHOLD;
