@@ -2,21 +2,27 @@
 
 namespace EA4S.Db
 {
-    public class LetterWordHelper
+    public class WordHelper
     {
         private DatabaseManager dbManager;
+        //private TeacherAI teacher;
 
-        public LetterWordHelper(DatabaseManager _dbManager)
+        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher)
         {
             this.dbManager = _dbManager;
+            //this.teacher = _teacher;
         }
 
         #region Letter -> Letter
 
-        public List<LetterData> GetLettersNotIn(params string[] tabooArray)
+        private List<LetterData> GetLettersNotIn(List<string> tabooList)
         {
-            var tabooList = new List<string>(tabooArray);
             return dbManager.FindLetterData(x => !tabooList.Contains(x.Id));
+        }
+        public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
+        {
+            var tabooList = new List<LetterData>(tabooArray);
+            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
         public List<LetterData> GetLettersByKind(LetterDataKind choice)
@@ -58,14 +64,18 @@ namespace EA4S.Db
 
         #region Word -> Letter
 
-        public List<LetterData> GetLettersInWord(string wordId)
+        public List<LetterData> GetLettersInWord(WordData wordData)
         {
-            WordData wordData = dbManager.GetWordDataById(wordId);
             var letter_ids_list = new List<string>(wordData.Letters);
             List<LetterData> list = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
             return list;
-
         }
+        public List<LetterData> GetLettersInWord(string wordId)
+        {
+            WordData wordData = dbManager.GetWordDataById(wordId);
+            return GetLettersInWord(wordData);
+        }
+
 
         public List<LetterData> GetLettersNotInWord(string wordId)
         {
@@ -80,10 +90,15 @@ namespace EA4S.Db
 
         #region Word -> Word
 
-        public List<WordData> GetWordsNotIn(params string[] tabooArray)
+
+        private List<WordData> GetWordsNotIn(List<string> tabooList)
         {
-            var tabooList = new List<string>(tabooArray);
             return dbManager.FindWordData(x => !tabooList.Contains(x.Id));
+        }
+        public List<WordData> GetWordsNotIn(params WordData[] tabooArray)
+        {
+            var tabooList = new List<WordData>(tabooArray);
+            return GetWordsNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
         public List<WordData> GetWordsByCategory(WordDataCategory choice)
