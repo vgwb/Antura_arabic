@@ -15,6 +15,7 @@ namespace EA4S.Tobogan
         public const float LETTER_HEIGHT = 4.8f;
         public float TowerFullHeight { get { return stackedLetters.Count * LETTER_HEIGHT; } }
         public GameObject letterPrefab;
+        public GameObject shadow;
 
         // Used to manage the backlog in the tube and the falling letter
         public Queue<LivingLetterRagdoll> backlogTube = new Queue<LivingLetterRagdoll>();
@@ -29,6 +30,9 @@ namespace EA4S.Tobogan
         float currentHeight;
         float yVelocity = 0.0f;
         float lastCompressionValue = 1;
+
+        Material shadowMaterial;
+        float maxShadowAlpha;
 
         // Used to simulate tower swing
         float maxSwingAmountFactor = 80.0f;
@@ -88,6 +92,11 @@ namespace EA4S.Tobogan
         {
             currentHeight = TowerFullHeight;
 
+            shadowMaterial = shadow.GetComponentInChildren<Renderer>().material;
+            var oldCol = shadowMaterial.color;
+            maxShadowAlpha = oldCol.a;
+            oldCol.a = 0;
+            shadowMaterial.color = oldCol;
             /*
             // Test
             for (int i = 0; i < 15; ++i)
@@ -123,6 +132,20 @@ namespace EA4S.Tobogan
             }
 
             UpdateTowerMovements();
+
+            var oldCol = shadowMaterial.color;
+
+            float targetAlpha;
+
+            if (stackedLetters.Count > 0)
+                targetAlpha = maxShadowAlpha;
+            else if (fallingLetter != null)
+                targetAlpha = Mathf.Lerp(maxShadowAlpha, 0, Vector3.Distance(fallingLetter.transform.position, transform.position)/20);
+            else
+                targetAlpha = 0;
+
+            oldCol.a = Mathf.Lerp(oldCol.a, targetAlpha, Time.deltaTime * 5.0f);
+            shadowMaterial.color = oldCol;
 
             if (testAddLetter)
             {

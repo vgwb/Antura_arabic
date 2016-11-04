@@ -2931,6 +2931,7 @@ MonoBehaviour:
   - {fileID: 114000013693616998}
   - {fileID: 114000013120432162}
   - {fileID: 114000012750384804}
+  basePosition: {fileID: 0}
 --- !u!114 &114000012750384804
 MonoBehaviour:
   m_ObjectHideFlags: 1
