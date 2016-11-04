@@ -7,6 +7,7 @@ namespace EA4S.Tobogan
     {
         public PipeAnswer[] pipeAnswers;
 
+        ToboganGame game;
         float hidingProbability;
 
         PipeAnswer currentPipeAnswer;
@@ -19,8 +20,10 @@ namespace EA4S.Tobogan
             this.hidingProbability = hidingProbability;
         }
 
-        public void Initialize()
+        public void Initialize(ToboganGame game)
         {
+            this.game = game;
+
             for (int i = 0; i < pipeAnswers.Length; i++)
             {
                 pipeAnswers[i].onTriggerEnterPipe += OnTriggerEnterPipe;
@@ -30,6 +33,8 @@ namespace EA4S.Tobogan
             currentPipeAnswer = null;
 
             HidePipes();
+
+            game.Context.GetInputManager().onPointerDown += OnPointerDown;
         }
 
         public void SetPipeAnswers(IEnumerable<ILivingLetterData> wrongAnswers, ILivingLetterData correctAnswers)
@@ -119,6 +124,26 @@ namespace EA4S.Tobogan
             pipe.StopSelectedAnimation();
 
             currentPipeAnswer = null;
+        }
+
+        void OnPointerDown()
+        {
+            // If not hiding, play letter sound when touching tube
+            for (int i = 0; i < pipeAnswers.Length; ++i)
+            {
+                var pipe = pipeAnswers[i];
+                if (pipe.active && pipe.ShowSign && pipe.Data != null)
+                {
+                    var pointerPosition = game.Context.GetInputManager().LastPointerPosition;
+                    var screenRay = game.tubesCamera.ScreenPointToRay(pointerPosition);
+
+                    RaycastHit hitInfo;
+                    if (pipe.signCollider.Raycast(screenRay, out hitInfo, game.tubesCamera.farClipPlane))
+                    {
+                        game.Context.GetAudioManager().PlayLetterData(pipe.Data, true);
+                    }
+                }
+            }
         }
 
         void Update()

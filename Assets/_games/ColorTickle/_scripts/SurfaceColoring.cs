@@ -16,13 +16,13 @@ namespace EA4S.ColorTickle
         private SkinnedMeshRenderer m_oSurfaceRenderer; //The face that will render the body texture
         [SerializeField]
         private int m_iPixelPerUnit = 5; //The number of pixels to fit in 1 unit
+        [SerializeField]
+        private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
         #endregion
 
         #region PRIVATE MEMBERS
         private Texture2D m_tBodyTexture; //Generated texture to color on the surface
         private RaycastHit m_oRayHit; //Store the data on the last collision
-       
-        private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
         #endregion
 
         #region EVENTS
@@ -62,14 +62,16 @@ namespace EA4S.ColorTickle
                 //check for ray collision
                 if (m_oBody.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity))
                 {
-                    Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
-
-                    ColorBodyTexturePoint(m_oRayHit.textureCoord);
+                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
 
                     if (OnBodyHit != null)
                     {
                         OnBodyHit();
                     }
+
+                    ColorBodyTexturePoint(m_oRayHit.textureCoord);
+
+                    
                 }
             }
         }

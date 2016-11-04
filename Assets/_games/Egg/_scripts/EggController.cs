@@ -7,7 +7,12 @@ namespace EA4S.Egg
 {
     public class EggController : MonoBehaviour
     {
-        public EggLivingLetter eggLivingLetter;
+        List<EggLivingLetter> eggLivingLetters = new List<EggLivingLetter>();
+        GameObject letterObjectViewPrefab;
+        Vector3[] lettersMaxPositions;
+
+        public GameObject emoticonPrefab;
+
         public GameObject egg;
 
         public EggPiece[] eggPieces;
@@ -16,12 +21,21 @@ namespace EA4S.Egg
 
         public Transform notRotatedObjects;
         Vector3 notRotation = new Vector3(0f, 0f, 0f);
+        public Transform emoticonsScale;
+
+        public GameObject eggShadow;
 
         public TremblingTube tremblingEgg;
         float tremblingTimer;
 
         public Action onEggCrackComplete;
         public Action onEggExitComplete;
+
+        public Action onEggPressedCallback
+        {
+            get { return eggCollider.pressedCallback; }
+            set { eggCollider.pressedCallback = value; }
+        }
 
         public GameObject eggParticleWin;
 
@@ -44,17 +58,22 @@ namespace EA4S.Egg
         IAudioSource audioSource;
         List<ILivingLetterData> lLDAudioQuestion = new List<ILivingLetterData>();
 
+        List<ILivingLetterData> questionData = new List<ILivingLetterData>();
+
         int piecePoofCompleteCount = 0;
         bool eggEggCrackCompleteSent = false;
 
-        public void Initialize(GameObject letterObjectViewPrefab, Vector3[] eggPositions, Action eggPressedCallback, IAudioManager audioManager)
+        EggEmoticonsController emoticonsController;
+
+        public void Initialize(GameObject letterObjectViewPrefab, Vector3[] eggPositions, Vector3[] lettersMaxPositions, IAudioManager audioManager)
         {
+            this.letterObjectViewPrefab = letterObjectViewPrefab;
+            this.lettersMaxPositions = lettersMaxPositions;
+
             this.eggPositions = eggPositions;
-            eggLivingLetter.Initialize(letterObjectViewPrefab);
-            eggCollider.Initizlize(eggPressedCallback);
             eggCollider.DisableCollider();
 
-            egg.gameObject.SetActive(false);
+            EggShow(false);
             eggParticleWin.SetActive(false);
 
             this.audioManager = audioManager;
@@ -66,6 +85,8 @@ namespace EA4S.Egg
 
             currentRotation = new Vector3(0f, 0f, -90f);
             GoToPosition(0, currentRotation);
+
+            emoticonsController = new EggEmoticonsController(emoticonsScale, emoticonPrefab);
         }
 
         public void Reset()
@@ -73,8 +94,8 @@ namespace EA4S.Egg
             currentRotation = new Vector3(0f, 0f, -90f);
             GoToPosition(0, currentRotation);
 
-            eggLivingLetter.gameObject.SetActive(false);
-            egg.gameObject.SetActive(true);
+            DestroyQuestionLetters();
+            EggShow(true);
 
             eggParticleWin.SetActive(true);
 
@@ -165,6 +186,11 @@ namespace EA4S.Egg
                 }
 
                 eggPieces[index].Poof(poofDirRight);
+            }
+
+            if(progress == 1f)
+            {
+                ShowEndLetters();
             }
         }
 
@@ -329,16 +355,20 @@ namespace EA4S.Egg
                 {
                     eggEggCrackCompleteSent = true;
 
-                    eggLivingLetter.gameObject.SetActive(true);
-                    eggLivingLetter.PlayIdleAnimation();
+                    //ShowEndLetters();
 
-                    egg.gameObject.SetActive(false);
+                    EggShow(false);
 
                     if (onEggCrackComplete != null)
                     {
                         onEggCrackComplete();
                     }
                 }
+            }
+
+            if(emoticonsController != null)
+            {
+                emoticonsController.Update(Time.deltaTime);
             }
         }
 
@@ -352,15 +382,6 @@ namespace EA4S.Egg
             float zRotation = egg.transform.eulerAngles.z % 360f;
 
             float newYPosition = minY;
-
-            //if (zRotation <= 180)
-            //{
-            //    newYPosition += maxDelta * (zRotation / 180f);
-            //}
-            //else
-            //{
-            //    newYPosition += maxDelta * ((360 - zRotation) / 180f);
-            //}
 
             if (zRotation <= 180)
             {
@@ -398,25 +419,34 @@ namespace EA4S.Egg
             notRotatedObjects.eulerAngles = notRotation;
         }
 
-        public void PlayAudioQuestion(ILivingLetterData questionDataAudio, Action endCallback)
+        public void SetQuestion(ILivingLetterData questionData)
         {
-            List<ILivingLetterData> sigleDataAudio = new List<ILivingLetterData>();
-            sigleDataAudio.Add(questionDataAudio);
+            this.questionData.Clear();
 
-            PlayAudioQuestion(sigleDataAudio, endCallback);
+            this.questionData.Add(questionData);
         }
 
-        public void PlayAudioQuestion(IEnumerable<ILivingLetterData> questionDataAudio, Action endCallback)
+        public void SetQuestion(IEnumerable<ILivingLetterData> questionData)
+        {
+            this.questionData.Clear();
+
+            foreach (ILivingLetterData letterData in questionData)
+            {
+                this.questionData.Add(letterData);
+            }
+        }
+
+        public void PlayAudioQuestion(Action endCallback)
         {
             audioSource = null;
 
-            this.endAudioQuestion = endCallback;
+            endAudioQuestion = endCallback;
 
             lLDAudioQuestion.Clear();
 
-            foreach (ILivingLetterData letterData in questionDataAudio)
+            for (int i = 0; i < questionData.Count; i++)
             {
-                lLDAudioQuestion.Add(letterData);
+                lLDAudioQuestion.Add(questionData[i]);
             }
         }
 
@@ -448,6 +478,86 @@ namespace EA4S.Egg
         void OnPiecePoofComplete()
         {
             piecePoofCompleteCount++;
+        }
+
+        void EggShow(bool show)
+        {
+            eggShadow.SetActive(show);
+            egg.SetActive(show);
+        }
+
+        void ShowEndLetters()
+        {
+            EggLivingLetter letter;
+
+            float startDelay = 0.7f;
+
+            float jumpDelay = 0.5f;
+
+            Vector3[] lettersEndPositions = GetLettersEndPositions();
+
+            for (int i = 0; i < questionData.Count; i++)
+            {
+                Action jumpCallback = null;
+
+                if (i == questionData.Count - 1)
+                {
+                    jumpCallback = OnLettersJumpComplete;
+                }
+
+                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, questionData[i], transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, jumpCallback);
+
+                eggLivingLetters.Add(letter);
+            }
+        }
+
+        void DestroyQuestionLetters()
+        {
+            for (int i = 0; i < eggLivingLetters.Count; i++)
+            {
+                eggLivingLetters[i].DestroyLetter();
+            }
+
+            eggLivingLetters.Clear();
+        }
+
+        Vector3[] GetLettersEndPositions()
+        {
+            int questionDataCount = questionData.Count;
+
+            Vector3[] lettersEndPositions = new Vector3[questionDataCount];
+
+            Vector3 maxLeft = lettersMaxPositions[0];
+            Vector3 maxRight = lettersMaxPositions[1];
+
+            float positionLerp = 1f / (questionDataCount + 1);
+
+            for (int i = 0; i < questionDataCount; i++)
+            {
+                lettersEndPositions[i] = Vector3.Lerp(maxLeft, maxRight, 1f - (positionLerp * (i + 1)));
+            }
+
+            return lettersEndPositions;
+        }
+
+        void OnLettersJumpComplete()
+        {
+
+        }
+
+        public void EmoticonHappy()
+        {
+            emoticonsController.EmoticonHappy();
+        }
+
+        public void EmoticonPositive()
+        {
+            emoticonsController.EmoticonPositive();
+        }
+
+        public void EmoticonNegative()
+        {
+            emoticonsController.EmoticonNegative();
         }
     }
 }

@@ -47,7 +47,8 @@ namespace EA4S.FastCrowd
             // Reset game timer
             gameTime.Start();
 
-            game.timerText.gameObject.SetActive(true);
+            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             StopAntura();
         }
@@ -55,8 +56,7 @@ namespace EA4S.FastCrowd
         public void ExitState()
         {
             StopAntura();
-
-            game.timerText.gameObject.SetActive(false);
+            
             gameTime.Stop();
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
             game.QuestionManager.OnDropped -= OnAnswerDropped;
@@ -97,13 +97,7 @@ namespace EA4S.FastCrowd
             game.antura.SetAnturaTime(false);
             // Schedule next exit
             anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
-
-            // TEMP
-            foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
-            {
-                item.isAnturaMoment = false;
-            }
-
+            
             game.Context.GetAudioManager().PlayMusic(Music.Theme3);
         }
 
@@ -113,12 +107,6 @@ namespace EA4S.FastCrowd
             game.antura.SetAnturaTime(true);
             // Schedule next duration
             anturaTimer = UnityEngine.Mathf.Lerp(20, 10, FastCrowdConfiguration.Instance.Difficulty);
-
-            // TEMP
-            foreach (LetterNavBehaviour item in game.QuestionManager.crowd.GetComponentsInChildren<LetterNavBehaviour>())
-            {
-                item.isAnturaMoment = true;
-            }
             
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
@@ -136,7 +124,7 @@ namespace EA4S.FastCrowd
             }
 
             gameTime.Update(delta);
-            game.timerText.text = ((int)gameTime.Time).ToString();
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
         }
 
         public void UpdatePhysics(float delta)
@@ -147,6 +135,7 @@ namespace EA4S.FastCrowd
         {
             // Time's up!
             game.isTimesUp = true;
+            game.Context.GetOverlayWidget().OnClockCompleted();
             game.SetCurrentState(game.EndState);
         }
     }

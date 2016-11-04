@@ -1,11 +1,10 @@
-﻿Shader "Antura/JustColor/Diffuse" 
+﻿Shader "Antura/JustColor/Diffuse"
 {
 	Properties{
-		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_Color("Color", Color) = (1,1,1,1)
 		_Emission("Emission", Color) = (0,0,0,0)
 	}
-	
+
 	SubShader
 	{
 		Tags{ "RenderType" = "Opaque" }
@@ -21,7 +20,7 @@
 		fixed4 _Color;
 		fixed3 _Emission;
 
-		void surf(Input IN, inout SurfaceOutput o) 
+		void surf(Input IN, inout SurfaceOutput o)
 		{
 			fixed4 c = _Color;
 			o.Albedo = c.rgb * IN.color;
@@ -30,6 +29,6 @@
 		}
 		ENDCG
 	}
-		
-	FallBack "Diffuse"
+
+		//FallBack "Diffuse"
 }

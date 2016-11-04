@@ -12,14 +12,14 @@ namespace EA4S.Db
         public int LearningBlock;
         public int PlaySession;
         public string Type;
-        public string Description;
-        public DidacticalFocus Focus;
+        public PlaySessionDataOrder Order;
+        public List<MiniGameInPlaySession> Minigames;
+
         public string[] Letters;
         public string[] Words;
         public string[] Words_previous;
         public string[] Phrases;
         public string[] Phrases_previous;
-        public List<MiniGameInPlaySession> Minigames;
 
         public string GetId()
         {
@@ -29,11 +29,11 @@ namespace EA4S.Db
         public override string ToString()
         {
             string output = "";
-            output += string.Format("[PlaySession: S={0}, LB={1}, PS={2}, description={3}]", Stage, LearningBlock, PlaySession, Description);
+            output += string.Format("[PlaySession: LB={0}, PS={1}]", Stage, LearningBlock, PlaySession);
             output += "\n MiniGames:";
             foreach (var minigame in Minigames) {
                 if (minigame.Weight == 0) continue;
-                output += "\n      " + minigame.MiniGame_Id + ": \t" + minigame.Weight;
+                output += "\n      " + minigame.MiniGameCode + ": \t" + minigame.Weight;
             }
             return output;
         }
@@ -42,15 +42,9 @@ namespace EA4S.Db
     [Serializable]
     public struct MiniGameInPlaySession
     {
-        public string MiniGame_Id;
+        public MiniGameCode MiniGameCode;
         public int Weight;
     }
 
-    public enum DidacticalFocus
-    {
-        Letters = 1,
-        Shapes = 2,
-        Words = 3
-    }
 
 }

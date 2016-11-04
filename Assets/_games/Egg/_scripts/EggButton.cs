@@ -96,11 +96,23 @@ namespace EA4S.Egg
         {
             if (inputEnabled)
             {
+                ChangeColorOnButtonPressed();
+
                 if (onButtonPressed != null)
                 {
                     onButtonPressed(livingLetterData);
                 }
             }
+        }
+
+        void ChangeColorOnButtonPressed()
+        {
+            if (colorTweener != null)
+                colorTweener.Kill();
+
+            buttonImage.color = colorLightUp;
+
+            colorTweener = DOTween.To(() => buttonImage.color, x => buttonImage.color = x, colorStandard, 1f);
         }
 
         public void EnableInput()

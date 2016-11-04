@@ -63,21 +63,29 @@ namespace EA4S.Tobogan
 
         public void PlayIdleAnimation()
         {
-            letter.Model.State = LLAnimationStates.LL_idle_1;
+            letter.SetState(LLAnimationStates.LL_idle);
+
+            livingLetterTransform.localPosition = normalPosition;
+        }
+
+        public void PlayStillAnimation()
+        {
+            letter.SetState(LLAnimationStates.LL_still);
 
             livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayWalkAnimation()
         {
-            letter.Model.State = LLAnimationStates.LL_walk;
+            letter.SetState(LLAnimationStates.LL_walking);
+            letter.SetWalkingSpeed(LetterObjectView.WALKING_SPEED);
 
             livingLetterTransform.localPosition = normalPosition;
         }
 
         public void PlayHoldAnimation()
         {
-            letter.Model.State = LLAnimationStates.LL_drag_idle;
+            letter.SetState(LLAnimationStates.LL_dragging);
 
             livingLetterTransform.localPosition = holdPosition;
         }
@@ -101,7 +109,16 @@ namespace EA4S.Tobogan
                 moveTweener.Kill();
             }
 
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () { PlayIdleAnimation(); if (endTransformToCallback != null) endTransformToCallback(); });
+            moveTweener = transform.DOLocalMove(position, duration).OnComplete(delegate () 
+            {
+                if (letter.Data == null)
+                    PlayStillAnimation();
+                else
+                    PlayIdleAnimation();
+
+                if (endTransformToCallback != null)
+                    endTransformToCallback();
+            });
         }
 
         void RoteteTo(Vector3 rotation, float duration)
@@ -163,7 +180,7 @@ namespace EA4S.Tobogan
             {
                 dragging = true;
 
-                var data = letter.Model.Data;
+                var data = letter.Data;
 
                 ToboganConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
 

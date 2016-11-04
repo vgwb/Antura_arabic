@@ -16,6 +16,7 @@
 
         public void ExitState()
         {
+            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
         public void Update(float delta)

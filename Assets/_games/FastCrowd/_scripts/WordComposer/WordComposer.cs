@@ -15,13 +15,8 @@ namespace EA4S.FastCrowd {
             WordLabel = GetComponent<WordFlexibleContainer>();
             UpdateWord();
         }
-
-        #region API
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void UpdateWord()
+        
+        void UpdateWord()
         {
             if (!isActiveAndEnabled)
                 return;
@@ -49,21 +44,6 @@ namespace EA4S.FastCrowd {
 
             StopAllCoroutines();
         }
-        
-        #endregion
-
-        #region event subscription delegates
-
-        private void FastCrowd_OnReadyForGameplayDone(ModularFramework.Modules.IGameplayInfo _gameplayInfo) {
-            // TODO: move to fastcrowd manager.
-            // Disable this component for living words variant
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
-                gameObject.SetActive(false);
-        }
-
-        private void Droppable_OnRightMatch(LetterObjectView _letterView) {
-            StartCoroutine(AddLetter(_letterView.Model.Data, 1.3f));
-        }
 
         IEnumerator AddLetter(ILivingLetterData data, float _delay)
         {
@@ -77,23 +57,5 @@ namespace EA4S.FastCrowd {
         private void DropContainer_OnObjectiveBlockCompleted() {
             Clean();
         }
-
-        #endregion
-
-        #region event subscription
-
-        void OnEnable() {
-            DropContainer.OnObjectiveBlockCompleted += DropContainer_OnObjectiveBlockCompleted;
-            Droppable.OnRightMatch += Droppable_OnRightMatch;
-            FastCrowd.OnReadyForGameplayDone += FastCrowd_OnReadyForGameplayDone;
-        }
-
-        void OnDisable() {
-            DropContainer.OnObjectiveBlockCompleted -= DropContainer_OnObjectiveBlockCompleted;
-            Droppable.OnRightMatch -= Droppable_OnRightMatch;
-            FastCrowd.OnReadyForGameplayDone -= FastCrowd_OnReadyForGameplayDone;
-        }
-
-        #endregion
     }
 }

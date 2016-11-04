@@ -21,16 +21,19 @@ namespace EA4S.MissingLetter
             mCollider = gameObject.GetComponent<Collider>();
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
             mCollider.enabled = false;
+            mbIsSpeaking = false;
+            mLetter.SetWalkingSpeed(1);
         }
 
         public void PlayAnimation(LLAnimationStates animation)
         {
-            mLetter.Model.State = animation;
+            mLetter.SetState(animation);
         }
 
         void MoveTo(Vector3 position, float duration, bool IdleAtEnd = true)
         {
-            PlayAnimation(LLAnimationStates.LL_run_happy);
+            PlayAnimation(LLAnimationStates.LL_walking);
+            mLetter.SetWalkingSpeed(1);
 
             if (moveTweener != null)
             {
@@ -40,7 +43,7 @@ namespace EA4S.MissingLetter
             moveTweener = transform.DOLocalMove(position, duration).OnComplete(
                 delegate () {
                     if (IdleAtEnd)
-                        PlayAnimation(LLAnimationStates.LL_idle_1);
+                        PlayAnimation(LLAnimationStates.LL_idle);
                     if (endTransformToCallback != null)
                         endTransformToCallback();
                 });
@@ -73,15 +76,8 @@ namespace EA4S.MissingLetter
 
             if (onLetterClick != null)
             {
-                Invoke("LaunchLetterClick", 0.2f);
-                //onLetterClick(mLetterData.Key);
-            }
-        }
-
-
-        private void LaunchLetterClick() {
-            if (onLetterClick != null) {
-                onLetterClick(mLetterData.Key);
+                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Key));
+                mCollider.enabled = false;
             }
         }
 
@@ -161,12 +157,12 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
-            
-
+            onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
+            mCollider.enabled = false;
 
-            Vector3 dir = (mv3CenterPosition - mv3CenterPosition).normalized;
+            Vector3 dir = (mv3EndPosition - mv3CenterPosition).normalized;
 
             Vector3 rot = new Vector3(0, Vector3.Angle(Vector3.forward, dir), 0);
             rot = (Vector3.Cross(Vector3.forward, dir).y < 0) ? -rot : rot;
@@ -198,7 +194,10 @@ namespace EA4S.MissingLetter
                 positions.Add(p);
             }
 
-            PlayAnimation(LLAnimationStates.LL_run_fear);
+            // TODO run fear
+            PlayAnimation(LLAnimationStates.LL_walking);
+            mLetter.SetWalkingSpeed(1);
+
             transform.DOLookAt(positions[0], 1f);
 
             TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), duration, PathType.CatmullRom);
@@ -209,7 +208,7 @@ namespace EA4S.MissingLetter
             value.OnComplete(delegate {
                 transform.DOLookAt(transform.position + Vector3.back, 1f);
                 positions.Clear();
-                PlayAnimation(LLAnimationStates.LL_idle_1);
+                PlayAnimation(LLAnimationStates.LL_idle);
                 mCollider.enabled = true;
             });
         }
@@ -218,9 +217,10 @@ namespace EA4S.MissingLetter
         public void Speak()
         {
             Debug.Log("Speaking the word: " + mLetterData.Key);
-            if (mLetterData != null)
+            if (mLetterData != null && !mbIsSpeaking)
             {
-                if(mLetterData.DataType == LivingLetterDataType.Letter)
+                mbIsSpeaking = true;
+                if (mLetterData.DataType == LivingLetterDataType.Letter)
                 {
                     AudioManager.I.PlayLetter(mLetterData.Key);
                 }
@@ -228,7 +228,13 @@ namespace EA4S.MissingLetter
                 {
                     AudioManager.I.PlayWord(mLetterData.Key);
                 }
+                StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
+        }
+
+        private void SetIsSpeaking(bool _isSpeaking)
+        {
+            mbIsSpeaking = _isSpeaking;
         }
 
         #endregion
@@ -261,6 +267,7 @@ namespace EA4S.MissingLetter
         [HideInInspector]
         public Vector3 mv3EndPosition;
 
+        private bool mbIsSpeaking;
     #endregion
 
 

@@ -1,45 +1,73 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using DG.Tweening;
 
 namespace EA4S.Egg
 {
-    public class EggLivingLetter : MonoBehaviour
+    public class EggLivingLetter
     {
-        GameObject letterObjectViewPrefab;
-
         LetterObjectView livingLetter;
 
-        public void Initialize(GameObject letterObjectViewPrefab)
-        {
-            this.letterObjectViewPrefab = letterObjectViewPrefab;
-        }
+        Vector3 startPosition;
+        Vector3 endPosition;
 
-        public void PlayIdleAnimation()
-        {
-            livingLetter.Model.State = LLAnimationStates.LL_idle_1;
-        }
+        float delay;
 
-        public void PlayWalkAnimation()
+        Action endCallback;
+
+        public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 endPosition, float delay, Action endCallback)
         {
-            livingLetter.Model.State = LLAnimationStates.LL_walk;
+            livingLetter = UnityEngine.Object.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
+
+            livingLetter.transform.SetParent(parent);
+            livingLetter.transform.localPosition = startPosition;
+            livingLetter.Init(livingLetterData);
+            livingLetter.gameObject.SetActive(false);
+
+            this.startPosition = startPosition;
+            this.endPosition = endPosition;
+
+            this.delay = delay;
+
+            this.endCallback = endCallback;
+
+            JumpToEnd();
         }
 
         public void PlayHorrayAnimation()
         {
-            livingLetter.Model.State = LLAnimationStates.LL_horray;
+            livingLetter.DoHorray();
         }
 
-        public void SetLetter(ILivingLetterData livingLetterData)
+        public void DestroyLetter()
         {
-            if(livingLetter != null)
+            UnityEngine.Object.Destroy(livingLetter.gameObject);
+        }
+
+        public void JumpToEnd()
+        {
+            float duration = 1f;
+
+            float jumpY = UnityEngine.Random.Range(1f, 2f);
+
+            livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate ()
             {
-                Destroy(livingLetter.gameObject);
-            }
+                livingLetter.gameObject.SetActive(true);
+                livingLetter.Poof();
+                livingLetter.OnJumpStart();
 
-            livingLetter = GameObject.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
+                float timeToJumpStart = 0.15f;
+                float timeToJumpEnd = 0.4f;
 
-            livingLetter.transform.SetParent(transform);
-            livingLetter.transform.localPosition = Vector3.zero;
-            livingLetter.Init(livingLetterData);
+                Sequence animationSequence = DOTween.Sequence();
+                animationSequence.AppendInterval(timeToJumpStart);
+                animationSequence.AppendCallback(delegate () { livingLetter.transform.DOLocalJump(endPosition, 7f, 1, duration).OnComplete(delegate () { if (endCallback != null) endCallback(); }).SetEase(Ease.Linear); });
+                animationSequence.AppendInterval(duration - timeToJumpEnd);
+                animationSequence.AppendCallback(delegate () { livingLetter.OnJumpEnded(); });
+                animationSequence.AppendInterval(timeToJumpEnd);
+                animationSequence.OnComplete(delegate () { livingLetter.DoHorray(); });
+                animationSequence.Play();
+            });
         }
     }
 }

@@ -1185,11 +1185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad1234be2df9ab8478058acb38cc39ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_kfDistanceBetweenLetters: 8
   mLetter: {fileID: 0}
-  m_v3StartPosition: {x: 50, y: 28, z: 20}
-  m_v3CenterPosition: {x: 30, y: 28, z: 20}
-  m_v3EndPosition: {x: 0, y: 28, z: 20}
+  mfDistanceBetweenLetters: 0
+  mv3StartPosition: {x: 0, y: 0, z: 0}
+  mv3CenterPosition: {x: 0, y: 0, z: 0}
+  mv3EndPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014077236162
 MonoBehaviour:
   m_ObjectHideFlags: 1

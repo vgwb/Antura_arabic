@@ -1177,9 +1177,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lable: {fileID: 114000010130955556}
   ImageSprite: {fileID: 212000010513181402}
-  exclamationMark: {fileID: 4000011609860498}
-  MergedElementsDistance: 1
-  IsMerged: 0
+  normalGraphics: []
+  limblessGraphics: []
+  poofPrefab: {fileID: 0}
 --- !u!114 &114000012683066352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1191,14 +1191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b743dc2da96eae408309c5420e6eba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_oBrush: {fileID: 0}
   m_oTextMeshObject: {fileID: 114000010130955556}
-  m_oBody: {fileID: 65000011860238484}
-  m_oFaceRenderer: {fileID: 0}
   m_iPixelPerUnit: 30
   m_iPercentageRequiredToWin: 95
-  m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
-  m_fBrushScaling: 0.5
-  m_oDrawingColor: {r: 1, g: 0, b: 0, a: 1}
+  m_bEnableColor: 1
 --- !u!137 &137000012491501076
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

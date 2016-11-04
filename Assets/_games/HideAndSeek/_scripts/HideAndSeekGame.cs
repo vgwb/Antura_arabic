@@ -14,7 +14,7 @@ namespace EA4S.HideAndSeek
 
         //public HideAndSeekQuestionsManager QuestionsManager { get; private set; }
 
-        public TextMeshProUGUI timerText;
+        //public TextMeshProUGUI timerText;
 
         public HideAndSeekGameManager GameManager;
 
@@ -31,9 +31,11 @@ namespace EA4S.HideAndSeek
             ResultState = new ResultGameState(this);
             //QuestionsManager = new HideAndSeekQuestionsManager();
 
-            timerText.gameObject.SetActive(false);
+            //timerText.gameObject.SetActive(false);
             Debug.Log(GameManager.gameObject.name);
-            
+
+            Context.GetOverlayWidget().Initialize(true, true, true);
+//            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
         protected override IGameState GetInitialState()

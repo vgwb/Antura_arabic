@@ -28,6 +28,9 @@ namespace EA4S.ColorTickle
         [Range(0, 100)]
         private int m_iPercentageRequiredToWin = 95; //The target percentage used to determinate if the letter is finished
 
+        [SerializeField]
+        private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
+
         [Header("Brush")]
 
         [SerializeField]
@@ -52,7 +55,7 @@ namespace EA4S.ColorTickle
         private int m_iCurrentShapePixelsColored = 0; //The number of pixels on the letter shape colored
 
         private eHitState m_eHitState = eHitState.NO_HIT; //Resulting state of the raycasting after the last update
-        private bool m_bEnableColor = true; //Flag used to enable the coloring functions 
+       
 
         #endregion
 
