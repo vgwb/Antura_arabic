@@ -179,6 +179,13 @@ public partial class SROptions
     }
 
     [Category("Minigames")]
+    [Sort(21)]
+    public void SickLetters()
+    {
+        LaunchMinigame(MiniGameCode.SickLetters);
+    }
+
+    [Category("Minigames")]
     [Sort(22)]
     public void TakeMeHome()
     {

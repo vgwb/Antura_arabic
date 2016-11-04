@@ -258,10 +258,10 @@ namespace EA4S.API
                 case MiniGameCode.MixedLetters_spelling:
                     // Not present in production pipeline
                     break;
-                case MiniGameCode.SickLetter:
-                    SickLetter.SickLetterConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    SickLetter.SickLetterConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
-                    SickLetter.SickLetterConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                case MiniGameCode.SickLetters:
+                    SickLetters.SickLettersConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
+                    SickLetters.SickLettersConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    SickLetters.SickLettersConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.ReadingGame:
                     // Must be defined how use sentence data structure
