@@ -7,7 +7,19 @@ using EA4S.Db;
 
 namespace EA4S.HideAndSeek
 {
-public class HideAndSeekLetterController : MonoBehaviour {
+    public enum MovementType
+    {
+        Normal,
+        OnlyRight,
+        OnlyLeft,
+        Enhanced
+    }
+
+    public class HideAndSeekLetterController : MonoBehaviour {
+
+        
+
+        
 
 		public delegate void TouchAction(int i);
 		public static event TouchAction onLetterTouched;
@@ -158,32 +170,42 @@ public class HideAndSeekLetterController : MonoBehaviour {
 		public void Move(){
 			if (!isMoving) {
 				
-                Vector2 temp = Random.insideUnitCircle*ray;
-                if (temp.y < 0)
-                    temp.y *= -1;
-                if (Mathf.Abs(temp.x) < minMove && temp.y < minMove)
+                float temp = Random.Range(-ray, ray);
+               // if (temp.y < 0)
+                //    temp.y *= -1;
+                if (Mathf.Abs(temp) < minMove/* && temp.y < minMove*/)
                 {
-                    if (temp.x >= 0)
-                        temp.x = minMove;
+                    if (temp >= 0)
+                        temp = minMove;
                     else
-                        temp.x = -minMove;
-                    temp.y = minMove;
+                        temp = -minMove;
+                   // temp.y = minMove;
                 }
 
+                if(movement == MovementType.OnlyLeft)
+                {
+                    temp = -1.3f * Mathf.Abs(temp);
+                } else if(movement == MovementType.OnlyRight)
+                {
+                    temp = 1.3f * Mathf.Abs(temp);
+                } else if(movement == MovementType.Enhanced)
+                {
+                    temp *= 1.5f;
+                }
 
-				pos2 = pos1 + new Vector3 ( temp.x,temp.y,0);
-                float tmpX, tmpY;
+				pos2 = pos1 + new Vector3 ( temp,0,0);
+                float tmpX;//, tmpY;
                 if (pos2.x > 0)
                     tmpX = pos2.x -0.1f;
                 else
                     tmpX = pos2.x + 0.1f; 
 
-                if (pos2.y > 0)
-                    tmpY = pos2.y - 0.1f;
-                else
-                    tmpY = pos2.y + 0.1f;
+                //if (pos2.y > 0)
+                //    tmpY = pos2.y - 0.1f;
+               // else
+               //     tmpY = pos2.y + 0.1f;
 
-                posNear = new Vector2(tmpX, tmpY);
+               // posNear = new Vector2(tmpX, tmpY);
 
                 //anim.SetFloat("speed",0.6f);
                 
@@ -206,6 +228,10 @@ public class HideAndSeekLetterController : MonoBehaviour {
 
 		}
 
+        public void SetMovement(MovementType mov)
+        {
+            movement = mov;
+        }
        
 
         //var
@@ -216,17 +242,17 @@ public class HideAndSeekLetterController : MonoBehaviour {
 
         private bool isClickable = false;
 
-		private int fase = 0;
+		//private int fase = 0;
 		//private Collider coll;
 		private bool isMoving = false;
         private bool isArrived = false;
-        private float timeToWait = 0f;
+        //private float timeToWait = 0f;
 		private float startTime;
 		private Vector3 pos1;
 		private Vector3 pos2;
-        private Vector2 posNear;
+       // private Vector2 posNear;
 
-        private float speed = 1f;
+        //private float speed = 1f;
 		private Animator anim;
 
         [HideInInspector]
@@ -236,5 +262,7 @@ public class HideAndSeekLetterController : MonoBehaviour {
 
         public float walkDuration = 2f;
 
+        private MovementType movement = MovementType.Normal;
+        
     }
 }
