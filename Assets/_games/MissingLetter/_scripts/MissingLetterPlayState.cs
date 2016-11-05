@@ -29,6 +29,7 @@ namespace EA4S.MissingLetter
 
             game.Context.GetOverlayWidget().Initialize(true, true, false);
 
+            game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 

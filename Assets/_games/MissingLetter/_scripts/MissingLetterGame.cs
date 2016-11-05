@@ -51,9 +51,9 @@ namespace EA4S.MissingLetter
         public float m_fAnswerLettersNumberThresold = 0.0f;
         public float m_fAnturaTriggersNumbersThresold = 0.33f;
 
-        private int STARS_1_THRESHOLD = 2;
-        private int STARS_2_THRESHOLD = 5;
-        private int STARS_3_THRESHOLD = 9;
+        public int STARS_1_THRESHOLD = 2;
+        public int STARS_2_THRESHOLD = 5;
+        public int STARS_3_THRESHOLD = 9;
         //END Difficulty CONFIG
 
 
@@ -129,7 +129,6 @@ namespace EA4S.MissingLetter
             TutorialState = new MissingLetterTutorialState(this);
 
             Context.GetOverlayWidget().Initialize(false, false, false);
-            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 
 			m_bInIdle = true;
 
@@ -165,7 +164,7 @@ namespace EA4S.MissingLetter
                 ++mCurrentScore;
             }
 
-            Context.GetOverlayWidget().SetStarsScore(CurrentStars);
+            Context.GetOverlayWidget().SetStarsScore(mCurrentScore);
         }
 
         new void OnDisable()
