@@ -74,17 +74,12 @@ namespace EA4S.MissingLetter
         public GameObject GetCorrectLLObject()
         {
             foreach (GameObject _obj in mCurrentAnswerScene) {
-                if(_obj.GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
+                if (_obj.GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
                 {
                     return _obj;
                 }
             }
             return null;
-        }
-
-        public ILivingLetterData GetCorrectLetterData()
-        {
-            return mCurrQuestionPack.GetCorrectAnswers().ElementAt(0);
         }
 
         void NextWordQuestion() {
@@ -256,9 +251,10 @@ namespace EA4S.MissingLetter
         public void ShuffleLetters(float duration)
         {
             mCurrentAnswerScene.Shuffle();
-            for(int i=0; i < mCurrentAnswerScene.Count; ++i)
+            for (int i=0; i < mCurrentAnswerScene.Count; ++i)
             {
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration);
+                float offsetDuration = UnityEngine.Random.Range(-2.0f,2.0f);
+                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration + offsetDuration);
             }
         }
 
