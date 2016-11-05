@@ -70,7 +70,8 @@ namespace EA4S.Egg
                 anturaProbabilityOfIn = 0.60f;
             }
 
-            nextStateTimer = 2f;
+            //nextStateTimer = 2f;
+            nextStateTimer = 0f;
             toNextState = false;
 
             inputButtonTimer = 0f;
@@ -78,10 +79,7 @@ namespace EA4S.Egg
             progressInput = false;
         }
 
-        public void ExitState()
-        {
-
-        }
+        public void ExitState() { }
 
         public void Update(float delta)
         {
@@ -134,6 +132,8 @@ namespace EA4S.Egg
             }
         }
 
+        public void UpdatePhysics(float delta) { }
+
         public void OnEggButtonPressed(ILivingLetterData letterData)
         {
             bool isSequence = game.questionManager.IsSequence();
@@ -143,6 +143,7 @@ namespace EA4S.Egg
                 if (isSequence)
                 {
                     PositiveFeedback();
+                    game.eggButtonBox.GetEggButton(letterData).SetOnPressedColor();
                 }
                 else
                 {
@@ -161,17 +162,9 @@ namespace EA4S.Egg
 
             bool isSequence = game.questionManager.IsSequence();
 
-            if (isSequence)
-            {
-                game.eggController.PlayAudioQuestion(EnableAllGameplayInput);
-            }
-            else
-            {
-                game.eggController.PlayAudioQuestion(EnableAllGameplayInput);
-                game.eggController.StartTrembling();
+            game.eggController.EmoticonInterrogative();
 
-                EnableAllGameplayInput();
-            }
+            game.eggController.PlayAudioQuestion(delegate () { game.eggController.EmoticonClose(); EnableAllGameplayInput(); });
         }
 
         void PositiveFeedback()
@@ -188,7 +181,6 @@ namespace EA4S.Egg
             float crackingProgress = (float)questionProgress / (float)correctAnswers;
 
             game.eggController.Cracking(crackingProgress);
-            
 
             if (crackingProgress == 1f)
             {
@@ -225,6 +217,7 @@ namespace EA4S.Egg
 
             questionProgress = 0;
             game.eggController.ResetCrack();
+            game.eggButtonBox.SetButtonsOnStandardColor();
 
             if (goAntura)
             {
@@ -262,6 +255,7 @@ namespace EA4S.Egg
             DisableAllGameplayInput();
             game.stagePositiveResult = false;
             toNextState = true;
+            game.eggButtonBox.SetButtonsOnStandardColor();
         }
 
         void OnEggCrackComplete()
@@ -270,6 +264,8 @@ namespace EA4S.Egg
 
             DisableAllGameplayInput();
             game.stagePositiveResult = true;
+
+            game.eggButtonBox.SetButtonsOnStandardColor();
 
             bool isSequence = game.questionManager.IsSequence();
 
@@ -285,6 +281,18 @@ namespace EA4S.Egg
 
         void OnLightUpButtonsComplete()
         {
+            bool isSequence = game.questionManager.IsSequence();
+
+            if (isSequence)
+            {
+                game.eggButtonBox.SetButtonsOnPressedColor();
+            }
+            else
+            {
+                game.eggButtonBox.GetEggButton(game.questionManager.GetlLetterDataSequence()[0]).SetOnPressedColor();
+
+            }
+
             toNextState = true;
         }
 
@@ -309,7 +317,5 @@ namespace EA4S.Egg
 
             positiveAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
         }
-
-        public void UpdatePhysics(float delta) { }
     }
 }

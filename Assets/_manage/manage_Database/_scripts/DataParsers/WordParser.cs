@@ -16,14 +16,18 @@ namespace EA4S.Db.Management
             data.Form = CustomParseForm(data, dict["Form"]);
             data.Article = ParseEnum<WordDataArticle>(data, dict["Article"]);
             data.Arabic = ToString(dict["Arabic"]);
-
-            // TODO: should instead be an array of ID, but we need to solve the european-to-arabic matching!
-            data.Letters = new string[] { (string)(dict["Letters"]) }; // ParseIDArray<LetterData, LetterTable>(data, (string)(dict["Letters"]), db.letterTable);
-
+            data.Letters = CustomParseLetters(data, db);
             data.Difficulty = ToInt(dict["Difficulty"]);
             data.Drawing = ToInt(dict["Drawing"]);
 
             return data;
+        }
+
+        private string[] CustomParseLetters(WordData wordData, Database db)
+        {
+            // TODO: should instead be an array of ID, so should probably be validated inside the arabic helper?
+            var allLetters = new List<LetterData>(db.GetLetterTable().GetValuesTyped());
+            return ArabicAlphabetHelper.LetterDataList(wordData.Arabic, allLetters).ToArray();
         }
 
         private WordDataForm CustomParseForm(WordData data, object enum_object)

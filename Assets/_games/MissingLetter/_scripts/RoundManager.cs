@@ -4,9 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using ModularFramework.Helpers;
 using System;
-using ArabicSupport;
-using Google2u;
-
 
 namespace EA4S.MissingLetter
 {
@@ -48,7 +45,7 @@ namespace EA4S.MissingLetter
         {
             mGame.m_bInIdle = false;
             ExitCurrentScene();
-            
+
             if (mRoundType == RoundType.WORD)
             {
                 NextWordQuestion();
@@ -88,7 +85,7 @@ namespace EA4S.MissingLetter
         }
 
         void NextWordQuestion() {
-            
+
             mCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
             ILivingLetterData questionData = mCurrQuestionPack.GetQuestion();
 
@@ -282,7 +279,7 @@ namespace EA4S.MissingLetter
                 mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
             }
         }
-            
+
         private void DoLoseAnimations(string _key)
         {
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
