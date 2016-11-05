@@ -4,7 +4,7 @@ namespace EA4S.MissingLetter {
 
     public class MissingLetterTutorialState : IGameState {
         MissingLetterGame game;
-        float delayTime = 5f;
+        float delayTime = 2f;
         bool suggested = false;
 
         public MissingLetterTutorialState(MissingLetterGame game) {
@@ -40,14 +40,11 @@ namespace EA4S.MissingLetter {
         }
 
         public void Update(float delta) {
-            //TODO: dopo TOT tempo mostrare un aiuto ? Tipo un dito che indica la LL giusta ??
             delayTime -= delta;
             if(delayTime < 0 && !suggested)
             {
                 game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().SuggestLetter();
-                game.mFinger.transform.position = game.m_RoundManager.GetCorrectLLObject().transform.position + Vector3.back * 3f + Vector3.up * 3 ;
-                game.mFinger.transform.parent = game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().transform;
-                game.mFinger.GetComponent<FingerSuggestion>().DoSuggestion();
+                game.mFinger.GetComponent<FingerSuggestion>().DoSuggestion(game.m_RoundManager.GetCorrectLLObject());
                 suggested = true;
             }
         }
