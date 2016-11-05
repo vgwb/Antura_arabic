@@ -51,8 +51,11 @@ namespace EA4S.MissingLetter
         public float m_fAnswerLettersNumberThresold = 0.0f;
         public float m_fAnturaTriggersNumbersThresold = 0.33f;
 
+        [HideInInspector]
         public int STARS_1_THRESHOLD = 2;
+        [HideInInspector]
         public int STARS_2_THRESHOLD = 5;
+        [HideInInspector]
         public int STARS_3_THRESHOLD = 9;
         //END Difficulty CONFIG
 
