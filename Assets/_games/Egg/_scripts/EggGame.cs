@@ -12,6 +12,7 @@ namespace EA4S.Egg
         public GameObject letterObjectPrefab;
         public EggRunLettersBox runLettersBox;
         public GameObject anturaPrefab;
+        public GameObject shadowPrefab;
 
         public const int numberOfStage = 4;
         public int currentStage { get; set; }
@@ -71,9 +72,9 @@ namespace EA4S.Egg
             currentStage = 0;
             correctStages = 0;
 
-            eggController.Initialize(letterObjectPrefab, eggBox.GetEggLocalPositions(), eggBox.GetLocalLettersMaxPositions(), EggConfiguration.Instance.Context.GetAudioManager());
+            eggController.Initialize(letterObjectPrefab, shadowPrefab, eggBox.GetEggLocalPositions(), eggBox.GetLocalLettersMaxPositions(), EggConfiguration.Instance.Context.GetAudioManager());
             eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager(), PlayState.OnEggButtonPressed);
-            runLettersBox.Initialize(letterObjectPrefab);
+            runLettersBox.Initialize(letterObjectPrefab, shadowPrefab);
             antura.Initialize(anturaPrefab);
         }
     }

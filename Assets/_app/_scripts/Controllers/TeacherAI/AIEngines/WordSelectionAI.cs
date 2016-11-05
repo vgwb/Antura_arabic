@@ -10,15 +10,17 @@ namespace EA4S.Teacher
     {
         // References
         private DatabaseManager dbManager;
-        private PlayerProfile playerProfile;
+        //private PlayerProfile playerProfile;
+        private TeacherAI teacher;
 
         // Inner state
         private List<string> currentAlreadyPickedLetterIds = new List<string>();
 
-        public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
+        public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher)
         {
             this.dbManager = _dbManager;
-            this.playerProfile = _playerProfile;
+            //this.playerProfile = _playerProfile;
+            this.teacher = _teacher;
         }
 
         public void InitialiseNewPlaySession()
@@ -50,7 +52,7 @@ namespace EA4S.Teacher
             if (nRemainingToSelect > 0)
             {
                 //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PAST words");
-                SelectWordsFrom(dbManager.letterWordHelper.GetAllWordIdsFromPreviousPlaySessions(playData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+                SelectWordsFrom(teacher.wordHelper.GetAllWordIdsFromPreviousPlaySessions(playData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
             }
 
             // ... if that's still not enough, there is some issue.

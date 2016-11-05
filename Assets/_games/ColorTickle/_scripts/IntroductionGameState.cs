@@ -11,9 +11,8 @@ namespace EA4S.ColorTickle
     {
         ColorTickleGame game;
 
-        float timer = 1;
+        float timer = 1f;
 
-        bool m_FirstLetter = true;
 
         public IntroductionGameState(ColorTickleGame game)
         {
@@ -28,21 +27,12 @@ namespace EA4S.ColorTickle
             game.gameUI.SetMaxLives(game.lives);
             game.gameUI.SetClockDuration(game.clockTime);
 
-            if (m_FirstLetter)
-            {
-                game.currentLetter = LetterObjectView.Instantiate(game.m_LetterPrefab);
-                m_FirstLetter = false;
-            }
-            else
-            {
-                //Destroy previous Letter
-                //Istantiate a new Letter 
-            }
-
-            game.currentLetter.Init(AppManager.Instance.Letters.GetRandomElement());
-
-            //game.currentLetter.GetComponent<TMPTextColoring>().enableColor = false;
-            //game.currentLetter.GetComponent<SurfaceColoring>().enableColor = false;
+			game.myLetters = new LetterObjectView[game.rounds];
+			for (int i = 0; i < game.rounds; ++i) {
+				game.myLetters[i] = LetterObjectView.Instantiate(game.m_LetterPrefab);
+				game.myLetters[i].Init(AppManager.Instance.Letters.GetRandomElement());
+				game.myLetters[i].gameObject.SetActive (false);
+			}
         }
 
         public void ExitState()
