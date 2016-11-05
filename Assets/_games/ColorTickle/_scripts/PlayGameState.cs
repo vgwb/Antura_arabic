@@ -60,9 +60,10 @@ namespace EA4S.ColorTickle
 
 			m_currentLetter = game.myLetters[m_Rounds - 1];
 			m_currentLetter.gameObject.SetActive (true);
+            m_currentLetter.GetComponent<LLController>().movingToDestination = true;
 
 
-			//Init the first letter
+            //Init the first letter
             InitLetter();
             
             game.anturaController.isEnable = true;
@@ -101,19 +102,23 @@ namespace EA4S.ColorTickle
                     {
                         if (m_Rounds <= 1)
                         {
-							DisableObjects ();
+                            m_currentLetter.Poof();
+                            m_currentLetter.gameObject.SetActive(false);
+                            DisableObjects ();
                             game.SetCurrentState(game.ResultState);
 							Debug.Log("You win!!!!");
                         }
                         else
                         {
-							// Disable the letter just colored
+                            // Disable the letter just colored
+                            m_currentLetter.Poof();
 							m_currentLetter.gameObject.SetActive(false);
 							ResetState ();
 							game.gameUI.SetLives (m_MaxLives);
 							--m_Rounds;
 							m_currentLetter = game.myLetters[m_Rounds - 1];
 							m_currentLetter.gameObject.SetActive (true);
+                            m_currentLetter.GetComponent<LLController>().movingToDestination = true;
 							// Initialize the next letter
 							InitLetter();
                         }                  
@@ -159,13 +164,14 @@ namespace EA4S.ColorTickle
 //			m_SurfaceColoringLetter.enableColor = false;
 			//BuildBrush ();
 			SetBrushColor(m_ColorsUIManager.defaultColor);
-			m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
+			//m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
 		}
 
 		private void DisableObjects()
 		{
-			m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
-			m_ColorsUIManager.SetBrushColor -= SetBrushColor;
+            //m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
+            m_currentLetter.SetState(LLAnimationStates.LL_still);
+            m_ColorsUIManager.SetBrushColor -= SetBrushColor;
 			m_TMPTextColoringLetter.OnShapeHit -= ShapeTouched;
 			m_SurfaceColoringLetter.OnBodyHit -= BodyTouched;
 			m_TMPTextColoringLetter.enableColor = false;
@@ -253,7 +259,8 @@ namespace EA4S.ColorTickle
             //Debug.Log("Tickle");
             m_TickleTime = 1;
             m_Tickle = true;
-            m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", game.animatorTickleState);
+            //m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", game.animatorTickleState);
+            m_currentLetter.SetState(LLAnimationStates.LL_dancing);
             //m_TMPTextColoringLetter.enableColor = false;
             //m_SurfaceColoringLetter.enableColor = false;          
         }
@@ -263,12 +270,14 @@ namespace EA4S.ColorTickle
 			if (m_Tickle)
 			{
 				m_TickleTime -= delta;
-				if (m_TickleTime < 0 && !m_currentLetter.GetComponentInChildren<Animator>().IsInTransition(0))
+				if (m_TickleTime < 0 /*&& !m_currentLetter.GetComponentInChildren<Animator>().IsInTransition(0)*/)
 				{
 					m_HitState = eHitState.HIT_NONE;
 					m_Tickle = false;
-					m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
-				}
+                    //m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
+                    m_currentLetter.SetState(LLAnimationStates.LL_still);
+
+                }
 			}
 		}
 
