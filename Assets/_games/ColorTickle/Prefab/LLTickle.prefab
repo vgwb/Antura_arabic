@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_iPixelPerUnit: 30
   m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
-  m_iPercentageRequiredToWin: 95
+  m_iPercentageRequiredToWin: 75
 --- !u!114 &114000011460492146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1843,7 +1843,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20.05
+  m_fontSize: 37.35
   m_fontSizeBase: 37.35
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1925,7 +1925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_szBrushName: LetterBrush
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
-  m_fBrushScaling: 0.5
+  m_fBrushScaling: 0.2
   m_oDrawingColor: {r: 0.6666667, g: 0, b: 0, a: 1}
 --- !u!114 &114000011715073254
 MonoBehaviour:
@@ -1938,7 +1938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  innerTransform: {fileID: 0}
+  innerTransform: {fileID: 4000010511669154}
   Lable: {fileID: 114000011460492146}
   ImageSprite: {fileID: 212000010026631368}
   maxSize: 1.5
@@ -1982,7 +1982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_szBrushName: BodyBrush
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
-  m_fBrushScaling: 0.5
+  m_fBrushScaling: 0.2
   m_oDrawingColor: {r: 1, g: 0, b: 0, a: 0.459}
 --- !u!137 &137000010899501002
 SkinnedMeshRenderer:
