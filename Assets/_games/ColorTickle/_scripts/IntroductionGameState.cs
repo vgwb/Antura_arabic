@@ -31,7 +31,9 @@ namespace EA4S.ColorTickle
 			for (int i = 0; i < game.rounds; ++i) {
 				game.myLetters[i] = LetterObjectView.Instantiate(game.m_LetterPrefab);
 				game.myLetters[i].Init(AppManager.Instance.Letters.GetRandomElement());
-			}
+                game.myLetters[i].GetComponent<LLController>().movingToDestination = false;
+
+            }
         }
 
         public void ExitState()
