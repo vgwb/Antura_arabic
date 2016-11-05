@@ -1,10 +1,10 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/08/04 11:47
-// License Copyright (c) Daniele Giardini
 
 using UnityEngine;
 using UnityEngine.UI;
 using DG.DeExtensions;
+using DG.Tweening;
 
 namespace EA4S
 {
@@ -23,17 +23,41 @@ namespace EA4S
     public class MenuButton : MonoBehaviour
     {
         public MenuButtonType Type;
+        public Color BtToggleOffColor = Color.white;
 
         public bool IsToggled { get; private set; }
         public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
-        public Image Ico { get { if (fooIco == null) fooIco = this.GetOnlyComponentsInChildren<Image>(true)[0]; return fooIco; } }
 
         Button fooBt;
-        Image fooIco;
+        Image btImg, ico;
+        Color defColor;
+        Tween clickTween;
 
-        public void Toggle(bool activate)
+        void Awake()
         {
-            Ico.SetAlpha(activate ? 1 : 0.4f);
+            clickTween = this.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.35f).SetAutoKill(false).SetUpdate(true).Pause();
+        }
+
+        void OnDestroy()
+        {
+            clickTween.Kill();
+        }
+
+        public void Toggle(bool _activate)
+        {
+            if (btImg == null) {
+                btImg = this.GetComponent<Image>();
+                defColor = btImg.color;
+            }
+            if (ico == null) ico = this.GetOnlyComponentsInChildren<Image>(true)[0];
+
+            btImg.color = _activate ? defColor : BtToggleOffColor;
+            ico.SetAlpha(_activate ? 1 : 0.4f);
+        }
+
+        public void AnimateClick()
+        {
+            clickTween.Restart();
         }
     }
 }
