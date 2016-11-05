@@ -246,7 +246,6 @@ namespace EA4S.MissingLetter
 
         #region VARS
 
-        private int step = 0;
         private List<Vector3> positions = new List<Vector3>();
 
 

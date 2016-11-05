@@ -124,7 +124,8 @@ namespace EA4S.MissingLetter
         public void Restore()
         {
             //restore last letter removed
-            mDataToRestore.Data.Arabic = mRemovedElement;
+            if(mDataToRestore != null)
+                mDataToRestore.Data.Arabic = mRemovedElement;
         }
 
     }
