@@ -191,6 +191,7 @@ GameObject:
   - 114: {fileID: 114000011297005578}
   - 114: {fileID: 114000011054440758}
   - 114: {fileID: 114000012766081152}
+  - 114: {fileID: 114000010584986880}
   m_Layer: 0
   m_Name: LLTickle
   m_TagString: Untagged
@@ -1680,7 +1681,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010800097258}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -1, y: -2.5, z: -6}
+  m_LocalPosition: {x: -20, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
@@ -1756,7 +1757,7 @@ Animator:
   m_GameObject: {fileID: 1000010800097258}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6977925c7cebe5248a6abfd20fd6c8e1, type: 3}
-  m_Controller: {fileID: 9100000, guid: f44c554f34065b347a38ed2a1329e671, type: 2}
+  m_Controller: {fileID: 9100000, guid: b3321dbe040655b47bc1f069983664d6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1764,6 +1765,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010584986880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010800097258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39eb93ca87d9bed41911e039ff060007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fSpeed: 10
+  m_v3StartPosition: {x: -20, y: 0, z: 0}
+  m_v3Destination: {x: 0, y: -2.5, z: -7}
+  m_bMovingToDestination: 1
 --- !u!114 &114000011054440758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1843,11 +1859,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 37.35
+  m_fontSize: 20.05
   m_fontSizeBase: 37.35
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
+  m_fontSizeMin: 27
   m_fontSizeMax: 60
   m_fontStyle: 0
   m_textAlignment: 17
@@ -1925,8 +1941,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_szBrushName: LetterBrush
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
-  m_fBrushScaling: 0.2
-  m_oDrawingColor: {r: 0.6666667, g: 0, b: 0, a: 1}
+  m_fBrushScaling: 0.3
+  m_oDrawingColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114000011715073254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1982,8 +1998,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_szBrushName: BodyBrush
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
-  m_fBrushScaling: 0.2
-  m_oDrawingColor: {r: 1, g: 0, b: 0, a: 0.459}
+  m_fBrushScaling: 0.3
+  m_oDrawingColor: {r: 1, g: 0.6666667, b: 0.6666667, a: 1}
 --- !u!137 &137000010899501002
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
