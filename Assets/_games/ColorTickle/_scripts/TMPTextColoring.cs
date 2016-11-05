@@ -34,7 +34,7 @@ namespace EA4S.ColorTickle
         private Vector2[] m_aUVLetterInMainTexture; //The original UVs of the letter's base texture
         private int m_iTotalShapePixels = 0; //The number of pixels in the m_tBaseLetterTextureScaledToDynamic to constitute the letter body
         private int m_iCurrentShapePixelsColored = 0; //The number of pixels on the letter shape colored
-        #endregion
+		#endregion
 
         #region EVENTS
         public event Action<bool> OnShapeHit; //event launched upon touching the face/letter
@@ -165,6 +165,9 @@ namespace EA4S.ColorTickle
         /// </summary>
         public void Reset()
         {
+			m_iCurrentShapePixelsColored = 0;
+			m_iTotalShapePixels = 0;
+
             if (m_oTextMeshObject.fontMaterial.mainTexture is Texture2D)
             {
                 m_tBaseLetterTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
@@ -223,7 +226,7 @@ namespace EA4S.ColorTickle
             m_oTextMeshObject.ForceMeshUpdate();
 
             //Make a copy of the text letter's mesh
-            Mesh _oMeshColliderStructure = Instantiate<Mesh>(m_oTextMeshObject.textInfo.meshInfo[0].mesh);
+			Mesh _oMeshColliderStructure = Instantiate<Mesh>(m_oTextMeshObject.textInfo.meshInfo[0].mesh);
 
             //UV's need to be correctly setted since the original data takes the uv of the specific letter in the alphabet's atlas;
             //the uvs (and vertices eventually) cannot be directly setted, a separate array must be modified and assigned
