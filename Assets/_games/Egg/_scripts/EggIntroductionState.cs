@@ -5,14 +5,9 @@
         EggGame game;
 
         float timer = 1;
-        public EggIntroductionState(EggGame game)
-        {
-            this.game = game;
-        }
+        public EggIntroductionState(EggGame game) { this.game = game; }
 
-        public void EnterState()
-        {
-        }
+        public void EnterState() { }
 
         public void ExitState()
         {
@@ -30,8 +25,6 @@
             }
         }
 
-        public void UpdatePhysics(float delta)
-        {
-        }
+        public void UpdatePhysics(float delta) { }
     }
 }

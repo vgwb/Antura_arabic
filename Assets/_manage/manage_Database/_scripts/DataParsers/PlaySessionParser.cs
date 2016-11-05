@@ -37,7 +37,13 @@ namespace EA4S.Db.Management
             {
                 // Assessments have AssessmentType as their minigame
                 var minigameStruct = new MiniGameInPlaySession();
-                minigameStruct.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), ToString(dict["AssessmentType"]));
+                var assessmentType = ToString(dict["AssessmentType"]);
+                if (assessmentType == "")
+                {
+                    Debug.LogWarning(data.GetType().ToString() + " could not find AssessmentType for assessment " + data.Id);
+                    return list; // this means that no assessment type has been selected
+                }
+                minigameStruct.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), assessmentType);
                 minigameStruct.Weight = 1;  // weight is forced to be 1
             }
             else

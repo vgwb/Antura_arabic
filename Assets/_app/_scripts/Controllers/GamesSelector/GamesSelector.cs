@@ -221,18 +221,22 @@ namespace EA4S
             }
         }
 
+        #region MiniGame Selection Getters
+
         void AutoLoadMinigames()
         {
-            AppManager.Instance.InitDataAI();
             OnComplete += GoToMinigame;
-            Show(TeacherAI.I.GetMiniGamesForCurrentPlaySession());
+            Show(TeacherAI.I.CurrentPlaySessionMiniGames);
         }
 
         void GoToMinigame()
         {
-            MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+            MiniGameCode myGameCode = TeacherAI.I.CurrentMiniGame.Code;
+            //myGameCode = MiniGameCode.Egg;  // SET THIS TO TET SPECIFIC MINIGAMES IN THE MAIN PROGRESSION FLOW
             AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
         }
+
+        #endregion
 
         IEnumerator CO_AnimateEntrance()
         {

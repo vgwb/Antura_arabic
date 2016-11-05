@@ -50,7 +50,9 @@ namespace EA4S.Egg
         {
             for (int i = 0; i < eggButtons.Count; i++)
             {
-                Destroy(eggButtons[i].gameObject);
+                EggButton eggButton = eggButtons[i];
+
+                eggButton.ScaleTo(0f, 0.1f, 0f, delegate () { Destroy(eggButton.gameObject); });
             }
 
             eggButtons.Clear();
@@ -80,6 +82,22 @@ namespace EA4S.Egg
             for (int i = 0; i < eggButtons.Count; i++)
             {
                 eggButtons[i].gameObject.SetActive(false);
+            }
+        }
+
+        public void SetButtonsOnPressedColor()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].SetOnPressedColor();
+            }
+        }
+
+        public void SetButtonsOnStandardColor()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].SetOnStandardColor();
             }
         }
 
@@ -274,6 +292,19 @@ namespace EA4S.Egg
             }
         }
 
+        public EggButton GetEggButton(ILivingLetterData letterData)
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                if(eggButtons[i].livingLetterData == letterData)
+                {
+                    return eggButtons[i];
+                }
+            }
+
+            return null;
+        }
+
         public void EnableButtonsInput()
         {
             for (int i = 0; i < eggButtons.Count; i++)
@@ -311,19 +342,17 @@ namespace EA4S.Egg
         {
             Color newColor;
 
-            if(availableButtonColors.Count <= 0)
+            if (availableButtonColors.Count <= 0)
             {
-                for(int i=0; i<buttonColors.Length; i++)
+                for (int i = 0; i < buttonColors.Length; i++)
                 {
                     availableButtonColors.Add(buttonColors[i]);
                 }
             }
 
-            int colorIndex = UnityEngine.Random.Range(0, availableButtonColors.Count);
+            newColor = availableButtonColors[0];
 
-            newColor = availableButtonColors[colorIndex];
-
-            availableButtonColors.RemoveAt(colorIndex);
+            availableButtonColors.RemoveAt(0);
 
             return newColor;
         }

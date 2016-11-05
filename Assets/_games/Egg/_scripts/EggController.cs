@@ -9,6 +9,7 @@ namespace EA4S.Egg
     {
         List<EggLivingLetter> eggLivingLetters = new List<EggLivingLetter>();
         GameObject letterObjectViewPrefab;
+        GameObject shadowPrefab;
         Vector3[] lettersMaxPositions;
 
         public GameObject emoticonPrefab;
@@ -65,9 +66,10 @@ namespace EA4S.Egg
 
         EggEmoticonsController emoticonsController;
 
-        public void Initialize(GameObject letterObjectViewPrefab, Vector3[] eggPositions, Vector3[] lettersMaxPositions, IAudioManager audioManager)
+        public void Initialize(GameObject letterObjectViewPrefab, GameObject shadowPrefab, Vector3[] eggPositions, Vector3[] lettersMaxPositions, IAudioManager audioManager)
         {
             this.letterObjectViewPrefab = letterObjectViewPrefab;
+            this.shadowPrefab = shadowPrefab;
             this.lettersMaxPositions = lettersMaxPositions;
 
             this.eggPositions = eggPositions;
@@ -370,6 +372,11 @@ namespace EA4S.Egg
             {
                 emoticonsController.Update(Time.deltaTime);
             }
+
+            for (int i = 0; i < eggLivingLetters.Count; i++)
+            {
+                eggLivingLetters[i].Update(Time.deltaTime);
+            }
         }
 
         public void LateUpdate()
@@ -505,7 +512,7 @@ namespace EA4S.Egg
                     jumpCallback = OnLettersJumpComplete;
                 }
 
-                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, questionData[i], transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, jumpCallback);
+                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, shadowPrefab, questionData[i], transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, jumpCallback);
 
                 eggLivingLetters.Add(letter);
             }
@@ -558,6 +565,16 @@ namespace EA4S.Egg
         public void EmoticonNegative()
         {
             emoticonsController.EmoticonNegative();
+        }
+
+        public void EmoticonInterrogative()
+        {
+            emoticonsController.EmoticonInterrogative();
+        }
+
+        public void EmoticonClose()
+        {
+            emoticonsController.CloseEmoticons();
         }
     }
 }
