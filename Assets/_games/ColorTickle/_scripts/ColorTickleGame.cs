@@ -31,7 +31,7 @@ namespace EA4S.ColorTickle
         // GAME STATES
         public IntroductionGameState IntroductionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
-        //public QuestionGameState QuestionState { get; private set; }
+        public QuestionGameState QuestionState { get; private set; }
         public ResultGameState ResultState { get; private set; }
 
         #endregion
@@ -100,7 +100,7 @@ namespace EA4S.ColorTickle
         {
             IntroductionState = new IntroductionGameState(this);
             PlayState = new PlayGameState(this);
-            //QuestionState = new QuestionGameState(this);
+            QuestionState = new QuestionGameState(this);
             ResultState = new ResultGameState(this);
         }
 
