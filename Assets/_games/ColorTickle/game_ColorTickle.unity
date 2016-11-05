@@ -2702,6 +2702,21 @@ Prefab:
       value: 
       objectReference: {fileID: 114000011715073254, guid: 0afd283496b374e4eb71dc898a41581c,
         type: 2}
+    - target: {fileID: 114000013493082588, guid: e63175941f7154444bf3608253b4de18,
+        type: 2}
+      propertyPath: m_Rounds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013493082588, guid: e63175941f7154444bf3608253b4de18,
+        type: 2}
+      propertyPath: m_ClockTime
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013493082588, guid: e63175941f7154444bf3608253b4de18,
+        type: 2}
+      propertyPath: m_BrushLimitVelocity
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e63175941f7154444bf3608253b4de18, type: 2}
   m_IsPrefabParent: 0
