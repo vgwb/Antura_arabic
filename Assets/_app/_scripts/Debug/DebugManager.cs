@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EA4S.API;
@@ -20,12 +19,12 @@ namespace EA4S
     {
         public static DebugManager I;
 
-        DifficulyLevels _DifficultyLevel = DifficulyLevels.Normal;
+        private DifficulyLevels _difficultyLevel = DifficulyLevels.Normal;
         public DifficulyLevels DifficultyLevel {
-            get { return _DifficultyLevel; }
+            get { return _difficultyLevel; }
             set {
-                _DifficultyLevel = value;
-                switch (_DifficultyLevel) {
+                _difficultyLevel = value;
+                switch (_difficultyLevel) {
                     case DifficulyLevels.VeryEasy:
                         Difficulty = 0.1f;
                         break;
@@ -41,6 +40,8 @@ namespace EA4S
                     case DifficulyLevels.VeryHard:
                         Difficulty = 1.0f;
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
@@ -80,7 +81,7 @@ namespace EA4S
 
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
-            int packsCount = 0;
+            var packsCount = 0;
 
             switch (miniGameCodeSelected) {
                 case MiniGameCode.Egg:
@@ -117,13 +118,35 @@ namespace EA4S
                 case MiniGameCode.MissingLetter_phrases:
                 case MiniGameCode.MixedLetters_alphabet:
                 case MiniGameCode.MixedLetters_spelling:
-                case MiniGameCode.SickLetter:
+                case MiniGameCode.SickLetters:
                 case MiniGameCode.ReadingGame:
                 case MiniGameCode.Scanner:
                 case MiniGameCode.Scanner_phrase:
 
                     break;
 
+                case MiniGameCode.ThrowBalls_letterinword:
+                    break;
+                case MiniGameCode.TakeMeHome:
+                    break;
+                case MiniGameCode.Assessment_3:
+                    break;
+                case MiniGameCode.Assessment_4:
+                    break;
+                case MiniGameCode.Assessment_5:
+                    break;
+                case MiniGameCode.Assessment_Alphabet:
+                    break;
+                case MiniGameCode.Assessment_7:
+                    break;
+                case MiniGameCode.Assessment_8:
+                    break;
+                case MiniGameCode.Assessment_9:
+                    break;
+                case MiniGameCode.Assessment_10:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("miniGameCodeSelected", miniGameCodeSelected, null);
             }
             // Call start game with parameters
             MiniGameAPI.Instance.StartGame(
@@ -136,20 +159,20 @@ namespace EA4S
 
         List<IQuestionPack> CreateQuestionPacksDummyAI(MiniGameCode _miniGameCode, int _questionNumber)
         {
-            List<IQuestionPack> questionPackList = new List<IQuestionPack>();
-            for (int i = 0; i < _questionNumber; i++) {
+            var questionPackList = new List<IQuestionPack>();
+            for (var i = 0; i < _questionNumber; i++) {
                 questionPackList.Add(CreateQuestionPack(_miniGameCode));
             }
             return questionPackList;
         }
 
-        IQuestionPack CreateQuestionPack(MiniGameCode _miniGameCode)
+        private IQuestionPack CreateQuestionPack(MiniGameCode _miniGameCode)
         {
             IQuestionPack questionPack = null;
             ILivingLetterData question;
-            List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
-            List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
-            List<LL_LetterData> letters = new List<LL_LetterData>();
+            var correctAnswers = new List<ILivingLetterData>();
+            var wrongAnswers = new List<ILivingLetterData>();
+            var letters = new List<LL_LetterData>();
 
             switch (_miniGameCode) {
                 case MiniGameCode.Assessment_Letters:
@@ -160,7 +183,7 @@ namespace EA4S
                 case MiniGameCode.Balloons_counting:
                     // Dummy logic for question creation
                     foreach (var w in AppManager.Instance.DB.GetAllWordData().Where(w => w.Category == Db.WordDataCategory.Number)) {
-                        LL_WordData w_ll = new LL_WordData(w.Id, w);
+                        var w_ll = new LL_WordData(w.Id, w);
                         correctAnswers.Add(w_ll);
                         if (correctAnswers.Count > 10)
                             break;
@@ -172,16 +195,16 @@ namespace EA4S
                     // Dummy logic for question creation
                     question = AppManager.Instance.Teacher.GimmeARandomLetter();
 
-                    for (int i = 0; i < 1; i++) {
-                        LL_WordData correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    for (var i = 0; i < 1; i++) {
+                        var correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (CheckIfContains(GetLettersFromWord(correctWord), question))
                             correctAnswers.Add(correctWord);
                         else
                             i--;
                     }
 
-                    for (int i = 0; i < 10; i++) {
-                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    for (var i = 0; i < 10; i++) {
+                        var wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!CheckIfContains(GetLettersFromWord(wrongWord), question))
                             wrongAnswers.Add(wrongWord);
                         else
@@ -254,10 +277,10 @@ namespace EA4S
                     break;
                 case MiniGameCode.FastCrowd_counting:
                     // Dummy logic for question creation
-                    LL_WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
                     correctAnswers.Add(word);
-                    for (int i = 0; i < 10; i++) {
-                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    for (var i = 0; i < 10; i++) {
+                        var wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!correctAnswers.Contains(wrongWord))
                             wrongAnswers.Add(wrongWord);
                         else
@@ -279,7 +302,7 @@ namespace EA4S
                 case MiniGameCode.FastCrowd_spelling: // var 1
                     // Dummy logic for question creation
                     question = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    letters = GetLettersFromWord(question as LL_WordData);
+                    letters = GetLettersFromWord((LL_WordData) question);
                     foreach (var l in letters) {
                         correctAnswers.Add(l);
                     }
@@ -292,15 +315,15 @@ namespace EA4S
                     break;
                 case MiniGameCode.FastCrowd_words:
                     // Dummy logic for question creation
-                    for (int i = 0; i < 4; i++) {
-                        LL_WordData correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    for (var i = 0; i < 4; i++) {
+                        var correctWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!CheckIfContains(correctAnswers, correctWord))
                             correctAnswers.Add(correctWord);
                         else
                             i--;
                     }
-                    for (int i = 0; i < 2; i++) {
-                        LL_WordData wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    for (var i = 0; i < 2; i++) {
+                        var wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!CheckIfContains(correctAnswers, wrongWord))
                             wrongAnswers.Add(wrongWord);
                         else
@@ -315,16 +338,16 @@ namespace EA4S
                     break;
                 case MiniGameCode.MakeFriends:
                     question = AppManager.Instance.Teacher.GimmeARandomLetter();
-                    for (int i = 0; i < 2; i++) {
-                        LL_WordData correctWordMakeFriends = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    for (var i = 0; i < 2; i++) {
+                        var correctWordMakeFriends = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!CheckIfContains(correctAnswers, correctWordMakeFriends) && CheckIfContains(GetLettersFromWord(correctWordMakeFriends), question))
                             // if not already in list and contain question letterData
                             correctAnswers.Add(correctWordMakeFriends);
                         else
                             i--;
                     }
-                    for (int i = 0; i < 8; i++) {
-                        LL_WordData wrongWordMakeFriends = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    for (var i = 0; i < 8; i++) {
+                        var wrongWordMakeFriends = AppManager.Instance.Teacher.GimmeAGoodWordData();
                         if (!CheckIfContains(GetLettersFromWord(wrongWordMakeFriends), question))
                             // if not contain quest letter
                             wrongAnswers.Add(wrongWordMakeFriends);
@@ -348,7 +371,7 @@ namespace EA4S
                     break;
                 case MiniGameCode.MixedLetters_spelling:
                     break;
-                case MiniGameCode.SickLetter:
+                case MiniGameCode.SickLetters:
                     break;
                 case MiniGameCode.ReadingGame:
                     break;
@@ -410,6 +433,26 @@ namespace EA4S
                     break;
                 case MiniGameCode.Tobogan_words:
                     break;
+                case MiniGameCode.ThrowBalls_letterinword:
+                    break;
+                case MiniGameCode.TakeMeHome:
+                    break;
+                case MiniGameCode.Assessment_3:
+                    break;
+                case MiniGameCode.Assessment_4:
+                    break;
+                case MiniGameCode.Assessment_5:
+                    break;
+                case MiniGameCode.Assessment_Alphabet:
+                    break;
+                case MiniGameCode.Assessment_7:
+                    break;
+                case MiniGameCode.Assessment_8:
+                    break;
+                case MiniGameCode.Assessment_9:
+                    break;
+                case MiniGameCode.Assessment_10:
+                    break;
                 default:
                     break;
             }
@@ -418,37 +461,19 @@ namespace EA4S
 
         #region Test Helpers
 
-        LL_WordData GetWord()
+        private static List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
         {
-            return AppManager.Instance.Teacher.GimmeAGoodWordData();
-        }
-
-        List<LL_WordData> GetWordsNotContained(List<LL_WordData> _WordsToAvoid, int _count)
-        {
-            List<LL_WordData> wordListToReturn = new List<LL_WordData>();
-            for (int i = 0; i < _count; i++) {
-                var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
-
-                if (!CheckIfContains(_WordsToAvoid, word) && !CheckIfContains(wordListToReturn, word)) {
-                    wordListToReturn.Add(word);
-                }
-            }
-            return wordListToReturn;
-        }
-
-        List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
-        {
-            List<LL_LetterData> letters = new List<LL_LetterData>();
+            var letters = new List<LL_LetterData>();
             foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Letters)) {
                 letters.Add(letterData);
             }
             return letters;
         }
 
-        List<LL_LetterData> GetLettersNotContained(List<LL_LetterData> _lettersToAvoid, int _count)
+        private static List<LL_LetterData> GetLettersNotContained(List<LL_LetterData> _lettersToAvoid, int _count)
         {
-            List<LL_LetterData> letterListToReturn = new List<LL_LetterData>();
-            for (int i = 0; i < _count; i++) {
+            var letterListToReturn = new List<LL_LetterData>();
+            for (var i = 0; i < _count; i++) {
                 var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
 
                 if (!CheckIfContains(_lettersToAvoid, letter) && !CheckIfContains(letterListToReturn, letter)) {
@@ -459,7 +484,7 @@ namespace EA4S
         }
 
 
-        static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
+        private static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
         {
             for (int i = 0, count = list.Count; i < count; ++i)
                 if (list[i].Key == letter.Key)
@@ -468,7 +493,7 @@ namespace EA4S
         }
 
 
-        static bool CheckIfContains(List<LL_LetterData> list, ILivingLetterData letter)
+        private static bool CheckIfContains(List<LL_LetterData> list, ILivingLetterData letter)
         {
             for (int i = 0, count = list.Count; i < count; ++i)
                 if (list[i].Key == letter.Key)
@@ -476,7 +501,7 @@ namespace EA4S
             return false;
         }
 
-        static bool CheckIfContains(List<LL_WordData> list, ILivingLetterData letter)
+        private static bool CheckIfContains(List<LL_WordData> list, ILivingLetterData letter)
         {
             for (int i = 0, count = list.Count; i < count; ++i)
                 if (list[i].Key == letter.Key)

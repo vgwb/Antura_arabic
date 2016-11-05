@@ -12,9 +12,8 @@ namespace EA4S.MissingLetter
         public MissingLetterPlayState(MissingLetterGame game)
         {
             this.game = game;
-
+            gameTime = new CountdownTimer(game.m_fGameTime);
             gameTime.onTimesUp += OnTimesUp;
-            
         }
 
         public void EnterState()
@@ -99,7 +98,7 @@ namespace EA4S.MissingLetter
 
         #region VARS
 
-        CountdownTimer gameTime = new CountdownTimer(60.0f);
+        CountdownTimer gameTime;
         MissingLetterGame game;
         IAudioSource timesUpAudioSource;
         bool hurryUpSfx;
