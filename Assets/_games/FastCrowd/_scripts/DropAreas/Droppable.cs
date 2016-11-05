@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Panda;
 
 namespace EA4S {
     /// <summary>

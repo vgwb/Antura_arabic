@@ -11,10 +11,12 @@ namespace EA4S.Egg
         List<EggRunLetter> runLetters = new List<EggRunLetter>();
 
         GameObject letterObjectPrefab;
+        GameObject shadowPrefab;
 
-        public void Initialize(GameObject letterObjectPrefab)
+        public void Initialize(GameObject letterObjectPrefab, GameObject shadowPrefab)
         {
             this.letterObjectPrefab = letterObjectPrefab;
+            this.shadowPrefab = shadowPrefab;
         }
 
         public void AddRunLetter(ILivingLetterData letterData)
@@ -22,7 +24,7 @@ namespace EA4S.Egg
             Vector3 leftOutPosition = leftOutPositions[runLetters.Count].position;
             Vector3 rightOutPosition = rightOutPositions[runLetters.Count].position;
 
-            EggRunLetter runLetter = new EggRunLetter(letterObjectPrefab, letterData, transform, leftOutPosition, rightOutPosition);
+            EggRunLetter runLetter = new EggRunLetter(letterObjectPrefab, shadowPrefab, letterData, transform, leftOutPosition, rightOutPosition);
 
             runLetter.Run();
 

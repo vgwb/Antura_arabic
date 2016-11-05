@@ -157,6 +157,8 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
+            Destroy(spotLight);
+
             onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
@@ -242,17 +244,33 @@ namespace EA4S.MissingLetter
             mCollider.enabled = _enabled;
         }
 
+        public void SuggestLetter()
+        {
+            PlayAnimation(LLAnimationStates.LL_dancing);
+            //mLetter.DoHighFive();
+            spotLight = new GameObject("SpotLight");
+            spotLight.transform.position = gameObject.transform.position + Vector3.up * 8 + Vector3.back * 6;
+            spotLight.transform.Rotate(Vector3.right, 50);
+            spotLight.transform.parent = gameObject.transform;
+            Light cSpotLight = spotLight.AddComponent<Light>();
+            cSpotLight.type = LightType.Spot;
+            cSpotLight.range = 40;
+            cSpotLight.intensity = 8;
+            cSpotLight.spotAngle = 50;
+        }
+
         #endregion
 
         #region VARS
 
-        private int step = 0;
         private List<Vector3> positions = new List<Vector3>();
 
 
         private Tweener moveTweener;
         private Tweener rotationTweener;
         private Collider mCollider;
+
+        static GameObject spotLight;
 
         protected ILivingLetterData mLetterData;
 

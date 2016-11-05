@@ -15,7 +15,7 @@ namespace EA4S {
         //public const string MATERIALS_FOLDER_TRANSPARENT_SATURATED = "transparent_saturated/";
 
         public static Material LoadMaterial(PaletteColors _color, PaletteTone _tone, PaletteType _type = PaletteType.diffuse_saturated) {
-            return LoadMaterial(string.Format("{1}_{2}", _color.ToString(), _tone.ToString()), _type);
+            return LoadMaterial(string.Format("{0}_{1}", _color.ToString(), _tone.ToString()), _type);
         }
 
         public static Material LoadMaterial(string _materialID, PaletteType _type = PaletteType.diffuse_saturated) {

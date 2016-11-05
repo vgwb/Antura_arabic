@@ -12,9 +12,8 @@ namespace EA4S.MissingLetter
         public MissingLetterPlayState(MissingLetterGame game)
         {
             this.game = game;
-
+            gameTime = new CountdownTimer(game.m_fGameTime);
             gameTime.onTimesUp += OnTimesUp;
-            
         }
 
         public void EnterState()
@@ -30,6 +29,7 @@ namespace EA4S.MissingLetter
 
             game.Context.GetOverlayWidget().Initialize(true, true, false);
 
+            game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
@@ -99,7 +99,7 @@ namespace EA4S.MissingLetter
 
         #region VARS
 
-        CountdownTimer gameTime = new CountdownTimer(60.0f);
+        CountdownTimer gameTime;
         MissingLetterGame game;
         IAudioSource timesUpAudioSource;
         bool hurryUpSfx;
