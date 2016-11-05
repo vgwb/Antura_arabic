@@ -7964,6 +7964,9 @@ MonoBehaviour:
   m_fGameTimeThresold: 0.5
   m_fAnswerLettersNumberThresold: 0
   m_fAnturaTriggersNumbersThresold: 0.33
+  STARS_1_THRESHOLD: 2
+  STARS_2_THRESHOLD: 5
+  STARS_3_THRESHOLD: 9
   m_iNumberOfPossibleAnswers: 4
   m_fDistanceBetweenLetters: 8
   mafAnturaEnterTriggers:
@@ -10867,7 +10870,7 @@ Camera:
     height: 0.5
   near clip plane: 0.3
   far clip plane: 100
-  field of view: 30
+  field of view: 38
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

@@ -83,7 +83,7 @@ namespace EA4S.MissingLetter
 
         private Vector3 CalculatePos(int _idxPos, int maxItemsInScreen)
         {
-            float _zeroPosX = mv3CenterPosition.x;
+            float _zeroPosX = mv3CenterPosition.x + 1.0f; // +1.0 beacuse we have some UI Widget at the left
 
             if (maxItemsInScreen % 2 == 0)
             {
