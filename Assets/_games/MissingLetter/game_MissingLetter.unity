@@ -7952,12 +7952,12 @@ MonoBehaviour:
   m_iRoundNumberMax: 20
   m_fGameTimeMin: 30
   m_fGameTimeMax: 60
-  m_iAnswerLettersNumberMin: 6
+  m_iAnswerLettersNumberMin: 2
   m_iAnswerLettersNumberMax: 6
   m_fLLTotalWidth: 34
   m_fLLWidth: 1
   m_fLLMaxDistance: 9
-  m_iAnturaTriggersNumberMin: 2
+  m_iAnturaTriggersNumberMin: 1
   m_iAnturaTriggersNumberMax: 4
   m_fAnturaTriggersMinoffset: 10
   m_fRoundNumberThresold: 0

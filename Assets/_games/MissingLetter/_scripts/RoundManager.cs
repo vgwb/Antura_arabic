@@ -280,14 +280,22 @@ namespace EA4S.MissingLetter
         {
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
+                
+                //mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.);
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
             }
 
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
             {
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingLose();
+                if (mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
+                {
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
+                }
+                else
+                {
+                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.Crouching = true;
+                }
             }
         }
 
