@@ -38,17 +38,17 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
 
-        private LetterObjectView m_MyLetter;
+        private LetterObjectView[] m_MyLetters;
         IOverlayWidget m_GameUI;
 
         #endregion
 
         #region GETTER/SETTER
 
-        public LetterObjectView currentLetter
+        public LetterObjectView[] myLetters
         {
-            get { return m_MyLetter; }
-            set { m_MyLetter = value; }
+            get { return m_MyLetters; }
+            set { m_MyLetters = value; }
         }
 
         public Canvas colorsCanvas

@@ -437,9 +437,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  m_LetterPrefab: {fileID: 114000010869263054, guid: 1b25171b478604a4ea9e3f79293a93b9,
+  m_LetterPrefab: {fileID: 114000011715073254, guid: 0afd283496b374e4eb71dc898a41581c,
     type: 2}
-  m_ColorsCanvas: {fileID: 0}
+  m_ColorsCanvas: {fileID: 2129290339}
   m_AnimatorTickleState: 10
   m_Lives: 3
   m_ClockTime: 20
@@ -908,7 +908,7 @@ Prefab:
     - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
         type: 2}
       propertyPath: m_fontSize
-      value: 20.05
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
         type: 2}
@@ -918,17 +918,116 @@ Prefab:
     - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
         type: 2}
       propertyPath: m_text
-      value: "\u0634"
+      value: "\u062E\r"
       objectReference: {fileID: 0}
     - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
         type: 2}
       propertyPath: m_textInfo.characterCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000012766081152, guid: 0afd283496b374e4eb71dc898a41581c,
         type: 2}
       propertyPath: m_oDrawingColor.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010800097258, guid: 0afd283496b374e4eb71dc898a41581c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_charWidthMaxAdj
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_textAlignment
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_horizontalMapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_verticalMapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_enableKerning
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_enableExtraPadding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: checkPaddingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_isOrthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_isVolumetricText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011455761328, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_overrideHtmlColors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_fontSizeMin
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011460492146, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012766081152, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_oDrawingColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012766081152, guid: 0afd283496b374e4eb71dc898a41581c,
+        type: 2}
+      propertyPath: m_oDrawingColor.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0afd283496b374e4eb71dc898a41581c, type: 2}
@@ -982,8 +1081,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 126296, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25204511df7ed9b4897034df9466e2f4, type: 2}
   m_IsPrefabParent: 0
+--- !u!223 &2129290339 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223000010897497700, guid: 4dc8aef9ac9b7ad4a92eb73406e15dcd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1687271591}

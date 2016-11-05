@@ -125,7 +125,7 @@ MonoBehaviour:
       Scene: app_Assessment
     - Title_En: Balloons (counting)
       Code: 6
-      Available: 0
+      Available: 1
       Type: 1
       Main: Balloons
       Variation: counting
@@ -135,7 +135,7 @@ MonoBehaviour:
       Scene: game_Balloons
     - Title_En: Balloons (letters)
       Code: 7
-      Available: 0
+      Available: 1
       Type: 1
       Main: Balloons
       Variation: letters
@@ -155,7 +155,7 @@ MonoBehaviour:
       Scene: game_Balloons
     - Title_En: Balloons (words)
       Code: 8
-      Available: 0
+      Available: 1
       Type: 1
       Main: Balloons
       Variation: words
@@ -165,7 +165,7 @@ MonoBehaviour:
       Scene: game_Balloons
     - Title_En: Color Tickle
       Code: 9
-      Available: 0
+      Available: 1
       Type: 1
       Main: ColorTickle
       Variation: 
@@ -255,17 +255,17 @@ MonoBehaviour:
       Scene: game_FastCrowd
     - Title_En: Take Me Home
       Code: 31
-      Available: 0
+      Available: 1
       Type: 1
       Main: TakeMeHome
       Variation: 
-      Description: 
+      Description: was Hidden Source
       IntroArabic: 
       Title_Ar: "\u062E\u0630\u0646\u064A \u0625\u0644\u0649 \u0627\u0644\u0645\u0646\u0632\u0644"
       Scene: game_TakeMeHome
     - Title_En: Hide & Seek
       Code: 16
-      Available: 0
+      Available: 1
       Type: 1
       Main: HideSeek
       Variation: 
@@ -295,7 +295,7 @@ MonoBehaviour:
       Scene: game_Maze
     - Title_En: Missing Letters
       Code: 19
-      Available: 0
+      Available: 1
       Type: 1
       Main: MissingLetter
       Variation: 
@@ -305,7 +305,7 @@ MonoBehaviour:
       Scene: game_MissingLetter
     - Title_En: Missing Letters (phrases)
       Code: 20
-      Available: 0
+      Available: 1
       Type: 1
       Main: MissingLetter
       Variation: phrases
@@ -315,7 +315,7 @@ MonoBehaviour:
       Scene: game_MissingLetter
     - Title_En: Mixed Letters
       Code: 21
-      Available: 0
+      Available: 1
       Type: 1
       Main: MixedLetters
       Variation: alphabet
@@ -325,7 +325,7 @@ MonoBehaviour:
       Scene: game_MixedLetters
     - Title_En: Mixed Letters (spelling)
       Code: 22
-      Available: 0
+      Available: 1
       Type: 1
       Main: MixedLetters
       Variation: spelling
@@ -355,7 +355,7 @@ MonoBehaviour:
       Scene: game_Scanner
     - Title_En: Scanner (phrases)
       Code: 26
-      Available: 0
+      Available: 1
       Type: 1
       Main: Scanner
       Variation: phrases
@@ -364,16 +364,16 @@ MonoBehaviour:
       Title_Ar: "\u0641\u0627\u062D\u0635 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0627\u0644\u0636\u0648\u0626\u064A"
       Scene: game_Scanner
-    - Title_En: Sick Letter
+    - Title_En: Sick Letters
       Code: 23
-      Available: 0
+      Available: 1
       Type: 1
-      Main: SickLetter
+      Main: SickLetters
       Variation: 
       Description: 
       IntroArabic: 
       Title_Ar: "\u0627\u0644\u0636\u064A\u0641 \u0627\u0644\u063A\u0627\u0645\u0636"
-      Scene: 
+      Scene: game_SickLetters
     - Title_En: Throw Balls (letters)
       Code: 27
       Available: 1
@@ -396,7 +396,7 @@ MonoBehaviour:
       Scene: game_ThrowBalls
     - Title_En: Throw Balls (words)
       Code: 28
-      Available: 0
+      Available: 1
       Type: 1
       Main: ThrowBalls
       Variation: words
@@ -416,7 +416,7 @@ MonoBehaviour:
       Scene: game_Tobogan
     - Title_En: Tobogan (words)
       Code: 30
-      Available: 0
+      Available: 1
       Type: 1
       Main: Tobogan
       Variation: words
@@ -2183,7 +2183,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0634\u064A\u0637"
       Letters:
-      - "\u0646\u0640 \u0640\u0634\u0640 \u0640\u064A\u0640 \u0640\u0637"
+      - noon
+      - sheen
+      - yeh
+      - tah
       Difficulty: 0
       Drawing: 0
     - Id: agreed
@@ -2193,7 +2196,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0648\u0627\u0641\u064E\u0642\u064E"
       Letters:
-      - "\u0648 \u0627 \u0641\u0640\u064E \u0640\u0642\u064E"
+      - waw
+      - alef
+      - feh
+      - qaf
       Difficulty: 0
       Drawing: 0
     - Id: al
@@ -2203,7 +2209,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0640"
       Letters:
-      - 
+      - alef
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: anger
@@ -2213,7 +2220,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u063A\u064A\u0638"
       Letters:
-      - "\u063A\u0640 \u0640\u064A\u0640 \u0640\u0638"
+      - ghain
+      - yeh
+      - zah
       Difficulty: 0
       Drawing: 0
     - Id: apple
@@ -2223,7 +2232,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0641\u0627\u062D"
       Letters:
-      - "\u062A\u0640 \u0640\u0641\u0640 \u0640\u0627 \u062D"
+      - teh
+      - feh
+      - alef
+      - hah
       Difficulty: 0
       Drawing: 0
     - Id: apricot
@@ -2233,7 +2245,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0634\u0645\u0634"
       Letters:
-      - "\u0645\u0640 \u0640\u0634\u0640 \u0640\u0645\u0640 \u0640\u0634"
+      - meem
+      - sheen
+      - meem
+      - sheen
       Difficulty: 2
       Drawing: 0
     - Id: ate
@@ -2243,7 +2258,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
       Letters:
-      - "\u0623\u064E \u0643\u0640\u064E \u0640\u0644\u064E "
+      - alef_hamza_hi
+      - kaf
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: aunt_father
@@ -2253,7 +2270,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0645\u0629"
       Letters:
-      - "\u0639\u0640 \u0640\u0645\u0640 \u0640\u0629"
+      - ain
+      - meem
+      - teh_marbuta
       Difficulty: 1
       Drawing: 0
     - Id: aunt_mother
@@ -2263,7 +2282,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0627\u0644\u0629"
       Letters:
-      - "\u062E\u0640 \u0627 \u0644\u0640 \u0640\u0629"
+      - khah
+      - alef
+      - lam
+      - teh_marbuta
       Difficulty: 2
       Drawing: 0
     - Id: back
@@ -2273,7 +2295,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0638\u0647\u0631"
       Letters:
-      - "\u0638\u0640 \u0640\u0647\u0640 \u0640\u0631"
+      - zah
+      - heh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: banana
@@ -2283,7 +2307,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0648\u0632"
       Letters:
-      - "\u0645\u0640 \u0640\u0648 \u0632"
+      - meem
+      - waw
+      - zain
       Difficulty: 1
       Drawing: 1
     - Id: bank
@@ -2293,7 +2319,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0635\u0631\u0641"
       Letters:
-      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u0643"
+      - meem
+      - sad
+      - reh
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: basketball
@@ -2303,8 +2332,14 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0633\u0644\u0629"
       Letters:
-      - "\u0643\u0640 \u0640\u0631 \u0629  \u0627 \u0644\u0640 \u0640\u0633\u0640
-        \u0640\u0644\u0640 \u0640\u0629"
+      - kaf
+      - reh
+      - teh_marbuta
+      - alef
+      - lam
+      - seen
+      - lam
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: bear
@@ -2314,7 +2349,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062F\u0628"
       Letters:
-      - "\u062F \u0628"
+      - dal
+      - beh
       Difficulty: 1
       Drawing: 0
     - Id: beautiful
@@ -2324,7 +2360,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u0645\u064A\u0644"
       Letters:
-      - "\u062C\u0640 \u0640\u0645\u0640 \u0640\u064A\u0640 \u0640\u0644"
+      - jeem
+      - meem
+      - yeh
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: bed
@@ -2334,7 +2373,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u0631\u0627\u0634"
       Letters:
-      - "\u0641\u0640 \u0640\u0631 \u0627 \u0634"
+      - feh
+      - reh
+      - alef
+      - sheen
       Difficulty: 0
       Drawing: 0
     - Id: believed
@@ -2344,7 +2386,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0622\u0645\u064E\u0646\u064E"
       Letters:
-      - "\u0622 \u0645\u0640 \u0640\u0646"
+      - meem
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: belly
@@ -2354,7 +2397,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0637\u0646"
       Letters:
-      - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0646"
+      - beh
+      - tah
+      - noon
       Difficulty: 1
       Drawing: 0
     - Id: berry
@@ -2364,7 +2409,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0648\u062A"
       Letters:
-      - "\u062A\u0640 \u0640\u0648 \u062A"
+      - teh
+      - waw
+      - teh
       Difficulty: 1
       Drawing: 0
     - Id: big
@@ -2374,7 +2421,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0628\u064A\u0631"
       Letters:
-      - "\u0643\u0640 \u0640\u0628\u0640 \u0640\u064A\u0640 \u0640\u0631"
+      - kaf
+      - beh
+      - yeh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: bird
@@ -2384,7 +2434,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0635\u0641\u0648\u0631"
       Letters:
-      - "\u0639\u0640 \u0640\u0635\u0640 \u0640\u0641\u0640 \u0640\u0648 \u0631"
+      - ain
+      - sad
+      - feh
+      - waw
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: book
@@ -2394,7 +2448,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u062A\u0627\u0628"
       Letters:
-      - "\u0643\u0640 \u0640\u062A\u0640 \u0640\u0627 \u0628"
+      - kaf
+      - teh
+      - alef
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: books
@@ -2404,7 +2461,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u064F\u062A\u064F\u0628"
       Letters:
-      - "\u0643\u064F\u0640 \u0640\u062A\u0640\u064F \u0640\u0628"
+      - kaf
+      - teh
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: box
@@ -2414,7 +2473,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u0646\u062F\u0648\u0642"
       Letters:
-      - 
+      - sad
+      - noon
+      - dal
+      - waw
+      - qaf
       Difficulty: 0
       Drawing: 0
     - Id: boy
@@ -2424,7 +2487,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u0628\u064A"
       Letters:
-      - "\u0635\u0640 \u0640\u0628\u0640 \u0640\u064A"
+      - sad
+      - beh
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: brain
@@ -2434,7 +2499,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062F\u0645\u0627\u063A"
       Letters:
-      - 
+      - dal
+      - meem
+      - alef
+      - ghain
       Difficulty: 0
       Drawing: 0
     - Id: brave
@@ -2444,7 +2512,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u062C\u0627\u0639"
       Letters:
-      - 
+      - sheen
+      - jeem
+      - alef
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: bread
@@ -2454,7 +2525,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0628\u0632"
       Letters:
-      - "\u062E\u0640 \u0640\u0628\u0640 \u0640\u0632"
+      - khah
+      - beh
+      - zain
       Difficulty: 1
       Drawing: 0
     - Id: breeze
@@ -2464,7 +2537,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0633\u0645\u0629"
       Letters:
-      - 
+      - noon
+      - seen
+      - meem
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: broad_bean
@@ -2474,7 +2550,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u0648\u0644"
       Letters:
-      - 
+      - feh
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: brother
@@ -2484,7 +2562,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u062E"
       Letters:
-      - "\u0623 \u062E"
+      - alef_hamza_hi
+      - khah
       Difficulty: 1
       Drawing: 0
     - Id: bulgar
@@ -2494,7 +2573,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0631\u063A\u0644"
       Letters:
-      - 
+      - beh
+      - reh
+      - ghain
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: bus
@@ -2504,7 +2586,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0627\u0635"
       Letters:
-      - 
+      - beh
+      - alef
+      - sad
       Difficulty: 0
       Drawing: 0
     - Id: camel
@@ -2514,7 +2598,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u0645\u0644\u064D"
       Letters:
-      - 
+      - jeem
+      - meem
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: carpenter
@@ -2524,7 +2610,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u062C\u0651\u0627\u0631"
       Letters:
-      - 
+      - noon
+      - jeem
+      - alef
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: carried
@@ -2534,7 +2623,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u064E\u0645\u064E\u0644\u064E"
       Letters:
-      - 
+      - hah
+      - meem
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: carrot
@@ -2544,7 +2635,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u064E\u0632\u064E\u0631"
       Letters:
-      - 
+      - jeem
+      - zain
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: cat
@@ -2554,7 +2647,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0647\u0631"
       Letters:
-      - "\u0647\u0640 \u0640\u0631"
+      - heh
+      - reh
       Difficulty: 1
       Drawing: 0
     - Id: caught
@@ -2564,7 +2658,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u064E\u0633\u064E\u0643\u064E"
       Letters:
-      - 
+      - meem
+      - seen
+      - kaf
       Difficulty: 0
       Drawing: 0
     - Id: chair
@@ -2574,7 +2670,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0631\u0633\u064A"
       Letters:
-      - 
+      - kaf
+      - reh
+      - seen
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: cheese
@@ -2584,7 +2683,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u0628\u0646"
       Letters:
-      - "\u062C\u0640 \u0640\u0628\u0640 \u0640\u0646"
+      - jeem
+      - beh
+      - noon
       Difficulty: 1
       Drawing: 0
     - Id: cherry
@@ -2594,7 +2695,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0631\u0632"
       Letters:
-      - "\u0643\u0640 \u0640\u0631 \u0632"
+      - kaf
+      - reh
+      - zain
       Difficulty: 0
       Drawing: 0
     - Id: chest
@@ -2604,7 +2707,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u062F\u0631"
       Letters:
-      - "\u0635\u0640 \u0640\u062F \u0631"
+      - sad
+      - dal
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: chickpea
@@ -2614,7 +2719,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0645\u0635"
       Letters:
-      - 
+      - hah
+      - meem
+      - sad
       Difficulty: 0
       Drawing: 0
     - Id: classroom
@@ -2624,7 +2731,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u0641"
       Letters:
-      - 
+      - sad
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: clean
@@ -2634,7 +2742,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0638\u064A\u0641"
       Letters:
-      - 
+      - noon
+      - zah
+      - yeh
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: cloud
@@ -2644,7 +2755,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u063A\u064A\u0645\u0629"
       Letters:
-      - 
+      - ghain
+      - yeh
+      - meem
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: club
@@ -2654,7 +2768,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0646\u062A\u062F\u0649"
       Letters:
-      - 
+      - meem
+      - noon
+      - teh
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: cold
@@ -2664,7 +2781,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0631\u062F"
       Letters:
-      - "\u0628\u0640 \u0640\u0631 \u062F"
+      - beh
+      - reh
+      - dal
       Difficulty: 1
       Drawing: 0
     - Id: cold_food
@@ -2674,7 +2793,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0627\u0631\u062F"
       Letters:
-      - "\u0628\u0640 \u0640\u0627 \u0631 \u062F"
+      - beh
+      - alef
+      - reh
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: color_black
@@ -2684,7 +2806,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0633\u0648\u062F"
       Letters:
-      - 
+      - alef_hamza_hi
+      - seen
+      - waw
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: color_blue
@@ -2694,7 +2819,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0632\u0631\u0642"
       Letters:
-      - 
+      - alef_hamza_hi
+      - zain
+      - reh
+      - qaf
       Difficulty: 0
       Drawing: 0
     - Id: color_brown
@@ -2704,7 +2832,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u064F\u0646\u064A"
       Letters:
-      - 
+      - beh
+      - noon
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: color_gold
@@ -2714,7 +2844,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0630\u0647\u0628\u064A"
       Letters:
-      - 
+      - thal
+      - heh
+      - beh
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: color_green
@@ -2724,7 +2857,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u062E\u0636\u0631"
       Letters:
-      - 
+      - alef_hamza_hi
+      - khah
+      - dad
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: color_orange
@@ -2734,7 +2870,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
       Letters:
-      - 
+      - beh
+      - reh
+      - teh
+      - qaf
+      - alef
+      - lam
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: color_pink
@@ -2744,7 +2886,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0648\u0631\u062F\u064A"
       Letters:
-      - 
+      - waw
+      - reh
+      - dal
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: color_purple
@@ -2754,7 +2899,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0646\u0641\u0633\u062C\u064A"
       Letters:
-      - 
+      - beh
+      - noon
+      - feh
+      - seen
+      - jeem
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: color_red
@@ -2764,7 +2914,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u062D\u0645\u0631"
       Letters:
-      - 
+      - alef_hamza_hi
+      - hah
+      - meem
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: color_silver
@@ -2774,7 +2927,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u0636\u064A"
       Letters:
-      - 
+      - feh
+      - dad
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: color_white
@@ -2784,7 +2939,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0628\u064A\u0636"
       Letters:
-      - 
+      - alef_hamza_hi
+      - beh
+      - yeh
+      - dad
       Difficulty: 0
       Drawing: 0
     - Id: color_yellow
@@ -2794,7 +2952,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0635\u0641\u0631"
       Letters:
-      - 
+      - alef_hamza_hi
+      - sad
+      - feh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: copybook
@@ -2804,7 +2965,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062F\u0641\u062A\u064E\u0631"
       Letters:
-      - "\u062F \u0641\u0640 \u0640\u062A\u0640 \u0640\u0631"
+      - dal
+      - feh
+      - teh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: costume
@@ -2814,7 +2978,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0644\u0650\u0628\u0627\u0633\u0627\u064B"
       Letters:
-      - 
+      - lam
+      - beh
+      - alef
+      - seen
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: cried
@@ -2824,7 +2992,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0643\u0649"
       Letters:
-      - 
+      - beh
+      - kaf
       Difficulty: 0
       Drawing: 0
     - Id: cucumber
@@ -2834,7 +3003,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u064A\u0627\u0631"
       Letters:
-      - "\u062E\u0640 \u0640\u064A\u0640 \u0640\u0627 \u0631"
+      - khah
+      - yeh
+      - alef
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: cupboard
@@ -2844,7 +3016,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0632\u0627\u0646\u0629"
       Letters:
-      - 
+      - khah
+      - zain
+      - alef
+      - noon
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: day
@@ -2854,7 +3030,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u064A\u0648\u0645"
       Letters:
-      - "\u064A\u0640 \u0640\u0648 \u0645"
+      - yeh
+      - waw
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: day_friday
@@ -2864,7 +3042,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062C\u0645\u0639\u0629"
       Letters:
-      - 
+      - alef
+      - lam
+      - jeem
+      - meem
+      - ain
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: day_monday
@@ -2874,7 +3057,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0627\u062B\u0646\u064A\u0646"
       Letters:
-      - 
+      - alef
+      - lam
+      - alef
+      - theh
+      - noon
+      - yeh
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: day_saturday
@@ -2884,7 +3073,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0633\u0628\u062A"
       Letters:
-      - 
+      - alef
+      - lam
+      - seen
+      - beh
+      - teh
       Difficulty: 0
       Drawing: 0
     - Id: day_sunday
@@ -2894,7 +3087,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0623\u062D\u062F"
       Letters:
-      - 
+      - alef
+      - lam
+      - alef_hamza_hi
+      - hah
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: day_thursday
@@ -2904,7 +3101,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062E\u0645\u064A\u0633"
       Letters:
-      - 
+      - alef
+      - lam
+      - khah
+      - meem
+      - yeh
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: day_tuesday
@@ -2914,7 +3116,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u0627\u0621"
       Letters:
-      - 
+      - alef
+      - lam
+      - theh
+      - lam
+      - alef
+      - theh
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: day_wednesday
@@ -2924,7 +3132,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
       Letters:
-      - 
+      - alef
+      - lam
+      - alef_hamza_hi
+      - reh
+      - beh
+      - ain
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: deer
@@ -2934,7 +3148,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u063A\u0632\u0627\u0644"
       Letters:
-      - 
+      - ghain
+      - zain
+      - alef
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: delicious
@@ -2944,7 +3161,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0644\u0648"
       Letters:
-      - "\u062D\u0640 \u0640\u0644\u0640 \u0640\u0648"
+      - hah
+      - lam
+      - waw
       Difficulty: 1
       Drawing: 0
     - Id: doctor
@@ -2954,7 +3173,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0637\u064E\u0628\u064A\u0628"
       Letters:
-      - 
+      - tah
+      - beh
+      - yeh
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: dog
@@ -2964,7 +3186,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0644\u0628"
       Letters:
-      - "\u0643\u0640 \u0640\u0644\u0640 \u0640\u0628"
+      - kaf
+      - lam
+      - beh
       Difficulty: 1
       Drawing: 0
     - Id: door
@@ -2974,7 +3198,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0627\u0628"
       Letters:
-      - 
+      - beh
+      - alef
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: drank
@@ -2984,7 +3210,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E"
       Letters:
-      - 
+      - sheen
+      - reh
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: duck
@@ -2994,7 +3222,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0637"
       Letters:
-      - 
+      - beh
+      - tah
       Difficulty: 0
       Drawing: 0
     - Id: eagle
@@ -3004,7 +3233,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0633\u0631"
       Letters:
-      - "\u0646\u0640 \u0640\u0633\u0640 \u0640\u0631"
+      - noon
+      - seen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: ear
@@ -3014,7 +3245,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0630\u0646"
       Letters:
-      - "\u0627 \u062F \u0646"
+      - alef_hamza_hi
+      - thal
+      - noon
       Difficulty: 1
       Drawing: 0
     - Id: elephant
@@ -3024,7 +3257,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u064A\u0644"
       Letters:
-      - 
+      - feh
+      - yeh
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: engineer
@@ -3034,7 +3269,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0647\u0646\u062F\u0633"
       Letters:
-      - 
+      - meem
+      - heh
+      - noon
+      - dal
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: eye
@@ -3044,7 +3283,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u064A\u0646"
       Letters:
-      - "\u0639\u0640 \u0640\u064A\u0640 \u0640\u0646"
+      - ain
+      - yeh
+      - noon
       Difficulty: 1
       Drawing: 0
     - Id: face
@@ -3054,7 +3295,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0648\u062C\u0647"
       Letters:
-      - "\u0648 \u062C\u0640 \u0640\u0647"
+      - waw
+      - jeem
+      - heh
       Difficulty: 0
       Drawing: 0
     - Id: fall
@@ -3064,7 +3307,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0631\u064A\u0641"
       Letters:
-      - 
+      - khah
+      - reh
+      - yeh
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: farmer
@@ -3074,7 +3320,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u0644\u0627\u062D"
       Letters:
-      - 
+      - feh
+      - lam
+      - alef
+      - hah
       Difficulty: 0
       Drawing: 0
     - Id: father
@@ -3084,7 +3333,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0627\u0628\u0627"
       Letters:
-      - "\u0628\u0640 \u0627 \u0628\u0640 \u0627"
+      - beh
+      - alef
+      - beh
+      - alef
       Difficulty: 1
       Drawing: 0
     - Id: field
@@ -3094,7 +3346,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0642\u0644"
       Letters:
-      - 
+      - hah
+      - qaf
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: fig
@@ -3104,7 +3358,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u064A\u0646"
       Letters:
-      - "\u062A\u0640 \u0640\u064A\u0640 \u0640\u0646"
+      - teh
+      - yeh
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: finger
@@ -3114,7 +3370,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0625\u0635\u0628\u0639"
       Letters:
-      - 
+      - sad
+      - beh
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: flag
@@ -3124,7 +3382,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0644\u064E\u0645"
       Letters:
-      - 
+      - ain
+      - lam
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: flapped
@@ -3134,7 +3394,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
       Letters:
-      - 
+      - reh
+      - feh
+      - reh
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: flew
@@ -3144,7 +3407,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0637\u0627\u0631"
       Letters:
-      - 
+      - tah
+      - alef
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: flower
@@ -3154,7 +3419,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0648\u0631\u062F"
       Letters:
-      - "\u0648 \u0631 \u062F"
+      - waw
+      - reh
+      - dal
       Difficulty: 1
       Drawing: 0
     - Id: food
@@ -3164,7 +3431,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0643\u0644"
       Letters:
-      - "\u0623 \u0643\u0640 \u0640\u0644"
+      - alef_hamza_hi
+      - kaf
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: foot
@@ -3174,7 +3443,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0642\u062F\u0645"
       Letters:
-      - "\u0631 \u062C\u0640 \u0640\u0644"
+      - qaf
+      - dal
+      - meem
       Difficulty: 1
       Drawing: 0
     - Id: football
@@ -3184,7 +3455,14 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0642\u062F\u0645"
       Letters:
-      - 
+      - kaf
+      - reh
+      - teh_marbuta
+      - alef
+      - lam
+      - qaf
+      - dal
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: forest
@@ -3194,7 +3472,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u063A\u0627\u0628\u0629\u064C"
       Letters:
-      - 
+      - ghain
+      - alef
+      - beh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: fridge
@@ -3204,7 +3485,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062B\u0644\u0627\u062C\u0629"
       Letters:
-      - 
+      - theh
+      - lam
+      - alef
+      - jeem
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: furniture
@@ -3214,7 +3499,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u062B\u0627\u062B"
       Letters:
-      - 
+      - alef_hamza_hi
+      - theh
+      - alef
+      - theh
       Difficulty: 0
       Drawing: 0
     - Id: garden
@@ -3224,7 +3512,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u064F\u0633\u062A\u0627\u0646"
       Letters:
-      - 
+      - beh
+      - seen
+      - teh
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: garlic
@@ -3234,7 +3526,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062B\u0648\u0645"
       Letters:
-      - "\u062B\u0640 \u0640\u0648 \u0645"
+      - theh
+      - waw
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: girl
@@ -3244,7 +3538,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0646\u062A"
       Letters:
-      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062A"
+      - beh
+      - noon
+      - teh
       Difficulty: 0
       Drawing: 0
     - Id: glue
@@ -3254,7 +3550,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u064E\u0645\u063A"
       Letters:
-      - 
+      - sad
+      - meem
+      - ghain
       Difficulty: 0
       Drawing: 0
     - Id: granddaughter
@@ -3264,7 +3562,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0641\u064A\u062F\u0629"
       Letters:
-      - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F \u0629"
+      - hah
+      - feh
+      - yeh
+      - dal
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: grandfather
@@ -3274,7 +3576,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u062F\u0648"
       Letters:
-      - "\u062C\u0640 \u0640\u062F \u0648"
+      - jeem
+      - dal
+      - waw
       Difficulty: 1
       Drawing: 0
     - Id: grandmother
@@ -3284,7 +3588,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0627\u0646\u0627"
       Letters:
-      - "\u0646\u0640 \u0627 \u0646\u0640 \u0627"
+      - noon
+      - alef
+      - noon
+      - alef
       Difficulty: 1
       Drawing: 0
     - Id: grandson
@@ -3294,7 +3601,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0641\u064A\u062F"
       Letters:
-      - "\u062D\u0640 \u0640\u0641\u0640 \u0640\u064A\u0640 \u0640\u062F"
+      - hah
+      - feh
+      - yeh
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: grapes
@@ -3304,7 +3614,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0646\u0628"
       Letters:
-      - "\u0639\u0640 \u0640\u0646\u0640 \u0640\u0628"
+      - ain
+      - noon
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: ground
@@ -3314,7 +3626,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0631\u0636"
       Letters:
-      - 
+      - alef_hamza_hi
+      - reh
+      - dad
       Difficulty: 0
       Drawing: 0
     - Id: hair
@@ -3324,7 +3638,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0639\u0631"
       Letters:
-      - "\u0634\u0640 \u0640\u0639\u0640 \u0640\u0631"
+      - sheen
+      - ain
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: hand
@@ -3334,7 +3650,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u064A\u062F"
       Letters:
-      - "\u064A\u0640 \u0640\u062F"
+      - yeh
+      - dal
       Difficulty: 1
       Drawing: 0
     - Id: happy
@@ -3344,7 +3661,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0639\u064A\u062F"
       Letters:
-      - 
+      - seen
+      - ain
+      - yeh
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: head
@@ -3354,7 +3674,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u0623\u0633"
       Letters:
-      - "\u0631 \u0627 \u0633"
+      - reh
+      - alef_hamza_hi
+      - seen
       Difficulty: 1
       Drawing: 0
     - Id: hi
@@ -3364,7 +3686,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
       Letters:
-      - 
+      - meem
+      - reh
+      - hah
+      - beh
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: hospital
@@ -3374,7 +3700,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0633\u062A\u0634\u0641\u0649"
       Letters:
-      - 
+      - meem
+      - seen
+      - teh
+      - sheen
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: hot
@@ -3384,7 +3714,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0627\u0631"
       Letters:
-      - 
+      - hah
+      - alef
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: hot_CHECK
@@ -3394,7 +3726,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0648\u0628"
       Letters:
-      - "\u0634\u0640 \u0640\u0648 \u0628"
+      - sheen
+      - waw
+      - beh
       Difficulty: 1
       Drawing: 0
     - Id: hot_food
@@ -3404,7 +3738,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u062E\u0646"
       Letters:
-      - "\u0633\u0640 \u0640\u062E\u0640 \u0640\u0646"
+      - seen
+      - khah
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: hour
@@ -3414,7 +3750,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0627\u0639\u0629"
       Letters:
-      - "\u0633\u0640 \u0640\u0627 \u0639\u0640 \u0640\u0629"
+      - seen
+      - alef
+      - ain
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: house
@@ -3424,7 +3763,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u064A\u062A"
       Letters:
-      - 
+      - beh
+      - yeh
+      - teh
       Difficulty: 0
       Drawing: 0
     - Id: icecream
@@ -3434,7 +3775,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0648\u0638\u0629"
       Letters:
-      - 
+      - beh
+      - waw
+      - zah
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: insistent
@@ -3444,7 +3788,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
       Letters:
-      - 
+      - meem
+      - lam
+      - hah
       Difficulty: 0
       Drawing: 0
     - Id: islands
@@ -3454,7 +3800,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u064F\u0632\u064F\u0631"
       Letters:
-      - 
+      - jeem
+      - zain
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: juice
@@ -3464,7 +3812,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u064E\u0635\u064A\u0631"
       Letters:
-      - 
+      - ain
+      - sad
+      - yeh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: kid
@@ -3474,7 +3825,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0648\u0644\u062F"
       Letters:
-      - "\u0648 \u0644\u0640 \u0640\u062F"
+      - waw
+      - lam
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: knowledge
@@ -3484,7 +3837,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0650\u0644\u0652\u0645"
       Letters:
-      - 
+      - ain
+      - lam
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: laughed
@@ -3494,7 +3849,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0636\u064E\u062D\u0650\u0643\u064E"
       Letters:
-      - 
+      - dad
+      - hah
+      - kaf
       Difficulty: 0
       Drawing: 0
     - Id: lazy
@@ -3504,7 +3861,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0633\u0648\u0644"
       Letters:
-      - 
+      - kaf
+      - seen
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: leg
@@ -3514,7 +3874,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u0650\u062C\u0644"
       Letters:
-      - 
+      - reh
+      - jeem
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: lentil
@@ -3524,7 +3886,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u062F\u0633"
       Letters:
-      - 
+      - ain
+      - dal
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: light
@@ -3534,7 +3898,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0636\u0648\u0621"
       Letters:
-      - 
+      - dad
+      - waw
       Difficulty: 0
       Drawing: 0
     - Id: lion
@@ -3544,7 +3909,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0633\u062F"
       Letters:
-      - "\u0623 \u0633\u0640 \u0640\u062F"
+      - alef_hamza_hi
+      - seen
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: lion_dual
@@ -3554,7 +3921,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0633\u062F\u0627\u0646"
       Letters:
-      - 
+      - alef_hamza_hi
+      - seen
+      - dal
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: lion_plural
@@ -3564,7 +3935,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0633\u0648\u062F\u064C"
       Letters:
-      - 
+      - alef_hamza_hi
+      - seen
+      - waw
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: lips
@@ -3574,7 +3948,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0641\u0627\u0647"
       Letters:
-      - 
+      - sheen
+      - feh
+      - alef
+      - heh
       Difficulty: 0
       Drawing: 0
     - Id: man
@@ -3584,7 +3961,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u064E\u062C\u064F\u0644\u064D"
       Letters:
-      - "\u0631 \u062C\u0640 \u0640\u0644"
+      - reh
+      - jeem
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: market
@@ -3594,7 +3973,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0648\u0642"
       Letters:
-      - 
+      - seen
+      - waw
+      - qaf
       Difficulty: 0
       Drawing: 0
     - Id: meat
@@ -3604,7 +3985,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0644\u062D\u0645"
       Letters:
-      - 
+      - lam
+      - hah
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: melancholy
@@ -3614,7 +3997,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0622\u0628\u0629"
       Letters:
-      - 
+      - kaf
+      - beh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: month
@@ -3624,7 +4009,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0647\u0631"
       Letters:
-      - "\u0634\u0640 \u0640\u0647\u0640 \u0640\u0631"
+      - sheen
+      - heh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: month_april
@@ -3634,7 +4021,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u064A\u0633\u0627\u0646"
       Letters:
-      - 
+      - noon
+      - yeh
+      - seen
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: month_august
@@ -3644,7 +4035,7 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0622\u0628"
       Letters:
-      - 
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: month_december
@@ -3654,7 +4045,16 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u0644"
       Letters:
-      - 
+      - kaf
+      - alef
+      - noon
+      - waw
+      - noon
+      - alef
+      - lam
+      - alef_hamza_hi
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: month_february
@@ -3664,7 +4064,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0628\u0627\u0637"
       Letters:
-      - 
+      - sheen
+      - beh
+      - alef
+      - tah
       Difficulty: 0
       Drawing: 0
     - Id: month_january
@@ -3674,7 +4077,17 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
-      - 
+      - kaf
+      - alef
+      - noon
+      - waw
+      - noon
+      - alef
+      - lam
+      - theh
+      - alef
+      - noon
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: month_july
@@ -3684,7 +4097,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0645\u0648\u0632"
       Letters:
-      - 
+      - teh
+      - meem
+      - waw
+      - zain
       Difficulty: 0
       Drawing: 0
     - Id: month_june
@@ -3694,7 +4110,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0632\u064A\u0631\u0627\u0646"
       Letters:
-      - 
+      - hah
+      - zain
+      - yeh
+      - reh
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: month_march
@@ -3704,7 +4125,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0622\u0630\u0627\u0631"
       Letters:
-      - 
+      - thal
+      - alef
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: month_may
@@ -3714,7 +4137,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u064A\u0627\u0631"
       Letters:
-      - 
+      - alef_hamza_hi
+      - yeh
+      - alef
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: month_november
@@ -3724,7 +4150,17 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
-      - 
+      - teh
+      - sheen
+      - reh
+      - yeh
+      - noon
+      - alef
+      - lam
+      - theh
+      - alef
+      - noon
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: month_october
@@ -3734,7 +4170,16 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
       Letters:
-      - 
+      - teh
+      - sheen
+      - reh
+      - yeh
+      - noon
+      - alef
+      - lam
+      - alef_hamza_hi
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: month_september
@@ -3744,7 +4189,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u064A\u0644\u0648\u0644"
       Letters:
-      - 
+      - alef_hamza_hi
+      - yeh
+      - lam
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: moon
@@ -3754,7 +4203,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0642\u0645\u0631"
       Letters:
-      - 
+      - qaf
+      - meem
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: mother
@@ -3764,7 +4215,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0627\u0645\u0627"
       Letters:
-      - "\u0645\u0640 \u0627 \u0645\u0640 \u0627"
+      - meem
+      - alef
+      - meem
+      - alef
       Difficulty: 1
       Drawing: 0
     - Id: mountain
@@ -3774,7 +4228,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u0628\u0644"
       Letters:
-      - 
+      - jeem
+      - beh
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: mountain_dual
@@ -3784,7 +4240,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u0628\u0644\u0627\u0646"
       Letters:
-      - 
+      - jeem
+      - beh
+      - lam
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: mountain_plural
@@ -3794,7 +4254,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u0628\u0627\u0644"
       Letters:
-      - 
+      - jeem
+      - beh
+      - alef
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: mouse
@@ -3804,7 +4267,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u0623\u0631"
       Letters:
-      - "\u0641\u0640 \u0640\u0627 \u0631"
+      - feh
+      - alef_hamza_hi
+      - reh
       Difficulty: 1
       Drawing: 0
     - Id: mouth
@@ -3814,7 +4279,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u0645"
       Letters:
-      - "\u0641\u0640 \u0640\u0645"
+      - feh
+      - meem
       Difficulty: 1
       Drawing: 0
     - Id: nail
@@ -3824,7 +4290,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0638\u0641\u0631"
       Letters:
-      - 
+      - zah
+      - feh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: needle
@@ -3834,7 +4302,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0625\u0628\u0631\u0629"
       Letters:
-      - 
+      - beh
+      - reh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: nest
@@ -3844,7 +4314,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0634"
       Letters:
-      - 
+      - ain
+      - sheen
       Difficulty: 0
       Drawing: 0
     - Id: nose
@@ -3854,7 +4325,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0646\u0641"
       Letters:
-      - "\u0623 \u0646\u0640 \u0640\u0641"
+      - alef_hamza_hi
+      - noon
+      - feh
       Difficulty: 1
       Drawing: 0
     - Id: now
@@ -3864,7 +4337,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0622\u0646"
       Letters:
-      - 
+      - alef
+      - lam
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: number_0
@@ -3874,7 +4349,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u0641\u0631"
       Letters:
-      - 
+      - sad
+      - feh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_1
@@ -3884,7 +4361,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0648\u0627\u062D\u062F"
       Letters:
-      - 
+      - waw
+      - alef
+      - hah
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: number_10
@@ -3894,7 +4374,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0634\u0631\u0629"
       Letters:
-      - 
+      - ain
+      - sheen
+      - reh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_11
@@ -3904,7 +4387,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u062D\u062F \u0639\u0634\u0631"
       Letters:
-      - 
+      - alef
+      - hah
+      - dal
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_12
@@ -3914,7 +4402,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u062B\u0646\u064A \u0639\u0634\u0631"
       Letters:
-      - 
+      - alef
+      - theh
+      - noon
+      - yeh
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_13
@@ -3924,7 +4418,14 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062B\u0644\u0627\u062B\u0629 \u0639\u0634\u0631"
       Letters:
-      - 
+      - theh
+      - lam
+      - alef
+      - theh
+      - teh_marbuta
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_14
@@ -3934,7 +4435,14 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0631\u0628\u0639\u0629 \u0639\u0634\u0631"
       Letters:
-      - 
+      - alef_hamza_hi
+      - reh
+      - beh
+      - ain
+      - teh_marbuta
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_15
@@ -3944,7 +4452,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0645\u0633\u0629 \u0639\u0634\u0631"
       Letters:
-      - 
+      - khah
+      - meem
+      - seen
+      - teh_marbuta
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_16
@@ -3954,7 +4468,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u062A\u0629 \u0639\u0634\u0631"
       Letters:
-      - 
+      - seen
+      - teh
+      - teh_marbuta
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_17
@@ -3964,7 +4483,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0628\u0639\u0629 \u0639\u0634\u0631"
       Letters:
-      - 
+      - seen
+      - beh
+      - ain
+      - teh_marbuta
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_18
@@ -3974,7 +4499,15 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0634\u0631"
       Letters:
-      - 
+      - theh
+      - meem
+      - alef
+      - noon
+      - yeh
+      - teh_marbuta
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_19
@@ -3984,7 +4517,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0633\u0639\u0629 \u0639\u0634\u0631"
       Letters:
-      - 
+      - teh
+      - seen
+      - ain
+      - teh_marbuta
+      - ain
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_2
@@ -3994,7 +4533,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u062B\u0646\u0627\u0646"
       Letters:
-      - 
+      - alef
+      - theh
+      - noon
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: number_20
@@ -4004,7 +4547,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0634\u0631\u0648\u0646"
       Letters:
-      - 
+      - ain
+      - sheen
+      - reh
+      - waw
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: number_3
@@ -4014,7 +4561,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062B\u0644\u0627\u062B\u0629"
       Letters:
-      - 
+      - theh
+      - lam
+      - alef
+      - theh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_4
@@ -4024,7 +4575,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0631\u0628\u0639\u0629"
       Letters:
-      - 
+      - alef_hamza_hi
+      - reh
+      - beh
+      - ain
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_5
@@ -4034,7 +4589,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0645\u0633\u0629"
       Letters:
-      - 
+      - khah
+      - meem
+      - seen
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_6
@@ -4044,7 +4602,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u062A\u0629"
       Letters:
-      - 
+      - seen
+      - teh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_7
@@ -4054,7 +4614,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0628\u0639\u0629\u064C"
       Letters:
-      - 
+      - seen
+      - beh
+      - ain
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_8
@@ -4064,7 +4627,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629"
       Letters:
-      - 
+      - theh
+      - meem
+      - alef
+      - noon
+      - yeh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_9
@@ -4074,7 +4642,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0633\u0639\u0629"
       Letters:
-      - 
+      - teh
+      - seen
+      - ain
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: number_o1
@@ -4084,7 +4655,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0623\u0648\u0644"
       Letters:
-      - 
+      - alef
+      - lam
+      - alef_hamza_hi
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: number_o10
@@ -4094,7 +4669,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0639\u0627\u0634\u0631"
       Letters:
-      - 
+      - alef
+      - lam
+      - ain
+      - alef
+      - sheen
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: number_o2
@@ -4104,7 +4684,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0627\u0646\u064A"
       Letters:
-      - 
+      - alef
+      - lam
+      - theh
+      - alef
+      - noon
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: number_o3
@@ -4114,7 +4699,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0627\u0644\u062B"
       Letters:
-      - 
+      - alef
+      - lam
+      - theh
+      - alef
+      - lam
+      - theh
       Difficulty: 0
       Drawing: 0
     - Id: number_o4
@@ -4124,7 +4714,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0631\u0627\u0628\u0639"
       Letters:
-      - 
+      - alef
+      - lam
+      - reh
+      - alef
+      - beh
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: number_o5
@@ -4134,7 +4729,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062E\u0627\u0645\u0633"
       Letters:
-      - 
+      - alef
+      - lam
+      - khah
+      - alef
+      - meem
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: number_o6
@@ -4144,7 +4744,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0633\u0627\u062F\u0633"
       Letters:
-      - 
+      - alef
+      - lam
+      - seen
+      - alef
+      - dal
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: number_o7
@@ -4154,7 +4759,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0633\u0627\u0628\u0639"
       Letters:
-      - 
+      - alef
+      - lam
+      - seen
+      - alef
+      - beh
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: number_o8
@@ -4164,7 +4774,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0627\u0645\u0646"
       Letters:
-      - 
+      - alef
+      - lam
+      - theh
+      - alef
+      - meem
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: number_o9
@@ -4174,7 +4789,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u062A\u0627\u0633\u0639"
       Letters:
-      - 
+      - alef
+      - lam
+      - teh
+      - alef
+      - seen
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: of_course
@@ -4184,7 +4804,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0637\u0628\u0639\u0627\u064B"
       Letters:
-      - 
+      - tah
+      - beh
+      - ain
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: oil
@@ -4194,7 +4817,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0632\u064A\u062A"
       Letters:
-      - "\u0632 \u064A\u0640 \u0640\u062A"
+      - zain
+      - yeh
+      - teh
       Difficulty: 0
       Drawing: 0
     - Id: onion
@@ -4204,7 +4829,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0635\u0644"
       Letters:
-      - "\u0628\u0640 \u0640\u0635\u0640 \u0640\u0644"
+      - beh
+      - sad
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: OokaDH
@@ -4214,7 +4841,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0643\u0627\u0638"
       Letters:
-      - 
+      - ain
+      - kaf
+      - alef
+      - zah
       Difficulty: 0
       Drawing: 0
     - Id: opened
@@ -4224,7 +4854,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
       Letters:
-      - 
+      - feh
+      - teh
+      - hah
       Difficulty: 0
       Drawing: 0
     - Id: oven
@@ -4234,7 +4866,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u0631\u0646"
       Letters:
-      - 
+      - feh
+      - reh
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: paper
@@ -4244,7 +4878,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0648\u0631\u0642"
       Letters:
-      - "\u0648 \u0631 \u0642"
+      - waw
+      - reh
+      - qaf
       Difficulty: 0
       Drawing: 0
     - Id: parrot
@@ -4254,7 +4890,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0628\u063A\u0627\u0621"
       Letters:
-      - 
+      - beh
+      - beh
+      - ghain
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: pear
@@ -4264,7 +4903,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0625\u0646\u062C\u0627\u0635"
       Letters:
-      - 
+      - noon
+      - jeem
+      - alef
+      - sad
       Difficulty: 0
       Drawing: 0
     - Id: pear_big
@@ -4274,7 +4916,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u0645\u062B\u0631\u0649"
       Letters:
-      - 
+      - kaf
+      - meem
+      - theh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: pearl
@@ -4284,7 +4929,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0644\u0624\u0644\u0624"
       Letters:
-      - 
+      - lam
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: pencil
@@ -4294,7 +4940,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0642\u0644\u0645"
       Letters:
-      - "\u0642\u0640 \u0640\u0644\u0640 \u0640\u0645"
+      - qaf
+      - lam
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: played
@@ -4304,7 +4952,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
       Letters:
-      - 
+      - lam
+      - ain
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: plum
@@ -4314,7 +4964,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0648\u062E"
       Letters:
-      - "\u062E\u0640 \u0640\u0648 \u062E"
+      - khah
+      - waw
+      - khah
       Difficulty: 0
       Drawing: 0
     - Id: policeman
@@ -4324,7 +4976,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0631\u0637\u064A"
       Letters:
-      - 
+      - sheen
+      - reh
+      - tah
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: potato
@@ -4334,7 +4989,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0637\u0627\u0637\u0627"
       Letters:
-      - "\u0628\u0640 \u0640\u0637\u0640 \u0640\u0627 \u0637\u0640 \u0640\u0627"
+      - beh
+      - tah
+      - alef
+      - tah
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: rain
@@ -4344,7 +5003,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0637\u064E\u0631"
       Letters:
-      - "\u0645\u0640 \u0640\u0637\u0640 \u0640\u0631"
+      - meem
+      - tah
+      - reh
       Difficulty: 1
       Drawing: 0
     - Id: rainy
@@ -4354,7 +5015,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0627\u0637\u0631"
       Letters:
-      - 
+      - meem
+      - alef
+      - tah
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: released
@@ -4364,7 +5028,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u064E\u0631\u064E\u0643\u064E"
       Letters:
-      - 
+      - teh
+      - reh
+      - kaf
       Difficulty: 0
       Drawing: 0
     - Id: restaurant
@@ -4374,7 +5040,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0637\u0639\u064E\u0645"
       Letters:
-      - 
+      - meem
+      - tah
+      - ain
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: rice
@@ -4384,7 +5053,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u0632"
       Letters:
-      - "\u0631 \u0632"
+      - reh
+      - zain
       Difficulty: 1
       Drawing: 0
     - Id: river
@@ -4394,7 +5064,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0647\u0631"
       Letters:
-      - 
+      - noon
+      - heh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: river_dual
@@ -4404,7 +5076,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0647\u0631\u0627\u0646"
       Letters:
-      - 
+      - noon
+      - heh
+      - reh
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: river_plural
@@ -4414,7 +5090,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0646\u0647\u0627\u0631"
       Letters:
-      - 
+      - alef_hamza_hi
+      - noon
+      - heh
+      - alef
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: room
@@ -4424,7 +5104,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u063A\u0631\u0641\u0629"
       Letters:
-      - 
+      - ghain
+      - reh
+      - feh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: sad
@@ -4434,7 +5117,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0632\u064A\u0646"
       Letters:
-      - 
+      - hah
+      - zain
+      - yeh
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: safe
@@ -4444,7 +5130,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0622\u0645\u0650\u0646\u0652"
       Letters:
-      - 
+      - meem
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: salt
@@ -4454,7 +5141,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0650\u0644\u0652\u062D"
       Letters:
-      - 
+      - meem
+      - lam
+      - hah
       Difficulty: 0
       Drawing: 0
     - Id: sat
@@ -4464,7 +5153,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
       Letters:
-      - 
+      - jeem
+      - lam
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: saw
@@ -4474,7 +5165,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u0623\u0649"
       Letters:
-      - 
+      - reh
+      - alef_hamza_hi
       Difficulty: 0
       Drawing: 0
     - Id: school
@@ -4484,7 +5176,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u062F\u0631\u0633\u0629"
       Letters:
-      - 
+      - meem
+      - dal
+      - reh
+      - seen
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: scientist
@@ -4494,7 +5190,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0627\u0644\u0645"
       Letters:
-      - 
+      - ain
+      - alef
+      - lam
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: scientist_dual
@@ -4504,7 +5203,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0627\u0644\u0645\u0627\u0646"
       Letters:
-      - 
+      - ain
+      - alef
+      - lam
+      - meem
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: scientist_plural
@@ -4514,7 +5218,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0644\u0645\u0627\u0621"
       Letters:
-      - 
+      - ain
+      - lam
+      - meem
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: scissors
@@ -4524,7 +5231,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0642\u0635"
       Letters:
-      - 
+      - meem
+      - qaf
+      - sad
       Difficulty: 0
       Drawing: 0
     - Id: second
@@ -4534,7 +5243,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062B\u0627\u0646\u064A\u0629"
       Letters:
-      - "\u062B\u0640 \u0640\u0627 \u0646\u0640 \u0640\u064A\u0640 \u0640\u0629"
+      - theh
+      - alef
+      - noon
+      - yeh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: shop
@@ -4544,7 +5257,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062F\u0643\u0627\u0646\u064D"
       Letters:
-      - 
+      - dal
+      - kaf
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: sister
@@ -4554,7 +5270,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u062E\u062A"
       Letters:
-      - "\u0623 \u062E\u0640 \u0640\u062A"
+      - alef_hamza_hi
+      - khah
+      - teh
       Difficulty: 1
       Drawing: 0
     - Id: sky
@@ -4564,7 +5282,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0645\u0627\u0621"
       Letters:
-      - 
+      - seen
+      - meem
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: slow
@@ -4574,7 +5294,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0637\u064A\u0621"
       Letters:
-      - 
+      - beh
+      - tah
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: small
@@ -4584,7 +5306,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u063A\u064A\u0631"
       Letters:
-      - 
+      - sad
+      - ghain
+      - yeh
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: snow
@@ -4594,7 +5319,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0644\u062C"
       Letters:
-      - "\u062A\u0640 \u0640\u0644\u0640 \u0640\u062C"
+      - teh
+      - lam
+      - jeem
       Difficulty: 1
       Drawing: 0
     - Id: sound
@@ -4604,7 +5331,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u0648\u062A"
       Letters:
-      - 
+      - sad
+      - waw
+      - teh
       Difficulty: 0
       Drawing: 0
     - Id: spring
@@ -4614,7 +5343,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u0628\u064A\u0639"
       Letters:
-      - 
+      - reh
+      - beh
+      - yeh
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: station
@@ -4624,7 +5356,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u062D\u0637\u0629"
       Letters:
-      - 
+      - meem
+      - hah
+      - tah
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: studied
@@ -4634,7 +5369,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
       Letters:
-      - 
+      - dal
+      - reh
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: sugar
@@ -4644,7 +5381,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0643\u0631"
       Letters:
-      - "\u0633\u0640 \u0640\u0643\u0640 \u0640\u0631"
+      - seen
+      - kaf
+      - reh
       Difficulty: 1
       Drawing: 0
     - Id: summer
@@ -4654,7 +5393,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u064A\u0641"
       Letters:
-      - 
+      - sad
+      - yeh
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: sun
@@ -4664,7 +5405,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0645\u0633"
       Letters:
-      - 
+      - sheen
+      - meem
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: sure
@@ -4674,7 +5417,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0641\u0648\u0627\u064B"
       Letters:
-      - 
+      - ain
+      - feh
+      - waw
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: table
@@ -4684,7 +5430,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0637\u0627\u0648\u0644\u0629"
       Letters:
-      - 
+      - tah
+      - alef
+      - waw
+      - lam
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: tea
@@ -4694,7 +5444,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0627\u064A"
       Letters:
-      - "\u0634\u0640 \u0640\u0627 \u064A"
+      - sheen
+      - alef
+      - yeh
       Difficulty: 1
       Drawing: 0
     - Id: teacher
@@ -4704,7 +5456,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0639\u0644\u0645"
       Letters:
-      - 
+      - meem
+      - ain
+      - lam
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: television
@@ -4714,7 +5469,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062A\u0644\u0641\u0627\u0632"
       Letters:
-      - 
+      - teh
+      - lam
+      - feh
+      - alef
+      - zain
       Difficulty: 0
       Drawing: 0
     - Id: thankyou
@@ -4724,7 +5483,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u0643\u0631\u0627\u064B"
       Letters:
-      - 
+      - sheen
+      - kaf
+      - reh
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: the_active
@@ -4734,7 +5496,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0646\u0634\u064A\u0637"
       Letters:
-      - 
+      - alef
+      - lam
+      - noon
+      - sheen
+      - yeh
+      - tah
       Difficulty: 0
       Drawing: 0
     - Id: the_ball
@@ -4744,7 +5511,11 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0643\u0631\u0629"
       Letters:
-      - 
+      - alef
+      - lam
+      - kaf
+      - reh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: the_beautiful
@@ -4754,7 +5525,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u062C\u0645\u064A\u0644"
       Letters:
-      - 
+      - alef
+      - lam
+      - jeem
+      - meem
+      - yeh
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: the_coat
@@ -4764,7 +5540,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0645\u0639\u0637\u0641"
       Letters:
-      - 
+      - alef
+      - lam
+      - meem
+      - ain
+      - tah
+      - feh
       Difficulty: 0
       Drawing: 0
     - Id: the_engineer
@@ -4774,7 +5555,13 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0645\u0647\u0646\u062F\u0633"
       Letters:
-      - 
+      - alef
+      - lam
+      - meem
+      - heh
+      - noon
+      - dal
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: the_happy
@@ -4784,7 +5571,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0633\u0639\u064A\u062F"
       Letters:
-      - 
+      - alef
+      - lam
+      - seen
+      - ain
+      - yeh
+      - dal
       Difficulty: 0
       Drawing: 0
     - Id: the_hat
@@ -4794,7 +5586,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0642\u0628\u0639\u0629"
       Letters:
-      - 
+      - alef
+      - lam
+      - qaf
+      - beh
+      - ain
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: the_lazy
@@ -4804,7 +5601,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0643\u0633\u0648\u0644"
       Letters:
-      - 
+      - alef
+      - lam
+      - kaf
+      - seen
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: the_player
@@ -4814,7 +5616,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0644\u0627\u0639\u0628"
       Letters:
-      - 
+      - alef
+      - lam
+      - lam
+      - alef
+      - ain
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: the_playground
@@ -4824,7 +5631,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0645\u0644\u0639\u0628"
       Letters:
-      - 
+      - alef
+      - lam
+      - meem
+      - lam
+      - ain
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: the_policeman
@@ -4834,7 +5646,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0634\u0631\u0637\u064A"
       Letters:
-      - 
+      - alef
+      - lam
+      - sheen
+      - reh
+      - tah
+      - yeh
       Difficulty: 0
       Drawing: 0
     - Id: the_sad
@@ -4844,7 +5661,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u062D\u0632\u064A\u0646"
       Letters:
-      - 
+      - alef
+      - lam
+      - hah
+      - zain
+      - yeh
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: the_scientist
@@ -4854,7 +5676,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0639\u0627\u0644\u0645"
       Letters:
-      - 
+      - alef
+      - lam
+      - ain
+      - alef
+      - lam
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: the_shirt
@@ -4864,7 +5691,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635"
       Letters:
-      - 
+      - alef
+      - lam
+      - qaf
+      - meem
+      - yeh
+      - sad
       Difficulty: 0
       Drawing: 0
     - Id: the_shoe
@@ -4874,7 +5706,11 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u062D\u0630\u0627\u0621"
       Letters:
-      - 
+      - alef
+      - lam
+      - hah
+      - thal
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: the_trousers
@@ -4884,7 +5720,13 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0628\u0646\u0637\u0627\u0644"
       Letters:
-      - 
+      - alef
+      - lam
+      - beh
+      - noon
+      - tah
+      - alef
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: the_wonderful
@@ -4894,7 +5736,11 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0631\u0627\u0626\u0639"
       Letters:
-      - 
+      - alef
+      - lam
+      - reh
+      - alef
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: the_worker
@@ -4904,7 +5750,12 @@ MonoBehaviour:
       Article: 1
       Arabic: "\u0627\u0644\u0639\u0627\u0645\u0644"
       Letters:
-      - 
+      - alef
+      - lam
+      - ain
+      - alef
+      - meem
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: tiger
@@ -4914,7 +5765,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0645\u0631"
       Letters:
-      - "\u0646\u0640 \u0640\u0645\u0640 \u0640\u0631"
+      - noon
+      - meem
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: today
@@ -4924,7 +5777,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u064A\u0648\u0645"
       Letters:
-      - 
+      - alef
+      - lam
+      - yeh
+      - waw
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: toilet
@@ -4934,7 +5791,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0631\u062D\u0627\u0636"
       Letters:
-      - 
+      - meem
+      - reh
+      - hah
+      - alef
+      - dad
       Difficulty: 0
       Drawing: 0
     - Id: tomato
@@ -4944,7 +5805,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0646\u062F\u0648\u0631\u0629"
       Letters:
-      - "\u0628\u0640 \u0640\u0646\u0640 \u0640\u062F \u0648 \u0631 \u0629"
+      - beh
+      - noon
+      - dal
+      - waw
+      - reh
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: tomorrow
@@ -4954,7 +5820,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u063A\u062F\u0627\u064B"
       Letters:
-      - 
+      - ghain
+      - dal
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: tongue
@@ -4964,7 +5832,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0644\u0633\u0627\u0646"
       Letters:
-      - "\u0644\u0640 \u0640\u0633\u0640 \u0640\u0627 \u0646"
+      - lam
+      - seen
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: tooth
@@ -4974,7 +5845,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0633\u0646"
       Letters:
-      - "\u0633\u0640 \u0640\u0646"
+      - seen
+      - noon
       Difficulty: 1
       Drawing: 0
     - Id: tower
@@ -4984,7 +5856,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0631\u062C"
       Letters:
-      - 
+      - beh
+      - reh
+      - jeem
       Difficulty: 0
       Drawing: 0
     - Id: tree
@@ -4994,7 +5868,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u062C\u0631"
       Letters:
-      - "\u0634\u0640 \u0640\u062C\u0640 \u0640\u0631"
+      - sheen
+      - jeem
+      - reh
       Difficulty: 1
       Drawing: 0
     - Id: triangle
@@ -5004,7 +5880,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u062B\u0644\u062B"
       Letters:
-      - 
+      - meem
+      - theh
+      - lam
+      - theh
       Difficulty: 0
       Drawing: 0
     - Id: uncle_father
@@ -5014,7 +5893,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0645"
       Letters:
-      - "\u0639\u0640 \u0640\u0645"
+      - ain
+      - meem
       Difficulty: 1
       Drawing: 0
     - Id: uncle_mother
@@ -5024,7 +5904,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0627\u0644"
       Letters:
-      - "\u062E\u0640 \u0627 \u0644"
+      - khah
+      - alef
+      - lam
       Difficulty: 1
       Drawing: 0
     - Id: understood
@@ -5034,7 +5916,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0641\u064E\u0647\u0650\u0645\u064E"
       Letters:
-      - 
+      - feh
+      - heh
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: vegetables
@@ -5044,7 +5928,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062E\u0636\u0631"
       Letters:
-      - "\u062E\u0640 \u0640\u0636\u0640 \u0640\u0631"
+      - khah
+      - dad
+      - reh
       Difficulty: 0
       Drawing: 0
     - Id: virtuous
@@ -5054,7 +5940,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0632\u064A\u0647"
       Letters:
-      - 
+      - noon
+      - zain
+      - yeh
+      - heh
       Difficulty: 0
       Drawing: 0
     - Id: voice
@@ -5064,7 +5953,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0635\u0648\u062A"
       Letters:
-      - 
+      - sad
+      - waw
+      - teh
       Difficulty: 0
       Drawing: 0
     - Id: walked
@@ -5074,7 +5965,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0634\u0649"
       Letters:
-      - 
+      - meem
+      - sheen
       Difficulty: 0
       Drawing: 0
     - Id: washing_machine
@@ -5084,7 +5976,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u063A\u0633\u0627\u0644\u0629"
       Letters:
-      - 
+      - ghain
+      - seen
+      - alef
+      - lam
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: water
@@ -5094,7 +5990,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u064A"
       Letters:
-      - "\u0645\u0640 \u0640\u064A"
+      - meem
+      - yeh
       Difficulty: 1
       Drawing: 0
     - Id: watermelon
@@ -5104,7 +6001,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0628\u0637\u064A\u062E"
       Letters:
-      - 
+      - beh
+      - tah
+      - yeh
+      - khah
       Difficulty: 0
       Drawing: 0
     - Id: welcome
@@ -5114,7 +6014,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0623\u0647\u0644\u0627\u064B"
       Letters:
-      - 
+      - alef_hamza_hi
+      - heh
+      - lam
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: went
@@ -5124,7 +6027,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E"
       Letters:
-      - 
+      - thal
+      - heh
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: whale
@@ -5134,7 +6039,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u062D\u0648\u062A"
       Letters:
-      - "\u062D\u0640 \u0640\u0648 \u062A"
+      - hah
+      - waw
+      - teh
       Difficulty: 0
       Drawing: 0
     - Id: window
@@ -5144,7 +6051,11 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0646\u0627\u0641\u0630\u0629"
       Letters:
-      - 
+      - noon
+      - alef
+      - feh
+      - thal
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: winter
@@ -5154,7 +6065,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0634\u062A\u0627\u0621"
       Letters:
-      - 
+      - sheen
+      - teh
+      - alef
       Difficulty: 0
       Drawing: 0
     - Id: wolf
@@ -5164,7 +6077,8 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0630\u0626\u0628"
       Letters:
-      - 
+      - thal
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: woman
@@ -5174,7 +6088,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0645\u0631\u0623\u0629"
       Letters:
-      - "\u0645\u0640 \u0640\u0631 \u0623 \u0629"
+      - meem
+      - reh
+      - alef_hamza_hi
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: won
@@ -5184,7 +6101,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E"
       Letters:
-      - 
+      - reh
+      - beh
+      - hah
       Difficulty: 0
       Drawing: 0
     - Id: wonderful
@@ -5194,7 +6113,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0631\u0627\u0626\u0639"
       Letters:
-      - 
+      - reh
+      - alef
+      - ain
       Difficulty: 0
       Drawing: 0
     - Id: wore
@@ -5204,7 +6125,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0644\u064E\u0628\u0650\u0633\u064E"
       Letters:
-      - 
+      - lam
+      - beh
+      - seen
       Difficulty: 0
       Drawing: 0
     - Id: worker
@@ -5214,7 +6137,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0627\u0645\u0644"
       Letters:
-      - 
+      - ain
+      - alef
+      - meem
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: worker_dual
@@ -5224,7 +6150,12 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0627\u0645\u0644\u0627\u0646"
       Letters:
-      - 
+      - ain
+      - alef
+      - meem
+      - lam
+      - alef
+      - noon
       Difficulty: 0
       Drawing: 0
     - Id: worker_plural
@@ -5234,7 +6165,10 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0645\u0627\u0644"
       Letters:
-      - 
+      - ain
+      - meem
+      - alef
+      - lam
       Difficulty: 0
       Drawing: 0
     - Id: wrote
@@ -5244,7 +6178,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
       Letters:
-      - 
+      - kaf
+      - teh
+      - beh
       Difficulty: 0
       Drawing: 0
     - Id: year
@@ -5254,7 +6190,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0639\u0627\u0645"
       Letters:
-      - "\u0639\u0640 \u0640\u0627 \u0645"
+      - ain
+      - alef
+      - meem
       Difficulty: 0
       Drawing: 0
     - Id: yesterday
@@ -5264,7 +6202,13 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
       Letters:
-      - 
+      - alef
+      - lam
+      - beh
+      - alef
+      - reh
+      - hah
+      - teh_marbuta
       Difficulty: 0
       Drawing: 0
     - Id: yogurt
@@ -5274,7 +6218,9 @@ MonoBehaviour:
       Article: 0
       Arabic: "\u0644\u0628\u0646"
       Letters:
-      - "\u0644\u0640 \u0640\u0628\u0640 \u0640\u0646"
+      - lam
+      - beh
+      - noon
       Difficulty: 1
       Drawing: 0
   playSessionTable:
@@ -5296,9 +6242,18 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 27
         Weight: 100
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - alef
+      - alef_hamza_hi
+      - alef_hamza_low
+      Words:
+      - father
+      - brother
+      Words_previous:
+      - mother
+      - nose
+      - deer
+      - sister
       Phrases: []
       Phrases_previous: []
     - Id: 1.1.2
@@ -5314,6 +6269,20 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 32
         Weight: 100
+      Letters: []
+      Words:
+      - pear
+      - needle
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 1.1.100
+      Stage: 1
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
       Letters: []
       Words: []
       Words_previous: []
@@ -5344,9 +6313,20 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - beh
+      - teh
+      - theh
+      Words:
+      - yogurt
+      - berry
+      - snow
+      Words_previous:
+      - dog
+      - girl
+      - garlic
+      - number_2
+      - fig
       Phrases: []
       Phrases_previous: []
     - Id: 1.2.2
@@ -5381,6 +6361,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.2.100
+      Stage: 1
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.3.1
       Stage: 1
       LearningBlock: 3
@@ -5408,9 +6400,20 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - jeem
+      - hah
+      - khah
+      Words:
+      - leg
+      - delicious
+      - uncle_father
+      Words_previous:
+      - cheese
+      - whale
+      - sister
+      - color_red
+      - number_1
       Phrases: []
       Phrases_previous: []
     - Id: 1.3.2
@@ -5447,6 +6450,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.3.100
+      Stage: 1
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.4.1
       Stage: 1
       LearningBlock: 4
@@ -5476,9 +6491,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - dal
+      - thal
+      Words:
+      - bear
+      - ear
+      Words_previous:
+      - cold
+      - copybook
+      - delicious
+      - wolf
+      - flower
+      - window
       Phrases: []
       Phrases_previous: []
     - Id: 1.4.2
@@ -5517,6 +6542,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.4.100
+      Stage: 1
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.5.1
       Stage: 1
       LearningBlock: 5
@@ -5548,9 +6585,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - reh
+      - zain
+      Words:
+      - cold
+      - banana
+      Words_previous:
+      - moon
+      - rain
+      - deer
+      - oil
+      - leg
+      - color_blue
       Phrases: []
       Phrases_previous: []
     - Id: 1.5.2
@@ -5589,6 +6636,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.5.100
+      Stage: 1
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.6.1
       Stage: 1
       LearningBlock: 6
@@ -5618,9 +6677,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - seen
+      - sheen
+      Words:
+      - tooth
+      - tea
+      Words_previous:
+      - sugar
+      - eagle
+      - hair
+      - apricot
+      - nest
+      - lentil
       Phrases: []
       Phrases_previous: []
     - Id: 1.6.2
@@ -5659,6 +6728,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.6.100
+      Stage: 1
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.7.1
       Stage: 1
       LearningBlock: 7
@@ -5692,9 +6773,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - sad
+      - dad
+      Words:
+      - voice
+      - light
+      Words_previous:
+      - chest
+      - box
+      - color_green
+      - color_white
+      - bus
+      - toilet
       Phrases: []
       Phrases_previous: []
     - Id: 1.7.2
@@ -5735,6 +6826,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.7.100
+      Stage: 1
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.8.1
       Stage: 1
       LearningBlock: 8
@@ -5768,9 +6871,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - tah
+      - zah
+      Words:
+      - rain
+      - back
+      Words_previous:
+      - potato
+      - duck
+      - nail
+      - clean
+      - belly
+      - icecream
       Phrases: []
       Phrases_previous: []
     - Id: 1.8.2
@@ -5811,6 +6924,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.8.100
+      Stage: 1
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.9.1
       Stage: 1
       LearningBlock: 9
@@ -5842,9 +6967,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - ain
+      - ghain
+      Words:
+      - aunt_father
+      - deer
+      Words_previous:
+      - eye
+      - grapes
+      - room
+      - parrot
+      - hair
+      - glue
       Phrases: []
       Phrases_previous: []
     - Id: 1.9.2
@@ -5885,6 +7020,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.9.100
+      Stage: 1
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.10.1
       Stage: 1
       LearningBlock: 10
@@ -5918,9 +7065,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - feh
+      - qaf
+      Words:
+      - nose
+      - moon
+      Words_previous:
+      - copybook
+      - elephant
+      - paper
+      - box
+      - color_yellow
+      - field
       Phrases: []
       Phrases_previous: []
     - Id: 1.10.2
@@ -5961,6 +7118,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.10.100
+      Stage: 1
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.11.1
       Stage: 1
       LearningBlock: 11
@@ -5994,9 +7163,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - kaf
+      - lam
+      Words:
+      - sugar
+      - dog
+      Words_previous:
+      - book
+      - pear
+      - elephant
+      - snow
+      - big
+      - yogurt
       Phrases: []
       Phrases_previous: []
     - Id: 1.11.2
@@ -6037,6 +7216,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.11.100
+      Stage: 1
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.12.1
       Stage: 1
       LearningBlock: 12
@@ -6066,9 +7257,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - meem
+      - noon
+      Words:
+      - mother
+      - cheese
+      Words_previous:
+      - moon
+      - rain
+      - girl
+      - grandmother
+      - garlic
+      - ear
       Phrases: []
       Phrases_previous: []
     - Id: 1.12.2
@@ -6107,6 +7308,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.12.100
+      Stage: 1
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.13.1
       Stage: 1
       LearningBlock: 13
@@ -6138,9 +7351,20 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - yeh
+      - waw
+      - heh
+      Words:
+      - cat
+      - flower
+      - eye
+      Words_previous:
+      - back
+      - paper
+      - tea
+      - river
+      - hand
       Phrases: []
       Phrases_previous: []
     - Id: 1.13.2
@@ -6179,6 +7403,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.13.100
+      Stage: 1
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 1.14.1
       Stage: 1
       LearningBlock: 14
@@ -6204,9 +7440,20 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - alef
+      - waw
+      - yeh
+      Words:
+      - aunt_mother
+      - grandfather
+      - elephant
+      Words_previous:
+      - book
+      - whale
+      - fig
+      - berry
+      - grandson
       Phrases: []
       Phrases_previous: []
     - Id: 1.14.2
@@ -6239,6 +7486,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 1.14.100
+      Stage: 1
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.1.1
       Stage: 2
       LearningBlock: 1
@@ -6266,9 +7525,18 @@ MonoBehaviour:
         Weight: 10
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - alef
+      Words:
+      - grandmother
+      - sister
+      Words_previous:
+      - furniture
+      - father
+      - cucumber
+      - bed
+      - number_4
+      - deer
       Phrases: []
       Phrases_previous: []
     - Id: 2.1.2
@@ -6303,6 +7571,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.1.100
+      Stage: 2
+      LearningBlock: 1
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.2.1
       Stage: 2
       LearningBlock: 2
@@ -6332,9 +7612,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - beh
+      Words:
+      - girl
+      - boy
+      - grapes
+      - book
+      Words_previous:
+      - cheese
+      - bus
+      - color_brown
+      - bear
       Phrases: []
       Phrases_previous: []
     - Id: 2.2.2
@@ -6371,6 +7660,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.2.100
+      Stage: 2
+      LearningBlock: 2
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.3.1
       Stage: 2
       LearningBlock: 3
@@ -6400,9 +7701,19 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - teh
+      - teh_marbuta
+      Words:
+      - fig
+      - copybook
+      - oil
+      - whale
+      - second
+      - woman
+      Words_previous:
+      - sister
+      - girl
       Phrases: []
       Phrases_previous: []
     - Id: 2.3.2
@@ -6439,6 +7750,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.3.100
+      Stage: 2
+      LearningBlock: 3
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.4.1
       Stage: 2
       LearningBlock: 4
@@ -6466,9 +7789,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - theh
+      Words:
+      - garlic
+      - pear_big
+      - triangle
+      - furniture
+      Words_previous:
+      - number_2
+      - snow
+      - fridge
+      - number_8
       Phrases: []
       Phrases_previous: []
     - Id: 2.4.2
@@ -6505,6 +7837,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.4.100
+      Stage: 2
+      LearningBlock: 4
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.5.1
       Stage: 2
       LearningBlock: 5
@@ -6534,9 +7878,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - jeem
+      Words:
+      - camel
+      - tree
+      - tower
+      Words_previous:
+      - snow
+      - grandfather
+      - carpenter
+      - carrot
+      - face
       Phrases: []
       Phrases_previous: []
     - Id: 2.5.2
@@ -6573,6 +7926,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.5.100
+      Stage: 2
+      LearningBlock: 5
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.6.1
       Stage: 2
       LearningBlock: 6
@@ -6602,9 +7967,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - hah
+      Words:
+      - grandson
+      - meat
+      - won
+      - apple
+      Words_previous:
+      - farmer
+      - field
+      - whale
+      - color_red
       Phrases: []
       Phrases_previous: []
     - Id: 2.6.2
@@ -6641,6 +8015,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.6.100
+      Stage: 2
+      LearningBlock: 6
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.7.1
       Stage: 2
       LearningBlock: 7
@@ -6668,9 +8054,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - khah
+      Words:
+      - cucumber
+      - hot
+      - watermelon
+      - plum
+      Words_previous:
+      - aunt_mother
+      - sister
+      - bread
+      - cupboard
       Phrases: []
       Phrases_previous: []
     - Id: 2.7.2
@@ -6707,6 +8102,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.7.100
+      Stage: 2
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.8.1
       Stage: 2
       LearningBlock: 8
@@ -6736,9 +8143,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - dal
+      Words:
+      - chest
+      - hand
+      Words_previous:
+      - bear
+      - box
+      - cold
+      - foot
+      - lentil
+      - flower
       Phrases: []
       Phrases_previous: []
     - Id: 2.8.2
@@ -6775,6 +8191,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.8.100
+      Stage: 2
+      LearningBlock: 8
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.9.1
       Stage: 2
       LearningBlock: 9
@@ -6804,9 +8232,17 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - thal
+      Words:
+      - delicious
+      - went
+      Words_previous:
+      - ear
+      - wolf
+      - window
+      - color_gold
+      - month_march
       Phrases: []
       Phrases_previous: []
     - Id: 2.9.2
@@ -6843,6 +8279,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.9.100
+      Stage: 2
+      LearningBlock: 9
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.10.1
       Stage: 2
       LearningBlock: 10
@@ -6870,9 +8318,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - reh
+      Words:
+      - tiger
+      - paper
+      Words_previous:
+      - rice
+      - cold
+      - chest
+      - copybook
+      - number_4
+      - color_yellow
       Phrases: []
       Phrases_previous: []
     - Id: 2.10.2
@@ -6909,6 +8366,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.10.100
+      Stage: 2
+      LearningBlock: 10
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.11.1
       Stage: 2
       LearningBlock: 11
@@ -6938,9 +8407,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - zain
+      Words:
+      - bread
+      - rice
+      Words_previous:
+      - oil
+      - deer
+      - color_blue
+      - cupboard
+      - carrot
+      - banana
       Phrases: []
       Phrases_previous: []
     - Id: 2.11.2
@@ -6977,6 +8455,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.11.100
+      Stage: 2
+      LearningBlock: 11
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.12.1
       Stage: 2
       LearningBlock: 12
@@ -7006,9 +8496,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - seen
+      Words:
+      - hour
+      - eagle
+      - sat
+      - studied
+      Words_previous:
+      - hot
+      - tongue
+      - number_5
+      - number_6
       Phrases: []
       Phrases_previous: []
     - Id: 2.12.2
@@ -7045,6 +8544,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.12.100
+      Stage: 2
+      LearningBlock: 12
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.13.1
       Stage: 2
       LearningBlock: 13
@@ -7072,9 +8583,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - sheen
+      Words:
+      - hair
+      - apricot
+      - nest
+      - bed
+      Words_previous:
+      - tea
+      - hospital
+      - number_20
+      - tree
       Phrases: []
       Phrases_previous: []
     - Id: 2.13.2
@@ -7111,6 +8631,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.13.100
+      Stage: 2
+      LearningBlock: 13
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 2.14.1
       Stage: 2
       LearningBlock: 14
@@ -7140,9 +8672,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - sad
+      Words:
+      - box
+      - onion
+      - scissors
+      - bus
+      Words_previous:
+      - chest
+      - juice
+      - finger
+      - boy
       Phrases: []
       Phrases_previous: []
     - Id: 2.14.2
@@ -7179,6 +8720,18 @@ MonoBehaviour:
       Words_previous: []
       Phrases: []
       Phrases_previous: []
+    - Id: 2.14.100
+      Stage: 2
+      LearningBlock: 14
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
+      Letters: []
+      Words: []
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
     - Id: 3.1.1
       Stage: 3
       LearningBlock: 1
@@ -7208,9 +8761,17 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - dad
+      Words:
+      - laughed
+      - color_green
+      - color_white
+      - ground
+      Words_previous:
+      - light
+      - toilet
+      - color_silver
       Phrases: []
       Phrases_previous: []
     - Id: 3.1.2
@@ -7274,9 +8835,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - tah
+      Words:
+      - flew
+      - potato
+      - duck
+      - month_february
+      Words_previous:
+      - slow
+      - table
+      - station
+      - policeman
       Phrases: []
       Phrases_previous: []
     - Id: 3.2.2
@@ -7342,9 +8912,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - zah
+      Words:
+      - nail
+      - clean
+      - anger
+      - OokaDH
+      - icecream
+      Words_previous:
+      - back
       Phrases: []
       Phrases_previous: []
     - Id: 3.3.2
@@ -7410,9 +8987,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - ain
+      Words:
+      - juice
+      - played
+      - finger
+      - brave
+      Words_previous:
+      - hair
+      - lentil
+      - eye
+      - nest
       Phrases: []
       Phrases_previous: []
     - Id: 3.4.2
@@ -7476,9 +9062,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - ghain
+      Words:
+      - room
+      - parrot
+      - glue
+      - brain
+      Words_previous:
+      - deer
+      - small
+      - bulgar
+      - forest
       Phrases: []
       Phrases_previous: []
     - Id: 3.5.2
@@ -7544,9 +9139,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - feh
+      Words:
+      - farmer
+      - color_yellow
+      - classroom
+      - flapped
+      Words_previous:
+      - bed
+      - bank
+      - room
+      - elephant
       Phrases: []
       Phrases_previous: []
     - Id: 3.6.2
@@ -7612,9 +9216,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - qaf
+      Words:
+      - foot
+      - field
+      - agreed
+      - color_blue
+      Words_previous:
+      - moon
+      - market
+      - color_orange
+      - paper
       Phrases: []
       Phrases_previous: []
     - Id: 3.7.2
@@ -7678,9 +9291,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - kaf
+      Words:
+      - month_january
+      - cried
+      - caught
+      - released
+      Words_previous:
+      - big
+      - sugar
+      - dog
+      - book
       Phrases: []
       Phrases_previous: []
     - Id: 3.8.2
@@ -7746,9 +9368,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - lam
+      Words:
+      - teacher
+      - carried
+      - month_september
+      Words_previous:
+      - played
+      - field
+      - delicious
+      - tongue
+      - mountain
       Phrases: []
       Phrases_previous: []
     - Id: 3.9.2
@@ -7814,9 +9445,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - meem
+      Words:
+      - school
+      - color_red
+      - understood
+      - day
+      Words_previous:
+      - tiger
+      - rain
+      - glue
+      - meat
       Phrases: []
       Phrases_previous: []
     - Id: 3.10.2
@@ -7880,9 +9520,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - noon
+      Words:
+      - carpenter
+      - number_2
+      - belly
+      - tongue
+      Words_previous:
+      - color_brown
+      - window
+      - shop
+      - river
       Phrases: []
       Phrases_previous: []
     - Id: 3.11.2
@@ -7948,9 +9597,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - heh
+      Words:
+      - month
+      - virtuous
+      - lips
+      Words_previous:
+      - cat
+      - river
+      - engineer
+      - back
+      - face
       Phrases: []
       Phrases_previous: []
     - Id: 3.12.2
@@ -8016,9 +9674,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - waw
+      Words:
+      - face
+      - bird
+      Words_previous:
+      - light
+      - broad_bean
+      - flower
+      - paper
+      - whale
+      - plum
       Phrases: []
       Phrases_previous: []
     - Id: 3.13.2
@@ -8082,9 +9749,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - yeh
+      Words:
+      - number_8
+      - color_brown
+      Words_previous:
+      - hand
+      - tea
+      - doctor
+      - chair
+      - eye
+      - fig
       Phrases: []
       Phrases_previous: []
     - Id: 3.14.2
@@ -8164,9 +9840,18 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - fathah
+      Words:
+      - doctor
+      Words_previous:
+      - rain
+      - juice
+      - laughed
+      - glue
+      - copybook
+      - restaurant
+      - flag
       Phrases: []
       Phrases_previous: []
     - Id: 4.1.2
@@ -8260,9 +9945,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - dammah
+      Words:
+      - garden
+      Words_previous:
+      - color_brown
+      - teacher
+      - ear
+      - room
+      - bulgar
+      - apricot
+      - chair
       Phrases: []
       Phrases_previous: []
     - Id: 4.2.2
@@ -8356,9 +10050,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - kasrah
+      Words:
+      - number_6
+      Words_previous:
+      - tooth
+      - brain
+      - girl
+      - wolf
+      - window
+      - lips
+      - table
       Phrases: []
       Phrases_previous: []
     - Id: 4.3.2
@@ -8452,9 +10155,21 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - sukun
+      Words:
+      - restaurant
+      Words_previous:
+      - duck
+      - needle
+      - apricot
+      - number_5
+      - chair
+      - bank
+      - pear
       Phrases: []
       Phrases_previous: []
     - Id: 4.4.2
@@ -8548,9 +10263,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - fathah_tanwin
+      Words:
+      - of_course
+      Words_previous:
+      - tomorrow
+      - thankyou
+      - sure
+      - hi
+      - welcome
       Phrases: []
       Phrases_previous: []
     - Id: 4.5.2
@@ -8644,9 +10366,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - dammah_tanwin
+      Words:
+      - forest
+      Words_previous:
+      - number_7
+      - whale
+      - voice
+      - station
+      - table
       Phrases: []
       Phrases_previous: []
     - Id: 4.6.2
@@ -8740,9 +10469,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - kasrah_tanwin
+      Words:
+      - shop
+      Words_previous:
+      - yogurt
+      - camel
+      - tiger
+      - bed
+      - chest
       Phrases: []
       Phrases_previous: []
     - Id: 4.7.2
@@ -8836,9 +10572,21 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - fathah
+      - dammah
+      - kasrah
+      - fathah_tanwin
+      - dammah_tanwin
+      - kasrah_tanwin
+      Words:
+      - wrote
+      - books
+      - flag
+      - knowledge
+      Words_previous:
+      - color_black
+      - lion_plural
       Phrases: []
       Phrases_previous: []
     - Id: 4.9.1
@@ -8933,8 +10681,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - sky
+      - wolf
+      - pearl
+      - slow
+      Words_previous:
+      - parrot
+      - light
       Phrases: []
       Phrases_previous: []
     - Id: 4.10.1
@@ -8980,9 +10734,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
+      Letters:
+      - waw
       Words: []
-      Words_previous: []
+      Words_previous:
+      - banana
+      - sound
+      - light
+      - flower
+      - paper
+      - plum
       Phrases: []
       Phrases_previous: []
     - Id: 4.10.2
@@ -9078,7 +10839,13 @@ MonoBehaviour:
         Weight: 1
       Letters: []
       Words: []
-      Words_previous: []
+      Words_previous:
+      - oil
+      - house
+      - eye
+      - hand
+      - anger
+      - color_white
       Phrases: []
       Phrases_previous: []
     - Id: 4.11.2
@@ -9173,8 +10940,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - drank
+      - opened
+      - ate
+      Words_previous:
+      - drank
+      - sat
+      - studied
       Phrases: []
       Phrases_previous: []
     - Id: 4.12.2
@@ -9269,8 +11042,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - station
+      - bank
+      - hospital
+      - market
+      Words_previous:
+      - school
+      - club
       Phrases: []
       Phrases_previous: []
     - Id: 4.13.2
@@ -9365,8 +11144,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - lentil
+      - bulgar
+      - chickpea
+      - broad_bean
+      Words_previous:
+      - rice
+      - sugar
       Phrases: []
       Phrases_previous: []
     - Id: 4.14.2
@@ -9461,7 +11246,18 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
+      Words:
+      - table
+      - chair
+      - bed
+      - cupboard
+      - window
+      - door
+      - television
+      - fridge
+      - washing_machine
+      - oven
+      - toilet
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -9604,9 +11400,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - alef_maqsura
+      Words:
+      - walked
+      - saw
+      - club
+      Words_previous:
+      - cried
+      - pear
+      - hospital
       Phrases: []
       Phrases_previous: []
     - Id: 5.1.2
@@ -9700,10 +11503,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
+      Letters:
+      - lam_alef
       Words: []
-      Words_previous: []
-      Phrases: []
+      Words_previous:
+      - mountain_dual
+      - worker_dual
+      - the_player
+      - number_3
+      Phrases:
+      - yourwelcome
       Phrases_previous: []
     - Id: 5.2.2
       Stage: 5
@@ -9796,9 +11605,15 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - maddah
+      Words:
+      - melancholy
+      - believed
+      - now
+      Words_previous:
+      - month_august
+      - month_march
       Phrases: []
       Phrases_previous: []
     - Id: 5.3.2
@@ -9892,9 +11707,18 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - fathah
+      - kasrah
+      - dammah
+      Words:
+      - carrot
+      - islands
+      - salt
+      - insistent
+      Words_previous:
+      - believed
+      - safe
       Phrases: []
       Phrases_previous: []
     - Id: 5.5.1
@@ -9940,8 +11764,15 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
+      Letters:
+      - fathah_tanwin
+      - dammah_tanwin
+      - kasrah_tanwin
+      Words:
+      - wore
+      - costume
+      - mouth
+      - man
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -9988,9 +11819,16 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - shaddah
+      Words:
+      - uncle_father
+      Words_previous:
+      - bear
+      - sugar
+      - rice
+      - grandfather
+      - station
       Phrases: []
       Phrases_previous: []
     - Id: 5.6.2
@@ -10085,8 +11923,17 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - lion
+      - lion_dual
+      - lion_plural
+      Words_previous:
+      - mountain
+      - mountain_dual
+      - mountain_plural
+      - worker
+      - worker_dual
+      - worker_plural
       Phrases: []
       Phrases_previous: []
     - Id: 5.7.2
@@ -10181,7 +12028,13 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
+      Words:
+      - scientist
+      - scientist_dual
+      - scientist_plural
+      - worker
+      - worker_dual
+      - worker_plural
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -10277,7 +12130,13 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
+      Words:
+      - river
+      - river_dual
+      - river_plural
+      - mountain
+      - mountain_dual
+      - mountain_plural
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -10373,8 +12232,16 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - engineer
+      - the_engineer
+      - policeman
+      - the_policeman
+      Words_previous:
+      - worker
+      - the_worker
+      - scientist
+      - the_scientist
       Phrases: []
       Phrases_previous: []
     - Id: 5.11.1
@@ -10420,8 +12287,39 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
+      Letters:
+      - beh
+      - jeem
+      - hah
+      - khah
+      - ain
+      - ghain
+      - feh
+      - qaf
+      - kaf
+      - meem
+      - heh
+      - tah
+      - theh
+      - dal
+      - thal
+      - reh
+      - zain
+      - seen
+      - sheen
+      - sad
+      - dad
+      - teh
+      - zah
+      - lam
+      - noon
+      Words:
+      - the_beautiful
+      - the_sad
+      - the_lazy
+      - the_happy
+      - the_active
+      - the_wonderful
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -10516,9 +12414,40 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
-      Letters: []
-      Words: []
-      Words_previous: []
+      Letters:
+      - beh
+      - jeem
+      - hah
+      - khah
+      - ain
+      - ghain
+      - feh
+      - qaf
+      - kaf
+      - meem
+      - heh
+      - tah
+      - theh
+      - dal
+      - thal
+      - reh
+      - zain
+      - seen
+      - sheen
+      - sad
+      - dad
+      - teh
+      - zah
+      - lam
+      - noon
+      Words:
+      - the_ball
+      - the_playground
+      - the_player
+      - football
+      - basketball
+      Words_previous:
+      - won
       Phrases: []
       Phrases_previous: []
     - Id: 5.12.2
@@ -10613,8 +12542,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - happy
+      - sad
+      - active
+      - lazy
+      - wonderful
+      Words_previous:
+      - beautiful
       Phrases: []
       Phrases_previous: []
     - Id: 5.13.2
@@ -10709,7 +12644,11 @@ MonoBehaviour:
       Letters: []
       Words: []
       Words_previous: []
-      Phrases: []
+      Phrases:
+      - goodmorning_Q
+      - goodmorning_R
+      - goodevening_Q
+      - goodevening_R
       Phrases_previous: []
     - Id: 6.2.1
       Stage: 6
@@ -10755,7 +12694,10 @@ MonoBehaviour:
       Letters: []
       Words: []
       Words_previous: []
-      Phrases: []
+      Phrases:
+      - hi
+      - peaceonyou_Q
+      - peaceonyou_R
       Phrases_previous: []
     - Id: 6.3.1
       Stage: 6
@@ -10845,8 +12787,20 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - color_black
+      - color_purple
+      - color_pink
+      - color_gold
+      - color_silver
+      - color_orange
+      Words_previous:
+      - color_green
+      - color_white
+      - color_yellow
+      - color_blue
+      - color_brown
+      - color_red
       Phrases: []
       Phrases_previous: []
     - Id: 6.4.2
@@ -10937,8 +12891,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - beautiful
+      - clean
+      - big
+      - small
+      Words_previous:
+      - wonderful
+      - rainy
       Phrases: []
       Phrases_previous: []
     - Id: 6.5.2
@@ -11029,8 +12989,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - cold
+      - hot
+      - rainy
+      Words_previous:
+      - beautiful
+      - clean
+      - wonderful
       Phrases: []
       Phrases_previous: []
     - Id: 6.6.2
@@ -11121,8 +13087,20 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - number_0
+      - number_1
+      - number_3
+      - number_4
+      - number_5
+      - number_6
+      - number_7
+      - number_8
+      - number_9
+      Words_previous:
+      - number_2
+      - number_6
+      - number_8
       Phrases: []
       Phrases_previous: []
     - Id: 6.7.2
@@ -11166,6 +13144,30 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
+      Letters: []
+      Words:
+      - number_10
+      - number_11
+      - number_12
+      - number_13
+      - number_14
+      - number_15
+      - number_16
+      - number_17
+      - number_18
+      - number_19
+      - number_2
+      - number_20
+      Words_previous: []
+      Phrases: []
+      Phrases_previous: []
+    - Id: 6.7.100
+      Stage: 6
+      LearningBlock: 7
+      PlaySession: 100
+      Type: Assessment
+      Order: 1
+      Minigames: []
       Letters: []
       Words: []
       Words_previous: []
@@ -11213,7 +13215,17 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
+      Words:
+      - number_o1
+      - number_o2
+      - number_o3
+      - number_o4
+      - number_o5
+      - number_o6
+      - number_o7
+      - number_o8
+      - number_o9
+      - number_o10
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -11305,10 +13317,16 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - yesterday
+      - today
+      - tomorrow
+      Words_previous:
+      - now
       Phrases: []
-      Phrases_previous: []
+      Phrases_previous:
+      - seeyou
+      - goodbye
     - Id: 6.10.1
       Stage: 6
       LearningBlock: 10
@@ -11351,7 +13369,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
+      Words:
+      - day_monday
+      - day_tuesday
+      - day_wednesday
+      - day_thursday
+      - day_friday
+      - day_saturday
+      - day_sunday
       Words_previous: []
       Phrases: []
       Phrases_previous: []
@@ -11443,8 +13468,20 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - month_march
+      - month_april
+      - month_may
+      - month_june
+      - month_july
+      - month_august
+      - month_october
+      - month_november
+      - month_december
+      Words_previous:
+      - month_january
+      - month_february
+      - month_september
       Phrases: []
       Phrases_previous: []
     - Id: 6.11.2
@@ -11536,8 +13573,15 @@ MonoBehaviour:
         Weight: 1
       Letters: []
       Words: []
-      Words_previous: []
-      Phrases: []
+      Words_previous:
+      - number_15
+      - number_16
+      - number_17
+      - number_18
+      - number_19
+      - number_20
+      Phrases:
+      - the_year_2016
       Phrases_previous: []
     - Id: 6.12.2
       Stage: 6
@@ -11627,8 +13671,15 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - cloud
+      - spring
+      - summer
+      - fall
+      - winter
+      - breeze
+      Words_previous:
+      - forest
       Phrases: []
       Phrases_previous: []
     - Id: 6.13.2
@@ -11719,8 +13770,14 @@ MonoBehaviour:
       - MiniGameCode: 32
         Weight: 1
       Letters: []
-      Words: []
-      Words_previous: []
+      Words:
+      - the_shirt
+      - the_hat
+      - the_shoe
+      - the_coat
+      - the_trousers
+      Words_previous:
+      - costume
       Phrases: []
       Phrases_previous: []
     - Id: 6.14.2
@@ -11814,7 +13871,21 @@ MonoBehaviour:
       Words: []
       Words_previous: []
       Phrases: []
-      Phrases_previous: []
+      Phrases_previous:
+      - goodmorning_Q
+      - goodmorning_R
+      - goodevening_Q
+      - goodevening_R
+      - hi
+      - peaceonyou_Q
+      - peaceonyou_R
+      - yourwelcome
+      - howareyou
+      - fine
+      - thankyou
+      - sure
+      - seeyou
+      - goodbye
     - Id: 6.15.2
       Stage: 6
       LearningBlock: 15
@@ -11866,7 +13937,7 @@ MonoBehaviour:
     - Id: 1.1
       Stage: 1
       LearningBlock: 1
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The trio-alif (\u0627 - \u0623 - \u0625): Same shape, different
         location of alif, absence & different location of hamza (\u0621), in different
         position in the word (just prononciation)"
@@ -11877,7 +13948,7 @@ MonoBehaviour:
     - Id: 1.2
       Stage: 1
       LearningBlock: 2
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The trio beh, teh, theh (\u0628 - \u062A \u2013 \u062B): Same
         shape, different number & location of dots"
       Title: Trio beh,tah,theh
@@ -11887,7 +13958,7 @@ MonoBehaviour:
     - Id: 1.3
       Stage: 1
       LearningBlock: 3
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The trio jeem, hah, khah (\u062C - \u062D \u2013 \u062E): Same
         shape, different location of a dot"
       Title: Trio jeem, hah, khah
@@ -11897,7 +13968,7 @@ MonoBehaviour:
     - Id: 1.4
       Stage: 1
       LearningBlock: 4
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The duo dal and thal (\u062F \u2013 \u0630): Same shape, absence
         of a dot"
       Title: Duo dal and thal
@@ -11907,7 +13978,7 @@ MonoBehaviour:
     - Id: 1.5
       Stage: 1
       LearningBlock: 5
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The duo reh and zain (\u0631 \u2013 \u0632): Same shape, absence
         of a dot"
       Title: Duo reh and zain
@@ -11917,7 +13988,7 @@ MonoBehaviour:
     - Id: 1.6
       Stage: 1
       LearningBlock: 6
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The duo seen and sheen (\u0633 \u2013 \u0634): Same shape, absence
         of three dots"
       Title: Duo seen,sheen
@@ -11927,7 +13998,7 @@ MonoBehaviour:
     - Id: 1.7
       Stage: 1
       LearningBlock: 7
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The sad and dad (\u0635 \u2013 \u0636): Same shape, absence of
         a dot"
       Title: Duo sad,dad
@@ -11937,7 +14008,7 @@ MonoBehaviour:
     - Id: 1.8
       Stage: 1
       LearningBlock: 8
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The tah and zah (\u0637 \u2013 \u0638): Same shape, absence of
         a dot"
       Title: 
@@ -11947,7 +14018,7 @@ MonoBehaviour:
     - Id: 1.9
       Stage: 1
       LearningBlock: 9
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The duo ain and ghain (\u0639 \u2013 \u063A): Same shape, absence
         of a dot"
       Title: 
@@ -11957,7 +14028,7 @@ MonoBehaviour:
     - Id: 1.10
       Stage: 1
       LearningBlock: 10
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The duo feh and qaf (\u0641 \u2013 \u0642): Same shape, different
         number of dots"
       Title: 
@@ -11967,7 +14038,7 @@ MonoBehaviour:
     - Id: 1.11
       Stage: 1
       LearningBlock: 11
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The duo kaf and lam (\u0643 \u2013 \u0644): Same shape, absence
         of hamza (\u0621)"
       Title: 
@@ -11977,7 +14048,7 @@ MonoBehaviour:
     - Id: 1.12
       Stage: 1
       LearningBlock: 12
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The duo meem and noon (\u0645 \u2013 \u0646): No specific criterion,
         just different letters"
       Title: 
@@ -11987,7 +14058,7 @@ MonoBehaviour:
     - Id: 1.13
       Stage: 1
       LearningBlock: 13
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The trio heh waw yeh (\u0647 - \u0648 - \u064A): No specific criterion,
         jusy different letters"
       Title: 
@@ -11997,7 +14068,7 @@ MonoBehaviour:
     - Id: 1.14
       Stage: 1
       LearningBlock: 14
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The long-vowels \u201Calif\u201D (\u0623), \u201Cwaw\u201D (\u0648),
         \u201Cyeh\u201D (\u064A)"
       Title: 
@@ -12007,7 +14078,7 @@ MonoBehaviour:
     - Id: 2.1
       Stage: 2
       LearningBlock: 1
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The two shapes of the letter \u201Calef\u201D (\u0627 \u0640\u0627)"
       Title: alef shapes
       IntroArabic: 
@@ -12016,7 +14087,7 @@ MonoBehaviour:
     - Id: 2.2
       Stage: 2
       LearningBlock: 2
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \"beh\" (\u0628   \u0640\u0628   \u0640\u0628\u0640
         \ \u0628\u0640)"
       Title: beh shapes
@@ -12026,7 +14097,7 @@ MonoBehaviour:
     - Id: 2.3
       Stage: 2
       LearningBlock: 3
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "\"The six shapes of the letter \u201Cteh\u201D (\u062A \u0640\u062A
         \ \u0629  \u0640\u0629  \u0640\u062A\u0640  \u062A\u0640)"
       Title: teh,teh_marbuta shapes
@@ -12036,7 +14107,7 @@ MonoBehaviour:
     - Id: 2.4
       Stage: 2
       LearningBlock: 4
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \u201Ctheh\u201D (\u062B \u0640\u062B
         \  \u0640\u062B\u0640  \u062B\u0640)"
       Title: 
@@ -12046,7 +14117,7 @@ MonoBehaviour:
     - Id: 2.5
       Stage: 2
       LearningBlock: 5
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \u201Cjeem\u201D (\u062C   \u0640\u062C
         \  \u0640\u062C\u0640   \u062C\u0640)"
       Title: 
@@ -12056,7 +14127,7 @@ MonoBehaviour:
     - Id: 2.6
       Stage: 2
       LearningBlock: 6
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \u201Chah\u201D (\u062D  \u0640\u062D
         \ \u0640\u062D\u0640  \u062D\u0640)"
       Title: 
@@ -12066,7 +14137,7 @@ MonoBehaviour:
     - Id: 2.7
       Stage: 2
       LearningBlock: 7
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \u201Ckhah\u201D (\u062E  \u0640\u062E
         \u0640\u062E\u0640  \u062E\u0640)"
       Title: 
@@ -12076,7 +14147,7 @@ MonoBehaviour:
     - Id: 2.8
       Stage: 2
       LearningBlock: 8
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The two shapes of the letter \u201Cdal\u201D ( \u0640\u062F  \u062F)"
       Title: 
       IntroArabic: 
@@ -12085,7 +14156,7 @@ MonoBehaviour:
     - Id: 2.9
       Stage: 2
       LearningBlock: 9
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The two shapes of the letter \u201Cthal\u201D (\u0640\u0630  \u0630)"
       Title: 
       IntroArabic: 
@@ -12094,7 +14165,7 @@ MonoBehaviour:
     - Id: 2.10
       Stage: 2
       LearningBlock: 10
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The two shapes of the letter \u201Creh\u201D ( \u0640\u0631  \u0631)"
       Title: 
       IntroArabic: 
@@ -12103,7 +14174,7 @@ MonoBehaviour:
     - Id: 2.11
       Stage: 2
       LearningBlock: 11
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The two shapes of the letter \u201Czain\u201D ( \u0640\u0632  \u0632)"
       Title: 
       IntroArabic: 
@@ -12112,7 +14183,7 @@ MonoBehaviour:
     - Id: 2.12
       Stage: 2
       LearningBlock: 12
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \u201Cseen\u201D (\u0633  \u0640\u0633
         \ \u0640\u0633\u0640  \u0633\u0640)"
       Title: 
@@ -12122,7 +14193,7 @@ MonoBehaviour:
     - Id: 2.13
       Stage: 2
       LearningBlock: 13
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \u201Csheen\u201D (\u0634 \u0640\u0634
         \u0640\u0634\u0640 \u0634\u0640)"
       Title: 
@@ -12132,7 +14203,7 @@ MonoBehaviour:
     - Id: 2.14
       Stage: 2
       LearningBlock: 14
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: "The four shapes of the letter \u201Csad\u201D (\u0635 \u0640\u0635
         \u0640\u0635\u0640 \u0635\u0640)"
       Title: 
@@ -12600,7 +14671,7 @@ MonoBehaviour:
     - Id: 6.7
       Stage: 6
       LearningBlock: 7
-      NumberOfPlaySessions: 2
+      NumberOfPlaySessions: 3
       Description: Cardinal numbers 0 to 20
       Title: Cardinal numbers
       IntroArabic: 

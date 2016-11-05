@@ -7,15 +7,18 @@ namespace EA4S.Egg
     public class EggLivingLetter
     {
         LetterObjectView livingLetter;
+        Transform shadowTransform;
 
         Vector3 startPosition;
         Vector3 endPosition;
+
+        Vector3 shadowLocalPosition;
 
         float delay;
 
         Action endCallback;
 
-        public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 endPosition, float delay, Action endCallback)
+        public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, GameObject shadowPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 endPosition, float delay, Action endCallback)
         {
             livingLetter = UnityEngine.Object.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
 
@@ -23,6 +26,13 @@ namespace EA4S.Egg
             livingLetter.transform.localPosition = startPosition;
             livingLetter.Init(livingLetterData);
             livingLetter.gameObject.SetActive(false);
+
+            shadowTransform = UnityEngine.Object.Instantiate(shadowPrefab).transform;
+            shadowTransform.SetParent(parent);
+            shadowLocalPosition = startPosition;
+            shadowTransform.localPosition = shadowLocalPosition;
+            shadowTransform.localScale *= 0.7f;
+            shadowTransform.gameObject.SetActive(false);
 
             this.startPosition = startPosition;
             this.endPosition = endPosition;
@@ -39,9 +49,18 @@ namespace EA4S.Egg
             livingLetter.DoHorray();
         }
 
+        public void Update(float delta)
+        {
+            shadowLocalPosition.x = livingLetter.transform.localPosition.x;
+            shadowLocalPosition.z = livingLetter.transform.localPosition.z;
+
+            shadowTransform.localPosition = shadowLocalPosition;
+        }
+
         public void DestroyLetter()
         {
             UnityEngine.Object.Destroy(livingLetter.gameObject);
+            UnityEngine.Object.Destroy(shadowTransform.gameObject);
         }
 
         public void JumpToEnd()
@@ -52,7 +71,9 @@ namespace EA4S.Egg
 
             livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate ()
             {
+                shadowTransform.gameObject.SetActive(true);
                 livingLetter.gameObject.SetActive(true);
+                
                 livingLetter.Poof();
                 livingLetter.OnJumpStart();
 

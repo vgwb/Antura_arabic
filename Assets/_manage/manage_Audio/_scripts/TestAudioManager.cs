@@ -179,7 +179,8 @@ namespace EA4S
 
                 fabricComponent.Volume = 0.5f;
                 fabricComponent.Loop = true;
-                AudioClip associatedAudioClip = fabricComponent.AudioClip;
+                var associatedAudioClip = fabricComponent.AudioClip;
+                Debug.Log(associatedAudioClip.length);
             }
 
 
