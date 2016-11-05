@@ -11,11 +11,11 @@
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true);
-
             // Show questions description
             var popupWidget = game.Context.GetPopupWidget();
-            popupWidget.Show(OnPopupCloseRequested, "MissingLetterGame description", true);
+            popupWidget.Show();
+            popupWidget.SetButtonCallback(OnPopupCloseRequested);
+            popupWidget.SetMessage("MissingLetter\n Game description", true);
         }
 
         void OnPopupCloseRequested()
