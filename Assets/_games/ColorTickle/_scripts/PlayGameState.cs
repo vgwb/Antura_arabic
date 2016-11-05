@@ -190,12 +190,13 @@ namespace EA4S.ColorTickle
 
 			for (int i = 0; i < Brushes.Length; ++i)
 			{
-				if (Brushes [i].brushName.CompareTo ("LetterBrush") == 0) {
-					Color brushColor = color;
-					brushColor.r = color.r - (color.r * 0.3f);
-					brushColor.g = color.g - (color.g * 0.3f);
-					brushColor.b = color.b - (color.b * 0.3f);
-					Brushes [i].SetBrushColor (brushColor);
+				if (Brushes [i].brushName.CompareTo ("BodyBrush") == 0) {
+                    Color brushColor = color;
+                    //Reduce saturation of 40%
+                    brushColor.r += (1 - color.r) * 0.4f;
+                    brushColor.g += (1 - color.g) * 0.4f;
+                    brushColor.b += (1 - color.b) * 0.4f;
+                    Brushes [i].SetBrushColor (brushColor);
 				} 
 				else {
 					Brushes [i].SetBrushColor (color);
@@ -301,14 +302,11 @@ namespace EA4S.ColorTickle
 		{
 			m_PercentageLetterColored = ((m_TMPTextColoringLetter.currentShapePixelsColored * 100) /
 				m_TMPTextColoringLetter.totalShapePixels);
-
-			if (m_PercentageLetterColored >= 100) {
+            m_PercentageLetterColored += 100 - m_TMPTextColoringLetter.percentageRequiredToWin;
+            if (m_PercentageLetterColored >= 100) {
 				m_PercentageLetterColored = 100;
 			} 
-			else 
-			{
-				m_PercentageLetterColored += 100 - m_TMPTextColoringLetter.percentageRequiredToWin;
-			}
+			
 		}
 
 
