@@ -15,15 +15,15 @@ namespace EA4S
         [Header("Other")]
         public GameObject PauseMenuContainer;
         public Image MenuBg;
-        public RectTransform AnturaFace;
+        public RectTransform SubButtonsContainer;
+        public RectTransform Logo;
 
         public bool IsMenuOpen { get; private set; }
 
-        //        Button btPause;
         MenuButton[] menuBts;
         float timeScaleAtMenuOpen = 1;
         Sequence openMenuTween;
-        Tween anturaBobTween;
+        Tween logoBobTween;
 
         void Awake()
         {
@@ -34,31 +34,30 @@ namespace EA4S
         {
             menuBts = PauseMenuContainer.GetComponentsInChildren<MenuButton>(true);
 
-            // Tweens - Antura face bobbing
-            anturaBobTween = AnturaFace.DORotate(new Vector3(0, 0, -20), 0.6f).SetRelative().SetUpdate(true).SetAutoKill(false).Pause()
-                .SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            // Tweens - Logo bobbing
+            logoBobTween = Logo.DOAnchorPosY(16, 0.6f).SetRelative().SetUpdate(true).SetAutoKill(false).Pause()
+                .SetEase(Ease.OutQuad).SetLoops(-1, LoopType.Yoyo);
+            logoBobTween.OnRewind(() => logoBobTween.SetEase(Ease.OutQuad))
+                .OnStepComplete(() => logoBobTween.SetEase(Ease.InOutQuad));
+            logoBobTween.ForceInit();
             // Tweens - menu
             CanvasGroup[] cgButtons = new CanvasGroup[menuBts.Length];
             for (int i = 0; i < menuBts.Length; i++)
                 cgButtons[i] = menuBts[i].GetComponent<CanvasGroup>();
             openMenuTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .OnPlay(() => {
-                    PauseMenuContainer.SetActive(true);
-                    anturaBobTween.Restart();
-                })
+                .OnPlay(() => PauseMenuContainer.SetActive(true))
                 .OnRewind(() => {
                     PauseMenuContainer.SetActive(false);
-                    anturaBobTween.Rewind();
+                    logoBobTween.Rewind();
                 });
             openMenuTween.Append(MenuBg.DOFade(0, 0.5f).From())
-                .Join(AnturaFace.DOAnchorPosY(750f, 0.6f).From().SetEase(Ease.OutBack));
-            const float btDuration = 0.16f;
+                .Join(Logo.DOAnchorPosY(750f, 0.4f).From().SetEase(Ease.OutQuad).OnComplete(()=> logoBobTween.Play()))
+                .Join(SubButtonsContainer.DORotate(new Vector3(0, 0, 180), 0.4f).From());
+            const float btDuration = 0.3f;
             for (int i = 0; i < menuBts.Length; ++i) {
                 CanvasGroup cgButton = cgButtons[i];
                 RectTransform rtButton = cgButton.GetComponent<RectTransform>();
-                openMenuTween.Insert(i * 0.05f, rtButton.DOScale(cgButton.transform.localScale * 2f, btDuration).From().SetEase(Ease.InQuad))
-                    .Join(rtButton.DOAnchorPosX(100f + 50f * i, btDuration * 2f).From(true).SetEase(Ease.OutQuad))
-                    .Join(cgButton.DOFade(0, btDuration).From().SetEase(Ease.InQuad));
+                openMenuTween.Insert(i * 0.05f, rtButton.DOScale(0.0001f, btDuration).From().SetEase(Ease.OutBack));
             }
 
             // Deactivate pause menu
@@ -75,7 +74,7 @@ namespace EA4S
         void OnDestroy()
         {
             openMenuTween.Kill();
-            anturaBobTween.Kill();
+            logoBobTween.Kill();
             BtPause.Bt.onClick.RemoveAllListeners();
             foreach (MenuButton bt in menuBts)
                 bt.Bt.onClick.RemoveAllListeners();
@@ -103,6 +102,7 @@ namespace EA4S
                 AudioManager.I.PlaySfx(Sfx.UIPauseIn);
             } else {
                 Time.timeScale = timeScaleAtMenuOpen;
+                logoBobTween.Pause();
                 openMenuTween.timeScale = 2; // Speed up tween when going backwards
                 if (AppManager.Instance.CurrentGameManagerGO != null)
                     AppManager.Instance.CurrentGameManagerGO.SendMessage("DoPause", false, SendMessageOptions.DontRequireReceiver);
@@ -116,7 +116,7 @@ namespace EA4S
         /// </summary>
         void OnClick(MenuButton _bt)
         {
-
+            _bt.AnimateClick();
             if (_bt == BtPause) {
                 OpenMenu(!IsMenuOpen);
             } else if (!openMenuTween.IsPlaying()) { // Ignores pause menu clicks when opening/closing menu
