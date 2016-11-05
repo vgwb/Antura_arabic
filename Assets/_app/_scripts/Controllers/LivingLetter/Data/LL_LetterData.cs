@@ -27,22 +27,20 @@ namespace EA4S
 
         public LetterDataForm ShowAs = LetterDataForm.ISOLATED;
 
-        protected void chargeLetterData(string _keyRow, Db.LetterData _letRow)
+        public LL_LetterData(string _keyRow) : this(_keyRow, AppManager.Instance.DB.GetLetterDataById(_keyRow))
         {
-            Key = _keyRow;
-            Data = _letRow;
         }
 
-        public LL_LetterData(string _keyRow)
+        public LL_LetterData(string _key, Db.LetterData _data)
         {
-            chargeLetterData(_keyRow, AppManager.Instance.DB.GetLetterDataById(_keyRow));
-
+            Key = _key;
+            Data = _data;
         }
 
         #region API
-        /// <summary>
-        /// Living Letter Text To Display.
-        /// </summary>
+            /// <summary>
+            /// Living Letter Text To Display.
+            /// </summary>
         public string TextForLivingLetter {
             get {
                 switch (ShowAs) {

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using TMPro;
-using Google2u;
 
 namespace EA4S
 {
@@ -43,7 +42,7 @@ namespace EA4S
                 return Model.Data;
             }
         }
-        
+
         private LLController model;
         LLController Model
         {
@@ -268,7 +267,7 @@ namespace EA4S
             }
         }
 
-        
+
 
         /// <summary>
         /// Speed is 0 (walk) to 1 (running).
@@ -362,4 +361,3 @@ namespace EA4S
         }
     }
 }
-
