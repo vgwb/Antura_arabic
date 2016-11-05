@@ -5,7 +5,9 @@
 	{
 		// Game configuration
 		public IGameContext Context { get; set; }
-		public ILivingLetterDataProvider Letters { get; set; }
+        public IQuestionProvider Questions { get; set; }
+
+        public ILivingLetterDataProvider Letters { get; set; }
 		#region Game configurations
 		public float Difficulty { get; set; }
 		#endregion

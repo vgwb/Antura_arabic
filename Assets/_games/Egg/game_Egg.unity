@@ -3263,6 +3263,8 @@ MonoBehaviour:
     type: 2}
   runLettersBox: {fileID: 1450025398}
   anturaPrefab: {fileID: 121932, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
+  shadowPrefab: {fileID: 1000010929588560, guid: 8b30e07fe8233034ab951463f3c98c1e,
+    type: 2}
 --- !u!4 &1814291036
 Transform:
   m_ObjectHideFlags: 0

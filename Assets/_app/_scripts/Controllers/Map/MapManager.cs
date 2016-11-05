@@ -105,6 +105,8 @@ namespace EA4S
 
         public void Play()
         {
+            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
+
             if (AppManager.Instance.IsAssessmentTime)
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
             else
@@ -132,46 +134,16 @@ namespace EA4S
 
         }
 
-        private class PlaySessionState
-        {
-            public Db.PlaySessionData data;
-            public float score;
 
-            public PlaySessionState(Db.PlaySessionData _data, float _score)
+        // TODO: use similar code to get info on the journey
+        private void TestGetJourneyInfo()
+        {
+            int stage = 1;
+            List<Teacher.LearningBlockInfo> learningBlockInfo_list = AppManager.Instance.Teacher.journeyHelper.GetLearningBlockInfosForStage(stage);
+            foreach(var info in learningBlockInfo_list)
             {
-                this.data = _data;
-                this.score = _score;
+                Debug.Log(info.data + ": " + info.score);
             }
-        }
-
-        /// <summary>
-        /// Returns a list of all play session data with its score (if a score exists) for the given stage
-        /// </summary>
-        /// <param name="_stage"></param>
-        /// <returns></returns>
-        private List<PlaySessionState> GetAllPlaySessionStateForStage(int _stage)
-        {
-            // Get all available scores for this stage
-            List<Db.ScoreData> scoreData_list = AppManager.Instance.Teacher.GetCurrentScoreForPlaySessionsOfStage(_stage);
-
-            // For each score entry, get its play session data and build a structure containing both
-            List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
-            for (int i = 0; i < scoreData_list.Count; i++) {
-                var data = AppManager.Instance.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
-                playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Score));
-            }
-
-            return playSessionState_list;
-        }
-
-        /// <summary>
-        /// Given a stage, returns the list of all play session data corresponding to it.
-        /// </summary>
-        /// <param name="_stage"></param>
-        /// <returns></returns>
-        private List<Db.PlaySessionData> GetAllPlaySessionDataForStage(int _stage)
-        {
-            return AppManager.Instance.DB.FindPlaySessionData(x => x.Stage == _stage);
         }
 
     }

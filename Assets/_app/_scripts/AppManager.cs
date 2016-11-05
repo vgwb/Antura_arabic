@@ -9,9 +9,9 @@ namespace EA4S
 {
     public class AppManager : GameManager
     {
-        new public AppSettings GameSettings = new AppSettings();
+        public new AppSettings GameSettings = new AppSettings();
 
-        new public static AppManager Instance {
+        public new static AppManager Instance {
             get { return GameManager.Instance as AppManager; }
         }
 
@@ -29,7 +29,6 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
 
-
         #region Init
 
         public string IExist()
@@ -41,13 +40,14 @@ namespace EA4S
         {
 
             if (DB == null)
-                DB = new DatabaseManager(this.GameSettings.UseTestDatabase);
+                DB = new DatabaseManager(GameSettings.UseTestDatabase);
             if (Player == null)
                 Player = new PlayerProfile();
             if (Teacher == null)
-                Teacher = new TeacherAI(this.DB, this.Player);
+                Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
-                GameLauncher = new MiniGameLauncher();
+                GameLauncher = new MiniGameLauncher(Teacher);
+
             gameObject.AddComponent<DebugManager>();
         }
 
@@ -62,7 +62,7 @@ namespace EA4S
             ResetProgressionData();
         }
 
-        void AdditionalSetup()
+        private void AdditionalSetup()
         {
             // GameplayModule
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
@@ -109,11 +109,11 @@ namespace EA4S
         /// <returns>return next scene name.</returns>
         public string MiniGameDone(string actualSceneName = "")
         {
-            string returnString = "_Start";
+            var returnString = "_Start";
             if (actualSceneName == "") {
                 // from MiniGame
 
-                if (Player.CurrentMiniGameInPlaySession >= (Teacher.MiniGamesInPlaySession.Count - 1)) {
+                if (Player.CurrentMiniGameInPlaySession >= (Teacher.CurrentPlaySessionMiniGames.Count - 1)) {
                     // end playsession
                     //Player.CurrentJourneyPosition.PlaySession = 0;
                     //Player.CurrentMiniGameInPlaySession = 0;
@@ -122,7 +122,7 @@ namespace EA4S
                     // next game in this playsession
                     Player.CurrentMiniGameInPlaySession++;
                     //Debug.Log("MiniGameDone PlaySessionGameDone = " + PlaySessionGameDone);
-                    MiniGameCode myGameCode = (MiniGameCode)Enum.Parse(typeof(MiniGameCode), TeacherAI.I.GetCurrentMiniGameData().GetId(), true);
+                    var myGameCode = TeacherAI.I.CurrentMiniGame.Code;
                     AppManager.Instance.GameLauncher.LaunchGame(myGameCode);
                 }
             } else {
