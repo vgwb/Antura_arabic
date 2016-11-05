@@ -22,7 +22,7 @@ namespace EA4S.ColorTickle
         private ColorsUIManager m_ColorsUIManager;
         private Button m_PercentageLetterColoredButton;
 
-        private int m_PercentageLetterColored;
+        private float m_PercentageLetterColored;
         private bool m_Tickle;
         private float m_TickleTime = 1;
         private eHitState m_HitState;
@@ -95,7 +95,7 @@ namespace EA4S.ColorTickle
                     CheckBrushVelocity(delta);
 
                     CalcPercentageLetterColored();
-                    m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = m_PercentageLetterColored + "%";
+					m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = Mathf.FloorToInt(m_PercentageLetterColored) + "%";
 
                     if (m_PercentageLetterColored >= 100)
                     {
@@ -157,7 +157,7 @@ namespace EA4S.ColorTickle
 			m_SurfaceColoringLetter.OnBodyHit += BodyTouched;
 //			m_TMPTextColoringLetter.enableColor = false;
 //			m_SurfaceColoringLetter.enableColor = false;
-			BuildBrush ();
+			//BuildBrush ();
 			SetBrushColor(m_ColorsUIManager.defaultColor);
 			m_currentLetter.GetComponentInChildren<Animator>().SetInteger("State", 1);
 		}
@@ -191,12 +191,11 @@ namespace EA4S.ColorTickle
 			for (int i = 0; i < Brushes.Length; ++i)
 			{
 				if (Brushes [i].brushName.CompareTo ("BodyBrush") == 0) {
-                    Color brushColor = color;
-                    //Reduce saturation of 40%
-                    brushColor.r += (1 - color.r) * 0.4f;
-                    brushColor.g += (1 - color.g) * 0.4f;
-                    brushColor.b += (1 - color.b) * 0.4f;
-                    Brushes [i].SetBrushColor (brushColor);
+					Color brushColor = color;
+					brushColor.r += (1 - color.r) * 0.4f;
+					brushColor.g += (1 - color.g) * 0.4f;
+					brushColor.b += (1 - color.b) * 0.4f;
+					Brushes [i].SetBrushColor (brushColor);
 				} 
 				else {
 					Brushes [i].SetBrushColor (color);
@@ -300,13 +299,12 @@ namespace EA4S.ColorTickle
 	
 		private void CalcPercentageLetterColored()
 		{
-			m_PercentageLetterColored = ((m_TMPTextColoringLetter.currentShapePixelsColored * 100) /
-				m_TMPTextColoringLetter.totalShapePixels);
-            m_PercentageLetterColored += 100 - m_TMPTextColoringLetter.percentageRequiredToWin;
-            if (m_PercentageLetterColored >= 100) {
-				m_PercentageLetterColored = 100;
-			} 
-			
+			float percentageRequiredToWin = m_TMPTextColoringLetter.percentageRequiredToWin;
+			m_PercentageLetterColored = ((m_TMPTextColoringLetter.GetRachedCoverage () * 100.0f) / percentageRequiredToWin) * 100.0f ;
+			if (m_PercentageLetterColored >= 100.0f) 
+			{
+				m_PercentageLetterColored = 100.0f;
+			}
 		}
 
 
