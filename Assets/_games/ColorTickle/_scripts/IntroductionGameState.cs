@@ -31,7 +31,6 @@ namespace EA4S.ColorTickle
 			for (int i = 0; i < game.rounds; ++i) {
 				game.myLetters[i] = LetterObjectView.Instantiate(game.m_LetterPrefab);
 				game.myLetters[i].Init(AppManager.Instance.Letters.GetRandomElement());
-				game.myLetters[i].gameObject.SetActive (false);
 			}
         }
 
@@ -45,7 +44,7 @@ namespace EA4S.ColorTickle
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.PlayState);
+				game.SetCurrentState(game.QuestionState);
             }
         }
 
