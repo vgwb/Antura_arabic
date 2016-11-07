@@ -15,11 +15,13 @@
 
         public void EnterState()
         {
+
             game.m_RoundManager.Terminate();
             timer = 1;
             goToEndGame = true;
 
             game.Context.GetAudioManager().PlayMusic(Music.Relax);
+            game.Context.GetOverlayWidget().Initialize(false, false, false);
 
             //if (game.isTimesUp)
             //{

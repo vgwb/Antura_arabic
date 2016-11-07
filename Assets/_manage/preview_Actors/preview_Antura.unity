@@ -547,7 +547,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1840452607}
+      - m_Target: {fileID: 1372092514}
         m_MethodName: SetRewardTypeFilter
         m_Mode: 5
         m_Arguments:
@@ -2567,7 +2567,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1840452607}
+      - m_Target: {fileID: 1372092514}
         m_MethodName: SetRewardTypeFilter
         m_Mode: 5
         m_Arguments:
@@ -9954,7 +9954,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1840452607}
+      - m_Target: {fileID: 1372092514}
         m_MethodName: SetRewardTypeFilter
         m_Mode: 5
         m_Arguments:
@@ -11139,7 +11139,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1840452607}
+      - m_Target: {fileID: 1372092514}
         m_MethodName: SetRewardTypeFilter
         m_Mode: 5
         m_Arguments:
@@ -11912,6 +11912,7 @@ GameObject:
   - 224: {fileID: 1372092511}
   - 222: {fileID: 1372092513}
   - 114: {fileID: 1372092512}
+  - 114: {fileID: 1372092514}
   m_Layer: 5
   m_Name: RewardUI
   m_TagString: Untagged
@@ -11975,6 +11976,25 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1372092510}
+--- !u!114 &1372092514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1372092510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81957f65ca8bc154e8eed78a6e337b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementContainer: {fileID: 1840452604}
+  ElementPrefab: {fileID: 1000013507876522, guid: 0238b7301e349ab4cabcf33eed368921,
+    type: 2}
+  RewardTypeFilter: 
+  MaterialGrid1: {fileID: 1105734664}
+  MaterialGrid2: {fileID: 1672943489}
+  ActiveMaterial1Image: {fileID: 1531457000}
+  ActiveMaterial2Image: {fileID: 1642098758}
 --- !u!1 &1372575769
 GameObject:
   m_ObjectHideFlags: 0
@@ -13214,7 +13234,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1840452607}
+      - m_Target: {fileID: 1372092514}
         m_MethodName: SetRewardTypeFilter
         m_Mode: 5
         m_Arguments:
@@ -14080,7 +14100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1840452607}
+      - m_Target: {fileID: 1372092514}
         m_MethodName: SetRewardTypeFilter
         m_Mode: 5
         m_Arguments:
@@ -16399,7 +16419,6 @@ GameObject:
   - 222: {fileID: 1840452606}
   - 114: {fileID: 1840452605}
   - 114: {fileID: 1840452604}
-  - 114: {fileID: 1840452607}
   m_Layer: 5
   m_Name: Reward List
   m_TagString: Untagged
@@ -16482,25 +16501,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1840452602}
---- !u!114 &1840452607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1840452602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81957f65ca8bc154e8eed78a6e337b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ElementContainer: {fileID: 0}
-  ElementPrefab: {fileID: 1000013507876522, guid: 0238b7301e349ab4cabcf33eed368921,
-    type: 2}
-  RewardTypeFilter: 
-  MaterialGrid1: {fileID: 1105734664}
-  MaterialGrid2: {fileID: 1672943489}
-  ActiveMaterial1Image: {fileID: 1531457000}
-  ActiveMaterial2Image: {fileID: 1642098758}
 --- !u!1001 &1871649612
 Prefab:
   m_ObjectHideFlags: 0

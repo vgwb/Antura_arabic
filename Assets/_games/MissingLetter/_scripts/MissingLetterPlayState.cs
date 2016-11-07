@@ -9,33 +9,32 @@ namespace EA4S.MissingLetter
     public class MissingLetterPlayState : IGameState
     {
         
-
         public MissingLetterPlayState(MissingLetterGame game)
         {
             this.game = game;
-
+            gameTime = new CountdownTimer(game.m_fGameTime);
             gameTime.onTimesUp += OnTimesUp;
-
-            game.m_RoundManager.onAnswered += OnRoundResult;
         }
 
         public void EnterState()
         {
+            game.m_RoundManager.onAnswered += OnRoundResult;
             game.mIsTimesUp = false;
             game.ResetScore();
 
-            // Reset game timer
+            hurryUpSfx = false;
+
             gameTime.Reset();
             gameTime.Start();
 
-            game.timerText.gameObject.SetActive(true);
-            game.timerText.text = "";
+            game.Context.GetOverlayWidget().Initialize(true, true, false);
 
-            hurryUpSfx = false;
-
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
+            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             game.m_RoundManager.NewRound();
+            game.StartCoroutine(Utils.LaunchDelay(2.0f, game.SetInIdle, true));
         }
 
         public void ExitState()
@@ -43,7 +42,6 @@ namespace EA4S.MissingLetter
             if (timesUpAudioSource != null)
                 timesUpAudioSource.Stop();
 
-            game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
         }
 
@@ -51,12 +49,19 @@ namespace EA4S.MissingLetter
         {
 
             if(game.miAnturaTriggersIndex < game.mafAnturaEnterTriggers.Length && gameTime.Time <= game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex]) {
-                ++game.miAnturaTriggersIndex;
-                game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(game.mfAnturaAnimDuration);
-                game.StartCoroutine(Utils.LaunchDelay(game.mfAnturaAnimDuration / 6, game.m_RoundManager.ShuffleLetters, game.mfAnturaAnimDuration / 2));
+                if (game.m_bInIdle) {
+                    ++game.miAnturaTriggersIndex;
+                    game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(game.mfAnturaAnimDuration);
+                    game.m_bInIdle = false;
+                    game.StartCoroutine(Utils.LaunchDelay(game.mfAnturaAnimDuration / 6, game.m_RoundManager.ShuffleLetters, game.mfAnturaAnimDuration / 2));
+                    game.StartCoroutine(Utils.LaunchDelay(4.0f, game.SetInIdle, true));
+                } else {
+                    game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex] -= 3.0f;
+                }
             }
 
-            game.timerText.text = String.Format("{0:0}", gameTime.Time);
+            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+
 
             if (!hurryUpSfx)
             {
@@ -81,6 +86,7 @@ namespace EA4S.MissingLetter
         {
             // Time's up!
             game.mIsTimesUp = true;
+            game.Context.GetOverlayWidget().OnClockCompleted();
             game.SetCurrentState(game.ResultState);
         }
 
@@ -90,9 +96,10 @@ namespace EA4S.MissingLetter
             game.m_RoundManager.NewRound();
         }
 
+
         #region VARS
 
-        CountdownTimer gameTime = new CountdownTimer(60.0f);
+        CountdownTimer gameTime;
         MissingLetterGame game;
         IAudioSource timesUpAudioSource;
         bool hurryUpSfx;

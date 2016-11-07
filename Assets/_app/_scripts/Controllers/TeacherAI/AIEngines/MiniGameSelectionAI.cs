@@ -12,12 +12,12 @@ namespace EA4S.Teacher
 
         // References
         private DatabaseManager dbManager;
-        private PlayerProfile playerProfile;
+        //private PlayerProfile playerProfile;
 
         public MiniGameSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             this.dbManager = _dbManager;
-            this.playerProfile = _playerProfile;
+            // this.playerProfile = _playerProfile;
         }
 
         public void InitialiseNewPlaySession()
@@ -53,21 +53,30 @@ namespace EA4S.Teacher
                 ordered_minigamecodes[minigameInPlaySession.Weight] = minigameInPlaySession.MiniGameCode;
             }
 
-            // Get, in order, each minigame data
+            // Get, in order, each minigame data, filter by availability (from the static DB)
             List<Db.MiniGameData> minigame_data_list = new List<Db.MiniGameData>();
             foreach(var orderedPair in ordered_minigamecodes)
             {
                 var data = dbManager.GetMiniGameDataByCode(orderedPair.Value);
-                minigame_data_list.Add(data);
+                if (data.Available)
+                {
+                    minigame_data_list.Add(data);
+                }
             }
 
+            // Number checks
+            int actualNumberToSelect = UnityEngine.Mathf.Min(numberToSelect, minigame_data_list.Count);
+            if (minigame_data_list.Count == 0)
+            {
+                throw new System.Exception("Cannot find even a single minigame for play session " + playSessionData.Id);
+            }
             if (numberToSelect > minigame_data_list.Count)
             {
-                throw new System.Exception("Cannot select " + numberToSelect + " minigames for play session " + playSessionData.Id);
+                UnityEngine.Debug.LogWarning("Could not select the requested number of " + numberToSelect + " minigames for play session " + playSessionData.Id + " (only " + minigame_data_list.Count + " are available)");
             }
 
             // Choose the first N minigames in the ordered list
-            var selectedMiniGameData = minigame_data_list.GetRange(0, numberToSelect);
+            var selectedMiniGameData = minigame_data_list.GetRange(0, actualNumberToSelect);
             return selectedMiniGameData;
         }
 
@@ -129,8 +138,20 @@ namespace EA4S.Teacher
             }
             if (VERBOSE) UnityEngine.Debug.Log(debugString);
 
+
+            // Number checks
+            int actualNumberToSelect = UnityEngine.Mathf.Min(numberToSelect, minigame_data_list.Count);
+            if (minigame_data_list.Count == 0)
+            {
+                throw new System.Exception("Cannot find even a single minigame for play session " + playSessionData.Id);
+            }
+            if (numberToSelect > minigame_data_list.Count)
+            {
+                UnityEngine.Debug.LogWarning("Could not select the requested number of " + numberToSelect + " minigames for play session " + playSessionData.Id + " (only " + minigame_data_list.Count + " are available)");
+            }
+
             // Choose N minigames based on these weights
-            var selectedMiniGameData = RandomHelper.RouletteSelectNonRepeating<Db.MiniGameData>(minigame_data_list, weights_list, numberToSelect);
+            var selectedMiniGameData = RandomHelper.RouletteSelectNonRepeating(minigame_data_list, weights_list, actualNumberToSelect);
 
             return selectedMiniGameData;
         }

@@ -58,7 +58,7 @@ namespace EA4S.Test
                 case MiniGameCode.MissingLetter_phrases:
                 case MiniGameCode.MixedLetters_alphabet:
                 case MiniGameCode.MixedLetters_spelling:
-                case MiniGameCode.SickLetter:
+                case MiniGameCode.SickLetters:
                 case MiniGameCode.ReadingGame:
                 case MiniGameCode.Scanner:
                 case MiniGameCode.Scanner_phrase:
@@ -289,7 +289,7 @@ namespace EA4S.Test
                     break;
                 case MiniGameCode.MixedLetters_spelling:
                     break;
-                case MiniGameCode.SickLetter:
+                case MiniGameCode.SickLetters:
                     break;
                 case MiniGameCode.ReadingGame:
                     break;

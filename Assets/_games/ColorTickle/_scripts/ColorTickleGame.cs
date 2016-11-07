@@ -31,24 +31,24 @@ namespace EA4S.ColorTickle
         // GAME STATES
         public IntroductionGameState IntroductionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
-        //public QuestionGameState QuestionState { get; private set; }
+        public QuestionGameState QuestionState { get; private set; }
         public ResultGameState ResultState { get; private set; }
 
         #endregion
 
         #region PRIVATE MEMBERS
 
-        private LetterObjectView m_MyLetter;
+        private LetterObjectView[] m_MyLetters;
         IOverlayWidget m_GameUI;
 
         #endregion
 
         #region GETTER/SETTER
 
-        public LetterObjectView currentLetter
+        public LetterObjectView[] myLetters
         {
-            get { return m_MyLetter; }
-            set { m_MyLetter = value; }
+            get { return m_MyLetters; }
+            set { m_MyLetters = value; }
         }
 
         public Canvas colorsCanvas
@@ -100,7 +100,7 @@ namespace EA4S.ColorTickle
         {
             IntroductionState = new IntroductionGameState(this);
             PlayState = new PlayGameState(this);
-            //QuestionState = new QuestionGameState(this);
+            QuestionState = new QuestionGameState(this);
             ResultState = new ResultGameState(this);
         }
 

@@ -17,7 +17,7 @@ namespace EA4S.MissingLetter
 
         void Start()
         {
-            Assert.IsNotNull<LetterObjectView>(mLetter, "LetterView Not Set in " + name);
+            //Assert.IsNotNull<LetterObjectView>(mLetter, "LetterView Not Set in " + name);
             mCollider = gameObject.GetComponent<Collider>();
             Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
             mCollider.enabled = false;
@@ -43,7 +43,7 @@ namespace EA4S.MissingLetter
             moveTweener = transform.DOLocalMove(position, duration).OnComplete(
                 delegate () {
                     if (IdleAtEnd)
-                        PlayAnimation(LLAnimationStates.LL_idle);
+                        PlayAnimation(m_oDefaultIdleAnimation);
                     if (endTransformToCallback != null)
                         endTransformToCallback();
                 });
@@ -157,6 +157,8 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
+            Destroy(spotLight);
+
             onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
@@ -209,7 +211,7 @@ namespace EA4S.MissingLetter
             value.OnComplete(delegate {
                 transform.DOLookAt(transform.position + Vector3.back, 1f);
                 positions.Clear();
-                PlayAnimation(LLAnimationStates.LL_idle);
+                PlayAnimation(m_oDefaultIdleAnimation);
                 mCollider.enabled = true;
             });
         }
@@ -238,17 +240,37 @@ namespace EA4S.MissingLetter
             mbIsSpeaking = _isSpeaking;
         }
 
+        public void SetEnableCollider(bool _enabled) {
+            mCollider.enabled = _enabled;
+        }
+
+        public void SuggestLetter()
+        {
+            PlayAnimation(LLAnimationStates.LL_dancing);
+            //mLetter.DoHighFive();
+            spotLight = new GameObject("SpotLight");
+            spotLight.transform.position = gameObject.transform.position + Vector3.up * 8 + Vector3.back * 6;
+            spotLight.transform.Rotate(Vector3.right, 50);
+            spotLight.transform.parent = gameObject.transform;
+            Light cSpotLight = spotLight.AddComponent<Light>();
+            cSpotLight.type = LightType.Spot;
+            cSpotLight.range = 40;
+            cSpotLight.intensity = 8;
+            cSpotLight.spotAngle = 50;
+        }
+
         #endregion
 
         #region VARS
 
-        private int step = 0;
         private List<Vector3> positions = new List<Vector3>();
 
 
         private Tweener moveTweener;
         private Tweener rotationTweener;
         private Collider mCollider;
+
+        static GameObject spotLight;
 
         protected ILivingLetterData mLetterData;
 
@@ -269,9 +291,11 @@ namespace EA4S.MissingLetter
         public Vector3 mv3EndPosition;
 
         private bool mbIsSpeaking;
-    #endregion
+
+        public LLAnimationStates m_oDefaultIdleAnimation { get; set; }
+        #endregion
 
 
 
-}
+    }
 }
