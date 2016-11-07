@@ -33,10 +33,5 @@ namespace EA4S
             return QuestionPackData.CreateFromWrong(question, wrongAnswers);
         }
 
-        public IQuestionPack CreateQuestionPack()
-        {
-            throw new System.Exception("DEPRECATED");
-        }
-
     }
 }

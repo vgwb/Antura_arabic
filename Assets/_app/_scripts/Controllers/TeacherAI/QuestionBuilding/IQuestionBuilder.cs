@@ -8,7 +8,6 @@ namespace EA4S
     {
         // @todo: add a local history of packs (so we do not pick the same elements multiple times)
         int GetQuestionPackCount();
-        IQuestionPack CreateQuestionPack(); // DEPRECATED
         QuestionPackData CreateQuestionPackData();
     }
 
