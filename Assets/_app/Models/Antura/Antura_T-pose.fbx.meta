@@ -73,6 +73,14 @@ ModelImporter:
     100130: dog_Tail4 1
     100132: dog_Tail4 2
     100134: dog_Tail4 3
+    100136: Dog_L_ear01
+    100138: Dog_L_ear02
+    100140: Dog_L_ear03
+    100142: Dog_L_ear04
+    100144: Dog_R_ear01
+    100146: Dog_R_ear02
+    100148: Dog_R_ear03
+    100150: Dog_R_ear04
     400000: dog
     400002: dog_EyeBrow1
     400004: dog_EyeBrow2
@@ -141,6 +149,14 @@ ModelImporter:
     400130: dog_Tail4 1
     400132: dog_Tail4 2
     400134: dog_Tail4 3
+    400136: Dog_L_ear01
+    400138: Dog_L_ear02
+    400140: Dog_L_ear03
+    400142: Dog_L_ear04
+    400144: Dog_R_ear01
+    400146: Dog_R_ear02
+    400148: Dog_R_ear03
+    400150: Dog_R_ear04
     4300000: dog_REyeLid
     4300002: dog_tongue
     4300004: dog_LEyeLid
