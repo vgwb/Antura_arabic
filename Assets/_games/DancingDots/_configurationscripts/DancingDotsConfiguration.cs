@@ -3,7 +3,8 @@
         V_1 = 1,
     }
 
-    public class DancingDotsConfiguration : IGameConfiguration {
+    public class DancingDotsConfiguration : IGameConfiguration
+    {
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
@@ -16,8 +17,10 @@
         /////////////////
         // Singleton Pattern
         static DancingDotsConfiguration instance;
-        public static DancingDotsConfiguration Instance {
-            get {
+        public static DancingDotsConfiguration Instance
+        {
+            get
+            {
                 if (instance == null)
                     instance = new DancingDotsConfiguration();
                 return instance;
@@ -25,7 +28,8 @@
         }
         /////////////////
 
-        private DancingDotsConfiguration() {
+        private DancingDotsConfiguration()
+        {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
@@ -38,17 +42,26 @@
         }
 
         #region external configuration call
-        public static void SetConfiguration(float _difficulty, int _variation) {
-            instance = new DancingDotsConfiguration() {
+        public static void SetConfiguration(float _difficulty, int _variation)
+        {
+            instance = new DancingDotsConfiguration()
+            {
                 Difficulty = _difficulty,
                 Variation = (DancingDotsVariation)_variation,
             };
         }
         #endregion
 
-        public IQuestionBuilder SetupBuilder() {
+        public IQuestionBuilder SetupBuilder()
+        {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+            int nCorrect = 1;
+            int nWrong = 5;
+
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+
             return builder;
         }
     }
