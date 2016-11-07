@@ -3,12 +3,10 @@
 
 namespace EA4S
 {
-    // @todo: add a storico locale alle regole
-    public class RandomLettersQuestionBuilder : IQuestionBuilder
+    public class WordsWithLetterQuestionBuilder : IQuestionBuilder
     {
         // Configuration
         private int packsCount = 10;
-
         private int wrongToSelect = 3;
 
         public int GetQuestionPackCount()

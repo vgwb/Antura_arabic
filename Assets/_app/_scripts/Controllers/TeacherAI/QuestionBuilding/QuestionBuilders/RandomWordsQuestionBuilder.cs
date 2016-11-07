@@ -2,7 +2,7 @@
 
 namespace EA4S
 {
-    public class FastCrowd_counting_MiniGameConfigurationRules : IQuestionBuilder
+    public class RandomWordsQuestionBuilder : IQuestionBuilder
     {
         // Configuration
         private int packsCount = 10;

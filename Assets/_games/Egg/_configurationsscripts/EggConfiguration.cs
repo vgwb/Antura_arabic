@@ -32,7 +32,7 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+            builder = new RandomLettersQuestionBuilder(10,5,5);
             return builder;
         }
     }

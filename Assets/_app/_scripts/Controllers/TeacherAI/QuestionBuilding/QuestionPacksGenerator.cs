@@ -7,34 +7,9 @@ namespace EA4S
     /// <summary>
     /// Given a minigame, handles the generation of question packs
     /// </summary>
-    public class MiniGameConfigurationGenerator
+    public class QuestionPacksGenerator
     {
-        public IQuestionBuilder currentConfigurationRules;
-
-        public void SetCurrentMiniGame(MiniGameCode _miniGameCode)
-        {
-            currentConfigurationRules = GetConfigurationRules(_miniGameCode);
-        }
-
-        /// <summary>
-        /// Select what configuration rules to use based on the selected mini game
-        /// </summary>
-        private IQuestionBuilder GetConfigurationRules(MiniGameCode _miniGameCode)
-        {
-            IQuestionBuilder selectedRules = null;
-            switch (_miniGameCode)
-            {
-                case MiniGameCode.Egg:
-                    selectedRules = new Egg_MiniGameConfigurationRules();
-                    break;
-                default:
-                    selectedRules = new All_MiniGameConfigurationRules(_miniGameCode);
-                    break;
-            }
-            return selectedRules;
-        }
-
-        public List<IQuestionPack> GenerateQuestionPacks()
+        public List<IQuestionPack> GenerateQuestionPacks(IQuestionBuilder currentConfigurationRules)
         {
             int questionPacksNumber = currentConfigurationRules.GetQuestionPackCount();
 
