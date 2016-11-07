@@ -13,30 +13,14 @@ namespace EA4S
         {
             int questionPacksNumber = currentConfigurationRules.GetQuestionPackCount();
 
-            List<IQuestionPack> questionPackList;
-            try
+            List<QuestionPackData> questionPackDataList = new List<QuestionPackData>();
+            for (int i = 0; i < questionPacksNumber; i++)
             {
-                // @note: this is the new logic to handle question pack, which does not depend on LivingLetterData anymore
-                List<QuestionPackData> questionPackDataList = new List<QuestionPackData>();
-                for (int i = 0; i < questionPacksNumber; i++)
-                {
-                    var newData = currentConfigurationRules.CreateQuestionPackData();
-                    questionPackDataList.Add(newData);
-
-                    UnityEngine.Debug.Log(newData.ToString());
-
-                }
-                questionPackList = ConvertToQuestionPacks(questionPackDataList);
+                var newData = currentConfigurationRules.CreateQuestionPackData();
+                questionPackDataList.Add(newData);
+                UnityEngine.Debug.Log(newData.ToString());
             }
-            catch
-            {
-                // @note: this is a fallback needed for now to make old minigame rules work
-                questionPackList = new List<IQuestionPack>();
-                for (int i = 0; i < questionPacksNumber; i++)
-                {
-                    questionPackList.Add(currentConfigurationRules.CreateQuestionPack());
-                }
-            }
+            List<IQuestionPack> questionPackList = ConvertToQuestionPacks(questionPackDataList);
 
             return questionPackList;
         }
