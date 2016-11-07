@@ -35,7 +35,7 @@
 
             int nPacks = 10;
             int nCorrect = 5;
-            int nWrong = 0;
+            int nWrong = 5;
 
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
 
