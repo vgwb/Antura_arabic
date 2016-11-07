@@ -2,6 +2,34 @@
 {
     public interface IGameConfiguration
     {
+        /// <summary>
+        /// Gets the context.
+        /// </summary>
+        /// <value>
+        /// The context.
+        /// </value>
         IGameContext Context { get; }
+
+        /// <summary>
+        /// Gets or sets the questions.
+        /// </summary>
+        /// <value>
+        /// The questions.
+        /// </value>
+        IQuestionProvider Questions { get; set; }
+
+        /// <summary>
+        /// Return the rules for game data.
+        /// </summary>
+        /// <returns></returns>
+        IQuestionBuilder SetupBuilder();
+
+        /// <summary>
+        /// Gets or sets the difficulty.
+        /// </summary>
+        /// <value>
+        /// The difficulty.
+        /// </value>
+        float Difficulty { get; set; }
     }
 }

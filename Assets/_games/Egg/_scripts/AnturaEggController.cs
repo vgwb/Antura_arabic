@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Egg
@@ -10,11 +11,17 @@ namespace EA4S.Egg
         AnturaAnimationController anturaAnimation;
 
         public Transform enterPosition;
+        public Transform spitPosition;
         public Transform exitPosition;
 
         Tween moveTween;
 
         Action moveEndCallback;
+
+        List<bool> anturaInGame = new List<bool>();
+        int currentStage;
+        int numberOfStage;
+        int numberOfattemptsforStage;
 
         public void Initialize(GameObject anturaPrefab)
         {
@@ -29,13 +36,33 @@ namespace EA4S.Egg
 
         public void Enter(Action callback = null)
         {
-            anturaAnimation.State = AnturaAnimationStates.sucking;
-            Move(enterPosition.position, 1f, callback);
+            anturaAnimation.State = AnturaAnimationStates.walking;
+
+            Move(enterPosition.position, 1f, delegate ()
+            {
+                anturaAnimation.State = AnturaAnimationStates.sucking;
+                if (callback != null)
+                {
+                    callback();
+                }
+            });
+        }
+
+        public void DoSpit()
+        {
+            anturaAnimation.DoSpit(false);
         }
 
         public void Exit(Action callback = null)
         {
+            anturaAnimation.State = AnturaAnimationStates.walking;
             Move(exitPosition.position, 1f, callback);
+        }
+
+        public void SetOnSpitPosition(Action callback = null)
+        {
+            anturaAnimation.State = AnturaAnimationStates.idle;
+            Move(spitPosition.position, 0.5f, callback);
         }
 
         void Move(Vector3 position, float duration, Action callback)
@@ -63,6 +90,98 @@ namespace EA4S.Egg
                     ChengeGameObjectLayer(go.transform.GetChild(i).gameObject);
                 }
             }
+        }
+
+        public void ResetAnturaIn(int numberOfStage, int numberOfattemptsforStage)
+        {
+            currentStage = 0;
+            this.numberOfStage = numberOfStage;
+            this.numberOfattemptsforStage = numberOfattemptsforStage;
+
+            CreateAnturaInGameList();
+        }
+
+        void CreateAnturaInGameList()
+        {
+            anturaInGame.Clear();
+
+            List<int> indexOfStages = new List<int>();
+
+            for (int i = 0; i < numberOfStage; i++)
+            {
+                indexOfStages.Add(i);
+            }
+
+            List<int> aInStages = new List<int>();
+
+            for (int i = 0; i < 2; i++)
+            {
+                int stageIndex = UnityEngine.Random.Range(0, indexOfStages.Count);
+
+                aInStages.Add(indexOfStages[stageIndex]);
+
+                indexOfStages.RemoveAt(stageIndex);
+            }
+
+            for (int i = 0; i < numberOfStage; i++)
+            {
+                if (aInStages.Contains(i))
+                {
+                    if (UnityEngine.Random.Range(0, 2) == 0)
+                    {
+                        anturaInGame.Add(false);
+                        anturaInGame.Add(true);
+                    }
+                    else
+                    {
+                        anturaInGame.Add(true);
+                        anturaInGame.Add(false);
+                    }
+                }
+                else
+                {
+                    anturaInGame.Add(false);
+                    anturaInGame.Add(false);
+                }
+            }
+        }
+
+        void RemoveFromAnturaInGameList()
+        {
+            if(anturaInGame.Count > 0)
+            {
+                anturaInGame.RemoveAt(0);
+            }
+            else
+            {
+                CreateAnturaInGameList();
+            }
+        }
+
+        public void NextStage()
+        {
+            currentStage++;
+
+            int numberOfAttempts = numberOfStage - currentStage;
+
+            if(!(anturaInGame.Count == numberOfAttempts * numberOfattemptsforStage))
+            {
+                if (anturaInGame.Count % 2 == 0)
+                {
+                    RemoveFromAnturaInGameList();
+                }
+
+                RemoveFromAnturaInGameList();
+            }
+        }
+
+        public bool IsAnturaIn()
+        {
+            bool isAnturaIn = anturaInGame[0];
+
+            RemoveFromAnturaInGameList();
+
+            return isAnturaIn;
         }
     }
 }

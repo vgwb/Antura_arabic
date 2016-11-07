@@ -10,7 +10,7 @@
     {
         // Game configuration
         public IGameContext Context { get; set; }
-        public IQuestionProvider PipeQuestions { get; set; }
+        public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
         public ToboganVariation Variation { get; set; }
@@ -42,7 +42,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            PipeQuestions = new SampleQuestionProvider();
+            Questions = new SampleQuestionProvider();
             //PipeQuestions = new SunMoonQuestionProvider();
             //Variation = ToboganVariation.SunMoon;
             Variation = ToboganVariation.LetterInAWord;
@@ -51,5 +51,27 @@
             Difficulty = 0.0f;
         }
 
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+
+            int nPacks = 10;
+            int nCorrect = 1;
+            int nWrong = 5;
+
+            switch (Variation)
+            {
+                case ToboganVariation.LetterInAWord:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;
+                case ToboganVariation.SunMoon:
+                    // @todo: what builder should we use here?
+                    break;
+            }
+
+            if (builder == null)
+                throw new System.Exception("No question builder defined for variation " + Variation.ToString());
+
+            return builder;
+        }
     }
 }
