@@ -68,8 +68,7 @@ namespace EA4S.ColorTickle
         public void SetBrushColor(Color newValue)
         {
             m_oDrawingColor = newValue; //Keep consistency
-
-            Color[] _aColorMatrix = m_tScaledBrush.GetPixels();
+			Color[] _aColorMatrix = m_tScaledBrush.GetPixels();
 
             Color _alphaKeeper = newValue;
 

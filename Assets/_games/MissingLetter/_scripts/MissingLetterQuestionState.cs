@@ -11,16 +11,16 @@
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true);
-
             // Show questions description
             var popupWidget = game.Context.GetPopupWidget();
-            popupWidget.Show(OnPopupCloseRequested, "MissingLetterGame description", true);
+            popupWidget.Show();
+            popupWidget.SetButtonCallback(OnPopupCloseRequested);
+            popupWidget.SetMessage("MissingLetter\n Game description", true);
         }
 
         void OnPopupCloseRequested()
         {
-            game.SetCurrentState(game.PlayState);
+            game.SetCurrentState(game.TutorialState);
         }
 
         public void ExitState()
@@ -30,7 +30,7 @@
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.PlayState);
+            game.SetCurrentState(game.TutorialState);
         }
 
         public void Update(float delta)

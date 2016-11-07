@@ -3,7 +3,7 @@
 namespace EA4S.Db
 {
     [Serializable]
-    public class LetterData : IData
+    public class LetterData : IData, IConvertibleToLivingLetterData
     {
         public string Id;
         public int Number;
@@ -35,11 +35,9 @@ namespace EA4S.Db
             return Id;
         }
 
-        /// <summary>
-        /// Living Letter Text To Display.
-        /// </summary>
-        public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.GetLetterFromUnicode(Isolated_Unicode); }
+        public ILivingLetterData ConvertToLivingLetterData()
+        {
+            return new LL_LetterData(GetId(), this);
         }
 
     }

@@ -21,27 +21,12 @@ namespace EA4S.Egg
             game.questionManager.StartNewQuestion(game.gameDifficulty, onlyLetter);
             game.eggController.Reset();
 
-            game.Context.GetPopupWidget().Show(OnPopupCloseRequested, game.questionManager.GetQuestionDescription(), true);
-        }
-
-        public void ExitState()
-        {
-        }
-
-        public void Update(float delta)
-        {
-        }
-
-        public void UpdatePhysics(float delta)
-        {
-        }
-
-        void OnPopupCloseRequested()
-        {
-            game.Context.GetPopupWidget().Hide();
-
             game.eggController.MoveNext(2f, OnEggEnterComplete);
         }
+
+        public void ExitState() { }
+        public void Update(float delta) { }        
+        public void UpdatePhysics(float delta) { }
 
         void OnEggEnterComplete()
         {
@@ -69,6 +54,8 @@ namespace EA4S.Egg
 
             bool isSequence = game.questionManager.IsSequence();
 
+            game.eggController.EmoticonInterrogative();
+
             if (isSequence)
             {
                 game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence());
@@ -94,13 +81,14 @@ namespace EA4S.Egg
                 else
                 {
                     game.eggController.PlayAudioQuestion(OnQuestionAudioComplete);
-                    game.eggController.StartTrembling();
                 }
             }
         }
 
         void OnQuestionAudioComplete()
         {
+            game.eggController.EmoticonClose();
+
             game.eggController.QuestionParticleDisabled();
             game.SetCurrentState(game.PlayState);
         }

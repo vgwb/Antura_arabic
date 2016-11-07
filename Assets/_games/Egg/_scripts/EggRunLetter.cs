@@ -7,6 +7,7 @@ namespace EA4S.Egg
     public class EggRunLetter
     {
         LetterObjectView letterObject;
+        Transform shadowTransform;
 
         Tween moveTweener;
         Tween rotationTweener;
@@ -28,7 +29,7 @@ namespace EA4S.Egg
 
         float lerpPositionValue;
 
-        public EggRunLetter(GameObject letterObjectPrefab, ILivingLetterData letterData, Transform parent, Vector3 leftOutPosition, Vector3 rightOutPosition)
+        public EggRunLetter(GameObject letterObjectPrefab, GameObject shadowPrefab, ILivingLetterData letterData, Transform parent, Vector3 leftOutPosition, Vector3 rightOutPosition)
         {
             outPositions[0] = leftOutPosition;
             outPositions[1] = rightOutPosition;
@@ -42,6 +43,13 @@ namespace EA4S.Egg
             lerpPositionValue = currentOutPosition;
 
             letterObject.transform.position = outPositions[currentOutPosition];
+
+            shadowTransform = UnityEngine.Object.Instantiate(shadowPrefab).transform;
+            shadowTransform.SetParent(letterObject.transform);
+            shadowTransform.localPosition = Vector3.zero;
+            shadowTransform.localScale *= 0.7f;
+
+            letterObject.Poof();
         }
 
         public void Run()
