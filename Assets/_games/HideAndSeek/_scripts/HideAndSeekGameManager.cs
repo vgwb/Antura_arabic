@@ -16,7 +16,7 @@ namespace EA4S.HideAndSeek
 		// Use this for initialization
 		void Start ()
         {
-            for(int i = 0; i < 8; ++i)
+            for(int i = 0; i < MAX_OBJECT; ++i)
             {
                 UsedPlaceholder[i] = false;
             }
@@ -155,7 +155,7 @@ namespace EA4S.HideAndSeek
         {
             for (int i = 0; i < MAX_OBJECT; ++i)
             {
-                ArrayTrees[i].GetComponent<Collider>().enabled = false;
+                ArrayTrees[i].GetComponent<CapsuleCollider>().enabled = false;
             }
         }
         public void ClearRound()
@@ -203,6 +203,7 @@ namespace EA4S.HideAndSeek
                     HideAndSeekLetterController scriptComponent = ArrayLetters[i].GetComponent<HideAndSeekLetterController>();
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
+                    SetLetterMovent(index, scriptComponent);
                     ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Init(letterList[i]);
                 }
                 
@@ -210,6 +211,18 @@ namespace EA4S.HideAndSeek
             
             WidgetPopupWindow.I.ShowSentence(BeginRound, "comment_welldone", image);
 
+        }
+
+        public void SetLetterMovent( int placeholder, HideAndSeekLetterController script)
+        {
+            if (placeholder == 1)
+                script.SetMovement(MovementType.OnlyRight);
+            else if(placeholder == 2)
+                script.SetMovement(MovementType.OnlyLeft);
+            else if(placeholder == 0 || placeholder == 6)
+                script.SetMovement(MovementType.Enhanced);
+            else
+                script.SetMovement(MovementType.Normal);
         }
 
         void BeginRound()
@@ -224,7 +237,7 @@ namespace EA4S.HideAndSeek
 
             foreach(GameObject tree in ActiveTrees)
             {
-                tree.GetComponent<MeshCollider>().enabled = true;
+                tree.GetComponent<CapsuleCollider>().enabled = true;
             }
 
             var winInitialDelay = 1f;
@@ -238,7 +251,7 @@ namespace EA4S.HideAndSeek
         public int getRandomPlaceholder()
         {
             int result = 0;
-            int position = Random.Range(0, --FreePlaceholder);
+            int position = Random.Range(0, FreePlaceholder--);
             
             for(int i = 0; i < UsedPlaceholder.Length; ++i)
             {
@@ -261,7 +274,7 @@ namespace EA4S.HideAndSeek
         bool StartNewRound = true;
         int lifes;
         int ActiveLetters;
-        private const int MAX_OBJECT = 8;
+        private const int MAX_OBJECT = 7;
         private int FreePlaceholder;
 
 		public GameObject[] ArrayTrees;

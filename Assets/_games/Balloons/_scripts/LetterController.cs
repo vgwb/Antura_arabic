@@ -46,7 +46,7 @@ namespace Balloons
         private float unfocusProgressPercentage;
 
 
-        void Start()
+        public void Start()
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
             baseRotation = transform.rotation.eulerAngles;

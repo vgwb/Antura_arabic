@@ -165,6 +165,9 @@ namespace EA4S.ColorTickle
         /// </summary>
         public void Reset()
         {
+            m_iTotalShapePixels = 0;
+            m_iCurrentShapePixelsColored = 0; 
+
             if (m_oTextMeshObject.fontMaterial.mainTexture is Texture2D)
             {
                 m_tBaseLetterTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
