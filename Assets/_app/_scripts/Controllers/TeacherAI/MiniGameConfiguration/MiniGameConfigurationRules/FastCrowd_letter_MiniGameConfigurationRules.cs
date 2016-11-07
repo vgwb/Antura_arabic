@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
 
-namespace EA4S.MiniGameConfiguration
+namespace EA4S
 {
     // @todo: add a storico locale alle regole
-    public class FastCrowd_letter_MiniGameConfigurationRules : IMiniGameConfigurationRules
+    public class RandomLettersQuestionBuilder : IQuestionBuilder
     {
         // Configuration
         private int packsCount = 10;

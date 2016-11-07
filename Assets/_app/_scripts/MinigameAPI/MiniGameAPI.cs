@@ -204,8 +204,10 @@ namespace EA4S.API
                 case MiniGameCode.FastCrowd_letter:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    var rules = FastCrowd.FastCrowdConfiguration.Instance.SetupBuilder();
+                    _gameData = AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules);
+                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     break;
                 case MiniGameCode.FastCrowd_spelling:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;

@@ -19,6 +19,17 @@
         public FastCrowdVariation Variation { get; set; }
         #endregion
 
+
+        public IQuestionBuilder SetupBuilder()
+        {
+            IQuestionBuilder builder = null;
+
+            // rules...
+            builder = new Egg_MiniGameConfigurationRules();   // params...
+
+            return builder;
+        }
+
         /////////////////
         // Singleton Pattern
         static FastCrowdConfiguration instance;

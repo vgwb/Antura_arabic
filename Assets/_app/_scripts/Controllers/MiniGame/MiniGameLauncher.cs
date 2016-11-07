@@ -1,5 +1,4 @@
 ﻿using EA4S.API;
-using EA4S.MiniGameConfiguration;
 using System.Collections.Generic;
 
 namespace EA4S
@@ -26,8 +25,16 @@ namespace EA4S
             float difficulty = this.teacher.GetCurrentDifficulty();
             GameConfiguration configuration = new GameConfiguration(difficulty);
 
+            questionPacks = null;
             MiniGameAPI.Instance.StartGame(miniGameCode, questionPacks, configuration);
         } 
+
+        public List<IQuestionPack> RetrieveQuestionPacks(IQuestionBuilder builder)
+        {
+            configurationGenerator.currentConfigurationRules = builder;
+            return configurationGenerator.GenerateQuestionPacks();
+        }
+
     }
 
 }

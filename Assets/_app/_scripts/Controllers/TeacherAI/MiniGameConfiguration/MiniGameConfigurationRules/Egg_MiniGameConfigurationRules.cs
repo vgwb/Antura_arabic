@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace EA4S.MiniGameConfiguration
+namespace EA4S
 {
-    public class Egg_MiniGameConfigurationRules : IMiniGameConfigurationRules
+    public class Egg_MiniGameConfigurationRules : IQuestionBuilder
     {
         // Configuration
         private int packsCount = 4;

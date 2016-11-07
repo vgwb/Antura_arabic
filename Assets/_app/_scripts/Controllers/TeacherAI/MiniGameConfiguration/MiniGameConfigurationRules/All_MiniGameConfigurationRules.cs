@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System;
 
-namespace EA4S.MiniGameConfiguration
+namespace EA4S
 {
     /// <summary>
     /// The old minigame configuration rules that uses a big switch to define the rules
     /// </summary>
-    public class All_MiniGameConfigurationRules : IMiniGameConfigurationRules
+    public class All_MiniGameConfigurationRules : IQuestionBuilder
     {
         MiniGameCode code;
 
