@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-/*
+
 namespace EA4S.MiniGameConfiguration
 {
     public class FastCrowd_counting_MiniGameConfigurationRules : IMiniGameConfigurationRules
@@ -31,4 +31,4 @@ namespace EA4S.MiniGameConfiguration
         }
 
     }
-}*/
+}
