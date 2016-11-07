@@ -111,7 +111,14 @@ namespace EA4S.MakeFriends
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+            int nCorrect = 2;
+            int nWrong = 5;
+
+            // @todo: this is actually wrong because MakeFriends uses a weird data structure!
+            builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
+
             return builder;
         }
 

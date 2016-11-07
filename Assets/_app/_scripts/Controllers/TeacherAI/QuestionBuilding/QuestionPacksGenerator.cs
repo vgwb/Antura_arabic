@@ -18,7 +18,7 @@ namespace EA4S
             {
                 var newData = currentConfigurationRules.CreateQuestionPackData();
                 questionPackDataList.Add(newData);
-                UnityEngine.Debug.Log(newData.ToString());
+                //UnityEngine.Debug.Log(newData.ToString());
             }
             List<IQuestionPack> questionPackList = ConvertToQuestionPacks(questionPackDataList);
 
