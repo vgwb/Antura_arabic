@@ -73,6 +73,14 @@ ModelImporter:
     100130: dog_Tail4 1
     100132: dog_Tail4 2
     100134: dog_Tail4 3
+    100136: Dog_L_ear01
+    100138: Dog_L_ear02
+    100140: Dog_L_ear03
+    100142: Dog_L_ear04
+    100144: Dog_R_ear01
+    100146: Dog_R_ear02
+    100148: Dog_R_ear03
+    100150: Dog_R_ear04
     400000: dog
     400002: //RootNode
     400004: dog_EyeBrow1
@@ -141,6 +149,14 @@ ModelImporter:
     400130: dog_Tail4 1
     400132: dog_Tail4 2
     400134: dog_Tail4 3
+    400136: Dog_L_ear01
+    400138: Dog_L_ear02
+    400140: Dog_L_ear03
+    400142: Dog_L_ear04
+    400144: Dog_R_ear01
+    400146: Dog_R_ear02
+    400148: Dog_R_ear03
+    400150: Dog_R_ear04
     4300000: dog_REyeLid
     4300002: dog_tongue
     4300004: dog_LEyeLid
@@ -196,7 +212,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -262,18 +278,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -285,6 +309,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -292,26 +324,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -409,18 +421,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -432,6 +452,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -439,26 +467,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -556,18 +564,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -579,6 +595,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -586,26 +610,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -703,18 +707,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -726,6 +738,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -733,26 +753,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -850,18 +850,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -873,6 +881,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -880,26 +896,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -997,18 +993,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -1020,6 +1024,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -1027,26 +1039,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -1144,18 +1136,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -1167,6 +1167,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -1174,26 +1182,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -1291,18 +1279,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -1314,6 +1310,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -1321,26 +1325,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -1438,18 +1422,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -1461,6 +1453,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -1468,26 +1468,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -1585,18 +1565,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -1608,6 +1596,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -1615,26 +1611,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -1732,18 +1708,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -1755,6 +1739,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -1762,26 +1754,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -1879,18 +1851,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -1902,6 +1882,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -1909,26 +1897,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -2033,18 +2001,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -2056,6 +2032,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -2063,26 +2047,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -2180,18 +2144,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -2203,6 +2175,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -2210,26 +2190,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -2327,18 +2287,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -2350,6 +2318,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -2357,26 +2333,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -2474,18 +2430,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -2497,6 +2461,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -2504,26 +2476,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -2621,18 +2573,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -2644,6 +2604,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -2651,26 +2619,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -2768,18 +2716,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -2791,6 +2747,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -2798,26 +2762,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -2915,18 +2859,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -2938,6 +2890,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -2945,26 +2905,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -3062,18 +3002,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -3085,6 +3033,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -3092,26 +3048,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -3209,18 +3145,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -3232,6 +3176,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -3239,26 +3191,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -3356,18 +3288,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -3379,6 +3319,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -3386,26 +3334,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -3503,18 +3431,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -3526,6 +3462,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -3533,26 +3477,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -3650,18 +3574,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -3673,6 +3605,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -3680,26 +3620,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -3797,18 +3717,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -3820,6 +3748,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -3827,26 +3763,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -3944,18 +3860,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -3967,6 +3891,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -3974,26 +3906,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -4091,18 +4003,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -4114,6 +4034,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -4121,26 +4049,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -4238,18 +4146,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -4261,6 +4177,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -4268,26 +4192,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -4385,18 +4289,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -4408,6 +4320,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -4415,26 +4335,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
@@ -4532,18 +4432,26 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1
         weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 3/dog_Tail2
-          3/dog_Tail3 3/dog_Tail4 3
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_jaw/dog_Tail1 1/dog_Tail2
+          1/dog_Tail3 1/dog_Tail4 1
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_Cheek
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_L_ear01/Dog_L_ear02/Dog_L_ear03/Dog_L_ear04
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_L_eye
         weight: 1
@@ -4555,6 +4463,14 @@ ModelImporter:
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_Cheek
         weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03
+        weight: 1
+      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/Dog_R_ear01/Dog_R_ear02/Dog_R_ear03/Dog_R_ear04
+        weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_eye
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1
@@ -4562,26 +4478,6 @@ ModelImporter:
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_R_EyeLid1/dog_R_EyeLid3
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 1/dog_Tail2 1/dog_Tail3
-          1/dog_Tail4 1
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2
-        weight: 1
-      - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Tail1 2/dog_Tail2 2/dog_Tail3
-          2/dog_Tail4 2
         weight: 1
       - path: dog_Hips/dog_spine02/dog_spine01/dog_head/dog_Up_Lip
         weight: 1
