@@ -26,11 +26,11 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
             var db = AppManager.Instance.DB;
 
-            // @TODO: create LOGIC
             Db.LetterData question = db.GetAllLetterData().RandomSelectOne();
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(question).RandomSelect(nWrong);
+            var correctAnswers = teacher.wordHelper.GetWordsWithLetter(question.Id).RandomSelect(nCorrect);
+            var wrongAnswers = teacher.wordHelper.GetWordsNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
 
-            return QuestionPackData.CreateFromWrong(question, wrongAnswers);
+            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
 
     }

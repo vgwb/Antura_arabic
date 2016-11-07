@@ -5,7 +5,6 @@ namespace EA4S
 {
     public class LettersInWordQuestionBuilder : IQuestionBuilder
     {
-        // Configuration
         private int nPacks;
         private int nCorrect;
         private bool useAllCorrects;

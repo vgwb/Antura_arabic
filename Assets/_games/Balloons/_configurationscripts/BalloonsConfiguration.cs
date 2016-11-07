@@ -67,7 +67,7 @@
                     builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
                     break;
                 case BalloonsVariation.Words:
-                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, true);
                     break;
             }
 
