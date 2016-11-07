@@ -95,7 +95,12 @@ namespace EA4S.MissingLetter
 
             //tmp solution for remove letter
             LL_WordData tmp = (LL_WordData)qstBehaviour.LetterData;
-            qstBehaviour.mLetter.Lable.text = tmp.Data.Arabic;
+            int index_ = tmp.Data.Arabic.IndexOf("_");
+            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+            qstBehaviour.mLetter.Lable.text = tmp.TextForLivingLetter;
+            qstBehaviour.mLetter.Lable.text = qstBehaviour.mLetter.Lable.text.Remove(index_,1);
+            qstBehaviour.mLetter.Lable.text = qstBehaviour.mLetter.Lable.text.Insert(index_,"_");
+
 
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
@@ -250,7 +255,7 @@ namespace EA4S.MissingLetter
             mCurrentAnswerScene.Shuffle();
             for (int i=0; i < mCurrentAnswerScene.Count; ++i)
             {
-                float offsetDuration = UnityEngine.Random.Range(-2.0f,2.0f);
+                float offsetDuration = UnityEngine.Random.Range(-2.0f,0.0f);
                 mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration + offsetDuration);
             }
         }
