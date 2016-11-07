@@ -24,8 +24,7 @@
         {
             IQuestionBuilder builder = null;
 
-            // rules...
-            builder = new Egg_MiniGameConfigurationRules();   // params...
+            builder = new OldSwitch_QuestionBuilder(MiniGameCode.FastCrowd_alphabet);
 
             return builder;
         }

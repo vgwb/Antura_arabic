@@ -5,13 +5,13 @@ using System;
 namespace EA4S
 {
     /// <summary>
-    /// The old minigame configuration rules that uses a big switch to define the rules
+    /// The old minigame question builder that uses a big switch to define the rules
     /// </summary>
-    public class All_MiniGameConfigurationRules : IQuestionBuilder
+    public class OldSwitch_QuestionBuilder : IQuestionBuilder
     {
         MiniGameCode code;
 
-        public All_MiniGameConfigurationRules(MiniGameCode _code)
+        public OldSwitch_QuestionBuilder(MiniGameCode _code)
         {
             code = _code;
         }

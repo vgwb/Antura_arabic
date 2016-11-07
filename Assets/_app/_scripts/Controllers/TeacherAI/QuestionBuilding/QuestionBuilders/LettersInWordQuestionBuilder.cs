@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-/*
-namespace EA4S.MiniGameConfiguration
+
+
+namespace EA4S
 {
-    public class FastCrowd_words_MiniGameConfigurationRules : IMiniGameConfigurationRules
+    public class LettersInWordQuestionBuilder : IQuestionBuilder
     {
         // Configuration
         private int packsCount = 10;
-
         private int wrongToSelect = 3;
 
         public int GetQuestionPackCount()
@@ -19,9 +19,8 @@ namespace EA4S.MiniGameConfiguration
             var teacher = AppManager.Instance.Teacher;
             var db = AppManager.Instance.DB;
 
-            // Dummy logic for question creation
             Db.LetterData question = db.GetAllLetterData().RandomSelectOne();
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(question).RandomSelect(wrongToSelect); 
+            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(question).RandomSelect(wrongToSelect);
 
             return QuestionPackData.CreateFromWrong(question, wrongAnswers);
         }
@@ -32,4 +31,4 @@ namespace EA4S.MiniGameConfiguration
         }
 
     }
-}*/
+}

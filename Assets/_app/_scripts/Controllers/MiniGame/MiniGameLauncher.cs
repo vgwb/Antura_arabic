@@ -8,31 +8,26 @@ namespace EA4S
     /// </summary>
     public class MiniGameLauncher
     {
-        private MiniGameConfigurationGenerator configurationGenerator;
+        private QuestionPacksGenerator questionPacksGenerator;
         private TeacherAI teacher;
 
         public MiniGameLauncher(TeacherAI _teacher)
         {
-            this.teacher = _teacher;
-            configurationGenerator = new MiniGameConfigurationGenerator();
+            teacher = _teacher;
+            questionPacksGenerator = new QuestionPacksGenerator();
         }
 
         public void LaunchGame(MiniGameCode miniGameCode)
         {
-            this.configurationGenerator.SetCurrentMiniGame(miniGameCode);
-            List<IQuestionPack> questionPacks = configurationGenerator.GenerateQuestionPacks();
-
             float difficulty = this.teacher.GetCurrentDifficulty();
             GameConfiguration configuration = new GameConfiguration(difficulty);
 
-            questionPacks = null;
-            MiniGameAPI.Instance.StartGame(miniGameCode, questionPacks, configuration);
+            MiniGameAPI.Instance.StartGame(miniGameCode, null, configuration);
         } 
 
         public List<IQuestionPack> RetrieveQuestionPacks(IQuestionBuilder builder)
         {
-            configurationGenerator.currentConfigurationRules = builder;
-            return configurationGenerator.GenerateQuestionPacks();
+            return questionPacksGenerator.GenerateQuestionPacks(builder);
         }
 
     }
