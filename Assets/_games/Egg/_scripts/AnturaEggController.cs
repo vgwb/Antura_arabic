@@ -7,13 +7,10 @@ namespace EA4S.Egg
     public class AnturaEggController : MonoBehaviour
     {
         GameObject anturaPrefab;
-        Antura antura;
+        AnturaAnimationController anturaAnimation;
 
         public Transform enterPosition;
         public Transform exitPosition;
-
-        float barkingTimer = 0.0f;
-        bool IsWaken { get { return barkingTimer > 0; } }
 
         Tween moveTween;
 
@@ -21,40 +18,18 @@ namespace EA4S.Egg
 
         public void Initialize(GameObject anturaPrefab)
         {
-            antura = GameObject.Instantiate(anturaPrefab).GetComponent<Antura>();
-            antura.transform.SetParent(transform);
-            antura.transform.position = exitPosition.position;
-            antura.transform.localEulerAngles = Vector3.zero;
-            antura.transform.localScale = Vector3.one;
+            anturaAnimation = GameObject.Instantiate(anturaPrefab).GetComponent<AnturaAnimationController>();
+            anturaAnimation.transform.SetParent(transform);
+            anturaAnimation.transform.position = exitPosition.position;
+            anturaAnimation.transform.localEulerAngles = new Vector3(0f, 180f);
+            anturaAnimation.transform.localScale = Vector3.one;
 
-            ChengeGameObjectLayer(antura.gameObject);
-
-            antura.ClickToBark = false;
-            antura.ClickToChangeDress = false;
-        }
-
-        public void Bark()
-        {
-            //GetComponent<Antura>().IsBarking = true;
-            antura.SetAnimation(AnturaAnim.StandExcitedBreath);
-            barkingTimer = 3f;
-        }
-
-        void Update()
-        {
-            if (IsWaken)
-            {
-                barkingTimer -= Time.deltaTime;
-
-                if (barkingTimer <= 0)
-                {
-                    antura.SetAnimation(AnturaAnim.SitBreath);
-                }
-            }
+            ChengeGameObjectLayer(anturaAnimation.gameObject);
         }
 
         public void Enter(Action callback = null)
         {
+            anturaAnimation.State = AnturaAnimationStates.sucking;
             Move(enterPosition.position, 1f, callback);
         }
 
@@ -65,9 +40,14 @@ namespace EA4S.Egg
 
         void Move(Vector3 position, float duration, Action callback)
         {
+            if (moveTween != null)
+            {
+                moveTween.Kill();
+            }
+
             moveEndCallback = callback;
 
-            moveTween = antura.transform.DOMove(position, duration).OnComplete(delegate () { if (moveEndCallback != null) moveEndCallback(); });
+            moveTween = anturaAnimation.transform.DOMove(position, duration).OnComplete(delegate () { if (moveEndCallback != null) moveEndCallback(); });
         }
 
         void ChengeGameObjectLayer(GameObject go)
