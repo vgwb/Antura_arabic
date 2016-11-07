@@ -73,11 +73,21 @@
 
             switch (Variation)
             {
-                case FastCrowdVariation.Alphabet: builder = new AlphabetQuestionBuilder(); break;
-                case FastCrowdVariation.Counting: builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong); break;
-                case FastCrowdVariation.Letter: builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, true); break;
-                case FastCrowdVariation.Spelling: builder = new LettersInWordQuestionBuilder(nPacks, nWrong); break;
-                case FastCrowdVariation.Words: builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong); break;
+                case FastCrowdVariation.Alphabet:
+                    builder = new AlphabetQuestionBuilder();
+                    break;
+                case FastCrowdVariation.Counting:
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong);
+                    break;
+                case FastCrowdVariation.Letter:
+                    builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
+                    break;
+                case FastCrowdVariation.Spelling:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong);
+                    break;
+                case FastCrowdVariation.Words:
+                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;
             }
 
             return builder;

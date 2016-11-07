@@ -56,7 +56,13 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+            int nCorrect = 4;
+            int nWrong = 4;
+
+            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
+
             return builder;
         }
     }
