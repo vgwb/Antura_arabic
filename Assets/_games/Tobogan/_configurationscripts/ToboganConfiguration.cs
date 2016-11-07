@@ -51,5 +51,10 @@
             Difficulty = 0.0f;
         }
 
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+            // TODO
+            return builder;
+        }
     }
 }

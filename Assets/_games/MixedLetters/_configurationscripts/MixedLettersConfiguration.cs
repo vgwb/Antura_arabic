@@ -30,5 +30,11 @@
             Context = new SampleGameContext();
             Difficulty = 0.5f;
         }
+
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+            // TODO
+            return builder;
+        }
     }
 }

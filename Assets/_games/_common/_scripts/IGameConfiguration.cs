@@ -3,5 +3,6 @@
     public interface IGameConfiguration
     {
         IGameContext Context { get; }
+        IQuestionBuilder SetupBuilder();
     }
 }

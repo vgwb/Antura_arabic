@@ -53,5 +53,11 @@
             };
         }
         #endregion
+
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+            // TODO
+            return builder;
+        }
     }
 }
