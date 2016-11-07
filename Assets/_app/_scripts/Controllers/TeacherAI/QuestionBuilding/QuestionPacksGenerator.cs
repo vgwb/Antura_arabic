@@ -30,9 +30,9 @@ namespace EA4S
             List<IQuestionPack> questionPackList = new List<IQuestionPack>();
             foreach(var questionPackData in questionPackDataList)
             {
-                ILivingLetterData ll_question = questionPackData.question.ConvertToLivingLetterData();
-                List<ILivingLetterData> ll_wrongAnswers = questionPackData.wrongAnswers.ConvertAll(x => x.ConvertToLivingLetterData());
-                List<ILivingLetterData> ll_correctAnswers = questionPackData.correctAnswers.ConvertAll(x => x.ConvertToLivingLetterData());
+                ILivingLetterData ll_question = questionPackData.question != null ? questionPackData.question.ConvertToLivingLetterData() : null;
+                List<ILivingLetterData> ll_wrongAnswers = questionPackData.wrongAnswers != null ? questionPackData.wrongAnswers.ConvertAll(x => x.ConvertToLivingLetterData()) : null;
+                List<ILivingLetterData> ll_correctAnswers = questionPackData.correctAnswers != null ? questionPackData.correctAnswers.ConvertAll(x => x.ConvertToLivingLetterData()) : null;
                 IQuestionPack questionPack = new FindRightDataQuestionPack(ll_question, ll_wrongAnswers, ll_correctAnswers);
                 questionPackList.Add(questionPack);
             }
