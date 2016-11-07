@@ -37,7 +37,7 @@
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 5;
+            int nCorrect = 1;
             int nWrong = 5;
 
             builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);

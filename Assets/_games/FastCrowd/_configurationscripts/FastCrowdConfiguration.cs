@@ -83,7 +83,7 @@
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
                     break;
                 case FastCrowdVariation.Spelling:
-                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong);
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong:nWrong, useAllCorrectLetters:true);
                     break;
                 case FastCrowdVariation.Words:
                     builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
