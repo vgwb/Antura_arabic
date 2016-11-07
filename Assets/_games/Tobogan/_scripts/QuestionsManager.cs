@@ -53,7 +53,7 @@ namespace EA4S.Tobogan
 
         public void StartNewQuestion()
         {
-            var nextQuestionPack = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            var nextQuestionPack = ToboganConfiguration.Instance.Questions.GetNextQuestion();
 
             UpdateQuestion(nextQuestionPack);
             PrepareLettersToAnswer();
