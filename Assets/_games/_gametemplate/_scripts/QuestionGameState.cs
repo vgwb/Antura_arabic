@@ -11,22 +11,16 @@
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
         }
 
         public void ExitState()
         {
-            game.Context.GetPopupWidget().Hide();
-        }
-
-        void OnQuestionCompleted()
-        {
-            game.SetCurrentState(game.PlayState);
+            
         }
 
         public void Update(float delta)
         {
-
+            game.SetCurrentState(game.PlayState);
         }
 
         public void UpdatePhysics(float delta)

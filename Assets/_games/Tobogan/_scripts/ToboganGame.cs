@@ -8,6 +8,7 @@ namespace EA4S.Tobogan
     {
         public PipesAnswerController pipesAnswerController;
         public GameObject questionLivingLetterPrefab;
+        public FixedHeightShadow shadowPrefab;
         public QuestionLivingLettersBox questionLivingLetterBox;
 		public Camera tubesCamera;
         public ToboganFeedbackGraphics feedbackGraphics;
@@ -39,8 +40,7 @@ namespace EA4S.Tobogan
                 return 3;
             }
         }
-
-        public ToboganIntroductionState IntroductionState { get; private set; }
+        
         public ToboganQuestionState QuestionState { get; private set; }
         public ToboganPlayState PlayState { get; private set; }
         public ToboganResultGameState ResultState { get; private set; }
@@ -58,14 +58,13 @@ namespace EA4S.Tobogan
 
         protected override IGameState GetInitialState()
         {
-            return IntroductionState;
+            return QuestionState;
         }
 
         protected override void OnInitialize(IGameContext context)
         {
             pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
-
-            IntroductionState = new ToboganIntroductionState(this);
+            
             QuestionState = new ToboganQuestionState(this);
             PlayState = new ToboganPlayState(this);
             ResultState = new ToboganResultGameState(this);

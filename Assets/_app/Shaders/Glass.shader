@@ -8,10 +8,11 @@
 		_SpecularColor("Specular Color", Color) = (0,0,0,0)
 	}
 		SubShader{
-		Tags{ "RenderType" = "Opaque" }
+		Tags{ "RenderType" = "Transparent" "Queue" = "Transparent" }
 		LOD 250
 
 		Blend SrcAlpha OneMinusSrcAlpha
+		ZWrite off
 
 		CGPROGRAM
 #pragma surface surf AnturaGlass exclude_path:prepass nolightmap noforwardadd halfasview interpolateview alpha:blend keepalpha

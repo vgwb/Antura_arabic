@@ -151,7 +151,7 @@ namespace EA4S
             // Call start game with parameters
             MiniGameAPI.Instance.StartGame(
                 miniGameCodeSelected,
-                CreateQuestionPacksDummyAI(miniGameCodeSelected, packsCount),
+                //CreateQuestionPacksDummyAI(miniGameCodeSelected, packsCount),
                 new GameConfiguration(Difficulty)
             );
 

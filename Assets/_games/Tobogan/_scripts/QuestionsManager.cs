@@ -53,7 +53,7 @@ namespace EA4S.Tobogan
 
         public void StartNewQuestion()
         {
-            var nextQuestionPack = ToboganConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            var nextQuestionPack = ToboganConfiguration.Instance.Questions.GetNextQuestion();
 
             UpdateQuestion(nextQuestionPack);
             PrepareLettersToAnswer();
@@ -116,6 +116,11 @@ namespace EA4S.Tobogan
                 game.questionLivingLetterBox.downLeftMaxPosition.position, game.questionLivingLetterBox.lettersPosition);
             newQuestionLivingLetter.transform.SetParent(game.questionLivingLetterBox.transform);
             newQuestionLivingLetter.onMouseUpLetter += CheckAnswer;
+
+            var shadow = GameObject.Instantiate(game.shadowPrefab);
+            shadow.transform.SetParent(newQuestionLivingLetter.transform);
+            shadow.gameObject.SetActive(true);
+            shadow.Initialize(newQuestionLivingLetter.transform, game.pipesAnswerController.basePosition.position.y);
 
             return newQuestionLivingLetter;
         }
