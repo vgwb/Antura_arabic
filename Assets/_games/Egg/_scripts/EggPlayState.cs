@@ -160,8 +160,6 @@ namespace EA4S.Egg
         {
             DisableAllGameplayInput();
 
-            bool isSequence = game.questionManager.IsSequence();
-
             game.eggController.EmoticonInterrogative();
 
             game.eggController.PlayAudioQuestion(delegate () { game.eggController.EmoticonClose(); EnableAllGameplayInput(); });
