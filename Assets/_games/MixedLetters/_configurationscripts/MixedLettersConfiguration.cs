@@ -2,6 +2,11 @@
 {
     public class MixedLettersConfiguration : IGameConfiguration
     {
+        public enum MixedLettersVariation : int {
+            Alphabet = 1,
+            Spelling = 2,
+        }
+
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
