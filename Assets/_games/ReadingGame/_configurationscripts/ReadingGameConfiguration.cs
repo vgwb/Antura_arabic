@@ -1,6 +1,6 @@
-﻿namespace EA4S.Reading
+﻿namespace EA4S.ReadingGame
 {
-    public class ReadingConfiguration : IGameConfiguration
+    public class ReadingGameConfiguration : IGameConfiguration
     {
         // Game configuration
         public IGameContext Context { get; set; }
@@ -19,19 +19,19 @@
 
         /////////////////
         // Singleton Pattern
-        static ReadingConfiguration instance;
-        public static ReadingConfiguration Instance
+        static ReadingGameConfiguration instance;
+        public static ReadingGameConfiguration Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new ReadingConfiguration();
+                    instance = new ReadingGameConfiguration();
                 return instance;
             }
         }
         /////////////////
 
-        private ReadingConfiguration()
+        private ReadingGameConfiguration()
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
