@@ -134,10 +134,14 @@ namespace EA4S.API
 
         #region Gameplay Management
 
-        public void StartGame(MiniGameCode _gameCode, List<IQuestionPack> _gameData, GameConfiguration _gameConfiguration)
-        {
+        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration) {
+            // To be deleted
+            List<IQuestionPack> _gameData = null;
+
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataByCode(_gameCode);
             string miniGameScene = miniGameData.Scene;
+            IQuestionBuilder rules = null;
+            IGameConfiguration actualConfig = null;
 
             switch (_gameCode) {
                 case MiniGameCode.Assessment_Letters:
@@ -185,7 +189,7 @@ namespace EA4S.API
                     break;
                 case MiniGameCode.Egg:
                     Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    Egg.EggConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     miniGameScene = "game_Egg";
                     break;
@@ -202,12 +206,10 @@ namespace EA4S.API
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.FastCrowd_letter:
-                    FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    var rules = FastCrowd.FastCrowdConfiguration.Instance.SetupBuilder();
-                    _gameData = AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules);
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    actualConfig = FastCrowd.FastCrowdConfiguration.Instance;
+                    
                     break;
                 case MiniGameCode.FastCrowd_spelling:
                     FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
@@ -295,13 +297,13 @@ namespace EA4S.API
                 case MiniGameCode.Tobogan_letters:
                     Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.LetterInAWord;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    Tobogan.ToboganConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 case MiniGameCode.Tobogan_words:
                     Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.SunMoon;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    Tobogan.ToboganConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     break;
                 default:
@@ -309,6 +311,14 @@ namespace EA4S.API
                     break;
             }
 
+            // Set game configuration instance with game data
+            // game difficulty
+            actualConfig.Difficulty = _gameConfiguration.Difficulty;
+            // rule setted in config and used by AI to create correct game data
+            rules = actualConfig.SetupBuilder();
+            // question packs (game data)
+            actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
+            
             // Call game start
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
         }

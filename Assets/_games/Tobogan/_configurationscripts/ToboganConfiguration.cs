@@ -10,7 +10,7 @@
     {
         // Game configuration
         public IGameContext Context { get; set; }
-        public IQuestionProvider PipeQuestions { get; set; }
+        public IQuestionProvider Questions { get; set; }
 
         public float Difficulty { get; set; }
         public ToboganVariation Variation { get; set; }
@@ -42,7 +42,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            PipeQuestions = new SampleQuestionProvider();
+            Questions = new SampleQuestionProvider();
             //PipeQuestions = new SunMoonQuestionProvider();
             //Variation = ToboganVariation.SunMoon;
             Variation = ToboganVariation.LetterInAWord;

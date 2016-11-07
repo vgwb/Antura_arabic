@@ -22,7 +22,7 @@ namespace EA4S
             float difficulty = this.teacher.GetCurrentDifficulty();
             GameConfiguration configuration = new GameConfiguration(difficulty);
 
-            MiniGameAPI.Instance.StartGame(miniGameCode, null, configuration);
+            MiniGameAPI.Instance.StartGame(miniGameCode, configuration);
         } 
 
         public List<IQuestionPack> RetrieveQuestionPacks(IQuestionBuilder builder)
