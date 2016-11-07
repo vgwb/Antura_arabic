@@ -51,7 +51,18 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+            int nCorrect = 4;
+            int nWrong = 4;
+
+            switch (Variation) {
+                case BalloonsVariation.Counting: builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.Number); break;
+                case BalloonsVariation.Letter: builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong); break;  
+                case BalloonsVariation.Spelling: builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong); break;
+                case BalloonsVariation.Words: builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong); break;
+            }
+
             return builder;
         }
         #endregion

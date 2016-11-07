@@ -4,23 +4,33 @@ namespace EA4S
 {
     public class RandomWordsQuestionBuilder : IQuestionBuilder
     {
-        // Configuration
-        private int packsCount = 10;
+        private int nPacks;
+        private int nCorrect;
+        private int nWrong;
+        private bool firstCorrectIsQuestion;
+
         private Db.WordDataCategory wordCategory = Db.WordDataCategory.BodyPart;
-        private int wrongEntriesNumber = 10;
+
+        public RandomWordsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false)
+        {
+            this.nPacks = nPacks;
+            this.nCorrect = nCorrect;
+            this.nWrong = nWrong;
+            this.firstCorrectIsQuestion = firstCorrectIsQuestion;
+        }
 
         public int GetQuestionPackCount()
         {
-            return packsCount;
+            return nPacks;
         }
 
         public QuestionPackData CreateQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
 
-            var question = teacher.wordHelper.GetWordsByCategory(wordCategory).RandomSelectOne();
-            var correctAnswers = new List<Db.WordData>() { question };
-            var wrongAnswers = teacher.wordHelper.GetWordsNotIn(correctAnswers.ToArray()).RandomSelect(wrongEntriesNumber);
+            var correctAnswers = teacher.wordHelper.GetWordsByCategory(wordCategory).RandomSelect(nCorrect);
+            var question = firstCorrectIsQuestion ? correctAnswers[0] : null;
+            var wrongAnswers = teacher.wordHelper.GetWordsNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }

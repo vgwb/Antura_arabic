@@ -5,29 +5,31 @@ namespace EA4S
 
     public class RandomLettersQuestionBuilder : IQuestionBuilder
     {
-        // Configuration
-        private int packsCount = 4;
-        private int nWrong = 7;
+        private int nPacks;
+        private int nCorrect;
+        private int nWrong;
+        private bool firstCorrectIsQuestion;
 
-        public RandomLettersQuestionBuilder(int packsCount, int nCorrect, int nWrong)
+        public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false)
         {
-            this.packsCount = packsCount;
+            this.nPacks = nPacks;
+            this.nCorrect = nCorrect;
             this.nWrong = nWrong;
+            this.firstCorrectIsQuestion = firstCorrectIsQuestion;
         }
-
-        private Db.WordDataCategory wordDataCategory = Db.WordDataCategory.BodyPart;
 
         public int GetQuestionPackCount()
         {
-            return packsCount;
+            return nPacks;
         }
 
         public QuestionPackData CreateQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
+            var db = AppManager.Instance.DB;
 
-            var question = teacher.wordHelper.GetWordsByCategory(wordDataCategory).RandomSelectOne();
-            var correctAnswers = teacher.wordHelper.GetLettersInWord(question.GetId());
+            var correctAnswers = db.GetAllLetterData().RandomSelect(nCorrect);
+            var question = firstCorrectIsQuestion ? correctAnswers[0] : null;
             var wrongAnswers = teacher.wordHelper.GetLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);

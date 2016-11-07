@@ -6,12 +6,21 @@ namespace EA4S
     public class LettersInWordQuestionBuilder : IQuestionBuilder
     {
         // Configuration
-        private int packsCount = 10;
-        private int wrongToSelect = 3;
+        private int nPacks;
+        private int nWrong;
+        private Db.WordDataCategory category;
+
+        public LettersInWordQuestionBuilder(int nPacks, int nWrong = 0, Db.WordDataCategory category = Db.WordDataCategory.None)
+        {
+            this.nPacks = nPacks;
+            this.nWrong = nWrong;
+            this.category = category;
+        }
+
 
         public int GetQuestionPackCount()
         {
-            return packsCount;
+            return nPacks;
         }
 
         public QuestionPackData CreateQuestionPackData()
@@ -19,10 +28,14 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
             var db = AppManager.Instance.DB;
 
-            Db.LetterData question = db.GetAllLetterData().RandomSelectOne();
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(question).RandomSelect(wrongToSelect);
+            Db.WordData question = null;
+            if (category != Db.WordDataCategory.None) question = teacher.wordHelper.GetWordsByCategory(category).RandomSelectOne();
+            else question = db.GetAllWordData().RandomSelectOne();
 
-            return QuestionPackData.CreateFromWrong(question, wrongAnswers);
+            var correctAnswers = teacher.wordHelper.GetLettersInWord(question);
+            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
+
+            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
 
         public IQuestionPack CreateQuestionPack()
