@@ -109,5 +109,11 @@ namespace EA4S.MakeFriends
             Difficulty = 0f;
         }
 
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+            // TODO
+            return builder;
+        }
+
     }
 }
