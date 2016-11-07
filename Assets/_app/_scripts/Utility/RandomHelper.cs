@@ -67,13 +67,29 @@ namespace EA4S
             return chosenList;
         }
 
-        public static List<T> RandomSelect<T>(this List<T>  all_list, int numberToSelect)
+        public static List<T> RandomSelect<T>(this List<T> all_list, int maxNumberToSelect, bool forceMaxNumber = false)
         {
-            return RouletteSelectNonRepeating<T>(all_list, numberToSelect);
+            if (all_list.Count == 0)
+            {
+                throw new System.Exception("The list has zero elements to select from.");
+            }
+
+            if (!forceMaxNumber && all_list.Count < maxNumberToSelect)
+            {
+                maxNumberToSelect = all_list.Count;
+
+            }
+
+            return RouletteSelectNonRepeating<T>(all_list, maxNumberToSelect);
         }
 
         public static T RandomSelectOne<T>(this List<T> all_list)
         {
+            if (all_list.Count == 0)
+            {
+                throw new System.Exception("The list has zero elements to select from.");
+            }
+
             return RouletteSelectNonRepeating<T>(all_list, 1)[0];
         }
     }

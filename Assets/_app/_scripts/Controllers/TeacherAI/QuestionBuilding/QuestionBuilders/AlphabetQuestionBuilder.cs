@@ -1,16 +1,17 @@
 ﻿using EA4S.API;
 using System.Collections.Generic;
-/*
-namespace EA4S.MiniGameConfiguration
+
+namespace EA4S
 {
-    public class FastCrowd_alphabet_MiniGameConfigurationRules : IMiniGameConfigurationRules
+    public class AlphabetQuestionBuilder : IQuestionBuilder
     {
-        // Configuration
-        private int packsCount = 1;
-         
+
+        public AlphabetQuestionBuilder()
+        {}
+
         public int GetQuestionPackCount()
         {
-            return packsCount;
+            return 1;
         }
 
         public QuestionPackData CreateQuestionPackData()
@@ -34,4 +35,4 @@ namespace EA4S.MiniGameConfiguration
         }
 
     }
-}*/
+}

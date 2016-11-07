@@ -28,5 +28,16 @@
             Context = new SampleGameContext();
             Difficulty = 0.5f;
         }
+
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+
+            int nPacks = 10;
+            int nCorrect = 1;
+
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect);
+
+            return builder;
+        }
     }
 }
