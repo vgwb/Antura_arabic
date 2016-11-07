@@ -4,18 +4,11 @@ namespace EA4S.Egg
 {
     public class QuestionManager
     {
-        EggGame game;
-
         List<ILivingLetterData> lLetterDataSequence = new List<ILivingLetterData>();
 
         string questionDescription;
 
         bool sequence;
-
-        public QuestionManager(EggGame game)
-        {
-            this.game = game;
-        }
 
         public void StartNewQuestion(float difficulty, bool onlyLetter)
         {

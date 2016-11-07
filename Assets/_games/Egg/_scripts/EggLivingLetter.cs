@@ -67,8 +67,6 @@ namespace EA4S.Egg
         {
             float duration = 1f;
 
-            float jumpY = UnityEngine.Random.Range(1f, 2f);
-
             livingLetter.transform.DOLocalMove(startPosition, delay).OnComplete(delegate ()
             {
                 shadowTransform.gameObject.SetActive(true);
