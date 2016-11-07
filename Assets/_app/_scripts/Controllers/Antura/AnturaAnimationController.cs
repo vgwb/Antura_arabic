@@ -191,7 +191,7 @@ public class AnturaAnimationController : MonoBehaviour
 
     void OnStateChanged(AnturaAnimationStates oldState, AnturaAnimationStates newState)
     {
-        animator.SetBool("idle", true);
+        animator.SetBool("idle", false);
         animator.SetBool("walking", false);
         animator.SetBool("sitting", false);
         animator.SetBool("sleeping", false);
