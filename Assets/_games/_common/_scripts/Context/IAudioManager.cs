@@ -16,16 +16,16 @@
         void StopMusic();
 
         void PlayDialogue(TextID text, System.Action onCompleted = null);
-        
+
         //UnityEngine.AudioClip GetAudioClip(Sfx sfx);
 
-        [System.Obsolete("Use PlaySound", false)]
+        [System.Obsolete("Use PlayLetterData", false)]
         IAudioSource PlayLetter(LL_LetterData letterId);
 
-        [System.Obsolete("Use PlaySound", false)]
+        [System.Obsolete("Use PlayLetterData", false)]
         IAudioSource PlayWord(LL_WordData wordId);
-        
-        [System.Obsolete("Use PlaySound", false)]
+
+        [System.Obsolete("Use PlayDialogue", false)]
         void PlayText(TextID text);
     }
 }
