@@ -2,6 +2,7 @@
     public enum ThrowBallsVariation : int {
         letters = 1,
         words = 2,
+        lettersinword = 3,
     }
 
     public class ThrowBallsConfiguration : IGameConfiguration {
@@ -61,6 +62,9 @@
                     break;
                 case ThrowBallsVariation.words:
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
+                    break;
+                case ThrowBallsVariation.lettersinword:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nWrong);
                     break;
             }
 

@@ -2,10 +2,16 @@
 {
     public class MixedLettersConfiguration : IGameConfiguration
     {
+        public enum MixedLettersVariation : int {
+            Alphabet = 1,
+            Spelling = 2,
+        }
+
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
+        public MixedLettersVariation Variation { get; set; }
         public IQuestionProvider MixedLettersQuestions { get; set; }
 
         /////////////////
@@ -36,7 +42,15 @@
 
             int nPacks = 10;
 
-            builder = new LettersInWordQuestionBuilder(nPacks);
+            switch (Variation)
+            {
+                case MixedLettersVariation.Alphabet:
+                    builder = new LettersInWordQuestionBuilder(nPacks);
+                    break;
+                case MixedLettersVariation.Spelling:
+                    builder = new LettersInWordQuestionBuilder(nPacks);
+                    break;
+            }
 
             return builder;
         }
