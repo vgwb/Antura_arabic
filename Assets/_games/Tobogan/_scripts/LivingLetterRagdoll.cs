@@ -23,13 +23,21 @@ public class LivingLetterRagdoll : MonoBehaviour, ICollidable
     Rigidbody[] rigidBodies;
 
     public event System.Action onPoofed;
-
+    
     void Awake()
     {
-        rigidBodies = GetComponentsInChildren<Rigidbody>(true);
+        if (rigidBodies == null)
+        {
+            rigidBodies = GetComponentsInChildren<Rigidbody>(true);
 
-        for (int i = 0; i < rigidBodies.Length; ++i)
-            rigidBodies[i].isKinematic = true;
+            var forwardTarget = new GameObject[] { gameObject };
+            for (int i = 0; i < rigidBodies.Length; ++i)
+            {
+                rigidBodies[i].isKinematic = true;
+                rigidBodies[i].useGravity = false;
+                rigidBodies[i].gameObject.AddComponent<CollisionForwarder>().forwardTo = forwardTarget;
+            }
+        }
     }
 
     void Update()
@@ -64,9 +72,13 @@ public class LivingLetterRagdoll : MonoBehaviour, ICollidable
 
         if (active && !isRagdoll)
         {
+            if (rigidBodies == null)
+                Awake();
+
             for (int i = 0; i < rigidBodies.Length; ++i)
             {
                 rigidBodies[i].isKinematic = false;
+                rigidBodies[i].useGravity = true;
                 rigidBodies[i].velocity = initialVelocity;
             }
         }
@@ -78,7 +90,7 @@ public class LivingLetterRagdoll : MonoBehaviour, ICollidable
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
-            puffCountdown = Mathf.Min(puffCountdown, 0.3f);
+            puffCountdown = Mathf.Min(puffCountdown, 0.25f);
         }
     }
 

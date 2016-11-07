@@ -7,15 +7,11 @@ namespace EA4S {
     /// </summary>
     [RequireComponent(typeof(LetterObjectView))]
     [RequireComponent(typeof(Collider))]
-    public class Droppable : MonoBehaviour {
-
-        LetterObjectView thisLetterView;
-
+    public class Droppable : MonoBehaviour
+    {
+        
         DropSingleArea dropAreaActive;
-
-        void Start() {
-            thisLetterView = GetComponent<LetterObjectView>();
-        }
+        
         
         public delegate void DropEvent(LetterObjectView _letterView);
         

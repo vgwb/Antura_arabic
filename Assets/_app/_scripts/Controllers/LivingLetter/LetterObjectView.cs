@@ -134,12 +134,13 @@ namespace EA4S
         {
             //Debug.Log((int)_newState);
 
+            animator.SetBool("walking", false);
             animator.SetBool("dancing", false);
             animator.SetBool("rocketing", false);
             animator.SetBool("dragging", false);
             animator.SetBool("dancing", false);
             animator.SetBool("hanging", false);
-            animator.SetBool("idle", true);
+            animator.SetBool("idle", false);
 
             if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless)
             {
@@ -167,7 +168,7 @@ namespace EA4S
                     animator.SetBool("idle", true);
                     break;
                 case LLAnimationStates.LL_walking:
-                    animator.SetBool("idle", false);
+                    animator.SetBool("walking", true);
                     break;
                 case LLAnimationStates.LL_rocketing:
                     animator.SetBool("rocketing", true);
@@ -182,7 +183,7 @@ namespace EA4S
                     animator.SetBool("hanging", true);
                     break;
                 default:
-                    // No specific visual behaviour for this state
+                    animator.SetBool("idle", true);
                     break;
 
             }

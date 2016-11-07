@@ -105,6 +105,7 @@ namespace EA4S.FastCrowd
         {
             // Spawn!
             LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
+            letterObjectView.gameObject.SetActive(true);
             letterObjectView.transform.SetParent(transform, true);
             Vector3 newPosition = walkableArea.GetFurthestSpawn(letters); // Find isolated spawn point
 

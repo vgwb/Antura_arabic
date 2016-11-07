@@ -67,7 +67,7 @@ namespace EA4S.Egg
             PlayState = new EggPlayState(this);
             ResultState = new EggResultState(this);
 
-            questionManager = new QuestionManager(this);
+            questionManager = new QuestionManager();
 
             currentStage = 0;
             correctStages = 0;
@@ -78,5 +78,4 @@ namespace EA4S.Egg
             antura.Initialize(anturaPrefab);
         }
     }
-
 }

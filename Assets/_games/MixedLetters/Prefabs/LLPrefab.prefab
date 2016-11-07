@@ -1627,6 +1627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TMP_text: {fileID: 0}
   rigidBody: {fileID: 0}
+  boxCollider: {fileID: 0}
+  droppedZone: {fileID: 0}
 --- !u!114 &114000010582908254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1772,11 +1774,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab7e335b18c3e4fa4ca7cf562459cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerTransform: {fileID: 0}
   Lable: {fileID: 114000010582908254}
   ImageSprite: {fileID: 212000012689547346}
-  exclamationMark: {fileID: 0}
-  MergedElementsDistance: 1
-  IsMerged: 0
+  maxSize: 1.5
+  normalGraphics: []
+  limblessGraphics: []
+  poofPrefab: {fileID: 0}
 --- !u!137 &137000010926566610
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

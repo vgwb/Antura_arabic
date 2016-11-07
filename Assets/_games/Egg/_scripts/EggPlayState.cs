@@ -15,8 +15,6 @@ namespace EA4S.Egg
         float nextStateTimer;
         bool toNextState;
 
-        float anturaProbabilityOfIn;
-
         float inputButtonTime = 0.3f;
         float inputButtonTimer;
         int inputButtonCount;
@@ -52,25 +50,7 @@ namespace EA4S.Egg
             game.eggController.onEggPressedCallback = OnEggPressed;
 
             EnableAllGameplayInput();
-
-            if (game.gameDifficulty < 0.25f)
-            {
-                anturaProbabilityOfIn = 0f;
-            }
-            else if (game.gameDifficulty < 0.5f)
-            {
-                anturaProbabilityOfIn = 0.20f;
-            }
-            else if (game.gameDifficulty < 0.75f)
-            {
-                anturaProbabilityOfIn = 0.40f;
-            }
-            else
-            {
-                anturaProbabilityOfIn = 0.60f;
-            }
-
-            //nextStateTimer = 2f;
+            
             nextStateTimer = 0f;
             toNextState = false;
 
@@ -100,6 +80,7 @@ namespace EA4S.Egg
                         game.runLettersBox.AddRunLetter(runLetterData);
                     }
 
+                    game.antura.NextStage();
                     game.SetCurrentState(game.ResultState);
                 }
             }
@@ -160,8 +141,6 @@ namespace EA4S.Egg
         {
             DisableAllGameplayInput();
 
-            bool isSequence = game.questionManager.IsSequence();
-
             game.eggController.EmoticonInterrogative();
 
             game.eggController.PlayAudioQuestion(delegate () { game.eggController.EmoticonClose(); EnableAllGameplayInput(); });
@@ -201,9 +180,7 @@ namespace EA4S.Egg
 
             if (!game.eggController.isNextToExit)
             {
-                float anturaStartEnter = Random.Range(0f, 1f);
-
-                if (anturaStartEnter < anturaProbabilityOfIn)
+                if (game.antura.IsAnturaIn())
                 {
                     goAntura = true;
                 }
@@ -242,12 +219,17 @@ namespace EA4S.Egg
 
         void AnturaButtonsOut()
         {
-            game.eggButtonBox.AnturaButtonOut(AnturaButtonsIn, 0.5f, 1f);
+            game.eggButtonBox.AnturaButtonOut(0.5f, 1f, AnturaSetOnSpitPostion);
         }
 
         void AnturaButtonsIn()
         {
-            game.eggButtonBox.AnturaButtonIn(AnturaExit, 0.5f, 1f);
+            game.eggButtonBox.AnturaButtonIn(0.5f, 1f, 1f, 0.15f, game.antura.DoSpit, AnturaExit);
+        }
+
+        void AnturaSetOnSpitPostion()
+        {
+            game.antura.SetOnSpitPosition(AnturaButtonsIn);
         }
 
         void OnEggExitComplete()
