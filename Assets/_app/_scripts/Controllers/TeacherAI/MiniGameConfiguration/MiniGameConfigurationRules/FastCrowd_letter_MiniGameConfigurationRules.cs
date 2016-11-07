@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 
-/*
+
 namespace EA4S.MiniGameConfiguration
 {
+    // @todo: add a storico locale alle regole
     public class FastCrowd_letter_MiniGameConfigurationRules : IMiniGameConfigurationRules
     {
         // Configuration
@@ -32,4 +33,4 @@ namespace EA4S.MiniGameConfiguration
         }
 
     }
-}*/
+}
