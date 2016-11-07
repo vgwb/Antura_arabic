@@ -7,7 +7,10 @@
         float timer = 1;
         public EggIntroductionState(EggGame game) { this.game = game; }
 
-        public void EnterState() { }
+        public void EnterState()
+        {
+            game.antura.ResetAnturaIn(EggGame.numberOfStage, 2);
+        }
 
         public void ExitState()
         {

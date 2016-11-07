@@ -78,5 +78,4 @@ namespace EA4S.Egg
             antura.Initialize(anturaPrefab);
         }
     }
-
 }
