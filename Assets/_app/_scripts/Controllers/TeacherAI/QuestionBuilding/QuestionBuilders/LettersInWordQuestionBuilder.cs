@@ -7,13 +7,17 @@ namespace EA4S
     {
         // Configuration
         private int nPacks;
+        private int nCorrect;
+        private bool useAllCorrects;
         private int nWrong;
         private Db.WordDataCategory category;
 
-        public LettersInWordQuestionBuilder(int nPacks, int nWrong = 0, Db.WordDataCategory category = Db.WordDataCategory.None)
+        public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool useAllCorrects = false, Db.WordDataCategory category = Db.WordDataCategory.None)
         {
             this.nPacks = nPacks;
+            this.nCorrect = nCorrect;
             this.nWrong = nWrong;
+            this.useAllCorrects = useAllCorrects;
             this.category = category;
         }
 
@@ -32,8 +36,12 @@ namespace EA4S
             if (category != Db.WordDataCategory.None) question = teacher.wordHelper.GetWordsByCategory(category).RandomSelectOne();
             else question = db.GetAllWordData().RandomSelectOne();
 
-            var correctAnswers = teacher.wordHelper.GetLettersInWord(question);
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
+            var wordLetters = teacher.wordHelper.GetLettersInWord(question);
+
+            var correctAnswers = new List<Db.LetterData>(wordLetters);
+            if (!this.useAllCorrects) correctAnswers = wordLetters.RandomSelect(nCorrect);
+
+            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }

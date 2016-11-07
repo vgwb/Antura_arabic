@@ -35,7 +35,13 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+            int nCorrect = 5;
+            int nWrong = 5;
+
+            builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+
             return builder;
         }
     }

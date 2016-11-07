@@ -53,7 +53,24 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+            int nCorrect = 1;
+            int nWrong = 5;
+
+            switch (Variation)
+            {
+                case ToboganVariation.LetterInAWord:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;
+                case ToboganVariation.SunMoon:
+                    // @todo: what builder should we use here?
+                    break;
+            }
+
+            if (builder == null)
+                throw new System.Exception("No question builder defined for variation " + Variation.ToString());
+
             return builder;
         }
     }

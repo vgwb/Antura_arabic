@@ -11,6 +11,7 @@
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
         public float Difficulty { get; set; }
+        public MixedLettersVariation Variation { get; set; }
         public IQuestionProvider MixedLettersQuestions { get; set; }
 
         /////////////////
@@ -38,7 +39,19 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+
+            switch (Variation)
+            {
+                case MixedLettersVariation.Alphabet:
+                    builder = new LettersInWordQuestionBuilder(nPacks);
+                    break;
+                case MixedLettersVariation.Spelling:
+                    builder = new LettersInWordQuestionBuilder(nPacks);
+                    break;
+            }
+
             return builder;
         }
     }
