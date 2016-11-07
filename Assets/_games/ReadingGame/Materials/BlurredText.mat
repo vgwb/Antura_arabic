@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MagnifyingGlass
-  m_Shader: {fileID: 4800000, guid: b466ddae7e441dc4eb45b3631022249d, type: 3}
+  m_Name: BlurredText
+  m_Shader: {fileID: 4800000, guid: 1388b2b907647414aa95dd9dec464e30, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -15,12 +15,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-    - first:
-        name: _BackTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -58,12 +52,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _MaskTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 5243561c15514c1409a10ea27d6c521a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _MetallicGlossMap
       second:
         m_Texture: {fileID: 0}
@@ -82,9 +70,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: PixelSnap
-      second: 0
     - first:
         name: _BumpScale
       second: 1
@@ -134,12 +119,6 @@ Material:
         name: _ZWrite
       second: 1
     m_Colors:
-    - first:
-        name: _BackOffset
-      second: {r: 0.06681907, g: 0.48826033, b: 0, a: 0}
-    - first:
-        name: _BackScale
-      second: {r: 0.7957338, g: 0.4125203, b: 0, a: 0}
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
