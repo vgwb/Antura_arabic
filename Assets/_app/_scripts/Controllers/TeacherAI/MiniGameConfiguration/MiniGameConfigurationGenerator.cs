@@ -1,7 +1,7 @@
 ﻿using EA4S.API;
 using System.Collections.Generic;
 
-namespace EA4S.MiniGameConfiguration
+namespace EA4S
 {
 
     /// <summary>
@@ -9,7 +9,7 @@ namespace EA4S.MiniGameConfiguration
     /// </summary>
     public class MiniGameConfigurationGenerator
     {
-        IMiniGameConfigurationRules currentConfigurationRules;
+        public IQuestionBuilder currentConfigurationRules;
 
         public void SetCurrentMiniGame(MiniGameCode _miniGameCode)
         {
@@ -19,9 +19,9 @@ namespace EA4S.MiniGameConfiguration
         /// <summary>
         /// Select what configuration rules to use based on the selected mini game
         /// </summary>
-        private IMiniGameConfigurationRules GetConfigurationRules(MiniGameCode _miniGameCode)
+        private IQuestionBuilder GetConfigurationRules(MiniGameCode _miniGameCode)
         {
-            IMiniGameConfigurationRules selectedRules = null;
+            IQuestionBuilder selectedRules = null;
             switch (_miniGameCode)
             {
                 case MiniGameCode.Egg:
