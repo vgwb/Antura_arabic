@@ -2,6 +2,7 @@
     public enum ThrowBallsVariation : int {
         letters = 1,
         words = 2,
+        lettersinword = 3,
     }
 
     public class ThrowBallsConfiguration : IGameConfiguration {
