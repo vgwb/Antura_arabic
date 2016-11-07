@@ -33,7 +33,11 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+
+            builder = new LettersInWordQuestionBuilder(nPacks);
+
             return builder;
         }
     }
