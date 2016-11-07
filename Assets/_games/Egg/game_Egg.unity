@@ -111,10 +111,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 7994869}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  m_LocalPosition: {x: -3.76, y: -2.01, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -57.525, z: 0}
   m_Children: []
   m_Father: {fileID: 2036550238}
   m_RootOrder: 1
@@ -725,10 +725,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 268767468}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1.0000002, y: 0.9999999, z: 1.0000002}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -2.6800013, y: -1.4399999, z: -11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children: []
   m_Father: {fileID: 2036550238}
   m_RootOrder: 2
@@ -3262,7 +3262,8 @@ MonoBehaviour:
   letterObjectPrefab: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693,
     type: 2}
   runLettersBox: {fileID: 1450025398}
-  anturaPrefab: {fileID: 121932, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
+  anturaPrefab: {fileID: 1000012126422044, guid: b1eab1b3eca314d40b04cff3efb77336,
+    type: 2}
   shadowPrefab: {fileID: 1000010929588560, guid: 8b30e07fe8233034ab951463f3c98c1e,
     type: 2}
 --- !u!4 &1814291036
