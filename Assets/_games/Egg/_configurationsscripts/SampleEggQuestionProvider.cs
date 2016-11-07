@@ -6,13 +6,9 @@ namespace EA4S.Egg
     {
         float difficulty;
 
-        ILivingLetterDataProvider letterProvider;
-
         public SampleEggQuestionProvider(float difficulty)
         {
             this.difficulty = difficulty;
-
-            letterProvider = new SampleLetterProvider();
         }
 
         public IQuestionPack GetNextQuestion()
