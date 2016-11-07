@@ -23,7 +23,7 @@ namespace EA4S.Egg
 
             lLetterDataSequence.Clear();
 
-            IQuestionPack questionPack = EggConfiguration.Instance.QuestionProvider.GetNextQuestion();
+            IQuestionPack questionPack = EggConfiguration.Instance.Questions.GetNextQuestion();
 
             questionDescription = "";
 
