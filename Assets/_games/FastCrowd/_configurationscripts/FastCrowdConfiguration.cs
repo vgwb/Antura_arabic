@@ -20,15 +20,6 @@
         #endregion
 
 
-        public IQuestionBuilder SetupBuilder()
-        {
-            IQuestionBuilder builder = null;
-
-            builder = new OldSwitch_QuestionBuilder(MiniGameCode.FastCrowd_alphabet);
-
-            return builder;
-        }
-
         /////////////////
         // Singleton Pattern
         static FastCrowdConfiguration instance;
@@ -71,6 +62,27 @@
                 Variation = (FastCrowdVariation)_variation,
             };
         }
+
+        public IQuestionBuilder SetupBuilder()
+        {
+            IQuestionBuilder builder = null;
+
+            int nPacks = 10;
+            int nCorrect = 4;
+            int nWrong = 4;
+
+            switch (Variation)
+            {
+                case FastCrowdVariation.Alphabet: builder = new AlphabetQuestionBuilder(); break;
+                case FastCrowdVariation.Counting: builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong); break;
+                case FastCrowdVariation.Letter: builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, true); break;
+                case FastCrowdVariation.Spelling: builder = new LettersInWordQuestionBuilder(nPacks, nWrong); break;
+                case FastCrowdVariation.Words: builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong); break;
+            }
+
+            return builder;
+        }
+
         #endregion
     }
 }

@@ -32,7 +32,13 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            builder = new RandomLettersQuestionBuilder(10,5,5);
+
+            int nPacks = 10;
+            int nCorrect = 5;
+            int nWrong = 0;
+
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+
             return builder;
         }
     }

@@ -45,7 +45,12 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+
+            int nPacks = 10;
+            int nCorrect = 5;
+
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect);
+
             return builder;
         }
     }
