@@ -45,10 +45,10 @@
             switch (Variation)
             {
                 case MixedLettersVariation.Alphabet:
-                    builder = new LettersInWordQuestionBuilder(nPacks);
+                    builder = new AlphabetQuestionBuilder();
                     break;
                 case MixedLettersVariation.Spelling:
-                    builder = new LettersInWordQuestionBuilder(nPacks);
+                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true);
                     break;
             }
 
