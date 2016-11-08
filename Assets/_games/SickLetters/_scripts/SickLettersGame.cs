@@ -14,14 +14,24 @@ namespace EA4S.SickLetters
         public SickLettersLLPrefab LLPrefab;
         public SickLettersVase scale;
         public GameObject DropZonesGO;
-   
-        public int gameDuration = 120 , targetScale = 10, successRoundsCount = 0 ,wrongDraggCount = 0;
+        
+        public SickLettersCamera slCamera;
+        public SickLettersGameManager manager;
+
+        [HideInInspector]
+        public int maxRoundsCount = 6, successRoundsCount = 0, wrongDraggCount = 0;
+
+        public int gameDuration = 120 ,  targetScale = 10;
+        public float vaseWidth = 5.20906f;
+        public bool LLCanDance = false;
         public string dotlessLetters = "أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و";
 
-        public SickLettersDropZone[] DropZones;
         public SickLettersDraggableDD[] Draggables;
 
-        
+        [HideInInspector]
+        public SickLettersDropZone[] DropZones;
+        [HideInInspector]
+        public List<SickLettersDraggableDD> allWrongDDs = new List<SickLettersDraggableDD>();
 
         public IntroductionGameState IntroductionState { get; private set; }
         public QuestionGameState QuestionState { get; private set; }
@@ -37,9 +47,10 @@ namespace EA4S.SickLetters
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
 
-            
+            manager = GetComponent<SickLettersGameManager>();
             DropZones = DropZonesGO.GetComponentsInChildren<SickLettersDropZone>();
             scale.game = this;
+            scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
         }
 
         protected override IGameState GetInitialState()
@@ -67,14 +78,14 @@ namespace EA4S.SickLetters
             puffGo.transform.localScale *= 0.75f;
         }
 
-        public bool startNextRound()
+        public bool checkForNextRound()
         {
-            checkScaleTargetReach();
+            checkSucess();
 
             int i = 0;
-            foreach (SickLettersDraggableDD dd in LLPrefab.thisLetterDD)
+            foreach (SickLettersDraggableDD dd in LLPrefab.thisLLWrongDDs)
             {
-                if (dd && !dd.destroyOnNewRound)
+                if (dd && !dd.deattached)
                     i++;
             }
 
@@ -90,17 +101,22 @@ namespace EA4S.SickLetters
                 return false;
         }
 
-        public void checkScaleTargetReach()
+        public void checkSucess()
         {
-            if( scale.counter >= targetScale)
+            if( scale.counter == targetScale)
             {
                 successRoundsCount = 6;
-                sucess();
+                manager.sucess();
             }
         }
 
-        private void sucess() { }
 
-        public void failure() { }
+        public void setDifficulty(int gameDuration, int targetScale, float vaseWidth, bool LLCanDance)
+        {
+            this.gameDuration = gameDuration;
+            this.targetScale = targetScale;
+            this.vaseWidth = vaseWidth;
+            this.LLCanDance = LLCanDance;
+        }   
     }
 }

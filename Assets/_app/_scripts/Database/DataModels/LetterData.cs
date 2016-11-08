@@ -35,6 +35,12 @@ namespace EA4S.Db
             return Id;
         }
 
+        public bool IsRealLetter()
+        {
+            return this.Kind == LetterDataKind.Letter;
+            // @todo: also combinations?
+        }
+
         public ILivingLetterData ConvertToLivingLetterData()
         {
             return new LL_LetterData(GetId(), this);

@@ -26,6 +26,11 @@ namespace EA4S
         /// <returns></returns>
         public static string GetLetterFromUnicode(string _hexaCode)
         {
+            if (_hexaCode == "")
+            {
+                throw new System.Exception("Letter requested with an empty hexacode (is it a real letter?)");
+            }
+
             int unicode = int.Parse(_hexaCode, System.Globalization.NumberStyles.HexNumber);
             char character = (char)unicode;
             string text = character.ToString();

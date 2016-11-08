@@ -7,17 +7,19 @@ namespace EA4S
     {
         private int nPacks;
         private int nCorrect;
-        private bool useAllCorrects;
+        private bool useAllCorrectLetters;
         private int nWrong;
         private Db.WordDataCategory category;
+        private bool drawingNeeded;
 
-        public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None)
+        public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None, bool drawingNeeded = false)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            this.useAllCorrects = useAllCorrectLetters;
+            this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
+            this.drawingNeeded = drawingNeeded;
         }
 
         public int GetQuestionPackCount()
@@ -28,20 +30,18 @@ namespace EA4S
         public QuestionPackData CreateQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
-            var db = AppManager.Instance.DB;
+            //var db = AppManager.Instance.DB;
 
             // Get the word
-            Db.WordData question = null;
-            if (category != Db.WordDataCategory.None) question = teacher.wordHelper.GetWordsByCategory(category).RandomSelectOne();
-            else question = db.GetAllWordData().RandomSelectOne();
+            Db.WordData question = teacher.wordHelper.GetWordsByCategory(category, drawingNeeded).RandomSelectOne();
 
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);
 
             var correctAnswers = new List<Db.LetterData>(wordLetters);
-            if (!useAllCorrects) correctAnswers = wordLetters.RandomSelect(nCorrect);
+            if (!useAllCorrectLetters) correctAnswers = wordLetters.RandomSelect(nCorrect);
 
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
+            var wrongAnswers = teacher.wordHelper.GetRealLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }

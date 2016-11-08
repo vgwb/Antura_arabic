@@ -47,12 +47,12 @@ namespace EA4S.SickLetters
                 if (dd.isCorrect)
                 {
                     game.Poof(dd.transform.position);
-                    StartCoroutine(dropVase());
+                    StartCoroutine(onWrongMove());
                     dd.resetCorrectDD();
                 }
                 else
                 {
-                    dd.destroyOnNewRound = true;
+                    dd.deattached = true;
 
                     if (cheatingDetected)
                     {
@@ -61,16 +61,18 @@ namespace EA4S.SickLetters
                         cheatingDetected = false;
                     }
                     else
+                    {
                         counter++;
+                        dd.isInVase = true;
+                    }
 
-
-                    game.startNextRound();
+                    game.checkForNextRound();
                 }
             }
         }
 
 
-        public IEnumerator dropVase() {
+        public IEnumerator onWrongMove() {
 
             yield return new WaitForSeconds(0.5f);
 
@@ -84,17 +86,35 @@ namespace EA4S.SickLetters
             vaseRB.constraints = RigidbodyConstraints.None;
             vaseRB.isKinematic = false;
 
+
+            StartCoroutine(dropVase());
+
             yield return new WaitForSeconds(3);
 
             game.Poof(transform.position);
             vaseRB.isKinematic = true;
             transform.position = vaseStartPose + Vector3.up * 20;
             transform.eulerAngles = vaseStartRot;
+           
 
             yield return new WaitForSeconds(1.5f);
 
             summonVase();
         }
+
+        public IEnumerator dropVase(float delay = 0, bool moveCam = false)
+        {
+            yield return new WaitForSeconds(delay);
+
+            vaseRB.constraints = RigidbodyConstraints.None;
+            vaseRB.isKinematic = false;
+
+            if (moveCam)
+            {
+                yield return new WaitForSeconds(0.65f);
+                StartCoroutine(game.slCamera.rotatCamera(20f));
+            }
+        } 
 
         public void summonVase()
         {
@@ -102,6 +122,32 @@ namespace EA4S.SickLetters
 
             vaseRB.isKinematic = false;
             vaseRB.useGravity = true;
+        }
+
+        public void flyVas(float delay = 0)
+        {
+            StartCoroutine(coFlyVase(delay));
+        }
+
+        IEnumerator coFlyVase(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            foreach (SickLettersDraggableDD dd in game.allWrongDDs)
+            {
+                if (dd && dd.isInVase)
+                {
+                    dd.transform.parent = transform;
+                    dd.thisRigidBody.isKinematic = true;
+                }
+            }
+
+            while (true)
+            {
+                vaseRB.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, 30, 10*Time.deltaTime), transform.position.z);
+                game.slCamera.transform.eulerAngles = new Vector3(Mathf.LerpAngle(game.slCamera.transform.eulerAngles.x, -10, 4*Time.deltaTime), game.slCamera.transform.eulerAngles.y, game.slCamera.transform.eulerAngles.z);
+                yield return null;
+            }
         }
     }
 }

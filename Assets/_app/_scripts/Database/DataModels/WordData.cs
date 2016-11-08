@@ -15,7 +15,7 @@ namespace EA4S.Db
         public string[] Letters;
         //public LetterSymbol[] Symbols; //TODO
         public int Difficulty;
-        public int Drawing;
+        public string Drawing;
 
         public int NumberOfLetters { get { return Letters.Length; } }
 
@@ -37,6 +37,11 @@ namespace EA4S.Db
         public ILivingLetterData ConvertToLivingLetterData()
         {
             return new LL_WordData(GetId(), this);
+        }
+
+        public bool HasDrawing()
+        {
+            return Drawing != "";
         }
 
     }

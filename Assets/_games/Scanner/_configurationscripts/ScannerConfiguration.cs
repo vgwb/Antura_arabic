@@ -61,7 +61,7 @@
             int nCorrect = 4;
             int nWrong = 4;
 
-            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
+            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, drawingNeeded: true);
 
             return builder;
         }

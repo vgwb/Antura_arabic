@@ -1,4 +1,5 @@
-﻿namespace EA4S.SickLetters
+﻿using UnityEngine;
+namespace EA4S.SickLetters
 {
     public class QuestionGameState : IGameState
     {
@@ -11,6 +12,7 @@
 
         public void EnterState()
         {
+            Debug.Log("qqqqqqqqqqq");
             game.SetCurrentState(game.PlayState);
             //game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
         }

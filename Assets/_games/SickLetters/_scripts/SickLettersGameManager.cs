@@ -23,6 +23,20 @@ namespace EA4S.SickLetters
 
         }
 
-        
+        public void sucess()
+        {
+            SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
+            game.slCamera.moveCamera(1);
+            game.scale.flyVas(3);
+            game.SetCurrentState(game.ResultState);
+
+        }
+
+        public void failure()
+        {
+            SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
+            game.slCamera.moveCamera(1);
+            StartCoroutine(game.scale.dropVase(3, true));
+        }
     }
 }
