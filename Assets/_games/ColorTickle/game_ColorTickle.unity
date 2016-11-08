@@ -4938,7 +4938,7 @@ MonoBehaviour:
   m_iPixelPerUnit: 50
   m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
-  m_iPercentageRequiredToWin: 75
+  m_iPercentageRequiredToWin: 95
 --- !u!114 &1523849090
 MonoBehaviour:
   m_ObjectHideFlags: 0
