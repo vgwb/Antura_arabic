@@ -76,6 +76,16 @@ namespace EA4S.Db
             return GetLettersInWord(wordData);
         }
 
+        public List<LetterData> GetLettersNotInWords(params WordData[] tabooArray)
+        {
+            var letter_ids_list = new HashSet<string>();
+            foreach (var tabooWordData in tabooArray)
+            {
+                letter_ids_list.UnionWith(tabooWordData.Letters);
+            }
+            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id));
+            return list;
+        }
 
         public List<LetterData> GetLettersNotInWord(string wordId)
         {
@@ -83,7 +93,6 @@ namespace EA4S.Db
             var letter_ids_list = new List<string>(wordData.Letters);
             List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id));
             return list;
-
         }
 
         #endregion
@@ -103,6 +112,7 @@ namespace EA4S.Db
 
         public List<WordData> GetWordsByCategory(WordDataCategory choice)
         {
+            if (choice == WordDataCategory.None) return dbManager.GetAllWordData();
             return dbManager.FindWordData(x => x.Category == choice);
         }
 
