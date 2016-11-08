@@ -7,7 +7,7 @@ namespace EA4S.ColorTickle
     {
         public Texture2D tOriginal;
         public TMPro.TMP_Text oTextComp;
-        //public Material mat;
+        public Material mat;
         [Header("Function stages Output")]
         public Texture2D tSource;
         public RenderTexture rt;
@@ -70,17 +70,17 @@ namespace EA4S.ColorTickle
 
 
 
-            Graphics.Blit(tSource, //The source is setted as the shader _MainTex property; this must be the original Atlas 
-                rt //The RenderTexture where the result will be written
-                //smat  //The material with the shader to use
+            /*Graphics.Blit(tSource, //The source is setted as the shader _MainTex property; this must be the original Atlas 
+                rt, //The RenderTexture where the result will be written
+                mat  //The material with the shader to use
                 );
-            /*
+            */
             Graphics.BlitMultiTap(tSource, //The source is setted as the shader _MainTex property; this must be the original Atlas 
                 rt, //The RenderTexture where the result will be written
                 mat,  //The material with the shader to use
-                m_aUVLetterInMainTexture //The uv coordinates to ne used by the shader for the quad vertex
+                oTextComp.textInfo.meshInfo[0].uvs0 //The uv coordinates to ne used by the shader for the quad vertex
                 );
-            */
+            
             RenderTexture.active = rt;
 
             t2D.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
