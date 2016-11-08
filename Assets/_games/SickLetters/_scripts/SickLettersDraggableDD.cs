@@ -12,7 +12,7 @@ namespace EA4S.SickLetters
 		private Vector3 offset;
 
         public SickLettersGame game;
-		public bool isDot, destroyOnNewRound;
+		public bool isDot, deattached;
 		[Range (0, 3)] public int dots;
 
 		public Diacritic diacritic;
@@ -21,7 +21,7 @@ namespace EA4S.SickLetters
 		public TextMeshPro draggableText;
 
         public bool isCorrect;
-		public bool isNeeded = false;
+        public bool isNeeded = false, isInVase = false;
 
         public bool isDragging = false;
 
@@ -31,7 +31,8 @@ namespace EA4S.SickLetters
         bool shake = false;
         bool release = false;
 
-        Rigidbody thisRigidBody;
+        [HideInInspector]
+        public Rigidbody thisRigidBody;
         BoxCollider boxCollider;
         Transform origParent;
         Vector3 correctStartPos, origPosition, origLocalPosition, origRotation, origLocalRotation, origBoxColliderSize, origBoxColliderCenter;
@@ -222,14 +223,18 @@ namespace EA4S.SickLetters
 
                 if (isCorrect)
                 {
-                    StartCoroutine(game.scale.dropVase());
+                    StartCoroutine(game.scale.onWrongMove());
                     resetCorrectDD();
                 }
                 else
                 {
-                    destroyOnNewRound = true;
-                    game.startNextRound();
-                    Destroy(gameObject, 0.5f);
+                    if (!deattached)
+                    {
+                        deattached = true;
+                        game.checkForNextRound();
+                    }
+                    
+                    Destroy(gameObject, 0.0f);
                 }
             }
         }
