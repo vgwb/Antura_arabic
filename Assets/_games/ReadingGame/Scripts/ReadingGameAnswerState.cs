@@ -19,6 +19,8 @@ namespace EA4S.ReadingGame
             var inputManager = game.Context.GetInputManager();
 
             inputManager.onPointerDown += OnPointerDown;
+
+            game.circleBox.SetActive(true);
         }
 
 
@@ -27,6 +29,8 @@ namespace EA4S.ReadingGame
             var inputManager = game.Context.GetInputManager();
 
             inputManager.onPointerDown -= OnPointerDown;
+
+            game.circleBox.SetActive(false);
         }
 
         public void Update(float delta)
