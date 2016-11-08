@@ -11,8 +11,8 @@ namespace EA4S
     /// </summary>
     public class TutorialUITrailGroup : MonoBehaviour
     {
-        public float Time { get; private set; } // Highest trail time between all trails
-        [System.NonSerialized] public TrailRenderer[] Trails;
+        internal float Time { get; private set; } // Highest trail time between all trails
+        internal TrailRenderer[] Trails;
         bool initialized;
         float[] defStartWidths, defEndWidths;
         int[] defSortingOrder;
