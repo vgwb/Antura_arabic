@@ -115,9 +115,9 @@ namespace EA4S.MakeFriends
             int nPacks = 10;
             int nCorrect = 2;
             int nWrong = 5;
+            int nWords = 2;
 
-            // @todo: this is actually wrong because MakeFriends uses a weird data structure!
-            builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
+            builder = new CommonLettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, nWords);
 
             return builder;
         }
