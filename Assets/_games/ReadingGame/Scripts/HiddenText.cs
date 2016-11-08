@@ -6,14 +6,17 @@ public class HiddenText : MonoBehaviour
     public Camera textCamera;
     public GameObject target;
 
-    public RenderTexture textRenderTexture;
-    public RenderTexture blurredTextRenderTexture;
+    RenderTexture textRenderTexture;
+    RenderTexture blurredTextRenderTexture;
 
     public Material magnifyingGlassMaterial;
     public Material blurredTextMaterial;
 
     Vector2 lastMin = new Vector2(Screen.width, Screen.height);
     Vector2 lastMax = Vector2.zero;
+
+    Vector3 boundsMin;
+    Vector3 boundsMax;
 
     public void UpdateTarget()
     {
@@ -22,8 +25,8 @@ public class HiddenText : MonoBehaviour
         Vector3 min = new Vector3(Screen.width, Screen.height, 0);
         Vector3 max = Vector3.zero;
 
-        Vector3 boundsMin = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
-        Vector3 boundsMax = new Vector3(-float.PositiveInfinity, -float.PositiveInfinity, -float.PositiveInfinity);
+        boundsMin = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
+        boundsMax = new Vector3(-float.PositiveInfinity, -float.PositiveInfinity, -float.PositiveInfinity);
 
         for (int i = 0, count = renderers.Length; i < count; ++i)
         {
@@ -55,6 +58,7 @@ public class HiddenText : MonoBehaviour
         }
 
         textRenderTexture = new RenderTexture(width, height, 16);
+        textRenderTexture.hideFlags = HideFlags.HideAndDontSave;
 
         magnifyingGlassMaterial.SetTexture("_BackTex", textRenderTexture);
 
@@ -64,17 +68,14 @@ public class HiddenText : MonoBehaviour
         }
 
         blurredTextRenderTexture = new RenderTexture(width, height, 16);
+        blurredTextRenderTexture.hideFlags = HideFlags.HideAndDontSave;
+
         //blurredTextMaterial.SetTexture("_MainTex", textRenderTexture);
         blurredTextMaterial.SetTexture("_MainTex", blurredTextRenderTexture);
         
         textCamera.targetTexture = blurredTextRenderTexture;
         textCamera.GetComponent<BlurredCamera>().normalTextureOutput = textRenderTexture;
-
-        var oldPos = transform.position;
-
-        transform.position = boundsMin + Vector3.forward;
-        transform.localScale = new Vector3(boundsMax.x - boundsMin.x, boundsMax.y - boundsMin.y, 1);
-
+        
         var oldCameraPos = textCamera.transform.position;
         oldCameraPos.x = boundsMin.x + (boundsMax.x - boundsMin.x) / 2;
         oldCameraPos.y = boundsMin.y + (boundsMax.y - boundsMin.y) / 2;
@@ -91,10 +92,29 @@ public class HiddenText : MonoBehaviour
 
         magnifyingGlassMaterial.SetVector("_BackOffset", uvMin);
         magnifyingGlassMaterial.SetVector("_BackScale", (Vector2)(uvMax - uvMin));
+
     }
 
     void Update()
     {
         UpdateTarget();
+
+        transform.position = boundsMin + 0.5f*Vector3.forward;
+        transform.localScale = new Vector3(boundsMax.x - boundsMin.x, boundsMax.y - boundsMin.y, 1);
+    }
+
+    void OnDestroy()
+    {
+        if (textRenderTexture != null)
+        { 
+            textRenderTexture.Release();
+            textRenderTexture = null;
+        }
+
+        if (blurredTextRenderTexture != null)
+        {
+            blurredTextRenderTexture.Release();
+            blurredTextRenderTexture = null;
+        }
     }
 }

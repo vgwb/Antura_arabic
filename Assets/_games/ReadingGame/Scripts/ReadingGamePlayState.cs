@@ -11,6 +11,7 @@ namespace EA4S.ReadingGame
 
         bool hurryUpSfx;
 
+        bool completedDragging = false;
         ReadingBar dragging;
         Vector2 draggingOffset;
 
@@ -74,7 +75,21 @@ namespace EA4S.ReadingGame
             if (dragging != null)
             {
                 var inputManager = game.Context.GetInputManager();
-                dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset);
+                completedDragging = dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset);
+            }
+            else
+            {
+                if (completedDragging)
+                {
+                    var completedAllBars = game.barSet.SwitchToNextBar();
+
+                    if (completedAllBars)
+                    {
+                        // go to Buttons State
+                    }
+                }
+
+                completedDragging = false;
             }
         }
 
