@@ -18,7 +18,7 @@ namespace EA4S.Db.Management
             data.Arabic = ToString(dict["Arabic"]);
             data.Letters = CustomParseLetters(data, db);
             data.Difficulty = ToInt(dict["Difficulty"]);
-            data.Drawing = ToInt(dict["Drawing"]);
+            data.Drawing = ToString(dict["Drawing"]);
 
             return data;
         }
@@ -32,12 +32,9 @@ namespace EA4S.Db.Management
 
         private WordDataForm CustomParseForm(WordData data, object enum_object)
         {
-            if (ToString(enum_object) == "")
-            {
+            if (ToString(enum_object) == "") {
                 return WordDataForm.Singular;
-            }
-            else
-            {
+            } else {
                 return ParseEnum<WordDataForm>(data, enum_object);
             }
         }
