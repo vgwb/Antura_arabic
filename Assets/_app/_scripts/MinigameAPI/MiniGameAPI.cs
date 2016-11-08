@@ -492,8 +492,7 @@ namespace EA4S.API
         /// Provide me another question.
         /// </summary>
         /// <returns></returns>
-        IQuestionPack IQuestionProvider.GetNextQuestion()
-        {
+        IQuestionPack IQuestionProvider.GetNextQuestion() {
             currentQuestion++;
 
             if (currentQuestion >= questions.Count)
@@ -512,7 +511,7 @@ namespace EA4S.API
     /// <seealso cref="EA4S.IQuestionPack" />
     public class FindRightDataQuestionPack : IQuestionPack
     {
-        ILivingLetterData questionSentence;
+        IEnumerable<ILivingLetterData> questionsSentences;
         IEnumerable<ILivingLetterData> wrongAnswersSentence;
         IEnumerable<ILivingLetterData> correctAnswersSentence;
 
@@ -524,25 +523,40 @@ namespace EA4S.API
         /// <param name="correctAnswersSentence">The correct answers sentence.</param>
         public FindRightDataQuestionPack(ILivingLetterData questionSentence, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence)
         {
-            this.questionSentence = questionSentence;
+            this.questionsSentences = new List<ILivingLetterData>() { questionSentence };
             this.wrongAnswersSentence = wrongAnswersSentence;
             this.correctAnswersSentence = correctAnswersSentence;
         }
 
-        ILivingLetterData IQuestionPack.GetQuestion()
-        {
-            return questionSentence;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FindRightDataQuestionPack"/> class.
+        /// </summary>
+        /// <param name="questionsSentences">The questions sentences.</param>
+        /// <param name="wrongAnswersSentence">The wrong answers sentence.</param>
+        /// <param name="correctAnswersSentence">The correct answers sentence.</param>
+        public FindRightDataQuestionPack(IEnumerable<ILivingLetterData> questionsSentences, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence) {
+            this.questionsSentences = questionsSentences;
+            this.wrongAnswersSentence = wrongAnswersSentence;
+            this.correctAnswersSentence = correctAnswersSentence;
         }
 
-        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers()
-        {
+        ILivingLetterData IQuestionPack.GetQuestion() {
+            return questionsSentences.First();
+        }
+
+        public IEnumerable<ILivingLetterData> GetQuestions() {
+            return questionsSentences;
+        }
+
+        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers() {
             return wrongAnswersSentence;
         }
 
-        public IEnumerable<ILivingLetterData> GetCorrectAnswers()
-        {
+        public IEnumerable<ILivingLetterData> GetCorrectAnswers(){
             return correctAnswersSentence;
         }
+
+
     }
 
 
