@@ -141,6 +141,10 @@ namespace EA4S.MissingLetter
             }
         }
 
+        public void Refresh()
+        {
+            mLetter.Init(mLetterData);
+        }
 
         public void EnterScene(int _idxPos = 0, int maxItemsInScreen = 1)
         {
