@@ -56,6 +56,7 @@ namespace EA4S
         LL_hanging,
         LL_dancing,
         LL_rocketing,
+        LL_tickling,
         LL_limbless
     }
 }
