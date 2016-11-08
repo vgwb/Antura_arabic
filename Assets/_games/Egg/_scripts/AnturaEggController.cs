@@ -10,6 +10,8 @@ namespace EA4S.Egg
         GameObject anturaPrefab;
         AnturaAnimationController anturaAnimation;
 
+        public GameObject aspirationParticle;
+
         public Transform enterPosition;
         public Transform spitPosition;
         public Transform exitPosition;
@@ -32,15 +34,27 @@ namespace EA4S.Egg
             anturaAnimation.transform.localScale = Vector3.one;
 
             ChengeGameObjectLayer(anturaAnimation.gameObject);
+
+            ChengeGameObjectLayer(aspirationParticle);
+
+            aspirationParticle.SetActive(false);
         }
 
         public void Enter(Action callback = null)
         {
+            aspirationParticle.SetActive(false);
             anturaAnimation.State = AnturaAnimationStates.walking;
+
+            Sequence aspirationSequence = DOTween.Sequence();
+
+            aspirationSequence.AppendInterval(1.5f);
+            aspirationSequence.AppendCallback(delegate () { aspirationParticle.SetActive(true); });
+            aspirationSequence.Play();
 
             Move(enterPosition.position, 1f, delegate ()
             {
                 anturaAnimation.State = AnturaAnimationStates.sucking;
+
                 if (callback != null)
                 {
                     callback();
@@ -61,6 +75,7 @@ namespace EA4S.Egg
 
         public void SetOnSpitPosition(Action callback = null)
         {
+            aspirationParticle.SetActive(false);
             anturaAnimation.State = AnturaAnimationStates.idle;
             Move(spitPosition.position, 0.5f, callback);
         }
