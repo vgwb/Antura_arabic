@@ -1,7 +1,7 @@
 ﻿using EA4S.API;
 using System.Collections.Generic;
 
-namespace EA4S.MiniGameConfiguration
+namespace EA4S
 {
 
     public class QuestionPackData

@@ -48,6 +48,31 @@
                 Variation = (BalloonsVariation)_variation,
             };
         }
+
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+
+            int nPacks = 10;
+            int nCorrect = 4;
+            int nWrong = 4;
+
+            switch (Variation) {
+                case BalloonsVariation.Counting:
+                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.Number);
+                    break;
+                case BalloonsVariation.Letter:
+                    builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;  
+                case BalloonsVariation.Spelling:
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;
+                case BalloonsVariation.Words:
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, true);
+                    break;
+            }
+
+            return builder;
+        }
         #endregion
     }
 }
