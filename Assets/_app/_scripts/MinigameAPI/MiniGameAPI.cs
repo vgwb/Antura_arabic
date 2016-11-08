@@ -134,10 +134,14 @@ namespace EA4S.API
 
         #region Gameplay Management
 
-        public void StartGame(MiniGameCode _gameCode, List<IQuestionPack> _gameData, GameConfiguration _gameConfiguration)
-        {
+        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration) {
+            // To be deleted
+            List<IQuestionPack> _gameData = null;
+
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataByCode(_gameCode);
             string miniGameScene = miniGameData.Scene;
+            IQuestionBuilder rules = null;
+            IGameConfiguration actualConfig = null;
 
             switch (_gameCode) {
                 case MiniGameCode.Assessment_Letters:
@@ -147,166 +151,156 @@ namespace EA4S.API
                     // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Balloons_counting:
-                    Balloons.BalloonsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Counting;
-                    Balloons.BalloonsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.Balloons_letter:
-                    Balloons.BalloonsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Letter;
-                    Balloons.BalloonsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.Balloons_spelling:
-                    Balloons.BalloonsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Spelling;
-                    Balloons.BalloonsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.Balloons_words:
-                    Balloons.BalloonsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Words;
-                    Balloons.BalloonsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Balloons.BalloonsConfiguration.Instance;
                     break;
                 case MiniGameCode.ColorTickle:
-                    ColorTickle.ColorTickleConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    ColorTickle.ColorTickleConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     ColorTickle.ColorTickleConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = ColorTickle.ColorTickleConfiguration.Instance;
                     break;
                 case MiniGameCode.DancingDots:
-                    DancingDots.DancingDotsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    DancingDots.DancingDotsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    DancingDots.DancingDotsConfiguration.Instance.Variation = DancingDots.DancingDotsVariation.V_1;
                     DancingDots.DancingDotsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = DancingDots.DancingDotsConfiguration.Instance;
                     break;
                 case MiniGameCode.DontWakeUp:
                     // 
                     break;
                 case MiniGameCode.Egg:
-                    Egg.EggConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    Egg.EggConfiguration.Instance.QuestionProvider = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    miniGameScene = "game_Egg";
+                    actualConfig = Egg.EggConfiguration.Instance;
+                    miniGameScene = "game_Egg"; // TODO: check
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
-                    FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Alphabet;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_counting:
-                    FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Counting;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_letter:
-                    FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Letter;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_spelling:
-                    FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Spelling;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.FastCrowd_words:
-                    FastCrowd.FastCrowdConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Words;
-                    FastCrowd.FastCrowdConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     FastCrowd.FastCrowdConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = FastCrowd.FastCrowdConfiguration.Instance;
                     break;
                 case MiniGameCode.TakeMeHome:
-                    TakeMeHome.TakeMeHomeConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    TakeMeHome.TakeMeHomeConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     TakeMeHome.TakeMeHomeConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = TakeMeHome.TakeMeHomeConfiguration.Instance;
                     break;
                 case MiniGameCode.HiddenSource:
                     // It has now become TakeMeHome
                     break;
                 case MiniGameCode.HideSeek:
-                    HideAndSeek.HideAndSeekConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    HideAndSeek.HideAndSeekConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     HideAndSeek.HideAndSeekConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = HideAndSeek.HideAndSeekConfiguration.Instance;
                     break;
                 case MiniGameCode.MakeFriends:
-                    MakeFriends.MakeFriendsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    MakeFriends.MakeFriendsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     MakeFriends.MakeFriendsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = MakeFriends.MakeFriendsConfiguration.Instance;
                     break;
                 case MiniGameCode.Maze:
-                    Maze.MazeConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    Maze.MazeConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Maze.MazeConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Maze.MazeConfiguration.Instance;
                     break;
                 case MiniGameCode.MissingLetter:
-                    MissingLetter.MissingLetterConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    MissingLetter.MissingLetterConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     MissingLetter.MissingLetterConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = MissingLetter.MissingLetterConfiguration.Instance;
                     break;
                 case MiniGameCode.MissingLetter_phrases:
                     // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.MixedLetters_alphabet:
-                    MixedLetters.MixedLettersConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    MixedLetters.MixedLettersConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
+                    // TODO: set variation
                     MixedLetters.MixedLettersConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = MixedLetters.MixedLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.MixedLetters_spelling:
                     // Not present in production pipeline
                     break;
                 case MiniGameCode.SickLetters:
-                    SickLetters.SickLettersConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
-                    SickLetters.SickLettersConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     SickLetters.SickLettersConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = SickLetters.SickLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.ReadingGame:
                     // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Scanner:
-                    Scanner.ScannerConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
-                    Scanner.ScannerConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
                 case MiniGameCode.Scanner_phrase:
-                    Scanner.ScannerConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
-                    Scanner.ScannerConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
                 case MiniGameCode.ThrowBalls_letters:
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.letters;
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     ThrowBalls.ThrowBallsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = ThrowBalls.ThrowBallsConfiguration.Instance;
                     break;
                 case MiniGameCode.ThrowBalls_words:
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.words;
-                    ThrowBalls.ThrowBallsConfiguration.Instance.Questions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     ThrowBalls.ThrowBallsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = ThrowBalls.ThrowBallsConfiguration.Instance;
+                    break;
+                case MiniGameCode.ThrowBalls_letterinword:
+                    ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.lettersinword;
+                    ThrowBalls.ThrowBallsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = ThrowBalls.ThrowBallsConfiguration.Instance;
                     break;
                 case MiniGameCode.Tobogan_letters:
-                    Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.LetterInAWord;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Tobogan.ToboganConfiguration.Instance;
                     break;
                 case MiniGameCode.Tobogan_words:
-                    Tobogan.ToboganConfiguration.Instance.Difficulty = _gameConfiguration.Difficulty;
                     Tobogan.ToboganConfiguration.Instance.Variation = Tobogan.ToboganVariation.SunMoon;
-                    Tobogan.ToboganConfiguration.Instance.PipeQuestions = new FindRightLetterQuestionProvider(_gameData, miniGameData.Description);
                     Tobogan.ToboganConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Tobogan.ToboganConfiguration.Instance;
                     break;
                 default:
                     Debug.LogWarningFormat("Minigame selected {0} not found.", _gameCode.ToString());
                     break;
             }
 
+            // Set game configuration instance with game data
+            // game difficulty
+            actualConfig.Difficulty = _gameConfiguration.Difficulty;
+            // rule setted in config and used by AI to create correct game data
+            rules = actualConfig.SetupBuilder();
+            // question packs (game data)
+            actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
+            
             // Call game start
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
         }

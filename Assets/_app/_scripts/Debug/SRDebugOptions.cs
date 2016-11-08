@@ -15,20 +15,28 @@ public partial class SROptions
         SRDebug.Instance.HideDebugPanel();
     }
 
-    //[Category("MiniGames options")]
-    //[NumberRange(1, 6)]
-    //[Sort(0)]
-    //public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
-
-    //[Category("MiniGames options")]
-    //[NumberRange(1, 6)]
-    //[Sort(0)]
-    //public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
-
-    [Category("Minigames")]
+    [Category("Options")]
+    [NumberRange(1, 6)]
     [Sort(1)]
+    public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
+
+    [Category("Options")]
+    [NumberRange(1, 6)]
+    [Sort(2)]
+    public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
+
+    [Category("Options")]
+    [Sort(3)]
     public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
 
+
+    [Category("Options")]
+    [Sort(10)]
+    public void ToggleQuality()
+    {
+        AppManager.Instance.ToggleQualitygfx();
+        SRDebug.Instance.HideDebugPanel();
+    }
 
     [Category("Minigames")]
     [Sort(11)]
@@ -252,7 +260,7 @@ public partial class SROptions
 
 
     [Category("Scenes")]
-    [Sort(50)]
+    [Sort(60)]
     public void Home()
     {
         WidgetPopupWindow.I.Close();
@@ -261,19 +269,11 @@ public partial class SROptions
     }
 
     [Category("Scenes")]
-    [Sort(50)]
+    [Sort(60)]
     public void Assessment()
     {
         WidgetPopupWindow.I.Close();
         GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
-        SRDebug.Instance.HideDebugPanel();
-    }
-
-    [Category("Options")]
-    [Sort(50)]
-    public void ToggleQuality()
-    {
-        AppManager.Instance.ToggleQualitygfx();
         SRDebug.Instance.HideDebugPanel();
     }
 

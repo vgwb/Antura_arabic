@@ -7,6 +7,7 @@ namespace EA4S.Egg
     public class EggButtonsBox : MonoBehaviour
     {
         public Transform anturaOut;
+        public Transform anturaIn;
 
         public AnimationCurve normalAnimationCurve;
         public AnimationCurve anturaInAnimationCurve;
@@ -125,7 +126,7 @@ namespace EA4S.Egg
             }
         }
 
-        public void AnturaButtonOut(Action endCallback, float duration, float delay)
+        public void AnturaButtonOut(float duration, float delay, Action endCallback = null)
         {
             List<EggButton> buttons = GetButtons(true);
 
@@ -135,7 +136,7 @@ namespace EA4S.Egg
             {
                 if (i == buttons.Count - 1)
                 {
-                    buttons[i].MoveTo(anturaOut.localPosition, duration, normalAnimationCurve, (i * delayBetweenButton) + delay, endCallback);
+                    buttons[i].MoveTo(anturaOut.localPosition, duration, normalAnimationCurve, (i * delayBetweenButton) + delay, 0f, null, endCallback);
                 }
                 else
                 {
@@ -146,11 +147,14 @@ namespace EA4S.Egg
             }
         }
 
-        public void AnturaButtonIn(Action endCallback, float duration, float delay)
+        public void AnturaButtonIn(float duration, float delay, float delayBetweenButton = 0.5f, float anturaSpitDelay = 0.3f, Action anturaSpit = null, Action endCallback = null)
         {
-            float delayBetweenButton = 0.5f;
-
             buttonCount = eggButtons.Count;
+
+            for(int i=0; i<eggButtons.Count; i++)
+            {
+                eggButtons[i].transform.localPosition = anturaIn.localPosition;
+            }
 
             Vector3[] buttonsPosition = CalculateButtonPositions();
 
@@ -169,11 +173,11 @@ namespace EA4S.Egg
 
                 if (i == buttonsPosition.Length - 1)
                 {
-                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, endCallback);
+                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, anturaSpitDelay, anturaSpit, endCallback);
                 }
                 else
                 {
-                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay);
+                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, anturaSpitDelay, anturaSpit);
                 }
 
                 eggButtons[currentIndex].positionIndex = i;
@@ -296,7 +300,7 @@ namespace EA4S.Egg
         {
             for (int i = 0; i < eggButtons.Count; i++)
             {
-                if(eggButtons[i].livingLetterData == letterData)
+                if (eggButtons[i].livingLetterData == letterData)
                 {
                     return eggButtons[i];
                 }

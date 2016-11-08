@@ -2,6 +2,7 @@
     public enum ThrowBallsVariation : int {
         letters = 1,
         words = 2,
+        lettersinword = 3,
     }
 
     public class ThrowBallsConfiguration : IGameConfiguration {
@@ -46,5 +47,28 @@
             };
         }
         #endregion
+
+        public IQuestionBuilder SetupBuilder() {
+            IQuestionBuilder builder = null;
+
+            int nPacks = 10;
+            int nCorrect = 4;
+            int nWrong = 4;
+
+            switch (Variation)
+            {
+                case ThrowBallsVariation.letters:
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;
+                case ThrowBallsVariation.words:
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
+                    break;
+                case ThrowBallsVariation.lettersinword:
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;
+            }
+
+            return builder;
+        }
     }
 }
