@@ -17,11 +17,7 @@ public class ReadingBarSet : MonoBehaviour
     public float distanceBetweenBars = 3;
 
     ReadingBar activeBar;
-
-    void Start()
-    {
-        SetData(null);
-    }
+    
 
     void SetActiveBar(ReadingBar bar)
     {
@@ -33,15 +29,22 @@ public class ReadingBarSet : MonoBehaviour
             activeBar.Active = true;
     }
 
-
-    public void SetData(ILivingLetterData data)
+    public void Clear()
     {
+        SetActiveBar(null);
+
         // Clear past data
         foreach (var b in bars)
         {
             Destroy(b.gameObject);
         }
         bars.Clear();
+    }
+
+
+    public void SetData(ILivingLetterData data)
+    {
+        Clear();
 
         string text = ArabicAlphabetHelper.PrepareStringForDisplay("لم نرك منذ مدة لم نرك منذ مدة");
         //string text = ArabicAlphabetHelper.PrepareStringForDisplay("لم نرك منذ مدة");
