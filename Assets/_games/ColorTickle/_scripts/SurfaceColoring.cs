@@ -32,6 +32,12 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region GETTER/SETTER
+        public ColoringParameters brush
+        {
+            get { return m_oBrush; }
+            set { m_oBrush = value; }
+        }
+
         public int pixelPerUnit
         {
             get { return m_iPixelPerUnit; }
