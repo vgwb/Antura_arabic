@@ -335,7 +335,7 @@ MonoBehaviour:
       Scene: game_MixedLetters
     - Title_En: Reading Game
       Code: 24
-      Available: 0
+      Available: 1
       Type: 1
       Main: ReadingGame
       Variation: 
@@ -2188,7 +2188,7 @@ MonoBehaviour:
       - yeh
       - tah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: agreed
       Kind: 2
       Category: 0
@@ -2201,7 +2201,7 @@ MonoBehaviour:
       - feh
       - qaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: al
       Kind: 3
       Category: 0
@@ -2212,7 +2212,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: anger
       Kind: 4
       Category: 0
@@ -2224,7 +2224,7 @@ MonoBehaviour:
       - yeh
       - zah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: apple
       Kind: 4
       Category: 2
@@ -2237,7 +2237,7 @@ MonoBehaviour:
       - alef
       - hah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: apricot
       Kind: 4
       Category: 2
@@ -2250,7 +2250,7 @@ MonoBehaviour:
       - meem
       - sheen
       Difficulty: 2
-      Drawing: 0
+      Drawing: 
     - Id: ate
       Kind: 2
       Category: 0
@@ -2262,7 +2262,7 @@ MonoBehaviour:
       - kaf
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: aunt_father
       Kind: 4
       Category: 3
@@ -2274,7 +2274,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: aunt_mother
       Kind: 4
       Category: 3
@@ -2287,7 +2287,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 2
-      Drawing: 0
+      Drawing: 
     - Id: back
       Kind: 4
       Category: 4
@@ -2299,7 +2299,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: drawing-back
     - Id: banana
       Kind: 4
       Category: 2
@@ -2311,7 +2311,7 @@ MonoBehaviour:
       - waw
       - zain
       Difficulty: 1
-      Drawing: 1
+      Drawing: 
     - Id: bank
       Kind: 4
       Category: 5
@@ -2324,7 +2324,7 @@ MonoBehaviour:
       - reh
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: basketball
       Kind: 4
       Category: 6
@@ -2341,7 +2341,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: bear
       Kind: 4
       Category: 7
@@ -2352,7 +2352,7 @@ MonoBehaviour:
       - dal
       - beh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: beautiful
       Kind: 1
       Category: 8
@@ -2365,7 +2365,7 @@ MonoBehaviour:
       - yeh
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: bed
       Kind: 4
       Category: 9
@@ -2378,7 +2378,7 @@ MonoBehaviour:
       - alef
       - sheen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: believed
       Kind: 2
       Category: 0
@@ -2389,7 +2389,7 @@ MonoBehaviour:
       - meem
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: belly
       Kind: 4
       Category: 4
@@ -2401,7 +2401,7 @@ MonoBehaviour:
       - tah
       - noon
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-belly
     - Id: berry
       Kind: 4
       Category: 2
@@ -2413,7 +2413,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: big
       Kind: 1
       Category: 10
@@ -2426,7 +2426,7 @@ MonoBehaviour:
       - yeh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: bird
       Kind: 4
       Category: 7
@@ -2440,7 +2440,7 @@ MonoBehaviour:
       - waw
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: book
       Kind: 4
       Category: 11
@@ -2453,7 +2453,7 @@ MonoBehaviour:
       - alef
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: books
       Kind: 4
       Category: 11
@@ -2465,7 +2465,7 @@ MonoBehaviour:
       - teh
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: box
       Kind: 4
       Category: 11
@@ -2479,7 +2479,7 @@ MonoBehaviour:
       - waw
       - qaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: boy
       Kind: 4
       Category: 3
@@ -2491,7 +2491,7 @@ MonoBehaviour:
       - beh
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: brain
       Kind: 4
       Category: 4
@@ -2504,7 +2504,7 @@ MonoBehaviour:
       - alef
       - ghain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: brave
       Kind: 1
       Category: 1
@@ -2517,7 +2517,7 @@ MonoBehaviour:
       - alef
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: bread
       Kind: 4
       Category: 2
@@ -2529,7 +2529,7 @@ MonoBehaviour:
       - beh
       - zain
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: breeze
       Kind: 4
       Category: 12
@@ -2542,7 +2542,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: broad_bean
       Kind: 4
       Category: 2
@@ -2554,7 +2554,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: brother
       Kind: 4
       Category: 3
@@ -2565,7 +2565,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - khah
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: bulgar
       Kind: 4
       Category: 2
@@ -2578,7 +2578,7 @@ MonoBehaviour:
       - ghain
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: bus
       Kind: 4
       Category: 13
@@ -2590,7 +2590,7 @@ MonoBehaviour:
       - alef
       - sad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: camel
       Kind: 4
       Category: 7
@@ -2602,7 +2602,7 @@ MonoBehaviour:
       - meem
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: carpenter
       Kind: 4
       Category: 14
@@ -2615,7 +2615,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: carried
       Kind: 2
       Category: 0
@@ -2627,7 +2627,7 @@ MonoBehaviour:
       - meem
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: carrot
       Kind: 4
       Category: 2
@@ -2639,7 +2639,7 @@ MonoBehaviour:
       - zain
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: cat
       Kind: 4
       Category: 7
@@ -2650,7 +2650,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: caught
       Kind: 2
       Category: 0
@@ -2662,7 +2662,7 @@ MonoBehaviour:
       - seen
       - kaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: chair
       Kind: 4
       Category: 9
@@ -2675,7 +2675,7 @@ MonoBehaviour:
       - seen
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: cheese
       Kind: 4
       Category: 2
@@ -2687,7 +2687,7 @@ MonoBehaviour:
       - beh
       - noon
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: cherry
       Kind: 4
       Category: 2
@@ -2699,7 +2699,7 @@ MonoBehaviour:
       - reh
       - zain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: chest
       Kind: 4
       Category: 4
@@ -2711,7 +2711,7 @@ MonoBehaviour:
       - dal
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: drawing-chest
     - Id: chickpea
       Kind: 4
       Category: 2
@@ -2723,7 +2723,7 @@ MonoBehaviour:
       - meem
       - sad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: classroom
       Kind: 4
       Category: 5
@@ -2734,7 +2734,7 @@ MonoBehaviour:
       - sad
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: clean
       Kind: 1
       Category: 8
@@ -2747,7 +2747,7 @@ MonoBehaviour:
       - yeh
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: cloud
       Kind: 4
       Category: 12
@@ -2760,7 +2760,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: club
       Kind: 4
       Category: 5
@@ -2773,7 +2773,7 @@ MonoBehaviour:
       - teh
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: cold
       Kind: 1
       Category: 8
@@ -2785,7 +2785,7 @@ MonoBehaviour:
       - reh
       - dal
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: cold_food
       Kind: 1
       Category: 2
@@ -2798,7 +2798,7 @@ MonoBehaviour:
       - reh
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_black
       Kind: 1
       Category: 15
@@ -2811,7 +2811,7 @@ MonoBehaviour:
       - waw
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_blue
       Kind: 1
       Category: 15
@@ -2824,7 +2824,7 @@ MonoBehaviour:
       - reh
       - qaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_brown
       Kind: 1
       Category: 15
@@ -2836,7 +2836,7 @@ MonoBehaviour:
       - noon
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_gold
       Kind: 1
       Category: 15
@@ -2849,7 +2849,7 @@ MonoBehaviour:
       - beh
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_green
       Kind: 1
       Category: 15
@@ -2862,7 +2862,7 @@ MonoBehaviour:
       - dad
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_orange
       Kind: 1
       Category: 15
@@ -2878,7 +2878,7 @@ MonoBehaviour:
       - lam
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_pink
       Kind: 1
       Category: 15
@@ -2891,7 +2891,7 @@ MonoBehaviour:
       - dal
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_purple
       Kind: 1
       Category: 15
@@ -2906,7 +2906,7 @@ MonoBehaviour:
       - jeem
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_red
       Kind: 1
       Category: 15
@@ -2919,7 +2919,7 @@ MonoBehaviour:
       - meem
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_silver
       Kind: 1
       Category: 15
@@ -2931,7 +2931,7 @@ MonoBehaviour:
       - dad
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_white
       Kind: 1
       Category: 15
@@ -2944,7 +2944,7 @@ MonoBehaviour:
       - yeh
       - dad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: color_yellow
       Kind: 1
       Category: 15
@@ -2957,7 +2957,7 @@ MonoBehaviour:
       - feh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: copybook
       Kind: 4
       Category: 11
@@ -2970,7 +2970,7 @@ MonoBehaviour:
       - teh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: costume
       Kind: 4
       Category: 16
@@ -2984,7 +2984,7 @@ MonoBehaviour:
       - seen
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: cried
       Kind: 2
       Category: 0
@@ -2995,7 +2995,7 @@ MonoBehaviour:
       - beh
       - kaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: cucumber
       Kind: 4
       Category: 2
@@ -3008,7 +3008,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: cupboard
       Kind: 4
       Category: 9
@@ -3022,7 +3022,7 @@ MonoBehaviour:
       - noon
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day
       Kind: 4
       Category: 17
@@ -3034,7 +3034,7 @@ MonoBehaviour:
       - waw
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day_friday
       Kind: 4
       Category: 17
@@ -3049,7 +3049,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day_monday
       Kind: 4
       Category: 17
@@ -3065,7 +3065,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day_saturday
       Kind: 4
       Category: 17
@@ -3079,7 +3079,7 @@ MonoBehaviour:
       - beh
       - teh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day_sunday
       Kind: 4
       Category: 17
@@ -3093,7 +3093,7 @@ MonoBehaviour:
       - hah
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day_thursday
       Kind: 4
       Category: 17
@@ -3108,7 +3108,7 @@ MonoBehaviour:
       - yeh
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day_tuesday
       Kind: 4
       Category: 17
@@ -3124,7 +3124,7 @@ MonoBehaviour:
       - theh
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: day_wednesday
       Kind: 4
       Category: 17
@@ -3140,7 +3140,7 @@ MonoBehaviour:
       - ain
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: deer
       Kind: 4
       Category: 7
@@ -3153,7 +3153,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: delicious
       Kind: 1
       Category: 2
@@ -3165,7 +3165,7 @@ MonoBehaviour:
       - lam
       - waw
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: doctor
       Kind: 4
       Category: 14
@@ -3178,7 +3178,7 @@ MonoBehaviour:
       - yeh
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: dog
       Kind: 4
       Category: 7
@@ -3190,7 +3190,7 @@ MonoBehaviour:
       - lam
       - beh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: door
       Kind: 4
       Category: 9
@@ -3202,7 +3202,7 @@ MonoBehaviour:
       - alef
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: drank
       Kind: 2
       Category: 0
@@ -3214,7 +3214,7 @@ MonoBehaviour:
       - reh
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: duck
       Kind: 4
       Category: 7
@@ -3225,7 +3225,7 @@ MonoBehaviour:
       - beh
       - tah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: eagle
       Kind: 4
       Category: 7
@@ -3237,7 +3237,7 @@ MonoBehaviour:
       - seen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: ear
       Kind: 4
       Category: 4
@@ -3249,7 +3249,7 @@ MonoBehaviour:
       - thal
       - noon
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-ear
     - Id: elephant
       Kind: 4
       Category: 7
@@ -3261,7 +3261,7 @@ MonoBehaviour:
       - yeh
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: engineer
       Kind: 4
       Category: 14
@@ -3275,7 +3275,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: eye
       Kind: 4
       Category: 4
@@ -3287,7 +3287,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-eye
     - Id: face
       Kind: 4
       Category: 4
@@ -3299,7 +3299,7 @@ MonoBehaviour:
       - jeem
       - heh
       Difficulty: 0
-      Drawing: 0
+      Drawing: drawing-face
     - Id: fall
       Kind: 4
       Category: 12
@@ -3312,7 +3312,7 @@ MonoBehaviour:
       - yeh
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: farmer
       Kind: 4
       Category: 14
@@ -3325,7 +3325,7 @@ MonoBehaviour:
       - alef
       - hah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: father
       Kind: 4
       Category: 3
@@ -3338,7 +3338,7 @@ MonoBehaviour:
       - beh
       - alef
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: field
       Kind: 4
       Category: 5
@@ -3350,7 +3350,7 @@ MonoBehaviour:
       - qaf
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: fig
       Kind: 4
       Category: 2
@@ -3362,7 +3362,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: finger
       Kind: 4
       Category: 4
@@ -3374,7 +3374,7 @@ MonoBehaviour:
       - beh
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: flag
       Kind: 4
       Category: 11
@@ -3386,7 +3386,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: flapped
       Kind: 2
       Category: 0
@@ -3399,7 +3399,7 @@ MonoBehaviour:
       - reh
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: flew
       Kind: 2
       Category: 0
@@ -3411,7 +3411,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: flower
       Kind: 4
       Category: 12
@@ -3423,7 +3423,7 @@ MonoBehaviour:
       - reh
       - dal
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: food
       Kind: 4
       Category: 2
@@ -3435,7 +3435,7 @@ MonoBehaviour:
       - kaf
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: foot
       Kind: 4
       Category: 4
@@ -3447,7 +3447,7 @@ MonoBehaviour:
       - dal
       - meem
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-foot
     - Id: football
       Kind: 4
       Category: 6
@@ -3464,7 +3464,7 @@ MonoBehaviour:
       - dal
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: forest
       Kind: 4
       Category: 12
@@ -3477,7 +3477,7 @@ MonoBehaviour:
       - beh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: fridge
       Kind: 4
       Category: 9
@@ -3491,7 +3491,7 @@ MonoBehaviour:
       - jeem
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: furniture
       Kind: 4
       Category: 9
@@ -3504,7 +3504,7 @@ MonoBehaviour:
       - alef
       - theh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: garden
       Kind: 4
       Category: 5
@@ -3518,7 +3518,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: garlic
       Kind: 4
       Category: 2
@@ -3530,7 +3530,7 @@ MonoBehaviour:
       - waw
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: girl
       Kind: 4
       Category: 3
@@ -3542,7 +3542,7 @@ MonoBehaviour:
       - noon
       - teh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: glue
       Kind: 4
       Category: 11
@@ -3554,7 +3554,7 @@ MonoBehaviour:
       - meem
       - ghain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: granddaughter
       Kind: 4
       Category: 3
@@ -3568,7 +3568,7 @@ MonoBehaviour:
       - dal
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: grandfather
       Kind: 4
       Category: 3
@@ -3580,7 +3580,7 @@ MonoBehaviour:
       - dal
       - waw
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: grandmother
       Kind: 4
       Category: 3
@@ -3593,7 +3593,7 @@ MonoBehaviour:
       - noon
       - alef
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: grandson
       Kind: 4
       Category: 3
@@ -3606,7 +3606,7 @@ MonoBehaviour:
       - yeh
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: grapes
       Kind: 4
       Category: 2
@@ -3618,7 +3618,7 @@ MonoBehaviour:
       - noon
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: ground
       Kind: 4
       Category: 5
@@ -3630,7 +3630,7 @@ MonoBehaviour:
       - reh
       - dad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: hair
       Kind: 4
       Category: 4
@@ -3642,7 +3642,7 @@ MonoBehaviour:
       - ain
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: drawing-hair
     - Id: hand
       Kind: 4
       Category: 4
@@ -3653,7 +3653,7 @@ MonoBehaviour:
       - yeh
       - dal
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-hand
     - Id: happy
       Kind: 1
       Category: 1
@@ -3666,7 +3666,7 @@ MonoBehaviour:
       - yeh
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: head
       Kind: 4
       Category: 4
@@ -3678,7 +3678,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - seen
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: hi
       Kind: 5
       Category: 0
@@ -3692,7 +3692,7 @@ MonoBehaviour:
       - beh
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: hospital
       Kind: 4
       Category: 5
@@ -3706,7 +3706,7 @@ MonoBehaviour:
       - sheen
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: hot
       Kind: 1
       Category: 8
@@ -3718,7 +3718,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: hot_CHECK
       Kind: 1
       Category: 0
@@ -3730,7 +3730,7 @@ MonoBehaviour:
       - waw
       - beh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: hot_food
       Kind: 1
       Category: 2
@@ -3742,7 +3742,7 @@ MonoBehaviour:
       - khah
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: hour
       Kind: 4
       Category: 17
@@ -3755,7 +3755,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: house
       Kind: 4
       Category: 5
@@ -3767,7 +3767,7 @@ MonoBehaviour:
       - yeh
       - teh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: icecream
       Kind: 4
       Category: 2
@@ -3780,7 +3780,7 @@ MonoBehaviour:
       - zah
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: insistent
       Kind: 1
       Category: 1
@@ -3792,7 +3792,7 @@ MonoBehaviour:
       - lam
       - hah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: islands
       Kind: 4
       Category: 12
@@ -3804,7 +3804,7 @@ MonoBehaviour:
       - zain
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: juice
       Kind: 4
       Category: 2
@@ -3817,7 +3817,7 @@ MonoBehaviour:
       - yeh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: kid
       Kind: 4
       Category: 3
@@ -3829,7 +3829,7 @@ MonoBehaviour:
       - lam
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: knowledge
       Kind: 4
       Category: 0
@@ -3841,7 +3841,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: laughed
       Kind: 2
       Category: 0
@@ -3853,7 +3853,7 @@ MonoBehaviour:
       - hah
       - kaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: lazy
       Kind: 1
       Category: 1
@@ -3866,7 +3866,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: leg
       Kind: 4
       Category: 4
@@ -3878,7 +3878,7 @@ MonoBehaviour:
       - jeem
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: lentil
       Kind: 4
       Category: 0
@@ -3890,7 +3890,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: light
       Kind: 4
       Category: 0
@@ -3901,7 +3901,7 @@ MonoBehaviour:
       - dad
       - waw
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: lion
       Kind: 4
       Category: 7
@@ -3913,7 +3913,7 @@ MonoBehaviour:
       - seen
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: lion_dual
       Kind: 4
       Category: 7
@@ -3927,7 +3927,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: lion_plural
       Kind: 4
       Category: 7
@@ -3940,7 +3940,7 @@ MonoBehaviour:
       - waw
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: lips
       Kind: 4
       Category: 4
@@ -3953,7 +3953,7 @@ MonoBehaviour:
       - alef
       - heh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: man
       Kind: 4
       Category: 3
@@ -3965,7 +3965,7 @@ MonoBehaviour:
       - jeem
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: market
       Kind: 4
       Category: 5
@@ -3977,7 +3977,7 @@ MonoBehaviour:
       - waw
       - qaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: meat
       Kind: 4
       Category: 2
@@ -3989,7 +3989,7 @@ MonoBehaviour:
       - hah
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: melancholy
       Kind: 4
       Category: 0
@@ -4001,7 +4001,7 @@ MonoBehaviour:
       - beh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month
       Kind: 4
       Category: 17
@@ -4013,7 +4013,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_april
       Kind: 4
       Category: 17
@@ -4027,7 +4027,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_august
       Kind: 4
       Category: 17
@@ -4037,7 +4037,7 @@ MonoBehaviour:
       Letters:
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_december
       Kind: 4
       Category: 17
@@ -4056,7 +4056,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_february
       Kind: 4
       Category: 17
@@ -4069,7 +4069,7 @@ MonoBehaviour:
       - alef
       - tah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_january
       Kind: 4
       Category: 17
@@ -4089,7 +4089,7 @@ MonoBehaviour:
       - noon
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_july
       Kind: 4
       Category: 17
@@ -4102,7 +4102,7 @@ MonoBehaviour:
       - waw
       - zain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_june
       Kind: 4
       Category: 17
@@ -4117,7 +4117,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_march
       Kind: 4
       Category: 17
@@ -4129,7 +4129,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_may
       Kind: 4
       Category: 17
@@ -4142,7 +4142,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_november
       Kind: 4
       Category: 17
@@ -4162,7 +4162,7 @@ MonoBehaviour:
       - noon
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_october
       Kind: 4
       Category: 17
@@ -4181,7 +4181,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: month_september
       Kind: 4
       Category: 17
@@ -4195,7 +4195,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: moon
       Kind: 4
       Category: 12
@@ -4207,7 +4207,7 @@ MonoBehaviour:
       - meem
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: mother
       Kind: 4
       Category: 3
@@ -4220,7 +4220,7 @@ MonoBehaviour:
       - meem
       - alef
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: mountain
       Kind: 4
       Category: 12
@@ -4232,7 +4232,7 @@ MonoBehaviour:
       - beh
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: mountain_dual
       Kind: 4
       Category: 12
@@ -4246,7 +4246,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: mountain_plural
       Kind: 4
       Category: 12
@@ -4259,7 +4259,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: mouse
       Kind: 4
       Category: 7
@@ -4271,7 +4271,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - reh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: mouth
       Kind: 4
       Category: 4
@@ -4282,7 +4282,7 @@ MonoBehaviour:
       - feh
       - meem
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-mouth
     - Id: nail
       Kind: 4
       Category: 4
@@ -4294,7 +4294,7 @@ MonoBehaviour:
       - feh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: needle
       Kind: 4
       Category: 11
@@ -4306,7 +4306,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: nest
       Kind: 4
       Category: 0
@@ -4317,7 +4317,7 @@ MonoBehaviour:
       - ain
       - sheen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: nose
       Kind: 4
       Category: 4
@@ -4329,7 +4329,7 @@ MonoBehaviour:
       - noon
       - feh
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-nose
     - Id: now
       Kind: 5
       Category: 17
@@ -4341,7 +4341,7 @@ MonoBehaviour:
       - lam
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_0
       Kind: 4
       Category: 18
@@ -4353,7 +4353,7 @@ MonoBehaviour:
       - feh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_1
       Kind: 4
       Category: 18
@@ -4366,7 +4366,7 @@ MonoBehaviour:
       - hah
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_10
       Kind: 4
       Category: 18
@@ -4379,7 +4379,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_11
       Kind: 4
       Category: 18
@@ -4394,7 +4394,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_12
       Kind: 4
       Category: 18
@@ -4410,7 +4410,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_13
       Kind: 4
       Category: 18
@@ -4427,7 +4427,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_14
       Kind: 4
       Category: 18
@@ -4444,7 +4444,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_15
       Kind: 4
       Category: 18
@@ -4460,7 +4460,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_16
       Kind: 4
       Category: 18
@@ -4475,7 +4475,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_17
       Kind: 4
       Category: 18
@@ -4491,7 +4491,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_18
       Kind: 4
       Category: 18
@@ -4509,7 +4509,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_19
       Kind: 4
       Category: 18
@@ -4525,7 +4525,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_2
       Kind: 4
       Category: 18
@@ -4539,7 +4539,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_20
       Kind: 4
       Category: 18
@@ -4553,7 +4553,7 @@ MonoBehaviour:
       - waw
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_3
       Kind: 4
       Category: 18
@@ -4567,7 +4567,7 @@ MonoBehaviour:
       - theh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_4
       Kind: 4
       Category: 18
@@ -4581,7 +4581,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_5
       Kind: 4
       Category: 18
@@ -4594,7 +4594,7 @@ MonoBehaviour:
       - seen
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_6
       Kind: 4
       Category: 18
@@ -4606,7 +4606,7 @@ MonoBehaviour:
       - teh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_7
       Kind: 4
       Category: 18
@@ -4619,7 +4619,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_8
       Kind: 4
       Category: 18
@@ -4634,7 +4634,7 @@ MonoBehaviour:
       - yeh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_9
       Kind: 4
       Category: 18
@@ -4647,7 +4647,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o1
       Kind: 4
       Category: 18
@@ -4661,7 +4661,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o10
       Kind: 4
       Category: 18
@@ -4676,7 +4676,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o2
       Kind: 4
       Category: 18
@@ -4691,7 +4691,7 @@ MonoBehaviour:
       - noon
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o3
       Kind: 4
       Category: 18
@@ -4706,7 +4706,7 @@ MonoBehaviour:
       - lam
       - theh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o4
       Kind: 4
       Category: 18
@@ -4721,7 +4721,7 @@ MonoBehaviour:
       - beh
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o5
       Kind: 4
       Category: 18
@@ -4736,7 +4736,7 @@ MonoBehaviour:
       - meem
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o6
       Kind: 4
       Category: 18
@@ -4751,7 +4751,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o7
       Kind: 4
       Category: 18
@@ -4766,7 +4766,7 @@ MonoBehaviour:
       - beh
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o8
       Kind: 4
       Category: 18
@@ -4781,7 +4781,7 @@ MonoBehaviour:
       - meem
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: number_o9
       Kind: 4
       Category: 18
@@ -4796,7 +4796,7 @@ MonoBehaviour:
       - seen
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: of_course
       Kind: 5
       Category: 0
@@ -4809,7 +4809,7 @@ MonoBehaviour:
       - ain
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: oil
       Kind: 4
       Category: 2
@@ -4821,7 +4821,7 @@ MonoBehaviour:
       - yeh
       - teh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: onion
       Kind: 4
       Category: 2
@@ -4833,7 +4833,7 @@ MonoBehaviour:
       - sad
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: OokaDH
       Kind: 4
       Category: 5
@@ -4846,7 +4846,7 @@ MonoBehaviour:
       - alef
       - zah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: opened
       Kind: 2
       Category: 0
@@ -4858,7 +4858,7 @@ MonoBehaviour:
       - teh
       - hah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: oven
       Kind: 4
       Category: 9
@@ -4870,7 +4870,7 @@ MonoBehaviour:
       - reh
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: paper
       Kind: 4
       Category: 11
@@ -4882,7 +4882,7 @@ MonoBehaviour:
       - reh
       - qaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: parrot
       Kind: 4
       Category: 7
@@ -4895,7 +4895,7 @@ MonoBehaviour:
       - ghain
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: pear
       Kind: 4
       Category: 2
@@ -4908,7 +4908,7 @@ MonoBehaviour:
       - alef
       - sad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: pear_big
       Kind: 4
       Category: 2
@@ -4921,7 +4921,7 @@ MonoBehaviour:
       - theh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: pearl
       Kind: 4
       Category: 0
@@ -4932,7 +4932,7 @@ MonoBehaviour:
       - lam
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: pencil
       Kind: 4
       Category: 11
@@ -4944,7 +4944,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: played
       Kind: 2
       Category: 0
@@ -4956,7 +4956,7 @@ MonoBehaviour:
       - ain
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: plum
       Kind: 4
       Category: 2
@@ -4968,7 +4968,7 @@ MonoBehaviour:
       - waw
       - khah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: policeman
       Kind: 4
       Category: 14
@@ -4981,7 +4981,7 @@ MonoBehaviour:
       - tah
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: potato
       Kind: 4
       Category: 2
@@ -4995,7 +4995,7 @@ MonoBehaviour:
       - tah
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: rain
       Kind: 4
       Category: 12
@@ -5007,7 +5007,7 @@ MonoBehaviour:
       - tah
       - reh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: rainy
       Kind: 1
       Category: 19
@@ -5020,7 +5020,7 @@ MonoBehaviour:
       - tah
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: released
       Kind: 2
       Category: 0
@@ -5032,7 +5032,7 @@ MonoBehaviour:
       - reh
       - kaf
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: restaurant
       Kind: 4
       Category: 5
@@ -5045,7 +5045,7 @@ MonoBehaviour:
       - ain
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: rice
       Kind: 4
       Category: 2
@@ -5056,7 +5056,7 @@ MonoBehaviour:
       - reh
       - zain
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: river
       Kind: 4
       Category: 12
@@ -5068,7 +5068,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: river_dual
       Kind: 4
       Category: 12
@@ -5082,7 +5082,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: river_plural
       Kind: 4
       Category: 12
@@ -5096,7 +5096,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: room
       Kind: 4
       Category: 5
@@ -5109,7 +5109,7 @@ MonoBehaviour:
       - feh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: sad
       Kind: 1
       Category: 20
@@ -5122,7 +5122,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: safe
       Kind: 1
       Category: 5
@@ -5133,7 +5133,7 @@ MonoBehaviour:
       - meem
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: salt
       Kind: 4
       Category: 2
@@ -5145,7 +5145,7 @@ MonoBehaviour:
       - lam
       - hah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: sat
       Kind: 2
       Category: 0
@@ -5157,7 +5157,7 @@ MonoBehaviour:
       - lam
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: saw
       Kind: 2
       Category: 0
@@ -5168,7 +5168,7 @@ MonoBehaviour:
       - reh
       - alef_hamza_hi
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: school
       Kind: 4
       Category: 5
@@ -5182,7 +5182,7 @@ MonoBehaviour:
       - seen
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: scientist
       Kind: 4
       Category: 14
@@ -5195,7 +5195,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: scientist_dual
       Kind: 4
       Category: 14
@@ -5210,7 +5210,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: scientist_plural
       Kind: 4
       Category: 14
@@ -5223,7 +5223,7 @@ MonoBehaviour:
       - meem
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: scissors
       Kind: 4
       Category: 11
@@ -5235,7 +5235,7 @@ MonoBehaviour:
       - qaf
       - sad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: second
       Kind: 4
       Category: 17
@@ -5249,7 +5249,7 @@ MonoBehaviour:
       - yeh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: shop
       Kind: 4
       Category: 5
@@ -5262,7 +5262,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: sister
       Kind: 4
       Category: 3
@@ -5274,7 +5274,7 @@ MonoBehaviour:
       - khah
       - teh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: sky
       Kind: 4
       Category: 12
@@ -5286,7 +5286,7 @@ MonoBehaviour:
       - meem
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: slow
       Kind: 1
       Category: 8
@@ -5298,7 +5298,7 @@ MonoBehaviour:
       - tah
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: small
       Kind: 1
       Category: 10
@@ -5311,7 +5311,7 @@ MonoBehaviour:
       - yeh
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: snow
       Kind: 4
       Category: 12
@@ -5323,7 +5323,7 @@ MonoBehaviour:
       - lam
       - jeem
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: sound
       Kind: 4
       Category: 0
@@ -5335,7 +5335,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: spring
       Kind: 4
       Category: 12
@@ -5348,7 +5348,7 @@ MonoBehaviour:
       - yeh
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: station
       Kind: 4
       Category: 5
@@ -5361,7 +5361,7 @@ MonoBehaviour:
       - tah
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: studied
       Kind: 2
       Category: 0
@@ -5373,7 +5373,7 @@ MonoBehaviour:
       - reh
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: sugar
       Kind: 4
       Category: 2
@@ -5385,7 +5385,7 @@ MonoBehaviour:
       - kaf
       - reh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: summer
       Kind: 4
       Category: 12
@@ -5397,7 +5397,7 @@ MonoBehaviour:
       - yeh
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: sun
       Kind: 4
       Category: 12
@@ -5409,7 +5409,7 @@ MonoBehaviour:
       - meem
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: sure
       Kind: 5
       Category: 0
@@ -5422,7 +5422,7 @@ MonoBehaviour:
       - waw
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: table
       Kind: 4
       Category: 9
@@ -5436,7 +5436,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: tea
       Kind: 4
       Category: 2
@@ -5448,7 +5448,7 @@ MonoBehaviour:
       - alef
       - yeh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: teacher
       Kind: 4
       Category: 14
@@ -5461,7 +5461,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: television
       Kind: 4
       Category: 9
@@ -5475,7 +5475,7 @@ MonoBehaviour:
       - alef
       - zain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: thankyou
       Kind: 5
       Category: 0
@@ -5488,7 +5488,7 @@ MonoBehaviour:
       - reh
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_active
       Kind: 1
       Category: 1
@@ -5503,7 +5503,7 @@ MonoBehaviour:
       - yeh
       - tah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_ball
       Kind: 4
       Category: 11
@@ -5517,7 +5517,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_beautiful
       Kind: 1
       Category: 0
@@ -5532,7 +5532,7 @@ MonoBehaviour:
       - yeh
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_coat
       Kind: 4
       Category: 16
@@ -5547,7 +5547,7 @@ MonoBehaviour:
       - tah
       - feh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_engineer
       Kind: 4
       Category: 14
@@ -5563,7 +5563,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_happy
       Kind: 1
       Category: 1
@@ -5578,7 +5578,7 @@ MonoBehaviour:
       - yeh
       - dal
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_hat
       Kind: 4
       Category: 16
@@ -5593,7 +5593,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_lazy
       Kind: 1
       Category: 1
@@ -5608,7 +5608,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_player
       Kind: 4
       Category: 14
@@ -5623,7 +5623,7 @@ MonoBehaviour:
       - ain
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_playground
       Kind: 4
       Category: 5
@@ -5638,7 +5638,7 @@ MonoBehaviour:
       - ain
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_policeman
       Kind: 4
       Category: 14
@@ -5653,7 +5653,7 @@ MonoBehaviour:
       - tah
       - yeh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_sad
       Kind: 1
       Category: 1
@@ -5668,7 +5668,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_scientist
       Kind: 4
       Category: 14
@@ -5683,7 +5683,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_shirt
       Kind: 4
       Category: 16
@@ -5698,7 +5698,7 @@ MonoBehaviour:
       - yeh
       - sad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_shoe
       Kind: 4
       Category: 16
@@ -5712,7 +5712,7 @@ MonoBehaviour:
       - thal
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_trousers
       Kind: 4
       Category: 16
@@ -5728,7 +5728,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_wonderful
       Kind: 4
       Category: 8
@@ -5742,7 +5742,7 @@ MonoBehaviour:
       - alef
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: the_worker
       Kind: 4
       Category: 14
@@ -5757,7 +5757,7 @@ MonoBehaviour:
       - meem
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: tiger
       Kind: 4
       Category: 7
@@ -5769,7 +5769,7 @@ MonoBehaviour:
       - meem
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: today
       Kind: 5
       Category: 17
@@ -5783,7 +5783,7 @@ MonoBehaviour:
       - waw
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: toilet
       Kind: 4
       Category: 5
@@ -5797,7 +5797,7 @@ MonoBehaviour:
       - alef
       - dad
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: tomato
       Kind: 4
       Category: 2
@@ -5812,7 +5812,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: tomorrow
       Kind: 5
       Category: 17
@@ -5824,7 +5824,7 @@ MonoBehaviour:
       - dal
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: tongue
       Kind: 4
       Category: 4
@@ -5837,7 +5837,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: drawing-tongue
     - Id: tooth
       Kind: 4
       Category: 4
@@ -5848,7 +5848,7 @@ MonoBehaviour:
       - seen
       - noon
       Difficulty: 1
-      Drawing: 0
+      Drawing: drawing-tooth
     - Id: tower
       Kind: 4
       Category: 5
@@ -5860,7 +5860,7 @@ MonoBehaviour:
       - reh
       - jeem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: tree
       Kind: 4
       Category: 12
@@ -5872,7 +5872,7 @@ MonoBehaviour:
       - jeem
       - reh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: triangle
       Kind: 4
       Category: 21
@@ -5885,7 +5885,7 @@ MonoBehaviour:
       - lam
       - theh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: uncle_father
       Kind: 4
       Category: 3
@@ -5896,7 +5896,7 @@ MonoBehaviour:
       - ain
       - meem
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: uncle_mother
       Kind: 4
       Category: 3
@@ -5908,7 +5908,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: understood
       Kind: 2
       Category: 0
@@ -5920,7 +5920,7 @@ MonoBehaviour:
       - heh
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: vegetables
       Kind: 4
       Category: 2
@@ -5932,7 +5932,7 @@ MonoBehaviour:
       - dad
       - reh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: virtuous
       Kind: 1
       Category: 1
@@ -5945,7 +5945,7 @@ MonoBehaviour:
       - yeh
       - heh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: voice
       Kind: 4
       Category: 0
@@ -5957,7 +5957,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: walked
       Kind: 2
       Category: 0
@@ -5968,7 +5968,7 @@ MonoBehaviour:
       - meem
       - sheen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: washing_machine
       Kind: 4
       Category: 9
@@ -5982,7 +5982,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: water
       Kind: 4
       Category: 2
@@ -5993,7 +5993,7 @@ MonoBehaviour:
       - meem
       - yeh
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
     - Id: watermelon
       Kind: 4
       Category: 2
@@ -6006,7 +6006,7 @@ MonoBehaviour:
       - yeh
       - khah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: welcome
       Kind: 5
       Category: 0
@@ -6019,7 +6019,7 @@ MonoBehaviour:
       - lam
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: went
       Kind: 2
       Category: 0
@@ -6031,7 +6031,7 @@ MonoBehaviour:
       - heh
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: whale
       Kind: 4
       Category: 7
@@ -6043,7 +6043,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: window
       Kind: 4
       Category: 9
@@ -6057,7 +6057,7 @@ MonoBehaviour:
       - thal
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: winter
       Kind: 4
       Category: 17
@@ -6069,7 +6069,7 @@ MonoBehaviour:
       - teh
       - alef
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: wolf
       Kind: 4
       Category: 7
@@ -6080,7 +6080,7 @@ MonoBehaviour:
       - thal
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: woman
       Kind: 4
       Category: 3
@@ -6093,7 +6093,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: won
       Kind: 2
       Category: 0
@@ -6105,7 +6105,7 @@ MonoBehaviour:
       - beh
       - hah
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: wonderful
       Kind: 1
       Category: 8
@@ -6117,7 +6117,7 @@ MonoBehaviour:
       - alef
       - ain
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: wore
       Kind: 2
       Category: 0
@@ -6129,7 +6129,7 @@ MonoBehaviour:
       - beh
       - seen
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: worker
       Kind: 4
       Category: 14
@@ -6142,7 +6142,7 @@ MonoBehaviour:
       - meem
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: worker_dual
       Kind: 4
       Category: 14
@@ -6157,7 +6157,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: worker_plural
       Kind: 4
       Category: 14
@@ -6170,7 +6170,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: wrote
       Kind: 2
       Category: 0
@@ -6182,7 +6182,7 @@ MonoBehaviour:
       - teh
       - beh
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: year
       Kind: 4
       Category: 17
@@ -6194,7 +6194,7 @@ MonoBehaviour:
       - alef
       - meem
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: yesterday
       Kind: 5
       Category: 17
@@ -6210,7 +6210,7 @@ MonoBehaviour:
       - hah
       - teh_marbuta
       Difficulty: 0
-      Drawing: 0
+      Drawing: 
     - Id: yogurt
       Kind: 4
       Category: 2
@@ -6222,7 +6222,45 @@ MonoBehaviour:
       - beh
       - noon
       Difficulty: 1
-      Drawing: 0
+      Drawing: 
+    - Id: morning
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0635\u0628\u0627\u062D"
+      Letters:
+      - sad
+      - beh
+      - alef
+      - hah
+      Difficulty: 0
+      Drawing: 
+    - Id: evening
+      Kind: 4
+      Category: 17
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0633\u0627\u0621"
+      Letters:
+      - meem
+      - seen
+      - alef
+      Difficulty: 0
+      Drawing: 
+    - Id: peace
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0644\u0627\u0645"
+      Letters:
+      - seen
+      - lam
+      - alef
+      - meem
+      Difficulty: 0
+      Drawing: 
   playSessionTable:
     innerList:
     - Id: 1.1.1
@@ -6265,7 +6303,7 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 5
         Weight: 100
-      - MiniGameCode: 15
+      - MiniGameCode: 31
         Weight: 100
       - MiniGameCode: 32
         Weight: 100
@@ -6301,8 +6339,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 100
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
@@ -6310,6 +6346,8 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6344,8 +6382,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
@@ -6353,6 +6389,8 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6386,8 +6424,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
@@ -6397,6 +6433,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 100
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6431,8 +6469,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 18
@@ -6442,6 +6478,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6475,8 +6513,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6488,6 +6524,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6521,8 +6559,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6534,6 +6570,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6569,8 +6607,6 @@ MonoBehaviour:
         Weight: 100
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6582,6 +6618,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6615,8 +6653,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6628,6 +6664,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6661,8 +6699,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6674,6 +6710,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6707,8 +6745,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6720,6 +6756,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6757,8 +6795,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6770,6 +6806,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6805,8 +6843,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6818,6 +6854,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6853,8 +6891,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6868,6 +6904,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6901,8 +6939,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6916,6 +6952,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6951,8 +6989,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -6964,6 +7000,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -6999,8 +7037,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7012,6 +7048,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7049,8 +7087,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7062,6 +7098,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7097,8 +7135,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7110,6 +7146,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7145,8 +7183,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7160,6 +7196,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7193,8 +7231,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7208,6 +7244,8 @@ MonoBehaviour:
       - MiniGameCode: 23
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7243,8 +7281,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7254,6 +7290,8 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7289,8 +7327,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7300,6 +7336,8 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7337,8 +7375,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7348,6 +7384,8 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7384,8 +7422,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 16
         Weight: 1
       - MiniGameCode: 17
@@ -7395,6 +7431,8 @@ MonoBehaviour:
       - MiniGameCode: 19
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7428,8 +7466,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 19
@@ -7437,6 +7473,8 @@ MonoBehaviour:
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -7469,8 +7507,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 19
@@ -7478,6 +7514,8 @@ MonoBehaviour:
       - MiniGameCode: 21
         Weight: 1
       - MiniGameCode: 27
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -9818,8 +9856,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -9838,6 +9874,8 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 30
         Weight: 100
+      - MiniGameCode: 31
+        Weight: 1
       - MiniGameCode: 32
         Weight: 1
       Letters:
@@ -9875,8 +9913,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -9894,6 +9930,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -9923,8 +9961,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -9942,6 +9978,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -9980,8 +10018,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -9999,6 +10035,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10028,8 +10066,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10047,6 +10083,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10085,8 +10123,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10104,6 +10140,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10133,8 +10171,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10152,6 +10188,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10193,8 +10231,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10212,6 +10248,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10241,8 +10279,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10260,6 +10296,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10296,8 +10334,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10315,6 +10351,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10344,8 +10382,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10363,6 +10399,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10399,8 +10437,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10418,6 +10454,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10447,8 +10485,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10466,6 +10502,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10502,8 +10540,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10521,6 +10557,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10550,8 +10588,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10569,6 +10605,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10610,8 +10648,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10629,6 +10665,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10658,8 +10696,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10677,6 +10713,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10712,8 +10750,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10731,6 +10767,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10767,8 +10805,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10786,6 +10822,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10815,8 +10853,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10834,6 +10870,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10869,8 +10907,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10888,6 +10924,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10917,8 +10955,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10936,6 +10972,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -10971,8 +11009,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -10990,6 +11026,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11019,8 +11057,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11038,6 +11074,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11073,8 +11111,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11092,6 +11128,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11121,8 +11159,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11140,6 +11176,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11175,8 +11213,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11194,6 +11230,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11223,8 +11261,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11242,6 +11278,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11282,8 +11320,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11301,6 +11337,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11330,8 +11368,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11349,6 +11385,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11378,8 +11416,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11397,6 +11433,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11433,8 +11471,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11452,6 +11488,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11481,8 +11519,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11500,6 +11536,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11535,8 +11573,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11554,6 +11590,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11583,8 +11621,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11602,6 +11638,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11637,8 +11675,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11656,6 +11692,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11685,8 +11723,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11704,6 +11740,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11742,8 +11780,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11761,6 +11797,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11797,8 +11835,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11816,6 +11852,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11852,8 +11890,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11871,6 +11907,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11900,8 +11938,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11919,6 +11955,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -11957,8 +11995,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -11976,6 +12012,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12005,8 +12043,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12024,6 +12060,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12059,8 +12097,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12078,6 +12114,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12107,8 +12145,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12126,6 +12162,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12161,8 +12199,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12180,6 +12216,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12209,8 +12247,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12228,6 +12264,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12265,8 +12303,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12284,6 +12320,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12344,8 +12382,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12363,6 +12399,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12392,8 +12430,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12411,6 +12447,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12471,8 +12509,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12490,6 +12526,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12519,8 +12557,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12538,6 +12574,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -12573,8 +12611,6 @@ MonoBehaviour:
         Weight: 1
       - MiniGameCode: 14
         Weight: 1
-      - MiniGameCode: 15
-        Weight: 1
       - MiniGameCode: 17
         Weight: 1
       - MiniGameCode: 18
@@ -12592,6 +12628,8 @@ MonoBehaviour:
       - MiniGameCode: 29
         Weight: 1
       - MiniGameCode: 30
+        Weight: 1
+      - MiniGameCode: 31
         Weight: 1
       - MiniGameCode: 32
         Weight: 1
@@ -15400,63 +15438,78 @@ MonoBehaviour:
       English: good morning - question
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631"
       Linked: goodmorning_R
+      Words: []
     - Id: goodmorning_R
       English: good morning - reply
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u0646\u0648\u0631"
       Linked: goodmorning_Q
+      Words: []
     - Id: goodevening_Q
       English: good evening - question
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u062E\u064A\u0631"
       Linked: goodevening_R
+      Words: []
     - Id: goodevening_R
       English: good evening - reply
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u0646\u0648\u0631"
       Linked: goodevening_Q
+      Words: []
     - Id: hi
       English: Hi
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
       Linked: 
+      Words: []
     - Id: peaceonyou_Q
       English: peace upon you - question (religious)
       Arabic: "\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064A\u0643\u0645"
       Linked: peaceonyou_R
+      Words: []
     - Id: peaceonyou_R
       English: peace upon you - reply (religious)
       Arabic: "\u0648\u0639\u0644\u064A\u0643\u0645 \u0627\u0644\u0633\u0644\u0627\u0645"
       Linked: peaceonyou_Q
+      Words: []
     - Id: yourwelcome
       English: you are welcome
       Arabic: "\u0623\u0647\u0644\u0627\u064B \u0648\u0633\u0647\u0644\u0627\u064B"
       Linked: 
+      Words: []
     - Id: howareyou
       English: how are you doing?
       Arabic: "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643\u061F"
       Linked: 
+      Words: []
     - Id: fine
       English: fine
       Arabic: "\u0628\u062E\u064A\u0631"
       Linked: 
+      Words: []
     - Id: thankyou
       English: thank you
       Arabic: "\u0634\u0643\u0631\u0627\u064B"
       Linked: 
+      Words: []
     - Id: sure
       English: sure
       Arabic: "\u0639\u0641\u0648\u0627\u064B"
       Linked: 
+      Words: []
     - Id: seeyou
       English: see you
       Arabic: "\u0625\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621"
       Linked: 
+      Words: []
     - Id: goodbye
       English: good-bye
       Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
       Linked: 
+      Words: []
     - Id: the_year_2016
       English: 
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
         \u0639\u0634\u0631"
       Linked: 
+      Words: []
   stageTable:
     innerList:
     - Id: 1
@@ -15488,21 +15541,168 @@ MonoBehaviour:
     - Id: DogCollarLarge
       Title: 
       Category: 1
+      Weight: 0
     - Id: DogCollarMedium
       Title: 
       Category: 1
+      Weight: 0
     - Id: DogCollarSmall
       Title: 
       Category: 1
+      Weight: 0
     - Id: DogPirateHat
       Title: 
       Category: 1
+      Weight: 0
     - Id: DogPirateHook
       Title: 
       Category: 1
+      Weight: 0
     - Id: DogSkinRed
       Title: 
       Category: 2
+      Weight: 0
     - Id: DogSkinYellow
       Title: 
       Category: 2
+      Weight: 0
+    - Id: DogAnimation1
+      Title: 
+      Category: 0
+      Weight: 0
+    - Id: reward_tube_hat
+      Title: Tube hat
+      Category: 1
+      Weight: 0
+    - Id: reward_punk_hair
+      Title: Punk hair
+      Category: 1
+      Weight: 0
+    - Id: reward_viking_helm
+      Title: Viking helm
+      Category: 1
+      Weight: 0
+    - Id: reward_robot_helm
+      Title: Robot helm
+      Category: 1
+      Weight: 0
+    - Id: reward_glass_punk
+      Title: Glass punk
+      Category: 1
+      Weight: 0
+    - Id: reward_glass_mustache
+      Title: Glass + mustache
+      Category: 1
+      Weight: 0
+    - Id: reward_robot_upper_jaw
+      Title: Robot upper jaw
+      Category: 1
+      Weight: 0
+    - Id: reward_monocle
+      Title: Monocle
+      Category: 1
+      Weight: 0
+    - Id: reward_backpack
+      Title: Backpack
+      Category: 1
+      Weight: 0
+    - Id: reward_mobile_console
+      Title: Mobile console
+      Category: 1
+      Weight: 0
+    - Id: reward_shovel
+      Title: Shovel
+      Category: 1
+      Weight: 0
+    - Id: reward_guitar
+      Title: Guitar
+      Category: 1
+      Weight: 0
+    - Id: reward_collar_spike
+      Title: Collar spike
+      Category: 1
+      Weight: 0
+    - Id: reward_collar_bow
+      Title: Collar bow
+      Category: 1
+      Weight: 0
+    - Id: reward_collar_medal
+      Title: Collar bicolor with a medal
+      Category: 1
+      Weight: 0
+    - Id: reward_collar_diamond
+      Title: collar with diamond
+      Category: 1
+      Weight: 0
+    - Id: reward_robot_lower_jaw
+      Title: Robot Lower Jaw
+      Category: 1
+      Weight: 0
+    - Id: reward_papillon
+      Title: Papillon
+      Category: 1
+      Weight: 0
+    - Id: reward_beard_1
+      Title: Beard 1
+      Category: 1
+      Weight: 0
+    - Id: reward_beard_2
+      Title: Beard 2
+      Category: 1
+      Weight: 0
+    - Id: reward_star_tail
+      Title: Star Tail
+      Category: 1
+      Weight: 0
+    - Id: reward_umbrella
+      Title: Umbrella
+      Category: 1
+      Weight: 0
+    - Id: reward_mailbox
+      Title: Mailbox
+      Category: 1
+      Weight: 0
+    - Id: reward_bow_tail
+      Title: bow
+      Category: 1
+      Weight: 0
+    - Id: reward_hook_tail
+      Title: Hook
+      Category: 1
+      Weight: 0
+    - Id: reward_candy_stick
+      Title: Candy stick
+      Category: 1
+      Weight: 0
+    - Id: reward_bow_R
+      Title: Bow R
+      Category: 1
+      Weight: 0
+    - Id: reward_earring_1_R
+      Title: Earring 1 R
+      Category: 1
+      Weight: 0
+    - Id: reward_earring_2_R
+      Title: Earring 2 R
+      Category: 1
+      Weight: 0
+    - Id: reward_earring_3_R
+      Title: Earring 3 R
+      Category: 1
+      Weight: 0
+    - Id: reward_bow_L
+      Title: Bow L
+      Category: 1
+      Weight: 0
+    - Id: reward_earring_1_L
+      Title: Earring 1 L
+      Category: 1
+      Weight: 0
+    - Id: reward_earring_2_L
+      Title: Earring 2 L
+      Category: 1
+      Weight: 0
+    - Id: reward_earring_3_L
+      Title: Earring 3 L
+      Category: 1
+      Weight: 0

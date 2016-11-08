@@ -7,7 +7,7 @@ namespace EA4S {
         public static AnturaModelManager Instance;
 
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
-        public const string ANTURA_REWARDS_MODEL_PATH = "Models/Rewards/" + "Prefabs/";
+        public const string ANTURA_REWARDS_PREFABS_PATH = "Prefabs/Rewards/";
 
         [Header("Bones Attach")]
         public Transform Dog_head;
@@ -77,42 +77,42 @@ namespace EA4S {
                     transformParent = Dog_head;
                     if (Dog_head_pointer)
                         Destroy(Dog_head_pointer.gameObject);
-                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_MODEL_PATH + reward.ID), transformParent, false) as GameObject;
+                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_PREFABS_PATH + reward.ID), transformParent, false) as GameObject;
                     Dog_head_pointer = rewardModel.transform;
                     break;
                 case "dog_spine01":
                     transformParent = Dog_spine01;
                     if (Dog_spine01_pointer)
                         Destroy(Dog_spine01_pointer.gameObject);
-                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_MODEL_PATH + reward.ID), transformParent, false) as GameObject;
+                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_PREFABS_PATH + reward.ID), transformParent, false) as GameObject;
                     Dog_spine01_pointer = rewardModel.transform;
                     break;
                 case "dog_jaw":
                     transformParent = Dog_jaw;
                     if (Dog_jaw_pointer)
                         Destroy(Dog_jaw_pointer.gameObject);
-                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_MODEL_PATH + reward.ID), transformParent, false) as GameObject;
+                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_PREFABS_PATH + reward.ID), transformParent, false) as GameObject;
                     Dog_jaw_pointer = rewardModel.transform;
                     break;
                 case "dog_Tail4":
                     transformParent = Dog_Tail3;
                     if (Dog_Tail3_pointer)
                         Destroy(Dog_Tail3_pointer.gameObject);
-                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_MODEL_PATH + reward.ID), transformParent, false) as GameObject;
+                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_PREFABS_PATH + reward.ID), transformParent, false) as GameObject;
                     Dog_Tail3_pointer = rewardModel.transform;
                     break;
                 case "dog_R_ear04":
                     transformParent = Dog_R_ear04;
                     if (dog_R_ear04_pointer)
                         Destroy(dog_R_ear04_pointer.gameObject);
-                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_MODEL_PATH + reward.ID), transformParent, false) as GameObject;
+                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_PREFABS_PATH + reward.ID), transformParent, false) as GameObject;
                     dog_R_ear04_pointer = rewardModel.transform;
                     break;
                 case "dog_L_ear04":
                     transformParent = Dog_L_ear04;
                     if (dog_L_ear04_pointer)
                         Destroy(dog_L_ear04_pointer.gameObject);
-                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_MODEL_PATH + reward.ID), transformParent, false) as GameObject;
+                    rewardModel = Instantiate(Resources.Load(ANTURA_REWARDS_PREFABS_PATH + reward.ID), transformParent, false) as GameObject;
                     dog_L_ear04_pointer = rewardModel.transform;
                     break;
                 default:
