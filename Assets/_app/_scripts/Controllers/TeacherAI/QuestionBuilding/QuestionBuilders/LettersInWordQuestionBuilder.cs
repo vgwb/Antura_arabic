@@ -7,7 +7,7 @@ namespace EA4S
     {
         private int nPacks;
         private int nCorrect;
-        private bool useAllCorrects;
+        private bool useAllCorrectLetters;
         private int nWrong;
         private Db.WordDataCategory category;
 
@@ -16,7 +16,7 @@ namespace EA4S
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            this.useAllCorrects = useAllCorrectLetters;
+            this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
         }
 
@@ -31,15 +31,13 @@ namespace EA4S
             var db = AppManager.Instance.DB;
 
             // Get the word
-            Db.WordData question = null;
-            if (category != Db.WordDataCategory.None) question = teacher.wordHelper.GetWordsByCategory(category).RandomSelectOne();
-            else question = db.GetAllWordData().RandomSelectOne();
+            Db.WordData question = teacher.wordHelper.GetWordsByCategory(category).RandomSelectOne();
 
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);
 
             var correctAnswers = new List<Db.LetterData>(wordLetters);
-            if (!useAllCorrects) correctAnswers = wordLetters.RandomSelect(nCorrect);
+            if (!useAllCorrectLetters) correctAnswers = wordLetters.RandomSelect(nCorrect);
 
             var wrongAnswers = teacher.wordHelper.GetLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
 
