@@ -110,10 +110,17 @@ namespace EA4S.Db
             return GetWordsNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
-        public List<WordData> GetWordsByCategory(WordDataCategory choice)
+        public List<WordData> GetWordsByCategory(WordDataCategory choice, bool withDrawing = false)
         {
             if (choice == WordDataCategory.None) return dbManager.GetAllWordData();
-            return dbManager.FindWordData(x => x.Category == choice);
+            if (withDrawing)
+            {
+                return dbManager.FindWordData(x => x.Category == choice && x.HasDrawing());
+            }
+            else
+            {
+                return dbManager.FindWordData(x => x.Category == choice);
+            }
         }
 
         public List<WordData> GetWordsByArticle(WordDataArticle choice)
