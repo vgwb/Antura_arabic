@@ -30,7 +30,7 @@ namespace EA4S.Egg
             anturaAnimation = GameObject.Instantiate(anturaPrefab).GetComponent<AnturaAnimationController>();
             anturaAnimation.transform.SetParent(transform);
             anturaAnimation.transform.position = exitPosition.position;
-            anturaAnimation.transform.localEulerAngles = new Vector3(0f, 180f);
+            anturaAnimation.transform.localEulerAngles = new Vector3(0f, 90f);
             anturaAnimation.transform.localScale = Vector3.one;
 
             ChengeGameObjectLayer(anturaAnimation.gameObject);
