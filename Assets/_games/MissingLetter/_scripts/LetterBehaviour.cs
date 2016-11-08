@@ -272,7 +272,7 @@ namespace EA4S.MissingLetter
 
         static GameObject spotLight;
 
-        protected ILivingLetterData mLetterData;
+        public ILivingLetterData mLetterData;
 
         public LetterObjectView mLetter;
 
