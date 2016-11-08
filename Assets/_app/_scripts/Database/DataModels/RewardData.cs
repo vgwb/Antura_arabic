@@ -9,6 +9,7 @@ namespace EA4S.Db
         public string Id;
         public string Title;
         public RewardDataCategory Category;
+        public int Weight; // TODO @Michele
 
         public override string ToString()
         {
