@@ -80,6 +80,7 @@ namespace EA4S.Egg
                         game.runLettersBox.AddRunLetter(runLetterData);
                     }
 
+                    game.Context.GetOverlayWidget().SetStarsScore(game.CurrentStars);
                     game.antura.NextStage();
                     game.SetCurrentState(game.ResultState);
                 }

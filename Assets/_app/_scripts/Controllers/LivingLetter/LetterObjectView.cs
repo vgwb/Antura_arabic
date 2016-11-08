@@ -140,6 +140,7 @@ namespace EA4S
             animator.SetBool("dragging", false);
             animator.SetBool("dancing", false);
             animator.SetBool("hanging", false);
+            animator.SetBool("tickling", false);
             animator.SetBool("idle", false);
 
             if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless)
@@ -181,6 +182,9 @@ namespace EA4S
                     break;
                 case LLAnimationStates.LL_hanging:
                     animator.SetBool("hanging", true);
+                    break;
+                case LLAnimationStates.LL_tickling:
+                    animator.SetBool("tickling", true);
                     break;
                 default:
                     animator.SetBool("idle", true);

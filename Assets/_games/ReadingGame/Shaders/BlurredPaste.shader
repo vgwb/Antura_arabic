@@ -6,10 +6,13 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" "Queue"="Transparent" }
+		Tags { "RenderType"="Transparent" "Queue"="Transparent+10" }
 		LOD 100
 
+
 		Blend SrcAlpha OneMinusSrcAlpha
+		ZWrite off
+
 		Pass
 		{
 			CGPROGRAM
