@@ -682,7 +682,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1268898512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -7.9936523, z: 42.265625}
+  m_LocalPosition: {x: 0.5, y: -8, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -784,7 +784,7 @@ MonoBehaviour:
   normalTextureOutput: {fileID: 0}
   blurIterations: 2
   downsample: 1
-  blurSize: 3.7
+  blurSize: 2.5
   blurShader: {fileID: 4800000, guid: f9d5fa183cd6b45eeb1491f74863cd91, type: 3}
 --- !u!1 &1393437234
 GameObject:
@@ -808,7 +808,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1393437234}
   m_LocalRotation: {x: -0, y: -0, z: 3.1086249e-15, w: 1}
-  m_LocalPosition: {x: -0.085041046, y: 9.553654, z: -0.16562653}
+  m_LocalPosition: {x: -0.085041046, y: 9.553654, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -866,7 +866,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1799631439}
   m_LocalRotation: {x: -0, y: -0, z: 3.1086249e-15, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 42.3}
+  m_LocalPosition: {x: 0, y: 1, z: 40.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
