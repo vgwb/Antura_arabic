@@ -132,11 +132,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tOriginal: {fileID: 0}
   oTextComp: {fileID: 0}
+  mat: {fileID: 0}
   tSource: {fileID: 0}
   rt: {fileID: 0}
   t2D: {fileID: 0}
   tAlpha: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!1001 &186472237
 Prefab:
   m_ObjectHideFlags: 0
@@ -208,11 +208,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tOriginal: {fileID: 0}
   oTextComp: {fileID: 275101532}
+  mat: {fileID: 2100000, guid: be5f9607d40f75140966ba0a2127edeb, type: 2}
   tSource: {fileID: 0}
   rt: {fileID: 0}
   t2D: {fileID: 0}
   tAlpha: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!4 &270673689
 Transform:
   m_ObjectHideFlags: 0
@@ -433,6 +433,9 @@ MonoBehaviour:
   m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
   m_iPercentageRequiredToWin: 75
+  m_tBaseLetterTextureScaledToDynamic: {fileID: 0}
+  alphaletter: {fileID: 0}
+  factor: 0.5
 --- !u!114 &275101538
 MonoBehaviour:
   m_ObjectHideFlags: 0
