@@ -200,7 +200,7 @@ namespace EA4S.MissingLetter
         void ExitCurrentScene() {
             if (mCurrQuestionPack != null) {
 
-                ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+                //((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
 
                 foreach (GameObject _obj in mCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
@@ -243,8 +243,17 @@ namespace EA4S.MissingLetter
         public void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
 
+            //restore removed letter
+            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+            //refresh the data (for graphics)
+            foreach (GameObject _obj in mCurrentQuestionScene)
+            {
+                _obj.GetComponent<LetterBehaviour>().Refresh();
+            }
+
             mGame.SetInIdle(false);
 
+            //letter animation wait for ending dancing animation, wait animator fix
             LetterBehaviour clicked = GetAnswerById(_key);
             if (isCorrectAnswer(_key))
             {
@@ -265,8 +274,10 @@ namespace EA4S.MissingLetter
             mGame.StartCoroutine(Utils.LaunchDelay(1.2f, OnResponse, isCorrectAnswer(_key)));         
         }
 
+        //call after clicked answer animation
         private void OnResponse(bool correct)
         {
+            //sad, happy sound -> onclick or on response??
             if (correct)
             {
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
@@ -286,7 +297,7 @@ namespace EA4S.MissingLetter
             mGame.StartCoroutine(Utils.LaunchDelay(2.5f, mGame.SetInIdle, true));
         }
 
-
+        //shuffle current answer order and tell to letter change pos
         public void ShuffleLetters(float duration)
         {
             mCurrentAnswerScene.Shuffle();
@@ -297,6 +308,7 @@ namespace EA4S.MissingLetter
             }
         }
 
+        //win animation: quesion high five, correct answer dancing other horray
         private void DoWinAnimations()
         {
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
@@ -318,6 +330,7 @@ namespace EA4S.MissingLetter
             }
         }
 
+        //lose animation: quesion and correct answer angry other crouch
         private void DoLoseAnimations()
         {
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
