@@ -15,14 +15,22 @@ namespace EA4S.Db
 
         #region Letter -> Letter
 
-        private List<LetterData> GetLettersNotIn(List<string> tabooList)
+        public List<LetterData> GetAllRealLetters()
         {
-            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id));
+            return dbManager.FindLetterData(x => x.IsRealLetter());
         }
-        public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
+
+        private List<LetterData> GetRealLettersNotIn(List<string> tabooList)
+        {
+            return dbManager.FindLetterData(
+                x => !tabooList.Contains(x.Id)
+                && x.IsRealLetter()
+            );
+        }
+        public List<LetterData> GetRealLettersNotIn(params LetterData[] tabooArray)
         {
             var tabooList = new List<LetterData>(tabooArray);
-            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id));
+            return GetRealLettersNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
         public List<LetterData> GetLettersByKind(LetterDataKind choice)
@@ -60,10 +68,6 @@ namespace EA4S.Db
             return dbManager.FindLetterData(x => x.BaseLetter == baseData.Id);
         }
 
-        public List<LetterData> GetRealLetters()
-        {
-            return dbManager.FindLetterData(x => x.Kind == LetterDataKind.Letter);
-        }
         #endregion
 
         #region Word -> Letter
