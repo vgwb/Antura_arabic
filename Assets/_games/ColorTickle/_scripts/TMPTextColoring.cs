@@ -90,13 +90,13 @@ namespace EA4S.ColorTickle
 
             SetupLetterColorTexture(); //prepare the texture to color upon succesfull raycast
 
-            SetupLetterTexture(); //prepare the scaled letter texture used for 1:1 matching
+            SetupLetterShapeTexture(); //prepare the scaled letter texture used for 1:1 matching
 
         }
 
         void Update()
         {
-
+            
             if (Input.GetMouseButton(0)) //On touch 
             {
 
@@ -178,7 +178,7 @@ namespace EA4S.ColorTickle
 
             SetupLetterColorTexture(); //prepare the texture to color upon succesfull raycast
 
-            SetupLetterTexture(); //prepare the scaled letter texture used for 1:1 matching
+            SetupLetterShapeTexture(); //prepare the scaled letter texture used for 1:1 matching
         }
         #endregion
 
@@ -275,10 +275,13 @@ namespace EA4S.ColorTickle
         /// use this to precalculate a scaled texture of the letter to match the sizes 1:1 and avoid 
         /// frequent use of GetPixelBilinear() at each frame when accessing letter texture data.
         /// </summary>
-        private void SetupLetterTexture()
+        private void SetupLetterShapeTexture()
         {
+            //OLD
             //here scale the letter alpha texture to match the size of the dynamic one and having a 1:1 matching
-            m_tBaseLetterTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
+            //m_tBaseLetterTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
+            m_tBaseLetterTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.ARGB32, false);
+
 
             //retrive the letter size and width in pixels on the original texture
             int _iBaseLetterWidth_SingleLetter = Mathf.FloorToInt(Mathf.Abs(m_aUVLetterInMainTexture[0].x - m_aUVLetterInMainTexture[3].x) * m_tBaseLetterTexture.width);
@@ -286,7 +289,7 @@ namespace EA4S.ColorTickle
 
             //retrive the colors(shape) of the letter
             Color[] _aColorSingleLetter = m_tBaseLetterTexture.GetPixels(Mathf.FloorToInt(m_aUVLetterInMainTexture[0].x * m_tBaseLetterTexture.width), Mathf.FloorToInt(m_aUVLetterInMainTexture[0].y * m_tBaseLetterTexture.height), _iBaseLetterWidth_SingleLetter, _iBaseLetterHeight_SingleLetter);
-
+            
             //generate a texture with the founded size and colors
             Texture2D _tBaseLetterTexture_SingleLetter = new Texture2D(_iBaseLetterWidth_SingleLetter, _iBaseLetterHeight_SingleLetter, TextureFormat.Alpha8, false);
             _tBaseLetterTexture_SingleLetter.SetPixels(_aColorSingleLetter);
@@ -304,7 +307,6 @@ namespace EA4S.ColorTickle
 
             m_tBaseLetterTextureScaledToDynamic.SetPixels(_aColorSingleLetterScaled);
             m_tBaseLetterTextureScaledToDynamic.Apply();
-
         }
         #endregion
 
