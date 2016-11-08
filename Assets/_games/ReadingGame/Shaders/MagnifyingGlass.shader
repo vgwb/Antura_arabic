@@ -6,6 +6,9 @@
 		_MaskTex("Glass Mask", 2D) = "white" {}
 		_BackTex("Back", 2D) = "white" {}
 		_Color("Tint", Color) = (1,1,1,1)
+		_BackOffset("Back Offset", Vector) = (1,1,1,1)
+		_BackScale("Back Scale", Vector) = (1,1,1,1)
+
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 
@@ -13,7 +16,7 @@
 	{
 		Tags
 	{
-		"Queue" = "Transparent"
+		"Queue" = "Transparent+100"
 		"IgnoreProjector" = "True"
 		"RenderType" = "Transparent"
 		"PreviewType" = "Plane"
@@ -51,6 +54,8 @@
 	};
 
 	fixed4 _Color;
+	half2 _BackOffset;
+	half2 _BackScale;
 
 	v2f vert(appdata_t IN)
 	{
@@ -88,8 +93,12 @@
 		fixed4 c = SampleSpriteTexture(IN.texcoord) * IN.color;
 		
 		float mask = tex2D(_MaskTex, IN.texcoord).r;
-		float4 back = tex2D(_BackTex, IN.screencoord.xy/IN.screencoord.w).rgba;
-		back.rgb = lerp(half3(1, 1, 1), back.rgb, back.a);
+
+		float2 backUV = IN.screencoord.xy / IN.screencoord.w;
+		backUV = (backUV - _BackOffset) / _BackScale;
+
+		float4 back = tex2D(_BackTex, backUV).rgba;
+		back.rgb = lerp(half3(1, 1, 1), half3(0, 0, 0), 1 - back.r);
 
 		c.rgb *= c.a;
 
