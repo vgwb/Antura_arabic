@@ -99,7 +99,7 @@ public class HiddenText : MonoBehaviour
     {
         UpdateTarget();
 
-        transform.position = boundsMin + Vector3.forward;
+        transform.position = boundsMin + 0.5f*Vector3.forward;
         transform.localScale = new Vector3(boundsMax.x - boundsMin.x, boundsMax.y - boundsMin.y, 1);
     }
 

@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MagnifyingGlass
-  m_Shader: {fileID: 4800000, guid: b466ddae7e441dc4eb45b3631022249d, type: 3}
+  m_Name: ThreeSlices
+  m_Shader: {fileID: 4800000, guid: b01cc74bf0dca284282ef39dec3238b7, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -15,12 +15,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-    - first:
-        name: _BackTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -58,12 +52,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _MaskTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 5243561c15514c1409a10ea27d6c521a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _MetallicGlossMap
       second:
         m_Texture: {fileID: 0}
@@ -95,8 +83,14 @@ Material:
         name: _DetailNormalMapScale
       second: 1
     - first:
+        name: _Done
+      second: 1
+    - first:
         name: _DstBlend
       second: 0
+    - first:
+        name: _EndSlice
+      second: 0.8
     - first:
         name: _GlossMapScale
       second: 1
@@ -119,6 +113,12 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Scale
+      second: 0.54
+    - first:
+        name: _ScreenOffset
+      second: -11.66
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -128,6 +128,9 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
+        name: _StartSlice
+      second: 0.2
+    - first:
         name: _UVSec
       second: 0
     - first:
@@ -135,13 +138,10 @@ Material:
       second: 1
     m_Colors:
     - first:
-        name: _BackOffset
-      second: {r: 0.06340735, g: 0.17931728, b: 0, a: 0}
-    - first:
-        name: _BackScale
-      second: {r: 0.9093872, g: 0.7344266, b: 0, a: 0}
-    - first:
         name: _Color
+      second: {r: 0.5294118, g: 0.4733564, b: 0.41262978, a: 1}
+    - first:
+        name: _DoneColor
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor

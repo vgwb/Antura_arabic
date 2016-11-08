@@ -44,6 +44,7 @@ public class ReadingBarSet : MonoBehaviour
         bars.Clear();
 
         string text = ArabicAlphabetHelper.PrepareStringForDisplay("لم نرك منذ مدة لم نرك منذ مدة");
+        //string text = ArabicAlphabetHelper.PrepareStringForDisplay("لم نرك منذ مدة");
 
         string[] words = text.Split(' ');
         int wordsCount = words.Length;
