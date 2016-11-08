@@ -30,10 +30,11 @@ namespace EA4S.Egg
         bool inputEnabled = false;
 
         Action endMoveCallback;
+        Action startMoveCallback;
         Action endScaleCallback;
 
-        Tween moveTweener;
         Tween scaleTweener;
+        Sequence moveSequence;
 
         public void Initialize(IAudioManager audioManager, Action<ILivingLetterData> onButtonPressed)
         {
@@ -153,16 +154,34 @@ namespace EA4S.Egg
             scaleTweener = transform.DOScale(scale, duration).SetDelay(delay).OnComplete(delegate () { if (endScaleCallback != null) endScaleCallback(); });
         }
 
-        public void MoveTo(Vector3 position, float duration, AnimationCurve animationCurve, float delay = 0f, Action endCallback = null)
+        public void MoveTo(Vector3 position, float duration, AnimationCurve animationCurve, float delay = 0f, float delayFromStart = 0f, Action startCallback = null, Action endCallback = null)
         {
             endMoveCallback = endCallback;
+            startMoveCallback = startCallback;
 
-            if (moveTweener != null)
+            if (moveSequence != null)
             {
-                moveTweener.Kill();
+                moveSequence.Kill();
             }
 
-            moveTweener = transform.DOLocalMove(position, duration).SetDelay(delay).OnComplete(delegate () { if (endMoveCallback != null) endMoveCallback(); }).SetEase(animationCurve);
+            moveSequence = DOTween.Sequence();
+
+            moveSequence.AppendInterval(delay);
+
+            if (startMoveCallback != null)
+            {
+                moveSequence.AppendCallback(delegate () { if (startMoveCallback != null) startMoveCallback(); });
+                moveSequence.AppendInterval(delayFromStart);
+                moveSequence.Append(transform.DOLocalJump(position, 100f, 1, duration));
+            }
+            else
+            {
+                moveSequence.Append(transform.DOLocalMove(position, duration).SetEase(animationCurve));
+            }
+
+            moveSequence.OnComplete(delegate () { if (endMoveCallback != null) endMoveCallback(); });
+
+            moveSequence.Play();
         }
 
         public void SetPosition(Vector3 position)
