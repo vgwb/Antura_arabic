@@ -8,6 +8,7 @@ namespace EA4S.ReadingGame
     {
         public ReadingBarSet barSet;
         public GameObject blurredText;
+        public GameObject circleBox;
 
         public int CurrentScore { get; private set; }
 
@@ -48,7 +49,8 @@ namespace EA4S.ReadingGame
         protected override void OnInitialize(IGameContext context)
         {
             ReadState = new ReadingGameReadState(this);
-            
+            AnswerState = new ReadingGameAnswerState(this);
+
             Context.GetOverlayWidget().Initialize(true, true, false);
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }

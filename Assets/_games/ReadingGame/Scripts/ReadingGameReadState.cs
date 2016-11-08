@@ -43,6 +43,7 @@ namespace EA4S.ReadingGame
 
             game.barSet.SetData(null);
             game.blurredText.SetActive(true);
+            game.circleBox.SetActive(false);
         }
 
 
