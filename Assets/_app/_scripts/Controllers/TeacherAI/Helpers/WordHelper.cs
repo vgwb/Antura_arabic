@@ -60,6 +60,10 @@ namespace EA4S.Db
             return dbManager.FindLetterData(x => x.BaseLetter == baseData.Id);
         }
 
+        public List<LetterData> GetRealLetters()
+        {
+            return dbManager.FindLetterData(x => x.Kind == LetterDataKind.Letter);
+        }
         #endregion
 
         #region Word -> Letter

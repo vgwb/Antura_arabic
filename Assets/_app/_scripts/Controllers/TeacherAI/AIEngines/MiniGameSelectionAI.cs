@@ -8,8 +8,6 @@ namespace EA4S.Teacher
     /// </summary>
     public class MiniGameSelectionAI
     {
-        private static bool VERBOSE = false;
-
         // References
         private DatabaseManager dbManager;
         //private PlayerProfile playerProfile;
@@ -106,7 +104,7 @@ namespace EA4S.Teacher
             //foreach(var l in minigame_score_list) UnityEngine.Debug.Log(l.ElementId);
 
             // Determine the final weight for each minigame
-            string debugString = "";
+            string debugString = "----- TEACHER: MiniGameSelection ----- \n";
             foreach (var minigame_data in minigame_data_list)
             {
                 float cumulativeWeight = 0;
@@ -136,7 +134,10 @@ namespace EA4S.Teacher
                 debugString += " TOTw: " + cumulativeWeight;
                 debugString += "\n";
             }
-            if (VERBOSE) UnityEngine.Debug.Log(debugString);
+            if (ConfigAI.verboseTeacher)
+            {
+                UnityEngine.Debug.Log(debugString);
+            }
 
 
             // Number checks

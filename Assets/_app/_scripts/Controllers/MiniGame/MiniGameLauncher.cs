@@ -19,9 +19,8 @@ namespace EA4S
 
         public void LaunchGame(MiniGameCode miniGameCode)
         {
-            float difficulty = this.teacher.GetCurrentDifficulty();
+            float difficulty = teacher.GetCurrentDifficulty(miniGameCode);
             GameConfiguration configuration = new GameConfiguration(difficulty);
-
             MiniGameAPI.Instance.StartGame(miniGameCode, configuration);
         } 
 
