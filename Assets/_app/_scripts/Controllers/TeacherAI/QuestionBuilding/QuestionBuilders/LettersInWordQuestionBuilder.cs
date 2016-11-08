@@ -41,7 +41,7 @@ namespace EA4S
             var correctAnswers = new List<Db.LetterData>(wordLetters);
             if (!useAllCorrectLetters) correctAnswers = wordLetters.RandomSelect(nCorrect);
 
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
+            var wrongAnswers = teacher.wordHelper.GetRealLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }

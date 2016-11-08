@@ -28,7 +28,7 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
             var db = AppManager.Instance.DB;
 
-            var commonLetters = teacher.wordHelper.GetRealLetters().RandomSelect(nCorrect);
+            var commonLetters = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
             var words = teacher.wordHelper.GetWordsWithLetters(commonLetters.ConvertAll(x => x.Id).ToArray()).RandomSelect(nWords);
             // @todo: make sure that two words can be found every time! maybe filter letters only by those that appear in multiple words?
 
