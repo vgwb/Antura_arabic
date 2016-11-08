@@ -15,14 +15,22 @@ namespace EA4S.Db
 
         #region Letter -> Letter
 
-        private List<LetterData> GetLettersNotIn(List<string> tabooList)
+        public List<LetterData> GetAllRealLetters()
         {
-            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id));
+            return dbManager.FindLetterData(x => x.IsRealLetter());
         }
-        public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
+
+        private List<LetterData> GetRealLettersNotIn(List<string> tabooList)
+        {
+            return dbManager.FindLetterData(
+                x => !tabooList.Contains(x.Id)
+                && x.IsRealLetter()
+            );
+        }
+        public List<LetterData> GetRealLettersNotIn(params LetterData[] tabooArray)
         {
             var tabooList = new List<LetterData>(tabooArray);
-            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id));
+            return GetRealLettersNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
         public List<LetterData> GetLettersByKind(LetterDataKind choice)
@@ -76,6 +84,16 @@ namespace EA4S.Db
             return GetLettersInWord(wordData);
         }
 
+        public List<LetterData> GetLettersNotInWords(params WordData[] tabooArray)
+        {
+            var letter_ids_list = new HashSet<string>();
+            foreach (var tabooWordData in tabooArray)
+            {
+                letter_ids_list.UnionWith(tabooWordData.Letters);
+            }
+            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id));
+            return list;
+        }
 
         public List<LetterData> GetLettersNotInWord(string wordId)
         {
@@ -83,7 +101,6 @@ namespace EA4S.Db
             var letter_ids_list = new List<string>(wordData.Letters);
             List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id));
             return list;
-
         }
 
         #endregion
@@ -101,9 +118,17 @@ namespace EA4S.Db
             return GetWordsNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
-        public List<WordData> GetWordsByCategory(WordDataCategory choice)
+        public List<WordData> GetWordsByCategory(WordDataCategory choice, bool withDrawing = false)
         {
-            return dbManager.FindWordData(x => x.Category == choice);
+            if (choice == WordDataCategory.None) return dbManager.GetAllWordData();
+            if (withDrawing)
+            {
+                return dbManager.FindWordData(x => x.Category == choice && x.HasDrawing());
+            }
+            else
+            {
+                return dbManager.FindWordData(x => x.Category == choice);
+            }
         }
 
         public List<WordData> GetWordsByArticle(WordDataArticle choice)

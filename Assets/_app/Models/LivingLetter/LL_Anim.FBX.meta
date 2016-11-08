@@ -149,6 +149,9 @@ ModelImporter:
     7400050: LL_crouching
     7400052: LL_crouching_up
     7400054: LL_hanging
+    7400056: LL_tickling_start
+    7400058: LL_tickling_loop
+    7400060: LL_tickling_end
     9500000: //RootNode
     13700000: LL
     13700002: LL_BackQuad
@@ -206,11 +209,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -301,6 +308,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -332,11 +343,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -427,6 +442,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -458,11 +477,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -553,6 +576,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -584,11 +611,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -679,6 +710,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -710,11 +745,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -805,6 +844,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -836,11 +879,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -931,6 +978,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -962,11 +1013,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1057,6 +1112,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1088,11 +1147,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1183,6 +1246,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1214,11 +1281,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1309,6 +1380,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1340,11 +1415,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1435,6 +1514,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1466,11 +1549,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1561,6 +1648,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1592,11 +1683,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1687,6 +1782,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1725,11 +1824,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1820,6 +1923,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1851,11 +1958,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -1946,6 +2057,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1977,11 +2092,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2072,6 +2191,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2103,11 +2226,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2198,6 +2325,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2229,11 +2360,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2324,6 +2459,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2355,11 +2494,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2450,6 +2593,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2481,11 +2628,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2576,6 +2727,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2607,11 +2762,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2702,6 +2861,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2733,11 +2896,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2828,6 +2995,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2859,11 +3030,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -2954,6 +3129,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -2985,11 +3164,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -3080,6 +3263,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -3111,11 +3298,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -3206,6 +3397,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -3237,11 +3432,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -3332,6 +3531,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -3363,11 +3566,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -3458,6 +3665,10 @@ ModelImporter:
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -3489,11 +3700,15 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: LL
-        weight: 1
       - path: LL_BackQuad
         weight: 1
+      - path: LL_Body
+        weight: 1
       - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
         weight: 1
       - path: LL_Pelvis
         weight: 1
@@ -3585,6 +3800,10 @@ ModelImporter:
         weight: 1
       - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
         weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
@@ -3600,6 +3819,408 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: LL_BackQuad
+        weight: 1
+      - path: LL_Body
+        weight: 1
+      - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
+        weight: 1
+      - path: LL_Pelvis
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/Bone011
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/Bone015
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/Bone016
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/Bone018
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2/Bone017
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2/LL__leg_RFoot
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/Bone008
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/Bone012
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/Bone013
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/Bone019
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2/Bone014
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2/LL_LLegFoot
+        weight: 1
+      - path: LL_Pelvis/LL_spine
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/Bone002
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/Bone004
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/Bone005
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2/Bone006
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2/LL_LArmPalm
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_Neck
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_Neck/LL_Head
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/Bone003
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/Bone007
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/Bone009
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LL_tickling_start
+      takeName: Take 001
+      firstFrame: 1660
+      lastFrame: 1668
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: LL_BackQuad
+        weight: 1
+      - path: LL_Body
+        weight: 1
+      - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
+        weight: 1
+      - path: LL_Pelvis
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/Bone011
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/Bone015
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/Bone016
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/Bone018
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2/Bone017
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2/LL__leg_RFoot
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/Bone008
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/Bone012
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/Bone013
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/Bone019
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2/Bone014
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2/LL_LLegFoot
+        weight: 1
+      - path: LL_Pelvis/LL_spine
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/Bone002
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/Bone004
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/Bone005
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2/Bone006
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2/LL_LArmPalm
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_Neck
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_Neck/LL_Head
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/Bone003
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/Bone007
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/Bone009
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LL_tickling_loop
+      takeName: Take 001
+      firstFrame: 1668
+      lastFrame: 1725
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: LL_BackQuad
+        weight: 1
+      - path: LL_Body
+        weight: 1
+      - path: LL_FrontQuad
+        weight: 1
+      - path: LL_LArm
+        weight: 1
+      - path: LL_LLeg
+        weight: 1
+      - path: LL_Pelvis
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/Bone011
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/Bone015
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/Bone016
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/Bone018
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2/Bone017
+        weight: 1
+      - path: LL_Pelvis/LL__leg_RThigh1/LL__leg_RThigh2/LL__leg_RCalf1/LL__leg_RCalf2/LL__leg_RFoot
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/Bone008
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/Bone012
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/Bone013
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/Bone019
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2/Bone014
+        weight: 1
+      - path: LL_Pelvis/LL_LLegThigh1/LL_LLegThigh2/LL_LLegCalf1/LL_LLegCalf2/LL_LLegFoot
+        weight: 1
+      - path: LL_Pelvis/LL_spine
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/Bone002
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/Bone004
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/Bone005
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2/Bone006
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_LArmCollarbone/LL_LArmUpperarm1/LL_LArmUpperarm2/LL_LArmForearm1/LL_LArmForearm2/LL_LArmPalm
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_Neck
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_Neck/LL_Head
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/Bone003
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/Bone007
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/Bone009
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/Bone010
+        weight: 1
+      - path: LL_Pelvis/LL_spine/LL_Ribcage/LL_RCollarbone/LL_RUpperarm1/LL_RUpperarm2/LL_RForearm1/LL_RForearm2/LL_RPalm
+        weight: 1
+      - path: LL_RArm
+        weight: 1
+      - path: LL_RLeg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LL_tickling_end
+      takeName: Take 001
+      firstFrame: 1725
+      lastFrame: 1741
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

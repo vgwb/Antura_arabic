@@ -28,9 +28,9 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
             var db = AppManager.Instance.DB;
 
-            var correctAnswers = db.GetAllLetterData().RandomSelect(nCorrect);
+            var correctAnswers = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
             var question = firstCorrectIsQuestion ? correctAnswers[0] : null;
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
+            var wrongAnswers = teacher.wordHelper.GetRealLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
