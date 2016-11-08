@@ -41,7 +41,7 @@ namespace EA4S.SickLetters
         {
             timer -= delta;
 
-            if (timer < 0)
+            if (timer < 0 /*|| game.successRoundsCount == 6*/)
             {
                 game.SetCurrentState(game.ResultState);
                 

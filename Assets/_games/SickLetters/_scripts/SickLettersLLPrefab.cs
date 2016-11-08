@@ -18,7 +18,7 @@ namespace EA4S.SickLetters
         public LetterObjectView letterView;
         public letterStatus LLStatus = letterStatus.idle;
         public Animator letterAnimator;
-        public List<SickLettersDraggableDD> thisLetterDD = new List<SickLettersDraggableDD>();
+        public List<SickLettersDraggableDD> thisLLWrongDDs = new List<SickLettersDraggableDD>();
 
         string newLetterString = "", prevLetter = ".";
         
@@ -62,8 +62,8 @@ namespace EA4S.SickLetters
             yield return new WaitForSeconds(0.30f);
 
             letterView.OnJumpEnded();
-            letterView.SetState(LLAnimationStates.LL_idle);
-            letterAnimator.SetBool("idle", true);
+            //letterView.SetState(LLAnimationStates.LL_idle);
+            //letterAnimator.SetBool("idle", true);
 
             yield return new WaitForSeconds(1f);
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);
@@ -110,7 +110,7 @@ namespace EA4S.SickLetters
         public void scatterDDs()
         {
             i = 0;
-            thisLetterDD.Clear();
+            //thisLLWrongDDs.Clear();
 
             foreach (SickLettersDropZone dz in game.DropZones)
             {
@@ -125,7 +125,9 @@ namespace EA4S.SickLetters
                         newDragable.setInitPos(newDragable.transform.localPosition);
                         //newDragable.isAttached = true;
 
-                        thisLetterDD.Add(newDragable);
+                        thisLLWrongDDs.Add(newDragable);
+                        game.allWrongDDs.Add(newDragable);
+
                         i++;
                     }
                 }
