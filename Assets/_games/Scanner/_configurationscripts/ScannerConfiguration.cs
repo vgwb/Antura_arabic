@@ -1,12 +1,5 @@
 ﻿namespace EA4S.Scanner 
 {
-
-	public enum ScannerVariation : int 
-	{
-        V_1 = 1,
-        phrase = 2,
-    }
-
     public class ScannerConfiguration : IGameConfiguration 
 	{
         // Game configuration
@@ -15,7 +8,6 @@
 
         #region Game configurations
         public float Difficulty { get; set; }
-        public ScannerVariation Variation { get; set; }
         #endregion
 //		public LetterBehaviour.BehaviourSettings BehaviourSettings { get; set; }
 
@@ -39,8 +31,6 @@
 
             Questions = new SampleQuestionProvider();
 
-            Variation = ScannerVariation.V_1;
-
             Context = new SampleGameContext();
             Difficulty = 0.5f;
         }
@@ -49,7 +39,6 @@
         public static void SetConfiguration(float _difficulty, int _variation) {
             instance = new ScannerConfiguration() {
                 Difficulty = _difficulty,
-                Variation = (ScannerVariation)_variation,
             };
         }
         #endregion

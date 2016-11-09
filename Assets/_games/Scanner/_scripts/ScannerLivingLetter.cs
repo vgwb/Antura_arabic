@@ -6,17 +6,39 @@ namespace EA4S.Scanner
 
 	public class ScannerLivingLetter : MonoBehaviour {
 
-		private enum LLStatus { Sliding, StandingOnBelt, RunningFromAntura, Angry, Happy };
-
+		private enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Angry, Happy };
 		public GameObject livingLetter;
-
 		public float slideSpeed = 2f;
+		public bool facingCamera;
+		private LLStatus status = LLStatus.None;
+		private float turnAngle;
+		private Vector3 startingPosition;
+		private Quaternion startingRotation;
 
-		private LLStatus status;
 		// Use this for initialization
-		void Start () {
+		void Start () 
+		{
+			startingPosition = transform.position;
+			startingRotation = livingLetter.GetComponent<LetterObjectView>().transform.rotation;
+
+//			Reset();
+
+		}
+
+
+		public void Reset()
+		{
+			StopAllCoroutines();
+			transform.position = startingPosition;
+			livingLetter.GetComponent<LetterObjectView>().transform.rotation = startingRotation;
+
+			turnAngle = facingCamera ? 180 : 0;
+			livingLetter.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_still);
 			livingLetter.GetComponent<LetterObjectView>().Falling = true;
-            status = LLStatus.Sliding;
+			status = LLStatus.Sliding;
+			gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
+			gameObject.GetComponent<BoxCollider>().enabled = false; // disable body collider
+
 		}
 
 		// Update is called once per frame
@@ -63,15 +85,16 @@ namespace EA4S.Scanner
 
 		void OnTriggerEnter(Collider other) 
 		{
-			Debug.Log("Slide Trigger entered");
 			if (status == LLStatus.Sliding)
 			{
 				if (other.tag == ScannerGame.TAG_BELT)
 				{
 					transform.parent = other.transform;
 					status = LLStatus.StandingOnBelt;
+					gameObject.GetComponent<SphereCollider>().enabled = false; // disable feet collider
+					gameObject.GetComponent<BoxCollider>().enabled = true; // enable body collider
 					livingLetter.GetComponent<LetterObjectView>().Falling = false;
-					StartCoroutine(RotateGO(livingLetter, new Vector3(0,180,0),1f));
+					StartCoroutine(RotateGO(livingLetter, new Vector3(0,turnAngle,0),1f));
 					StartCoroutine(AnimateLL());
 				}
 			}
