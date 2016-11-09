@@ -72,6 +72,17 @@ namespace EA4S
             inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
 
             inputManager.Update(Time.deltaTime);
+
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+                EndGame(0, 0);
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+                EndGame(1, 1);
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+                EndGame(2, 2);
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+                EndGame(3, 3);
+#endif
         }
 
         void FixedUpdate()

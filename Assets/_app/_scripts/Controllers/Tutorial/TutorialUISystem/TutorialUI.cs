@@ -24,11 +24,11 @@ namespace EA4S
         [Tooltip("In units x second")]
         public float DrawSpeed = 2;
         [Header("References")]
-        public TutorialUIProp Finger;
+        public TutorialUIFinger Finger;
         public TutorialUIPools Pools;
 
-        public static TutorialUI I;
-        [System.NonSerialized] public Camera Cam;
+        internal static TutorialUI I;
+        [System.NonSerialized] internal Camera Cam;
         const string ResourcePath = "Prefabs/UI/TutorialUI";
         const string TweenId = "TutorialUI";
         float actualDrawSpeed;
@@ -70,7 +70,28 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Draws a straight line with the given options
+        /// Shows a finger click at the given world position
+        /// </summary>
+        /// <param name="_position">World position</param>
+        public static void Click(Vector3 _position)
+        {
+            I.Finger.Click(I.transform, _position);
+        }
+
+        /// <summary>
+        /// Shows a repeated finger click at the given world position
+        /// </summary>
+        /// <param name="_position">World position</param>
+        /// <param name="_duration">Duration of the repeat</param>
+        /// <param name="_clicksPerSecond">Click per second</param>
+        public static void ClickRepeat(Vector3 _position, float _duration = 2, float _clicksPerSecond = 5)
+        {
+            I.Finger.ClickRepeat(I.transform, _position, _duration, _clicksPerSecond);
+        }
+
+        /// <summary>
+        /// Draws a straight line with the given options.
+        /// <para>NOTE: you can chain an OnComplete method call to get a callback when the line has finished drawing</para>
         /// </summary>
         /// <param name="_from">Starting world position</param>
         /// <param name="_to">Ending world position</param>
@@ -79,14 +100,15 @@ namespace EA4S
         /// otherwise it will disappear automatically</param>
         /// <param name="_overlayed">If TRUE the line will always appear above other world elements,
         /// otherwise it will behave as a regular world object</param>
-        public static void DrawLine(Vector3 _from, Vector3 _to, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
+        public static TutorialUIAnimation DrawLine(Vector3 _from, Vector3 _to, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
         {
             Init();
-            I.DoDrawLine(new[]{_from, _to}, PathType.Linear, _mode, _persistent, _overlayed);
+            return I.DoDrawLine(new[]{_from, _to}, PathType.Linear, _mode, _persistent, _overlayed);
         }
 
         /// <summary>
-        /// Draws a curved line with the given options
+        /// Draws a curved line with the given options.
+        /// <para>NOTE: you can chain an OnComplete method call to get a callback when the line has finished drawing</para>
         /// </summary>
         /// <param name="_path">A series of waypoints (world positions) between which the line will pass.
         /// IMPORTANT: the line drawn between the waypoints will use a CatmullRom curve, so you don't need too many waypoint to actually draw a curve</param>
@@ -95,10 +117,10 @@ namespace EA4S
         /// otherwise it will disappear automatically</param>
         /// <param name="_overlayed">If TRUE the line will always appear above other world elements,
         /// otherwise it will behave as a regular world object</param>
-        public static void DrawLine(Vector3[] _path, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
+        public static TutorialUIAnimation DrawLine(Vector3[] _path, DrawLineMode _mode, bool _persistent = false, bool _overlayed = true)
         {
             Init();
-            I.DoDrawLine(_path, PathType.CatmullRom, _mode, _persistent, _overlayed);
+            return I.DoDrawLine(_path, PathType.CatmullRom, _mode, _persistent, _overlayed);
         }
 
         #endregion
@@ -113,7 +135,7 @@ namespace EA4S
             go.name = "[TutorialUI]";
         }
 
-        void DoDrawLine(Vector3[] _path, PathType _pathType, DrawLineMode _mode, bool _persistent, bool _overlayed)
+        TutorialUIAnimation DoDrawLine(Vector3[] _path, PathType _pathType, DrawLineMode _mode, bool _persistent, bool _overlayed)
         {
             bool hasFinger = _mode == DrawLineMode.Finger || _mode == DrawLineMode.FingerAndArrow;
             bool hasArrow = _mode == DrawLineMode.Arrow || _mode == DrawLineMode.FingerAndArrow;
@@ -134,20 +156,19 @@ namespace EA4S
             if (hasArrow) arrow = Pools.SpawnArrow(this.transform, startPos, _overlayed);
 
             TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId);
+
+            Tween mainTween = currMovingTarget.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
             if (_persistent) {
-                parms.OnUpdate(() => {
-                    lr.AddPosition(lr.transform.position);
-                });
-                parms.OnComplete(() => {
+                mainTween.OnUpdate(() => lr.AddPosition(lr.transform.position));
+                mainTween.OnStepComplete(() => {
                     if (hasFinger && lr.transform == currMovingTarget) Finger.Hide();
                 });
             } else {
-                parms.OnComplete(() => {
+                mainTween.OnStepComplete(() => {
                     if (hasFinger && tr.transform == currMovingTarget) Finger.Hide();
                 });
             }
 
-            currMovingTarget.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
             if (hasArrow) {
                 Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, arrow.transform.up)
                     .SetAs(parms);
@@ -157,6 +178,8 @@ namespace EA4S
                     });
                 }
             }
+
+            return new TutorialUIAnimation(mainTween);
         }
 
         #endregion

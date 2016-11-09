@@ -30,6 +30,7 @@ namespace EA4S
         // Selection engines
         MiniGameSelectionAI minigameSelectionAI;
         WordSelectionAI wordSelectionAI;
+        DifficultySelectionAI difficultySelectionAI;
 
         // State
         private List<MiniGameData> currentPlaySessionMiniGames = new List<MiniGameData>();
@@ -47,6 +48,7 @@ namespace EA4S
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
+            this.difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
         }
 
         private void ResetPlaySession()
@@ -95,111 +97,17 @@ namespace EA4S
 
         #endregion
 
-        #region Interface - Letters / Words
-
-        // DEPRECATED (could safely remove this! it is not used anymore!)
-        public WordData GimmeAGoodWord(WordDataCategory category)
-        {
-            return dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart).RandomSelectOne();
-        }
-
-        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
-        public LL_LetterData GimmeARandomLetter()
-        {
-            var data = this.SelectRandomLetter();
-            return BuildLetterData_LL(data);
-        }
-
-        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
-        /// <summary>
-        /// Return WordData from a list of available data.
-        /// </summary>
-        /// <returns></returns>
-        public LL_WordData GimmeAGoodWordData()
-        {
-            // init vocabulary
-            var availableVocabulary = BuildWordData_LL_Set(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
-
-            List<LL_WordData> returnList = new List<LL_WordData>();
-            if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
-            { 
-                // if already used all available words... restart.
-                AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
-            }
-
-            foreach (LL_WordData w in availableVocabulary)
-            {
-                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
-                {
-                    returnList.Add(w); // Only added if not already used
-                }
-            }
-
-            LL_WordData returnWord = returnList.GetRandom();
-            // Debug.Log("Word: " + returnWord.Key);
-            AppManager.Instance.ActualGameplayWordAlreadyUsed.Add(returnWord);
-            return returnWord;
-        }
-
-
-        // DEPRECATED (should be in the new "MiniGameLauncher SYSTEM")
-        /// <summary>
-        /// TODO
-        /// Gimmes n similar letters to the current.
-        /// </summary>
-        /// <returns>The similar letters.</returns>
-        /// <param name="letter">Letter.</param>
-        /// <param name="howMany">How many.</param>
-        public List<Db.LetterData> GimmeSimilarLetters(Db.LetterData letter, int howMany)
-        {
-            List<Db.LetterData> returnList = new List<Db.LetterData>();
-            returnList.Add(dbManager.GetAllLetterData().RandomSelectOne());
-            return returnList;
-        }
-
-        #endregion
-
         #region Interface - Difficulty
 
-        public float GetCurrentDifficulty()
+        public float GetCurrentDifficulty(MiniGameCode miniGameCode)
         {
-            // @todo: implement this
-            // @todo: use the debug value if needed, injected b DebygManager.I.Difficulty
-            return 0.5f;   
+            return difficultySelectionAI.SelectDifficulty(miniGameCode);
         }
 
         #endregion
-
-        #region WordData -> LL_WordData helpers
-
-        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
-        public LL_LetterData BuildLetterData_LL(LetterData data)
-        {
-            return new LL_LetterData(data.GetId());
-        }
-
-        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
-        public List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
-        {
-            return data_list.ConvertAll<ILivingLetterData>(x => BuildLetterData_LL(x)); 
-        }
-        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
-        public LL_WordData BuildWordData_LL(WordData data)
-        {
-            return new LL_WordData(data.GetId(), data);
-        }
-
-        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
-        public List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
-        {
-            return data_list.ConvertAll<ILivingLetterData>(x => BuildWordData_LL(x));
-        }
-
-        #endregion
-
 
         // HELPER (move to JourneyHelper?)
-        private string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
+        public string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
         {
             return journeyPosition.Stage + "." + journeyPosition.LearningBlock + "." + journeyPosition.PlaySession;
         }
@@ -219,28 +127,33 @@ namespace EA4S
 
         #endregion
 
-        #region Letter/Word Selection queries
+        #region Letter/Word Selection queries (Tests)
 
+        // TEST - DEPRECATED
         public LetterData SelectRandomLetter()
         {
             return dbManager.GetAllLetterData().RandomSelectOne();
         }
 
+        // TEST - DEPRECATED
         public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
         {
             return this.wordSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
+        // TEST - DEPRECATED
         public List<LetterData> GetLettersInWord(string wordId)
         {
             return wordHelper.GetLettersInWord(wordId);
         }
 
+        // TEST - DEPRECATED
         public List<LetterData> SelectLettersInWord(int nToSelect, string wordId)
         {
             return wordHelper.GetLettersInWord(wordId).RandomSelect(2);
         }
 
+        // TEST - DEPRECATED
         public List<WordData> SelectWordsWithLetters(int nToSelect, params string[] letters)
         {
             return wordHelper.GetWordsWithLetters(letters).RandomSelect(2);
@@ -368,6 +281,82 @@ namespace EA4S
         }
 
         #endregion
+
+
+        // DEPRECATED!!!
+        #region Interface - Letters / Words
+
+        // DEPRECATED
+        [System.Obsolete("GimmeARandomLetter is deprecated and will soon be removed. You should get your data from the question packs provider.")]
+        public LL_LetterData GimmeARandomLetter()
+        {
+            var data = this.SelectRandomLetter();
+            return BuildLetterData_LL(data);
+        }
+
+        // DEPRECATED
+        [System.Obsolete("GimmeAGoodWordData is deprecated and will soon be removed. You should get your data from the question packs provider.")]
+        public LL_WordData GimmeAGoodWordData()
+        {
+            // init vocabulary
+            var availableVocabulary = BuildWordData_LL_Set(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
+
+            List<LL_WordData> returnList = new List<LL_WordData>();
+            if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
+            {
+                // if already used all available words... restart.
+                AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
+            }
+
+            foreach (LL_WordData w in availableVocabulary)
+            {
+                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
+                {
+                    returnList.Add(w); // Only added if not already used
+                }
+            }
+
+            LL_WordData returnWord = returnList.GetRandom();
+            // Debug.Log("Word: " + returnWord.Key);
+            AppManager.Instance.ActualGameplayWordAlreadyUsed.Add(returnWord);
+            return returnWord;
+        }
+
+        #endregion
+
+        // DEPRECATED!!!
+        #region WordData -> LL_WordData helpers
+
+        // DEPRECATED
+        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
+        public LL_LetterData BuildLetterData_LL(LetterData data)
+        {
+            return new LL_LetterData(data.GetId());
+        }
+
+        // DEPRECATED
+        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
+        public List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
+        {
+            return data_list.ConvertAll<ILivingLetterData>(x => BuildLetterData_LL(x));
+        }
+
+        // DEPRECATED!!!
+        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
+        public LL_WordData BuildWordData_LL(WordData data)
+        {
+            return new LL_WordData(data.GetId(), data);
+        }
+
+        // DEPRECATED!!!
+        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
+        public List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
+        {
+            return data_list.ConvertAll<ILivingLetterData>(x => BuildWordData_LL(x));
+        }
+
+        #endregion
+
 
     }
 }

@@ -5,9 +5,9 @@ namespace EA4S
 {
     public class WordsWithLetterQuestionBuilder : IQuestionBuilder
     {
-        private int nPacks = 10;
-        private int nCorrect = 3;
-        private int nWrong = 3;
+        private int nPacks;
+        private int nCorrect;
+        private int nWrong;
 
         public WordsWithLetterQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0)
         {
@@ -26,7 +26,7 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
             var db = AppManager.Instance.DB;
 
-            Db.LetterData question = db.GetAllLetterData().RandomSelectOne();
+            var question = db.GetAllLetterData().RandomSelectOne();
             var correctAnswers = teacher.wordHelper.GetWordsWithLetter(question.Id).RandomSelect(nCorrect);
             var wrongAnswers = teacher.wordHelper.GetWordsNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
 
