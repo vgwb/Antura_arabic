@@ -22,11 +22,18 @@ namespace EA4S
             foreach (Image img in GetComponentsInChildren<Image>())
             {
                 img.DOFade(0, 0);
+                img.raycastTarget = false;
             }
         }
 
         public void Show(int _stars)
         {
+            foreach (Image img in GetComponentsInChildren<Image>())
+            {
+                img.raycastTarget = true;
+            }
+            Bbackground.raycastTarget = false;
+
             //if(_stars > 0)
             nextSceneName = AppManager.Instance.MiniGameDone();
 

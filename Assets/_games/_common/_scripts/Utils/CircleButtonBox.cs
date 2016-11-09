@@ -18,20 +18,37 @@ namespace EA4S
         System.Random randomGenerator;
         bool dirty = false;
 
-        public void Start()
+        bool imageMode;
+        public bool ImageMode
         {
-            AddButton(null);
-            AddButton(null);
-            AddButton(null);
-            AddButton(null);
-            AddButton(null);
-            AddButton(null);
+            get
+            {
+                return imageMode;
+            }
+            set
+            {
+                imageMode = value;
+                for (int i = 0; i < buttons.Count; i++)
+                    buttons[i].ImageMode = value;
+            }
         }
 
-        public void AddButton(ILivingLetterData letterData)
+        public void Clear()
+        {
+            // Clear past data
+            foreach (var b in buttons)
+            {
+                Destroy(b.gameObject);
+            }
+            buttons.Clear();
+        }
+
+        public void AddButton(ILivingLetterData letterData, System.Action<CircleButton> onClicked)
         {
             CircleButton button = CreateButton();
-            button.SetAnswer(letterData);
+            button.Answer = letterData;
+            button.onClicked = onClicked;
+            button.ImageMode = ImageMode;
             buttons.Add(button);
 
             dirty = true;
@@ -99,13 +116,13 @@ namespace EA4S
                 }
 
                 buttons[i].transform.localPosition = Vector3.right * (-0.5f * (rowWidth - 1) + idX) * buttonDistance + Vector3.down * (-0.5f * (height - 1) + idY) * buttonDistance;
+            }
+        }
+
+        void Update()
+        {
+            if (dirty)
+                UpdatePositions();
         }
     }
-
-    void Update()
-    {
-        if (dirty)
-            UpdatePositions();
-    }
-}
 }
