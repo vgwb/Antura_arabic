@@ -6,8 +6,8 @@ public class HiddenText : MonoBehaviour
     public Camera textCamera;
     public GameObject target;
 
-    public RenderTexture textRenderTexture;
-    public RenderTexture blurredTextRenderTexture;
+    RenderTexture textRenderTexture;
+    RenderTexture blurredTextRenderTexture;
 
     public Material magnifyingGlassMaterial;
     public Material blurredTextMaterial;
@@ -15,16 +15,24 @@ public class HiddenText : MonoBehaviour
     Vector2 lastMin = new Vector2(Screen.width, Screen.height);
     Vector2 lastMax = Vector2.zero;
 
+    Vector3 boundsMin;
+    Vector3 boundsMax;
+
+    bool hasElements = false;
+    bool needsRender = false;
+
     public void UpdateTarget()
     {
+        hasElements = true;
         var renderers = target.GetComponentsInChildren<Renderer>();
 
         Vector3 min = new Vector3(Screen.width, Screen.height, 0);
         Vector3 max = Vector3.zero;
 
-        Vector3 boundsMin = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
-        Vector3 boundsMax = new Vector3(-float.PositiveInfinity, -float.PositiveInfinity, -float.PositiveInfinity);
+        boundsMin = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
+        boundsMax = new Vector3(-float.PositiveInfinity, -float.PositiveInfinity, -float.PositiveInfinity);
 
+        hasElements = renderers.Length > 0;
         for (int i = 0, count = renderers.Length; i < count; ++i)
         {
             var screenBoundsMin = mainCamera.WorldToScreenPoint(renderers[i].bounds.min) - new Vector3(32.0f, 32.0f, 0.0f);
@@ -35,6 +43,11 @@ public class HiddenText : MonoBehaviour
 
             min = Vector3.Min(min, screenBoundsMin);
             max = Vector3.Max(max, screenBoundsMax);
+        }
+
+        if (!hasElements)
+        {
+
         }
 
         if ((Vector2)min == lastMin && (Vector2)max == lastMax)
@@ -52,29 +65,28 @@ public class HiddenText : MonoBehaviour
         if (textRenderTexture != null)
         {
             textRenderTexture.Release();
+            textRenderTexture = null;
         }
 
         textRenderTexture = new RenderTexture(width, height, 16);
+        textRenderTexture.hideFlags = HideFlags.HideAndDontSave;
 
         magnifyingGlassMaterial.SetTexture("_BackTex", textRenderTexture);
 
         if (blurredTextRenderTexture != null)
         {
             blurredTextRenderTexture.Release();
+            blurredTextRenderTexture = null;
         }
 
         blurredTextRenderTexture = new RenderTexture(width, height, 16);
-        //blurredTextMaterial.SetTexture("_MainTex", textRenderTexture);
+        blurredTextRenderTexture.hideFlags = HideFlags.HideAndDontSave;
+        
         blurredTextMaterial.SetTexture("_MainTex", blurredTextRenderTexture);
         
         textCamera.targetTexture = blurredTextRenderTexture;
         textCamera.GetComponent<BlurredCamera>().normalTextureOutput = textRenderTexture;
-
-        var oldPos = transform.position;
-
-        transform.position = boundsMin + Vector3.forward;
-        transform.localScale = new Vector3(boundsMax.x - boundsMin.x, boundsMax.y - boundsMin.y, 1);
-
+        
         var oldCameraPos = textCamera.transform.position;
         oldCameraPos.x = boundsMin.x + (boundsMax.x - boundsMin.x) / 2;
         oldCameraPos.y = boundsMin.y + (boundsMax.y - boundsMin.y) / 2;
@@ -91,10 +103,40 @@ public class HiddenText : MonoBehaviour
 
         magnifyingGlassMaterial.SetVector("_BackOffset", uvMin);
         magnifyingGlassMaterial.SetVector("_BackScale", (Vector2)(uvMax - uvMin));
+        needsRender = true;
+
     }
 
     void Update()
     {
         UpdateTarget();
+
+        if (hasElements && needsRender)
+        {
+            transform.position = boundsMin + 0.5f * Vector3.forward;
+            transform.localScale = new Vector3(boundsMax.x - boundsMin.x, boundsMax.y - boundsMin.y, 1);
+            textCamera.Render();
+            //needsRender = false;
+        }
+    }
+
+    void Start()
+    {
+        textCamera.enabled = false;
+    }
+
+    void OnDestroy()
+    {
+        if (textRenderTexture != null)
+        { 
+            textRenderTexture.Release();
+            textRenderTexture = null;
+        }
+
+        if (blurredTextRenderTexture != null)
+        {
+            blurredTextRenderTexture.Release();
+            blurredTextRenderTexture = null;
+        }
     }
 }

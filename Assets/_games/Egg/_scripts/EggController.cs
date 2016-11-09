@@ -26,9 +26,6 @@ namespace EA4S.Egg
 
         public GameObject eggShadow;
 
-        public TremblingTube tremblingEgg;
-        float tremblingTimer;
-
         public Action onEggCrackComplete;
         public Action onEggExitComplete;
 
@@ -103,9 +100,7 @@ namespace EA4S.Egg
 
             ResetCrack();
 
-            tremblingTimer = 0f;
-
-            QuestionParticleDisabled();
+            ParticleWinDisabled();
 
             audioSource = null;
 
@@ -172,27 +167,48 @@ namespace EA4S.Egg
 
         public void Cracking(float progress)
         {
-            StartTrembling();
+            //StartTrembling();
 
-            int eggPiecesProgress = (int)(progress * eggPieces.Length);
+            //int eggPiecesProgress = (int)(progress * eggPieces.Length);
 
-            for (int i = 0; i < eggPiecesProgress; i++)
+            //for (int i = 0; i < eggPiecesProgress; i++)
+            //{
+            //    int index = isNextToExit ? ((eggPieces.Length - 1) - i) : i;
+
+            //    bool poofDirRight = (i % 2 == 0);
+
+            //    if ((currentPosition == 2) && (i < 2))
+            //    {
+            //        poofDirRight = false;
+            //    }
+
+            //    eggPieces[index].Poof(poofDirRight);
+            //}
+            
+            if (progress == 1f)
             {
-                int index = isNextToExit ? ((eggPieces.Length - 1) - i) : i;
-
-                bool poofDirRight = (i % 2 == 0);
-
-                if ((currentPosition == 2) && (i < 2))
+                for(int i=0; i<eggPieces.Length; i++)
                 {
-                    poofDirRight = false;
+                    int index = isNextToExit ? ((eggPieces.Length - 1) - i) : i;
+
+                    bool poofDirRight = (i % 2 == 0);
+
+                    if ((currentPosition == 2) && (i < 2))
+                    {
+                        poofDirRight = false;
+                    }
+
+                    eggPieces[index].Poof(poofDirRight);
                 }
 
-                eggPieces[index].Poof(poofDirRight);
-            }
-
-            if(progress == 1f)
-            {
                 ShowEndLetters();
+            }
+            else
+            {
+                for (int i = 0; i < eggPieces.Length; i++)
+                {
+                    eggPieces[i].Shake();
+                }
             }
         }
 
@@ -303,16 +319,6 @@ namespace EA4S.Egg
 
         void Update()
         {
-            if (tremblingTimer > 0f)
-            {
-                tremblingTimer -= Time.deltaTime;
-                tremblingEgg.Trembling = true;
-            }
-            else
-            {
-                tremblingEgg.Trembling = false;
-            }
-
             if (lLDAudioQuestion.Count > 0)
             {
                 if (audioSource != null)
@@ -324,8 +330,6 @@ namespace EA4S.Egg
                 }
                 else
                 {
-                    QuestionParticleEnabled();
-
                     ILivingLetterData letterData = lLDAudioQuestion[0];
 
                     audioSource = audioManager.PlayLetterData(letterData);
@@ -339,8 +343,6 @@ namespace EA4S.Egg
                 {
                     if (!audioSource.IsPlaying)
                     {
-                        QuestionParticleDisabled();
-
                         audioSource = null;
 
                         if (endAudioQuestion != null)
@@ -357,8 +359,6 @@ namespace EA4S.Egg
                 {
                     eggEggCrackCompleteSent = true;
 
-                    //ShowEndLetters();
-
                     EggShow(false);
 
                     if (onEggCrackComplete != null)
@@ -368,7 +368,7 @@ namespace EA4S.Egg
                 }
             }
 
-            if(emoticonsController != null)
+            if (emoticonsController != null)
             {
                 emoticonsController.Update(Time.deltaTime);
             }
@@ -457,7 +457,7 @@ namespace EA4S.Egg
             }
         }
 
-        public void QuestionParticleEnabled()
+        public void ParticleWinEnabled()
         {
             eggParticleWin.SetActive(true);
 
@@ -467,7 +467,7 @@ namespace EA4S.Egg
             }
         }
 
-        public void QuestionParticleDisabled()
+        public void ParticleWinDisabled()
         {
             foreach (var particles in eggParticleWin.GetComponentsInChildren<ParticleSystem>(true))
             {
@@ -477,9 +477,12 @@ namespace EA4S.Egg
             eggParticleWin.SetActive(false);
         }
 
-        public void StartTrembling()
+        public void StartShake()
         {
-            tremblingTimer = 0.5f;
+            for(int i=0; i<eggPieces.Length; i++)
+            {
+                eggPieces[i].Shake();
+            }
         }
 
         void OnPiecePoofComplete()

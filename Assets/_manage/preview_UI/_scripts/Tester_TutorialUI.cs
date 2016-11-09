@@ -13,16 +13,19 @@ namespace EA4S.Test
         public enum DrawMode
         {
             StraightLine,
-            FullCurve
+            FullCurve,
+            Click,
+            ClickRepeat
         }
 
         public float CameraDistance = 20;
         public float MinPointDistance = 0.3f;
         [Header("References")]
         public Dropdown DrawModeDropdown;
-        public Toggle FingerToggle, ArrowToggle, PersistenToggle, OverlayToggle;
+        public Toggle FingerToggle, ArrowToggle, PersistentToggle, OverlayToggle;
 
         DrawMode drawMode = DrawMode.StraightLine;
+        bool isDraggingMode { get { return drawMode == DrawMode.FullCurve || drawMode == DrawMode.StraightLine; } }
         readonly List<Vector3> storedPs = new List<Vector3>();
         bool isDragging;
 
@@ -38,6 +41,12 @@ namespace EA4S.Test
         }
 
         void Update()
+        {
+            if (isDraggingMode) Update_Dragging();
+            else Update_Click();
+        }
+
+        void Update_Dragging()
         {
             if (Input.GetMouseButtonDown(0)) {
                 isDragging = true;
@@ -57,13 +66,29 @@ namespace EA4S.Test
                     : TutorialUI.DrawLineMode.LineOnly;
                 switch (drawMode) {
                 case DrawMode.StraightLine:
-                    TutorialUI.DrawLine(storedPs[0], storedPs[storedPs.Count - 1], mode, PersistenToggle.isOn, OverlayToggle.isOn);
+                    TutorialUI.DrawLine(storedPs[0], storedPs[storedPs.Count - 1], mode, PersistentToggle.isOn, OverlayToggle.isOn)
+                        .OnComplete(()=> Debug.Log("DrawLine Complete"));
                     break;
                 case DrawMode.FullCurve:
-                    TutorialUI.DrawLine(storedPs.ToArray(), mode, PersistenToggle.isOn, OverlayToggle.isOn);
+                    TutorialUI.DrawLine(storedPs.ToArray(), mode, PersistentToggle.isOn, OverlayToggle.isOn)
+                        .OnComplete(()=> Debug.Log("DrawLine Complete"));
                     break;
                 }
                 storedPs.Clear();
+            }
+        }
+
+        void Update_Click()
+        {
+            if (!Input.GetMouseButtonUp(0)) return;
+
+            switch (drawMode) {
+            case DrawMode.Click:
+                TutorialUI.Click(MouseWorldPosition());
+                break;
+            case DrawMode.ClickRepeat:
+                TutorialUI.ClickRepeat(MouseWorldPosition());
+                break;
             }
         }
 
@@ -83,6 +108,11 @@ namespace EA4S.Test
         public void OnDrawModeChanged()
         {
             drawMode = (DrawMode)DrawModeDropdown.value;
+            bool dragOptionsActive = isDraggingMode;
+            FingerToggle.gameObject.SetActive(dragOptionsActive);
+            ArrowToggle.gameObject.SetActive(dragOptionsActive);
+            PersistentToggle.gameObject.SetActive(dragOptionsActive);
+            OverlayToggle.gameObject.SetActive(dragOptionsActive);
         }
 
         public void OnClear(bool _destroy)

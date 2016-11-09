@@ -21,6 +21,7 @@ namespace EA4S
         public List<LL_WordData> ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
         public string ActualGame = string.Empty;
 
+        [Obsolete("The 'Letters' list will very soon be removed. Use IQuestionPackProvider instead.")]
         public List<LL_LetterData> Letters = new List<LL_LetterData>();
 
         public TeacherAI Teacher;

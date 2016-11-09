@@ -30,5 +30,9 @@ namespace EA4S
         {
             return correctAnswersSentence;
         }
+
+        public IEnumerable<ILivingLetterData> GetQuestions() {
+            throw new Exception("This provider can not use this method");
+        }
     }
 }

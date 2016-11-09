@@ -25,7 +25,7 @@ namespace EA4S.Egg
         }
 
         public void ExitState() { }
-        public void Update(float delta) { }        
+        public void Update(float delta) { }
         public void UpdatePhysics(float delta) { }
 
         void OnEggEnterComplete()
@@ -59,8 +59,6 @@ namespace EA4S.Egg
             if (isSequence)
             {
                 game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence());
-
-                game.eggController.QuestionParticleEnabled();
                 game.eggButtonBox.PlayButtonsAudio(lightUpButtons, false, 0f, OnQuestionAudioComplete);
             }
             else
@@ -71,12 +69,8 @@ namespace EA4S.Egg
                 {
                     game.eggController.PlayAudioQuestion(delegate ()
                        {
-                           game.eggController.QuestionParticleEnabled();
-
                            game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
                        });
-
-                    game.eggController.StartTrembling();
                 }
                 else
                 {
@@ -89,7 +83,6 @@ namespace EA4S.Egg
         {
             game.eggController.EmoticonClose();
 
-            game.eggController.QuestionParticleDisabled();
             game.SetCurrentState(game.PlayState);
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EA4S.ReadingGame
 {
-    public class ReadingGamePlayState : IGameState
+    public class ReadingGameReadState : IGameState
     {
         CountdownTimer gameTime = new CountdownTimer(90.0f);
         ReadingGameGame game;
@@ -11,10 +11,11 @@ namespace EA4S.ReadingGame
 
         bool hurryUpSfx;
 
+        bool completedDragging = false;
         ReadingBar dragging;
         Vector2 draggingOffset;
 
-        public  ReadingGamePlayState(ReadingGameGame game)
+        public ReadingGameReadState(ReadingGameGame game)
         {
             this.game = game;
 
@@ -26,19 +27,32 @@ namespace EA4S.ReadingGame
             game.isTimesUp = false;
 
             // Reset game timer
-            gameTime.Reset();
+            gameTime.Reset(ReadingGameGame.TIME_TO_ANSWER);
             gameTime.Start();
 
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
-            
+
             hurryUpSfx = false;
 
-            
             var inputManager = game.Context.GetInputManager();
 
             inputManager.onPointerDown += OnPointerDown;
             inputManager.onPointerUp += OnPointerUp;
+            
+            game.blurredText.SetActive(true);
+            //game.circleBox.SetActive(false);
+
+            // Pick a question
+            var pack = ReadingGameConfiguration.Instance.Questions.GetNextQuestion();
+            game.CurrentQuestion = pack;
+
+            if (pack != null)
+                game.barSet.SetData(pack.GetQuestion());
+            else
+                game.EndGame(game.CurrentStars, game.CurrentScore);
+
+            completedDragging = false;
         }
 
 
@@ -53,6 +67,9 @@ namespace EA4S.ReadingGame
                 timesUpAudioSource.Stop();
 
             gameTime.Stop();
+
+            game.barSet.Clear();
+            game.blurredText.SetActive(false);
         }
 
         public void Update(float delta)
@@ -74,7 +91,24 @@ namespace EA4S.ReadingGame
             if (dragging != null)
             {
                 var inputManager = game.Context.GetInputManager();
-                dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset);
+                completedDragging = dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset);
+            }
+            else
+            {
+                if (completedDragging)
+                {
+                    var completedAllBars = game.barSet.SwitchToNextBar();
+
+                    if (completedAllBars)
+                    {
+                        // go to Buttons State
+                        game.AnswerState.ReadTime = gameTime.Time;
+                        game.SetCurrentState(game.AnswerState);
+                        return;
+                    }
+                }
+
+                completedDragging = false;
             }
         }
 
@@ -88,7 +122,14 @@ namespace EA4S.ReadingGame
             // Time's up!
             game.isTimesUp = true;
             game.Context.GetOverlayWidget().OnClockCompleted();
-            game.EndGame(game.CurrentStars, game.CurrentScore);
+
+            // show time's up and back
+            game.Context.GetPopupWidget().ShowTimeUp(
+                () =>
+                {
+                    game.SetCurrentState(this);
+                    game.Context.GetPopupWidget().Hide();
+                });
         }
 
         void OnPointerDown()
