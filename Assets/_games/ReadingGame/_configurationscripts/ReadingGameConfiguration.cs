@@ -35,7 +35,7 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Questions = new SampleQuestionProvider();
+            Questions = new SampleReadingGameQuestionProvider();
 
             Context = new SampleGameContext();
             Difficulty = 0.0f;
