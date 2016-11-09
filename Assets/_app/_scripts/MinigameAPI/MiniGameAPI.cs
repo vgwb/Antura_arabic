@@ -254,15 +254,15 @@ namespace EA4S.API
                     // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Scanner:
-                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
+//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
-                case MiniGameCode.Scanner_phrase:
-                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
-                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                    actualConfig = Scanner.ScannerConfiguration.Instance;
-                    break;
+//                case MiniGameCode.Scanner_phrase:
+//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
+//                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
+//                    actualConfig = Scanner.ScannerConfiguration.Instance;
+//                    break;
                 case MiniGameCode.ThrowBalls_letters:
                     ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.letters;
                     ThrowBalls.ThrowBallsConfiguration.Instance.Context = AnturaMinigameContext.Default;
