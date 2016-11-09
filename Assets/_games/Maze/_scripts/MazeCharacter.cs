@@ -175,6 +175,7 @@ namespace EA4S.Maze
 
 		void OnTriggerExit(Collider other)
 		{
+            
 			print ("trigger exit " + other.gameObject.name);
 			print ("Current letter " + MazeGameManager.Instance.currentPrefab.name);
 

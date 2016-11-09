@@ -10,11 +10,11 @@ using TMPro;
 
 namespace EA4S.Maze
 {
-	public class MazeGameManager : MiniGameBase
-	{
+	public class MazeGameManager : MiniGame
+    {
 		
 		public static MazeGameManager Instance;
-		public MazeGameplayInfo GameplayInfo;
+		/*public MazeGameplayInfo GameplayInfo;*/
 
 		public MazeCharacter currentCharacter;
 		public HandTutorial currentTutorial;
@@ -59,13 +59,13 @@ namespace EA4S.Maze
 
 		}
 
-		protected override void Start()
+		public void startGame()
 		{
-			base.Start();
+			//base.Start();
 
-			AppManager.Instance.InitDataAI();
+		/*	AppManager.Instance.InitDataAI();
 			AppManager.Instance.CurrentGameManagerGO = gameObject;
-			SceneTransitioner.Close();
+			SceneTransitioner.Close();*/
 
 
 
@@ -374,12 +374,33 @@ namespace EA4S.Maze
 			antoura.gameObject.SetActive (true);
 
 		}
-	}
 
+        //states
+        public MazeIntroState IntroductionState { get; private set; }
+
+        protected override IGameConfiguration GetConfiguration()
+        {
+            return MazeConfiguration.Instance;
+        }
+
+        protected override IGameState GetInitialState()
+        {
+            return IntroductionState;
+        }
+
+        protected override void OnInitialize(IGameContext context)
+        {
+            
+            IntroductionState = new MazeIntroState(this);
+             
+
+        }
+    }
+/*
 	[Serializable]
 	public class MazeGameplayInfo : AnturaGameplayInfo
 	{
 		[Tooltip("Play session duration in seconds.")]
 		public float PlayTime = 0f;
-	}
+	}*/
 }
