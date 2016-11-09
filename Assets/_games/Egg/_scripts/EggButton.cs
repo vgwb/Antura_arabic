@@ -26,22 +26,25 @@ namespace EA4S.Egg
 
         Action playButtonAudioCallback;
         IAudioManager audioManager;
+        IAudioSource audioSource;
 
         bool inputEnabled = false;
 
         Action endMoveCallback;
         Action startMoveCallback;
         Action endScaleCallback;
+        Action endShakeCallback;
 
         Tween scaleTweener;
         Sequence moveSequence;
 
-        public void Initialize(IAudioManager audioManager, Action<ILivingLetterData> onButtonPressed)
+        Tween shakeTwenner;
+
+        public void Initialize(IAudioManager audioManager)
         {
             button.onClick.AddListener(OnButtonPressed);
 
             this.audioManager = audioManager;
-            this.onButtonPressed = onButtonPressed;
         }
 
         public void SetAnswer(ILivingLetterData livingLetterData)
@@ -66,7 +69,7 @@ namespace EA4S.Egg
         {
             playButtonAudioCallback = callback;
 
-            IAudioSource audioSource = audioManager.PlayLetterData(livingLetterData);
+            audioSource = audioManager.PlayLetterData(livingLetterData);
             audioSource.Stop();
 
             float duration = audioSource.Duration;
@@ -91,6 +94,26 @@ namespace EA4S.Egg
             }).SetDelay(delay);
 
             return duration;
+        }
+
+        public void StopButtonAudio()
+        {
+            SetOnStandardColor();
+
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
+
+            if (playButtonAudioCallback != null)
+            {
+                playButtonAudioCallback();
+            }
+        }
+
+        public void SetOnPressedCallback(Action<ILivingLetterData> callback)
+        {
+            onButtonPressed = callback;
         }
 
         void OnButtonPressed()
@@ -154,7 +177,19 @@ namespace EA4S.Egg
             scaleTweener = transform.DOScale(scale, duration).SetDelay(delay).OnComplete(delegate () { if (endScaleCallback != null) endScaleCallback(); });
         }
 
-        public void MoveTo(Vector3 position, float duration, AnimationCurve animationCurve, float delay = 0f, float delayFromStart = 0f, Action startCallback = null, Action endCallback = null)
+        public void ShakePosition(float duration, float delay = 0f, Action endCallback = null)
+        {
+            endShakeCallback = endCallback;
+
+            if (shakeTwenner != null)
+            {
+                shakeTwenner.Kill();
+            }
+
+            shakeTwenner = transform.DOShakePosition(duration, 4f, 20, 90f, false, false).SetDelay(delay).OnComplete(delegate () { if (endShakeCallback != null) endShakeCallback(); });
+        }
+
+        public void MoveTo(Vector3 position, float duration, AnimationCurve animationCurve, float delay = 0f, bool doJump = false, float delayFromStart = 0f, Action startCallback = null, Action endCallback = null)
         {
             endMoveCallback = endCallback;
             startMoveCallback = startCallback;
@@ -168,10 +203,11 @@ namespace EA4S.Egg
 
             moveSequence.AppendInterval(delay);
 
-            if (startMoveCallback != null)
+            moveSequence.AppendCallback(delegate () { if (startMoveCallback != null) startMoveCallback(); });
+            moveSequence.AppendInterval(delayFromStart);
+
+            if (doJump)
             {
-                moveSequence.AppendCallback(delegate () { if (startMoveCallback != null) startMoveCallback(); });
-                moveSequence.AppendInterval(delayFromStart);
                 moveSequence.Append(transform.DOLocalJump(position, 100f, 1, duration));
             }
             else

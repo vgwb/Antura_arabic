@@ -57,9 +57,14 @@ namespace EA4S.Egg
             inputButtonTimer = 0f;
             inputButtonCount = 0;
             progressInput = false;
+
+            game.eggButtonBox.SetOnPressedCallback(OnEggButtonPressed);
         }
 
-        public void ExitState() { }
+        public void ExitState()
+        {
+            game.eggButtonBox.SetOnPressedCallback(null);
+        }
 
         public void Update(float delta)
         {
@@ -92,7 +97,7 @@ namespace EA4S.Egg
             {
                 PlayPositiveAudioFeedback();
                 game.eggController.EmoticonPositive();
-                game.eggController.StartTrembling();
+                game.eggController.StartShake();
 
                 progressInput = false;
                 if (inputButtonTimer >= 0)
@@ -165,6 +170,7 @@ namespace EA4S.Egg
             if (crackingProgress == 1f)
             {
                 game.eggController.EmoticonHappy();
+                game.eggController.ParticleWinEnabled();
                 DisableAllGameplayInput();
             }
             else
@@ -225,7 +231,7 @@ namespace EA4S.Egg
 
         void AnturaButtonsIn()
         {
-            game.eggButtonBox.AnturaButtonIn(0.5f, 1f, 1f, 0.15f, game.antura.DoSpit, AnturaExit);
+            game.eggButtonBox.AnturaButtonIn(0.5f, 0.5f, 0.05f, 0.15f, game.antura.DoSpit, AnturaExit);
         }
 
         void AnturaSetOnSpitPostion()
@@ -273,7 +279,6 @@ namespace EA4S.Egg
             else
             {
                 game.eggButtonBox.GetEggButton(game.questionManager.GetlLetterDataSequence()[0]).SetOnPressedColor();
-
             }
 
             toNextState = true;

@@ -15,7 +15,7 @@ namespace EA4S.ReadingGame
         ReadingBar dragging;
         Vector2 draggingOffset;
 
-        public  ReadingGameReadState(ReadingGameGame game)
+        public ReadingGameReadState(ReadingGameGame game)
         {
             this.game = game;
 
@@ -26,24 +26,41 @@ namespace EA4S.ReadingGame
         {
             game.isTimesUp = false;
 
+            if (game.CurrentQuestionNumber >= ReadingGameGame.MAX_QUESTIONS)
+            {
+                game.EndGame(game.CurrentStars, game.CurrentScore);
+                return;
+            }
+
+            ++game.CurrentQuestionNumber;
+
             // Reset game timer
-            gameTime.Reset();
+            gameTime.Reset(ReadingGameGame.TIME_TO_ANSWER);
             gameTime.Start();
 
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
-            
+
             hurryUpSfx = false;
 
-            
             var inputManager = game.Context.GetInputManager();
 
             inputManager.onPointerDown += OnPointerDown;
             inputManager.onPointerUp += OnPointerUp;
-
-            game.barSet.SetData(null);
+            
             game.blurredText.SetActive(true);
-            game.circleBox.SetActive(false);
+            //game.circleBox.SetActive(false);
+
+            // Pick a question
+            var pack = ReadingGameConfiguration.Instance.Questions.GetNextQuestion();
+            game.CurrentQuestion = pack;
+
+            if (pack != null)
+                game.barSet.SetData(pack.GetQuestion());
+            else
+                game.EndGame(game.CurrentStars, game.CurrentScore);
+
+            completedDragging = false;
         }
 
 
@@ -93,6 +110,7 @@ namespace EA4S.ReadingGame
                     if (completedAllBars)
                     {
                         // go to Buttons State
+                        game.AnswerState.ReadTime = gameTime.Time;
                         game.SetCurrentState(game.AnswerState);
                         return;
                     }
@@ -112,7 +130,14 @@ namespace EA4S.ReadingGame
             // Time's up!
             game.isTimesUp = true;
             game.Context.GetOverlayWidget().OnClockCompleted();
-            game.EndGame(game.CurrentStars, game.CurrentScore);
+
+            // show time's up and back
+            game.Context.GetPopupWidget().ShowTimeUp(
+                () =>
+                {
+                    game.SetCurrentState(this);
+                    game.Context.GetPopupWidget().Hide();
+                });
         }
 
         void OnPointerDown()
