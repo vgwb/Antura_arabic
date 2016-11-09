@@ -20,13 +20,9 @@ namespace EA4S.HideAndSeek
 
         public void EnterState()
         {
-            // Reset game timer
             gameTime.Reset();
             game.ResetScore();
-            // game.GameManager.LifeObj.SetActive(true);
-
-            //game.timerText.gameObject.SetActive(true);
-            // game.timerText.text = "";
+            
             hurryUpSfx = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
@@ -45,11 +41,8 @@ namespace EA4S.HideAndSeek
             if (timesUpAudioSource != null)
                 timesUpAudioSource.Stop();
 
-            //game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
-
-            //game.GameManager.LifeObj.SetActive(false);
-
+            
             game.Context.GetAudioManager().StopMusic();
 
             game.inGame = false;
@@ -59,7 +52,6 @@ namespace EA4S.HideAndSeek
         public void Update(float delta)
         {
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
-            //game.timerText.text = String.Format("{0:0}", gameTime.Time);
 
             if (!hurryUpSfx)
             {
@@ -70,20 +62,15 @@ namespace EA4S.HideAndSeek
                     timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
                 }
             }
-
             gameTime.Update(delta);
         }
 
-        public void UpdatePhysics(float delta)
-        {
-        }
+        public void UpdatePhysics(float delta) { }
 
         void OnTimesUp()
         {
-            // Time's up!
             game.isTimesUp = true;
             game.SetCurrentState(game.ResultState);
         }
-
     }
 }
