@@ -10,6 +10,9 @@ namespace EA4S.Egg
         GameObject anturaPrefab;
         AnturaAnimationController anturaAnimation;
 
+        public bool anturaTest;
+        public bool noEntry;
+
         public GameObject aspirationParticle;
 
         public Transform enterPosition;
@@ -38,6 +41,9 @@ namespace EA4S.Egg
             ChengeGameObjectLayer(aspirationParticle);
 
             aspirationParticle.SetActive(false);
+
+            anturaTest = false;
+            noEntry = false;
         }
 
         public void Enter(Action callback = null)
@@ -196,7 +202,7 @@ namespace EA4S.Egg
 
             RemoveFromAnturaInGameList();
 
-            return isAnturaIn;
+            return (isAnturaIn || anturaTest) && !noEntry;
         }
     }
 }
