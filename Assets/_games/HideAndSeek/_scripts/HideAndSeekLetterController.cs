@@ -16,25 +16,17 @@ namespace EA4S.HideAndSeek
     }
 
     public class HideAndSeekLetterController : MonoBehaviour {
-
         
-
-        
-
 		public delegate void TouchAction(int i);
 		public static event TouchAction onLetterTouched;
-	// Use this for initialization
-	void Start () {
-
+	
+	    void Start ()
+        {
             view = GetComponent<LetterObjectView>();
-			//coll = GetComponent<Collider> ();
-            
-            
-	}
+	    }
 
         public void resultAnimation(bool win)
         {
-            //view.SetState(LLAnimationStates.LL_dancing);
             if (moveTweener != null)
             {
                 moveTweener.Kill();
@@ -47,21 +39,15 @@ namespace EA4S.HideAndSeek
             else
             {
                view.DoDancingLose();
-         
             }
-            
-
         }
-
-       
-
+        
         void MoveTo(Vector3 position, float duration)
         {
             view.SetState(LLAnimationStates.LL_walking);
             if (position == pos1)
                 view.HasFear = true;
-
-
+            
             view.SetWalkingSpeed(1f);
             if (moveTweener != null)
             {
@@ -70,8 +56,6 @@ namespace EA4S.HideAndSeek
 
             moveTweener = transform.DOLocalMove(position, duration).OnComplete(
                 delegate () {
-                        
-                    
                     if (position == pos2)
                     {
                         startTime = Time.time;
@@ -82,12 +66,7 @@ namespace EA4S.HideAndSeek
                         isClickable = false;
                         view.SetState(LLAnimationStates.LL_idle);
                         view.HasFear = false;
-                        //coll.enabled = false;
                     }
-
-                        
-                    //if (endTransformToCallback != null)
-                    //    endTransformToCallback();
                 });
         }
 
@@ -100,66 +79,13 @@ namespace EA4S.HideAndSeek
             isClickable = false;
         }
 
-        void Update (){
+        void Update ()
+        {
             if(isArrived && Time.time > startTime + idleTime )
             {
                 MoveTo(pos1, walkDuration / 2);
                 isArrived = false;
             }
-			/*if (isMoving) 
-			{
-				if (fase == 0) 
-				{
-					transform.position = Vector3.Lerp(pos1, pos2, speed * (Time.time - startTime));
-                    view.SetState(LLAnimationStates.LL_walking);
-
-                    if (transform.position.x >= posNear.x && transform.position.y >= posNear.y) 
-					{
-						
-						if (idleTime < 1.5f)
-						{
-                            //anim.SetFloat ("speed", 0.8f);
-                            view.SetState(LLAnimationStates.LL_walking);
-							fase = 2;
-							startTime = Time.time;
-
-						}
-
-						else 
-						{
-                            view.SetState(LLAnimationStates.LL_idle);
-                            fase++;
-							//anim.SetFloat ("speed", 0f);
-							timeToWait = Time.time + idleTime;
-						}
-
-					}
-				}
-				else if (fase == 1 && Time.time > timeToWait) 
-				{
-
-                    view.SetState(LLAnimationStates.LL_walking);
-                    fase++;
-					startTime = Time.time;
-					//anim.SetFloat("speed",0.8f);
-
-				
-				}
-				else if (fase == 2) {
-					transform.position = Vector3.Lerp (pos2, pos1, (Time.time - startTime));
-					if (transform.position.x == pos1.x && transform.position.y == pos1.y) 
-					{
-                        view.SetState(LLAnimationStates.LL_idle);
-                        fase = 0;
-						//anim.SetFloat("speed",0f);
-						isMoving = false;
-						coll.enabled = false;
-
-
-					}
-				}
-			}*/
-		
 		}
 
         public void SetStartPosition(Vector3 pos)
@@ -167,19 +93,16 @@ namespace EA4S.HideAndSeek
             pos1 = pos;
         }
 
-		public void Move(){
+		public void Move()
+        {
 			if (!isMoving) {
-				
                 float temp = Random.Range(-ray, ray);
-               // if (temp.y < 0)
-                //    temp.y *= -1;
-                if (Mathf.Abs(temp) < minMove/* && temp.y < minMove*/)
+                if (Mathf.Abs(temp) < minMove)
                 {
                     if (temp >= 0)
                         temp = minMove;
                     else
                         temp = -minMove;
-                   // temp.y = minMove;
                 }
 
                 if(movement == MovementType.OnlyLeft)
@@ -194,24 +117,14 @@ namespace EA4S.HideAndSeek
                 }
 
 				pos2 = pos1 + new Vector3 ( temp,0,0);
-                float tmpX;//, tmpY;
+                float tmpX;
                 if (pos2.x > 0)
                     tmpX = pos2.x -0.1f;
                 else
                     tmpX = pos2.x + 0.1f; 
-
-                //if (pos2.y > 0)
-                //    tmpY = pos2.y - 0.1f;
-               // else
-               //     tmpY = pos2.y + 0.1f;
-
-               // posNear = new Vector2(tmpX, tmpY);
-
-                //anim.SetFloat("speed",0.6f);
                 
 				isMoving = true;
                 isClickable = true;
-				//coll.enabled = true;
 
                 MoveTo(pos2, walkDuration);
 			}
@@ -221,38 +134,32 @@ namespace EA4S.HideAndSeek
 		{
 			if (isClickable && onLetterTouched != null) {
                 AudioManager.I.PlayLetter(view.Data.Key);
-                //coll.enabled = false;
                 isClickable = false;
                 onLetterTouched (id);
 			}
-
 		}
 
         public void SetMovement(MovementType mov)
         {
             movement = mov;
         }
-       
 
-        //var
+
+        #region VARIABLES
         public int id;
 		public float idleTime = 0f;
 		public float ray = 5f;
 		public float minMove = 2.5f;
 
         private bool isClickable = false;
-
-		//private int fase = 0;
-		//private Collider coll;
+        
 		private bool isMoving = false;
         private bool isArrived = false;
-        //private float timeToWait = 0f;
+        
 		private float startTime;
 		private Vector3 pos1;
 		private Vector3 pos2;
-       // private Vector2 posNear;
-
-        //private float speed = 1f;
+       
 		private Animator anim;
 
         [HideInInspector]
@@ -263,6 +170,6 @@ namespace EA4S.HideAndSeek
         public float walkDuration = 2f;
 
         private MovementType movement = MovementType.Normal;
-        
+        #endregion
     }
 }
