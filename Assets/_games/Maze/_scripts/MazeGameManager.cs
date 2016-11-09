@@ -116,7 +116,7 @@ namespace EA4S.Maze
 
 		}
 
-		protected override void ReadyForGameplay()
+		/*protected override void ReadyForGameplay()
 		{
 			base.ReadyForGameplay();
 		}
@@ -129,7 +129,7 @@ namespace EA4S.Maze
 		protected override void OnMinigameQuit()
 		{
 			base.OnMinigameQuit();
-		}
+		}*/
 
 		public bool tutorialForLetterisComplete()
 		{
@@ -168,7 +168,7 @@ namespace EA4S.Maze
 				currentLetterIndex++;
 				print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
 				if (currentLetterIndex == prefabs.Count) {
-					EndGame ();
+                    endGame();
 					return;
 				} else {
 					roundNumber.text = "#" + (currentLetterIndex + 1);
@@ -187,7 +187,7 @@ namespace EA4S.Maze
 			wrongLetters++;
 			currentLetterIndex++;
 			if (currentLetterIndex == prefabs.Count) {
-				EndGame ();
+                endGame();
 				return;
 			} else {
 				roundNumber.text = "#" + (currentLetterIndex + 1);
@@ -327,16 +327,51 @@ namespace EA4S.Maze
 			lines.Add(myLine);*/
 		}
 
-		private void EndGame()
+        private void endGame()
 		{
-			StartCoroutine(EndGame_Coroutine());
-		}
+            int numberOfStars = 0;
+            if (correctLetters == prefabs.Count)
+            {
+                numberOfStars = 3;
+            }
+            else if (correctLetters > prefabs.Count / 2)
+            {
+                numberOfStars = 2;
+            }
+            else if (correctLetters > prefabs.Count / 4)
+            {
+                numberOfStars = 1;
+            }
+            else {
+                numberOfStars = 0;
+            }
+            EndGame(numberOfStars, correctLetters);
+            //StartCoroutine(EndGame_Coroutine());
+        }
 
-		private IEnumerator EndGame_Coroutine()
+        
+
+        private IEnumerator EndGame_Coroutine()
 		{
 			yield return new WaitForSeconds(1f);
-
-			endGameCanvas.gameObject.SetActive(true);
+            int numberOfStars = 0;
+            if (correctLetters == prefabs.Count)
+            {
+                numberOfStars = 3;
+            }
+            else if (correctLetters > prefabs.Count / 2)
+            {
+                numberOfStars = 2;
+            }
+            else if (correctLetters > prefabs.Count / 4)
+            {
+                numberOfStars = 1;
+            }
+            else {
+                numberOfStars = 0;
+            }
+            EndGame(numberOfStars, correctLetters);
+            /*endGameCanvas.gameObject.SetActive(true);
 
 			int numberOfStars = 0;
 
@@ -354,19 +389,20 @@ namespace EA4S.Maze
 				WidgetSubtitles.I.DisplaySentence("game_result_retry");
 			}
 
+           
 
 			LoggerEA4S.Log("minigame", "Maze", "correctLetters", ""+correctLetters);
 			LoggerEA4S.Log("minigame", "Maze", "wrongLetters", ""+wrongLetters);
 			LoggerEA4S.Save();
 
-			starFlowers.Show(numberOfStars);
-		}
+			starFlowers.Show(numberOfStars);*/
+        }
 
 
-		public void onTimeUp()
+        public void onTimeUp()
 		{
-			//end game:
-			EndGame();
+            //end game:
+            endGame();
 		}
 
 		public void onIdleTime()
