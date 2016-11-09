@@ -13,6 +13,11 @@ public class LetterObjectViewTester : MonoBehaviour
     public bool doAngry;
     public bool doHighFive;
 
+    public bool onJumpStart;
+    public bool onJumpMiddle;
+    public bool onJumpEnd;
+    public bool doSmallJump;
+
     void Start ()
     {
         letter = GetComponent<LetterObjectView>();
@@ -44,6 +49,34 @@ public class LetterObjectViewTester : MonoBehaviour
         {
             doHighFive = false;
             letter.DoHighFive();
+        }
+
+
+        if (onJumpStart)
+        {
+            onJumpStart = false;
+            letter.OnJumpStart();
+        }
+
+
+        if (onJumpMiddle)
+        {
+            onJumpMiddle = false;
+            letter.OnJumpMaximumHeightReached();
+        }
+
+
+
+        if (onJumpEnd)
+        {
+            onJumpEnd = false;
+            letter.OnJumpEnded();
+        }
+
+        if (doSmallJump)
+        {
+            doSmallJump = false;
+            letter.DoSmallJump();
         }
     }
 }

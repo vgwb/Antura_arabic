@@ -387,6 +387,17 @@ namespace EA4S
 
         public void OnJumpStart()
         {
+            if ((Model.State != LLAnimationStates.LL_still) &&
+                (Model.State != LLAnimationStates.LL_idle) &&
+                (Model.State != LLAnimationStates.LL_walking))
+            {
+                if (!hasToGoBackState)
+                    backState = Model.State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            animator.SetTrigger("stopAlternative");
             animator.SetBool("jumping", true);
             animator.SetBool("falling", true);
         }
@@ -401,6 +412,21 @@ namespace EA4S
         {
             animator.SetBool("jumping", false);
             animator.SetBool("falling", false);
+        }
+
+        public void DoSmallJump()
+        {
+            if ((Model.State != LLAnimationStates.LL_still) &&
+                (Model.State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                    backState = Model.State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            animator.SetTrigger("stopAlternative");
+            animator.SetTrigger("doSmallJump");
         }
 
         /// <summary>
