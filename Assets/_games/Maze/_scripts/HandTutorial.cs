@@ -53,7 +53,9 @@ namespace EA4S.Maze
 			//otherwise move to next way point:
 			transform.position = Vector3.MoveTowards (transform.position, wayPoints[currentWayPoint], Time.deltaTime*handSpeed);
 
-			if ((transform.position - wayPoints [currentWayPoint]).magnitude == 0.0f) {
+           
+            if (transform.position == wayPoints[currentWayPoint])
+            {//(transform.position - wayPoints [currentWayPoint]).magnitude <= float.Epsilon) {
 				currentWayPoint++;
 
 				//arrived:

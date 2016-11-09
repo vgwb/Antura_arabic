@@ -101,7 +101,8 @@ namespace EA4S.Maze
 			pointsList = new List<Vector3> ();
 			GameObject go = new GameObject ();
 			go.transform.position = new Vector3 (0, 0, -0.2f);
-			LineRenderer line = go.AddComponent<LineRenderer> ();
+            go.transform.Rotate(new Vector3(90,0,0));
+            LineRenderer line = go.AddComponent<LineRenderer> ();
 			//line.material = new Material (Shader.Find ("Particles/Additive"));
 			line.SetVertexCount (0);
 			line.SetWidth (0.6f, 0.6f);
@@ -147,7 +148,7 @@ namespace EA4S.Maze
 			
 			for (int i = 0; i < _cracks.Count; ++i)
 				_cracks [i].SetActive (true);
-			StartCoroutine (shakeCamera (0.5f, 0.5f));
+			//StartCoroutine (shakeCamera (0.5f, 0.5f));
 
 		}
 		public void wasHit()
@@ -155,7 +156,7 @@ namespace EA4S.Maze
 			_cracks [_cracks.Count- health].SetActive (true);
 			health--;
 
-			StartCoroutine (shakeCamera (0.5f, 0.5f));
+			//StartCoroutine (shakeCamera (0.5f, 0.5f));
 
 		}
 
@@ -242,7 +243,7 @@ namespace EA4S.Maze
 		void initCurrentLetter()
 		{
 			addLine ();
-			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex],Vector3.zero, Quaternion.identity);
+			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex]);
 			foreach (Transform child in currentPrefab.transform) {
 				if (child.name == "Mazecharacter")
 					currentCharacter = child.GetComponent<MazeCharacter> ();
