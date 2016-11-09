@@ -57,9 +57,14 @@ namespace EA4S.Egg
             inputButtonTimer = 0f;
             inputButtonCount = 0;
             progressInput = false;
+
+            game.eggButtonBox.SetOnPressedCallback(OnEggButtonPressed);
         }
 
-        public void ExitState() { }
+        public void ExitState()
+        {
+            game.eggButtonBox.SetOnPressedCallback(null);
+        }
 
         public void Update(float delta)
         {
@@ -265,8 +270,6 @@ namespace EA4S.Egg
 
         void OnLightUpButtonsComplete()
         {
-            game.eggController.ParticleWinDisabled();
-
             bool isSequence = game.questionManager.IsSequence();
 
             if (isSequence)

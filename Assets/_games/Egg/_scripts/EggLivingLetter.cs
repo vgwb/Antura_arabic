@@ -12,24 +12,28 @@ namespace EA4S.Egg
         Vector3 startPosition;
         Vector3 endPosition;
 
+        float startScale = 0.4f;
+        float endScale = 1f;
+
         Vector3 shadowLocalPosition;
 
         float delay;
 
         Action endCallback;
 
-        public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, GameObject shadowPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 endPosition, float delay, Action endCallback)
+        public EggLivingLetter(Transform parent, GameObject letterObjectViewPrefab, GameObject shadowPrefab, ILivingLetterData livingLetterData, Vector3 startPosition, Vector3 shadowPosition, Vector3 endPosition, float delay, Action endCallback)
         {
             livingLetter = UnityEngine.Object.Instantiate(letterObjectViewPrefab).GetComponent<LetterObjectView>();
 
             livingLetter.transform.SetParent(parent);
             livingLetter.transform.localPosition = startPosition;
             livingLetter.Init(livingLetterData);
+            livingLetter.transform.localScale *= startScale;
             livingLetter.gameObject.SetActive(false);
 
             shadowTransform = UnityEngine.Object.Instantiate(shadowPrefab).transform;
             shadowTransform.SetParent(parent);
-            shadowLocalPosition = startPosition;
+            shadowLocalPosition = shadowPosition;
             shadowTransform.localPosition = shadowLocalPosition;
             shadowTransform.localScale *= 0.7f;
             shadowTransform.gameObject.SetActive(false);
@@ -71,8 +75,10 @@ namespace EA4S.Egg
             {
                 shadowTransform.gameObject.SetActive(true);
                 livingLetter.gameObject.SetActive(true);
-                
-                livingLetter.Poof();
+
+                livingLetter.transform.DOScale(endScale, duration * 0.5f);
+
+                //livingLetter.Poof();
                 livingLetter.OnJumpStart();
 
                 float timeToJumpStart = 0.15f;

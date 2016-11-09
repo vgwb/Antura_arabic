@@ -189,16 +189,14 @@ namespace EA4S.Egg
             {
                 for(int i=0; i<eggPieces.Length; i++)
                 {
-                    int index = isNextToExit ? ((eggPieces.Length - 1) - i) : i;
-
                     bool poofDirRight = (i % 2 == 0);
 
-                    if ((currentPosition == 2) && (i < 2))
-                    {
-                        poofDirRight = false;
-                    }
+                    //if ((currentPosition == 2) && (i < 2))
+                    //{
+                    //    poofDirRight = false;
+                    //}
 
-                    eggPieces[index].Poof(poofDirRight);
+                    eggPieces[i].Poof(poofDirRight);
                 }
 
                 ShowEndLetters();
@@ -500,7 +498,8 @@ namespace EA4S.Egg
         {
             EggLivingLetter letter;
 
-            float startDelay = 0.7f;
+            //float startDelay = 0.7f;
+            float startDelay = 0f;
 
             float jumpDelay = 0.5f;
 
@@ -515,7 +514,8 @@ namespace EA4S.Egg
                     jumpCallback = OnLettersJumpComplete;
                 }
 
-                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, shadowPrefab, questionData[i], transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, jumpCallback);
+                Vector3 lLetterPosition = new Vector3(transform.localPosition.x, egg.transform.localPosition.y, transform.localPosition.z);
+                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, shadowPrefab, questionData[i], lLetterPosition, transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, jumpCallback);
 
                 eggLivingLetters.Add(letter);
             }
