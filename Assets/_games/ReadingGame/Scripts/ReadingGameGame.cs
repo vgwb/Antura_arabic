@@ -15,9 +15,13 @@ namespace EA4S.ReadingGame
         [HideInInspector]
         public bool isTimesUp;
 
-        const int STARS_1_THRESHOLD = 3;
-        const int STARS_2_THRESHOLD = 5;
-        const int STARS_3_THRESHOLD = 6;
+        int lives = 3;
+
+        public const int TIME_TO_ANSWER = 20;
+        const int QUESTIONS = 5;
+        const int STARS_1_THRESHOLD = 10;
+        const int STARS_2_THRESHOLD = 20;
+        const int STARS_3_THRESHOLD = 30;
 
         public int CurrentStars
         {
@@ -35,6 +39,7 @@ namespace EA4S.ReadingGame
 
         public ReadingGameReadState ReadState { get; private set; }
         public ReadingGameAnswerState AnswerState { get; private set; }
+        public IQuestionPack CurrentQuestion { get; set; }
 
         protected override IGameConfiguration GetConfiguration()
         {
@@ -51,24 +56,30 @@ namespace EA4S.ReadingGame
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
 
-            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().Initialize(true, true, true);
+            Context.GetOverlayWidget().SetMaxLives(lives);
+            Context.GetOverlayWidget().SetLives(lives);
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
-        void OnResult(bool result)
+        public void AddScore(int score)
         {
-            Context.GetCheckmarkWidget().Show(result);
-
-            if (result)
-            {
-                ++CurrentScore;
-            }
-            else
-            {
-                CurrentScore = 0;
-            }
+            CurrentScore += score;
 
             Context.GetOverlayWidget().SetStarsScore(CurrentScore);
+        }
+
+        public bool RemoveLife()
+        {
+            --lives;
+            Context.GetOverlayWidget().SetLives(lives);
+
+            if (lives == 0)
+            {
+                EndGame(0, 0);
+                return true;
+            }
+            return false;
         }
     }
 }
