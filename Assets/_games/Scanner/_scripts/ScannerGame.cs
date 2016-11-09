@@ -10,7 +10,10 @@ using EA4S;
 namespace EA4S.Scanner
 {
 
-	public class ScannerGame : MiniGame {
+	public class ScannerGame : MiniGame 
+	{
+
+//		public static ScannerGame instance;
 
 		public const string TAG_BELT = "Scanner_Belt";
 		public const string TAG_SCAN_START = "Scanner_ScanStart";
@@ -43,17 +46,14 @@ namespace EA4S.Scanner
 		public ScannerSuitcase[] suitcases;
 
 		[HideInInspector]
-		public bool isTimesUp;
-
-		[HideInInspector]
 		public LL_WordData wordData;
 
-		public int CurrentScore { get; private set; }
-		public int CurrentScoreRecord { get; private set; }
+		[HideInInspector]
+		public ScannerRoundsManager roundsManager;
 
-		const int STARS_1_THRESHOLD = 5;
-		const int STARS_2_THRESHOLD = 8;
-		const int STARS_3_THRESHOLD = 12;
+		public int CurrentScoreRecord;
+
+		int STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD;
 
 		public int CurrentStars
 		{
@@ -75,8 +75,7 @@ namespace EA4S.Scanner
 
 		public void ResetScore()
 		{
-			CurrentScoreRecord = 10;
-			CurrentScore = 10;
+			CurrentScoreRecord = 0;
 		}
 
 		protected override IGameState GetInitialState()
@@ -91,12 +90,25 @@ namespace EA4S.Scanner
 
 		protected override void OnInitialize(IGameContext context)
 		{
+			
+//			instance = this;
+
+			STARS_1_THRESHOLD = 1;
+			STARS_2_THRESHOLD = numberOfRounds/2;
+			STARS_3_THRESHOLD = numberOfRounds;
 
 			IntroductionState = new ScannerIntroductionState(this);
 			PlayState = new ScannerPlayState(this);
 			ResultState = new ScannerResultState(this);
 
-//			Physics.gravity = new Vector3(0, -80, 0);
+			roundsManager = new ScannerRoundsManager(this);
+//			roundManager.onRoundsFinished += OnResult;
+
+
+			Physics.gravity = new Vector3(0, -80, 0);
+
+			Context.GetOverlayWidget().Initialize(false, false, false);
+			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
 
 		public void PlayWord(float deltaTime)
@@ -112,6 +124,16 @@ namespace EA4S.Scanner
 			GameObject poof = Instantiate(poofPrefab, position, Quaternion.identity) as GameObject;
 			Destroy(poof, duration);
 		}
+
+//		public void CorrectMove(GameObject GO)
+//		{
+//
+//		}
+//
+//		public void WrongMove(GameObject GO)
+//		{
+//		}
+
 
 //		IEnumerator AnimateAntura()
 //		{
@@ -133,13 +155,4 @@ namespace EA4S.Scanner
 //
 //		}
 	}
-
-//
-//
-//	[Serializable]
-//	public class DancingDotsGamePlayInfo: AnturaGameplayInfo
-//	{
-//		[Tooltip("Play session duration in seconds.")]
-//		public float PlayTime = 0f;
-//	}
 }
