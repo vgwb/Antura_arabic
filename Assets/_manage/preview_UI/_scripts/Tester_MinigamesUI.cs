@@ -9,6 +9,7 @@ namespace EA4S.Test
 {
     public class Tester_MinigamesUI : MonoBehaviour
     {
+        public RadialGadget RadialGadget;
         public Tester_MinigamesUIPanel[] Panels;
 
         #region Unity
@@ -137,6 +138,15 @@ namespace EA4S.Test
         {
             this.StopAllCoroutines();
             MinigamesUI.Timer.GotoPercentage(_percentage, true);
+        }
+
+        #endregion
+
+        #region RadialGadget
+
+        public void TimerGadget_SetRandomPercentage()
+        {
+            RadialGadget.SetPercentage(UnityEngine.Random.value);
         }
 
         #endregion
