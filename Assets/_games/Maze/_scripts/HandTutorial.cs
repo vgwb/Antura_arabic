@@ -40,11 +40,13 @@ namespace EA4S.Maze
 				numberToShow.SetActive(false);
 
 			gameObject.SetActive (false);
-		}
+
+            
+        }
 		
 		// Update is called once per frame
 		void Update () {
-
+           // return;
 			//no way points to follow:
 			if (wayPoints.Count == 0)
 				return;
@@ -52,7 +54,7 @@ namespace EA4S.Maze
 
 			//otherwise move to next way point:
 			transform.position = Vector3.MoveTowards (transform.position, wayPoints[currentWayPoint], Time.deltaTime*handSpeed);
-
+           
            
             if (transform.position == wayPoints[currentWayPoint])
             {//(transform.position - wayPoints [currentWayPoint]).magnitude <= float.Epsilon) {
@@ -99,6 +101,7 @@ namespace EA4S.Maze
 		{
 			
 			gameObject.SetActive (true);
+           
 			wayPoints = new List<Vector3> ();
 			//construct the path waypoints:
 			pathsToFollow[currentPath].SetActive(true);
@@ -109,7 +112,11 @@ namespace EA4S.Maze
 			}
 			startingPosition = wayPoints[0];
 			currentWayPoint = 0;
-		}
+
+            
+
+            //TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, true, true);
+        }
 
 		public bool isComplete()
 		{
