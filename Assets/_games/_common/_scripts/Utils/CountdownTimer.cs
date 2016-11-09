@@ -35,6 +35,13 @@ namespace EA4S
             time = Duration;
         }
 
+        public void Reset(float newDuration)
+        {
+            Duration = newDuration;
+            Stop();
+            time = Duration;
+        }
+
         public CountdownTimer(float duration)
         {
             Duration = duration;
