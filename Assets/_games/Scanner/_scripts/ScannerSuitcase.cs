@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+
 
 namespace EA4S.Scanner
 {
@@ -15,6 +17,29 @@ namespace EA4S.Scanner
 
 		public Vector3 fingerOffset;
 		public float depth;
+		public bool isCorrectAnswer = false;
+		public SpriteRenderer spriteRenderer;
+
+
+		bool overPlayermarker = false;
+
+
+		public event Action <GameObject> onCorrectDrop;
+		public event Action <GameObject> onWrongDrop;
+
+		IEnumerator Coroutine_ScaleOverTime(float time)
+		{
+			Vector3 originalScale = transform.localScale;
+			Vector3 destinationScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+			float currentTime = 0.0f;
+			do
+			{
+				transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
+				currentTime += Time.deltaTime;
+				yield return null;
+			} while (currentTime <= time);
+		}
 
 		void Start()
 		{
@@ -22,15 +47,17 @@ namespace EA4S.Scanner
 			startX = transform.position.x;
 			startY = transform.position.y;
 			startZ = transform.position.z;
-			Reset();
+//			Reset();
 		}
 
 		public void Reset()
 		{
 			transform.position = new Vector3(startX, startY, startZ);
 			isDragging = false;
-			transform.localScale = Vector3.one;
+			transform.localScale = new Vector3(0.25f,0.25f,0.25f);
 			gameObject.SetActive(true);
+			StartCoroutine(Coroutine_ScaleOverTime(1f));
+
 		}
 
 		void OnMouseDown()
@@ -54,39 +81,41 @@ namespace EA4S.Scanner
 
 		}
 
+		void OnTriggerEnter(Collider other)
+		{
+			if (other.tag == "Player") overPlayermarker = true;
+		}
+
+		void OnTriggerStay(Collider other)
+		{
+			if (other.tag == "Player") overPlayermarker = true;
+		}
+
+		void OnTriggerExit(Collider other)
+		{
+			if (other.tag == "Player") overPlayermarker = false;
+		}
+
 		void OnMouseUp()
 		{
-			Reset();
-			//		if (overDestinationMarker)
-			//		{
-			//			if (isDot)
-			//			{
-			//				DancingDotsGameManager.instance.CorrectDot(); 
-			//			}
-			//			else
-			//			{
-			//				DancingDotsGameManager.instance.CorrectDiacritic();
-			//			}
-			//			gameObject.SetActive(false);
-			//		}
-			//		else
-			//		{
-			//			if (overPlayermarker && !isNeeded)
-			//			{
-			//				DancingDotsGameManager.instance.WrongMove(transform.position);
-			//				isDragging = false;
-			//				gameObject.SetActive(false);
-			//			}
-			//			else
-			//			{
-			//				isDragging = false;
-			//
-			//				//					StartCoroutine(GoToStartPosition3());
-			//			}
-			//		}
-			//
-			//		overPlayermarker = false;
-			//		overDestinationMarker = false;
+
+			if (overPlayermarker)
+			{
+				if (isCorrectAnswer)
+				{
+					onCorrectDrop(gameObject);
+				}
+				else
+				{
+					onWrongDrop(gameObject);
+				}
+			}
+			else
+			{
+				Reset();
+			}
+			isDragging = false;
+			overPlayermarker = false;
 		}
 
 	}

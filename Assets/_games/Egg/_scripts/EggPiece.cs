@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using DG.Tweening;
 
 namespace EA4S.Egg
 {
@@ -28,6 +29,8 @@ namespace EA4S.Egg
         const float smokeTime = 2f;
         float smokeTimer = 0f;
 
+        Tween shakeTween;
+
         public void Reset()
         {
             gameObject.SetActive(true);
@@ -48,10 +51,25 @@ namespace EA4S.Egg
             smokeTimer = 0f;
         }
 
+        public void Shake()
+        {
+            if(shakeTween != null)
+            {
+                shakeTween.Kill();
+            }
+
+            shakeTween = transform.DOShakePosition(0.2f, 0.02f, 20, 180f).OnComplete(delegate() { transform.localPosition = Vector3.zero; });
+        }
+
         public void Poof(bool poofDirRight)
         {
             if (!poofed)
             {
+                if (shakeTween != null)
+                {
+                    shakeTween.Kill();
+                }
+
                 poofed = true;
 
                 this.poofDirRight = poofDirRight;

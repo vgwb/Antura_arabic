@@ -130,20 +130,23 @@ namespace EA4S.Egg
         {
             List<EggButton> buttons = GetButtons(true);
 
+            float shakeTime = duration * 0.3f;
+            float moveTime = duration - shakeTime;
             float delayBetweenButton = 0.1f;
+            Action callback;
 
             for (int i = 0; i < buttons.Count; i++)
             {
+                callback = null;
+
                 if (i == buttons.Count - 1)
                 {
-                    buttons[i].MoveTo(anturaOut.localPosition, duration, normalAnimationCurve, (i * delayBetweenButton) + delay, 0f, null, endCallback);
-                }
-                else
-                {
-                    buttons[i].MoveTo(anturaOut.localPosition, duration, normalAnimationCurve, (i * delayBetweenButton) + delay);
+                    callback = endCallback;
                 }
 
-                buttons[i].ScaleTo(0f, duration, (i * delayBetweenButton) + delay);
+                buttons[i].ShakePosition(shakeTime + (i * shakeTime), delay);
+                buttons[i].MoveTo(anturaOut.localPosition, moveTime, normalAnimationCurve, (i * delayBetweenButton) + (delay + shakeTime), false, 0f, null, callback);
+                buttons[i].ScaleTo(0f, moveTime, (i * delayBetweenButton) + (delay + shakeTime));
             }
         }
 
@@ -151,7 +154,7 @@ namespace EA4S.Egg
         {
             buttonCount = eggButtons.Count;
 
-            for(int i=0; i<eggButtons.Count; i++)
+            for (int i = 0; i < eggButtons.Count; i++)
             {
                 eggButtons[i].transform.localPosition = anturaIn.localPosition;
             }
@@ -165,20 +168,33 @@ namespace EA4S.Egg
                 buttonsIndex.Add(i);
             }
 
+            float fromStartDelay;
+            Action onStartCallBack;
+            Action onEndCallback;
+
             for (int i = 0; i < buttonsPosition.Length; i++)
             {
                 int index = randomGenerator.Next(0, buttonsIndex.Count);
                 int currentIndex = buttonsIndex[index];
                 buttonsIndex.RemoveAt(index);
 
+                fromStartDelay = 0f;
+                onStartCallBack = null;
+                onEndCallback = null;
+
+                if (i == 0)
+                {
+                    fromStartDelay = anturaSpitDelay;
+                    onStartCallBack = anturaSpit;
+                }
+
                 if (i == buttonsPosition.Length - 1)
                 {
-                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, anturaSpitDelay, anturaSpit, endCallback);
+                    onEndCallback = endCallback;
                 }
-                else
-                {
-                    eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, anturaSpitDelay, anturaSpit);
-                }
+
+
+                eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, true, fromStartDelay, onStartCallBack, onEndCallback);
 
                 eggButtons[currentIndex].positionIndex = i;
                 eggButtons[currentIndex].ScaleTo(1f, duration, (i * delayBetweenButton) + delay);
