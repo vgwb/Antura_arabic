@@ -14,8 +14,6 @@
 
         public void EnterState()
         {
-            //timer = 4;
-
             goToEndGame = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.Lullaby);
@@ -44,13 +42,9 @@
                 timer -= delta;
 
             if (timer < 0)
-            {
                  game.EndGame(game.CurrentStars, game.CurrentScore);
-            }
         }
 
-        public void UpdatePhysics(float delta)
-        {
-        }
+        public void UpdatePhysics(float delta) { }
     }
 }
