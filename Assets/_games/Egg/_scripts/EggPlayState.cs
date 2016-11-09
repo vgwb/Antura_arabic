@@ -92,7 +92,7 @@ namespace EA4S.Egg
             {
                 PlayPositiveAudioFeedback();
                 game.eggController.EmoticonPositive();
-                game.eggController.StartTrembling();
+                game.eggController.StartShake();
 
                 progressInput = false;
                 if (inputButtonTimer >= 0)
@@ -165,6 +165,7 @@ namespace EA4S.Egg
             if (crackingProgress == 1f)
             {
                 game.eggController.EmoticonHappy();
+                game.eggController.ParticleWinEnabled();
                 DisableAllGameplayInput();
             }
             else
@@ -225,7 +226,7 @@ namespace EA4S.Egg
 
         void AnturaButtonsIn()
         {
-            game.eggButtonBox.AnturaButtonIn(0.5f, 1f, 1f, 0.15f, game.antura.DoSpit, AnturaExit);
+            game.eggButtonBox.AnturaButtonIn(0.5f, 0.5f, 0.05f, 0.15f, game.antura.DoSpit, AnturaExit);
         }
 
         void AnturaSetOnSpitPostion()
@@ -264,6 +265,8 @@ namespace EA4S.Egg
 
         void OnLightUpButtonsComplete()
         {
+            game.eggController.ParticleWinDisabled();
+
             bool isSequence = game.questionManager.IsSequence();
 
             if (isSequence)
@@ -273,7 +276,6 @@ namespace EA4S.Egg
             else
             {
                 game.eggButtonBox.GetEggButton(game.questionManager.GetlLetterDataSequence()[0]).SetOnPressedColor();
-
             }
 
             toNextState = true;
