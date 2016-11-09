@@ -43,6 +43,7 @@ namespace EA4S.ThrowBalls
         {
             base.Awake();
             Instance = this;
+            
         }
 
         protected override void Start()

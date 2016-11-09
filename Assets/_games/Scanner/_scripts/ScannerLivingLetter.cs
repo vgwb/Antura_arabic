@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace EA4S.Scanner
 {
@@ -15,13 +16,19 @@ namespace EA4S.Scanner
 		private Vector3 startingPosition;
 		private Quaternion startingRotation;
 
+		public LetterObjectView letterObjectView;
+
+		public event Action onReset;
+
+
 		// Use this for initialization
 		void Start () 
 		{
-			startingPosition = transform.position;
-			startingRotation = livingLetter.GetComponent<LetterObjectView>().transform.rotation;
+			letterObjectView = livingLetter.GetComponent<LetterObjectView>();
 
-//			Reset();
+			startingPosition = transform.position;
+			startingRotation = letterObjectView.transform.rotation;
+			Reset();
 
 		}
 
@@ -30,14 +37,15 @@ namespace EA4S.Scanner
 		{
 			StopAllCoroutines();
 			transform.position = startingPosition;
-			livingLetter.GetComponent<LetterObjectView>().transform.rotation = startingRotation;
+			letterObjectView.transform.rotation = startingRotation;
 
 			turnAngle = facingCamera ? 180 : 0;
-			livingLetter.GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_still);
-			livingLetter.GetComponent<LetterObjectView>().Falling = true;
+			letterObjectView.SetState(LLAnimationStates.LL_still);
+			letterObjectView.Falling = true;
 			status = LLStatus.Sliding;
 			gameObject.GetComponent<SphereCollider>().enabled = true; // enable feet collider
 			gameObject.GetComponent<BoxCollider>().enabled = false; // disable body collider
+			onReset();
 
 		}
 
@@ -47,7 +55,45 @@ namespace EA4S.Scanner
 			{
 				transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2,0);
 			}
+			else if (status == LLStatus.Happy)
+			{
+				// TODO fly then Reset
+				Reset();
+			}
+			else if (status == LLStatus.Angry)
+			{
+				// Poof then Reset
+				Reset();
+			}
 		}
+
+
+		void OnMouseUp()
+		{
+			letterObjectView.SetState(LLAnimationStates.LL_tickling);
+		}
+
+		public void RoundLost()
+		{
+			status = LLStatus.Angry;
+		}
+
+		public void Happy()
+		{
+			StopAllCoroutines();
+			letterObjectView.SetState(LLAnimationStates.LL_idle);
+			letterObjectView.DoHorray();
+			status = LLStatus.Happy;
+		}
+
+		public void Sad()
+		{
+			letterObjectView.StopAllCoroutines();
+			letterObjectView.SetState(LLAnimationStates.LL_idle);
+			letterObjectView.DoAngry();
+			letterObjectView.Poof();
+		}
+
 
 		IEnumerator RotateGO(GameObject go, Vector3 toAngle, float inTime) {
 			var fromAngle = go.transform.rotation;
@@ -78,7 +124,7 @@ namespace EA4S.Scanner
 				{
 					index = UnityEngine.Random.Range(0, animations.Length);
 				} while (index == oldIndex);
-				livingLetter.GetComponent<LetterObjectView>().SetState(animations[index]);
+				letterObjectView.SetState(animations[index]);
 				yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 4f));
 			} while (status == LLStatus.StandingOnBelt);
 		}
@@ -93,7 +139,7 @@ namespace EA4S.Scanner
 					status = LLStatus.StandingOnBelt;
 					gameObject.GetComponent<SphereCollider>().enabled = false; // disable feet collider
 					gameObject.GetComponent<BoxCollider>().enabled = true; // enable body collider
-					livingLetter.GetComponent<LetterObjectView>().Falling = false;
+					letterObjectView.Falling = false;
 					StartCoroutine(RotateGO(livingLetter, new Vector3(0,turnAngle,0),1f));
 					StartCoroutine(AnimateLL());
 				}
