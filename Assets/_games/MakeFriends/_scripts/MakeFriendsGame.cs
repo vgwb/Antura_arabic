@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using EA4S;
@@ -35,14 +36,14 @@ namespace EA4S.MakeFriends
         public MakeFriendsConfiguration Configuration { get { return MakeFriendsConfiguration.Instance; } }
 
         private LL_WordData wordData1;
-        private List<LL_LetterData> wordLetters1 = new List<LL_LetterData>();
+        private List<ILivingLetterData> wordLetters1 = new List<ILivingLetterData>();
         private LL_WordData wordData2;
-        private List<LL_LetterData> wordLetters2 = new List<LL_LetterData>();
-        private List<LL_LetterData> commonLetters = new List<LL_LetterData>();
-        private List<LL_LetterData> uncommonLetters = new List<LL_LetterData>();
-        private List<LL_LetterData> choiceLetters = new List<LL_LetterData>();
-        private List<LL_LetterData> correctChoices = new List<LL_LetterData>();
-        private List<LL_LetterData> incorrectChoices = new List<LL_LetterData>();
+        private List<ILivingLetterData> wordLetters2 = new List<ILivingLetterData>();
+        private List<ILivingLetterData> commonLetters = new List<ILivingLetterData>();
+        private List<ILivingLetterData> uncommonLetters = new List<ILivingLetterData>();
+        private List<ILivingLetterData> choiceLetters = new List<ILivingLetterData>();
+        private List<ILivingLetterData> correctChoices = new List<ILivingLetterData>();
+        private List<ILivingLetterData> incorrectChoices = new List<ILivingLetterData>();
         private int currentRound = 0;
         private int friendships = 0;
 
@@ -147,64 +148,20 @@ namespace EA4S.MakeFriends
 
         private void SetNewWords()
         {
-            // Get words with at least 1 common letter
-            do
-            {
-                commonLetters.Clear();
-                uncommonLetters.Clear();
+            wordData1 = null;
+            wordData2 = null;
+            wordLetters1.Clear();
+            wordLetters2.Clear();
+            commonLetters.Clear();
+            uncommonLetters.Clear();
 
-                wordData1 = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                wordLetters1 = ArabicAlphabetHelper.LetterDataListFromWord(wordData1.Data.Arabic, AppManager.Instance.Letters);
+            var question = GetConfiguration().Questions.GetNextQuestion();
 
-                wordData2 = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                wordLetters2 = ArabicAlphabetHelper.LetterDataListFromWord(wordData2.Data.Arabic, AppManager.Instance.Letters);
-
-                // Find common letters (without repetition)
-                for (int i = 0; i < wordLetters1.Count; i++)
-                {
-                    var letter = wordLetters1[i];
-
-                    if (wordLetters2.Contains(letter))
-                    {
-                        if (!commonLetters.Contains(letter))
-                        {
-                            commonLetters.Add(letter);
-                        }
-                    }
-                }
-
-                // Find uncommon letters (without repetition)
-                for (int i = 0; i < wordLetters1.Count; i++)
-                {
-                    var letter = wordLetters1[i];
-
-                    if (!wordLetters2.Contains(letter))
-                    {
-                        if (!uncommonLetters.Contains(letter))
-                        {
-                            uncommonLetters.Add(letter);
-                        }
-                    }
-                }
-                for (int i = 0; i < wordLetters2.Count; i++)
-                {
-                    var letter = wordLetters2[i];
-
-                    if (!wordLetters1.Contains(letter))
-                    {
-                        if (!uncommonLetters.Contains(letter))
-                        {
-                            uncommonLetters.Add(letter);
-                        }
-                    }
-                }
-
-                //Debug.Log("Words: " + wordData1.Word + ", " + wordData2.Word + " " + (commonLetters.Count > 0 ? "Using them" : "Retrying"));
-            } while(commonLetters.Count == 0);
-                
-            commonLetters.Shuffle();
-            uncommonLetters.Shuffle();
-            Debug.Log("Common letters: " + commonLetters.Count + " Uncommon letters: " + uncommonLetters.Count);
+            List<ILivingLetterData> words = question.GetQuestions().ToList();
+            wordData1 = words[0] as LL_WordData;
+            wordData2 = words[1] as LL_WordData;
+            commonLetters = question.GetCorrectAnswers().ToList();
+            uncommonLetters = question.GetWrongAnswers().ToList();
         }
 
         private void SetLetterChoices()
@@ -226,7 +183,7 @@ namespace EA4S.MakeFriends
                 {
                     if (i < uncommonLetters.Count)
                     {
-                        letter = uncommonLetters[i];
+                        letter = uncommonLetters[i] as LL_LetterData;
                         //Debug.Log("Considering as choice: " + letter.TextForLivingLetter);
                         if (choiceLetters.Contains(letter))
                         {

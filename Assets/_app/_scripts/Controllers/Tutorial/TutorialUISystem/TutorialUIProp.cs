@@ -11,55 +11,62 @@ namespace EA4S
     {
         public bool IsPooled;
 
-        SpriteRenderer img;
-        Transform defParent;
+        protected SpriteRenderer Img;
+        protected Transform DefParent;
         int defSortingOrder;
-        Vector3 lastPos;
-        Tween showTween;
+        protected Tween ShowTween;
 
         #region Unity
 
-        void Awake()
+        protected virtual void Awake()
         {
-            defParent = this.transform.parent;
-            img = this.GetComponentInChildren<SpriteRenderer>(true);
-            defSortingOrder = img.sortingOrder;
+            DefParent = this.transform.parent;
+            Img = this.GetComponentInChildren<SpriteRenderer>(true);
+            defSortingOrder = Img.sortingOrder;
 
-            img.SetAlpha(0);
-            showTween = img.DOFade(1, 0.2f).SetAutoKill(false).Pause()
+            Img.SetAlpha(0);
+            ShowTween = Img.DOFade(1, 0.2f).SetAutoKill(false).Pause()
                 .SetEase(Ease.Linear)
                 .OnRewind(() => {
                     this.gameObject.SetActive(false);
-                    this.transform.parent = defParent;
+                    this.transform.parent = DefParent;
                 });
 
             if (!IsPooled) this.gameObject.SetActive(false);
         }
 
-        void OnDestroy()
+        protected virtual void OnDestroy()
         {
-            showTween.Kill();
+            this.StopAllCoroutines();
+            ShowTween.Kill();
         }
 
         #endregion
 
         #region Public Methods
 
+        public virtual void Reset()
+        {
+            this.StopAllCoroutines();
+            ShowTween.Rewind();
+        }
+
         public void Show(Transform _parent, Vector3 _position, bool _overlayed = true)
         {
+            Reset();
             this.transform.parent = _parent;
             this.transform.rotation = Quaternion.identity;
             this.transform.position = _position;
             this.transform.localScale = Vector3.one * (TutorialUI.I.Cam.fieldOfView / 45f);
             this.gameObject.SetActive(true);
-            img.sortingOrder = _overlayed ? defSortingOrder : 0;
-            showTween.PlayForward();
+            Img.sortingOrder = _overlayed ? defSortingOrder : 0;
+            ShowTween.PlayForward();
         }
 
         public void Hide(bool _immediate = false)
         {
-            if (_immediate) showTween.Rewind();
-            else showTween.PlayBackwards();
+            if (_immediate) ShowTween.Rewind();
+            else ShowTween.PlayBackwards();
         }
 
         #endregion

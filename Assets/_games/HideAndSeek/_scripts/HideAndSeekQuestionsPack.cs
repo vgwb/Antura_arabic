@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
+using System;
 
 namespace EA4S.HideAndSeek
 {
 	public class HideAndSeekQuestionsPack : IQuestionPack
 	{
 		IEnumerable<ILivingLetterData> correctAnswer;
-		 IEnumerable<ILivingLetterData> listOfLetters;
+		IEnumerable<ILivingLetterData> listOfLetters;
 
         public ILivingLetterData answer;
         public List<ILivingLetterData> list;
@@ -63,5 +63,8 @@ namespace EA4S.HideAndSeek
             return list;
         }
 
+        public IEnumerable<ILivingLetterData> GetQuestions() {
+            throw new Exception("This provider can not use this method");
+        }
     }
 }

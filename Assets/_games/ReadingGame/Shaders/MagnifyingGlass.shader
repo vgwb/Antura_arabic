@@ -1,4 +1,4 @@
-﻿Shader "Antura/MagnifyingGlass"
+﻿Shader "Antura/ReadingGame/MagnifyingGlass"
 {
 	Properties
 	{
