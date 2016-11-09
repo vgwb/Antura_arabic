@@ -26,6 +26,14 @@ namespace EA4S.ReadingGame
         {
             game.isTimesUp = false;
 
+            if (game.CurrentQuestionNumber >= ReadingGameGame.MAX_QUESTIONS)
+            {
+                game.EndGame(game.CurrentStars, game.CurrentScore);
+                return;
+            }
+
+            ++game.CurrentQuestionNumber;
+
             // Reset game timer
             gameTime.Reset(ReadingGameGame.TIME_TO_ANSWER);
             gameTime.Start();
