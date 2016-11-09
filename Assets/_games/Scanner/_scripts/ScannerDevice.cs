@@ -5,8 +5,6 @@ namespace EA4S.Scanner
 {
 	public class ScannerDevice : MonoBehaviour {
 
-		public ScannerGame game;
-
 		public float minX;
 		public float maxX;
 
@@ -18,6 +16,8 @@ namespace EA4S.Scanner
 
 		public Vector3 fingerOffset;
 		public float depth;
+
+		public ScannerGame game;
 
 		private float timeDelta;
 

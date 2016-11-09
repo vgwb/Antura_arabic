@@ -39,6 +39,11 @@ namespace EA4S.Db
             return new LL_WordData(GetId(), this);
         }
 
+        public bool HasDrawing()
+        {
+            return Drawing != "";
+        }
+
     }
 
     /*[Serializable]

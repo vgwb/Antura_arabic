@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using MiniJSON;
-using UnityEngine;
 
 namespace EA4S.Db.Management
 {

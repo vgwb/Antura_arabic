@@ -3148,14 +3148,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   game: {fileID: 0}
   isDot: 0
-  destroyOnNewRound: 0
+  deattached: 0
   dots: 0
   diacritic: 0
   fingerOffset: {x: 0, y: 1, z: 0}
   draggableText: {fileID: 114000013984627258}
   isCorrect: 1
   isNeeded: 0
+  isInVase: 0
   isDragging: 0
+  thisRigidBody: {fileID: 0}
 --- !u!114 &114000012678776124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3336,14 +3338,7 @@ MonoBehaviour:
   letterView: {fileID: 114000014187645992}
   LLStatus: 0
   letterAnimator: {fileID: 95000010725990924}
-  thisLetterDD:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  thisLLWrongDDs: []
 --- !u!114 &114000013713473752
 MonoBehaviour:
   m_ObjectHideFlags: 1

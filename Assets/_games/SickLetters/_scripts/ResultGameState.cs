@@ -3,8 +3,9 @@
     public class ResultGameState : IGameState
     {
         SickLettersGame game;
+        int stars, score;
 
-        float timer = 0;
+        float timer = 4;
         public ResultGameState(SickLettersGame game)
         {
             this.game = game;
@@ -14,8 +15,9 @@
         {
             if (game.scale.counter < game.targetScale)
             {
-                game.failure();
-                timer = 10;
+                game.manager.failure();
+
+                timer = 8;
             }
         }
 

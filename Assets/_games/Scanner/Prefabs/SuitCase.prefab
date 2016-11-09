@@ -258,7 +258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fingerOffset: {x: 0, y: 3, z: 0}
-  depth: -5
+  depth: -12
+  isCorrectAnswer: 0
+  spriteRenderer: {fileID: 212000010855870424}
 --- !u!212 &212000010855870424
 SpriteRenderer:
   m_ObjectHideFlags: 1

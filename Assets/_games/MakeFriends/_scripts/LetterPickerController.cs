@@ -23,12 +23,12 @@ namespace EA4S.MakeFriends
         }
 
 
-        public void DisplayLetters(List<LL_LetterData> letters)
+        public void DisplayLetters(List<ILivingLetterData> letters)
         {
             for (int i = 0; i < letters.Count; i++)
             {
                 letterChoices[i].gameObject.SetActive(true);
-                letterChoices[i].Init(letters[i]);
+                letterChoices[i].Init(letters[i] as LL_LetterData);
             }
         }
 

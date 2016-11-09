@@ -11,10 +11,12 @@ namespace EA4S
         public TutorialUITrailGroup TrailGroupPrefab;
         public TutorialUILineGroup LineGroupPrefab;
         public TutorialUIProp ArrowPrefab;
+        public TutorialUIClicker ClickerPrefab;
 
         readonly List<TutorialUITrailGroup> trailsPool = new List<TutorialUITrailGroup>();
         readonly List<TutorialUILineGroup> linesPool = new List<TutorialUILineGroup>();
         readonly List<TutorialUIProp> arrowsPool = new List<TutorialUIProp>();
+        readonly List<TutorialUIProp> clickersPool = new List<TutorialUIProp>();
 
         #region Unity
 
@@ -23,6 +25,7 @@ namespace EA4S
             TrailGroupPrefab.gameObject.SetActive(false);
             LineGroupPrefab.gameObject.SetActive(false);
             ArrowPrefab.gameObject.SetActive(false);
+            ClickerPrefab.gameObject.SetActive(false);
         }
 
         #endregion
@@ -34,6 +37,7 @@ namespace EA4S
             foreach (TutorialUITrailGroup tr in trailsPool) tr.Despawn();
             foreach (TutorialUILineGroup lr in linesPool) lr.Despawn();
             foreach (TutorialUIProp arrow in arrowsPool) arrow.Hide(true);
+            foreach (TutorialUIProp clicker in clickersPool) clicker.Hide(true);
         }
 
         public TutorialUITrailGroup SpawnTrailGroup(Transform _parent, Vector3 _position, bool _overlayed)
@@ -69,19 +73,29 @@ namespace EA4S
         }
 
         public TutorialUIProp SpawnArrow(Transform _parent, Vector3 _position, bool _overlayed)
+        { return SpawnProp(arrowsPool, ArrowPrefab, _parent, _position, _overlayed); }
+
+        public TutorialUIProp SpawnClicker(Transform _parent, Vector3 _position, bool _overlayed)
+        { return SpawnProp(clickersPool, ClickerPrefab, _parent, _position, _overlayed); }
+
+        #endregion
+
+        #region Methods
+
+        public TutorialUIProp SpawnProp(List<TutorialUIProp> _propList, TutorialUIProp _propPrefab, Transform _parent, Vector3 _position, bool _overlayed)
         {
-            TutorialUIProp arrow = null;
-            foreach (TutorialUIProp arr in arrowsPool) {
-                if (arr.gameObject.activeSelf) continue;
-                arrow = arr;
+            TutorialUIProp prop = null;
+            foreach (TutorialUIProp p in _propList) {
+                if (p.gameObject.activeSelf) continue;
+                prop = p;
                 break;
             }
-            if (arrow == null) {
-                arrow = Instantiate(ArrowPrefab, _parent) as TutorialUIProp;
-                arrowsPool.Add(arrow);
+            if (prop == null) {
+                prop = Instantiate(_propPrefab, _parent) as TutorialUIProp;
+                _propList.Add(prop);
             }
-            arrow.Show(_parent, _position, _overlayed);
-            return arrow;
+            prop.Show(_parent, _position, _overlayed);
+            return prop;
         }
 
         #endregion

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EA4S.ReadingGame
 {
-    public class ReadingGamePlayState : IGameState
+    public class ReadingGameReadState : IGameState
     {
         CountdownTimer gameTime = new CountdownTimer(90.0f);
         ReadingGameGame game;
@@ -11,10 +11,11 @@ namespace EA4S.ReadingGame
 
         bool hurryUpSfx;
 
+        bool completedDragging = false;
         ReadingBar dragging;
         Vector2 draggingOffset;
 
-        public  ReadingGamePlayState(ReadingGameGame game)
+        public  ReadingGameReadState(ReadingGameGame game)
         {
             this.game = game;
 
@@ -39,6 +40,10 @@ namespace EA4S.ReadingGame
 
             inputManager.onPointerDown += OnPointerDown;
             inputManager.onPointerUp += OnPointerUp;
+
+            game.barSet.SetData(null);
+            game.blurredText.SetActive(true);
+            game.circleBox.SetActive(false);
         }
 
 
@@ -53,6 +58,9 @@ namespace EA4S.ReadingGame
                 timesUpAudioSource.Stop();
 
             gameTime.Stop();
+
+            game.barSet.Clear();
+            game.blurredText.SetActive(false);
         }
 
         public void Update(float delta)
@@ -74,7 +82,23 @@ namespace EA4S.ReadingGame
             if (dragging != null)
             {
                 var inputManager = game.Context.GetInputManager();
-                dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset);
+                completedDragging = dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset);
+            }
+            else
+            {
+                if (completedDragging)
+                {
+                    var completedAllBars = game.barSet.SwitchToNextBar();
+
+                    if (completedAllBars)
+                    {
+                        // go to Buttons State
+                        game.SetCurrentState(game.AnswerState);
+                        return;
+                    }
+                }
+
+                completedDragging = false;
             }
         }
 
