@@ -26,6 +26,7 @@ namespace EA4S.Egg
 
         Action playButtonAudioCallback;
         IAudioManager audioManager;
+        IAudioSource audioSource;
 
         bool inputEnabled = false;
 
@@ -39,12 +40,11 @@ namespace EA4S.Egg
 
         Tween shakeTwenner;
 
-        public void Initialize(IAudioManager audioManager, Action<ILivingLetterData> onButtonPressed)
+        public void Initialize(IAudioManager audioManager)
         {
             button.onClick.AddListener(OnButtonPressed);
 
             this.audioManager = audioManager;
-            this.onButtonPressed = onButtonPressed;
         }
 
         public void SetAnswer(ILivingLetterData livingLetterData)
@@ -69,7 +69,7 @@ namespace EA4S.Egg
         {
             playButtonAudioCallback = callback;
 
-            IAudioSource audioSource = audioManager.PlayLetterData(livingLetterData);
+            audioSource = audioManager.PlayLetterData(livingLetterData);
             audioSource.Stop();
 
             float duration = audioSource.Duration;
@@ -94,6 +94,26 @@ namespace EA4S.Egg
             }).SetDelay(delay);
 
             return duration;
+        }
+
+        public void StopButtonAudio()
+        {
+            SetOnStandardColor();
+
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+            }
+
+            if (playButtonAudioCallback != null)
+            {
+                playButtonAudioCallback();
+            }
+        }
+
+        public void SetOnPressedCallback(Action<ILivingLetterData> callback)
+        {
+            onButtonPressed = callback;
         }
 
         void OnButtonPressed()
