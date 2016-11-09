@@ -43,6 +43,8 @@ namespace EA4S.Scanner
 					ss.onCorrectDrop += CorrectMove;
 					ss.onWrongDrop += WrongMove;
 				}
+				game.scannerLL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
+				game.scannerLL.onReset += OnLetterReset;
 //				game.pipesAnswerController.Initialize(game);
 //				CreateQuestionLivingLetters();
 //				questionLetterIndex = livingLetters.Count - 1;
@@ -54,15 +56,15 @@ namespace EA4S.Scanner
 			}
 		}
 
-		private void SetupLetter()
+		private void OnLetterReset()
 		{
 			do
 			{
 				game.wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
 			} while (game.wordData.Data.Id == lastWordDataId);
 			lastWordDataId = game.wordData.Data.Id;
-			game.letterObjectView.Init(game.wordData);
-			game.scannerLL.Reset();
+			game.scannerLL.letterObjectView.Init(game.wordData);
+			SetupSuitCases();
 		}
 
 
@@ -100,9 +102,6 @@ namespace EA4S.Scanner
 
 			numberOfRoundsPlayed++;
 			numberOfFailedMoves = 0;
-
-			SetupLetter();
-			SetupSuitCases();
 
 			if (ScannerConfiguration.Instance.Difficulty == 0f) // TODO for testing only each round increment Level. Remove later!
 			{
@@ -146,6 +145,9 @@ namespace EA4S.Scanner
 			numberOfFailedMoves++;
 			game.CreatePoof(GO.transform.position,2f,true);
 			GO.SetActive(false);
+
+			game.scannerLL.Sad();
+
 			if (numberOfFailedMoves >= game.allowedFailedMoves)
 			{
 				game.StartCoroutine(RoundLost());
@@ -185,7 +187,9 @@ namespace EA4S.Scanner
 			yield return new WaitForSeconds(0.25f);
 
 			AudioManager.I.PlaySfx(Sfx.Win);
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(2f);
+
+			game.scannerLL.Happy();
 
 			game.StartCoroutine(CheckNewRound());
 		}
