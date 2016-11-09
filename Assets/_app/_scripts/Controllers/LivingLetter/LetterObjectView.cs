@@ -29,6 +29,9 @@ namespace EA4S
 
         public GameObject poofPrefab;
 
+        LLAnimationStates backState = LLAnimationStates.LL_idle;
+        bool hasToGoBackState = false;
+
         #endregion
 
         #region runtime variables
@@ -104,8 +107,8 @@ namespace EA4S
                     Lable.enabled = true;
                     Lable.text = Model.Data.TextForLivingLetter;
 
-                    if(innerTransform)
-                        innerTransform.localScale =  Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x/8.0f));
+                    if (innerTransform)
+                        innerTransform.localScale = Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x / 8.0f));
                 }
             }
         }
@@ -148,7 +151,7 @@ namespace EA4S
                 // going limbless
                 Poof();
 
-                for (int i=0; i< normalGraphics.Length; ++i)
+                for (int i = 0; i < normalGraphics.Length; ++i)
                     normalGraphics[i].SetActive(false);
                 for (int i = 0; i < limblessGraphics.Length; ++i)
                     limblessGraphics[i].SetActive(true);
@@ -213,7 +216,7 @@ namespace EA4S
 
                 float oldSpeed = animator.GetFloat("walkSpeed");
 
-                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, model.walkingSpeed, Time.deltaTime*4.0f));
+                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, model.walkingSpeed, Time.deltaTime * 4.0f));
             }
         }
 
@@ -228,6 +231,7 @@ namespace EA4S
         public void SetState(LLAnimationStates _newState)
         {
             Model.State = _newState;
+            hasToGoBackState = false;
         }
 
         public bool Crouching
@@ -267,11 +271,23 @@ namespace EA4S
             get { return Model.hooraying; }
             set
             {
-                Model.hooraying = value;
                 animator.SetBool("holdHorray", value);
+                if (value)
+                {
+                    DoHorray();
+                }
+                Model.hooraying = value;
             }
         }
 
+        /// <summary>
+        /// Force a reset to idle
+        /// </summary>
+        public void Reset()
+        {
+            animator.SetTrigger("doReset");
+            SetState(LLAnimationStates.LL_idle);
+        }
 
 
         /// <summary>
@@ -284,19 +300,63 @@ namespace EA4S
 
         public void DoHorray()
         {
+            if ((Model.State != LLAnimationStates.LL_still) &&
+                (Model.State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                    backState = Model.State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
             if (!Model.hooraying)
+            {
+                animator.SetTrigger("stopAlternative");
                 animator.SetTrigger("doHorray");
+            }
         }
 
         public void DoAngry()
         {
+            if ((Model.State != LLAnimationStates.LL_still) &&
+                (Model.State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                    backState = Model.State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            animator.SetTrigger("stopAlternative");
             animator.SetFloat("random", Random.value);
             animator.SetTrigger("doAngry");
         }
 
         public void DoHighFive()
         {
+            if ((Model.State != LLAnimationStates.LL_still) &&
+                (Model.State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                    backState = Model.State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            animator.SetTrigger("stopAlternative");
             animator.SetTrigger("doHighFive");
+        }
+
+        /// <summary>
+        /// Used by SpecialStateEventBehaviour
+        /// </summary>
+        public void OnActionCompleted()
+        {
+            if (hasToGoBackState)
+            {
+                hasToGoBackState = false;
+                SetState(backState);
+            }
         }
 
         public void DoDancingWin()
@@ -309,23 +369,35 @@ namespace EA4S
             animator.SetTrigger("doDancingLose");
         }
 
+        /// <summary>
+        /// onLetterShowingBack is called when the letter is twirling and it shows you the back;
+        /// so you can swap letter in that moment!
+        /// </summary>
+        public void DoDancingTwirl(System.Action onLetterShowingBack)
+        {
+            onTwirlCallback = onLetterShowingBack;
+            animator.SetTrigger("doDancingTwirl");
+        }
+
         public void ToggleDance()
         {
             model.State = LLAnimationStates.LL_dancing;
             animator.SetTrigger("toggleDancing");
         }
 
-        /// <summary>
-        /// onLetterShowingBack is called when the letter is twirling and it shows you the back;
-        /// so you can swap letter in that moment!
-        /// </summary>
-        public void DoTwirl(System.Action onLetterShowingBack)
-        {
-            onTwirlCallback = onLetterShowingBack;
-        }
-
         public void OnJumpStart()
         {
+            if ((Model.State != LLAnimationStates.LL_still) &&
+                (Model.State != LLAnimationStates.LL_idle) &&
+                (Model.State != LLAnimationStates.LL_walking))
+            {
+                if (!hasToGoBackState)
+                    backState = Model.State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            animator.SetTrigger("stopAlternative");
             animator.SetBool("jumping", true);
             animator.SetBool("falling", true);
         }
@@ -342,6 +414,21 @@ namespace EA4S
             animator.SetBool("falling", false);
         }
 
+        public void DoSmallJump()
+        {
+            if ((Model.State != LLAnimationStates.LL_still) &&
+                (Model.State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                    backState = Model.State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            animator.SetTrigger("stopAlternative");
+            animator.SetTrigger("doSmallJump");
+        }
+
         /// <summary>
         /// Produces a poof nearby the LL
         /// </summary>
@@ -350,7 +437,7 @@ namespace EA4S
             var puffGo = GameObject.Instantiate(poofPrefab);
             puffGo.AddComponent<AutoDestroy>().duration = 2;
             puffGo.SetActive(true);
-            puffGo.transform.position = transform.position + transform.up * 3 + transform.forward*2;
+            puffGo.transform.position = transform.position + transform.up * 3 + transform.forward * 2;
             puffGo.transform.localScale *= 0.75f;
         }
 
