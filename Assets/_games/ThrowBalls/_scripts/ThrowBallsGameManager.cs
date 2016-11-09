@@ -11,7 +11,7 @@ namespace EA4S.ThrowBalls
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 3;
-        public const int MAX_NUM_BALLS = 3;
+        public const int MAX_NUM_BALLS = 5;
 
         new public static ThrowBallsGameManager Instance;
         new public ThrowBallsGameplayInfo GameplayInfo;
