@@ -39,7 +39,7 @@ namespace EA4S.Scanner
 		public float maxPlaySpeed;
 		public float minPlaySpeed;
 
-		public LetterObjectView letterObjectView;
+		public GameObject LLPrefab;
 
 		public ScannerLivingLetter scannerLL;
 
