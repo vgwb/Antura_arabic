@@ -28,7 +28,7 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region EVENTS
-        public event Action OnBodyHit; //event launched upon touching the face/letter
+        public event Action<bool> OnBodyHit; //event launched upon touching the face/letter
         #endregion
 
         #region GETTER/SETTER
@@ -59,7 +59,6 @@ namespace EA4S.ColorTickle
 
         void Update()
         {
-
             if (Input.GetMouseButton(0)) //On touch 
             {
 
@@ -71,16 +70,20 @@ namespace EA4S.ColorTickle
                 if (m_oBody.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity))
                 {
                     //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
-
                     if (OnBodyHit != null)
                     {
-                        OnBodyHit();
+                        OnBodyHit(true);
                     }
-
-                    ColorBodyTexturePoint(m_oRayHit.textureCoord);
-
-                    
+                    ColorBodyTexturePoint(m_oRayHit.textureCoord);            
                 }
+                else
+                {
+                    OnBodyHit(false);
+                }
+            }
+            else
+            {
+                OnBodyHit(false);
             }
         }
         #endregion

@@ -23,15 +23,14 @@ namespace EA4S.ColorTickle
         {
             IGameContext gameCotext = ColorTickleConfiguration.Instance.Context;
             game.gameUI = gameCotext.GetOverlayWidget();
-            game.gameUI.Initialize(false, true, true);
+            game.gameUI.Initialize(false, false, true);
             game.gameUI.SetMaxLives(game.lives);
-            game.gameUI.SetClockDuration(game.clockTime);
 
-			game.myLetters = new LetterObjectView[game.rounds];
+            game.myLetters = new GameObject[game.rounds];
 			for (int i = 0; i < game.rounds; ++i) {
-				game.myLetters[i] = LetterObjectView.Instantiate(game.m_LetterPrefab);
-                game.myLetters[i].gameObject.SetActive(true);
-                game.myLetters[i].Init(AppManager.Instance.Letters.GetRandomElement());
+				game.myLetters[i] = Object.Instantiate(game.m_LetterPrefab);
+                game.myLetters[i].SetActive(true);
+                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Letters.GetRandomElement());
                 game.myLetters[i].GetComponent<LLController>().movingToDestination = false;
 
             }
