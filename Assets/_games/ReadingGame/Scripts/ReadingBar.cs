@@ -23,7 +23,7 @@ public class ReadingBar : MonoBehaviour
     public ThreeSlicesSprite backSprite;
 
     [Range(0, 1)]
-    public float alpha = 1;
+    public float alpha = 0;
 
     SpriteRenderer[] spriteRenderers;
     Color[] startColors;
@@ -42,13 +42,13 @@ public class ReadingBar : MonoBehaviour
 
             glass.gameObject.SetActive(active);
             start.GetComponent<SpriteRenderer>().color = doneColor;
-            startTextColor = text.color;
         }
 
     }
 
     void Awake()
     {
+        alpha = 0;
         Active = false;
 
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
@@ -56,8 +56,18 @@ public class ReadingBar : MonoBehaviour
 
         for (int i = 0; i < spriteRenderers.Length; ++i)
             startColors[i] = spriteRenderers[i].color;
+        startTextColor = text.color;
 
+        for (int i = 0; i < spriteRenderers.Length; ++i)
+        {
+            var color = spriteRenderers[i].color;
+            color.a = 0;
+            spriteRenderers[i].color = color;
+        }
 
+        var textColor = text.color;
+        textColor.a = 0;
+        text.color = textColor;
     }
 
     void Start()
@@ -95,17 +105,18 @@ public class ReadingBar : MonoBehaviour
         oldScale.x = (start.localPosition.x - end.localPosition.x) * 0.25f;
         backSprite.transform.localScale = oldScale;
 
+        const float ALPHA_LERP_SPEED = 5.0f;
+
         for (int i = 0; i < spriteRenderers.Length; ++i)
         {
-            const float ALPHA_LERP_SPEED = 5.0f;
             var color = spriteRenderers[i].color;
             color.a = Mathf.Lerp(color.a, startColors[i].a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
             spriteRenderers[i].color = color;
-
-            var textColor = text.color;
-            textColor.a = Mathf.Lerp(textColor.a, startTextColor.a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
-            text.color = textColor;
         }
+
+        var textColor = text.color;
+        textColor.a = Mathf.Lerp(textColor.a, startTextColor.a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
+        text.color = textColor;
     }
 
     public void Complete()
