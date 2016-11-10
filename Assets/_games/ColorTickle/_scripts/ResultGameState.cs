@@ -7,7 +7,7 @@ namespace EA4S.ColorTickle
     {
         ColorTickleGame game;
 
-        float timer = 1;
+        float timer = 0.5f;
         public ResultGameState(ColorTickleGame game)
         {
             this.game = game;
@@ -15,6 +15,7 @@ namespace EA4S.ColorTickle
 
         public void EnterState()
         {
+            game.endCanvas.gameObject.SetActive(true);
             Debug.Log("Result State activated");
         }
 
@@ -28,7 +29,7 @@ namespace EA4S.ColorTickle
 
             if (timer < 0)
             {
-                game.EndGame(0,0);
+                game.EndGame(game.m_Stars,0);
             }
         }
 
