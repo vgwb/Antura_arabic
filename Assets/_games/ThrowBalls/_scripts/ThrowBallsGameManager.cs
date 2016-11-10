@@ -39,6 +39,8 @@ namespace EA4S.ThrowBalls
         public GameObject endGameCanvas;
         public StarFlowers starFlowers;
 
+        private LetterSpawner letterSpawner;
+
         protected override void Awake()
         {
             base.Awake();
@@ -58,6 +60,8 @@ namespace EA4S.ThrowBalls
 
             // Layer 8 = Terrain. Layer 12 = Ball.
             Physics.IgnoreLayerCollision(8, 12);
+
+            letterSpawner = new LetterSpawner();
 
             foreach (Collider collider in environment.GetComponentsInChildren<Collider>())
             {
@@ -108,10 +112,12 @@ namespace EA4S.ThrowBalls
                 letterController.DisableProps();
             }
 
+            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3);
+
             for (int i = 0; i < letterPool.Length; i++)
             {
                 GameObject letter = letterPool[i];
-                letter.transform.position = Constants.LETTER_POSITIONS[i];
+                letter.transform.position = randomPositions[i];
                 letter.SetActive(false);
             }
 
