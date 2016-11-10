@@ -18,8 +18,11 @@ namespace EA4S
         [Header("Pines")]
         public Transform[] posPines;
         public int numStepsBetweenPines;
+
+        [Header("Steps")]
         public GameObject dot;
         public GameObject[] posDots;
+        public GameObject stepsParent;
         public Vector3 pinLeft, pinRight;
         Quaternion rot;
         int numDot=0;
@@ -97,6 +100,7 @@ namespace EA4S
                     dotGo.GetComponent<Dot>().playSessionActual = 2;
                 else
                     dotGo.GetComponent<Dot>().playSessionActual = 3;
+                dotGo.transform.parent = stepsParent.transform;
                 posDots[numDot] = dotGo;
                 numDot++;
             }
