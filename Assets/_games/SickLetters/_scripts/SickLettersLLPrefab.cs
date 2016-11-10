@@ -75,11 +75,15 @@ namespace EA4S.SickLetters
 
         IEnumerator coJumpOut(float delay, bool endGame)
         {
-            yield return new WaitForSeconds(delay);
+
+            letterAnimator.SetBool("dancing", false);
+            yield return new WaitForSeconds(delay );
             //GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
             letterAnimator.Play("LL_idle_1", -1);
             //letterView.SetState(LLAnimationStates.LL_still);
-            
+            game.manager.holeON();
+            yield return new WaitForSeconds(0.25f);
+
             letterView.Falling = true;
             GetComponent<CapsuleCollider>().isTrigger = true;
 
@@ -95,14 +99,21 @@ namespace EA4S.SickLetters
         public void getNewLetterData()
         {
             //Temp Hack
-            SickLettersQuestionProvider newQuestionProvider = SickLettersConfiguration.Instance.SickLettersQuestions;
+            /*SickLettersQuestionProvider newQuestionProvider = SickLettersConfiguration.Instance.SickLettersQuestions;
             SickLettersQuestionsPack nextQuestionPack = newQuestionProvider.SickLettersGetNextQuestion();
             ILivingLetterData newLetter = (nextQuestionPack).GetQuestion();
+            */
+
+            /*IQuestionProvider newQuestionProvider = SickLettersConfiguration.Instance.Questions;
+            IQuestionPack nextQuestionPack = newQuestionProvider.GetNextQuestion();
+            ILivingLetterData newLetter = ((SickLettersQuestionsPack)nextQuestionPack).GetQuestion();*/
+
+            ILivingLetterData newLetter = game.questionManager.getNewLetter();
 
             game.LLPrefab.GetComponent<LetterObjectView>().Init(newLetter);
             game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
             game.LLPrefab.correctDot.text = newLetter.TextForLivingLetter;
-
+            
             //correctDotPos = LLPrefab.correctDot.transform.TransformPoint(Vector3.Lerp(LLPrefab.correctDot.mesh.vertices[0], game.LLPrefab.correctDot.mesh.vertices[2], 0.5f));
 
         }
