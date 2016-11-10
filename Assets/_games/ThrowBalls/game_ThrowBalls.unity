@@ -4364,6 +4364,85 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2e31327feaaf7401f881759116a4a04f, type: 3}
   m_PrefabInternal: {fileID: 1434948987}
+--- !u!1001 &1466151692
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -23.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 21.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011763906314, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000011591779468, guid: 435ad19523f5d1c4085ae8af18702bf7,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.6885094
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.040607113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.71819454
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.09220874
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013166069758, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013822068754, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 34.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013822068754, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -19.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012776724264, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1467615163
 GameObject:
   m_ObjectHideFlags: 0
@@ -5468,14 +5547,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7857d63b4daae914fb21496d2b5fd551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokeballImages:
+  ballImages:
   - {fileID: 693580535}
   - {fileID: 1185106963}
   - {fileID: 1181451182}
   - {fileID: 522027482}
   - {fileID: 724919864}
-  pokeballOnSprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
-  pokeballOffSprite: {fileID: 21300000, guid: 32d067cf2772877458843d041b146d24, type: 3}
+  ballSprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
   letterHint: {fileID: 45078644}
   letterHintText: {fileID: 8357688}
 --- !u!1 &1893636460
