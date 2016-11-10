@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace EA4S
 {
@@ -16,14 +17,14 @@ namespace EA4S
 
             StringTestData fakeData = new StringTestData(
                  ArabicAlphabetHelper.PrepareStringForDisplay(
-                     "لم نرك منذ مدة " + randomWord.Data.Arabic + " منذ مدة"));
+                     "منذ لم نرك منذ مدة " + randomWord.Data.Arabic + " منذ مدة"));
 
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
             while (wrongAnswers.Count < 6)
             {
                 var randomData = AppManager.Instance.DB.GetWordDataByRandom();
 
-                if (randomData.Id != answerData.Id)
+                if (randomData.Id != answerData.Id && !wrongAnswers.Any((a) => { return a.Key == randomData.Id; }))
                 {
                     wrongAnswers.Add(randomData.ConvertToLivingLetterData());
                 }

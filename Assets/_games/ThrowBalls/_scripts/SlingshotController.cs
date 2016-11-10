@@ -34,26 +34,27 @@ namespace EA4S.ThrowBalls
             center.transform.position = centerPosition;
 
             pointOfImpact.y = GroundController.instance.transform.position.y;
+
+            arc.SetActive(false);
         }
 
         void FixedUpdate()
         {
             if (!BallController.instance.IsLaunched)
             {
-                UpdateOriginLine();
                 UpdateLaunchForce();
                 UpdatePointOfImpact();
-                UpdateArc();
+                UpdateArrow();
+                //UpdateArc();
             }
         }
 
-        private void UpdateOriginLine()
+        private void UpdateArrow()
         {
-            Vector3 direction = center.transform.position - BallController.instance.transform.position;
-            direction.y = 0;
+            Vector3 projectedCenter = center.transform.position;
+            projectedCenter.y = GroundController.instance.transform.position.y;
 
-            Vector3 projectedCenter = ball.transform.position;
-            projectedCenter.y = 1.2f;
+            Vector3 direction = pointOfImpact - projectedCenter;
 
             ArrowBodyController.instance.OnUpdateDistance(direction);
             ArrowHeadController.instance.OnUpdate();
