@@ -103,14 +103,14 @@ namespace EA4S.MakeFriends
         {
             base.Start();
 
-            AppManager.Instance.InitDataAI();
-            AppManager.Instance.CurrentGameManagerGO = gameObject;
-            SceneTransitioner.Close();
-            PlayIdleMusic();
-
+            //AppManager.Instance.InitDataAI();
+            //AppManager.Instance.CurrentGameManagerGO = gameObject;
+            //SceneTransitioner.Close();
             //Random.seed = System.DateTime.Now.GetHashCode();
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
+
+            PlayIdleMusic();
         }
             
         public void PlayActiveMusic()
@@ -238,7 +238,7 @@ namespace EA4S.MakeFriends
 
         public void OnRoundResultPressed()
         {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
             WidgetPopupWindow.I.Close();
             Play();
         }
@@ -251,7 +251,7 @@ namespace EA4S.MakeFriends
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.CORRECT;
                 //letterChoice.SpawnBalloon(true);
-                AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
 
                 if (!correctChoices.Contains(letterChoice.letterData))
@@ -272,7 +272,7 @@ namespace EA4S.MakeFriends
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.WRONG;
                 //letterChoice.SpawnBalloon(false);
-                AudioManager.I.PlaySfx(Sfx.LetterSad);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
                 leftArea.MoveAwayAngrily();
                 rightArea.MoveAwayAngrily();
@@ -303,7 +303,7 @@ namespace EA4S.MakeFriends
             {
                 Debug.Log("Win");
 
-                AudioManager.I.PlaySfx(Sfx.Win);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
                 friendships++;
@@ -325,7 +325,7 @@ namespace EA4S.MakeFriends
             {
                 Debug.Log("Lose");
 
-                AudioManager.I.PlaySfx(Sfx.Lose);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
                 WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
