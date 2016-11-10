@@ -241,6 +241,11 @@ namespace EA4S.SickLetters
             if (coll.gameObject.tag == "Obstacle")
             {
                 game.Poof(transform.position);
+                if(!isInVase)
+                {
+                    game.Context.GetCheckmarkWidget().Show(false);
+                    game.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                }
 
                 if (isCorrect)
                 {

@@ -45,21 +45,29 @@ namespace EA4S.SickLetters
             {
                 dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
 
+                if (!dd)
+                    return;
+
                 if(dd.isDragging)
                     cheatingDetected = true;
 
                 if (dd.isCorrect)
                 {
+                    game.Context.GetCheckmarkWidget().Show(false);
+                    game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     game.Poof(dd.transform.position);
+
                     StartCoroutine(onWrongMove());
                     dd.resetCorrectDD();
                 }
-                else
+                else if(!dd.isInVase)
                 {
                     dd.deattached = true;
 
                     if (cheatingDetected)
                     {
+                        game.Context.GetCheckmarkWidget().Show(false);
+                        game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                         game.Poof(dd.transform.position);
                         Destroy(dd.gameObject);
                         cheatingDetected = false;
@@ -67,6 +75,10 @@ namespace EA4S.SickLetters
                     else
                     {
                         counter++;
+                        game.Context.GetCheckmarkWidget().Show(true);
+                        game.Context.GetAudioManager().PlaySound(Sfx.OK);
+                        game.currentStars = (counter / 2) / (game.targetScale / 6);
+                        game.Context.GetOverlayWidget().SetStarsScore(game.currentStars);
                         dd.isInVase = true;
                     }
 
