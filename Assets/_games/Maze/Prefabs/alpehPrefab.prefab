@@ -3316,6 +3316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 114000011646660602}
   idleSeconds: 0
+  anturaSeconds: 0
 --- !u!137 &137000010757162916
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
