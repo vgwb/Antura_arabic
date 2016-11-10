@@ -28,10 +28,10 @@ namespace EA4S
         public TutorialUIPools Pools;
 
         internal static TutorialUI I;
-        [System.NonSerialized] internal Camera Cam;
+        internal Camera Cam;
+        internal Transform CamT;
         const string ResourcePath = "Prefabs/UI/TutorialUI";
         const string TweenId = "TutorialUI";
-        float actualDrawSpeed;
         Transform currMovingTarget;
 
         #region Unity
@@ -40,7 +40,7 @@ namespace EA4S
         {
             I = this;
             Cam = Camera.main;
-            actualDrawSpeed = Cam.fieldOfView * DrawSpeed / 45f;
+            CamT = Cam.transform;
         }
 
         void OnDestroy()
@@ -75,6 +75,7 @@ namespace EA4S
         /// <param name="_position">World position</param>
         public static void Click(Vector3 _position)
         {
+            Init();
             I.Finger.Click(I.transform, _position);
         }
 
@@ -86,6 +87,7 @@ namespace EA4S
         /// <param name="_clicksPerSecond">Click per second</param>
         public static void ClickRepeat(Vector3 _position, float _duration = 2, float _clicksPerSecond = 5)
         {
+            Init();
             I.Finger.ClickRepeat(I.transform, _position, _duration, _clicksPerSecond);
         }
 
@@ -155,6 +157,7 @@ namespace EA4S
             if (hasFinger) Finger.Show(currMovingTarget, startPos);
             if (hasArrow) arrow = Pools.SpawnArrow(this.transform, startPos, _overlayed);
 
+            float actualDrawSpeed = DrawSpeed * GetCameraBasedScaleMultiplier(_path[0]);
             TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId);
 
             Tween mainTween = currMovingTarget.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
@@ -170,7 +173,7 @@ namespace EA4S
             }
 
             if (hasArrow) {
-                Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, arrow.transform.up)
+                Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f)
                     .SetAs(parms);
                 if (!_persistent) {
                     t.OnComplete(() => {
@@ -180,6 +183,15 @@ namespace EA4S
             }
 
             return new TutorialUIAnimation(mainTween);
+        }
+
+        #endregion
+
+        #region Helpers
+
+        public static float GetCameraBasedScaleMultiplier(Vector3 _position)
+        {
+            return (Vector3.Distance(_position, I.CamT.position) / 20) * (I.Cam.fieldOfView / 45f);
         }
 
         #endregion
