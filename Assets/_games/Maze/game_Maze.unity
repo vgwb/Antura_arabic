@@ -1347,7 +1347,7 @@ MonoBehaviour:
   currentCharacter: {fileID: 0}
   currentTutorial: {fileID: 0}
   prefabs:
-  - {fileID: 1000012810702694, guid: 0d8a74ba6bf77ec42b999378b8f5fd18, type: 2}
+  - {fileID: 1000012409968722, guid: 5b6afcb368a780944913319ff0c8e63f, type: 2}
   - {fileID: 1000011229278334, guid: 4186c0915933ba1429e1a778e55b89f1, type: 2}
   - {fileID: 1000010207669148, guid: b2ce63bbc2d4a1c469bac1a6f1a17859, type: 2}
   - {fileID: 1000012810702694, guid: 0d8a74ba6bf77ec42b999378b8f5fd18, type: 2}
@@ -2703,7 +2703,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012409968722, guid: 5b6afcb368a780944913319ff0c8e63f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b6afcb368a780944913319ff0c8e63f, type: 2}
