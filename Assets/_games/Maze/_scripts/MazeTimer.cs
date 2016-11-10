@@ -22,7 +22,7 @@ namespace EA4S.Maze
 			DisplayTime ();*/
 
            // this.StopAllCoroutines();
-            MinigamesUI.Timer.Setup(3);// MazeGameManager.Instance.gameTime);
+            MinigamesUI.Timer.Setup( MazeGameManager.Instance.gameTime);
 
 
         }
