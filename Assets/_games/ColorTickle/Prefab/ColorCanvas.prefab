@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305aad983d56e2744a3f072ef75f32f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SampleButton: {fileID: 114000012497890430, guid: 36bdd9a9691a96646aec797d172ba9dd,
+  m_SampleButton: {fileID: 114000012497890430, guid: 6021c86204b666649b664a7d482b6c32,
     type: 2}
   m_ButtonSelectedSizeScale: 2
   m_Colors:

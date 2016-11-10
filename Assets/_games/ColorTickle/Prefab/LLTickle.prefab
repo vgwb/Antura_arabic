@@ -192,7 +192,7 @@ GameObject:
   - 114: {fileID: 114000011054440758}
   - 114: {fileID: 114000012766081152}
   - 114: {fileID: 114000010584986880}
-  - 114: {fileID: 114000012447875248}
+  - 114: {fileID: 114000012936703918}
   m_Layer: 0
   m_Name: LLTickle
   m_TagString: Untagged
@@ -1966,18 +1966,6 @@ MonoBehaviour:
   - {fileID: 1000012328473662}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
---- !u!114 &114000012447875248
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010800097258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd970ba6296f97468582f42dda2c18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LLState: 0
 --- !u!114 &114000012485222214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2013,6 +2001,18 @@ MonoBehaviour:
   m_tBrushShape: {fileID: 2800000, guid: 43a291b51e9b99d40b7356583c20244f, type: 3}
   m_fBrushScaling: 0.5
   m_oDrawingColor: {r: 1, g: 0.6666667, b: 0.6666667, a: 1}
+--- !u!114 &114000012936703918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010800097258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9db32fbd1a4936408d890ab18327db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LLState: 0
 --- !u!137 &137000010899501002
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
