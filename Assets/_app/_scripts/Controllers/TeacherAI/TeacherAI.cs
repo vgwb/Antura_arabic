@@ -23,6 +23,7 @@ namespace EA4S
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
 
+        // Inner engines
         public LogInterpreter logInterpreter;
 
         // Helpers
@@ -48,7 +49,7 @@ namespace EA4S
             this.wordHelper = new WordHelper(_dbManager, this);
             this.journeyHelper = new JourneyHelper(_dbManager, this);
 
-            this.logInterpreter = new LogInterpreter();
+            this.logInterpreter = new LogInterpreter(_dbManager);
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
