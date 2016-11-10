@@ -15,6 +15,7 @@ namespace EA4S.Maze
 		public List<Vector3> characterWayPoints;
 
 		public GameObject collider;
+        public GameObject particles;
 
 		public List<GameObject> Fruits;
 
@@ -62,15 +63,15 @@ namespace EA4S.Maze
 
 			collider.GetComponent<MeshRenderer> ().enabled = false;
 			collider.SetActive(false);
+            
+
+            //foreach (GameObject fruitList in Fruits)
+            //	fruitList.SetActive (false);
 
 
-			//foreach (GameObject fruitList in Fruits)
-			//	fruitList.SetActive (false);
 
 
-			
-
-		}
+        }
 
 		public void toggleVisibility(bool value) {
 			// toggles the visibility of this gameobject and all it's children
@@ -90,8 +91,8 @@ namespace EA4S.Maze
 
 			characterWayPoints.Add(initialPosition);
 			setFruitsList ();
-
-			var dir = transform.position - _fruits[0].transform.position;
+           // if (particles) particles.SetActive(false);
+            var dir = transform.position - _fruits[0].transform.position;
 			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 			transform.rotation =  Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -227,8 +228,9 @@ namespace EA4S.Maze
 
 		void waitAndRestartScene()
 		{
-			//stop for a second and restart the level:
-			StartCoroutine(waitAndPerformCallback(1,()=>{
+            if (particles) particles.SetActive(false);
+            //stop for a second and restart the level:
+            StartCoroutine(waitAndPerformCallback(1,()=>{
 				MazeGameManager.Instance.showAllCracks();
 				donotHandleBorderCollision = true;
 				characterIsMoving = false;
@@ -325,8 +327,8 @@ namespace EA4S.Maze
 			
 			characterIsMoving = true;
 			GetComponent<BoxCollider> ().enabled = true;
-
-			foreach (GameObject fruit in _fruits) {
+            if (particles) particles.SetActive(true);
+            foreach (GameObject fruit in _fruits) {
 				fruit.GetComponent<BoxCollider> ().enabled = true;
 			}
 		}
@@ -402,7 +404,8 @@ namespace EA4S.Maze
 						transform.rotation = initialRotation;
 						if (currentFruitIndex == _fruits.Count) {
 							print ("Won");
-							GetComponent<BoxCollider> ().enabled = false;
+                            if (particles) particles.SetActive(false);
+                            GetComponent<BoxCollider> ().enabled = false;
 							characterIsMoving = false;
 							MazeGameManager.Instance.moveToNext (true);
 
