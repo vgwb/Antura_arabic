@@ -1,7 +1,9 @@
 ﻿using System;
 using UnityEngine.UI;
+using ModularFramework.Core;
 using ModularFramework.Modules;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace EA4S
 {
@@ -66,5 +68,40 @@ namespace EA4S
             CurrentMiniGameInPlaySession = 0;
         }
         #endregion
+
+        #region API
+
+        /// <summary>
+        /// Automatically select first avatar profile.
+        /// </summary>
+        public PlayerProfile() {
+
+        }
+
+        /// <summary>
+        /// Load or create new playerprofile with this id.
+        /// </summary>
+        /// <param name="_avatarId"></param>
+        public PlayerProfile CreateOrLoadPlayerProfile(string _avatarId) {
+
+            IPlayerProfile savedProfile = GameManager.Instance.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_avatarId);
+            if (savedProfile != null) { // already exist
+                GameManager.Instance.PlayerProfile.ActivePlayer = savedProfile as PlayerProfile;
+                return savedProfile as PlayerProfile;
+            } else {  // create new
+                int.TryParse(_avatarId, out Id);
+                if (Id == 0) {
+                    new Exception("Invalid Avatar selected");
+                }
+                Key = _avatarId;
+                AvatarId = Id;
+                GameManager.Instance.PlayerProfile.CreateNewPlayer(this);
+                GameManager.Instance.PlayerProfile.ActivePlayer = this;
+                return this;
+            }
+        }
+
+        public void DeleteThisProfile() { }
+        #endregion 
     }
 }

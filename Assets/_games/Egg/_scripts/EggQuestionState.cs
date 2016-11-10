@@ -24,8 +24,12 @@ namespace EA4S.Egg
             game.eggController.MoveNext(2f, OnEggEnterComplete);
         }
 
-        public void ExitState() { }
-        public void Update(float delta) { }        
+        public void ExitState()
+        {
+            game.eggButtonBox.SetOnPressedCallback(null);
+        }
+
+        public void Update(float delta) { }
         public void UpdatePhysics(float delta) { }
 
         void OnEggEnterComplete()
@@ -44,6 +48,7 @@ namespace EA4S.Egg
 
             game.eggButtonBox.SetButtonsOnPosition();
             game.eggButtonBox.ShowButtons();
+            game.eggButtonBox.SetOnPressedCallback(OnEggButtonPressed);
 
             ShowQuestionSequence();
         }
@@ -59,8 +64,6 @@ namespace EA4S.Egg
             if (isSequence)
             {
                 game.eggController.SetQuestion(game.questionManager.GetlLetterDataSequence());
-
-                game.eggController.QuestionParticleEnabled();
                 game.eggButtonBox.PlayButtonsAudio(lightUpButtons, false, 0f, OnQuestionAudioComplete);
             }
             else
@@ -71,12 +74,9 @@ namespace EA4S.Egg
                 {
                     game.eggController.PlayAudioQuestion(delegate ()
                        {
-                           game.eggController.QuestionParticleEnabled();
-
+                           EnableEggButtonsInput();
                            game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
                        });
-
-                    game.eggController.StartTrembling();
                 }
                 else
                 {
@@ -85,12 +85,33 @@ namespace EA4S.Egg
             }
         }
 
+        void OnEggButtonPressed(ILivingLetterData letterData)
+        {
+            if(!game.questionManager.IsSequence())
+            {
+                game.eggButtonBox.StopButtonsAudio();
+            }
+
+            game.PlayState.OnEggButtonPressed(letterData);
+        }
+
         void OnQuestionAudioComplete()
         {
+            DisableEggButtonsInput();
+
             game.eggController.EmoticonClose();
 
-            game.eggController.QuestionParticleDisabled();
             game.SetCurrentState(game.PlayState);
+        }
+
+        void EnableEggButtonsInput()
+        {
+            game.eggButtonBox.EnableButtonsInput();
+        }
+
+        void DisableEggButtonsInput()
+        {
+            game.eggButtonBox.DisableButtonsInput();
         }
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S;
 
 namespace EA4S.ThrowBalls
@@ -12,6 +13,8 @@ namespace EA4S.ThrowBalls
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 3;
         public const int MAX_NUM_BALLS = 5;
+
+        public const float TUTORIAL_UI_PERIOD = 4;
 
         new public static ThrowBallsGameManager Instance;
         new public ThrowBallsGameplayInfo GameplayInfo;
@@ -31,7 +34,8 @@ namespace EA4S.ThrowBalls
         public bool isRoundOngoing;
 
         // Round number is 1-based. (Round 1, round 2,...)
-        private int roundNumber = 1;
+        // Round 0 is the tutorial round.
+        private int roundNumber = 0;
         private int numBalls = MAX_NUM_BALLS;
 
         private int numRoundsWon = 0;
@@ -39,10 +43,16 @@ namespace EA4S.ThrowBalls
         public GameObject endGameCanvas;
         public StarFlowers starFlowers;
 
+        private LetterSpawner letterSpawner;
+
+        private float timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
+        private bool isIdle = true;
+
         protected override void Awake()
         {
             base.Awake();
             Instance = this;
+
         }
 
         protected override void Start()
@@ -57,6 +67,8 @@ namespace EA4S.ThrowBalls
 
             // Layer 8 = Terrain. Layer 12 = Ball.
             Physics.IgnoreLayerCollision(8, 12);
+
+            letterSpawner = new LetterSpawner();
 
             foreach (Collider collider in environment.GetComponentsInChildren<Collider>())
             {
@@ -77,6 +89,8 @@ namespace EA4S.ThrowBalls
                 letter.SetActive(false);
             }
 
+            letterWithPropsPrefab.SetActive(false);
+
             ResetScene();
 
             StartCoroutine("StartNewRound");
@@ -85,6 +99,62 @@ namespace EA4S.ThrowBalls
 
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
+        }
+
+        void Touched()
+        {
+            isIdle = false;
+            TutorialUI.Clear(false);
+        }
+
+        void OnMouseUp()
+        {
+            isIdle = true;
+            timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
+        }
+
+        void Update()
+        {
+            if (roundNumber == 0)
+            {
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+
+                    switch (touch.phase)
+                    {
+                        case TouchPhase.Began:
+                            Touched();
+                            break;
+                        case TouchPhase.Ended:
+                            OnMouseUp();
+                            break;
+                    }
+                }
+
+                else if (Input.GetMouseButtonDown(0))
+                {
+                    Touched();
+                }
+
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    OnMouseUp();
+                }
+            }
+        }
+
+        void FixedUpdate()
+        {
+            if (isIdle && !BallController.instance.IsLaunched)
+            {
+                timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
+
+                if (timeLeftToShowTutorialUI <= 0)
+                {
+                    ShowTutorialUI();
+                }
+            }
         }
 
         protected override void ReadyForGameplay()
@@ -100,6 +170,7 @@ namespace EA4S.ThrowBalls
         public void ResetScene()
         {
             UIController.instance.Reset();
+            UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
             {
@@ -107,31 +178,25 @@ namespace EA4S.ThrowBalls
                 letterController.DisableProps();
             }
 
-            for (int i = 0; i < letterPool.Length; i++)
+            if (roundNumber == 0)
             {
-                GameObject letter = letterPool[i];
-                letter.transform.position = Constants.LETTER_POSITIONS[i];
+                Vector3 tutorialPosition = letterSpawner.GetTutorialPosition();
+                GameObject letter = letterPool[0];
+                letter.transform.position = tutorialPosition;
                 letter.SetActive(false);
             }
 
-            // Sort the letters according to y axis position:
-            /*for (int i = 0; i < letterPool.Length; i++)
+            else
             {
-                for (int j = 0; j < i; j++)
-                {
-                    if (letterPool[i].transform.position.y < letterPool[j].transform.position.y)
-                    {
-                        GameObject temp = letterPool[i];
-                        letterPool[i] = letterPool[j];
-                        letterPool[j] = temp;
+                Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3);
 
-                        // Important! Sort the controllers too:
-                        LetterController tempController = letterControllers[i];
-                        letterControllers[i] = letterControllers[j];
-                        letterControllers[j] = tempController;
-                    }
+                for (int i = 0; i < GetNumLettersInRound(); i++)
+                {
+                    GameObject letter = letterPool[i];
+                    letter.transform.position = randomPositions[i];
+                    letter.SetActive(false);
                 }
-            }*/
+            }
 
             ballController.Reset();
 
@@ -144,9 +209,10 @@ namespace EA4S.ThrowBalls
         {
             ResetScene();
 
-            List<string> currentLettersInPlay = new List<string>();
+            IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
 
-            LL_LetterData correctLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
+            LL_LetterData correctLetter = (LL_LetterData)newQuestionPack.GetCorrectAnswers().ToList()[0];
+            List<ILivingLetterData> wrongLetters = newQuestionPack.GetWrongAnswers().ToList();
 
             AudioManager.I.PlayLetter(correctLetter.Key);
 
@@ -172,59 +238,60 @@ namespace EA4S.ThrowBalls
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
                     letterControllers[i].SetLetter(correctLetter);
-
-                    currentLettersInPlay.Add(correctLetter.Key);
                 }
 
                 else
                 {
                     letterObj.tag = Constants.TAG_WRONG_LETTER;
 
-                    LL_LetterData wrongLetter;
+                    letterControllers[i].SetLetter((LL_LetterData)wrongLetters[0]);
 
-                    do
-                    {
-                        wrongLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
-                    } while (currentLettersInPlay.Contains(wrongLetter.Key) || wrongLetter.Key == correctLetter.Key);
-
-                    letterControllers[i].SetLetter(wrongLetter);
-
-                    currentLettersInPlay.Add(wrongLetter.Key);
+                    wrongLetters.RemoveAt(0);
                 }
             }
 
             isRoundOngoing = true;
 
-            switch (roundNumber)
+            BallController.instance.Enable();
+
+            if (roundNumber > 0)
             {
-                case 1:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 2:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 3:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 4:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 5:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                default:
-                    break;
+                UIController.instance.Enable();
+                UIController.instance.OnRoundStarted(correctLetter);
             }
 
-            BallController.instance.Enable();
-            UIController.instance.Enable();
+            else
+            {
+                ShowTutorialUI();
+            }
+        }
+
+        private void ShowTutorialUI()
+        {
+            TutorialUI.Clear(false);
+
+            Vector3 worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(0, 8, -20));
+            Vector3 fromPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
+            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-0.75f, 4.5f, -22));
+            Vector3 toPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
+            TutorialUI.DrawLine(fromPoint, toPoint, TutorialUI.DrawLineMode.FingerAndArrow);
+            timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
 
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
             if (isRoundOngoing)
             {
-                numRoundsWon++;
+                if (roundNumber > 0)
+                {
+                    numRoundsWon++;
+                }
+
+                else
+                {
+                    TutorialUI.Clear(true);
+                }
+
                 StartCoroutine(ShowWinSequence(correctLetterCntrl));
                 ballController.Disable();
 
@@ -257,7 +324,7 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
             correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
-            correctLetterCntrl.transform.rotation = Quaternion.Euler(-29, 180, 0);
+            correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.Show();
 
             yield return new WaitForSeconds(1.3f);
@@ -267,7 +334,7 @@ namespace EA4S.ThrowBalls
 
         public void OnBallLost()
         {
-            if (isRoundOngoing)
+            if (isRoundOngoing && roundNumber > 0)
             {
                 numBalls--;
                 UIController.instance.OnBallLost();
@@ -277,6 +344,11 @@ namespace EA4S.ThrowBalls
                     BallController.instance.Disable();
                     OnRoundLost();
                 }
+            }
+
+            else if (roundNumber == 0)
+            {
+                ShowTutorialUI();
             }
         }
 
@@ -320,8 +392,15 @@ namespace EA4S.ThrowBalls
 
         private int GetNumLettersInRound()
         {
-            return 3;
-            return (roundNumber - 1) % 2 + 2;
+            if (roundNumber == 0)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return 3;
+            }
         }
 
         private void EndGame()

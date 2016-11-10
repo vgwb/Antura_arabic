@@ -14,7 +14,6 @@ namespace EA4S.MakeFriends
         public Collider letterCollider;
         public GameObject angerGraphic;
         public LL_LetterData letterData;
-        public EA4S.LLController letterObject;
         public TMP_Text tmpText;
         [HideInInspector]
         public GameObject container;

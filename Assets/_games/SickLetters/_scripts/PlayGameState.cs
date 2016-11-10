@@ -23,9 +23,13 @@ namespace EA4S.SickLetters
 
         public void EnterState()
         {
+            
+            game.Context.GetOverlayWidget().Initialize(true, true, false);
 
-            Debug.Log("enterplay");
+            game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
+
             timer = game.gameDuration;
+            //game.Context.GetOverlayWidget().SetClockDuration(game.gameDuration);
 
             SickLettersConfiguration.Instance.Context.GetAudioManager().MusicEnabled = true;
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
@@ -35,13 +39,18 @@ namespace EA4S.SickLetters
 
         public void ExitState()
         {
+            game.disableInput = true;
         }
 
         public void Update(float delta)
         {
+            game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
+
+            game.Context.GetOverlayWidget().SetClockTime(timer);
+
             timer -= delta;
 
-            if (timer < 0 /*|| game.successRoundsCount == 6*/)
+            if (timer < 0 /*|| game.roundsCount == 6*/)
             {
                 game.SetCurrentState(game.ResultState);
                 

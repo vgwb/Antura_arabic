@@ -21,6 +21,7 @@ namespace EA4S
         public List<LL_WordData> ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
         public string ActualGame = string.Empty;
 
+        [Obsolete("The 'Letters' list will very soon be removed. Use IQuestionPackProvider instead.")]
         public List<LL_LetterData> Letters = new List<LL_LetterData>();
 
         public TeacherAI Teacher;
@@ -51,6 +52,8 @@ namespace EA4S
             gameObject.AddComponent<DebugManager>();
         }
 
+
+
         protected override void GameSetup()
         {
             base.GameSetup();
@@ -60,6 +63,14 @@ namespace EA4S
             CachingLetterData();
             GameSettings.HighQualityGfx = false;
             ResetProgressionData();
+
+            /* Player profile auto select first avatar or last selected */
+            GlobalOptions globalOptions = new GlobalOptions() { AvailablePlayers = new List<string>() { } };
+            globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<GlobalOptions>(globalOptions) as GlobalOptions;
+
+            Player = new PlayerProfile().CreateOrLoadPlayerProfile(globalOptions.LastActivePlayerId == 0 ? "1" : globalOptions.LastActivePlayerId.ToString());
+            Debug.Log("Active player: " + Player.Id);
+
         }
 
         private void AdditionalSetup()
@@ -71,7 +82,8 @@ namespace EA4S
             }
 
             // PlayerProfileModule Install override
-            PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
+            //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
+
         }
 
         void CachingLetterData()

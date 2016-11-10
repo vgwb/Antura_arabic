@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb439a608db11d547827e9042e45bdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anturaTest: 0
+  noEntry: 0
   aspirationParticle: {fileID: 1000012161296232}
   enterPosition: {fileID: 0}
   spitPosition: {fileID: 0}

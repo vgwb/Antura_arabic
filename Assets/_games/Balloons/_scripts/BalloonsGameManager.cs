@@ -353,8 +353,8 @@ namespace Balloons
             if (letter != null) {
                 isRequired = letter.isRequired;
                 promptIndex = letter.associatedPromptIndex;
-                if (letter.LetterModel != null && letter.LetterModel.Data != null && !string.IsNullOrEmpty(letter.LetterModel.Data.Key)) {
-                    letterKey = letter.LetterModel.Data.Key;
+                if (letter.LetterModel != null && !string.IsNullOrEmpty(letter.LetterModel.Key)) {
+                    letterKey = letter.LetterModel.Key;
                 }
             }
 

@@ -15,7 +15,7 @@ namespace Balloons
         public LL_LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
-        public LLController LetterModel;
+        public ILivingLetterData LetterModel;
         public TMP_Text LetterView;
 
         [Header("Letter Parameters")]
@@ -72,7 +72,7 @@ namespace Balloons
 
         public void Init(LL_LetterData _data)
         {
-            LetterModel = new LLController(_data);
+            LetterModel = _data;
             LetterView.text = _data.TextForLivingLetter; 
         }
 
@@ -120,9 +120,9 @@ namespace Balloons
 
         private void SpeakLetter()
         {
-            if (LetterModel != null && LetterModel.Data != null && LetterModel.Data.Key != null)
+            if (LetterModel != null && LetterModel.Key != null)
             {
-                AudioManager.I.PlayLetter(LetterModel.Data.Key);
+                AudioManager.I.PlayLetter(LetterModel.Key);
             }
         }
 
