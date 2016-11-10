@@ -13,6 +13,8 @@ namespace EA4S.ThrowBalls
         public const int NUM_LETTERS_IN_POOL = 3;
         public const int MAX_NUM_BALLS = 5;
 
+        public const float TUTORIAL_UI_PERIOD = 4;
+
         new public static ThrowBallsGameManager Instance;
         new public ThrowBallsGameplayInfo GameplayInfo;
 
@@ -41,6 +43,9 @@ namespace EA4S.ThrowBalls
         public StarFlowers starFlowers;
 
         private LetterSpawner letterSpawner;
+
+        private float timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
+        private bool isIdle = true;
 
         protected override void Awake()
         {
@@ -93,6 +98,62 @@ namespace EA4S.ThrowBalls
             //LoggerEA4S.Save();
         }
 
+        void Touched()
+        {
+            isIdle = false;
+            TutorialUI.Clear(false);
+        }
+
+        void OnMouseUp()
+        {
+            isIdle = true;
+            timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
+        }
+
+        void Update()
+        {
+            if (roundNumber == 0)
+            {
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+
+                    switch (touch.phase)
+                    {
+                        case TouchPhase.Began:
+                            Touched();
+                            break;
+                        case TouchPhase.Ended:
+                            OnMouseUp();
+                            break;
+                    }
+                }
+
+                else if (Input.GetMouseButtonDown(0))
+                {
+                    Touched();
+                }
+
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    OnMouseUp();
+                }
+            }
+        }
+
+        void FixedUpdate()
+        {
+            if (isIdle && !BallController.instance.IsLaunched)
+            {
+                timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
+
+                if (timeLeftToShowTutorialUI <= 0)
+                {
+                    ShowTutorialUI();
+                }
+            }
+        }
+
         protected override void ReadyForGameplay()
         {
             base.ReadyForGameplay();
@@ -133,7 +194,7 @@ namespace EA4S.ThrowBalls
                     letter.SetActive(false);
                 }
             }
-            
+
             ballController.Reset();
 
             numBalls = MAX_NUM_BALLS;
@@ -204,6 +265,22 @@ namespace EA4S.ThrowBalls
                 UIController.instance.OnRoundStarted(correctLetter);
             }
 
+            else
+            {
+                ShowTutorialUI();
+            }
+        }
+
+        private void ShowTutorialUI()
+        {
+            TutorialUI.Clear(false);
+
+            Vector3 worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(0, 8, -20));
+            Vector3 fromPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
+            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-0.75f, 4.5f, -22));
+            Vector3 toPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
+            TutorialUI.DrawLine(fromPoint, toPoint, TutorialUI.DrawLineMode.FingerAndArrow);
+            timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
 
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
@@ -214,7 +291,7 @@ namespace EA4S.ThrowBalls
                 {
                     numRoundsWon++;
                 }
-                
+
                 StartCoroutine(ShowWinSequence(correctLetterCntrl));
                 ballController.Disable();
 
@@ -267,6 +344,11 @@ namespace EA4S.ThrowBalls
                     BallController.instance.Disable();
                     OnRoundLost();
                 }
+            }
+
+            else if (roundNumber == 0)
+            {
+                ShowTutorialUI();
             }
         }
 
