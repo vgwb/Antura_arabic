@@ -26,7 +26,7 @@ namespace EA4S.ThrowBalls
             transform.rotation = Quaternion.Euler(arrowHeadRotation);
 
             Vector3 distanceFromHead = new Vector3();
-            distanceFromHead.x = ArrowBodyController.instance.transform.localScale.x * 1.5f + 1.5f;
+            distanceFromHead.x = ArrowBodyController.instance.transform.localScale.x * 0.5f + 0.5f;
 
             Vector3 rotatedVector = new Vector3();
             rotatedVector.x = Mathf.Cos(-Mathf.Deg2Rad * transform.localRotation.eulerAngles.y) * distanceFromHead.x - Mathf.Sin(-Mathf.Deg2Rad * transform.localRotation.eulerAngles.y) * distanceFromHead.z;
