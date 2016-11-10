@@ -39,5 +39,20 @@ namespace EA4S.SickLetters
             StartCoroutine(game.antura.bark(1));
             StartCoroutine(game.scale.dropVase(3, true));
         }
+
+        public void holeON()
+        {
+            StartCoroutine(coHoleOn());
+        }
+
+        IEnumerator coHoleOn()
+        {
+            game.hole["Take 001"].wrapMode = WrapMode.PingPong;
+            game.hole["Take 001"].speed = 1;
+            game.hole.Play("Take 001");
+            yield return new WaitForSeconds(game.hole["Take 001"].length * 2 / game.hole["Take 001"].speed);
+            //game.hole["Take 001"]
+            game.hole.Stop("Take 001");
+        }
     }
 }

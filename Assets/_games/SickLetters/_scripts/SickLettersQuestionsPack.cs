@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace EA4S.SickLetters
 {
-    public class SickLettersQuestionsPack : IQuestionPack
+    public class SickLettersQuestionsPack : MonoBehaviour, IQuestionPack
     {
         LL_LetterData correctAnswers, question;
 
