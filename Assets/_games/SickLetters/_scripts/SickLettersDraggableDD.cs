@@ -53,6 +53,9 @@ namespace EA4S.SickLetters
 
         void OnMouseDown()
 		{
+            if (game.disableInput)
+                return;
+
             release = false;
             isDragging = true;
 
@@ -65,6 +68,8 @@ namespace EA4S.SickLetters
             origLocalPosition = transform.localPosition;
             origBoxColliderSize = boxCollider.bounds.size;
             origBoxColliderCenter = boxCollider.bounds.center;
+
+            transform.parent = null;
 
             if (isCorrect)
             {
@@ -82,11 +87,14 @@ namespace EA4S.SickLetters
 
 		void OnMouseDrag()
 		{
+            if (game.disableInput)
+                releaseDD();
 
             if (release)
                 return;
 
-            transform.eulerAngles = origRotation;
+            
+            //transform.eulerAngles = origRotation;
 			Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
 			Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -112,6 +120,7 @@ namespace EA4S.SickLetters
                 }
                 else
                 {
+                    transform.parent = origParent;
                     transform.localPosition = Vector3.zero;
                     transform.localEulerAngles = origLocalRotation;
                 }
@@ -135,6 +144,8 @@ namespace EA4S.SickLetters
 
 		public void Reset()
 		{
+            transform.parent = origParent;
+
             if(transform.parent)
                 transform.localPosition = new Vector3(startX, startY, startZ);
             else
@@ -217,6 +228,16 @@ namespace EA4S.SickLetters
 
         void OnCollisionEnter(Collision coll)
         {
+            poofOnCollision(coll);
+        }
+        void OnCollisionStay(Collision coll)
+        {
+            if(deattached)
+                poofOnCollision(coll);
+        }
+
+        void poofOnCollision(Collision coll)
+        {
             if (coll.gameObject.tag == "Obstacle")
             {
                 game.Poof(transform.position);
@@ -233,7 +254,7 @@ namespace EA4S.SickLetters
                         deattached = true;
                         game.checkForNextRound();
                     }
-                    
+
                     Destroy(gameObject, 0.0f);
                 }
             }

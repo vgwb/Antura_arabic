@@ -36,6 +36,7 @@ namespace EA4S.SickLetters
         {
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
             game.slCamera.moveCamera(1);
+            StartCoroutine(game.antura.bark(1));
             StartCoroutine(game.scale.dropVase(3, true));
         }
     }
