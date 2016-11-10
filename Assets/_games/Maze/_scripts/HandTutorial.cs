@@ -108,17 +108,25 @@ namespace EA4S.Maze
 			pathsToFollow[currentPath].SetActive(true);
 			numbersToShow [currentPath].SetActive (true);
 			linesToShow [currentPath].SetActive (true);
+
+            
 			foreach (Transform child in pathsToFollow[currentPath].transform) {
 				wayPoints.Add (child.transform.position);
-			}
+            }
 			startingPosition = wayPoints[0];
-			currentWayPoint = 0;
 
+           
 
+            currentWayPoint = 0;
+
+            
             if (wayPoints.Count == 1)
                 TutorialUI.ClickRepeat(wayPoints[0]);
             else
-                TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, true, true);
+            {
+                TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+            }
+               
         }
 
 		public bool isComplete()
@@ -141,7 +149,7 @@ namespace EA4S.Maze
 
 		public bool isCurrentTutorialDone()
 		{
-			return !isMovingOnPath;
+            return true; //!isMovingOnPath;
 		}
 
 
