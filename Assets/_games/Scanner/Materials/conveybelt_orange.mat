@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Antura__fur3_tilemat_5
+  m_Name: conveybelt_orange
   m_Shader: {fileID: 4800000, guid: ad3c0e223239a4e45b682f1723954070, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
