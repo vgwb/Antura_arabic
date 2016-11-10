@@ -78,12 +78,18 @@ namespace EA4S.ColorTickle
                 }
                 else
                 {
-                    OnBodyHit(false);
+                    if (OnBodyHit != null)
+                    {
+                        OnBodyHit(false);
+                    }
                 }
             }
             else
             {
-                OnBodyHit(false);
+                if (OnBodyHit != null)
+                {
+                    OnBodyHit(false);
+                }
             }
         }
         #endregion

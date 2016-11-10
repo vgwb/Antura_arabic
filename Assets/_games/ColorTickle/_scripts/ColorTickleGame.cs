@@ -25,6 +25,8 @@ namespace EA4S.ColorTickle
         private int m_Rounds = 3;
         [SerializeField]
         private int m_MaxLives = 3;
+        [SerializeField]
+        private Music m_oBackgroundMusic;
 
         [HideInInspector]
         public int m_Stars = 0;
@@ -88,6 +90,12 @@ namespace EA4S.ColorTickle
         {
             get { return m_GameUI; }
             set { m_GameUI = value; }
+        }
+
+        public Music backgroundMusic
+        {
+            get { return m_oBackgroundMusic; }
+            set { m_oBackgroundMusic = value; }
         }
 
         #endregion
