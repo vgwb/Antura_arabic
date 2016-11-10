@@ -4,6 +4,19 @@ using TMPro;
 
 namespace EA4S
 {
+    public enum LLAnimationStates
+    {
+        LL_still, // it's like idle, but does not trigger random animations
+        LL_idle,
+        LL_walking,
+        LL_dragging,
+        LL_hanging,
+        LL_dancing,
+        LL_rocketing,
+        LL_tickling,
+        LL_limbless
+    }
+
     /// <summary>
     /// View object for letter puppets.
     /// - init component by data
@@ -38,24 +51,38 @@ namespace EA4S
         /// <summary>
         /// Gets the data.
         /// </summary>
+        ILivingLetterData data;
         public ILivingLetterData Data
         {
             get
             {
-                return Model.Data;
+                if (data == null)
+                    InitAsDummy();
+                return data;
+            }
+            private set
+            {
+                data = value;
+
+                OnModelChanged();
             }
         }
 
-        private LLController model;
-        LLController Model
+        public LLAnimationStates State
         {
-            get
+            get { return state; }
+            set
             {
-                if (model == null)
-                    InitAsDummy();
-                return model;
+                if (state != value)
+                {
+                    var oldState = state;
+                    state = value;
+                    OnStateChanged(oldState, state);
+                }
+                hasToGoBackState = false;
             }
         }
+        private LLAnimationStates state = LLAnimationStates.LL_idle;
 
         Animator animator
         {
@@ -88,16 +115,16 @@ namespace EA4S
         /// </summary>
         void OnModelChanged()
         {
-            if (model.Data == null)
+            if (Data == null)
             {
                 ImageSprite.enabled = false;
                 Lable.enabled = false;
             }
             else
             {
-                if (model.Data.DataType == LivingLetterDataType.Image)
+                if (Data.DataType == LivingLetterDataType.Image)
                 {
-                    ImageSprite.sprite = model.Data.DrawForLivingLetter;
+                    ImageSprite.sprite = Data.DrawForLivingLetter;
                     ImageSprite.enabled = true;
                     Lable.enabled = false;
                 }
@@ -105,7 +132,7 @@ namespace EA4S
                 {
                     ImageSprite.enabled = false;
                     Lable.enabled = true;
-                    Lable.text = Model.Data.TextForLivingLetter;
+                    Lable.text = Data.TextForLivingLetter;
 
                     if (innerTransform)
                         innerTransform.localScale = Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x / 8.0f));
@@ -121,13 +148,7 @@ namespace EA4S
         {
             idleTimer = Random.Range(3, 8);
 
-            model = new LLController(_data);
-
-            // Init state change listener
-            model.OnStateChanged = null;
-            model.OnStateChanged += OnStateChanged;
-
-            OnModelChanged();
+            Data = _data;
         }
         #endregion
 
@@ -192,16 +213,12 @@ namespace EA4S
                 default:
                     animator.SetBool("idle", true);
                     break;
-
             }
-
         }
 
         void Update()
         {
-            if (model != null)
-            {
-                if (model.State == LLAnimationStates.LL_idle)
+                if (State == LLAnimationStates.LL_idle)
                 {
                     idleTimer -= Time.deltaTime;
 
@@ -216,59 +233,63 @@ namespace EA4S
 
                 float oldSpeed = animator.GetFloat("walkSpeed");
 
-                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, model.walkingSpeed, Time.deltaTime * 4.0f));
-            }
+                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 4.0f));
+           
         }
 
         #endregion
-
-        #region API
-
-        /// <summary>
-        /// Sets new state.
-        /// </summary>
-        /// <param name="_newState">The new state.</param>
+        
         public void SetState(LLAnimationStates _newState)
         {
-            Model.State = _newState;
-            hasToGoBackState = false;
+            State = _newState;
         }
 
+        public LLAnimationStates GetState()
+        {
+            return State;
+        }
+
+        bool crouch;
         public bool Crouching
         {
-            get { return Model.crouch; }
+            get { return crouch; }
             set
             {
-                Model.crouch = value;
+                crouch = value;
                 animator.SetBool("crouch", value);
 
             }
         }
 
+        bool jumping;
+        bool falling;
         public bool Falling
         {
-            get { return Model.falling; }
+            get { return falling; }
             set
             {
-                Model.falling = value;
+                falling = value;
                 animator.SetBool("falling", value);
 
             }
         }
 
+        bool fear;
         public bool HasFear
         {
-            get { return Model.fear; }
+            get { return fear; }
             set
             {
-                Model.fear = value;
+                fear = value;
                 animator.SetBool("fear", value);
             }
         }
 
+
+        bool hooraying;
         public bool Horraying
         {
-            get { return Model.hooraying; }
+            get { return hooraying; }
             set
             {
                 animator.SetBool("holdHorray", value);
@@ -276,7 +297,7 @@ namespace EA4S
                 {
                     DoHorray();
                 }
-                Model.hooraying = value;
+                hooraying = value;
             }
         }
 
@@ -293,23 +314,24 @@ namespace EA4S
         /// <summary>
         /// Speed is 0 (walk) to 1 (running).
         /// </summary>
+        float walkingSpeed;
         public void SetWalkingSpeed(float speed = WALKING_SPEED)
         {
-            Model.walkingSpeed = speed;
+            walkingSpeed = speed;
         }
 
         public void DoHorray()
         {
-            if ((Model.State != LLAnimationStates.LL_still) &&
-                (Model.State != LLAnimationStates.LL_idle))
+            if ((State != LLAnimationStates.LL_still) &&
+                (State != LLAnimationStates.LL_idle))
             {
                 if (!hasToGoBackState)
-                    backState = Model.State;
+                    backState = State;
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (!Model.hooraying)
+            if (!hooraying)
             {
                 animator.SetTrigger("stopAlternative");
                 animator.SetTrigger("doHorray");
@@ -318,11 +340,11 @@ namespace EA4S
 
         public void DoAngry()
         {
-            if ((Model.State != LLAnimationStates.LL_still) &&
-                (Model.State != LLAnimationStates.LL_idle))
+            if ((State != LLAnimationStates.LL_still) &&
+                (State != LLAnimationStates.LL_idle))
             {
                 if (!hasToGoBackState)
-                    backState = Model.State;
+                    backState = State;
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
@@ -334,11 +356,11 @@ namespace EA4S
 
         public void DoHighFive()
         {
-            if ((Model.State != LLAnimationStates.LL_still) &&
-                (Model.State != LLAnimationStates.LL_idle))
+            if ((State != LLAnimationStates.LL_still) &&
+                (State != LLAnimationStates.LL_idle))
             {
                 if (!hasToGoBackState)
-                    backState = Model.State;
+                    backState = State;
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
@@ -381,18 +403,18 @@ namespace EA4S
 
         public void ToggleDance()
         {
-            model.State = LLAnimationStates.LL_dancing;
+            State = LLAnimationStates.LL_dancing;
             animator.SetTrigger("toggleDancing");
         }
 
         public void OnJumpStart()
         {
-            if ((Model.State != LLAnimationStates.LL_still) &&
-                (Model.State != LLAnimationStates.LL_idle) &&
-                (Model.State != LLAnimationStates.LL_walking))
+            if ((State != LLAnimationStates.LL_still) &&
+                (State != LLAnimationStates.LL_idle) &&
+                (State != LLAnimationStates.LL_walking))
             {
                 if (!hasToGoBackState)
-                    backState = Model.State;
+                    backState = State;
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
@@ -416,11 +438,11 @@ namespace EA4S
 
         public void DoSmallJump()
         {
-            if ((Model.State != LLAnimationStates.LL_still) &&
-                (Model.State != LLAnimationStates.LL_idle))
+            if ((State != LLAnimationStates.LL_still) &&
+                (State != LLAnimationStates.LL_idle))
             {
                 if (!hasToGoBackState)
-                    backState = Model.State;
+                    backState = State;
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
@@ -440,8 +462,6 @@ namespace EA4S
             puffGo.transform.position = transform.position + transform.up * 3 + transform.forward * 2;
             puffGo.transform.localScale *= 0.75f;
         }
-
-        #endregion
 
         void OnTwirlBack()
         {
