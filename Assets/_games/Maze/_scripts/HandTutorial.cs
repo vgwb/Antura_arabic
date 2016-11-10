@@ -46,7 +46,7 @@ namespace EA4S.Maze
 		
 		// Update is called once per frame
 		void Update () {
-           // return;
+            return;
 			//no way points to follow:
 			if (wayPoints.Count == 0)
 				return;
@@ -88,8 +88,9 @@ namespace EA4S.Maze
 
 		public void stopCurrentTutorial()
 		{
-			
-			wayPoints.Clear ();
+            TutorialUI.Clear(false);
+
+            wayPoints.Clear ();
 			gameObject.SetActive (false);
 
 			//set tutorial done:
@@ -115,7 +116,7 @@ namespace EA4S.Maze
 
             
 
-            //TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, true, true);
+            TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, true, true);
         }
 
 		public bool isComplete()

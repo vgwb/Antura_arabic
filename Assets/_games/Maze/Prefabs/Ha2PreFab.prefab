@@ -3859,6 +3859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterWayPoints: []
   collider: {fileID: 1000013578111350}
+  particles: {fileID: 0}
   Fruits:
   - {fileID: 1000010743362756}
   characterIsMoving: 0
