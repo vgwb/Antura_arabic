@@ -31,7 +31,7 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
-            Questions = new SampleQuestionProvider();
+            Questions = new ThrowBallsQuestionProvider();
 
             Variation = ThrowBallsVariation.letters;
 
