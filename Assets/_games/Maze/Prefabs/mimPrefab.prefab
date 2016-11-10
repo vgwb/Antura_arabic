@@ -3742,6 +3742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 114000013457814486}
   idleSeconds: 0
+  anturaSeconds: 0
 --- !u!114 &114000010338371204
 MonoBehaviour:
   m_ObjectHideFlags: 1

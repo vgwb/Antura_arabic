@@ -4406,6 +4406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 114000012898753190}
   idleSeconds: 0
+  anturaSeconds: 0
 --- !u!114 &114000011783051878
 MonoBehaviour:
   m_ObjectHideFlags: 1

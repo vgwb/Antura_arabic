@@ -49,9 +49,12 @@ namespace EA4S.Maze
 		public float gameTime = 0;
 		public float maxGameTime = 120;
 		public MazeTimer timer;
-		public Antura antoura;
+        public GameObject antura;
+        public GameObject fleePositionObject;
 
-		protected override void Awake()
+        private List<Vector3> fleePositions;
+
+        protected override void Awake()
 		{
 			base.Awake();
 			Instance = this;
@@ -61,16 +64,21 @@ namespace EA4S.Maze
 
 		public void startGame()
 		{
-			//base.Start();
+            //base.Start();
 
-		/*	AppManager.Instance.InitDataAI();
-			AppManager.Instance.CurrentGameManagerGO = gameObject;
-			SceneTransitioner.Close();*/
+            /*	AppManager.Instance.InitDataAI();
+                AppManager.Instance.CurrentGameManagerGO = gameObject;
+                SceneTransitioner.Close();*/
 
+            fleePositions = new List<Vector3>();
+            foreach (Transform child in fleePositionObject.transform)
+            {
+                fleePositions.Add(child.position);
+            }
 
-
-			//cracks to display:
-			_cracks = new List<GameObject> ();
+            antura.AddComponent<MazeAntura>();
+            //cracks to display:
+            _cracks = new List<GameObject> ();
 			cracks.SetActive (true);
 			foreach (Transform child in cracks.transform) {
 				child.gameObject.SetActive (false);
@@ -162,8 +170,9 @@ namespace EA4S.Maze
 
 		public void moveToNext(bool won = false)
 		{
-			//check if current letter is complete:
-			if (currentCharacter.isComplete ()) {
+            isShowingAntura = false;
+            //check if current letter is complete:
+            if (currentCharacter.isComplete ()) {
 				correctLetters++;
 				currentLetterIndex++;
 				print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
@@ -242,7 +251,8 @@ namespace EA4S.Maze
 
 		void initCurrentLetter()
 		{
-			addLine ();
+            TutorialUI.Clear(false);
+            addLine ();
 			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex]);
 			foreach (Transform child in currentPrefab.transform) {
 				if (child.name == "Mazecharacter")
@@ -261,7 +271,9 @@ namespace EA4S.Maze
 
 		public void showCurrentTutorial()
 		{
-			if (currentTutorial != null) {
+            isShowingAntura = false;
+
+            if (currentTutorial != null) {
 				currentTutorial.showCurrentTutorial ();
 
 			}
@@ -405,11 +417,18 @@ namespace EA4S.Maze
             endGame();
 		}
 
+        public bool isShowingAntura = false;
 		public void onIdleTime()
 		{
-			antoura.gameObject.SetActive (true);
+            if (isShowingAntura) return;
+            isShowingAntura = true;
 
-		}
+            antura.SetActive (true);
+            antura.GetComponent<MazeAntura>().SetAnturaTime(true,currentCharacter.transform.position);
+
+            int randIndex = UnityEngine.Random.Range(0, fleePositions.Count);
+            currentCharacter.fleeTo(fleePositions[randIndex]);
+        }
 
         //states
         public MazeIntroState IntroductionState { get; private set; }
