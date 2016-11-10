@@ -88,6 +88,8 @@ namespace EA4S.ThrowBalls
                 letter.SetActive(false);
             }
 
+            letterWithPropsPrefab.SetActive(false);
+
             ResetScene();
 
             StartCoroutine("StartNewRound");
@@ -290,6 +292,11 @@ namespace EA4S.ThrowBalls
                 if (roundNumber > 0)
                 {
                     numRoundsWon++;
+                }
+
+                else
+                {
+                    TutorialUI.Clear(true);
                 }
 
                 StartCoroutine(ShowWinSequence(correctLetterCntrl));
