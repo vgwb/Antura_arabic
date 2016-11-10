@@ -194,6 +194,9 @@ namespace EA4S.TakeMeHome
 			Context.GetAudioManager().PlayMusic(Music.Theme3);
 
 
+            //add antura specific script:
+            antura.AddComponent<TakeMeHomeAntura>();
+
 			gameTime = new CountdownTimer(UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
 			gameTime.onTimesUp += OnTimesUp;
 

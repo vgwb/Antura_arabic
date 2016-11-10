@@ -75,6 +75,7 @@ namespace EA4S
         /// <param name="_position">World position</param>
         public static void Click(Vector3 _position)
         {
+            Init();
             I.Finger.Click(I.transform, _position);
         }
 
@@ -86,6 +87,7 @@ namespace EA4S
         /// <param name="_clicksPerSecond">Click per second</param>
         public static void ClickRepeat(Vector3 _position, float _duration = 2, float _clicksPerSecond = 5)
         {
+            Init();
             I.Finger.ClickRepeat(I.transform, _position, _duration, _clicksPerSecond);
         }
 

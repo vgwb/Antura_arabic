@@ -71,14 +71,20 @@ namespace EA4S.ReadingGame
 
         void OnAnswered(CircleButton button)
         {
+            game.Context.GetAudioManager().PlaySound(button.Answer == correct ? Sfx.OK : Sfx.KO);
+
             if (button.Answer == correct)
             {
                 // Assign score
                 game.AddScore((int)(ReadTime) + 1);
                 game.SetCurrentState(game.ReadState);
+                game.Context.GetCheckmarkWidget().Show(true);
+
             }
             else
             {
+                game.Context.GetCheckmarkWidget().Show(false);
+
                 if (!game.RemoveLife())
                     game.SetCurrentState(game.ReadState);
             }

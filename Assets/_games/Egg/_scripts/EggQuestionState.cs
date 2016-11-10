@@ -24,7 +24,11 @@ namespace EA4S.Egg
             game.eggController.MoveNext(2f, OnEggEnterComplete);
         }
 
-        public void ExitState() { }
+        public void ExitState()
+        {
+            game.eggButtonBox.SetOnPressedCallback(null);
+        }
+
         public void Update(float delta) { }
         public void UpdatePhysics(float delta) { }
 
@@ -44,6 +48,7 @@ namespace EA4S.Egg
 
             game.eggButtonBox.SetButtonsOnPosition();
             game.eggButtonBox.ShowButtons();
+            game.eggButtonBox.SetOnPressedCallback(OnEggButtonPressed);
 
             ShowQuestionSequence();
         }
@@ -69,6 +74,7 @@ namespace EA4S.Egg
                 {
                     game.eggController.PlayAudioQuestion(delegate ()
                        {
+                           EnableEggButtonsInput();
                            game.eggButtonBox.PlayButtonsAudio(true, true, 0.5f, OnQuestionAudioComplete);
                        });
                 }
@@ -79,11 +85,33 @@ namespace EA4S.Egg
             }
         }
 
+        void OnEggButtonPressed(ILivingLetterData letterData)
+        {
+            if(!game.questionManager.IsSequence())
+            {
+                game.eggButtonBox.StopButtonsAudio();
+            }
+
+            game.PlayState.OnEggButtonPressed(letterData);
+        }
+
         void OnQuestionAudioComplete()
         {
+            DisableEggButtonsInput();
+
             game.eggController.EmoticonClose();
 
             game.SetCurrentState(game.PlayState);
+        }
+
+        void EnableEggButtonsInput()
+        {
+            game.eggButtonBox.EnableButtonsInput();
+        }
+
+        void DisableEggButtonsInput()
+        {
+            game.eggButtonBox.DisableButtonsInput();
         }
     }
 }

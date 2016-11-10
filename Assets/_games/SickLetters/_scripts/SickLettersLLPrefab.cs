@@ -19,8 +19,8 @@ namespace EA4S.SickLetters
         public letterStatus LLStatus = letterStatus.idle;
         public Animator letterAnimator;
         public List<SickLettersDraggableDD> thisLLWrongDDs = new List<SickLettersDraggableDD>();
-
-        string newLetterString = "", prevLetter = ".";
+        
+        
         
         Vector3 statPos;
 
@@ -37,7 +37,9 @@ namespace EA4S.SickLetters
         void Update()
         {
             //if(LLStatus == letterStatus.idle)
-              //  letterAnimator.SetFloat("random", -1);
+            //  letterAnimator.SetFloat("random", -1);
+            //letterView.SetState(LLAnimationStates.LL_dancing);
+            
         }
 
         public void jumpIn()
@@ -46,8 +48,8 @@ namespace EA4S.SickLetters
         }
 
 
-        public void jumpOut(float delay = 0) {
-            StartCoroutine(coJumpOut(delay));
+        public void jumpOut(float delay = 0, bool endGame = false) {
+            StartCoroutine(coJumpOut(delay, endGame));
         }
 
         IEnumerator coJumpIn()
@@ -62,6 +64,7 @@ namespace EA4S.SickLetters
             yield return new WaitForSeconds(0.30f);
 
             letterView.OnJumpEnded();
+            letterAnimator.SetBool("dancing", game.LLCanDance);
             //letterView.SetState(LLAnimationStates.LL_idle);
             //letterAnimator.SetBool("idle", true);
 
@@ -70,37 +73,35 @@ namespace EA4S.SickLetters
             
         }
 
-        IEnumerator coJumpOut(float delay)
+        IEnumerator coJumpOut(float delay, bool endGame)
         {
             yield return new WaitForSeconds(delay);
             //GetComponent<LetterObjectView>().SetState(LLAnimationStates.LL_idle);
             letterAnimator.Play("LL_idle_1", -1);
+            //letterView.SetState(LLAnimationStates.LL_still);
+            
             letterView.Falling = true;
             GetComponent<CapsuleCollider>().isTrigger = true;
 
             yield return new WaitForSeconds(1);
 
-            transform.position = new Vector3(statPos.x, 29.04f ,statPos.z);
-
-            StartCoroutine(coJumpIn());
+            if (!endGame)
+            {
+                transform.position = new Vector3(statPos.x, 29.04f, statPos.z);
+                StartCoroutine(coJumpIn());
+            }
         }
 
         public void getNewLetterData()
         {
+            //Temp Hack
+            SickLettersQuestionProvider newQuestionProvider = SickLettersConfiguration.Instance.SickLettersQuestions;
+            SickLettersQuestionsPack nextQuestionPack = newQuestionProvider.SickLettersGetNextQuestion();
+            ILivingLetterData newLetter = (nextQuestionPack).GetQuestion();
 
-            ILivingLetterData newLetter;
-            prevLetter = newLetterString;
-            do
-            {
-                newLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
-                newLetterString = newLetter.TextForLivingLetter.ToString();
-
-            }
-            while (newLetterString == "" || game.dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
-            
             game.LLPrefab.GetComponent<LetterObjectView>().Init(newLetter);
-            game.LLPrefab.dotlessLetter.text = newLetterString;
-            game.LLPrefab.correctDot.text = newLetterString;
+            game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
+            game.LLPrefab.correctDot.text = newLetter.TextForLivingLetter;
 
             //correctDotPos = LLPrefab.correctDot.transform.TransformPoint(Vector3.Lerp(LLPrefab.correctDot.mesh.vertices[0], game.LLPrefab.correctDot.mesh.vertices[2], 0.5f));
 
@@ -114,10 +115,15 @@ namespace EA4S.SickLetters
 
             foreach (SickLettersDropZone dz in game.DropZones)
             {
-                if (dz.letters.Contains(newLetterString))
+                if (dz.letters.Contains(game.LLPrefab.dotlessLetter.text))
                 {
                     if (i < game.Draggables.Length)
                     {
+                        if (game.Draggables[i].diacritic != Diacritic.None && !game.with7arakat)
+                        {
+                            i++;
+                            continue;
+                        }
                         SickLettersDraggableDD newDragable = game.createNewDragable(game.Draggables[i].gameObject);
                         newDragable.transform.parent = dz.transform;
                         newDragable.transform.localPosition = Vector3.zero;
