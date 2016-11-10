@@ -324,7 +324,7 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
             correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
-            correctLetterCntrl.transform.rotation = Quaternion.Euler(-29, 180, 0);
+            correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.Show();
 
             yield return new WaitForSeconds(1.3f);
