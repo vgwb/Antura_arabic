@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S;
 
 namespace EA4S.ThrowBalls
@@ -87,6 +88,8 @@ namespace EA4S.ThrowBalls
 
                 letter.SetActive(false);
             }
+
+            letterWithPropsPrefab.SetActive(false);
 
             ResetScene();
 
@@ -206,9 +209,10 @@ namespace EA4S.ThrowBalls
         {
             ResetScene();
 
-            List<string> currentLettersInPlay = new List<string>();
+            IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
 
-            LL_LetterData correctLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
+            LL_LetterData correctLetter = (LL_LetterData)newQuestionPack.GetCorrectAnswers().ToList()[0];
+            List<ILivingLetterData> wrongLetters = newQuestionPack.GetWrongAnswers().ToList();
 
             AudioManager.I.PlayLetter(correctLetter.Key);
 
@@ -234,24 +238,15 @@ namespace EA4S.ThrowBalls
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
                     letterControllers[i].SetLetter(correctLetter);
-
-                    currentLettersInPlay.Add(correctLetter.Key);
                 }
 
                 else
                 {
                     letterObj.tag = Constants.TAG_WRONG_LETTER;
 
-                    LL_LetterData wrongLetter;
+                    letterControllers[i].SetLetter((LL_LetterData)wrongLetters[0]);
 
-                    do
-                    {
-                        wrongLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
-                    } while (currentLettersInPlay.Contains(wrongLetter.Key) || wrongLetter.Key == correctLetter.Key);
-
-                    letterControllers[i].SetLetter(wrongLetter);
-
-                    currentLettersInPlay.Add(wrongLetter.Key);
+                    wrongLetters.RemoveAt(0);
                 }
             }
 
@@ -290,6 +285,11 @@ namespace EA4S.ThrowBalls
                 if (roundNumber > 0)
                 {
                     numRoundsWon++;
+                }
+
+                else
+                {
+                    TutorialUI.Clear(true);
                 }
 
                 StartCoroutine(ShowWinSequence(correctLetterCntrl));

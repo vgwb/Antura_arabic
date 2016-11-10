@@ -15,7 +15,8 @@ namespace EA4S.SickLetters
         public SickLettersAntura antura;
         public SickLettersVase scale;
         public GameObject DropZonesGO;
-        
+        public UnityEngine.Animation hole;
+
         public SickLettersCamera slCamera;
         public SickLettersGameManager manager;
 
@@ -23,8 +24,8 @@ namespace EA4S.SickLetters
         public MinigamesUIStarbar uiSideBar;
         [HideInInspector]
         public MinigamesUITimer uiTimer;
-        [HideInInspector]
-        public int maxRoundsCount = 6, successRoundsCount = 0, wrongDraggCount = 0;
+        //[HideInInspector]
+        public int maxRoundsCount = 6, roundsCount = 1, wrongDraggCount = 0, currentStars = 0;
         [HideInInspector]
         public bool disableInput;
 
@@ -51,7 +52,7 @@ namespace EA4S.SickLetters
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
 
-        
+        public QuestionsManager questionManager;
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -59,6 +60,7 @@ namespace EA4S.SickLetters
             QuestionState = new QuestionGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
+            questionManager = new QuestionsManager();
 
             manager = GetComponent<SickLettersGameManager>();
             //anturaAnimator = GetComponent<Animator>();
@@ -94,7 +96,11 @@ namespace EA4S.SickLetters
 
         public bool checkForNextRound()
         {
-            checkSucess();
+            if (checkSucess())
+                return false;
+
+            if (StateManager.CurrentState == ResultState)
+                return false;
 
             int i = 0;
             foreach (SickLettersDraggableDD dd in LLPrefab.thisLLWrongDDs)
@@ -105,9 +111,16 @@ namespace EA4S.SickLetters
 
             if (i == 0)
             {
-                successRoundsCount++;
-                Context.GetOverlayWidget().SetStarsScore(successRoundsCount / 2);
+                if (roundsCount == maxRoundsCount)
+                {
+                    this.SetCurrentState(ResultState);
+                    return false;
+                } 
+
+                roundsCount++;
+                //Context.GetOverlayWidget().SetStarsScore(roundsCount / 2);
                 LLPrefab.letterAnimator.SetBool("dancing", false);
+                LLPrefab.letterAnimator.Play("LL_idle_1", -1);
                 LLPrefab.letterView.DoHorray();
                 SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 LLPrefab.jumpOut(1.5f);
@@ -117,23 +130,30 @@ namespace EA4S.SickLetters
                 return false;
         }
 
-        public void checkSucess()
+        public bool checkSucess()
         {
-            if( scale.counter == targetScale)
+            if (scale.counter == targetScale)
             {
-                successRoundsCount = 6;
                 manager.sucess();
+                return true;
             }
+            else
+                return false;
         }
 
         
 
-        public void setDifficulty(int gameDuration, int targetScale, float vaseWidth, bool LLCanDance, bool with7arakat)
+        public void setDifficulty(float diff, int gameDuration, int targetScale, float vaseWidth, bool LLCanDance, bool with7arakat)
         {
             this.gameDuration = gameDuration;
             Context.GetOverlayWidget().SetClockDuration(gameDuration);
             this.targetScale = targetScale;
-            scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
+
+            if(diff> 0.666f)
+                scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, 7.501349f);
+            else
+                scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
+
             this.LLCanDance = LLCanDance;
             this.with7arakat = with7arakat;
         }
@@ -148,11 +168,13 @@ namespace EA4S.SickLetters
 
 
             if (diff < 0.333f)
-                setDifficulty(120, 25, 5.20906f, false, false);
+                setDifficulty(diff, 120, 18, 5.20906f, false, false);
             else if (diff < 0.666f)
-                setDifficulty(90, 25, 4.0f, false, true);
+                setDifficulty(diff, 120, 42, 4.0f, false, true);
             else
-                setDifficulty(60, 25, 3.0f, true, true);
+                setDifficulty(diff, 160, 42, 3.0f, true, true);
         }
+
+        
     }
 }
