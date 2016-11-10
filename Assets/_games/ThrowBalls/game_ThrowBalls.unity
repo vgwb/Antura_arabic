@@ -4410,19 +4410,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.68850946
+      value: -0.6885094
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607117
+      value: 0.040607113
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7181946
+      value: 0.71819454
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220875
+      value: 0.09220874
       objectReference: {fileID: 0}
     - target: {fileID: 1000013166069758, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_IsActive
@@ -5547,7 +5547,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7857d63b4daae914fb21496d2b5fd551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballImages: []
+  ballImages:
+  - {fileID: 693580535}
+  - {fileID: 1185106963}
+  - {fileID: 1181451182}
+  - {fileID: 522027482}
+  - {fileID: 724919864}
   ballSprite: {fileID: 21300000, guid: 0656bf4d3591c414096112e6ee09a6b1, type: 3}
   letterHint: {fileID: 45078644}
   letterHintText: {fileID: 8357688}
