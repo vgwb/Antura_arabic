@@ -52,7 +52,6 @@ namespace EA4S.ThrowBalls
         {
             base.Awake();
             Instance = this;
-
         }
 
         protected override void Start()
@@ -96,7 +95,7 @@ namespace EA4S.ThrowBalls
             StartCoroutine("StartNewRound");
 
             AudioManager.I.PlayMusic(Music.MainTheme);
-
+            
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
         }
@@ -169,7 +168,6 @@ namespace EA4S.ThrowBalls
 
         public void ResetScene()
         {
-            UIController.instance.Reset();
             UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
@@ -202,12 +200,23 @@ namespace EA4S.ThrowBalls
 
             numBalls = MAX_NUM_BALLS;
 
+            if (roundNumber > 1)
+            {
+                MinigamesUI.Lives.ResetToMax();
+            }
+            
             isRoundOngoing = false;
         }
 
         public IEnumerator StartNewRound()
         {
             ResetScene();
+
+            if (roundNumber == 1)
+            {
+                MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
+                MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
+            }
 
             IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
 
@@ -257,7 +266,7 @@ namespace EA4S.ThrowBalls
             if (roundNumber > 0)
             {
                 UIController.instance.Enable();
-                UIController.instance.OnRoundStarted(correctLetter);
+                UIController.instance.SetLetterHint(correctLetter);
             }
 
             else
@@ -285,6 +294,21 @@ namespace EA4S.ThrowBalls
                 if (roundNumber > 0)
                 {
                     numRoundsWon++;
+
+                    if (numRoundsWon == 2)
+                    {
+                        MinigamesUI.Starbar.GotoStar(0);
+                    }
+
+                    else if (numRoundsWon == 4)
+                    {
+                        MinigamesUI.Starbar.GotoStar(1);
+                    }
+
+                    else if (numRoundsWon == 5)
+                    {
+                        MinigamesUI.Starbar.GotoStar(2);
+                    }
                 }
 
                 else
@@ -337,7 +361,8 @@ namespace EA4S.ThrowBalls
             if (isRoundOngoing && roundNumber > 0)
             {
                 numBalls--;
-                UIController.instance.OnBallLost();
+
+                MinigamesUI.Lives.SetCurrLives(numBalls);
 
                 if (numBalls == 0)
                 {

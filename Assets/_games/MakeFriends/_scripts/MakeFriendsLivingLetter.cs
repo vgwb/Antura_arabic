@@ -6,12 +6,12 @@ using ArabicSupport;
 
 namespace EA4S.MakeFriends
 {
-    public class LivingLetterController : MonoBehaviour
+    public class MakeFriendsLivingLetter : MonoBehaviour
     {
+        public LetterObjectView LLPrefab;
         public bool focusOnTouch;
         public Animator animator;
         public Collider letterCollider;
-        public Rigidbody body;
         public GameObject angerGraphic;
         public LL_LetterData letterData;
         public TMP_Text tmpText;
@@ -34,14 +34,16 @@ namespace EA4S.MakeFriends
             public Vector3 rotation;
             public float duration;
             public float delay;
-            public string walkAnimation;
-            public string afterWalkAnimation;
+            public LLAnimationStates walkAnimation;
+            public float walkSpeed;
+            public LLAnimationStates afterWalkAnimation;
+            public float afterWalkSpeed;
             public bool speak;
             public float speakDelay;
             public bool rotateAfterWalk;
             public Vector3 afterWalkRotation;
 
-            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay, string walkAnimation, string afterWalkAnimation, bool speak, float speakDelay, bool rotateAfterWalk, Vector3 afterWalkRotation)
+            public WalkParameters(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay, LLAnimationStates walkAnimation, float walkSpeed, LLAnimationStates afterWalkAnimation, float afterWalkSpeed, bool speak, float speakDelay, bool rotateAfterWalk, Vector3 afterWalkRotation)
             {
                 this.from = from;
                 this.to = to;
@@ -49,7 +51,9 @@ namespace EA4S.MakeFriends
                 this.duration = duration;
                 this.delay = delay;
                 this.walkAnimation = walkAnimation;
+                this.walkSpeed = walkSpeed;
                 this.afterWalkAnimation = afterWalkAnimation;
+                this.afterWalkSpeed = afterWalkSpeed;
                 this.speak = speak;
                 this.speakDelay = speakDelay;
                 this.rotateAfterWalk = rotateAfterWalk;
@@ -61,8 +65,10 @@ namespace EA4S.MakeFriends
         public void Init(LL_WordData _data)
         {
             wordData = _data;
-            var text = ArabicFixer.Fix(_data.Data.Arabic);
-            tmpText.text = text;
+            LLPrefab.Init(_data);
+
+            //var text = ArabicFixer.Fix(_data.Data.Arabic);
+            //tmpText.text = text;
         }
 
         void OnMouseDown()
@@ -90,7 +96,7 @@ namespace EA4S.MakeFriends
             var from = transform.position;
             var to = position;
 
-            Walk(from, to, rotation, duration, walkAnimation: "Run");
+            Walk(from, to, rotation, duration, walkAnimation: LLAnimationStates.LL_walking, walkSpeed: 1f);
         }
 
         public void GoToFriendsZone(FriendsZone zone, bool left)
@@ -104,7 +110,7 @@ namespace EA4S.MakeFriends
 
             this.transform.SetParent(side.transform);
             this.transform.localPosition = Vector3.zero;
-            Walk(from, to, rotation, duration, walkAnimation: "Run", rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
+            Walk(from, to, rotation, duration, walkAnimation: LLAnimationStates.LL_walking, walkSpeed: 1f, rotateAfterWalk: true, afterWalkRotation: afterWalkRotation);
         }
 
         public void MoveAwayAngrily(Vector3 position, Vector3 rotation, float duration, float delay)
@@ -125,7 +131,7 @@ namespace EA4S.MakeFriends
             var to = celebrationPosition;
             var duration = celebrationDuration;
 
-            Walk(from, to, rotation, duration, walkAnimation: "Run", afterWalkAnimation: "Ninja");
+            Walk(from, to, rotation, duration, walkAnimation: LLAnimationStates.LL_walking, walkSpeed: 1f, afterWalkAnimation: LLAnimationStates.LL_dancing);
         }
 
         public void SpeakWord()
@@ -186,9 +192,9 @@ namespace EA4S.MakeFriends
             isFocusing = false;
         }
 
-        private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, string walkAnimation = "Walk", string afterWalkAnimation = "Idle", bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
+        private void Walk(Vector3 from, Vector3 to, Vector3 rotation, float duration, float delay = 0f, LLAnimationStates walkAnimation = LLAnimationStates.LL_walking, float walkSpeed = 0f, LLAnimationStates afterWalkAnimation = LLAnimationStates.LL_idle, float afterWalkSpeed = 0f, bool speak = false, float speakDelay = 0f, bool rotateAfterWalk = false, Vector3 afterWalkRotation = default(Vector3))
         {
-            var parameters = new WalkParameters(from, to, rotation, duration, delay, walkAnimation, afterWalkAnimation, speak, speakDelay, rotateAfterWalk, afterWalkRotation);
+            var parameters = new WalkParameters(from, to, rotation, duration, delay, walkAnimation, walkSpeed, afterWalkAnimation, afterWalkSpeed, speak, speakDelay, rotateAfterWalk, afterWalkRotation);
             StopCoroutine("Walk_Coroutine");
             StartCoroutine("Walk_Coroutine", parameters);
         }
@@ -202,7 +208,9 @@ namespace EA4S.MakeFriends
             var duration = parameters.duration;
             var delay = parameters.delay;
             var walkAnimation = parameters.walkAnimation;
+            var walkSpeed = parameters.walkSpeed;
             var afterWalkAnimation = parameters.afterWalkAnimation;
+            var afterWalkSpeed = parameters.afterWalkSpeed;
             var speak = parameters.speak;
             var speakDelay = parameters.speakDelay;
             var rotateAfterWalk = parameters.rotateAfterWalk;
@@ -214,7 +222,9 @@ namespace EA4S.MakeFriends
             }
 
             transform.rotation = Quaternion.Euler(rotation);
-            animator.SetTrigger(walkAnimation);
+            //animator.SetTrigger(walkAnimation);
+            LLPrefab.SetState(walkAnimation);
+            LLPrefab.SetWalkingSpeed(walkSpeed);
 
             var interpolant = 0f;
             var lerpProgress = 0f;
@@ -229,7 +239,9 @@ namespace EA4S.MakeFriends
                 yield return new WaitForFixedUpdate();
             }
 
-            animator.SetTrigger(afterWalkAnimation);
+            //animator.SetTrigger(afterWalkAnimation);
+            LLPrefab.SetState(afterWalkAnimation);
+            LLPrefab.SetWalkingSpeed(afterWalkSpeed);
 
             if (speak)
             {
