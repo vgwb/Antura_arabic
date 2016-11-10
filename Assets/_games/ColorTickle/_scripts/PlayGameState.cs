@@ -139,7 +139,8 @@ namespace EA4S.ColorTickle
 
         private void SetBrushColor(Color color)
         {
-			ColoringParameters[] Brushes = m_CurrentLetter.GetComponents<ColoringParameters>();
+			//old version, search for all
+            /*ColoringParameters[] Brushes = m_currentLetter.GetComponents<ColoringParameters>();
 
 			for (int i = 0; i < Brushes.Length; ++i)
 			{
@@ -153,7 +154,17 @@ namespace EA4S.ColorTickle
 				else {
 					Brushes [i].SetBrushColor (color);
 				}
-			}
+			}*/
+
+            //new version, just take the brushes from the scripts that make use of them
+
+            m_TMPTextColoringLetter.brush.SetBrushColor(color); //give the exact color to the letter 
+
+            Color brushColor = color;
+            brushColor.r += (1 - color.r) * 0.4f;
+            brushColor.g += (1 - color.g) * 0.4f;
+            brushColor.b += (1 - color.b) * 0.4f;
+            m_SurfaceColoringLetter.brush.SetBrushColor(brushColor); //give the desaturated color to the body
         }
 
         private void LoseLife()
@@ -190,14 +201,16 @@ namespace EA4S.ColorTickle
         {
             m_HitStateLLController.LLState = HitStateLLController.eLLState.SCARED;
             //m_LetterObjectView.HasFear = true;
-            m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
+            //m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
+            m_LetterObjectView.Crouching = true;
         }
 
         private void AnturaGoingAway()
         {
             m_HitStateLLController.LLState = HitStateLLController.eLLState.IDLE;
             //m_LetterObjectView.HasFear = false;
-            m_LetterObjectView.SetState(LLAnimationStates.LL_still);
+            //m_LetterObjectView.SetState(LLAnimationStates.LL_still);
+            m_LetterObjectView.Crouching = false;
         }
 
         #endregion

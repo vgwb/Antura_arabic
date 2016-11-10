@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace EA4S.ColorTickle
 {
-    public class LLController : MonoBehaviour
+    public class ColorTickle_LLController : MonoBehaviour
     {
         #region EXPOSED MEMBERS
         [SerializeField]
@@ -15,6 +16,10 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private bool m_bMovingToDestination = false; //When true the letter will move towards the setted destination
 
+        [SerializeField]
+        private LLAnimationStates m_eAnimationOnMoving = LLAnimationStates.LL_still; //Animation to execute while moving
+        [SerializeField]
+        private LLAnimationStates m_eAnimationOnDestReached = LLAnimationStates.LL_still; //Animation to execute on reaching destination
         #endregion
 
         #region PRIVATE MEMBERS
@@ -22,10 +27,20 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region EVENTS
-
+        public Action OnDestinationReached;
         #endregion
 
         #region GETTER/SETTER
+        public Vector3 startPosition
+        {
+            get { return m_v3StartPosition; }
+        }
+
+        public Vector3 destination
+        {
+            get { return m_v3Destination; }
+        }
+
         public float speed
         {
             get { return m_fSpeed; }
@@ -37,6 +52,19 @@ namespace EA4S.ColorTickle
             get { return m_bMovingToDestination; }
             set { m_bMovingToDestination = value; }
         }
+
+        public LLAnimationStates animationOnMoving
+        {
+            get { return m_eAnimationOnMoving; }
+            set { m_eAnimationOnMoving = value; }
+        }
+
+        public LLAnimationStates animationOnDestReached
+        {
+            get { return m_eAnimationOnDestReached; }
+            set { m_eAnimationOnDestReached = value; }
+        }
+    
         #endregion
 
         #region INTERNALS
@@ -64,7 +92,7 @@ namespace EA4S.ColorTickle
         public void MoveToNewDestination(Vector3 v3Destination)
         {
             m_v3Destination = v3Destination;
-            MoveTo(m_v3Destination);
+            m_bMovingToDestination = true;
         }
 
         /// <summary>
@@ -90,23 +118,29 @@ namespace EA4S.ColorTickle
             Vector3 _v3MaxMovement = v3Destination - gameObject.transform.position;
             Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fSpeed * Time.deltaTime;
 
-            if (_v3PartialMovement.sqrMagnitude >= _v3MaxMovement.sqrMagnitude)
+            if (_v3PartialMovement.sqrMagnitude >= _v3MaxMovement.sqrMagnitude) //if we reached the destination
             {
-                
+                //position on the destination
                 gameObject.transform.position = v3Destination;
                 m_bMovingToDestination = false;
-                m_oLetter.SetWalkingSpeed(0);
 
-                m_oLetter.SetState(LLAnimationStates.LL_still);
-                AudioManager.I.PlayLetter(m_oLetter.Data.Key);
-            }
-            else
-            {
+                //change animation and play sound
                 m_oLetter.SetWalkingSpeed(0);
+                m_oLetter.SetState(m_eAnimationOnDestReached);
+                AudioManager.I.PlayLetter(m_oLetter.Data.Key);
+
+                if(OnDestinationReached!=null) //launch event
+                {
+                    OnDestinationReached();
+                }
+            }
+            else //make the progress for this frame
+            {
+                m_oLetter.SetWalkingSpeed(1);
                 
-                m_oLetter.SetState(LLAnimationStates.LL_walking);
+                m_oLetter.SetState(m_eAnimationOnMoving);
                 gameObject.transform.position += _v3PartialMovement;
-                m_bMovingToDestination = true;
+                //m_bMovingToDestination = true;
             }
         }
         #endregion

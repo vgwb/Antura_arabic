@@ -25,6 +25,7 @@ namespace EA4S.ColorTickle
             game.gameUI = gameCotext.GetOverlayWidget();
             game.gameUI.Initialize(false, false, true);
             game.gameUI.SetMaxLives(game.lives);
+            AudioManager.I.PlayMusic(game.backgroundMusic);
 
             game.myLetters = new GameObject[game.rounds];
 			for (int i = 0; i < game.rounds; ++i) {
