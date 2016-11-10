@@ -114,9 +114,11 @@ namespace EA4S.Maze
 			startingPosition = wayPoints[0];
 			currentWayPoint = 0;
 
-            
 
-            TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, true, true);
+            if (wayPoints.Count == 1)
+                TutorialUI.ClickRepeat(wayPoints[0]);
+            else
+                TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, true, true);
         }
 
 		public bool isComplete()
