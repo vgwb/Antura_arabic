@@ -10,9 +10,8 @@ namespace EA4S.ThrowBalls
     {
         public static UIController instance;
 
-        public Image[] pokeballImages;
-        public Sprite pokeballOnSprite;
-        public Sprite pokeballOffSprite;
+        public Image[] ballImages;
+        public Sprite ballSprite;
         public GameObject letterHint;
         public TMP_Text letterHintText;
 
@@ -32,19 +31,17 @@ namespace EA4S.ThrowBalls
         {
             numPokeballs = ThrowBallsGameManager.MAX_NUM_BALLS;
 
-            foreach (Image image in pokeballImages)
+            foreach (Image image in ballImages)
             {
                 image.enabled = true;
             }
-            
-            letterHint.SetActive(false);
 
             StopAllCoroutines();
         }
 
         public void OnBallLost()
         {
-            pokeballImages[--numPokeballs].enabled = false;
+            ballImages[--numPokeballs].enabled = false;
         }
 
         public void OnRoundStarted(LL_LetterData _data)

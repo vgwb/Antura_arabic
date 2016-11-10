@@ -31,7 +31,8 @@ namespace EA4S.ThrowBalls
         public bool isRoundOngoing;
 
         // Round number is 1-based. (Round 1, round 2,...)
-        private int roundNumber = 1;
+        // Round 0 is the tutorial round.
+        private int roundNumber = 0;
         private int numBalls = MAX_NUM_BALLS;
 
         private int numRoundsWon = 0;
@@ -45,7 +46,7 @@ namespace EA4S.ThrowBalls
         {
             base.Awake();
             Instance = this;
-            
+
         }
 
         protected override void Start()
@@ -105,6 +106,7 @@ namespace EA4S.ThrowBalls
         public void ResetScene()
         {
             UIController.instance.Reset();
+            UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
             {
@@ -112,34 +114,26 @@ namespace EA4S.ThrowBalls
                 letterController.DisableProps();
             }
 
-            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3);
-
-            for (int i = 0; i < letterPool.Length; i++)
+            if (roundNumber == 0)
             {
-                GameObject letter = letterPool[i];
-                letter.transform.position = randomPositions[i];
+                Vector3 tutorialPosition = letterSpawner.GetTutorialPosition();
+                GameObject letter = letterPool[0];
+                letter.transform.position = tutorialPosition;
                 letter.SetActive(false);
             }
 
-            // Sort the letters according to y axis position:
-            /*for (int i = 0; i < letterPool.Length; i++)
+            else
             {
-                for (int j = 0; j < i; j++)
+                Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3);
+
+                for (int i = 0; i < GetNumLettersInRound(); i++)
                 {
-                    if (letterPool[i].transform.position.y < letterPool[j].transform.position.y)
-                    {
-                        GameObject temp = letterPool[i];
-                        letterPool[i] = letterPool[j];
-                        letterPool[j] = temp;
-
-                        // Important! Sort the controllers too:
-                        LetterController tempController = letterControllers[i];
-                        letterControllers[i] = letterControllers[j];
-                        letterControllers[j] = tempController;
-                    }
+                    GameObject letter = letterPool[i];
+                    letter.transform.position = randomPositions[i];
+                    letter.SetActive(false);
                 }
-            }*/
-
+            }
+            
             ballController.Reset();
 
             numBalls = MAX_NUM_BALLS;
@@ -202,36 +196,25 @@ namespace EA4S.ThrowBalls
 
             isRoundOngoing = true;
 
-            switch (roundNumber)
+            BallController.instance.Enable();
+
+            if (roundNumber > 0)
             {
-                case 1:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 2:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 3:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 4:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                case 5:
-                    UIController.instance.OnRoundStarted(correctLetter);
-                    break;
-                default:
-                    break;
+                UIController.instance.Enable();
+                UIController.instance.OnRoundStarted(correctLetter);
             }
 
-            BallController.instance.Enable();
-            UIController.instance.Enable();
         }
 
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
             if (isRoundOngoing)
             {
-                numRoundsWon++;
+                if (roundNumber > 0)
+                {
+                    numRoundsWon++;
+                }
+                
                 StartCoroutine(ShowWinSequence(correctLetterCntrl));
                 ballController.Disable();
 
@@ -274,7 +257,7 @@ namespace EA4S.ThrowBalls
 
         public void OnBallLost()
         {
-            if (isRoundOngoing)
+            if (isRoundOngoing && roundNumber > 0)
             {
                 numBalls--;
                 UIController.instance.OnBallLost();
@@ -327,8 +310,15 @@ namespace EA4S.ThrowBalls
 
         private int GetNumLettersInRound()
         {
-            return 3;
-            return (roundNumber - 1) % 2 + 2;
+            if (roundNumber == 0)
+            {
+                return 1;
+            }
+
+            else
+            {
+                return 3;
+            }
         }
 
         private void EndGame()
