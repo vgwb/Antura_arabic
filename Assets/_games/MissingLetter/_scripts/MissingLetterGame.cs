@@ -14,7 +14,6 @@ namespace EA4S.MissingLetter
 
         public GameObject mLetterPrefab;
         public GameObject mAnturaRef;
-        public GameObject mFinger;
 
         public Transform mQuestionCamera;
         public Transform mAnswerCamera;
