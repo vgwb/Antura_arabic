@@ -96,7 +96,10 @@ namespace EA4S.Maze
 
 			gameTime = maxGameTime / (1 + MazeConfiguration.Instance.Difficulty);
 
-			timer.initTimer ();
+            //ui:
+            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+
+            timer.initTimer ();
 
 			//init first letter
 			initCurrentLetter();
@@ -170,6 +173,8 @@ namespace EA4S.Maze
 
 		public void moveToNext(bool won = false)
 		{
+            
+
             isShowingAntura = false;
             //check if current letter is complete:
             if (currentCharacter.isComplete ()) {
@@ -207,10 +212,32 @@ namespace EA4S.Maze
 
 		public void restartCurrentLetter(bool won = false)
 		{
-			//Destroy (currentPrefab);
+            
+            //Destroy (currentPrefab);
+            int numberOfStars = 0;
+            if (correctLetters == prefabs.Count)
+            {
+                numberOfStars = 3;
+            }
+            else if (correctLetters > prefabs.Count / 2)
+            {
+                numberOfStars = 2;
+            }
+            else if (correctLetters > prefabs.Count / 4)
+            {
+                numberOfStars = 1;
+            }
+            else {
+                numberOfStars = 0;
+            }
 
-			//show message:
-			if (won)
+            if(numberOfStars > 0)
+            {
+                MinigamesUI.Starbar.GotoStar(numberOfStars-1);
+            }
+
+            //show message:
+            if (won)
 				AudioManager.I.PlaySfx (Sfx.Win);
 			else 
 				AudioManager.I.PlaySfx (Sfx.Lose);
@@ -339,8 +366,17 @@ namespace EA4S.Maze
 			lines.Add(myLine);*/
 		}
 
+        bool gameEnded = false;
         private void endGame()
 		{
+            if (gameEnded)
+                return;
+
+            gameEnded = true;
+
+            MinigamesUI.Timer.Pause();
+            TutorialUI.Clear(false);
+
             int numberOfStars = 0;
             if (correctLetters == prefabs.Count)
             {
@@ -422,6 +458,8 @@ namespace EA4S.Maze
 		{
             if (isShowingAntura) return;
             isShowingAntura = true;
+
+            timer.StopTimer();
 
             antura.SetActive (true);
             antura.GetComponent<MazeAntura>().SetAnturaTime(true,currentCharacter.transform.position);
