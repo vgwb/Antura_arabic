@@ -10,7 +10,11 @@ namespace EA4S.SickLetters
         public TextMeshPro _counter;
         public int counter
         {
-            set { _counter.text = value.ToString(); }
+            set
+            {
+                _counter.text = value.ToString();
+                //game.Context.GetOverlayWidget().SetStarsScore(value / (game.targetScale / 3));
+            }
             get { return int.Parse(_counter.text);  }
         }
 
@@ -74,11 +78,15 @@ namespace EA4S.SickLetters
 
         public IEnumerator onWrongMove() {
 
+            StartCoroutine(game.antura.bark());
+
             yield return new WaitForSeconds(0.5f);
 
             game.LLPrefab.LLStatus = letterStatus.angry;
             game.LLPrefab.letterView.DoAngry();
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(game.LLPrefab.letterView.Data, true);
+
+            
 
             yield return new WaitForSeconds(1.5f);
             game.LLPrefab.LLStatus = letterStatus.idle;
@@ -98,7 +106,8 @@ namespace EA4S.SickLetters
            
 
             yield return new WaitForSeconds(1.5f);
-
+            game.antura.sleep();
+            
             summonVase();
         }
 
@@ -141,6 +150,8 @@ namespace EA4S.SickLetters
                     dd.thisRigidBody.isKinematic = true;
                 }
             }
+
+            vaseRB.isKinematic = true;
 
             while (true)
             {

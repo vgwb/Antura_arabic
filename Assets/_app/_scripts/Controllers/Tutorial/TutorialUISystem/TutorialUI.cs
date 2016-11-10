@@ -28,7 +28,8 @@ namespace EA4S
         public TutorialUIPools Pools;
 
         internal static TutorialUI I;
-        [System.NonSerialized] internal Camera Cam;
+        internal Camera Cam;
+        internal Transform CamT;
         const string ResourcePath = "Prefabs/UI/TutorialUI";
         const string TweenId = "TutorialUI";
         float actualDrawSpeed;
@@ -40,6 +41,7 @@ namespace EA4S
         {
             I = this;
             Cam = Camera.main;
+            CamT = Cam.transform;
             actualDrawSpeed = Cam.fieldOfView * DrawSpeed / 45f;
         }
 
@@ -75,6 +77,7 @@ namespace EA4S
         /// <param name="_position">World position</param>
         public static void Click(Vector3 _position)
         {
+            Init();
             I.Finger.Click(I.transform, _position);
         }
 
@@ -86,6 +89,7 @@ namespace EA4S
         /// <param name="_clicksPerSecond">Click per second</param>
         public static void ClickRepeat(Vector3 _position, float _duration = 2, float _clicksPerSecond = 5)
         {
+            Init();
             I.Finger.ClickRepeat(I.transform, _position, _duration, _clicksPerSecond);
         }
 
@@ -170,8 +174,12 @@ namespace EA4S
             }
 
             if (hasArrow) {
-                Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, arrow.transform.up)
-                    .SetAs(parms);
+                Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f)
+//                Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, CamT.up)
+                    .SetAs(parms)
+                    .OnUpdate(() => {
+//                        arrow.Img.transform.LookAt(transform.position + CamT.rotation * Vector3.forward, CamT.up);
+                    });
                 if (!_persistent) {
                     t.OnComplete(() => {
                         DOVirtual.DelayedCall(Mathf.Max(tr.Time - 0.2f, 0), () => arrow.Hide(), false).SetId(TweenId);
