@@ -15,9 +15,15 @@ public class ReadingBarSet : MonoBehaviour
 
     public Transform barsStart;
     public float distanceBetweenBars = 3;
+    int completedBars = 0;
 
     ReadingBar activeBar;
-    
+    Vector3 barsStartInitialPosition;
+
+    void Awake()
+    {
+        barsStartInitialPosition = barsStart.transform.localPosition;
+    }
 
     void SetActiveBar(ReadingBar bar)
     {
@@ -39,16 +45,22 @@ public class ReadingBarSet : MonoBehaviour
             Destroy(b.gameObject);
         }
         bars.Clear();
-    }
 
+        completedBars = 0;
+        barsStart.transform.localPosition = barsStartInitialPosition;
+    }
 
     public void SetData(ILivingLetterData data)
     {
-        Clear();
-
         string text = data.TextForLivingLetter;
 
-        string[] words = text.Split(' ');
+        SetData(text.Split(' '));
+    }
+
+    void SetData(string[] words)
+    {
+        Clear();
+
         int wordsCount = words.Length;
 
         var currentReadingBar = GameObject.Instantiate(readingBarPrefab);
@@ -72,7 +84,7 @@ public class ReadingBarSet : MonoBehaviour
 
                 currentReadingBar = GameObject.Instantiate(readingBarPrefab);
                 currentReadingBar.transform.SetParent(barsStart);
-                currentReadingBar.transform.localPosition = Vector3.down * distanceBetweenBars;
+                currentReadingBar.transform.localPosition = Vector3.down * (bars.Count % 2) * distanceBetweenBars;
                 currentReadingBar.text.text = word;
                 bars.Add(currentReadingBar);
             }
@@ -81,6 +93,8 @@ public class ReadingBarSet : MonoBehaviour
 
     public bool SwitchToNextBar()
     {
+        ++completedBars;
+
         if (activeBar != null)
             activeBar.Complete();
 
@@ -102,8 +116,6 @@ public class ReadingBarSet : MonoBehaviour
         return false;
     }
 
-
-
     public ReadingBar PickGlass(Camera main, Vector2 lastPointerPosition)
     {
         if (!active || activeBar == null)
@@ -117,5 +129,19 @@ public class ReadingBarSet : MonoBehaviour
             return activeBar;
         }
         return null;
+    }
+
+    void Update()
+    {
+        for (int i = 0; i < bars.Count; ++i)
+        {
+            var bar = bars[i];
+
+            int completedPairId = (completedBars / 2) * 2;
+
+            bool show = (i >= completedPairId) && (i < completedPairId + 2);
+
+            bar.Show(show);
+        }
     }
 }

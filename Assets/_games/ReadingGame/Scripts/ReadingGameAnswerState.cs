@@ -40,8 +40,12 @@ namespace EA4S.ReadingGame
             choices.AddRange(wrongs);
             choices.Shuffle();
 
+            float delay = 0;
             foreach (var c in choices)
-                box.AddButton(c, OnAnswered);
+            {
+                box.AddButton(c, OnAnswered, delay);
+                delay += 0.2f;
+            }
         }
 
 
@@ -77,7 +81,6 @@ namespace EA4S.ReadingGame
             {
                 // Assign score
                 game.AddScore((int)(ReadTime) + 1);
-                game.SetCurrentState(game.ReadState);
                 game.Context.GetCheckmarkWidget().Show(true);
 
             }
@@ -85,9 +88,15 @@ namespace EA4S.ReadingGame
             {
                 game.Context.GetCheckmarkWidget().Show(false);
 
-                if (!game.RemoveLife())
-                    game.SetCurrentState(game.ReadState);
+                if (game.RemoveLife())
+                    return;
             }
+
+            game.circleBox.GetComponent<CircleButtonBox>().Clear(()
+                =>
+            {
+                game.SetCurrentState(game.ReadState);
+            }, 0.5f);
         }
     }
 }
