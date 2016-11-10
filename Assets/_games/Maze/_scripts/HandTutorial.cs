@@ -68,7 +68,7 @@ namespace EA4S.Maze
 					//set tutorial done:
 					isMovingOnPath = false;
 
-					MazeGameManager.Instance.timer.StartTimer ();
+					//MazeGameManager.Instance.timer.StartTimer ();
 
 				}
 			}
@@ -119,7 +119,7 @@ namespace EA4S.Maze
 
             currentWayPoint = 0;
 
-            
+            MazeGameManager.Instance.timer.StartTimer();
             if (wayPoints.Count == 1)
                 TutorialUI.ClickRepeat(wayPoints[0]);
             else

@@ -26,7 +26,7 @@
 
         public void Update(float delta)
         {
-            
+            game.timer.Update();
         }
 
         public void UpdatePhysics(float delta)

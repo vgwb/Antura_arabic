@@ -17,14 +17,25 @@ namespace EA4S.Maze
 
 		public void initTimer()
 		{
-			time = MazeGameManager.Instance.gameTime;
+            /*time = MazeGameManager.Instance.gameTime;
 			timeRemaining = time;
-			DisplayTime ();
-		}
+			DisplayTime ();*/
 
-		void Update()
+           // this.StopAllCoroutines();
+            MinigamesUI.Timer.Setup(3);// MazeGameManager.Instance.gameTime);
+
+
+        }
+
+		public void Update()
 		{
-			if (isRunning) {
+            if(MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
+            {
+                StopTimer();
+                MazeGameManager.Instance.onTimeUp();
+            }
+
+			/*if (isRunning) {
 				if (timeRemaining > 0f) {
 					timeRemaining -= Time.deltaTime;
 					DisplayTime();
@@ -37,28 +48,33 @@ namespace EA4S.Maze
 					StopTimer();
 					MazeGameManager.Instance.onTimeUp();
 				}
-			}
+			}*/
 
 		}
 
 		public void StartTimer()
 		{
-			isRunning = true;
-		}
+            //isRunning = true;
+         //   this.StopAllCoroutines();
+            MinigamesUI.Timer.Play();
+
+        }
 
 		public void StopTimer()
 		{
-			isRunning = false;
+           // this.StopAllCoroutines();
+            MinigamesUI.Timer.Pause();
+            /*isRunning = false;
 			playedSfx = false;
-			AudioManager.I.StopSfx(Sfx.DangerClockLong);
-		}
+			AudioManager.I.StopSfx(Sfx.DangerClockLong);*/
+        }
 
 
 
 		public void DisplayTime()
 		{
-			var text = Mathf.Floor(timeRemaining).ToString();
-			timerText.text = text;
+			/*var text = Mathf.Floor(timeRemaining).ToString();
+			timerText.text = text;*/
 		}
 	}
 }
