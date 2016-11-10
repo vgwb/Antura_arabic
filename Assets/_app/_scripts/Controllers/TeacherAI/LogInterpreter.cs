@@ -7,40 +7,9 @@ namespace EA4S.Teacher
 {
     public class LogInterpreter
     {
-        // Mood comes with values from 1 to 6
-        public void LogMood(int mood)
-        {
-            var db = AppManager.Instance.DB;
-            int realMood = (int)Mathf.InverseLerp(1, 6, mood);
-            var data = new LogMoodData(realMood);
-            db.Insert(data);
-        }
-
-        public void LogInfo(string session, InfoEvent infoEvent, string parametersString = "")
-        {
-            var db = AppManager.Instance.DB;
-            var data = new LogInfoData(session, infoEvent, parametersString);
-            db.Insert(data);
-        }
-
-        public struct LearnResultParameters
-        {
-            public MiniGameCode miniGameCode;
-            public string dataId;
-            public int nCorrect;
-            public int nWrong;
-        }
-
-        public void LogLearn(List<LearnResultParameters> parameters)
-        {
-            // ... @todo: implement subjective vote logic for each minigame
-            float vote = parameters[0].nCorrect * 1f / (parameters[0].nCorrect + parameters[0].nWrong);
-
-            // ... @todo: update score data
-        }
-
-
-
+        /// <summary>
+        /// Play result param
+        /// </summary>
         public struct PlayResultParameters
         {
             public MiniGameCode miniGameCode;
@@ -48,13 +17,127 @@ namespace EA4S.Teacher
             public float value;
         }
 
+        // Useful data
+        const int MIN_MOOD = 1;
+        const int MAX_MOOD = 6;
+
+        // References
+        DatabaseManager db;
+
+        public LogInterpreter(DatabaseManager db)
+        {
+            this.db = db;
+        }
+
+        public void LogMood(int mood)
+        {
+            float realMood = Mathf.InverseLerp(MIN_MOOD, MAX_MOOD, mood);
+            var data = new LogMoodData(realMood);
+            db.Insert(data);
+        }
+
+        public void LogInfo(string session, InfoEvent infoEvent, string parametersString = "")
+        {
+            var data = new LogInfoData(session, infoEvent, parametersString);
+            db.Insert(data);
+        }
+
+        #region Play
+
         public void LogPlay(List<PlayResultParameters> parameters)
         {
             // ... @todo: implement
 
             // There will be 1 vote per-skill per-minigame whenever it is played
-
         }
+
+        #endregion
+
+
+        #region Learn
+
+        /// <summary>
+        /// General parameters used to define the learning result for each minigame instance
+        /// </summary>
+        public struct LearnResultParameters
+        {
+            public DbTables table;
+            public string elementId;
+            public int nCorrect;
+            public int nWrong;
+        }
+
+        /// <summary>
+        /// Specific rules per mini game
+        /// </summary>
+        public class MiniGameLearnRules
+        {
+            public enum VoteLogic
+            {
+                Threshold,
+                SuccessRatio
+            }
+
+            public VoteLogic voteLogic;
+            public float logicParameter;                // for example, success threshold 
+            public float minigameVoteSkewOffset;        // takes into account that some minigames are skewed
+            public float minigameImportanceWeight;      // takes into account that some minigames are more important on learning in respect to others
+
+            public MiniGameLearnRules()
+            {
+                voteLogic = VoteLogic.SuccessRatio;
+                logicParameter = 0f;
+                minigameVoteSkewOffset = 0f;
+                minigameImportanceWeight = 1f;
+            }
+        }
+
+        public void LogLearn(MiniGameCode miniGameCode,  List<LearnResultParameters> resultsList)
+        {
+            var learnRules = GetLearnRules(miniGameCode);
+
+            foreach (var result in resultsList)
+            {
+                float score = 0f;
+                float successRatio = result.nCorrect * 1f / (result.nCorrect + result.nWrong);
+                switch (learnRules.voteLogic)
+                {
+                    case MiniGameLearnRules.VoteLogic.Threshold:
+                        // Uses a binary threshold
+                        float threshold = learnRules.logicParameter;
+                        score = successRatio > threshold ? 1f : -1f;
+                        break;
+                    case MiniGameLearnRules.VoteLogic.SuccessRatio:
+                        // Uses directly the success ratio to drive the vote
+                        score = Mathf.InverseLerp(-1f, 1f, successRatio);
+                        break;
+                }
+                score *= learnRules.minigameImportanceWeight;
+                score += learnRules.minigameVoteSkewOffset;
+
+                // We also update the score data
+                db.UpdateScoreData(result.table, result.elementId, score);
+            }
+        }
+
+        private MiniGameLearnRules GetLearnRules(MiniGameCode code)
+        {
+            MiniGameLearnRules rules = new MiniGameLearnRules();
+            switch (code)
+            {
+                case MiniGameCode.Balloons_letter:  // @todo: set correct ones per each minigame
+                    rules.voteLogic = MiniGameLearnRules.VoteLogic.Threshold;
+                    rules.logicParameter = 0.5f;
+                    break;
+
+                default:
+                    rules.voteLogic = MiniGameLearnRules.VoteLogic.SuccessRatio;
+                    break;
+            }
+            return rules;
+        }
+
+        #endregion
 
     }
 
