@@ -393,6 +393,12 @@ namespace EA4S.Maze
             else {
                 numberOfStars = 0;
             }
+
+            if (numberOfStars > 0)
+            {
+                MinigamesUI.Starbar.GotoStar(numberOfStars - 1);
+            }
+
             EndGame(numberOfStars, correctLetters);
             //StartCoroutine(EndGame_Coroutine());
         }
