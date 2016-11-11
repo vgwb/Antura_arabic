@@ -17,7 +17,7 @@ namespace EA4S
         // Profile
         //bool dbLoaded;
 
-        public DatabaseManager(bool useTestDatabase)
+        public DatabaseManager(bool useTestDatabase, PlayerProfile playerProfile)
         {
             var staticDbNameToLoad = STATIC_DATABASE_NAME;
             if (useTestDatabase) {
@@ -25,21 +25,21 @@ namespace EA4S
             }
             staticDb = Resources.Load<Database>(staticDbNameToLoad);
 
-            // SAFE MODE: we need to make sure that the db has some entires, otherwise there is something wrong
+            // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
             if(staticDb.GetPlaySessionTable().GetDataCount() == 0)
             {
                 throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
             }
 
-            // SAFE MODE: we load the dynamic profileId '1' for now to make sure everything works correctly
-            LoadDynamicDb(1);
+            // We load the selected player profile
+            LoadDynamicDbForPlayerProfile(playerProfile.Id);
         }
 
         #region Profile
 
-        public void LoadDynamicDb(int profileId)
+        public void LoadDynamicDbForPlayerProfile(int profileId)
         {
-            dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes");
+            dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes", profileId);
             //dbLoaded = true;
         }
 
