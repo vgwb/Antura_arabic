@@ -48,7 +48,7 @@ namespace EA4S.MissingLetter
 
         IQuestionPack MakeWordQuestion()
         {
-            LL_WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            LL_WordData word = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
             mDataToRestore = word;
 
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
@@ -77,7 +77,7 @@ namespace EA4S.MissingLetter
             }
             while (wrongAnswers.Count < 8)
             {
-                var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                 {
@@ -95,7 +95,7 @@ namespace EA4S.MissingLetter
             List<ILivingLetterData> question = new List<ILivingLetterData>();
             for (int i = 0; i < 5; ++i)
             {
-                LL_WordData word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                LL_WordData word = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
                 question.Add(word);
             }
 
@@ -109,7 +109,7 @@ namespace EA4S.MissingLetter
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
             while (wrongAnswers.Count < 8)
             {
-                var letter = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                var letter = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
                 if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                 {

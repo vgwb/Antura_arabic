@@ -26,7 +26,7 @@ namespace EA4S
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                LL_WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                LL_WordData newWordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
                 if (newWordData == null)
                     return;
@@ -41,7 +41,7 @@ namespace EA4S
                 // At least 4 wrong letters
                 while (wrongAnswers.Count < 4)
                 {
-                    var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                     if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                     {
