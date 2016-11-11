@@ -2930,6 +2930,7 @@ MonoBehaviour:
   questionProvider: {fileID: 1167005737}
   timeToWait: 1
   image: {fileID: 21300000, guid: 17c7d76cbaa934c9c8c4327bd32742a6, type: 3}
+  buttonRepeater: {fileID: 1837684053}
 --- !u!4 &1167005735
 Transform:
   m_ObjectHideFlags: 0
@@ -4735,7 +4736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1837684054
 RectTransform:
   m_ObjectHideFlags: 0
