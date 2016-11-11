@@ -6,7 +6,7 @@ using TMPro;
 
 namespace EA4S.Balloons
 {
-    public class LetterController : MonoBehaviour
+    public class BalloonsLetterController : MonoBehaviour
     {
         public LetterObjectView LLPrefab;
         public FloatingLetterController parentFloatingLetter;
