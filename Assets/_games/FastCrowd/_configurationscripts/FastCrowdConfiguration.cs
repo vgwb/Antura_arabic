@@ -17,6 +17,14 @@
         #region Game configurations
         public float Difficulty { get; set; }
         public FastCrowdVariation Variation { get; set; }
+
+        public EA4S.Teacher.LogIntelligence.MiniGameLearnRules GetLearnRules()
+        {
+            var a = new Teacher.LogIntelligence.MiniGameLearnRules();
+            a.minigameVoteSkewOffset = 1f;
+            return a;
+        }
+
         #endregion
 
 

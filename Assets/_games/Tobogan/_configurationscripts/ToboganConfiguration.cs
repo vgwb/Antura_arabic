@@ -64,7 +64,7 @@
                     builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
                     break;
                 case ToboganVariation.SunMoon:
-                    // @todo: what builder should we use here?
+                    builder = new SunMoonWordsQuestionBuilder(nPacks);
                     break;
             }
 

@@ -5,33 +5,28 @@ using EA4S.Db;
 
 namespace EA4S.Teacher
 {
-    public class LogInterpreter
+    public class LogIntelligence
     {
         /// <summary>
         /// Play result param
         /// </summary>
         public struct PlayResultParameters
         {
-            public MiniGameCode miniGameCode;
             public PlaySkill skill;
             public float value;
         }
 
-        // Useful data
-        const int MIN_MOOD = 1;
-        const int MAX_MOOD = 6;
-
         // References
         DatabaseManager db;
 
-        public LogInterpreter(DatabaseManager db)
+        public LogIntelligence(DatabaseManager db)
         {
             this.db = db;
         }
 
         public void LogMood(int mood)
         {
-            float realMood = Mathf.InverseLerp(MIN_MOOD, MAX_MOOD, mood);
+            float realMood = Mathf.InverseLerp(ConfigAI.minimumMoodValue, ConfigAI.maximumMoodValue, mood);
             var data = new LogMoodData(realMood);
             db.Insert(data);
         }
@@ -44,7 +39,7 @@ namespace EA4S.Teacher
 
         #region Play
 
-        public void LogPlay(List<PlayResultParameters> parameters)
+        public void LogPlay(MiniGameCode miniGameCode, List<PlayResultParameters> parameters)
         {
             // ... @todo: implement
 
@@ -92,7 +87,7 @@ namespace EA4S.Teacher
             }
         }
 
-        public void LogLearn(MiniGameCode miniGameCode,  List<LearnResultParameters> resultsList)
+        public void LogLearn(MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
             var learnRules = GetLearnRules(miniGameCode);
 
@@ -114,6 +109,8 @@ namespace EA4S.Teacher
                 }
                 score *= learnRules.minigameImportanceWeight;
                 score += learnRules.minigameVoteSkewOffset;
+
+                // @todo: add the insert Insert();
 
                 // We also update the score data
                 db.UpdateScoreData(result.table, result.elementId, score);
