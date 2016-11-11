@@ -387,7 +387,7 @@ namespace EA4S.Balloons
             }
         }
 
-        public void OnDroppedLetter(LetterController letter = null)
+        public void OnDroppedLetter(BalloonsLetterController letter = null)
         {
             bool isRequired = false;
             int promptIndex = -1;
