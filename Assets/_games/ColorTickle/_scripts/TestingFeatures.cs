@@ -56,14 +56,15 @@ namespace EA4S.ColorTickle
 
             Material smat = oTextComp.fontSharedMaterial;
 
+#if UNITY_EDITOR
             //float ztprop = smat.GetFloat(TMPro.ShaderUtilities.ShaderTag_ZTestMode);
             int propcount = UnityEditor.ShaderUtil.GetPropertyCount(smat.shader);
 
             string[] allprop = new string[propcount];
-            for (int i = 0; i < propcount; ++i)
-            {
+            for (int i = 0; i < propcount; ++i) {
                 allprop[i] = UnityEditor.ShaderUtil.GetPropertyName(smat.shader, i);
             }
+#endif
 
 
             //smat.SetFloat(TMPro.ShaderUtilities.ShaderTag_ZTestMode, 4);
