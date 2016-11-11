@@ -20,7 +20,6 @@ namespace EA4S.ColorTickle
         float m_PercentageLetterColored;
 
         ColorsUIManager m_ColorsUIManager;
-        //private ColorButtonsManager m_ColorsButtonsManager;
 
         // LL components
         LetterObjectView m_LetterObjectView;
@@ -50,7 +49,6 @@ namespace EA4S.ColorTickle
 
             game.anturaController.OnStateChanged += AnturaInteractions;
             
-
             //Init the first letter
             m_CurrentLetter = game.myLetters[m_Rounds - 1];
 			m_CurrentLetter.gameObject.SetActive (true);         
@@ -110,16 +108,12 @@ namespace EA4S.ColorTickle
 		{
             m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
             m_ColorsUIManager.SetBrushColor += SetBrushColor;
-            //m_ColorsButtonsManager = game.colorsCanvas.GetComponentInChildren<ColorButtonsManager>();
-            //m_ColorsButtonsManager.SetOnButtonPressedAction(SetBrushColor);
-
-            m_PercentageLetterColoredButton = GameObject.Find("PercentageButton").GetComponent<Button>();
+			m_PercentageLetterColoredButton = m_ColorsUIManager.percentageColoredButton;
 		}
 
 		private void InitLetter()
 		{
             m_LetterObjectView = m_CurrentLetter.GetComponent<LetterObjectView>();
-            //m_LetterObjectView.HasFear = true;
 
             m_TMPTextColoringLetter = m_CurrentLetter.GetComponent<TMPTextColoring>();
             m_SurfaceColoringLetter = m_CurrentLetter.GetComponent<SurfaceColoring>();
@@ -132,10 +126,8 @@ namespace EA4S.ColorTickle
 
             m_HitStateLLController.EnableAntura += EnableAntura;
             game.anturaController.targetToLook = m_CurrentLetter.transform;
-            //m_HitStateLLController.DisableAntura += DisableAntura;
 
-            SetBrushColor(m_ColorsUIManager.defaultColor);
-            //SetBrushColor(m_ColorsButtonsManager.defaultColor);         
+            SetBrushColor(m_ColorsUIManager.defaultColor);     
         }
 
 
@@ -144,9 +136,9 @@ namespace EA4S.ColorTickle
             m_TMPTextColoringLetter.brush.SetBrushColor(color); //give the exact color to the letter 
 
             Color brushColor = color;
-            brushColor.r += (1 - color.r) * 0.4f;
-            brushColor.g += (1 - color.g) * 0.4f;
-            brushColor.b += (1 - color.b) * 0.4f;
+            brushColor.r += (1 - color.r) * 0.5f;
+            brushColor.g += (1 - color.g) * 0.5f;
+            brushColor.b += (1 - color.b) * 0.5f;
             m_SurfaceColoringLetter.brush.SetBrushColor(brushColor); //give the desaturated color to the body
         }
 
@@ -172,21 +164,10 @@ namespace EA4S.ColorTickle
         private void EnableAntura()
         {
             game.anturaController.TryLaunchAnturaDisruption();
-            //game.anturaController.isEnable = true;
-            //game.anturaController.letterPosition = m_CurrentLetter.transform.position;
         }
 
-        /*private void DisableAntura()
-        {
-            game.anturaController.isEnable = false;
-        }*/
-
         private void AnturaReachedLetter()
-        {
-            m_HitStateLLController.LLState = HitStateLLController.eLLState.SCARED;
-            
-            //m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
-
+        {  
             m_LetterObjectView.SetState(LLAnimationStates.LL_still);
             m_LetterObjectView.HasFear = true;
             m_LetterObjectView.Crouching = true;
@@ -194,9 +175,6 @@ namespace EA4S.ColorTickle
 
         private void AnturaGoingAway()
         {
-            m_HitStateLLController.LLState = HitStateLLController.eLLState.IDLE;
-
-            //m_LetterObjectView.SetState(LLAnimationStates.LL_still);
             m_LetterObjectView.HasFear = false;
             m_LetterObjectView.Crouching = false;
         }
