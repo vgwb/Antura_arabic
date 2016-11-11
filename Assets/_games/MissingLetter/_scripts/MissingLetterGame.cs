@@ -169,15 +169,7 @@ namespace EA4S.MissingLetter
             Context.GetOverlayWidget().SetStarsScore(mCurrentScore);
         }
 
-  //      new void OnDisable()
-  //      {
-  //          base.OnDisable();
-  //          //restore the removed letter
-  //          ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
-		//}
-
         public void SetInIdle(bool _idle) {
-            Debug.LogWarning("Idle Set to: " +_idle);
             mFeedBackDisableLetters.enabled = !_idle;
             m_bInIdle = _idle;
         }

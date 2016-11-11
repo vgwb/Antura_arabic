@@ -314,12 +314,17 @@ namespace EA4S.MissingLetter
         //shuffle current answer order and tell to letter change pos
         public void ShuffleLetters(float duration)
         {
-            mCurrentAnswerScene.Shuffle();
-            for (int i=0; i < mCurrentAnswerScene.Count; ++i)
-            {
-                float offsetDuration = UnityEngine.Random.Range(-2.0f,0.0f);
-                mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration + offsetDuration);
+
+            if (mGame.IsInIdle()) {
+                mGame.SetInIdle(false);
+                mCurrentAnswerScene.Shuffle();
+                for (int i = 0; i < mCurrentAnswerScene.Count; ++i) {
+                    float offsetDuration = UnityEngine.Random.Range(-2.0f, 0.0f);
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration + offsetDuration);
+                }
+                mGame.StartCoroutine(Utils.LaunchDelay(duration, mGame.SetInIdle, true));
             }
+            
         }
 
         //win animation: quesion high five, correct answer dancing other horray
