@@ -62,14 +62,8 @@ namespace EA4S
             InitDataAI();
             CachingLetterData();
             GameSettings.HighQualityGfx = false;
-            ResetProgressionData();
+            //ResetProgressionData();
 
-            /* Player profile auto select first avatar or last selected */
-            GlobalOptions globalOptions = new GlobalOptions() { AvailablePlayers = new List<string>() { } };
-            globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<GlobalOptions>(globalOptions) as GlobalOptions;
-
-            Player = new PlayerProfile().CreateOrLoadPlayerProfile(globalOptions.LastActivePlayerId == 0 ? "1" : globalOptions.LastActivePlayerId.ToString());
-            Debug.Log("Active player: " + Player.Id);
 
         }
 
@@ -83,6 +77,13 @@ namespace EA4S
 
             // PlayerProfileModule Install override
             //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
+
+            /* Player profile auto select first avatar or last selected */
+            AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            // If "GameSettings.LastActivePlayerId == 0" force here open player selection
+            Player = new PlayerProfile().CreateOrLoadPlayerProfile(GameSettings.LastActivePlayerId == 0 ? "1" : GameSettings.LastActivePlayerId.ToString());
+            Debug.Log("Active player: " + Player.Id);
 
         }
 
