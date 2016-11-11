@@ -16,7 +16,7 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private Canvas m_ColorsCanvas;
         [SerializeField]
-        private AnturaController m_AnturaController;
+        private ColorTickle_AnturaController m_AnturaController;
         [SerializeField]
         private Canvas m_EndCanvas;
         [SerializeField]
@@ -60,7 +60,7 @@ namespace EA4S.ColorTickle
             get { return m_ColorsCanvas; }
         }
 
-        public AnturaController anturaController
+        public ColorTickle_AnturaController anturaController
         {
             get { return m_AnturaController; }
         }
