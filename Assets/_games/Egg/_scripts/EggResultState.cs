@@ -45,6 +45,8 @@
 
                     if (game.currentStage >= EggGame.numberOfStage)
                     {
+                        game.eggController.Reset();
+                        game.runLettersBox.RemoveAllRunLetters();
                         game.eggButtonBox.RemoveButtons();
                         game.Context.GetAudioManager().PlayMusic(Music.Relax);
                         game.EndGame(game.CurrentStars, game.correctStages);
