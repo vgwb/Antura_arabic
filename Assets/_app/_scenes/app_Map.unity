@@ -4179,6 +4179,7 @@ MonoBehaviour:
   numStepsBetweenPines: 2
   dot: {fileID: 1000013482476302, guid: 40fc5aa844c56ac44a25bc53bac5c31e, type: 2}
   posDots: []
+  stepsParent: {fileID: 1372567940}
   pinLeft: {x: 0, y: 0, z: 0}
   pinRight: {x: 0, y: 0, z: 0}
 --- !u!4 &498990843
@@ -13159,7 +13160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniMapScript: {fileID: 498990842}
-  speed: 10
+  speed: 15
   posDot: {x: 0, y: 0, z: 0}
   pos: 0
 --- !u!4 &1880079670 stripped

@@ -36,7 +36,9 @@
             Variation = ThrowBallsVariation.letters;
 
             Context = new SampleGameContext();
-            Difficulty = 0.5f;
+
+            // A difficulty of 0.72 will give the traditional progression of difficulty in the game.
+            Difficulty = 0.72f;
         }
 
         #region external configuration call
