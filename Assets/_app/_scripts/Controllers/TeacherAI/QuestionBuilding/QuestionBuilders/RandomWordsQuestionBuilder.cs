@@ -11,7 +11,6 @@ namespace EA4S
         private Db.WordDataCategory category;
         private bool drawingNeeded;
 
-
         public RandomWordsQuestionBuilder(int nPacks, int nCorrect = 1,  int nWrong = 0, bool firstCorrectIsQuestion = false, Db.WordDataCategory category = Db.WordDataCategory.None, bool drawingNeeded = false)
         {
             this.nPacks = nPacks;
@@ -22,12 +21,17 @@ namespace EA4S
             this.drawingNeeded = drawingNeeded;
         }
 
-        public int GetQuestionPackCount()
+        public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            return nPacks;
+            List<QuestionPackData> packs = new List<QuestionPackData>();
+            for (int pack_i = 0; pack_i < nPacks; pack_i++)
+            {
+                packs.Add(CreateSingleQuestionPackData());
+            }
+            return packs;
         }
 
-        public QuestionPackData CreateQuestionPackData()
+        private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
 

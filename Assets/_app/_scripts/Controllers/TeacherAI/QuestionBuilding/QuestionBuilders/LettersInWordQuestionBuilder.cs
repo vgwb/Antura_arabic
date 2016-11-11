@@ -22,12 +22,17 @@ namespace EA4S
             this.drawingNeeded = drawingNeeded;
         }
 
-        public int GetQuestionPackCount()
+        public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            return nPacks;
+            List<QuestionPackData> packs = new List<QuestionPackData>();
+            for (int pack_i = 0; pack_i < nPacks; pack_i++)
+            {
+                packs.Add(CreateSingleQuestionPackData());
+            }
+            return packs;
         }
 
-        public QuestionPackData CreateQuestionPackData()
+        private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
             //var db = AppManager.Instance.DB;
@@ -45,6 +50,7 @@ namespace EA4S
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
+
 
     }
 }
