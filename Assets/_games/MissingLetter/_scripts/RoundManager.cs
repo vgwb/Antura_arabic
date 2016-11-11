@@ -43,7 +43,7 @@ namespace EA4S.MissingLetter
 
         public void NewRound()
         {
-            mGame.m_bInIdle = false;
+            mGame.SetInIdle(false);
             ExitCurrentScene();
 
             if (mRoundType == RoundType.WORD)

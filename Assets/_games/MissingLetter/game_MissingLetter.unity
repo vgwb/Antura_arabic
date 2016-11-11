@@ -1508,6 +1508,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 268244538}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &279487306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 279487307}
+  - 65: {fileID: 279487308}
+  - 114: {fileID: 279487309}
+  m_Layer: 0
+  m_Name: FeedbackDisableLetters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &279487307
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279487306}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.4, y: -1.7, z: 10.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 449469479}
+  m_RootOrder: 4
+--- !u!65 &279487308
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279487306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 53.228363, y: 6.338169, z: 0.19712937}
+  m_Center: {x: -1.4292278, y: 0.23245466, z: 0.40143585}
+--- !u!114 &279487309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 279487306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebae75c6cc03694abfcbe751317b7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &332840826
 Prefab:
   m_ObjectHideFlags: 0
@@ -2443,6 +2496,7 @@ Transform:
   - {fileID: 2096178183}
   - {fileID: 676906817}
   - {fileID: 660078310}
+  - {fileID: 279487307}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &461124054
@@ -7861,6 +7915,7 @@ MonoBehaviour:
   UseTestGameplayInfo: 0
   mLetterPrefab: {fileID: 1959708596}
   mAnturaRef: {fileID: 1061981601}
+  mFeedBackDisableLetters: {fileID: 279487308}
   mQuestionCamera: {fileID: 1492852913}
   mAnswerCamera: {fileID: 1618640965}
   mQuestionINOffset: 30
@@ -7899,7 +7954,6 @@ MonoBehaviour:
   mIsTimesUp: 0
   m_iRoundsLimit: 0
   m_fGameTime: 0
-  m_bInIdle: 0
 --- !u!4 &1213377334
 Transform:
   m_ObjectHideFlags: 0
