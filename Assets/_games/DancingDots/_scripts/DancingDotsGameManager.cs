@@ -134,7 +134,7 @@ namespace EA4S.DancingDots
 				CreatePoof(pos, 2f, false);
 				yield return new WaitForSeconds(0.4f);
 				antura.transform.position = pos;
-
+				antura.GetComponent<AnturaAnimationController>().DoSniff();
 				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
 				CreatePoof(pos, 2f, false);
 				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
@@ -355,12 +355,13 @@ namespace EA4S.DancingDots
 			}
 			else
 			{
-				dancingDotsLL.GetComponent<Animator>().Play("Jump");
+				dancingDotsLL.letterObjectView.DoHorray(); // ("Jump");
 
 				yield return new WaitForSeconds(0.25f);
-				dancingDotsLL.LivingLetterAnimator.Play("run");
+//				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
+//				dancingDotsLL.letterObjectView.SetWalkingSpeed(1f);
 				yield return new WaitForSeconds(0.5f);
-				dancingDotsLL.LivingLetterAnimator.Play("walk");
+//				dancingDotsLL.letterObjectView.SetWalkingSpeed(0f);
 				dancingDotsLL.HideRainbow();
 			}
 		}
@@ -404,7 +405,7 @@ namespace EA4S.DancingDots
 			splat.transform.localScale = new Vector3(1f,1f,1f);
 			splat.transform.localRotation = Quaternion.Euler(0f,0f,0f);
 			splat.transform.position = pos;
-			splat.transform.localPosition = new Vector3(splat.transform.localPosition.x, splat.transform.localPosition.y, 1.6f);
+			splat.transform.localPosition = new Vector3(splat.transform.localPosition.x, splat.transform.localPosition.y, 0f);
 
 			splats.Add(splat.GetComponent<DancingDotsSplat>());
 
@@ -423,13 +424,16 @@ namespace EA4S.DancingDots
 			}
 			else
 			{
-				dancingDotsLL.GetComponent<Animator>().Play("Pirouette");
+				dancingDotsLL.letterObjectView.DoDancingTwirl(null);
 				foreach (DancingDotsSplat splat in splats) splat.CleanSplat();
 				yield return new WaitForSeconds(0.25f);
 				dancingDotsLL.HideRainbow();
 				StartRound();
 				yield return new WaitForSeconds(0.75f);
-				dancingDotsLL.LivingLetterAnimator.Play("walk");
+				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_dancing);
+
+//				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
+//				dancingDotsLL.letterObjectView.SetWalkingSpeed(0);
 			}
 		}
 
@@ -437,12 +441,15 @@ namespace EA4S.DancingDots
 		{
 			yield return new WaitForSeconds(0.5f);
 			AudioManager.I.PlaySfx(Sfx.Lose);
-			dancingDotsLL.LivingLetterAnimator.Play("ninja");
+//			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle);
+
+
 			StartCoroutine(PoofOthers(dragableDots));
 			StartCoroutine(PoofOthers(dragableDiacritics));
-			dancingDotsLL.GetComponent<Animator>().Play("FallAndStand");
+			dancingDotsLL.letterObjectView.DoDancingLose(); // ("FallAndStand");
 			yield return new WaitForSeconds(1.5f);
-
+			dancingDotsLL.letterObjectView.DoSmallJump();
+			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_dancing);
 			StartCoroutine(CheckNewRound());
 		}
 
@@ -451,12 +458,11 @@ namespace EA4S.DancingDots
 			numberOfRoundsWon++;
 
 			yield return new WaitForSeconds(0.25f);
-			dancingDotsLL.LivingLetterAnimator.Play("run");
+//			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
+//			dancingDotsLL.letterObjectView.SetWalkingSpeed(1);
 
 			AudioManager.I.PlaySfx(Sfx.Win);
 			yield return new WaitForSeconds(1f);
-			dancingDotsLL.LivingLetterAnimator.Play("ninja");
-			yield return new WaitForSeconds(1.5f);
 
 			StartCoroutine(CheckNewRound());
 		}
@@ -470,7 +476,7 @@ namespace EA4S.DancingDots
 		{
 			isPlaying = false;
 
-			dancingDotsLL.LivingLetterAnimator.Play("idle");
+			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle); // ("idle");
 
 			yield return new WaitForSeconds(1f);
 
