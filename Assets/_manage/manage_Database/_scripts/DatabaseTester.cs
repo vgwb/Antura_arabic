@@ -321,7 +321,7 @@ namespace EA4S.Db.Management
             var lastAccessTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-RND.Range(0, 5));
             var score = RND.Range(0f, 1f);
 
-            this.dbManager.UpdateScoreData(rndTable, rndId, score, lastAccessTimestamp);
+            this.dbManager.Debug_UpdateScoreData(rndTable, rndId, score, lastAccessTimestamp);
             PrintOutput("Inserted (or replaced) new ScoreData: " + lastAccessTimestamp.ToString());
         }
 

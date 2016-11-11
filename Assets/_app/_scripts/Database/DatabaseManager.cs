@@ -158,12 +158,23 @@ namespace EA4S
             dynamicDb.InsertOrReplace(data);
         }
 
-        public void UpdateScoreData(DbTables table, string elementId, float score)
+        public void UpdateScoreData(DbTables table, string elementId, float newScore)
         {
-            ScoreData data = new ScoreData(elementId, table, score);
+            // @note: the score data is set using a weighted running average
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '{0}' AND ElementId = '{1}'", table.ToString(), elementId);
+            List<ScoreData> scoreDataList = FindScoreDataByQuery(query);
+            float previousAverageScore = 0;
+            if (scoreDataList.Count > 0)
+            {
+                previousAverageScore = scoreDataList[0].Score;
+            }
+            int movingAverageSpan = 5; // @note: for the first N, this won't be accurate
+            float newAverageScore = previousAverageScore - previousAverageScore / movingAverageSpan + newScore / movingAverageSpan;
+
+            ScoreData data = new ScoreData(elementId, table, newAverageScore);
             dynamicDb.InsertOrReplace(data);
         }
-        public void UpdateScoreData(DbTables table, string elementId, float score, int timestamp)
+        public void Debug_UpdateScoreData(DbTables table, string elementId, float score, int timestamp)
         {
             ScoreData data = new ScoreData(elementId, table, score, timestamp);
             dynamicDb.InsertOrReplace(data);
