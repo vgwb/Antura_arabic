@@ -31,12 +31,14 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
-            Questions = new SampleQuestionProvider();
+            Questions = new ThrowBallsQuestionProvider();
 
             Variation = ThrowBallsVariation.letters;
 
             Context = new SampleGameContext();
-            Difficulty = 0.5f;
+
+            // A difficulty of 0.72 will give the traditional progression of difficulty in the game.
+            Difficulty = 0.72f;
         }
 
         #region external configuration call

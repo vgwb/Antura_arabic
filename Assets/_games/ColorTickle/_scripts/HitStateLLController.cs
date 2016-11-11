@@ -99,7 +99,7 @@ namespace EA4S.ColorTickle
             else
             {
                 m_HitState = eHitState.HIT_NONE;
-                if (EnableAntura != null)
+                if (DisableAntura != null)
                 {
                     DisableAntura();
                 }

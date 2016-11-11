@@ -26,7 +26,7 @@ namespace EA4S
         public QuestionPackData CreateQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
-            var db = AppManager.Instance.DB;
+            //var db = AppManager.Instance.DB;
 
             var correctAnswers = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
             var question = firstCorrectIsQuestion ? correctAnswers[0] : null;

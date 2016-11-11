@@ -40,10 +40,10 @@ namespace EA4S
         public void InitDataAI()
         {
 
-            if (DB == null)
-                DB = new DatabaseManager(GameSettings.UseTestDatabase);
             if (Player == null)
                 Player = new PlayerProfile();
+            if (DB == null)
+                DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
             if (Teacher == null)
                 Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
@@ -51,6 +51,8 @@ namespace EA4S
 
             gameObject.AddComponent<DebugManager>();
         }
+
+
 
         protected override void GameSetup()
         {
@@ -60,7 +62,9 @@ namespace EA4S
             InitDataAI();
             CachingLetterData();
             GameSettings.HighQualityGfx = false;
-            ResetProgressionData();
+            //ResetProgressionData();
+
+
         }
 
         private void AdditionalSetup()
@@ -72,7 +76,15 @@ namespace EA4S
             }
 
             // PlayerProfileModule Install override
-            PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
+            //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
+
+            /* Player profile auto select first avatar or last selected */
+            AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            // If "GameSettings.LastActivePlayerId == 0" force here open player selection
+            Player = new PlayerProfile().CreateOrLoadPlayerProfile(GameSettings.LastActivePlayerId == 0 ? "1" : GameSettings.LastActivePlayerId.ToString());
+            Debug.Log("Active player: " + Player.Id);
+
         }
 
         void CachingLetterData()

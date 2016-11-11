@@ -7,7 +7,7 @@ using ModularFramework.Helpers;
 using TMPro;
 using EA4S;
 
-namespace Balloons
+namespace EA4S.Balloons
 {
     public class LetterPromptController : MonoBehaviour
     {
