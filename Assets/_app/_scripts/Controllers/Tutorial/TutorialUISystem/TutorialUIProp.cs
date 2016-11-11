@@ -57,7 +57,6 @@ namespace EA4S
             this.transform.parent = _parent;
             this.transform.LookAt(transform.position + TutorialUI.I.CamT.rotation * Vector3.forward, TutorialUI.I.CamT.up);
             this.transform.position = _position;
-//            TutorialUI.SetCameraBasedScale(this.transform);
             this.transform.localScale = Vector3.one * TutorialUI.GetCameraBasedScaleMultiplier(_position);
             this.gameObject.SetActive(true);
             Img.sortingOrder = _overlayed ? defSortingOrder : 0;
