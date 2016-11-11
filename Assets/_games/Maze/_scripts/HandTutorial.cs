@@ -40,11 +40,13 @@ namespace EA4S.Maze
 				numberToShow.SetActive(false);
 
 			gameObject.SetActive (false);
-		}
+
+            
+        }
 		
 		// Update is called once per frame
 		void Update () {
-
+            return;
 			//no way points to follow:
 			if (wayPoints.Count == 0)
 				return;
@@ -52,8 +54,10 @@ namespace EA4S.Maze
 
 			//otherwise move to next way point:
 			transform.position = Vector3.MoveTowards (transform.position, wayPoints[currentWayPoint], Time.deltaTime*handSpeed);
-
-			if ((transform.position - wayPoints [currentWayPoint]).magnitude == 0.0f) {
+           
+           
+            if (transform.position == wayPoints[currentWayPoint])
+            {//(transform.position - wayPoints [currentWayPoint]).magnitude <= float.Epsilon) {
 				currentWayPoint++;
 
 				//arrived:
@@ -64,7 +68,7 @@ namespace EA4S.Maze
 					//set tutorial done:
 					isMovingOnPath = false;
 
-					MazeGameManager.Instance.timer.StartTimer ();
+					//MazeGameManager.Instance.timer.StartTimer ();
 
 				}
 			}
@@ -84,8 +88,9 @@ namespace EA4S.Maze
 
 		public void stopCurrentTutorial()
 		{
-			
-			wayPoints.Clear ();
+            TutorialUI.Clear(false);
+
+            wayPoints.Clear ();
 			gameObject.SetActive (false);
 
 			//set tutorial done:
@@ -97,17 +102,32 @@ namespace EA4S.Maze
 		{
 			
 			gameObject.SetActive (true);
+           
 			wayPoints = new List<Vector3> ();
 			//construct the path waypoints:
 			pathsToFollow[currentPath].SetActive(true);
 			numbersToShow [currentPath].SetActive (true);
 			linesToShow [currentPath].SetActive (true);
+
+            
 			foreach (Transform child in pathsToFollow[currentPath].transform) {
 				wayPoints.Add (child.transform.position);
-			}
+            }
 			startingPosition = wayPoints[0];
-			currentWayPoint = 0;
-		}
+
+           
+
+            currentWayPoint = 0;
+
+            MazeGameManager.Instance.timer.StartTimer();
+            if (wayPoints.Count == 1)
+                TutorialUI.ClickRepeat(wayPoints[0]);
+            else
+            {
+                TutorialUI.DrawLine(wayPoints.ToArray(), TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+            }
+               
+        }
 
 		public bool isComplete()
 		{
@@ -129,7 +149,7 @@ namespace EA4S.Maze
 
 		public bool isCurrentTutorialDone()
 		{
-			return !isMovingOnPath;
+            return true; //!isMovingOnPath;
 		}
 
 

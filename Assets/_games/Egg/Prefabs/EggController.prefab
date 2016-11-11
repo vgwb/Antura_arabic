@@ -23,6 +23,7 @@ GameObject:
   - 33: {fileID: 33000012913378022}
   - 23: {fileID: 23000010086716036}
   - 54: {fileID: 54000010308393326}
+  - 64: {fileID: 64000013916905390}
   m_Layer: 0
   m_Name: Egg_part_02
   m_TagString: Untagged
@@ -87,7 +88,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010740115674}
   - 136: {fileID: 136000011669863330}
-  - 114: {fileID: 114000012988120450}
   - 114: {fileID: 114000013224825940}
   m_Layer: 0
   m_Name: Egg
@@ -125,6 +125,7 @@ GameObject:
   - 33: {fileID: 33000011805059422}
   - 23: {fileID: 23000013127429608}
   - 54: {fileID: 54000012162870814}
+  - 64: {fileID: 64000011185698632}
   m_Layer: 0
   m_Name: Egg_part_04
   m_TagString: Untagged
@@ -144,6 +145,7 @@ GameObject:
   - 33: {fileID: 33000012419581060}
   - 23: {fileID: 23000013248830144}
   - 54: {fileID: 54000011088297808}
+  - 64: {fileID: 64000011666395600}
   m_Layer: 0
   m_Name: Egg_part_01
   m_TagString: Untagged
@@ -180,6 +182,7 @@ GameObject:
   - 33: {fileID: 33000012042576020}
   - 23: {fileID: 23000013441283172}
   - 54: {fileID: 54000012707391864}
+  - 64: {fileID: 64000011971444138}
   m_Layer: 0
   m_Name: Egg_part_03
   m_TagString: Untagged
@@ -209,7 +212,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012565025486}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.194725, y: 9.194725, z: 9.194725}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
   m_Children: []
@@ -252,7 +255,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014069271794}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.194725, y: 9.194725, z: 9.194725}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
   m_Children: []
@@ -291,7 +294,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010182476510}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.194725, y: 9.194725, z: 9.194725}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
   m_Children: []
@@ -595,6 +598,54 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &64000011185698632
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012565025486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300004, guid: 4b7cb2deb391ca04d9adb6174d7d59d5, type: 3}
+--- !u!64 &64000011666395600
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012888251216}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300002, guid: 4b7cb2deb391ca04d9adb6174d7d59d5, type: 3}
+--- !u!64 &64000011971444138
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014069271794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300006, guid: 4b7cb2deb391ca04d9adb6174d7d59d5, type: 3}
+--- !u!64 &64000013916905390
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010182476510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: 4b7cb2deb391ca04d9adb6174d7d59d5, type: 3}
 --- !u!114 &114000010248178044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,6 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceRenderer: {fileID: 23000013127429608}
   eggRigidbody: {fileID: 54000012162870814}
+  meshCollider: {fileID: 64000011185698632}
   poofPrefab: {fileID: 1000012701035900, guid: d6f1b602b13115040a04b4fa83fdfa67, type: 2}
 --- !u!114 &114000011500660698
 MonoBehaviour:
@@ -632,7 +684,6 @@ MonoBehaviour:
   notRotatedObjects: {fileID: 4000013698731800}
   emoticonsScale: {fileID: 4000012055672202}
   eggShadow: {fileID: 1000013639075238}
-  tremblingEgg: {fileID: 114000012988120450}
   eggParticleWin: {fileID: 1000010349007260}
   inMoveCurve:
     serializedVersion: 2
@@ -679,6 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceRenderer: {fileID: 23000013248830144}
   eggRigidbody: {fileID: 54000011088297808}
+  meshCollider: {fileID: 64000011666395600}
   poofPrefab: {fileID: 1000012701035900, guid: d6f1b602b13115040a04b4fa83fdfa67, type: 2}
 --- !u!114 &114000012738742998
 MonoBehaviour:
@@ -693,25 +745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceRenderer: {fileID: 23000013441283172}
   eggRigidbody: {fileID: 54000012707391864}
+  meshCollider: {fileID: 64000011971444138}
   poofPrefab: {fileID: 1000012701035900, guid: d6f1b602b13115040a04b4fa83fdfa67, type: 2}
---- !u!114 &114000012988120450
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012089527578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb528651c31e9bb4787682ce970fc406, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Trembling: 0
-  tremblingSpeedX: 30
-  tremblingSpeedY: 20
-  tremblingSpeedZ: 0
-  tremblingAmountX: 0.08
-  tremblingAmountY: 0.04
-  tremblingAmountZ: 0
 --- !u!114 &114000013224825940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -737,6 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceRenderer: {fileID: 23000010086716036}
   eggRigidbody: {fileID: 54000010308393326}
+  meshCollider: {fileID: 64000013916905390}
   poofPrefab: {fileID: 1000012701035900, guid: d6f1b602b13115040a04b4fa83fdfa67, type: 2}
 --- !u!136 &136000011669863330
 CapsuleCollider:

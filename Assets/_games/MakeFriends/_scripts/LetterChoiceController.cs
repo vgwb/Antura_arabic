@@ -114,7 +114,7 @@ namespace EA4S.MakeFriends
         {
             if (letterData != null && letterData.Key != null)
             {
-                AudioManager.I.PlayLetter(letterData.Key);
+                MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }
         }
 

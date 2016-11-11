@@ -90,15 +90,15 @@ namespace EA4S.Egg
 
         public void Reset()
         {
+            ResetCrack();
+
             currentRotation = new Vector3(0f, 0f, -90f);
             GoToPosition(0, currentRotation);
 
             DestroyQuestionLetters();
             EggShow(true);
 
-            eggParticleWin.SetActive(true);
-
-            ResetCrack();
+            eggParticleWin.SetActive(true);            
 
             ParticleWinDisabled();
 
