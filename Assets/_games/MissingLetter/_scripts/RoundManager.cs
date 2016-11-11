@@ -92,21 +92,13 @@ namespace EA4S.MissingLetter
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
             qstBehaviour.LetterData = questionData;
-
-            //tmp solution for remove letter
-            LL_WordData tmp = (LL_WordData)qstBehaviour.LetterData;
-            int index_ = tmp.Data.Arabic.IndexOf("_");
-            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
-            qstBehaviour.mLetter.Lable.text = tmp.TextForLivingLetter;
-            qstBehaviour.mLetter.Lable.text = qstBehaviour.mLetter.Lable.text.Remove(index_,1);
-            qstBehaviour.mLetter.Lable.text = qstBehaviour.mLetter.Lable.text.Insert(index_,"_");
-
-
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
             qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
-
             mCurrentQuestionScene.Add(oQuestion);
+
+            //after insert in mCurrentQuestionScene
+            RemoveLetterfromQuestion();
 
             GameObject _correctAnswerObject = mAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
@@ -183,6 +175,34 @@ namespace EA4S.MissingLetter
             mCurrentAnswerScene.Shuffle();
         }
 
+        void RemoveLetterfromQuestion()
+        {
+            LL_WordData word = (LL_WordData)mCurrQuestionPack.GetQuestion();
+            var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Letters);
+
+            LL_LetterData letter = (LL_LetterData)mCurrQuestionPack.GetCorrectAnswers().ToList()[0];
+            int index = 0;
+            for(; index < Letters.Count; ++index)
+            {
+                if(Letters[index].Key == letter.Key)
+                {
+                    break;
+                }
+            }
+
+            LetterObjectView tmp = mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            tmp.Lable.text = tmp.Lable.text.Remove(index, 1);
+            tmp.Lable.text = tmp.Lable.text.Insert(index, "_");
+        }
+
+        void RestoreQuestion()
+        {
+            foreach (GameObject _obj in mCurrentQuestionScene)
+            {
+                _obj.GetComponent<LetterBehaviour>().Refresh();
+            }
+        }
+
         void EnterCurrentScene() {
             Vector3 startPos = mQstPos + new Vector3(mGame.mQuestionINOffset, 0, 0);
             foreach (GameObject _obj in mCurrentQuestionScene) {
@@ -199,8 +219,6 @@ namespace EA4S.MissingLetter
 
         void ExitCurrentScene() {
             if (mCurrQuestionPack != null) {
-
-                //((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
 
                 foreach (GameObject _obj in mCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
@@ -243,13 +261,8 @@ namespace EA4S.MissingLetter
         public void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
 
-            //restore removed letter
-            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
             //refresh the data (for graphics)
-            foreach (GameObject _obj in mCurrentQuestionScene)
-            {
-                _obj.GetComponent<LetterBehaviour>().Refresh();
-            }
+            RestoreQuestion();
 
             mGame.SetInIdle(false);
 
@@ -365,8 +378,6 @@ namespace EA4S.MissingLetter
 
         private Vector3 mAnsPos;
         private Vector3 mQstPos;
-
-        private string msRemovedData;
 
         public event Action<bool> onAnswered;
 
