@@ -105,7 +105,7 @@ namespace EA4S
         {
             var letterListToReturn = new List<LL_LetterData>();
             for (var i = 0; i < _count; i++) {
-                var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(_lettersToAvoid, letter) && !CheckIfContains(letterListToReturn, letter)) {
                     letterListToReturn.Add(letter);

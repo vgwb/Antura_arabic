@@ -288,22 +288,31 @@ namespace EA4S
         #endregion
 
 
-        // DEPRECATED!!!
-        #region Interface - Letters / Words
 
-        // DEPRECATED
-        [System.Obsolete("GimmeARandomLetter is deprecated and will soon be removed. You should get your data from the question packs provider.")]
-        public LL_LetterData GimmeARandomLetter()
+        #region Interface - Test data for test providers
+
+        public static bool giveWarningOnFake = false;
+
+        public LL_LetterData GetRandomTestLetterLL()
         {
+            if (giveWarningOnFake)
+            {
+                Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
+                giveWarningOnFake = false;
+            }
+
             var data = this.SelectRandomLetter();
             return BuildLetterData_LL(data);
         }
 
-        // DEPRECATED
-        [System.Obsolete("GimmeAGoodWordData is deprecated and will soon be removed. You should get your data from the question packs provider.")]
-        public LL_WordData GimmeAGoodWordData()
+        public LL_WordData GetRandomTestWordDataLL()
         {
-            // init vocabulary
+            if (giveWarningOnFake)
+            {
+                Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
+                giveWarningOnFake = false;
+            }
+
             var availableVocabulary = BuildWordData_LL_Set(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
 
             List<LL_WordData> returnList = new List<LL_WordData>();
@@ -327,34 +336,21 @@ namespace EA4S
             return returnWord;
         }
 
-        #endregion
-
-        // DEPRECATED!!!
-        #region WordData -> LL_WordData helpers
-
-        // DEPRECATED
-        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
         public LL_LetterData BuildLetterData_LL(LetterData data)
         {
             return new LL_LetterData(data.GetId());
         }
 
-        // DEPRECATED
-        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
         public List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
         {
             return data_list.ConvertAll<ILivingLetterData>(x => BuildLetterData_LL(x));
         }
 
-        // DEPRECATED!!!
-        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
         public LL_WordData BuildWordData_LL(WordData data)
         {
             return new LL_WordData(data.GetId(), data);
         }
 
-        // DEPRECATED!!!
-        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
         public List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
         {
             return data_list.ConvertAll<ILivingLetterData>(x => BuildWordData_LL(x));

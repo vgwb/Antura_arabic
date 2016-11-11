@@ -20,7 +20,7 @@ namespace EA4S
                 List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
-                var data = AppManager.Instance.Teacher.GimmeARandomLetter();
+                var data = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                 if (data == null)
                     return;
