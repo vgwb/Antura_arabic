@@ -15,7 +15,7 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private Vector3 m_v3StartPosition;
         [SerializeField]
-        private Vector3 m_v3Destination;
+        private Transform m_Destination;
         [SerializeField]
         private bool m_bMovingToDestination = false; //When true the letter will move towards the setted destination
 
@@ -27,6 +27,7 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
         private LetterObjectView m_oLetter;
+		private Vector3 m_v3Destination;
         #endregion
 
         #region EVENTS
@@ -80,7 +81,8 @@ namespace EA4S.ColorTickle
         void Start()
         {
             m_oLetter = gameObject.GetComponent<LetterObjectView>();
-            m_oLetter.gameObject.transform.position = m_v3StartPosition;
+			m_v3StartPosition =  m_oLetter.gameObject.transform.position;
+			m_v3Destination = m_Destination.position;
         }
 
         void Update()

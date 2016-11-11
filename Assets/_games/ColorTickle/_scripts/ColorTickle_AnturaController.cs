@@ -23,7 +23,7 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private Vector3 m_v3StartPosition;
         [SerializeField]
-        private Vector3 m_v3Destination;
+        private Transform m_Destination;
         [SerializeField]
         private Transform m_oTargetToLook;
         [SerializeField]
@@ -51,6 +51,7 @@ namespace EA4S.ColorTickle
         private Antura m_oAntura;
         private AnturaContollerState m_eAnturaState = AnturaContollerState.SLEEPING;
         private float m_fBarkTimeProgress = 0;
+		private Vector3 m_v3Destination;
         #endregion
 
         #region EVENTS
@@ -58,12 +59,12 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region GETTER/SETTER
-        public Vector3 startPosition
+		public Vector3 startPosition
         {
             get { return m_v3StartPosition; }
         }
 
-        public Vector3 destination
+		public Vector3 destination
         {
             get { return m_v3Destination; }
         }
@@ -135,16 +136,17 @@ namespace EA4S.ColorTickle
             m_StartPosition = gameObject.transform.position;
             m_Antura.SetAnimation(AnturaAnim.SitBreath);*/
             m_oAntura = gameObject.GetComponent<Antura>();
-            m_oAntura.gameObject.transform.position = m_v3StartPosition;
+			m_v3StartPosition = m_oAntura.gameObject.transform.position;
             m_eAnturaState = AnturaContollerState.SLEEPING;
             m_fBarkTimeProgress = 0;
+			m_v3Destination = m_Destination.position;
         }
 
         void Update()
         {
             if (m_bMovingToDestination)
             {
-                MoveTo(m_v3Destination);
+				MoveTo(m_v3Destination);
             }
 
             if(m_bRotatingToTarget)
@@ -171,7 +173,7 @@ namespace EA4S.ColorTickle
         /// <param name="v3Destination">The final world position</param>
         public void MoveToNewDestination(Vector3 v3Destination)
         {
-            m_v3Destination = v3Destination;
+			m_v3Destination = v3Destination;
             m_bMovingToDestination = true;
         }
 
@@ -183,8 +185,8 @@ namespace EA4S.ColorTickle
         public void MoveOnNewPath(Vector3 v3Start, Vector3 v3Destination)
         {
             m_v3StartPosition = v3Start;
-            m_v3Destination = v3Destination;
-            MoveToNewDestination(m_v3Destination);
+			m_v3Destination = v3Destination;
+			MoveToNewDestination(m_v3Destination);
         }
 
         /// <summary>
@@ -311,9 +313,9 @@ namespace EA4S.ColorTickle
             else if (m_eAnturaState == AnturaContollerState.REACHINGLETTER)//letter reached, rotate
             {
                 //swap dest and start
-                Vector3 _v3Temp = m_v3StartPosition;
-                m_v3StartPosition = m_v3Destination;
-                m_v3Destination = _v3Temp;
+				Vector3 _v3Temp = m_v3StartPosition;
+				m_v3StartPosition = m_v3Destination;
+				m_v3Destination = _v3Temp;
 
                 //rotate towards letter
                 m_bRotatingToTarget = true;
@@ -345,9 +347,9 @@ namespace EA4S.ColorTickle
             else if (m_eAnturaState == AnturaContollerState.COMINGBACK) //rotate towards letter again
             {
                 //swap dest and start
-                Vector3 _v3Temp = m_v3StartPosition;
+				Vector3 _v3Temp = m_v3StartPosition;
                 m_v3StartPosition = m_v3Destination;
-                m_v3Destination = _v3Temp;
+				m_v3Destination = _v3Temp;
 
                 //rotate
                 m_bRotatingToTarget = true;
