@@ -7,7 +7,6 @@ namespace EA4S.Teacher
 {
     public class LogIntelligence
     {
-
         // References
         DatabaseManager db;
 
@@ -16,6 +15,8 @@ namespace EA4S.Teacher
             this.db = db;
         }
 
+        #region Mood
+
         public void LogMood(int mood)
         {
             float realMood = Mathf.InverseLerp(ConfigAI.minimumMoodValue, ConfigAI.maximumMoodValue, mood);
@@ -23,27 +24,14 @@ namespace EA4S.Teacher
             db.Insert(data);
         }
 
+        #endregion
+
+        #region Info
+
         public void LogInfo(string session, InfoEvent infoEvent, string parametersString = "")
         {
             var data = new LogInfoData(session, infoEvent, parametersString);
             db.Insert(data);
-        }
-
-        #region Scores
-
-        public void LogMiniGameScore(MiniGameCode miniGameCode, float score)
-        {
-
-        }
-
-        public void LogPlaySessionScore()
-        {
-
-        }
-
-        public void LogLearningBlockScore()
-        {
-
         }
 
         #endregion
@@ -110,7 +98,7 @@ namespace EA4S.Teacher
             }
         }
 
-        public void LogLearn(MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
+        public void LogLearn(string session, string playSession, MiniGameCode miniGameCode, List<LearnResultParameters> resultsList)
         {
             var learnRules = GetLearnRules(miniGameCode);
 
@@ -133,10 +121,11 @@ namespace EA4S.Teacher
                 score *= learnRules.minigameImportanceWeight;
                 score += learnRules.minigameVoteSkewOffset;
 
-                // @todo: add the insert Insert();
+                var data = new LogLearnData(session, playSession, miniGameCode, result.table, result.elementId, score);
+                db.Insert(data);
 
-                // We also update the score data
-                db.UpdateScoreData(result.table, result.elementId, score);
+                // We also update the score for that data element
+                UpdateScoreDataWithMovingAverage(result.table, result.elementId, score, 5);
             }
         }
 
@@ -155,6 +144,56 @@ namespace EA4S.Teacher
                     break;
             }
             return rules;
+        }
+
+        #endregion
+
+        #region Journey Scores
+
+        public void LogMiniGameScore(MiniGameCode miniGameCode, float score)
+        {
+            UpdateScoreDataWithMaximum(DbTables.MiniGames, ((int)miniGameCode).ToString(), score);
+        }
+
+        public void LogPlaySessionScore(string playSessionId, float score)
+        {
+            UpdateScoreDataWithMaximum(DbTables.PlaySessions, (playSessionId).ToString(), score);
+        }
+
+        public void LogLearningBlockScore(int learningBlock, float score)
+        {
+            UpdateScoreDataWithMaximum(DbTables.LearningBlocks, (learningBlock).ToString(), score);
+        }
+
+        #endregion
+
+        #region Score Utilities
+
+        private void UpdateScoreDataWithMaximum(DbTables table, string elementId, float newScore)
+        {
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '{0}' AND ElementId = '{1}'", table.ToString(), elementId);
+            List<ScoreData> scoreDataList = db.FindScoreDataByQuery(query);
+            float previousMaxScore = 0;
+            if (scoreDataList.Count > 0)
+            {
+                previousMaxScore = scoreDataList[0].Score;
+            }
+            float newMaxScore = Mathf.Max(previousMaxScore, newScore);
+            db.UpdateScoreData(table, elementId, newMaxScore);
+        }
+
+        private void UpdateScoreDataWithMovingAverage(DbTables table, string elementId, float newScore, int movingAverageSpan)
+        {
+            string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '{0}' AND ElementId = '{1}'", table.ToString(), elementId);
+            List<ScoreData> scoreDataList = db.FindScoreDataByQuery(query);
+            float previousAverageScore = 0;
+            if (scoreDataList.Count > 0)
+            {
+                previousAverageScore = scoreDataList[0].Score;
+            }
+            // @note: for the first movingAverageSpan values, this won't be accurate
+            float newAverageScore = previousAverageScore - previousAverageScore / movingAverageSpan + newScore / movingAverageSpan;
+            db.UpdateScoreData(table, elementId, newAverageScore);
         }
 
         #endregion

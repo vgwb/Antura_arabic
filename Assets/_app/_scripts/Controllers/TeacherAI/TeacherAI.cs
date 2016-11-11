@@ -49,7 +49,7 @@ namespace EA4S
             this.wordHelper = new WordHelper(_dbManager, this);
             this.journeyHelper = new JourneyHelper(_dbManager, this);
 
-            this.logger = new Teacher.LogIntelligence(_dbManager);
+            this.logger = new LogIntelligence(_dbManager);
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
