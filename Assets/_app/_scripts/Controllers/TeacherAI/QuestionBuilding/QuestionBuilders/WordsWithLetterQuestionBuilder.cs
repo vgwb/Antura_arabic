@@ -23,14 +23,33 @@ namespace EA4S
 
         public QuestionPackData CreateQuestionPackData()
         {
+            QuestionPackData pack = null;
             var teacher = AppManager.Instance.Teacher;
             var db = AppManager.Instance.DB;
 
-            var question = db.GetAllLetterData().RandomSelectOne();
-            var correctAnswers = teacher.wordHelper.GetWordsWithLetter(question.Id).RandomSelect(nCorrect);
-            var wrongAnswers = teacher.wordHelper.GetWordsNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
+            int nAttempts = 20;
+            bool found = false;
+            while(nAttempts > 0 && !found)
+            {
+                var letter = db.GetAllLetterData().RandomSelectOne();
+                var correctWords = teacher.wordHelper.GetWordsWithLetter(letter.Id);
+                //UnityEngine.Debug.Log("Trying letter " + letter + " found n words " + correctWords.Count + " out of " + db.GetAllWordData().Count);
+                if (correctWords.Count < nCorrect)
+                {
+                    nAttempts--;
+                    continue;
+                }
+                correctWords = correctWords.RandomSelect(nCorrect);
+                var wrongWords = teacher.wordHelper.GetWordsNotIn(correctWords.ToArray()).RandomSelect(nWrong);
+                pack = QuestionPackData.Create(letter, correctWords, wrongWords);
+                found = true;
+            }
+            if (!found)
+            {
+                throw new System.Exception("Could not find enough data to build the required questions for the current journey position. Minigame should be aborted.");
+            }
 
-            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
+            return pack;
         }
 
     }
