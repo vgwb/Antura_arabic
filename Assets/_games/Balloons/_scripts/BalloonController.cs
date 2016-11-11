@@ -2,7 +2,7 @@
 using System.Collections;
 using EA4S;
 
-namespace Balloons
+namespace EA4S.Balloons
 {
     public class BalloonController : MonoBehaviour
     {
@@ -65,9 +65,9 @@ namespace Balloons
         {
             balloonCollider.enabled = false;
             parentFloatingLetter.Pop();
-            AudioManager.I.PlaySfx(Sfx.BaloonPop);
+            BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.BaloonPop);
             animator.SetBool("Pop", true);
-            GameObject poof = Instantiate(BalloonsGameManager.instance.FxParticlesPoof, transform.position, Quaternion.identity) as GameObject;
+            GameObject poof = Instantiate(BalloonsGame.instance.FxParticlesPoof, transform.position, Quaternion.identity) as GameObject;
             Destroy(poof, 10);
         }
 
