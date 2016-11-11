@@ -34,7 +34,6 @@ namespace EA4S.MissingLetter
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             game.m_RoundManager.NewRound();
-            game.StartCoroutine(Utils.LaunchDelay(2.0f, game.SetInIdle, true));
         }
 
         public void ExitState()
@@ -49,12 +48,10 @@ namespace EA4S.MissingLetter
         {
 
             if(game.miAnturaTriggersIndex < game.mafAnturaEnterTriggers.Length && gameTime.Time <= game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex]) {
-                if (game.m_bInIdle) {
+                if (game.IsInIdle()) {
                     ++game.miAnturaTriggersIndex;
                     game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(game.mfAnturaAnimDuration);
-                    game.m_bInIdle = false;
                     game.StartCoroutine(Utils.LaunchDelay(game.mfAnturaAnimDuration / 6, game.m_RoundManager.ShuffleLetters, game.mfAnturaAnimDuration / 2));
-                    game.StartCoroutine(Utils.LaunchDelay(4.0f, game.SetInIdle, true));
                 } else {
                     game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex] -= 3.0f;
                 }

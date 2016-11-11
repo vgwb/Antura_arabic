@@ -1781,6 +1781,7 @@ MonoBehaviour:
   m_v3StartPosition: {x: -20, y: 0, z: 0}
   m_v3Destination: {x: 0, y: -2.5, z: -7}
   m_bMovingToDestination: 0
+  m_oLetter: {fileID: 0}
 --- !u!114 &114000011054440758
 MonoBehaviour:
   m_ObjectHideFlags: 1

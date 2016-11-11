@@ -23,7 +23,7 @@ namespace EA4S.MakeFriends
         public float movingAwayDuration;
 
         [HideInInspector]
-        public LivingLetterController livingLetter;
+        public MakeFriendsLivingLetter livingLetter;
         [SerializeField]
         private Vector3 exitRotation;
 
@@ -55,7 +55,8 @@ namespace EA4S.MakeFriends
             AdjustForDifficulty();
 
             var instance = Instantiate(livingLetterPrefab, offscreenPosition, Quaternion.Euler(entranceRotation), this.transform) as GameObject;
-            livingLetter = instance.GetComponent<LivingLetterController>();
+            instance.SetActive(true);
+            livingLetter = instance.GetComponent<MakeFriendsLivingLetter>();
             livingLetter.Init(wordData);
             livingLetter.container = this.gameObject;
             livingLetter.focusOnTouch = MakeFriendsGame.Instance.Configuration.Variation == MakeFriendsVariation.HARD ? false : true;
@@ -94,7 +95,7 @@ namespace EA4S.MakeFriends
         public void Reset()
         {
             livingLetter = null;
-            var lingeringLetter = GetComponentInChildren<LivingLetterController>();
+            var lingeringLetter = GetComponentInChildren<MakeFriendsLivingLetter>();
             if (lingeringLetter != null)
             {
                 Destroy(lingeringLetter.gameObject);
