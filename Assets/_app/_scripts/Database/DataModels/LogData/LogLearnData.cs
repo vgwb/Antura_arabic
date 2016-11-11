@@ -26,7 +26,7 @@ namespace EA4S.Db
         {
         }
 
-        public LogLearnData(string _Session, string _PlaySession, MiniGameCode _MiniGame, DbTables _table, string _elementId, int _score)
+        public LogLearnData(string _Session, string _PlaySession, MiniGameCode _MiniGame, DbTables _table, string _elementId, float _score)
         {
             this.Session = _Session;
             this.PlaySession = _PlaySession;
