@@ -2631,7 +2631,7 @@ Prefab:
     - target: {fileID: 2300000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 58e4a16c499d69d4ba6818c84cd79ac0, type: 2}
+      objectReference: {fileID: 2100000, guid: 874f54df7aff3b3439a049690fbc7383, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
   m_IsPrefabParent: 0
@@ -2880,8 +2880,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1167005735}
-  - 114: {fileID: 1167005734}
   - 114: {fileID: 1167005736}
+  - 114: {fileID: 1167005734}
+  - 114: {fileID: 1167005738}
   - 114: {fileID: 1167005737}
   m_Layer: 0
   m_Name: HideAndSeekGameManager
@@ -2896,7 +2897,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1167005733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61fbdb19683d14274a05ce1b7927a6a1, type: 3}
   m_Name: 
@@ -2957,6 +2958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
   GameManager: {fileID: 1167005734}
+  TutorialManager: {fileID: 1167005738}
   isTimesUp: 0
   inGame: 0
 --- !u!114 &1167005737
@@ -2970,6 +2972,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cb4904d19cb4a849fe61999ddb3592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1167005738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1167005733}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8acb2f0b2623e4293461af9be1305e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrayTrees:
+  - {fileID: 2045548239}
+  - {fileID: 1344976247}
+  ArrayLetters:
+  - {fileID: 648003160}
+  - {fileID: 576303865}
+  ArrayPlaceholder:
+  - {fileID: 1172082688}
+  - {fileID: 1418280032}
+  questionProvider: {fileID: 1167005737}
+  game: {fileID: 1167005736}
+  timeToWait: 3
 --- !u!1 &1172082687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,7 +3640,7 @@ Prefab:
     - target: {fileID: 2300000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ee2d2590a52a54a3ebaae0a0842db073, type: 2}
+      objectReference: {fileID: 2100000, guid: e79aedf9e76cf2045bbdfaf83bd503d1, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
   m_IsPrefabParent: 0
@@ -4923,7 +4948,7 @@ Prefab:
     - target: {fileID: 2300000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e79aedf9e76cf2045bbdfaf83bd503d1, type: 2}
+      objectReference: {fileID: 2100000, guid: f2bae6c7738a14727aa8c88f7740b5e0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
   m_IsPrefabParent: 0
@@ -5191,7 +5216,7 @@ Prefab:
     - target: {fileID: 2300000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e79aedf9e76cf2045bbdfaf83bd503d1, type: 2}
+      objectReference: {fileID: 2100000, guid: 829e2fab0f76ad44eb976662b00c1ac3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
   m_IsPrefabParent: 0
