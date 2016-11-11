@@ -5,7 +5,7 @@
         SickLettersGame game;
         int stars, score;
 
-        float timer = 4;
+        float timer = 0;
         public ResultGameState(SickLettersGame game)
         {
             this.game = game;
@@ -13,12 +13,18 @@
 
         public void EnterState()
         {
+            
+
+            game.LLPrefab.jumpOut(0,true);
+
             if (game.scale.counter < game.targetScale)
             {
                 game.manager.failure();
-
-                timer = 8;
+                timer = 6;
             }
+
+            if (game.scale.counter >= game.targetScale)
+                timer= 4;
         }
 
         public void ExitState()
@@ -31,7 +37,8 @@
 
             if (timer < 0)
             {
-                game.EndGame(game.successRoundsCount/2, game.scale.counter);
+                game.EndGame(game.currentStars, game.scale.counter);
+                //game.EndGame(game.scale.counter / (game.targetScale / 3), game.scale.counter);
             }
         }
 
