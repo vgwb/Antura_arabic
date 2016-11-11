@@ -14,6 +14,7 @@ namespace EA4S.MissingLetter
 
         public GameObject mLetterPrefab;
         public GameObject mAnturaRef;
+        public Collider mFeedBackDisableLetters;
 
         public Transform mQuestionCamera;
         public Transform mAnswerCamera;
@@ -91,8 +92,7 @@ namespace EA4S.MissingLetter
         [HideInInspector]
         public float m_fGameTime;
 
-        [HideInInspector]
-        public bool m_bInIdle;
+        private bool m_bInIdle { get; set; }
 
         public int CurrentStars
         {
@@ -177,7 +177,13 @@ namespace EA4S.MissingLetter
 		}
 
         public void SetInIdle(bool _idle) {
+            mFeedBackDisableLetters.enabled = !_idle;
             m_bInIdle = _idle;
+        }
+
+        public bool IsInIdle()
+        {
+            return m_bInIdle;
         }
 
 
