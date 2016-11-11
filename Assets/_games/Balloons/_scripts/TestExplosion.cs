@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Balloons
+namespace EA4S.Balloons
 {
     public class TestExplosion : MonoBehaviour
     {
@@ -20,8 +20,6 @@ namespace Balloons
 
         void Explode()
         {
-            Debug.Log("BOOM!");
-
             Vector3 explosionPosition = transform.position + Vector3.up;
             Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
 
@@ -29,14 +27,10 @@ namespace Balloons
             {
                 if (hit.gameObject.GetComponent<TestPhysics>() != null && hit.gameObject.GetComponent<TestPhysics>().affectedByExplosions)
                 {
-                    Debug.Log("Hit: " + hit.gameObject.name);
-
                     Rigidbody hitBody = hit.GetComponent<Rigidbody>();
 
                     if (hitBody != null)
                     {
-                        Debug.Log("Knocking back " + hit.gameObject.name + "!");
-
                         var direction = (hitBody.transform.position - transform.position).normalized;
                         var distance = (hitBody.transform.position - transform.position).magnitude;
                         var displacement = (direction * power) / distance;

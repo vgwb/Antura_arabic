@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Balloons
+namespace EA4S.Balloons
 {
     public class TestPhysics : MonoBehaviour
     {

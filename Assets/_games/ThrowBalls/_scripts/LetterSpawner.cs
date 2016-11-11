@@ -21,6 +21,11 @@ namespace EA4S.ThrowBalls
 
         }
 
+        public Vector3 GetTutorialPosition()
+        {
+            return new Vector3((MIN_X + MAX_X) / 2 + (MAX_X - MIN_X) * 0.25f, (MIN_Y + MAX_Y) / 2, (MIN_Z + MAX_Z) / 2);
+        }
+
         public Vector3[] GenerateRandomPositions(int numPositions)
         {
             Vector3[] randomPositions = new Vector3[numPositions];
