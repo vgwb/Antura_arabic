@@ -12,7 +12,7 @@ namespace EA4S.HideAndSeek
 	string description;
     int currentQuestion;
 
-		public void Start()
+	public void Start()
 	{
 		currentQuestion = 0;
 
@@ -21,7 +21,7 @@ namespace EA4S.HideAndSeek
 		description = "Hide and Seek Description";
 
             float difficulty = HideAndSeekConfiguration.Instance.Difficulty;
-			Debug.Log ("Difficulty " + difficulty); //afwffasafsfsa
+			Debug.Log ("Difficulty " + difficulty);
 
             if (difficulty <= 0.4f && difficulty > 0.2f)
                 numbersOfLetters = 4;
@@ -31,9 +31,8 @@ namespace EA4S.HideAndSeek
                 numbersOfLetters = 6;
             else if (difficulty <= 1.0f)
                 numbersOfLetters = 7;
-
-		
-			for (int i = 0; i < 15; i++)
+            
+			for (int i = 0; i < 20; i++)
 		{
 			List<ILivingLetterData> listOfLetters = new List<ILivingLetterData>();
 
@@ -42,12 +41,12 @@ namespace EA4S.HideAndSeek
 				{
 					if (j == 0) 
 					{
-						listOfLetters.Add (AppManager.Instance.Teacher.GimmeARandomLetter ());
+						listOfLetters.Add (AppManager.Instance.Teacher.SelectRandomLetter().ConvertToLivingLetterData());
 						j++;
 					} 
 					else 
 					{
-						var lett = AppManager.Instance.Teacher.GimmeARandomLetter ();
+						var lett = AppManager.Instance.Teacher.SelectRandomLetter().ConvertToLivingLetterData();
 						if (!CheckIfContains (listOfLetters, lett)) 
 						{
 							listOfLetters.Add (lett);
@@ -56,46 +55,34 @@ namespace EA4S.HideAndSeek
 					}
 
 				}
-
-			
-
-			
-			//correctAnswers = correctAnswers.Distinct().ToList(); // ????????
-
-			
-
+                
 				for (int j = 0; j < numbersOfLetters; j++) {
 					List<ILivingLetterData> correctAnswer = new List<ILivingLetterData>();
 					correctAnswer.Add (listOfLetters [j]);
 					var currentPack = new HideAndSeekQuestionsPack (listOfLetters,correctAnswer);
 					questions.Add (currentPack);
 				}
-		}
-	}
+		    }
+	    }
 
-	static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
-	{
-		for (int i = 0, count = list.Count; i < count; ++i)
-			if (list[i].Key == letter.Key)
-				return true;
-		return false;
-	}
+	    static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
+	    {
+	    	for (int i = 0, count = list.Count; i < count; ++i)
+	    		if (list[i].Key == letter.Key)
+	    			return true;
+	    	return false;
+	    }
 
-	public string GetDescription()
-	{
-		return description;
-	}
+	    public string GetDescription()
+	    {
+	    	return description;
+	    }
 
-	IQuestionPack IQuestionProvider.GetNextQuestion()
-	{
-            /*     currentQuestion++;
-
-                 if (currentQuestion >= questions.Count)
-                     currentQuestion = 0;
-     */
-            return null; //questions[currentQuestion];
-	}
-
+	    IQuestionPack IQuestionProvider.GetNextQuestion()
+	    {
+            return null;
+	    }
+    
         public IQuestionPack GetQuestion()
         {
             currentQuestion++;
@@ -105,5 +92,5 @@ namespace EA4S.HideAndSeek
 
             return questions[currentQuestion];
         }
-}
+    }
 }

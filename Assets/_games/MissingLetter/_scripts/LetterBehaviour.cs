@@ -11,7 +11,7 @@ using DG.Tweening.Plugins.Core.PathCore;
 
 namespace EA4S.MissingLetter
 {
-    
+
     public class LetterBehaviour : MonoBehaviour
     {
 
@@ -83,7 +83,7 @@ namespace EA4S.MissingLetter
 
         private Vector3 CalculatePos(int _idxPos, int maxItemsInScreen)
         {
-            float _zeroPosX = mv3CenterPosition.x;
+            float _zeroPosX = mv3CenterPosition.x + 1.0f; // +1.0 beacuse we have some UI Widget at the left
 
             if (maxItemsInScreen % 2 == 0)
             {
@@ -141,6 +141,10 @@ namespace EA4S.MissingLetter
             }
         }
 
+        public void Refresh()
+        {
+            mLetter.Init(mLetterData);
+        }
 
         public void EnterScene(int _idxPos = 0, int maxItemsInScreen = 1)
         {
@@ -157,8 +161,6 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
-            Destroy(spotLight);
-
             onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
@@ -177,7 +179,7 @@ namespace EA4S.MissingLetter
         {
             mCollider.enabled = false;
             Vector3 newPos = CalculatePos(_idxPos, maxItemsInScreen);
-            
+
             Vector3 dist = (gameObject.transform.position - newPos) / 2;
 
             Vector3 pivot = gameObject.transform.position - dist;
@@ -186,17 +188,17 @@ namespace EA4S.MissingLetter
             float radius = dist.x + 0.1f;
 
             float accuracy = 4f;
-            for (int i=1; i <= accuracy; ++i)
+            for (int i = 1; i <= accuracy; ++i)
             {
                 Vector3 p = Vector3.zero;
                 p += pivot;
-                p.x += Mathf.Cos(3.14f * (i/accuracy)) * radius;
-                p.z += Mathf.Sin(3.14f * (i/accuracy)) * radius;
+                p.x += Mathf.Cos(3.14f * (i / accuracy)) * radius;
+                p.z += Mathf.Sin(3.14f * (i / accuracy)) * radius;
 
                 positions.Add(p);
             }
 
-            
+
             PlayAnimation(LLAnimationStates.LL_walking);
             mLetter.SetWalkingSpeed(1);
             mLetter.HasFear = true;
@@ -259,20 +261,25 @@ namespace EA4S.MissingLetter
             cSpotLight.spotAngle = 50;
         }
 
+        public void StopSuggest()
+        {
+            Destroy(spotLight);
+        }
+
         #endregion
 
         #region VARS
 
         private List<Vector3> positions = new List<Vector3>();
 
-
         private Tweener moveTweener;
         private Tweener rotationTweener;
         private Collider mCollider;
 
-        static GameObject spotLight;
+        static private GameObject spotLight;
+        private bool mbIsSpeaking;
 
-        protected ILivingLetterData mLetterData;
+        public ILivingLetterData mLetterData;
 
         public LetterObjectView mLetter;
 
@@ -290,7 +297,6 @@ namespace EA4S.MissingLetter
         [HideInInspector]
         public Vector3 mv3EndPosition;
 
-        private bool mbIsSpeaking;
 
         public LLAnimationStates m_oDefaultIdleAnimation { get; set; }
         #endregion
