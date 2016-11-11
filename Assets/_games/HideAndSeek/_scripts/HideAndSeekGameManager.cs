@@ -84,6 +84,8 @@ namespace EA4S.HideAndSeek
                 script.resultAnimation(true);
                 Debug.Log("winner");
                 game.OnResult();
+                buttonRepeater.SetActive(false);
+                AudioManager.I.PlaySfx(Sfx.Win);
             }
             else
             {
@@ -93,8 +95,9 @@ namespace EA4S.HideAndSeek
                 if (lifes == 0)
                 {
                     LockTrees();
+                    AudioManager.I.PlaySfx(Sfx.Lose);
                     StartCoroutine(DelayAnimation(false));
-                    
+                    buttonRepeater.SetActive(false);
                 }
                
             }
@@ -177,6 +180,8 @@ namespace EA4S.HideAndSeek
                 }
             }
             WidgetPopupWindow.I.ShowSentence(BeginRound, "comment_welldone", image);
+
+            
         }
 
         public void SetLetterMovent( int placeholder, HideAndSeekLetterController script)
@@ -210,6 +215,8 @@ namespace EA4S.HideAndSeek
 
             AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
             game.PlayState.gameTime.Start();
+
+            buttonRepeater.SetActive(true);
         }
 
         public int getRandomPlaceholder()
@@ -262,6 +269,8 @@ namespace EA4S.HideAndSeek
         private float time;
 
         public Sprite image;
+
+        public GameObject buttonRepeater;
         #endregion
     }
 }
