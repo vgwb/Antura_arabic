@@ -13,13 +13,15 @@
 
 		public void EnterState()
 		{
-			game.gameTime.Start();
+            /*game.gameTime.Start();
 
 			game.timerText.gameObject.SetActive(true);
-			game.roundText.gameObject.SetActive(true);
+			game.roundText.gameObject.SetActive(true);*/
+
+            MinigamesUI.Timer.Play();
 
 
-			anturaTimer = new CountdownTimer(10);
+            anturaTimer = new CountdownTimer(10);
 			anturaTimer.onTimesUp += OnTimesUp;
 
 			anturaTimer.Reset();
@@ -31,14 +33,22 @@
 			//game.timerText.gameObject.SetActive(false);
 			//game.roundText.gameObject.SetActive(false);
 			anturaTimer.Stop ();
-			game.gameTime.Stop();
-		}
+            //game.gameTime.Stop();
+
+            MinigamesUI.Timer.Pause();
+        }
 
 		public void Update(float delta)
 		{
-			game.gameTime.Update(delta);
-			anturaTimer.Update (delta);
-			game.timerText.text = ((int)game.gameTime.Time).ToString();
+            if (MinigamesUI.Timer.Duration == MinigamesUI.Timer.Elapsed)
+            {
+                MinigamesUI.Timer.Pause();
+                game.OnTimesUp();
+            }
+
+            //game.gameTime.Update(delta);
+            anturaTimer.Update (delta);
+			//game.timerText.text = ((int)game.gameTime.Time).ToString();
 
 			if (game.currentLetter.dragging) {
 				anturaTimer.Reset ();

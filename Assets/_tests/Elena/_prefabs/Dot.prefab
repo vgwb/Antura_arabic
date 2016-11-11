@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000011887151458}
   - 33: {fileID: 33000014098641596}
   - 23: {fileID: 23000011142527372}
+  - 114: {fileID: 114000012613543532}
   m_Layer: 0
   m_Name: Dot
   m_TagString: Untagged
@@ -77,3 +78,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013482476302}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114000012613543532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013482476302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf6386558ab7e145856d03affd5cadc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  learningBlockActual: 0
+  playSessionActual: 0

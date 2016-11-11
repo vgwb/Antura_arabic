@@ -14,8 +14,6 @@
 
         public void EnterState()
         {
-            game.currentStage++;
-
             nextStateTimer = 2f;
             toNextState = false;
 

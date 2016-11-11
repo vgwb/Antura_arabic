@@ -23,7 +23,7 @@ namespace EA4S.SickLetters
 
         public void EnterState()
         {
-            game.antura.sleep();
+            
             game.Context.GetOverlayWidget().Initialize(true, true, false);
 
             game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
@@ -50,7 +50,7 @@ namespace EA4S.SickLetters
 
             timer -= delta;
 
-            if (timer < 0 /*|| game.successRoundsCount == 6*/)
+            if (timer < 0 /*|| game.roundsCount == 6*/)
             {
                 game.SetCurrentState(game.ResultState);
                 

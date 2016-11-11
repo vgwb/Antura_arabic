@@ -15,10 +15,12 @@ namespace EA4S.Maze
 
 		public float idleSeconds = 0;
 
+        public float anturaSeconds;
+
 		// Use this for initialization
 		void Start () {
-
-			isInside = false;
+            anturaSeconds = 0;
+            isInside = false;
 			character.toggleVisibility (false);
 			//character.gameObject.SetActive (false);
 		}
@@ -30,7 +32,21 @@ namespace EA4S.Maze
 
 			//should we replay tutorial?
 			if (!isInside) {
-				if (MazeGameManager.Instance.currentTutorial != null && 
+
+                if(MazeGameManager.Instance.isShowingAntura == false)
+                {
+                    anturaSeconds += Time.deltaTime;
+
+                    if (anturaSeconds >= 10)
+                    {
+                        anturaSeconds = 0;
+                        MazeGameManager.Instance.onIdleTime();
+                    }
+
+                }
+
+
+                if (MazeGameManager.Instance.currentTutorial != null && 
 					MazeGameManager.Instance.currentTutorial.isStopped == false &&
 					MazeGameManager.Instance.currentTutorial.isCurrentTutorialDone() == true) {
 
@@ -65,7 +81,7 @@ namespace EA4S.Maze
 
 			idleSeconds = 0;
 			MazeGameManager.Instance.currentTutorial.stopCurrentTutorial();
-
+            anturaSeconds = 0;
 			//inform that we are inside the collision
 			isInside =  true;
 
