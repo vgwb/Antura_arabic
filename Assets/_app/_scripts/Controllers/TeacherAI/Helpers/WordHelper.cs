@@ -86,14 +86,16 @@ namespace EA4S.Db
             return GetLettersInWord(wordData);
         }
 
-        public List<LetterData> GetLettersNotInWords(params WordData[] tabooArray)
+        public List<LetterData> GetRealLettersNotInWords(params WordData[] tabooArray)
         {
             var letter_ids_list = new HashSet<string>();
             foreach (var tabooWordData in tabooArray)
             {
                 letter_ids_list.UnionWith(tabooWordData.Letters);
             }
-            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id));
+            List<LetterData> list = dbManager.FindLetterData(
+                x => !letter_ids_list.Contains(x.Id)
+                    && x.IsRealLetter());
             return list;
         }
 
