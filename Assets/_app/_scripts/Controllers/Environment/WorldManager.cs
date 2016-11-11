@@ -36,7 +36,7 @@ namespace EA4S
                 }
             }
         }
-        
+
         /// <summary>
         /// Get prefab for current world
         /// </summary>
@@ -56,6 +56,24 @@ namespace EA4S
             }
             else
                 return prefabSet.worldPrefabs[(int)world];
+        }
+        
+        /// <summary>
+        /// Get color for current world
+        /// </summary>
+        public Color GetColor(WorldColorSet set)
+        {
+            return GetColor(set, CurrentWorld);
+        }
+
+        public Color GetColor(WorldColorSet set, WorldID world)
+        {
+            if (world == WorldID.Default)
+            {
+                return set.defaultColor;
+            }
+            else
+                return set.colors[(int)world];
         }
 
         /////////////////////
