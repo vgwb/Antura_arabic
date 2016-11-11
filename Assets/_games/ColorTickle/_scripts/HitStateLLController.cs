@@ -11,28 +11,21 @@ namespace EA4S.ColorTickle
             HIT_NONE = 0, HIT_LETTERINSIDE_AND_BODY, HIT_LETTERINSIDE, HIT_LETTEROUTSIDE
         }
 
-        public enum eLLState
-        {
-            IDLE, SCARED
-        }
+//        public enum eLLState
+//        {
+//            IDLE, SCARED, TICKLING
+//        }
 
         #region PRIVATE MEMBERS
         LetterObjectView m_LetterObjectView;
         eHitState m_HitState;
         bool m_Tickle;
         float m_TickleTime;
-        float m_LoseLifeTimer;
-        bool m_LifeLost;
-        float m_EndRoundTimer;
         #endregion
-
-        [HideInInspector]
-        public eLLState LLState;
 
         #region EVENTS
         public event System.Action LoseLife;
         public event System.Action EnableAntura;
-        public event System.Action DisableAntura;
         #endregion
 
         // Use this for initialization
@@ -42,10 +35,6 @@ namespace EA4S.ColorTickle
             m_HitState = eHitState.HIT_NONE;
             m_Tickle = false;
             m_TickleTime = 2.0f;
-            m_LoseLifeTimer = 0.0f;
-            m_LifeLost = false;
-            LLState = eLLState.IDLE;
-            m_EndRoundTimer = 1.0f;
             gameObject.GetComponent<TMPTextColoring>().OnShapeHit += ShapeTouched;
             gameObject.GetComponent<SurfaceColoring>().OnBodyHit += BodyTouched;
         }
@@ -99,22 +88,13 @@ namespace EA4S.ColorTickle
             else
             {
                 m_HitState = eHitState.HIT_NONE;
-                if (EnableAntura != null)
-                {
-                    DisableAntura();
-                }
             }
         }
 
         private void TicklesLetter()
         {
-            //Debug.Log("Tickle");
             m_Tickle = true;
-            if (LLState == eLLState.IDLE)
-            {
-                m_LetterObjectView.SetState(LLAnimationStates.LL_tickling);
-            }
-
+            m_LetterObjectView.SetState(LLAnimationStates.LL_tickling);
             if (LoseLife != null)
             {
                 LoseLife();
@@ -130,10 +110,7 @@ namespace EA4S.ColorTickle
                 {
                     m_Tickle = false;
                     m_TickleTime = 2.0f;
-                    if (LLState == eLLState.IDLE)
-                    {
-                        m_LetterObjectView.SetState(LLAnimationStates.LL_still);
-                    }                 
+                    m_LetterObjectView.SetState(LLAnimationStates.LL_still);                
                 }
             }
         }
