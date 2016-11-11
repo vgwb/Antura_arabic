@@ -15,6 +15,7 @@ namespace EA4S.MissingLetter {
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
             game.m_RoundManager.SetTutorial(true);
             game.m_RoundManager.NewRound();
+            game.SetInIdle(true);
             game.m_RoundManager.onAnswered += OnRoundResult;
         }
 
