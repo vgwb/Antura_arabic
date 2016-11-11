@@ -136,10 +136,10 @@ Material:
     m_Colors:
     - first:
         name: _BackOffset
-      second: {r: 0.04271807, g: 0.17718394, b: 0, a: 0}
+      second: {r: 0.1271919, g: 0.28141734, b: 0, a: 0}
     - first:
         name: _BackScale
-      second: {r: 0.9506184, g: 0.73869324, b: 0, a: 0}
+      second: {r: 0.77568305, g: 0.7203952, b: 0, a: 0}
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}

@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace EA4S
-{ 
+{
     [ExecuteInEditMode]
     public class AutoWorldPrefab : MonoBehaviour
     {
@@ -10,41 +10,49 @@ namespace EA4S
         GameObject instance;
 
 #if UNITY_EDITOR
+        WorldPrefabSet lastPrefabSet;
         WorldID lastTestWorld = WorldID.Default;
         public WorldID testWorld;
 #endif
 
         void UpdatePrefab(GameObject prefab)
         {
-            if (instance != null)
-                Destroy(instance);
+            foreach(Transform children in transform)
+                DestroyImmediate(children.gameObject);
 
             instance = Instantiate(prefab);
             instance.hideFlags = HideFlags.DontSave;
             instance.transform.SetParent(transform);
             instance.transform.localPosition = Vector3.zero;
             instance.transform.localRotation = Quaternion.identity;
+            instance.transform.localScale = Vector3.one;
         }
 
         public void Start()
         {
-            var prefab = WorldManager.I.GetPrefab(prefabSet);
+            if (prefabSet != null)
+            {
+                var prefab = WorldManager.I.GetPrefab(prefabSet);
 
-            UpdatePrefab(prefab);
-
+                UpdatePrefab(prefab);
+            }
         }
 
 
 #if UNITY_EDITOR
         void Update()
         {
-            if (testWorld != lastTestWorld)
+            if (!Application.isPlaying && gameObject.scene != null && prefabSet != null)
             {
-                lastTestWorld = testWorld;
+                if (testWorld != lastTestWorld || prefabSet != lastPrefabSet)
+                {
+                    lastTestWorld = testWorld;
+                    lastPrefabSet = prefabSet;
 
-                var prefab = WorldManager.I.GetPrefab(prefabSet, testWorld);
+                    var prefab = WorldManager.I.GetPrefab(prefabSet, testWorld);
 
-                UpdatePrefab(prefab);
+                    UpdatePrefab(prefab);
+                }
             }
         }
 #endif
