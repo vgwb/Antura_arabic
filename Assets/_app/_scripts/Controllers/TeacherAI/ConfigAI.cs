@@ -18,8 +18,24 @@ namespace EA4S.Teacher
         public const float difficulty_weight_journey = 1f;
         public const float difficulty_weight_performance = 1f;
 
+        public const float startingDifficultyForNewMiniGame = 0f;
+
         // General configuration
         public const int daysForMaximumRecentPlayMalus = 4;   // Days at which we get the maximum malus for a recent play weight
+
+        // Application details
+        public const float minimumAge = 7;
+        public const float maximumAge = 15;
+
+        public const float minimumStage = 1;
+        public const float maximumStage = 6;
+
+        public const float minimumMiniGameScore = -1;
+        public const float maximumMiniGameScore = 1;
+
+        public const int minimumMoodValue = 1;
+        public const int maximumMoodValue = 5;
+
 
     }
 

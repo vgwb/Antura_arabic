@@ -38,9 +38,11 @@ namespace EA4S.Db
             return dbManager.FindLetterData(x => x.Kind == choice);
         }
 
-        public List<LetterData> GetLettersBySunMoon(LetterDataSunMoon choice)
+        public List<LetterData> GetRealLettersBySunMoon(LetterDataSunMoon choice)
         {
-            return dbManager.FindLetterData(x => x.SunMoon == choice);
+            return dbManager.FindLetterData(
+                x => x.SunMoon == choice
+                    && x.IsRealLetter());
         }
 
         public List<LetterData> GetLettersByType(LetterDataType choice)
