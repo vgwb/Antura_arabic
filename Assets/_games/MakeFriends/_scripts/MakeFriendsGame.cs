@@ -45,7 +45,28 @@ namespace EA4S.MakeFriends
         private List<ILivingLetterData> correctChoices = new List<ILivingLetterData>();
         private List<ILivingLetterData> incorrectChoices = new List<ILivingLetterData>();
         private int currentRound = 0;
-        private int friendships = 0;
+        private int _currentScore = 0;
+
+        public int CurrentScore
+        {
+            get { return _currentScore; }
+            set
+            {
+                _currentScore = value; 
+                if (CurrentScore == STARS_1_THRESHOLD)
+                {
+                    MinigamesUI.Starbar.GotoStar(0);
+                }
+                else if (CurrentScore == STARS_2_THRESHOLD)
+                {
+                    MinigamesUI.Starbar.GotoStar(1);
+                }
+                else if (CurrentScore == STARS_3_THRESHOLD)
+                {
+                    MinigamesUI.Starbar.GotoStar(2);
+                }
+            }
+        }
 
         public MakeFriendsIntroductionState IntroductionState { get; private set; }
 
@@ -54,8 +75,6 @@ namespace EA4S.MakeFriends
         public MakeFriendsPlayState PlayState { get; private set; }
 
         public MakeFriendsResultState ResultState { get; private set; }
-
-        public int CurrentScore { get { return friendships; } }
 
         private readonly int STARS_1_THRESHOLD = Mathf.CeilToInt(0.33f * numberOfRounds);
         private readonly int STARS_2_THRESHOLD = Mathf.CeilToInt(0.66f * numberOfRounds);
@@ -112,7 +131,7 @@ namespace EA4S.MakeFriends
 
             PlayIdleMusic();
         }
-            
+
         public void PlayActiveMusic()
         {
             MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
@@ -122,7 +141,7 @@ namespace EA4S.MakeFriends
         {
             MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
         }
-            
+
         public void Play()
         {
             currentRound++;
@@ -306,7 +325,7 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
-                friendships++;
+                CurrentScore++;
 
                 yield return new WaitForSeconds(winDelay1);
                 // Go to Friends Zone
