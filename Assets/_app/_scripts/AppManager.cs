@@ -40,10 +40,10 @@ namespace EA4S
         public void InitDataAI()
         {
 
-            if (DB == null)
-                DB = new DatabaseManager(GameSettings.UseTestDatabase);
             if (Player == null)
                 Player = new PlayerProfile();
+            if (DB == null)
+                DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
             if (Teacher == null)
                 Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
