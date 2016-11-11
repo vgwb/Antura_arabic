@@ -18,7 +18,7 @@ namespace EA4S.Db
         public string TableName { get; set; }
         public string ElementId { get; set; } 
 
-        public float Score { get; set; } // 0 ... 1.0, or 1f,2f,3f per PlaySession
+        public float Score { get; set; } // [-1.0,1.0] for Letters, Words, Phrases. [1,3] for MiniGame, PlaySession, LearningBlock
         public int LastAccessTimestamp { get; set; }
 
         public ScoreData()
