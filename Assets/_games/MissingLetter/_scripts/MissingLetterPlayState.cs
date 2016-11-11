@@ -49,12 +49,9 @@ namespace EA4S.MissingLetter
 
             if(game.miAnturaTriggersIndex < game.mafAnturaEnterTriggers.Length && gameTime.Time <= game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex]) {
                 if (game.IsInIdle()) {
-
                     ++game.miAnturaTriggersIndex;
                     game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(game.mfAnturaAnimDuration);
-                    game.SetInIdle(false);
                     game.StartCoroutine(Utils.LaunchDelay(game.mfAnturaAnimDuration / 6, game.m_RoundManager.ShuffleLetters, game.mfAnturaAnimDuration / 2));
-                    game.StartCoroutine(Utils.LaunchDelay(game.mfAnturaAnimDuration, game.SetInIdle, true));
                 } else {
                     game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex] -= 3.0f;
                 }
