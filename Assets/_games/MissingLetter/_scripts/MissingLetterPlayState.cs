@@ -34,7 +34,6 @@ namespace EA4S.MissingLetter
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
             game.m_RoundManager.NewRound();
-            game.StartCoroutine(Utils.LaunchDelay(2.0f, game.SetInIdle, true));
         }
 
         public void ExitState()

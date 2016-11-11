@@ -177,6 +177,7 @@ namespace EA4S.MissingLetter
 		}
 
         public void SetInIdle(bool _idle) {
+            Debug.LogWarning("Idle Set to: " +_idle);
             mFeedBackDisableLetters.enabled = !_idle;
             m_bInIdle = _idle;
         }
