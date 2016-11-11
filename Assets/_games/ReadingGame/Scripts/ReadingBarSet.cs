@@ -16,6 +16,7 @@ public class ReadingBarSet : MonoBehaviour
     public Transform barsStart;
     public float distanceBetweenBars = 3;
     int completedBars = 0;
+    public const float MAX_BAR_SIZE = 8;
 
     ReadingBar activeBar;
     Vector3 barsStartInitialPosition;
@@ -78,7 +79,7 @@ public class ReadingBarSet : MonoBehaviour
             currentReadingBar.text.text = currentReadingBar.text.text + " " + word;
 
             // Evaluate split
-            if (currentReadingBar.text.GetPreferredValues().x >= 10)
+            if (currentReadingBar.text.GetPreferredValues().x >= MAX_BAR_SIZE)
             {
                 currentReadingBar.text.text = previous;
 

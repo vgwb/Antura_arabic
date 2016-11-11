@@ -1,8 +1,6 @@
 ﻿using DG.DeExtensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace EA4S.ReadingGame
 {
@@ -13,6 +11,7 @@ namespace EA4S.ReadingGame
         ILivingLetterData correct;
 
         public float ReadTime;
+        public float MaxTime;
 
         public ReadingGameAnswerState(ReadingGameGame game)
         {
@@ -22,10 +21,6 @@ namespace EA4S.ReadingGame
         public void EnterState()
         {
             game.isTimesUp = false;
-
-            var inputManager = game.Context.GetInputManager();
-
-            inputManager.onPointerDown += OnPointerDown;
 
             game.circleBox.SetActive(true);
             var box = game.circleBox.GetComponent<CircleButtonBox>();
@@ -46,6 +41,11 @@ namespace EA4S.ReadingGame
                 box.AddButton(c, OnAnswered, delay);
                 delay += 0.2f;
             }
+
+            game.radialWidget.Show();
+            game.radialWidget.Reset(ReadTime / MaxTime);
+            game.radialWidget.inFront = true;
+            game.radialWidget.pulsing = true;
         }
 
 
@@ -53,9 +53,9 @@ namespace EA4S.ReadingGame
         {
             var inputManager = game.Context.GetInputManager();
 
-            inputManager.onPointerDown -= OnPointerDown;
-
             game.circleBox.GetComponent<CircleButtonBox>().Clear();
+            
+            game.radialWidget.inFront = false;
         }
 
         public void Update(float delta)
@@ -68,11 +68,6 @@ namespace EA4S.ReadingGame
 
         }
 
-        void OnPointerDown()
-        {
-
-        }
-
         void OnAnswered(CircleButton button)
         {
             game.Context.GetAudioManager().PlaySound(button.Answer == correct ? Sfx.OK : Sfx.KO);
@@ -81,11 +76,15 @@ namespace EA4S.ReadingGame
             {
                 // Assign score
                 game.AddScore((int)(ReadTime) + 1);
+                game.radialWidget.percentage = 0;
+                game.radialWidget.pulsing = false;
                 game.Context.GetCheckmarkWidget().Show(true);
 
             }
             else
             {
+                game.radialWidget.PoofAndHide();
+
                 game.Context.GetCheckmarkWidget().Show(false);
 
                 if (game.RemoveLife())

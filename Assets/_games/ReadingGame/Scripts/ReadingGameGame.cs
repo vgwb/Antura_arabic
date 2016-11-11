@@ -9,6 +9,8 @@ namespace EA4S.ReadingGame
         public ReadingBarSet barSet;
         public GameObject blurredText;
         public GameObject circleBox;
+        public ReadingGameAntura antura;
+        public ReadingRadialWidget radialWidget;
 
         public int CurrentScore { get; private set; }
         public int CurrentQuestionNumber { get; set; }
@@ -38,7 +40,8 @@ namespace EA4S.ReadingGame
                 return 3;
             }
         }
-
+        
+        public ReadingGameInitialState InitialState { get; private set; }
         public ReadingGameReadState ReadState { get; private set; }
         public ReadingGameAnswerState AnswerState { get; private set; }
         public IQuestionPack CurrentQuestion { get; set; }
@@ -50,11 +53,12 @@ namespace EA4S.ReadingGame
 
         protected override IGameState GetInitialState()
         {
-            return ReadState;
+            return InitialState;
         }
 
         protected override void OnInitialize(IGameContext context)
         {
+            InitialState = new ReadingGameInitialState(this);
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
 

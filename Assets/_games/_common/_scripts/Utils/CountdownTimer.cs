@@ -9,6 +9,7 @@ namespace EA4S
         float time = 0;
         public bool IsRunning { get; private set; }
         public float Duration { get; private set; }
+        public float CurrentPercentage { get { return Time / Duration; } }
 
         public float Time
         {
