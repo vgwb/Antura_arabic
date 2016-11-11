@@ -19,10 +19,17 @@
         IQuestionProvider Questions { get; set; }
 
         /// <summary>
-        /// Return the rules for game data.
+        /// Return the builder that defines the rules to build question packs
         /// </summary>
         /// <returns></returns>
         IQuestionBuilder SetupBuilder();
+
+        /// <summary>
+        /// Return the rules for learning related to this minigame
+        /// </summary>
+        /// <returns></returns>
+        // @todo: add this   
+        //MiniGameLearnRules SetupLearnRules();
 
         /// <summary>
         /// Gets or sets the difficulty.
