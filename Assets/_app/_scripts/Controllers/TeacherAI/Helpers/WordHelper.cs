@@ -86,14 +86,16 @@ namespace EA4S.Db
             return GetLettersInWord(wordData);
         }
 
-        public List<LetterData> GetLettersNotInWords(params WordData[] tabooArray)
+        public List<LetterData> GetRealLettersNotInWords(params WordData[] tabooArray)
         {
             var letter_ids_list = new HashSet<string>();
             foreach (var tabooWordData in tabooArray)
             {
                 letter_ids_list.UnionWith(tabooWordData.Letters);
             }
-            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id));
+            List<LetterData> list = dbManager.FindLetterData(
+                x => !letter_ids_list.Contains(x.Id)
+                    && x.IsRealLetter());
             return list;
         }
 
@@ -181,17 +183,32 @@ namespace EA4S.Db
             var tabooLetters = new HashSet<string>(tabooLettersArray);
 
             List<WordData> list = dbManager.FindWordData(x => {
-                foreach(var letter_id in x.Letters)
+
+                if (tabooLetters.Count > 0)
                 {
-                    if (okLetters.Count > 0 && !okLetters.Contains(letter_id))
+                    foreach (var letter_id in x.Letters)
                     {
-                        return false;
-                    }
-                    if (tabooLetters.Count > 0 && tabooLetters.Contains(letter_id))
-                    {
-                        return false;
+                        if (tabooLetters.Contains(letter_id))
+                        {
+                            return false;
+                        }
                     }
                 }
+
+                if (okLetters.Count > 0)
+                {
+                    bool hasAtLeastOneOk = false;
+                    foreach (var letter_id in x.Letters)
+                    {
+                        if (okLetters.Contains(letter_id))
+                        {
+                            hasAtLeastOneOk = true;
+                            break;
+                        }
+                    }
+                    if (!hasAtLeastOneOk) return false;
+                }
+
                 return true;
                 }
             );
