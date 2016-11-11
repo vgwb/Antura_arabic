@@ -472,39 +472,71 @@ namespace EA4S.ThrowBalls
 
         private LetterController.MotionVariation GetMotionOfRound()
         {
-            switch (numRoundsWon + 1)
+            if (roundNumber == 0)
             {
-                case 1:
-                    return LetterController.MotionVariation.Idle;
-                case 2:
-                    return LetterController.MotionVariation.Idle;
-                case 3:
-                    return LetterController.MotionVariation.Popping;
-                case 4:
-                    return LetterController.MotionVariation.Jumping;
-                case 5:
-                    return LetterController.MotionVariation.Idle;
-                default:
-                    return LetterController.MotionVariation.Idle;
+                return LetterController.MotionVariation.Idle;
+            }
+
+            float normalizedDifficulty = (numRoundsWon + 1) * 0.8f * ThrowBallsConfiguration.Instance.Difficulty;
+
+            if (normalizedDifficulty <= 0.6f)
+            {
+                return LetterController.MotionVariation.Idle;
+            }
+
+            else if (normalizedDifficulty <= 1.2f)
+            {
+                return LetterController.MotionVariation.Idle;
+            }
+
+            else if (normalizedDifficulty <= 1.8f)
+            {
+                return LetterController.MotionVariation.Popping;
+            }
+
+            else if(normalizedDifficulty <= 2.4f)
+            {
+                return LetterController.MotionVariation.Jumping;
+            }
+
+            else
+            {
+                return LetterController.MotionVariation.Idle;
             }
         }
 
         private LetterController.PropVariation GetPropOfRound()
         {
-            switch (numRoundsWon + 1)
+            if (roundNumber == 0)
             {
-                case 1:
-                    return LetterController.PropVariation.Nothing;
-                case 2:
-                    return LetterController.PropVariation.StaticPileOfCrates;
-                case 3:
-                    return LetterController.PropVariation.Bush;
-                case 4:
-                    return LetterController.PropVariation.StaticPileOfCrates;
-                case 5:
-                    return LetterController.PropVariation.SwervingPileOfCrates;
-                default:
-                    return LetterController.PropVariation.Nothing;
+                return LetterController.PropVariation.Nothing;
+            }
+
+            float normalizedDifficulty = (numRoundsWon + 1) * 0.8f * ThrowBallsConfiguration.Instance.Difficulty;
+
+            if (normalizedDifficulty <= 0.6f)
+            {
+                return LetterController.PropVariation.Nothing;
+            }
+
+            else if (normalizedDifficulty <= 1.2f)
+            {
+                return LetterController.PropVariation.StaticPileOfCrates;
+            }
+
+            else if (normalizedDifficulty <= 1.8f)
+            {
+                return LetterController.PropVariation.Bush;
+            }
+
+            else if (normalizedDifficulty <= 2.4f)
+            {
+                return LetterController.PropVariation.StaticPileOfCrates;
+            }
+
+            else
+            {
+                return LetterController.PropVariation.SwervingPileOfCrates;
             }
         }
 
