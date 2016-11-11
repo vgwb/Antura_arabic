@@ -2215,7 +2215,7 @@ MonoBehaviour:
       Drawing: 
     - Id: anger
       Kind: 4
-      Category: 0
+      Category: 2
       Form: 0
       Article: 0
       Arabic: "\u063A\u064A\u0638"
@@ -2227,7 +2227,7 @@ MonoBehaviour:
       Drawing: 
     - Id: apple
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062A\u0641\u0627\u062D"
@@ -2240,7 +2240,7 @@ MonoBehaviour:
       Drawing: 
     - Id: apricot
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0645\u0634\u0645\u0634"
@@ -2265,7 +2265,7 @@ MonoBehaviour:
       Drawing: 
     - Id: aunt_father
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0639\u0645\u0629"
@@ -2277,7 +2277,7 @@ MonoBehaviour:
       Drawing: 
     - Id: aunt_mother
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u062E\u0627\u0644\u0629"
@@ -2290,7 +2290,7 @@ MonoBehaviour:
       Drawing: 
     - Id: back
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0638\u0647\u0631"
@@ -2299,10 +2299,10 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 0
-      Drawing: drawing-back
+      Drawing: 
     - Id: banana
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0645\u0648\u0632"
@@ -2314,7 +2314,7 @@ MonoBehaviour:
       Drawing: 
     - Id: bank
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0645\u0635\u0631\u0641"
@@ -2327,7 +2327,7 @@ MonoBehaviour:
       Drawing: 
     - Id: basketball
       Kind: 4
-      Category: 6
+      Category: 7
       Form: 0
       Article: 0
       Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0633\u0644\u0629"
@@ -2344,7 +2344,7 @@ MonoBehaviour:
       Drawing: 
     - Id: bear
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u062F\u0628"
@@ -2355,7 +2355,7 @@ MonoBehaviour:
       Drawing: 
     - Id: beautiful
       Kind: 1
-      Category: 8
+      Category: 9
       Form: 0
       Article: 0
       Arabic: "\u062C\u0645\u064A\u0644"
@@ -2368,7 +2368,7 @@ MonoBehaviour:
       Drawing: 
     - Id: bed
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u0641\u0631\u0627\u0634"
@@ -2392,7 +2392,7 @@ MonoBehaviour:
       Drawing: 
     - Id: belly
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0628\u0637\u0646"
@@ -2401,10 +2401,10 @@ MonoBehaviour:
       - tah
       - noon
       Difficulty: 1
-      Drawing: drawing-belly
+      Drawing: 
     - Id: berry
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062A\u0648\u062A"
@@ -2416,7 +2416,7 @@ MonoBehaviour:
       Drawing: 
     - Id: big
       Kind: 1
-      Category: 10
+      Category: 11
       Form: 0
       Article: 0
       Arabic: "\u0643\u0628\u064A\u0631"
@@ -2429,7 +2429,7 @@ MonoBehaviour:
       Drawing: 
     - Id: bird
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0639\u0635\u0641\u0648\u0631"
@@ -2443,7 +2443,7 @@ MonoBehaviour:
       Drawing: 
     - Id: book
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0643\u062A\u0627\u0628"
@@ -2456,7 +2456,7 @@ MonoBehaviour:
       Drawing: 
     - Id: books
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0643\u064F\u062A\u064F\u0628"
@@ -2468,7 +2468,7 @@ MonoBehaviour:
       Drawing: 
     - Id: box
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0635\u0646\u062F\u0648\u0642"
@@ -2482,7 +2482,7 @@ MonoBehaviour:
       Drawing: 
     - Id: boy
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0635\u0628\u064A"
@@ -2494,7 +2494,7 @@ MonoBehaviour:
       Drawing: 
     - Id: brain
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u062F\u0645\u0627\u063A"
@@ -2520,7 +2520,7 @@ MonoBehaviour:
       Drawing: 
     - Id: bread
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062E\u0628\u0632"
@@ -2532,7 +2532,7 @@ MonoBehaviour:
       Drawing: 
     - Id: breeze
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0646\u0633\u0645\u0629"
@@ -2545,7 +2545,7 @@ MonoBehaviour:
       Drawing: 
     - Id: broad_bean
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0641\u0648\u0644"
@@ -2557,7 +2557,7 @@ MonoBehaviour:
       Drawing: 
     - Id: brother
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0623\u062E"
@@ -2568,7 +2568,7 @@ MonoBehaviour:
       Drawing: 
     - Id: bulgar
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0628\u0631\u063A\u0644"
@@ -2581,7 +2581,7 @@ MonoBehaviour:
       Drawing: 
     - Id: bus
       Kind: 4
-      Category: 13
+      Category: 14
       Form: 0
       Article: 0
       Arabic: "\u0628\u0627\u0635"
@@ -2593,7 +2593,7 @@ MonoBehaviour:
       Drawing: 
     - Id: camel
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u062C\u0645\u0644\u064D"
@@ -2605,7 +2605,7 @@ MonoBehaviour:
       Drawing: 
     - Id: carpenter
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0646\u062C\u0651\u0627\u0631"
@@ -2630,7 +2630,7 @@ MonoBehaviour:
       Drawing: 
     - Id: carrot
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062C\u064E\u0632\u064E\u0631"
@@ -2642,7 +2642,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cat
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0647\u0631"
@@ -2665,7 +2665,7 @@ MonoBehaviour:
       Drawing: 
     - Id: chair
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u0643\u0631\u0633\u064A"
@@ -2678,7 +2678,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cheese
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062C\u0628\u0646"
@@ -2690,7 +2690,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cherry
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0643\u0631\u0632"
@@ -2702,7 +2702,7 @@ MonoBehaviour:
       Drawing: 
     - Id: chest
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0635\u062F\u0631"
@@ -2711,10 +2711,10 @@ MonoBehaviour:
       - dal
       - reh
       Difficulty: 0
-      Drawing: drawing-chest
+      Drawing: 
     - Id: chickpea
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062D\u0645\u0635"
@@ -2726,7 +2726,7 @@ MonoBehaviour:
       Drawing: 
     - Id: classroom
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0635\u0641"
@@ -2737,7 +2737,7 @@ MonoBehaviour:
       Drawing: 
     - Id: clean
       Kind: 1
-      Category: 8
+      Category: 9
       Form: 0
       Article: 0
       Arabic: "\u0646\u0638\u064A\u0641"
@@ -2750,7 +2750,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cloud
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u063A\u064A\u0645\u0629"
@@ -2763,7 +2763,7 @@ MonoBehaviour:
       Drawing: 
     - Id: club
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0645\u0646\u062A\u062F\u0649"
@@ -2776,7 +2776,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cold
       Kind: 1
-      Category: 8
+      Category: 9
       Form: 0
       Article: 0
       Arabic: "\u0628\u0631\u062F"
@@ -2788,7 +2788,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cold_food
       Kind: 1
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0628\u0627\u0631\u062F"
@@ -2801,7 +2801,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_black
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0623\u0633\u0648\u062F"
@@ -2814,7 +2814,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_blue
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0623\u0632\u0631\u0642"
@@ -2827,7 +2827,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_brown
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0628\u064F\u0646\u064A"
@@ -2839,7 +2839,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_gold
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0630\u0647\u0628\u064A"
@@ -2852,7 +2852,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_green
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0623\u062E\u0636\u0631"
@@ -2865,7 +2865,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_orange
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0628\u0631\u062A\u0642\u0627\u0644\u064A"
@@ -2881,7 +2881,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_pink
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0648\u0631\u062F\u064A"
@@ -2894,7 +2894,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_purple
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0628\u0646\u0641\u0633\u062C\u064A"
@@ -2909,7 +2909,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_red
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0623\u062D\u0645\u0631"
@@ -2922,7 +2922,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_silver
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0641\u0636\u064A"
@@ -2934,7 +2934,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_white
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0623\u0628\u064A\u0636"
@@ -2947,7 +2947,7 @@ MonoBehaviour:
       Drawing: 
     - Id: color_yellow
       Kind: 1
-      Category: 15
+      Category: 16
       Form: 0
       Article: 0
       Arabic: "\u0623\u0635\u0641\u0631"
@@ -2960,7 +2960,7 @@ MonoBehaviour:
       Drawing: 
     - Id: copybook
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u062F\u0641\u062A\u064E\u0631"
@@ -2973,7 +2973,7 @@ MonoBehaviour:
       Drawing: 
     - Id: costume
       Kind: 4
-      Category: 16
+      Category: 17
       Form: 0
       Article: 0
       Arabic: "\u0644\u0650\u0628\u0627\u0633\u0627\u064B"
@@ -2998,7 +2998,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cucumber
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062E\u064A\u0627\u0631"
@@ -3011,7 +3011,7 @@ MonoBehaviour:
       Drawing: 
     - Id: cupboard
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u062E\u0632\u0627\u0646\u0629"
@@ -3025,7 +3025,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u064A\u0648\u0645"
@@ -3037,7 +3037,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day_friday
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062C\u0645\u0639\u0629"
@@ -3052,7 +3052,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day_monday
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0627\u062B\u0646\u064A\u0646"
@@ -3068,7 +3068,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day_saturday
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0633\u0628\u062A"
@@ -3082,7 +3082,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day_sunday
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0623\u062D\u062F"
@@ -3096,7 +3096,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day_thursday
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062E\u0645\u064A\u0633"
@@ -3111,7 +3111,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day_tuesday
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0644\u0627\u062B\u0627\u0621"
@@ -3127,7 +3127,7 @@ MonoBehaviour:
       Drawing: 
     - Id: day_wednesday
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621"
@@ -3143,7 +3143,7 @@ MonoBehaviour:
       Drawing: 
     - Id: deer
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u063A\u0632\u0627\u0644"
@@ -3156,7 +3156,7 @@ MonoBehaviour:
       Drawing: 
     - Id: delicious
       Kind: 1
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062D\u0644\u0648"
@@ -3168,7 +3168,7 @@ MonoBehaviour:
       Drawing: 
     - Id: doctor
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0637\u064E\u0628\u064A\u0628"
@@ -3181,7 +3181,7 @@ MonoBehaviour:
       Drawing: 
     - Id: dog
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0643\u0644\u0628"
@@ -3193,7 +3193,7 @@ MonoBehaviour:
       Drawing: 
     - Id: door
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u0628\u0627\u0628"
@@ -3217,7 +3217,7 @@ MonoBehaviour:
       Drawing: 
     - Id: duck
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0628\u0637"
@@ -3228,7 +3228,7 @@ MonoBehaviour:
       Drawing: 
     - Id: eagle
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0646\u0633\u0631"
@@ -3240,7 +3240,7 @@ MonoBehaviour:
       Drawing: 
     - Id: ear
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0623\u0630\u0646"
@@ -3249,10 +3249,10 @@ MonoBehaviour:
       - thal
       - noon
       Difficulty: 1
-      Drawing: drawing-ear
+      Drawing: 
     - Id: elephant
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0641\u064A\u0644"
@@ -3264,7 +3264,7 @@ MonoBehaviour:
       Drawing: 
     - Id: engineer
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0645\u0647\u0646\u062F\u0633"
@@ -3278,7 +3278,7 @@ MonoBehaviour:
       Drawing: 
     - Id: eye
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0639\u064A\u0646"
@@ -3287,10 +3287,10 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 1
-      Drawing: drawing-eye
+      Drawing: 
     - Id: face
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0648\u062C\u0647"
@@ -3299,10 +3299,10 @@ MonoBehaviour:
       - jeem
       - heh
       Difficulty: 0
-      Drawing: drawing-face
+      Drawing: 
     - Id: fall
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u062E\u0631\u064A\u0641"
@@ -3315,7 +3315,7 @@ MonoBehaviour:
       Drawing: 
     - Id: farmer
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0641\u0644\u0627\u062D"
@@ -3328,7 +3328,7 @@ MonoBehaviour:
       Drawing: 
     - Id: father
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0628\u0627\u0628\u0627"
@@ -3341,7 +3341,7 @@ MonoBehaviour:
       Drawing: 
     - Id: field
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u062D\u0642\u0644"
@@ -3353,7 +3353,7 @@ MonoBehaviour:
       Drawing: 
     - Id: fig
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062A\u064A\u0646"
@@ -3365,7 +3365,7 @@ MonoBehaviour:
       Drawing: 
     - Id: finger
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0625\u0635\u0628\u0639"
@@ -3377,7 +3377,7 @@ MonoBehaviour:
       Drawing: 
     - Id: flag
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0639\u0644\u064E\u0645"
@@ -3414,7 +3414,7 @@ MonoBehaviour:
       Drawing: 
     - Id: flower
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0648\u0631\u062F"
@@ -3426,7 +3426,7 @@ MonoBehaviour:
       Drawing: 
     - Id: food
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0623\u0643\u0644"
@@ -3438,7 +3438,7 @@ MonoBehaviour:
       Drawing: 
     - Id: foot
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0642\u062F\u0645"
@@ -3447,10 +3447,10 @@ MonoBehaviour:
       - dal
       - meem
       Difficulty: 1
-      Drawing: drawing-foot
+      Drawing: 
     - Id: football
       Kind: 4
-      Category: 6
+      Category: 7
       Form: 0
       Article: 0
       Arabic: "\u0643\u0631\u0629 \u0627\u0644\u0642\u062F\u0645"
@@ -3467,7 +3467,7 @@ MonoBehaviour:
       Drawing: 
     - Id: forest
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u063A\u0627\u0628\u0629\u064C"
@@ -3480,7 +3480,7 @@ MonoBehaviour:
       Drawing: 
     - Id: fridge
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u062B\u0644\u0627\u062C\u0629"
@@ -3494,7 +3494,7 @@ MonoBehaviour:
       Drawing: 
     - Id: furniture
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u0623\u062B\u0627\u062B"
@@ -3507,7 +3507,7 @@ MonoBehaviour:
       Drawing: 
     - Id: garden
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0628\u064F\u0633\u062A\u0627\u0646"
@@ -3521,7 +3521,7 @@ MonoBehaviour:
       Drawing: 
     - Id: garlic
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062B\u0648\u0645"
@@ -3533,7 +3533,7 @@ MonoBehaviour:
       Drawing: 
     - Id: girl
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0628\u0646\u062A"
@@ -3545,7 +3545,7 @@ MonoBehaviour:
       Drawing: 
     - Id: glue
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0635\u064E\u0645\u063A"
@@ -3557,7 +3557,7 @@ MonoBehaviour:
       Drawing: 
     - Id: granddaughter
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u062D\u0641\u064A\u062F\u0629"
@@ -3571,7 +3571,7 @@ MonoBehaviour:
       Drawing: 
     - Id: grandfather
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u062C\u062F\u0648"
@@ -3583,7 +3583,7 @@ MonoBehaviour:
       Drawing: 
     - Id: grandmother
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0646\u0627\u0646\u0627"
@@ -3596,7 +3596,7 @@ MonoBehaviour:
       Drawing: 
     - Id: grandson
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u062D\u0641\u064A\u062F"
@@ -3609,7 +3609,7 @@ MonoBehaviour:
       Drawing: 
     - Id: grapes
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0639\u0646\u0628"
@@ -3621,7 +3621,7 @@ MonoBehaviour:
       Drawing: 
     - Id: ground
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0623\u0631\u0636"
@@ -3633,7 +3633,7 @@ MonoBehaviour:
       Drawing: 
     - Id: hair
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0634\u0639\u0631"
@@ -3642,10 +3642,10 @@ MonoBehaviour:
       - ain
       - reh
       Difficulty: 0
-      Drawing: drawing-hair
+      Drawing: 
     - Id: hand
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u064A\u062F"
@@ -3653,7 +3653,7 @@ MonoBehaviour:
       - yeh
       - dal
       Difficulty: 1
-      Drawing: drawing-hand
+      Drawing: 
     - Id: happy
       Kind: 1
       Category: 1
@@ -3669,7 +3669,7 @@ MonoBehaviour:
       Drawing: 
     - Id: head
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0631\u0623\u0633"
@@ -3695,7 +3695,7 @@ MonoBehaviour:
       Drawing: 
     - Id: hospital
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0645\u0633\u062A\u0634\u0641\u0649"
@@ -3709,7 +3709,7 @@ MonoBehaviour:
       Drawing: 
     - Id: hot
       Kind: 1
-      Category: 8
+      Category: 9
       Form: 0
       Article: 0
       Arabic: "\u062D\u0627\u0631"
@@ -3733,7 +3733,7 @@ MonoBehaviour:
       Drawing: 
     - Id: hot_food
       Kind: 1
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0633\u062E\u0646"
@@ -3745,7 +3745,7 @@ MonoBehaviour:
       Drawing: 
     - Id: hour
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0633\u0627\u0639\u0629"
@@ -3758,7 +3758,7 @@ MonoBehaviour:
       Drawing: 
     - Id: house
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0628\u064A\u062A"
@@ -3770,7 +3770,7 @@ MonoBehaviour:
       Drawing: 
     - Id: icecream
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0628\u0648\u0638\u0629"
@@ -3795,7 +3795,7 @@ MonoBehaviour:
       Drawing: 
     - Id: islands
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u062C\u064F\u0632\u064F\u0631"
@@ -3807,7 +3807,7 @@ MonoBehaviour:
       Drawing: 
     - Id: juice
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0639\u064E\u0635\u064A\u0631"
@@ -3820,7 +3820,7 @@ MonoBehaviour:
       Drawing: 
     - Id: kid
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0648\u0644\u062F"
@@ -3869,7 +3869,7 @@ MonoBehaviour:
       Drawing: 
     - Id: leg
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0631\u0650\u062C\u0644"
@@ -3904,7 +3904,7 @@ MonoBehaviour:
       Drawing: 
     - Id: lion
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0623\u0633\u062F"
@@ -3916,7 +3916,7 @@ MonoBehaviour:
       Drawing: 
     - Id: lion_dual
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 1
       Article: 0
       Arabic: "\u0623\u0633\u062F\u0627\u0646"
@@ -3930,7 +3930,7 @@ MonoBehaviour:
       Drawing: 
     - Id: lion_plural
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 2
       Article: 0
       Arabic: "\u0623\u0633\u0648\u062F\u064C"
@@ -3943,7 +3943,7 @@ MonoBehaviour:
       Drawing: 
     - Id: lips
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0634\u0641\u0627\u0647"
@@ -3956,7 +3956,7 @@ MonoBehaviour:
       Drawing: 
     - Id: man
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0631\u064E\u062C\u064F\u0644\u064D"
@@ -3968,7 +3968,7 @@ MonoBehaviour:
       Drawing: 
     - Id: market
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0633\u0648\u0642"
@@ -3980,7 +3980,7 @@ MonoBehaviour:
       Drawing: 
     - Id: meat
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0644\u062D\u0645"
@@ -4004,7 +4004,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0634\u0647\u0631"
@@ -4016,7 +4016,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_april
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0646\u064A\u0633\u0627\u0646"
@@ -4030,7 +4030,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_august
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0622\u0628"
@@ -4040,7 +4040,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_december
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u0623\u0648\u0644"
@@ -4059,7 +4059,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_february
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0634\u0628\u0627\u0637"
@@ -4072,7 +4072,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_january
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0643\u0627\u0646\u0648\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
@@ -4092,7 +4092,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_july
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u062A\u0645\u0648\u0632"
@@ -4105,7 +4105,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_june
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u062D\u0632\u064A\u0631\u0627\u0646"
@@ -4120,7 +4120,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_march
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0622\u0630\u0627\u0631"
@@ -4132,7 +4132,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_may
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0623\u064A\u0627\u0631"
@@ -4145,7 +4145,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_november
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A"
@@ -4165,7 +4165,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_october
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u0623\u0648\u0644"
@@ -4184,7 +4184,7 @@ MonoBehaviour:
       Drawing: 
     - Id: month_september
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0623\u064A\u0644\u0648\u0644"
@@ -4198,7 +4198,7 @@ MonoBehaviour:
       Drawing: 
     - Id: moon
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0642\u0645\u0631"
@@ -4210,7 +4210,7 @@ MonoBehaviour:
       Drawing: 
     - Id: mother
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0645\u0627\u0645\u0627"
@@ -4223,7 +4223,7 @@ MonoBehaviour:
       Drawing: 
     - Id: mountain
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u062C\u0628\u0644"
@@ -4235,7 +4235,7 @@ MonoBehaviour:
       Drawing: 
     - Id: mountain_dual
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 1
       Article: 0
       Arabic: "\u062C\u0628\u0644\u0627\u0646"
@@ -4249,7 +4249,7 @@ MonoBehaviour:
       Drawing: 
     - Id: mountain_plural
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 2
       Article: 0
       Arabic: "\u062C\u0628\u0627\u0644"
@@ -4262,7 +4262,7 @@ MonoBehaviour:
       Drawing: 
     - Id: mouse
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0641\u0623\u0631"
@@ -4274,7 +4274,7 @@ MonoBehaviour:
       Drawing: 
     - Id: mouth
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0641\u0645"
@@ -4282,10 +4282,10 @@ MonoBehaviour:
       - feh
       - meem
       Difficulty: 1
-      Drawing: drawing-mouth
+      Drawing: 
     - Id: nail
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0638\u0641\u0631"
@@ -4297,7 +4297,7 @@ MonoBehaviour:
       Drawing: 
     - Id: needle
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0625\u0628\u0631\u0629"
@@ -4320,7 +4320,7 @@ MonoBehaviour:
       Drawing: 
     - Id: nose
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0623\u0646\u0641"
@@ -4329,10 +4329,10 @@ MonoBehaviour:
       - noon
       - feh
       Difficulty: 1
-      Drawing: drawing-nose
+      Drawing: 
     - Id: now
       Kind: 5
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0622\u0646"
@@ -4344,7 +4344,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_0
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0635\u0641\u0631"
@@ -4356,7 +4356,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_1
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0648\u0627\u062D\u062F"
@@ -4369,7 +4369,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_10
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0639\u0634\u0631\u0629"
@@ -4382,7 +4382,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_11
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u062D\u062F \u0639\u0634\u0631"
@@ -4397,7 +4397,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_12
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u062B\u0646\u064A \u0639\u0634\u0631"
@@ -4413,7 +4413,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_13
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062B\u0644\u0627\u062B\u0629 \u0639\u0634\u0631"
@@ -4430,7 +4430,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_14
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0623\u0631\u0628\u0639\u0629 \u0639\u0634\u0631"
@@ -4447,7 +4447,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_15
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062E\u0645\u0633\u0629 \u0639\u0634\u0631"
@@ -4463,7 +4463,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_16
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0633\u062A\u0629 \u0639\u0634\u0631"
@@ -4478,7 +4478,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_17
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0633\u0628\u0639\u0629 \u0639\u0634\u0631"
@@ -4494,7 +4494,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_18
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0634\u0631"
@@ -4512,7 +4512,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_19
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062A\u0633\u0639\u0629 \u0639\u0634\u0631"
@@ -4528,7 +4528,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_2
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u062B\u0646\u0627\u0646"
@@ -4542,7 +4542,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_20
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0639\u0634\u0631\u0648\u0646"
@@ -4556,7 +4556,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_3
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062B\u0644\u0627\u062B\u0629"
@@ -4570,7 +4570,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_4
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0623\u0631\u0628\u0639\u0629"
@@ -4584,7 +4584,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_5
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062E\u0645\u0633\u0629"
@@ -4597,7 +4597,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_6
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0633\u062A\u0629"
@@ -4609,7 +4609,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_7
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0633\u0628\u0639\u0629\u064C"
@@ -4622,7 +4622,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_8
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629"
@@ -4637,7 +4637,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_9
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u062A\u0633\u0639\u0629"
@@ -4650,7 +4650,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o1
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0623\u0648\u0644"
@@ -4664,7 +4664,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o10
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0639\u0627\u0634\u0631"
@@ -4679,7 +4679,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o2
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0627\u0646\u064A"
@@ -4694,7 +4694,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o3
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0627\u0644\u062B"
@@ -4709,7 +4709,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o4
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0631\u0627\u0628\u0639"
@@ -4724,7 +4724,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o5
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062E\u0627\u0645\u0633"
@@ -4739,7 +4739,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o6
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0633\u0627\u062F\u0633"
@@ -4754,7 +4754,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o7
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0633\u0627\u0628\u0639"
@@ -4769,7 +4769,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o8
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062B\u0627\u0645\u0646"
@@ -4784,7 +4784,7 @@ MonoBehaviour:
       Drawing: 
     - Id: number_o9
       Kind: 4
-      Category: 18
+      Category: 19
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u062A\u0627\u0633\u0639"
@@ -4812,7 +4812,7 @@ MonoBehaviour:
       Drawing: 
     - Id: oil
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0632\u064A\u062A"
@@ -4824,7 +4824,7 @@ MonoBehaviour:
       Drawing: 
     - Id: onion
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0628\u0635\u0644"
@@ -4833,10 +4833,10 @@ MonoBehaviour:
       - sad
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 5c
     - Id: OokaDH
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0639\u0643\u0627\u0638"
@@ -4861,7 +4861,7 @@ MonoBehaviour:
       Drawing: 
     - Id: oven
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u0641\u0631\u0646"
@@ -4873,7 +4873,7 @@ MonoBehaviour:
       Drawing: 
     - Id: paper
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0648\u0631\u0642"
@@ -4885,7 +4885,7 @@ MonoBehaviour:
       Drawing: 
     - Id: parrot
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0628\u0628\u063A\u0627\u0621"
@@ -4898,7 +4898,7 @@ MonoBehaviour:
       Drawing: 
     - Id: pear
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0625\u0646\u062C\u0627\u0635"
@@ -4911,7 +4911,7 @@ MonoBehaviour:
       Drawing: 
     - Id: pear_big
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0643\u0645\u062B\u0631\u0649"
@@ -4932,10 +4932,10 @@ MonoBehaviour:
       - lam
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 47
     - Id: pencil
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0642\u0644\u0645"
@@ -4959,7 +4959,7 @@ MonoBehaviour:
       Drawing: 
     - Id: plum
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062E\u0648\u062E"
@@ -4971,7 +4971,7 @@ MonoBehaviour:
       Drawing: 
     - Id: policeman
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0634\u0631\u0637\u064A"
@@ -4984,7 +4984,7 @@ MonoBehaviour:
       Drawing: 
     - Id: potato
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0628\u0637\u0627\u0637\u0627"
@@ -4998,7 +4998,7 @@ MonoBehaviour:
       Drawing: 
     - Id: rain
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0645\u0637\u064E\u0631"
@@ -5010,7 +5010,7 @@ MonoBehaviour:
       Drawing: 
     - Id: rainy
       Kind: 1
-      Category: 19
+      Category: 20
       Form: 0
       Article: 0
       Arabic: "\u0645\u0627\u0637\u0631"
@@ -5035,7 +5035,7 @@ MonoBehaviour:
       Drawing: 
     - Id: restaurant
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0645\u0637\u0639\u064E\u0645"
@@ -5048,7 +5048,7 @@ MonoBehaviour:
       Drawing: 
     - Id: rice
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0631\u0632"
@@ -5059,7 +5059,7 @@ MonoBehaviour:
       Drawing: 
     - Id: river
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0646\u0647\u0631"
@@ -5071,7 +5071,7 @@ MonoBehaviour:
       Drawing: 
     - Id: river_dual
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 1
       Article: 0
       Arabic: "\u0646\u0647\u0631\u0627\u0646"
@@ -5085,7 +5085,7 @@ MonoBehaviour:
       Drawing: 
     - Id: river_plural
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 2
       Article: 0
       Arabic: "\u0623\u0646\u0647\u0627\u0631"
@@ -5099,7 +5099,7 @@ MonoBehaviour:
       Drawing: 
     - Id: room
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u063A\u0631\u0641\u0629"
@@ -5112,7 +5112,7 @@ MonoBehaviour:
       Drawing: 
     - Id: sad
       Kind: 1
-      Category: 20
+      Category: 21
       Form: 0
       Article: 0
       Arabic: "\u062D\u0632\u064A\u0646"
@@ -5125,7 +5125,7 @@ MonoBehaviour:
       Drawing: 
     - Id: safe
       Kind: 1
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0622\u0645\u0650\u0646\u0652"
@@ -5136,7 +5136,7 @@ MonoBehaviour:
       Drawing: 
     - Id: salt
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0645\u0650\u0644\u0652\u062D"
@@ -5171,7 +5171,7 @@ MonoBehaviour:
       Drawing: 
     - Id: school
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0645\u062F\u0631\u0633\u0629"
@@ -5185,7 +5185,7 @@ MonoBehaviour:
       Drawing: 
     - Id: scientist
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0639\u0627\u0644\u0645"
@@ -5198,7 +5198,7 @@ MonoBehaviour:
       Drawing: 
     - Id: scientist_dual
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 1
       Article: 0
       Arabic: "\u0639\u0627\u0644\u0645\u0627\u0646"
@@ -5213,7 +5213,7 @@ MonoBehaviour:
       Drawing: 
     - Id: scientist_plural
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 2
       Article: 0
       Arabic: "\u0639\u0644\u0645\u0627\u0621"
@@ -5226,7 +5226,7 @@ MonoBehaviour:
       Drawing: 
     - Id: scissors
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 0
       Arabic: "\u0645\u0642\u0635"
@@ -5235,10 +5235,10 @@ MonoBehaviour:
       - qaf
       - sad
       Difficulty: 0
-      Drawing: 
+      Drawing: 45
     - Id: second
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u062B\u0627\u0646\u064A\u0629"
@@ -5252,7 +5252,7 @@ MonoBehaviour:
       Drawing: 
     - Id: shop
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u062F\u0643\u0627\u0646\u064D"
@@ -5265,7 +5265,7 @@ MonoBehaviour:
       Drawing: 
     - Id: sister
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0623\u062E\u062A"
@@ -5277,7 +5277,7 @@ MonoBehaviour:
       Drawing: 
     - Id: sky
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0633\u0645\u0627\u0621"
@@ -5289,7 +5289,7 @@ MonoBehaviour:
       Drawing: 
     - Id: slow
       Kind: 1
-      Category: 8
+      Category: 9
       Form: 0
       Article: 0
       Arabic: "\u0628\u0637\u064A\u0621"
@@ -5301,7 +5301,7 @@ MonoBehaviour:
       Drawing: 
     - Id: small
       Kind: 1
-      Category: 10
+      Category: 11
       Form: 0
       Article: 0
       Arabic: "\u0635\u063A\u064A\u0631"
@@ -5314,7 +5314,7 @@ MonoBehaviour:
       Drawing: 
     - Id: snow
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u062A\u0644\u062C"
@@ -5338,7 +5338,7 @@ MonoBehaviour:
       Drawing: 
     - Id: spring
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0631\u0628\u064A\u0639"
@@ -5351,7 +5351,7 @@ MonoBehaviour:
       Drawing: 
     - Id: station
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0645\u062D\u0637\u0629"
@@ -5376,7 +5376,7 @@ MonoBehaviour:
       Drawing: 
     - Id: sugar
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0633\u0643\u0631"
@@ -5388,7 +5388,7 @@ MonoBehaviour:
       Drawing: 
     - Id: summer
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0635\u064A\u0641"
@@ -5400,7 +5400,7 @@ MonoBehaviour:
       Drawing: 
     - Id: sun
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0634\u0645\u0633"
@@ -5425,7 +5425,7 @@ MonoBehaviour:
       Drawing: 
     - Id: table
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u0637\u0627\u0648\u0644\u0629"
@@ -5436,10 +5436,10 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 46
     - Id: tea
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0634\u0627\u064A"
@@ -5451,7 +5451,7 @@ MonoBehaviour:
       Drawing: 
     - Id: teacher
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0645\u0639\u0644\u0645"
@@ -5464,7 +5464,7 @@ MonoBehaviour:
       Drawing: 
     - Id: television
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u062A\u0644\u0641\u0627\u0632"
@@ -5506,7 +5506,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_ball
       Kind: 4
-      Category: 11
+      Category: 12
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0643\u0631\u0629"
@@ -5535,7 +5535,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_coat
       Kind: 4
-      Category: 16
+      Category: 17
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0645\u0639\u0637\u0641"
@@ -5547,10 +5547,10 @@ MonoBehaviour:
       - tah
       - feh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2a
     - Id: the_engineer
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0645\u0647\u0646\u062F\u0633"
@@ -5581,7 +5581,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_hat
       Kind: 4
-      Category: 16
+      Category: 17
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0642\u0628\u0639\u0629"
@@ -5611,7 +5611,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_player
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0644\u0627\u0639\u0628"
@@ -5626,7 +5626,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_playground
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0645\u0644\u0639\u0628"
@@ -5641,7 +5641,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_policeman
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0634\u0631\u0637\u064A"
@@ -5671,7 +5671,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_scientist
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0639\u0627\u0644\u0645"
@@ -5686,7 +5686,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_shirt
       Kind: 4
-      Category: 16
+      Category: 17
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635"
@@ -5701,7 +5701,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_shoe
       Kind: 4
-      Category: 16
+      Category: 17
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u062D\u0630\u0627\u0621"
@@ -5715,7 +5715,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_trousers
       Kind: 4
-      Category: 16
+      Category: 17
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0628\u0646\u0637\u0627\u0644"
@@ -5731,7 +5731,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_wonderful
       Kind: 4
-      Category: 8
+      Category: 9
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0631\u0627\u0626\u0639"
@@ -5745,7 +5745,7 @@ MonoBehaviour:
       Drawing: 
     - Id: the_worker
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 1
       Arabic: "\u0627\u0644\u0639\u0627\u0645\u0644"
@@ -5760,7 +5760,7 @@ MonoBehaviour:
       Drawing: 
     - Id: tiger
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0646\u0645\u0631"
@@ -5772,7 +5772,7 @@ MonoBehaviour:
       Drawing: 
     - Id: today
       Kind: 5
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u064A\u0648\u0645"
@@ -5786,7 +5786,7 @@ MonoBehaviour:
       Drawing: 
     - Id: toilet
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0645\u0631\u062D\u0627\u0636"
@@ -5800,7 +5800,7 @@ MonoBehaviour:
       Drawing: 
     - Id: tomato
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0628\u0646\u062F\u0648\u0631\u0629"
@@ -5815,7 +5815,7 @@ MonoBehaviour:
       Drawing: 
     - Id: tomorrow
       Kind: 5
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u063A\u062F\u0627\u064B"
@@ -5827,7 +5827,7 @@ MonoBehaviour:
       Drawing: 
     - Id: tongue
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0644\u0633\u0627\u0646"
@@ -5837,10 +5837,10 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: drawing-tongue
+      Drawing: 
     - Id: tooth
       Kind: 4
-      Category: 4
+      Category: 5
       Form: 0
       Article: 0
       Arabic: "\u0633\u0646"
@@ -5848,10 +5848,10 @@ MonoBehaviour:
       - seen
       - noon
       Difficulty: 1
-      Drawing: drawing-tooth
+      Drawing: 
     - Id: tower
       Kind: 4
-      Category: 5
+      Category: 6
       Form: 0
       Article: 0
       Arabic: "\u0628\u0631\u062C"
@@ -5860,10 +5860,10 @@ MonoBehaviour:
       - reh
       - jeem
       Difficulty: 0
-      Drawing: 
+      Drawing: 44
     - Id: tree
       Kind: 4
-      Category: 12
+      Category: 13
       Form: 0
       Article: 0
       Arabic: "\u0634\u062C\u0631"
@@ -5875,7 +5875,7 @@ MonoBehaviour:
       Drawing: 
     - Id: triangle
       Kind: 4
-      Category: 21
+      Category: 22
       Form: 0
       Article: 0
       Arabic: "\u0645\u062B\u0644\u062B"
@@ -5885,10 +5885,10 @@ MonoBehaviour:
       - lam
       - theh
       Difficulty: 0
-      Drawing: 
+      Drawing: 43
     - Id: uncle_father
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0639\u0645"
@@ -5899,7 +5899,7 @@ MonoBehaviour:
       Drawing: 
     - Id: uncle_mother
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u062E\u0627\u0644"
@@ -5923,7 +5923,7 @@ MonoBehaviour:
       Drawing: 
     - Id: vegetables
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u062E\u0636\u0631"
@@ -5957,7 +5957,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 0
-      Drawing: 
+      Drawing: 42
     - Id: walked
       Kind: 2
       Category: 0
@@ -5971,7 +5971,7 @@ MonoBehaviour:
       Drawing: 
     - Id: washing_machine
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u063A\u0633\u0627\u0644\u0629"
@@ -5982,10 +5982,10 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 41
     - Id: water
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0645\u064A"
@@ -5996,7 +5996,7 @@ MonoBehaviour:
       Drawing: 
     - Id: watermelon
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0628\u0637\u064A\u062E"
@@ -6034,7 +6034,7 @@ MonoBehaviour:
       Drawing: 
     - Id: whale
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u062D\u0648\u062A"
@@ -6046,7 +6046,7 @@ MonoBehaviour:
       Drawing: 
     - Id: window
       Kind: 4
-      Category: 9
+      Category: 10
       Form: 0
       Article: 0
       Arabic: "\u0646\u0627\u0641\u0630\u0629"
@@ -6060,7 +6060,7 @@ MonoBehaviour:
       Drawing: 
     - Id: winter
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0634\u062A\u0627\u0621"
@@ -6072,7 +6072,7 @@ MonoBehaviour:
       Drawing: 
     - Id: wolf
       Kind: 4
-      Category: 7
+      Category: 8
       Form: 0
       Article: 0
       Arabic: "\u0630\u0626\u0628"
@@ -6083,7 +6083,7 @@ MonoBehaviour:
       Drawing: 
     - Id: woman
       Kind: 4
-      Category: 3
+      Category: 4
       Form: 0
       Article: 0
       Arabic: "\u0645\u0631\u0623\u0629"
@@ -6108,7 +6108,7 @@ MonoBehaviour:
       Drawing: 
     - Id: wonderful
       Kind: 1
-      Category: 8
+      Category: 9
       Form: 0
       Article: 0
       Arabic: "\u0631\u0627\u0626\u0639"
@@ -6132,7 +6132,7 @@ MonoBehaviour:
       Drawing: 
     - Id: worker
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 0
       Article: 0
       Arabic: "\u0639\u0627\u0645\u0644"
@@ -6145,7 +6145,7 @@ MonoBehaviour:
       Drawing: 
     - Id: worker_dual
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 1
       Article: 0
       Arabic: "\u0639\u0627\u0645\u0644\u0627\u0646"
@@ -6160,7 +6160,7 @@ MonoBehaviour:
       Drawing: 
     - Id: worker_plural
       Kind: 4
-      Category: 14
+      Category: 15
       Form: 2
       Article: 0
       Arabic: "\u0639\u0645\u0627\u0644"
@@ -6185,7 +6185,7 @@ MonoBehaviour:
       Drawing: 
     - Id: year
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0639\u0627\u0645"
@@ -6197,7 +6197,7 @@ MonoBehaviour:
       Drawing: 
     - Id: yesterday
       Kind: 5
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
@@ -6213,7 +6213,7 @@ MonoBehaviour:
       Drawing: 
     - Id: yogurt
       Kind: 4
-      Category: 2
+      Category: 3
       Form: 0
       Article: 0
       Arabic: "\u0644\u0628\u0646"
@@ -6225,7 +6225,7 @@ MonoBehaviour:
       Drawing: 
     - Id: morning
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0635\u0628\u0627\u062D"
@@ -6238,7 +6238,7 @@ MonoBehaviour:
       Drawing: 
     - Id: evening
       Kind: 4
-      Category: 17
+      Category: 18
       Form: 0
       Article: 0
       Arabic: "\u0645\u0633\u0627\u0621"
@@ -15505,9 +15505,145 @@ MonoBehaviour:
       Linked: 
       Words: []
     - Id: the_year_2016
-      English: 
+      English: the year two thousand sixteen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
         \u0639\u0634\u0631"
+      Linked: 
+      Words: []
+    - Id: theboyopenedthewindow
+      English: the boy opened the window
+      Arabic: "\u0641\u062A\u062D \u0627\u0644\u0635\u0628\u064A \u0627\u0644\u0646\u0627\u0641\u0630\u0629"
+      Linked: 
+      Words: []
+    - Id: theteacherlaughed
+      English: the teacher laughed
+      Arabic: "\u0636\u062D\u0643 \u0627\u0644\u0645\u0639\u0644\u0645"
+      Linked: 
+      Words: []
+    - Id: theworkercarriedthebox
+      English: the worker carried the box
+      Arabic: "\u062D\u0645\u0644 \u0627\u0644\u0639\u0627\u0645\u0644 \u0627\u0644\u0635\u0646\u062F\u0648\u0642"
+      Linked: 
+      Words: []
+    - Id: thegirldrankthejuice
+      English: the girl drank the juice
+      Arabic: "\u0634\u0631\u0628\u062A \u0627\u0644\u0628\u0646\u062A \u0627\u0644\u0639\u0635\u064A\u0631"
+      Linked: 
+      Words: []
+    - Id: themountainisbig
+      English: the mountain is big
+      Arabic: "\u0627\u0644\u062C\u0628\u0644 \u0643\u0628\u064A\u0631"
+      Linked: 
+      Words: []
+    - Id: therestaurantisclean
+      English: the restaurant is clean
+      Arabic: "\u0627\u0644\u0645\u0637\u0639\u0645 \u0646\u0638\u064A\u0641"
+      Linked: 
+      Words: []
+    - Id: thetigeratethedeer
+      English: the tiger ate the deer
+      Arabic: "\u0623\u0643\u0644 \u0627\u0644\u0646\u0645\u0631 \u0627\u0644\u063A\u0632\u0627\u0644"
+      Linked: 
+      Words: []
+    - Id: redberry
+      English: red berry
+      Arabic: "\u062A\u0648\u062A \u0623\u062D\u0645\u0631"
+      Linked: 
+      Words: []
+    - Id: yellowflower
+      English: yellowe flower
+      Arabic: "\u0648\u0631\u062F \u0623\u0635\u0641\u0631"
+      Linked: 
+      Words: []
+    - Id: greywolf
+      English: grey wolf
+      Arabic: "\u0630\u0626\u0628 \u0641\u0636\u064A"
+      Linked: 
+      Words: []
+    - Id: greencucumber
+      English: green cucumber
+      Arabic: "\u062E\u064A\u0627\u0631 \u0623\u062E\u0636\u0631"
+      Linked: 
+      Words: []
+    - Id: thebustwent
+      English: the bus went (left)
+      Arabic: "\u0630\u0647\u0628 \u0627\u0644\u0628\u0627\u0635"
+      Linked: 
+      Words: []
+    - Id: thebirdflew
+      English: the bird flew
+      Arabic: "\u0637\u0627\u0631 \u0627\u0644\u0639\u0635\u0641\u0648\u0631"
+      Linked: 
+      Words: []
+    - Id: theshopissmall
+      English: the shop is small
+      Arabic: "\u0627\u0644\u062F\u0643\u0627\u0646 \u0635\u063A\u064A\u0631"
+      Linked: 
+      Words: []
+    - Id: thedoctoropenedtheneedle
+      English: the doctor opened the needle
+      Arabic: "\u0641\u062A\u062D \u0627\u0644\u0637\u0628\u064A\u0628 \u0627\u0644\u0627\u0628\u0631\u0629"
+      Linked: 
+      Words: []
+    - Id: eightscientists
+      English: eight scientists
+      Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0644\u0645\u0627\u0621"
+      Linked: 
+      Words: []
+    - Id: theengineerworethecoat
+      English: the engineer wore the coat
+      Arabic: "\u0644\u0628\u0633 \u0627\u0644\u0645\u0647\u0646\u062F\u0633 \u0627\u0644\u0645\u0639\u0637\u0641"
+      Linked: 
+      Words: []
+    - Id: theplayerwon
+      English: the player won
+      Arabic: "\u0631\u0628\u062D \u0627\u0644\u0644\u0627\u0639\u0628"
+      Linked: 
+      Words: []
+    - Id: theshirtiscleannow
+      English: the shirt is clean now
+      Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0646\u0638\u064A\u0641 \u0627\u0644\u0622\u0646"
+      Linked: 
+      Words: []
+    - Id: yesterdaywassunday
+      English: yesterday was Sunday
+      Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629 \u0643\u0627\u0646 \u0627\u0644\u0623\u062D\u062F"
+      Linked: 
+      Words: []
+    - Id: thewinteriscold
+      English: the winter is cold
+      Arabic: "\u0627\u0644\u0634\u062A\u0627\u0621 \u0628\u0627\u0631\u062F"
+      Linked: 
+      Words: []
+    - Id: novemberisarainymonth
+      English: November is a rainy month
+      Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A
+        \u0634\u0647\u0631 \u0645\u0627\u0637\u0631"
+      Linked: 
+      Words: []
+    - Id: abeautifulparrot
+      English: a beautiful parrot
+      Arabic: "\u0628\u0628\u063A\u0627\u0621 \u062C\u0645\u064A\u0644"
+      Linked: 
+      Words: []
+    - Id: mayisawonderfulmonth
+      English: May is a wonderful month
+      Arabic: "\u0623\u064A\u0627\u0631 \u0634\u0647\u0631 \u0631\u0627\u0626\u0639"
+      Linked: 
+      Words: []
+    - Id: thepolicemanwalked
+      English: the policeman walked
+      Arabic: "\u0645\u0634\u0649 \u0627\u0644\u0634\u0631\u0637\u064A"
+      Linked: 
+      Words: []
+    - Id: theicecreamisdelicious
+      English: the ice-cream is delicious
+      Arabic: "\u0627\u0644\u0628\u0648\u0638\u0629 \u062D\u0644\u0648"
+      Linked: 
+      Words: []
+    - Id: fivebooks
+      English: five books
+      Arabic: "\u062E\u0645\u0633\u0629 \u0643\u062A\u0628"
       Linked: 
       Words: []
   stageTable:
@@ -15568,7 +15704,7 @@ MonoBehaviour:
       Weight: 0
     - Id: DogAnimation1
       Title: 
-      Category: 0
+      Category: 3
       Weight: 0
     - Id: reward_tube_hat
       Title: Tube hat
