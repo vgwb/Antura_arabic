@@ -4,7 +4,7 @@ using System.Collections;
 using EA4S;
 using TMPro;
 
-namespace Balloons
+namespace EA4S.Balloons
 {
     public class TimerManager : MonoBehaviour
     {
@@ -19,7 +19,7 @@ namespace Balloons
 
         void Start()
         {
-            time = BalloonsGameManager.instance.roundTime;
+            time = BalloonsGame.instance.roundTime;
         }
 
         void Update()
@@ -30,12 +30,12 @@ namespace Balloons
                     DisplayTime();
                 }
                 if (!playedSfx && timeRemaining < 5f) {
-                    AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+                    BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
                     playedSfx = true;
                 }
                 if (timeRemaining < 1f) {
                     StopTimer();
-                    BalloonsGameManager.instance.OnTimeUp();
+                    BalloonsGame.instance.OnTimeUp();
                 }
             }
 
@@ -50,7 +50,7 @@ namespace Balloons
         {
             isRunning = false;
             playedSfx = false;
-            AudioManager.I.StopSfx(Sfx.DangerClockLong);
+            //AudioManager.I.StopSfx(Sfx.DangerClockLong);
         }
 
         public void ResetTimer()
