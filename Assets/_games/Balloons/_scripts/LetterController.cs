@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using EA4S;
 using TMPro;
 
-namespace Balloons
+namespace EA4S.Balloons
 {
     public class LetterController : MonoBehaviour
     {
+        public LetterObjectView LLPrefab;
         public FloatingLetterController parentFloatingLetter;
         public Animator animator;
         public Collider letterCollider;
@@ -15,7 +16,7 @@ namespace Balloons
         public LL_LetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
-        public LLController LetterModel;
+        public ILivingLetterData letterData;
         public TMP_Text LetterView;
 
         [Header("Letter Parameters")]
@@ -51,8 +52,9 @@ namespace Balloons
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
             baseRotation = transform.rotation.eulerAngles;
             keepSpinning = spinEnabled;
+            LLPrefab.SetState(LLAnimationStates.LL_hanging);
             RandomizeSpin();
-            RandomizeAnimation();
+            //RandomizeAnimation();
         }
 
         void Update()
@@ -72,8 +74,9 @@ namespace Balloons
 
         public void Init(LL_LetterData _data)
         {
-            LetterModel = new LLController(_data);
-            LetterView.text = _data.TextForLivingLetter; 
+            letterData = _data;
+            LLPrefab.Init(_data);
+            //LetterView.text = _data.TextForLivingLetter; 
         }
 
         void OnMouseDown()
@@ -115,14 +118,14 @@ namespace Balloons
         private void RandomizeAnimation()
         {
             animator.speed *= Random.Range(0.75f, 1.25f);
-            animator.SetFloat("Offset", Random.Range(0f, BalloonsGameManager.instance.letterAnimationLength));
+            animator.SetFloat("Offset", Random.Range(0f, BalloonsGame.instance.letterAnimationLength));
         }
 
         private void SpeakLetter()
         {
-            if (LetterModel != null && LetterModel.Data != null && LetterModel.Data.Key != null)
+            if (letterData != null && letterData.Key != null)
             {
-                AudioManager.I.PlayLetter(LetterModel.Data.Key);
+                BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }
         }
 
@@ -172,13 +175,13 @@ namespace Balloons
 
         public void Drop()
         {
-            StartCoroutine(Drop_Coroutine(BalloonsGameManager.instance.letterDropDelay)); 
+            StartCoroutine(Drop_Coroutine(BalloonsGame.instance.letterDropDelay)); 
         }
 
         private IEnumerator Drop_Coroutine(float delay)
         {
             yield return new WaitForSeconds(delay);
-            AudioManager.I.PlaySfx(Sfx.LetterAngry);
+            BalloonsConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterAngry);
             //drop = true;
             var dropSpeed = 2500f;
             body.AddForce(Vector3.down * dropSpeed);

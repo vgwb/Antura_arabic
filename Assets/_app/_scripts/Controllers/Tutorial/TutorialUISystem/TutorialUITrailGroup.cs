@@ -77,8 +77,10 @@ namespace EA4S
             lastPos = _position - Vector3.one;
             for (int i = 0; i < Trails.Length; ++i) {
                 TrailRenderer tr = Trails[i];
-                tr.startWidth = TutorialUI.I.Cam.fieldOfView * defStartWidths[i] / 45f;
-                tr.endWidth = TutorialUI.I.Cam.fieldOfView * defEndWidths[i] / 45f;
+                tr.startWidth = defStartWidths[i] * TutorialUI.GetCameraBasedScaleMultiplier(_position);
+//                tr.startWidth = TutorialUI.I.Cam.fieldOfView * defStartWidths[i] / 45f;
+                tr.endWidth = defEndWidths[i] * TutorialUI.GetCameraBasedScaleMultiplier(_position);
+//                tr.endWidth = TutorialUI.I.Cam.fieldOfView * defEndWidths[i] / 45f;
                 tr.sortingOrder = _overlayed ? defSortingOrder[i] : 0;
             }
         }

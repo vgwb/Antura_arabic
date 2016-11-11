@@ -4864,6 +4864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b32c91621bd3404781d0d3d2b2ded7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LLPrefab: {fileID: 0}
   parentFloatingLetter: {fileID: 11465656}
   animator: {fileID: 9558292}
   letterCollider: {fileID: 6564822}
@@ -5075,6 +5076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b32c91621bd3404781d0d3d2b2ded7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LLPrefab: {fileID: 0}
   parentFloatingLetter: {fileID: 11465656}
   animator: {fileID: 9559400}
   letterCollider: {fileID: 6517084}
@@ -5346,6 +5348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b32c91621bd3404781d0d3d2b2ded7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LLPrefab: {fileID: 0}
   parentFloatingLetter: {fileID: 11465656}
   animator: {fileID: 9504992}
   letterCollider: {fileID: 6517686}

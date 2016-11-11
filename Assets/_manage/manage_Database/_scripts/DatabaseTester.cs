@@ -25,10 +25,10 @@ namespace EA4S.Db.Management
         void Awake()
         {
             this.dbLoader = GetComponentInChildren<DatabaseLoader>();
-            this.dbManager = new DatabaseManager(useTestDatabase);
 
             playerProfile = new PlayerProfile();
             playerProfile.CurrentJourneyPosition = new JourneyPosition(1, 2, 2);    // test
+            this.dbManager = new DatabaseManager(useTestDatabase, playerProfile);
 
             teacherAI = new TeacherAI(dbManager, playerProfile);
         }
@@ -494,7 +494,7 @@ namespace EA4S.Db.Management
 
         public void LoadProfile(int profileId)
         {
-            this.dbManager.LoadDynamicDb(profileId);
+            this.dbManager.LoadDynamicDbForPlayerProfile(profileId);
             PrintOutput("Loading profile " + profileId);
         }
 

@@ -11,6 +11,7 @@ namespace EA4S.Egg
         public MeshRenderer pieceRenderer;
 
         public Rigidbody eggRigidbody;
+        public MeshCollider meshCollider;
 
         public GameObject poofPrefab;
 
@@ -18,7 +19,7 @@ namespace EA4S.Egg
         Vector3 poofLeft = new Vector3(-10f, 10f);
 
         bool landed = true;
-        const float landedTime = 0.3f;
+        const float landedTime = 1f;
         float landedTimer = 0f;
 
         bool poofed = false;
@@ -33,12 +34,15 @@ namespace EA4S.Egg
 
         public void Reset()
         {
-            gameObject.SetActive(true);
-
+            meshCollider.enabled = false;
             eggRigidbody.useGravity = false;
             eggRigidbody.velocity = Vector3.zero;
+            eggRigidbody.isKinematic = true;
+
+            gameObject.SetActive(true);
 
             transform.localPosition = Vector3.zero;
+            transform.localEulerAngles = new Vector3(-90f, 180f);
 
             pieceRenderer.enabled = true;
 
@@ -80,6 +84,8 @@ namespace EA4S.Egg
 
         void MoveAndPoof()
         {
+            eggRigidbody.isKinematic = false;
+            meshCollider.enabled = true;
             eggRigidbody.useGravity = true;
 
             eggRigidbody.velocity = poofDirRight ? poofRight : poofLeft;
@@ -98,8 +104,7 @@ namespace EA4S.Egg
                 {
                     landed = true;
 
-                    eggRigidbody.useGravity = false;
-                    eggRigidbody.velocity = Vector3.zero;
+                    eggRigidbody.isKinematic = true;
 
                     pieceRenderer.enabled = false;
 
@@ -128,10 +133,28 @@ namespace EA4S.Egg
 
             var poofGo = Instantiate(poofPrefab);
             poofGo.AddComponent<AutoDestroy>().duration = smokeTime;
+
+            ChengeGameObjectLayer(poofGo);
+
             poofGo.SetActive(true);
 
             poofGo.transform.SetParent(transform);
             poofGo.transform.localPosition = new Vector3(0f, -0.1f, 0f);
+        }
+
+        void ChengeGameObjectLayer(GameObject go)
+        {
+            go.layer = LayerMask.NameToLayer("Ball");
+
+            int childCount = go.transform.childCount;
+
+            if (childCount > 0)
+            {
+                for (int i = 0; i < childCount; i++)
+                {
+                    ChengeGameObjectLayer(go.transform.GetChild(i).gameObject);
+                }
+            }
         }
 
         void OnSmokeEnd()

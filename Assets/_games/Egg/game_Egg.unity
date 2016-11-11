@@ -684,7 +684,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 330564915}
   - 33: {fileID: 330564918}
-  - 64: {fileID: 330564917}
   - 23: {fileID: 330564916}
   m_Layer: 8
   m_Name: terrain
@@ -737,19 +736,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!64 &330564917
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6440964, guid: 09690022b435e9442b83ecb98b681582,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 330564914}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &330564918
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2279,8 +2265,52 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114000012988120450, guid: d273d608c96afb346ad989436bac0e00, type: 2}
+    - target: {fileID: 54000010308393326, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54000012707391864, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54000012162870814, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54000011088297808, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64000011185698632, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64000011971444138, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64000013916905390, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64000011666395600, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64000011666395600, guid: d273d608c96afb346ad989436bac0e00,
+        type: 2}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d273d608c96afb346ad989436bac0e00, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1308002864

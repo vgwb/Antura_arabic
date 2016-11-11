@@ -25,15 +25,12 @@ namespace EA4S.Egg
 
         IAudioManager audioManager;
 
-        Action<ILivingLetterData> buttonsCallback;
-
         System.Random randomGenerator;
 
-        public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager, Action<ILivingLetterData> buttonsCallback)
+        public void Initialize(GameObject eggButtonPrefab, IAudioManager audioManager)
         {
             this.eggButtonPrefab = eggButtonPrefab;
             this.audioManager = audioManager;
-            this.buttonsCallback = buttonsCallback;
 
             randomGenerator = new System.Random((int)Time.realtimeSinceStartup);
         }
@@ -64,7 +61,7 @@ namespace EA4S.Egg
             EggButton eggButton = Instantiate(eggButtonPrefab).GetComponent<EggButton>();
             eggButton.transform.SetParent(transform, false);
             eggButton.gameObject.SetActive(false);
-            eggButton.Initialize(audioManager, buttonsCallback);
+            eggButton.Initialize(audioManager);
             eggButton.colorLightUp = GetButtonColor();
             eggButton.DisableInput();
             return eggButton;
@@ -123,6 +120,14 @@ namespace EA4S.Egg
 
                 eggButtons[currentIndex].transform.localPosition = buttonsPosition[i];
                 eggButtons[currentIndex].positionIndex = i;
+            }
+        }
+
+        public void SetOnPressedCallback(Action<ILivingLetterData> callback)
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].SetOnPressedCallback(callback);
             }
         }
 
@@ -355,6 +360,14 @@ namespace EA4S.Egg
                 }
 
                 delay += buttons[i].PlayButtonAudio(lightUp, delay, callback);
+            }
+        }
+
+        public void StopButtonsAudio()
+        {
+            for (int i = 0; i < eggButtons.Count; i++)
+            {
+                eggButtons[i].StopButtonAudio();
             }
         }
 
