@@ -295,13 +295,16 @@ public class TakeMeHomeLL : MonoBehaviour {
 				moveTweener.Kill();
 			}
 
-			moveTweener = transform.DOLocalMove(transform.position + lastTube.transform.up*30, 1).OnComplete(delegate () { 
+            transform.DOScale(0.3f, 0.5f);
+
+			moveTweener = transform.DOLocalMove(transform.position + lastTube.transform.up*30 + new Vector3(0,0,20), 1).OnComplete(delegate () { 
 				PlayIdleAnimation(); 
 				if (endTransformToCallback != null) endTransformToCallback();
 
 				transform.rotation = Quaternion.Euler (new Vector3 (0, 180, 0));
 				transform.position = tubeSpawnPosition;
-				clampPosition = true;
+                transform.DOScale(1, 0.5f);
+                clampPosition = true;
 				dropLetter = true;
 				isMoving = false;
 			});
@@ -328,7 +331,12 @@ public class TakeMeHomeLL : MonoBehaviour {
 				PlayIdleAnimation();
 				respawn = false;
 				clampPosition = false;
-				dropLetter = true;
+
+                transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                transform.DOScale(1, 0.5f);
+
+                dropLetter = true;
+
 				isMoving = false;
 			});
 
@@ -384,7 +392,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 			moveTweener = transform.DOLocalMove(transform.position - (new Vector3(5,0,0)), 1).OnComplete(delegate () { 
 				
 				clampPosition = false;
-				dropLetter = true;
+                transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                transform.DOScale(1, 0.5f);
+                dropLetter = true;
 				isMoving = false;
 			});
 		}

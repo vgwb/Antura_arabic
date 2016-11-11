@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Balloons
+namespace EA4S.Balloons
 {
     public class FloatingLetterController : MonoBehaviour
     {
@@ -164,11 +164,11 @@ namespace Balloons
         {
             if (basePosition.x > 0)
             {
-                transform.position = new Vector3(BalloonsGameManager.instance.maxX + stageMargin, basePosition.y, basePosition.z);
+                transform.position = new Vector3(BalloonsGame.instance.maxX + stageMargin, basePosition.y, basePosition.z);
             }
             else
             {
-                transform.position = new Vector3(BalloonsGameManager.instance.minX - stageMargin, basePosition.y, basePosition.z);
+                transform.position = new Vector3(BalloonsGame.instance.minX - stageMargin, basePosition.y, basePosition.z);
             }
 
             StartCoroutine(EnterStage_Coroutine());
@@ -211,12 +211,12 @@ namespace Balloons
             waftVelocity.Set(waftDirection * waftSpeed, body.velocity.y, body.velocity.z);
 
             body.velocity = waftVelocity;
-            if (body.transform.position.x > BalloonsGameManager.instance.maxX - stageMargin)
+            if (body.transform.position.x > BalloonsGame.instance.maxX - stageMargin)
             {
                 waftDirection = -1;
                 //body.transform.position = new Vector3(BalloonsGameManager.instance.minX - waftWrappingMargin, body.transform.position.y, body.transform.position.z);
             }
-            else if (body.transform.position.x < BalloonsGameManager.instance.minX + stageMargin)
+            else if (body.transform.position.x < BalloonsGame.instance.minX + stageMargin)
             {
                 waftDirection = 1;
             }
@@ -276,7 +276,7 @@ namespace Balloons
 
             if (Letter.isRequired)
             {
-                BalloonsGameManager.instance.OnPoppedRequiredBalloon(Letter.associatedPromptIndex);
+                BalloonsGame.instance.OnPoppedRequiredBalloon(Letter.associatedPromptIndex);
             }
 
             if (Balloons.Length == 3)
@@ -291,8 +291,8 @@ namespace Balloons
             {
                 Letter.transform.SetParent(null);
                 Letter.Drop();
-                BalloonsGameManager.instance.floatingLetters.Remove(this);
-                BalloonsGameManager.instance.OnDroppedLetter(Letter);
+                BalloonsGame.instance.floatingLetters.Remove(this);
+                BalloonsGame.instance.OnDroppedLetter(Letter);
                 Destroy(gameObject, 3f);
             }
         }
@@ -300,7 +300,7 @@ namespace Balloons
         private void CreateShockwave()
         {
             Vector3 shockwavePosition = transform.position;
-            var affectedObjects = BalloonsGameManager.instance.floatingLetters.FindAll(floatingLetter => floatingLetter.transform.position.x > transform.position.x - shockwaveRadius && floatingLetter.transform.position.x < transform.position.x + shockwaveRadius);
+            var affectedObjects = BalloonsGame.instance.floatingLetters.FindAll(floatingLetter => floatingLetter.transform.position.x > transform.position.x - shockwaveRadius && floatingLetter.transform.position.x < transform.position.x + shockwaveRadius);
 
             for (int i = 0; i < affectedObjects.Count; i++)
             {
@@ -352,10 +352,10 @@ namespace Balloons
         {
             clampedPosition = unclampedPosition;
 
-            var minX = BalloonsGameManager.instance.minX;
-            var maxX = BalloonsGameManager.instance.maxX;
-            var minY = BalloonsGameManager.instance.minY;
-            var maxY = BalloonsGameManager.instance.maxY;
+            var minX = BalloonsGame.instance.minX;
+            var maxX = BalloonsGame.instance.maxX;
+            var minY = BalloonsGame.instance.minY;
+            var maxY = BalloonsGame.instance.maxY;
 
             clampedPosition.x = clampedPosition.x < minX ? minX : clampedPosition.x;
             clampedPosition.x = clampedPosition.x > maxX ? maxX : clampedPosition.x;

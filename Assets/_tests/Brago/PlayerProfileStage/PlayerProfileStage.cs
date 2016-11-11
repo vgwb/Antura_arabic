@@ -10,10 +10,6 @@ namespace EA4S.Test {
     public class PlayerProfileStage : MonoBehaviour {
 
         void Start() {
-            GlobalOptions globalOptions = new GlobalOptions() { AvailablePlayers = new List<string>() { } };
-            globalOptions = AppManager.Instance.PlayerProfile.LoadGlobalOptions<GlobalOptions>(globalOptions) as GlobalOptions;
-
-            
 
             //List<string> AvailablePlayersId;
             //Debug.Log(JsonUtility.ToJson(AppManager.Instance.PlayerProfile.Options));

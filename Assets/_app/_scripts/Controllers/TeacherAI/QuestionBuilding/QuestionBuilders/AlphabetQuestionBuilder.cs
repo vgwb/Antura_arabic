@@ -16,7 +16,7 @@ namespace EA4S
 
         public QuestionPackData CreateQuestionPackData()
         {
-            var db = AppManager.Instance.DB;
+            //var db = AppManager.Instance.DB;
             var teacher = AppManager.Instance.Teacher;
 
             // Fully ordered alphabet (@todo: check that it works!)

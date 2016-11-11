@@ -13,6 +13,8 @@ namespace EA4S
         {
             int questionPacksNumber = currentConfigurationRules.GetQuestionPackCount();
 
+            // @todo: add this new version instead List<QuestionPackData> questionPackDataList = currentConfigurationRules.CreateAllQuestionPacks();
+
             List<QuestionPackData> questionPackDataList = new List<QuestionPackData>();
             for (int i = 0; i < questionPacksNumber; i++)
             {

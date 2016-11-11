@@ -18,8 +18,11 @@ namespace EA4S
         [Header("Pines")]
         public Transform[] posPines;
         public int numStepsBetweenPines;
+
+        [Header("Steps")]
         public GameObject dot;
         public GameObject[] posDots;
+        public GameObject stepsParent;
         public Vector3 pinLeft, pinRight;
         Quaternion rot;
         int numDot=0;
@@ -97,6 +100,7 @@ namespace EA4S
                     dotGo.GetComponent<Dot>().playSessionActual = 2;
                 else
                     dotGo.GetComponent<Dot>().playSessionActual = 3;
+                dotGo.transform.parent = stepsParent.transform;
                 posDots[numDot] = dotGo;
                 numDot++;
             }
@@ -146,13 +150,21 @@ namespace EA4S
         {
             return AppManager.Instance.DB.FindPlaySessionData(x => x.Stage == _stage);
         }
-
         public void Play()
+        {
+            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
+
+            if (AppManager.Instance.IsAssessmentTime)
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
+            else
+                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GamesSelector");
+        }
+       /* public void Play()
         {
             if (AppManager.Instance.IsAssessmentTime)
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
             else
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
-        }
+        }*/
     }
 }

@@ -1,9 +1,8 @@
 ﻿using SQLite;
 using System;
 
-namespace EA4S.Db
+namespace EA4S
 {
-
     public enum InfoEvent
     {
         ProfileCreated = 1,
@@ -13,6 +12,11 @@ namespace EA4S.Db
 
         Book = 30,
     }
+
+}
+
+namespace EA4S.Db
+{
 
 
     [System.Serializable]
@@ -30,7 +34,7 @@ namespace EA4S.Db
         {
         }
 
-        public LogInfoData(string _Session, InfoEvent _Event, PlaySkill _PlaySkill, string _Parameters)
+        public LogInfoData(string _Session, InfoEvent _Event, string _Parameters)
         {
             this.Session = _Session;
             this.Event = _Event;

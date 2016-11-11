@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EA4S;
 
 namespace EA4S.ThrowBalls
@@ -51,7 +52,6 @@ namespace EA4S.ThrowBalls
         {
             base.Awake();
             Instance = this;
-
         }
 
         protected override void Start()
@@ -95,7 +95,7 @@ namespace EA4S.ThrowBalls
             StartCoroutine("StartNewRound");
 
             AudioManager.I.PlayMusic(Music.MainTheme);
-
+            
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
         }
@@ -168,7 +168,6 @@ namespace EA4S.ThrowBalls
 
         public void ResetScene()
         {
-            UIController.instance.Reset();
             UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
@@ -201,6 +200,11 @@ namespace EA4S.ThrowBalls
 
             numBalls = MAX_NUM_BALLS;
 
+            if (roundNumber > 1)
+            {
+                MinigamesUI.Lives.ResetToMax();
+            }
+            
             isRoundOngoing = false;
         }
 
@@ -208,9 +212,16 @@ namespace EA4S.ThrowBalls
         {
             ResetScene();
 
-            List<string> currentLettersInPlay = new List<string>();
+            if (roundNumber == 1)
+            {
+                MinigamesUI.Init(MinigamesUIElement.Lives | MinigamesUIElement.Starbar);
+                MinigamesUI.Lives.Setup(MAX_NUM_BALLS);
+            }
 
-            LL_LetterData correctLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
+            IQuestionPack newQuestionPack = ThrowBallsConfiguration.Instance.Questions.GetNextQuestion();
+
+            LL_LetterData correctLetter = (LL_LetterData)newQuestionPack.GetCorrectAnswers().ToList()[0];
+            List<ILivingLetterData> wrongLetters = newQuestionPack.GetWrongAnswers().ToList();
 
             AudioManager.I.PlayLetter(correctLetter.Key);
 
@@ -236,24 +247,15 @@ namespace EA4S.ThrowBalls
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
                     letterControllers[i].SetLetter(correctLetter);
-
-                    currentLettersInPlay.Add(correctLetter.Key);
                 }
 
                 else
                 {
                     letterObj.tag = Constants.TAG_WRONG_LETTER;
 
-                    LL_LetterData wrongLetter;
+                    letterControllers[i].SetLetter((LL_LetterData)wrongLetters[0]);
 
-                    do
-                    {
-                        wrongLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
-                    } while (currentLettersInPlay.Contains(wrongLetter.Key) || wrongLetter.Key == correctLetter.Key);
-
-                    letterControllers[i].SetLetter(wrongLetter);
-
-                    currentLettersInPlay.Add(wrongLetter.Key);
+                    wrongLetters.RemoveAt(0);
                 }
             }
 
@@ -264,7 +266,7 @@ namespace EA4S.ThrowBalls
             if (roundNumber > 0)
             {
                 UIController.instance.Enable();
-                UIController.instance.OnRoundStarted(correctLetter);
+                UIController.instance.SetLetterHint(correctLetter);
             }
 
             else
@@ -292,6 +294,21 @@ namespace EA4S.ThrowBalls
                 if (roundNumber > 0)
                 {
                     numRoundsWon++;
+
+                    if (numRoundsWon == 2)
+                    {
+                        MinigamesUI.Starbar.GotoStar(0);
+                    }
+
+                    else if (numRoundsWon == 4)
+                    {
+                        MinigamesUI.Starbar.GotoStar(1);
+                    }
+
+                    else if (numRoundsWon == 5)
+                    {
+                        MinigamesUI.Starbar.GotoStar(2);
+                    }
                 }
 
                 else
@@ -344,7 +361,8 @@ namespace EA4S.ThrowBalls
             if (isRoundOngoing && roundNumber > 0)
             {
                 numBalls--;
-                UIController.instance.OnBallLost();
+
+                MinigamesUI.Lives.SetCurrLives(numBalls);
 
                 if (numBalls == 0)
                 {
@@ -454,39 +472,71 @@ namespace EA4S.ThrowBalls
 
         private LetterController.MotionVariation GetMotionOfRound()
         {
-            switch (numRoundsWon + 1)
+            if (roundNumber == 0)
             {
-                case 1:
-                    return LetterController.MotionVariation.Idle;
-                case 2:
-                    return LetterController.MotionVariation.Idle;
-                case 3:
-                    return LetterController.MotionVariation.Popping;
-                case 4:
-                    return LetterController.MotionVariation.Jumping;
-                case 5:
-                    return LetterController.MotionVariation.Idle;
-                default:
-                    return LetterController.MotionVariation.Idle;
+                return LetterController.MotionVariation.Idle;
+            }
+
+            float normalizedDifficulty = (numRoundsWon + 1) * 0.8f * ThrowBallsConfiguration.Instance.Difficulty;
+
+            if (normalizedDifficulty <= 0.6f)
+            {
+                return LetterController.MotionVariation.Idle;
+            }
+
+            else if (normalizedDifficulty <= 1.2f)
+            {
+                return LetterController.MotionVariation.Idle;
+            }
+
+            else if (normalizedDifficulty <= 1.8f)
+            {
+                return LetterController.MotionVariation.Popping;
+            }
+
+            else if(normalizedDifficulty <= 2.4f)
+            {
+                return LetterController.MotionVariation.Jumping;
+            }
+
+            else
+            {
+                return LetterController.MotionVariation.Idle;
             }
         }
 
         private LetterController.PropVariation GetPropOfRound()
         {
-            switch (numRoundsWon + 1)
+            if (roundNumber == 0)
             {
-                case 1:
-                    return LetterController.PropVariation.Nothing;
-                case 2:
-                    return LetterController.PropVariation.StaticPileOfCrates;
-                case 3:
-                    return LetterController.PropVariation.Bush;
-                case 4:
-                    return LetterController.PropVariation.StaticPileOfCrates;
-                case 5:
-                    return LetterController.PropVariation.SwervingPileOfCrates;
-                default:
-                    return LetterController.PropVariation.Nothing;
+                return LetterController.PropVariation.Nothing;
+            }
+
+            float normalizedDifficulty = (numRoundsWon + 1) * 0.8f * ThrowBallsConfiguration.Instance.Difficulty;
+
+            if (normalizedDifficulty <= 0.6f)
+            {
+                return LetterController.PropVariation.Nothing;
+            }
+
+            else if (normalizedDifficulty <= 1.2f)
+            {
+                return LetterController.PropVariation.StaticPileOfCrates;
+            }
+
+            else if (normalizedDifficulty <= 1.8f)
+            {
+                return LetterController.PropVariation.Bush;
+            }
+
+            else if (normalizedDifficulty <= 2.4f)
+            {
+                return LetterController.PropVariation.StaticPileOfCrates;
+            }
+
+            else
+            {
+                return LetterController.PropVariation.SwervingPileOfCrates;
             }
         }
 
