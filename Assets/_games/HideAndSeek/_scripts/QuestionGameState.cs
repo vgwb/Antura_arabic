@@ -30,13 +30,8 @@
             game.SetCurrentState(game.PlayState);
         }
 
-        public void Update(float delta)
-        {
+        public void Update(float delta) { }
 
-        }
-
-        public void UpdatePhysics(float delta)
-        {
-        }
+        public void UpdatePhysics(float delta) { }
     }
 }

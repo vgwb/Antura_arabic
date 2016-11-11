@@ -3,29 +3,20 @@ using System.Collections;
 
 namespace EA4S.HideAndSeek
 {
-public class HideAndSeekTreeController : MonoBehaviour {
-
-	// Use this for initialization
+    public class HideAndSeekTreeController : MonoBehaviour
+    {
 		public delegate void TouchAction(int i);
 		public static event TouchAction onTreeTouched;
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	void OnMouseDown()
+        
+	    void OnMouseDown()
 		{
-			if (onTreeTouched != null) {
-				//Debug.Log ("Send Event");
+			if (onTreeTouched != null)
+            {
 				onTreeTouched (id);
 			}
-
 		}
-		//var
+		
 		public int id;
-}
+    }
 
 }

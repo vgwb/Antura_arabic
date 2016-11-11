@@ -95,14 +95,14 @@ namespace EA4S.ColorTickle
                 
                 gameObject.transform.position = v3Destination;
                 m_bMovingToDestination = false;
-                m_oLetter.SetWalkingSpeed(1);
+                m_oLetter.SetWalkingSpeed(0);
 
                 m_oLetter.SetState(LLAnimationStates.LL_still);
                 AudioManager.I.PlayLetter(m_oLetter.Data.Key);
             }
             else
             {
-                m_oLetter.SetWalkingSpeed(1);
+                m_oLetter.SetWalkingSpeed(0);
                 
                 m_oLetter.SetState(LLAnimationStates.LL_walking);
                 gameObject.transform.position += _v3PartialMovement;

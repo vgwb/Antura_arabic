@@ -13,7 +13,7 @@ namespace EA4S.HideAndSeek
 			HideAndSeekTreeController.onTreeTouched -= MoveObject;
 			HideAndSeekLetterController.onLetterTouched -= CheckResult;
 		}
-		// Use this for initialization
+		
 		void Start ()
         {
             for(int i = 0; i < MAX_OBJECT; ++i)
@@ -22,17 +22,12 @@ namespace EA4S.HideAndSeek
             }
         }
 	
-		// Update is called once per frame
 		void Update ()
         {
             if (StartNewRound && game.inGame && Time.time > time + timeToWait)
             {
-
-                
-
                 NewRound();
             }
-
         }
 
 		void MoveObject(int id){
@@ -41,7 +36,6 @@ namespace EA4S.HideAndSeek
                 script = ArrayLetters[GetIdFromPosition(id)].GetComponent<HideAndSeekLetterController>();
                 script.Move();
             }
-
 		}
 
         int GetIdFromPosition(int index)
@@ -56,11 +50,9 @@ namespace EA4S.HideAndSeek
 
         void NewRoundSetup()
         {
-           
             StartNewRound = true;
             SetTime();
             WidgetPopupWindow.I.Close();
-            
         }
 
         public void RepeatAudio()
@@ -75,14 +67,10 @@ namespace EA4S.HideAndSeek
             var initialDelay = 3f;
             yield return new WaitForSeconds(initialDelay);
             
-            
-
             if(answer)
                 WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", true, image);
             else
                 WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", false, image);
-
-            //ArrayLetters[letterInAnimation].transform.position = originLettersPlaceholder.position;
         }
 
         void CheckResult(int id)
@@ -96,6 +84,8 @@ namespace EA4S.HideAndSeek
                 script.resultAnimation(true);
                 Debug.Log("winner");
                 game.OnResult();
+                buttonRepeater.SetActive(false);
+                AudioManager.I.PlaySfx(Sfx.Win);
             }
             else
             {
@@ -104,10 +94,10 @@ namespace EA4S.HideAndSeek
                 script.resultAnimation(false);
                 if (lifes == 0)
                 {
-
                     LockTrees();
+                    AudioManager.I.PlaySfx(Sfx.Lose);
                     StartCoroutine(DelayAnimation(false));
-                    
+                    buttonRepeater.SetActive(false);
                 }
                
             }
@@ -120,15 +110,12 @@ namespace EA4S.HideAndSeek
             {
                 case 2:
                     game.Context.GetOverlayWidget().SetLives(2);
-                    //LifeSprite[0].SetActive(false);
                     break;
                 case 1:
                     game.Context.GetOverlayWidget().SetLives(1);
-                    //LifeSprite[1].SetActive(false);
                     break;
                 case 0:
                     game.Context.GetOverlayWidget().SetLives(0);
-                    //LifeSprite[2].SetActive(false);
                     break;
             }
 
@@ -137,13 +124,7 @@ namespace EA4S.HideAndSeek
         void SetFullLife()
         {
             lifes = 3;
-
             game.Context.GetOverlayWidget().SetLives(3);
-            /*
-            for (int i = 0; i < LifeSprite.Length; ++i)
-            {
-                LifeSprite[i].SetActive(true);
-            }*/
         }
 
         public void SetTime()
@@ -160,17 +141,12 @@ namespace EA4S.HideAndSeek
         }
         public void ClearRound()
         {
-
-
             for(int i = 0; i < MAX_OBJECT; ++i)
             {
-                //if(i != letterInAnimation)
-                    ArrayLetters[i].transform.position = originLettersPlaceholder.position;
+                ArrayLetters[i].transform.position = originLettersPlaceholder.position;
                 ArrayLetters[i].GetComponent<HideAndSeekLetterController>().ResetLetter();
                 UsedPlaceholder[i] = false;
-
             }
-            
         }
 
         public void NewRound()
@@ -187,9 +163,6 @@ namespace EA4S.HideAndSeek
 
             List<ILivingLetterData> letterList = currentQuestion.GetLetters();
 
-            // metodo dato active letters ci restituisce una lista di placeholders(tra quelli di arrayplaceholder)
-            // posiziono lettera tramite placeh, setto il giusto id e attivo colliders alberi (che aggiungo alla loro lista)
-
             for(int i = 0; i < ActiveLetters; ++i)
             {
                 int index = getRandomPlaceholder();
@@ -198,7 +171,6 @@ namespace EA4S.HideAndSeek
 
                     ActiveTrees.Add(ArrayTrees[index]);
        
-                    //set bool for letters for correct/wrong anim
                     ArrayLetters[i].transform.position = ArrayPlaceholder[index].transform.position;
                     HideAndSeekLetterController scriptComponent = ArrayLetters[i].GetComponent<HideAndSeekLetterController>();
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
@@ -206,11 +178,10 @@ namespace EA4S.HideAndSeek
                     SetLetterMovent(index, scriptComponent);
                     ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Init(letterList[i]);
                 }
-                
             }
-            
             WidgetPopupWindow.I.ShowSentence(BeginRound, "comment_welldone", image);
 
+            
         }
 
         public void SetLetterMovent( int placeholder, HideAndSeekLetterController script)
@@ -229,8 +200,7 @@ namespace EA4S.HideAndSeek
         {
             StartCoroutine(DisplayRound_Coroutine());
         }
-
-
+        
         private IEnumerator DisplayRound_Coroutine()
         {
             WidgetPopupWindow.I.Close();
@@ -246,6 +216,7 @@ namespace EA4S.HideAndSeek
             AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
             game.PlayState.gameTime.Start();
 
+            buttonRepeater.SetActive(true);
         }
 
         public int getRandomPlaceholder()
@@ -262,15 +233,13 @@ namespace EA4S.HideAndSeek
                     UsedPlaceholder[i] = true;
                     return i;
                 }
-                    
                 result++;
             }
-
             return -1;
-        }  
+        }
 
 
-        //var
+        #region VARIABLES
         bool StartNewRound = true;
         int lifes;
         int ActiveLetters;
@@ -288,16 +257,11 @@ namespace EA4S.HideAndSeek
 		public GameObject[] ArrayLetters;
 
         private int letterInAnimation = -1;
-
-        //public GameObject[] LifeSprite;
-        //public GameObject LifeObj;
         
-
 		private HideAndSeekLetterController script;
 
         public HideAndSeekGame game;
-
-
+        
         public HideAndSeekQuestionsProvider questionProvider;
         public HideAndSeekQuestionsPack currentQuestion;
 
@@ -305,5 +269,8 @@ namespace EA4S.HideAndSeek
         private float time;
 
         public Sprite image;
+
+        public GameObject buttonRepeater;
+        #endregion
     }
 }

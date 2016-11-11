@@ -54,7 +54,8 @@ namespace EA4S.MissingLetter
             List<ILivingLetterData> correctAnswers = new List<ILivingLetterData>();
             var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Letters);
             int index = UnityEngine.Random.Range(0, Letters.Count);
-         
+
+            Debug.Log("Orginal Word :" + word.TextForLivingLetter);
             //add correct letter answer
             correctAnswers.Add(Letters[index]);
             //save original word
@@ -65,7 +66,6 @@ namespace EA4S.MissingLetter
             //sQuestion = sQuestion.Insert(index, "\u25A0");
             sQuestion = sQuestion.Insert(index, "_");
             word.Data.Arabic = sQuestion;
-            Debug.Log("Orginal Word :" + mRemovedElement);
 
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
             for(int i=0; i< Letters.Count; ++i)
