@@ -26,7 +26,7 @@ namespace EA4S.ColorTickle
         LetterObjectView m_LetterObjectView;
         TMPTextColoring m_TMPTextColoringLetter;
         SurfaceColoring m_SurfaceColoringLetter;
-        LLController m_LLController;
+        ColorTickle_LLController m_LLController;
         HitStateLLController m_HitStateLLController;
 
         bool m_NextLetter = false;
@@ -48,8 +48,8 @@ namespace EA4S.ColorTickle
 
 			ResetState ();
 
-            game.anturaController.LetterReached += AnturaReachedLetter;
-            game.anturaController.AnturaGoingAway += AnturaGoingAway;
+            game.anturaController.OnStateChanged += AnturaInteractions;
+            
 
             //Init the first letter
             m_CurrentLetter = game.myLetters[m_Rounds - 1];
@@ -65,7 +65,7 @@ namespace EA4S.ColorTickle
         {
             if (m_Rounds <= 0)
             {
-                game.m_Stars = Mathf.FloorToInt(m_Stars);
+                game.m_Stars = Mathf.RoundToInt(m_Stars);
                 game.SetCurrentState(game.ResultState);
             }
             else
@@ -75,7 +75,7 @@ namespace EA4S.ColorTickle
 
                 if (m_PercentageLetterColored >= 100 || m_Lives <=0)
                 {
-                    DisableAntura();
+                    //DisableAntura();
                     m_LetterObjectView.Poof();
                     m_CurrentLetter.SetActive(false);
                     --m_Rounds;
@@ -119,18 +119,20 @@ namespace EA4S.ColorTickle
 		private void InitLetter()
 		{
             m_LetterObjectView = m_CurrentLetter.GetComponent<LetterObjectView>();
-            m_LetterObjectView.HasFear = true;
+            //m_LetterObjectView.HasFear = true;
 
             m_TMPTextColoringLetter = m_CurrentLetter.GetComponent<TMPTextColoring>();
             m_SurfaceColoringLetter = m_CurrentLetter.GetComponent<SurfaceColoring>();
 
-            m_LLController = m_CurrentLetter.GetComponent<LLController>();
+            m_LLController = m_CurrentLetter.GetComponent<ColorTickle_LLController>();
             m_LLController.movingToDestination = true;
 
             m_HitStateLLController = m_CurrentLetter.GetComponent<HitStateLLController>();
             m_HitStateLLController.LoseLife += LoseLife;
+
             m_HitStateLLController.EnableAntura += EnableAntura;
-            m_HitStateLLController.DisableAntura += DisableAntura;
+            game.anturaController.targetToLook = m_CurrentLetter.transform;
+            //m_HitStateLLController.DisableAntura += DisableAntura;
 
             SetBrushColor(m_ColorsUIManager.defaultColor);
             //SetBrushColor(m_ColorsButtonsManager.defaultColor);         
@@ -139,25 +141,6 @@ namespace EA4S.ColorTickle
 
         private void SetBrushColor(Color color)
         {
-			//old version, search for all
-            /*ColoringParameters[] Brushes = m_currentLetter.GetComponents<ColoringParameters>();
-
-			for (int i = 0; i < Brushes.Length; ++i)
-			{
-				if (Brushes [i].brushName.CompareTo ("BodyBrush") == 0) {
-					Color brushColor = color;
-					brushColor.r += (1 - color.r) * 0.4f;
-					brushColor.g += (1 - color.g) * 0.4f;
-					brushColor.b += (1 - color.b) * 0.4f;
-					Brushes [i].SetBrushColor (brushColor);
-				} 
-				else {
-					Brushes [i].SetBrushColor (color);
-				}
-			}*/
-
-            //new version, just take the brushes from the scripts that make use of them
-
             m_TMPTextColoringLetter.brush.SetBrushColor(color); //give the exact color to the letter 
 
             Color brushColor = color;
@@ -170,7 +153,7 @@ namespace EA4S.ColorTickle
         private void LoseLife()
         {
             m_Lives--;
-            m_Stars -= 0.4f;
+            m_Stars -= 0.3f;
             game.gameUI.SetLives(m_Lives);
             Debug.Log("Lives : " + m_Lives);
         }
@@ -188,29 +171,52 @@ namespace EA4S.ColorTickle
 
         private void EnableAntura()
         {
-            game.anturaController.isEnable = true;
-            game.anturaController.letterPosition = m_CurrentLetter.transform.position;
+            game.anturaController.TryLaunchAnturaDisruption();
+            //game.anturaController.isEnable = true;
+            //game.anturaController.letterPosition = m_CurrentLetter.transform.position;
         }
 
-        private void DisableAntura()
+        /*private void DisableAntura()
         {
             game.anturaController.isEnable = false;
-        }
+        }*/
 
         private void AnturaReachedLetter()
         {
             m_HitStateLLController.LLState = HitStateLLController.eLLState.SCARED;
-            //m_LetterObjectView.HasFear = true;
+            
             //m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
+
+            m_LetterObjectView.SetState(LLAnimationStates.LL_still);
+            m_LetterObjectView.HasFear = true;
             m_LetterObjectView.Crouching = true;
         }
 
         private void AnturaGoingAway()
         {
             m_HitStateLLController.LLState = HitStateLLController.eLLState.IDLE;
-            //m_LetterObjectView.HasFear = false;
+
             //m_LetterObjectView.SetState(LLAnimationStates.LL_still);
+            m_LetterObjectView.HasFear = false;
             m_LetterObjectView.Crouching = false;
+        }
+
+        /// <summary>
+        /// This is called by Antura controller with the change state event to apply any
+        /// needed interactions.
+        /// </summary>
+        /// <param name="eState">Current state for Antura</param>
+        private void AnturaInteractions( AnturaContollerState eState)
+        {
+            //For now scare the LL by make it crouch 
+            if (eState == AnturaContollerState.BARKING) //Antura scared the LL
+            {
+                AnturaReachedLetter();
+            }
+            else if (eState == AnturaContollerState.COMINGBACK) //Antura is returning to his place
+            {
+                AnturaGoingAway();
+            }
         }
 
         #endregion
