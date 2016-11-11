@@ -21,7 +21,7 @@ namespace EA4S.Db
     {
         SQLiteConnection _connection;
 
-        public DBService(string DatabaseName)
+        public DBService(string DatabaseName, int profileId)
         {
 
 #if UNITY_EDITOR
@@ -62,16 +62,38 @@ namespace EA4S.Db
             catch
             {
                 _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
-                RecreateAllTables();
+                RegenerateDatabase(profileId);
             }
+
+            // Check that the DB version is correct, otherwise recreate the tables
+            GenerateTable<DatabaseInfoData>(true, false); // Makes sure that the database info data table exists
+            var info = _connection.Find<DatabaseInfoData>(1);
+            if (info == null || info.Version != Config.AppVersion)
+            {
+                Debug.LogWarning("SQL database is outdated. Recreating it (version " + Config.AppVersion + " )");
+                RegenerateDatabase(profileId);
+            }
+            else
+            {
+                Debug.Log("Database ready. Version " + info.Version);
+            }
+
             //Debug.Log("Database final PATH: " + dbPath);
         }
 
         #region Creation
 
+        private void RegenerateDatabase(int profileId)
+        {
+            RecreateAllTables();
+
+            _connection.Insert(new DatabaseInfoData(Config.AppVersion, profileId));
+        }
+
         public void GenerateTables(bool create, bool drop)
         {
             // @note: define the DB structure here
+            GenerateTable<DatabaseInfoData>(create, drop);
             GenerateTable<LogInfoData>(create, drop);
             GenerateTable<LogLearnData>(create, drop);
             GenerateTable<LogMoodData>(create, drop);

@@ -11,6 +11,7 @@
 
         public void EnterState()
         {
+            MinigamesUI.Init(MinigamesUIElement.Starbar);
             game.PlayActiveMusic();
             game.Play();
         }

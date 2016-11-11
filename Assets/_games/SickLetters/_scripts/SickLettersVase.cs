@@ -10,7 +10,11 @@ namespace EA4S.SickLetters
         public TextMeshPro _counter;
         public int counter
         {
-            set { _counter.text = value.ToString(); }
+            set
+            {
+                _counter.text = value.ToString();
+                //game.Context.GetOverlayWidget().SetStarsScore(value / (game.targetScale / 3));
+            }
             get { return int.Parse(_counter.text);  }
         }
 
@@ -41,21 +45,29 @@ namespace EA4S.SickLetters
             {
                 dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
 
+                if (!dd)
+                    return;
+
                 if(dd.isDragging)
                     cheatingDetected = true;
 
                 if (dd.isCorrect)
                 {
+                    game.Context.GetCheckmarkWidget().Show(false);
+                    game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                     game.Poof(dd.transform.position);
+
                     StartCoroutine(onWrongMove());
                     dd.resetCorrectDD();
                 }
-                else
+                else if(!dd.isInVase)
                 {
                     dd.deattached = true;
 
                     if (cheatingDetected)
                     {
+                        game.Context.GetCheckmarkWidget().Show(false);
+                        game.Context.GetAudioManager().PlaySound(Sfx.Lose);
                         game.Poof(dd.transform.position);
                         Destroy(dd.gameObject);
                         cheatingDetected = false;
@@ -63,6 +75,10 @@ namespace EA4S.SickLetters
                     else
                     {
                         counter++;
+                        game.Context.GetCheckmarkWidget().Show(true);
+                        game.Context.GetAudioManager().PlaySound(Sfx.OK);
+                        game.currentStars = (counter / 2) / (game.targetScale / 6);
+                        game.Context.GetOverlayWidget().SetStarsScore(game.currentStars);
                         dd.isInVase = true;
                     }
 
@@ -74,11 +90,15 @@ namespace EA4S.SickLetters
 
         public IEnumerator onWrongMove() {
 
+            StartCoroutine(game.antura.bark());
+
             yield return new WaitForSeconds(0.5f);
 
             game.LLPrefab.LLStatus = letterStatus.angry;
             game.LLPrefab.letterView.DoAngry();
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(game.LLPrefab.letterView.Data, true);
+
+            
 
             yield return new WaitForSeconds(1.5f);
             game.LLPrefab.LLStatus = letterStatus.idle;
@@ -98,7 +118,8 @@ namespace EA4S.SickLetters
            
 
             yield return new WaitForSeconds(1.5f);
-
+            game.antura.sleep();
+            
             summonVase();
         }
 
@@ -141,6 +162,8 @@ namespace EA4S.SickLetters
                     dd.thisRigidBody.isKinematic = true;
                 }
             }
+
+            vaseRB.isKinematic = true;
 
             while (true)
             {

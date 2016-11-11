@@ -11,6 +11,7 @@ namespace EA4S.ReadingGame
         public GameObject circleBox;
 
         public int CurrentScore { get; private set; }
+        public int CurrentQuestionNumber { get; set; }
 
         [HideInInspector]
         public bool isTimesUp;
@@ -18,10 +19,11 @@ namespace EA4S.ReadingGame
         int lives = 3;
 
         public const int TIME_TO_ANSWER = 20;
-        const int QUESTIONS = 5;
-        const int STARS_1_THRESHOLD = 10;
-        const int STARS_2_THRESHOLD = 20;
-        const int STARS_3_THRESHOLD = 30;
+        public const int MAX_QUESTIONS = 5;
+        const int STARS_1_THRESHOLD = 10 * MAX_QUESTIONS;
+        const int STARS_2_THRESHOLD = 20 * MAX_QUESTIONS;
+        const int STARS_3_THRESHOLD = 30 * MAX_QUESTIONS;
+        
 
         public int CurrentStars
         {
@@ -76,7 +78,7 @@ namespace EA4S.ReadingGame
 
             if (lives == 0)
             {
-                EndGame(0, 0);
+                EndGame(CurrentStars, CurrentScore);
                 return true;
             }
             return false;
