@@ -28,8 +28,7 @@
         /// Return the rules for learning related to this minigame
         /// </summary>
         /// <returns></returns>
-        // @todo: add this   
-        //MiniGameLearnRules SetupLearnRules();
+        MiniGameLearnRules SetupLearnRules();
 
         /// <summary>
         /// Gets or sets the difficulty.
