@@ -3,7 +3,12 @@ namespace EA4S.Teacher
 {
     public static class ConfigAI
     {
+        // Debug
         public static bool verboseTeacher = true;
+
+        // General configuration
+        public const int daysForMaximumRecentPlayMalus = 4;   // Days at which we get the maximum malus for a recent play weight
+        public const int numberOfMinigamesPerPlaySession = 3;
 
         // Minigame selection weights
         public const float minigame_playSessionWeight = 1f;
@@ -19,9 +24,6 @@ namespace EA4S.Teacher
         public const float difficulty_weight_performance = 1f;
 
         public const float startingDifficultyForNewMiniGame = 0f;
-
-        // General configuration
-        public const int daysForMaximumRecentPlayMalus = 4;   // Days at which we get the maximum malus for a recent play weight
 
         // Application details
         public const float minimumAge = 7;
