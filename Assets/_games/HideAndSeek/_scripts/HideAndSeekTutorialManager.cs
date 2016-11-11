@@ -71,23 +71,24 @@ namespace EA4S.HideAndSeek
         {
             timeFinger = Time.time + animDuration + timeToWait;
 
-            Vector3 offset = new Vector3(0f, 2f, -1f);
-            Vector3 offsetCentral = new Vector3(0f, 2f, -2f);
+            Vector3 offset = new Vector3(0f, 3f, -1f);
+            Vector3 offsetCentral = new Vector3(0f, 2.5f, -2f);
+            Vector3 offsetFirst = new Vector3(0.5f, 2f, -2f);
 
 
             switch (phase)
             {
                 case 0:
-                    TutorialUI.ClickRepeat(ArrayTrees[0].transform.position + offset, animDuration, 3);
+                    TutorialUI.ClickRepeat(ArrayTrees[0].transform.position + offsetFirst, animDuration, 2);
                     break;
                 case 1:
-                    TutorialUI.ClickRepeat(ArrayLetters[0].transform.position + offset, animDuration, 3);
+                    TutorialUI.ClickRepeat(ArrayLetters[0].transform.position + offset, animDuration, 2);
                     break;
                 case 2:
-                    TutorialUI.ClickRepeat(ArrayTrees[1].transform.position + offsetCentral, animDuration, 3);
+                    TutorialUI.ClickRepeat(ArrayTrees[1].transform.position + offsetCentral, animDuration, 2);
                     break;
                 case 3:
-                    TutorialUI.ClickRepeat(ArrayLetters[1].transform.position + offset, animDuration, 3);
+                    TutorialUI.ClickRepeat(ArrayLetters[1].transform.position + offset, animDuration, 2);
                     break;
 
             }
@@ -128,6 +129,7 @@ namespace EA4S.HideAndSeek
                 AudioManager.I.PlaySfx(Sfx.Win);
                 game.Context.GetCheckmarkWidget().Show(true);
                 StartCoroutine(GoToPlay());
+                phase = -1;
             }
             else
             {
