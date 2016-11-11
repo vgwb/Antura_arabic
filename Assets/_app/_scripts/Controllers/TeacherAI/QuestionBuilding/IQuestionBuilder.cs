@@ -7,10 +7,7 @@ namespace EA4S
     /// </summary>
     public interface IQuestionBuilder
     {
-        // @todo: add a local history of packs (so we do not pick the same elements multiple times)
-        int GetQuestionPackCount();
-        QuestionPackData CreateQuestionPackData();
-        //List<QuestionPackData> CreateAllQuestionPacks();
+        List<QuestionPackData> CreateAllQuestionPacks();
     }
 
 }

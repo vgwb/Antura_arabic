@@ -16,22 +16,26 @@ namespace EA4S
             this.nWrong = nWrong;
         }
 
-        public int GetQuestionPackCount()
+        public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            return nPacks;
+            List<QuestionPackData> packs = new List<QuestionPackData>();
+            for (int pack_i = 0; pack_i < nPacks; pack_i++)
+            {
+                packs.Add(CreateSingleQuestionPackData());
+            }
+            return packs;
         }
 
-        public QuestionPackData CreateQuestionPackData()
+        private QuestionPackData CreateSingleQuestionPackData()
         {
             QuestionPackData pack = null;
             var teacher = AppManager.Instance.Teacher;
-            var db = AppManager.Instance.DB;
 
             int nAttempts = 20;
             bool found = false;
             while(nAttempts > 0 && !found)
             {
-                var letter = db.GetAllLetterData().RandomSelectOne();
+                var letter = teacher.wordHelper.GetAllRealLetters().RandomSelectOne();
                 var correctWords = teacher.wordHelper.GetWordsWithLetter(letter.Id);
                 //UnityEngine.Debug.Log("Trying letter " + letter + " found n words " + correctWords.Count + " out of " + db.GetAllWordData().Count);
                 if (correctWords.Count < nCorrect)

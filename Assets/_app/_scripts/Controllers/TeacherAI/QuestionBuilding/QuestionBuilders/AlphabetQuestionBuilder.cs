@@ -5,34 +5,28 @@ namespace EA4S
 {
     public class AlphabetQuestionBuilder : IQuestionBuilder
     {
+        public AlphabetQuestionBuilder(){}
 
-        public AlphabetQuestionBuilder()
-        {}
-
-        public int GetQuestionPackCount()
+        public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            return 1;
+            List<QuestionPackData> packs = new List<QuestionPackData>();
+            packs.Add(CreateAlphabetQuestionPackData());
+            return packs;
         }
 
-        public QuestionPackData CreateQuestionPackData()
+        public QuestionPackData CreateAlphabetQuestionPackData()
         {
-            //var db = AppManager.Instance.DB;
             var teacher = AppManager.Instance.Teacher;
 
             // Fully ordered alphabet (@todo: check that it works!)
             var correctAnswers = teacher.wordHelper.GetAllRealLetters();
             correctAnswers.Sort((x, y) =>
-            {
-                return x.ToString().CompareTo(y.ToString());
-            }
+                {
+                    return x.ToString().CompareTo(y.ToString());
+                }
             );
 
             return QuestionPackData.CreateFromCorrect(null, correctAnswers);
-        }
-
-        public IQuestionPack CreateQuestionPack()
-        {
-            throw new System.Exception("DEPRECATED");
         }
 
     }
