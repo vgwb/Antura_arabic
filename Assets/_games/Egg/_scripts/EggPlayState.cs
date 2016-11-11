@@ -157,8 +157,7 @@ namespace EA4S.Egg
                         {
                             tutorialTimer = 1f;
 
-                            Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position
-                                - (game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.forward * 0.01f);
+                            Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position;
                             TutorialUI.Click(clickPosition);
                         }
                         else
@@ -377,16 +376,14 @@ namespace EA4S.Egg
             {
                 tutorialTimer = 1f;
 
-                Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position
-                    - (game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.forward * 0.01f);
+                Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position;
                 TutorialUI.Click(clickPosition);
             }
             else
             {
                 tutorialTimer = 2f;
 
-                Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position
-                    - (game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.forward * 0.01f);
+                Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position;
                 TutorialUI.ClickRepeat(clickPosition, tutorialTimer);
             }
         }
@@ -402,8 +399,8 @@ namespace EA4S.Egg
             tutorialActive = true;
             tutorialMarkWrong = true;
             tutorialTimer = 2f;
-
-            Vector3 markPosition = game.eggButtonBox.GetEggButton(letterData).transform.position - (game.eggButtonBox.GetEggButton(letterData).transform.forward * 0.01f);
+            
+            Vector3 markPosition = game.eggButtonBox.GetEggButton(letterData).transform.position;
 
             TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
         }
