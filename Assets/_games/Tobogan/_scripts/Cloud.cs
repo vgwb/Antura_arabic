@@ -21,7 +21,7 @@ public class Cloud : MonoBehaviour
         float tilt = Mathf.Sin(Time.time * tiltSpeed + tiltOffset*3.14f);
         float blob = Mathf.Sin(Time.time * blobSpeed);
 
-        transform.eulerAngles = new Vector3(0, 0, tilt * tiltAmount);
+        transform.localEulerAngles = new Vector3(0, 0, tilt * tiltAmount);
 
         float blobX = 1.0f + blob * 0.05f;
         transform.localScale = new Vector3(blobX, 1.0f / blobX, 1.0f)* startScale;
