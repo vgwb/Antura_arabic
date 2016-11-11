@@ -102,6 +102,11 @@ namespace EA4S
         }
 
         public void DeleteThisProfile() { }
+
+        public void SaveGlobalOptions() {
+            GameManager.Instance.PlayerProfile.Options = AppManager.Instance.GameSettings;
+            GameManager.Instance.PlayerProfile.SaveAllOptions();
+        }
         #endregion 
     }
 }

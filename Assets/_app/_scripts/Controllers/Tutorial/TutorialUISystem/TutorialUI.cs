@@ -32,7 +32,6 @@ namespace EA4S
         internal Transform CamT;
         const string ResourcePath = "Prefabs/UI/TutorialUI";
         const string TweenId = "TutorialUI";
-        float actualDrawSpeed;
         Transform currMovingTarget;
 
         #region Unity
@@ -42,7 +41,6 @@ namespace EA4S
             I = this;
             Cam = Camera.main;
             CamT = Cam.transform;
-            actualDrawSpeed = Cam.fieldOfView * DrawSpeed / 45f;
         }
 
         void OnDestroy()
@@ -159,6 +157,7 @@ namespace EA4S
             if (hasFinger) Finger.Show(currMovingTarget, startPos);
             if (hasArrow) arrow = Pools.SpawnArrow(this.transform, startPos, _overlayed);
 
+            float actualDrawSpeed = DrawSpeed * GetCameraBasedScaleMultiplier(_path[0]);
             TweenParams parms = TweenParams.Params.SetSpeedBased().SetEase(Ease.OutSine).SetId(TweenId);
 
             Tween mainTween = currMovingTarget.DOPath(_path, actualDrawSpeed, _pathType).SetAs(parms);
@@ -175,11 +174,7 @@ namespace EA4S
 
             if (hasArrow) {
                 Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f)
-//                Tween t = arrow.transform.DOPath(_path, actualDrawSpeed, _pathType).SetLookAt(0.01f, arrow.transform.forward, CamT.up)
-                    .SetAs(parms)
-                    .OnUpdate(() => {
-//                        arrow.Img.transform.LookAt(transform.position + CamT.rotation * Vector3.forward, CamT.up);
-                    });
+                    .SetAs(parms);
                 if (!_persistent) {
                     t.OnComplete(() => {
                         DOVirtual.DelayedCall(Mathf.Max(tr.Time - 0.2f, 0), () => arrow.Hide(), false).SetId(TweenId);
@@ -188,6 +183,15 @@ namespace EA4S
             }
 
             return new TutorialUIAnimation(mainTween);
+        }
+
+        #endregion
+
+        #region Helpers
+
+        public static float GetCameraBasedScaleMultiplier(Vector3 _position)
+        {
+            return (Vector3.Distance(_position, I.CamT.position) / 20) * (I.Cam.fieldOfView / 45f);
         }
 
         #endregion

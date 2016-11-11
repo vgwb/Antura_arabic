@@ -6,6 +6,7 @@ namespace EA4S.Db
   {
       DogProp = 1,
       DogSkin = 2,
+      DogAnimation = 3,
   }
 }
 

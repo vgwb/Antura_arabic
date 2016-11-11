@@ -26,7 +26,7 @@ namespace EA4S
         public QuestionPackData CreateQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
-            var db = AppManager.Instance.DB;
+            //var db = AppManager.Instance.DB;
 
             var commonLetters = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
             var words = teacher.wordHelper.GetWordsWithLetters(commonLetters.ConvertAll(x => x.Id).ToArray()).RandomSelect(nWords);
