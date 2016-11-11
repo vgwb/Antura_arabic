@@ -240,11 +240,14 @@ namespace EA4S.API
                     break;
                 case MiniGameCode.MixedLetters_alphabet:
                     // TODO: set variation
+                    MixedLetters.MixedLettersConfiguration.Instance.Variation = MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Alphabet;
                     MixedLetters.MixedLettersConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = MixedLetters.MixedLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.MixedLetters_spelling:
-                    // Not present in production pipeline
+                    MixedLetters.MixedLettersConfiguration.Instance.Variation = MixedLetters.MixedLettersConfiguration.MixedLettersVariation.Spelling;
+                    MixedLetters.MixedLettersConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = MixedLetters.MixedLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.SickLetters:
                     SickLetters.SickLettersConfiguration.Instance.Context = AnturaMinigameContext.Default;

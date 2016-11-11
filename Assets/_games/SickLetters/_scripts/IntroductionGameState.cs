@@ -18,6 +18,7 @@ namespace EA4S.SickLetters
         public void EnterState()
         {
             Debug.Log("enter intro");
+            game.antura.sleep();
         }
 
         public void ExitState()

@@ -20,14 +20,13 @@ namespace EA4S.DancingDots
 		public bool ClickToChangeAnimation = false;
 		public bool ClickToChangeLetter = false;
 		public bool ClickToSpeakLetter = false;
-		public bool DisableAnimator = false;
 
 		[Header("Starting State")]
-		public LivingLetterAnim AnimationState;
+		public LetterObjectView toDelete;
 		public bool ShowLetter = false;
 
 		[Header("References")]
-		public Animator LivingLetterAnimator;
+		public LetterObjectView letterObjectView;
 		public TextMeshPro hintText;
 		public TextMeshPro dotlessText;
 		public GameObject fullTextGO;
@@ -42,10 +41,6 @@ namespace EA4S.DancingDots
 		{
 
 			fullText = fullTextGO.GetComponent<TextMeshPro>();
-
-			if (DisableAnimator) {
-				LivingLetterAnimator.enabled = false;
-			}
 
 			PlayAnimation();
 		}
@@ -66,13 +61,7 @@ namespace EA4S.DancingDots
 
 		void PlayAnimation()
 		{
-			if (!DisableAnimator) {
-				if (AnimationState != LivingLetterAnim.Nothing) {
-					LivingLetterAnimator.Play(GetStateName(AnimationState));
-				} else {
-					LivingLetterAnimator.StopPlayback();
-				}
-			}
+			letterObjectView.SetState(LLAnimationStates.LL_dancing);
 		}
 
 		public void Clicked()
@@ -167,14 +156,7 @@ namespace EA4S.DancingDots
 
 		void RandomAnimation()
 		{
-			LivingLetterAnim newAnimationState = LivingLetterAnim.Nothing;
-
-			while ((newAnimationState == LivingLetterAnim.Nothing) || (newAnimationState == AnimationState)) {
-				newAnimationState = GenericUtilities.GetRandomEnum<LivingLetterAnim>();
-			}
-
-			AnimationState = newAnimationState;
-			PlayAnimation();
+			// TODO delte
 		}
 
 		string GetStateName(LivingLetterAnim state)

@@ -17,9 +17,11 @@ namespace EA4S.TakeMeHome
 
 		void Start()
 		{
-			//target = transform.position;
+			target = transform.position;
 			initialPosition = transform.position;
-		}
+            
+
+        }
 
 		void Update()
 		{

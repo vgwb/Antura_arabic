@@ -7,38 +7,52 @@ using TMPro;
 
 namespace EA4S.SickLetters
 {
-    public enum Diacritic { Sokoun, Fatha, Dameh, Kasrah };
+    public enum Diacritic { Sokoun, Fatha, Dameh, Kasrah, None };
 
     public class SickLettersGame : MiniGame
     {
         public SickLettersLLPrefab LLPrefab;
+        public SickLettersAntura antura;
         public SickLettersVase scale;
         public GameObject DropZonesGO;
-        
+        public UnityEngine.Animation hole;
+
         public SickLettersCamera slCamera;
         public SickLettersGameManager manager;
 
         [HideInInspector]
-        public int maxRoundsCount = 6, successRoundsCount = 0, wrongDraggCount = 0;
+        public MinigamesUIStarbar uiSideBar;
+        [HideInInspector]
+        public MinigamesUITimer uiTimer;
+        //[HideInInspector]
+        public int maxRoundsCount = 6, roundsCount = 1, wrongDraggCount = 0, currentStars = 0;
+        [HideInInspector]
+        public bool disableInput;
 
         public int gameDuration = 120 ,  targetScale = 10;
         public float vaseWidth = 5.20906f;
-        public bool LLCanDance = false;
+        public bool LLCanDance = false, with7arakat;
         public string dotlessLetters = "أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و";
 
         public SickLettersDraggableDD[] Draggables;
 
         [HideInInspector]
         public SickLettersDropZone[] DropZones;
+
+       
+
         [HideInInspector]
         public List<SickLettersDraggableDD> allWrongDDs = new List<SickLettersDraggableDD>();
+        [HideInInspector]
+        public QuestionsManager questionsManager;
+
 
         public IntroductionGameState IntroductionState { get; private set; }
         public QuestionGameState QuestionState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
 
-
+        public QuestionsManager questionManager;
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -46,8 +60,10 @@ namespace EA4S.SickLetters
             QuestionState = new QuestionGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
+            questionManager = new QuestionsManager();
 
             manager = GetComponent<SickLettersGameManager>();
+            //anturaAnimator = GetComponent<Animator>();
             DropZones = DropZonesGO.GetComponentsInChildren<SickLettersDropZone>();
             scale.game = this;
             scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
@@ -80,7 +96,11 @@ namespace EA4S.SickLetters
 
         public bool checkForNextRound()
         {
-            checkSucess();
+            if (checkSucess())
+                return false;
+
+            if (StateManager.CurrentState == ResultState)
+                return false;
 
             int i = 0;
             foreach (SickLettersDraggableDD dd in LLPrefab.thisLLWrongDDs)
@@ -91,7 +111,16 @@ namespace EA4S.SickLetters
 
             if (i == 0)
             {
-                successRoundsCount++;
+                if (roundsCount == maxRoundsCount)
+                {
+                    this.SetCurrentState(ResultState);
+                    return false;
+                } 
+
+                roundsCount++;
+                //Context.GetOverlayWidget().SetStarsScore(roundsCount / 2);
+                LLPrefab.letterAnimator.SetBool("dancing", false);
+                LLPrefab.letterAnimator.Play("LL_idle_1", -1);
                 LLPrefab.letterView.DoHorray();
                 SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 LLPrefab.jumpOut(1.5f);
@@ -101,22 +130,51 @@ namespace EA4S.SickLetters
                 return false;
         }
 
-        public void checkSucess()
+        public bool checkSucess()
         {
-            if( scale.counter == targetScale)
+            if (scale.counter == targetScale)
             {
-                successRoundsCount = 6;
                 manager.sucess();
+                return true;
             }
+            else
+                return false;
         }
 
+        
 
-        public void setDifficulty(int gameDuration, int targetScale, float vaseWidth, bool LLCanDance)
+        public void setDifficulty(float diff, int gameDuration, int targetScale, float vaseWidth, bool LLCanDance, bool with7arakat)
         {
             this.gameDuration = gameDuration;
+            Context.GetOverlayWidget().SetClockDuration(gameDuration);
             this.targetScale = targetScale;
-            this.vaseWidth = vaseWidth;
+
+            if(diff> 0.666f)
+                scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, 7.501349f);
+            else
+                scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
+
             this.LLCanDance = LLCanDance;
-        }   
+            this.with7arakat = with7arakat;
+        }
+
+        float prevDiff = -1;
+        public void peocessDifiiculties(float diff)
+        {
+            if (prevDiff == diff)
+                return;
+            else
+                prevDiff = diff;
+
+
+            if (diff < 0.333f)
+                setDifficulty(diff, 120, 18, 5.20906f, false, false);
+            else if (diff < 0.666f)
+                setDifficulty(diff, 120, 42, 4.0f, false, true);
+            else
+                setDifficulty(diff, 160, 42, 3.0f, true, true);
+        }
+
+        
     }
 }

@@ -11,7 +11,7 @@ namespace EA4S
     {
         public bool IsPooled;
 
-        protected SpriteRenderer Img;
+        [System.NonSerialized] public SpriteRenderer Img;
         protected Transform DefParent;
         int defSortingOrder;
         protected Tween ShowTween;
@@ -55,9 +55,10 @@ namespace EA4S
         {
             Reset();
             this.transform.parent = _parent;
-            this.transform.rotation = Quaternion.identity;
+            this.transform.LookAt(transform.position + TutorialUI.I.CamT.rotation * Vector3.forward, TutorialUI.I.CamT.up);
             this.transform.position = _position;
-            this.transform.localScale = Vector3.one * (TutorialUI.I.Cam.fieldOfView / 45f);
+//            TutorialUI.SetCameraBasedScale(this.transform);
+            this.transform.localScale = Vector3.one * TutorialUI.GetCameraBasedScaleMultiplier(_position);
             this.gameObject.SetActive(true);
             Img.sortingOrder = _overlayed ? defSortingOrder : 0;
             ShowTween.PlayForward();

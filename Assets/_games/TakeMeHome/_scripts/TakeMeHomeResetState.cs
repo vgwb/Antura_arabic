@@ -13,8 +13,9 @@
 
 		public void EnterState()
 		{
-			
-			if (game.currentLetter.lastTube == null) {
+           
+
+            if (game.currentLetter.lastTube == null) {
 				win = false;
 				game.currentLetter.respawn = true;
 				return;
@@ -27,6 +28,7 @@
 				AudioManager.I.PlaySfx (Sfx.Win);
 				win = true;
 				game.IncrementScore ();
+
 			} else {
 				AudioManager.I.PlaySfx (Sfx.Lose);
 
