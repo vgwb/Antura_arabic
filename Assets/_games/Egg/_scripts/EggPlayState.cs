@@ -24,6 +24,11 @@ namespace EA4S.Egg
         IAudioSource positiveAudioSource;
 
         bool showTutorial;
+        bool tutorialActive;
+        int tutorialSequenceIndex;
+        float tutorialTimer;
+        bool tutorialMarkWrong;
+        bool tutorialFirstTime;
 
         public EggPlayState(EggGame game)
         {
@@ -62,9 +67,15 @@ namespace EA4S.Egg
 
             game.eggButtonBox.SetOnPressedCallback(OnEggButtonPressed);
 
-            //showTutorial = game.showTutorial;
+            showTutorial = game.showTutorial;
+            tutorialActive = false;
+            tutorialMarkWrong = false;
+            tutorialFirstTime = showTutorial;
 
-            //TutorialPressCorrect();
+            if(tutorialFirstTime)
+            {
+                TutorialPressCorrect();
+            }
         }
 
         public void ExitState()
@@ -82,18 +93,21 @@ namespace EA4S.Egg
                 {
                     toNextState = false;
 
-                    if (game.stagePositiveResult)
+                    if(!showTutorial)
                     {
-                        ILivingLetterData runLetterData;
+                        if (game.stagePositiveResult)
+                        {
+                            game.correctStages++;
 
-                        runLetterData = game.questionManager.GetlLetterDataSequence()[0];
-
-                        game.runLettersBox.AddRunLetter(runLetterData);
+                            ILivingLetterData runLetterData;
+                            runLetterData = game.questionManager.GetlLetterDataSequence()[0];
+                            game.runLettersBox.AddRunLetter(runLetterData);
+                        }
+                        
+                        game.Context.GetOverlayWidget().SetStarsScore(game.CurrentStars);
+                        game.currentStage++;
+                        game.antura.NextStage();
                     }
-
-                    game.Context.GetOverlayWidget().SetStarsScore(game.CurrentStars);
-                    game.currentStage++;
-                    game.antura.NextStage();
 
                     game.SetCurrentState(game.ResultState);
                 }
@@ -125,12 +139,49 @@ namespace EA4S.Egg
 
                 inputButtonTimer = inputButtonTime;
             }
+
+            if(tutorialActive)
+            {
+                tutorialTimer -= delta;
+                if(tutorialTimer <= 0f)
+                {
+                    if (tutorialMarkWrong)
+                    {
+                        tutorialMarkWrong = false;
+                        TutorialPressCorrect();
+                    }
+                    else if (isSequence && !tutorialMarkWrong)
+                    {
+                        tutorialSequenceIndex++;
+                        if (tutorialSequenceIndex < correctAnswers)
+                        {
+                            tutorialTimer = 1f;
+                            TutorialUI.Click(game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position);
+                        }
+                        else
+                        {
+                            tutorialFirstTime = false;
+                            tutorialActive = false;
+                            EnableAllGameplayInput();
+                        }
+                    }
+                    else
+                    {
+                        tutorialFirstTime = false;
+                        tutorialActive = false;
+                        EnableAllGameplayInput();
+                    }
+                }
+            }
         }
 
         public void UpdatePhysics(float delta) { }
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
         {
+            if (tutorialFirstTime)
+                return;
+
             if (letterData == game.questionManager.GetlLetterDataSequence()[letterOnSequence])
             {
                 if (isSequence)
@@ -145,7 +196,14 @@ namespace EA4S.Egg
             }
             else
             {
-                NegativeFeedback();
+                if(showTutorial)
+                {
+                    TutorialPressedWrong();
+                }
+                else
+                {
+                    NegativeFeedback();
+                }
             }
         }
 
@@ -204,7 +262,6 @@ namespace EA4S.Egg
             game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
 
             letterOnSequence = 0;
-
             questionProgress = 0;
             game.eggController.ResetCrack();
             game.eggButtonBox.SetButtonsOnStandardColor();
@@ -237,7 +294,7 @@ namespace EA4S.Egg
 
         void AnturaButtonsIn()
         {
-            game.eggButtonBox.AnturaButtonIn(0.5f, 0.5f, 0.05f, 0.15f, game.antura.DoSpit, AnturaExit);
+            game.eggButtonBox.AnturaButtonIn(0.5f, 0.5f, 0.05f, 0.25f, game.antura.DoSpit, AnturaExit);
         }
 
         void AnturaSetOnSpitPostion()
@@ -255,8 +312,6 @@ namespace EA4S.Egg
 
         void OnEggCrackComplete()
         {
-            game.correctStages++;
-
             DisableAllGameplayInput();
             game.stagePositiveResult = true;
 
@@ -310,21 +365,33 @@ namespace EA4S.Egg
 
         void TutorialPressCorrect()
         {
-            if(isSequence)
-            {
+            DisableAllGameplayInput();
 
+            tutorialActive = true;
+            tutorialSequenceIndex = 0;
+
+            if (isSequence)
+            {
+                tutorialTimer = 1f;
+                TutorialUI.Click(game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position);
             }
             else
             {
-                TutorialUI.ClickRepeat(game.eggButtonBox.GetButtons(false)[0].transform.position, 1000f);
-
-
+                tutorialTimer = 2f;
+                TutorialUI.ClickRepeat(game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position, tutorialTimer);
             }
         }
 
         void TutorialPressedWrong()
         {
+            DisableAllGameplayInput();
 
+            letterOnSequence = 0;
+            questionProgress = 0;
+            game.eggButtonBox.SetButtonsOnStandardColor();
+
+            tutorialActive = true;
+            tutorialMarkWrong = true;
         }
     }
 }
