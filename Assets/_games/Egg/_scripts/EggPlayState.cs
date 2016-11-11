@@ -43,7 +43,7 @@ namespace EA4S.Egg
 
             questionProgress = 0;
 
-            if(isSequence)
+            if (isSequence)
             {
                 correctAnswers = game.questionManager.GetlLetterDataSequence().Count;
             }
@@ -57,7 +57,7 @@ namespace EA4S.Egg
             game.eggController.onEggPressedCallback = OnEggPressed;
 
             EnableAllGameplayInput();
-            
+
             nextStateTimer = 0f;
             toNextState = false;
 
@@ -72,7 +72,7 @@ namespace EA4S.Egg
             tutorialMarkWrong = false;
             tutorialFirstTime = showTutorial;
 
-            if(tutorialFirstTime)
+            if (tutorialFirstTime)
             {
                 TutorialPressCorrect();
             }
@@ -93,7 +93,7 @@ namespace EA4S.Egg
                 {
                     toNextState = false;
 
-                    if(!showTutorial)
+                    if (!showTutorial)
                     {
                         if (game.stagePositiveResult)
                         {
@@ -103,7 +103,7 @@ namespace EA4S.Egg
                             runLetterData = game.questionManager.GetlLetterDataSequence()[0];
                             game.runLettersBox.AddRunLetter(runLetterData);
                         }
-                        
+
                         game.Context.GetOverlayWidget().SetStarsScore(game.CurrentStars);
                         game.currentStage++;
                         game.antura.NextStage();
@@ -140,10 +140,10 @@ namespace EA4S.Egg
                 inputButtonTimer = inputButtonTime;
             }
 
-            if(tutorialActive)
+            if (tutorialActive)
             {
                 tutorialTimer -= delta;
-                if(tutorialTimer <= 0f)
+                if (tutorialTimer <= 0f)
                 {
                     if (tutorialMarkWrong)
                     {
@@ -156,7 +156,10 @@ namespace EA4S.Egg
                         if (tutorialSequenceIndex < correctAnswers)
                         {
                             tutorialTimer = 1f;
-                            TutorialUI.Click(game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position);
+
+                            Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position
+                                - (game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.forward * 0.01f);
+                            TutorialUI.Click(clickPosition);
                         }
                         else
                         {
@@ -196,9 +199,9 @@ namespace EA4S.Egg
             }
             else
             {
-                if(showTutorial)
+                if (showTutorial)
                 {
-                    TutorialPressedWrong();
+                    TutorialPressedWrong(letterData);
                 }
                 else
                 {
@@ -373,16 +376,22 @@ namespace EA4S.Egg
             if (isSequence)
             {
                 tutorialTimer = 1f;
-                TutorialUI.Click(game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position);
+
+                Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position
+                    - (game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.forward * 0.01f);
+                TutorialUI.Click(clickPosition);
             }
             else
             {
                 tutorialTimer = 2f;
-                TutorialUI.ClickRepeat(game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position, tutorialTimer);
+
+                Vector3 clickPosition = game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.position
+                    - (game.eggButtonBox.GetButtons(false)[tutorialSequenceIndex].transform.forward * 0.01f);
+                TutorialUI.ClickRepeat(clickPosition, tutorialTimer);
             }
         }
 
-        void TutorialPressedWrong()
+        void TutorialPressedWrong(ILivingLetterData letterData)
         {
             DisableAllGameplayInput();
 
@@ -392,6 +401,11 @@ namespace EA4S.Egg
 
             tutorialActive = true;
             tutorialMarkWrong = true;
+            tutorialTimer = 2f;
+
+            Vector3 markPosition = game.eggButtonBox.GetEggButton(letterData).transform.position - (game.eggButtonBox.GetEggButton(letterData).transform.forward * 0.01f);
+
+            TutorialUI.MarkNo(markPosition, TutorialUI.MarkSize.Big);
         }
     }
 }
