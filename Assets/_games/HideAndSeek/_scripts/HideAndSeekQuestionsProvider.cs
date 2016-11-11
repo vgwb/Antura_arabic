@@ -32,7 +32,7 @@ namespace EA4S.HideAndSeek
             else if (difficulty <= 1.0f)
                 numbersOfLetters = 7;
             
-			for (int i = 0; i < 15; i++)
+			for (int i = 0; i < 20; i++)
 		{
 			List<ILivingLetterData> listOfLetters = new List<ILivingLetterData>();
 
@@ -41,12 +41,12 @@ namespace EA4S.HideAndSeek
 				{
 					if (j == 0) 
 					{
-						listOfLetters.Add (AppManager.Instance.Teacher.GimmeARandomLetter ());
+						listOfLetters.Add (AppManager.Instance.Teacher.SelectRandomLetter().ConvertToLivingLetterData());
 						j++;
 					} 
 					else 
 					{
-						var lett = AppManager.Instance.Teacher.GimmeARandomLetter ();
+						var lett = AppManager.Instance.Teacher.SelectRandomLetter().ConvertToLivingLetterData();
 						if (!CheckIfContains (listOfLetters, lett)) 
 						{
 							listOfLetters.Add (lett);
