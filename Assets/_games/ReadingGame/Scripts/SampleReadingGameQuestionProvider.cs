@@ -17,7 +17,9 @@ namespace EA4S
 
             StringTestData fakeData = new StringTestData(
                  ArabicAlphabetHelper.PrepareStringForDisplay(
-                     "منذ لم نرك منذ مدة " + randomWord.Data.Arabic + " منذ مدة"));
+                     "منذ لم نرك منذ مدة " + randomWord.Data.Arabic + " منذ مدة" +
+                      "منذ لم نرك منذ مدة " +
+                        "منذ لم نرك منذ مدة "));
 
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
             while (wrongAnswers.Count < 6)
