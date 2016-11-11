@@ -15,7 +15,8 @@ namespace EA4S.Test
             StraightLine,
             FullCurve,
             Click,
-            ClickRepeat
+            ClickRepeat,
+            RandomMark
         }
 
         public float CameraDistance = 20;
@@ -23,6 +24,7 @@ namespace EA4S.Test
         [Header("References")]
         public Dropdown DrawModeDropdown;
         public Toggle FingerToggle, ArrowToggle, PersistentToggle, OverlayToggle;
+        public Toggle NormalToggle, BigToggle, HugeToggle;
 
         DrawMode drawMode = DrawMode.StraightLine;
         bool isDraggingMode { get { return drawMode == DrawMode.FullCurve || drawMode == DrawMode.StraightLine; } }
@@ -38,6 +40,8 @@ namespace EA4S.Test
             List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
             foreach (DrawMode dm in Enum.GetValues(typeof(DrawMode))) options.Add(new Dropdown.OptionData(dm.ToString()));
             DrawModeDropdown.AddOptions(options);
+
+            RefreshUI();
         }
 
         void Update()
@@ -89,7 +93,28 @@ namespace EA4S.Test
             case DrawMode.ClickRepeat:
                 TutorialUI.ClickRepeat(MouseWorldPosition());
                 break;
+            case DrawMode.RandomMark:
+                TutorialUI.MarkSize markSize = NormalToggle.isOn ? TutorialUI.MarkSize.Normal : BigToggle.isOn ? TutorialUI.MarkSize.Big : TutorialUI.MarkSize.Huge;
+                if (UnityEngine.Random.value < 0.5f) TutorialUI.MarkYes(MouseWorldPosition(), markSize);
+                else TutorialUI.MarkNo(MouseWorldPosition(), markSize);
+                break;
             }
+        }
+
+        #endregion
+
+        #region Methods
+
+        void RefreshUI()
+        {
+            bool dragOptionsActive = isDraggingMode;
+            FingerToggle.gameObject.SetActive(dragOptionsActive);
+            ArrowToggle.gameObject.SetActive(dragOptionsActive);
+            PersistentToggle.gameObject.SetActive(dragOptionsActive);
+            OverlayToggle.gameObject.SetActive(dragOptionsActive);
+            NormalToggle.gameObject.SetActive(drawMode == DrawMode.RandomMark);
+            BigToggle.gameObject.SetActive(drawMode == DrawMode.RandomMark);
+            HugeToggle.gameObject.SetActive(drawMode == DrawMode.RandomMark);
         }
 
         #endregion
@@ -108,11 +133,7 @@ namespace EA4S.Test
         public void OnDrawModeChanged()
         {
             drawMode = (DrawMode)DrawModeDropdown.value;
-            bool dragOptionsActive = isDraggingMode;
-            FingerToggle.gameObject.SetActive(dragOptionsActive);
-            ArrowToggle.gameObject.SetActive(dragOptionsActive);
-            PersistentToggle.gameObject.SetActive(dragOptionsActive);
-            OverlayToggle.gameObject.SetActive(dragOptionsActive);
+            RefreshUI();
         }
 
         public void OnClear(bool _destroy)
