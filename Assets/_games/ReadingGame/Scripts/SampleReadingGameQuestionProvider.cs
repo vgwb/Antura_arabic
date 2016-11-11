@@ -19,7 +19,6 @@ namespace EA4S
                  ArabicAlphabetHelper.PrepareStringForDisplay(
                      "منذ لم نرك منذ مدة " + randomWord.Data.Arabic + " منذ مدة" +
                       "منذ لم نرك منذ مدة " +
-                       "منذ لم نرك منذ مدة " +
                         "منذ لم نرك منذ مدة "));
 
             List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();

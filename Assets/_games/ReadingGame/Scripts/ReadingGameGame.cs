@@ -22,9 +22,9 @@ namespace EA4S.ReadingGame
 
         public const int TIME_TO_ANSWER = 20;
         public const int MAX_QUESTIONS = 5;
-        const int STARS_1_THRESHOLD = 10 * MAX_QUESTIONS;
-        const int STARS_2_THRESHOLD = 15 * MAX_QUESTIONS;
-        const int STARS_3_THRESHOLD = 17 * MAX_QUESTIONS;
+        const int STARS_1_THRESHOLD = 8 * MAX_QUESTIONS;
+        const int STARS_2_THRESHOLD = 12 * MAX_QUESTIONS;
+        const int STARS_3_THRESHOLD = 15 * MAX_QUESTIONS;
         
 
         public int CurrentStars
