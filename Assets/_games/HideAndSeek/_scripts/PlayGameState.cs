@@ -11,6 +11,10 @@ namespace EA4S.HideAndSeek
 
         bool hurryUpSfx;
 
+        const int STARS_1_THRESHOLD = 2;
+        const int STARS_2_THRESHOLD = 5;
+        const int STARS_3_THRESHOLD = 9;
+
         public PlayGameState(HideAndSeekGame game)
         {
             this.game = game;
@@ -20,6 +24,11 @@ namespace EA4S.HideAndSeek
 
         public void EnterState()
         {
+            game.GameManager.enabled = true;
+
+            game.Context.GetOverlayWidget().Initialize(true, true, true);
+            game.Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+
             gameTime.Reset();
             game.ResetScore();
             
