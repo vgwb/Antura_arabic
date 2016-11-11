@@ -73,11 +73,7 @@ namespace EA4S.Db
                 Debug.LogWarning("SQL database is outdated. Recreating it (version " + Config.AppVersion + " )");
                 RegenerateDatabase(profileId);
             }
-            else
-            {
-                Debug.Log("Database ready. Version " + info.Version);
-            }
-
+            //Debug.Log("Database ready. Version " + info.Version);
             //Debug.Log("Database final PATH: " + dbPath);
         }
 
