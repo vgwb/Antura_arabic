@@ -59,6 +59,7 @@ namespace EA4S.MissingLetter
             if (mGame.GetCurrentState() == mGame.PlayState || m_bTutorialEnabled)
             {
                 EnterCurrentScene();
+                mGame.StartCoroutine(Utils.LaunchDelay(2.0f, mGame.SetInIdle, true));
             }
         }
 
@@ -260,11 +261,15 @@ namespace EA4S.MissingLetter
 
         public void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
-
+            mGame.SetInIdle(false);
             //refresh the data (for graphics)
             RestoreQuestion();
 
-            mGame.SetInIdle(false);
+            
+
+            foreach (GameObject _obj in mCurrentAnswerScene) {
+                _obj.GetComponent<LetterBehaviour>().SetEnableCollider(false);
+            }
 
             //letter animation wait for ending dancing animation, wait animator fix
             LetterBehaviour clicked = GetAnswerById(_key);
@@ -272,19 +277,16 @@ namespace EA4S.MissingLetter
             {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 clicked.mLetter.DoHorray();
+                clicked.LightOn();
+                mGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
             }
             else
             {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
-                clicked.mLetter.DoAngry();
+                //clicked.mLetter.DoAngry();
+                OnResponse(isCorrectAnswer(_key));
             }
-
-            foreach (GameObject _obj in mCurrentAnswerScene)
-            {
-                _obj.GetComponent<LetterBehaviour>().SetEnableCollider(false);
-            }
-
-            mGame.StartCoroutine(Utils.LaunchDelay(1.2f, OnResponse, isCorrectAnswer(_key)));         
+            
         }
 
         //call after clicked answer animation
@@ -304,10 +306,9 @@ namespace EA4S.MissingLetter
 
             if (onAnswered != null)
             {
-                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, correct));
+                mGame.StartCoroutine(Utils.LaunchDelay(2.0f, onAnswered, correct));
             }
 
-            mGame.StartCoroutine(Utils.LaunchDelay(2.5f, mGame.SetInIdle, true));
         }
 
         //shuffle current answer order and tell to letter change pos
@@ -340,6 +341,7 @@ namespace EA4S.MissingLetter
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
                 mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
         }
 
@@ -349,6 +351,7 @@ namespace EA4S.MissingLetter
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
                 mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
+                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
 
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
@@ -356,6 +359,7 @@ namespace EA4S.MissingLetter
                 if (mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
                 {
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
+                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();
                 }
                 else
                 {
