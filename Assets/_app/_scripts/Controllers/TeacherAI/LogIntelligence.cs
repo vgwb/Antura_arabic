@@ -7,14 +7,6 @@ namespace EA4S.Teacher
 {
     public class LogIntelligence
     {
-        /// <summary>
-        /// Play result param
-        /// </summary>
-        public struct PlayResultParameters
-        {
-            public PlaySkill skill;
-            public float value;
-        }
 
         // References
         DatabaseManager db;
@@ -37,17 +29,48 @@ namespace EA4S.Teacher
             db.Insert(data);
         }
 
-        #region Play
+        #region Scores
 
-        public void LogPlay(MiniGameCode miniGameCode, List<PlayResultParameters> parameters)
+        public void LogMiniGameScore(MiniGameCode miniGameCode, float score)
         {
-            // ... @todo: implement
 
-            // There will be 1 vote per-skill per-minigame whenever it is played
+        }
+
+        public void LogPlaySessionScore()
+        {
+
+        }
+
+        public void LogLearningBlockScore()
+        {
+
         }
 
         #endregion
 
+        #region Play
+
+        /// <summary>
+        /// Parameters for the results of a play session related to a specific skill.
+        /// </summary>
+        public struct PlayResultParameters
+        {
+            public PlayEvent playEvent;
+            public PlaySkill skill;
+            public float score;
+        }
+
+        public void LogPlay(string session, string playSession, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
+        {
+            // The teacher receives a score for each play skill the minigame deems worthy of analysis
+            foreach (var result in resultsList)
+            {
+                var data = new LogPlayData(session, playSession, miniGameCode, result.playEvent, result.skill, result.score);
+                db.Insert(data);
+            }
+        }
+
+        #endregion
 
         #region Learn
 
