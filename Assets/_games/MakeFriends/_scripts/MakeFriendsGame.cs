@@ -45,7 +45,28 @@ namespace EA4S.MakeFriends
         private List<ILivingLetterData> correctChoices = new List<ILivingLetterData>();
         private List<ILivingLetterData> incorrectChoices = new List<ILivingLetterData>();
         private int currentRound = 0;
-        private int friendships = 0;
+        private int _currentScore = 0;
+
+        public int CurrentScore
+        {
+            get { return _currentScore; }
+            set
+            {
+                _currentScore = value; 
+                if (CurrentScore == STARS_1_THRESHOLD)
+                {
+                    MinigamesUI.Starbar.GotoStar(0);
+                }
+                else if (CurrentScore == STARS_2_THRESHOLD)
+                {
+                    MinigamesUI.Starbar.GotoStar(1);
+                }
+                else if (CurrentScore == STARS_3_THRESHOLD)
+                {
+                    MinigamesUI.Starbar.GotoStar(2);
+                }
+            }
+        }
 
         public MakeFriendsIntroductionState IntroductionState { get; private set; }
 
@@ -54,8 +75,6 @@ namespace EA4S.MakeFriends
         public MakeFriendsPlayState PlayState { get; private set; }
 
         public MakeFriendsResultState ResultState { get; private set; }
-
-        public int CurrentScore { get { return friendships; } }
 
         private readonly int STARS_1_THRESHOLD = Mathf.CeilToInt(0.33f * numberOfRounds);
         private readonly int STARS_2_THRESHOLD = Mathf.CeilToInt(0.66f * numberOfRounds);
@@ -103,16 +122,16 @@ namespace EA4S.MakeFriends
         {
             base.Start();
 
-            AppManager.Instance.InitDataAI();
-            AppManager.Instance.CurrentGameManagerGO = gameObject;
-            SceneTransitioner.Close();
-            PlayIdleMusic();
-
+            //AppManager.Instance.InitDataAI();
+            //AppManager.Instance.CurrentGameManagerGO = gameObject;
+            //SceneTransitioner.Close();
             //Random.seed = System.DateTime.Now.GetHashCode();
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
+
+            PlayIdleMusic();
         }
-            
+
         public void PlayActiveMusic()
         {
             MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
@@ -122,7 +141,7 @@ namespace EA4S.MakeFriends
         {
             MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
         }
-            
+
         public void Play()
         {
             currentRound++;
@@ -238,7 +257,7 @@ namespace EA4S.MakeFriends
 
         public void OnRoundResultPressed()
         {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
+            GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
             WidgetPopupWindow.I.Close();
             Play();
         }
@@ -251,7 +270,7 @@ namespace EA4S.MakeFriends
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.CORRECT;
                 //letterChoice.SpawnBalloon(true);
-                AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
 
                 if (!correctChoices.Contains(letterChoice.letterData))
@@ -272,7 +291,7 @@ namespace EA4S.MakeFriends
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.WRONG;
                 //letterChoice.SpawnBalloon(false);
-                AudioManager.I.PlaySfx(Sfx.LetterSad);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
                 leftArea.MoveAwayAngrily();
                 rightArea.MoveAwayAngrily();
@@ -303,10 +322,10 @@ namespace EA4S.MakeFriends
             {
                 Debug.Log("Win");
 
-                AudioManager.I.PlaySfx(Sfx.Win);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
-                friendships++;
+                CurrentScore++;
 
                 yield return new WaitForSeconds(winDelay1);
                 // Go to Friends Zone
@@ -325,7 +344,7 @@ namespace EA4S.MakeFriends
             {
                 Debug.Log("Lose");
 
-                AudioManager.I.PlaySfx(Sfx.Lose);
+                GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
                 WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);

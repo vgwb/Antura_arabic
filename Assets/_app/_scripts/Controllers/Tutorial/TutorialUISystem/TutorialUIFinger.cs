@@ -22,6 +22,11 @@ namespace EA4S
             defSprite = Img.sprite;
         }
 
+        void Update()
+        {
+            this.transform.LookAt(transform.position + TutorialUI.I.CamT.rotation * Vector3.forward, TutorialUI.I.CamT.up);
+        }
+
         #endregion
 
         #region Public Methods

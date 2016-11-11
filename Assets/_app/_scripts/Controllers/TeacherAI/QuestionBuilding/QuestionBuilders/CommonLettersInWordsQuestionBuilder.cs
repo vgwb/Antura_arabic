@@ -25,16 +25,36 @@ namespace EA4S
 
         public QuestionPackData CreateQuestionPackData()
         {
+            QuestionPackData pack = null;
             var teacher = AppManager.Instance.Teacher;
-            var db = AppManager.Instance.DB;
+            //var db = AppManager.Instance.DB;
 
-            var commonLetters = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
-            var words = teacher.wordHelper.GetWordsWithLetters(commonLetters.ConvertAll(x => x.Id).ToArray()).RandomSelect(nWords);
-            // @todo: make sure that two words can be found every time! maybe filter letters only by those that appear in multiple words?
+            int nAttempts = 20;
+            bool found = false;
+            while (nAttempts > 0 && !found)
+            {
+                var commonLetters = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
+                var words = teacher.wordHelper.GetWordsWithLetters(commonLetters.ConvertAll(x => x.Id).ToArray());
+                if (words.Count < nWords)
+                {
+                    nAttempts--;
+                    continue;
+                }
+                words = words.RandomSelect(nWords);
+                var nonCommonLetters = teacher.wordHelper.GetRealLettersNotInWords(words.ToArray()).RandomSelect(nWrong);
 
-            var nonCommonLetters = teacher.wordHelper.GetLettersNotInWords(words.ToArray()).RandomSelect(nWrong);
+                //UnityEngine.Debug.Log("Found words " + words.Count + " for letters " + commonLetters.Count);
 
-            return QuestionPackData.Create(words, commonLetters, nonCommonLetters);
+                pack = QuestionPackData.Create(words, commonLetters, nonCommonLetters);
+                found = true;
+            }
+
+            if (!found)
+            {
+                throw new System.Exception("Could not find enough data to build the required questions for the current journey position. Minigame should be aborted.");
+            }
+
+            return pack;
         }
 
     }

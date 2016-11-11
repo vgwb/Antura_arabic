@@ -43,6 +43,9 @@ namespace EA4S.Egg
 
         public bool stagePositiveResult { get; set; }
 
+        bool tutorial;
+        public bool showTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
+
         public QuestionManager questionManager;
 
         public EggIntroductionState IntroductionState { get; private set; }
@@ -68,6 +71,8 @@ namespace EA4S.Egg
             ResultState = new EggResultState(this);
 
             questionManager = new QuestionManager();
+
+            tutorial = true;
 
             currentStage = 0;
             correctStages = 0;

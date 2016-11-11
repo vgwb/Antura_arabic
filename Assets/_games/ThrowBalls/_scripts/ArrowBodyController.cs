@@ -12,16 +12,16 @@ namespace EA4S.ThrowBalls
             instance = this;
         }
 
-        public void OnUpdateDistance(Vector3 distance)
+        public void OnUpdateDistance(Vector3 distanceVector)
         {
-            UpdateRotation(Mathf.Rad2Deg * GetAngleOfVector(distance));
-            UpdateScale(distance.magnitude);
-            UpdatePosition(distance);
+            UpdateRotation(Mathf.Rad2Deg * GetAngleOfVector(distanceVector));
+            UpdateScale(distanceVector.magnitude);
+            UpdatePosition(distanceVector);
         }
 
         private void UpdatePosition(Vector3 distance)
         {
-            float bodyLength = 3 * transform.localScale.x;
+            float bodyLength = transform.localScale.x;
 
             float deltaX = Mathf.Cos(Mathf.Deg2Rad * (180 - transform.localRotation.eulerAngles.y)) * 0.5f * bodyLength;
             float deltaZ = Mathf.Sin(Mathf.Deg2Rad * (180 - transform.localRotation.eulerAngles.y)) * 0.5f * bodyLength;

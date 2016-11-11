@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace EA4S
 {
     /// <summary>
@@ -9,6 +10,7 @@ namespace EA4S
         // @todo: add a local history of packs (so we do not pick the same elements multiple times)
         int GetQuestionPackCount();
         QuestionPackData CreateQuestionPackData();
+        //List<QuestionPackData> CreateAllQuestionPacks();
     }
 
 }

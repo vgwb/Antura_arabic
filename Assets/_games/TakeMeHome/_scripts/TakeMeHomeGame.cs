@@ -40,13 +40,13 @@ namespace EA4S.TakeMeHome
 		public int currentRound;
 
 		[HideInInspector]
-		public CountdownTimer gameTime;
+		//public CountdownTimer gameTime;
 
 		int stars1Threshold
 		{
 			get
 			{
-				return 3;
+				return 2;
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace EA4S.TakeMeHome
 		{
 			get
 			{
-				return 5;
+				return 6;
 			}
 		}
 
@@ -119,7 +119,11 @@ namespace EA4S.TakeMeHome
 		public void IncrementScore()
 		{
 			++CurrentScore;
-		}
+            //update stars:
+            int stars = CurrentStars;
+            if (stars > 0)
+                MinigamesUI.Starbar.GotoStar(stars - 1);
+        }
 
 		public void IncrementRound()
 		{
@@ -194,12 +198,20 @@ namespace EA4S.TakeMeHome
 			Context.GetAudioManager().PlayMusic(Music.Theme3);
 
 
-			gameTime = new CountdownTimer(UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
+            //add antura specific script:
+            antura.AddComponent<TakeMeHomeAntura>();
+
+            //ui:
+            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+
+            /*gameTime = new CountdownTimer(UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
 			gameTime.onTimesUp += OnTimesUp;
 
-			gameTime.Reset();
+			gameTime.Reset();*/
+            isTimesUp = false;
+            MinigamesUI.Timer.Setup( UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
 
-		}
+        }
 
 		public void followLetter()
 		{
@@ -216,8 +228,10 @@ namespace EA4S.TakeMeHome
 		}
 
 
-		void OnTimesUp()
+		public void OnTimesUp()
 		{
+            if (isTimesUp) return;
+
 			// Time's up!
 			isTimesUp = true;
 

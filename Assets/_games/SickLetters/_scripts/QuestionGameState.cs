@@ -12,8 +12,8 @@ namespace EA4S.SickLetters
 
         public void EnterState()
         {
-            Debug.Log("qqqqqqqqqqq");
             game.SetCurrentState(game.PlayState);
+            
             //game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
         }
 
