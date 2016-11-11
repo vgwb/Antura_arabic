@@ -18,6 +18,11 @@ public class LetterObjectViewTester : MonoBehaviour
     public bool onJumpEnd;
     public bool doSmallJump;
 
+    public bool doDanceWin;
+    public bool doDanceLose;
+    public bool doDanceTwirl;
+    public bool doToggleDance;
+
     void Start ()
     {
         letter = GetComponent<LetterObjectView>();
@@ -77,6 +82,30 @@ public class LetterObjectViewTester : MonoBehaviour
         {
             doSmallJump = false;
             letter.DoSmallJump();
+        }
+
+        if (doDanceWin)
+        {
+            doDanceWin = false;
+            letter.DoDancingWin();
+        }
+
+        if (doDanceLose)
+        {
+            doDanceLose = false;
+            letter.DoDancingLose();
+        }
+
+        if (doDanceTwirl)
+        {
+            doDanceTwirl = false;
+            letter.DoDancingTwirl(() => { Debug.Log("BACK!"); });
+        }
+
+        if (doToggleDance)
+        {
+            doToggleDance = false;
+            letter.ToggleDance();
         }
     }
 }

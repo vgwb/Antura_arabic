@@ -18,7 +18,7 @@ namespace EA4S.Db
         {
         }
 
-        public LogMoodData(int _mood)
+        public LogMoodData(float _mood)
         {
             this.MoodValue = _mood;
             this.Timestamp = GenericUtilities.GetTimestampForNow();

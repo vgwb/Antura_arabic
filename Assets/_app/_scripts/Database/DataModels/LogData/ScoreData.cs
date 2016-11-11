@@ -25,7 +25,7 @@ namespace EA4S.Db
         {
 
         }
-        public ScoreData(string elementId, DbTables table, float score) : this(elementId,table,score, GenericUtilities.GetTimestampForNow())
+        public ScoreData(string elementId, DbTables table, float score) : this(elementId, table, score, GenericUtilities.GetTimestampForNow())
         {
         }
         public ScoreData(string elementId, DbTables table, float score, int timestamp)
