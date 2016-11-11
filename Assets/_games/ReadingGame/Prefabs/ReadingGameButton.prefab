@@ -275,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 114000014247656228}
   text: {fileID: 114000011610390978}
+  poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
 --- !u!114 &114000014247656228
 MonoBehaviour:
   m_ObjectHideFlags: 1
