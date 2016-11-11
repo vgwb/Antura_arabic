@@ -16,9 +16,6 @@ namespace EA4S
     {
         public static TeacherAI I;
 
-        // Temporary configuration
-        private static int NUMBER_OF_MINIGAMES_PER_PLAYSESSION = 3;
-
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
@@ -70,7 +67,7 @@ namespace EA4S
 
         public List<MiniGameData> InitialiseCurrentPlaySession()
         {
-            return InitialiseCurrentPlaySession(NUMBER_OF_MINIGAMES_PER_PLAYSESSION);
+            return InitialiseCurrentPlaySession(ConfigAI.numberOfMinigamesPerPlaySession);
         }
 
         private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
