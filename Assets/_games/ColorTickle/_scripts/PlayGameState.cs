@@ -73,6 +73,7 @@ namespace EA4S.ColorTickle
 
                 if (m_PercentageLetterColored >= 100 || m_Lives <=0)
                 {
+                    game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
                     //DisableAntura();
                     m_LetterObjectView.Poof();
                     m_CurrentLetter.SetActive(false);
@@ -125,7 +126,7 @@ namespace EA4S.ColorTickle
             m_HitStateLLController.LoseLife += LoseLife;
 
             m_HitStateLLController.EnableAntura += EnableAntura;
-            game.anturaController.targetToLook = m_CurrentLetter.transform;
+            //game.anturaController.targetToLook = m_CurrentLetter.transform; //make antura look at the LL on rotations
 
             SetBrushColor(m_ColorsUIManager.defaultColor);     
         }
@@ -144,6 +145,8 @@ namespace EA4S.ColorTickle
 
         private void LoseLife()
         {
+            game.anturaController.ForceAnturaToGoBack();//we tickled the letter, antura turn back
+
             m_Lives--;
             m_Stars -= 0.3f;
             game.gameUI.SetLives(m_Lives);
@@ -162,7 +165,7 @@ namespace EA4S.ColorTickle
         }
 
         private void EnableAntura()
-        {
+        { 
             game.anturaController.TryLaunchAnturaDisruption();
         }
 
