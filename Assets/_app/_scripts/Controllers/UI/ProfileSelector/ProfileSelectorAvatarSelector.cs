@@ -24,6 +24,7 @@ namespace EA4S
                 ProfileSelectorAvatarButton bt = avatarButtons[i];
                 showTween.Insert(i * 0.05f, bt.transform.DOScale(0.0001f, 0.3f).From().SetEase(Ease.OutBack));
             }
+            this.gameObject.SetActive(false);
         }
 
         void OnDestroy()

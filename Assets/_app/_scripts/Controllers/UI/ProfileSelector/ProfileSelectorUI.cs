@@ -2,6 +2,7 @@
 // Created: 2016/11/12
 
 using System.Collections.Generic;
+using DG.DeExtensions;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace EA4S
 {
     public class ProfileSelectorUI : MonoBehaviour
     {
+        public bool UseFakeDebugData;
         [Header("References")]
         public UIButton BtAdd;
         public UIButton BtPlay;
@@ -16,8 +18,10 @@ namespace EA4S
         public ProfileSelectorAvatarSelector AvatarSelector;
 
         public static ProfileSelectorUI I;
+        public const string AvatarsResourcesDir = "Images/Avatars/";
+        PlayerProfileManager profileManager { get { return null; /*TODO*/ } }
         int maxProfiles;
-        List<PlayerProfile> playerProfiles = new List<PlayerProfile>();
+        List<PlayerProfile> playerProfiles;
         ProfileSelectorAvatarButton[] avatarButtons;
         Tween btAddTween;
 
@@ -33,7 +37,6 @@ namespace EA4S
 
         void Start()
         {
-            // TODO Get profiles
             Setup();
 
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
@@ -51,14 +54,31 @@ namespace EA4S
 
         #endregion
 
+        #region Public Methods
+
+        internal void AddProfile(int _avatarId)
+        {
+            if (UseFakeDebugData) {
+                if (playerProfiles == null) playerProfiles = new List<PlayerProfile>();
+                PlayerProfile pp = new PlayerProfile();
+                pp.Id = playerProfiles.Count;
+                pp.AvatarId = _avatarId;
+                playerProfiles.Add(pp);
+            }
+
+            Setup();
+        }
+
+        #endregion
+
         #region Methods
 
         // Layout with current profiles
         void Setup()
         {
-            AvatarSelector.gameObject.SetActive(false);
+            if (!UseFakeDebugData) playerProfiles = profileManager.AvailablePlayerProfiles;
 
-            int totProfiles = playerProfiles.Count;
+            int totProfiles = playerProfiles == null ? 0 : playerProfiles.Count;
             for (int i = 0; i < avatarButtons.Length; ++i) {
                 if (i >= totProfiles) avatarButtons[i].gameObject.SetActive(false);
                 else {
@@ -69,6 +89,12 @@ namespace EA4S
             if (totProfiles == 0) {
                 BtAdd.Pulse();
                 BtPlay.gameObject.SetActive(false);
+            } else {
+//                BtPlay.RectT.SetAnchoredPosX(avatarButtons[player]);
+            }
+            if (totProfiles >= maxProfiles) {
+                btAddTween.Rewind();
+                BtAdd.gameObject.SetActive(false);
             }
         }
 
