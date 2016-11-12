@@ -9,6 +9,11 @@ public class LetterObjectViewTester : MonoBehaviour
     public LLAnimationStates targetState;
     public bool doTransition;
 
+    [Range(0,1)]
+    public float walkSpeed;
+
+    public bool fear;
+
     public bool doHooray;
     public bool doAngry;
     public bool doHighFive;
@@ -30,6 +35,9 @@ public class LetterObjectViewTester : MonoBehaviour
 	
 	void Update ()
     {
+        letter.HasFear = fear;
+        letter.SetWalkingSpeed(walkSpeed);
+
 	    if (doTransition)
         {
             doTransition = false;
