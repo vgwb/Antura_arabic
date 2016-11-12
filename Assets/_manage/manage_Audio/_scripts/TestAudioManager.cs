@@ -177,10 +177,10 @@ namespace EA4S
             if (fabricComponent == null) {
                 fabricComponent = Fabric.FabricManager.Instance.GetComponentByName("FabricAudioManger_Sfx_UI_Win") as Fabric.AudioComponent;
 
-                fabricComponent.Volume = 0.5f;
-                fabricComponent.Loop = true;
-                var associatedAudioClip = fabricComponent.AudioClip;
-                Debug.Log(associatedAudioClip.length);
+                // fabricComponent.Volume = 0.5f;
+                //fabricComponent.Loop = true;
+                //var associatedAudioClip = fabricComponent.AudioClip;
+                //Debug.Log(associatedAudioClip.length);
             }
 
 
