@@ -6,7 +6,7 @@ namespace EA4S.ColorTickle
 {
     public enum AnturaContollerState
     {
-        SLEEPING, REACHINGLETTER, COMINGBACK, ROTATION_BACK, ROTATION, BARKING
+        SLEEPING, REACHINGLETTER, COMINGBACK, TURN_TO_BARK, ROTATION, BARKING
 
     }
 
@@ -23,7 +23,7 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private Vector3 m_v3StartPosition;
         [SerializeField]
-        private Transform m_Destination;
+        private Transform m_oDestination; //placeoholder for the destination
         [SerializeField]
         private Transform m_oTargetToLook;
         [SerializeField]
@@ -50,8 +50,8 @@ namespace EA4S.ColorTickle
         #region PRIVATE MEMBERS
         private Antura m_oAntura;
         private AnturaContollerState m_eAnturaState = AnturaContollerState.SLEEPING;
-        private float m_fBarkTimeProgress = 0;
 		private Vector3 m_v3Destination;
+        private float m_fBarkTimeProgress = 0;
         #endregion
 
         #region EVENTS
@@ -139,7 +139,7 @@ namespace EA4S.ColorTickle
 			m_v3StartPosition = m_oAntura.gameObject.transform.position;
             m_eAnturaState = AnturaContollerState.SLEEPING;
             m_fBarkTimeProgress = 0;
-			m_v3Destination = m_Destination.position;
+			m_v3Destination = m_oDestination.position;
         }
 
         void Update()
@@ -167,6 +167,7 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region PUBLIC FUNCTIONS
+
         /// <summary>
         /// Set a new destination and start moving towards it from the current position. 
         /// </summary>
@@ -206,17 +207,51 @@ namespace EA4S.ColorTickle
         }
 
         /// <summary>
-        /// Force Antura to interrupt current action and go Standby on place.
-        /// Use this for example when the game is fnished and you need to stop Antura
+        /// Force Antura to interrupt current action and go back.
         /// </summary>
-        public void ForceAnturaStandby()
+        public void ForceAnturaToGoBack()
         {
-            //change animation
-            m_oAntura.SetAnimation(m_eAnimationOnStandby);
+            //We do not care about states of Sleeping, RotatingOnStart and ComingBack
+            if(m_eAnturaState == AnturaContollerState.SLEEPING ||
+                m_eAnturaState == AnturaContollerState.ROTATION ||
+                m_eAnturaState == AnturaContollerState.COMINGBACK)
+            {
+                return;
+            }
+            // handled cases
+            else if(m_eAnturaState == AnturaContollerState.REACHINGLETTER)
+            {
+                //swap dest and start
+                Vector3 _v3Temp = m_v3StartPosition;
+                m_v3StartPosition = m_v3Destination;
+                m_v3Destination = _v3Temp;
 
-            //set new state
-            m_eAnturaState = AnturaContollerState.SLEEPING;
-            m_oAntura.IsBarking = false;
+                m_bMovingToDestination = true;
+
+                //set new state
+                m_eAnturaState = AnturaContollerState.COMINGBACK;
+
+            }
+            else if (m_eAnturaState == AnturaContollerState.TURN_TO_BARK)
+            {
+                m_bMovingToDestination = true;
+
+                m_oAntura.SetAnimation(m_eAnimationOnMoving);
+
+                //set new state
+                m_eAnturaState = AnturaContollerState.COMINGBACK;
+            }
+
+            else if (m_eAnturaState == AnturaContollerState.BARKING)
+            {
+                m_oAntura.IsBarking = false;
+                m_oAntura.SetAnimation(m_eAnimationOnMoving);
+
+                m_bMovingToDestination = true;
+
+                //set new state
+                m_eAnturaState = AnturaContollerState.COMINGBACK;
+            }
 
             //launch event
             if (OnStateChanged != null)
@@ -311,20 +346,20 @@ namespace EA4S.ColorTickle
                 m_eAnturaState = AnturaContollerState.REACHINGLETTER;
             }
             else if (m_eAnturaState == AnturaContollerState.REACHINGLETTER)//letter reached, rotate
-            {
+            { 
                 //swap dest and start
-				Vector3 _v3Temp = m_v3StartPosition;
-				m_v3StartPosition = m_v3Destination;
-				m_v3Destination = _v3Temp;
+                Vector3 _v3Temp = m_v3StartPosition;
+                m_v3StartPosition = m_v3Destination;
+                m_v3Destination = _v3Temp;
 
                 //rotate towards letter
                 m_bRotatingToTarget = true;
 
                 //set new state
-                m_eAnturaState = AnturaContollerState.ROTATION_BACK;
+                m_eAnturaState = AnturaContollerState.TURN_TO_BARK;
 
             }
-            else if (m_eAnturaState == AnturaContollerState.ROTATION_BACK)//now bark
+            else if (m_eAnturaState == AnturaContollerState.TURN_TO_BARK)//now bark
             {
                 //change animation and play sound
                 m_oAntura.SetAnimation(m_eAnimationOnLLReached);

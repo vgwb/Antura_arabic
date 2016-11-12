@@ -1055,8 +1055,8 @@ MonoBehaviour:
   m_fMovementSpeed: 5
   m_fRotationSpeed: 360
   m_v3StartPosition: {x: 0, y: 0, z: 0}
-  m_Destination: {fileID: 560278447}
-  m_oTargetToLook: {fileID: 0}
+  m_oDestination: {fileID: 560278447}
+  m_oTargetToLook: {fileID: 239796669}
   m_bMovingToDestination: 0
   m_bRotatingToTarget: 0
   m_fBarkTime: 1.5
@@ -5860,6 +5860,7 @@ MonoBehaviour:
   m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
   m_iPercentageRequiredToWin: 99
+  m_fErrorOffsetFactor: 0.15
 --- !u!114 &1744748420
 MonoBehaviour:
   m_ObjectHideFlags: 0

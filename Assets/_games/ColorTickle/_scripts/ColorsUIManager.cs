@@ -52,9 +52,9 @@ namespace EA4S.ColorTickle
         void Awake()
 		{
             m_Buttons = new Button[m_NumberOfButtons];	        
-            float DistBetwButtons = (Camera.main.pixelHeight / 2) / m_NumberOfButtons;
-            Vector3 buttonStartPosition = new Vector3(Camera.main.pixelWidth / 2 - DistBetwButtons, 0, 0);
-			float buttonSize = Camera.main.pixelHeight / (float)m_YDefaultResolution;
+            float DistBetwButtons = (Screen.height / 2) / m_NumberOfButtons;
+            Vector3 buttonStartPosition = new Vector3(Screen.width / 2 - DistBetwButtons, 0, 0);
+			float buttonSize = Screen.height / (float)m_YDefaultResolution;
 
             for (int i = 0; i < m_NumberOfButtons; ++i)
             {

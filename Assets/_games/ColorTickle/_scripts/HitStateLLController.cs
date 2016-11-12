@@ -3,14 +3,13 @@ using System.Collections;
 
 namespace EA4S.ColorTickle
 {
+    public enum eHitState
+    {
+        HIT_NONE = 0, HIT_LETTERINSIDE_AND_BODY, HIT_LETTERINSIDE, HIT_LETTEROUTSIDE
+    }
+
     public class HitStateLLController : MonoBehaviour
     {
-
-        enum eHitState
-        {
-            HIT_NONE = 0, HIT_LETTERINSIDE_AND_BODY, HIT_LETTERINSIDE, HIT_LETTEROUTSIDE
-        }
-
 //        public enum eLLState
 //        {
 //            IDLE, SCARED, TICKLING
@@ -26,6 +25,13 @@ namespace EA4S.ColorTickle
         #region EVENTS
         public event System.Action LoseLife;
         public event System.Action EnableAntura;
+        #endregion
+
+        #region GETTER/SETTER
+        public eHitState hitState
+        {
+            get { return m_HitState; }
+        }
         #endregion
 
         // Use this for initialization
