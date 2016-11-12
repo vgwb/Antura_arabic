@@ -144,7 +144,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0adccdfa05f10f744b67bf865244acf6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0872aa2aa22fcb247ac03c9c8bed07d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -195,7 +195,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -267.7}
+  m_AnchoredPosition: {x: 0, y: -268}
   m_SizeDelta: {x: 0, y: -540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59267176
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 130, y: 130}
-  m_Spacing: {x: 10, y: 0}
+  m_Spacing: {x: 5, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!114 &59267178
@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 1939664402}
 --- !u!1 &144117716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6117647, g: 0.8117648, b: 0.2784314, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1200,6 +1201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 1644302437}
 --- !u!1 &529924929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,9 +1356,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1207452446}
-  - {fileID: 59267175}
   - {fileID: 1820742824}
+  - {fileID: 59267175}
+  - {fileID: 1207452446}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
@@ -1375,6 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e99c0fcd673c164f98dda9393fb4a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DummyDebugData: 1
   BtAdd: {fileID: 1269522103}
   BtPlay: {fileID: 1820742828}
   ProfilesPanel: {fileID: 1207452445}
@@ -1503,6 +1506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 617724096}
 --- !u!1 &617724094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,7 +1561,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8d68949a40b3202459cacd78a5b8f49a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0872aa2aa22fcb247ac03c9c8bed07d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1762,6 +1766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 1401147641}
 --- !u!1 &723588309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,7 +2026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6117647, g: 0.8117648, b: 0.2784314, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2054,6 +2059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 1682354591}
 --- !u!1001 &788784647
 Prefab:
   m_ObjectHideFlags: 0
@@ -2220,6 +2226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 429774559}
 --- !u!1 &818394446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,7 +2376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6117647, g: 0.8117648, b: 0.2784314, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2402,6 +2409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 1130617200}
 --- !u!1 &1026139856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2683,6 +2691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 1085720114}
 --- !u!1 &1085720112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2866,7 +2875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.416}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3135,7 +3144,7 @@ RectTransform:
   - {fileID: 865703381}
   - {fileID: 780809883}
   m_Father: {fileID: 561662198}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -136}
@@ -3161,7 +3170,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 130, y: 130}
-  m_Spacing: {x: 10, y: 0}
+  m_Spacing: {x: 5, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!1 &1269522098
@@ -3342,7 +3351,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e1c941fe943e0a74888e880acf2fc810, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0872aa2aa22fcb247ac03c9c8bed07d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5609,7 +5618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.416}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5677,7 +5686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.416}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6006,10 +6015,10 @@ RectTransform:
   m_Children:
   - {fileID: 529924930}
   m_Father: {fileID: 561662198}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 480, y: -267.7}
+  m_AnchoredPosition: {x: 480, y: -268}
   m_SizeDelta: {x: 125.5, y: 123.399994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820742825
@@ -6279,7 +6288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.416}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6409,7 +6418,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 78c40e20e1f584a4ea608ec7e9b9b979, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0872aa2aa22fcb247ac03c9c8bed07d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6547,6 +6556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 57932869}
 --- !u!1 &2059727704
 GameObject:
   m_ObjectHideFlags: 0
@@ -6872,7 +6882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6117647, g: 0.8117648, b: 0.2784314, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6905,6 +6915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  AvatarImg: {fileID: 1867846103}
 --- !u!1001 &2115405952
 Prefab:
   m_ObjectHideFlags: 0

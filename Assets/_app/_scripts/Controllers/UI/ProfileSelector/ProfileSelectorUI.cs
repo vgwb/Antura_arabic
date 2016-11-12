@@ -1,6 +1,8 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/11/12
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.DeExtensions;
 using DG.Tweening;
@@ -10,7 +12,8 @@ namespace EA4S
 {
     public class ProfileSelectorUI : MonoBehaviour
     {
-        public bool UseFakeDebugData;
+        [Tooltip("If selected, uses dummy debug data")]
+        public bool DummyDebugData;
         [Header("References")]
         public UIButton BtAdd;
         public UIButton BtPlay;
@@ -19,11 +22,10 @@ namespace EA4S
 
         public static ProfileSelectorUI I;
         public const string AvatarsResourcesDir = "Images/Avatars/";
-        PlayerProfileManager profileManager { get { return null; /*TODO*/ } }
+        public PlayerProfileManager ProfileManager { get { return AppManager.Instance.PlayerProfileManager; } }
         int maxProfiles;
-        List<PlayerProfile> playerProfiles;
         ProfileSelectorAvatarButton[] avatarButtons;
-        Tween btAddTween;
+        Tween btAddTween, btPlayTween;
 
         #region Unity
 
@@ -40,16 +42,33 @@ namespace EA4S
             Setup();
 
             btAddTween = BtAdd.transform.DORotate(new Vector3(0, 0, -45), 0.3f).SetAutoKill(false).Pause()
-                .SetEase(Ease.OutBack);
+                .SetEase(Ease.OutBack)
+                .OnRewind(() => {
+                    if (ProfileManager.AvailablePlayerProfiles == null || ProfileManager.AvailablePlayerProfiles.Count == 0) BtAdd.Pulse();
+                });
+            btPlayTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                .Append(BtPlay.RectT.DOAnchorPosY(-210, 0.2f).From(true))
+                .OnPlay(()=> BtPlay.gameObject.SetActive(true))
+                .OnRewind(()=> BtPlay.gameObject.SetActive(false))
+                .OnComplete(()=> BtPlay.Pulse());
+
+            BtPlay.gameObject.SetActive(false);
 
             // Listeners
             BtAdd.Bt.onClick.AddListener(()=> OnClick(BtAdd));
+            foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
+                ProfileSelectorAvatarButton b = bt;
+                b.Bt.onClick.AddListener(()=> OnClick(b));
+            }
         }
 
         void OnDestroy()
         {
             if (I == this) I = null;
             btAddTween.Kill();
+            btPlayTween.Kill();
+            BtAdd.Bt.onClick.RemoveAllListeners();
+            foreach (ProfileSelectorAvatarButton bt in avatarButtons) bt.Bt.onClick.RemoveAllListeners();
         }
 
         #endregion
@@ -58,14 +77,24 @@ namespace EA4S
 
         internal void AddProfile(int _avatarId)
         {
-            if (UseFakeDebugData) {
-                if (playerProfiles == null) playerProfiles = new List<PlayerProfile>();
-                PlayerProfile pp = new PlayerProfile();
-                pp.Id = playerProfiles.Count;
-                pp.AvatarId = _avatarId;
-                playerProfiles.Add(pp);
-            }
+            AvatarSelector.Hide();
+            btAddTween.PlayBackwards();
 
+            PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
+            if (DummyDebugData) {
+                if (ProfileManager.AvailablePlayerProfiles == null) ProfileManager.AvailablePlayerProfiles = new List<PlayerProfile>();
+                ProfileManager.AvailablePlayerProfiles.Add(pp);
+                pp.Id = ProfileManager.AvailablePlayerProfiles.Count;
+                pp.AvatarId = _avatarId;
+            }
+            ProfileManager.ActualPlayer = pp;
+
+            Setup();
+        }
+
+        internal void SelectProfile(int _id)
+        {
+            ProfileManager.ActualPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
             Setup();
         }
 
@@ -76,26 +105,47 @@ namespace EA4S
         // Layout with current profiles
         void Setup()
         {
-            if (!UseFakeDebugData) playerProfiles = profileManager.AvailablePlayerProfiles;
-
-            int totProfiles = playerProfiles == null ? 0 : playerProfiles.Count;
-            for (int i = 0; i < avatarButtons.Length; ++i) {
-                if (i >= totProfiles) avatarButtons[i].gameObject.SetActive(false);
+            ActivateProfileButtons(true);
+            int totProfiles = ProfileManager.AvailablePlayerProfiles == null ? 0 : ProfileManager.AvailablePlayerProfiles.Count;
+            int len = avatarButtons.Length;
+            for (int i = 0; i < len; ++i) {
+                ProfileSelectorAvatarButton bt = GetAvatarButtonByPlayerId(i + 1); // right to left
+                if (i >= totProfiles) bt.gameObject.SetActive(false);
                 else {
-                    // TODO
+                    bt.gameObject.SetActive(true);
+                    bt.SetAvatar(ProfileManager.AvailablePlayerProfiles[i].AvatarId);
+                    if (i == ProfileManager.ActualPlayer.Id - 1) bt.Toggle(true, true);
+                    else bt.Toggle(false);
                 }
             }
 
             if (totProfiles == 0) {
                 BtAdd.Pulse();
-                BtPlay.gameObject.SetActive(false);
+                BtPlay.StopPulsing();
+                btPlayTween.PlayBackwards();
             } else {
-//                BtPlay.RectT.SetAnchoredPosX(avatarButtons[player]);
+                // Set play button position
+                this.StartCoroutine(CO_SetupPlayButton());
             }
             if (totProfiles >= maxProfiles) {
                 btAddTween.Rewind();
                 BtAdd.gameObject.SetActive(false);
             }
+        }
+
+        // Used to set play button position after one frame, so grid is set correctly
+        IEnumerator CO_SetupPlayButton()
+        {
+            yield return null;
+
+            BtPlay.gameObject.SetActive(true);
+            BtPlay.RectT.SetAnchoredPosX(GetAvatarButtonByPlayerId(ProfileManager.ActualPlayer.Id).RectT.anchoredPosition.x);
+            btPlayTween.PlayForward();
+        }
+
+        void ActivateProfileButtons(bool _activate)
+        {
+            foreach (ProfileSelectorAvatarButton bt in avatarButtons) bt.SetInteractivity(_activate);
         }
 
         #endregion
@@ -105,17 +155,38 @@ namespace EA4S
         void OnClick(UIButton _bt)
         {
             if (_bt == BtAdd) {
+                // Bt Add
                 _bt.StopPulsing();
                 if (AvatarSelector.IsShown) {
                     btAddTween.PlayBackwards();
                     AvatarSelector.Hide();
+                    if (ProfileManager.AvailablePlayerProfiles != null && ProfileManager.AvailablePlayerProfiles.Count > 0) btPlayTween.PlayForward();
+                    ActivateProfileButtons(true);
                 } else {
                     btAddTween.PlayForward();
                     AvatarSelector.Show();
+                    BtPlay.StopPulsing();
+                    btPlayTween.PlayBackwards();
+                    ActivateProfileButtons(false);
                 }
-            } else {
-                _bt.AnimateClick();
+            } else if (!btAddTween.IsPlaying()) {
+                // Profile button
+                SelectProfile(GetPlayerIdByAvatarButton(_bt as ProfileSelectorAvatarButton));
             }
+        }
+
+        #endregion
+
+        #region Helpers
+
+        ProfileSelectorAvatarButton GetAvatarButtonByPlayerId(int _playerId)
+        {
+            return avatarButtons[avatarButtons.Length - _playerId];
+        }
+
+        int GetPlayerIdByAvatarButton(ProfileSelectorAvatarButton _bt)
+        {
+            return avatarButtons.Length - Array.IndexOf(avatarButtons, _bt);
         }
 
         #endregion

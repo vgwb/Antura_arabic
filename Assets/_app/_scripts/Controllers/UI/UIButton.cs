@@ -25,7 +25,7 @@ namespace EA4S
 
         #region Unity
 
-        void Awake()
+        protected virtual void Awake()
         {
             clickTween = this.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.35f).SetAutoKill(false).SetUpdate(true).Pause();
             pulseTween = this.transform.DOScale(this.transform.localScale * 1.1f, 0.3f).SetAutoKill(false).SetUpdate(true).Pause()
@@ -42,7 +42,7 @@ namespace EA4S
 
         #region Public Methods
 
-        public void Toggle(bool _activate)
+        public void Toggle(bool _activate, bool _animateClick = false)
         {
             IsToggled = _activate;
 
@@ -55,6 +55,8 @@ namespace EA4S
 
             btImg.color = _activate ? defColor : BtToggleOffColor;
             ico.SetAlpha(_activate ? 1 : 0.4f);
+
+            if (_animateClick) AnimateClick();
         }
 
         /// <summary>
