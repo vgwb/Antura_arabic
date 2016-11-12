@@ -53,10 +53,12 @@ namespace EA4S {
         /// </summary>
         /// <param name="_avatarId"></param>
         /// <returns></returns>
-        public PlayerProfile CreateOrLoadPlayerProfile(string _avatarId) {
+        public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId) {
             PlayerProfile newPP = new PlayerProfile();
-            newPP.CreateOrLoadPlayerProfile(_avatarId);
+            //newPP.CreateOrLoadPlayerProfile(_avatarId);
             return newPP;
         }
+
+
     }
 }
