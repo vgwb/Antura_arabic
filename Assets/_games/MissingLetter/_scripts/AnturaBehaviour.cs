@@ -13,22 +13,30 @@ namespace EA4S.MissingLetter
         private Transform mStart, mEnd;
 
         private Transform nextPos;
-        private Antura mAntura;
+        private AnturaAnimationController mAntura;
 
         void Start()
         {
-            mAntura = GetComponent<Antura>();
-            Assert.IsNotNull<Antura>(mAntura, "Add Antura Script to " + name);
+            mAntura = GetComponent<AnturaAnimationController>();
+            Assert.IsNotNull<AnturaAnimationController>(mAntura, "Add Antura Script to " + name);
             transform.position = mStart.position;
             nextPos = mEnd;
         }
 
         public void EnterScene(float duration)
         {
-            mAntura.BarkWhenRunning = true;
-            mAntura.SetAnimation(AnturaAnim.Run);
-            transform.LookAt(transform.position + Vector3.right * (nextPos.position.x - transform.position.x));
-            transform.DOMove(nextPos.position, duration).OnComplete(delegate {  mAntura.SetAnimation(AnturaAnim.SitBreath); }) ;
+            //Old prefab
+            //mAntura.BarkWhenRunning = true;
+            //mAntura.SetAnimation(AnturaAnim.Run);
+            //transform.LookAt(transform.position + Vector3.right * (nextPos.position.x - transform.position.x));
+            //transform.DOMove(nextPos.position, duration).OnComplete(delegate {  mAntura.SetAnimation(AnturaAnim.SitBreath); }) ;
+
+            mAntura.State = AnturaAnimationStates.walking;
+            mAntura.IsAngry = true;
+            mAntura.DoBark(); // 12/11/16 Doesn't work. Parameter dosen't exist ...
+            transform.LookAt(transform.position + Vector3.left * (nextPos.position.x - transform.position.x));
+            transform.DOMove(nextPos.position, duration).OnComplete(delegate { mAntura.State = AnturaAnimationStates.idle; }) ;
+
             nextPos = nextPos == mStart ? mEnd : mStart;
         }
     }
