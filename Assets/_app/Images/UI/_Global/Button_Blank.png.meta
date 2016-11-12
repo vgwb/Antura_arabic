@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: e1c941fe943e0a74888e880acf2fc810
-timeCreated: 1477187709
-licenseType: Free
+guid: b9f39cb3dbb623b42b43190ce005adf3
+timeCreated: 1478954859
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -53,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: PlayerAvatars
+  spritePackingTag: GlobalUI
   userData: 
   assetBundleName: 
   assetBundleVariant: 
