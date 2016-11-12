@@ -15,8 +15,10 @@ namespace EA4S
 
         public bool IsToggled { get; private set; }
         public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
+        public RectTransform RectT { get { if (fooRectT == null) fooRectT = this.GetComponent<RectTransform>(); return fooRectT; } }
 
         Button fooBt;
+        RectTransform fooRectT;
         Image btImg, ico;
         Color defColor;
         Tween clickTween, pulseTween;
