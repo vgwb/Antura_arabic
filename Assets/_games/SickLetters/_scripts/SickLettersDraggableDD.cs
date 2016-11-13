@@ -93,7 +93,8 @@ namespace EA4S.SickLetters
             if (release)
                 return;
 
-            
+            game.tut.repeatConter = game.tut.repeatMax;
+
             //transform.eulerAngles = origRotation;
 			Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
@@ -136,6 +137,8 @@ namespace EA4S.SickLetters
                 boxCollider.size = new Vector3(0.2f, 1, 0.2f);
 
                 isLeftOver = false;
+
+                
             }
 
             overPlayermarker = false;
@@ -243,13 +246,12 @@ namespace EA4S.SickLetters
                 game.Poof(transform.position);
                 if(!isInVase)
                 {
-                    game.Context.GetCheckmarkWidget().Show(false);
-                    game.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                    game.onWrongMove();
                 }
 
                 if (isCorrect)
                 {
-                    StartCoroutine(game.scale.onWrongMove());
+                    StartCoroutine(game.scale.onDroppingCorrectDD());
                     resetCorrectDD();
                 }
                 else
@@ -277,6 +279,8 @@ namespace EA4S.SickLetters
             t.position = new Vector3(startPose.x + Mathf.Sin(Time.time * 20f) / 10, t.position.y, t.position.z);
 
         }
+
+        
     }
 
 }
