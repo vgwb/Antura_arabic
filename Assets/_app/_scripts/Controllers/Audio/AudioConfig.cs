@@ -12,6 +12,7 @@
         Theme7 = 7
     }
 
+    // last is 45
     public enum Sfx
     {
         AlarmClock = 13,
@@ -26,6 +27,8 @@
         DogBarking = 22,
         DogSnoring = 23,
         DogSnorting = 24,
+        EggBreak = 40,
+        EggMove = 41,
         GameTitle = 5,
         Hit = 1,
         KO = 26,
@@ -39,11 +42,15 @@
         PipeBlowIn = 35,
         PipeBlowOut = 36,
         Poof = 37,
+        ScaleDown = 43,
+        ScaleUp = 44,
         ScreenHit = 38,
         Splat = 30,
         StampOK = 29,
         StarFlower = 28,
+        ThrowArm = 42,
         ThrowObj = 39,
+        TickAndWin = 45,
         Transition = 27,
         UIButtonClick = 9,
         UIPauseIn = 10,
@@ -94,21 +101,6 @@
         {
             var eventName = "";
             switch (sfx) {
-                case Sfx.Hit:
-                    eventName = "Sfx/Hit";
-                    break;
-                case Sfx.DangerClock:
-                    eventName = "Sfx/DangerClock";
-                    break;
-                case Sfx.DangerClockLong:
-                    eventName = "Sfx/DangerClockLong";
-                    break;
-                case Sfx.Win:
-                    eventName = "Sfx/Win";
-                    break;
-                case Sfx.Lose:
-                    eventName = "Sfx/Lose";
-                    break;
                 case Sfx.BaloonPop:
                     eventName = "Sfx/BalloonPop";
                     break;
@@ -148,15 +140,6 @@
                 case Sfx.GameTitle:
                     eventName = "VOX/GameTitle";
                     break;
-                case Sfx.WalkieTalkie:
-                    eventName = "Sfx/WalkieTalkie";
-                    break;
-                case Sfx.WheelStart:
-                    eventName = "Sfx/WheelStart";
-                    break;
-                case Sfx.WheelTick:
-                    eventName = "Sfx/WheelTick";
-                    break;
                 case Sfx.DogBarking:
                     eventName = "Dog/Barking";
                     break;
@@ -166,50 +149,8 @@
                 case Sfx.DogSnorting:
                     eventName = "Dog/Snorting";
                     break;
-                case Sfx.OK:
-                    eventName = "Sfx/OK";
-                    break;
-                case Sfx.KO:
-                    eventName = "Sfx/KO";
-                    break;
-                case Sfx.Transition:
-                    eventName = "Sfx/Transition";
-                    break;
-                case Sfx.StarFlower:
-                    eventName = "Sfx/StarFlower";
-                    break;
-                case Sfx.StampOK:
-                    eventName = "Sfx/StampOK";
-                    break;
-                case Sfx.Splat:
-                    eventName = "Sfx/Splat";
-                    break;
-                case Sfx.BallHit:
-                    eventName = "Sfx/BallHit";
-                    break;
-                case Sfx.BushRustlingIn:
-                    eventName = "Sfx/BushRustlingIn";
-                    break;
-                case Sfx.BushRustlingOut:
-                    eventName = "Sfx/BushRustlingOut";
-                    break;
-                case Sfx.CrateLandOnground:
-                    eventName = "Sfx/CrateLandOnground";
-                    break;
-                case Sfx.PipeBlowIn:
-                    eventName = "Sfx/PipeBlowIn";
-                    break;
-                case Sfx.PipeBlowOut:
-                    eventName = "Sfx/PipeBlowOut";
-                    break;
-                case Sfx.Poof:
-                    eventName = "Sfx/Poof";
-                    break;
-                case Sfx.ScreenHit:
-                    eventName = "Sfx/ScreenHit";
-                    break;
-                case Sfx.ThrowObj:
-                    eventName = "Sfx/ThrowObj";
+                default:
+                    eventName = "Sfx/" + sfx.ToString();
                     break;
             }
             return eventName;

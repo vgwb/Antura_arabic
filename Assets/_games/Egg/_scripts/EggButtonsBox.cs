@@ -174,6 +174,7 @@ namespace EA4S.Egg
             }
 
             float fromStartDelay;
+            bool jump;
             Action onStartCallBack;
             Action onEndCallback;
 
@@ -186,11 +187,15 @@ namespace EA4S.Egg
                 fromStartDelay = 0f;
                 onStartCallBack = null;
                 onEndCallback = null;
+                jump = true;
+
+                fromStartDelay = anturaSpitDelay;
 
                 if (i == 0)
                 {
                     fromStartDelay = anturaSpitDelay;
                     onStartCallBack = anturaSpit;
+                    jump = false;
                 }
 
                 if (i == buttonsPosition.Length - 1)
@@ -199,10 +204,10 @@ namespace EA4S.Egg
                 }
 
 
-                eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, true, fromStartDelay, onStartCallBack, onEndCallback);
+                eggButtons[currentIndex].MoveTo(buttonsPosition[i], duration, anturaInAnimationCurve, (i * delayBetweenButton) + delay, jump, fromStartDelay, onStartCallBack, onEndCallback);
 
                 eggButtons[currentIndex].positionIndex = i;
-                eggButtons[currentIndex].ScaleTo(1f, duration, (i * delayBetweenButton) + delay);
+                eggButtons[currentIndex].ScaleTo(1f, duration, (i * delayBetweenButton) + delay + fromStartDelay);
                 eggButtons[currentIndex].transform.SetAsFirstSibling();
             }
         }

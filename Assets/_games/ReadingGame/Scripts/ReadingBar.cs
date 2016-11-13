@@ -94,13 +94,15 @@ public class ReadingBar : MonoBehaviour
         endCompleted.localPosition = oldEndPos;
 
         glass.transform.position = Vector3.Lerp(glass.transform.position, GetGlassWorldPosition(), Time.deltaTime * 20);
+        float glassPercPos = Vector3.Distance(glass.transform.position, start.position)/Vector3.Distance(start.position, end.position);
+
 
         // Set Back Sprite
         var oldPos = backSprite.transform.localPosition;
 
         oldPos.x = (start.localPosition.x + end.localPosition.x) * 0.5f;
         backSprite.transform.localPosition = oldPos;
-        backSprite.donePercentage = 1 - currentReading;
+        backSprite.donePercentage = 1 - glassPercPos;
         var oldScale = backSprite.transform.localScale;
         oldScale.x = (start.localPosition.x - end.localPosition.x) * 0.25f;
         backSprite.transform.localScale = oldScale;

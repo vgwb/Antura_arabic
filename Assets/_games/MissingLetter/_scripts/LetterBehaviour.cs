@@ -119,6 +119,7 @@ namespace EA4S.MissingLetter
             gameObject.transform.rotation = Quaternion.identity;
             endTransformToCallback = null;
             onLetterClick = null;
+            LightOff();
         }
 
         public void SetPositions(Vector3 start, Vector3 center, Vector3 end)
@@ -161,6 +162,9 @@ namespace EA4S.MissingLetter
 
         public void ExitScene()
         {
+
+            LightOff();
+
             onLetterClick = null;
             endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
@@ -177,6 +181,9 @@ namespace EA4S.MissingLetter
 
         public void ChangePos(int _idxPos, int maxItemsInScreen, float duration)
         {
+
+            LightOff();
+
             mCollider.enabled = false;
             Vector3 newPos = CalculatePos(_idxPos, maxItemsInScreen);
 
@@ -250,20 +257,36 @@ namespace EA4S.MissingLetter
         {
             PlayAnimation(LLAnimationStates.LL_dancing);
             //mLetter.DoHighFive();
-            spotLight = new GameObject("SpotLight");
-            spotLight.transform.position = gameObject.transform.position + Vector3.up * 8 + Vector3.back * 6;
-            spotLight.transform.Rotate(Vector3.right, 50);
-            spotLight.transform.parent = gameObject.transform;
-            Light cSpotLight = spotLight.AddComponent<Light>();
-            cSpotLight.type = LightType.Spot;
-            cSpotLight.range = 40;
-            cSpotLight.intensity = 8;
-            cSpotLight.spotAngle = 50;
+            LightOn();
+        }
+
+        
+        public void LightOn() {
+            if (spotLight == null) {
+                spotLight = new GameObject("SpotLight");
+
+                spotLight.transform.position = gameObject.transform.position + Vector3.up * 8 + Vector3.back * 6;
+                spotLight.transform.Rotate(Vector3.right, 50);
+                spotLight.transform.parent = gameObject.transform;
+                Light cSpotLight = spotLight.AddComponent<Light>();
+                cSpotLight.type = LightType.Spot;
+                cSpotLight.range = 40;
+                cSpotLight.intensity = 8;
+                cSpotLight.spotAngle = 50;
+            }
+        }
+        
+        public void LightOff() {
+            if (spotLight != null) {
+                Destroy(spotLight);
+                spotLight = null;
+            }
+                
         }
 
         public void StopSuggest()
         {
-            Destroy(spotLight);
+            LightOff();
         }
 
         #endregion
@@ -276,7 +299,7 @@ namespace EA4S.MissingLetter
         private Tweener rotationTweener;
         private Collider mCollider;
 
-        static private GameObject spotLight;
+        private GameObject spotLight;
         private bool mbIsSpeaking;
 
         public ILivingLetterData mLetterData;

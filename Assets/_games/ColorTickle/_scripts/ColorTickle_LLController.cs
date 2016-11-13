@@ -7,12 +7,15 @@ namespace EA4S.ColorTickle
     public class ColorTickle_LLController : MonoBehaviour
     {
         #region EXPOSED MEMBERS
+        [Header("Movement")]
         [SerializeField]
-        private float m_fSpeed = 10; //Movement speed
+        private float m_fMovementSpeed = 10; //Movement speed
+        [SerializeField]
+        private float m_fRotationSpeed = 180; //Rotation speed by degree
         [SerializeField]
         private Vector3 m_v3StartPosition;
         [SerializeField]
-        private Vector3 m_v3Destination;
+        private Transform m_Destination;
         [SerializeField]
         private bool m_bMovingToDestination = false; //When true the letter will move towards the setted destination
 
@@ -24,6 +27,7 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
         private LetterObjectView m_oLetter;
+		private Vector3 m_v3Destination;
         #endregion
 
         #region EVENTS
@@ -41,10 +45,16 @@ namespace EA4S.ColorTickle
             get { return m_v3Destination; }
         }
 
-        public float speed
+        public float movementSpeed
         {
-            get { return m_fSpeed; }
-            set { m_fSpeed = value; }
+            get { return m_fMovementSpeed; }
+            set { m_fMovementSpeed = value; }
+        }
+
+        public float rotationSpeed
+        {
+            get { return m_fRotationSpeed; }
+            set { m_fRotationSpeed = value; }
         }
 
         public bool movingToDestination
@@ -71,7 +81,8 @@ namespace EA4S.ColorTickle
         void Start()
         {
             m_oLetter = gameObject.GetComponent<LetterObjectView>();
-            m_oLetter.gameObject.transform.position = m_v3StartPosition;
+			m_v3StartPosition =  m_oLetter.gameObject.transform.position;
+			m_v3Destination = m_Destination.position;
         }
 
         void Update()
@@ -116,12 +127,13 @@ namespace EA4S.ColorTickle
         private void MoveTo(Vector3 v3Destination)
         {
             Vector3 _v3MaxMovement = v3Destination - gameObject.transform.position;
-            Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fSpeed * Time.deltaTime;
+            Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fMovementSpeed * Time.deltaTime;
 
             if (_v3PartialMovement.sqrMagnitude >= _v3MaxMovement.sqrMagnitude) //if we reached the destination
             {
                 //position on the destination
-                gameObject.transform.position = v3Destination;
+                //gameObject.transform.position = v3Destination;
+                gameObject.transform.Translate(_v3MaxMovement, Space.World);
                 m_bMovingToDestination = false;
 
                 //change animation and play sound
@@ -139,7 +151,10 @@ namespace EA4S.ColorTickle
                 m_oLetter.SetWalkingSpeed(1);
                 
                 m_oLetter.SetState(m_eAnimationOnMoving);
-                gameObject.transform.position += _v3PartialMovement;
+                gameObject.transform.Translate(_v3PartialMovement, Space.World);
+                gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);
+
+                //gameObject.transform.position += _v3PartialMovement;
                 //m_bMovingToDestination = true;
             }
         }
