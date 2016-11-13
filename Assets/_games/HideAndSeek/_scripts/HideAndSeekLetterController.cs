@@ -66,6 +66,9 @@ namespace EA4S.HideAndSeek
                         isClickable = false;
                         view.SetState(LLAnimationStates.LL_idle);
                         view.HasFear = false;
+                    } else
+                    {
+                        view.SetState(LLAnimationStates.LL_idle);
                     }
                 });
         }
@@ -93,7 +96,15 @@ namespace EA4S.HideAndSeek
             pos1 = pos;
         }
 
-		public void Move()
+        public void MoveTutorial()
+        {
+            Vector3 pos = new Vector3(transform.position.x - 4.0f, transform.position.y, transform.position.z);
+            isClickable = true;
+            MoveTo(pos, walkDuration);
+        }
+
+
+        public void Move()
         {
 			if (!isMoving) {
                 float temp = Random.Range(-ray, ray);

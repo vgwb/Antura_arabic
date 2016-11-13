@@ -120,6 +120,8 @@ namespace EA4S.ReadingGame
 
                 completedDragging = false;
             }
+
+            game.antura.angry = (gameTime.Time < 0.5f * gameTime.Duration);
         }
 
         public void UpdatePhysics(float delta)

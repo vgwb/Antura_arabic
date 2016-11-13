@@ -103,8 +103,10 @@
 		float4 back = tex2D(_BackTex, backUV).rgba;
 		back.rgb = lerp(half3(1, 1, 1), half3(0, 0, 0), 1 - back.r);
 
-		c.a = lerp(c.a, IN.color.a, mask);
-		c.rgb = lerp(c.rgb, back, mask);
+		half inside = smoothstep(0.0, 0.7, mask);
+
+		c.rgb = lerp(c.rgb, lerp(back, c.rgb, c.a), inside);
+		c.a = lerp(c.a, IN.color.a, inside);
 		c.rgb *= c.a;
 
 		return c;
