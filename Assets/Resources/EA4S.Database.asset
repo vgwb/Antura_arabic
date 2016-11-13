@@ -2213,6 +2213,16 @@ MonoBehaviour:
       - lam
       Difficulty: 0
       Drawing: 
+    - Id: and
+      Kind: 0
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0648"
+      Letters:
+      - waw
+      Difficulty: 0
+      Drawing: 
     - Id: anger
       Kind: 4
       Category: 2
@@ -2224,7 +2234,7 @@ MonoBehaviour:
       - yeh
       - zah
       Difficulty: 0
-      Drawing: FA
+      Drawing: 41
     - Id: apple
       Kind: 4
       Category: 3
@@ -2237,7 +2247,7 @@ MonoBehaviour:
       - alef
       - hah
       Difficulty: 0
-      Drawing: 1
+      Drawing: 42
     - Id: apricot
       Kind: 4
       Category: 3
@@ -2250,7 +2260,7 @@ MonoBehaviour:
       - meem
       - sheen
       Difficulty: 2
-      Drawing: 2
+      Drawing: 43
     - Id: ate
       Kind: 2
       Category: 0
@@ -2299,7 +2309,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 0
-      Drawing: 5
+      Drawing: 45
     - Id: banana
       Kind: 4
       Category: 3
@@ -2311,7 +2321,7 @@ MonoBehaviour:
       - waw
       - zain
       Difficulty: 1
-      Drawing: 6
+      Drawing: 46
     - Id: bank
       Kind: 4
       Category: 6
@@ -2324,7 +2334,7 @@ MonoBehaviour:
       - reh
       - feh
       Difficulty: 0
-      Drawing: 7
+      Drawing: 47
     - Id: basketball
       Kind: 4
       Category: 7
@@ -2341,7 +2351,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 0
-      Drawing: 8
+      Drawing: 48
     - Id: bear
       Kind: 4
       Category: 8
@@ -2352,7 +2362,7 @@ MonoBehaviour:
       - dal
       - beh
       Difficulty: 1
-      Drawing: 9
+      Drawing: 49
     - Id: beautiful
       Kind: 1
       Category: 9
@@ -2378,7 +2388,7 @@ MonoBehaviour:
       - alef
       - sheen
       Difficulty: 0
-      Drawing: A
+      Drawing: 4A
     - Id: believed
       Kind: 2
       Category: 0
@@ -2401,7 +2411,7 @@ MonoBehaviour:
       - tah
       - noon
       Difficulty: 1
-      Drawing: B
+      Drawing: 4B
     - Id: berry
       Kind: 4
       Category: 3
@@ -2413,7 +2423,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 1
-      Drawing: C
+      Drawing: 4C
     - Id: big
       Kind: 1
       Category: 11
@@ -2440,7 +2450,7 @@ MonoBehaviour:
       - waw
       - reh
       Difficulty: 0
-      Drawing: D
+      Drawing: 4D
     - Id: book
       Kind: 4
       Category: 12
@@ -2453,7 +2463,7 @@ MonoBehaviour:
       - alef
       - beh
       Difficulty: 0
-      Drawing: E
+      Drawing: 4E
     - Id: books
       Kind: 4
       Category: 12
@@ -2465,7 +2475,7 @@ MonoBehaviour:
       - teh
       - beh
       Difficulty: 0
-      Drawing: F
+      Drawing: 4F
     - Id: box
       Kind: 4
       Category: 12
@@ -2479,7 +2489,7 @@ MonoBehaviour:
       - waw
       - qaf
       Difficulty: 0
-      Drawing: 10
+      Drawing: 50
     - Id: boy
       Kind: 4
       Category: 4
@@ -2491,7 +2501,7 @@ MonoBehaviour:
       - beh
       - yeh
       Difficulty: 0
-      Drawing: 11
+      Drawing: 51
     - Id: brain
       Kind: 4
       Category: 5
@@ -2504,7 +2514,7 @@ MonoBehaviour:
       - alef
       - ghain
       Difficulty: 0
-      Drawing: 12
+      Drawing: 52
     - Id: brave
       Kind: 1
       Category: 1
@@ -2529,7 +2539,7 @@ MonoBehaviour:
       - beh
       - zain
       Difficulty: 1
-      Drawing: 13
+      Drawing: 53
     - Id: breeze
       Kind: 4
       Category: 13
@@ -2542,7 +2552,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Difficulty: 0
-      Drawing: 14
+      Drawing: 54
     - Id: broad_bean
       Kind: 4
       Category: 3
@@ -2554,7 +2564,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 15
+      Drawing: 55
     - Id: brother
       Kind: 4
       Category: 4
@@ -2590,7 +2600,7 @@ MonoBehaviour:
       - alef
       - sad
       Difficulty: 0
-      Drawing: 18
+      Drawing: 44
     - Id: camel
       Kind: 4
       Category: 8
@@ -2602,7 +2612,7 @@ MonoBehaviour:
       - meem
       - lam
       Difficulty: 0
-      Drawing: 19
+      Drawing: 56
     - Id: carpenter
       Kind: 4
       Category: 15
@@ -2615,7 +2625,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 1A
+      Drawing: 57
     - Id: carried
       Kind: 2
       Category: 0
@@ -2639,7 +2649,7 @@ MonoBehaviour:
       - zain
       - reh
       Difficulty: 0
-      Drawing: 1B
+      Drawing: 58
     - Id: cat
       Kind: 4
       Category: 8
@@ -2650,7 +2660,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 1
-      Drawing: 1C
+      Drawing: 59
     - Id: caught
       Kind: 2
       Category: 0
@@ -2675,7 +2685,7 @@ MonoBehaviour:
       - seen
       - yeh
       Difficulty: 0
-      Drawing: 1D
+      Drawing: 5A
     - Id: cheese
       Kind: 4
       Category: 3
@@ -2687,7 +2697,7 @@ MonoBehaviour:
       - beh
       - noon
       Difficulty: 1
-      Drawing: 1E
+      Drawing: 61
     - Id: cherry
       Kind: 4
       Category: 3
@@ -2699,7 +2709,7 @@ MonoBehaviour:
       - reh
       - zain
       Difficulty: 0
-      Drawing: 1F
+      Drawing: 62
     - Id: chest
       Kind: 4
       Category: 5
@@ -2711,7 +2721,7 @@ MonoBehaviour:
       - dal
       - reh
       Difficulty: 0
-      Drawing: 20
+      Drawing: 63
     - Id: chickpea
       Kind: 4
       Category: 3
@@ -2723,7 +2733,7 @@ MonoBehaviour:
       - meem
       - sad
       Difficulty: 0
-      Drawing: 21
+      Drawing: 64
     - Id: classroom
       Kind: 4
       Category: 6
@@ -2760,7 +2770,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Difficulty: 0
-      Drawing: 23
+      Drawing: 65
     - Id: club
       Kind: 4
       Category: 6
@@ -2958,7 +2968,7 @@ MonoBehaviour:
       - reh
       Difficulty: 0
       Drawing: 
-    - Id: copybook
+    - Id: notebook
       Kind: 4
       Category: 12
       Form: 0
@@ -2970,7 +2980,7 @@ MonoBehaviour:
       - teh
       - reh
       Difficulty: 0
-      Drawing: 25
+      Drawing: DC
     - Id: costume
       Kind: 4
       Category: 17
@@ -2984,7 +2994,7 @@ MonoBehaviour:
       - seen
       - alef
       Difficulty: 0
-      Drawing: 26
+      Drawing: 67
     - Id: cried
       Kind: 2
       Category: 0
@@ -3008,7 +3018,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 27
+      Drawing: 68
     - Id: cupboard
       Kind: 4
       Category: 10
@@ -3022,7 +3032,7 @@ MonoBehaviour:
       - noon
       - teh_marbuta
       Difficulty: 0
-      Drawing: 28
+      Drawing: C1
     - Id: day
       Kind: 4
       Category: 18
@@ -3153,7 +3163,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 31
+      Drawing: 69
     - Id: delicious
       Kind: 1
       Category: 3
@@ -3178,7 +3188,7 @@ MonoBehaviour:
       - yeh
       - beh
       Difficulty: 0
-      Drawing: 32
+      Drawing: 6A
     - Id: dog
       Kind: 4
       Category: 8
@@ -3190,7 +3200,7 @@ MonoBehaviour:
       - lam
       - beh
       Difficulty: 1
-      Drawing: 33
+      Drawing: 6B
     - Id: door
       Kind: 4
       Category: 10
@@ -3202,7 +3212,7 @@ MonoBehaviour:
       - alef
       - beh
       Difficulty: 0
-      Drawing: 34
+      Drawing: 6C
     - Id: drank
       Kind: 2
       Category: 0
@@ -3225,7 +3235,7 @@ MonoBehaviour:
       - beh
       - tah
       Difficulty: 0
-      Drawing: 35
+      Drawing: 
     - Id: eagle
       Kind: 4
       Category: 8
@@ -3237,7 +3247,7 @@ MonoBehaviour:
       - seen
       - reh
       Difficulty: 0
-      Drawing: 36
+      Drawing: 6D
     - Id: ear
       Kind: 4
       Category: 5
@@ -3249,7 +3259,7 @@ MonoBehaviour:
       - thal
       - noon
       Difficulty: 1
-      Drawing: 37
+      Drawing: 6E
     - Id: elephant
       Kind: 4
       Category: 8
@@ -3261,7 +3271,7 @@ MonoBehaviour:
       - yeh
       - lam
       Difficulty: 0
-      Drawing: 38
+      Drawing: 6F
     - Id: engineer
       Kind: 4
       Category: 15
@@ -3275,7 +3285,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 39
+      Drawing: 
     - Id: evening
       Kind: 4
       Category: 18
@@ -3287,7 +3297,7 @@ MonoBehaviour:
       - seen
       - alef
       Difficulty: 0
-      Drawing: 3A
+      Drawing: 
     - Id: eye
       Kind: 4
       Category: 5
@@ -3299,7 +3309,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 1
-      Drawing: 3B
+      Drawing: 70
     - Id: face
       Kind: 4
       Category: 5
@@ -3311,7 +3321,7 @@ MonoBehaviour:
       - jeem
       - heh
       Difficulty: 0
-      Drawing: 
+      Drawing: 71
     - Id: fall
       Kind: 4
       Category: 13
@@ -3324,7 +3334,7 @@ MonoBehaviour:
       - yeh
       - feh
       Difficulty: 0
-      Drawing: 3D
+      Drawing: 
     - Id: farmer
       Kind: 4
       Category: 15
@@ -3337,7 +3347,7 @@ MonoBehaviour:
       - alef
       - hah
       Difficulty: 0
-      Drawing: 
+      Drawing: 72
     - Id: father
       Kind: 4
       Category: 4
@@ -3350,7 +3360,7 @@ MonoBehaviour:
       - beh
       - alef
       Difficulty: 1
-      Drawing: 3F
+      Drawing: 
     - Id: field
       Kind: 4
       Category: 6
@@ -3362,7 +3372,7 @@ MonoBehaviour:
       - qaf
       - lam
       Difficulty: 0
-      Drawing: 40
+      Drawing: 73
     - Id: fig
       Kind: 4
       Category: 3
@@ -3374,7 +3384,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 0
-      Drawing: 41
+      Drawing: 74
     - Id: finger
       Kind: 4
       Category: 5
@@ -3386,7 +3396,19 @@ MonoBehaviour:
       - beh
       - ain
       Difficulty: 0
-      Drawing: 42
+      Drawing: 75
+    - Id: flag
+      Kind: 4
+      Category: 12
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0644\u064E\u0645"
+      Letters:
+      - ain
+      - lam
+      - meem
+      Difficulty: 0
+      Drawing: 76
     - Id: flapped
       Kind: 2
       Category: 0
@@ -3412,18 +3434,6 @@ MonoBehaviour:
       - reh
       Difficulty: 0
       Drawing: 
-    - Id: flag
-      Kind: 4
-      Category: 12
-      Form: 0
-      Article: 0
-      Arabic: "\u0639\u0644\u064E\u0645"
-      Letters:
-      - ain
-      - lam
-      - meem
-      Difficulty: 0
-      Drawing: 43
     - Id: flower
       Kind: 4
       Category: 13
@@ -3435,7 +3445,7 @@ MonoBehaviour:
       - reh
       - dal
       Difficulty: 1
-      Drawing: 
+      Drawing: 77
     - Id: food
       Kind: 4
       Category: 3
@@ -3447,7 +3457,7 @@ MonoBehaviour:
       - kaf
       - lam
       Difficulty: 0
-      Drawing: 45
+      Drawing: 
     - Id: foot
       Kind: 4
       Category: 5
@@ -3459,7 +3469,7 @@ MonoBehaviour:
       - dal
       - meem
       Difficulty: 1
-      Drawing: 46
+      Drawing: CC
     - Id: football
       Kind: 4
       Category: 7
@@ -3476,7 +3486,7 @@ MonoBehaviour:
       - dal
       - meem
       Difficulty: 0
-      Drawing: 47
+      Drawing: 78
     - Id: forest
       Kind: 4
       Category: 13
@@ -3489,7 +3499,7 @@ MonoBehaviour:
       - beh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 48
+      Drawing: 79
     - Id: fridge
       Kind: 4
       Category: 10
@@ -3502,6 +3512,17 @@ MonoBehaviour:
       - alef
       - jeem
       - teh_marbuta
+      Difficulty: 0
+      Drawing: 7A
+    - Id: from
+      Kind: 0
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0646"
+      Letters:
+      - meem
+      - noon
       Difficulty: 0
       Drawing: 
     - Id: furniture
@@ -3516,7 +3537,7 @@ MonoBehaviour:
       - alef
       - theh
       Difficulty: 0
-      Drawing: 4A
+      Drawing: 
     - Id: garden
       Kind: 4
       Category: 6
@@ -3530,7 +3551,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 4B
+      Drawing: C2
     - Id: garlic
       Kind: 4
       Category: 3
@@ -3542,7 +3563,7 @@ MonoBehaviour:
       - waw
       - meem
       Difficulty: 0
-      Drawing: 4C
+      Drawing: C4
     - Id: girl
       Kind: 4
       Category: 4
@@ -3554,7 +3575,7 @@ MonoBehaviour:
       - noon
       - teh
       Difficulty: 0
-      Drawing: 4D
+      Drawing: C0
     - Id: glue
       Kind: 4
       Category: 12
@@ -3566,7 +3587,7 @@ MonoBehaviour:
       - meem
       - ghain
       Difficulty: 0
-      Drawing: 
+      Drawing: C5
     - Id: granddaughter
       Kind: 4
       Category: 4
@@ -3618,7 +3639,7 @@ MonoBehaviour:
       - yeh
       - dal
       Difficulty: 0
-      Drawing: 52
+      Drawing: 
     - Id: grapes
       Kind: 4
       Category: 3
@@ -3630,7 +3651,7 @@ MonoBehaviour:
       - noon
       - beh
       Difficulty: 0
-      Drawing: 
+      Drawing: C6
     - Id: ground
       Kind: 4
       Category: 6
@@ -3642,7 +3663,7 @@ MonoBehaviour:
       - reh
       - dad
       Difficulty: 0
-      Drawing: 54
+      Drawing: 
     - Id: hair
       Kind: 4
       Category: 5
@@ -3654,7 +3675,18 @@ MonoBehaviour:
       - ain
       - reh
       Difficulty: 0
-      Drawing: 55
+      Drawing: C7
+    - Id: hand
+      Kind: 4
+      Category: 5
+      Form: 0
+      Article: 0
+      Arabic: "\u064A\u062F"
+      Letters:
+      - yeh
+      - dal
+      Difficulty: 1
+      Drawing: D0
     - Id: happy
       Kind: 1
       Category: 1
@@ -3668,17 +3700,18 @@ MonoBehaviour:
       - dal
       Difficulty: 0
       Drawing: 
-    - Id: hand
+    - Id: head
       Kind: 4
       Category: 5
       Form: 0
       Article: 0
-      Arabic: "\u064A\u062F"
+      Arabic: "\u0631\u0623\u0633"
       Letters:
-      - yeh
-      - dal
+      - reh
+      - alef_hamza_hi
+      - seen
       Difficulty: 1
-      Drawing: 56
+      Drawing: CA
     - Id: hi
       Kind: 5
       Category: 0
@@ -3691,42 +3724,6 @@ MonoBehaviour:
       - hah
       - beh
       - alef
-      Difficulty: 0
-      Drawing: 
-    - Id: head
-      Kind: 4
-      Category: 5
-      Form: 0
-      Article: 0
-      Arabic: "\u0631\u0623\u0633"
-      Letters:
-      - reh
-      - alef_hamza_hi
-      - seen
-      Difficulty: 1
-      Drawing: 57
-    - Id: hot_weather
-      Kind: 1
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0634\u0648\u0628"
-      Letters:
-      - sheen
-      - waw
-      - beh
-      Difficulty: 1
-      Drawing: 
-    - Id: hot_temperature
-      Kind: 1
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0633\u062E\u0646"
-      Letters:
-      - seen
-      - khah
-      - noon
       Difficulty: 0
       Drawing: 
     - Id: hospital
@@ -3742,6 +3739,30 @@ MonoBehaviour:
       - sheen
       - feh
       Difficulty: 0
+      Drawing: CB
+    - Id: hot_temperature
+      Kind: 1
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u062E\u0646"
+      Letters:
+      - seen
+      - khah
+      - noon
+      Difficulty: 0
+      Drawing: 
+    - Id: hot_weather
+      Kind: 1
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0648\u0628"
+      Letters:
+      - sheen
+      - waw
+      - beh
+      Difficulty: 1
       Drawing: 
     - Id: hour
       Kind: 4
@@ -3755,7 +3776,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 59
+      Drawing: 
     - Id: house
       Kind: 4
       Category: 6
@@ -3767,19 +3788,7 @@ MonoBehaviour:
       - yeh
       - teh
       Difficulty: 0
-      Drawing: 5A
-    - Id: insistent
-      Kind: 1
-      Category: 1
-      Form: 0
-      Article: 0
-      Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
-      Letters:
-      - meem
-      - lam
-      - hah
-      Difficulty: 0
-      Drawing: 
+      Drawing: C8
     - Id: icecream
       Kind: 4
       Category: 3
@@ -3792,7 +3801,30 @@ MonoBehaviour:
       - zah
       - teh_marbuta
       Difficulty: 0
-      Drawing: 5B
+      Drawing: CD
+    - Id: in
+      Kind: 0
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u064A"
+      Letters:
+      - feh
+      - yeh
+      Difficulty: 0
+      Drawing: 
+    - Id: insistent
+      Kind: 1
+      Category: 1
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
+      Letters:
+      - meem
+      - lam
+      - hah
+      Difficulty: 0
+      Drawing: 
     - Id: islands
       Kind: 4
       Category: 13
@@ -3804,7 +3836,7 @@ MonoBehaviour:
       - zain
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: CE
     - Id: juice
       Kind: 4
       Category: 3
@@ -3828,6 +3860,18 @@ MonoBehaviour:
       - waw
       - lam
       - dal
+      Difficulty: 0
+      Drawing: 
+    - Id: knowledge
+      Kind: 4
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0650\u0644\u0652\u0645"
+      Letters:
+      - ain
+      - lam
+      - meem
       Difficulty: 0
       Drawing: 
     - Id: laughed
@@ -3855,18 +3899,6 @@ MonoBehaviour:
       - lam
       Difficulty: 0
       Drawing: 
-    - Id: knowledge
-      Kind: 4
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0639\u0650\u0644\u0652\u0645"
-      Letters:
-      - ain
-      - lam
-      - meem
-      Difficulty: 0
-      Drawing: 5F
     - Id: leg
       Kind: 4
       Category: 5
@@ -3878,7 +3910,7 @@ MonoBehaviour:
       - jeem
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: CF
     - Id: lentil
       Kind: 4
       Category: 0
@@ -3901,7 +3933,7 @@ MonoBehaviour:
       - dad
       - waw
       Difficulty: 0
-      Drawing: 62
+      Drawing: 
     - Id: lion
       Kind: 4
       Category: 8
@@ -3913,7 +3945,7 @@ MonoBehaviour:
       - seen
       - dal
       Difficulty: 0
-      Drawing: 
+      Drawing: D1
     - Id: lion_dual
       Kind: 4
       Category: 8
@@ -3940,7 +3972,7 @@ MonoBehaviour:
       - waw
       - dal
       Difficulty: 0
-      Drawing: 65
+      Drawing: 
     - Id: lips
       Kind: 4
       Category: 5
@@ -3989,7 +4021,7 @@ MonoBehaviour:
       - hah
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: D3
     - Id: melancholy
       Kind: 4
       Category: 0
@@ -4207,7 +4239,7 @@ MonoBehaviour:
       - meem
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: D4
     - Id: morning
       Kind: 4
       Category: 18
@@ -4233,7 +4265,7 @@ MonoBehaviour:
       - meem
       - alef
       Difficulty: 1
-      Drawing: 
+      Drawing: D6
     - Id: mountain
       Kind: 4
       Category: 13
@@ -4245,7 +4277,7 @@ MonoBehaviour:
       - beh
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: D2
     - Id: mountain_dual
       Kind: 4
       Category: 13
@@ -4284,7 +4316,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - reh
       Difficulty: 1
-      Drawing: 
+      Drawing: D8
     - Id: mouth
       Kind: 4
       Category: 5
@@ -4295,7 +4327,7 @@ MonoBehaviour:
       - feh
       - meem
       Difficulty: 1
-      Drawing: 
+      Drawing: D5
     - Id: nail
       Kind: 4
       Category: 5
@@ -4307,7 +4339,7 @@ MonoBehaviour:
       - feh
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 152
     - Id: needle
       Kind: 4
       Category: 12
@@ -4319,19 +4351,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
-    - Id: now
-      Kind: 5
-      Category: 18
-      Form: 0
-      Article: 0
-      Arabic: "\u0627\u0644\u0622\u0646"
-      Letters:
-      - alef
-      - lam
-      - noon
-      Difficulty: 0
-      Drawing: 
+      Drawing: DE
     - Id: nest
       Kind: 4
       Category: 0
@@ -4342,7 +4362,7 @@ MonoBehaviour:
       - ain
       - sheen
       Difficulty: 0
-      Drawing: 
+      Drawing: DA
     - Id: nose
       Kind: 4
       Category: 5
@@ -4354,6 +4374,18 @@ MonoBehaviour:
       - noon
       - feh
       Difficulty: 1
+      Drawing: DB
+    - Id: now
+      Kind: 5
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0622\u0646"
+      Letters:
+      - alef
+      - lam
+      - noon
+      Difficulty: 0
       Drawing: 
     - Id: number_0
       Kind: 4
@@ -4567,6 +4599,20 @@ MonoBehaviour:
       - noon
       Difficulty: 0
       Drawing: 
+    - Id: number_2000
+      Kind: 4
+      Category: 19
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0641\u064A\u0646"
+      Letters:
+      - alef
+      - lam
+      - feh
+      - yeh
+      - noon
+      Difficulty: 0
+      Drawing: 
     - Id: number_3
       Kind: 4
       Category: 19
@@ -4659,20 +4705,6 @@ MonoBehaviour:
       - seen
       - ain
       - teh_marbuta
-      Difficulty: 0
-      Drawing: 
-    - Id: number_2000
-      Kind: 4
-      Category: 19
-      Form: 0
-      Article: 0
-      Arabic: "\u0627\u0644\u0641\u064A\u0646"
-      Letters:
-      - alef
-      - lam
-      - feh
-      - yeh
-      - noon
       Difficulty: 0
       Drawing: 
     - Id: number_o1
@@ -4794,19 +4826,6 @@ MonoBehaviour:
       - ain
       Difficulty: 0
       Drawing: 
-    - Id: of_course
-      Kind: 5
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0637\u0628\u0639\u0627\u064B"
-      Letters:
-      - tah
-      - beh
-      - ain
-      - alef
-      Difficulty: 0
-      Drawing: 
     - Id: number_o8
       Kind: 4
       Category: 19
@@ -4837,6 +4856,19 @@ MonoBehaviour:
       - ain
       Difficulty: 0
       Drawing: 
+    - Id: of_course
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0637\u0628\u0639\u0627\u064B"
+      Letters:
+      - tah
+      - beh
+      - ain
+      - alef
+      Difficulty: 0
+      Drawing: 
     - Id: oil
       Kind: 4
       Category: 3
@@ -4848,17 +4880,16 @@ MonoBehaviour:
       - yeh
       - teh
       Difficulty: 0
-      Drawing: 
-    - Id: opened
-      Kind: 2
+      Drawing: D9
+    - Id: on
+      Kind: 0
       Category: 0
       Form: 0
       Article: 0
-      Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
+      Arabic: "\u0639\u0644\u0649"
       Letters:
-      - feh
-      - teh
-      - hah
+      - ain
+      - lam
       Difficulty: 0
       Drawing: 
     - Id: onion
@@ -4872,7 +4903,7 @@ MonoBehaviour:
       - sad
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: DD
     - Id: OokaDH
       Kind: 4
       Category: 6
@@ -4884,6 +4915,18 @@ MonoBehaviour:
       - kaf
       - alef
       - zah
+      Difficulty: 0
+      Drawing: 
+    - Id: opened
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
+      Letters:
+      - feh
+      - teh
+      - hah
       Difficulty: 0
       Drawing: 
     - Id: oven
@@ -4909,7 +4952,7 @@ MonoBehaviour:
       - reh
       - qaf
       Difficulty: 0
-      Drawing: 
+      Drawing: E1
     - Id: parrot
       Kind: 4
       Category: 8
@@ -4922,7 +4965,7 @@ MonoBehaviour:
       - ghain
       - alef
       Difficulty: 0
-      Drawing: 
+      Drawing: E2
     - Id: peace
       Kind: 4
       Category: 0
@@ -4948,19 +4991,7 @@ MonoBehaviour:
       - alef
       - sad
       Difficulty: 0
-      Drawing: 
-    - Id: played
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
-      Letters:
-      - lam
-      - ain
-      - beh
-      Difficulty: 0
-      Drawing: 
+      Drawing: E4
     - Id: pear_big
       Kind: 4
       Category: 3
@@ -4984,7 +5015,7 @@ MonoBehaviour:
       - lam
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: E0
     - Id: pencil
       Kind: 4
       Category: 12
@@ -4995,6 +5026,18 @@ MonoBehaviour:
       - qaf
       - lam
       - meem
+      Difficulty: 0
+      Drawing: E5
+    - Id: played
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
+      Letters:
+      - lam
+      - ain
+      - beh
       Difficulty: 0
       Drawing: 
     - Id: plum
@@ -5008,7 +5051,46 @@ MonoBehaviour:
       - waw
       - khah
       Difficulty: 0
-      Drawing: 
+      Drawing: E3
+    - Id: policeman
+      Kind: 4
+      Category: 15
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0631\u0637\u064A"
+      Letters:
+      - sheen
+      - reh
+      - tah
+      - yeh
+      Difficulty: 0
+      Drawing: E6
+    - Id: potato
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0628\u0637\u0627\u0637\u0627"
+      Letters:
+      - beh
+      - tah
+      - alef
+      - tah
+      - alef
+      Difficulty: 0
+      Drawing: E7
+    - Id: rain
+      Kind: 4
+      Category: 13
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0637\u064E\u0631"
+      Letters:
+      - meem
+      - tah
+      - reh
+      Difficulty: 1
+      Drawing: F0
     - Id: rainy
       Kind: 1
       Category: 20
@@ -5034,45 +5116,6 @@ MonoBehaviour:
       - kaf
       Difficulty: 0
       Drawing: 
-    - Id: policeman
-      Kind: 4
-      Category: 15
-      Form: 0
-      Article: 0
-      Arabic: "\u0634\u0631\u0637\u064A"
-      Letters:
-      - sheen
-      - reh
-      - tah
-      - yeh
-      Difficulty: 0
-      Drawing: 
-    - Id: potato
-      Kind: 4
-      Category: 3
-      Form: 0
-      Article: 0
-      Arabic: "\u0628\u0637\u0627\u0637\u0627"
-      Letters:
-      - beh
-      - tah
-      - alef
-      - tah
-      - alef
-      Difficulty: 0
-      Drawing: 
-    - Id: rain
-      Kind: 4
-      Category: 13
-      Form: 0
-      Article: 0
-      Arabic: "\u0645\u0637\u064E\u0631"
-      Letters:
-      - meem
-      - tah
-      - reh
-      Difficulty: 1
-      Drawing: 
     - Id: restaurant
       Kind: 4
       Category: 6
@@ -5096,7 +5139,7 @@ MonoBehaviour:
       - reh
       - zain
       Difficulty: 1
-      Drawing: 
+      Drawing: E9
     - Id: river
       Kind: 4
       Category: 13
@@ -5108,31 +5151,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 0
-      Drawing: 
-    - Id: sad
-      Kind: 1
-      Category: 21
-      Form: 0
-      Article: 0
-      Arabic: "\u062D\u0632\u064A\u0646"
-      Letters:
-      - hah
-      - zain
-      - yeh
-      - noon
-      Difficulty: 0
-      Drawing: 
-    - Id: safe
-      Kind: 1
-      Category: 6
-      Form: 0
-      Article: 0
-      Arabic: "\u0622\u0645\u0650\u0646\u0652"
-      Letters:
-      - meem
-      - noon
-      Difficulty: 0
-      Drawing: 
+      Drawing: EA
     - Id: river_dual
       Kind: 4
       Category: 13
@@ -5145,29 +5164,6 @@ MonoBehaviour:
       - reh
       - alef
       - noon
-      Difficulty: 0
-      Drawing: 
-    - Id: sat
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
-      Letters:
-      - jeem
-      - lam
-      - seen
-      Difficulty: 0
-      Drawing: 
-    - Id: saw
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0631\u0623\u0649"
-      Letters:
-      - reh
-      - alef_hamza_hi
       Difficulty: 0
       Drawing: 
     - Id: river_plural
@@ -5197,6 +5193,30 @@ MonoBehaviour:
       - teh_marbuta
       Difficulty: 0
       Drawing: 
+    - Id: sad
+      Kind: 1
+      Category: 21
+      Form: 0
+      Article: 0
+      Arabic: "\u062D\u0632\u064A\u0646"
+      Letters:
+      - hah
+      - zain
+      - yeh
+      - noon
+      Difficulty: 0
+      Drawing: 
+    - Id: safe
+      Kind: 1
+      Category: 6
+      Form: 0
+      Article: 0
+      Arabic: "\u0622\u0645\u0650\u0646\u0652"
+      Letters:
+      - meem
+      - noon
+      Difficulty: 0
+      Drawing: 
     - Id: salt
       Kind: 4
       Category: 3
@@ -5207,6 +5227,29 @@ MonoBehaviour:
       - meem
       - lam
       - hah
+      Difficulty: 0
+      Drawing: EB
+    - Id: sat
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
+      Letters:
+      - jeem
+      - lam
+      - seen
+      Difficulty: 0
+      Drawing: 
+    - Id: saw
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0631\u0623\u0649"
+      Letters:
+      - reh
+      - alef_hamza_hi
       Difficulty: 0
       Drawing: 
     - Id: school
@@ -5275,7 +5318,7 @@ MonoBehaviour:
       - qaf
       - sad
       Difficulty: 0
-      Drawing: 
+      Drawing: E8
     - Id: second
       Kind: 4
       Category: 18
@@ -5288,6 +5331,43 @@ MonoBehaviour:
       - noon
       - yeh
       - teh_marbuta
+      Difficulty: 0
+      Drawing: 
+    - Id: shop
+      Kind: 4
+      Category: 6
+      Form: 0
+      Article: 0
+      Arabic: "\u062F\u0643\u0627\u0646\u064D"
+      Letters:
+      - dal
+      - kaf
+      - alef
+      - noon
+      Difficulty: 0
+      Drawing: 
+    - Id: sister
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0623\u062E\u062A"
+      Letters:
+      - alef_hamza_hi
+      - khah
+      - teh
+      Difficulty: 1
+      Drawing: EE
+    - Id: sky
+      Kind: 4
+      Category: 13
+      Form: 0
+      Article: 0
+      Arabic: "\u0633\u0645\u0627\u0621"
+      Letters:
+      - seen
+      - meem
+      - alef
       Difficulty: 0
       Drawing: 
     - Id: slow
@@ -5315,43 +5395,6 @@ MonoBehaviour:
       - reh
       Difficulty: 0
       Drawing: 
-    - Id: shop
-      Kind: 4
-      Category: 6
-      Form: 0
-      Article: 0
-      Arabic: "\u062F\u0643\u0627\u0646\u064D"
-      Letters:
-      - dal
-      - kaf
-      - alef
-      - noon
-      Difficulty: 0
-      Drawing: 
-    - Id: sister
-      Kind: 4
-      Category: 4
-      Form: 0
-      Article: 0
-      Arabic: "\u0623\u062E\u062A"
-      Letters:
-      - alef_hamza_hi
-      - khah
-      - teh
-      Difficulty: 1
-      Drawing: 
-    - Id: sky
-      Kind: 4
-      Category: 13
-      Form: 0
-      Article: 0
-      Arabic: "\u0633\u0645\u0627\u0621"
-      Letters:
-      - seen
-      - meem
-      - alef
-      Difficulty: 0
-      Drawing: 
     - Id: snow
       Kind: 4
       Category: 13
@@ -5363,19 +5406,7 @@ MonoBehaviour:
       - lam
       - jeem
       Difficulty: 1
-      Drawing: 
-    - Id: studied
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
-      Letters:
-      - dal
-      - reh
-      - seen
-      Difficulty: 0
-      Drawing: 
+      Drawing: EF
     - Id: sound
       Kind: 4
       Category: 0
@@ -5387,7 +5418,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 0
-      Drawing: 
+      Drawing: EC
     - Id: spring
       Kind: 4
       Category: 13
@@ -5414,17 +5445,16 @@ MonoBehaviour:
       - teh_marbuta
       Difficulty: 0
       Drawing: 
-    - Id: sure
-      Kind: 5
+    - Id: studied
+      Kind: 2
       Category: 0
       Form: 0
       Article: 0
-      Arabic: "\u0639\u0641\u0648\u0627\u064B"
+      Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
       Letters:
-      - ain
-      - feh
-      - waw
-      - alef
+      - dal
+      - reh
+      - seen
       Difficulty: 0
       Drawing: 
     - Id: sugar
@@ -5462,6 +5492,19 @@ MonoBehaviour:
       - meem
       - seen
       Difficulty: 0
+      Drawing: F1
+    - Id: sure
+      Kind: 5
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0641\u0648\u0627\u064B"
+      Letters:
+      - ain
+      - feh
+      - waw
+      - alef
+      Difficulty: 0
       Drawing: 
     - Id: table
       Kind: 4
@@ -5475,6 +5518,45 @@ MonoBehaviour:
       - waw
       - lam
       - teh_marbuta
+      Difficulty: 0
+      Drawing: F3
+    - Id: tea
+      Kind: 4
+      Category: 3
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u0627\u064A"
+      Letters:
+      - sheen
+      - alef
+      - yeh
+      Difficulty: 1
+      Drawing: F4
+    - Id: teacher
+      Kind: 4
+      Category: 15
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0639\u0644\u0645"
+      Letters:
+      - meem
+      - ain
+      - lam
+      - meem
+      Difficulty: 0
+      Drawing: F6
+    - Id: television
+      Kind: 4
+      Category: 10
+      Form: 0
+      Article: 0
+      Arabic: "\u062A\u0644\u0641\u0627\u0632"
+      Letters:
+      - teh
+      - lam
+      - feh
+      - alef
+      - zain
       Difficulty: 0
       Drawing: 
     - Id: thankyou
@@ -5505,75 +5587,6 @@ MonoBehaviour:
       - tah
       Difficulty: 0
       Drawing: 
-    - Id: tea
-      Kind: 4
-      Category: 3
-      Form: 0
-      Article: 0
-      Arabic: "\u0634\u0627\u064A"
-      Letters:
-      - sheen
-      - alef
-      - yeh
-      Difficulty: 1
-      Drawing: 
-    - Id: the_beautiful
-      Kind: 1
-      Category: 0
-      Form: 0
-      Article: 1
-      Arabic: "\u0627\u0644\u062C\u0645\u064A\u0644"
-      Letters:
-      - alef
-      - lam
-      - jeem
-      - meem
-      - yeh
-      - lam
-      Difficulty: 0
-      Drawing: 
-    - Id: teacher
-      Kind: 4
-      Category: 15
-      Form: 0
-      Article: 0
-      Arabic: "\u0645\u0639\u0644\u0645"
-      Letters:
-      - meem
-      - ain
-      - lam
-      - meem
-      Difficulty: 0
-      Drawing: 
-    - Id: television
-      Kind: 4
-      Category: 10
-      Form: 0
-      Article: 0
-      Arabic: "\u062A\u0644\u0641\u0627\u0632"
-      Letters:
-      - teh
-      - lam
-      - feh
-      - alef
-      - zain
-      Difficulty: 0
-      Drawing: 
-    - Id: the_happy
-      Kind: 1
-      Category: 1
-      Form: 0
-      Article: 1
-      Arabic: "\u0627\u0644\u0633\u0639\u064A\u062F"
-      Letters:
-      - alef
-      - lam
-      - seen
-      - ain
-      - yeh
-      - dal
-      Difficulty: 0
-      Drawing: 
     - Id: the_ball
       Kind: 4
       Category: 12
@@ -5588,18 +5601,18 @@ MonoBehaviour:
       - teh_marbuta
       Difficulty: 0
       Drawing: 
-    - Id: the_lazy
+    - Id: the_beautiful
       Kind: 1
-      Category: 1
+      Category: 0
       Form: 0
       Article: 1
-      Arabic: "\u0627\u0644\u0643\u0633\u0648\u0644"
+      Arabic: "\u0627\u0644\u062C\u0645\u064A\u0644"
       Letters:
       - alef
       - lam
-      - kaf
-      - seen
-      - waw
+      - jeem
+      - meem
+      - yeh
       - lam
       Difficulty: 0
       Drawing: 
@@ -5617,7 +5630,7 @@ MonoBehaviour:
       - tah
       - feh
       Difficulty: 0
-      Drawing: 
+      Drawing: 66
     - Id: the_engineer
       Kind: 4
       Category: 15
@@ -5632,6 +5645,21 @@ MonoBehaviour:
       - noon
       - dal
       - seen
+      Difficulty: 0
+      Drawing: F2
+    - Id: the_happy
+      Kind: 1
+      Category: 1
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u0633\u0639\u064A\u062F"
+      Letters:
+      - alef
+      - lam
+      - seen
+      - ain
+      - yeh
+      - dal
       Difficulty: 0
       Drawing: 
     - Id: the_hat
@@ -5648,20 +5676,20 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
-    - Id: the_sad
+      Drawing: C9
+    - Id: the_lazy
       Kind: 1
       Category: 1
       Form: 0
       Article: 1
-      Arabic: "\u0627\u0644\u062D\u0632\u064A\u0646"
+      Arabic: "\u0627\u0644\u0643\u0633\u0648\u0644"
       Letters:
       - alef
       - lam
-      - hah
-      - zain
-      - yeh
-      - noon
+      - kaf
+      - seen
+      - waw
+      - lam
       Difficulty: 0
       Drawing: 
     - Id: the_player
@@ -5709,6 +5737,21 @@ MonoBehaviour:
       - yeh
       Difficulty: 0
       Drawing: 
+    - Id: the_sad
+      Kind: 1
+      Category: 1
+      Form: 0
+      Article: 1
+      Arabic: "\u0627\u0644\u062D\u0632\u064A\u0646"
+      Letters:
+      - alef
+      - lam
+      - hah
+      - zain
+      - yeh
+      - noon
+      Difficulty: 0
+      Drawing: 
     - Id: the_scientist
       Kind: 4
       Category: 15
@@ -5738,7 +5781,7 @@ MonoBehaviour:
       - yeh
       - sad
       Difficulty: 0
-      Drawing: 
+      Drawing: ED
     - Id: the_shoe
       Kind: 4
       Category: 17
@@ -5768,21 +5811,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 
-    - Id: today
-      Kind: 5
-      Category: 18
-      Form: 0
-      Article: 0
-      Arabic: "\u0627\u0644\u064A\u0648\u0645"
-      Letters:
-      - alef
-      - lam
-      - yeh
-      - waw
-      - meem
-      Difficulty: 0
-      Drawing: 
+      Drawing: F8
     - Id: the_wonderful
       Kind: 4
       Category: 9
@@ -5812,18 +5841,6 @@ MonoBehaviour:
       - lam
       Difficulty: 0
       Drawing: 
-    - Id: tomorrow
-      Kind: 5
-      Category: 18
-      Form: 0
-      Article: 0
-      Arabic: "\u063A\u062F\u0627\u064B"
-      Letters:
-      - ghain
-      - dal
-      - alef
-      Difficulty: 0
-      Drawing: 
     - Id: tiger
       Kind: 4
       Category: 8
@@ -5834,6 +5851,30 @@ MonoBehaviour:
       - noon
       - meem
       - reh
+      Difficulty: 0
+      Drawing: F5
+    - Id: to
+      Kind: 0
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0625\u0644\u0649"
+      Letters:
+      - lam
+      Difficulty: 0
+      Drawing: 
+    - Id: today
+      Kind: 5
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u064A\u0648\u0645"
+      Letters:
+      - alef
+      - lam
+      - yeh
+      - waw
+      - meem
       Difficulty: 0
       Drawing: 
     - Id: toilet
@@ -5849,7 +5890,7 @@ MonoBehaviour:
       - alef
       - dad
       Difficulty: 0
-      Drawing: 
+      Drawing: 153
     - Id: tomato
       Kind: 4
       Category: 3
@@ -5863,6 +5904,18 @@ MonoBehaviour:
       - waw
       - reh
       - teh_marbuta
+      Difficulty: 0
+      Drawing: FE
+    - Id: tomorrow
+      Kind: 5
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u063A\u062F\u0627\u064B"
+      Letters:
+      - ghain
+      - dal
+      - alef
       Difficulty: 0
       Drawing: 
     - Id: tongue
@@ -5888,7 +5941,7 @@ MonoBehaviour:
       - seen
       - noon
       Difficulty: 1
-      Drawing: 
+      Drawing: DF
     - Id: tower
       Kind: 4
       Category: 6
@@ -5900,7 +5953,7 @@ MonoBehaviour:
       - reh
       - jeem
       Difficulty: 0
-      Drawing: 
+      Drawing: FA
     - Id: tree
       Kind: 4
       Category: 13
@@ -5911,6 +5964,42 @@ MonoBehaviour:
       - sheen
       - jeem
       - reh
+      Difficulty: 1
+      Drawing: FB
+    - Id: triangle
+      Kind: 4
+      Category: 22
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u062B\u0644\u062B"
+      Letters:
+      - meem
+      - theh
+      - lam
+      - theh
+      Difficulty: 0
+      Drawing: FC
+    - Id: uncle_father
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0639\u0645"
+      Letters:
+      - ain
+      - meem
+      Difficulty: 1
+      Drawing: 
+    - Id: uncle_mother
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u062E\u0627\u0644"
+      Letters:
+      - khah
+      - alef
+      - lam
       Difficulty: 1
       Drawing: 
     - Id: understood
@@ -5925,17 +6014,16 @@ MonoBehaviour:
       - meem
       Difficulty: 0
       Drawing: 
-    - Id: triangle
+    - Id: vegetables
       Kind: 4
-      Category: 22
+      Category: 3
       Form: 0
       Article: 0
-      Arabic: "\u0645\u062B\u0644\u062B"
+      Arabic: "\u062E\u0636\u0631"
       Letters:
-      - meem
-      - theh
-      - lam
-      - theh
+      - khah
+      - dad
+      - reh
       Difficulty: 0
       Drawing: 
     - Id: virtuous
@@ -5951,17 +6039,18 @@ MonoBehaviour:
       - heh
       Difficulty: 0
       Drawing: 
-    - Id: uncle_father
+    - Id: voice
       Kind: 4
-      Category: 4
+      Category: 0
       Form: 0
       Article: 0
-      Arabic: "\u0639\u0645"
+      Arabic: "\u0635\u0648\u062A"
       Letters:
-      - ain
-      - meem
-      Difficulty: 1
-      Drawing: 
+      - sad
+      - waw
+      - teh
+      Difficulty: 0
+      Drawing: F9
     - Id: walked
       Kind: 2
       Category: 0
@@ -5973,40 +6062,42 @@ MonoBehaviour:
       - sheen
       Difficulty: 0
       Drawing: 
-    - Id: uncle_mother
+    - Id: washing_machine
       Kind: 4
-      Category: 4
+      Category: 10
       Form: 0
       Article: 0
-      Arabic: "\u062E\u0627\u0644"
+      Arabic: "\u063A\u0633\u0627\u0644\u0629"
       Letters:
-      - khah
+      - ghain
+      - seen
       - alef
       - lam
-      Difficulty: 1
-      Drawing: 
-    - Id: vegetables
+      - teh_marbuta
+      Difficulty: 0
+      Drawing: 175
+    - Id: water
       Kind: 4
       Category: 3
       Form: 0
       Article: 0
-      Arabic: "\u062E\u0636\u0631"
+      Arabic: "\u0645\u064A"
       Letters:
-      - khah
-      - dad
-      - reh
-      Difficulty: 0
+      - meem
+      - yeh
+      Difficulty: 1
       Drawing: 
-    - Id: voice
+    - Id: watermelon
       Kind: 4
-      Category: 0
+      Category: 3
       Form: 0
       Article: 0
-      Arabic: "\u0635\u0648\u062A"
+      Arabic: "\u0628\u0637\u064A\u062E"
       Letters:
-      - sad
-      - waw
-      - teh
+      - beh
+      - tah
+      - yeh
+      - khah
       Difficulty: 0
       Drawing: 
     - Id: welcome
@@ -6034,44 +6125,6 @@ MonoBehaviour:
       - beh
       Difficulty: 0
       Drawing: 
-    - Id: washing_machine
-      Kind: 4
-      Category: 10
-      Form: 0
-      Article: 0
-      Arabic: "\u063A\u0633\u0627\u0644\u0629"
-      Letters:
-      - ghain
-      - seen
-      - alef
-      - lam
-      - teh_marbuta
-      Difficulty: 0
-      Drawing: 
-    - Id: water
-      Kind: 4
-      Category: 3
-      Form: 0
-      Article: 0
-      Arabic: "\u0645\u064A"
-      Letters:
-      - meem
-      - yeh
-      Difficulty: 1
-      Drawing: 
-    - Id: watermelon
-      Kind: 4
-      Category: 3
-      Form: 0
-      Article: 0
-      Arabic: "\u0628\u0637\u064A\u062E"
-      Letters:
-      - beh
-      - tah
-      - yeh
-      - khah
-      Difficulty: 0
-      Drawing: 
     - Id: whale
       Kind: 4
       Category: 8
@@ -6083,7 +6136,7 @@ MonoBehaviour:
       - waw
       - teh
       Difficulty: 0
-      Drawing: 
+      Drawing: FD
     - Id: window
       Kind: 4
       Category: 10
@@ -6095,6 +6148,42 @@ MonoBehaviour:
       - alef
       - feh
       - thal
+      - teh_marbuta
+      Difficulty: 0
+      Drawing: 177
+    - Id: winter
+      Kind: 4
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0634\u062A\u0627\u0621"
+      Letters:
+      - sheen
+      - teh
+      - alef
+      Difficulty: 0
+      Drawing: 
+    - Id: wolf
+      Kind: 4
+      Category: 8
+      Form: 0
+      Article: 0
+      Arabic: "\u0630\u0626\u0628"
+      Letters:
+      - thal
+      - beh
+      Difficulty: 0
+      Drawing: FF
+    - Id: woman
+      Kind: 4
+      Category: 4
+      Form: 0
+      Article: 0
+      Arabic: "\u0645\u0631\u0623\u0629"
+      Letters:
+      - meem
+      - reh
+      - alef_hamza_hi
       - teh_marbuta
       Difficulty: 0
       Drawing: 
@@ -6134,54 +6223,6 @@ MonoBehaviour:
       - seen
       Difficulty: 0
       Drawing: 
-    - Id: winter
-      Kind: 4
-      Category: 18
-      Form: 0
-      Article: 0
-      Arabic: "\u0634\u062A\u0627\u0621"
-      Letters:
-      - sheen
-      - teh
-      - alef
-      Difficulty: 0
-      Drawing: 
-    - Id: wolf
-      Kind: 4
-      Category: 8
-      Form: 0
-      Article: 0
-      Arabic: "\u0630\u0626\u0628"
-      Letters:
-      - thal
-      - beh
-      Difficulty: 0
-      Drawing: 
-    - Id: woman
-      Kind: 4
-      Category: 4
-      Form: 0
-      Article: 0
-      Arabic: "\u0645\u0631\u0623\u0629"
-      Letters:
-      - meem
-      - reh
-      - alef_hamza_hi
-      - teh_marbuta
-      Difficulty: 0
-      Drawing: 
-    - Id: wrote
-      Kind: 2
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
-      Letters:
-      - kaf
-      - teh
-      - beh
-      Difficulty: 0
-      Drawing: 
     - Id: worker
       Kind: 4
       Category: 15
@@ -6193,22 +6234,6 @@ MonoBehaviour:
       - alef
       - meem
       - lam
-      Difficulty: 0
-      Drawing: 
-    - Id: yesterday
-      Kind: 5
-      Category: 18
-      Form: 0
-      Article: 0
-      Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
-      Letters:
-      - alef
-      - lam
-      - beh
-      - alef
-      - reh
-      - hah
-      - teh_marbuta
       Difficulty: 0
       Drawing: 
     - Id: worker_dual
@@ -6239,6 +6264,18 @@ MonoBehaviour:
       - lam
       Difficulty: 0
       Drawing: 
+    - Id: wrote
+      Kind: 2
+      Category: 0
+      Form: 0
+      Article: 0
+      Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
+      Letters:
+      - kaf
+      - teh
+      - beh
+      Difficulty: 0
+      Drawing: 
     - Id: year
       Kind: 4
       Category: 18
@@ -6249,6 +6286,22 @@ MonoBehaviour:
       - ain
       - alef
       - meem
+      Difficulty: 0
+      Drawing: 
+    - Id: yesterday
+      Kind: 5
+      Category: 18
+      Form: 0
+      Article: 0
+      Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629"
+      Letters:
+      - alef
+      - lam
+      - beh
+      - alef
+      - reh
+      - hah
+      - teh_marbuta
       Difficulty: 0
       Drawing: 
     - Id: yogurt
@@ -6262,60 +6315,7 @@ MonoBehaviour:
       - beh
       - noon
       Difficulty: 1
-      Drawing: 
-    - Id: and
-      Kind: 0
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0648"
-      Letters:
-      - waw
-      Difficulty: 0
-      Drawing: 
-    - Id: to
-      Kind: 0
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0625\u0644\u0649"
-      Letters:
-      - lam
-      Difficulty: 0
-      Drawing: 
-    - Id: from
-      Kind: 0
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0645\u0646"
-      Letters:
-      - meem
-      - noon
-      Difficulty: 0
-      Drawing: 
-    - Id: on
-      Kind: 0
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0639\u0644\u0649"
-      Letters:
-      - ain
-      - lam
-      Difficulty: 0
-      Drawing: 
-    - Id: in
-      Kind: 0
-      Category: 0
-      Form: 0
-      Article: 0
-      Arabic: "\u0641\u064A"
-      Letters:
-      - feh
-      - yeh
-      Difficulty: 0
-      Drawing: 
+      Drawing: 2A
   playSessionTable:
     innerList:
     - Id: 1.1.1
