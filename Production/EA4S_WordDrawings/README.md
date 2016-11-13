@@ -1,26 +1,22 @@
-# EA4S_WordDrawings
+# EA4S_WordDrawings - how to create the Drawings font
 
+the art department provides a single grid with all drawings (rename it in SVG/EA4S_WordDrawings_grid.svg
 
-original file is SVG/EA4S_WordDrawings_grid.svg
-
-i open it with Affinity Designer.
-i check that every layer is named as the word_id
-
-i export all groups/layers as slices as SVG (for web) into the SVG_todo
-
-then i import all these single SVG files into Glyph, assigning the Unicode to the Sheet and moving the svg file into the "used" folder
-
-i make sure that every unicode id is copied into the Google Sheet WordData is unique
-
-
-TextMesh Pro
-drag fornt EA4S_WordDrawings.otf and put info:
-Font Sixe_ AutoSixing
+1. Open it with Affinity Designer (maybe we could use Inkscape but i'm not sure it exports slices). i check that every layer is named as the word_id in the Sheet.
+2. Export all groups/layers as slices as SVG (for web) into the SVG/todo
+3. Import all these single SVG files into Glyph (could be any OTF font maker), assigning the Unicode to the Sheet and moving the svg file into the "used" folder
+4. make sure that every unicode id in Google Sheet WordData is unique
+5. Export the OTF font into `/Assets/_app/Fonts/EA4S_WordDrawings.otf`
+6. open TextMesh Pro Font Asset Creator using these parameters:
+Font Source: EA4S_WordDrawings.otf
+Font Size: Auto Sizing
 Font padding: 5
-Altals reso 1024x1024
-charachter set (hex:)
+Packing Method: Optimum
+Atlas res: 1024x1024
+Character Set: Unicode Range (Hex) with this Sequence:
 41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,152,153,175,177,2A,4A,4B,4C,4D,4E,4F,5A,6A,6B,6C,6D,6E,6F,7A,C0,C1,C2,C4,C5,C6,C7,C8,C9,CA,CB,CC,CD,CE,CF,D0,D1,D2,D3,D4,D5,D6,D8,D9,DA,DB,DC,DD,DE,DF,E0,E1,E2,E3,E4,E5,E6,E7,E8,E9,EA,EB,EC,ED,EE,EF,F0,F1,F2,F3,F4,F5,F6,F8,F9,FA,FB,FC,FD,FE,FF
-font render mode: distance field 16
+
+Font Render Mode: Distance Field 16
 
 # letter_id - unicode(Hex) table
 
