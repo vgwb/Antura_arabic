@@ -70,6 +70,9 @@ namespace EA4S.SickLetters
 
             yield return new WaitForSeconds(1f);
             SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);
+
+            if (game.roundsCount <1)
+                game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
             
         }
 

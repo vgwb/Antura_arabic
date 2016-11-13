@@ -53,11 +53,10 @@ namespace EA4S.SickLetters
 
                 if (dd.isCorrect)
                 {
-                    game.Context.GetCheckmarkWidget().Show(false);
-                    game.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                    game.onWrongMove();
                     game.Poof(dd.transform.position);
 
-                    StartCoroutine(onWrongMove());
+                    StartCoroutine(onDroppingCorrectDD());
                     dd.resetCorrectDD();
                 }
                 else if(!dd.isInVase)
@@ -66,8 +65,7 @@ namespace EA4S.SickLetters
 
                     if (cheatingDetected)
                     {
-                        game.Context.GetCheckmarkWidget().Show(false);
-                        game.Context.GetAudioManager().PlaySound(Sfx.Lose);
+                        game.onWrongMove();
                         game.Poof(dd.transform.position);
                         Destroy(dd.gameObject);
                         cheatingDetected = false;
@@ -80,15 +78,17 @@ namespace EA4S.SickLetters
                         game.currentStars = (counter / 2) / (game.targetScale / 6);
                         game.Context.GetOverlayWidget().SetStarsScore(game.currentStars);
                         dd.isInVase = true;
+                        
                     }
 
                     game.checkForNextRound();
+                    
                 }
             }
         }
 
 
-        public IEnumerator onWrongMove() {
+        public IEnumerator onDroppingCorrectDD() {
 
             StartCoroutine(game.antura.bark());
 
