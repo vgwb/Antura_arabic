@@ -2744,7 +2744,7 @@ MonoBehaviour:
       - sad
       - feh
       Difficulty: 0
-      Drawing: 
+      Drawing: 30
     - Id: clean
       Kind: 1
       Category: 9
@@ -3235,7 +3235,7 @@ MonoBehaviour:
       - beh
       - tah
       Difficulty: 0
-      Drawing: 
+      Drawing: 31
     - Id: eagle
       Kind: 4
       Category: 8
@@ -3285,7 +3285,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 
+      Drawing: F2
     - Id: evening
       Kind: 4
       Category: 18
@@ -3537,7 +3537,7 @@ MonoBehaviour:
       - alef
       - theh
       Difficulty: 0
-      Drawing: 
+      Drawing: 32
     - Id: garden
       Kind: 4
       Category: 6
@@ -3601,7 +3601,7 @@ MonoBehaviour:
       - dal
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 33
     - Id: grandfather
       Kind: 4
       Category: 4
@@ -3613,7 +3613,7 @@ MonoBehaviour:
       - dal
       - waw
       Difficulty: 1
-      Drawing: 
+      Drawing: 34
     - Id: grandmother
       Kind: 4
       Category: 4
@@ -3626,7 +3626,7 @@ MonoBehaviour:
       - noon
       - alef
       Difficulty: 1
-      Drawing: 
+      Drawing: 35
     - Id: grandson
       Kind: 4
       Category: 4
@@ -3639,7 +3639,7 @@ MonoBehaviour:
       - yeh
       - dal
       Difficulty: 0
-      Drawing: 
+      Drawing: 36
     - Id: grapes
       Kind: 4
       Category: 3
@@ -3663,7 +3663,7 @@ MonoBehaviour:
       - reh
       - dad
       Difficulty: 0
-      Drawing: 
+      Drawing: 37
     - Id: hair
       Kind: 4
       Category: 5
@@ -3776,7 +3776,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 38
     - Id: house
       Kind: 4
       Category: 6
@@ -3849,7 +3849,7 @@ MonoBehaviour:
       - yeh
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 39
     - Id: kid
       Kind: 4
       Category: 4
@@ -3873,7 +3873,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: 5C
     - Id: laughed
       Kind: 2
       Category: 0
@@ -3933,7 +3933,7 @@ MonoBehaviour:
       - dad
       - waw
       Difficulty: 0
-      Drawing: 
+      Drawing: B7
     - Id: lion
       Kind: 4
       Category: 8
@@ -3985,7 +3985,7 @@ MonoBehaviour:
       - alef
       - heh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2022
     - Id: man
       Kind: 4
       Category: 4
@@ -5192,7 +5192,7 @@ MonoBehaviour:
       - feh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 3A
     - Id: sad
       Kind: 1
       Category: 21
@@ -5278,7 +5278,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: 2C
     - Id: scientist_dual
       Kind: 4
       Category: 15
@@ -5369,7 +5369,7 @@ MonoBehaviour:
       - meem
       - alef
       Difficulty: 0
-      Drawing: 
+      Drawing: 2026
     - Id: slow
       Kind: 1
       Category: 9
@@ -5721,7 +5721,7 @@ MonoBehaviour:
       - ain
       - beh
       Difficulty: 0
-      Drawing: 
+      Drawing: 21
     - Id: the_policeman
       Kind: 4
       Category: 15
@@ -5736,7 +5736,7 @@ MonoBehaviour:
       - tah
       - yeh
       Difficulty: 0
-      Drawing: 
+      Drawing: E6
     - Id: the_sad
       Kind: 1
       Category: 1
@@ -5766,7 +5766,7 @@ MonoBehaviour:
       - lam
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: 2C
     - Id: the_shirt
       Kind: 4
       Category: 17
@@ -5795,7 +5795,7 @@ MonoBehaviour:
       - thal
       - alef
       Difficulty: 0
-      Drawing: 
+      Drawing: 23
     - Id: the_trousers
       Kind: 4
       Category: 17
@@ -5840,7 +5840,7 @@ MonoBehaviour:
       - meem
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 27
     - Id: tiger
       Kind: 4
       Category: 8
@@ -6025,7 +6025,7 @@ MonoBehaviour:
       - dad
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2E
     - Id: virtuous
       Kind: 1
       Category: 1
@@ -6099,7 +6099,7 @@ MonoBehaviour:
       - yeh
       - khah
       Difficulty: 0
-      Drawing: 
+      Drawing: 3F
     - Id: welcome
       Kind: 5
       Category: 0
@@ -6162,7 +6162,7 @@ MonoBehaviour:
       - teh
       - alef
       Difficulty: 0
-      Drawing: 
+      Drawing: BF
     - Id: wolf
       Kind: 4
       Category: 8
@@ -6186,7 +6186,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 22
     - Id: won
       Kind: 2
       Category: 0
@@ -6235,7 +6235,7 @@ MonoBehaviour:
       - meem
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 27
     - Id: worker_dual
       Kind: 4
       Category: 15

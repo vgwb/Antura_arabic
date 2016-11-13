@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c3a4ac87ed1084b64b33073e1ca43c59
-timeCreated: 1479019563
+guid: 68d56871f24f2444c85507dc30a02f73
+timeCreated: 1479075933
 licenseType: Pro
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -12,7 +12,7 @@ TrueTypeFontImporter:
   fontNames:
   - EA4S_WordDrawings
   fallbackFontReferences:
-  - {fileID: 12800000, guid: c1bec0420df70463fb873d001697f07a, type: 3}
+  - {fileID: 12800000, guid: c3a4ac87ed1084b64b33073e1ca43c59, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
