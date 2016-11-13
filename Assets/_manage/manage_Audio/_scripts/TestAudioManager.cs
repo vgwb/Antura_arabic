@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Collections;
+using System.Linq;
 
 namespace EA4S
 {
@@ -28,6 +28,8 @@ namespace EA4S
             MyEventName = AudioConfig.GetSfxEventName(Sfx.AlarmClock);
         }
 
+
+
         void InitUI()
         {
             GameObject btnGO;
@@ -42,7 +44,7 @@ namespace EA4S
             btnGO.GetComponentInChildren<Text>().text = "Stop Music";
             btnGO.GetComponent<Button>().onClick.AddListener(StopMusic);
 
-            foreach (Music mus in Enum.GetValues(typeof(Music))) {
+            foreach (Music mus in GenericUtilities.SortEnums<Music>()) {
                 //Debug.Log(mus.ToString());
                 btnGO = Instantiate(PlayButtonPrefab);
                 btnGO.transform.SetParent(PanelMusic.transform, false);
@@ -61,7 +63,7 @@ namespace EA4S
             btnGO.GetComponentInChildren<Text>().text = "Stop Sfx";
             btnGO.GetComponent<Button>().onClick.AddListener(StopCurrentSfx);
 
-            foreach (Sfx sfx in Enum.GetValues(typeof(Sfx))) {
+            foreach (Sfx sfx in GenericUtilities.SortEnums<Sfx>()) {
                 //Debug.Log(sfx.ToString());
                 btnGO = Instantiate(PlayButtonPrefab);
                 btnGO.transform.SetParent(PanelSfx.transform, false);
@@ -153,6 +155,11 @@ namespace EA4S
         }
 
         #endregion
+
+        public void StopAll()
+        {
+            Fabric.FabricManager.Instance.Stop();
+        }
 
         public void StartSfxTest(int id)
         {
