@@ -26,7 +26,12 @@ public partial class SROptions
     public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
 
     [Category("Options")]
+    [NumberRange(1, 6)]
     [Sort(3)]
+    public int PlaySession { get { return DebugManager.I.PlaySession; } set { DebugManager.I.PlaySession = value; } }
+
+    [Category("Options")]
+    [Sort(4)]
     public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
 
 

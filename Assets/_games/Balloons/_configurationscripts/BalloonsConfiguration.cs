@@ -81,7 +81,7 @@
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
                     break;  
                 case BalloonsVariation.Spelling:
-                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
                     break;
                 case BalloonsVariation.Words:
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, true);
@@ -90,6 +90,14 @@
 
             return builder;
         }
+
+        public MiniGameLearnRules SetupLearnRules()
+        {
+            var rules = new MiniGameLearnRules();
+            // example: a.minigameVoteSkewOffset = 1f;
+            return rules;
+        }
+
 
         #endregion
     }

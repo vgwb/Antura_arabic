@@ -83,7 +83,7 @@ namespace EA4S.DancingDots
 
 			do
 			{
-				letterData = AppManager.Instance.Teacher.GimmeARandomLetter();
+				letterData = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 			} 
 			// Check if letter in dotted letters and  
 			// Check DancingDotsGameManager.instance.currentLetter so that previous letter is not repeated

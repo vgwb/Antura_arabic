@@ -1,4 +1,6 @@
-﻿namespace EA4S.Assessment
+﻿using UnityEngine;
+
+namespace EA4S.Assessment
 {
     public enum QuestionType
     {
@@ -38,5 +40,15 @@
         /// </summary>
         /// <returns> size in LL units (1 LL is 3 world's unit)</returns>
         int PlaceholdersCount();
+
+        /// <summary>
+        /// Links the question GameObject
+        /// </summary>
+        void SetGameObject( GameObject gameObject);
+
+        /// <summary>
+        /// Access the GameObject of this question
+        /// </summary>
+        GameObject gameObject { get; }
     }
 }
