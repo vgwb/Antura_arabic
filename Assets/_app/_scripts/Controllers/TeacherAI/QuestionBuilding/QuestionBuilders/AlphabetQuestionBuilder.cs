@@ -22,7 +22,7 @@ namespace EA4S
             var sParameters = new SelectionParameters(SelectionSeverity.AsManyAsPossible, 28);   // 28: letters in the alphabet
 
             // Fully ordered alphabet
-            var alphabetLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllRealLetters(), sParameters);
+            var alphabetLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(Db.LetterKindCategory.Base), sParameters);
             alphabetLetters.Sort((x, y) =>
                 {
                     return x.ToString().CompareTo(y.ToString());

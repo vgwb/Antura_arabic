@@ -20,36 +20,45 @@ namespace EA4S.Db
 
         #region Letter -> Letter
 
-        public List<LetterData> GetAllRealLetters()
+        public List<LetterData> GetAllBaseLetters()
         {
-            return dbManager.FindLetterData(x => x.IsRealLetter());
+            return GetAllLetters(LetterKindCategory.Base);
         }
 
-        private List<LetterData> GetRealLettersNotIn(List<string> tabooList)
+        public List<LetterData> GetAllLetters(LetterKindCategory category = LetterKindCategory.Real)
         {
-            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && x.IsRealLetter()
-            );
+            return dbManager.FindLetterData(x => x.IsOfKindCategory(category));
         }
 
-        public List<LetterData> GetRealLettersNotIn(params LetterData[] tabooArray)
+        private List<LetterData> GetLettersNotIn(List<string> tabooList, LetterKindCategory category = LetterKindCategory.Real)
+        {
+            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && x.IsOfKindCategory(category));
+        }
+
+
+        public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
+        {
+            return GetLettersNotIn(LetterKindCategory.Real, tabooArray);
+        }
+        public List<LetterData> GetLettersNotIn(LetterKindCategory category = LetterKindCategory.Real, params LetterData[] tabooArray)
         {
             var tabooList = new List<LetterData>(tabooArray);
-            return GetRealLettersNotIn(tabooList.ConvertAll(x => x.Id));
+            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id), category);
         }
 
-        public List<LetterData> GetRealLettersByKind(LetterDataKind choice)
+        public List<LetterData> GetLettersByKind(LetterDataKind choice)
         {
-            return dbManager.FindLetterData(x => x.Kind == choice && x.IsRealLetter());
+            return dbManager.FindLetterData(x => x.Kind == choice);
         }
 
-        public List<LetterData> GetRealLettersBySunMoon(LetterDataSunMoon choice)
+        public List<LetterData> GetLettersBySunMoon(LetterDataSunMoon choice, LetterKindCategory category = LetterKindCategory.Real)
         {
-            return dbManager.FindLetterData(x => x.SunMoon == choice && x.IsRealLetter());
+            return dbManager.FindLetterData(x => x.SunMoon == choice && x.IsOfKindCategory(category));
         }
 
-        public List<LetterData> GetRealLettersByType(LetterDataType choice)
+        public List<LetterData> GetLettersByType(LetterDataType choice, LetterKindCategory category = LetterKindCategory.Real)
         {
-            return dbManager.FindLetterData(x => x.Type == choice && x.IsRealLetter());
+            return dbManager.FindLetterData(x => x.Type == choice && x.IsOfKindCategory(category));
         }
 
         public LetterData GetBaseOf(string letterId)
@@ -88,22 +97,26 @@ namespace EA4S.Db
             return GetLettersInWord(wordData);
         }
 
-        public List<LetterData> GetRealLettersNotInWords(params WordData[] tabooArray)
+        public List<LetterData> GetLettersNotInWords(params WordData[] tabooArray)
+        {
+            return GetLettersNotInWords(LetterKindCategory.Real, tabooArray);
+        }
+        public List<LetterData> GetLettersNotInWords(LetterKindCategory category = LetterKindCategory.Real, params WordData[] tabooArray)
         {
             var letter_ids_list = new HashSet<string>();
             foreach (var tabooWordData in tabooArray)
             {
                 letter_ids_list.UnionWith(tabooWordData.Letters);
             }
-            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsRealLetter());
+            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
             return list;
         }
 
-        public List<LetterData> GetRealLettersNotInWord(string wordId)
+        public List<LetterData> GetLettersNotInWord(string wordId, LetterKindCategory category = LetterKindCategory.Real)
         {
             WordData wordData = dbManager.GetWordDataById(wordId);
             var letter_ids_list = new List<string>(wordData.Letters);
-            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsRealLetter());
+            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
             return list;
         }
 

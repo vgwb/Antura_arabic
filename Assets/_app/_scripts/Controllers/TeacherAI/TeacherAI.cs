@@ -276,7 +276,7 @@ namespace EA4S
         public List<LL_LetterData> GetAllTestLetterDataLL()
         {
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in this.wordHelper.GetAllRealLetters())
+            foreach (var letterData in this.wordHelper.GetAllLetters())
                 list.Add(BuildLetterData_LL(letterData));
             return list;
         }
@@ -289,7 +289,7 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetAllRealLetters().RandomSelectOne();
+            var data = this.wordHelper.GetAllLetters().RandomSelectOne();
             return BuildLetterData_LL(data);
         }
 

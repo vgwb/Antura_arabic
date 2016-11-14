@@ -166,16 +166,6 @@ namespace EA4S.Teacher
             return foundDataList;
         }
 
-        public List<Db.LetterData> GetAllLetters(bool matchJourney = true)
-        {
-            var filteredLetters = wordHelper.GetAllRealLetters();
-
-            UnityEngine.Debug.Log("All letters: " + filteredLetters.Count);
-            UnityEngine.Debug.Log("PS letters: " + currentPlaySessionLetters.Count);
-            if (matchJourney) filteredLetters = filteredLetters.FindAll(x => currentPlaySessionLetters.Contains(x));
-            return filteredLetters;
-        }
-
         #endregion
 
 
