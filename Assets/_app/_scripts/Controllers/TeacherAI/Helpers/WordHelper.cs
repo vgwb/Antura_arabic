@@ -197,16 +197,25 @@ namespace EA4S.Db
 
                 if (okLetters.Count > 0)
                 {
-                    bool hasAtLeastOneOk = false;
-                    foreach (var letter_id in x.Letters)
+                    bool hasAllOkLetters = true;
+                    foreach(var okLetter in okLetters)
                     {
-                        if (okLetters.Contains(letter_id))
+                        bool hasThisLetter = false;
+                        foreach(var letter_id in x.Letters)
                         {
-                            hasAtLeastOneOk = true;
+                            if (letter_id == okLetter)
+                            {
+                                hasThisLetter = true;
+                                break;
+                            }
+                        }
+                        if (!hasThisLetter)
+                        {
+                            hasAllOkLetters = false;
                             break;
                         }
                     }
-                    if (!hasAtLeastOneOk) return false;
+                    if (!hasAllOkLetters) return false;
                 }
 
                 return true;
