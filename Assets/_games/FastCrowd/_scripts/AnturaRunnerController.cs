@@ -33,9 +33,11 @@ namespace EA4S
                 if (nextAnturaBarkTimer <= 0)
                 {
                     PrepareNextAnturaBark();
-                    antura.DoShout();
-                    AudioManager.I.PlaySfx(Sfx.DogBarking);
-                    
+                    antura.DoShout(() =>
+                    {
+                        AudioManager.I.PlaySfx(Sfx.DogBarking);
+                    });
+
                 }
                 else
                     nextAnturaBarkTimer -= Time.deltaTime;
