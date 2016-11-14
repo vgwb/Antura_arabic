@@ -28,7 +28,6 @@ namespace EA4S.ColorTickle
         ColorTickle_LLController m_LLController;
         HitStateLLController m_HitStateLLController;
 
-        bool m_NextLetter = false;
         #endregion
 
         public PlayGameState(ColorTickleGame game)
@@ -69,7 +68,11 @@ namespace EA4S.ColorTickle
             else
             {
                 CalcPercentageLetterColored();
-                m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = Mathf.FloorToInt(m_PercentageLetterColored) + "%";
+
+                if (m_PercentageLetterColoredButton != null)
+                {
+                    m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = Mathf.FloorToInt(m_PercentageLetterColored) + "%";
+                }
 
                 if (m_PercentageLetterColored >= 100 || m_Lives <=0)
                 {
@@ -102,14 +105,26 @@ namespace EA4S.ColorTickle
 			m_Lives = m_MaxLives;
             game.gameUI.SetLives(m_MaxLives);
             m_PercentageLetterColored = 0;
-            m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = "0 %";
+            if (m_PercentageLetterColoredButton != null)
+            {
+                m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = "0 %";
+            }        
         }
 
 		private void InitGameUI()
 		{
+            game.gameUI = game.Context.GetOverlayWidget();
+            game.gameUI.Initialize(false, false, true);
+            game.gameUI.SetMaxLives(game.lives);
+
+            game.colorsCanvas.gameObject.SetActive(true);
             m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
             m_ColorsUIManager.SetBrushColor += SetBrushColor;
-			m_PercentageLetterColoredButton = m_ColorsUIManager.percentageColoredButton;
+
+            if (m_ColorsUIManager.percentageColoredButton != null)
+            {
+                m_PercentageLetterColoredButton = m_ColorsUIManager.percentageColoredButton;
+            }
 		}
 
 		private void InitLetter()
@@ -189,7 +204,6 @@ namespace EA4S.ColorTickle
         /// <param name="eState">Current state for Antura</param>
         private void AnturaInteractions( AnturaContollerState eState)
         {
-            //For now scare the LL by make it crouch 
             if (eState == AnturaContollerState.BARKING) //Antura scared the LL
             {
                 AnturaReachedLetter();

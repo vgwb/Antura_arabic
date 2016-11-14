@@ -5540,58 +5540,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
         type: 2}
-      propertyPath: m_Colors.Array.data[0].b
+      propertyPath: m_OutlineColor.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
         type: 2}
-      propertyPath: m_Colors.Array.data[0].r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
-        type: 2}
-      propertyPath: m_Colors.Array.data[2].g
+      propertyPath: m_OutlineColor.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
         type: 2}
-      propertyPath: m_Colors.Array.data[2].r
+      propertyPath: m_OutlineColor.g
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
         type: 2}
-      propertyPath: m_Colors.Array.data[3].g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
-        type: 2}
-      propertyPath: m_Colors.Array.data[4].b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
-        type: 2}
-      propertyPath: m_Colors.Array.data[6].b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
-        type: 2}
-      propertyPath: m_Colors.Array.data[6].g
+      propertyPath: m_OutlineColor.b
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
-        type: 2}
-      propertyPath: m_Colors.Array.data[6].r
-      value: 0.6137934
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
-        type: 2}
-      propertyPath: m_Colors.Array.data[6].a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010227411274, guid: 18d9915e6fafaa542a4f062dddd284dc,
-        type: 2}
-      propertyPath: m_Colors.Array.data[7].g
-      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18d9915e6fafaa542a4f062dddd284dc, type: 2}
