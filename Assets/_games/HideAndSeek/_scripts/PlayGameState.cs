@@ -6,10 +6,14 @@ namespace EA4S.HideAndSeek
     {
 		HideAndSeekGame game;
 
-        public CountdownTimer gameTime = new CountdownTimer(60.0f);
+        public CountdownTimer gameTime = new CountdownTimer(40.0f);
         IAudioSource timesUpAudioSource;
 
         bool hurryUpSfx;
+
+        const int STARS_1_THRESHOLD = 2;
+        const int STARS_2_THRESHOLD = 5;
+        const int STARS_3_THRESHOLD = 9;
 
         public PlayGameState(HideAndSeekGame game)
         {
@@ -20,13 +24,14 @@ namespace EA4S.HideAndSeek
 
         public void EnterState()
         {
-            // Reset game timer
+            game.GameManager.enabled = true;
+
+            game.Context.GetOverlayWidget().Initialize(true, true, true);
+            game.Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+
             gameTime.Reset();
             game.ResetScore();
-            // game.GameManager.LifeObj.SetActive(true);
-
-            //game.timerText.gameObject.SetActive(true);
-            // game.timerText.text = "";
+            
             hurryUpSfx = false;
 
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
@@ -45,11 +50,8 @@ namespace EA4S.HideAndSeek
             if (timesUpAudioSource != null)
                 timesUpAudioSource.Stop();
 
-            //game.timerText.gameObject.SetActive(false);
             gameTime.Stop();
-
-            //game.GameManager.LifeObj.SetActive(false);
-
+            
             game.Context.GetAudioManager().StopMusic();
 
             game.inGame = false;
@@ -59,7 +61,6 @@ namespace EA4S.HideAndSeek
         public void Update(float delta)
         {
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
-            //game.timerText.text = String.Format("{0:0}", gameTime.Time);
 
             if (!hurryUpSfx)
             {
@@ -70,20 +71,15 @@ namespace EA4S.HideAndSeek
                     timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
                 }
             }
-
             gameTime.Update(delta);
         }
 
-        public void UpdatePhysics(float delta)
-        {
-        }
+        public void UpdatePhysics(float delta) { }
 
         void OnTimesUp()
         {
-            // Time's up!
             game.isTimesUp = true;
             game.SetCurrentState(game.ResultState);
         }
-
     }
 }

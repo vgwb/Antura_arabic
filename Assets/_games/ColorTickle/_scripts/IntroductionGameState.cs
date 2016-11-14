@@ -23,15 +23,18 @@ namespace EA4S.ColorTickle
         {
             IGameContext gameCotext = ColorTickleConfiguration.Instance.Context;
             game.gameUI = gameCotext.GetOverlayWidget();
-            game.gameUI.Initialize(false, true, true);
+            game.gameUI.Initialize(false, false, true);
             game.gameUI.SetMaxLives(game.lives);
-            game.gameUI.SetClockDuration(game.clockTime);
+            AudioManager.I.PlayMusic(game.backgroundMusic);
 
-			game.myLetters = new LetterObjectView[game.rounds];
+            game.myLetters = new GameObject[game.rounds];
 			for (int i = 0; i < game.rounds; ++i) {
-				game.myLetters[i] = LetterObjectView.Instantiate(game.m_LetterPrefab);
-				game.myLetters[i].Init(AppManager.Instance.Letters.GetRandomElement());
-                game.myLetters[i].GetComponent<LLController>().movingToDestination = false;
+				game.myLetters[i] = Object.Instantiate(game.m_LetterPrefab);
+                game.myLetters[i].SetActive(true);
+                // HACK fix for the automatic reset of the color after update at Unity 5.4.2
+                game.myLetters[i].GetComponent<LetterObjectView>().Lable.color = Color.white;
+                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+                game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
 
             }
         }

@@ -60,7 +60,7 @@ namespace EA4S.Scanner
 		{
 			do
 			{
-				game.wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+				game.wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 			} while (game.wordData.Data.Id == lastWordDataId);
 			lastWordDataId = game.wordData.Data.Id;
 			game.scannerLL.letterObjectView.Init(game.wordData);
@@ -88,7 +88,7 @@ namespace EA4S.Scanner
 					LL_WordData wrongWord;
 					do
 					{
-						wrongWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+						wrongWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 					} while (chosenWords.Contains(wrongWord.Data.Id));
 					chosenWords.Add(wrongWord.Data.Id);
 					ss.spriteRenderer.sprite = wrongWord.DrawForLivingLetter;

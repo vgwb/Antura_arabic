@@ -233,7 +233,7 @@ namespace EA4S
 
                 float oldSpeed = animator.GetFloat("walkSpeed");
 
-                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 4.0f));
+                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 6.0f));
            
         }
 

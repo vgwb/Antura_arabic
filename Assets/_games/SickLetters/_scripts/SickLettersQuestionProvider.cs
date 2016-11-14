@@ -18,7 +18,7 @@ namespace EA4S.SickLetters
             prevLetter = newLetterString;
             do
             {
-                newLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
                 newLetterString = newLetter.TextForLivingLetter.ToString();
 
             }
@@ -39,7 +39,7 @@ namespace EA4S.SickLetters
             prevLetter = newLetterString;
             do
             {
-                newLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
                 newLetterString = newLetter.TextForLivingLetter.ToString();
 
             }
@@ -56,7 +56,7 @@ namespace EA4S.SickLetters
             prevLetter = newLetterString;
             do
             {
-                newLetter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
                 newLetterString = newLetter.TextForLivingLetter.ToString();
 
             }

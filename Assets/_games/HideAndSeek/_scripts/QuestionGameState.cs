@@ -27,16 +27,11 @@
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.PlayState);
+            game.SetCurrentState(game.TutorialState);
         }
 
-        public void Update(float delta)
-        {
+        public void Update(float delta) { }
 
-        }
-
-        public void UpdatePhysics(float delta)
-        {
-        }
+        public void UpdatePhysics(float delta) { }
     }
 }

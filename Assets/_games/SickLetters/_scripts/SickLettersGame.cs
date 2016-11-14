@@ -16,6 +16,7 @@ namespace EA4S.SickLetters
         public SickLettersVase scale;
         public GameObject DropZonesGO;
         public UnityEngine.Animation hole;
+        public SickLettersTutorial tut;
 
         public SickLettersCamera slCamera;
         public SickLettersGameManager manager;
@@ -62,9 +63,10 @@ namespace EA4S.SickLetters
             ResultState = new ResultGameState(this);
             questionManager = new QuestionsManager();
 
-            manager = GetComponent<SickLettersGameManager>();
-            //anturaAnimator = GetComponent<Animator>();
+            manager = GetComponent<SickLettersGameManager>();            
             DropZones = DropZonesGO.GetComponentsInChildren<SickLettersDropZone>();
+            tut = GetComponent<SickLettersTutorial>();
+
             scale.game = this;
             scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
         }
@@ -96,6 +98,8 @@ namespace EA4S.SickLetters
 
         public bool checkForNextRound()
         {
+            
+
             if (checkSucess())
                 return false;
 
@@ -115,7 +119,7 @@ namespace EA4S.SickLetters
                 {
                     this.SetCurrentState(ResultState);
                     return false;
-                } 
+                }
 
                 roundsCount++;
                 //Context.GetOverlayWidget().SetStarsScore(roundsCount / 2);
@@ -124,10 +128,25 @@ namespace EA4S.SickLetters
                 LLPrefab.letterView.DoHorray();
                 SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 LLPrefab.jumpOut(1.5f);
+
+                if (roundsCount == 1)
+                {
+                    Context.GetOverlayWidget().Initialize(true, true, false);
+                    Context.GetOverlayWidget().SetClockDuration(gameDuration);
+                    scale.counter = 0;
+
+                    SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+                }
+
                 return true;
             }
             else
+            {
+                tut.doTutorial();
                 return false;
+            }
+
+            
         }
 
         public bool checkSucess()
@@ -175,6 +194,11 @@ namespace EA4S.SickLetters
                 setDifficulty(diff, 160, 42, 3.0f, true, true);
         }
 
-        
+        public void onWrongMove()
+        {
+            Context.GetCheckmarkWidget().Show(false);
+            //TutorialUI.MarkNo(new Vector3(9.82f, 15.0f, -7.87f), TutorialUI.MarkSize.Huge);
+            Context.GetAudioManager().PlaySound(Sfx.Lose);
+        }
     }
 }

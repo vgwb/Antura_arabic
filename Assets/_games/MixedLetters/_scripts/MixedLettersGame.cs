@@ -139,9 +139,9 @@ namespace EA4S.MixedLetters
 
         public void GenerateNewWord()
         {
-            wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
             wordInPlay = wordData.Data;
-            lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Letters));
+            lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()));
             VictimLLController.instance.letterObjectView.Lable.SetText(wordData.TextForLivingLetter);
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayWord(wordData);
         }

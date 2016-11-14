@@ -22,9 +22,6 @@ namespace EA4S.HideAndSeek
             {
                 answer = x;
             }
-            //correctAnswer.GetEnumerator().MoveNext();
-            //answer = correctAnswer.GetEnumerator().Current;
-            //list = (List <ILivingLetterData> )listOfLetters;
 
             list = new List<ILivingLetterData>();
 
@@ -32,16 +29,13 @@ namespace EA4S.HideAndSeek
             {
                 list.Add(x);
             }
-
-
         }
 
 		IEnumerable<ILivingLetterData> IQuestionPack.GetCorrectAnswers()
 		{
 			return correctAnswer;
 		}
-
-
+        
 		ILivingLetterData IQuestionPack.GetQuestion()
 		{
 			return null;

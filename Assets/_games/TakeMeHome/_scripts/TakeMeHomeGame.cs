@@ -154,7 +154,7 @@ namespace EA4S.TakeMeHome
 		{
 			
 			currentTube = UnityEngine.Random.Range(0,_activeTubes);
-			currentLetter = letterManager.spawnLetter (AppManager.Instance.Letters [TakeMeHomeModel.Instance.getRandomLetterOnTube(currentTube)]);
+			currentLetter = letterManager.spawnLetter (AppManager.Instance.Teacher.GetAllTestLetterDataLL()[TakeMeHomeModel.Instance.getRandomLetterOnTube(currentTube)]);
 			currentLetter.MoveBy (new UnityEngine.Vector3 (-13, 0, 0),2);
 		}
 

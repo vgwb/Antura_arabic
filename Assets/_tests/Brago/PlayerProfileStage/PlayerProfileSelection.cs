@@ -48,21 +48,6 @@ namespace EA4S {
         public void SelectPlayerProfile(string _ppKey) {
             AppManager.Instance.Player.CreateOrLoadPlayerProfile(_ppKey);
 
-            /*
-            PlayerProfile selectedProfile;
-            if (!AppManager.Instance.GameSettings.AvailablePlayers.Contains(_ppKey)) {
-                selectedProfile = CreatePlayer(int.Parse(_ppKey));
-                selectedProfile.Reset
-                //AppManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(_ppKey);
-
-            } else {
-                selectedProfile = AppManager.Instance.PlayerProfile.ActivePlayer as PlayerProfile;
-                //AppManager.Instance.PlayerProfile.SetActivePlayer<PlayerProfile>(selectedProfile.Key);
-            }
-            
-            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
-            */
-
             // Visual containers reorder
             refreshActivePlayerList();
         }

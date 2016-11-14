@@ -14,7 +14,7 @@ namespace EA4S.MissingLetter
 
         public GameObject mLetterPrefab;
         public GameObject mAnturaRef;
-        public GameObject mFinger;
+        public Collider mFeedBackDisableLetters;
 
         public Transform mQuestionCamera;
         public Transform mAnswerCamera;
@@ -51,8 +51,11 @@ namespace EA4S.MissingLetter
         public float m_fAnswerLettersNumberThresold = 0.0f;
         public float m_fAnturaTriggersNumbersThresold = 0.33f;
 
+        [HideInInspector]
         public int STARS_1_THRESHOLD = 2;
+        [HideInInspector]
         public int STARS_2_THRESHOLD = 5;
+        [HideInInspector]
         public int STARS_3_THRESHOLD = 9;
         //END Difficulty CONFIG
 
@@ -89,8 +92,7 @@ namespace EA4S.MissingLetter
         [HideInInspector]
         public float m_fGameTime;
 
-        [HideInInspector]
-        public bool m_bInIdle;
+        private bool m_bInIdle { get; set; }
 
         public int CurrentStars
         {
@@ -167,15 +169,14 @@ namespace EA4S.MissingLetter
             Context.GetOverlayWidget().SetStarsScore(mCurrentScore);
         }
 
-        new void OnDisable()
-        {
-            base.OnDisable();
-            //restore the removed letter
-            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
-		}
-
         public void SetInIdle(bool _idle) {
+            mFeedBackDisableLetters.enabled = !_idle;
             m_bInIdle = _idle;
+        }
+
+        public bool IsInIdle()
+        {
+            return m_bInIdle;
         }
 
 
