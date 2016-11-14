@@ -20,11 +20,11 @@ namespace EA4S.Egg
 
             if (difficulty < 0.5f)
             {
-                correctAnswers.Add(AppManager.Instance.Teacher.GimmeARandomLetter());
+                correctAnswers.Add(AppManager.Instance.Teacher.GetRandomTestLetterLL());
 
                 while (wrongAnswers.Count < 8)
                 {
-                    var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                     if (!CheckIfContains(correctAnswers, letter) && !CheckIfContains(wrongAnswers, letter))
                     {
@@ -36,7 +36,7 @@ namespace EA4S.Egg
             {
                 while (correctAnswers.Count < 8)
                 {
-                    var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                    var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                     if (!CheckIfContains(correctAnswers, letter))
                     {

@@ -12,11 +12,15 @@ namespace EA4S
         public TutorialUILineGroup LineGroupPrefab;
         public TutorialUIProp ArrowPrefab;
         public TutorialUIClicker ClickerPrefab;
+        public TutorialUIMark MarkYesPrefab;
+        public TutorialUIMark MarkNoPrefab;
 
         readonly List<TutorialUITrailGroup> trailsPool = new List<TutorialUITrailGroup>();
         readonly List<TutorialUILineGroup> linesPool = new List<TutorialUILineGroup>();
         readonly List<TutorialUIProp> arrowsPool = new List<TutorialUIProp>();
         readonly List<TutorialUIProp> clickersPool = new List<TutorialUIProp>();
+        readonly List<TutorialUIProp> marksYesPool = new List<TutorialUIProp>();
+        readonly List<TutorialUIProp> marksNoPool = new List<TutorialUIProp>();
 
         #region Unity
 
@@ -26,6 +30,8 @@ namespace EA4S
             LineGroupPrefab.gameObject.SetActive(false);
             ArrowPrefab.gameObject.SetActive(false);
             ClickerPrefab.gameObject.SetActive(false);
+            MarkYesPrefab.gameObject.SetActive(false);
+            MarkNoPrefab.gameObject.SetActive(false);
         }
 
         #endregion
@@ -78,6 +84,20 @@ namespace EA4S
         public TutorialUIProp SpawnClicker(Transform _parent, Vector3 _position, bool _overlayed)
         { return SpawnProp(clickersPool, ClickerPrefab, _parent, _position, _overlayed); }
 
+        public TutorialUIMark SpawnMarkYes(Transform _parent, Vector3 _position, TutorialUI.MarkSize _size)
+        {
+            TutorialUIMark mark = (TutorialUIMark)SpawnProp(marksYesPool, MarkYesPrefab, _parent, _position, true);
+            mark.SetSize(_size);
+            return mark;
+        }
+
+        public TutorialUIMark SpawnMarkNo(Transform _parent, Vector3 _position, TutorialUI.MarkSize _size)
+        {
+            TutorialUIMark mark = (TutorialUIMark)SpawnProp(marksNoPool, MarkNoPrefab, _parent, _position, true);
+            mark.SetSize(_size);
+            return mark;
+        }
+
         #endregion
 
         #region Methods
@@ -91,7 +111,7 @@ namespace EA4S
                 break;
             }
             if (prop == null) {
-                prop = Instantiate(_propPrefab, _parent) as TutorialUIProp;
+                prop = Instantiate(_propPrefab, _position, Quaternion.identity, _parent) as TutorialUIProp;
                 _propList.Add(prop);
             }
             prop.Show(_parent, _position, _overlayed);

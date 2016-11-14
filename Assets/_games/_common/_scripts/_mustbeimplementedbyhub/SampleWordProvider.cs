@@ -14,7 +14,7 @@ namespace EA4S
 
         public ILivingLetterData GetNextData()
         {
-            return AppManager.Instance.Teacher.GimmeAGoodWordData();
+            return AppManager.Instance.Teacher.GetRandomTestWordDataLL();
         }
     }
 }

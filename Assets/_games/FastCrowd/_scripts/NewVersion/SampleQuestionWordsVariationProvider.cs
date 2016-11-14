@@ -27,7 +27,7 @@ namespace EA4S.FastCrowd
 
                 for (int j=0; j<3; ++j)
                 {
-                    LL_WordData newWordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    LL_WordData newWordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
                     correctAnswers.Add(newWordData);
                 }
@@ -35,7 +35,7 @@ namespace EA4S.FastCrowd
                 // At least 4 wrong words
                 while (wrongAnswers.Count < 4)
                 {
-                    var word = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                    var word = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
                     if (!correctAnswers.Contains(word) && !wrongAnswers.Contains(word))
                     {

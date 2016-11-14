@@ -20,6 +20,8 @@ namespace EA4S.MissingLetter {
 
 
         public void ExitState() {
+            TutorialUI.Clear(true);
+            game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().StopSuggest();
             game.m_RoundManager.SetTutorial(false);
             game.m_RoundManager.onAnswered -= OnRoundResult;
         }
@@ -35,7 +37,6 @@ namespace EA4S.MissingLetter {
             {
                 var _LL = game.m_RoundManager.GetCorrectLLObject();
                 _LL.GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
-                //Utils.LaunchDelay<bool>(1.0f, delegate (bool b){ _LL.GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_idle); }, true);  
             }
         }
 
@@ -44,7 +45,8 @@ namespace EA4S.MissingLetter {
             if(delayTime < 0 && !suggested)
             {
                 game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().SuggestLetter();
-                game.mFinger.GetComponent<FingerSuggestion>().DoSuggestion(game.m_RoundManager.GetCorrectLLObject());
+                Vector3 pos = game.m_RoundManager.GetCorrectLLObject().transform.position + Vector3.back * 0.8f + Vector3.up * 3;
+                TutorialUI.ClickRepeat(pos, 90, 1.5f);
                 suggested = true;
             }
         }

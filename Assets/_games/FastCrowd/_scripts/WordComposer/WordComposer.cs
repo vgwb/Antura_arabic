@@ -25,7 +25,7 @@ namespace EA4S.FastCrowd {
             foreach (LL_LetterData letter in CompletedLetters) {
                 word += letter.Data.Isolated;
             }
-            word = ArabicAlphabetHelper.ParseWord(word, AppManager.Instance.Letters);
+            word = ArabicAlphabetHelper.ParseWord(word, AppManager.Instance.Teacher.GetAllTestLetterDataLL());
             WordLabel.SetText(word, false);
         }
 

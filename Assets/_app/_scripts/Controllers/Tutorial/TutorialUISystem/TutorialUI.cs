@@ -21,6 +21,13 @@ namespace EA4S
             FingerAndArrow
         }
 
+        public enum MarkSize
+        {
+            Normal,
+            Big,
+            Huge
+        }
+
         [Tooltip("In units x second")]
         public float DrawSpeed = 2;
         [Header("References")]
@@ -123,6 +130,28 @@ namespace EA4S
         {
             Init();
             return I.DoDrawLine(_path, PathType.CatmullRom, _mode, _persistent, _overlayed);
+        }
+
+        /// <summary>
+        /// Shows a YES/RIGHT mark at the given world position
+        /// </summary>
+        /// <param name="_position">World position</param>
+        /// <param name="_size">Size of the mark</param>
+        public static void MarkYes(Vector3 _position, MarkSize _size = MarkSize.Normal)
+        {
+            Init();
+            I.Pools.SpawnMarkYes(I.transform, _position, _size);
+        }
+
+        /// <summary>
+        /// Shows a NO/WRONG mark at the given world position
+        /// </summary>
+        /// <param name="_position">World position</param>
+        /// <param name="_size">Size of the mark</param>
+        public static void MarkNo(Vector3 _position, MarkSize _size = MarkSize.Normal)
+        {
+            Init();
+            I.Pools.SpawnMarkNo(I.transform, _position, _size);
         }
 
         #endregion

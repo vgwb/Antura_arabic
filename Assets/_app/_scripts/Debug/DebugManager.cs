@@ -95,7 +95,7 @@ namespace EA4S
         private static List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
         {
             var letters = new List<LL_LetterData>();
-            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Letters)) {
+            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL())) {
                 letters.Add(letterData);
             }
             return letters;
@@ -105,7 +105,7 @@ namespace EA4S
         {
             var letterListToReturn = new List<LL_LetterData>();
             for (var i = 0; i < _count; i++) {
-                var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(_lettersToAvoid, letter) && !CheckIfContains(letterListToReturn, letter)) {
                     letterListToReturn.Add(letter);

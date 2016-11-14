@@ -43,7 +43,7 @@ namespace EA4S.Balloons
         public float focusZ;
 
         [HideInInspector]
-        public LetterController Letter
+        public BalloonsLetterController Letter
         {
             get { return ActiveVariation.letter; }
         }

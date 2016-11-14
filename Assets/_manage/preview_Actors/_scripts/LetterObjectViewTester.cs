@@ -9,6 +9,11 @@ public class LetterObjectViewTester : MonoBehaviour
     public LLAnimationStates targetState;
     public bool doTransition;
 
+    [Range(0,1)]
+    public float walkSpeed;
+
+    public bool fear;
+
     public bool doHooray;
     public bool doAngry;
     public bool doHighFive;
@@ -18,6 +23,11 @@ public class LetterObjectViewTester : MonoBehaviour
     public bool onJumpEnd;
     public bool doSmallJump;
 
+    public bool doDanceWin;
+    public bool doDanceLose;
+    public bool doDanceTwirl;
+    public bool doToggleDance;
+
     void Start ()
     {
         letter = GetComponent<LetterObjectView>();
@@ -25,6 +35,9 @@ public class LetterObjectViewTester : MonoBehaviour
 	
 	void Update ()
     {
+        letter.HasFear = fear;
+        letter.SetWalkingSpeed(walkSpeed);
+
 	    if (doTransition)
         {
             doTransition = false;
@@ -77,6 +90,30 @@ public class LetterObjectViewTester : MonoBehaviour
         {
             doSmallJump = false;
             letter.DoSmallJump();
+        }
+
+        if (doDanceWin)
+        {
+            doDanceWin = false;
+            letter.DoDancingWin();
+        }
+
+        if (doDanceLose)
+        {
+            doDanceLose = false;
+            letter.DoDancingLose();
+        }
+
+        if (doDanceTwirl)
+        {
+            doDanceTwirl = false;
+            letter.DoDancingTwirl(() => { Debug.Log("BACK!"); });
+        }
+
+        if (doToggleDance)
+        {
+            doToggleDance = false;
+            letter.ToggleDance();
         }
     }
 }
