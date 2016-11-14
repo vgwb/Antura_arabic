@@ -147,7 +147,17 @@ namespace EA4S.API
             switch (_gameCode) {
                 case MiniGameCode.Assessment_LetterShape:
                 case MiniGameCode.Assessment_WordsWithLetter:
-                case MiniGameCode.Assessment_LetterInWord:
+                case MiniGameCode.Assessment_MatchLettersToWord:
+                case MiniGameCode.Assessment_CompleteWord:
+                case MiniGameCode.Assessment_OrderLettersOfWord:
+                case MiniGameCode.Assessment_VowelOrConsonant:
+                case MiniGameCode.Assessment_SelectPronouncedWord:
+                case MiniGameCode.Assessment_MatchWordToImage:
+                case MiniGameCode.Assessment_WordArticle:
+                case MiniGameCode.Assessment_SingularDualPlural:
+                case MiniGameCode.Assessment_SunMoonWord:
+                case MiniGameCode.Assessment_SunMoonLetter:
+                case MiniGameCode.Assessment_QuestionAndReply:
                     break;
                 case MiniGameCode.AlphabetSong:
                     // Must be defined how use sentence data structure
