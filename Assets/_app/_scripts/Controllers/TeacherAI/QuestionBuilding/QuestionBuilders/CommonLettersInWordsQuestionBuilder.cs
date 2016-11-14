@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
-
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
     public class CommonLettersInWordQuestionBuilder : IQuestionBuilder
     {
         private int nPacks;
-        private int nCorrect;
+        private int nCommonLetters;
         private int nWrong;
         private int nWords;
 
-        public CommonLettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, int nWords = 1)
+        public CommonLettersInWordQuestionBuilder(int nPacks, int nCommonLetters = 1, int nWrong = 0, int nWords = 1)
         {
             this.nPacks = nPacks;
-            this.nCorrect = nCorrect;
+            this.nCommonLetters = nCommonLetters;
             this.nWrong = nWrong;
             this.nWords = nWords;
         }
@@ -38,7 +38,7 @@ namespace EA4S
             bool found = false;
             while (nAttempts > 0 && !found)
             {
-                var commonLetters = teacher.wordHelper.GetAllLetters().RandomSelect(nCorrect);
+                var commonLetters = teacher.wordHelper.GetAllLetters().RandomSelect(nCommonLetters);
                 var words = teacher.wordHelper.GetWordsWithLetters(commonLetters.ConvertAll(x => x.Id).ToArray());
                 if (words.Count < nWords)
                 {
@@ -49,14 +49,15 @@ namespace EA4S
                 var nonCommonLetters = teacher.wordHelper.GetLettersNotInWords(words.ToArray()).RandomSelect(nWrong);
 
                 // Debug
-                /*{ 
-                    string debugString = "For letters " + commonLetters[0] + " and " + commonLetters[1];
+                if (ConfigAI.verboseTeacher)
+                { 
+                    string debugString = "For letter " + commonLetters[0];
                     debugString += "\nWord0: " + words[0];
                     foreach (var l in words[0].Letters) debugString += " " + l;
                     debugString += "\nWord1: " + words[1];
                     foreach (var l in words[1].Letters) debugString += " " + l;
                     UnityEngine.Debug.Log(debugString);
-                }*/
+                }
 
                 pack = QuestionPackData.Create(words, commonLetters, nonCommonLetters);
                 found = true;
