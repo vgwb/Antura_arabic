@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using System;
 
-namespace EA4S.FastCrowd
+namespace EA4S
 {
     /// <summary>
     /// This class manages the letters crowd
     /// </summary>
-    public class Crowd : MonoBehaviour
+    public class LetterCrowd : MonoBehaviour
     {
         public event System.Action<ILivingLetterData, bool> onDropped;
 
-        public FastCrowdWalkableArea walkableArea;
-        public AnturaController antura;
+        public LettersWalkableArea walkableArea;
+        public AnturaRunnerController antura;
 
         public LetterObjectView livingLetterPrefab;
         public GameObject puffPrefab;
 
         public int MaxConcurrentLetters = 5;
 
-        List<FastCrowdLivingLetter> letters = new List<FastCrowdLivingLetter>();
+        protected List<StrollingLivingLetter> letters = new List<StrollingLivingLetter>();
+        List<GameObject> letterGOs = new List<GameObject>();
 
         Queue<ILivingLetterData> toAdd = new Queue<ILivingLetterData>();
 
-        Queue<FastCrowdLivingLetter> toDestroy = new Queue<FastCrowdLivingLetter>();
+        Queue<StrollingLivingLetter> toDestroy = new Queue<StrollingLivingLetter>();
         float destroyTimer = 0;
-        FastCrowdDraggableLetter dragging;
 
-        public void GetNearLetters(List<FastCrowdLivingLetter> output, Vector3 position, float radius)
+        public void GetNearLetters(List<StrollingLivingLetter> output, Vector3 position, float radius)
         {
             for (int i = 0, count = letters.Count; i < count; ++i)
             {
@@ -36,54 +36,6 @@ namespace EA4S.FastCrowd
                     output.Add(letters[i]);
                 }
             }
-        }
-
-        void Start()
-        {
-            var inputManager = FastCrowdConfiguration.Instance.Context.GetInputManager();
-
-            inputManager.onPointerDown += OnPointerDown;
-            inputManager.onPointerUp += OnPointerUp;
-        }
-
-        void OnPointerDown()
-        {
-            if (dragging != null)
-                return;
-
-            var inputManager = FastCrowdConfiguration.Instance.Context.GetInputManager();
-
-            Vector3 draggingPosition = Vector3.zero;
-            float draggingDistance = 100;
-
-            for (int i = 0, count = letters.Count; i < count; ++i)
-            {
-                Vector3 position;
-                float distance;
-                if (letters[i].Raycast(out distance, out position, Camera.main.ScreenPointToRay(inputManager.LastPointerPosition), draggingDistance) &&
-                    distance < draggingDistance)
-                {
-                    draggingPosition = position;
-                    draggingDistance = distance;
-                    dragging = letters[i].GetComponent<FastCrowdDraggableLetter>();
-                }
-            }
-
-            if (dragging != null)
-            {
-                dragging.StartDragging(draggingPosition - dragging.transform.position);
-
-                var data = dragging.GetComponent<LetterObjectView>().Data;
-
-                FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data);
-            }
-        }
-
-        void OnPointerUp()
-        {
-            if (dragging != null)
-                dragging.EndDragging();
-            dragging = null;
         }
 
         public void AddLivingLetter(ILivingLetterData letter)
@@ -99,24 +51,25 @@ namespace EA4S.FastCrowd
                 toDestroy.Enqueue(l);
 
             letters.Clear();
+            letterGOs.Clear();
         }
 
-        void SpawnLetter()
+        protected virtual LetterObjectView SpawnLetter()
         {
             // Spawn!
             LetterObjectView letterObjectView = Instantiate(livingLetterPrefab);
             letterObjectView.gameObject.SetActive(true);
             letterObjectView.transform.SetParent(transform, true);
-            Vector3 newPosition = walkableArea.GetFurthestSpawn(letters); // Find isolated spawn point
+
+            Vector3 newPosition = walkableArea.GetFurthestSpawn(letterGOs); // Find isolated spawn point
 
             letterObjectView.transform.position = newPosition;
             letterObjectView.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.value * 360, 0);
             letterObjectView.Init(toAdd.Dequeue());
 
-            var livingLetter = letterObjectView.gameObject.AddComponent<FastCrowdLivingLetter>();
+            var livingLetter = letterObjectView.gameObject.AddComponent<StrollingLivingLetter>();
             livingLetter.crowd = this;
-
-            letterObjectView.gameObject.AddComponent<FastCrowdDraggableLetter>();
+            
             letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
 
             foreach (var collider in letterObjectView.gameObject.GetComponentsInChildren<Collider>())
@@ -126,24 +79,28 @@ namespace EA4S.FastCrowd
             characterController.height = 6;
             characterController.center = Vector3.up * 3;
             characterController.radius = 1.5f;
-            
+
             var pos = letterObjectView.transform.position;
             pos.y = 10;
             letterObjectView.transform.position = pos;
 
             letters.Add(livingLetter);
+            letterGOs.Add(livingLetter.gameObject);
 
             livingLetter.onDropped += (result) =>
             {
                 if (result)
                 {
                     letters.Remove(livingLetter);
+                    letterGOs.Remove(livingLetter.gameObject);
                     toDestroy.Enqueue(livingLetter);
                 }
 
                 if (onDropped != null)
                     onDropped(letterObjectView.Data, result);
             };
+
+            return letterObjectView;
         }
 
         void Update()

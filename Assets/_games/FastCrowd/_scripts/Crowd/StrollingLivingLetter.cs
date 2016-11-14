@@ -3,37 +3,37 @@ using EA4S;
 using EA4S.FastCrowd;
 using UnityEngine;
 
-[RequireComponent(typeof(FastCrowdLetterMovement))]
-public class FastCrowdLivingLetter : MonoBehaviour
+[RequireComponent(typeof(LetterCharacterController))]
+public class StrollingLivingLetter : MonoBehaviour
 {
     public event System.Action onDestroy;
     public event System.Action<bool> onDropped;
 
     GameStateManager stateManager = new GameStateManager();
 
-    public LetterWalkingState WalkingState { get; private set; }
-    public LetterIdleState IdleState { get; private set; }
-    public LetterFallingState FallingState { get; private set; }
-    public LetterHangingState HangingState { get; private set; }
+    public StrollingLetterWalkingState WalkingState { get; private set; }
+    public StrollingLetterIdleState IdleState { get; private set; }
+    public StrollingLetterFallingState FallingState { get; private set; }
+    public StrollingLetterHangingState HangingState { get; private set; }
 
     // Use Scare() method instead
-    private LetterScaredState ScaredState { get; set; }
+    private StrollingLetterScaredState ScaredState { get; set; }
 
     Collider[] colliders;
 
-    public Crowd crowd;
-    public FastCrowdWalkableArea walkableArea { get { return crowd.walkableArea; } }
-    public AnturaController antura { get { return crowd.antura; } }
+    public LetterCrowd crowd;
+    public LettersWalkableArea walkableArea { get { return crowd.walkableArea; } }
+    public AnturaRunnerController antura { get { return crowd.antura; } }
 
     void Awake()
     {
         colliders = GetComponentsInChildren<Collider>();
 
-        WalkingState = new LetterWalkingState(this);
-        IdleState = new LetterIdleState(this);
-        ScaredState = new LetterScaredState(this);
-        FallingState = new LetterFallingState(this);
-        HangingState = new LetterHangingState(this);
+        WalkingState = new StrollingLetterWalkingState(this);
+        IdleState = new StrollingLetterIdleState(this);
+        ScaredState = new StrollingLetterScaredState(this);
+        FallingState = new StrollingLetterFallingState(this);
+        HangingState = new StrollingLetterHangingState(this);
 
         SetCurrentState(FallingState);
     }
@@ -87,14 +87,14 @@ public class FastCrowdLivingLetter : MonoBehaviour
         return false;
     }
 
-    public void SetCurrentState(LetterState letterState)
+    public void SetCurrentState(StrollingLetterState letterState)
     {
         stateManager.CurrentState = letterState;
     }
 
-    public LetterState GetCurrentState()
+    public StrollingLetterState GetCurrentState()
     {
-        return (LetterState)stateManager.CurrentState;
+        return (StrollingLetterState)stateManager.CurrentState;
     }
 
     /// <summary>

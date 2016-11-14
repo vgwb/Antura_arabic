@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace EA4S.FastCrowd
+namespace EA4S
 {
-    public class LetterFallingState : LetterState
+    public class StrollingLetterFallingState : StrollingLetterState
     {
         LetterObjectView view;
         float fallSpeed = 0;
 
-        public LetterFallingState(FastCrowdLivingLetter letter) : base(letter)
+        public StrollingLetterFallingState(StrollingLivingLetter letter) : base(letter)
         {
             view = letter.gameObject.GetComponent<LetterObjectView>();
         }
