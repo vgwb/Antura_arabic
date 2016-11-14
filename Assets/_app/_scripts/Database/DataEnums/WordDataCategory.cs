@@ -27,9 +27,7 @@ namespace EA4S.Db
       Direction = 20,
       Position = 21,
       Number = 22,
-      nature = 23,
-      feelings = 24,
-      Shape = 25,
+      Shape = 23,
   }
 }
 
