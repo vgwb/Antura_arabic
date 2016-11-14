@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 3dff9eb47656649caace72816c95b5aa
+labels:
+- Core
 timeCreated: 1477809920
 licenseType: Pro
 DefaultImporter:

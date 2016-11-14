@@ -67,6 +67,8 @@ namespace EA4S
 
         }
 
+        public PlayerProfileManager PlayerProfileManager = new PlayerProfileManager();
+
         private void AdditionalSetup()
         {
             // GameplayModule
@@ -77,6 +79,8 @@ namespace EA4S
 
             // PlayerProfileModule Install override
             //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
+            
+
 
             /* Player profile auto select first avatar or last selected */
             AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };

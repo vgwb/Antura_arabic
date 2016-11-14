@@ -35,6 +35,9 @@ public class HiddenText : MonoBehaviour
         hasElements = renderers.Length > 0;
         for (int i = 0, count = renderers.Length; i < count; ++i)
         {
+            if (!renderers[i].enabled || !renderers[i].gameObject.activeInHierarchy)
+                continue; // skip
+
             var screenBoundsMin = mainCamera.WorldToScreenPoint(renderers[i].bounds.min) - new Vector3(32.0f, 32.0f, 0.0f);
             var screenBoundsMax = mainCamera.WorldToScreenPoint(renderers[i].bounds.max) + new Vector3(32.0f, 32.0f, 0.0f);
 

@@ -9,12 +9,15 @@ namespace EA4S.HideAndSeek
     {
         public IntroductionGameState IntroductionState { get; private set; }
         public QuestionGameState QuestionState { get; private set; }
+        public TutorialGameState TutorialState { get; private set; }
         public PlayGameState PlayState { get; private set; }
         public ResultGameState ResultState { get; private set; }
         
         public int CurrentScore { get; private set; }
         
         public HideAndSeekGameManager GameManager;
+
+        public HideAndSeekTutorialManager TutorialManager;
 
         [HideInInspector]
         public bool isTimesUp;
@@ -24,7 +27,7 @@ namespace EA4S.HideAndSeek
         const int STARS_1_THRESHOLD = 2;
         const int STARS_2_THRESHOLD = 5;
         const int STARS_3_THRESHOLD = 9;
-        
+
         public int CurrentStars
         {
             get
@@ -43,13 +46,13 @@ namespace EA4S.HideAndSeek
         {
             IntroductionState = new IntroductionGameState(this);
             QuestionState = new QuestionGameState(this);
+            TutorialState = new TutorialGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
             
             Debug.Log(GameManager.gameObject.name);
 
-            Context.GetOverlayWidget().Initialize(true, true, true);
-            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+            
         }
 
         public void ResetScore()

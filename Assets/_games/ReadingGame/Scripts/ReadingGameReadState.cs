@@ -54,7 +54,7 @@ namespace EA4S.ReadingGame
             // Pick a question
             var pack = ReadingGameConfiguration.Instance.Questions.GetNextQuestion();
             game.CurrentQuestion = pack;
-
+            game.barSet.active = true;
             if (pack != null)
                 game.barSet.SetData(pack.GetQuestion());
             else
@@ -76,6 +76,7 @@ namespace EA4S.ReadingGame
 
             gameTime.Stop();
 
+            game.barSet.active = false;
             game.barSet.Clear();
             game.blurredText.SetActive(false);
         }
@@ -111,6 +112,7 @@ namespace EA4S.ReadingGame
                     {
                         // go to Buttons State
                         game.AnswerState.ReadTime = gameTime.Time;
+                        game.AnswerState.MaxTime = gameTime.Duration;
                         game.SetCurrentState(game.AnswerState);
                         return;
                     }
@@ -118,6 +120,8 @@ namespace EA4S.ReadingGame
 
                 completedDragging = false;
             }
+
+            game.antura.angry = (gameTime.Time < 0.5f * gameTime.Duration);
         }
 
         public void UpdatePhysics(float delta)
@@ -128,6 +132,7 @@ namespace EA4S.ReadingGame
         void OnTimesUp()
         {
             // Time's up!
+            game.barSet.active = false;
             game.isTimesUp = true;
             game.Context.GetOverlayWidget().OnClockCompleted();
 
