@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using EA4S.Db;
 
-namespace EA4S.Teacher
+namespace EA4S.Db
 {
     /// <summary>
     /// Provides helpers to get correct letter/word/phrase data according to the teacher's logic and based on the player's progression
@@ -9,53 +8,48 @@ namespace EA4S.Teacher
     public class WordHelper
     {
         private DatabaseManager dbManager;
-        private WordSelectionAI wordSelectionAI;
+        //private WordSelectionAI wordSelectionAI;
         //private TeacherAI teacher;
 
-        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher, Teacher.WordSelectionAI _wordSelectionAI)
+        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher)// Teacher.WordSelectionAI _wordSelectionAI)
         {
             this.dbManager = _dbManager;
-            this.wordSelectionAI = _wordSelectionAI;
+            //this.wordSelectionAI = _wordSelectionAI;
             //this.teacher = _teacher;
         }
 
         #region Letter -> Letter
 
-        public List<LetterData> GetAllLetters()
+        public List<LetterData> GetAllRealLetters()
         {
-            //return this.wordSelectionAI.PerformSelection();
-
             return dbManager.FindLetterData(x => x.IsRealLetter());
         }
 
         private List<LetterData> GetRealLettersNotIn(List<string> tabooList)
         {
-            return dbManager.FindLetterData(
-                x => !tabooList.Contains(x.Id)
-                && x.IsRealLetter()
+            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && x.IsRealLetter()
             );
         }
+
         public List<LetterData> GetRealLettersNotIn(params LetterData[] tabooArray)
         {
             var tabooList = new List<LetterData>(tabooArray);
             return GetRealLettersNotIn(tabooList.ConvertAll(x => x.Id));
         }
 
-        public List<LetterData> GetLettersByKind(LetterDataKind choice)
+        public List<LetterData> GetRealLettersByKind(LetterDataKind choice)
         {
-            return dbManager.FindLetterData(x => x.Kind == choice);
+            return dbManager.FindLetterData(x => x.Kind == choice && x.IsRealLetter());
         }
 
         public List<LetterData> GetRealLettersBySunMoon(LetterDataSunMoon choice)
         {
-            return dbManager.FindLetterData(
-                x => x.SunMoon == choice
-                    && x.IsRealLetter());
+            return dbManager.FindLetterData(x => x.SunMoon == choice && x.IsRealLetter());
         }
 
-        public List<LetterData> GetLettersByType(LetterDataType choice)
+        public List<LetterData> GetRealLettersByType(LetterDataType choice)
         {
-            return dbManager.FindLetterData(x => x.Type == choice);
+            return dbManager.FindLetterData(x => x.Type == choice && x.IsRealLetter());
         }
 
         public LetterData GetBaseOf(string letterId)
@@ -101,17 +95,15 @@ namespace EA4S.Teacher
             {
                 letter_ids_list.UnionWith(tabooWordData.Letters);
             }
-            List<LetterData> list = dbManager.FindLetterData(
-                x => !letter_ids_list.Contains(x.Id)
-                    && x.IsRealLetter());
+            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsRealLetter());
             return list;
         }
 
-        public List<LetterData> GetLettersNotInWord(string wordId)
+        public List<LetterData> GetRealLettersNotInWord(string wordId)
         {
             WordData wordData = dbManager.GetWordDataById(wordId);
             var letter_ids_list = new List<string>(wordData.Letters);
-            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id));
+            List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsRealLetter());
             return list;
         }
 
@@ -235,6 +227,16 @@ namespace EA4S.Teacher
 
         #endregion
 
+        #region Phrase -> Word
+
+        public List<WordData> GetWordOfPhrase(string phraseId)
+        {
+            // @todo: implement
+            return null;
+        }
+
+        #endregion
+
         #region Phrase -> Phrase
 
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
@@ -246,143 +248,15 @@ namespace EA4S.Teacher
 
         #endregion
 
-        #region LearningBlock / PlaySession -> Letter
+        #region Word -> Phrase
 
-        public List<LetterData> GetLettersInLearningBlock(string lbId, bool pastBlocksToo = false)
+        public List<PhraseData> GetPhrasesWithWord(string wordId)
         {
-            var lbData = dbManager.GetLearningBlockDataById(lbId);
-            var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
-
-            HashSet<LetterData> letterData_set = new HashSet<LetterData>();
-            foreach (var psData in psData_list)
-            {
-                var ps_letterData = GetLettersInPlaySession(psData.Id, pastBlocksToo);
-                letterData_set.UnionWith(ps_letterData);
-            }
-            return new List<LetterData>(letterData_set);
-        }
-
-        public List<LetterData> GetLettersInPlaySession(string psId, bool pastSessionsToo = false)
-        {
-            var psData = dbManager.GetPlaySessionDataById(psId);
-
-            HashSet<string> ids_set = new HashSet<string>();
-            ids_set.UnionWith(psData.Letters);
-            if (pastSessionsToo) ids_set.UnionWith(this.GetAllLetterIdsFromPreviousPlaySessions(psData));
-
-            List<string> ids_list = new List<string>(ids_set);
-            return ids_list.ConvertAll(x => dbManager.GetLetterDataById(x));
-        }
-
-        public string[] GetAllLetterIdsFromPreviousPlaySessions(PlaySessionData current_ps)
-        {
-            // @note: this assumes that all play sessions are correctly ordered
-            var all_ps_list = dbManager.GetAllPlaySessionData();
-            int current_id = all_ps_list.IndexOf(current_ps);
-
-            List<string> all_ids = new List<string>();
-            for (int prev_id = 0; prev_id < current_id; prev_id++)
-            {
-                all_ids.AddRange(all_ps_list[prev_id].Letters);
-            }
-
-            return all_ids.ToArray();
-        }
-        #endregion
-
-        #region LearningBlock / PlaySession -> Word
-
-        public List<WordData> GetWordsInLearningBlock(string lbId, bool previousToo = true, bool pastBlocksToo = false)
-        {
-            var lbData = dbManager.GetLearningBlockDataById(lbId);
-            var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
-
-            HashSet<WordData> wordData_set = new HashSet<WordData>();
-            foreach(var psData in psData_list)
-            {
-                var ps_wordData = GetWordsInPlaySession(psData.Id, previousToo, pastBlocksToo);
-                wordData_set.UnionWith(ps_wordData);
-            }
-            return new List<WordData>(wordData_set);
-        }
-
-        public List<WordData> GetWordsInPlaySession(string psId, bool previousToo = false, bool pastSessionsToo = false)
-        {
-            var psData = dbManager.GetPlaySessionDataById(psId);
-
-            HashSet<string> ids_set = new HashSet<string>();
-            ids_set.UnionWith(psData.Words);
-            if (previousToo) ids_set.UnionWith(psData.Words_previous);
-            if (pastSessionsToo) ids_set.UnionWith(this.GetAllWordIdsFromPreviousPlaySessions(psData));
-
-            List<string> ids_list = new List<string>(ids_set);
-            return ids_list.ConvertAll(x => dbManager.GetWordDataById(x));
-        }
-
-        public string[] GetAllWordIdsFromPreviousPlaySessions(PlaySessionData current_ps)
-        {
-            // @note: this assumes that all play sessions are correctly ordered
-            var all_ps_list = dbManager.GetAllPlaySessionData();
-            int current_id = all_ps_list.IndexOf(current_ps);
-
-            List<string> all_ids = new List<string>();
-            for (int prev_id = 0; prev_id < current_id; prev_id++)
-            {
-                all_ids.AddRange(all_ps_list[prev_id].Words);
-                all_ids.AddRange(all_ps_list[prev_id].Words_previous);
-            }
-
-            return all_ids.ToArray();
+            // @todo: implement
+            return null;
         }
 
         #endregion
-
-        #region LearningBlock / PlaySession -> Phrase
-
-        public List<PhraseData> GePhrasesInLearningBlock(string lbId, bool previousToo = true, bool pastBlocksToo = false)
-        {
-            var lbData = dbManager.GetLearningBlockDataById(lbId);
-            var psData_list = dbManager.GetPlaySessionsOfLearningBlock(lbData);
-
-            HashSet<PhraseData> phraseData_set = new HashSet<PhraseData>();
-            foreach (var psData in psData_list)
-            {
-                var ps_phraseData = GetPhrasesInPlaySession(psData.Id, previousToo, pastBlocksToo);
-                phraseData_set.UnionWith(ps_phraseData);
-            }
-            return new List<PhraseData>(phraseData_set);
-        }
-
-        public List<PhraseData> GetPhrasesInPlaySession(string lbId, bool previousToo = false, bool pastSessionsToo = false)
-        {
-            var psData = dbManager.GetPlaySessionDataById(lbId);
-
-            HashSet<string> ids_set = new HashSet<string>();
-            ids_set.UnionWith(psData.Phrases);
-            if (previousToo) ids_set.UnionWith(psData.Phrases_previous);
-            if (pastSessionsToo) ids_set.UnionWith(this.GetAllPhraseIdsFromPreviousPlaySessions(psData));
-
-            List<string> ids_list = new List<string>(ids_set);
-            return ids_list.ConvertAll(x => dbManager.GetPhraseDataById(x));
-        }
-
-        public string[] GetAllPhraseIdsFromPreviousPlaySessions(PlaySessionData current_ps)
-        {
-            // @note: this assumes that all play sessions are correctly ordered
-            var all_ps_list = dbManager.GetAllPlaySessionData();
-            int current_id = all_ps_list.IndexOf(current_ps);
-
-            List<string> all_ids = new List<string>();
-            for (int prev_id = 0; prev_id < current_id; prev_id++)
-            {
-                all_ids.AddRange(all_ps_list[prev_id].Phrases);
-                all_ids.AddRange(all_ps_list[prev_id].Phrases_previous);
-            }
-
-            return all_ids.ToArray();
-        }
-        #endregion
-
 
     }
 }

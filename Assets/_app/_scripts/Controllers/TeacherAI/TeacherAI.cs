@@ -29,7 +29,7 @@ namespace EA4S
 
         // Selection engines
         MiniGameSelectionAI minigameSelectionAI;
-        WordSelectionAI wordSelectionAI;
+        public WordSelectionAI wordAI;
         DifficultySelectionAI difficultySelectionAI;
 
         // State
@@ -45,20 +45,22 @@ namespace EA4S
 
             this.logIntelligence = new LogIntelligence(_dbManager);
 
-            this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
-            this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
-            this.difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
-
-            this.wordHelper = new WordHelper(_dbManager, this, wordSelectionAI);
+            this.wordHelper = new WordHelper(_dbManager, this);
             this.journeyHelper = new JourneyHelper(_dbManager, this);
+
+            this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
+            this.wordAI = new WordSelectionAI(dbManager, playerProfile, this, wordHelper);
+            this.difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
         }
 
         private void ResetPlaySession()
         {
+            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+
             this.currentPlaySessionMiniGames.Clear();
 
             this.minigameSelectionAI.InitialiseNewPlaySession();
-            this.wordSelectionAI.InitialiseNewPlaySession();
+            this.wordAI.InitialiseNewPlaySession(currentPlaySessionId);
         }
 
         #endregion
@@ -132,10 +134,15 @@ namespace EA4S
 
         #region Letter/Word Selection queries
 
-        // TEST - DEPRECATED
+        /*private List<Db.WordData> SelectWordsForCurrentPlaySession(string playSessionId)
+        {
+            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+            return SelectWordsForPlaySession(currentPlaySessionId, 4);
+        }*/
+
         public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
         {
-            return this.wordSelectionAI.PerformSelection(playSessionId, numberToSelect);
+            return this.wordAI.PerformWordSelection(playSessionId, numberToSelect);
         }
         
         #endregion
@@ -269,7 +276,7 @@ namespace EA4S
         public List<LL_LetterData> GetAllTestLetterDataLL()
         {
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in this.wordHelper.GetAllLetters())
+            foreach (var letterData in this.wordHelper.GetAllRealLetters())
                 list.Add(BuildLetterData_LL(letterData));
             return list;
         }
@@ -282,7 +289,7 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetAllLetters().RandomSelectOne();
+            var data = this.wordHelper.GetAllRealLetters().RandomSelectOne();
             return BuildLetterData_LL(data);
         }
 
