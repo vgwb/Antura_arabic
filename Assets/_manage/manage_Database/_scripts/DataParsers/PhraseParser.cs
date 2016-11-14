@@ -14,6 +14,7 @@ namespace EA4S.Db.Management
             data.English = ToString(dict["English"]);
             data.Arabic = ToString(dict["Arabic"]);
             data.Linked = ToString(dict["Linked"]);
+            data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
 
             return data;
         }
