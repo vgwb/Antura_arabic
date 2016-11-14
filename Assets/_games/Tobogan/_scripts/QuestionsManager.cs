@@ -18,11 +18,7 @@ namespace EA4S.Tobogan
 
         int questionLetterIndex;
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
-
-        float nextQuestionTimer;
-        float nextQuestiontime = 1f;
-        bool requestNextQueston;
-
+        
         // return aswer result
         public event Action<bool> onAnswered;
 
@@ -41,9 +37,6 @@ namespace EA4S.Tobogan
                 CreateQuestionLivingLetters();
 
                 questionLetterIndex = livingLetters.Count - 1;
-
-                nextQuestionTimer = 0f;
-                requestNextQueston = false;
 
                 game.Context.GetInputManager().onPointerDown += OnPointerDown;
                 game.Context.GetInputManager().onPointerUp += OnPointerUp;
@@ -168,37 +161,23 @@ namespace EA4S.Tobogan
                 else
                     game.Context.GetAudioManager().PlaySound(Sfx.LetterSad);
 
-
                 if (onAnswered != null)
                     onAnswered(isCorrectAnswer);
 
                 pipeAnswer.StopSelectedAnimation();
-
-                questionLivingLetter.GoToFirstPostion();
-
-                questionLetterIndex--;
-
-                if (questionLetterIndex < 0)
-                    questionLetterIndex = livingLetters.Count - 1;
-
-                requestNextQueston = true;
-                nextQuestionTimer = nextQuestiontime;
-                game.pipesAnswerController.HidePipes();
             }
         }
 
-        public void Update(float delta)
+        public void QuestionEnd()
         {
-            if (requestNextQueston)
-            {
-                nextQuestionTimer -= delta;
+            questionLivingLetter.GoToFirstPostion();
 
-                if (nextQuestionTimer <= 0f)
-                {
-                    StartNewQuestion();
-                    requestNextQueston = false;
-                }
-            }
+            questionLetterIndex--;
+
+            if (questionLetterIndex < 0)
+                questionLetterIndex = livingLetters.Count - 1;
+
+            game.pipesAnswerController.HidePipes();
         }
 
         void OnPointerDown()
@@ -232,6 +211,11 @@ namespace EA4S.Tobogan
                 var pointerPosition = game.Context.GetInputManager().LastPointerPosition;
                 questionLivingLetter.OnPointerDrag(pointerPosition);
             }
+        }
+
+        public QuestionLivingLetter GetQuestionLivingLetter()
+        {
+            return questionLivingLetter;
         }
     }
 }

@@ -40,10 +40,14 @@ namespace EA4S.Tobogan
                 return 3;
             }
         }
-        
+
+        bool tutorial;
+        public bool showTutorial { get { if (tutorial) { tutorial = false; return true; } else return false; } }
+
         public ToboganQuestionState QuestionState { get; private set; }
         public ToboganPlayState PlayState { get; private set; }
         public ToboganResultGameState ResultState { get; private set; }
+        public ToboganTutorialState TutorialState { get; private set; }
         
         public void ResetScore()
         {
@@ -63,16 +67,18 @@ namespace EA4S.Tobogan
 
         protected override void OnInitialize(IGameContext context)
         {
+            tutorial = true;
+
             pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
             
             QuestionState = new ToboganQuestionState(this);
             PlayState = new ToboganPlayState(this);
             ResultState = new ToboganResultGameState(this);
+            TutorialState = new ToboganTutorialState(this);
 
             questionsManager = new QuestionsManager(this);
-            questionsManager.onAnswered += OnResult;
 
-            feedbackGraphics.Initialize(questionsManager);
+            feedbackGraphics.Initialize();
 
             Physics.gravity = new Vector3(0, -80, 0);
 
@@ -80,9 +86,10 @@ namespace EA4S.Tobogan
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
         }
 
-        void OnResult(bool result)
+        public void OnResult(bool result)
         {
             Context.GetCheckmarkWidget().Show(result);
+            feedbackGraphics.OnResult(result);
 
             if (result)
             {
