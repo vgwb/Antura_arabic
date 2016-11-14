@@ -5,6 +5,7 @@ namespace EA4S.Teacher
     {
         // Debug
         public static bool verboseTeacher = true;
+        public static bool verboseDataSelection = false;
         public static bool forceJourneyIgnore = true; // If true, the journey progression logic is turned off, so that all data is usable
 
         // General configuration
@@ -16,8 +17,9 @@ namespace EA4S.Teacher
         public const float minigame_recentPlayWeight = 1f;
 
         // Word selection weights
-        public const float word_scoreWeight = 1f;
-        public const float word_recentPlayWeight = 1f;
+        public const float data_scoreWeight = 1f;
+        public const float data_recentPlayWeight = 1f;
+        public const float data_minimumTotalWeight = 0.1f;
 
         // Difficulty selection weights
         public const float difficulty_weight_age = 1f;
