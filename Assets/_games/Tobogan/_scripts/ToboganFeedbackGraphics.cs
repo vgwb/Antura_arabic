@@ -65,8 +65,9 @@ public class ToboganFeedbackGraphics : MonoBehaviour
 
                 wrongTubes.DropLetter(() =>
                 {
+                    bool hasToBark = tower.HasStackedLetters || antura.IsWaken;
                     tower.RequestCrash();
-                    antura.Bark();
+                    antura.WakeUp(hasToBark);
                 });
             }
         }

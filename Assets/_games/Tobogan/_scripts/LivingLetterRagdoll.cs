@@ -13,6 +13,8 @@ public class LivingLetterRagdoll : MonoBehaviour, ICollidable
     bool ragdolling = false;
     float puffCountdown = 0.0f;
 
+    public float maxPoofCountdownAfterHit = 0.25f;
+
     const float MAX_RAGDOLL_TIME = 4.0f;
     public bool deleteOnRagdollHit = true;
 
@@ -90,7 +92,7 @@ public class LivingLetterRagdoll : MonoBehaviour, ICollidable
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
-            puffCountdown = Mathf.Min(puffCountdown, 0.25f);
+            puffCountdown = Mathf.Min(puffCountdown, maxPoofCountdownAfterHit);
         }
     }
 
