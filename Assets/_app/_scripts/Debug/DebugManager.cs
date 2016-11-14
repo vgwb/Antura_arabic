@@ -48,6 +48,7 @@ namespace EA4S
         public float Difficulty = 0.5f;
         public int Stage = 1;
         public int LearningBlock = 1;
+        public int PlaySession = 1;
 
         void Awake()
         {
@@ -81,6 +82,13 @@ namespace EA4S
 
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
+            AppManager.Instance.Player.CurrentJourneyPosition.Stage = Stage;
+            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
+            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = PlaySession;
+
+            // We must force this or the teacher won't use the correct data
+            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
+
             // Call start game with parameters
             MiniGameAPI.Instance.StartGame(
                 miniGameCodeSelected,
