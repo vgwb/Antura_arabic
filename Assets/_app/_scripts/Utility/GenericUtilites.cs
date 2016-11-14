@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,6 +21,16 @@ namespace EA4S
             var A = Enum.GetValues(typeof(T));
             var V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
             return V;
+        }
+
+        /// <summary>
+        /// sort an Enum by its names.. returns List;
+        /// to be used like: var orderedEnumList = Sort<Sfx>();
+        /// </summary>
+        public static IOrderedEnumerable<TEnum> SortEnums<TEnum>()
+        {
+            // alternative: Enum.GetValues(typeof(TEnum)).Cast<TEnum>().OrderBy(v => v.ToString());
+            return ((TEnum[])Enum.GetValues(typeof(TEnum))).OrderBy(v => v.ToString());
         }
 
         public static string ReverseText(string text)

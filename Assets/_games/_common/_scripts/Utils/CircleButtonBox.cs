@@ -33,37 +33,27 @@ namespace EA4S
             }
         }
 
-        public void Clear()
+        public void Clear(System.Action onClearAnimationCompleted = null, float startDelay = 0)
         {
-            // Clear past data
-            foreach (var b in buttons)
+            for (int i = 0; i < buttons.Count; i++)
             {
-                Destroy(b.gameObject);
+                CircleButton button = buttons[i];
+
+                button.Destroy(startDelay + i * 0.1f, i == buttons.Count - 1 ? onClearAnimationCompleted : null);
             }
+
             buttons.Clear();
         }
 
-        public void AddButton(ILivingLetterData letterData, System.Action<CircleButton> onClicked)
+        public void AddButton(ILivingLetterData letterData, System.Action<CircleButton> onClicked, float enterAnimationDelay)
         {
             CircleButton button = CreateButton();
             button.Answer = letterData;
             button.onClicked = onClicked;
             button.ImageMode = ImageMode;
             buttons.Add(button);
+            button.DoEnterAnimation(enterAnimationDelay);
 
-            dirty = true;
-        }
-
-        public void RemoveButtons()
-        {
-            for (int i = 0; i < buttons.Count; i++)
-            {
-                CircleButton button = buttons[i];
-
-                button.ScaleTo(0f, 0.1f, 0f, delegate () { Destroy(button.gameObject); });
-            }
-
-            buttons.Clear();
             dirty = true;
         }
 

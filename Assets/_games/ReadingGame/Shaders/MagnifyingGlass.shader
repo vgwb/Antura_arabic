@@ -94,16 +94,20 @@
 		
 		float mask = tex2D(_MaskTex, IN.texcoord).r;
 
+		// Apply distortion
+		
 		float2 backUV = IN.screencoord.xy / IN.screencoord.w;
 		backUV = (backUV - _BackOffset) / _BackScale;
+		backUV += (1 - mask)*0.025*normalize((IN.texcoord - half2(0.5,0.5)));
 
 		float4 back = tex2D(_BackTex, backUV).rgba;
 		back.rgb = lerp(half3(1, 1, 1), half3(0, 0, 0), 1 - back.r);
 
-		c.rgb *= c.a;
+		half inside = smoothstep(0.0, 0.7, mask);
 
-		c.a = lerp(c.a, 1, mask);
-		c.rgb = lerp(c.rgb, back, mask);
+		c.rgb = lerp(c.rgb, lerp(back, c.rgb, c.a), inside);
+		c.a = lerp(c.a, IN.color.a, inside);
+		c.rgb *= c.a;
 
 		return c;
 	}

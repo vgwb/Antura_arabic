@@ -9,6 +9,8 @@ namespace EA4S.ReadingGame
         public ReadingBarSet barSet;
         public GameObject blurredText;
         public GameObject circleBox;
+        public ReadingGameAntura antura;
+        public ReadingRadialWidget radialWidget;
 
         public int CurrentScore { get; private set; }
         public int CurrentQuestionNumber { get; set; }
@@ -20,9 +22,9 @@ namespace EA4S.ReadingGame
 
         public const int TIME_TO_ANSWER = 20;
         public const int MAX_QUESTIONS = 5;
-        const int STARS_1_THRESHOLD = 10 * MAX_QUESTIONS;
-        const int STARS_2_THRESHOLD = 20 * MAX_QUESTIONS;
-        const int STARS_3_THRESHOLD = 30 * MAX_QUESTIONS;
+        const int STARS_1_THRESHOLD = 8 * MAX_QUESTIONS;
+        const int STARS_2_THRESHOLD = 12 * MAX_QUESTIONS;
+        const int STARS_3_THRESHOLD = 15 * MAX_QUESTIONS;
         
 
         public int CurrentStars
@@ -38,7 +40,8 @@ namespace EA4S.ReadingGame
                 return 3;
             }
         }
-
+        
+        public ReadingGameInitialState InitialState { get; private set; }
         public ReadingGameReadState ReadState { get; private set; }
         public ReadingGameAnswerState AnswerState { get; private set; }
         public IQuestionPack CurrentQuestion { get; set; }
@@ -50,11 +53,12 @@ namespace EA4S.ReadingGame
 
         protected override IGameState GetInitialState()
         {
-            return ReadState;
+            return InitialState;
         }
 
         protected override void OnInitialize(IGameContext context)
         {
+            InitialState = new ReadingGameInitialState(this);
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
 

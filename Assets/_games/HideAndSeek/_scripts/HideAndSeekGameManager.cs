@@ -5,11 +5,13 @@ using System.Collections.Generic;
 namespace EA4S.HideAndSeek
 {
 	public class HideAndSeekGameManager : MonoBehaviour {
-		void OnEnable(){
+		void OnEnable()
+        {
 			HideAndSeekTreeController.onTreeTouched += MoveObject;
 			HideAndSeekLetterController.onLetterTouched += CheckResult;
 		}
-		void OnDisable(){
+		void OnDisable()
+        {
 			HideAndSeekTreeController.onTreeTouched -= MoveObject;
 			HideAndSeekLetterController.onLetterTouched -= CheckResult;
 		}
@@ -175,7 +177,7 @@ namespace EA4S.HideAndSeek
                     HideAndSeekLetterController scriptComponent = ArrayLetters[i].GetComponent<HideAndSeekLetterController>();
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
-                    SetLetterMovent(index, scriptComponent);
+                    SetLetterMovement(index, scriptComponent);
                     ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Init(letterList[i]);
                 }
             }
@@ -184,7 +186,7 @@ namespace EA4S.HideAndSeek
             
         }
 
-        public void SetLetterMovent( int placeholder, HideAndSeekLetterController script)
+        public void SetLetterMovement( int placeholder, HideAndSeekLetterController script)
         {
             if (placeholder == 1)
                 script.SetMovement(MovementType.OnlyRight);
