@@ -21,7 +21,7 @@ namespace EA4S
         private PlayerProfile playerProfile;
 
         // Inner engines
-        public LogIntelligence logger;
+        public LogIntelligence logIntelligence;
 
         // Helpers
         public WordHelper wordHelper;
@@ -43,14 +43,14 @@ namespace EA4S
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
 
-            this.wordHelper = new WordHelper(_dbManager, this);
-            this.journeyHelper = new JourneyHelper(_dbManager, this);
-
-            this.logger = new LogIntelligence(_dbManager);
+            this.logIntelligence = new LogIntelligence(_dbManager);
 
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
             this.difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
+
+            this.wordHelper = new WordHelper(_dbManager, this, wordSelectionAI);
+            this.journeyHelper = new JourneyHelper(_dbManager, this);
         }
 
         private void ResetPlaySession()
@@ -74,6 +74,7 @@ namespace EA4S
         {
             ResetPlaySession();
             this.currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            //this.currentUsableWords = SelectWordsForPlaySession();
             return currentPlaySessionMiniGames;
         }
 
