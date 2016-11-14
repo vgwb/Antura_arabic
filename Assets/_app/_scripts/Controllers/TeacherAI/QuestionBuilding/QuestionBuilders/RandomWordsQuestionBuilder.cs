@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
+
     public class RandomWordsQuestionBuilder : IQuestionBuilder
     {
         private int nPacks;
@@ -22,13 +23,21 @@ namespace EA4S
             this.drawingNeeded = drawingNeeded;
         }
 
+        // Pack history state
+        private List<string> previousPacksIDs = new List<string>();
+        // @todo: handle this private PackListHistory history = PackListHistory.SkipPacks;
+
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
+            previousPacksIDs.Clear();
+
             List<QuestionPackData> packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
-                packs.Add(CreateSingleQuestionPackData());
+                var pack = CreateSingleQuestionPackData();
+                packs.Add(pack);
             }
+
             return packs;
         }
 
@@ -36,13 +45,29 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            var correctWords = teacher.wordAI.SelectWords(() => teacher.wordHelper.GetWordsByCategory(category, drawingNeeded), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
-            correctWords = correctWords.RandomSelect(nCorrect);
+            var correctWords = teacher.wordAI.SelectWords(
+                () => teacher.wordHelper.GetWordsByCategory(category, drawingNeeded), 
+                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect, 
+                        packListHistory: PackListHistory.ForceAllDifferent, filteringIds:previousPacksIDs)
+                );
+            previousPacksIDs.AddRange(correctWords.ConvertAll(x => x.GetId()).ToArray());
 
-            var wrongWords = teacher.wordAI.SelectWords(() => teacher.wordHelper.GetWordsNotIn(correctWords.ToArray()), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
-            wrongWords = wrongWords.RandomSelect(nWrong);
+            var wrongWords = teacher.wordAI.SelectWords(
+                () => teacher.wordHelper.GetWordsNotIn(correctWords.ToArray()), 
+                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong)
+                );
 
             var question = firstCorrectIsQuestion ? correctWords[0] : null;
+
+            // Debug
+            if (ConfigAI.verboseTeacher){
+                string debugString = "--------- TEACHER: question pack result ---------";
+                debugString += "\nCorrect Words: " + correctWords.Count;
+                foreach (var l in correctWords) debugString += " " + l;
+                debugString += "\nWrong Words: " + wrongWords.Count;
+                foreach (var l in wrongWords) debugString += " " + l;
+                UnityEngine.Debug.Log(debugString);
+            }
 
             return QuestionPackData.Create(question, correctWords, wrongWords);
         }

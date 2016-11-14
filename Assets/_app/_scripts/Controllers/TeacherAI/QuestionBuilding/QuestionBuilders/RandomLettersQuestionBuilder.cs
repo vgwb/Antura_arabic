@@ -19,6 +19,7 @@ namespace EA4S
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
         }
 
+
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
@@ -42,6 +43,7 @@ namespace EA4S
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
 
             // Debug
+            if (ConfigAI.verboseTeacher)
             {
                 string debugString = "Correct Letters: " + correctLetters.Count;
                 foreach (var l in correctLetters) debugString += " " + l;

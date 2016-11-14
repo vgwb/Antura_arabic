@@ -28,6 +28,7 @@ namespace EA4S
             );
 
             // Debug
+            if (ConfigAI.verboseTeacher)
             {
                 string debugString = "Letters: " + alphabetLetters.Count;
                 foreach (var l in alphabetLetters) debugString += " " + l;
