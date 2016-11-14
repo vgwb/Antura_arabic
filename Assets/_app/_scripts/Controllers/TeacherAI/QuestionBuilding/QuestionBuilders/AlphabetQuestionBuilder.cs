@@ -19,7 +19,7 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             // Fully ordered alphabet (@todo: check that it works!)
-            var correctAnswers = teacher.wordHelper.GetAllRealLetters();
+            var correctAnswers = teacher.wordHelper.GetAllLetters();
             correctAnswers.Sort((x, y) =>
                 {
                     return x.ToString().CompareTo(y.ToString());

@@ -32,7 +32,7 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            var correctAnswers = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
+            var correctAnswers = teacher.wordHelper.GetAllLetters().RandomSelect(nCorrect);
             var question = firstCorrectIsQuestion ? correctAnswers[0] : null;
             var wrongAnswers = teacher.wordHelper.GetRealLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
 

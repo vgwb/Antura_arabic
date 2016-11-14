@@ -1,22 +1,30 @@
 ﻿using System.Collections.Generic;
+using EA4S.Db;
 
-namespace EA4S.Db
+namespace EA4S.Teacher
 {
+    /// <summary>
+    /// Provides helpers to get correct letter/word/phrase data according to the teacher's logic and based on the player's progression
+    /// </summary>
     public class WordHelper
     {
         private DatabaseManager dbManager;
+        private WordSelectionAI wordSelectionAI;
         //private TeacherAI teacher;
 
-        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher)
+        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher, Teacher.WordSelectionAI _wordSelectionAI)
         {
             this.dbManager = _dbManager;
+            this.wordSelectionAI = _wordSelectionAI;
             //this.teacher = _teacher;
         }
 
         #region Letter -> Letter
 
-        public List<LetterData> GetAllRealLetters()
+        public List<LetterData> GetAllLetters()
         {
+            //return this.wordSelectionAI.PerformSelection();
+
             return dbManager.FindLetterData(x => x.IsRealLetter());
         }
 
