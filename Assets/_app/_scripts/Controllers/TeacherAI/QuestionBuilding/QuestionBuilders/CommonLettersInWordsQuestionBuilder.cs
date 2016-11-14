@@ -38,7 +38,7 @@ namespace EA4S
             bool found = false;
             while (nAttempts > 0 && !found)
             {
-                var commonLetters = teacher.wordHelper.GetAllLetters().RandomSelect(nCorrect);
+                var commonLetters = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
                 var words = teacher.wordHelper.GetWordsWithLetters(commonLetters.ConvertAll(x => x.Id).ToArray());
                 if (words.Count < nWords)
                 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
@@ -32,11 +33,27 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            var correctAnswers = teacher.wordHelper.GetAllLetters().RandomSelect(nCorrect);
-            var question = firstCorrectIsQuestion ? correctAnswers[0] : null;
-            var wrongAnswers = teacher.wordHelper.GetRealLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
+            // Parameters for builder's use of data
+            var sParameters = new SelectionParameters(SelectionSeverity.AsManyAsPossible);
 
-            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
+            var correctLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllRealLetters(), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
+            correctLetters = correctLetters.RandomSelect(nCorrect);
+
+            var wrongLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetRealLettersNotIn(correctLetters.ToArray()), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, true));
+            wrongLetters = wrongLetters.RandomSelect(nWrong);
+
+            var question = firstCorrectIsQuestion ? correctLetters[0] : null;
+
+            // Debug
+            {
+                string debugString = "Correct Letters: " + correctLetters.Count;
+                foreach (var l in correctLetters) debugString += " " + l;
+                debugString += "\nWrong Letters: " + wrongLetters.Count;
+                foreach (var l in wrongLetters) debugString += " " + l;
+                UnityEngine.Debug.Log(debugString);
+            }
+
+            return QuestionPackData.Create(question, correctLetters, wrongLetters);
         }
 
     }
