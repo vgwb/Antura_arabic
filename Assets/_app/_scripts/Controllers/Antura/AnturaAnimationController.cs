@@ -89,19 +89,22 @@ public class AnturaAnimationController : MonoBehaviour
         }
     }
 
+    System.Action onShoutStartedCallback;
+
     public void SetWalkingSpeed(float speed = WALKING_SPEED)
     {
         walkingSpeed = speed;
     }
 
-    public void DoSniff(System.Action onCompleted = null)
+    public void DoSniff()
     {
         State = AnturaAnimationStates.idle;
         animator.SetTrigger("doSniff");
     }
 
-    public void DoShout(System.Action onCompleted = null)
+    public void DoShout(System.Action onShoutStarted = null)
     {
+        onShoutStartedCallback = onShoutStarted;
         animator.SetFloat("random", Random.value);
         if (State == AnturaAnimationStates.idle)
             animator.SetTrigger("doShout");
@@ -109,7 +112,7 @@ public class AnturaAnimationController : MonoBehaviour
             animator.SetTrigger("doShoutAdditive");
     }
 
-    public void DoBurp(System.Action onCompleted = null)
+    public void DoBurp()
     {
         animator.SetTrigger("doBurp");
     }
@@ -186,6 +189,12 @@ public class AnturaAnimationController : MonoBehaviour
         float oldSpeed = animator.GetFloat("walkSpeed");
 
         animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 4.0f));
+    }
+
+    void OnShoutStarted()
+    {
+        if (onShoutStartedCallback != null)
+            onShoutStartedCallback();
     }
 
     void OnStateChanged(AnturaAnimationStates oldState, AnturaAnimationStates newState)

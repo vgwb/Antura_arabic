@@ -13,7 +13,13 @@ namespace EA4S.Tobogan
             GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.idle;
 
             if (bark)
-                GetComponent<AnturaAnimationController>().DoShout();
+            {
+                GetComponent<AnturaAnimationController>().DoShout(() =>
+                {
+                    ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking);
+                });
+            }
+
             barkingTimer = 3.0f;
         }
 

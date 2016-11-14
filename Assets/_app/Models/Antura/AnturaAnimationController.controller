@@ -993,7 +993,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: random
-    m_EventTreshold: 0.51
+    m_EventTreshold: 0.81
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000011235711074}
   m_Solo: 0
@@ -1750,7 +1750,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: random
-    m_EventTreshold: 0.5
+    m_EventTreshold: 0.8
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000010017514548}
   m_Solo: 0
@@ -2154,7 +2154,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: dog_shout
-  m_Speed: 1.2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000010795758160}
