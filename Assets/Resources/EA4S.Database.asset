@@ -15438,22 +15438,26 @@ MonoBehaviour:
       English: good morning - question
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631"
       Linked: goodmorning_R
-      Words: []
+      Words:
+      - morning
     - Id: goodmorning_R
       English: good morning - reply
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u0646\u0648\u0631"
       Linked: goodmorning_Q
-      Words: []
+      Words:
+      - morning
     - Id: goodevening_Q
       English: good evening - question
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u062E\u064A\u0631"
       Linked: goodevening_R
-      Words: []
+      Words:
+      - evening
     - Id: goodevening_R
       English: good evening - reply
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u0646\u0648\u0631"
       Linked: goodevening_Q
-      Words: []
+      Words:
+      - evening
     - Id: hi
       English: Hi
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
@@ -15463,12 +15467,14 @@ MonoBehaviour:
       English: peace upon you - question (religious)
       Arabic: "\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064A\u0643\u0645"
       Linked: peaceonyou_R
-      Words: []
+      Words:
+      - peace
     - Id: peaceonyou_R
       English: peace upon you - reply (religious)
       Arabic: "\u0648\u0639\u0644\u064A\u0643\u0645 \u0627\u0644\u0633\u0644\u0627\u0645"
       Linked: peaceonyou_Q
-      Words: []
+      Words:
+      - peace
     - Id: yourwelcome
       English: you are welcome
       Arabic: "\u0623\u0647\u0644\u0627\u064B \u0648\u0633\u0647\u0644\u0627\u064B"
@@ -15509,143 +15515,208 @@ MonoBehaviour:
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
         \u0639\u0634\u0631"
       Linked: 
-      Words: []
+      Words:
+      - year
+      - two thousand
+      - sixteen
     - Id: theboyopenedthewindow
       English: the boy opened the window
       Arabic: "\u0641\u062A\u062D \u0627\u0644\u0635\u0628\u064A \u0627\u0644\u0646\u0627\u0641\u0630\u0629"
       Linked: 
-      Words: []
+      Words:
+      - boy
+      - opened
+      - window
     - Id: theteacherlaughed
       English: the teacher laughed
       Arabic: "\u0636\u062D\u0643 \u0627\u0644\u0645\u0639\u0644\u0645"
       Linked: 
-      Words: []
+      Words:
+      - teacher
+      - laughed
     - Id: theworkercarriedthebox
       English: the worker carried the box
       Arabic: "\u062D\u0645\u0644 \u0627\u0644\u0639\u0627\u0645\u0644 \u0627\u0644\u0635\u0646\u062F\u0648\u0642"
       Linked: 
-      Words: []
+      Words:
+      - worker
+      - carries
+      - box
     - Id: thegirldrankthejuice
       English: the girl drank the juice
       Arabic: "\u0634\u0631\u0628\u062A \u0627\u0644\u0628\u0646\u062A \u0627\u0644\u0639\u0635\u064A\u0631"
       Linked: 
-      Words: []
+      Words:
+      - girl
+      - drank
+      - juice
     - Id: themountainisbig
       English: the mountain is big
       Arabic: "\u0627\u0644\u062C\u0628\u0644 \u0643\u0628\u064A\u0631"
       Linked: 
-      Words: []
+      Words:
+      - mountain
+      - big
     - Id: therestaurantisclean
       English: the restaurant is clean
       Arabic: "\u0627\u0644\u0645\u0637\u0639\u0645 \u0646\u0638\u064A\u0641"
       Linked: 
-      Words: []
+      Words:
+      - retaurant
+      - clean
     - Id: thetigeratethedeer
       English: the tiger ate the deer
       Arabic: "\u0623\u0643\u0644 \u0627\u0644\u0646\u0645\u0631 \u0627\u0644\u063A\u0632\u0627\u0644"
       Linked: 
-      Words: []
+      Words:
+      - tiger
+      - deer
     - Id: redberry
       English: red berry
       Arabic: "\u062A\u0648\u062A \u0623\u062D\u0645\u0631"
       Linked: 
-      Words: []
+      Words:
+      - red
+      - berry
     - Id: yellowflower
       English: yellowe flower
       Arabic: "\u0648\u0631\u062F \u0623\u0635\u0641\u0631"
       Linked: 
-      Words: []
+      Words:
+      - yellow
+      - flower
     - Id: greywolf
       English: grey wolf
       Arabic: "\u0630\u0626\u0628 \u0641\u0636\u064A"
       Linked: 
-      Words: []
+      Words:
+      - grey
+      - wolf
     - Id: greencucumber
       English: green cucumber
       Arabic: "\u062E\u064A\u0627\u0631 \u0623\u062E\u0636\u0631"
       Linked: 
-      Words: []
+      Words:
+      - geen
+      - cucumber
     - Id: thebustwent
       English: the bus went (left)
       Arabic: "\u0630\u0647\u0628 \u0627\u0644\u0628\u0627\u0635"
       Linked: 
-      Words: []
+      Words:
+      - bus
+      - went
     - Id: thebirdflew
       English: the bird flew
       Arabic: "\u0637\u0627\u0631 \u0627\u0644\u0639\u0635\u0641\u0648\u0631"
       Linked: 
-      Words: []
+      Words:
+      - bird
+      - flew
     - Id: theshopissmall
       English: the shop is small
       Arabic: "\u0627\u0644\u062F\u0643\u0627\u0646 \u0635\u063A\u064A\u0631"
       Linked: 
-      Words: []
+      Words:
+      - shop
+      - small
     - Id: thedoctoropenedtheneedle
       English: the doctor opened the needle
       Arabic: "\u0641\u062A\u062D \u0627\u0644\u0637\u0628\u064A\u0628 \u0627\u0644\u0627\u0628\u0631\u0629"
       Linked: 
-      Words: []
+      Words:
+      - doctor
+      - opened
+      - needle
     - Id: eightscientists
       English: eight scientists
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0644\u0645\u0627\u0621"
       Linked: 
-      Words: []
+      Words:
+      - eight
+      - scientists
     - Id: theengineerworethecoat
       English: the engineer wore the coat
       Arabic: "\u0644\u0628\u0633 \u0627\u0644\u0645\u0647\u0646\u062F\u0633 \u0627\u0644\u0645\u0639\u0637\u0641"
       Linked: 
-      Words: []
+      Words:
+      - engineer
+      - wore
+      - coat
     - Id: theplayerwon
       English: the player won
       Arabic: "\u0631\u0628\u062D \u0627\u0644\u0644\u0627\u0639\u0628"
       Linked: 
-      Words: []
+      Words:
+      - player
+      - won
     - Id: theshirtiscleannow
       English: the shirt is clean now
       Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0646\u0638\u064A\u0641 \u0627\u0644\u0622\u0646"
       Linked: 
-      Words: []
+      Words:
+      - shirt
+      - clean
+      - now
     - Id: yesterdaywassunday
       English: yesterday was Sunday
       Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629 \u0643\u0627\u0646 \u0627\u0644\u0623\u062D\u062F"
       Linked: 
-      Words: []
+      Words:
+      - yesterday
+      - Sunday
     - Id: thewinteriscold
       English: the winter is cold
       Arabic: "\u0627\u0644\u0634\u062A\u0627\u0621 \u0628\u0627\u0631\u062F"
       Linked: 
-      Words: []
+      Words:
+      - winter
+      - cold
     - Id: novemberisarainymonth
       English: November is a rainy month
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A
         \u0634\u0647\u0631 \u0645\u0627\u0637\u0631"
       Linked: 
-      Words: []
+      Words:
+      - November
+      - rainy
+      - month
     - Id: abeautifulparrot
       English: a beautiful parrot
       Arabic: "\u0628\u0628\u063A\u0627\u0621 \u062C\u0645\u064A\u0644"
       Linked: 
-      Words: []
+      Words:
+      - beautiful
+      - parrot
     - Id: mayisawonderfulmonth
       English: May is a wonderful month
       Arabic: "\u0623\u064A\u0627\u0631 \u0634\u0647\u0631 \u0631\u0627\u0626\u0639"
       Linked: 
-      Words: []
+      Words:
+      - May
+      - wonderful
+      - month
     - Id: thepolicemanwalked
       English: the policeman walked
       Arabic: "\u0645\u0634\u0649 \u0627\u0644\u0634\u0631\u0637\u064A"
       Linked: 
-      Words: []
+      Words:
+      - policeman
+      - walked
     - Id: theicecreamisdelicious
       English: the ice-cream is delicious
       Arabic: "\u0627\u0644\u0628\u0648\u0638\u0629 \u062D\u0644\u0648"
       Linked: 
-      Words: []
+      Words:
+      - ice-cream
+      - delicious
     - Id: fivebooks
       English: five books
       Arabic: "\u062E\u0645\u0633\u0629 \u0643\u062A\u0628"
       Linked: 
-      Words: []
+      Words:
+      - five
+      - books
   stageTable:
     innerList:
     - Id: 1
