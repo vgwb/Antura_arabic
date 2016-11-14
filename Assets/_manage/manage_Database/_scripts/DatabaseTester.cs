@@ -474,6 +474,8 @@ namespace EA4S.Db.Management
 
         public void Teacher_PerformWordSelection()
         {
+            Debug.LogWarning("Deprecated use, word selection is now built-in with more logic.");
+            /*
             var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
 
             int nTests = 7;
@@ -488,6 +490,7 @@ namespace EA4S.Db.Management
             }
 
             PrintOutput(output);
+            */
         }
 
         #endregion
