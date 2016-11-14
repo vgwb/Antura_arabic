@@ -30,7 +30,7 @@ namespace EA4S
         /// Living Letter Text To Display.
         /// </summary>
         public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.ParseWord(Data.Arabic, AppManager.Instance.Letters); }
+            get { return ArabicAlphabetHelper.ParseWord(Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()); }
         }
 
         /// <summary>

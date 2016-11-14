@@ -95,7 +95,7 @@ namespace EA4S
         private static List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
         {
             var letters = new List<LL_LetterData>();
-            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Letters)) {
+            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL())) {
                 letters.Add(letterData);
             }
             return letters;

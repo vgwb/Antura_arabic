@@ -179,7 +179,7 @@ namespace EA4S.MissingLetter
         void RemoveLetterfromQuestion()
         {
             LL_WordData word = (LL_WordData)mCurrQuestionPack.GetQuestion();
-            var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Letters);
+            var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL());
 
             LL_LetterData letter = (LL_LetterData)mCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             int index = 0;

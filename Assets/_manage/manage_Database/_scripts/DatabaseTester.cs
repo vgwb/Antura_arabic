@@ -450,14 +450,16 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
+        // Deprecated
         public void Teacher_LettersOfWord()
         {
-            var wordDataId = dbManager.GetWordDataByRandom().GetId();
+            Debug.LogWarning("Deprecated function.");
+            /*var wordDataId = dbManager.GetWordDataByRandom().GetId();
             var list = teacherAI.GetLettersInWord(wordDataId);
 
             string output = list.Count + " letters in word " + wordDataId + ":\n";
             foreach (var data in list) output += data.Id + "\n";
-            PrintOutput(output);
+            PrintOutput(output);*/
         }
 
         public void Teacher_PerformMiniGameSelection()

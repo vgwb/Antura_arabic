@@ -15,15 +15,6 @@ namespace EA4S
             get { return GameManager.Instance as AppManager; }
         }
 
-        /// <summary>
-        /// Tmp var to store actual gameplay word already used.
-        /// </summary>
-        public List<LL_WordData> ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
-        public string ActualGame = string.Empty;
-
-        [Obsolete("The 'Letters' list will very soon be removed. Use IQuestionPackProvider instead.")]
-        public List<LL_LetterData> Letters = new List<LL_LetterData>();
-
         public TeacherAI Teacher;
         public DatabaseManager DB;
         public PlayerProfile Player;
@@ -60,7 +51,6 @@ namespace EA4S
             gameObject.AddComponent<MiniGameAPI>();
             AdditionalSetup();
             InitDataAI();
-            CachingLetterData();
             GameSettings.HighQualityGfx = false;
             //ResetProgressionData();
 
@@ -91,12 +81,12 @@ namespace EA4S
 
         }
 
-        void CachingLetterData()
+        /*void CachingLetterData()
         {
             foreach (var letterData in DB.GetAllLetterData()) {
                 Letters.Add(new LL_LetterData(letterData.GetId()));
             }
-        }
+        }*/
 
         #endregion
 
@@ -186,8 +176,6 @@ namespace EA4S
 
         public void OnMinigameStart()
         {
-            // reset for already used word.
-            ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
         }
 
         #endregion

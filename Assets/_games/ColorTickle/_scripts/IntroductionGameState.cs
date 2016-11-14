@@ -33,7 +33,7 @@ namespace EA4S.ColorTickle
                 game.myLetters[i].SetActive(true);
                 // HACK fix for the automatic reset of the color after update at Unity 5.4.2
                 game.myLetters[i].GetComponent<LetterObjectView>().Lable.color = Color.white;
-                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Letters.GetRandomElement());
+                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
                 game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
 
             }
