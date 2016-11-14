@@ -132,21 +132,6 @@ namespace EA4S
 
         #endregion
 
-        #region Letter/Word Selection queries
-
-        /*private List<Db.WordData> SelectWordsForCurrentPlaySession(string playSessionId)
-        {
-            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
-            return SelectWordsForPlaySession(currentPlaySessionId, 4);
-        }*/
-
-        public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
-        {
-            return this.wordAI.PerformWordSelection(playSessionId, numberToSelect);
-        }
-        
-        #endregion
-
         #region Score Log queries
 
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
