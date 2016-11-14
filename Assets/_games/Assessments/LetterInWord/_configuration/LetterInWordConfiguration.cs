@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using EA4S.Assessment;
 
-namespace EA4S.IdentifyLetter
+namespace EA4S.LetterInWord
 {
-    public class LetterInWordConfiguration : IGameConfiguration
+    public class LetterInWordConfiguration : IAssessmentConfiguration
     {
         // Game configuration
         public IGameContext Context { get; set; }
@@ -48,7 +47,7 @@ namespace EA4S.IdentifyLetter
             int nCorrect = Difficulty > 0.6f ? 2 : 1;
             int nWrong = Difficulty > 0.3f ? 1 : 0;
 
-            builder = new LettersInWordQuestionBuilder(Rounds, nCorrect, nWrong);
+            builder = new LettersInWordQuestionBuilder( Rounds, nCorrect, nWrong);
             return builder;
         }
 
