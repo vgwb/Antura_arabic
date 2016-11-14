@@ -3,12 +3,12 @@ using System.Collections;
 using EA4S;
 using EA4S.FastCrowd;
 
-[RequireComponent(typeof(FastCrowdLivingLetter))]
+[RequireComponent(typeof(StrollingLivingLetter))]
 [RequireComponent(typeof(LetterObjectView))]
 public class FastCrowdDraggableLetter : MonoBehaviour
 {
-    FastCrowdLivingLetter letter;
-    FastCrowdLetterMovement movement;
+    StrollingLivingLetter letter;
+    LetterCharacterController movement;
     DropAreaWidget currentDropAreaWidget;
     DropSingleArea currentDropArea;
 
@@ -21,8 +21,8 @@ public class FastCrowdDraggableLetter : MonoBehaviour
 
     void Awake()
     {
-        letter = GetComponent<FastCrowdLivingLetter>();
-        movement = letter.GetComponent<FastCrowdLetterMovement>();
+        letter = GetComponent<StrollingLivingLetter>();
+        movement = letter.GetComponent<LetterCharacterController>();
     }
 
     void OnDestroy()

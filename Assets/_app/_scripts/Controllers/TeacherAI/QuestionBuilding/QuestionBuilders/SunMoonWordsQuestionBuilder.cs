@@ -12,23 +12,18 @@ namespace EA4S
             this.nPacks = nPacks;
         }
 
-        public int GetQuestionPackCount()
-        {
-            return nPacks;
-        }
-
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
             List<QuestionPackData> packs = new List<QuestionPackData>();
             var teacher = AppManager.Instance.Teacher;
-            var db = AppManager.Instance.DB;
 
+            var db = AppManager.Instance.DB;
             var sunWord = db.GetWordDataById("sun");
             var moonWord = db.GetWordDataById("moon");
 
             int nPerType = nPacks / 2;
-            var sunLetters = teacher.wordHelper.GetRealLettersBySunMoon(Db.LetterDataSunMoon.Sun).RandomSelect(nPerType);
-            var moonLetters = teacher.wordHelper.GetRealLettersBySunMoon(Db.LetterDataSunMoon.Moon).RandomSelect(nPerType);
+            var sunLetters = teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun).RandomSelect(nPerType);
+            var moonLetters = teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon).RandomSelect(nPerType);
 
             foreach (var letter in sunLetters)
             {
@@ -47,11 +42,6 @@ namespace EA4S
             }
 
             return packs;
-        }
-
-        public QuestionPackData CreateQuestionPackData()
-        {
-            throw new System.Exception("Moving to the new full-pack rules.");
         }
 
     }

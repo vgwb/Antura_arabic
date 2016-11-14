@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System;
 
-namespace EA4S.FastCrowd
+namespace EA4S
 {
-    public class LetterWalkingState : LetterState
+    public class StrollingLetterWalkingState : StrollingLetterState
     {
-        FastCrowdLetterMovement movement;
+        LetterCharacterController movement;
         
-        public LetterWalkingState(FastCrowdLivingLetter letter) : base(letter)
+        public StrollingLetterWalkingState(StrollingLivingLetter letter) : base(letter)
         {
-            movement = letter.GetComponent<FastCrowdLetterMovement>();
+            movement = letter.GetComponent<LetterCharacterController>();
 
         }
 

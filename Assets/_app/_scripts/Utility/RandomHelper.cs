@@ -69,6 +69,11 @@ namespace EA4S
 
         public static List<T> RandomSelect<T>(this List<T> all_list, int maxNumberToSelect, bool forceMaxNumber = false)
         {
+            if (maxNumberToSelect == 0)
+            {
+                return new List<T>();
+            }
+
             if (all_list.Count == 0)
             {
                 throw new System.Exception("The list has zero elements to select from.");

@@ -38,12 +38,16 @@ namespace EA4S.Tobogan
         Transform[] letterPositions;
         int currentPosition;
 
+        Vector3 colliderStartScale;
+
         void Awake()
         {
             normalPosition = livingLetterTransform.localPosition;
 
             holdPosition.x = normalPosition.x;
             holdPosition.y = normalPosition.y;
+
+            colliderStartScale = boxCollider.size;
         }
 
         public void Initialize(Camera tubesCamera, Vector3 upRightMaxPosition, Vector3 downLeftMaxPosition, Transform[] letterPositions)
@@ -239,6 +243,8 @@ namespace EA4S.Tobogan
             {
                 Drop(Time.deltaTime);
             }
+
+            boxCollider.size = new Vector3(colliderStartScale.x * letter.Scale, colliderStartScale.y, colliderStartScale.z);
         }
 
         Vector3 ClampPositionToStage(Vector3 unclampedPosition)
