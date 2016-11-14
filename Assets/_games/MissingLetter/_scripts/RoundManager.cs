@@ -43,7 +43,7 @@ namespace EA4S.MissingLetter
 
         public void NewRound()
         {
-            mGame.m_bInIdle = false;
+            mGame.SetInIdle(false);
             ExitCurrentScene();
 
             if (mRoundType == RoundType.WORD)
@@ -95,7 +95,12 @@ namespace EA4S.MissingLetter
 
             //tmp solution for remove letter
             LL_WordData tmp = (LL_WordData)qstBehaviour.LetterData;
-            qstBehaviour.mLetter.Lable.text = tmp.Data.Arabic;
+            int index_ = tmp.Data.Arabic.IndexOf("_");
+            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+            qstBehaviour.mLetter.Lable.text = tmp.TextForLivingLetter;
+            qstBehaviour.mLetter.Lable.text = qstBehaviour.mLetter.Lable.text.Remove(index_,1);
+            qstBehaviour.mLetter.Lable.text = qstBehaviour.mLetter.Lable.text.Insert(index_,"_");
+
 
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
@@ -122,7 +127,7 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
                 if(!m_bTutorialEnabled)
-                    wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
+                wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
                 wrongAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
 
                 mCurrentAnswerScene.Add(_wrongAnswerObject);
@@ -195,7 +200,7 @@ namespace EA4S.MissingLetter
         void ExitCurrentScene() {
             if (mCurrQuestionPack != null) {
 
-                ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+                //((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
 
                 foreach (GameObject _obj in mCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
@@ -220,46 +225,95 @@ namespace EA4S.MissingLetter
             _obj.GetComponent<LetterBehaviour>().onLetterBecameInvisible -= OnAnswerLetterBecameInvisible;
         }
 
+        private bool isCorrectAnswer(string _key)
+        {
+            return mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key;
+        }
+
+        private LetterBehaviour GetAnswerById(string _key)
+        {
+            foreach (GameObject _obj in mCurrentAnswerScene)
+            {
+                if (_obj.GetComponent<LetterBehaviour>().mLetterData.Key == _key)
+                    return _obj.GetComponent<LetterBehaviour>();
+            }
+            return null;
+        }
+
         public void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
 
-            mGame.SetInIdle(false);
-            if(mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key) {
-                AudioManager.I.PlaySfx(Sfx.LetterHappy);
-                DoWinAnimations(_key);
-            }
-            else {
-                AudioManager.I.PlaySfx(Sfx.LetterSad);
-                DoLoseAnimations(_key);
+            //restore removed letter
+            ((MissingLetterQuestionProvider)MissingLetterConfiguration.Instance.PipeQuestions).Restore();
+            //refresh the data (for graphics)
+            foreach (GameObject _obj in mCurrentQuestionScene)
+            {
+                _obj.GetComponent<LetterBehaviour>().Refresh();
             }
 
-            foreach (GameObject _obj in mCurrentAnswerScene) {
+            mGame.SetInIdle(false);
+
+            //letter animation wait for ending dancing animation, wait animator fix
+            LetterBehaviour clicked = GetAnswerById(_key);
+            if (isCorrectAnswer(_key))
+            {
+                clicked.PlayAnimation(LLAnimationStates.LL_still);
+                clicked.mLetter.DoHorray();
+            }
+            else
+            {
+                clicked.PlayAnimation(LLAnimationStates.LL_still);
+                clicked.mLetter.DoAngry();
+            }
+
+            foreach (GameObject _obj in mCurrentAnswerScene)
+            {
                 _obj.GetComponent<LetterBehaviour>().SetEnableCollider(false);
             }
 
+            mGame.StartCoroutine(Utils.LaunchDelay(1.2f, OnResponse, isCorrectAnswer(_key)));         
+        }
 
-            if (onAnswered != null) {
-                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key));
+        //call after clicked answer animation
+        private void OnResponse(bool correct)
+        {
+            //sad, happy sound -> onclick or on response??
+            if (correct)
+            {
+                AudioManager.I.PlaySfx(Sfx.LetterHappy);
+                DoWinAnimations();
+            }
+            else
+            {
+                AudioManager.I.PlaySfx(Sfx.LetterSad);
+                DoLoseAnimations();
+            }
+
+            if (onAnswered != null)
+            {
+                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, onAnswered, correct));
             }
 
             mGame.StartCoroutine(Utils.LaunchDelay(2.5f, mGame.SetInIdle, true));
         }
 
+        //shuffle current answer order and tell to letter change pos
         public void ShuffleLetters(float duration)
         {
             mCurrentAnswerScene.Shuffle();
             for (int i=0; i < mCurrentAnswerScene.Count; ++i)
             {
-                float offsetDuration = UnityEngine.Random.Range(-2.0f,2.0f);
+                float offsetDuration = UnityEngine.Random.Range(-2.0f,0.0f);
                 mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration + offsetDuration);
             }
         }
 
-        private void DoWinAnimations(string _key)
+        //win animation: quesion high five, correct answer dancing other horray
+        private void DoWinAnimations()
         {
             for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
             {
-                if(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == _key)
+                if(isCorrectAnswer(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key))
                 {
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
@@ -276,12 +330,11 @@ namespace EA4S.MissingLetter
             }
         }
 
-        private void DoLoseAnimations(string _key)
+        //lose animation: quesion and correct answer angry other crouch
+        private void DoLoseAnimations()
         {
             for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
             {
-                
-                //mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.);
                 mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
             }
 
@@ -293,7 +346,6 @@ namespace EA4S.MissingLetter
                 }
                 else
                 {
-                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.Crouching = true;
                 }
             }

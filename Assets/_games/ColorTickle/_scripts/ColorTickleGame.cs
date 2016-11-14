@@ -10,22 +10,26 @@ namespace EA4S.ColorTickle
     public class ColorTickleGame : MiniGame
     {
         #region PUBLIC MEMBERS
-        public LetterObjectView m_LetterPrefab;
+        
+        public GameObject m_LetterPrefab;
+
         [SerializeField]
         private Canvas m_ColorsCanvas;
         [SerializeField]
-        private int m_AnimatorTickleState = 10;
-        [SerializeField]
-        private int m_Lives = 3;
-        [SerializeField]
-        private float m_ClockTime = 20;
-        [SerializeField]
-        private float m_BrushLimitVelocity = 150.0f;
-        [SerializeField]
         private AnturaController m_AnturaController;
         [SerializeField]
+        private Canvas m_EndCanvas;
+        [SerializeField]
+        private StarFlowers m_StarsFlowers;
+        [SerializeField]
         private int m_Rounds = 3;
+        [SerializeField]
+        private int m_MaxLives = 3;
+        [SerializeField]
+        private Music m_oBackgroundMusic;
 
+        [HideInInspector]
+        public int m_Stars = 0;
 
 
         // GAME STATES
@@ -38,14 +42,14 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
 
-        private LetterObjectView[] m_MyLetters;
+        GameObject[] m_MyLetters;
         IOverlayWidget m_GameUI;
 
         #endregion
 
         #region GETTER/SETTER
 
-        public LetterObjectView[] myLetters
+        public GameObject[] myLetters
         {
             get { return m_MyLetters; }
             set { m_MyLetters = value; }
@@ -56,35 +60,24 @@ namespace EA4S.ColorTickle
             get { return m_ColorsCanvas; }
         }
 
-        public IOverlayWidget gameUI
+        public AnturaController anturaController
         {
-            get { return m_GameUI; }
-            set { m_GameUI = value; }
+            get { return m_AnturaController; }
         }
 
-        public int animatorTickleState
+        public Canvas endCanvas
         {
-            get { return m_AnimatorTickleState; }
+            get { return m_EndCanvas; }
+        }
+
+        public StarFlowers starFlowers
+        {
+            get { return m_StarsFlowers; }
         }
 
         public int lives
         {
-            get { return m_Lives; }
-        }
-
-        public float clockTime
-        {
-            get { return m_ClockTime; }
-        }
-
-        public float brushLimitVelocity
-        {
-            get { return m_BrushLimitVelocity; }
-        }
-
-        public AnturaController anturaController
-        {
-            get { return m_AnturaController; }
+            get { return m_MaxLives; }
         }
 
         public int rounds
@@ -93,6 +86,17 @@ namespace EA4S.ColorTickle
             set { m_Rounds = value; }
         }
 
+        public IOverlayWidget gameUI
+        {
+            get { return m_GameUI; }
+            set { m_GameUI = value; }
+        }
+
+        public Music backgroundMusic
+        {
+            get { return m_oBackgroundMusic; }
+            set { m_oBackgroundMusic = value; }
+        }
 
         #endregion
 

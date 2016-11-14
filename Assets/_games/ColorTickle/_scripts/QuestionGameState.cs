@@ -11,6 +11,8 @@
 
         public void EnterState()
         {
+            //ColorButtonsManager colorsButtonsManager = game.colorsCanvas.GetComponentInChildren<ColorButtonsManager>();
+            //colorsButtonsManager.SetButtonsOnPosition();
             game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true);
 			for (int i = 0; i < game.rounds; ++i) {
 				game.myLetters[i].gameObject.SetActive (false);
