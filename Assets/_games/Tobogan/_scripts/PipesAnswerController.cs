@@ -102,6 +102,19 @@ namespace EA4S.Tobogan
             return currentPipeAnswer;
         }
 
+        public PipeAnswer GetCorrectPipeAnswer()
+        {
+            for(int i=0; i<pipeAnswers.Length; i++)
+            {
+                if(pipeAnswers[i].IsCorrectAnswer)
+                {
+                    return pipeAnswers[i];
+                }
+            }
+
+            return null;
+        }
+
         void OnTriggerEnterPipe(PipeAnswer pipe)
         {
             if (currentPipeAnswer != null)
