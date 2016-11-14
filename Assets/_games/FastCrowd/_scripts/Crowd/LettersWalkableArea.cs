@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FastCrowdWalkableArea : MonoBehaviour
+public class LettersWalkableArea : MonoBehaviour
 {
     public GameObject[] spawnPoints;
     BoxCollider[] colliders;
@@ -16,7 +16,7 @@ public class FastCrowdWalkableArea : MonoBehaviour
         colliders = GetComponentsInChildren<BoxCollider>(false);
     }
 
-    public Vector3 GetFurthestSpawn(List<FastCrowdLivingLetter> letters)
+    public Vector3 GetFurthestSpawn(IEnumerable<GameObject> letters)
     {
         float bestDistance = -1;
         Vector3 bestSpawn = Vector3.zero;
