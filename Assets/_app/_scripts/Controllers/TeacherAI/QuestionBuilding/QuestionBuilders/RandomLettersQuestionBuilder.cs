@@ -33,9 +33,6 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            // Parameters for builder's use of data
-            var sParameters = new SelectionParameters(SelectionSeverity.AsManyAsPossible);
-
             var correctLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
             correctLetters = correctLetters.RandomSelect(nCorrect);
 

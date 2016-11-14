@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
@@ -35,11 +36,15 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            var correctAnswers = teacher.wordHelper.GetWordsByCategory(category, drawingNeeded).RandomSelect(nCorrect);
-            var question = firstCorrectIsQuestion ? correctAnswers[0] : null;
-            var wrongAnswers = teacher.wordHelper.GetWordsNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
+            var correctWords = teacher.wordAI.SelectWords(() => teacher.wordHelper.GetWordsByCategory(category, drawingNeeded), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
+            correctWords = correctWords.RandomSelect(nCorrect);
 
-            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
+            var wrongWords = teacher.wordAI.SelectWords(() => teacher.wordHelper.GetWordsNotIn(correctWords.ToArray()), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
+            wrongWords = wrongWords.RandomSelect(nWrong);
+
+            var question = firstCorrectIsQuestion ? correctWords[0] : null;
+
+            return QuestionPackData.Create(question, correctWords, wrongWords);
         }
 
     }
