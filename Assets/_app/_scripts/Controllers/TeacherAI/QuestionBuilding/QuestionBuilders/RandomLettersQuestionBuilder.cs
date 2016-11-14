@@ -36,10 +36,10 @@ namespace EA4S
             // Parameters for builder's use of data
             var sParameters = new SelectionParameters(SelectionSeverity.AsManyAsPossible);
 
-            var correctLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllRealLetters(), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
+            var correctLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
             correctLetters = correctLetters.RandomSelect(nCorrect);
 
-            var wrongLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetRealLettersNotIn(correctLetters.ToArray()), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, true));
+            var wrongLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, true));
             wrongLetters = wrongLetters.RandomSelect(nWrong);
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;

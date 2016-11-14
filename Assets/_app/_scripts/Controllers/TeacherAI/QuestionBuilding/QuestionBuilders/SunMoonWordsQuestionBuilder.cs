@@ -22,8 +22,8 @@ namespace EA4S
             var moonWord = db.GetWordDataById("moon");
 
             int nPerType = nPacks / 2;
-            var sunLetters = teacher.wordHelper.GetRealLettersBySunMoon(Db.LetterDataSunMoon.Sun).RandomSelect(nPerType);
-            var moonLetters = teacher.wordHelper.GetRealLettersBySunMoon(Db.LetterDataSunMoon.Moon).RandomSelect(nPerType);
+            var sunLetters = teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun).RandomSelect(nPerType);
+            var moonLetters = teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon).RandomSelect(nPerType);
 
             foreach (var letter in sunLetters)
             {
