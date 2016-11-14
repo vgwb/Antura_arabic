@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 
-namespace EA4S.FastCrowd
+namespace EA4S
 {
-    public class AnturaController : MonoBehaviour
+    public class AnturaRunnerController : MonoBehaviour
     {
         public GameObject[] targetPositions;
         public Transform HidePosition;
         Vector3 target;
         public const float ANTURA_SPEED = 15.0f;
+
+        public AnturaAnimationController antura;
 
         public bool IsAnturaTime { get; private set; }
 
@@ -17,6 +19,8 @@ namespace EA4S.FastCrowd
         {
             transform.position = HidePosition.position;
             target = HidePosition.position;
+            antura.State = AnturaAnimationStates.walking;
+            antura.SetWalkingSpeed(AnturaAnimationController.RUN_SPEED);
         }
 
         void Update()
@@ -29,7 +33,9 @@ namespace EA4S.FastCrowd
                 if (nextAnturaBarkTimer <= 0)
                 {
                     PrepareNextAnturaBark();
+                    antura.DoShout();
                     AudioManager.I.PlaySfx(Sfx.DogBarking);
+                    
                 }
                 else
                     nextAnturaBarkTimer -= Time.deltaTime;
@@ -44,8 +50,8 @@ namespace EA4S.FastCrowd
             else
             {
                 distance.Normalize();
-                transform.position += distance * Vector3.Dot(distance, transform.forward) * ANTURA_SPEED * Time.deltaTime;
-                MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 3);
+                transform.position += distance * Mathf.Abs(Vector3.Dot(distance, transform.forward)) * ANTURA_SPEED * Time.deltaTime;
+                MathUtils.LerpLookAtPlanar(transform, target, Time.deltaTime * 4);
             }
         }
 

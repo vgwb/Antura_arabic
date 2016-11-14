@@ -9,9 +9,9 @@ namespace EA4S.FastCrowd
         public event System.Action<bool> OnDropped;
 
         public DropAreaWidget dropContainer;
-        public Crowd crowd;
+        public FastCrowdLetterCrowd crowd;
         public WordComposer wordComposer;
-
+        
         void Start()
         {
             dropContainer.OnComplete += OnContainerComplete;
