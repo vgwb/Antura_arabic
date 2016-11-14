@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System;
 
-namespace EA4S.FastCrowd
+namespace EA4S
 {
-    public class LetterScaredState : LetterState
+    public class StrollingLetterScaredState : StrollingLetterState
     {
         public float ScaredDuration = 1.0f;
         public Vector3 ScareSource;
@@ -13,11 +13,11 @@ namespace EA4S.FastCrowd
 
         float scaredTimer;
 
-        FastCrowdLetterMovement movement;
+        LetterCharacterController movement;
             
-        public LetterScaredState(FastCrowdLivingLetter letter) : base(letter)
+        public StrollingLetterScaredState(StrollingLivingLetter letter) : base(letter)
         {
-            movement = letter.GetComponent<FastCrowdLetterMovement>();
+            movement = letter.GetComponent<LetterCharacterController>();
         }
 
         public override void EnterState()
