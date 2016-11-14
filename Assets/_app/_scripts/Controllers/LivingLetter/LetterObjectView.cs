@@ -52,6 +52,7 @@ namespace EA4S
 
         LLAnimationStates backState = LLAnimationStates.LL_idle;
         bool hasToGoBackState = false;
+        bool inIdleAlternative = false;
 
         #endregion
 
@@ -354,7 +355,8 @@ namespace EA4S
 
             if (!hooraying)
             {
-                animator.SetTrigger("stopAlternative");
+                if (inIdleAlternative)
+                    animator.SetTrigger("stopAlternative");
                 animator.SetTrigger("doHorray");
             }
         }
@@ -370,7 +372,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetFloat("random", Random.value);
             animator.SetTrigger("doAngry");
         }
@@ -386,7 +389,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetTrigger("doHighFive");
         }
 
@@ -440,7 +444,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetBool("jumping", true);
             animator.SetBool("falling", true);
         }
@@ -468,7 +473,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetTrigger("doSmallJump");
         }
 
@@ -491,6 +497,16 @@ namespace EA4S
                 onTwirlCallback();
                 onTwirlCallback = null;
             }
+        }
+
+        public void OnIdleAlternativeEnter()
+        {
+            inIdleAlternative = true;
+        }
+
+        public void OnIdleAlternativeExit()
+        {
+            inIdleAlternative = false;
         }
     }
 }
