@@ -48,7 +48,15 @@ namespace EA4S
                 words = words.RandomSelect(nWords);
                 var nonCommonLetters = teacher.wordHelper.GetRealLettersNotInWords(words.ToArray()).RandomSelect(nWrong);
 
-                //UnityEngine.Debug.Log("Found words " + words.Count + " for letters " + commonLetters.Count);
+                // Debug
+                /*{ 
+                    string debugString = "For letters " + commonLetters[0] + " and " + commonLetters[1];
+                    debugString += "\nWord0: " + words[0];
+                    foreach (var l in words[0].Letters) debugString += " " + l;
+                    debugString += "\nWord1: " + words[1];
+                    foreach (var l in words[1].Letters) debugString += " " + l;
+                    UnityEngine.Debug.Log(debugString);
+                }*/
 
                 pack = QuestionPackData.Create(words, commonLetters, nonCommonLetters);
                 found = true;
