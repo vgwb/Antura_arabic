@@ -5,6 +5,12 @@
     /// </summary>
     public interface IAssessment
     {
+        ILogicInjector LogicInjector { get; }
+        IQuestionPlacer QuestionPlacer { get; }
+        IAnswerPlacer AnswerPlacer { get; }
+        IQuestionGenerator QuestionGenerator { get; }
+
+        /*
         /// <summary>
         /// Used to read question data
         /// </summary>
@@ -25,5 +31,6 @@
         /// <param name="data"> Question to read</param>
         /// <returns> Return the played audio source to control it</returns>
         IAudioSource OnReadQuestion( IQuestion data);
+        */
     }
 }
