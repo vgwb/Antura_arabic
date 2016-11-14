@@ -2,17 +2,19 @@
 
 namespace EA4S.Tobogan
 {
-    [RequireComponent(typeof(Antura))]
+    [RequireComponent(typeof(AnturaAnimationController))]
     public class AnturaAngerController : MonoBehaviour
     {
         float barkingTimer = 0.0f;
-        bool IsWaken { get { return barkingTimer > 0; } }
+        public bool IsWaken { get { return barkingTimer > 0; } }
 
-        public void Bark()
+        public void WakeUp(bool bark)
         {
-            //GetComponent<Antura>().IsBarking = true;
-            GetComponent<Antura>().SetAnimation(AnturaAnim.StandExcitedLookR);
-            barkingTimer = 1.4f;
+            GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.idle;
+
+            if (bark)
+                GetComponent<AnturaAnimationController>().DoShout();
+            barkingTimer = 3.0f;
         }
 
 
@@ -20,13 +22,12 @@ namespace EA4S.Tobogan
         {
             if (IsWaken)
             {
-                barkingTimer -= Time.deltaTime;
+                GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.idle;
 
-                if (barkingTimer <= 0)
-                {
-                    GetComponent<Antura>().SetAnimation(AnturaAnim.SitBreath);
-                }
+                barkingTimer -= Time.deltaTime;
             }
+            else
+                GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.sleeping;
         }
     }
 }
