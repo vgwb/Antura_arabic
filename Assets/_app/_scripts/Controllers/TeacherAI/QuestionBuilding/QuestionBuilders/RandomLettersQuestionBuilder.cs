@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
@@ -18,21 +19,38 @@ namespace EA4S
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
         }
 
-        public int GetQuestionPackCount()
+        public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            return nPacks;
+            List<QuestionPackData> packs = new List<QuestionPackData>();
+            for (int pack_i = 0; pack_i < nPacks; pack_i++)
+            {
+                packs.Add(CreateSingleQuestionPackData());
+            }
+            return packs;
         }
 
-        public QuestionPackData CreateQuestionPackData()
+        private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
-            //var db = AppManager.Instance.DB;
 
-            var correctAnswers = teacher.wordHelper.GetAllRealLetters().RandomSelect(nCorrect);
-            var question = firstCorrectIsQuestion ? correctAnswers[0] : null;
-            var wrongAnswers = teacher.wordHelper.GetRealLettersNotIn(correctAnswers.ToArray()).RandomSelect(nWrong);
+            var correctLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
+            correctLetters = correctLetters.RandomSelect(nCorrect);
 
-            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
+            var wrongLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, true));
+            wrongLetters = wrongLetters.RandomSelect(nWrong);
+
+            var question = firstCorrectIsQuestion ? correctLetters[0] : null;
+
+            // Debug
+            {
+                string debugString = "Correct Letters: " + correctLetters.Count;
+                foreach (var l in correctLetters) debugString += " " + l;
+                debugString += "\nWrong Letters: " + wrongLetters.Count;
+                foreach (var l in wrongLetters) debugString += " " + l;
+                UnityEngine.Debug.Log(debugString);
+            }
+
+            return QuestionPackData.Create(question, correctLetters, wrongLetters);
         }
 
     }

@@ -42,6 +42,11 @@ namespace EA4S.Db
         {
         }
 
+        public LogPlayData(string _Session, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score)
+            : this(_Session, _PlaySession, _MiniGame, _PlayEvent, _PlaySkill, _Score, "")
+        {
+        }
+
         public LogPlayData(string _Session, string _PlaySession, MiniGameCode _MiniGame, PlayEvent _PlayEvent, PlaySkill _PlaySkill, float _Score, string _RawData)
         {
             this.Session = _Session;
