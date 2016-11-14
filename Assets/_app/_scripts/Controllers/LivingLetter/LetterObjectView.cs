@@ -33,9 +33,17 @@ namespace EA4S
 
         [Header("GO Elements")]
         public Transform innerTransform;
+        public Transform contentTransform;
+        public RectTransform textTransform;
+
         public TMP_Text Lable;
         public SpriteRenderer ImageSprite;
-        public float maxSize = 1.5f;
+
+        Vector3 startScale;
+        Vector2 startTextScale;
+        float lastScale = 1.0f;
+        [Range(1,2)]
+        public float Scale = 1.0f;
 
         public GameObject[] normalGraphics;
         public GameObject[] limblessGraphics;
@@ -44,6 +52,7 @@ namespace EA4S
 
         LLAnimationStates backState = LLAnimationStates.LL_idle;
         bool hasToGoBackState = false;
+        bool inIdleAlternative = false;
 
         #endregion
 
@@ -101,6 +110,12 @@ namespace EA4S
         #endregion
 
         #region Init
+        void Awake()
+        {
+            startScale = transform.localScale;
+            startTextScale = textTransform.sizeDelta;
+        }
+
         /// <summary>
         /// Fallback function to set dummy data to letter if no data is provided.
         /// </summary>
@@ -133,9 +148,6 @@ namespace EA4S
                     ImageSprite.enabled = false;
                     Lable.enabled = true;
                     Lable.text = Data.TextForLivingLetter;
-
-                    if (innerTransform)
-                        innerTransform.localScale = Vector3.one * Mathf.Min(maxSize, Mathf.Max(1, Lable.GetPreferredValues().x / 8.0f));
                 }
             }
         }
@@ -218,27 +230,37 @@ namespace EA4S
 
         void Update()
         {
-                if (State == LLAnimationStates.LL_idle)
+            if (State == LLAnimationStates.LL_idle)
+            {
+                idleTimer -= Time.deltaTime;
+
+                if (idleTimer < 0.0f)
                 {
-                    idleTimer -= Time.deltaTime;
-
-                    if (idleTimer < 0.0f)
-                    {
-                        idleTimer = Random.Range(3, 8);
-                        animator.SetFloat("random", Random.value);
-                        animator.SetTrigger("doAlternative");
-                    }
-
+                    idleTimer = Random.Range(3, 8);
+                    animator.SetFloat("random", Random.value);
+                    animator.SetTrigger("doAlternative");
                 }
 
-                float oldSpeed = animator.GetFloat("walkSpeed");
+            }
 
-                animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 4.0f));
-           
+            float oldSpeed = animator.GetFloat("walkSpeed");
+
+            animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 6.0f));
+
+            if (Scale != lastScale && Scale >= 1.0f)
+            {
+                if (contentTransform)
+                {
+                    transform.localScale = new Vector3(startScale.x * Scale, startScale.y, startScale.z);
+                    contentTransform.localScale = new Vector3(1 / Scale, 1, 1);
+                    textTransform.sizeDelta = new Vector3(startTextScale.x * Scale, startTextScale.y);
+                }
+                lastScale = Scale;
+            }
         }
 
         #endregion
-        
+
         public void SetState(LLAnimationStates _newState)
         {
             State = _newState;
@@ -333,7 +355,8 @@ namespace EA4S
 
             if (!hooraying)
             {
-                animator.SetTrigger("stopAlternative");
+                if (inIdleAlternative)
+                    animator.SetTrigger("stopAlternative");
                 animator.SetTrigger("doHorray");
             }
         }
@@ -349,7 +372,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetFloat("random", Random.value);
             animator.SetTrigger("doAngry");
         }
@@ -365,7 +389,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetTrigger("doHighFive");
         }
 
@@ -419,7 +444,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetBool("jumping", true);
             animator.SetBool("falling", true);
         }
@@ -447,7 +473,8 @@ namespace EA4S
                 hasToGoBackState = true;
             }
 
-            animator.SetTrigger("stopAlternative");
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
             animator.SetTrigger("doSmallJump");
         }
 
@@ -470,6 +497,16 @@ namespace EA4S
                 onTwirlCallback();
                 onTwirlCallback = null;
             }
+        }
+
+        public void OnIdleAlternativeEnter()
+        {
+            inIdleAlternative = true;
+        }
+
+        public void OnIdleAlternativeExit()
+        {
+            inIdleAlternative = false;
         }
     }
 }

@@ -44,18 +44,18 @@ namespace EA4S
                     commonLetters.Clear();
                     uncommonLetters.Clear();
 
-                    newWordData1 = AppManager.Instance.Teacher.GimmeAGoodWordData();
-                    foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData1.Data.Arabic, AppManager.Instance.Letters))
+                    newWordData1 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                    foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData1.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
                     {
                         wordLetters1.Add(letterData);
                     }
 
                     do
                     {
-                        newWordData2 = AppManager.Instance.Teacher.GimmeAGoodWordData();
+                        newWordData2 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
                     } while(newWordData2.Key == newWordData1.Key);
 
-                    foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData2.Data.Arabic, AppManager.Instance.Letters))
+                    foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData2.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
                     {
                         wordLetters2.Add(letterData);
                     }

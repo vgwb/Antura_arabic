@@ -36,6 +36,7 @@ public class WrongTube : MonoBehaviour
             spittingLetter.SetActive(false);
 
             var ragdoll = spittingLetter.GetComponent<LivingLetterRagdoll>();
+            ragdoll.maxPoofCountdownAfterHit = 0.15f;
 
             spittingTimer = 0.5f;
             ragdoll.SetRagdoll(true, spawnTransform.forward * 75);

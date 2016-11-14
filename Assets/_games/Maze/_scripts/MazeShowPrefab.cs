@@ -35,7 +35,7 @@ namespace EA4S.Maze
 				
 				transform.position = Vector3.MoveTowards (transform.position, Vector3.zero, Time.deltaTime * 20);
 				if (transform.position.x == 0) {
-					AudioManager.I.PlayLetter(AppManager.Instance.Letters[letterIndex].Key);
+					AudioManager.I.PlayLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL()[letterIndex].Key);
 					movingIn = false;
 					MazeGameManager.Instance.showCurrentTutorial ();
 				}

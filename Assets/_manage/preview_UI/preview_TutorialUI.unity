@@ -8414,14 +8414,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 3.83
-  far clip plane: 1000
+  far clip plane: 1100
   field of view: 34
   orthographic: 0
   orthographic size: 11.99
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294959103
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -11410,7 +11410,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 121932, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 13754048, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_Materials.Array.data[0]

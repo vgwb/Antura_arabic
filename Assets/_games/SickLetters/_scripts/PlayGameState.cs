@@ -8,12 +8,7 @@ namespace EA4S.SickLetters
     public class PlayGameState : IGameState
     {
         SickLettersGame game;
-
-        
-        
-
         Vector3 correctDotPos;
-
 
         float timer = 2, t = 0;
         public PlayGameState(SickLettersGame game)
@@ -24,7 +19,7 @@ namespace EA4S.SickLetters
         public void EnterState()
         {
             
-            game.Context.GetOverlayWidget().Initialize(true, true, false);
+            //game.Context.GetOverlayWidget().Initialize(true, true, false);
 
             game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
 
@@ -32,7 +27,10 @@ namespace EA4S.SickLetters
             //game.Context.GetOverlayWidget().SetClockDuration(game.gameDuration);
 
             SickLettersConfiguration.Instance.Context.GetAudioManager().MusicEnabled = true;
-            SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            if (game.roundsCount == 0)
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
+            else
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
 
             game.LLPrefab.jumpIn();
         }
@@ -46,10 +44,12 @@ namespace EA4S.SickLetters
         {
             game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
 
-            game.Context.GetOverlayWidget().SetClockTime(timer);
 
-            timer -= delta;
-
+            if (game.roundsCount > 0)
+            {
+                timer -= delta;
+                game.Context.GetOverlayWidget().SetClockTime(timer);
+            }
             if (timer < 0 /*|| game.roundsCount == 6*/)
             {
                 game.SetCurrentState(game.ResultState);

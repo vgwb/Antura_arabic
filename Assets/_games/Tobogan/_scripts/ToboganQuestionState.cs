@@ -18,9 +18,7 @@
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
-        public void ExitState()
-        {
-        }
+        public void ExitState() { }
 
         public void Update(float delta)
         {
@@ -28,14 +26,18 @@
 
             if (timer < 0)
             {
-                game.SetCurrentState(game.PlayState);
+                if (game.showTutorial)
+                {
+                    game.SetCurrentState(game.TutorialState);
+                }
+                else
+                {
+                    game.SetCurrentState(game.PlayState);
+                }
                 return;
             }
         }
 
-        public void UpdatePhysics(float delta)
-        {
-
-        }
+        public void UpdatePhysics(float delta) { }
     }
 }

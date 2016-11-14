@@ -33,7 +33,8 @@ namespace EA4S.MissingLetter
 
             mAntura.State = AnturaAnimationStates.walking;
             mAntura.IsAngry = true;
-            mAntura.DoBark(); // 12/11/16 Doesn't work. Parameter dosen't exist ...
+            // TODO DoBark removed
+            // mAntura.DoBark();
             transform.LookAt(transform.position + Vector3.left * (nextPos.position.x - transform.position.x));
             transform.DOMove(nextPos.position, duration).OnComplete(delegate { mAntura.State = AnturaAnimationStates.idle; }) ;
 

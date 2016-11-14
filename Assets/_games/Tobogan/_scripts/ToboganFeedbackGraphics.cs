@@ -22,7 +22,7 @@ public class ToboganFeedbackGraphics : MonoBehaviour
         // antura.Howl();
     }
 
-    void OnResult(bool result)
+    public void OnResult(bool result)
     {
         answersResults.Enqueue(result);
     }
@@ -37,12 +37,11 @@ public class ToboganFeedbackGraphics : MonoBehaviour
         waitingForTowerCrash = false;
     }
 
-    public void Initialize(QuestionsManager questionsManager)
+    public void Initialize()
     {
         heightMeter.targetHeight = 0;
 
         tower.onCrashed += OnTowerCrashed;
-        questionsManager.onAnswered += OnResult;
     }
 
     void Update()
@@ -65,8 +64,9 @@ public class ToboganFeedbackGraphics : MonoBehaviour
 
                 wrongTubes.DropLetter(() =>
                 {
+                    bool hasToBark = tower.HasStackedLetters || antura.IsWaken;
                     tower.RequestCrash();
-                    antura.Bark();
+                    antura.WakeUp(hasToBark);
                 });
             }
         }

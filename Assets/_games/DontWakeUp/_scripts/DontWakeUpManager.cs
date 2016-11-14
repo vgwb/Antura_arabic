@@ -212,7 +212,7 @@ namespace EA4S.DontWakeUp
         void SetupLevel()
         {
             currentLevelController = Levels[currentLevel - 1].GetComponent<LevelController>();
-            currentWord = AppManager.Instance.Teacher.GimmeAGoodWordData();
+            currentWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
             myLetter.SetActive(true);
             myLetter.GetComponent<MyLetter>().Init(currentWord.Key);

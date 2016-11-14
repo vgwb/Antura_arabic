@@ -2,6 +2,13 @@
 
 namespace EA4S.Db
 {
+    public enum LetterKindCategory
+    {
+        Real = 0,   // default: Base + Combo
+        Combo,
+        Base
+    }
+
     [Serializable]
     public class LetterData : IData, IConvertibleToLivingLetterData
     {
@@ -35,10 +42,38 @@ namespace EA4S.Db
             return Id;
         }
 
-        public bool IsRealLetter()
+
+        public bool IsOfKindCategory(LetterKindCategory category)
+        {
+            bool isIt = false;
+            switch (category)
+            {
+                case LetterKindCategory.Base:
+                    isIt = IsBaseLetter();
+                    break;
+                case LetterKindCategory.Combo:
+                    isIt = IsComboLetter(); 
+                    break;
+                case LetterKindCategory.Real:
+                    isIt = IsRealLetter();
+                    break;
+            }
+            return isIt;
+        }
+
+        private bool IsRealLetter()
+        {
+            return this.IsBaseLetter() || this.IsComboLetter();
+        }
+
+        private bool IsBaseLetter()
         {
             return this.Kind == LetterDataKind.Letter;
-            // @todo: also combinations?
+        }
+
+        private bool IsComboLetter()
+        {
+            return this.Kind == LetterDataKind.Combination || this.Kind == LetterDataKind.LetterVariation;
         }
 
         public ILivingLetterData ConvertToLivingLetterData()

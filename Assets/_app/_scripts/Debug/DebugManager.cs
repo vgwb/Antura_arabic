@@ -48,6 +48,7 @@ namespace EA4S
         public float Difficulty = 0.5f;
         public int Stage = 1;
         public int LearningBlock = 1;
+        public int PlaySession = 1;
 
         void Awake()
         {
@@ -81,6 +82,13 @@ namespace EA4S
 
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
+            AppManager.Instance.Player.CurrentJourneyPosition.Stage = Stage;
+            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
+            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = PlaySession;
+
+            // We must force this or the teacher won't use the correct data
+            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
+
             // Call start game with parameters
             MiniGameAPI.Instance.StartGame(
                 miniGameCodeSelected,
@@ -95,7 +103,7 @@ namespace EA4S
         private static List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
         {
             var letters = new List<LL_LetterData>();
-            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Letters)) {
+            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL())) {
                 letters.Add(letterData);
             }
             return letters;
@@ -105,7 +113,7 @@ namespace EA4S
         {
             var letterListToReturn = new List<LL_LetterData>();
             for (var i = 0; i < _count; i++) {
-                var letter = AppManager.Instance.Teacher.GimmeARandomLetter();
+                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
 
                 if (!CheckIfContains(_lettersToAvoid, letter) && !CheckIfContains(letterListToReturn, letter)) {
                     letterListToReturn.Add(letter);

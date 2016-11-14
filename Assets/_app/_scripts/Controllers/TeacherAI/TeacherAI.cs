@@ -16,15 +16,12 @@ namespace EA4S
     {
         public static TeacherAI I;
 
-        // Temporary configuration
-        private static int NUMBER_OF_MINIGAMES_PER_PLAYSESSION = 3;
-
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
 
         // Inner engines
-        public LogIntelligence logger;
+        public LogIntelligence logIntelligence;
 
         // Helpers
         public WordHelper wordHelper;
@@ -32,7 +29,7 @@ namespace EA4S
 
         // Selection engines
         MiniGameSelectionAI minigameSelectionAI;
-        WordSelectionAI wordSelectionAI;
+        public WordSelectionAI wordAI;
         DifficultySelectionAI difficultySelectionAI;
 
         // State
@@ -46,22 +43,24 @@ namespace EA4S
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
 
+            this.logIntelligence = new LogIntelligence(_dbManager);
+
             this.wordHelper = new WordHelper(_dbManager, this);
             this.journeyHelper = new JourneyHelper(_dbManager, this);
 
-            this.logger = new Teacher.LogIntelligence(_dbManager);
-
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
-            this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
+            this.wordAI = new WordSelectionAI(dbManager, playerProfile, this, wordHelper);
             this.difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
         }
 
         private void ResetPlaySession()
         {
+            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+
             this.currentPlaySessionMiniGames.Clear();
 
             this.minigameSelectionAI.InitialiseNewPlaySession();
-            this.wordSelectionAI.InitialiseNewPlaySession();
+            this.wordAI.InitialiseNewPlaySession(currentPlaySessionId);
         }
 
         #endregion
@@ -70,13 +69,14 @@ namespace EA4S
 
         public List<MiniGameData> InitialiseCurrentPlaySession()
         {
-            return InitialiseCurrentPlaySession(NUMBER_OF_MINIGAMES_PER_PLAYSESSION);
+            return InitialiseCurrentPlaySession(ConfigAI.numberOfMinigamesPerPlaySession);
         }
 
         private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
         {
             ResetPlaySession();
             this.currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            //this.currentUsableWords = SelectWordsForPlaySession();
             return currentPlaySessionMiniGames;
         }
 
@@ -128,40 +128,6 @@ namespace EA4S
         public List<Db.MiniGameData> SelectMiniGamesForPlaySession(string playSessionId, int numberToSelect)
         {
             return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
-        }
-
-        #endregion
-
-        #region Letter/Word Selection queries (Tests)
-
-        // TEST - DEPRECATED
-        public LetterData SelectRandomLetter()
-        {
-            return dbManager.GetAllLetterData().RandomSelectOne();
-        }
-
-        // TEST - DEPRECATED
-        public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
-        {
-            return this.wordSelectionAI.PerformSelection(playSessionId, numberToSelect);
-        }
-
-        // TEST - DEPRECATED
-        public List<LetterData> GetLettersInWord(string wordId)
-        {
-            return wordHelper.GetLettersInWord(wordId);
-        }
-
-        // TEST - DEPRECATED
-        public List<LetterData> SelectLettersInWord(int nToSelect, string wordId)
-        {
-            return wordHelper.GetLettersInWord(wordId).RandomSelect(2);
-        }
-
-        // TEST - DEPRECATED
-        public List<WordData> SelectWordsWithLetters(int nToSelect, params string[] letters)
-        {
-            return wordHelper.GetWordsWithLetters(letters).RandomSelect(2);
         }
 
         #endregion
@@ -288,74 +254,58 @@ namespace EA4S
         #endregion
 
 
-        // DEPRECATED!!!
-        #region Interface - Letters / Words
+        #region Interface - Fake data for question providers
 
-        // DEPRECATED
-        [System.Obsolete("GimmeARandomLetter is deprecated and will soon be removed. You should get your data from the question packs provider.")]
-        public LL_LetterData GimmeARandomLetter()
+        private static bool giveWarningOnFake = false;
+
+        public List<LL_LetterData> GetAllTestLetterDataLL()
         {
-            var data = this.SelectRandomLetter();
+            List<LL_LetterData> list = new List<LL_LetterData>();
+            foreach (var letterData in this.wordHelper.GetAllLetters())
+                list.Add(BuildLetterData_LL(letterData));
+            return list;
+        }
+
+        public LL_LetterData GetRandomTestLetterLL()
+        {
+            if (giveWarningOnFake)
+            {
+                Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
+                giveWarningOnFake = false;
+            }
+
+            var data = this.wordHelper.GetAllLetters().RandomSelectOne();
             return BuildLetterData_LL(data);
         }
 
-        // DEPRECATED
-        [System.Obsolete("GimmeAGoodWordData is deprecated and will soon be removed. You should get your data from the question packs provider.")]
-        public LL_WordData GimmeAGoodWordData()
+        public LL_WordData GetRandomTestWordDataLL()
         {
-            // init vocabulary
-            var availableVocabulary = BuildWordData_LL_Set(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
-
-            List<LL_WordData> returnList = new List<LL_WordData>();
-            if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
+            if (giveWarningOnFake)
             {
-                // if already used all available words... restart.
-                AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
+                Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
+                giveWarningOnFake = false;
             }
 
-            foreach (LL_WordData w in availableVocabulary)
-            {
-                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
-                {
-                    returnList.Add(w); // Only added if not already used
-                }
-            }
-
-            LL_WordData returnWord = returnList.GetRandom();
-            // Debug.Log("Word: " + returnWord.Key);
-            AppManager.Instance.ActualGameplayWordAlreadyUsed.Add(returnWord);
-            return returnWord;
+            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.BodyPart).RandomSelectOne();
+            return BuildWordData_LL(data); 
         }
 
-        #endregion
-
-        // DEPRECATED!!!
-        #region WordData -> LL_WordData helpers
-
-        // DEPRECATED
-        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
-        public LL_LetterData BuildLetterData_LL(LetterData data)
+        private LL_LetterData BuildLetterData_LL(LetterData data)
         {
             return new LL_LetterData(data.GetId());
         }
 
-        // DEPRECATED
-        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
-        public List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
+        private List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
         {
             return data_list.ConvertAll<ILivingLetterData>(x => BuildLetterData_LL(x));
         }
 
-        // DEPRECATED!!!
-        // HELPER (could be in the new "MiniGameLauncher SYSTEM")
-        public LL_WordData BuildWordData_LL(WordData data)
+        private LL_WordData BuildWordData_LL(WordData data)
         {
             return new LL_WordData(data.GetId(), data);
         }
 
-        // DEPRECATED!!!
-        // HELPER (should be in the new "MiniGameLauncher SYSTEM")
-        public List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
+        private List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
         {
             return data_list.ConvertAll<ILivingLetterData>(x => BuildWordData_LL(x));
         }

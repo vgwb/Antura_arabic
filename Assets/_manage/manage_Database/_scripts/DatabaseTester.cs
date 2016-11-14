@@ -239,7 +239,7 @@ namespace EA4S.Db.Management
             newData.Timestamp = GenericUtilities.GetTimestampForNow();
 
             newData.PlaySession = "1.1.1";
-            newData.MiniGame = MiniGameCode.Assessment_Letters;
+            newData.MiniGame = MiniGameCode.Assessment_LetterShape;
 
             bool useLetter = RND.value > 0.5f;
             newData.TableName = useLetter ? "LetterData" : "WordData";
@@ -425,7 +425,7 @@ namespace EA4S.Db.Management
 
         public void Teacher_FailedAssessmentLetters()
         {
-            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_Letters);
+            var list = teacherAI.GetFailedAssessmentLetters(MiniGameCode.Assessment_LetterShape);
 
             string output = "Failed letters for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";
@@ -434,7 +434,7 @@ namespace EA4S.Db.Management
 
         public void Teacher_FailedAssessmentWords()
         {
-            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_Letters);
+            var list = teacherAI.GetFailedAssessmentWords(MiniGameCode.Assessment_LetterShape);
 
             string output = "Failed words for assessment 'Letters':\n";
             foreach (var data in list) output += data.ToString() + "\n";
@@ -450,14 +450,16 @@ namespace EA4S.Db.Management
             PrintOutput(output);
         }
 
+        // Deprecated
         public void Teacher_LettersOfWord()
         {
-            var wordDataId = dbManager.GetWordDataByRandom().GetId();
+            Debug.LogWarning("Deprecated function.");
+            /*var wordDataId = dbManager.GetWordDataByRandom().GetId();
             var list = teacherAI.GetLettersInWord(wordDataId);
 
             string output = list.Count + " letters in word " + wordDataId + ":\n";
             foreach (var data in list) output += data.Id + "\n";
-            PrintOutput(output);
+            PrintOutput(output);*/
         }
 
         public void Teacher_PerformMiniGameSelection()
@@ -472,20 +474,22 @@ namespace EA4S.Db.Management
 
         public void Teacher_PerformWordSelection()
         {
+            Debug.LogWarning("Deprecated use, word selection is now built-in with more logic.");
+            /*
             var currentJourneyPositionId = playerProfile.CurrentJourneyPosition.ToString();
 
             int nTests = 7;
             int nWordsPerTest = 2;
             string output = "";
             output = "Words selected (" + currentJourneyPositionId + "):\n";
-            for (int i = 0; i < nTests; i++)
-            {
+            for (int i = 0; i < nTests; i++) {
                 var list = teacherAI.SelectWordsForPlaySession(currentJourneyPositionId, nWordsPerTest);
                 foreach (var data in list) output += data.Id + " ";
                 output += "\n";
             }
 
             PrintOutput(output);
+            */
         }
 
         #endregion

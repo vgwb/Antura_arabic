@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010169241398}
   - 212: {fileID: 212000011581689398}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013616907848}
   - 114: {fileID: 114000010954624320}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mark YES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - 4: {fileID: 4000012046727492}
   - 114: {fileID: 114000011165439412}
   - 120: {fileID: 120000012623473506}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Subline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - 4: {fileID: 4000010535123386}
   - 114: {fileID: 114000012975135612}
   - 96: {fileID: 96000012437213764}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Subtrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011698714080}
   - 114: {fileID: 114000013250875958}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010303067192}
   - 212: {fileID: 212000013787427318}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - 4: {fileID: 4000013275630768}
   - 114: {fileID: 114000013163314734}
   - 114: {fileID: 114000011212093976}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TutorialUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011967185288}
   - 212: {fileID: 212000011685896926}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Img (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010909322466}
   - 114: {fileID: 114000013722262116}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Clicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013407632472}
   - 114: {fileID: 114000010362781968}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mark NO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013951348944}
   - 212: {fileID: 212000010291153056}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - 114: {fileID: 114000010274104802}
   - 114: {fileID: 114000011942965568}
   - 96: {fileID: 96000013341196612}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - 114: {fileID: 114000014241885724}
   - 114: {fileID: 114000012946223766}
   - 120: {fileID: 120000010784086932}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - 4: {fileID: 4000012557608266}
   - 114: {fileID: 114000013144007232}
   - 212: {fileID: 212000013184420710}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Finger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010669193948}
   - 212: {fileID: 212000010102596968}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Img (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
