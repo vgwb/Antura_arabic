@@ -132,38 +132,14 @@ namespace EA4S
 
         #endregion
 
-        #region Letter/Word Selection queries (Tests)
-
-        // TEST - DEPRECATED
-        public LetterData SelectRandomLetter()
-        {
-            return dbManager.GetAllLetterData().RandomSelectOne();
-        }
+        #region Letter/Word Selection queries
 
         // TEST - DEPRECATED
         public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
         {
             return this.wordSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
-
-        // TEST - DEPRECATED
-        public List<LetterData> GetLettersInWord(string wordId)
-        {
-            return wordHelper.GetLettersInWord(wordId);
-        }
-
-        // TEST - DEPRECATED
-        public List<LetterData> SelectLettersInWord(int nToSelect, string wordId)
-        {
-            return wordHelper.GetLettersInWord(wordId).RandomSelect(2);
-        }
-
-        // TEST - DEPRECATED
-        public List<WordData> SelectWordsWithLetters(int nToSelect, params string[] letters)
-        {
-            return wordHelper.GetWordsWithLetters(letters).RandomSelect(2);
-        }
-
+        
         #endregion
 
         #region Score Log queries
@@ -288,10 +264,17 @@ namespace EA4S
         #endregion
 
 
+        #region Interface - Fake data for question providers
 
-        #region Interface - Test data for test providers
+        private static bool giveWarningOnFake = false;
 
-        public static bool giveWarningOnFake = false;
+        public List<LL_LetterData> GetAllTestLetterDataLL()
+        {
+            List<LL_LetterData> list = new List<LL_LetterData>();
+            foreach (var letterData in this.wordHelper.GetAllRealLetters())
+                list.Add(BuildLetterData_LL(letterData));
+            return list;
+        }
 
         public LL_LetterData GetRandomTestLetterLL()
         {
@@ -301,7 +284,7 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var data = this.SelectRandomLetter();
+            var data = this.wordHelper.GetAllRealLetters().RandomSelectOne();
             return BuildLetterData_LL(data);
         }
 
@@ -313,45 +296,26 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var availableVocabulary = BuildWordData_LL_Set(dbManager.FindWordData(x => x.Category == WordDataCategory.BodyPart));
-
-            List<LL_WordData> returnList = new List<LL_WordData>();
-            if (AppManager.Instance.ActualGameplayWordAlreadyUsed.Count >= availableVocabulary.Count)
-            {
-                // if already used all available words... restart.
-                AppManager.Instance.ActualGameplayWordAlreadyUsed = new List<LL_WordData>();
-            }
-
-            foreach (LL_WordData w in availableVocabulary)
-            {
-                if (!AppManager.Instance.ActualGameplayWordAlreadyUsed.Contains(w))
-                {
-                    returnList.Add(w); // Only added if not already used
-                }
-            }
-
-            LL_WordData returnWord = returnList.GetRandom();
-            // Debug.Log("Word: " + returnWord.Key);
-            AppManager.Instance.ActualGameplayWordAlreadyUsed.Add(returnWord);
-            return returnWord;
+            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.BodyPart).RandomSelectOne();
+            return BuildWordData_LL(data); 
         }
 
-        public LL_LetterData BuildLetterData_LL(LetterData data)
+        private LL_LetterData BuildLetterData_LL(LetterData data)
         {
             return new LL_LetterData(data.GetId());
         }
 
-        public List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
+        private List<ILivingLetterData> BuildLetterData_LL_Set(List<LetterData> data_list)
         {
             return data_list.ConvertAll<ILivingLetterData>(x => BuildLetterData_LL(x));
         }
 
-        public LL_WordData BuildWordData_LL(WordData data)
+        private LL_WordData BuildWordData_LL(WordData data)
         {
             return new LL_WordData(data.GetId(), data);
         }
 
-        public List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
+        private List<ILivingLetterData> BuildWordData_LL_Set(List<WordData> data_list)
         {
             return data_list.ConvertAll<ILivingLetterData>(x => BuildWordData_LL(x));
         }

@@ -94,14 +94,14 @@ namespace EA4S.PianoWoof
 
             // To-do: Placeholder
             // Set Stage Letters
-            stageTiles[0].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-            stageTiles[1].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-            stageTiles[2].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-            stageTiles[3].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-            //stageTiles[4].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-            stageTiles[5].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-            stageTiles[6].SetLetter(AppManager.Instance.Letters.GetRandomElement());
-            stageTiles[7].SetLetter(AppManager.Instance.Letters.GetRandomElement());
+            stageTiles[0].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            stageTiles[1].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            stageTiles[2].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            stageTiles[3].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            //stageTiles[4].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            stageTiles[5].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            stageTiles[6].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
+            stageTiles[7].SetLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement());
         }
 
         private void BeginGameplay()

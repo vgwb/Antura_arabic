@@ -31,7 +31,7 @@ namespace EA4S
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Data.Arabic, AppManager.Instance.Letters))
+                foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
                 {
                     correctAnswers.Add(letterData);
                 }
