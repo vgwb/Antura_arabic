@@ -229,11 +229,19 @@ namespace EA4S.Db
 
         #region Phrase -> Word
 
-        public List<WordData> GetWordOfPhrase(string phraseId)
+        public List<WordData> GetWordsInPhrase(string phraseId)
         {
-            // @todo: implement
-            return null;
+            PhraseData data = dbManager.GetPhraseDataById(phraseId);
+            return GetWordsInPhrase(data);
         }
+
+        public List<WordData> GetWordsInPhrase(PhraseData phraseData)
+        {
+            var words_ids_list = new List<string>(phraseData.Words);
+            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
+            return list;
+        }
+
 
         #endregion
 
@@ -250,10 +258,40 @@ namespace EA4S.Db
 
         #region Word -> Phrase
 
-        public List<PhraseData> GetPhrasesWithWord(string wordId)
+        public List<PhraseData> GetPhrasesWithWords(params string[] okWordsArray)
         {
-            // @todo: implement
-            return null;
+            if (okWordsArray == null) okWordsArray = new string[] { };
+
+            var okWords = new HashSet<string>(okWordsArray);
+
+            List<PhraseData> list = dbManager.FindPhraseData(x => 
+                {
+                    if (okWords.Count > 0)
+                    {
+                        bool hasAllOkWords = true;
+                        foreach (var okWord in okWords)
+                        {
+                            bool hasThisWord = false;
+                            foreach (var word_id in x.Words)
+                            {
+                                if (word_id == okWord)
+                                {
+                                    hasThisWord = true;
+                                    break;
+                                }
+                            }
+                            if (!hasThisWord)
+                            {
+                                hasAllOkWords = false;
+                                break;
+                            }
+                        }
+                        if (!hasAllOkWords) return false;
+                    }
+                    return true;
+                }
+            );
+            return list;
         }
 
         #endregion
