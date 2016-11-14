@@ -6,6 +6,7 @@ namespace EA4S.Tobogan
     public class LettersTower : MonoBehaviour
     {
         public bool HasLettersInBacklog { get { return backlogTube.Count > 0; } }
+        public bool HasStackedLetters { get { return stackedLetters.Count > 0; } }
         public bool IsLetterFalling { get { return fallingLetter != null; } }
 
         // The tower is a stack of letters, that could be crash

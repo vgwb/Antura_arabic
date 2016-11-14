@@ -1,38 +1,41 @@
-﻿using EA4S.API;
+﻿using EA4S.Teacher;
 using System.Collections.Generic;
 
 namespace EA4S
 {
     public class AlphabetQuestionBuilder : IQuestionBuilder
     {
+        public AlphabetQuestionBuilder(){}
 
-        public AlphabetQuestionBuilder()
-        {}
-
-        public int GetQuestionPackCount()
+        public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            return 1;
+            List<QuestionPackData> packs = new List<QuestionPackData>();
+            packs.Add(CreateAlphabetQuestionPackData());
+            return packs;
         }
 
-        public QuestionPackData CreateQuestionPackData()
+        public QuestionPackData CreateAlphabetQuestionPackData()
         {
-            //var db = AppManager.Instance.DB;
             var teacher = AppManager.Instance.Teacher;
 
-            // Fully ordered alphabet (@todo: check that it works!)
-            var correctAnswers = teacher.wordHelper.GetAllRealLetters();
-            correctAnswers.Sort((x, y) =>
-            {
-                return x.ToString().CompareTo(y.ToString());
-            }
+            // Fully ordered alphabet, only 1 pack
+            var sParameters = new SelectionParameters(SelectionSeverity.AsManyAsPossible, 28);   // 28: letters in the alphabet
+            var alphabetLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(Db.LetterKindCategory.Base), sParameters);
+            alphabetLetters.Sort((x, y) =>
+                {
+                    return x.ToString().CompareTo(y.ToString());
+                }
             );
 
-            return QuestionPackData.CreateFromCorrect(null, correctAnswers);
-        }
+            // Debug
+            if (ConfigAI.verboseTeacher)
+            {
+                string debugString = "Letters: " + alphabetLetters.Count;
+                foreach (var l in alphabetLetters) debugString += " " + l;
+                UnityEngine.Debug.Log(debugString);
+            }
 
-        public IQuestionPack CreateQuestionPack()
-        {
-            throw new System.Exception("DEPRECATED");
+            return QuestionPackData.CreateFromCorrect(null, alphabetLetters);
         }
 
     }

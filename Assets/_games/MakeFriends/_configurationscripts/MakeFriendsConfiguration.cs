@@ -114,7 +114,7 @@ namespace EA4S.MakeFriends
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 2;
+            int nCorrect = 1;
             int nWrong = 5;
             int nWords = 2;
 
@@ -122,6 +122,14 @@ namespace EA4S.MakeFriends
 
             return builder;
         }
+
+        public MiniGameLearnRules SetupLearnRules()
+        {
+            var rules = new MiniGameLearnRules();
+            // example: a.minigameVoteSkewOffset = 1f;
+            return rules;
+        }
+
 
     }
 }

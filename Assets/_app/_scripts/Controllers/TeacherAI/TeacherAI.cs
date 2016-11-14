@@ -16,15 +16,12 @@ namespace EA4S
     {
         public static TeacherAI I;
 
-        // Temporary configuration
-        private static int NUMBER_OF_MINIGAMES_PER_PLAYSESSION = 3;
-
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
 
         // Inner engines
-        public LogIntelligence logger;
+        public LogIntelligence logIntelligence;
 
         // Helpers
         public WordHelper wordHelper;
@@ -32,7 +29,7 @@ namespace EA4S
 
         // Selection engines
         MiniGameSelectionAI minigameSelectionAI;
-        WordSelectionAI wordSelectionAI;
+        public WordSelectionAI wordAI;
         DifficultySelectionAI difficultySelectionAI;
 
         // State
@@ -46,22 +43,24 @@ namespace EA4S
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
 
+            this.logIntelligence = new LogIntelligence(_dbManager);
+
             this.wordHelper = new WordHelper(_dbManager, this);
             this.journeyHelper = new JourneyHelper(_dbManager, this);
 
-            this.logger = new Teacher.LogIntelligence(_dbManager);
-
             this.minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
-            this.wordSelectionAI = new WordSelectionAI(dbManager, playerProfile, this);
+            this.wordAI = new WordSelectionAI(dbManager, playerProfile, this, wordHelper);
             this.difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
         }
 
         private void ResetPlaySession()
         {
+            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+
             this.currentPlaySessionMiniGames.Clear();
 
             this.minigameSelectionAI.InitialiseNewPlaySession();
-            this.wordSelectionAI.InitialiseNewPlaySession();
+            this.wordAI.InitialiseNewPlaySession(currentPlaySessionId);
         }
 
         #endregion
@@ -70,13 +69,14 @@ namespace EA4S
 
         public List<MiniGameData> InitialiseCurrentPlaySession()
         {
-            return InitialiseCurrentPlaySession(NUMBER_OF_MINIGAMES_PER_PLAYSESSION);
+            return InitialiseCurrentPlaySession(ConfigAI.numberOfMinigamesPerPlaySession);
         }
 
         private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
         {
             ResetPlaySession();
             this.currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            //this.currentUsableWords = SelectWordsForPlaySession();
             return currentPlaySessionMiniGames;
         }
 
@@ -130,16 +130,6 @@ namespace EA4S
             return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
-        #endregion
-
-        #region Letter/Word Selection queries
-
-        // TEST - DEPRECATED
-        public List<Db.WordData> SelectWordsForPlaySession(string playSessionId, int numberToSelect)
-        {
-            return this.wordSelectionAI.PerformSelection(playSessionId, numberToSelect);
-        }
-        
         #endregion
 
         #region Score Log queries
@@ -271,7 +261,7 @@ namespace EA4S
         public List<LL_LetterData> GetAllTestLetterDataLL()
         {
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in this.wordHelper.GetAllRealLetters())
+            foreach (var letterData in this.wordHelper.GetAllLetters())
                 list.Add(BuildLetterData_LL(letterData));
             return list;
         }
@@ -284,7 +274,7 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetAllRealLetters().RandomSelectOne();
+            var data = this.wordHelper.GetAllLetters().RandomSelectOne();
             return BuildLetterData_LL(data);
         }
 
