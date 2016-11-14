@@ -46,5 +46,13 @@
             // TODO
             return builder;
         }
+
+        public MiniGameLearnRules SetupLearnRules()
+        {
+            var rules = new MiniGameLearnRules();
+            // example: a.minigameVoteSkewOffset = 1f;
+            return rules;
+        }
+
     }
 }

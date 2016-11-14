@@ -7,8 +7,9 @@ namespace EA4S.Db
       Adjective = 1,
       Verb = 2,
       Article = 3,
-      Noun = 4,
-      Adverb = 5,
+      Preposition = 4,
+      Noun = 5,
+      Adverb = 6,
   }
 }
 
