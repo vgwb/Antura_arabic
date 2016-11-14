@@ -2,9 +2,9 @@
 
 namespace EA4S.FastCrowd
 {
-    public class LetterIdleState : LetterState
+    public class StrollingLetterIdleState : StrollingLetterState
     {
-        public LetterIdleState(FastCrowdLivingLetter letter) : base(letter)
+        public StrollingLetterIdleState(StrollingLivingLetter letter) : base(letter)
         {
 
         }
