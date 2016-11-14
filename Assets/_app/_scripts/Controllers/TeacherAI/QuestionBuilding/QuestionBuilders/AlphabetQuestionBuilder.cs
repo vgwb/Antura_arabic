@@ -18,10 +18,8 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            // Parameters for builder's use of data
+            // Fully ordered alphabet, only 1 pack
             var sParameters = new SelectionParameters(SelectionSeverity.AsManyAsPossible, 28);   // 28: letters in the alphabet
-
-            // Fully ordered alphabet
             var alphabetLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(Db.LetterKindCategory.Base), sParameters);
             alphabetLetters.Sort((x, y) =>
                 {

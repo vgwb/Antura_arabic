@@ -20,8 +20,8 @@ namespace EA4S.Teacher
 
         // Innert state
         private HashSet<LetterData> currentPlaySessionLetters = new HashSet<LetterData>();
-        private HashSet<string> currentlyAvailableWordData = new HashSet<string>();
-        private HashSet<string> currentlyAvailablePhraseData = new HashSet<string>();
+        private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
+        private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
 
         public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
         {
@@ -36,6 +36,9 @@ namespace EA4S.Teacher
             currentAlreadyPickedLetterIds.Clear();
 
             currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
+            currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
+            currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId));
+
             UnityEngine.Debug.Log("Current play session letters: " + currentPlaySessionLetters.Count);
         }
 
@@ -156,6 +159,25 @@ namespace EA4S.Teacher
             if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
             {
                 foundDataList = foundDataList.FindAll(x => currentPlaySessionLetters.Contains(x));
+            }
+
+            if (foundDataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
+            {
+                throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances as required by the game.");
+            }
+
+            return foundDataList;
+        }
+
+        public List<Db.WordData> SelectWords(System.Func<List<Db.WordData>> selectionFunction, SelectionParameters selectionParams)
+        {
+            // All data to use
+            var foundDataList = selectionFunction();
+
+            // Selection filtering
+            if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
+            {
+                foundDataList = foundDataList.FindAll(x => currentPlaySessionWords.Contains(x));
             }
 
             if (foundDataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
