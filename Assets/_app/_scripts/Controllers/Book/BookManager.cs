@@ -22,6 +22,9 @@ namespace EA4S
         public TextRender ArabicText;
         public TextMeshProUGUI Drawing;
 
+        public LetterObjectView LLText;
+        public LetterObjectView LLDrawing;
+
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
@@ -29,6 +32,7 @@ namespace EA4S
             SceneTransitioner.Close();
 
             InitUI();
+            Drawing.text = "";
         }
 
         void InitUI()
@@ -61,11 +65,17 @@ namespace EA4S
             Debug.Log("playing word :" + word.Id);
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
+
+            LLText.Lable.text = ArabicAlphabetHelper.PrepareStringForDisplay(word.Arabic);
+
             if (word.Drawing != "") {
-                Drawing.text = ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+                var drawingChar = ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+                Drawing.text = drawingChar;
+                LLDrawing.Lable.text = drawingChar;
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
                 Drawing.text = "";
+                LLDrawing.Lable.text = "";
             }
         }
 
