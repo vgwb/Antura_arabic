@@ -9,7 +9,7 @@ namespace EA4S.FastCrowd
     {
         public QuestionManager QuestionManager;
 
-        public AnturaController antura;
+        public AnturaRunnerController antura;
 
         public List<ILivingLetterData> CurrentChallenge = new List<ILivingLetterData>();
         public List<ILivingLetterData> NoiseData = new List<ILivingLetterData>();

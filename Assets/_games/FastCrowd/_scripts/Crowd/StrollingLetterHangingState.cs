@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace EA4S.FastCrowd
 {
-    public class LetterHangingState : LetterState
+    public class StrollingLetterHangingState : StrollingLetterState
     {
-        List<FastCrowdLivingLetter> near = new List<FastCrowdLivingLetter>();
+        List<StrollingLivingLetter> near = new List<StrollingLivingLetter>();
 
-        FastCrowdLetterMovement movement;
+        LetterCharacterController movement;
 
-        public LetterHangingState(FastCrowdLivingLetter letter) : base(letter)
+        public StrollingLetterHangingState(StrollingLivingLetter letter) : base(letter)
         {
-            movement = letter.GetComponent<FastCrowdLetterMovement>();
+            movement = letter.GetComponent<LetterCharacterController>();
         }
 
         public override void EnterState()
