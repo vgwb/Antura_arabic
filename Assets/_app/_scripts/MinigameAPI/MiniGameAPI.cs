@@ -134,7 +134,8 @@ namespace EA4S.API
 
         #region Gameplay Management
 
-        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration) {
+        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)
+        {
             // To be deleted
             List<IQuestionPack> _gameData = null;
 
@@ -144,8 +145,19 @@ namespace EA4S.API
             IGameConfiguration actualConfig = null;
 
             switch (_gameCode) {
-                case MiniGameCode.Assessment_Letters:
-                case MiniGameCode.Assessment_LettersMatchShape:
+                case MiniGameCode.Assessment_LetterShape:
+                case MiniGameCode.Assessment_WordsWithLetter:
+                case MiniGameCode.Assessment_MatchLettersToWord:
+                case MiniGameCode.Assessment_CompleteWord:
+                case MiniGameCode.Assessment_OrderLettersOfWord:
+                case MiniGameCode.Assessment_VowelOrConsonant:
+                case MiniGameCode.Assessment_SelectPronouncedWord:
+                case MiniGameCode.Assessment_MatchWordToImage:
+                case MiniGameCode.Assessment_WordArticle:
+                case MiniGameCode.Assessment_SingularDualPlural:
+                case MiniGameCode.Assessment_SunMoonWord:
+                case MiniGameCode.Assessment_SunMoonLetter:
+                case MiniGameCode.Assessment_QuestionAndReply:
                     break;
                 case MiniGameCode.AlphabetSong:
                     // Must be defined how use sentence data structure
@@ -257,15 +269,15 @@ namespace EA4S.API
                     // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Scanner:
-//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
+                    //                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
-//                case MiniGameCode.Scanner_phrase:
-//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
-//                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
-//                    actualConfig = Scanner.ScannerConfiguration.Instance;
-//                    break;
+                //                case MiniGameCode.Scanner_phrase:
+                //                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
+                //                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                //                    actualConfig = Scanner.ScannerConfiguration.Instance;
+                //                    break;
                 case MiniGameCode.ThrowBalls_letters:
                     ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.letters;
                     ThrowBalls.ThrowBallsConfiguration.Instance.Context = AnturaMinigameContext.Default;
@@ -303,7 +315,7 @@ namespace EA4S.API
             rules = actualConfig.SetupBuilder();
             // question packs (game data)
             actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
-            
+
             // Call game start
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
         }
@@ -495,7 +507,8 @@ namespace EA4S.API
         /// Provide me another question.
         /// </summary>
         /// <returns></returns>
-        IQuestionPack IQuestionProvider.GetNextQuestion() {
+        IQuestionPack IQuestionProvider.GetNextQuestion()
+        {
             currentQuestion++;
 
             if (currentQuestion >= questions.Count)
@@ -537,25 +550,30 @@ namespace EA4S.API
         /// <param name="questionsSentences">The questions sentences.</param>
         /// <param name="wrongAnswersSentence">The wrong answers sentence.</param>
         /// <param name="correctAnswersSentence">The correct answers sentence.</param>
-        public FindRightDataQuestionPack(IEnumerable<ILivingLetterData> questionsSentences, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence) {
+        public FindRightDataQuestionPack(IEnumerable<ILivingLetterData> questionsSentences, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence)
+        {
             this.questionsSentences = questionsSentences;
             this.wrongAnswersSentence = wrongAnswersSentence;
             this.correctAnswersSentence = correctAnswersSentence;
         }
 
-        ILivingLetterData IQuestionPack.GetQuestion() {
+        ILivingLetterData IQuestionPack.GetQuestion()
+        {
             return questionsSentences.First();
         }
 
-        public IEnumerable<ILivingLetterData> GetQuestions() {
+        public IEnumerable<ILivingLetterData> GetQuestions()
+        {
             return questionsSentences;
         }
 
-        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers() {
+        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers()
+        {
             return wrongAnswersSentence;
         }
 
-        public IEnumerable<ILivingLetterData> GetCorrectAnswers(){
+        public IEnumerable<ILivingLetterData> GetCorrectAnswers()
+        {
             return correctAnswersSentence;
         }
 

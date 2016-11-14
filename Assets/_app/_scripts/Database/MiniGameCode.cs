@@ -35,16 +35,18 @@
         Tobogan_letters = 29,
         Tobogan_words = 30,
         TakeMeHome = 31,
-        Assessment_Letters = 100,
-        Assessment_LettersMatchShape = 101,
-        Assessment_3 = 102,
-        Assessment_4 = 103,
-        Assessment_5 = 104,
-        Assessment_Alphabet = 105,
-        Assessment_7 = 106,
-        Assessment_8 = 107,
-        Assessment_9 = 108,
-        Assessment_10 = 109
+        Assessment_LetterShape = 100,
+        Assessment_WordsWithLetter = 101,
+        Assessment_MatchLettersToWord = 102,
+        Assessment_CompleteWord = 103,
+        Assessment_OrderLettersOfWord = 104,
+        Assessment_VowelOrConsonant = 105,
+        Assessment_SelectPronouncedWord = 106,
+        Assessment_MatchWordToImage = 107,
+        Assessment_WordArticle = 108,
+        Assessment_SingularDualPlural = 109,
+        Assessment_SunMoonWord = 110,
+        Assessment_SunMoonLetter = 111,
+        Assessment_QuestionAndReply = 112
     }
-
 }
