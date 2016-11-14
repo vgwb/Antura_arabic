@@ -6,5 +6,8 @@
     public interface ILogicInjector
     {
         void Wire( IQuestion question, IAnswer[] answers);
+        void EnableGamePlay();
+        bool AllAnswersCorrect();
+        void DisableGamePlay();
     }
 }
