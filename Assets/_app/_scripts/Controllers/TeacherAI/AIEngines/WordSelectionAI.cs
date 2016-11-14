@@ -15,13 +15,10 @@ namespace EA4S.Teacher
         private TeacherAI teacher;
         private WordHelper wordHelper;
 
-        // DEPRECATED
-        private List<string> currentAlreadyPickedLetterIds = new List<string>();
-
         // Innert state
-        private HashSet<LetterData> currentPlaySessionLetters = new HashSet<LetterData>();
-        private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
-        private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
+        private HashSet<LetterData> journeyLetters = new HashSet<LetterData>();
+        private HashSet<WordData> journeyWords = new HashSet<WordData>();
+        private HashSet<PhraseData> journeyPhrases = new HashSet<PhraseData>();
 
         public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
         {
@@ -33,120 +30,20 @@ namespace EA4S.Teacher
 
         public void InitialiseNewPlaySession(string currentPlaySessionId)
         {
-            currentAlreadyPickedLetterIds.Clear();
+            journeyLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId, true));
+            journeyWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId, true, true));
+            journeyPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true, true));
 
-            currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
-            currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
-            currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId));
-
-            UnityEngine.Debug.Log("Current play session letters: " + currentPlaySessionLetters.Count);
-        }
-
-        public List<Db.WordData> PerformWordSelection(string playSessionId, int numberToSelect)
-        {
-            var playData = dbManager.GetPlaySessionDataById(playSessionId);
-            List<Db.ScoreData> word_scoreData_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'Words'");
-
-            List<Db.WordData> selectedWordData_list = new List<Db.WordData>();
-
-            int nRemainingToSelect = numberToSelect;
-
-            // TODO: also add some logic when selecting in the builders so that words that are more recent are used MULTIPLE TIMES
-            
-            // TODO: these 'recent/non-recent' rules should be encoded as WEIGHTS instead!
-
-            // First check current Words
-            //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " MAIN words");
-            SelectWordsFrom(playData.Words, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
-
-            // ... if it's not enough, check previous Words
-            if (nRemainingToSelect > 0)
+            if (ConfigAI.verboseDataSelection)
             {
-                //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PREVIOUS words");
-                SelectWordsFrom(playData.Words_previous, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
-            }
-
-            // ... if that's still not enough, check words from past sessions
-            if (nRemainingToSelect > 0)
-            {
-                //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PAST words");
-                SelectWordsFrom(this.GetAllWordIdsFromPreviousPlaySessions(playData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
-            }
-
-            // ... if that's still not enough, there is some issue.
-            if (nRemainingToSelect > 0)
-            {
-                UnityEngine.Debug.LogWarning("Warning: could not find enough words for play session " + playSessionId + " (found " + (numberToSelect - nRemainingToSelect) + " out of " + (numberToSelect) + ")");
-            }
-
-            return selectedWordData_list;
-        }
-
-        void SelectWordsFrom(string[] currentWordIds, List<Db.WordData> selectedWordData_list, List<Db.ScoreData> word_scoreData_list, ref int nRemainingToSelect)
-        {
-
-            List<Db.WordData> wordData_list = new List<Db.WordData>();
-            List<float> weights_list = new List<float>();
-            foreach (var word_Id in currentWordIds)
-            {
-                if (currentAlreadyPickedLetterIds.Contains(word_Id))
-                {
-                    continue;
-                }
-
-                float cumulativeWeight = 0;
-                var word_scoreData = word_scoreData_list.Find(x => x.ElementId == word_Id);
-                float currentWordScore = 0;
-                int daysSinceLastScore = 0;
-                if (word_scoreData != null)
-                {
-                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(word_scoreData.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
-                    daysSinceLastScore = timespanFromLastScoreToNow.Days;
-                    currentWordScore = word_scoreData.Score;
-                }
-
-                // Score Weight [0,1]: higher the lower the score [-1,1] is
-                var scoreWeight = 0.5f * (1 - currentWordScore);
-                cumulativeWeight += scoreWeight * ConfigAI.word_scoreWeight;
-
-                // Always skip letters that have a score weight of zero
-                if (scoreWeight == 0)
-                {
-                    continue;
-                }
-
-                // RecentPlay Weight  [1,0]: higher the more in the past we saw that word
-                const float dayLinerWeightDecrease = 1f / ConfigAI.daysForMaximumRecentPlayMalus;
-                float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
-                float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
-                cumulativeWeight += recentPlayWeight * ConfigAI.word_recentPlayWeight;
-
-                //UnityEngine.Debug.Log("Word " + word_Id + " score: " + currentWordScore + " days " + daysSinceLastScore);
-
-                // Save cumulative weight
-                if (cumulativeWeight <= 0)
-                {
-                    continue;
-                }
-                weights_list.Add(cumulativeWeight);
-
-                // Add the data to the list
-                var wordData = dbManager.GetWordDataById(word_Id);
-                wordData_list.Add(wordData);
-            }
-
-            //UnityEngine.Debug.Log("Number of words: " + wordData_list.Count);
-
-            // Select some words
-            if (wordData_list.Count > 0) {
-                int nToSelectFromCurrentList = UnityEngine.Mathf.Min(wordData_list.Count, nRemainingToSelect);
-                var chosenWords = RandomHelper.RouletteSelectNonRepeating(wordData_list, weights_list, nToSelectFromCurrentList);
-                selectedWordData_list.AddRange(chosenWords);
-                nRemainingToSelect -= nToSelectFromCurrentList;
-                currentAlreadyPickedLetterIds.AddRange(chosenWords.ConvertAll<string>(x => x.Id));
+                string debugString = "";
+                debugString += "--------- TEACHER: play session initialisation (journey) --------- ";
+                debugString += "\n" + journeyLetters.Count + " letters available";
+                debugString += "\n" + journeyWords.Count + " words available";
+                debugString += "\n" + journeyPhrases.Count + " phrases available";
+                UnityEngine.Debug.Log(debugString);
             }
         }
-
 
         #region Data Selection logic
 
@@ -158,7 +55,7 @@ namespace EA4S.Teacher
             // Selection filtering
             if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
             {
-                foundDataList = foundDataList.FindAll(x => currentPlaySessionLetters.Contains(x));
+                foundDataList = foundDataList.FindAll(x => journeyLetters.Contains(x));
             }
 
             if (foundDataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
@@ -169,29 +66,135 @@ namespace EA4S.Teacher
             return foundDataList;
         }
 
-        public List<Db.WordData> SelectWords(System.Func<List<Db.WordData>> selectionFunction, SelectionParameters selectionParams)
+        public List<Db.WordData> SelectWords(System.Func<List<Db.WordData>> builderSelectionFunction, SelectionParameters selectionParams)
         {
-            // All data to use
-            var foundDataList = selectionFunction();
+            string debugString = "";
+            debugString += "--------- TEACHER: data selection --------- ";
 
-            // Selection filtering
+            // Clean data based on the builder's logic
+            var dataList = builderSelectionFunction();
+            debugString += ("\nBuilder: " + dataList.Count);
+
+            // Filtering based on journey
             if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
             {
-                foundDataList = foundDataList.FindAll(x => currentPlaySessionWords.Contains(x));
+                dataList = dataList.FindAll(x => journeyWords.Contains(x));
             }
-
-            if (foundDataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
+            if (dataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
             {
-                throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances as required by the game.");
+                throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
+            }
+            debugString += ("\nJourney: " + dataList.Count);
+
+            // Filtering based on pack-list history 
+            PackListHistory sev = selectionParams.packListHistory;
+            switch (sev) {
+                case PackListHistory.NoFilter:
+                    // we do not care which are picked, in this case
+                    break;
+
+                case PackListHistory.ForceAllDifferent:
+                    // filter only by those that have not been found already in this pack, if possible
+                    dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.Id));
+
+                    if (dataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
+                    {
+                        throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the pack-history logic.");
+                    }
+                    break;
+
+                case PackListHistory.RepeatWhenFull:
+                    // reset the previous pack list if needed
+                    var tmpDataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.Id));
+                    if (tmpDataList.Count < selectionParams.nRequired)
+                    {
+                        // reset and re-pick
+                        selectionParams.filteringIds.Clear();
+                        dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.Id));
+                    }
+                    else
+                    {
+                        dataList = tmpDataList;
+                    }
+                    break;
+            }
+            debugString += ("\nPack-history: " + dataList.Count);
+
+            // Weighted selection on the remaining number
+            var selectedList = WeightedWordsSelect(dataList, selectionParams.nRequired);
+            debugString += ("\nWeighted selection: " + selectedList.Count);
+
+            if (ConfigAI.verboseDataSelection)
+            {
+                UnityEngine.Debug.Log(debugString);
             }
 
-            return foundDataList;
+            return selectedList;
+        }
+
+        // @todo: make this for Letters and Phrases too
+        private List<WordData> WeightedWordsSelect(List<WordData> source_data_list, int nToSelect)
+        {
+            // Given a (filtered) list of data, select some using weights
+
+            List<ScoreData> score_data_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'Words'");
+
+            List<float> weights_list = new List<float>();
+            foreach (var sourceData in source_data_list)
+            {
+                float cumulativeWeight = 0;
+
+                // Get score data
+                var score_data = score_data_list.Find(x => x.ElementId == sourceData.Id);
+                float currentWordScore = 0;
+                int daysSinceLastScore = 0;
+                if (score_data != null)
+                {
+                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(score_data.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
+                    daysSinceLastScore = timespanFromLastScoreToNow.Days;
+                    currentWordScore = score_data.Score;
+                }
+                //UnityEngine.Debug.Log("Data " + word_Id + " score: " + currentWordScore + " days " + daysSinceLastScore);
+
+
+                // Score Weight [0,1]: higher the lower the score [-1,1] is
+                var scoreWeight = 0.5f * (1 - currentWordScore);
+                cumulativeWeight += scoreWeight * ConfigAI.data_scoreWeight;
+
+                // RecentPlay Weight  [1,0]: higher the more in the past we saw that word
+                const float dayLinerWeightDecrease = 1f / ConfigAI.daysForMaximumRecentPlayMalus;
+                float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
+                float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
+                cumulativeWeight += recentPlayWeight * ConfigAI.data_recentPlayWeight;
+
+                // @todo: Current focus weight [1,0]: higher if the data is part of the current session
+
+                // If the cumulative weight goes to the negatives, we give it a fixed weight
+                if (cumulativeWeight <= 0)
+                {
+                    cumulativeWeight = ConfigAI.data_minimumTotalWeight;
+                    continue;
+                }
+
+                // Save cumulative weight
+                weights_list.Add(cumulativeWeight);
+            }
+
+            // Select data from the list
+            List<WordData> selected_data_list = new List<WordData>();
+            if (source_data_list.Count > 0)
+            {
+                int nToSelectFromCurrentList = UnityEngine.Mathf.Min(source_data_list.Count, nToSelect);
+                var chosenData = RandomHelper.RouletteSelectNonRepeating(source_data_list, weights_list, nToSelectFromCurrentList);
+                selected_data_list.AddRange(chosenData);
+                //nRemainingToSelect -= nToSelectFromCurrentList;
+            }
+            return selected_data_list;
         }
 
         #endregion
 
-
-        // @todo: move these to JourneyHelper instead
+        // @todo: move these to JourneyHelper instead?
         #region LearningBlock / PlaySession -> Letter
 
         public List<LetterData> GetLettersInLearningBlock(string lbId, bool pastBlocksToo = false)
@@ -328,6 +331,107 @@ namespace EA4S.Teacher
             return all_ids.ToArray();
         }
         #endregion
+
+
+        // @todo: encode the filters below in the new selection logic
+        /* DEPRECATED word selection, it is now driven by the QuestionBuilders (see below)
+        public List<Db.WordData> PerformWordSelection(string playSessionId, int numberToSelect)
+        {
+            var playData = dbManager.GetPlaySessionDataById(playSessionId);
+            List<Db.ScoreData> word_scoreData_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'Words'");
+
+            List<Db.WordData> selectedWordData_list = new List<Db.WordData>();
+
+            int nRemainingToSelect = numberToSelect;
+
+            // First check current Words
+            //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " MAIN words");
+            SelectWordsFrom(playData.Words, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+
+            // ... if it's not enough, check previous Words
+            if (nRemainingToSelect > 0)
+            {
+                //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PREVIOUS words");
+                SelectWordsFrom(playData.Words_previous, selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+            }
+
+            // ... if that's still not enough, check words from past sessions
+            if (nRemainingToSelect > 0)
+            {
+                //UnityEngine.Debug.Log("Selecting " + nRemainingToSelect + " PAST words");
+                SelectWordsFrom(this.GetAllWordIdsFromPreviousPlaySessions(playData), selectedWordData_list, word_scoreData_list, ref nRemainingToSelect);
+            }
+
+            // ... if that's still not enough, there is some issue.
+            if (nRemainingToSelect > 0)
+            {
+                UnityEngine.Debug.LogWarning("Warning: could not find enough words for play session " + playSessionId + " (found " + (numberToSelect - nRemainingToSelect) + " out of " + (numberToSelect) + ")");
+            }
+
+            return selectedWordData_list;
+        }
+
+        // DEPRECATED: now part of the new selection logic
+        void SelectWordsFrom(string[] currentWordIds, List<Db.WordData> selectedWordData_list, List<Db.ScoreData> word_scoreData_list, ref int nRemainingToSelect)
+        {
+            List<Db.WordData> wordData_list = new List<Db.WordData>();
+            List<float> weights_list = new List<float>();
+            foreach (var word_Id in currentWordIds)
+            {
+                float cumulativeWeight = 0;
+                var word_scoreData = word_scoreData_list.Find(x => x.ElementId == word_Id);
+                float currentWordScore = 0;
+                int daysSinceLastScore = 0;
+                if (word_scoreData != null)
+                {
+                    var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(word_scoreData.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
+                    daysSinceLastScore = timespanFromLastScoreToNow.Days;
+                    currentWordScore = word_scoreData.Score;
+                }
+
+                // Score Weight [0,1]: higher the lower the score [-1,1] is
+                var scoreWeight = 0.5f * (1 - currentWordScore);
+                cumulativeWeight += scoreWeight * ConfigAI.word_scoreWeight;
+
+                // Always skip letters that have a score weight of zero
+                if (scoreWeight == 0)
+                {
+                    continue;
+                }
+
+                // RecentPlay Weight  [1,0]: higher the more in the past we saw that data
+                const float dayLinerWeightDecrease = 1f / ConfigAI.daysForMaximumRecentPlayMalus;
+                float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
+                float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
+                cumulativeWeight += recentPlayWeight * ConfigAI.word_recentPlayWeight;
+
+                //UnityEngine.Debug.Log("Word " + word_Id + " score: " + currentWordScore + " days " + daysSinceLastScore);
+
+                if (cumulativeWeight <= 0)
+                {
+                    continue;
+                }
+                // Save cumulative weight
+                weights_list.Add(cumulativeWeight);
+
+                // Add the data to the list
+                var wordData = dbManager.GetWordDataById(word_Id);
+                wordData_list.Add(wordData);
+            }
+
+            //UnityEngine.Debug.Log("Number of words: " + wordData_list.Count);
+
+            // Select some words
+            if (wordData_list.Count > 0)
+            {
+                int nToSelectFromCurrentList = UnityEngine.Mathf.Min(wordData_list.Count, nRemainingToSelect);
+                var chosenWords = RandomHelper.RouletteSelectNonRepeating(wordData_list, weights_list, nToSelectFromCurrentList);
+                selectedWordData_list.AddRange(chosenWords);
+                nRemainingToSelect -= nToSelectFromCurrentList;
+            }
+        }
+        */
+
 
     }
 }
