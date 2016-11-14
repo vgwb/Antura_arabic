@@ -178,6 +178,7 @@ namespace EA4S.Db.Management
             }
 
             {
+                // @note: depends on Word
                 Debug.Log("Loading Phrases...");
                 var parser = new PhraseParser();
                 parser.Parse(DBInputData.phraseDataAsset.text, database, database.GetPhraseTable());

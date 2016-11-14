@@ -1,5 +1,4 @@
-﻿using EA4S.API;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EA4S
 {
@@ -12,21 +11,23 @@ namespace EA4S
             this.category = _category;
         }
 
-        public int GetQuestionPackCount()
+        public List<QuestionPackData> CreateAllQuestionPacks()
         {
-            return 1;
+            List<QuestionPackData> packs = new List<QuestionPackData>();
+            packs.Add(CreateSingleQuestionPackData());
+            return packs;
         }
 
-        public QuestionPackData CreateQuestionPackData()
+        private QuestionPackData CreateSingleQuestionPackData()
         {
             var db = AppManager.Instance.DB;
 
-            // Ordered words (@todo: check that it works!)
+            // Ordered words
             var correctAnswers = db.FindWordData(x => x.Category == category);
             correctAnswers.Sort((x, y) =>
-            {
-                return x.ToString().CompareTo(y.ToString());
-            }
+                {
+                    return x.ToString().CompareTo(y.ToString());
+                }
             );
 
             return QuestionPackData.CreateFromCorrect(null, correctAnswers);

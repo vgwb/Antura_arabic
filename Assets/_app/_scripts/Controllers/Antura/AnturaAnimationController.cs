@@ -94,11 +94,6 @@ public class AnturaAnimationController : MonoBehaviour
         walkingSpeed = speed;
     }
 
-    public void DoBark(System.Action onCompleted = null)
-    {
-        animator.SetTrigger("doBark");
-    }
-
     public void DoSniff(System.Action onCompleted = null)
     {
         State = AnturaAnimationStates.idle;
@@ -107,7 +102,11 @@ public class AnturaAnimationController : MonoBehaviour
 
     public void DoShout(System.Action onCompleted = null)
     {
-        animator.SetTrigger("doShout");
+        animator.SetFloat("random", Random.value);
+        if (State == AnturaAnimationStates.idle)
+            animator.SetTrigger("doShout");
+        else
+            animator.SetTrigger("doShoutAdditive");
     }
 
     public void DoBurp(System.Action onCompleted = null)

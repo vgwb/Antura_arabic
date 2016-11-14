@@ -11,19 +11,8 @@ namespace EA4S
     {
         public List<IQuestionPack> GenerateQuestionPacks(IQuestionBuilder currentConfigurationRules)
         {
-            int questionPacksNumber = currentConfigurationRules.GetQuestionPackCount();
-
-            // @todo: add this new version instead List<QuestionPackData> questionPackDataList = currentConfigurationRules.CreateAllQuestionPacks();
-
-            List<QuestionPackData> questionPackDataList = new List<QuestionPackData>();
-            for (int i = 0; i < questionPacksNumber; i++)
-            {
-                var newData = currentConfigurationRules.CreateQuestionPackData();
-                questionPackDataList.Add(newData);
-                //UnityEngine.Debug.Log(newData.ToString());
-            }
+            List<QuestionPackData> questionPackDataList = currentConfigurationRules.CreateAllQuestionPacks();
             List<IQuestionPack> questionPackList = ConvertToQuestionPacks(questionPackDataList);
-
             return questionPackList;
         }
 

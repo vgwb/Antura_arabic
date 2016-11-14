@@ -1,10 +1,10 @@
-﻿namespace EA4S.FastCrowd
+﻿namespace EA4S
 {
-    public abstract class LetterState : IGameState
+    public abstract class StrollingLetterState : IGameState
     {
-        protected FastCrowdLivingLetter letter;
+        protected StrollingLivingLetter letter;
 
-        public LetterState(FastCrowdLivingLetter letter)
+        public StrollingLetterState(StrollingLivingLetter letter)
         {
             this.letter = letter;
         }

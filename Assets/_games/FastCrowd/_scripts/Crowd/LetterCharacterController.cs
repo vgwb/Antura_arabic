@@ -2,7 +2,7 @@
 using EA4S;
 using UnityEngine;
 
-public class FastCrowdLetterMovement : MonoBehaviour
+public class LetterCharacterController : MonoBehaviour
 {
     CharacterController controller;
 
