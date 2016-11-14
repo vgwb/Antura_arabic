@@ -4,8 +4,18 @@ namespace EA4S.Assessment
 {
     public enum AssessmentCode
     {
-        LetterInWord,
         LetterShape,
-        WordsWithLetter
+        MatchLettersToWord,
+        WordsWithLetter,
+        CompleteWord,
+        OrderLettersOfWord,
+        VowelOrConsonant,
+        SelectPronouncedWord,
+        MatchWordToImage,
+        WordArticle,
+        SingularDualPlural,
+        SunMoonWord,
+        SunMoonLetter,
+        QuestionAndReply
     }
 }

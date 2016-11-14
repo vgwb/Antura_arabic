@@ -6,7 +6,7 @@ namespace EA4S.Assessment
     {
         private AssessmentGame assessmentGame;
 
-        public AssessmentQuestionState( AssessmentGame assessmentGame)
+        public AssessmentQuestionState(AssessmentGame assessmentGame)
         {
             this.assessmentGame = assessmentGame;
         }
@@ -17,14 +17,13 @@ namespace EA4S.Assessment
             var popupWidget = assessmentGame.Context.GetPopupWidget();
             popupWidget.Show();
             popupWidget.SetButtonCallback(OnPopupCloseRequested);
-            popupWidget.SetMessage( GetDescription(), true);
+            popupWidget.SetMessage(GetDescription(), true);
         }
 
-        private string  GetDescription()
+        private string GetDescription()
         {
-            switch (assessmentGame.assessmentCode)
-            {
-                case AssessmentCode.LetterInWord:
+            switch (assessmentGame.assessmentCode) {
+                case AssessmentCode.MatchLettersToWord:
                     return LetterInWord.LetterInWordConfiguration.Instance.Description;
 
                 case AssessmentCode.LetterShape:
@@ -39,12 +38,12 @@ namespace EA4S.Assessment
 
         void OnQuestionCompleted()
         {
-            assessmentGame.SetCurrentState( assessmentGame.PlayState);
+            assessmentGame.SetCurrentState(assessmentGame.PlayState);
         }
 
         void OnPopupCloseRequested()
         {
-            assessmentGame.SetCurrentState( assessmentGame.PlayState);
+            assessmentGame.SetCurrentState(assessmentGame.PlayState);
         }
 
         public void ExitState()
@@ -52,12 +51,12 @@ namespace EA4S.Assessment
             assessmentGame.Context.GetPopupWidget().Hide();
         }
 
-        public void Update( float delta)
+        public void Update(float delta)
         {
 
         }
 
-        public void UpdatePhysics( float delta)
+        public void UpdatePhysics(float delta)
         {
 
         }
