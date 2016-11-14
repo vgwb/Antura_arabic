@@ -20,18 +20,18 @@ namespace EA4S.Assessment
         public AssessmentGameState PlayState { get; private set; }
         public AssessmentResultState ResultState { get; private set; }
 
-        protected override void OnInitialize( IGameContext context)
+        protected override void OnInitialize(IGameContext context)
         {
-            IntroductionState = new AssessmentIntroState( this);
-            QuestionState = new AssessmentQuestionState( this);
-            PlayState = new AssessmentGameState( this);
-            ResultState = new AssessmentResultState( this);
+            IntroductionState = new AssessmentIntroState(this);
+            QuestionState = new AssessmentQuestionState(this);
+            PlayState = new AssessmentGameState(this);
+            ResultState = new AssessmentResultState(this);
 
         }
 
-        public void LaunchGame( IEnumerator enumerator)
+        public void LaunchGame(IEnumerator enumerator)
         {
-            StartCoroutine( enumerator);
+            StartCoroutine(enumerator);
         }
 
         protected override IGameState GetInitialState()
@@ -41,9 +41,8 @@ namespace EA4S.Assessment
 
         protected override IGameConfiguration GetConfiguration()
         {
-            switch (assessmentCode)
-            {
-                case AssessmentCode.LetterInWord:
+            switch (assessmentCode) {
+                case AssessmentCode.MatchLettersToWord:
                     return LetterInWord.LetterInWordConfiguration.Instance;
 
                 case AssessmentCode.LetterShape:
