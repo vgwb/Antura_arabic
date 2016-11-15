@@ -10,7 +10,7 @@ namespace EA4S.Assessment
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
         public int Rounds { get; set; }
-        public AssessmentCode assessmentType;
+        public AssessmentCode assessmentType = AssessmentCode.Unsetted;
 
         /////////////////
         // Singleton Pattern
@@ -94,7 +94,7 @@ namespace EA4S.Assessment
                     return Setup_WordsWithLetter_LearnRules();
 
                 default:
-                    throw new ArgumentException("NotImplemented Yet!");
+                    throw new ArgumentException( "NotImplemented Yet!");
             }
         }
 
