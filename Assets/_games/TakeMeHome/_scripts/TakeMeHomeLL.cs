@@ -23,6 +23,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		Vector3 holdPosition;
 		Vector3 normalPosition;
+        bool isResetting = false;
 
 		private float cameraDistance;
 
@@ -54,7 +55,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 			holdPosition.y = normalPosition.y;
 			lastTube = null;
 			respawn = true;
-		}
+            isResetting = false;
+
+        }
 
 		public void Initialize(float _maxY, LetterObjectView _letter, Vector3 tubePosition)
 		{
@@ -67,8 +70,8 @@ public class TakeMeHomeLL : MonoBehaviour {
 			maxY = _maxY;
 
 			dropLetter = false;
-
-			clampPosition = false;
+            isResetting = false;
+            clampPosition = false;
 
 		}
 
@@ -225,7 +228,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
                 
                 //check if position should clamp:
-                if (transform.position.x > 3)// && transform.position.y > maxY)
+                if (transform.position.x > 5.4f)// && transform.position.y > maxY)
 					clampPosition = true;
 
 				PlayIdleAnimation();
@@ -283,8 +286,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 			if (clampedPosition.y == maxY) {
 				dropLetter = false;
 				clampPosition = false;
+                isResetting = false;
 
-			}
+            }
 			
 			return clampedPosition;
 		}
@@ -298,10 +302,12 @@ public class TakeMeHomeLL : MonoBehaviour {
 			{
 				moveTweener.Kill();
 			}
+            isResetting = true;
+            transform.DOScale(0.1f, 0.1f);
 
-            transform.DOScale(0.3f, 0.1f);
-
-			moveTweener = transform.DOLocalMove(transform.position + lastTube.transform.up*5/* + new Vector3(0,0,20)*/, 0.2f).OnComplete(delegate () { 
+            Vector3 targetPosition = lastTube.transform.FindChild("Cube").position;
+            lastTube = null;
+            moveTweener = transform.DOLocalMove(targetPosition/*transform.position + lastTube.transform.up*5 + new Vector3(0,0,20)*/, 0.3f).OnComplete(delegate () { 
 				PlayIdleAnimation(); 
 				if (endTransformToCallback != null) endTransformToCallback();
 
@@ -311,7 +317,8 @@ public class TakeMeHomeLL : MonoBehaviour {
                 clampPosition = true;
 				dropLetter = true;
 				isMoving = false;
-			});
+
+            });
 		}
 
 		public void panicAndRun()
@@ -336,7 +343,8 @@ public class TakeMeHomeLL : MonoBehaviour {
                     moveTweener.Kill();
                 }
 
-                moveTweener = transform.DOLocalMove(new Vector3(2, -6.52f, -15), 1).OnComplete(delegate () {
+                moveTweener = transform.DOLocalMove(new Vector3(5.2f, -3.44f, -15), 0.5f).OnComplete(delegate () {
+                  
                     PlayIdleAnimation();
                     respawn = false;
                     clampPosition = false;
@@ -357,10 +365,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		public void followTube(bool win)
 		{
-			
 
+            if (isResetting) return;
 
-
+            Debug.Log("following tube");
+            isResetting = true;
 			isMoving = true;
 			isDraggable = false;
 			dropLetter = false;
@@ -419,6 +428,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		void OnTriggerEnter(Collider other)
 		{
+            if (isResetting) return;
+
+
 			if (!dragging) {
 				lastTube = null;
 				return;
@@ -427,22 +439,32 @@ public class TakeMeHomeLL : MonoBehaviour {
 			TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube> ();
 			if (!tube)
 				return;
+            Debug.Log("entering tube: " + tube.gameObject.name);
 
 			lastTube = tube;
 			tube.shake ();
 		}
 
-		void OnTriggerExit(Collider other)
-		{
-			//if (!dragging)
-			//	return;
+        void OnTriggerStay(Collider other)
+        {
+            TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube>();
+            if (!tube || lastTube != tube)
+                return;
+            
+            tube.shake();
+        }
 
+
+        void OnTriggerExit(Collider other)
+		{
+          
+            if (!isDraggable) return;
 
 			TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube> ();
-			if (!tube)
+			if (!tube || lastTube != tube)
 				return;
 
-			lastTube = null;
+            lastTube = null;
 		}
 	}
 

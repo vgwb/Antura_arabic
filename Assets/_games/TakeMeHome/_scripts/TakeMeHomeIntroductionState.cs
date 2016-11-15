@@ -17,6 +17,7 @@
 
 		public void EnterState()
 		{
+            game.activateTubes(UnityEngine.Mathf.RoundToInt(TakeMeHomeConfiguration.Instance.Difficulty*4));
 			game.IncrementRound();
 
 			if (game.currentRound > 6) {
