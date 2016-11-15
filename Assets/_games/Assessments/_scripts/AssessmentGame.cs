@@ -23,7 +23,6 @@ namespace EA4S.Assessment
             QuestionState = new AssessmentQuestionState(this);
             PlayState = new AssessmentGameState(this);
             ResultState = new AssessmentResultState(this);
-
         }
 
         protected override IGameState GetInitialState()

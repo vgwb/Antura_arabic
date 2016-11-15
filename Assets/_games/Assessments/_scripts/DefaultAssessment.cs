@@ -20,7 +20,7 @@ namespace EA4S.Assessment
             GameContext = game_context;
         }
 
-        public IEnumerator PlayCoroutine(Action gameEndedCallback)
+        public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
             for(int round = 0; round< AssessmentConfiguration.Rounds; round++)
             {
