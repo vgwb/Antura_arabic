@@ -7,7 +7,7 @@ namespace EA4S.Log {
     /// <summary>
     /// Concrete implementation of log manager to store log data on db.
     /// </summary>
-    public class AppLogManager : ILogManager {
+    public class MinigameLogManager : ILogManager {
 
         #region Runtime variables
         // Minigame
@@ -16,6 +16,27 @@ namespace EA4S.Log {
         MiniGameCode miniGameCode;
         List<ILivingLetterAnswerData> logLearnBuffer = new List<ILivingLetterAnswerData>();
         List<LogIntelligence.PlayResultParameters> logPlayBuffer = new List<LogIntelligence.PlayResultParameters>();
+        #endregion
+
+        #region Initializations
+
+        public void InitLogSession() {
+            session = DateTime.Now.Ticks.ToString();
+        }
+
+        public void InitPlaySession() {
+            playSession = DateTime.Now.Ticks.ToString();
+        }
+
+        /// <summary>
+        /// Initializes the single minigame gameplay log session.
+        /// </summary>
+        public void InitGameplayLogSession(MiniGameCode _minigameCode) {
+            miniGameCode = _minigameCode;
+        }
+
+
+
         #endregion
 
         #region API       
@@ -146,25 +167,8 @@ namespace EA4S.Log {
 
         #endregion
 
-        #region Initializations
-
-        public void InitLogSession() {
-            session = DateTime.Now.Ticks.ToString();
-        }
-
-        public void InitPlaySession() {
-            playSession = DateTime.Now.Ticks.ToString();
-        }
-
-        /// <summary>
-        /// Initializes the single minigame gameplay log session.
-        /// </summary>
-        public void InitGameplayLogSession(MiniGameCode _minigameCode) {
-            miniGameCode = _minigameCode;   
-        }
-
-
-
+        #region Mood
+        
         #endregion
 
         #region internal data structures and interfaces
