@@ -8,6 +8,18 @@ namespace EA4S.Log {
     /// </summary>
     public class AppLogManager {
 
+        private string _session = "ToBeSet";
+        /// <summary>
+        /// Gets or sets the session.
+        /// </summary>
+        /// <value>
+        /// The session.
+        /// </value>
+        public string Session {
+            get { return _session; }
+            private set { _session = value; }
+        }
+
         /// <summary>
         /// The minigame log manager concrete instance.
         /// </summary>
@@ -19,12 +31,12 @@ namespace EA4S.Log {
             AppManager.Instance.Teacher.logIntelligence.LogMiniGameScore(miniGameCode, score);
         }
         
-        protected internal void LogPlay(string session, string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.PlayResultParameters> resultsList) {
-            AppManager.Instance.Teacher.logIntelligence.LogPlay(session, playSession, miniGameCode, resultsList);
+        protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.PlayResultParameters> resultsList) {
+            AppManager.Instance.Teacher.logIntelligence.LogPlay(Session, playSession, miniGameCode, resultsList);
         }
 
-        protected internal void LogLearn(string session, string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.LearnResultParameters> resultsList) {
-            AppManager.Instance.Teacher.logIntelligence.LogLearn(session, playSession, miniGameCode, resultsList);
+        protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.LearnResultParameters> resultsList) {
+            AppManager.Instance.Teacher.logIntelligence.LogLearn(Session, playSession, miniGameCode, resultsList);
         }
 
         #endregion
@@ -54,8 +66,8 @@ namespace EA4S.Log {
         /// <param name="session">The session.</param>
         /// <param name="infoEvent">The information event.</param>
         /// <param name="parametersString">The parameters string.</param>
-        public void LogInfo(string session, InfoEvent infoEvent, string parametersString) {
-            AppManager.Instance.Teacher.logIntelligence.LogInfo(session, infoEvent, parametersString);
+        public void LogInfo(InfoEvent infoEvent, string parametersString = "") {
+            AppManager.Instance.Teacher.logIntelligence.LogInfo(Session, infoEvent, parametersString);
         }
 
         /// <summary>
@@ -66,6 +78,9 @@ namespace EA4S.Log {
             AppManager.Instance.Teacher.logIntelligence.LogMood(mood);
         }
 
+        public void StartApp() {
+            LogInfo(InfoEvent.AppStarted);
+        }
         #endregion
     }
 }
