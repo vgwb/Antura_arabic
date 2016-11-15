@@ -8,7 +8,7 @@ namespace EA4S
     {
         IAudioManager audioManager = new SampleAudioManager();
         IInputManager inputManager = new SampleInputManager();
-        ILogManager logManager = new AppLogManager();
+        ILogManager logManager = new MinigameLogManager();
 
         ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
         IStarsWidget starsWidget = new SampleStarsWidget();
