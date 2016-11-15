@@ -184,7 +184,8 @@ namespace EA4S
             if (letterData.DataType == LivingLetterDataType.Letter)
                 return GetAudioClip(LETTERS_PREFIX + letterData.Key);
             else if (letterData.DataType == LivingLetterDataType.Word)
-                return GetAudioClip(WORDS_PREFIX + letterData.Key);
+                return Resources.Load("AudioArabic/Words/" + letterData.Key) as AudioClip;
+            //return GetAudioClip(WORDS_PREFIX + letterData.Key);
             return null;
         }
 
