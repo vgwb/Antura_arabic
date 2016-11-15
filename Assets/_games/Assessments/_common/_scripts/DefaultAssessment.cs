@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 
 namespace EA4S.Assessment
@@ -32,7 +32,7 @@ namespace EA4S.Assessment
                         QuestionGenerator.GetNextQuestion(),                 
                         QuestionGenerator.GetNextAnswers()      );
                 
-                QuestionGenerator.InitRound();
+                QuestionGenerator.CompleteRound();
                 QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
                 AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
 

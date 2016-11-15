@@ -1,5 +1,3 @@
-﻿using UnityEngine;
-
 namespace EA4S.Assessment
 {
     /// <summary>
@@ -10,6 +8,25 @@ namespace EA4S.Assessment
         public static IAssessment CreateLetterInWordAssessment( IAssessmentConfiguration configuration)
         {
             Init(); // common initialization stuff
+            var generator = new DefaultQuestionGenerator( configuration.Questions);
+
+            //            return new DefaultAssessment();
+            return null;
+        }
+
+        public static IAssessment LetterShapeAssessment( IAssessmentConfiguration configuration)
+        {
+            Init(); // common initialization stuff
+            var generator = new DefaultQuestionGenerator( configuration.Questions);
+
+            //            return new DefaultAssessment();
+            return null;
+        }
+
+        public static IAssessment WordsWithLetterAssessment( IAssessmentConfiguration configuration)
+        {
+            Init(); // common initialization stuff
+            var generator = new DefaultQuestionGenerator( configuration.Questions);
 
             //            return new DefaultAssessment();
             return null;
