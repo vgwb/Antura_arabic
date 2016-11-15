@@ -36,16 +36,16 @@ namespace EA4S.TestE
                     if (hit.collider.tag == "Rope")
                     {
 
-                        int numDotsRope = hit.transform.gameObject.GetComponent<Rope>().dots.Count;
+                        int numDotsRope = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots.Count;
 
                         float distaceHitToDot = 1000;
                         float distanceHitBefore = 0;
                         int dotCloser = 0;
 
                         for (int i = 0; i < numDotsRope; i++)
-                        {
+                        {                         
                             distanceHitBefore = Vector3.Distance(hit.point,
-                                hit.transform.gameObject.GetComponent<Rope>().dots[i].transform.position);
+                                hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[i].transform.position);
                             if (distanceHitBefore < distaceHitToDot)
                             {
                                 distaceHitToDot = distanceHitBefore;
@@ -53,15 +53,15 @@ namespace EA4S.TestE
                             }
                         }
 
-                        int posDotMiniMapScript = hit.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().pos;
+                        int posDotMiniMapScript = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().pos;
                         posDot = miniMapScript.posDots[posDotMiniMapScript].transform.position;
                         pos = posDotMiniMapScript;
 
-                        if (hit.transform.gameObject.GetComponent<Rope>().learningBlockRope != AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock)
+                        if (hit.transform.parent.transform.gameObject.GetComponent<Rope>().learningBlockRope != AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock)
                             transform.position = miniMapScript.posDots[posDotMiniMapScript].transform.position;
 
-                        AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = hit.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().playSessionActual;
-                        AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = hit.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().learningBlockActual;
+                        AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().playSessionActual;
+                        AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().learningBlockActual;
                     }
 
                     if (hit.collider.tag == "Pin")

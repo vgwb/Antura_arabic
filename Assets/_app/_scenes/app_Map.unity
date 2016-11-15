@@ -576,6 +576,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &35168317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 35168318}
+  - 65: {fileID: 35168319}
+  m_Layer: 0
+  m_Name: ColliderRope (8)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &35168318
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 35168317}
+  m_LocalRotation: {x: 0, y: -0.08680806, z: 0, w: 0.9962251}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.96, z: 0}
+  m_Children: []
+  m_Father: {fileID: 652761576}
+  m_RootOrder: 0
+--- !u!65 &35168319
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 35168317}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 2.78, y: 0, z: 8.4}
 --- !u!1 &37102201 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -601,7 +642,7 @@ BoxCollider:
   m_GameObject: {fileID: 37102201}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.4388502, z: 18.158262}
   m_Center: {x: 2.24, y: -0.000000008839973, z: 9.079131}
@@ -2431,7 +2472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -2584,7 +2625,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -2992,7 +3033,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -3641,10 +3682,51 @@ BoxCollider:
   m_GameObject: {fileID: 389382694}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.43885016, z: 18.158262}
   m_Center: {x: 2.24, y: 0.000000004788319, z: 9.079135}
+--- !u!1 &418450372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 418450373}
+  - 65: {fileID: 418450374}
+  m_Layer: 0
+  m_Name: ColliderRope (6)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &418450373
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 418450372}
+  m_LocalRotation: {x: 0, y: -0.052684464, z: 0, w: 0.9986113}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -6.04, z: 0}
+  m_Children: []
+  m_Father: {fileID: 642079609}
+  m_RootOrder: 0
+--- !u!65 &418450374
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 418450372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 1.54, y: 0, z: 9.43}
 --- !u!1 &429079326
 GameObject:
   m_ObjectHideFlags: 0
@@ -3931,7 +4013,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -4859,10 +4941,92 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8736875d78b3ec74c9d30de5581a6768, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &575247643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 575247644}
+  - 65: {fileID: 575247645}
+  m_Layer: 0
+  m_Name: ColliderRope (5)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575247644
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 575247643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 735632381}
+  m_RootOrder: 0
+--- !u!65 &575247645
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 575247643}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 1.32, y: 0, z: 8.47}
 --- !u!4 &579153963 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: edf5f77301bdde4498a1b93f5ba34166, type: 3}
   m_PrefabInternal: {fileID: 1667117100}
+--- !u!1 &581122836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 581122837}
+  - 65: {fileID: 581122838}
+  m_Layer: 0
+  m_Name: ColliderRope (10)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &581122837
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 581122836}
+  m_LocalRotation: {x: 0, y: -0.065054774, z: 0, w: 0.9978817}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -7.46, z: 0}
+  m_Children: []
+  m_Father: {fileID: 46242116}
+  m_RootOrder: 0
+--- !u!65 &581122838
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 581122836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 2.96, y: 0, z: 8.4}
 --- !u!1 &581516016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,6 +5227,47 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
   m_PrefabInternal: {fileID: 588439336}
+--- !u!1 &590479149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 590479150}
+  - 65: {fileID: 590479151}
+  m_Layer: 0
+  m_Name: ColliderRope (7)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &590479150
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590479149}
+  m_LocalRotation: {x: 0, y: -0.0473679, z: 0, w: 0.9988775}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -5.43, z: 0}
+  m_Children: []
+  m_Father: {fileID: 286957801}
+  m_RootOrder: 0
+--- !u!65 &590479151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590479149}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 1.54, y: 0, z: 10.47}
 --- !u!4 &611356728 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -5298,7 +5503,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -6422,7 +6627,7 @@ BoxCollider:
   m_GameObject: {fileID: 823817422}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.4388507, z: 18.158262}
   m_Center: {x: 2.24, y: -0.0000002705792, z: 9.079131}
@@ -7647,7 +7852,7 @@ BoxCollider:
   m_GameObject: {fileID: 987824082}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.43885073, z: 18.158262}
   m_Center: {x: 2.24, y: -0.00000026468587, z: 9.079131}
@@ -7676,7 +7881,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000889365}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.43885046, z: 18.158262}
   m_Center: {x: 2.24, y: -0.00000012350297, z: 9.079131}
@@ -8397,7 +8602,7 @@ BoxCollider:
   m_GameObject: {fileID: 1137793865}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.4388507, z: 18.15826}
   m_Center: {x: 2.24, y: -0.00000027352584, z: 9.07913}
@@ -8553,7 +8758,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -8662,7 +8867,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -8844,7 +9049,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -9105,6 +9310,47 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 97d0846a294be0f4b822d3ed2d7d621e, type: 3}
   m_PrefabInternal: {fileID: 1813390193}
+--- !u!1 &1230154936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1230154937}
+  - 65: {fileID: 1230154938}
+  m_Layer: 0
+  m_Name: ColliderRope (1)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1230154937
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230154936}
+  m_LocalRotation: {x: 0, y: -0.05320748, z: 0, w: 0.9985835}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -6.1, z: 0}
+  m_Children: []
+  m_Father: {fileID: 559875209}
+  m_RootOrder: 0
+--- !u!65 &1230154938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230154936}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 1.24, y: 0, z: 8.13}
 --- !u!4 &1233349990 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
@@ -9262,6 +9508,47 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1239156772}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1240699711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1240699712}
+  - 65: {fileID: 1240699713}
+  m_Layer: 0
+  m_Name: ColliderRope (3)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1240699712
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1240699711}
+  m_LocalRotation: {x: 0, y: -0.059306376, z: 0, w: 0.9982399}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -6.8, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1880079670}
+  m_RootOrder: 0
+--- !u!65 &1240699713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1240699711}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 1.68, y: 0, z: 8.47}
 --- !u!1 &1272448301 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -9287,7 +9574,7 @@ BoxCollider:
   m_GameObject: {fileID: 1272448301}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.4388502, z: 18.15826}
   m_Center: {x: 2.24, y: 0.0000000169112, z: 9.079129}
@@ -10076,7 +10363,7 @@ BoxCollider:
   m_GameObject: {fileID: 1387546259}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.4388502, z: 18.158262}
   m_Center: {x: 2.24, y: -0.0000000058933156, z: 9.079131}
@@ -10154,6 +10441,47 @@ Transform:
   - {fileID: 1292008019}
   m_Father: {fileID: 302039916}
   m_RootOrder: 2
+--- !u!1 &1394183080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1394183081}
+  - 65: {fileID: 1394183082}
+  m_Layer: 0
+  m_Name: ColliderRope
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1394183081
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394183080}
+  m_LocalRotation: {x: 0, y: -0.05320748, z: 0, w: 0.9985835}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -6.1, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1233683069}
+  m_RootOrder: 0
+--- !u!65 &1394183082
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394183080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 1.24, y: 0, z: 8.13}
 --- !u!1001 &1406258235
 Prefab:
   m_ObjectHideFlags: 0
@@ -10787,6 +11115,47 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 200f1ecc2df845742b3b7f584bac9f22, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1506545390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1506545391}
+  - 65: {fileID: 1506545392}
+  m_Layer: 0
+  m_Name: ColliderRope (2)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506545391
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506545390}
+  m_LocalRotation: {x: 0, y: -0.05451448, z: 0, w: 0.99851304}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -6.25, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1215435261}
+  m_RootOrder: 0
+--- !u!65 &1506545392
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506545390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 1.68, y: 0, z: 9.67}
 --- !u!1 &1508794802
 GameObject:
   m_ObjectHideFlags: 0
@@ -10935,7 +11304,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -11309,7 +11678,7 @@ BoxCollider:
   m_GameObject: {fileID: 1538019683}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.43885016, z: 18.158262}
   m_Center: {x: 2.24, y: 0.0000000058933156, z: 9.079131}
@@ -12193,7 +12562,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -12661,6 +13030,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1393147232}
   m_RootOrder: 0
+--- !u!1 &1696059431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1696059432}
+  - 65: {fileID: 1696059433}
+  m_Layer: 0
+  m_Name: ColliderRope (4)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1696059432
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1696059431}
+  m_LocalRotation: {x: 0, y: -0.06705755, z: 0, w: 0.99774915}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: -7.69, z: 0}
+  m_Children: []
+  m_Father: {fileID: 611356728}
+  m_RootOrder: 0
+--- !u!65 &1696059433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1696059431}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 2.37, y: 0, z: 8.47}
 --- !u!1 &1711514603
 GameObject:
   m_ObjectHideFlags: 0
@@ -12809,7 +13219,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
       propertyPath: m_TagString
-      value: Rope
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
@@ -14243,7 +14653,7 @@ BoxCollider:
   m_GameObject: {fileID: 1892125378}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.43885127, z: 18.158262}
   m_Center: {x: 2.24, y: -0.0000005470517, z: 9.079131}
@@ -15278,6 +15688,47 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b59d45957fa9202489d85e5aef832069, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &2037935966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2037935967}
+  - 65: {fileID: 2037935968}
+  m_Layer: 0
+  m_Name: ColliderRope (9)
+  m_TagString: Rope
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2037935967
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2037935966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 706647247}
+  m_RootOrder: 0
+--- !u!65 &2037935968
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2037935966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.87, y: 1, z: 20.54}
+  m_Center: {x: 2.4, y: 0, z: 8.4}
 --- !u!1 &2074916757
 GameObject:
   m_ObjectHideFlags: 0
@@ -15520,7 +15971,7 @@ BoxCollider:
   m_GameObject: {fileID: 2101832117}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 11.72, y: 0.43885037, z: 18.15826}
   m_Center: {x: 2.24, y: -0.000002045585, z: 9.07913}
