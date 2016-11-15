@@ -7,6 +7,7 @@ namespace EA4S.SickLetters
     public class SickLettersVase : MonoBehaviour
     {
 
+        public BoxCollider vaseCollider;
         public TextMeshPro _counter;
         public int counter
         {
@@ -41,54 +42,100 @@ namespace EA4S.SickLetters
 
         void OnTriggerEnter(Collider coll)
         {
+            checkEntry(coll);
+        }
+
+        void OnTriggerExit(Collider coll)
+        {
             if (coll.tag == "Player")
             {
                 dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
 
-                if (!dd)
+                if (!dd || dd.isInVase)
                     return;
 
-                if(dd.isDragging)
-                    cheatingDetected = true;
+                if (dd.isDragging)
+                    dd.isTouchingVase = false;
+            }
+         }
+        /*void OnTriggerStay(Collider coll)
+        {
+            checkEntry(coll);
+        }*/
 
-                if (dd.isCorrect)
-                {
-                    game.onWrongMove();
-                    game.Poof(dd.transform.position);
+        private void checkEntry(Collider coll)
+        {
+            
+            if (coll.tag == "Player")
+            {
+                dd = coll.gameObject.GetComponent<SickLettersDraggableDD>();
 
-                    StartCoroutine(onDroppingCorrectDD());
-                    dd.resetCorrectDD();
-                }
-                else if(!dd.isInVase)
-                {
-                    dd.deattached = true;
+                if (dd.isDragging)
+                    dd.isTouchingVase = true;
+                if (!dd || dd.isDragging || dd.isInVase)
+                    return;
 
-                    if (cheatingDetected)
-                    {
-                        game.onWrongMove();
-                        game.Poof(dd.transform.position);
-                        Destroy(dd.gameObject);
-                        cheatingDetected = false;
-                    }
-                    else
-                    {
-                        counter++;
-                        game.Context.GetCheckmarkWidget().Show(true);
-                        game.Context.GetAudioManager().PlaySound(Sfx.OK);
-                        game.currentStars = (counter / 2) / (game.targetScale / 6);
-                        game.Context.GetOverlayWidget().SetStarsScore(game.currentStars);
-                        dd.isInVase = true;
-                        
-                    }
+                //if (dd.isDragging)
+                //  cheatingDetected = true;
+                
+                addNewDDToVas(dd);
 
-                    game.checkForNextRound();
-                    
-                }
             }
         }
 
+        public void addNewDDToVas(SickLettersDraggableDD dd)
+        {
+            if (dd.isCorrect)
+            {
+                game.onWrongMove();
+                game.Poof(dd.transform.position);
+
+                StartCoroutine(onDroppingCorrectDD());
+                dd.resetCorrectDD();
+            }
+            else if (!dd.isInVase)
+            {
+                dd.deattached = true;
+
+                /*if (cheatingDetected)
+                {
+                    game.onWrongMove();
+                    game.Poof(dd.transform.position);
+                    Destroy(dd.gameObject);
+                    cheatingDetected = false;
+                }
+                else*/
+                {
+                    counter++;
+                    game.lastMoveIsCorrect = true;
+                    if (!dd.isTouchingVase)
+                        dd.boxCollider.isTrigger = false;
+
+                    TutorialUI.MarkYes(transform.position - Vector3.forward*2 + Vector3.up, TutorialUI.MarkSize.Big);
+                    //game.Context.GetCheckmarkWidget().Show(true);
+                    game.Context.GetAudioManager().PlaySound(Sfx.OK);
+
+                    if (counter > game.maxWieght)
+                    {
+                        game.Context.GetOverlayWidget().SetStarsThresholds((game.targetScale / 3), (game.targetScale * 2 / 3), game.targetScale);
+                        game.currentStars = (counter / 2) / (game.targetScale / 6);
+                        game.Context.GetOverlayWidget().SetStarsScore(counter/*game.currentStars*/);
+                    }
+
+                    dd.isInVase = true;
+                    dd.gameObject.tag = "Finish";
+
+                }
+
+                game.checkForNextRound();
+            }
+
+            
+        }
 
         public IEnumerator onDroppingCorrectDD() {
+
+            
 
             StartCoroutine(game.antura.bark());
 
@@ -109,6 +156,11 @@ namespace EA4S.SickLetters
 
             StartCoroutine(dropVase());
 
+            if(game.scale.counter > game.maxWieght)
+                game.maxWieght = game.scale.counter;
+
+            game.scale.counter = 0;
+
             yield return new WaitForSeconds(3);
 
             game.Poof(transform.position);
@@ -125,10 +177,23 @@ namespace EA4S.SickLetters
 
         public IEnumerator dropVase(float delay = 0, bool moveCam = false)
         {
+            //if (game.roundsCount == 0)
+              //  yield break;
+
             yield return new WaitForSeconds(delay);
 
             vaseRB.constraints = RigidbodyConstraints.None;
             vaseRB.isKinematic = false;
+
+            foreach (SickLettersDraggableDD dd in game.allWrongDDs)
+            {
+                if (dd && dd.isInVase)
+                {
+                    dd.boxCollider.isTrigger = false;
+                    dd.thisRigidBody.isKinematic = false;
+                    dd.thisRigidBody.useGravity = true;
+                }
+            }
 
             if (moveCam)
             {
