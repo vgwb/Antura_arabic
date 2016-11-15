@@ -1,4 +1,5 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 using ArabicSupport;
 
@@ -30,7 +31,8 @@ namespace EA4S
         public static string GetLetterFromUnicode(string hexCode)
         {
             if (hexCode == "") {
-                throw new System.Exception("Letter requested with an empty hexacode (is it a real letter?)");
+                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
+                hexCode = "002D";
             }
 
             int unicode = int.Parse(hexCode, System.Globalization.NumberStyles.HexNumber);
