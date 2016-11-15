@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using ArabicSupport;
@@ -14,6 +15,7 @@ namespace EA4S
         [SerializeField]
         protected string m_text;
 
+        public bool isTMPro = true;
         public bool isUI;
         public bool isArabic;
 
@@ -30,17 +32,33 @@ namespace EA4S
 
         void updateText()
         {
-            if (isArabic) {
-                if (isUI) {
-                    gameObject.GetComponent<TextMeshProUGUI>().text = ArabicAlphabetHelper.PrepareStringForDisplay(m_text);
+            if (isTMPro) {
+                if (isArabic) {
+                    if (isUI) {
+                        gameObject.GetComponent<TextMeshProUGUI>().text = ArabicAlphabetHelper.PrepareStringForDisplay(m_text);
+                    } else {
+                        gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.PrepareStringForDisplay(m_text);
+                    }
                 } else {
-                    gameObject.GetComponent<TextMeshPro>().text = ArabicAlphabetHelper.PrepareStringForDisplay(m_text);
+                    if (isUI) {
+                        gameObject.GetComponent<TextMeshProUGUI>().text = m_text;
+                    } else {
+                        gameObject.GetComponent<TextMeshPro>().text = m_text;
+                    }
                 }
             } else {
-                if (isUI) {
-                    gameObject.GetComponent<TextMeshProUGUI>().text = m_text;
+                if (isArabic) {
+                    if (isUI) {
+                        gameObject.GetComponent<Text>().text = ArabicFixer.Fix(m_text);
+                    } else {
+                        gameObject.GetComponent<TextMesh>().text = ArabicAlphabetHelper.PrepareStringForDisplay(m_text);
+                    }
                 } else {
-                    gameObject.GetComponent<TextMeshPro>().text = m_text;
+                    if (isUI) {
+                        gameObject.GetComponent<Text>().text = m_text;
+                    } else {
+                        gameObject.GetComponent<TextMesh>().text = m_text;
+                    }
                 }
             }
         }
