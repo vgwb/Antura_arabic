@@ -332,6 +332,8 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.Show();
+            correctLetterCntrl.letterObjectView.DoHorray();
+            correctLetterCntrl.ShowVictoryRays();
 
             yield return new WaitForSeconds(1.3f);
 

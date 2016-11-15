@@ -1553,6 +1553,8 @@ MonoBehaviour:
   boxCollider: {fileID: 65000012295801092}
   letterWithPropsCntrl: {fileID: 114000012251784484}
   shadow: {fileID: 1000011149906606}
+  letterObjectView: {fileID: 0}
+  victoryRays: {fileID: 0}
 --- !u!114 &114000013315525300
 MonoBehaviour:
   m_ObjectHideFlags: 1
