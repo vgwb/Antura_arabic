@@ -45,8 +45,6 @@ namespace EA4S.Assessment
 
         public IQuestionBuilder SetupBuilder()
         {
-            /// TO M.PIROVANO: Dentro allo switch ci sono i metodi da implementare 
-            /// Vedi anche il metodo SetupLearnRules()
             switch (assessmentType)
             {
                 case AssessmentCode.LetterShape:
@@ -65,23 +63,21 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
-            throw new NotImplementedException();
+            return new WordsWithLetterQuestionBuilder(nPacks: 10, nCorrect: 5, nWrong: 5);
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
-            throw new NotImplementedException();
+            return new LettersInWordQuestionBuilder(nPacks: 10, useAllCorrectLetters: true, nWrong: 5);
         }
 
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
-            throw new NotImplementedException();
+            return new RandomLettersQuestionBuilder(nPacks: 10, nCorrect:1, firstCorrectIsQuestion:true, nWrong: 5);
         }
 
         public MiniGameLearnRules SetupLearnRules()
         {
-            /// TO M.PIROVANO: Dentro allo switch ci sono i metodi da implementare 
-            /// Vedi anche il metodo SetupBuilder()
             switch (assessmentType)
             {
                 case AssessmentCode.LetterShape:
@@ -100,17 +96,18 @@ namespace EA4S.Assessment
 
         private MiniGameLearnRules Setup_WordsWithLetter_LearnRules()
         {
-            throw new NotImplementedException();
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_MatchLettersToWord_LearnRules()
         {
-            throw new NotImplementedException();
+            return new MiniGameLearnRules();
         }
 
         private MiniGameLearnRules Setup_LetterShape_LearnRules()
         {
-            throw new NotImplementedException();
+            return new MiniGameLearnRules();
         }
+
     }
 }
