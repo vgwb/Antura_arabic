@@ -11,15 +11,18 @@ namespace EA4S
         private int nWrong;
         private bool firstCorrectIsQuestion;
         private PackListHistory packListHistory;
+        private PackListHistory wrongAnswersPackListHistory;
 
         public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false,
-            PackListHistory packListHistory = PackListHistory.NoFilter)
+            PackListHistory packListHistory = PackListHistory.NoFilter,
+            PackListHistory wrongAnswersPackListHistory = PackListHistory.NoFilter)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
             this.packListHistory = packListHistory;
+            this.wrongAnswersPackListHistory = wrongAnswersPackListHistory;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -50,7 +53,8 @@ namespace EA4S
 
             var wrongLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()),
-                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney:true)
+                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney:true,
+                     packListHistory: this.wrongAnswersPackListHistory, filteringIds: previousPacksIDs)
                 );
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
