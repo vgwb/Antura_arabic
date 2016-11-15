@@ -31,8 +31,8 @@ namespace EA4S
         public static string GetLetterFromUnicode(string hexCode)
         {
             if (hexCode == "") {
-                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning © for now.");
-                hexCode = "00A9";
+                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
+                hexCode = "002D";
             }
 
             int unicode = int.Parse(hexCode, System.Globalization.NumberStyles.HexNumber);
