@@ -289,12 +289,12 @@ namespace EA4S.ThrowBalls
                 {
                     numRoundsWon++;
 
-                    if (numRoundsWon == 2)
+                    if (numRoundsWon == 1)
                     {
                         MinigamesUI.Starbar.GotoStar(0);
                     }
 
-                    else if (numRoundsWon == 4)
+                    else if (numRoundsWon == 3)
                     {
                         MinigamesUI.Starbar.GotoStar(1);
                     }
@@ -426,17 +426,17 @@ namespace EA4S.ThrowBalls
 
             int numberOfStars = 2;
 
-            if (numRoundsWon <= 0)
+            if (numRoundsWon == 0)
             {
                 numberOfStars = 0;
                 WidgetSubtitles.I.DisplaySentence("game_result_retry");
             }
-            else if (numRoundsWon <= 2)
+            else if (numRoundsWon == 1 || numRoundsWon == 2)
             {
                 numberOfStars = 1;
                 WidgetSubtitles.I.DisplaySentence("game_result_fair");
             }
-            else if (numRoundsWon <= 4)
+            else if (numRoundsWon == 3 || numRoundsWon == 4)
             {
                 numberOfStars = 2;
                 WidgetSubtitles.I.DisplaySentence("game_result_good");
