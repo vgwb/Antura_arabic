@@ -100,7 +100,9 @@ namespace EA4S
             }
         }
 
-        // Change this to change position of assessment in the alpha.
+        /// <summary>
+        /// The current minigame.
+        /// </summary>
         [HideInInspector]
         public Db.MiniGameData CurrentMinigame;
 

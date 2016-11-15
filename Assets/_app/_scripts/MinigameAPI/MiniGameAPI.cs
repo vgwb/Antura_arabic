@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using ModularFramework.Core;
-using EA4S;
 using System.Linq;
 using System;
 using EA4S.Db;
+using EA4S.Log;
 
-namespace EA4S.API
-{
+namespace EA4S.API {
 
     /// <summary>
     /// TODO: this API implementation will be replaced by dependency injection pattern implementation.
@@ -134,8 +133,7 @@ namespace EA4S.API
 
         #region Gameplay Management
 
-        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)
-        {
+        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration) {
             // To be deleted
             List<IQuestionPack> _gameData = null;
 
@@ -259,15 +257,15 @@ namespace EA4S.API
                     // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Scanner:
-                    //                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
+//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
-                //                case MiniGameCode.Scanner_phrase:
-                //                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
-                //                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
-                //                    actualConfig = Scanner.ScannerConfiguration.Instance;
-                //                    break;
+//                case MiniGameCode.Scanner_phrase:
+//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
+//                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
+//                    actualConfig = Scanner.ScannerConfiguration.Instance;
+//                    break;
                 case MiniGameCode.ThrowBalls_letters:
                     ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.letters;
                     ThrowBalls.ThrowBallsConfiguration.Instance.Context = AnturaMinigameContext.Default;
@@ -305,6 +303,12 @@ namespace EA4S.API
             rules = actualConfig.SetupBuilder();
             // question packs (game data)
             actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
+
+            // Save current game code to appmanager currentminigame
+            AppManager.Instance.CurrentMinigame = miniGameData;
+
+            // Comunicate to LogManager that start new single minigame play session.
+            actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
 
             // Call game start
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
@@ -370,7 +374,7 @@ namespace EA4S.API
     {
 
         #region Log Manager 
-        public ILogManager logManager = new AnturaLogManager();
+        public ILogManager logManager = new AppLogManager();
 
         public ILogManager GetLogManager()
         {
@@ -446,7 +450,7 @@ namespace EA4S.API
         #region Context Presets
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {
-            logManager = new AnturaLogManager(),
+            logManager = new AppLogManager(),
             audioManager = new SampleAudioManager(),
             subtitleWidget = new SampleSubtitlesWidget(),
             starsWidget = new SampleStarsWidget(),
@@ -457,7 +461,7 @@ namespace EA4S.API
         /// Example for custom context preset used for fast crowd.
         /// </summary>
         public static AnturaMinigameContext FastCrowd = new AnturaMinigameContext() {
-            logManager = new AnturaLogManager(),
+            logManager = new AppLogManager(),
             audioManager = new SampleAudioManager(),
             subtitleWidget = new SampleSubtitlesWidget(),
             starsWidget = new SampleStarsWidget(),
@@ -497,8 +501,7 @@ namespace EA4S.API
         /// Provide me another question.
         /// </summary>
         /// <returns></returns>
-        IQuestionPack IQuestionProvider.GetNextQuestion()
-        {
+        IQuestionPack IQuestionProvider.GetNextQuestion() {
             currentQuestion++;
 
             if (currentQuestion >= questions.Count)
@@ -540,30 +543,25 @@ namespace EA4S.API
         /// <param name="questionsSentences">The questions sentences.</param>
         /// <param name="wrongAnswersSentence">The wrong answers sentence.</param>
         /// <param name="correctAnswersSentence">The correct answers sentence.</param>
-        public FindRightDataQuestionPack(IEnumerable<ILivingLetterData> questionsSentences, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence)
-        {
+        public FindRightDataQuestionPack(IEnumerable<ILivingLetterData> questionsSentences, IEnumerable<ILivingLetterData> wrongAnswersSentence, IEnumerable<ILivingLetterData> correctAnswersSentence) {
             this.questionsSentences = questionsSentences;
             this.wrongAnswersSentence = wrongAnswersSentence;
             this.correctAnswersSentence = correctAnswersSentence;
         }
 
-        ILivingLetterData IQuestionPack.GetQuestion()
-        {
+        ILivingLetterData IQuestionPack.GetQuestion() {
             return questionsSentences.First();
         }
 
-        public IEnumerable<ILivingLetterData> GetQuestions()
-        {
+        public IEnumerable<ILivingLetterData> GetQuestions() {
             return questionsSentences;
         }
 
-        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers()
-        {
+        IEnumerable<ILivingLetterData> IQuestionPack.GetWrongAnswers() {
             return wrongAnswersSentence;
         }
 
-        public IEnumerable<ILivingLetterData> GetCorrectAnswers()
-        {
+        public IEnumerable<ILivingLetterData> GetCorrectAnswers(){
             return correctAnswersSentence;
         }
 
@@ -573,90 +571,6 @@ namespace EA4S.API
 
     #endregion
 
-    /// <summary>
-    /// Concrete implementation of log manager to store on db.
-    /// </summary>
-    public class AnturaLogManager : ILogManager
-    {
 
-        #region Log API for AI
-        /// <summary>
-        /// Answer result for question pack.
-        /// </summary>
-        /// <param name="_questionPack"></param>
-        /// <param name="_isPositiveResult"></param>
-        public void OnAnswer(IQuestionPack _questionPack, bool _isPositiveResult)
-        {
-            // Todo: Save on db
-        }
-
-        /// <summary>
-        /// Answer result for single player action.
-        /// </summary>
-        /// <param name="_data"></param>
-        /// <param name="_isPositiveResult"></param>
-        public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult)
-        {
-            // Todo: Save on db
-        }
-
-        public void OnGameplaySessionResult(int _valuation)
-        {
-            // Todo: Save on db
-        }
-        #endregion
-
-        #region Playsession Logs
-
-        public void OnGameplayEvent(PlayerAbilities _ability, bool _isPositive)
-        {
-            switch (_ability) {
-                case PlayerAbilities.precision:
-                    break;
-                case PlayerAbilities.speed:
-                    break;
-                default:
-                    Debug.LogErrorFormat("Player ability {0} not found!", _ability);
-                    break;
-            }
-        }
-
-
-        #endregion
-
-        #region Generic Log
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_area"></param>
-        /// <param name="_context"></param>
-        /// <param name="_action"></param>
-        /// <param name="_data"></param>
-        public void Log(string _area, string _context, string _action, string _data)
-        {
-            LoggerEA4S.Log(_area, _context, _action, _data);
-        }
-        #endregion
-
-        #region Test
-        public void TestDb()
-        {
-            AppManager.Instance.DB.Insert(new LogInfoData() {
-
-            });
-        }
-        #endregion
-
-    }
-
-    /// <summary>
-    /// TODO: change location for this.
-    /// Player abilities categories to trace player actions.
-    /// </summary>
-    public enum PlayerAbilities
-    {
-        precision,
-        speed,
-    }
 
 }
