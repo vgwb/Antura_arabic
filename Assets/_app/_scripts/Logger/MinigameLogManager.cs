@@ -62,7 +62,25 @@ namespace EA4S.Log {
             //newGameplaySessionResultData._valuation = _valuation;
             flushLogLearn();
             flushLogPlay();
-            AppManager.Instance.Teacher.logIntelligence.LogMiniGameScore(miniGameCode, _valuation);
+            AppManager.Instance.LogManager.LogMinigameScore(miniGameCode, _valuation);
+        }
+
+        /// <summary>
+        /// Logs the play session score.
+        /// </summary>
+        /// <param name="_playSessionId">The play session identifier.</param>
+        /// <param name="_score">The score.</param>
+        public void LogPlaySessionScore(string _playSessionId, float _score) {
+            AppManager.Instance.LogManager.LogPlaySessionScore(_playSessionId, _score);
+        }
+
+        /// <summary>
+        /// Logs the learning block score.
+        /// </summary>
+        /// <param name="_learningBlock">The learning block.</param>
+        /// <param name="_score">The score.</param>
+        public void LogLearningBlockScore(int _learningBlock, float _score) {
+            AppManager.Instance.LogManager.LogLearningBlockScore(_learningBlock, _score);
         }
 
         /// <summary>
@@ -85,16 +103,21 @@ namespace EA4S.Log {
         /// <param name="_data">The data.</param>
         /// <exception cref="System.NotImplementedException"></exception>
         public void LogInfoData(InfoEvent _event, string _data = "") {
-            AppManager.Instance.Teacher.logIntelligence.LogInfo(session, _event, _data);
+            AppManager.Instance.LogManager.LogInfo(session, _event, _data);
+            
+        }
+
+        public void LogMood(int _mood) {
+            AppManager.Instance.LogManager.LogMood(_mood);
         }
 
         #endregion
 
         #region Gameplay        
         /// <summary>
-        /// Bufferizes the log play data.
-        /// </summary>
-        /// <param name="_playResultParameters">The play result parameters.</param>
+            /// Bufferizes the log play data.
+            /// </summary>
+            /// <param name="_playResultParameters">The play result parameters.</param>
         void bufferizeLogPlayData(LogIntelligence.PlayResultParameters _playResultParameters) {
             logPlayBuffer.Add(_playResultParameters);
         }
@@ -102,7 +125,7 @@ namespace EA4S.Log {
         /// Flushes the log play to app teacher log intellingence.
         /// </summary>
         void flushLogPlay() {
-            AppManager.Instance.Teacher.logIntelligence.LogPlay(session, playSession, miniGameCode, logPlayBuffer);
+            AppManager.Instance.LogManager.LogPlay(session, playSession, miniGameCode, logPlayBuffer);
         }
         #endregion
 
@@ -156,7 +179,7 @@ namespace EA4S.Log {
                     actualLearnResult.nWrong ++;
             }
 
-            AppManager.Instance.Teacher.logIntelligence.LogLearn(session, playSession, miniGameCode, resultsList);
+            AppManager.Instance.LogManager.LogLearn(session, playSession, miniGameCode, resultsList);
 
         }
         #endregion
@@ -168,7 +191,7 @@ namespace EA4S.Log {
         #endregion
 
         #region Mood
-        
+        // direct into API
         #endregion
 
         #region internal data structures and interfaces

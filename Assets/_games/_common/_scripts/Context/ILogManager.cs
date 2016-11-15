@@ -24,6 +24,20 @@
         void OnGameplaySessionResult(int _valuation);
 
         /// <summary>
+        /// Logs the play session score.
+        /// </summary>
+        /// <param name="_playSessionId">The play session identifier.</param>
+        /// <param name="_score">The score.</param>
+        void LogPlaySessionScore(string _playSessionId, float _score);
+
+        /// <summary>
+        /// Logs the learning block score.
+        /// </summary>
+        /// <param name="_learningBlock">The learning block.</param>
+        /// <param name="_score">The score.</param>
+        void LogLearningBlockScore(int _learningBlock, float _score);
+
+        /// <summary>
         /// Called when player perform a [gameplay skill action] action during gameplay. .
         /// </summary>
         /// <param name="_ability">The ability.</param>
