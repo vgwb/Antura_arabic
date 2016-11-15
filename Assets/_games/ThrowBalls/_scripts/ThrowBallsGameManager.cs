@@ -145,7 +145,7 @@ namespace EA4S.ThrowBalls
 
         void FixedUpdate()
         {
-            if (isIdle && !BallController.instance.IsLaunched())
+            if (roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
             {
                 timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
 
@@ -197,6 +197,18 @@ namespace EA4S.ThrowBalls
             isRoundOngoing = false;
         }
 
+        private void DisableLetters(bool disablePropsToo)
+        {
+            foreach (LetterController letterController in letterControllers)
+            {
+                letterController.Disable();
+                if (disablePropsToo)
+                {
+                    letterController.DisableProps();
+                }
+            }
+        }
+
         public IEnumerator StartNewRound()
         {
             ResetScene();
@@ -214,7 +226,7 @@ namespace EA4S.ThrowBalls
 
             AudioManager.I.PlayLetter(correctLetter.Key);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1f);
 
             int numLettersInRound = GetNumLettersInRound();
 
@@ -309,11 +321,19 @@ namespace EA4S.ThrowBalls
         {
             if (isRoundOngoing)
             {
-                DisplayRoundResult(false);
                 ballController.Disable();
-
                 isRoundOngoing = false;
+                DisableLetters(true);
+
+                StartCoroutine(OnRoundLostCoroutine());
             }
+        }
+
+        private IEnumerator OnRoundLostCoroutine()
+        {
+            AudioManager.I.PlaySfx(Sfx.Lose);
+            yield return new WaitForSeconds(3f);
+            OnRoundConcluded();
         }
 
         private IEnumerator ShowWinSequence(LetterController correctLetterCntrl)
@@ -337,9 +357,9 @@ namespace EA4S.ThrowBalls
 
             AudioManager.I.PlaySfx(Sfx.Win);
 
-            yield return new WaitForSeconds(1.3f);
+            yield return new WaitForSeconds(3f);
 
-            DisplayRoundResult(true);
+            OnRoundConcluded();
         }
 
         public void OnBallLost()
@@ -363,26 +383,8 @@ namespace EA4S.ThrowBalls
             }
         }
 
-        private void DisplayRoundResult(bool win)
+        public void OnRoundConcluded()
         {
-            UIController.instance.Disable();
-
-            if (win)
-            {
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
-            }
-
-            else
-            {
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
-            }
-        }
-
-        public void OnRoundResultPressed()
-        {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-            WidgetPopupWindow.I.Close();
-
             roundNumber++;
 
             if (roundNumber > MAX_NUM_ROUNDS)
