@@ -147,8 +147,6 @@ namespace EA4S.Tobogan
 
         void OnQuestionLivingLetterOnPosition()
         {
-            game.Context.GetAudioManager().PlayLetterData(questionLivingLetter.letter.Data, true);
-
             questionLivingLetter.EnableCollider(true);
         }
 
@@ -196,8 +194,6 @@ namespace EA4S.Tobogan
                 {
                     if (playerInputPointerUp != null)
                         playerInputPointerUp(false);
-
-                    game.Context.GetAudioManager().PlayLetterData(questionLivingLetter.letter.Data, true);
 
                     draggingLetter = questionLivingLetter;
                     questionLivingLetter.OnPointerDown(pointerPosition);
