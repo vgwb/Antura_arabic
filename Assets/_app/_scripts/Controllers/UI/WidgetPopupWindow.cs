@@ -25,7 +25,7 @@ namespace EA4S
         public GameObject DrawingImageGO;
         public GameObject WordTextGO;
         public GameObject MessageTextGO;
-        public GameObject ButtonGO;
+        public UIButton ButtonGO;
         public GameObject TutorialImageGO;
         public GameObject MarkOK;
         public GameObject MarkKO;
@@ -89,7 +89,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             TitleGO.GetComponent<TextMeshProUGUI>().text = myText;
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
@@ -107,7 +107,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(myArabicText, false, false);
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
@@ -120,7 +120,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
@@ -136,7 +136,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             if (image2show != null) {
                 TutorialImageGO.GetComponent<Image>().sprite = image2show;
@@ -157,7 +157,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             MarkOK.SetActive(result);
             MarkKO.SetActive(!result);
@@ -199,7 +199,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             TitleGO.GetComponent<TextMeshProUGUI>().text = text;
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
@@ -216,7 +216,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
@@ -234,7 +234,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
 
             MarkOK.SetActive(result);
             MarkKO.SetActive(!result);
@@ -265,7 +265,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
             TutorialImageGO.GetComponent<Image>().sprite = tutorialImage;
             TutorialImageGO.SetActive(true);
 
@@ -278,7 +278,7 @@ namespace EA4S
             ResetContents();
 
             currentCallback = callback;
-            ButtonGO.SetActive(callback != null);
+            ButtonGO.gameObject.SetActive(callback != null);
             TutorialImageGO.SetActive(false);
 
             SetTitle(introText, false);
@@ -353,6 +353,7 @@ namespace EA4S
                 return;
 
             clicked = true;
+            ButtonGO.AnimateClick();
             AudioManager.I.PlaySfx(Sfx.UIButtonClick);
 
             if (currentCallback != null)

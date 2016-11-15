@@ -40,7 +40,7 @@ namespace EA4S.ThrowBalls
 
         void FixedUpdate()
         {
-            if (!BallController.instance.IsLaunched)
+            if (!BallController.instance.IsLaunched())
             {
                 UpdateLaunchForce();
                 UpdatePointOfImpact();

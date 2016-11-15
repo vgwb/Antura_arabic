@@ -46,6 +46,7 @@ namespace EA4S
 
         public void Reset()
         {
+            audioManager.Reset();
             inputManager.Reset();
         }
 

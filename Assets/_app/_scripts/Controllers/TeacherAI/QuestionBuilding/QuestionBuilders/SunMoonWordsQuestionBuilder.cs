@@ -21,23 +21,26 @@ namespace EA4S
             var sunWord = db.GetWordDataById("sun");
             var moonWord = db.GetWordDataById("moon");
 
-            int nPerType = nPacks / 2;
-            var sunLetters = teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun).RandomSelect(nPerType);
-            var moonLetters = teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon).RandomSelect(nPerType);
-
-            foreach (var letter in sunLetters)
+            var wordsWithArticle = teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative).RandomSelect(nPacks);
+            foreach(var wordWithArticle in wordsWithArticle)
             {
-                var correctWords = new List<Db.WordData>() { sunWord };
-                var wrongWords = new List<Db.WordData>() { moonWord };
-                var pack = QuestionPackData.Create(letter, correctWords, wrongWords);
-                packs.Add(pack);
-            }
+                int articleLength = 2;
+                var letterAfterArticle = teacher.wordHelper.GetLettersInWord(wordWithArticle)[articleLength];
+                var correctWords = new List<Db.WordData>();
+                var wrongWords = new List<Db.WordData>();
+                switch (letterAfterArticle.SunMoon)
+                {
+                    case Db.LetterDataSunMoon.Sun:
+                        correctWords.Add(sunWord);
+                        wrongWords.Add(moonWord);
+                        break;
 
-            foreach (var letter in moonLetters)
-            {
-                var correctWords = new List<Db.WordData>() { moonWord };
-                var wrongWords = new List<Db.WordData>() { sunWord };
-                var pack = QuestionPackData.Create(letter, correctWords, wrongWords);
+                    case Db.LetterDataSunMoon.Moon:
+                        correctWords.Add(moonWord);
+                        wrongWords.Add(sunWord);
+                        break;
+                }
+                var pack = QuestionPackData.Create(wordWithArticle, correctWords, wrongWords);
                 packs.Add(pack);
             }
 
