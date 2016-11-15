@@ -7,19 +7,18 @@ namespace EA4S.ThrowBalls
     public class BallController : MonoBehaviour
     {
         public static Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
+        public const float BALL_RESPAWN_TIME = 3f;
         public static BallController instance;
 
         public Rigidbody rigidBody;
-        public bool IsLaunched
+        private enum State
         {
-            get
-            {
-                return isLaunched;
-            }
+            Anchored, Dragging, Launched
         }
 
-        private bool isLaunched;
-        private bool isHeld;
+        private State state;
+        private float stateTime;
+
         private float cameraDistance;
 
         private float yzStretchRange = 3f;
@@ -49,9 +48,7 @@ namespace EA4S.ThrowBalls
             rigidBody.angularVelocity = new Vector3(0, 0, 0);
             rigidBody.velocity = new Vector3(0, 0, 0);
             rigidBody.isKinematic = false;
-            isLaunched = false;
-
-            isHeld = false;
+            SetState(State.Anchored);
         }
 
         public void Enable()
@@ -66,13 +63,24 @@ namespace EA4S.ThrowBalls
             BallShadowController.instance.Disable();
         }
 
+        private void SetState(State state)
+        {
+            this.state = state;
+            stateTime = 0;
+        }
+
+        public bool IsLaunched()
+        {
+            return state == State.Launched;
+        }
+
         void FixedUpdate()
         {
-            if (isLaunched)
+            if (state == State.Launched)
             {
                 rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
 
-                if (transform.position.y < -9)
+                if (transform.position.y < -9 || stateTime > BALL_RESPAWN_TIME)
                 {
                     ThrowBallsGameManager.Instance.OnBallLost();
                     Reset();
@@ -93,14 +101,15 @@ namespace EA4S.ThrowBalls
 
                         RaycastHit hit;
 
-                        if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider.gameObject.tag == Constants.TAG_POKEBALL && !isLaunched)
+                        if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider.gameObject.tag == Constants.TAG_POKEBALL
+                            && state == State.Anchored)
                         {
-                            isHeld = true;
+                            SetState(State.Dragging);
                         }
 
                         break;
                     case TouchPhase.Moved:
-                        if (isHeld)
+                        if (state == State.Dragging)
                         {
                             float clampedInputY = touch.position.y > Screen.height / 3 ? Screen.height / 3 : touch.position.y;
 
@@ -117,12 +126,12 @@ namespace EA4S.ThrowBalls
                     case TouchPhase.Stationary:
                         break;
                     case TouchPhase.Ended:
-                        if (isHeld)
+                        if (state == State.Dragging)
                         {
                             Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
                             rigidBody.isKinematic = false;
                             rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
-                            isLaunched = true;
+                            SetState(State.Launched);
                         }
 
                         break;
@@ -132,6 +141,8 @@ namespace EA4S.ThrowBalls
                         break;
                 }
             }
+
+            stateTime += Time.deltaTime;
         }
 
         #region Mouse controls
@@ -172,7 +183,7 @@ namespace EA4S.ThrowBalls
             Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
             rigidBody.isKinematic = false;
             rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
-            isLaunched = true;
+            SetState(State.Launched);
         }
 
         #endregion

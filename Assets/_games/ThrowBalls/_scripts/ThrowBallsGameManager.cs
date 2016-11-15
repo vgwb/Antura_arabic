@@ -145,7 +145,7 @@ namespace EA4S.ThrowBalls
 
         void FixedUpdate()
         {
-            if (isIdle && !BallController.instance.IsLaunched)
+            if (isIdle && !BallController.instance.IsLaunched())
             {
                 timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
 
