@@ -65,7 +65,7 @@ namespace EA4S.ThrowBalls
             UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
 
             // Layer 8 = Terrain. Layer 12 = Ball.
-            Physics.IgnoreLayerCollision(8, 12);
+            //Physics.IgnoreLayerCollision(8, 12);
 
             letterSpawner = new LetterSpawner();
 
@@ -332,6 +332,10 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.Show();
+            correctLetterCntrl.letterObjectView.DoHorray();
+            correctLetterCntrl.ShowVictoryRays();
+
+            AudioManager.I.PlaySfx(Sfx.Win);
 
             yield return new WaitForSeconds(1.3f);
 

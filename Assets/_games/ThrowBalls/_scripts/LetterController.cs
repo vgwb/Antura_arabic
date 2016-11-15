@@ -52,13 +52,19 @@ namespace EA4S.ThrowBalls
         private bool isStill = false;
 
         private MotionVariation motionVariation;
-
+        
         public GameObject shadow;
+
+        [HideInInspector]
+        public LetterObjectView letterObjectView;
+
+        public GameObject victoryRays;
 
         // Use this for initialization
         void Start()
         {
             animator = GetComponent<Animator>();
+            letterObjectView = GetComponent<LetterObjectView>();
 
             foreach (Collider collider in GetComponentsInChildren<Collider>())
             {
@@ -514,6 +520,12 @@ namespace EA4S.ThrowBalls
             isStill = false;
             SetIsColliderEnabled(true);
             shadow.SetActive(true);
+            victoryRays.SetActive(false);
+        }
+
+        public void ShowVictoryRays()
+        {
+            victoryRays.SetActive(true);
         }
 
         void OnMouseDown()
