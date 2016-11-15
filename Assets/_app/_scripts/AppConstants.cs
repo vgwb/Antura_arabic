@@ -5,7 +5,7 @@
 
 namespace EA4S
 {
-    public static class Config
+    public static class AppConstants
     {
         public const string AppVersion = "0.11.18";
 
