@@ -4,11 +4,11 @@ using ModularFramework.Core;
 
 namespace EA4S
 {
-    public class OpenBook : MonoBehaviour
+    public class OpenPlayerBookScene : MonoBehaviour
     {
         public void OpenPlayerBook()
         {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Book");
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_PlayerBook");
         }
     }
 }
