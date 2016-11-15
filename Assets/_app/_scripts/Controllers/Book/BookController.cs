@@ -2,8 +2,6 @@
 using UnityEngine.UI;
 using EA4S;
 using EA4S.Db;
-using EA4S.Teacher;
-using ModularFramework.Core;
 using System;
 using System.Text;
 using TMPro;
@@ -11,10 +9,8 @@ using System.Globalization;
 
 namespace EA4S
 {
-    public class BookManager : MonoBehaviour
+    public class BookController : MonoBehaviour
     {
-        [Header("Scene Setup")]
-        public Music SceneMusic;
 
         [Header("References")]
         public GameObject ButtonPrefab;
@@ -27,10 +23,6 @@ namespace EA4S
 
         void Start()
         {
-            GlobalUI.ShowPauseMenu(false);
-            AudioManager.I.PlayMusic(SceneMusic);
-            SceneTransitioner.Close();
-
             InitUI();
             Drawing.text = "";
         }
@@ -79,9 +71,6 @@ namespace EA4S
             }
         }
 
-        public void OpenMap()
-        {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
-        }
+
     }
 }
