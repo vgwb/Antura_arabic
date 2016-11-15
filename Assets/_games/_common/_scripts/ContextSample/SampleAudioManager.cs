@@ -1,4 +1,5 @@
-﻿using DG.DeAudio;
+﻿using System;
+using DG.DeAudio;
 using UnityEngine;
 
 namespace EA4S
@@ -103,6 +104,11 @@ namespace EA4S
         public void StopMusic()
         {
             AudioManager.I.StopMusic();
+        }
+
+        public void Reset()
+        {
+            AudioManager.I.ClearCache();
         }
     }
 }
