@@ -13,7 +13,8 @@ namespace EA4S.Assessment
 
         private IAssessment GetAssessment()
         {
-            switch (assessmentGame.assessmentCode) {
+            switch (AssessmentConfiguration.Instance.assessmentType)
+            {
                 case AssessmentCode.MatchLettersToWord:
                     return AssessmentFactory.CreateLetterInWordAssessment(
                         MatchLettersToWordConfiguration.Instance);

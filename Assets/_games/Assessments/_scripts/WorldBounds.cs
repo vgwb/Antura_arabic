@@ -38,9 +38,26 @@ namespace EA4S.Assessment
         {
             float questionXmin = QuestionSpaceStart().x;
             float questionXmax = QuestionSpaceEnd().x;
-            float questionYmin = center.y + height / 2 - SubtitlesMargin - 3 * LLSize;
+            float questionYmin = height / 2 - SubtitlesMargin - 3 * LetterSize();
+            float xMin = - width / 2 + 0.7f * LetterSize();
+            float xMax = width / 2 - 0.7f * LetterSize();
+            float yMin = height / 2 - TopMargin();
+            float yMax = - height / 2 + 0.7f * LetterSize();
 
-            return Vector3.zero;
+            Vector3 pos = Vector3.zero;
+            pos.z = DefaultZ();
+
+            while (true)
+            {
+                pos.x = Random.Range( xMin, xMax);
+                pos.y = Random.Range( yMin, yMax);
+
+                if (pos.y >= questionYmin) // check if LL fits beside questions
+                    if (pos.x > questionXmin || pos.x < questionXmax)
+                        continue; // cannot overlap to questions
+
+                return pos;
+            }
         }
 
         public Vector3 QuestionSpaceStart()
