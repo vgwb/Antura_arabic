@@ -11,6 +11,7 @@ namespace EA4S.Db
         public WordDataCategory Category;
         public WordDataForm Form;
         public WordDataArticle Article;
+        public string LinkedWord;
         public string Arabic;
         public string[] Letters;
         //public LetterSymbol[] Symbols; //TODO

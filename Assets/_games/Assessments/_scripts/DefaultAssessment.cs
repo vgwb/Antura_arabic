@@ -20,7 +20,7 @@ namespace EA4S.Assessment
             GameContext = game_context;
         }
 
-        public IEnumerator PlayCoroutine(Action gameEndedCallback)
+        public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
             for(int round = 0; round< AssessmentConfiguration.Rounds; round++)
             {
@@ -33,10 +33,13 @@ namespace EA4S.Assessment
                         QuestionGenerator.GetNextAnswers()      );
                 
                 QuestionGenerator.CompleteRound();
-                QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
-                AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
 
-                while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating())
+                QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
+                while (QuestionPlacer.IsAnimating())
+                    yield return null;
+
+                AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
+                while (AnswerPlacer.IsAnimating())
                     yield return null;
 
                 LogicInjector.EnableGamePlay();
@@ -46,6 +49,8 @@ namespace EA4S.Assessment
 
                 // No score/time needed
                 LogicInjector.DisableGamePlay();
+
+                yield return null;
 
                 QuestionPlacer.RemoveQuestions();
                 AnswerPlacer.RemoveAnswers();

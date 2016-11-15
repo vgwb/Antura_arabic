@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -34,7 +34,34 @@ namespace EA4S.Assessment
             width = height * mainCamera.aspect;
         }
 
-        Vector3 AnswerStartGap()
+        public Vector3 RandomAnswerPosition()
+        {
+            float questionXmin = QuestionSpaceStart().x;
+            float questionXmax = QuestionSpaceEnd().x;
+            float questionYmin = height / 2 - SubtitlesMargin - 3 * LetterSize();
+            float xMin = - width / 2 + 0.7f * LetterSize();
+            float xMax = width / 2 - 0.7f * LetterSize();
+            float yMin = height / 2 - TopMargin();
+            float yMax = - height / 2 + 0.7f * LetterSize();
+
+            Vector3 pos = Vector3.zero;
+            pos.z = DefaultZ();
+
+            while (true)
+            {
+                //TODO: limit y position after N attemps?
+                pos.x = Random.Range( xMin, xMax);
+                pos.y = Random.Range( yMin, yMax);
+
+                if (pos.y >= questionYmin) // check if LL fits beside questions
+                    if (pos.x > questionXmin || pos.x < questionXmax)
+                        continue; // cannot overlap to questions
+
+                return pos;
+            }
+        }
+
+        public Vector3 QuestionSpaceStart()
         {
             var left = center;
             left.x = left.x - width / 2 + SidesMargin(); // leave some margin for additional LLs.
@@ -43,7 +70,7 @@ namespace EA4S.Assessment
             return left;
         }
 
-        Vector3 AnswerEndGap()
+        public Vector3 QuestionSpaceEnd()
         {
             var right = center;
             right.x = right.x + width / 2 - SidesMargin();
@@ -52,19 +79,52 @@ namespace EA4S.Assessment
             return right;
         }
 
-        float DefaultZ()
+        public float QuestionGap()
+        {
+            return width - 2 * SidesMargin();
+        }
+
+        public Vector3 OneLineQuestionStart()
+        {
+            Vector3 position = QuestionSpaceStart();
+            position.x -= 0.5f * LetterSize(); // no LLs before first space
+            position.y = height / 2 - SubtitlesMargin - LetterSize() * 1.5f;
+            return position;
+        }
+
+        /// <summary>
+        /// Return space occupied by question if placed in single line fashion
+        /// </summary>
+        /// <param name="questions"> questions for this round</param>
+        /// <returns>size in world units</returns>
+        public float SingleLineOccupiedSpace( int count)
+        {
+            return (count) * LetterSize();
+        }
+
+        public float DefaultZ()
         {
             return 5.0f;
         }
 
-        float SidesMargin()
+        public float SidesMargin()
         {
             return LLSize * 1.4f;
         }
 
-        float TopMargin()
+        public float TopMargin()
         {
             return SubtitlesMargin + LLSize * 1.5f;
+        }
+
+        public float LetterSize()
+        {
+            return LLSize;
+        }
+
+        public float HalfLetterSize()
+        {
+            return 0.5f * LLSize;
         }
     }
 }

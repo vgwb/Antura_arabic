@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -31,7 +32,9 @@ namespace EA4S.Assessment
         ILivingLetterData LetterData();
 
         /// <summary>
-        /// Returns the living letter with the Image
+        /// Returns the living letter with the Image (this image is for questions
+        /// that have both image and some text), if you have only 1 image you should
+        /// use LetterData instead.
         /// </summary>
         ILivingLetterData Image();
 
@@ -42,13 +45,19 @@ namespace EA4S.Assessment
         int PlaceholdersCount();
 
         /// <summary>
-        /// Links the question GameObject
-        /// </summary>
-        void SetGameObject( GameObject gameObject);
-
-        /// <summary>
         /// Access the GameObject of this question
         /// </summary>
         GameObject gameObject { get; }
+
+        /// <summary>
+        /// Add a placeholder to this question
+        /// </summary>
+        void TrackPlaceholder( GameObject gameObject);
+
+        /// <summary>
+        /// Get all tracked placeholders
+        /// </summary>
+        /// <returns>Enumerable to placeholders set</returns>
+        IEnumerable<GameObject> GetPlaceholders();
     }
 }

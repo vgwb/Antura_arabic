@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -10,8 +10,8 @@ namespace EA4S.Assessment
         GameObject gameObject { get; }
 
         /// <summary>
-        /// Links the answer game object
+        /// Is this a correct answer?
         /// </summary>
-        void SetGameObject( GameObject gameObject);
+        bool IsCorrect();
     }
 }

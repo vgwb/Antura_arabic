@@ -2,8 +2,6 @@
 using UnityEngine.UI;
 using EA4S;
 using EA4S.Db;
-using System;
-using System.Text;
 using TMPro;
 
 
@@ -58,7 +56,7 @@ namespace EA4S
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
 
-            LLText.Lable.text = ArabicAlphabetHelper.PrepareStringForDisplay(word.Arabic);
+            LLText.Lable.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
 
             if (word.Drawing != "") {
                 var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);

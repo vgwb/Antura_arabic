@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -9,17 +9,18 @@ namespace EA4S.Assessment
     public class QuestionBehaviour : MonoBehaviour
     {
         private IQuestion question = null;
-        void SetAnswer( IQuestion qst)
+        public void SetQuestion( IQuestion qst)
         {
+            if (qst == null)
+                throw new ArgumentException("Null questions");
+
             if (question == null)
                 question = qst;
             else
                 throw new ArgumentException( "Answer already added");
-
-            question.SetGameObject( gameObject);
         }
 
-        IQuestion GetQuestion()
+        public IQuestion GetQuestion()
         {
             return question;
         }

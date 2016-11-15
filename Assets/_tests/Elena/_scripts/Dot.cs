@@ -6,5 +6,6 @@ namespace EA4S
     {
         public int learningBlockActual;
         public int playSessionActual;
+        public int pos;
     }
 }
