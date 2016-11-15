@@ -136,12 +136,12 @@ namespace EA4S.TakeMeHome
 				return;
 			}
 
-			if (currentRound <= 2)
+			/*if (currentRound <= 2)
 				activateTubes (2);
 			else if (currentRound <= 4)
 				activateTubes (3);
 			else
-				activateTubes (4);
+				activateTubes (4);*/
 			
 
 			roundText.text = "#"+currentRound.ToString ();
@@ -155,7 +155,7 @@ namespace EA4S.TakeMeHome
 			
 			currentTube = UnityEngine.Random.Range(0,_activeTubes);
 			currentLetter = letterManager.spawnLetter (AppManager.Instance.Teacher.GetAllTestLetterDataLL()[TakeMeHomeModel.Instance.getRandomLetterOnTube(currentTube)]);
-			currentLetter.MoveBy (new UnityEngine.Vector3 (-13, 0, 0),2);
+			currentLetter.MoveBy (new UnityEngine.Vector3 (-11, 0, 0),1.8f);
 		}
 
 		 
@@ -224,7 +224,7 @@ namespace EA4S.TakeMeHome
 
 			//antura.GetComponent<AnturaCo
 
-			antura.GetComponent<TakeMeHomeAntura> ().SetAnturaTime (true, new Vector3(5.16f,-6.42f,-15));
+			antura.GetComponent<TakeMeHomeAntura> ().SetAnturaTime (true, new Vector3(8.4f, -3.44f, -15));
 		}
 
 
