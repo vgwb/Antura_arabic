@@ -95,7 +95,7 @@ namespace EA4S.ThrowBalls
             StartCoroutine("StartNewRound");
 
             AudioManager.I.PlayMusic(Music.MainTheme);
-            
+
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
         }
@@ -176,24 +176,13 @@ namespace EA4S.ThrowBalls
                 letterController.DisableProps();
             }
 
-            if (roundNumber == 0)
+            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3, roundNumber == 0);
+
+            for (int i = 0; i < GetNumLettersInRound(); i++)
             {
-                Vector3 tutorialPosition = letterSpawner.GetTutorialPosition();
-                GameObject letter = letterPool[0];
-                letter.transform.position = tutorialPosition;
+                GameObject letter = letterPool[i];
+                letter.transform.position = randomPositions[i];
                 letter.SetActive(false);
-            }
-
-            else
-            {
-                Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3);
-
-                for (int i = 0; i < GetNumLettersInRound(); i++)
-                {
-                    GameObject letter = letterPool[i];
-                    letter.transform.position = randomPositions[i];
-                    letter.SetActive(false);
-                }
             }
 
             ballController.Reset();
@@ -204,7 +193,7 @@ namespace EA4S.ThrowBalls
             {
                 MinigamesUI.Lives.ResetToMax();
             }
-            
+
             isRoundOngoing = false;
         }
 
@@ -228,10 +217,6 @@ namespace EA4S.ThrowBalls
             yield return new WaitForSeconds(1);
 
             int numLettersInRound = GetNumLettersInRound();
-            bool evenLevelsMoveRight = UnityEngine.Random.Range(0, 2) % 2 == 0;
-
-            // Pick a random letter as the correct letter:
-            int correctLetterIndex = UnityEngine.Random.Range(0, numLettersInRound);
 
             for (int i = 0; i < numLettersInRound; i++)
             {
@@ -243,7 +228,7 @@ namespace EA4S.ThrowBalls
 
                 letterControllers[i].SetPropVariation(GetPropOfRound());
 
-                if (i == correctLetterIndex)
+                if (i == 0)
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
                     letterControllers[i].SetLetter(correctLetter);
@@ -263,13 +248,10 @@ namespace EA4S.ThrowBalls
 
             BallController.instance.Enable();
 
-            if (roundNumber > 0)
-            {
-                UIController.instance.Enable();
-                UIController.instance.SetLetterHint(correctLetter);
-            }
+            UIController.instance.Enable();
+            UIController.instance.SetLetterHint(correctLetter);
 
-            else
+            if (roundNumber == 0)
             {
                 ShowTutorialUI();
             }
@@ -281,7 +263,7 @@ namespace EA4S.ThrowBalls
 
             Vector3 worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(0, 8, -20));
             Vector3 fromPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
-            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-0.75f, 4.5f, -22));
+            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-1.5f, 4.5f, -22));
             Vector3 toPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
             TutorialUI.DrawLine(fromPoint, toPoint, TutorialUI.DrawLineMode.FingerAndArrow);
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
@@ -417,15 +399,8 @@ namespace EA4S.ThrowBalls
 
         private int GetNumLettersInRound()
         {
-            if (roundNumber == 0)
-            {
-                return 1;
-            }
 
-            else
-            {
-                return 3;
-            }
+            return 3;
         }
 
         private void EndGame()
@@ -494,7 +469,7 @@ namespace EA4S.ThrowBalls
                 return LetterController.MotionVariation.Popping;
             }
 
-            else if(normalizedDifficulty <= 2.4f)
+            else if (normalizedDifficulty <= 2.4f)
             {
                 return LetterController.MotionVariation.Jumping;
             }
