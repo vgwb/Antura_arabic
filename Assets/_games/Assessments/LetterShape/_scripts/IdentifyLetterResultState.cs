@@ -7,14 +7,14 @@ namespace EA4S.IdentifyLetter
         IdentifyLetterGame game;
 
         float timer = 0.7f;
-        public IdentifyLetterResultState( IdentifyLetterGame game)
+        public IdentifyLetterResultState(IdentifyLetterGame game)
         {
             this.game = game;
         }
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayMusic( Music.Relax);
+            game.Context.GetAudioManager().PlayMusic(Music.Relax);
         }
 
 
@@ -22,17 +22,16 @@ namespace EA4S.IdentifyLetter
         {
         }
 
-        public void Update( float delta)
+        public void Update(float delta)
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
-                game.EndGame( 0, 0);
+            if (timer < 0) {
+                game.EndGame(0, 0);
             }
         }
 
-        public void UpdatePhysics( float delta)
+        public void UpdatePhysics(float delta)
         {
         }
     }

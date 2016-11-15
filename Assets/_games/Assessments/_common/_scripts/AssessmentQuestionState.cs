@@ -24,7 +24,7 @@ namespace EA4S.Assessment
         {
             switch (assessmentGame.assessmentCode) {
                 case AssessmentCode.MatchLettersToWord:
-                    return LetterInWord.LetterInWordConfiguration.Instance.Description;
+                    return MatchLettersToWordConfiguration.Instance.Description;
 
                 case AssessmentCode.LetterShape:
                     return null;
