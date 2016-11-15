@@ -53,6 +53,7 @@ namespace SRDebugger.UI.Other
 
             SetLoadingSpinnerVisible(false);
             ClearErrorMessage();
+            ClearForm();
         }
 
         public void Submit()
@@ -63,6 +64,11 @@ namespace SRDebugger.UI.Other
             ClearErrorMessage();
             SetLoadingSpinnerVisible(true);
             SetFormEnabled(false);
+
+            if (!string.IsNullOrEmpty(EmailField.text))
+            {
+                SetDefaultEmailFieldContents(EmailField.text);
+            }
 
             StartCoroutine(SubmitCo());
         }
@@ -144,7 +150,7 @@ namespace SRDebugger.UI.Other
 
         protected void ClearForm()
         {
-            EmailField.text = "";
+            EmailField.text = GetDefaultEmailFieldContents();
             DescriptionField.text = "";
         }
 
@@ -173,6 +179,17 @@ namespace SRDebugger.UI.Other
             CancelButton.interactable = e;
             EmailField.interactable = e;
             DescriptionField.interactable = e;
+        }
+
+        private string GetDefaultEmailFieldContents()
+        {
+            return PlayerPrefs.GetString("SRDEBUGGER_BUG_REPORT_LAST_EMAIL", "");
+        }
+
+        private void SetDefaultEmailFieldContents(string value)
+        {
+            PlayerPrefs.SetString("SRDEBUGGER_BUG_REPORT_LAST_EMAIL", value);
+            PlayerPrefs.Save();
         }
     }
 }

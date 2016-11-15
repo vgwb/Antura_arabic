@@ -1,4 +1,4 @@
-﻿namespace SRDebugger.UI.Profiler
+﻿namespace SRDebugger.UI
 {
     using Services;
     using SRF;

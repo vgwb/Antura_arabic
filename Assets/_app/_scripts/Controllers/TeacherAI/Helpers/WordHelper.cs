@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace EA4S.Db
 {
@@ -104,8 +105,7 @@ namespace EA4S.Db
         public List<LetterData> GetLettersNotInWords(LetterKindCategory category = LetterKindCategory.Real, params WordData[] tabooArray)
         {
             var letter_ids_list = new HashSet<string>();
-            foreach (var tabooWordData in tabooArray)
-            {
+            foreach (var tabooWordData in tabooArray) {
                 letter_ids_list.UnionWith(tabooWordData.Letters);
             }
             List<LetterData> list = dbManager.FindLetterData(x => !letter_ids_list.Contains(x.Id) && x.IsOfKindCategory(category));
@@ -124,6 +124,15 @@ namespace EA4S.Db
 
         #region Word -> Word
 
+        /// <summary>
+        /// tranformsf the hex string of the glyph into the corresponding char
+        /// </summary>
+        /// <returns>The drawing string</returns>
+        /// <param name="word">WordData.</param>
+        public string GetWordDrawing(WordData word)
+        {
+            return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+        }
 
         private List<WordData> GetWordsNotIn(List<string> tabooList)
         {
@@ -138,12 +147,9 @@ namespace EA4S.Db
         public List<WordData> GetWordsByCategory(WordDataCategory choice, bool withDrawing = false)
         {
             if (choice == WordDataCategory.None) return dbManager.GetAllWordData();
-            if (withDrawing)
-            {
+            if (withDrawing) {
                 return dbManager.FindWordData(x => x.Category == choice && x.HasDrawing());
-            }
-            else
-            {
+            } else {
                 return dbManager.FindWordData(x => x.Category == choice);
             }
         }
@@ -197,33 +203,25 @@ namespace EA4S.Db
 
             List<WordData> list = dbManager.FindWordData(x => {
 
-                if (tabooLetters.Count > 0)
-                {
-                    foreach (var letter_id in x.Letters)
-                    {
-                        if (tabooLetters.Contains(letter_id))
-                        {
+                if (tabooLetters.Count > 0) {
+                    foreach (var letter_id in x.Letters) {
+                        if (tabooLetters.Contains(letter_id)) {
                             return false;
                         }
                     }
                 }
 
-                if (okLetters.Count > 0)
-                {
+                if (okLetters.Count > 0) {
                     bool hasAllOkLetters = true;
-                    foreach(var okLetter in okLetters)
-                    {
+                    foreach (var okLetter in okLetters) {
                         bool hasThisLetter = false;
-                        foreach(var letter_id in x.Letters)
-                        {
-                            if (letter_id == okLetter)
-                            {
+                        foreach (var letter_id in x.Letters) {
+                            if (letter_id == okLetter) {
                                 hasThisLetter = true;
                                 break;
                             }
                         }
-                        if (!hasThisLetter)
-                        {
+                        if (!hasThisLetter) {
                             hasAllOkLetters = false;
                             break;
                         }
@@ -232,7 +230,7 @@ namespace EA4S.Db
                 }
 
                 return true;
-                }
+            }
             );
             return list;
 
@@ -277,32 +275,26 @@ namespace EA4S.Db
 
             var okWords = new HashSet<string>(okWordsArray);
 
-            List<PhraseData> list = dbManager.FindPhraseData(x => 
-                {
-                    if (okWords.Count > 0)
-                    {
-                        bool hasAllOkWords = true;
-                        foreach (var okWord in okWords)
-                        {
-                            bool hasThisWord = false;
-                            foreach (var word_id in x.Words)
-                            {
-                                if (word_id == okWord)
-                                {
-                                    hasThisWord = true;
-                                    break;
-                                }
-                            }
-                            if (!hasThisWord)
-                            {
-                                hasAllOkWords = false;
+            List<PhraseData> list = dbManager.FindPhraseData(x => {
+                if (okWords.Count > 0) {
+                    bool hasAllOkWords = true;
+                    foreach (var okWord in okWords) {
+                        bool hasThisWord = false;
+                        foreach (var word_id in x.Words) {
+                            if (word_id == okWord) {
+                                hasThisWord = true;
                                 break;
                             }
                         }
-                        if (!hasAllOkWords) return false;
+                        if (!hasThisWord) {
+                            hasAllOkWords = false;
+                            break;
+                        }
                     }
-                    return true;
+                    if (!hasAllOkWords) return false;
                 }
+                return true;
+            }
             );
             return list;
         }

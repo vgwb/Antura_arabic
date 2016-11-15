@@ -434,6 +434,7 @@ namespace EA4S.API
 
         public void Reset()
         {
+            audioManager.Reset();
             inputManager.Reset();
         }
 

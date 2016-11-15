@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using SRF;
     using SRF.Service;
     using UnityEngine;
@@ -11,10 +12,10 @@
     /// be used to identify a user is marked as private, and won't be included in any generated
     /// reports.
     /// </summary>
-    [Service(typeof (ISystemInformationService))]
+    [Service(typeof(ISystemInformationService))]
     public class StandardSystemInformationService : ISystemInformationService
     {
-        private readonly Dictionary<string, IList<ISystemInfo>> _info = new Dictionary<string, IList<ISystemInfo>>();
+        private readonly Dictionary<string, IList<InfoEntry>> _info = new Dictionary<string, IList<InfoEntry>>();
 
         public StandardSystemInformationService()
         {
@@ -26,17 +27,35 @@
             return _info.Keys;
         }
 
-        public IList<ISystemInfo> GetInfo(string category)
+        public IList<InfoEntry> GetInfo(string category)
         {
-            IList<ISystemInfo> list;
+            IList<InfoEntry> list;
 
             if (!_info.TryGetValue(category, out list))
             {
                 Debug.LogError("[SystemInformationService] Category not found: {0}".Fmt(category));
-                return new ISystemInfo[0];
+                return new InfoEntry[0];
             }
 
             return list;
+        }
+
+        public void Add(InfoEntry info, string category = "Default")
+        {
+            IList<InfoEntry> list;
+
+            if (!_info.TryGetValue(category, out list))
+            {
+                list = new List<InfoEntry>();
+                _info.Add(category, list);
+            }
+
+            if (list.Any(p => p.Title == info.Title))
+            {
+                throw new ArgumentException("An InfoEntry object with the same title already exists in that category.", "info");
+            }
+
+            list.Add(info);
         }
 
         public Dictionary<string, Dictionary<string, object>> CreateReport(bool includePrivate = false)
@@ -67,13 +86,13 @@
         {
             _info.Add("System", new[]
             {
-                Info.Create("Operating System", SystemInfo.operatingSystem),
-                Info.Create("Device Name", SystemInfo.deviceName, true),
-                Info.Create("Device Type", SystemInfo.deviceType),
-                Info.Create("Device Model", SystemInfo.deviceModel),
-                Info.Create("CPU Type", SystemInfo.processorType),
-                Info.Create("CPU Count", SystemInfo.processorCount),
-                Info.Create("System Memory", SRFileUtil.GetBytesReadable(((long) SystemInfo.systemMemorySize)*1024*1024))
+                InfoEntry.Create("Operating System", UnityEngine.SystemInfo.operatingSystem),
+                InfoEntry.Create("Device Name", UnityEngine.SystemInfo.deviceName, true),
+                InfoEntry.Create("Device Type", UnityEngine.SystemInfo.deviceType),
+                InfoEntry.Create("Device Model", UnityEngine.SystemInfo.deviceModel),
+                InfoEntry.Create("CPU Type", UnityEngine.SystemInfo.processorType),
+                InfoEntry.Create("CPU Count", UnityEngine.SystemInfo.processorCount),
+                InfoEntry.Create("System Memory", SRFileUtil.GetBytesReadable(((long) UnityEngine.SystemInfo.systemMemorySize)*1024*1024))
                 //Info.Create("Process Name", () => Process.GetCurrentProcess().ProcessName)
             });
 
@@ -86,54 +105,54 @@
 
             _info.Add("Unity", new[]
             {
-                Info.Create("Version", Application.unityVersion),
-                Info.Create("Debug", Debug.isDebugBuild),
-                Info.Create("Unity Pro", Application.HasProLicense()),
-                Info.Create("Genuine",
+                InfoEntry.Create("Version", Application.unityVersion),
+                InfoEntry.Create("Debug", Debug.isDebugBuild),
+                InfoEntry.Create("Unity Pro", Application.HasProLicense()),
+                InfoEntry.Create("Genuine",
                     "{0} ({1})".Fmt(Application.genuine ? "Yes" : "No",
                         Application.genuineCheckAvailable ? "Trusted" : "Untrusted")),
-                Info.Create("System Language", Application.systemLanguage),
-                Info.Create("Platform", Application.platform),
-                Info.Create("IL2CPP", IL2CPP),
-                Info.Create("SRDebugger Version", SRDebug.Version),
+                InfoEntry.Create("System Language", Application.systemLanguage),
+                InfoEntry.Create("Platform", Application.platform),
+                InfoEntry.Create("IL2CPP", IL2CPP),
+                InfoEntry.Create("SRDebugger Version", SRDebug.Version),
             });
 
             _info.Add("Display", new[]
             {
-                Info.Create("Resolution", () => Screen.width + "x" + Screen.height),
-                Info.Create("DPI", () => Screen.dpi),
-                Info.Create("Fullscreen", () => Screen.fullScreen),
-                Info.Create("Orientation", () => Screen.orientation)
+                InfoEntry.Create("Resolution", () => Screen.width + "x" + Screen.height),
+                InfoEntry.Create("DPI", () => Screen.dpi),
+                InfoEntry.Create("Fullscreen", () => Screen.fullScreen),
+                InfoEntry.Create("Orientation", () => Screen.orientation)
             });
 
             _info.Add("Runtime", new[]
             {
-                Info.Create("Play Time", () => Time.unscaledTime),
-                Info.Create("Level Play Time", () => Time.timeSinceLevelLoad),
+                InfoEntry.Create("Play Time", () => Time.unscaledTime),
+                InfoEntry.Create("Level Play Time", () => Time.timeSinceLevelLoad),
 #if UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2
-                Info.Create("Current Level", () => Application.loadedLevelName),
+                InfoEntry.Create("Current Level", () => Application.loadedLevelName),
 #else
-                Info.Create("Current Level", () =>
+                InfoEntry.Create("Current Level", () =>
                 {
                     var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
                     return "{0} (Index: {1})".Fmt(activeScene.name, activeScene.buildIndex);
                 }),
 #endif
-                Info.Create("Quality Level",
+                InfoEntry.Create("Quality Level",
                     () =>
                         QualitySettings.names[QualitySettings.GetQualityLevel()] + " (" +
                         QualitySettings.GetQualityLevel() + ")")
             });
 
             // Check for cloud build manifest
-            var cloudBuildManifest = (TextAsset) Resources.Load("UnityCloudBuildManifest.json");
+            var cloudBuildManifest = (TextAsset)Resources.Load("UnityCloudBuildManifest.json");
             var manifestDict = cloudBuildManifest != null
                 ? Json.Deserialize(cloudBuildManifest.text) as Dictionary<string, object>
                 : null;
 
             if (manifestDict != null)
             {
-                var manifestList = new List<ISystemInfo>(manifestDict.Count);
+                var manifestList = new List<InfoEntry>(manifestDict.Count);
 
                 foreach (var kvp in manifestDict)
                 {
@@ -143,7 +162,7 @@
                     }
 
                     var value = kvp.Value.ToString();
-                    manifestList.Add(Info.Create(GetCloudManifestPrettyName(kvp.Key), value));
+                    manifestList.Add(InfoEntry.Create(GetCloudManifestPrettyName(kvp.Key), value));
                 }
 
                 _info.Add("Build", manifestList);
@@ -151,10 +170,10 @@
 
             _info.Add("Features", new[]
             {
-                Info.Create("Location", SystemInfo.supportsLocationService),
-                Info.Create("Accelerometer", SystemInfo.supportsAccelerometer),
-                Info.Create("Gyroscope", SystemInfo.supportsGyroscope),
-                Info.Create("Vibration", SystemInfo.supportsVibration)
+                InfoEntry.Create("Location", UnityEngine.SystemInfo.supportsLocationService),
+                InfoEntry.Create("Accelerometer", UnityEngine.SystemInfo.supportsAccelerometer),
+                InfoEntry.Create("Gyroscope", UnityEngine.SystemInfo.supportsGyroscope),
+                InfoEntry.Create("Vibration", UnityEngine.SystemInfo.supportsVibration)
             });
 
 #if UNITY_IOS
@@ -162,41 +181,42 @@
             _info.Add("iOS", new[] {
 
 #if UNITY_5
-                Info.Create("Generation", UnityEngine.iOS.Device.generation),
-                Info.Create("Ad Tracking", UnityEngine.iOS.Device.advertisingTrackingEnabled),
-#else
-                Info.Create("Generation", iPhone.generation),
-                Info.Create("Ad Tracking", iPhone.advertisingTrackingEnabled),
+                InfoEntry.Create("Generation", UnityEngine.iOS.Device.generation),
+                InfoEntry.Create("Ad Tracking", UnityEngine.iOS.Device.advertisingTrackingEnabled),
+#else           
+                InfoEntry.Create("Generation", iPhone.generation),
+                InfoEntry.Create("Ad Tracking", iPhone.advertisingTrackingEnabled),
 #endif
             });
 
 #endif
-
+#pragma warning disable 618
             _info.Add("Graphics", new[]
             {
-                Info.Create("Device Name", SystemInfo.graphicsDeviceName),
-                Info.Create("Device Vendor", SystemInfo.graphicsDeviceVendor),
-                Info.Create("Device Version", SystemInfo.graphicsDeviceVersion),
-                Info.Create("Max Tex Size", SystemInfo.maxTextureSize),
+                InfoEntry.Create("Device Name", UnityEngine.SystemInfo.graphicsDeviceName),
+                InfoEntry.Create("Device Vendor", UnityEngine.SystemInfo.graphicsDeviceVendor),
+                InfoEntry.Create("Device Version", UnityEngine.SystemInfo.graphicsDeviceVersion),
+                InfoEntry.Create("Max Tex Size", UnityEngine.SystemInfo.maxTextureSize),
 #if !UNITY_5
-                Info.Create("Fill Rate",
+                InfoEntry.Create("Fill Rate",
                     SystemInfo.graphicsPixelFillrate > 0 ? "{0}mpix/s".Fmt(SystemInfo.graphicsPixelFillrate) : "Unknown"),
 #endif
-                Info.Create("NPOT Support", SystemInfo.npotSupport),
-                Info.Create("Render Textures",
-                    "{0} ({1})".Fmt(SystemInfo.supportsRenderTextures ? "Yes" : "No",
-                        SystemInfo.supportedRenderTargetCount)),
-                Info.Create("3D Textures", SystemInfo.supports3DTextures),
-                Info.Create("Compute Shaders", SystemInfo.supportsComputeShaders),
+                InfoEntry.Create("NPOT Support", UnityEngine.SystemInfo.npotSupport),
+                InfoEntry.Create("Render Textures",
+                    "{0} ({1})".Fmt(UnityEngine.SystemInfo.supportsRenderTextures ? "Yes" : "No",
+                        UnityEngine.SystemInfo.supportedRenderTargetCount)),
+                InfoEntry.Create("3D Textures", UnityEngine.SystemInfo.supports3DTextures),
+                InfoEntry.Create("Compute Shaders", UnityEngine.SystemInfo.supportsComputeShaders),
 #if !UNITY_5
-                Info.Create("Vertex Programs", SystemInfo.supportsVertexPrograms),
+                InfoEntry.Create("Vertex Programs", SystemInfo.supportsVertexPrograms),
 #endif
-                Info.Create("Image Effects", SystemInfo.supportsImageEffects),
-                Info.Create("Cubemaps", SystemInfo.supportsRenderToCubemap),
-                Info.Create("Shadows", SystemInfo.supportsShadows),
-                Info.Create("Stencil", SystemInfo.supportsStencil),
-                Info.Create("Sparse Textures", SystemInfo.supportsSparseTextures)
+                InfoEntry.Create("Image Effects", UnityEngine.SystemInfo.supportsImageEffects),
+                InfoEntry.Create("Cubemaps", UnityEngine.SystemInfo.supportsRenderToCubemap),
+                InfoEntry.Create("Shadows", UnityEngine.SystemInfo.supportsShadows),
+                InfoEntry.Create("Stencil", UnityEngine.SystemInfo.supportsStencil),
+                InfoEntry.Create("Sparse Textures", UnityEngine.SystemInfo.supportsSparseTextures)
             });
+#pragma warning restore 618
         }
 
         private static string GetCloudManifestPrettyName(string name)
@@ -218,49 +238,6 @@
 
             // Return name with first letter capitalised
             return name.Substring(0, 1).ToUpper() + name.Substring(1);
-        }
-
-        private class Info : ISystemInfo
-        {
-            private Func<object> _valueGetter;
-            public string Title { get; set; }
-
-            public object Value
-            {
-                get
-                {
-                    try
-                    {
-                        return _valueGetter();
-                    }
-                    catch (Exception e)
-                    {
-                        return "Error ({0})".Fmt(e.GetType().Name);
-                    }
-                }
-            }
-
-            public bool IsPrivate { get; set; }
-
-            public static Info Create(string name, Func<object> getter, bool isPrivate = false)
-            {
-                return new Info
-                {
-                    Title = name,
-                    _valueGetter = getter,
-                    IsPrivate = isPrivate
-                };
-            }
-
-            public static Info Create(string name, object value, bool isPrivate = false)
-            {
-                return new Info
-                {
-                    Title = name,
-                    _valueGetter = () => value,
-                    IsPrivate = isPrivate
-                };
-            }
         }
     }
 }

@@ -2,19 +2,17 @@
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using SRF;
     using SRF.Service;
     using UnityEngine;
 
     [Service(typeof (IConsoleService))]
     public class StandardConsoleService : IConsoleService
     {
-        private readonly SRList<ConsoleEntry> _allConsoleEntries = new SRList<ConsoleEntry>();
         private readonly bool _collapseEnabled;
-        private readonly SRList<ConsoleEntry> _consoleEntries = new SRList<ConsoleEntry>();
-        private readonly ReadOnlyCollection<ConsoleEntry> _consoleEntriesReadOnly;
-        private ReadOnlyCollection<ConsoleEntry> _allConsoleEntriesReadOnly;
         private bool _hasCleared;
+
+        private readonly CircularBuffer<ConsoleEntry> _allConsoleEntries;
+        private CircularBuffer<ConsoleEntry> _consoleEntries;
 
         public StandardConsoleService()
         {
@@ -28,8 +26,7 @@
 
             _collapseEnabled = Settings.Instance.CollapseDuplicateLogEntries;
 
-            _allConsoleEntriesReadOnly = _allConsoleEntries.AsReadOnly();
-            _consoleEntriesReadOnly = _consoleEntries.AsReadOnly();
+            _allConsoleEntries = new CircularBuffer<ConsoleEntry>(Settings.Instance.MaximumConsoleEntries);
         }
 
         public int ErrorCount { get; private set; }
@@ -37,51 +34,68 @@
         public int InfoCount { get; private set; }
         public event ConsoleUpdatedEventHandler Updated;
 
-        public IList<ConsoleEntry> Entries
+        public IReadOnlyList<ConsoleEntry> Entries
         {
             get
             {
                 if (!_hasCleared)
                 {
-                    return _allConsoleEntriesReadOnly;
+                    return _allConsoleEntries;
                 }
 
-                return _consoleEntriesReadOnly;
+                return _consoleEntries;
             }
         }
 
-        public IList<ConsoleEntry> AllEntries
+        public IReadOnlyList<ConsoleEntry> AllEntries
         {
-            get { return _consoleEntriesReadOnly; }
+            get { return _allConsoleEntries; }
         }
 
         public void Clear()
         {
             _hasCleared = true;
-            _consoleEntries.Clear();
+
+            if (_consoleEntries == null)
+            {
+                _consoleEntries = new CircularBuffer<ConsoleEntry>(Settings.Instance.MaximumConsoleEntries);
+            }
+            ;
             ErrorCount = WarningCount = InfoCount = 0;
 
             OnUpdated();
         }
 
-        public void ResetCounters() {}
-
         protected void OnEntryAdded(ConsoleEntry entry)
         {
             if (_hasCleared)
             {
-                _consoleEntries.Add(entry);
+                // Decrement counters if adding this entry will push another
+                // entry from the buffer.
+                if (_consoleEntries.IsFull)
+                {
+                    AdjustCounter(_consoleEntries.Front().LogType, -1);
+                    _consoleEntries.PopFront();
+                }
+
+                _consoleEntries.PushBack(entry);
+            }
+            else
+            {
+                if (_allConsoleEntries.IsFull)
+                {
+                    AdjustCounter(_allConsoleEntries.Front().LogType, -1);
+                    _allConsoleEntries.PopFront();
+                }
             }
 
-            _allConsoleEntries.Add(entry);
-
+            _allConsoleEntries.PushBack(entry);
             OnUpdated();
         }
 
         protected void OnEntryDuplicated(ConsoleEntry entry)
         {
             entry.Count++;
-
             OnUpdated();
 
             // If has cleared, add this entry again for the current list
@@ -129,20 +143,25 @@
                 OnEntryAdded(newEntry);
             }
 
+            AdjustCounter(type, 1);
+        }
+
+        private void AdjustCounter(LogType type, int amount)
+        {
             switch (type)
             {
                 case LogType.Assert:
                 case LogType.Error:
                 case LogType.Exception:
-                    ErrorCount++;
+                    ErrorCount += amount;
                     break;
 
                 case LogType.Warning:
-                    WarningCount++;
+                    WarningCount += amount;
                     break;
 
                 case LogType.Log:
-                    InfoCount++;
+                    InfoCount += amount;
                     break;
             }
         }

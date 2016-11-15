@@ -20,6 +20,7 @@ namespace EA4S.ReadingGame
 
         public void EnterState()
         {
+            game.antura.AllowSitting = false;
             game.isTimesUp = false;
 
             game.circleBox.SetActive(true);
@@ -80,6 +81,7 @@ namespace EA4S.ReadingGame
                 game.radialWidget.pulsing = false;
                 game.Context.GetCheckmarkWidget().Show(true);
 
+                game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
             }
             else
             {
@@ -89,6 +91,8 @@ namespace EA4S.ReadingGame
 
                 if (game.RemoveLife())
                     return;
+
+                game.antura.animator.DoShout(() => { ReadingGameConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking); });
             }
 
             game.circleBox.GetComponent<CircleButtonBox>().Clear(()

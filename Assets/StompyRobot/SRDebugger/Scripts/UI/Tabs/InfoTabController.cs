@@ -19,13 +19,6 @@
 
         [RequiredField] public RectTransform LayoutContainer;
 
-        protected override void Start()
-        {
-            base.Start();
-
-            Construct();
-        }
-
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -36,33 +29,22 @@
         {
             var s = SRServiceManager.GetService<ISystemInformationService>();
 
+            foreach (var category in s.GetCategories())
+            {
+                if (!_infoBlocks.ContainsKey(category))
+                {
+                    var block = CreateBlock(category);
+                    _infoBlocks.Add(category, block);
+                }
+            }
+
             foreach (var kv in _infoBlocks)
             {
                 FillInfoBlock(kv.Value, s.GetInfo(kv.Key));
             }
         }
 
-        private void Construct()
-        {
-            var s = SRServiceManager.GetService<ISystemInformationService>();
-
-            foreach (var category in s.GetCategories())
-            {
-                var info = s.GetInfo(category);
-
-                if (info.Count == 0)
-                {
-                    continue;
-                }
-
-                var block = CreateBlock(category);
-                FillInfoBlock(block, info);
-
-                _infoBlocks.Add(category, block);
-            }
-        }
-
-        private void FillInfoBlock(InfoBlock block, IList<ISystemInfo> info)
+        private void FillInfoBlock(InfoBlock block, IList<InfoEntry> info)
         {
             var sb = new StringBuilder();
 

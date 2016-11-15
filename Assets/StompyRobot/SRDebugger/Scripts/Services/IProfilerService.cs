@@ -1,7 +1,5 @@
 ﻿namespace SRDebugger.Services
 {
-    using CircularBuffer;
-
     public struct ProfilerFrame
     {
         public double FrameTime;

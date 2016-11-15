@@ -1,21 +1,28 @@
-﻿namespace SRDebugger.UI.Controls.Profiler
+﻿namespace SRDebugger.UI.Controls
 {
     using System;
     using SRF;
     using UnityEngine;
     using UnityEngine.UI;
+#if UNITY_5_5_OR_NEWER
+    using UnityEngine.Profiling;
+#endif
 
     public class ProfilerMonoBlock : SRMonoBehaviourEx
     {
         private float _lastRefresh;
 
-        [RequiredField] public Text CurrentUsedText;
+        [RequiredField]
+        public Text CurrentUsedText;
 
-        [RequiredField] public GameObject NotSupportedMessage;
+        [RequiredField]
+        public GameObject NotSupportedMessage;
 
-        [RequiredField] public Slider Slider;
+        [RequiredField]
+        public Slider Slider;
 
-        [RequiredField] public Text TotalAllocatedText;
+        [RequiredField]
+        public Text TotalAllocatedText;
         private bool _isSupported;
 
         protected override void OnEnable()
@@ -42,8 +49,8 @@
 
         public void TriggerRefresh()
         {
-            var max = _isSupported ? UnityEngine.Profiler.GetMonoHeapSize() : GC.GetTotalMemory(false);
-            var current = UnityEngine.Profiler.GetMonoUsedSize();
+            var max = _isSupported ? Profiler.GetMonoHeapSize() : GC.GetTotalMemory(false);
+            var current = Profiler.GetMonoUsedSize();
 
             Slider.maxValue = max;
             Slider.value = current;

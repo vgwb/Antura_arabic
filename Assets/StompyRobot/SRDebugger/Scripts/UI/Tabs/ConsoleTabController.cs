@@ -17,19 +17,36 @@ namespace SRDebugger.UI.Tabs
         private Canvas _consoleCanvas;
         private bool _isDirty;
 
-        [RequiredField] public ConsoleLogControl ConsoleLogControl;
+        [RequiredField]
+        public ConsoleLogControl ConsoleLogControl;
 
-        [RequiredField] public Toggle PinToggle;
+        [RequiredField]
+        public Toggle PinToggle;
         //public bool IsListening = true;
 
-        [RequiredField] public ScrollRect StackTraceScrollRect;
-        [RequiredField] public Text StackTraceText;
-        [RequiredField] public Toggle ToggleErrors;
-        [RequiredField] public Text ToggleErrorsText;
-        [RequiredField] public Toggle ToggleInfo;
-        [RequiredField] public Text ToggleInfoText;
-        [RequiredField] public Toggle ToggleWarnings;
-        [RequiredField] public Text ToggleWarningsText;
+        [RequiredField]
+        public ScrollRect StackTraceScrollRect;
+        [RequiredField]
+        public Text StackTraceText;
+        [RequiredField]
+        public Toggle ToggleErrors;
+        [RequiredField]
+        public Text ToggleErrorsText;
+        [RequiredField]
+        public Toggle ToggleInfo;
+        [RequiredField]
+        public Text ToggleInfoText;
+        [RequiredField]
+        public Toggle ToggleWarnings;
+        [RequiredField]
+        public Text ToggleWarningsText;
+
+        [RequiredField]
+        public Toggle FilterToggle;
+        [RequiredField]
+        public InputField FilterField;
+        [RequiredField]
+        public GameObject FilterBarContainer;
 
         protected override void Start()
         {
@@ -43,6 +60,15 @@ namespace SRDebugger.UI.Tabs
 
             PinToggle.onValueChanged.AddListener(PinToggleValueChanged);
 
+            FilterToggle.onValueChanged.AddListener(FilterToggleValueChanged);
+            FilterBarContainer.SetActive(FilterToggle.isOn);
+
+#if UNITY_5_3_OR_NEWER
+            FilterField.onValueChanged.AddListener(FilterValueChanged);
+#else
+            FilterField.onValueChange.AddListener(FilterValueChanged);
+#endif
+
             ConsoleLogControl.SelectedItemChanged = ConsoleLogSelectedItemChanged;
 
             Service.Console.Updated += ConsoleOnUpdated;
@@ -52,6 +78,32 @@ namespace SRDebugger.UI.Tabs
             PopulateStackTraceArea(null);
 
             Refresh();
+        }
+
+
+        private void FilterToggleValueChanged(bool isOn)
+        {
+            if (isOn)
+            {
+                FilterBarContainer.SetActive(true);
+                ConsoleLogControl.Filter = FilterField.text;
+            }
+            else
+            {
+                ConsoleLogControl.Filter = null;
+                FilterBarContainer.SetActive(false);
+            }
+        }
+        private void FilterValueChanged(string filterText)
+        {
+            if (FilterToggle.isOn && !string.IsNullOrEmpty(filterText) && filterText.Trim().Length != 0)
+            {
+                ConsoleLogControl.Filter = filterText;
+            }
+            else
+            {
+                ConsoleLogControl.Filter = null;
+            }
         }
 
         private void PanelOnVisibilityChanged(IDebugPanelService debugPanelService, bool b)

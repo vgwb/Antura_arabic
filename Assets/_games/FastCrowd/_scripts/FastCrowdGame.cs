@@ -151,63 +151,28 @@ namespace EA4S.FastCrowd
         }
 
 
-        public void ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
+        public bool ShowChallengePopupWidget(bool showAsGoodAnswer, Action callback)
         {
-            var popupWidget = Context.GetPopupWidget();
-            popupWidget.Show();
-            popupWidget.SetButtonCallback(callback);
-
-            if (showAsGoodAnswer)
-            {
-                popupWidget.SetTitle(TextID.WELL_DONE);
-                popupWidget.SetMark(true, true);
-            }
-            else
-                popupWidget.SetTitle("" + QuestionNumber, false);
-
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
             {
+                var popupWidget = Context.GetPopupWidget();
+                popupWidget.Show();
+                popupWidget.SetButtonCallback(callback);
+
+                if (showAsGoodAnswer)
+                {
+                    popupWidget.SetTitle(TextID.WELL_DONE);
+                    popupWidget.SetMark(true, true);
+                }
+                else
+                    popupWidget.SetTitle("" + QuestionNumber, false);
+
                 var question = CurrentQuestion.GetQuestion();
                 popupWidget.SetWord((LL_WordData)question);
                 Context.GetAudioManager().PlayLetterData(question);
+                return true;
             }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
-            {
-                var stringListOfWords = "";
-                for (int i = 0, count = CurrentChallenge.Count; i < count; ++i)
-                {
-                    Debug.Log(CurrentChallenge[i]);
-
-                    var word = ((LL_WordData)CurrentChallenge[i]).Data.Arabic;
-
-                    if (i == 0)
-                        stringListOfWords = word;
-                    else
-                        stringListOfWords = word + " " + stringListOfWords;
-                }
-
-                popupWidget.SetMessage(stringListOfWords, true);
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
-            {
-                popupWidget.SetTitle("", false);
-                popupWidget.SetMessage("Alphabet!", false);
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
-            {
-                popupWidget.SetTitle("Identify the shapes of the letter", false);
-
-                var question = CurrentQuestion.GetQuestion();
-                popupWidget.SetMessage(question.TextForLivingLetter, true);
-                Context.GetAudioManager().PlayLetterData(question);
-            }
-            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
-            {
-                popupWidget.SetTitle("", false);
-                var question = CurrentQuestion.GetQuestion();
-                popupWidget.SetMessage("Number " + QuestionNumber, true);
-                Context.GetAudioManager().PlayLetterData(question);
-            }
+            return false;
         }
     }
 }

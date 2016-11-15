@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using EA4S.Db;
+using System.Linq;
 
 namespace EA4S.Teacher
 {
@@ -47,38 +48,39 @@ namespace EA4S.Teacher
 
         #region Data Selection logic
 
-        public List<Db.LetterData> SelectLetters(System.Func<List<Db.LetterData>> selectionFunction, SelectionParameters selectionParams)
-        {
-            // All data to use
-            var foundDataList = selectionFunction();
-
-            // Selection filtering
-            if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
-            {
-                foundDataList = foundDataList.FindAll(x => journeyLetters.Contains(x));
-            }
-
-            if (foundDataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
-            {
-                throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances as required by the game.");
-            }
-
-            return foundDataList;
-        }
-
-        public List<Db.WordData> SelectWords(System.Func<List<Db.WordData>> builderSelectionFunction, SelectionParameters selectionParams)
+        public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams) where T : IData
         {
             string debugString = "";
             debugString += "--------- TEACHER: data selection --------- ";
 
-            // Clean data based on the builder's logic
+            // @note: not the best of solutions, but I do not seem to be able to get more generic than this without rewriting most stuff.
+            System.Type typeParameterType = typeof(T);
+            HashSet<T> journeyData = null;
+            DbTables table = DbTables.Letters;
+            if (typeParameterType == typeof(LetterData))
+            {
+                table = DbTables.Letters;
+                journeyData = new HashSet<T>(journeyLetters.Cast<T>());
+            }
+            else if (typeParameterType == typeof(WordData))
+            {
+                table = DbTables.Words;
+                journeyData = new HashSet<T>(journeyWords.Cast<T>());
+            }
+            else if (typeParameterType == typeof(PhraseData))
+            {
+                table = DbTables.Phrases;
+                journeyData = new HashSet<T>(journeyPhrases.Cast<T>());
+            }
+
+            // Get unfiltered data based on the builder's logic
             var dataList = builderSelectionFunction();
             debugString += ("\nBuilder: " + dataList.Count);
 
             // Filtering based on journey
             if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
             {
-                dataList = dataList.FindAll(x => journeyWords.Contains(x));
+                dataList = dataList.FindAll(x => journeyData.Contains(x));
             }
             if (dataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
             {
@@ -88,15 +90,15 @@ namespace EA4S.Teacher
 
             // Filtering based on pack-list history 
             PackListHistory sev = selectionParams.packListHistory;
-            switch (sev) {
+            switch (sev)
+            {
                 case PackListHistory.NoFilter:
                     // we do not care which are picked, in this case
                     break;
 
                 case PackListHistory.ForceAllDifferent:
                     // filter only by those that have not been found already in this pack, if possible
-                    dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.Id));
-
+                    dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.GetId()));
                     if (dataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
                     {
                         throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the pack-history logic.");
@@ -105,12 +107,12 @@ namespace EA4S.Teacher
 
                 case PackListHistory.RepeatWhenFull:
                     // reset the previous pack list if needed
-                    var tmpDataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.Id));
+                    var tmpDataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.GetId()));
                     if (tmpDataList.Count < selectionParams.nRequired)
                     {
                         // reset and re-pick
                         selectionParams.filteringIds.Clear();
-                        dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.Id));
+                        dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.GetId()));
                     }
                     else
                     {
@@ -121,7 +123,7 @@ namespace EA4S.Teacher
             debugString += ("\nPack-history: " + dataList.Count);
 
             // Weighted selection on the remaining number
-            var selectedList = WeightedWordsSelect(dataList, selectionParams.nRequired);
+            var selectedList = WeightedDataSelect(dataList, selectionParams.nRequired, table);
             debugString += ("\nWeighted selection: " + selectedList.Count);
 
             if (ConfigAI.verboseDataSelection)
@@ -132,12 +134,10 @@ namespace EA4S.Teacher
             return selectedList;
         }
 
-        // @todo: make this for Letters and Phrases too
-        private List<WordData> WeightedWordsSelect(List<WordData> source_data_list, int nToSelect)
+        private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, DbTables table) where T : IData
         {
             // Given a (filtered) list of data, select some using weights
-
-            List<ScoreData> score_data_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = 'Words'");
+            List<ScoreData> score_data_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = '" + table.ToString() + "'");
 
             List<float> weights_list = new List<float>();
             foreach (var sourceData in source_data_list)
@@ -145,23 +145,22 @@ namespace EA4S.Teacher
                 float cumulativeWeight = 0;
 
                 // Get score data
-                var score_data = score_data_list.Find(x => x.ElementId == sourceData.Id);
-                float currentWordScore = 0;
+                var score_data = score_data_list.Find(x => x.ElementId == sourceData.GetId());
+                float currentScore = 0;
                 int daysSinceLastScore = 0;
                 if (score_data != null)
                 {
                     var timespanFromLastScoreToNow = GenericUtilities.GetTimeSpanBetween(score_data.LastAccessTimestamp, GenericUtilities.GetTimestampForNow());
                     daysSinceLastScore = timespanFromLastScoreToNow.Days;
-                    currentWordScore = score_data.Score;
+                    currentScore = score_data.Score;
                 }
-                //UnityEngine.Debug.Log("Data " + word_Id + " score: " + currentWordScore + " days " + daysSinceLastScore);
-
+                //UnityEngine.Debug.Log("Data " + id + " score: " + currentScore + " days " + daysSinceLastScore);
 
                 // Score Weight [0,1]: higher the lower the score [-1,1] is
-                var scoreWeight = 0.5f * (1 - currentWordScore);
+                var scoreWeight = 0.5f * (1 - currentScore);
                 cumulativeWeight += scoreWeight * ConfigAI.data_scoreWeight;
 
-                // RecentPlay Weight  [1,0]: higher the more in the past we saw that word
+                // RecentPlay Weight  [1,0]: higher the more in the past we saw that data
                 const float dayLinerWeightDecrease = 1f / ConfigAI.daysForMaximumRecentPlayMalus;
                 float weightMalus = daysSinceLastScore * dayLinerWeightDecrease;
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
@@ -181,7 +180,7 @@ namespace EA4S.Teacher
             }
 
             // Select data from the list
-            List<WordData> selected_data_list = new List<WordData>();
+            List<T> selected_data_list = new List<T>();
             if (source_data_list.Count > 0)
             {
                 int nToSelectFromCurrentList = UnityEngine.Mathf.Min(source_data_list.Count, nToSelect);
