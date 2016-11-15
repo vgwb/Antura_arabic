@@ -163,6 +163,7 @@ namespace EA4S.ThrowBalls
                 if ((transform.position - REBOUND_DESTINATION).sqrMagnitude <= 1)
                 {
                     UIController.instance.OnScreenCracked();
+                    ThrowBallsGameManager.Instance.OnBallLost();
                     Reset();
                 }
             }
