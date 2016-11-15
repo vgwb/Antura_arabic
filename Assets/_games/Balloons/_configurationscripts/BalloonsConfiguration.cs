@@ -75,7 +75,7 @@
             switch (Variation)
             {
                 case BalloonsVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.Number);
+                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal); 
                     break;
                 case BalloonsVariation.Letter:
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);

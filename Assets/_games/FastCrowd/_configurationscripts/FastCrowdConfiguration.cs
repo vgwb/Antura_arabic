@@ -78,7 +78,7 @@
                     builder = new AlphabetQuestionBuilder();
                     break;
                 case FastCrowdVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.Number);
+                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal);
                     break;
                 case FastCrowdVariation.Letter:
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
