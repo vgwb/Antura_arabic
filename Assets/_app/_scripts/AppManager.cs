@@ -55,7 +55,7 @@ namespace EA4S
             GameSettings.HighQualityGfx = false;
             //ResetProgressionData();
 
-
+            Instance.LogManager.LogInfo(InfoEvent.AppStarted);
         }
 
         public PlayerProfileManager PlayerProfileManager = new PlayerProfileManager();
@@ -79,8 +79,6 @@ namespace EA4S
             // If "GameSettings.LastActivePlayerId == 0" force here open player selection
             Player = new PlayerProfile().CreateOrLoadPlayerProfile(GameSettings.LastActivePlayerId == 0 ? "1" : GameSettings.LastActivePlayerId.ToString());
             Debug.Log("Active player: " + Player.Id);
-
-            Instance.LogManager.LogInfo(InfoEvent.AppStarted);
         }
 
         /*void CachingLetterData()
