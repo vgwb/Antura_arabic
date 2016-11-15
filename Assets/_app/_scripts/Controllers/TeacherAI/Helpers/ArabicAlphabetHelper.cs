@@ -28,8 +28,9 @@ namespace EA4S
         {
             if (_hexaCode == "")
             {
-                throw new System.Exception("Letter requested with an empty hexacode (is it a real letter?)");
-            }
+                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning © for now.");
+                _hexaCode = "00A9";
+            } 
 
             int unicode = int.Parse(_hexaCode, System.Globalization.NumberStyles.HexNumber);
             char character = (char)unicode;
