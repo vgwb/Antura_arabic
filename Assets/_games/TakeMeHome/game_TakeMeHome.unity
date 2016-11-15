@@ -1465,6 +1465,7 @@ MonoBehaviour:
   currentTube: 0
   isTimesUp: 0
   activeTubes: []
+  allTubes: []
   letterManager: {fileID: 0}
   currentRound: 0
 --- !u!114 &567138332
@@ -6337,7 +6338,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 60c79e1419f5191408311e21d6aac4bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.7
+      value: -15.42
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 60c79e1419f5191408311e21d6aac4bc, type: 3}
       propertyPath: m_LocalRotation.x
