@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -6,14 +7,15 @@ namespace EA4S.Assessment
     public class DefaultQuestion : IQuestion
     {
         private LetterObjectView view;
-        private int placeholders;
-        private QuestionType type;
+        private int placeholdersCount;
+        private QuestionType questionType;
 
         public DefaultQuestion( LetterObjectView letter, int placeholders, QuestionType type)
         {
             view = letter;
-            this.placeholders = placeholders;
-            this.type = type;
+            placeholdersCount = placeholders;
+            placeholdersSet = new List<GameObject>();
+            questionType = type;
             var question = letter.gameObject.AddComponent< QuestionBehaviour>();
             question.SetQuestion( this);
         }
@@ -38,12 +40,27 @@ namespace EA4S.Assessment
 
         public int PlaceholdersCount()
         {
-            return placeholders;
+            return placeholdersCount;
         }
 
         public QuestionType Type()
         {
-            return type;
+            return questionType;
+        }
+
+        private List<GameObject> placeholdersSet;
+
+        public void TrackPlaceholder( GameObject gameObject)
+        {
+            placeholdersSet.Add( gameObject);
+        }
+
+        public IEnumerable< GameObject> GetPlaceholders()
+        {
+            if (placeholdersSet.Count != placeholdersCount)
+                throw new InvalidOperationException( "Something wrong. Check Question placer");
+
+            return placeholdersSet;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -34,7 +34,7 @@ namespace EA4S.Assessment
             width = height * mainCamera.aspect;
         }
 
-        Vector3 AnswerStartGap()
+        public Vector3 QuestionSpaceStart()
         {
             var left = center;
             left.x = left.x - width / 2 + SidesMargin(); // leave some margin for additional LLs.
@@ -43,7 +43,7 @@ namespace EA4S.Assessment
             return left;
         }
 
-        Vector3 AnswerEndGap()
+        public Vector3 QuestionSpaceEnd()
         {
             var right = center;
             right.x = right.x + width / 2 - SidesMargin();
@@ -52,19 +52,52 @@ namespace EA4S.Assessment
             return right;
         }
 
-        float DefaultZ()
+        public float QuestionGap()
+        {
+            return width - 2 * SidesMargin();
+        }
+
+        public Vector3 OneLineQuestionStart()
+        {
+            Vector3 position = QuestionSpaceStart();
+            position.x -= 0.5f * LetterSize(); // no LLs before first space
+            position.y = height / 2 - SubtitlesMargin - LetterSize() * 1.5f;
+            return position;
+        }
+
+        /// <summary>
+        /// Return space occupied by question if placed in single line fashion
+        /// </summary>
+        /// <param name="questions"> questions for this round</param>
+        /// <returns>size in world units</returns>
+        public float SingleLineOccupiedSpace( int count)
+        {
+            return (count) * LetterSize();
+        }
+
+        public float DefaultZ()
         {
             return 5.0f;
         }
 
-        float SidesMargin()
+        public float SidesMargin()
         {
             return LLSize * 1.4f;
         }
 
-        float TopMargin()
+        public float TopMargin()
         {
             return SubtitlesMargin + LLSize * 1.5f;
+        }
+
+        public float LetterSize()
+        {
+            return LLSize;
+        }
+
+        public float HalfLetterSize()
+        {
+            return 0.5f * LLSize;
         }
     }
 }

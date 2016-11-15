@@ -1,11 +1,11 @@
-﻿namespace EA4S.Assessment
+namespace EA4S.Assessment
 {
     public class AssessmentGameState : IGameState
     {
         private AssessmentGame assessmentGame;
         private IAssessment assessment;
 
-        public AssessmentGameState(AssessmentGame assessmentGame)
+        public AssessmentGameState( AssessmentGame assessmentGame)
         {
             this.assessmentGame = assessmentGame;
             assessment = GetAssessment();
@@ -29,12 +29,12 @@
 
         public void EnterState()
         {
-            assessmentGame.LaunchGame(assessment.PlayCoroutine(SetNextState));
+            Coroutine.Start( assessment.PlayCoroutine( SetNextState));
         }
 
         public void SetNextState()
         {
-            assessmentGame.SetCurrentState(assessmentGame.ResultState);
+            assessmentGame.SetCurrentState( assessmentGame.ResultState);
         }
 
         public void ExitState()
@@ -42,12 +42,12 @@
 
         }
 
-        public void Update(float delta)
+        public void Update( float delta)
         {
-            TimeEngine.Instance.Update(delta);
+            TimeEngine.Instance.Update( delta);
         }
 
-        public void UpdatePhysics(float delta)
+        public void UpdatePhysics( float delta)
         {
 
         }
