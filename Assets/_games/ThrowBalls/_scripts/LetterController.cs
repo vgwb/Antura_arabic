@@ -28,9 +28,6 @@ namespace EA4S.ThrowBalls
 
         public TMP_Text letterTextView;
 
-        private Animator animator;
-        private IEnumerator animationResetter;
-
         private float yEquilibrium;
 
         private LL_LetterData letterData;
@@ -63,7 +60,6 @@ namespace EA4S.ThrowBalls
         // Use this for initialization
         void Start()
         {
-            animator = GetComponent<Animator>();
             letterObjectView = GetComponent<LetterObjectView>();
 
             foreach (Collider collider in GetComponentsInChildren<Collider>())
@@ -190,13 +186,7 @@ namespace EA4S.ThrowBalls
 
                 else
                 {
-                    animator.Play("run");
-                    if (animationResetter != null)
-                    {
-                        StopCoroutine(animationResetter);
-                    }
-                    animationResetter = ResetAnimation();
-                    StartCoroutine(animationResetter);
+                    letterObjectView.DoChestStop();
                 }
             }
 
@@ -497,13 +487,6 @@ namespace EA4S.ThrowBalls
             GameObject poof = (GameObject)Instantiate(ThrowBallsGameManager.Instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             gameObject.SetActive(false);
-        }
-
-        private IEnumerator ResetAnimation()
-        {
-            yield return new WaitForSeconds(0.5f);
-            animator.Play("idle");
-            animationResetter = null;
         }
 
         public void Reset()
