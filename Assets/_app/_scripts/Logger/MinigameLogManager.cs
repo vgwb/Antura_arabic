@@ -11,7 +11,7 @@ namespace EA4S.Log {
 
         #region Runtime variables
         // Minigame
-        string session;
+        public string session { get { return AppManager.Instance.LogManager.Session; }  }
         string playSession;
         MiniGameCode miniGameCode;
         List<ILivingLetterAnswerData> logLearnBuffer = new List<ILivingLetterAnswerData>();
@@ -21,7 +21,7 @@ namespace EA4S.Log {
         #region Initializations
 
         public void InitLogSession() {
-            session = DateTime.Now.Ticks.ToString();
+            //session = DateTime.Now.Ticks.ToString();
         }
 
         public void InitPlaySession() {
@@ -103,7 +103,7 @@ namespace EA4S.Log {
         /// <param name="_data">The data.</param>
         /// <exception cref="System.NotImplementedException"></exception>
         public void LogInfoData(InfoEvent _event, string _data = "") {
-            AppManager.Instance.LogManager.LogInfo(session, _event, _data);
+            AppManager.Instance.LogManager.LogInfo(_event, _data);
             
         }
 
@@ -125,7 +125,7 @@ namespace EA4S.Log {
         /// Flushes the log play to app teacher log intellingence.
         /// </summary>
         void flushLogPlay() {
-            AppManager.Instance.LogManager.LogPlay(session, playSession, miniGameCode, logPlayBuffer);
+            AppManager.Instance.LogManager.LogPlay(playSession, miniGameCode, logPlayBuffer);
         }
         #endregion
 
@@ -179,7 +179,7 @@ namespace EA4S.Log {
                     actualLearnResult.nWrong ++;
             }
 
-            AppManager.Instance.LogManager.LogLearn(session, playSession, miniGameCode, resultsList);
+            AppManager.Instance.LogManager.LogLearn(playSession, miniGameCode, resultsList);
 
         }
         #endregion

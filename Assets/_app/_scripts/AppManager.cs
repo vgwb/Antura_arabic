@@ -71,15 +71,16 @@ namespace EA4S
             // PlayerProfileModule Install override
             //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
 
-            AppManager.Instance.LogManager = new Log.AppLogManager();
+            Instance.LogManager = new Log.AppLogManager();
 
             /* Player profile auto select first avatar or last selected */
-            AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
-            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             // If "GameSettings.LastActivePlayerId == 0" force here open player selection
             Player = new PlayerProfile().CreateOrLoadPlayerProfile(GameSettings.LastActivePlayerId == 0 ? "1" : GameSettings.LastActivePlayerId.ToString());
             Debug.Log("Active player: " + Player.Id);
 
+            Instance.LogManager.LogInfo(InfoEvent.AppStarted);
         }
 
         /*void CachingLetterData()
