@@ -63,6 +63,7 @@
             }
 
             control.SetMethod(from.Name, from.Method);
+            control.Option = from;
 
             return control;
         }
@@ -91,6 +92,7 @@
                 }
 
                 instance.Bind(n, from.Property);
+                instance.Option = from;
             }
             catch (Exception e)
             {

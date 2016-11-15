@@ -83,24 +83,36 @@
 
         private void CreateCloseButton()
         {
-            var go = Content.CreateChild("CloseButton");
-            var rect = go.AddComponent<RectTransform>();
+            var go = Content.CreateChild("SR_CloseButtonCanvas");
+            var c = go.AddComponent<Canvas>();
+            go.AddComponent<GraphicRaycaster>();
+            var rect = go.GetComponentOrAdd<RectTransform>();
+
+            c.overrideSorting = true;
+            c.sortingOrder = 122;
 
             go.AddComponent<LayoutElement>().ignoreLayout = true;
 
+            SetRectSize(rect);
+            
+            var cGo = rect.CreateChild("SR_CloseButton");
+            var cRect = cGo.AddComponent<RectTransform>();
+
+            SetRectSize(cRect);
+            cGo.AddComponent<Image>().color = new Color(0, 0, 0, 0);
+
+            _closeButton = cGo.AddComponent<UnityEngine.UI.Button>();
+            _closeButton.transition = Selectable.Transition.None;
+            _closeButton.onClick.AddListener(CloseButtonClicked);
+            _closeButton.gameObject.SetActive(false);
+        }
+
+        private void SetRectSize(RectTransform rect)
+        {
             rect.anchorMin = new Vector2(0, 0);
             rect.anchorMax = new Vector2(1, 1);
             rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Content.rect.width);
             rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Content.rect.height);
-
-            go.AddComponent<Image>().color = new Color(0, 0, 0, 0);
-
-            _closeButton = go.AddComponent<UnityEngine.UI.Button>();
-            _closeButton.transition = Selectable.Transition.None;
-
-            _closeButton.onClick.AddListener(CloseButtonClicked);
-
-            _closeButton.gameObject.SetActive(false);
         }
 
         private void CloseButtonClicked()

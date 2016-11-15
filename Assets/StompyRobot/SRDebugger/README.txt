@@ -1,5 +1,5 @@
 =====================
-SRDebugger - (C) Stompy Robot LTD 2015
+SRDebugger - (C) Stompy Robot LTD 2016
 =====================
 
 Visit https://www.stompyrobot.uk/tools/srdebugger/documentation for more detailed documentation.
@@ -46,6 +46,27 @@ For documentation on other features, including the options tab, bug reporter, pr
 - Source Code Pro font provided by Adobe (github.com/adobe-fonts/source-code-pro) (Open Font License 1.1)
 
 # Change Log
+
+1.5.0
+----------
+
+New:
+- Console can be filtered/searched.
+- Console now has a "Scroll to Bottom" button.
+- Option categories can now be pinned/unpinned all at once.
+- API for pinning/unpinning options.
+- Additional "Option Containers" can be registered with the SRDebug api, enabling your own objects to populate the Options tab. See docs.
+- API for adding information to the System tab (which will also be sent with bug reports).
+
+Changed:
+- Compatibility with Unity 5.5
+- Bug reporter autofills email field with last used email address.
+- Limited maximum console messages. (Default 1500, configurable in settings window)
+- Performance improvements
+
+Fixed:
+- Windows Store builds with .NET Native now work correctly.
+- Incorrect behaviour when creating default EventSystem when using manual init.
 
 1.4.9
 ----------

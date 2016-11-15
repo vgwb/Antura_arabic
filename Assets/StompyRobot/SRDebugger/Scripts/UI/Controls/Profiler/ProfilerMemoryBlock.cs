@@ -1,10 +1,13 @@
-﻿namespace SRDebugger.UI.Controls.Profiler
+﻿namespace SRDebugger.UI.Controls
 {
     using System;
     using System.Collections;
     using SRF;
     using UnityEngine;
     using UnityEngine.UI;
+#if UNITY_5_5_OR_NEWER
+    using UnityEngine.Profiling;
+#endif
 
     public class ProfilerMemoryBlock : SRMonoBehaviourEx
     {
@@ -35,8 +38,8 @@
 
         public void TriggerRefresh()
         {
-            var max = UnityEngine.Profiler.GetTotalReservedMemory();
-            var current = UnityEngine.Profiler.GetTotalAllocatedMemory();
+            var max = Profiler.GetTotalReservedMemory();
+            var current = Profiler.GetTotalAllocatedMemory();
 
             Slider.maxValue = max;
             Slider.value = current;

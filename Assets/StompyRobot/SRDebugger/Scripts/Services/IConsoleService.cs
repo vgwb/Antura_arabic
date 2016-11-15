@@ -14,12 +14,12 @@
         /// <summary>
         /// List of ConsoleEntry objects since the last clear.
         /// </summary>
-        IList<ConsoleEntry> Entries { get; }
+        IReadOnlyList<ConsoleEntry> Entries { get; }
 
         /// <summary>
         /// List of all ConsoleEntry objects, regardless of clear.
         /// </summary>
-        IList<ConsoleEntry> AllEntries { get; }
+        IReadOnlyList<ConsoleEntry> AllEntries { get; }
 
         event ConsoleUpdatedEventHandler Updated;
         void Clear();

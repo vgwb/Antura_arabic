@@ -1,8 +1,10 @@
 fileFormatVersion: 2
-guid: b5b46026463fb334bb8a3b95b303b224
+guid: 2ccea1a2a1be59649956a168449bdb9f
 labels:
 - Icons8
 - See_Readme_License
+timeCreated: 1476976717
+licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2

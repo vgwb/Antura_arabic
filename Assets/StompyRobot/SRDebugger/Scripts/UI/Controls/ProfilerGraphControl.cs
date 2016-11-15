@@ -394,7 +394,7 @@ namespace SRDebugger.UI.Controls
 
 #endif
 
-            return _profilerService.FrameBuffer.Size;
+            return _profilerService.FrameBuffer.Count;
         }
 
         protected int GetFrameBufferMaxSize()

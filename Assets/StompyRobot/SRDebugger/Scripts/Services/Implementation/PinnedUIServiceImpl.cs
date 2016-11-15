@@ -1,6 +1,9 @@
 ﻿namespace SRDebugger.Services.Implementation
 {
+    using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
     using Internal;
     using SRF;
     using SRF.Service;
@@ -31,6 +34,8 @@
             }
         }
 
+        public event Action<OptionDefinition, bool> OptionPinStateChanged;
+
         public bool IsProfilerPinned
         {
             get
@@ -58,6 +63,11 @@
                 Load();
             }
 
+            if (_pinnedObjects.ContainsKey(obj))
+            {
+                return;
+            }
+
             var control = OptionControlFactory.CreateControl(obj);
 
             control.CachedTransform.SetParent(_uiRoot.Container, false);
@@ -69,13 +79,14 @@
 
             _pinnedObjects.Add(obj, control);
             _controlList.Add(control);
+
+            OnPinnedStateChanged(obj, true);
         }
 
         public void Unpin(OptionDefinition obj)
         {
             if (!_pinnedObjects.ContainsKey(obj))
             {
-                Debug.LogWarning("[SRDebugger.PinnedUI] Attempted to unpin option which isn't pinned.");
                 return;
             }
 
@@ -85,6 +96,27 @@
             _controlList.Remove(control);
 
             Destroy(control.CachedGameObject);
+
+            OnPinnedStateChanged(obj, false);
+        }
+
+        private void OnPinnedStateChanged(OptionDefinition option, bool isPinned)
+        {
+            if (OptionPinStateChanged != null)
+            {
+                OptionPinStateChanged(option, isPinned);
+            }
+        }
+
+        public void UnpinAll()
+        {
+            foreach (var op in _pinnedObjects)
+            {
+                Destroy(op.Value.CachedGameObject);
+            }
+
+            _pinnedObjects.Clear();
+            _controlList.Clear();
         }
 
         public bool HasPinned(OptionDefinition option)
@@ -116,7 +148,8 @@
             UpdateAnchors();
             SRDebug.Instance.PanelVisibilityChanged += OnDebugPanelVisibilityChanged;
 
-            SROptions.Current.PropertyChanged += OptionsOnPropertyChanged;
+            Service.Options.OptionsUpdated += OnOptionsUpdated;
+            Service.Options.OptionsValueUpdated += OptionsOnPropertyChanged;
         }
 
         private void UpdateAnchors()
@@ -199,7 +232,21 @@
             }
         }
 
-        private void OptionsOnPropertyChanged(object sender, string propertyName)
+        private void OnOptionsUpdated(object sender, EventArgs eventArgs)
+        {
+            // Check for removed options.
+            var pinned = _pinnedObjects.Keys.ToList();
+
+            foreach (var op in pinned)
+            {
+                if (!Service.Options.Options.Contains(op))
+                {
+                    Unpin(op);
+                }
+            }
+        }
+
+        private void OptionsOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             _queueRefresh = true;
         }
