@@ -18,8 +18,6 @@ namespace EA4S.Assessment
                 answer = answ;
             else
                 throw new ArgumentException( "Answer already added");
-
-            answer.SetGameObject( gameObject);
         }
 
         public IAnswer GetAnswer()

@@ -8,7 +8,7 @@ namespace EA4S.Assessment
         public static IAssessment CreateLetterInWordAssessment( IAssessmentConfiguration configuration)
         {
             Init(); // common initialization stuff
-            var generator = new DefaultQuestionGenerator( configuration.Questions);
+            var generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
 
             //            return new DefaultAssessment();
             return null;
@@ -17,7 +17,7 @@ namespace EA4S.Assessment
         public static IAssessment LetterShapeAssessment( IAssessmentConfiguration configuration)
         {
             Init(); // common initialization stuff
-            var generator = new DefaultQuestionGenerator( configuration.Questions);
+            var generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
 
             //            return new DefaultAssessment();
             return null;
@@ -26,7 +26,7 @@ namespace EA4S.Assessment
         public static IAssessment WordsWithLetterAssessment( IAssessmentConfiguration configuration)
         {
             Init(); // common initialization stuff
-            var generator = new DefaultQuestionGenerator( configuration.Questions);
+            var generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
 
             //            return new DefaultAssessment();
             return null;

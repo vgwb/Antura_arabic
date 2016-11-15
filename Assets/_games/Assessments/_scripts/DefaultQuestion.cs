@@ -28,7 +28,7 @@ namespace EA4S.Assessment
 
         public ILivingLetterData Image()
         {
-            throw new NotImplementedException("Not implemented");
+            throw new NotImplementedException( "Not implemented (on purpose)");
         }
 
         public ILivingLetterData LetterData()
