@@ -16,6 +16,15 @@ namespace EA4S.Test
 
         #endregion
 
+        #region WidgetPopup
+
+        public void Popup_ShowSentence()
+        {
+            GlobalUI.WidgetPopupWindow.ShowSentence(()=> GlobalUI.WidgetPopupWindow.Close(), TextID.ASSESSMENT_START_A1.ToString());
+        }
+
+        #endregion
+
         #region WidgetSubtitles
 
         public void Subtitles_DisplaySentence(bool _isKeeper)
