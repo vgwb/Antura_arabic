@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -47,5 +48,16 @@ namespace EA4S.Assessment
         /// Access the GameObject of this question
         /// </summary>
         GameObject gameObject { get; }
+
+        /// <summary>
+        /// Add a placeholder to this question
+        /// </summary>
+        void TrackPlaceholder( GameObject gameObject);
+
+        /// <summary>
+        /// Get all tracked placeholders
+        /// </summary>
+        /// <returns>Enumerable to placeholders set</returns>
+        IEnumerable<GameObject> GetPlaceholders();
     }
 }

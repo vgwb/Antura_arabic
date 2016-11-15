@@ -26,6 +26,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011088275054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013692065684}
+  m_Layer: 0
+  m_Name: Placeholders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011233288150
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,6 +66,8 @@ GameObject:
   - 4: {fileID: 4000013022712494}
   - 114: {fileID: 114000013908833718}
   - 114: {fileID: 114000013822948356}
+  - 114: {fileID: 114000011174945200}
+  - 114: {fileID: 114000010710646388}
   m_Layer: 0
   m_Name: Assessment
   m_TagString: Untagged
@@ -97,8 +114,46 @@ Transform:
   m_Children:
   - {fileID: 4000011635047100}
   - {fileID: 4000012128482078}
+  - {fileID: 4000013692065684}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &4000013692065684
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011088275054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013022712494}
+  m_RootOrder: 2
+--- !u!114 &114000010710646388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012520946144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9585934b8f9ba4296ac2f656a486d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseTestGameplayInfo: 0
+  assessmentCode: 0
+--- !u!114 &114000011174945200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012520946144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c69ad3ff20c4346a61d67f8827c44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013822948356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,8 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LivingLetterPrefab: {fileID: 1000010529980692, guid: d5826ab7f51b7c549919cf0b6fe83693,
     type: 2}
+  DropZonePrefab: {fileID: 1000011656232934, guid: d17661468d7dbb64d9d84de4a665e6e1,
+    type: 2}
   Questions: {fileID: 1000010592757816}
   Answers: {fileID: 1000011233288150}
+  Placeholders: {fileID: 1000011088275054}
 --- !u!114 &114000013908833718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,4 +183,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70585e09b49d9d4c93492f8790acc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SubtitlesMargin: 0
+  SubtitlesMargin: 2.8

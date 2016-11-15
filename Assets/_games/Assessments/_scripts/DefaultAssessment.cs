@@ -47,6 +47,8 @@ namespace EA4S.Assessment
                 // No score/time needed
                 LogicInjector.DisableGamePlay();
 
+                yield return null;
+
                 QuestionPlacer.RemoveQuestions();
                 AnswerPlacer.RemoveAnswers();
 

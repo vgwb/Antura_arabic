@@ -9,9 +9,6 @@ namespace EA4S.Assessment
     /// </summary>
     public class AssessmentGame : MiniGame
     {
-        [Header("Managers")]
-        public QuestionController questionController;
-
         [Header("Configuration")]
         public AssessmentCode assessmentCode;
 
@@ -27,11 +24,6 @@ namespace EA4S.Assessment
             PlayState = new AssessmentGameState(this);
             ResultState = new AssessmentResultState(this);
 
-        }
-
-        public void LaunchGame(IEnumerator enumerator)
-        {
-            StartCoroutine(enumerator);
         }
 
         protected override IGameState GetInitialState()
