@@ -71,7 +71,7 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
-            return new RandomLettersQuestionBuilder(nPacks: 10, nCorrect:1, firstCorrectIsQuestion:true, nWrong: 5);
+            return new RandomLettersQuestionBuilder(nPacks: 10, nCorrect:1, firstCorrectIsQuestion:true, nWrong: 5, packListHistory: Teacher.PackListHistory.ForceAllDifferent, wrongAnswersPackListHistory: Teacher.PackListHistory.ForceAllDifferent);
         }
 
         public MiniGameLearnRules SetupLearnRules()
