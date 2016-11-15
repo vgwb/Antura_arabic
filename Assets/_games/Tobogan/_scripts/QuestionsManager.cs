@@ -18,9 +18,11 @@ namespace EA4S.Tobogan
 
         int questionLetterIndex;
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
-        
+
         // return aswer result
         public event Action<bool> onAnswered;
+
+        public event Action<bool> playerInputPointerUp;
 
         public QuestionsManager(ToboganGame game)
         {
@@ -145,6 +147,8 @@ namespace EA4S.Tobogan
 
         void OnQuestionLivingLetterOnPosition()
         {
+            game.Context.GetAudioManager().PlayLetterData(questionLivingLetter.letter.Data, true);
+
             questionLivingLetter.EnableCollider(true);
         }
 
@@ -190,6 +194,11 @@ namespace EA4S.Tobogan
                 RaycastHit hitInfo;
                 if (questionLivingLetter.GetComponent<Collider>().Raycast(screenRay, out hitInfo, game.tubesCamera.farClipPlane))
                 {
+                    if (playerInputPointerUp != null)
+                        playerInputPointerUp(false);
+
+                    game.Context.GetAudioManager().PlayLetterData(questionLivingLetter.letter.Data, true);
+
                     draggingLetter = questionLivingLetter;
                     questionLivingLetter.OnPointerDown(pointerPosition);
                 }
@@ -198,6 +207,9 @@ namespace EA4S.Tobogan
 
         void OnPointerUp()
         {
+            if (playerInputPointerUp != null)
+                playerInputPointerUp(true);
+
             draggingLetter = null;
 
             if (questionLivingLetter != null)
