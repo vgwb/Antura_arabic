@@ -16,7 +16,7 @@
             switch (assessmentGame.assessmentCode) {
                 case AssessmentCode.MatchLettersToWord:
                     return AssessmentFactory.CreateLetterInWordAssessment(
-                        LetterInWord.LetterInWordConfiguration.Instance);
+                        MatchLettersToWordConfiguration.Instance);
 
                 case AssessmentCode.LetterShape:
                     return null;

@@ -43,7 +43,7 @@ namespace EA4S.Assessment
         {
             switch (assessmentCode) {
                 case AssessmentCode.MatchLettersToWord:
-                    return LetterInWord.LetterInWordConfiguration.Instance;
+                    return MatchLettersToWordConfiguration.Instance;
 
                 case AssessmentCode.LetterShape:
                     return null;

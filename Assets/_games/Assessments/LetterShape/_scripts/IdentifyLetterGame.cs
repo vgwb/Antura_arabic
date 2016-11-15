@@ -20,12 +20,12 @@ namespace EA4S.IdentifyLetter
         public ScoreCounter score { get; private set; }
         public TimeEngine Time { get; private set; }
 
-        protected override void OnInitialize( IGameContext context)
+        protected override void OnInitialize(IGameContext context)
         {
-            IntroductionState = new IdentifyLetterIntroState( this);
-            QuestionState = new IdentifyLetterQuestionState( this);
-            PlayState = new PlayGameState( this);
-            ResultState = new IdentifyLetterResultState( this);
+            IntroductionState = new IdentifyLetterIntroState(this);
+            QuestionState = new IdentifyLetterQuestionState(this);
+            PlayState = new PlayGameState(this);
+            ResultState = new IdentifyLetterResultState(this);
             Time = new TimeEngine();
             score = new ScoreCounter();
         }
@@ -37,7 +37,7 @@ namespace EA4S.IdentifyLetter
 
         protected override IGameConfiguration GetConfiguration()
         {
-            return IdentifyLetterConfiguration.Instance;
+            return LetterShapeConfiguration.Instance;
         }
     }
 }

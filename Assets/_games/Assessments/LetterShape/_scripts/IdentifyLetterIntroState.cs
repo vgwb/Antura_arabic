@@ -6,8 +6,8 @@ namespace EA4S.IdentifyLetter
     {
         IdentifyLetterGame game;
 
-        float timer =1;
-        public IdentifyLetterIntroState( IdentifyLetterGame game)
+        float timer = 1;
+        public IdentifyLetterIntroState(IdentifyLetterGame game)
         {
             this.game = game;
         }
@@ -25,8 +25,7 @@ namespace EA4S.IdentifyLetter
         {
             timer -= delta;
 
-            if (timer < 0)
-            {
+            if (timer < 0) {
                 game.SetCurrentState(game.QuestionState);
             }
         }
