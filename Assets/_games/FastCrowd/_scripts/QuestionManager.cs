@@ -40,7 +40,7 @@ namespace EA4S.FastCrowd
             }
         }
 
-        public void StartQuestion(List<ILivingLetterData> nextChallenge, List<ILivingLetterData> wrongAnswers, int id)
+        public void StartQuestion(List<ILivingLetterData> nextChallenge, List<ILivingLetterData> wrongAnswers)
         {
             Clean();
             
@@ -50,7 +50,7 @@ namespace EA4S.FastCrowd
 
                 // Add drop areas
                 if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
-                    dropContainer.AddDropText(correctAnswer, id.ToString());
+                    dropContainer.AddDropText(correctAnswer, (i+1).ToString());
                 else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
                     dropContainer.AddDropData(correctAnswer, true);
                 else
