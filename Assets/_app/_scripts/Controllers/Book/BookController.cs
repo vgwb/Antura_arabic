@@ -5,7 +5,7 @@ using EA4S.Db;
 using System;
 using System.Text;
 using TMPro;
-using System.Globalization;
+
 
 namespace EA4S
 {
@@ -61,7 +61,7 @@ namespace EA4S
             LLText.Lable.text = ArabicAlphabetHelper.PrepareStringForDisplay(word.Arabic);
 
             if (word.Drawing != "") {
-                var drawingChar = ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+                var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
                 LLDrawing.Lable.text = drawingChar;
                 Debug.Log("Drawing: " + word.Drawing);
@@ -70,7 +70,6 @@ namespace EA4S
                 LLDrawing.Lable.text = "";
             }
         }
-
 
     }
 }
