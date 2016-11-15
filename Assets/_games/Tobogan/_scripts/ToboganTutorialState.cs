@@ -12,6 +12,8 @@ namespace EA4S.Tobogan
         bool toPlayState;
         float toPlayStateTimer;
 
+        bool pointerUp;
+
         public ToboganTutorialState(ToboganGame game)
         {
             this.game = game;
@@ -20,19 +22,26 @@ namespace EA4S.Tobogan
         public void EnterState()
         {
             game.questionsManager.onAnswered += OnAnswered;
+            game.questionsManager.playerInputPointerUp += OnPointerUp;
 
             game.questionsManager.StartNewQuestion();
+            game.questionsManager.Enabled = true;
 
             tutorialStarted = false;
-            delayStartTutorial = 2f;
+            delayStartTutorial = 1f;
 
             toPlayState = false;
             toPlayStateTimer = 1f;
+
+            pointerUp = true;
         }
 
         public void ExitState()
         {
             game.questionsManager.onAnswered -= OnAnswered;
+            game.questionsManager.playerInputPointerUp -= OnPointerUp;
+
+            TutorialUI.Clear(true);
         }
 
         public void Update(float delta)
@@ -43,7 +52,6 @@ namespace EA4S.Tobogan
 
                 if (delayStartTutorial <= 0f)
                 {
-
                     tutorialStarted = true;
                     TutorialDrawLine();
                 }
@@ -58,6 +66,12 @@ namespace EA4S.Tobogan
                     toPlayState = false;
                     game.SetCurrentState(game.PlayState);
                 }
+            }
+
+            if(pointerUp && tutorialStarted)
+            {
+                tutorialStarted = false;
+                delayStartTutorial = 3f;
             }
         }
 
@@ -75,17 +89,27 @@ namespace EA4S.Tobogan
             else
             {
                 TutorialMarkNo();
-                TutorialDrawLine();
             }
+        }
+
+        void OnPointerUp(bool pointerUp)
+        {
+            if (!pointerUp)
+            {
+                tutorialStarted = true;
+
+                TutorialUI.Clear(false);
+            }
+
+            this.pointerUp = pointerUp;
         }
 
         void TutorialDrawLine()
         {
-            Vector3 lineFrom = game.questionsManager.GetQuestionLivingLetter().letter.innerTransform.position;
-            Vector3 lineTo = game.pipesAnswerController.GetCorrectPipeAnswer().tutorialPoint.position; 
+            Vector3 lineFrom = game.questionsManager.GetQuestionLivingLetter().letter.contentTransform.position;
+            Vector3 lineTo = game.pipesAnswerController.GetCorrectPipeAnswer().tutorialPoint.position;
 
-            TutorialUI.DrawLine(lineFrom, lineTo, TutorialUI.DrawLineMode.Arrow)
-                .OnComplete(delegate () { game.questionsManager.Enabled = true; });
+            TutorialUI.DrawLine(lineFrom, lineTo, TutorialUI.DrawLineMode.Finger);
         }
 
         void TutorialMarkNo()
