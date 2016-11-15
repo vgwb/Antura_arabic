@@ -5,20 +5,22 @@ using TMPro;
 using ArabicSupport;
 using DG.Tweening;
 using EA4S;
+using UnityEngine.UI;
 
 namespace EA4S
 {
     public class WidgetSubtitles : MonoBehaviour
     {
-        public static WidgetSubtitles I;
+        public Color BgNoKeeperColor = Color.white;
+        [Header("References")]
         public GameObject Background;
         public TextMeshProUGUI TextUI;
         public WalkieTalkie WalkieTalkie;
 
+        public static WidgetSubtitles I;
         System.Action currentCallback;
-
         int index;
-        Tween showTween, textTween;
+        Tween showTween, bgColorTween, textTween;
 
         void Awake()
         {
@@ -29,12 +31,14 @@ namespace EA4S
             TextUI.isRightToLeftText = true;
 
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .Append(Background.GetComponent<RectTransform>().DOAnchorPosY(170, 0.4f).From())
+                .Append(this.GetComponent<RectTransform>().DOAnchorPosY(170, 0.3f).From().SetEase(Ease.OutBack))
                 .OnPlay(() => this.gameObject.SetActive(true))
                 .OnRewind(() => {
                     TextUI.text = "";
                     this.gameObject.SetActive(false);
                 });
+            bgColorTween = Background.GetComponent<Image>().DOColor(BgNoKeeperColor, 0.3f).SetEase(Ease.Linear)
+                .SetAutoKill(false).Pause();
 
             DisplayText("");
 
@@ -43,92 +47,87 @@ namespace EA4S
 
         void OnDestroy()
         {
-            I = null;
+            if (I == this) I = null;
             this.StopAllCoroutines();
             showTween.Kill();
+            bgColorTween.Kill();
             textTween.Kill();
         }
 
 
-        public void DisplayDebug(string sentence)
+        public void DisplayDebug(string _sentence)
         {
             this.StopAllCoroutines();
             currentCallback = null;
             showTween.PlayForward();
-            TextUI.text = sentence;
+            TextUI.text = _sentence;
         }
 
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(string SentenceId, float duration = 2, bool isKeeper = false, System.Action callback = null)
+        public void DisplaySentence(string _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
         {
             GlobalUI.Init();
             this.StopAllCoroutines();
-            currentCallback = callback;
+            currentCallback = _callback;
             showTween.PlayForward();
-            WalkieTalkie.Show(isKeeper);
-            DisplayText(SentenceId, duration);
+            if (_isKeeper) bgColorTween.PlayBackwards();
+            else bgColorTween.PlayForward();
+            WalkieTalkie.Show(_isKeeper);
+            DisplayText(_sentenceId, _duration);
 
         }
-        // Overload
-        public void DisplaySentence(string[] SentenceIdList, float duration = 2, bool isKeeper = false, System.Action callback = null)
-        {
-            index = 0;
-            DisplaySentence(SentenceIdList[index], duration, isKeeper, callback);
-        }
+        // Overload - not used for now thus commented
+//        public void DisplaySentence(string[] _sentenceIdList, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
+//        {
+//            index = 0;
+//            DisplaySentence(_sentenceIdList[index], _duration, _isKeeper, _callback);
+//        }
 
         public void Close(bool _immediate = false)
         {
             this.StopAllCoroutines();
-            if (_immediate)
-                showTween.Rewind();
-            else
-                showTween.PlayBackwards();
+            if (_immediate) showTween.Rewind();
+            else showTween.PlayBackwards();
             WalkieTalkie.Show(false, _immediate);
         }
 
-        public void ShowNext()
+        void DisplayText(string _textID, float _duration = 3)
         {
-            // TODO Don't know how to deal with this (note by Daniele)
-        }
-
-        void DisplayText(string textID, float duration = 3)
-        {
-            bool isContinue = !string.IsNullOrEmpty(TextUI.text);
+//            bool isContinue = !string.IsNullOrEmpty(TextUI.text);
             this.StopAllCoroutines();
             textTween.Kill();
             TextUI.text = "";
-            if (string.IsNullOrEmpty(textID)) {
+            if (string.IsNullOrEmpty(_textID)) {
                 this.gameObject.SetActive(false);
                 return;
             }
 
             this.gameObject.SetActive(true);
-            if (WalkieTalkie.isShown)
-                WalkieTalkie.StartPulsing(isContinue);
-            Db.LocalizationData row = LocalizationManager.GetLocalizationData(textID);
+            if (WalkieTalkie.IsShown) WalkieTalkie.Pulse();
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(_textID);
             //Debug.Log("DisplayText " + textID + " " + row.GetStringData("Arabic") + " " + ArabicFixer.Fix(row.GetStringData("Arabic")));
-            TextUI.text = row == null ? textID : ReverseText(ArabicFixer.Fix(row.Arabic));
-            this.StartCoroutine(DisplayTextCoroutine(duration));
+            TextUI.text = row == null ? _textID : ReverseText(ArabicFixer.Fix(row.Arabic));
+            this.StartCoroutine(DisplayTextCoroutine(_duration));
 
-            AudioManager.I.PlayDialog(textID, currentCallback);
-            Debug.Log("DisplayText() " + textID + " - " + row.English);
+            AudioManager.I.PlayDialog(_textID, currentCallback);
+            Debug.Log("DisplayText() " + _textID + " - " + row.English);
         }
 
-        IEnumerator DisplayTextCoroutine(float duration)
+        IEnumerator DisplayTextCoroutine(float _duration)
         {
             yield return null; // Wait 1 frame otherwise TMP doesn't update characterCount
 
             TextUI.maxVisibleCharacters = TextUI.textInfo.characterCount;
-            textTween = DOTween.To(() => TextUI.maxVisibleCharacters, x => TextUI.maxVisibleCharacters = x, 0, duration)
+            textTween = DOTween.To(() => TextUI.maxVisibleCharacters, x => TextUI.maxVisibleCharacters = x, 0, _duration)
                 .From().SetUpdate(true).SetEase(Ease.Linear)
-                .OnComplete(WalkieTalkie.StopPulsing);
+                .OnComplete(()=> WalkieTalkie.StopPulse());
         }
 
-        string ReverseText(string text)
+        string ReverseText(string _text)
         {
-            char[] cArray = text.ToCharArray();
+            char[] cArray = _text.ToCharArray();
             string reverse = String.Empty;
             for (int i = cArray.Length - 1; i > -1; i--) {
                 reverse += cArray[i];

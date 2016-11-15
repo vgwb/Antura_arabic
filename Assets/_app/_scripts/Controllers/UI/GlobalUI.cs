@@ -50,7 +50,7 @@ namespace EA4S
 
         void OnDestroy()
         {
-            I = null;
+            if (I == this) I = null;
         }
 
         /// <summary>
