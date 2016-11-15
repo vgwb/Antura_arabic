@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -31,7 +31,9 @@ namespace EA4S.Assessment
         ILivingLetterData LetterData();
 
         /// <summary>
-        /// Returns the living letter with the Image
+        /// Returns the living letter with the Image (this image is for questions
+        /// that have both image and some text), if you have only 1 image you should
+        /// use LetterData instead.
         /// </summary>
         ILivingLetterData Image();
 
@@ -40,11 +42,6 @@ namespace EA4S.Assessment
         /// </summary>
         /// <returns> size in LL units (1 LL is 3 world's unit)</returns>
         int PlaceholdersCount();
-
-        /// <summary>
-        /// Links the question GameObject
-        /// </summary>
-        void SetGameObject( GameObject gameObject);
 
         /// <summary>
         /// Access the GameObject of this question
