@@ -21,7 +21,7 @@ namespace EA4S.SickLetters
 		public TextMeshPro draggableText;
 
         public bool isCorrect;
-        public bool isNeeded = false, isInVase = false;
+        public bool isNeeded = false, isInVase = false, isTouchingVase = false;
 
         public bool isDragging = false;
 
@@ -33,7 +33,8 @@ namespace EA4S.SickLetters
 
         [HideInInspector]
         public Rigidbody thisRigidBody;
-        BoxCollider boxCollider;
+        [HideInInspector]
+        public BoxCollider boxCollider;
         Transform origParent;
         Vector3 correctStartPos, origPosition, origLocalPosition, origRotation, origLocalRotation, origBoxColliderSize, origBoxColliderCenter;
 
@@ -99,7 +100,7 @@ namespace EA4S.SickLetters
 			Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
 			Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-			transform.position = new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, origPosition.z);
+			transform.position = new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, curPosition.z+ fingerOffset.z);
 
 		}
 
@@ -121,24 +122,29 @@ namespace EA4S.SickLetters
                 }
                 else
                 {
-                    transform.parent = origParent;
-                    transform.localPosition = Vector3.zero;
-                    transform.localEulerAngles = origLocalRotation;
+                    resetWronDD();
                 }
             }
             else //pointer isn't over LL
             {
                 transform.parent = null;
-                thisRigidBody.isKinematic = false;
-                thisRigidBody.useGravity = true;
-
+                //if (!isTouchingVase)
+                {
+                    thisRigidBody.isKinematic = false;
+                    thisRigidBody.useGravity = true;
+                    boxCollider.isTrigger = false;
+                }
 
                 boxCollider.center = Vector3.zero;
-                boxCollider.size = new Vector3(0.2f, 1, 0.2f);
+                boxCollider.size = new Vector3(0.1f, 0.25f, 0.1f);
 
                 isLeftOver = false;
 
+                //if (isTouchingVase)
+                  //  game.scale.addNewDDToVas(this);
                 
+            //if (game.scale.vaseCollider.bounds.Contains(transform.position))
+                    
             }
 
             overPlayermarker = false;
@@ -164,6 +170,17 @@ namespace EA4S.SickLetters
             startX = initPos.x;
             startY = initPos.y;
             startZ = initPos.z;
+        }
+
+        public void resetWronDD() {
+            transform.parent = origParent;
+            transform.localPosition = Vector3.zero;
+            transform.localEulerAngles = origLocalRotation;
+            isTouchingVase = false;
+            thisRigidBody.isKinematic = true;
+            boxCollider.isTrigger = true;
+            boxCollider.size = new Vector3(0.6f, 3.89f, 0.6f);
+            boxCollider.center = Vector3.zero + Vector3.up * -1.62f;
         }
 
         IEnumerator Coroutine_ScaleOverTime(float time)
@@ -211,13 +228,16 @@ namespace EA4S.SickLetters
             draggableText.transform.localEulerAngles = new Vector3(90, 0.0f, 90);
 
             boxCollider.size = new Vector3(1,1,1.21f);
+            boxCollider.isTrigger = true;
+
+            isTouchingVase = false;
         }
 
 
         void OnTriggerEnter(Collider other)
 		{
 			Setmarker(other, true);
-		}
+        }
 
 		void OnTriggerStay(Collider other)
 		{
@@ -231,7 +251,14 @@ namespace EA4S.SickLetters
 
         void OnCollisionEnter(Collision coll)
         {
-            poofOnCollision(coll);
+            if (coll.gameObject.tag == "Obstacle")
+                poofOnCollision(coll);
+            else if (!isDragging &&!isInVase && coll.gameObject.tag == "Finish")
+            {
+                game.scale.addNewDDToVas(this);
+                thisRigidBody.isKinematic = true;
+                
+            }
         }
         void OnCollisionStay(Collision coll)
         {
@@ -244,7 +271,15 @@ namespace EA4S.SickLetters
             if (coll.gameObject.tag == "Obstacle")
             {
                 game.Poof(transform.position);
-                if(!isInVase)
+
+                if (game.roundsCount == 0 && !isInVase)
+                {
+                    resetWronDD();
+                    game.tut.doTutorial();
+                    return;
+                }
+
+                if (!isInVase)
                 {
                     game.onWrongMove();
                 }

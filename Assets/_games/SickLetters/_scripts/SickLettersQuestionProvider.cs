@@ -7,7 +7,7 @@ namespace EA4S.SickLetters
 {
     public class SickLettersQuestionProvider : MonoBehaviour, IQuestionProvider
     {
-        string dotlessLetters = "أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter="", newLetterString="X";
+        string dotlessLetters = "ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter="", newLetterString="X";
 
         public IQuestionPack GetNextQuestion()
         {
@@ -19,11 +19,12 @@ namespace EA4S.SickLetters
             do
             {
                 newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-                newLetterString = newLetter.TextForLivingLetter.ToString();
+                newLetterString = newLetter.TextForLivingLetter;
 
             }
             while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
 
+            Debug.Log(newLetterString);
             //SickLettersQuestionsPack dataPack = new SickLettersQuestionsPack(newLetter);
 
             correctAnswers.Add(newLetter);

@@ -37,7 +37,7 @@
 
             if (timer < 0)
             {
-                game.EndGame(game.currentStars, game.scale.counter);
+                game.EndGame(game.currentStars, game.maxWieght);
                 //game.EndGame(game.scale.counter / (game.targetScale / 3), game.scale.counter);
             }
         }
