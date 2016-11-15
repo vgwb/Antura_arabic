@@ -335,6 +335,8 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.letterObjectView.DoHorray();
             correctLetterCntrl.ShowVictoryRays();
 
+            AudioManager.I.PlaySfx(Sfx.Win);
+
             yield return new WaitForSeconds(1.3f);
 
             DisplayRoundResult(true);
