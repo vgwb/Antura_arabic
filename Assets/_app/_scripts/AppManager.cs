@@ -20,6 +20,7 @@ namespace EA4S
         public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
+        public Log.AppLogManager LogManager;
 
         #region Init
 
@@ -69,8 +70,8 @@ namespace EA4S
 
             // PlayerProfileModule Install override
             //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
-            
 
+            AppManager.Instance.LogManager = new Log.AppLogManager();
 
             /* Player profile auto select first avatar or last selected */
             AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
