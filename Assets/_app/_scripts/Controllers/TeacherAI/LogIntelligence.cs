@@ -39,7 +39,7 @@ namespace EA4S.Teacher
         #region Play
 
         /// <summary>
-        /// Parameters for the results of a play session related to a specific skill.
+        /// Parameters for the results of a single minigame play session related to a specific skill.
         /// </summary>
         public struct PlayResultParameters
         {
