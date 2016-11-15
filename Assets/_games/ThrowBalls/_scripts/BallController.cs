@@ -77,8 +77,6 @@ namespace EA4S.ThrowBalls
                     ThrowBallsGameManager.Instance.OnBallLost();
                     Reset();
                 }
-
-                Debug.Log(rigidBody.velocity.normalized);
             }
         }
 
