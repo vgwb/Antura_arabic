@@ -39,16 +39,16 @@ namespace EA4S.ColorTickle
         private float m_fProbabilityToScareLL = 100f; //Percentage to scare LL each second
 
         [SerializeField]
-        private AnturaAnim m_eAnimationOnStandby = AnturaAnim.Nothing; //Animation to execute on reaching destination
+        private AnturaAnimationStates m_eAnimationOnStandby = AnturaAnimationStates.idle; //Animation to execute on reaching destination
         [SerializeField]
-        private AnturaAnim m_eAnimationOnMoving = AnturaAnim.Nothing; //Animation to execute while moving
+        private AnturaAnimationStates m_eAnimationOnMoving = AnturaAnimationStates.idle; //Animation to execute while moving
         [SerializeField]
-        private AnturaAnim m_eAnimationOnLLReached = AnturaAnim.Nothing; //Animation to execute on reaching destination
+        private AnturaAnimationStates m_eAnimationOnLLReached = AnturaAnimationStates.idle; //Animation to execute on reaching destination
         #endregion
 
 
         #region PRIVATE MEMBERS
-        private Antura m_oAntura;
+        private AnturaAnimationController m_oAntura;
         private AnturaContollerState m_eAnturaState = AnturaContollerState.SLEEPING;
 		private Vector3 m_v3Destination;
         private float m_fBarkTimeProgress = 0;
@@ -105,19 +105,19 @@ namespace EA4S.ColorTickle
             set { m_fProbabilityToScareLL = value; }
         }
 
-        public AnturaAnim animationOnMoving
+        public AnturaAnimationStates animationOnMoving
         {
             get { return m_eAnimationOnMoving; }
             set { m_eAnimationOnMoving = value; }
         }
 
-        public AnturaAnim animationOnDestReached
+        public AnturaAnimationStates animationOnDestReached
         {
             get { return m_eAnimationOnLLReached; }
             set { m_eAnimationOnLLReached = value; }
         }
 
-        public AnturaAnim animationOnStandby
+        public AnturaAnimationStates animationOnStandby
         {
             get { return m_eAnimationOnStandby; }
             set { m_eAnimationOnStandby = value; }
@@ -135,11 +135,14 @@ namespace EA4S.ColorTickle
             /*m_Antura = gameObject.GetComponent<Antura>();
             m_StartPosition = gameObject.transform.position;
             m_Antura.SetAnimation(AnturaAnim.SitBreath);*/
-            m_oAntura = gameObject.GetComponent<Antura>();
+            m_oAntura = gameObject.GetComponent<AnturaAnimationController>();
 			m_v3StartPosition = m_oAntura.gameObject.transform.position;
             m_eAnturaState = AnturaContollerState.SLEEPING;
             m_fBarkTimeProgress = 0;
 			m_v3Destination = m_oDestination.position;
+
+            m_oAntura.WalkingSpeed = 0; //walk-0, run-1
+            //m_oAntura.IsExcited = true;
         }
 
         void Update()
@@ -236,7 +239,8 @@ namespace EA4S.ColorTickle
             {
                 m_bMovingToDestination = true;
 
-                m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                //m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                m_oAntura.State=m_eAnimationOnMoving;
 
                 //set new state
                 m_eAnturaState = AnturaContollerState.COMINGBACK;
@@ -244,8 +248,9 @@ namespace EA4S.ColorTickle
 
             else if (m_eAnturaState == AnturaContollerState.BARKING)
             {
-                m_oAntura.IsBarking = false;
-                m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                //m_oAntura.IsBarking = false;
+                //m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                m_oAntura.State = m_eAnimationOnMoving;
 
                 m_bMovingToDestination = true;
 
@@ -272,14 +277,10 @@ namespace EA4S.ColorTickle
             Vector3 _v3MaxMovement = v3Destination - gameObject.transform.position;
             Vector3 _v3PartialMovement = _v3MaxMovement.normalized * m_fMovementSpeed * Time.deltaTime;
 
-
-
             if (_v3PartialMovement.sqrMagnitude >= _v3MaxMovement.sqrMagnitude) //if we reached the destination
             {
                 //position on the destination
-                //gameObject.transform.position = v3Destination;
                 gameObject.transform.Translate(_v3MaxMovement, Space.World);
-                //gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fSpeed * Time.deltaTime );
 
                 m_bMovingToDestination = false;
 
@@ -289,12 +290,11 @@ namespace EA4S.ColorTickle
             else //make the progress for this frame
             {
 
-                m_oAntura.SetAnimation(m_eAnimationOnMoving);
-                //gameObject.transform.position += _v3PartialMovement;
+                //m_oAntura.SetAnimation(m_eAnimationOnMoving);
+
                 gameObject.transform.Translate(_v3PartialMovement, Space.World);
                 gameObject.transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, Quaternion.LookRotation(_v3MaxMovement), m_fRotationSpeed * Time.deltaTime);
 
-                //m_bMovingToDestination = true;
             }
         }
 
@@ -328,8 +328,9 @@ namespace EA4S.ColorTickle
                 //rotate
                 gameObject.transform.rotation = _qPartialRot;
 
-                m_oAntura.SetAnimation(m_eAnimationOnMoving);                
-               
+                //m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                
+
             }
         }
 
@@ -341,7 +342,8 @@ namespace EA4S.ColorTickle
             if (m_eAnturaState == AnturaContollerState.SLEEPING) //go to the letter
             {
                 m_bMovingToDestination = true;
-                m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                //m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                m_oAntura.State = m_eAnimationOnMoving;
 
                 m_eAnturaState = AnturaContollerState.REACHINGLETTER;
             }
@@ -362,8 +364,11 @@ namespace EA4S.ColorTickle
             else if (m_eAnturaState == AnturaContollerState.TURN_TO_BARK)//now bark
             {
                 //change animation and play sound
-                m_oAntura.SetAnimation(m_eAnimationOnLLReached);
-                m_oAntura.IsBarking = true;
+                //m_oAntura.SetAnimation(m_eAnimationOnLLReached);
+                //m_oAntura.IsBarking = true;
+                m_oAntura.State = m_eAnimationOnLLReached;
+                m_oAntura.DoShout();
+                AudioManager.I.PlaySfx(Sfx.DogBarking);
 
                 m_fBarkTimeProgress = 0;
 
@@ -374,8 +379,9 @@ namespace EA4S.ColorTickle
             else if (m_eAnturaState == AnturaContollerState.BARKING) //return back
             {
                 m_bMovingToDestination = true;
-                m_oAntura.SetAnimation(m_eAnimationOnMoving);
-                m_oAntura.IsBarking = false;
+                //m_oAntura.SetAnimation(m_eAnimationOnMoving);
+                //m_oAntura.IsBarking = false;
+                m_oAntura.State = m_eAnimationOnMoving;
 
                 m_eAnturaState = AnturaContollerState.COMINGBACK;
             } 
@@ -396,8 +402,9 @@ namespace EA4S.ColorTickle
             else if (m_eAnturaState == AnturaContollerState.ROTATION) //gone back to start
             {
                 //change animation
-                m_oAntura.SetAnimation(m_eAnimationOnStandby);
-
+                //m_oAntura.SetAnimation(m_eAnimationOnStandby);
+                m_oAntura.State = m_eAnimationOnStandby;
+               
                 //set new state
                 m_eAnturaState = AnturaContollerState.SLEEPING;
 

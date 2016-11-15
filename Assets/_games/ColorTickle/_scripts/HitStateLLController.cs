@@ -10,10 +10,15 @@ namespace EA4S.ColorTickle
 
     public class HitStateLLController : MonoBehaviour
     {
-//        public enum eLLState
-//        {
-//            IDLE, SCARED, TICKLING
-//        }
+        //        public enum eLLState
+        //        {
+        //            IDLE, SCARED, TICKLING
+        //        }
+
+        #region EXPOSED MEMBERS
+        [SerializeField]
+        private Sfx m_oLLTickleSfx;
+        #endregion
 
         #region PRIVATE MEMBERS
         LetterObjectView m_LetterObjectView;
@@ -31,6 +36,12 @@ namespace EA4S.ColorTickle
         public eHitState hitState
         {
             get { return m_HitState; }
+        }
+
+        public Sfx LLTickleSfx
+        {
+            get { return m_oLLTickleSfx; }
+            set { m_oLLTickleSfx = value; }
         }
         #endregion
 
@@ -101,6 +112,9 @@ namespace EA4S.ColorTickle
         {
             m_Tickle = true;
             m_LetterObjectView.SetState(LLAnimationStates.LL_tickling);
+
+            AudioManager.I.PlaySfx(m_oLLTickleSfx);
+
             if (LoseLife != null)
             {
                 LoseLife();

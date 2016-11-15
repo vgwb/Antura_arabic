@@ -20,7 +20,10 @@ namespace EA4S.ColorTickle
         ColorTickle_LLController m_LLController;
         HitStateLLController m_HitStateLLController;
 
-
+        // LL vanishing vars
+        bool m_bLLVanishing = false;
+        float m_fTimeToDisappear = 2f;
+        float m_fDisappearTimeProgress = 0;
         #endregion
 
         public TutorialGameState(ColorTickleGame game)
@@ -48,16 +51,58 @@ namespace EA4S.ColorTickle
         {
             CalcPercentageLetterColored();
 
-            if (m_PercentageLetterColored >= 100)
+            /*if (m_PercentageLetterColored >= 100)
             {
                 game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
-                                                            //DisableAntura();
+
                 m_LetterObjectView.Poof();
                 TutorialLetter.SetActive(false);
 
                 game.SetCurrentState(game.PlayState);
+                
+
+            }*/
+            if (m_bLLVanishing) //if the LL is about to vanish
+            {
+                m_fDisappearTimeProgress += Time.deltaTime;
+
+                if (m_fDisappearTimeProgress >= m_fTimeToDisappear)//after the given time is reached
+                {
+                    m_LetterObjectView.Poof(); //LL vanishes
+                    m_bLLVanishing = false;
+                    m_fDisappearTimeProgress = 0;
+
+                    //just for possible reusing of the LL renable components
+                    m_TMPTextColoringLetter.enabled = true;
+                    m_SurfaceColoringLetter.enabled = true;
+                    m_HitStateLLController.enabled = true;
+
+                    TutorialLetter.SetActive(false);
+
+                    game.SetCurrentState(game.PlayState);
+                }
+            }
+            else if (m_PercentageLetterColored >= 100) //else check for letter completed
+            {
+                game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
+
+                m_bLLVanishing = true; //LL is about to disappear
+
+                //disable color components to avoid input in this phase (or ignore input using touch manager?)
+                m_TMPTextColoringLetter.enabled = false;
+                m_SurfaceColoringLetter.enabled = false;
+                m_HitStateLLController.enabled = false;
+
+                AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
+
+                //LL does win animation 
+                m_LetterObjectView.DoDancingWin();
+                m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
+                AudioManager.I.PlaySfx(Sfx.Win);
+
             }
         }
+        
 
 
         public void UpdatePhysics(float delta)
