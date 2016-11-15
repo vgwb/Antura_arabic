@@ -33,10 +33,13 @@ namespace EA4S.Assessment
                         QuestionGenerator.GetNextAnswers()      );
                 
                 QuestionGenerator.CompleteRound();
-                QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
-                AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
 
-                while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating())
+                QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
+                while (QuestionPlacer.IsAnimating())
+                    yield return null;
+
+                AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
+                while (AnswerPlacer.IsAnimating())
                     yield return null;
 
                 LogicInjector.EnableGamePlay();

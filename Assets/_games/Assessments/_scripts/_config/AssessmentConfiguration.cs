@@ -41,8 +41,6 @@ namespace EA4S.Assessment
             Rounds = 2;
         }
 
-        IQuestionBuilder builder = null;
-
         public IQuestionBuilder SetupBuilder()
         {
             switch (assessmentType)
@@ -57,7 +55,7 @@ namespace EA4S.Assessment
                     return Setup_WordsWithLetter_Builder();
 
                 default:
-                    throw new ArgumentException( "NotImplemented Yet!");
+                    throw new NotImplementedException( "NotImplemented Yet!");
             }
         }
 
@@ -90,7 +88,7 @@ namespace EA4S.Assessment
                     return Setup_WordsWithLetter_LearnRules();
 
                 default:
-                    throw new ArgumentException( "NotImplemented Yet!");
+                    throw new NotImplementedException( "NotImplemented Yet!");
             }
         }
 

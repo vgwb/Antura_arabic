@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  assessmentCode: 0
+  assessmentCode: 1
 --- !u!114 &114000011174945200
 MonoBehaviour:
   m_ObjectHideFlags: 1

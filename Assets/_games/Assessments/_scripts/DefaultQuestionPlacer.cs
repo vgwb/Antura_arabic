@@ -25,17 +25,18 @@ namespace EA4S.Assessment
 
         public void Place( IQuestion[] question)
         {
+            allQuestions = question;
             isAnimating = true;
-            Coroutine.Start( PlaceCoroutine( question));
+            Coroutine.Start( PlaceCoroutine());
         }
 
-        IEnumerator PlaceCoroutine( IQuestion[] questions)
+        IEnumerator PlaceCoroutine()
         {
             // Count questions and answers
             int questionsNumber = 0;
             int answersNumber = 0;
             int total = questionsNumber + answersNumber;
-            foreach(var q in questions)
+            foreach(var q in allQuestions)
             {
                 questionsNumber++;
                 answersNumber += q.PlaceholdersCount();
@@ -51,7 +52,7 @@ namespace EA4S.Assessment
 
             //  3 words => 4 white zones  (need increment by 1)
             //  |  O   O   O  |
-            float spaceIncrement = blankSpace / (questions.Length + 1);
+            float spaceIncrement = blankSpace / (allQuestions.Length + 1);
 
             //Implement Line Break only if needed
             if ( blankSpace <= bounds.HalfLetterSize() )
@@ -63,14 +64,14 @@ namespace EA4S.Assessment
             for(int i=0; i<total; i++)
             {
                 currentPos.x += spaceIncrement + bounds.LetterSize();
-                yield return PlaceQuestion( 
-                    questions[questionIndex], currentPos);
+                yield return PlaceQuestion(
+                    allQuestions[questionIndex], currentPos);
 
-                for (int j=0; j<questions[questionIndex].PlaceholdersCount();j++)
+                for (int j=0; j< allQuestions[questionIndex].PlaceholdersCount();j++)
                 {
                     currentPos.x += bounds.LetterSize();
                     yield return PlacePlaceholder(
-                        questions[questionIndex], currentPos);
+                        allQuestions[questionIndex], currentPos);
                 }
             }
 

@@ -49,6 +49,7 @@ namespace EA4S.Assessment
 
             while (true)
             {
+                //TODO: limit y position after N attemps?
                 pos.x = Random.Range( xMin, xMax);
                 pos.y = Random.Range( yMin, yMax);
 
