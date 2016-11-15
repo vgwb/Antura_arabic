@@ -112,6 +112,11 @@ namespace EA4S.ThrowBalls
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
 
+        public bool IsTutorialLevel()
+        {
+            return roundNumber == 0;
+        }
+
         void Update()
         {
             if (roundNumber == 0)
@@ -168,6 +173,7 @@ namespace EA4S.ThrowBalls
 
         public void ResetScene()
         {
+            UIController.instance.Reset();
             UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
