@@ -32,7 +32,7 @@
 			Context = new SampleGameContext();
 			Letters = new SampleLetterProvider ();
 
-            Difficulty = 0.5;
+            Difficulty = 0.5f;
 		}
 
 		#region external configuration call

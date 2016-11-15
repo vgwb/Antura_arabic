@@ -33,7 +33,10 @@ namespace EA4S.TakeMeHome
 		[HideInInspector]
 		public List<GameObject> activeTubes;
 
-		[HideInInspector]
+        [HideInInspector]
+        public List<GameObject> allTubes;
+
+        [HideInInspector]
 		public TakeMeHomeLetterManager letterManager;
 
 		[HideInInspector]
@@ -92,11 +95,12 @@ namespace EA4S.TakeMeHome
 		{
 			letterManager = GetComponent<TakeMeHomeLetterManager> ();
 			activeTubes = new List<GameObject> ();
+            allTubes = new List<GameObject>();
 
-			foreach (Transform child in tubes.transform) {
-				child.gameObject.name = "tube_" + activeTubes.Count;
+            foreach (Transform child in tubes.transform) {
+				child.gameObject.name = "tube_" + allTubes.Count;
 				child.gameObject.SetActive (false);
-				activeTubes.Add (child.gameObject);
+                allTubes.Add (child.gameObject);
 
 			}
 
@@ -105,9 +109,18 @@ namespace EA4S.TakeMeHome
 
 		public void activateTubes(int count = 2)
 		{
+            if (count < 2) count = 2;
+
 			_activeTubes = count;
 			for (int i = 0; i < count; ++i)
-				activeTubes [i].SetActive (true);
+            {
+                int index = UnityEngine.Random.Range(0, allTubes.Count);
+                activeTubes.Add(allTubes[index]);
+                allTubes[index].SetActive(true);
+
+                allTubes.RemoveAt(index);
+            }
+				
 		}
 
 
@@ -147,14 +160,17 @@ namespace EA4S.TakeMeHome
 			roundText.text = "#"+currentRound.ToString ();
 
 			spawnLetteAtTube ();
-			//letterManager.spawnLetter (AppManager.Instance.Letters [TakeMeHomeModel.Instance.getRandomLetterOnTube(0)]);
 		}
 
 		void spawnLetteAtTube()
 		{
 			
 			currentTube = UnityEngine.Random.Range(0,_activeTubes);
-			currentLetter = letterManager.spawnLetter (AppManager.Instance.Teacher.GetAllTestLetterDataLL()[TakeMeHomeModel.Instance.getRandomLetterOnTube(currentTube)]);
+
+            int tubeIndex = int.Parse(activeTubes[currentTube].name.Substring(5));
+
+            currentTube = tubeIndex;
+             currentLetter = letterManager.spawnLetter (AppManager.Instance.Teacher.GetAllTestLetterDataLL()[TakeMeHomeModel.Instance.getRandomLetterOnTube(tubeIndex)]);
 			currentLetter.MoveBy (new UnityEngine.Vector3 (-11, 0, 0),1.8f);
 		}
 
@@ -211,6 +227,8 @@ namespace EA4S.TakeMeHome
             isTimesUp = false;
             MinigamesUI.Timer.Setup( UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
 
+
+            activateTubes(UnityEngine.Mathf.RoundToInt(TakeMeHomeConfiguration.Instance.Difficulty * 4));
         }
 
 		public void followLetter()
