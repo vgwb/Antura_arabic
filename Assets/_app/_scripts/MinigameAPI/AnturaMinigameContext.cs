@@ -76,7 +76,7 @@ namespace EA4S.API {
         #region Context Presets
 
         public static AnturaMinigameContext Default = new AnturaMinigameContext() {
-            logManager = new AppLogManager(),
+            logManager = new MinigameLogManager(),
             audioManager = new SampleAudioManager(),
             subtitleWidget = new SampleSubtitlesWidget(),
             starsWidget = new SampleStarsWidget(),
@@ -87,7 +87,7 @@ namespace EA4S.API {
         /// Example for custom context preset used for fast crowd.
         /// </summary>
         public static AnturaMinigameContext FastCrowd = new AnturaMinigameContext() {
-            logManager = new AppLogManager(),
+            logManager = new MinigameLogManager(),
             audioManager = new SampleAudioManager(),
             subtitleWidget = new SampleSubtitlesWidget(),
             starsWidget = new SampleStarsWidget(),
