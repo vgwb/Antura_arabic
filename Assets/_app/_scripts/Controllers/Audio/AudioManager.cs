@@ -10,7 +10,7 @@ namespace EA4S
     public class AudioManager : MonoBehaviour
     {
         const string LETTERS_PREFIX = "VOX/Letter/";
-        const string WORDS_PREFIX = "VOX/Words/";
+        const string WORDS_PREFIX = "VOX_Words_";
 
         public AudioMixerGroup sfxGroup;
         public AudioMixerGroup lettersGroup;
@@ -25,6 +25,8 @@ namespace EA4S
 
         Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
         Dictionary<string, Fabric.RandomComponent> eventToRndComponent = new Dictionary<string, Fabric.RandomComponent>();
+
+        Dictionary<string, AudioClip> audioCache = new Dictionary<string, AudioClip>();
 
         void Awake()
         {
@@ -184,8 +186,9 @@ namespace EA4S
             if (letterData.DataType == LivingLetterDataType.Letter)
                 return GetAudioClip(LETTERS_PREFIX + letterData.Key);
             else if (letterData.DataType == LivingLetterDataType.Word)
-                return Resources.Load("AudioArabic/Words/" + letterData.Key) as AudioClip;
-            //return GetAudioClip(WORDS_PREFIX + letterData.Key);
+            {
+                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + letterData.Key);
+            }
             return null;
         }
 
@@ -213,6 +216,26 @@ namespace EA4S
             }
 
             return null;
+        }
+
+        AudioClip GetCachedResource(string resource)
+        {
+            AudioClip clip = null;
+
+            if (audioCache.TryGetValue(resource, out clip))
+                return clip;
+
+            clip = Resources.Load(resource) as AudioClip;
+
+            audioCache[resource] = clip;
+            return clip;
+        }
+
+        public void ClearCache()
+        {
+            foreach (var r in audioCache)
+                Resources.UnloadAsset(r.Value);
+            audioCache.Clear();
         }
     }
 }
