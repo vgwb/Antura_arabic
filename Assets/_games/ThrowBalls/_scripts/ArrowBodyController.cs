@@ -28,6 +28,7 @@ namespace EA4S.ThrowBalls
 
             Vector3 origin = SlingshotController.instance.GetSlingshotCenterPosition();
             origin.y = GroundController.instance.transform.position.y;
+            origin.y += 0.1f;
 
             Vector3 position = origin;
             position.x += deltaX;
