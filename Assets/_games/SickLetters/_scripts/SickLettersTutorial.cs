@@ -7,26 +7,27 @@ namespace EA4S.SickLetters
         public Vector3[] path;
         public bool draw = false;
         public int repeatMax = 3, repeatConter = 0;
-        float repeatDely = 1;
+        float repeatDely = 3;
         // Use this for initialization
         SickLettersGame game;
 
         void Start() {
             game = GetComponent<SickLettersGame>();
-            
+            StartCoroutine(coDoTutorial());
         }
 
         // Update is called once per frame
         void Update() {
-            if (draw)
+            /*if (draw)
             {
                 doTutorial();
                 draw = false;
-            }
+            }*/
         }
 
         public void doTutorial(Transform start = null)
         {
+            draw = true;
             if (game.roundsCount > 0)
                 return;
 
@@ -35,7 +36,7 @@ namespace EA4S.SickLetters
 
             else
             {
-                TutorialUI.Clear(true);
+                //TutorialUI.Clear(true);
                 foreach (SickLettersDraggableDD dd in game.LLPrefab.thisLLWrongDDs)
                     if (!dd.deattached && dd.transform.parent)
                     {
@@ -45,23 +46,36 @@ namespace EA4S.SickLetters
             }
 
             repeatConter = 0;
-            StopCoroutine(coDoTutorial());
-            StartCoroutine(coDoTutorial());
+            //StopCoroutine(coDoTutorial());
+            
 
         }
 
-        IEnumerator coDoTutorial()
+        IEnumerator coDoTutorial(Transform start = null)
         {
-            if (repeatConter <= repeatMax)
+            while (true)
             {
+                if (game.roundsCount > 0)
+                {
+                    TutorialUI.Clear(true);
+                    break;
+                }
+                if (start = null)
+                    continue;
+
                 yield return new WaitForSeconds(repeatDely);
-                TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.FingerAndArrow).OnComplete(() => { repeatConter++; StartCoroutine(coDoTutorial());});
+                //TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.FingerAndArrow).OnComplete(() => { repeatConter++; StartCoroutine(coDoTutorial());});
+                repeatConter++;
+                TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.FingerAndArrow);
+                
             }
-            else
+
+            
+            /*else
             {
                 //TutorialUI.Clear(true);
                 yield break;
-            }
+            }*/
         }
 
     }
