@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
     public enum AssessmentCode
     {
+        Unsetted,
         LetterShape,
         MatchLettersToWord,
         WordsWithLetter,

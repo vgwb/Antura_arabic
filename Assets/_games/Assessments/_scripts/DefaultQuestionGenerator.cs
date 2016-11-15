@@ -19,11 +19,14 @@ namespace EA4S.Assessment
         private IQuestionProvider provider;
         private QuestionGeneratorState state;
         private IQuestionPack currentPack;
+        private QuestionType questionType;
 
-        public DefaultQuestionGenerator( IQuestionProvider provider)
+        public DefaultQuestionGenerator( IQuestionProvider provider, QuestionType type)
         {
             this.provider = provider;
             state = QuestionGeneratorState.Uninitialized;
+            questionType = type;
+            ClearCache();
         }
 
         public void InitRound()
@@ -32,11 +35,14 @@ namespace EA4S.Assessment
                 throw new InvalidOperationException("Cannot initialized");
 
             state = QuestionGeneratorState.Initialized;
+            ClearCache();
         }
 
         private void ClearCache()
         {
-
+            totalAnswers = new List< IAnswer>();
+            totalQuestions = new List< IQuestion>();
+            partialAnswers = null;
         }
 
         public void CompleteRound()
@@ -49,18 +55,32 @@ namespace EA4S.Assessment
 
         public IAnswer[] GetAllAnswers()
         {
-            return null;
+            if (state != QuestionGeneratorState.Completed)
+                throw new InvalidOperationException("Not Completed");
+
+            return totalAnswers.ToArray();
         }
 
         public IQuestion[] GetAllQuestions()
         {
-            return null;
+            if (state != QuestionGeneratorState.Completed)
+                throw new InvalidOperationException("Not Completed");
+
+            return totalQuestions.ToArray();
         }
 
         public IAnswer[] GetNextAnswers()
         {
-            return null;
+            if (state != QuestionGeneratorState.QuestionFeeded)
+                throw new InvalidOperationException("Not Initialized");
+
+            state = QuestionGeneratorState.Initialized;
+            return partialAnswers;
         }
+
+        List< IAnswer> totalAnswers;
+        List< IQuestion> totalQuestions;
+        IAnswer[] partialAnswers;
 
         public IQuestion GetNextQuestion()
         {
@@ -71,17 +91,58 @@ namespace EA4S.Assessment
 
             currentPack = provider.GetNextQuestion();
 
-            List< ILivingLetterData> wrongAnswers = new List< ILivingLetterData>();
-            List< ILivingLetterData> correctAnswers = new List< ILivingLetterData>();
+            List< IAnswer> answers = new List< IAnswer>();
             ILivingLetterData question = currentPack.GetQuestion();
 
+            //____________________________________
+            //Prepare answers for next method call
+            //____________________________________
+
             foreach (var wrong in currentPack.GetWrongAnswers())
-                wrongAnswers.Add( wrong);
+            {
+                var wrongAnsw = GenerateWrongAnswer( wrong);
 
+                answers.Add( wrongAnsw);
+                totalAnswers.Add( wrongAnsw);
+            }
+
+            int correctCount = 0;
             foreach (var correct in currentPack.GetCorrectAnswers())
-                correctAnswers.Add( correct);
+            {
+                var correctAnsw = GenerateCorrectAnswer( correct);
 
-            return null;
+                correctCount++;
+                answers.Add( correctAnsw);
+                totalAnswers.Add( correctAnsw);
+            }
+
+            partialAnswers = answers.ToArray();
+
+            return GenerateQuestion( question, correctCount);
+        }
+
+        private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
+        {
+            var q = LivingLetterFactory.Instance.SpawnQuestion( data);
+            return new DefaultQuestion( q, correctCount, questionType);
+        }
+
+        private IAnswer GenerateWrongAnswer( ILivingLetterData wrongAnswer)
+        {
+            return new DefaultAnswer( 
+                LivingLetterFactory.Instance.SpawnAnswer( wrongAnswer)
+
+                //wrong
+                , false);
+        }
+
+        private IAnswer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
+        {
+            return new DefaultAnswer(
+                LivingLetterFactory.Instance.SpawnAnswer( correctAnswer)
+
+                //correct
+                , true);
         }
     }
 }

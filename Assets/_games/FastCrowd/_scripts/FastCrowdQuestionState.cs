@@ -87,7 +87,10 @@
             if (game.CurrentChallenge.Count > 0)
             {
                 // Show question
-                game.ShowChallengePopupWidget(false, OnPopupCloseRequested);
+                if (!game.ShowChallengePopupWidget(false, OnPopupCloseRequested))
+                {
+                    game.SetCurrentState(game.PlayState);
+                }
             }
             else
             {

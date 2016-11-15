@@ -26,9 +26,9 @@ namespace EA4S
 
         public void Start()
         {
-            if (lastColorSet != null)
+            if (backgroundColorSet != null)
             {
-                var color = WorldManager.I.GetColor(lastColorSet);
+                var color = WorldManager.I.GetColor(backgroundColorSet);
 
                 UpdateCamera(color);
             }

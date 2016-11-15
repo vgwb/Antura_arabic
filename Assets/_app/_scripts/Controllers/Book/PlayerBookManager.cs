@@ -6,8 +6,7 @@ using EA4S.Teacher;
 using ModularFramework.Core;
 using System;
 using System.Text;
-using TMPro;
-using System.Globalization;
+
 
 public class PlayerBookManager : MonoBehaviour
 {
@@ -20,7 +19,6 @@ public class PlayerBookManager : MonoBehaviour
         GlobalUI.ShowPauseMenu(false);
         AudioManager.I.PlayMusic(SceneMusic);
         SceneTransitioner.Close();
-
     }
 
     public void OpenMap()

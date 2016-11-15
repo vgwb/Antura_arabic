@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace EA4S.Assessment
@@ -9,9 +9,6 @@ namespace EA4S.Assessment
     /// </summary>
     public class AssessmentGame : MiniGame
     {
-        [Header("Managers")]
-        public QuestionController questionController;
-
         [Header("Configuration")]
         public AssessmentCode assessmentCode;
 
@@ -26,12 +23,6 @@ namespace EA4S.Assessment
             QuestionState = new AssessmentQuestionState(this);
             PlayState = new AssessmentGameState(this);
             ResultState = new AssessmentResultState(this);
-
-        }
-
-        public void LaunchGame(IEnumerator enumerator)
-        {
-            StartCoroutine(enumerator);
         }
 
         protected override IGameState GetInitialState()
@@ -41,18 +32,10 @@ namespace EA4S.Assessment
 
         protected override IGameConfiguration GetConfiguration()
         {
-            switch (assessmentCode) {
-                case AssessmentCode.MatchLettersToWord:
-                    return MatchLettersToWordConfiguration.Instance;
+            if (AssessmentConfiguration.Instance.assessmentType == AssessmentCode.Unsetted)
+                AssessmentConfiguration.Instance.assessmentType = assessmentCode;
 
-                case AssessmentCode.LetterShape:
-                    return null;
-
-                case AssessmentCode.WordsWithLetter:
-                    return null;
-            }
-
-            return null;
+            return AssessmentConfiguration.Instance;
         }
     }
 }
