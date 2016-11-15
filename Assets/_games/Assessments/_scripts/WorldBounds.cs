@@ -34,6 +34,15 @@ namespace EA4S.Assessment
             width = height * mainCamera.aspect;
         }
 
+        public Vector3 RandomAnswerPosition()
+        {
+            float questionXmin = QuestionSpaceStart().x;
+            float questionXmax = QuestionSpaceEnd().x;
+            float questionYmin = center.y + height / 2 - SubtitlesMargin - 3 * LLSize;
+
+            return Vector3.zero;
+        }
+
         public Vector3 QuestionSpaceStart()
         {
             var left = center;
