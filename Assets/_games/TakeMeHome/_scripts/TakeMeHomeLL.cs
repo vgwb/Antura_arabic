@@ -89,7 +89,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		public void PlayHoldAnimation()
         {
-            letter.SetState(LLAnimationStates.LL_idle);
+            letter.SetState(LLAnimationStates.LL_hanging);
 
             //livingLetterTransform.localPosition = holdPosition;
         }
@@ -223,8 +223,9 @@ public class TakeMeHomeLL : MonoBehaviour {
 				dragging = false;
 				dropLetter = true;
 
-				//check if position should clamp:
-				if (transform.position.x > 3 && transform.position.y > maxY)
+                
+                //check if position should clamp:
+                if (transform.position.x > 3)// && transform.position.y > maxY)
 					clampPosition = true;
 
 				PlayIdleAnimation();
@@ -255,8 +256,11 @@ public class TakeMeHomeLL : MonoBehaviour {
 					//transform.position = 
 					transform.position = tubeSpawnPosition;
 					clampPosition = true;
-				}
-			}
+                    transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                    transform.DOScale(0.8f, 0.5f);
+
+                }
+            }
 		}
 
 		void Update()
@@ -295,15 +299,15 @@ public class TakeMeHomeLL : MonoBehaviour {
 				moveTweener.Kill();
 			}
 
-            transform.DOScale(0.3f, 0.5f);
+            transform.DOScale(0.3f, 0.1f);
 
-			moveTweener = transform.DOLocalMove(transform.position + lastTube.transform.up*30 + new Vector3(0,0,20), 1).OnComplete(delegate () { 
+			moveTweener = transform.DOLocalMove(transform.position + lastTube.transform.up*5/* + new Vector3(0,0,20)*/, 0.2f).OnComplete(delegate () { 
 				PlayIdleAnimation(); 
 				if (endTransformToCallback != null) endTransformToCallback();
 
 				transform.rotation = Quaternion.Euler (new Vector3 (0, 180, 0));
 				transform.position = tubeSpawnPosition;
-                transform.DOScale(1, 0.5f);
+                transform.DOScale(0.8f, 0.5f);
                 clampPosition = true;
 				dropLetter = true;
 				isMoving = false;
@@ -312,33 +316,41 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		public void panicAndRun()
 		{
+            //wait few milliseconds then move:
+            
+
 			isMoving = true;
 			isDraggable = false;
 			dropLetter = false;
 
-			RotateTo(new Vector3 (0, -90, 0),0.5f);
+            StartCoroutine(waitForSeconds(1, ()=> {
+
+                RotateTo(new Vector3(0, -90, 0), 0.5f);
 
 
-			letter.SetState(LLAnimationStates.LL_walking);
-			letter.SetWalkingSpeed(LetterObjectView.RUN_SPEED);
+                letter.SetState(LLAnimationStates.LL_walking);
+                letter.SetWalkingSpeed(LetterObjectView.RUN_SPEED);
 
-			if (moveTweener != null)
-			{
-				moveTweener.Kill();
-			}
+                if (moveTweener != null)
+                {
+                    moveTweener.Kill();
+                }
 
-			moveTweener = transform.DOLocalMove(new Vector3(2,-6.52f,-15), 1).OnComplete(delegate () { 
-				PlayIdleAnimation();
-				respawn = false;
-				clampPosition = false;
+                moveTweener = transform.DOLocalMove(new Vector3(2, -6.52f, -15), 1).OnComplete(delegate () {
+                    PlayIdleAnimation();
+                    respawn = false;
+                    clampPosition = false;
 
-                transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                transform.DOScale(1, 0.5f);
 
-                dropLetter = true;
 
-				isMoving = false;
-			});
+                    dropLetter = true;
+
+                    isMoving = false;
+                });
+
+            }));
+
+            
 
 		}
 
@@ -356,7 +368,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 			if (win) {
 				letter.Poof ();
 				letter.DoHighFive ();
-				StartCoroutine (waitForSeconds (2));
+				StartCoroutine (waitForSeconds (2,moveUp));
 
 				return;
 			}
@@ -371,10 +383,10 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		}
 
-		IEnumerator waitForSeconds(float seconds)
+		IEnumerator waitForSeconds(float seconds, Action action)
 		{
 			yield return new WaitForSeconds (seconds);
-			moveUp ();
+            action();
 
 		}
 
@@ -393,7 +405,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 				
 				clampPosition = false;
                 transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                transform.DOScale(1, 0.5f);
+                transform.DOScale(0.8f, 0.5f);
                 dropLetter = true;
 				isMoving = false;
 			});
