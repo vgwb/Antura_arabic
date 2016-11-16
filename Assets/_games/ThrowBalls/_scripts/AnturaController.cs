@@ -28,7 +28,7 @@ namespace EA4S.ThrowBalls
         {
             animator = GetComponent<AnturaAnimationController>();
 
-            Disable();
+            Reset();
         }
 
         public void EnterScene()
@@ -134,8 +134,10 @@ namespace EA4S.ThrowBalls
                     ThrowBallsGameManager.Instance.OnBallLost();
                     BallController.instance.Reset();
                 }
+                
+                velocity = new Vector3(0, 0, 0);
 
-                Disable();
+                ballGrabbed = false;
             }
         }
 
@@ -156,7 +158,7 @@ namespace EA4S.ThrowBalls
             float frustumWidth = frustumHeight * Camera.main.aspect;
             float halfFrustumWidth = frustumWidth / 2;
 
-            if (Mathf.Abs(transform.position.x) - 6f > halfFrustumWidth)
+            if (Mathf.Abs(transform.position.x) - 12f > halfFrustumWidth)
             {
                 return true;
             }
@@ -175,13 +177,13 @@ namespace EA4S.ThrowBalls
             landed = false;
             reachedJumpMaxNotified = false;
             ballGrabbed = false;
+            animator.State = AnturaAnimationStates.walking;
+            animator.SetWalkingSpeed(1f);
         }
 
         public void Enable()
         {
             gameObject.SetActive(true);
-            animator.State = AnturaAnimationStates.walking;
-            animator.SetWalkingSpeed(1f);
         }
 
         public void Disable()
