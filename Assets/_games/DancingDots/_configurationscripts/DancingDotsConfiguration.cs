@@ -8,6 +8,8 @@
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
+		public DancingDotsQuestionProvider DancingDotsQuestions { get; set; }
+
 
         #region Game configurations
         public float Difficulty { get; set; }
@@ -32,12 +34,13 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
+			Context = new SampleGameContext();
 
             Questions = new SampleQuestionProvider();
 
             Variation = DancingDotsVariation.V_1;
-
-            Context = new SampleGameContext();
+			Questions = new DancingDotsQuestionProvider();
+			DancingDotsQuestions = new DancingDotsQuestionProvider();
             Difficulty = 0.5f;
         }
 
@@ -58,7 +61,7 @@
 
             int nPacks = 10;
             int nCorrect = 1;
-            int nWrong = 5;
+            int nWrong = 0;
 
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
 
