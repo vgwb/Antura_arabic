@@ -73,7 +73,7 @@ namespace EA4S.TestE
                             posDot = hit.transform.position;
                             pos = hit.transform.gameObject.GetComponent<MapPin>().posBefore;
 
-                            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
+                            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
                             AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = hit.transform.gameObject.GetComponent<MapPin>().Number;
                         }
 
@@ -95,14 +95,14 @@ namespace EA4S.TestE
 
         public void MoveToTheRightDot()
         {
-            if(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession==3)
+            if(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession==2)
             {
                 ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                 posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position;
-                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
+                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
                 AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock++;
             }
-            else if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 1)
+            else if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)
             {
                 if (pos % 2 != 0)
                     pos++;
@@ -127,17 +127,17 @@ namespace EA4S.TestE
         }
        public void MoveToTheLeftDot()
        {
-            if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 2)
+            if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 1)
             {
                 if(pos>0)
                 {
                     ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                     posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position;
-                    AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
+                    AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
                     //AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock++;
                 }
             }
-            else if(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 1)
+            else if(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)
             {
                 if(pos%2==0)
                    pos--;
@@ -169,7 +169,7 @@ namespace EA4S.TestE
             // posDot = miniMapScript.posDots[0].transform.position;
             posDot = miniMapScript.posDots[0].transform.position;
             transform.LookAt(pin);
-            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 2;
+            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
             AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = 1;
         }
 
