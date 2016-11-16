@@ -497,12 +497,14 @@ namespace EA4S
         /// <summary>
         /// Produces a poof nearby the LL
         /// </summary>
-        public void Poof()
+        public void Poof( float verticalOffset = 0)
         {
             var puffGo = GameObject.Instantiate(poofPrefab);
             puffGo.AddComponent<AutoDestroy>().duration = 2;
             puffGo.SetActive(true);
-            puffGo.transform.position = transform.position + transform.up * 3 + transform.forward * 2;
+            var position = transform.position + transform.up * 3 + transform.forward * 2;
+            position.y += verticalOffset;
+            puffGo.transform.position = position;
             puffGo.transform.localScale *= 0.75f;
         }
 
