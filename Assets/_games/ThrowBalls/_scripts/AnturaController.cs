@@ -8,9 +8,12 @@ namespace EA4S.ThrowBalls
         public static AnturaController instance;
 
         private const float RUNNING_SPEED = 15f;
+        private const float JUMP_INIT_VELOCITY = 60f;
 
         private Vector3 velocity;
+        private Vector3 jumpPoint;
         private AnturaAnimationController animator;
+        private bool jumped;
 
         void Awake()
         {
@@ -20,8 +23,9 @@ namespace EA4S.ThrowBalls
         void Start()
         {
             animator = GetComponent<AnturaAnimationController>();
-            animator.State = AnturaAnimationStates.walking;
-            animator.SetWalkingSpeed(1f);
+
+
+            Disable();
         }
 
         public void EnterScene()
@@ -33,7 +37,7 @@ namespace EA4S.ThrowBalls
 
             Vector3 ballPosition = BallController.instance.transform.position;
             Vector3 anturaPosition = ballPosition;
-            anturaPosition.y = GroundController.instance.transform.position.y;
+            anturaPosition.y = GroundController.instance.transform.position.y + 0.1f;
 
             float frustumHeight = 2.0f * Mathf.Abs(anturaPosition.z - Camera.main.transform.position.z) * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
             float frustumWidth = frustumHeight * Camera.main.aspect;
@@ -60,6 +64,15 @@ namespace EA4S.ThrowBalls
             }
 
             transform.position = anturaPosition;
+            jumpPoint = anturaPosition;
+
+            float velocityFactor = (-1 * JUMP_INIT_VELOCITY) - Mathf.Sqrt(Mathf.Pow(JUMP_INIT_VELOCITY, 2) - (2 * (anturaPosition.y - ballPosition.y) * 0.5f * Constants.GRAVITY.y));
+            velocityFactor = Mathf.Pow(velocityFactor, -1);
+            velocityFactor *= Constants.GRAVITY.y;
+
+            jumpPoint.x = (ballPosition.x + 5f * Mathf.Sign(velocity.x)) - (velocity.x / velocityFactor);
+
+            jumped = false;
         }
 
         void Update()
@@ -67,6 +80,13 @@ namespace EA4S.ThrowBalls
             Vector3 position = transform.position;
             position += velocity * Time.deltaTime;
             transform.position = position;
+
+            if ((jumpPoint.x - position.x) * velocity.x <= 0 && !jumped)
+            {
+                velocity.y = JUMP_INIT_VELOCITY;
+
+                jumped = true;
+            }
 
             if (IsOffScreen() && velocity.x * transform.position.x > 0)
             {
@@ -100,6 +120,8 @@ namespace EA4S.ThrowBalls
         public void Enable()
         {
             gameObject.SetActive(true);
+            animator.State = AnturaAnimationStates.walking;
+            animator.SetWalkingSpeed(1f);
         }
 
         public void Disable()
