@@ -32,10 +32,11 @@ namespace EA4S.DancingDots
 		public GameObject fullTextGO;
 
 		public GameObject rainbow;
+		public DancingDotsGameManager game;
 
 		TextMeshPro fullText;
 
-		LL_LetterData letterData;
+		ILivingLetterData letterData;
 
 		void Start()
 		{
@@ -75,20 +76,19 @@ namespace EA4S.DancingDots
 			if (ClickToSpeakLetter)
 				SpeakLetter();
 		}
-
+			
 		void RandomLetter()
 		{
 
-			string lettersWithDots = "ض ث ق ف غ خ ج ة ن ت ب ي ش ظ ذ ز";
+//			string lettersWithDots = "ض ث ق ف غ خ ج ة ن ت ب ي ش ظ ذ ز";
+//			do
+//			{
+//				letterData = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+//			} 
+//			while (!lettersWithDots.Contains(letterData.TextForLivingLetter) || 
+//				letterData.TextForLivingLetter == DancingDotsGameManager.instance.currentLetter);
 
-			do
-			{
-				letterData = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-			} 
-			// Check if letter in dotted letters and  
-			// Check DancingDotsGameManager.instance.currentLetter so that previous letter is not repeated
-			while (!lettersWithDots.Contains(letterData.TextForLivingLetter) || 
-				letterData.TextForLivingLetter == DancingDotsGameManager.instance.currentLetter);
+			letterData = game.questionsManager.getNewLetter();
 
 			SetupLetter();
 		}
