@@ -2002,6 +2002,11 @@ Prefab:
       propertyPath: letterObjectView
       value: 
       objectReference: {fileID: 2026649281}
+    - target: {fileID: 114000013976532754, guid: 2cc28fb201a2b4226b77ee5b76da026a,
+        type: 2}
+      propertyPath: game
+      value: 
+      objectReference: {fileID: 1326664800}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cc28fb201a2b4226b77ee5b76da026a, type: 2}
   m_IsPrefabParent: 0
