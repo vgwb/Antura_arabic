@@ -101,7 +101,8 @@ namespace EA4S {
                 //GameManager.Instance.PlayerProfile.ActivePlayer = this;
 
             }
-            // and 
+            AppManager.Instance.PlayerProfileManager.AvailablePlayerProfiles.Add(retunrProfile);
+            SaveGameSettings();
             AppManager.Instance.PlayerProfileManager.ActualPlayer = retunrProfile as PlayerProfile;
             return AppManager.Instance.PlayerProfileManager.ActualPlayer;
         }
