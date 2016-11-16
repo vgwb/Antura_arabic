@@ -34,7 +34,7 @@ namespace EA4S.Tobogan
             game.Context.GetInputManager().onPointerDown += OnPointerDown;
         }
 
-        public void SetPipeAnswers(IEnumerable<ILivingLetterData> wrongAnswers, ILivingLetterData correctAnswers)
+        public void SetPipeAnswers(IEnumerable<ILivingLetterData> wrongAnswers, ILivingLetterData correctAnswers, bool sunMoonQuestion)
         {
             // Selecting auto-hiding signs
             toHide.Clear();
@@ -61,25 +61,48 @@ namespace EA4S.Tobogan
             if (answersCount > 4)
                 answersCount = 4;
 
-            int correctPosition = Random.Range(0, answersCount);
-
-            for (int i = 0; i < answersCount; i++)
+            if(sunMoonQuestion)
             {
-                if (i == correctPosition)
-                {
-                    pipeAnswers[i].SetAnswer(correctAnswers, true);
-                }
-                else
-                {
-                    int wrongIndex = Random.Range(0, wrongs.Count);
+                int correctIndex = 0;
+                int wrongIndex = 1;
 
-                    pipeAnswers[i].SetAnswer(wrongs[wrongIndex], false);
-
-                    wrongs.RemoveAt(wrongIndex);
+                if(correctAnswers.Key == "the_sun")
+                {
+                    correctIndex = 1;
+                    wrongIndex = 0;
                 }
 
-                pipeAnswers[i].active = true;
-                pipeAnswers[i].ShowSign = true;
+                pipeAnswers[correctIndex].SetAnswer(correctAnswers, true);
+                pipeAnswers[correctIndex].active = true;
+                pipeAnswers[correctIndex].ShowSign = true;
+
+                pipeAnswers[wrongIndex].SetAnswer(wrongs[0], false);
+                pipeAnswers[wrongIndex].active = true;
+                pipeAnswers[wrongIndex].ShowSign = true;
+
+            }
+            else
+            {
+                int correctPosition = Random.Range(0, answersCount);
+
+                for (int i = 0; i < answersCount; i++)
+                {
+                    if (i == correctPosition)
+                    {
+                        pipeAnswers[i].SetAnswer(correctAnswers, true);
+                    }
+                    else
+                    {
+                        int wrongIndex = Random.Range(0, wrongs.Count);
+
+                        pipeAnswers[i].SetAnswer(wrongs[wrongIndex], false);
+
+                        wrongs.RemoveAt(wrongIndex);
+                    }
+
+                    pipeAnswers[i].active = true;
+                    pipeAnswers[i].ShowSign = true;
+                }
             }
         }
 
@@ -151,32 +174,34 @@ namespace EA4S.Tobogan
 
         void UpdateCurrentPipeAnswer()
         {
-            if(game.questionsManager.GetQuestionLivingLetter() == null)
+            if (game.questionsManager.GetQuestionLivingLetter() == null)
             {
                 currentPipeAnswer = null;
                 return;
             }
 
-            PipeAnswer newPipeAnswer = pipeAnswers[0];
+            PipeAnswer newPipeAnswer = null;
 
             Vector3 letterPosition = game.questionsManager.GetQuestionLivingLetter().letter.contentTransform.position;
-            Vector3 pipePosition = pipeAnswers[0].tutorialPoint.position;
 
-            float pipeDistance = Vector3.Distance(pipePosition, letterPosition);
+            float pipeDistance = float.PositiveInfinity;
 
-            for (int i = 1; i < pipeAnswers.Length; i++)
+            for (int i = 0; i < pipeAnswers.Length; i++)
             {
-                pipePosition = pipeAnswers[i].tutorialPoint.position;
-                float newPipeDistance = Vector3.Distance(pipePosition, letterPosition);
-
-                if (newPipeDistance < pipeDistance)
+                if (pipeAnswers[i].active)
                 {
-                    newPipeAnswer = pipeAnswers[i];
-                    pipeDistance = newPipeDistance;
+                    Vector3 pipePosition = pipeAnswers[i].tutorialPoint.position;
+                    float newPipeDistance = Vector3.Distance(pipePosition, letterPosition);
+
+                    if (newPipeDistance < pipeDistance)
+                    {
+                        newPipeAnswer = pipeAnswers[i];
+                        pipeDistance = newPipeDistance;
+                    }
                 }
             }
 
-            if(pipeDistance > maxLetterDistance)
+            if (pipeDistance > maxLetterDistance)
             {
                 if (currentPipeAnswer != null)
                 {
@@ -186,15 +211,17 @@ namespace EA4S.Tobogan
             }
             else
             {
-                if(currentPipeAnswer != null && currentPipeAnswer != newPipeAnswer)
+                if (currentPipeAnswer != null && currentPipeAnswer != newPipeAnswer)
                 {
                     currentPipeAnswer.StopSelectedAnimation();
                     currentPipeAnswer = null;
                 }
 
-                if(currentPipeAnswer == null)
+                if (currentPipeAnswer == null)
                 {
-                    newPipeAnswer.PlaySelectedAnimation();
+                    if (newPipeAnswer != null)
+                        newPipeAnswer.PlaySelectedAnimation();
+
                     currentPipeAnswer = newPipeAnswer;
                 }
             }

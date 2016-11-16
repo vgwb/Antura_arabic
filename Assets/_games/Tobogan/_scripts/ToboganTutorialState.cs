@@ -14,6 +14,13 @@ namespace EA4S.Tobogan
 
         bool pointerUp;
 
+        bool sunMoonGameVariation;
+        int questionCount;
+
+        float nextQuestionTimer;
+        float nextQuestiontime = 1f;
+        bool requestNextQueston;
+
         public ToboganTutorialState(ToboganGame game)
         {
             this.game = game;
@@ -34,6 +41,13 @@ namespace EA4S.Tobogan
             toPlayStateTimer = 1f;
 
             pointerUp = true;
+
+            questionCount = 0;
+
+            sunMoonGameVariation = ToboganConfiguration.Instance.Variation == ToboganVariation.SunMoon;
+
+            nextQuestionTimer = 0f;
+            requestNextQueston = false;
         }
 
         public void ExitState()
@@ -73,6 +87,17 @@ namespace EA4S.Tobogan
                 tutorialStarted = false;
                 delayStartTutorial = 3f;
             }
+
+            if (requestNextQueston)
+            {
+                nextQuestionTimer -= delta;
+
+                if (nextQuestionTimer <= 0f)
+                {
+                    game.questionsManager.StartNewQuestion();
+                    requestNextQueston = false;
+                }
+            }
         }
 
         public void UpdatePhysics(float delta) { }
@@ -81,10 +106,22 @@ namespace EA4S.Tobogan
         {
             if(result)
             {
-                toPlayState = true;
+                questionCount++;
 
                 game.questionsManager.QuestionEnd();
-                game.OnResult(true);
+
+                if (!sunMoonGameVariation || (sunMoonGameVariation && questionCount == 2))
+                {
+                    toPlayState = true;
+                }
+                else
+                {
+                    tutorialStarted = false;
+                    delayStartTutorial = 2f;
+
+                    requestNextQueston = true;
+                    nextQuestionTimer = nextQuestiontime;
+                }
             }
             else
             {
