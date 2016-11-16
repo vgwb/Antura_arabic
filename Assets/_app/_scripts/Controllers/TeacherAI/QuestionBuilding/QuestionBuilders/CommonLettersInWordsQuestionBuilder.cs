@@ -51,7 +51,7 @@ namespace EA4S
                 var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
-                if (ConfigAI.verboseTeacher)
+                if (ConfigAI.verboseDataSelection)
                 { 
                     string debugString = "--------- TEACHER: question pack result ---------";
                     debugString += "\nCommon letters: ";
