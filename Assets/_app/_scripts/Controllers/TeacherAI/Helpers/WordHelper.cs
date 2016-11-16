@@ -120,6 +120,36 @@ namespace EA4S.Db
             return list;
         }
 
+        public List<LetterData> GetCommonLettersInWords(params WordData[] words)
+        {
+            Dictionary<LetterData, int> countDict = new Dictionary<LetterData, int>();
+            foreach(var word in words)
+            {
+                HashSet<LetterData> nonRepeatingLettersOfWord = new HashSet<LetterData>();
+
+                var letters = GetLettersInWord(word);
+                foreach (var letter in letters) nonRepeatingLettersOfWord.Add(letter);
+
+                foreach(var letter in nonRepeatingLettersOfWord) { 
+                    if (!countDict.ContainsKey(letter)) countDict[letter] = 0;
+                    countDict[letter] += 1;
+                }
+            }
+
+            // Get only these letters that are in all words
+            var commonLettersList = new List<LetterData>();
+            foreach(var letter in countDict.Keys)
+            {
+                if (countDict[letter] == words.Length)
+                {
+                    commonLettersList.Add(letter);
+                }
+            }
+
+            return commonLettersList;
+        }
+
+
         #endregion
 
         #region Word -> Word
@@ -132,6 +162,11 @@ namespace EA4S.Db
         public string GetWordDrawing(WordData word)
         {
             return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+        }
+
+        public List<WordData> GetAllWords()
+        {
+            return dbManager.GetAllWordData();
         }
 
         private List<WordData> GetWordsNotIn(List<string> tabooList)
@@ -228,12 +263,11 @@ namespace EA4S.Db
                     }
                     if (!hasAllOkLetters) return false;
                 }
-
                 return true;
             }
             );
-            return list;
 
+            return list;
         }
 
         #endregion
@@ -257,6 +291,11 @@ namespace EA4S.Db
         #endregion
 
         #region Phrase -> Phrase
+
+        public List<PhraseData> GetAllPhrases()
+        {
+            return dbManager.GetAllPhraseData();
+        }
 
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
         {

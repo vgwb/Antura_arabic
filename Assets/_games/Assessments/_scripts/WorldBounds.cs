@@ -23,8 +23,6 @@ namespace EA4S.Assessment
             }
         }
 
-        private readonly float LLSize = 3.0f; //conservative size used for computations
-
         void Awake()
         {
             instance = this;
@@ -38,9 +36,27 @@ namespace EA4S.Assessment
         {
             float questionXmin = QuestionSpaceStart().x;
             float questionXmax = QuestionSpaceEnd().x;
-            float questionYmin = center.y + height / 2 - SubtitlesMargin - 3 * LLSize;
+            float questionYmin = height / 2 - SubtitlesMargin - 3 * LetterSize();
+            float xMin = - width / 2 + 0.7f * LetterSize();
+            float xMax = width / 2 - 0.7f * LetterSize();
+            float yMin = height / 2 - TopMargin();
+            float yMax = - height / 2 + 0.7f * LetterSize();
 
-            return Vector3.zero;
+            Vector3 pos = Vector3.zero;
+            pos.z = DefaultZ();
+
+            while (true)
+            {
+                //TODO: limit y position after N attemps?
+                pos.x = Random.Range( xMin, xMax);
+                pos.y = Random.Range( yMin, yMax);
+
+                if (pos.y >= questionYmin) // check if LL fits beside questions
+                    if (pos.x > questionXmin || pos.x < questionXmax)
+                        continue; // cannot overlap to questions
+
+                return pos;
+            }
         }
 
         public Vector3 QuestionSpaceStart()
@@ -69,7 +85,6 @@ namespace EA4S.Assessment
         public Vector3 OneLineQuestionStart()
         {
             Vector3 position = QuestionSpaceStart();
-            position.x -= 0.5f * LetterSize(); // no LLs before first space
             position.y = height / 2 - SubtitlesMargin - LetterSize() * 1.5f;
             return position;
         }
@@ -91,22 +106,22 @@ namespace EA4S.Assessment
 
         public float SidesMargin()
         {
-            return LLSize * 1.4f;
+            return ElementsSize.LL * 1.4f;
         }
 
         public float TopMargin()
         {
-            return SubtitlesMargin + LLSize * 1.5f;
+            return SubtitlesMargin + ElementsSize.LL * 1.5f;
         }
 
         public float LetterSize()
         {
-            return LLSize;
+            return ElementsSize.LL;
         }
 
         public float HalfLetterSize()
         {
-            return 0.5f * LLSize;
+            return 0.5f * ElementsSize.LL;
         }
     }
 }

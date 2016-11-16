@@ -19,8 +19,11 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             // Fully ordered alphabet, only 1 pack
-            var sParameters = new SelectionParameters(SelectionSeverity.AsManyAsPossible, 28);   // 28: letters in the alphabet
-            var alphabetLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(Db.LetterKindCategory.Base), sParameters);
+            var alphabetLetters = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetAllLetters(Db.LetterKindCategory.Base),
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, 28)  // 28: letters in the alphabet
+                );
+
             alphabetLetters.Sort((x, y) =>
                 {
                     return x.ToString().CompareTo(y.ToString());
