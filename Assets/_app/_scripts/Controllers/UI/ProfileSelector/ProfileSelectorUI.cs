@@ -12,8 +12,6 @@ namespace EA4S
 {
     public class ProfileSelectorUI : MonoBehaviour
     {
-        [Tooltip("If selected, uses dummy debug data")]
-        public bool DummyDebugData;
         [Header("References")]
         public UIButton BtAdd;
         public UIButton BtPlay;
@@ -85,12 +83,6 @@ namespace EA4S
             btAddTween.PlayBackwards();
 
             PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
-            if (DummyDebugData) {
-                if (ProfileManager.AvailablePlayerProfiles == null) ProfileManager.AvailablePlayerProfiles = new List<PlayerProfile>();
-                ProfileManager.AvailablePlayerProfiles.Add(pp);
-                pp.Id = ProfileManager.AvailablePlayerProfiles.Count;
-                pp.AvatarId = _avatarId;
-            }
             ProfileManager.ActualPlayer = pp;
 
             Setup();
