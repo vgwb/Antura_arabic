@@ -6,14 +6,16 @@ namespace EA4S
     public class CommonLettersInWordQuestionBuilder : IQuestionBuilder
     {
         private int nPacks;
-        private int nCommonLetters;
+        private int nMinCommonLetters;
+        private int nMaxCommonLetters;
         private int nWrong;
         private int nWords;
 
-        public CommonLettersInWordQuestionBuilder(int nPacks, int nCommonLetters = 1, int nWrong = 0, int nWords = 1)
+        public CommonLettersInWordQuestionBuilder(int nPacks, int nMinCommonLetters = 1, int nMaxCommonLetters = 1, int nWrong = 0, int nWords = 1)
         {
             this.nPacks = nPacks;
-            this.nCommonLetters = nCommonLetters;
+            this.nMinCommonLetters = nMinCommonLetters;
+            this.nMaxCommonLetters = nMaxCommonLetters;
             this.nWrong = nWrong;
             this.nWords = nWords;
         }
@@ -38,20 +40,22 @@ namespace EA4S
             bool found = false;
             while (nAttempts > 0 && !found)
             {
-                var commonLetters = teacher.wordHelper.GetAllLetters().RandomSelect(nCommonLetters);
-                var words = teacher.wordHelper.GetWordsWithLetters(commonLetters.ConvertAll(x => x.Id).ToArray());
-                if (words.Count < nWords)
+                var words = teacher.wordHelper.GetAllWords().RandomSelect(nWords);
+                var commonLetters = teacher.wordHelper.GetCommonLettersInWords(words.ToArray());
+
+                if (commonLetters.Count < nMinCommonLetters || commonLetters.Count > nMaxCommonLetters)
                 {
                     nAttempts--;
                     continue;
                 }
-                words = words.RandomSelect(nWords);
-                var nonCommonLetters = teacher.wordHelper.GetLettersNotInWords(words.ToArray()).RandomSelect(nWrong);
+                var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
                 if (ConfigAI.verboseTeacher)
                 { 
-                    string debugString = "For letter " + commonLetters[0];
+                    string debugString = "--------- TEACHER: question pack result ---------";
+                    debugString += "\nCommon letters: ";
+                    foreach (var l in commonLetters) debugString += " " + l;
                     debugString += "\nWord0: " + words[0];
                     foreach (var l in words[0].Letters) debugString += " " + l;
                     debugString += "\nWord1: " + words[1];
