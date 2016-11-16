@@ -55,7 +55,7 @@ namespace EA4S.Tobogan
             
             if(sunMoonGameVariation)
             {
-                nextQuestionPack = ToboganConfiguration.Instance.SunMoonQuestions.GetNextQuestion();
+                nextQuestionPack = game.SunMoonQuestions.GetNextQuestion();
             }
             else
             {
