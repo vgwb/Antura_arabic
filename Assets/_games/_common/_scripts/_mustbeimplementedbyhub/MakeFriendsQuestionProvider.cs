@@ -73,9 +73,11 @@ namespace EA4S
                     {
                         var letter = wordLetters1[i];
 
-                        if (wordLetters2.Contains(letter))
+                        //if (wordLetters2.Contains(letter))
+                        if (wordLetters2.Exists(x => x.Key == letter.Key))
                         {
-                            if (!commonLetters.Contains(letter))
+                            //if (!commonLetters.Contains(letter))
+                            if (!commonLetters.Exists(x => x.Key == letter.Key))
                             {
                                 commonLetters.Add(letter);
                             }
@@ -87,9 +89,11 @@ namespace EA4S
                     {
                         var letter = wordLetters1[i];
 
-                        if (!wordLetters2.Contains(letter))
+                        //if (!wordLetters2.Contains(letter))
+                        if (!wordLetters2.Exists(x => x.Key == letter.Key))
                         {
-                            if (!uncommonLetters.Contains(letter))
+                            //if (!uncommonLetters.Contains(letter))
+                            if (!uncommonLetters.Exists(x => x.Key == letter.Key))
                             {
                                 uncommonLetters.Add(letter);
                             }
@@ -113,7 +117,9 @@ namespace EA4S
                 if (outerLoopAttempts <= 0)
                 {
                     UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find enough data for QuestionPack #" + iteration
-                        + "\nInfo: Word1: " + ArabicFixer.Fix(newWordData1.TextForLivingLetter) + " Word2: " + ArabicFixer.Fix(newWordData2.TextForLivingLetter));
+                        + "\nInfo: Word1: " + ArabicFixer.Fix(newWordData1.TextForLivingLetter) + " Word2: " + ArabicFixer.Fix(newWordData2.TextForLivingLetter)
+                    + "\nWordLetters1: " + wordLetters1.Count + " WordLetters2: " + wordLetters2.Count
+                    + "\nCommonLetters: " + commonLetters.Count + " UncommonLetters: " + uncommonLetters.Count);
                 }
 
                 commonLetters.Shuffle();
