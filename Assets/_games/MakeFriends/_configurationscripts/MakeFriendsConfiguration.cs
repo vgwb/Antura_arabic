@@ -114,11 +114,12 @@ namespace EA4S.MakeFriends
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 1;
+            int nMinCommonLetters = 1;
+            int nMaxCommonLetters = 2;
             int nWrong = 5;
             int nWords = 2;
 
-            builder = new CommonLettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, nWords);
+            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords);
 
             return builder;
         }
