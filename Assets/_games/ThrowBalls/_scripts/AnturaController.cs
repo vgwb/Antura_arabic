@@ -7,13 +7,17 @@ namespace EA4S.ThrowBalls
     {
         public static AnturaController instance;
 
-        private const float RUNNING_SPEED = 15f;
-        private const float JUMP_INIT_VELOCITY = 60f;
+        private const float RUNNING_SPEED = 17.5f;
+        private const float JUMP_INIT_VELOCITY = 50f;
 
         private Vector3 velocity;
         private Vector3 jumpPoint;
+        private Vector3 ballOffset;
         private AnturaAnimationController animator;
         private bool jumped;
+        private bool landed;
+        private bool reachedJumpMaxNotified;
+        private bool ballGrabbed;
 
         void Awake()
         {
@@ -24,8 +28,7 @@ namespace EA4S.ThrowBalls
         {
             animator = GetComponent<AnturaAnimationController>();
 
-
-            Disable();
+            Reset();
         }
 
         public void EnterScene()
@@ -35,9 +38,12 @@ namespace EA4S.ThrowBalls
                 Enable();
             }
 
+            animator.State = AnturaAnimationStates.walking;
+            animator.SetWalkingSpeed(1f);
+
             Vector3 ballPosition = BallController.instance.transform.position;
             Vector3 anturaPosition = ballPosition;
-            anturaPosition.y = GroundController.instance.transform.position.y + 0.1f;
+            anturaPosition.y = GroundController.instance.transform.position.y;
 
             float frustumHeight = 2.0f * Mathf.Abs(anturaPosition.z - Camera.main.transform.position.z) * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
             float frustumWidth = frustumHeight * Camera.main.aspect;
@@ -66,18 +72,44 @@ namespace EA4S.ThrowBalls
             transform.position = anturaPosition;
             jumpPoint = anturaPosition;
 
-            float velocityFactor = (-1 * JUMP_INIT_VELOCITY) - Mathf.Sqrt(Mathf.Pow(JUMP_INIT_VELOCITY, 2) - (2 * (anturaPosition.y - ballPosition.y) * 0.5f * Constants.GRAVITY.y));
+            float velocityFactor = (-1 * JUMP_INIT_VELOCITY) - Mathf.Sqrt(Mathf.Pow(JUMP_INIT_VELOCITY, 2) - (2 * (anturaPosition.y + 4f - ballPosition.y) * Constants.GRAVITY.y));
             velocityFactor = Mathf.Pow(velocityFactor, -1);
             velocityFactor *= Constants.GRAVITY.y;
 
-            jumpPoint.x = (ballPosition.x + 5f * Mathf.Sign(velocity.x)) - (velocity.x / velocityFactor);
+            jumpPoint.x = (ballPosition.x - 6.65f * Mathf.Sign(velocity.x)) - (velocity.x / velocityFactor);
 
             jumped = false;
+            landed = false;
+            reachedJumpMaxNotified = false;
+            ballGrabbed = false;
         }
 
         void Update()
         {
             Vector3 position = transform.position;
+
+            if (jumped && !landed)
+            {
+                velocity.y += Time.deltaTime * Constants.GRAVITY.y;
+
+                if (position.y < GroundController.instance.transform.position.y)
+                {
+                    position.y = GroundController.instance.transform.position.y;
+                    velocity.y = 0;
+                    landed = true;
+
+                    //animator.OnJumpEnded();
+
+                    Debug.Log("Landed");
+                }
+
+                else if (velocity.y < 0 && !reachedJumpMaxNotified)
+                {
+                    //animator.OnJumpMaximumHeightReached();
+                    reachedJumpMaxNotified = true;
+                }
+            }
+
             position += velocity * Time.deltaTime;
             transform.position = position;
 
@@ -86,11 +118,37 @@ namespace EA4S.ThrowBalls
                 velocity.y = JUMP_INIT_VELOCITY;
 
                 jumped = true;
+
+                //animator.OnJumpStart();
+            }
+
+            if (ballGrabbed)
+            {
+                BallController.instance.transform.position = transform.position + ballOffset;
             }
 
             if (IsOffScreen() && velocity.x * transform.position.x > 0)
             {
-                Disable();
+                if (ballGrabbed)
+                {
+                    ThrowBallsGameManager.Instance.OnBallLost();
+                    BallController.instance.Reset();
+                }
+                
+                velocity = new Vector3(0, 0, 0);
+
+                ballGrabbed = false;
+            }
+        }
+
+        public void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == Constants.TAG_POKEBALL && !ballGrabbed)
+            {
+                //animator.OnJumpGrab();
+                BallController.instance.OnIntercepted(false);
+                ballOffset = BallController.instance.transform.position - transform.position;
+                ballGrabbed = true;
             }
         }
 
@@ -100,7 +158,7 @@ namespace EA4S.ThrowBalls
             float frustumWidth = frustumHeight * Camera.main.aspect;
             float halfFrustumWidth = frustumWidth / 2;
 
-            if (Mathf.Abs(transform.position.x) - 6f > halfFrustumWidth)
+            if (Mathf.Abs(transform.position.x) - 12f > halfFrustumWidth)
             {
                 return true;
             }
@@ -115,13 +173,17 @@ namespace EA4S.ThrowBalls
         {
             velocity = Vector3.zero;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+            jumped = false;
+            landed = false;
+            reachedJumpMaxNotified = false;
+            ballGrabbed = false;
+            animator.State = AnturaAnimationStates.walking;
+            animator.SetWalkingSpeed(1f);
         }
 
         public void Enable()
         {
             gameObject.SetActive(true);
-            animator.State = AnturaAnimationStates.walking;
-            animator.SetWalkingSpeed(1f);
         }
 
         public void Disable()

@@ -11,7 +11,6 @@
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
-        public IQuestionProvider SunMoonQuestions { get; set; }
 
         public float Difficulty { get; set; }
         public ToboganVariation Variation { get; set; }
@@ -44,7 +43,6 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleQuestionProvider();
-            SunMoonQuestions = new SunMoonTutorialQuestionProvider(Questions);
 
             //PipeQuestions = new SunMoonQuestionProvider();
             Variation = ToboganVariation.SunMoon;
