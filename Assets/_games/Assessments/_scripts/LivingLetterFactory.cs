@@ -5,11 +5,11 @@ namespace EA4S.Assessment
 {
     public class LivingLetterFactory: MonoBehaviour
     {
-        [Header("Prefabs")]
+        [Header( "Prefabs")]
         public GameObject LivingLetterPrefab = null;
         public GameObject DropZonePrefab = null;
 
-        [Header("Folders")]
+        [Header( "Folders")]
         public GameObject Questions = null;
         public GameObject Answers = null;
         public GameObject Placeholders = null;
@@ -33,25 +33,20 @@ namespace EA4S.Assessment
         private LetterObjectView SpawnLivingLetter( ILivingLetterData data)
         {
             var letter = (Instantiate( LivingLetterPrefab) as GameObject)
-                    .GetComponent< LetterObjectView>();
+                    .GetComponent<LetterObjectView>();
 
-            letter.Init(data);
-
-            // Correct rotation but scale = 0 to hide
-            letter.transform.localRotation = Quaternion.Euler( 0, 180f, 0);
-            letter.transform.localScale = Vector3.zero;
-            
-            // We want to center on body, not on legs (that are hided anyway)
-            FixShiftInLetter( letter.gameObject);
+            letter.Init( data);
+            letter.gameObject.SetActive( true);            
+            letter.transform.localScale = Vector3.zero;          
             letter.SetState( LLAnimationStates.LL_limbless);
-            letter.GetComponent< Animator>().enabled = false;
-
+            
             return letter;
         }
 
         // LL are not centered on Glyph center, but on legs, but we do not have legs so..
         private void FixShiftInLetter( GameObject go)
         {
+            // Now Fixed as new Prefab in scene
             var child = go.transform.GetChild( 0);
             child.localPosition = new Vector3( 0, -3.5f, 0);
         }
