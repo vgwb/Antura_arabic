@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b19f1c0cd3c40774b9c809b3f6a03242
-timeCreated: 1477661292
+guid: 3904d47409631d140b07e6c13e92e0fe
+timeCreated: 1479303378
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -27,10 +27,10 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 256
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -53,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: minigameIcons
   userData: 
   assetBundleName: 
   assetBundleVariant: 
