@@ -32,6 +32,10 @@ namespace EA4S.DancingDots
 		public GameObject[] diacritics;
 		public DancingDotsDiacriticPosition activeDiacritic;
 
+		[HideInInspector]
+		public DancingDotsQuestionsManager questionsManager;
+
+
 		public string currentLetter = "";
 		private int _dotsCount;
 		public int dotsCount
@@ -96,10 +100,13 @@ namespace EA4S.DancingDots
 
 			base.Start();
 
-
 			AppManager.Instance.InitDataAI();
 			AppManager.Instance.CurrentGameManagerGO = gameObject;
 			SceneTransitioner.Close();
+
+			DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+
+			questionsManager = new DancingDotsQuestionsManager();
 
 			splats = new List<DancingDotsSplat>();
 
@@ -430,10 +437,7 @@ namespace EA4S.DancingDots
 				dancingDotsLL.HideRainbow();
 				StartRound();
 				yield return new WaitForSeconds(0.75f);
-				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_dancing);
-
-//				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
-//				dancingDotsLL.letterObjectView.SetWalkingSpeed(0);
+				dancingDotsLL.letterObjectView.ToggleDance();
 			}
 		}
 
@@ -449,7 +453,7 @@ namespace EA4S.DancingDots
 			dancingDotsLL.letterObjectView.DoDancingLose(); // ("FallAndStand");
 			yield return new WaitForSeconds(1.5f);
 			dancingDotsLL.letterObjectView.DoSmallJump();
-			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_dancing);
+			dancingDotsLL.letterObjectView.ToggleDance(); //  SetState(LLAnimationStates.LL_dancing);
 			StartCoroutine(CheckNewRound());
 		}
 
