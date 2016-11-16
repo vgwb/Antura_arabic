@@ -287,6 +287,12 @@ namespace EA4S.MissingLetter
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 clicked.mLetter.DoHorray();
                 clicked.LightOn();
+
+                mGame.mParticleSystem.SetActive(true);
+                mGame.mParticleSystem.transform.position = mCurrentQuestionScene[0].transform.position + Vector3.forward + Vector3.up * 2;
+                mGame.mParticleSystem.GetComponent<ParticleSystem>().Play();
+                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, delegate { mGame.mParticleSystem.SetActive(false); }));
+
                 mGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
             }
             else
