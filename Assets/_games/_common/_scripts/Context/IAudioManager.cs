@@ -17,6 +17,8 @@
 
         void PlayDialogue(TextID text, System.Action onCompleted = null);
 
+        void Reset();
+
         //UnityEngine.AudioClip GetAudioClip(Sfx sfx);
 
         [System.Obsolete("Use PlayLetterData", false)]

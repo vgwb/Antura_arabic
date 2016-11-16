@@ -1,11 +1,9 @@
 ﻿using SQLite;
 using System;
 
-namespace EA4S.Db
-{
+namespace EA4S {
 
-    public enum PlaySkill
-    {
+    public enum PlaySkill {
         None = 0,
         Precision = 1,
         Reaction = 2,
@@ -16,13 +14,14 @@ namespace EA4S.Db
         Sight = 7
     }
 
-    public enum PlayEvent
-    {
+    public enum PlayEvent {
         GameStarted = 0,
         GameFinished = 1,
         Skill = 2
     }
+}
 
+namespace EA4S.Db {
     [System.Serializable]
     public class LogPlayData : IData
     {

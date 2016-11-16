@@ -24,10 +24,7 @@ namespace EA4S.Tobogan
 
         public bool IsCorrectAnswer { get; private set; }
         public ILivingLetterData Data { get; private set; }
-
-        public event Action<PipeAnswer> onTriggerEnterPipe;
-        public event Action<PipeAnswer> onTriggerExitPipe;
-
+        
         List<Material> tubeMaterials = new List<Material>();
 
         public bool active;
@@ -128,22 +125,6 @@ namespace EA4S.Tobogan
             //    answerText.gameObject.SetActive(false);
             //}
             IsCorrectAnswer = correct;
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if (onTriggerEnterPipe != null)
-            {
-                onTriggerEnterPipe(this);
-            }
-        }
-
-        void OnTriggerExit(Collider other)
-        {
-            if (onTriggerExitPipe != null)
-            {
-                onTriggerExitPipe(this);
-            }
         }
 
         public void EnterAnimation()

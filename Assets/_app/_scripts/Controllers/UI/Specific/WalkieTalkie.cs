@@ -5,46 +5,25 @@ namespace EA4S
 {
     public class WalkieTalkie : MonoBehaviour
     {
-        public GameObject Button, ButtonPressed;
-
-        public bool isShown { get; private set; }
-
-        bool makePulse;
-        Tween showTween, pulseTween, btTween;
+        public bool IsShown { get; private set; }
+        bool shouldPulse;
+        Tween showTween, pulseTween;
 
         public void Setup()
         {
-            RectTransform rt = this.GetComponent<RectTransform>();
-
-            const float pulseDuration = 0.3f;
-            pulseTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).SetLoops(2, LoopType.Yoyo).Pause()
-                .Append(rt.DOScale(1.05f, pulseDuration).SetEase(Ease.InOutQuad))
-                .Join(rt.DORotate(new Vector3(0, 0, 12), pulseDuration, RotateMode.FastBeyond360).SetRelative().SetEase(Ease.InOutSine));
-            pulseTween.OnComplete(() => {
-                if (makePulse)
-                    pulseTween.Restart();
-            });
-
-            const float showDuration = 0.3f;
-            showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .Append(rt.DOScale(0.1f, showDuration).From().SetEase(Ease.OutBack))
-                .Join(rt.DORotate(new Vector3(0, 0, 45f), showDuration, RotateMode.FastBeyond360).From().SetEase(Ease.OutBack))
-                .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() => {
-                    if (pulseTween != null)
-                        pulseTween.Rewind();
-                    this.gameObject.SetActive(false);
-                });
-
-            btTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
-                .AppendCallback(() => {
-                    Button.gameObject.SetActive(false);
-                    ButtonPressed.gameObject.SetActive(true);
-                })
-                .InsertCallback(0.2f, () => {
-                    Button.gameObject.SetActive(true);
-                    ButtonPressed.gameObject.SetActive(false);
-                });
+            const float pulseShakeDuration = 0.5f;
+            pulseTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                .Append(this.transform.DOPunchRotation(new Vector3(0, 0, 20), pulseShakeDuration))
+                .Append(this.transform.DOScale(this.transform.localScale * 1.1f, 0.3f).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo)
+                    .SetAutoKill(false).Pause()
+                    .OnComplete(() => {
+                        if (shouldPulse) pulseTween.Goto(pulseShakeDuration, true);
+                    })
+                );
+            pulseTween.ForceInit();
+            showTween = this.transform.DOScale(0.0001f, 0.45f).From().SetEase(Ease.OutBack).SetAutoKill(false).Pause()
+                .OnRewind(()=> this.gameObject.SetActive(false))
+                .OnComplete(()=> pulseTween.Goto(pulseShakeDuration, true));
 
             this.gameObject.SetActive(false);
         }
@@ -53,53 +32,34 @@ namespace EA4S
         {
             showTween.Kill();
             pulseTween.Kill();
-            btTween.Kill();
         }
 
         public void Show(bool _doShow, bool _immediate = false)
         {
-            if (isShown == _doShow && !_immediate)
-                return;
-
-            isShown = _doShow;
-            pulseTween.Pause();
+            IsShown = _doShow;
             if (_doShow) {
-                AudioManager.I.PlaySfx(Sfx.WalkieTalkie);
                 this.gameObject.SetActive(true);
+                AudioManager.I.PlaySfx(Sfx.WalkieTalkie);
+                StopPulse(true);
                 if (_immediate) showTween.Complete();
                 else showTween.PlayForward();
             } else {
+                StopPulse(true);
                 if (_immediate) showTween.Rewind();
                 else showTween.PlayBackwards();
             }
         }
 
-        public void StartPulsing(bool pressButton = false)
+        public void Pulse()
         {
-            if (!isShown)
-                return;
-
-            if (!showTween.IsComplete())
-                showTween.OnComplete(DOStartPulsing);
-            else
-                DOStartPulsing();
-            if (pressButton)
-                btTween.Restart();
+            shouldPulse = true;
+            pulseTween.PlayForward();
         }
 
-        void DOStartPulsing()
+        public void StopPulse(bool _immediate = false)
         {
-            makePulse = true;
-            pulseTween.Restart();
-        }
-
-        public void StopPulsing()
-        {
-            if (!isShown)
-                return;
-
-            makePulse = false;
-            showTween.OnComplete(null);
+            shouldPulse = false;
+            if (_immediate) pulseTween.Rewind();
         }
     }
 }

@@ -33,7 +33,6 @@ namespace EA4S.MissingLetter
 
             mAntura.State = AnturaAnimationStates.walking;
             mAntura.IsAngry = true;
-            // TODO DoBark removed
             mAntura.DoShout();
             transform.LookAt(transform.position + Vector3.left * (nextPos.position.x - transform.position.x));
             transform.DOMove(nextPos.position, duration).OnComplete(delegate { mAntura.State = AnturaAnimationStates.idle; }) ;

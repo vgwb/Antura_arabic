@@ -10,6 +10,7 @@ namespace EA4S.Db
       Preposition = 4,
       Noun = 5,
       Adverb = 6,
+      UI = 7,
   }
 }
 

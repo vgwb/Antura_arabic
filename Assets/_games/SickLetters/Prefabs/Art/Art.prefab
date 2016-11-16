@@ -5775,6 +5775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cf0455944e79d4c8d1f5996a41f7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vaseCollider: {fileID: 0}
   _counter: {fileID: 114000010984794000}
   vaseStartPose: {x: 0, y: 0, z: 0}
   vaseStartRot: {x: 0, y: 0, z: 0}

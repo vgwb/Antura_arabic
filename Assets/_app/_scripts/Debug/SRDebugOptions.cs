@@ -34,9 +34,17 @@ public partial class SROptions
     [Sort(4)]
     public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
 
+    [Category("Options")]
+    [Sort(60)]
+    public void Home()
+    {
+        WidgetPopupWindow.I.Close();
+        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
+        SRDebug.Instance.HideDebugPanel();
+    }
 
     [Category("Options")]
-    [Sort(10)]
+    [Sort(80)]
     public void ToggleQuality()
     {
         AppManager.Instance.ToggleQualitygfx();
@@ -240,6 +248,74 @@ public partial class SROptions
         LaunchMinigame(MiniGameCode.Tobogan_letters);
     }
 
+
+    [Category("Assessments")]
+    public void LetterShape()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_LetterShape);
+    }
+
+    [Category("Assessments")]
+    public void WordsWithLetter()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_WordsWithLetter);
+    }
+    [Category("Assessments")]
+    public void MatchLettersToWord()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_MatchLettersToWord);
+    }
+    [Category("Assessments")]
+    public void CompleteWord()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_CompleteWord);
+    }
+    [Category("Assessments")]
+    public void OrderLettersOfWord()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_OrderLettersOfWord);
+    }
+    [Category("Assessments")]
+    public void VowelOrConsonant()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_VowelOrConsonant);
+    }
+    [Category("Assessments")]
+    public void SelectPronouncedWord()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_SelectPronouncedWord);
+    }
+    [Category("Assessments")]
+    public void MatchWordToImage()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_MatchWordToImage);
+    }
+    [Category("Assessments")]
+    public void WordArticle()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_WordArticle);
+    }
+    [Category("Assessments")]
+    public void SingularDualPlural()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_SingularDualPlural);
+    }
+    [Category("Assessments")]
+    public void SunMoonWord()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_SunMoonWord);
+    }
+    [Category("Assessments")]
+    public void SunMoonLetter()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_SunMoonLetter);
+    }
+    [Category("Assessments")]
+    public void QuestionAndReply()
+    {
+        LaunchMinigame(MiniGameCode.Assessment_QuestionAndReply);
+    }
+
     //[Category("Manage")]
     //public void Database()
     //{
@@ -264,23 +340,6 @@ public partial class SROptions
     //}
 
 
-    [Category("Scenes")]
-    [Sort(60)]
-    public void Home()
-    {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("_Start");
-        SRDebug.Instance.HideDebugPanel();
-    }
-
-    [Category("Scenes")]
-    [Sort(60)]
-    public void Assessment()
-    {
-        WidgetPopupWindow.I.Close();
-        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
-        SRDebug.Instance.HideDebugPanel();
-    }
 
     /// MakeFriends
     [Category("MakeFriends")]

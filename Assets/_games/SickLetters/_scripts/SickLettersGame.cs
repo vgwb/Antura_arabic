@@ -17,6 +17,7 @@ namespace EA4S.SickLetters
         public GameObject DropZonesGO;
         public UnityEngine.Animation hole;
         public SickLettersTutorial tut;
+        public bool lastMoveIsCorrect;
 
         public SickLettersCamera slCamera;
         public SickLettersGameManager manager;
@@ -30,7 +31,7 @@ namespace EA4S.SickLetters
         [HideInInspector]
         public bool disableInput;
 
-        public int gameDuration = 120 ,  targetScale = 10;
+        public int gameDuration = 120 ,  targetScale = 10, maxWieght;
         public float vaseWidth = 5.20906f;
         public bool LLCanDance = false, with7arakat;
         public string dotlessLetters = "أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و";
@@ -62,6 +63,8 @@ namespace EA4S.SickLetters
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
             questionManager = new QuestionsManager();
+
+            hole.gameObject.SetActive(false);
 
             manager = GetComponent<SickLettersGameManager>();            
             DropZones = DropZonesGO.GetComponentsInChildren<SickLettersDropZone>();
@@ -98,7 +101,6 @@ namespace EA4S.SickLetters
 
         public bool checkForNextRound()
         {
-            
 
             if (checkSucess())
                 return false;
@@ -125,9 +127,15 @@ namespace EA4S.SickLetters
                 //Context.GetOverlayWidget().SetStarsScore(roundsCount / 2);
                 LLPrefab.letterAnimator.SetBool("dancing", false);
                 LLPrefab.letterAnimator.Play("LL_idle_1", -1);
-                LLPrefab.letterView.DoHorray();
-                SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
-                LLPrefab.jumpOut(1.5f);
+
+                if (lastMoveIsCorrect)
+                {
+                    LLPrefab.letterView.DoHorray();
+                    SickLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
+                    LLPrefab.jumpOut(1.5f);
+                }
+                else
+                    LLPrefab.jumpOut(0.5f);
 
                 if (roundsCount == 1)
                 {
@@ -167,8 +175,9 @@ namespace EA4S.SickLetters
             this.gameDuration = gameDuration;
             Context.GetOverlayWidget().SetClockDuration(gameDuration);
             this.targetScale = targetScale;
+            //Context.GetOverlayWidget().SetStarsThresholds((targetScale / 3), (targetScale * 2 / 3), targetScale);
 
-            if(diff> 0.666f)
+            if (diff> 0.666f)
                 scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, 7.501349f);
             else
                 scale.transform.localScale = new Vector3(vaseWidth, scale.transform.localScale.y, scale.transform.localScale.z);
@@ -189,15 +198,16 @@ namespace EA4S.SickLetters
             if (diff < 0.333f)
                 setDifficulty(diff, 120, 18, 5.20906f, false, false);
             else if (diff < 0.666f)
-                setDifficulty(diff, 120, 42, 4.0f, false, true);
+                setDifficulty(diff, 160, 42, 4.0f, false, true);
             else
-                setDifficulty(diff, 160, 42, 3.0f, true, true);
+                setDifficulty(diff, 180, 42, 3.0f, true, true);
         }
 
         public void onWrongMove()
         {
-            Context.GetCheckmarkWidget().Show(false);
-            //TutorialUI.MarkNo(new Vector3(9.82f, 15.0f, -7.87f), TutorialUI.MarkSize.Huge);
+            lastMoveIsCorrect = false;
+            //Context.GetCheckmarkWidget().Show(false);
+            TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
         }
     }

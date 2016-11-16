@@ -105,7 +105,7 @@ namespace EA4S.MakeFriends
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Questions = new SampleWordsWithCommonLettersProvider();
+            Questions = new MakeFriendsQuestionProvider();
             Context = new SampleGameContext();
             Difficulty = 0f;
         }
@@ -114,11 +114,12 @@ namespace EA4S.MakeFriends
             IQuestionBuilder builder = null;
 
             int nPacks = 10;
-            int nCorrect = 1;
+            int nMinCommonLetters = 1;
+            int nMaxCommonLetters = 2;
             int nWrong = 5;
             int nWords = 2;
 
-            builder = new CommonLettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, nWords);
+            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords);
 
             return builder;
         }

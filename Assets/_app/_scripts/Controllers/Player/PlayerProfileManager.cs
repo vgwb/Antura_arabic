@@ -7,6 +7,8 @@ namespace EA4S {
     /// </summary>
     public class PlayerProfileManager {
 
+        #region Properties
+
         /// <summary>
         /// Max number of player profiles usables.
         /// </summary>
@@ -19,8 +21,11 @@ namespace EA4S {
         public PlayerProfile ActualPlayer {
             get { return actualPlayer; }
             set {
-                if (actualPlayer != value)
+                if (actualPlayer != value) {
                     AppManager.Instance.Player = value;
+                    AppManager.Instance.GameSettings.LastActivePlayerId = value.Id;
+                    SaveGameSettings();
+                }
                 actualPlayer = value;
             }
         }
@@ -32,6 +37,36 @@ namespace EA4S {
         public List<PlayerProfile> AvailablePlayerProfiles {
             get { return availablePlayerProfiles; }
             set { availablePlayerProfiles = value; }
+        }
+
+        #endregion
+
+        #region internal functions
+        void reloadGameSettings() {
+            AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            if (AppManager.Instance.GameSettings.LastActivePlayerId > 0)
+                ActualPlayer = LoadPlayerProfileById(AppManager.Instance.GameSettings.LastActivePlayerId);
+        }
+
+        void reloadAvailablePlayerProfilesList() {
+            List<PlayerProfile> returnList = new List<PlayerProfile>();
+            foreach (string pId in AppManager.Instance.GameSettings.AvailablePlayers) {
+                PlayerProfile pp = AppManager.Instance.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
+                if (pp != null)
+                    returnList.Add(pp);
+            }
+            availablePlayerProfiles = returnList;
+        }
+        #endregion
+
+        #region API        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerProfileManager"/> class.
+        /// </summary>
+        public PlayerProfileManager() {
+            reloadGameSettings();
+            reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>
@@ -54,11 +89,72 @@ namespace EA4S {
         /// <param name="_avatarId"></param>
         /// <returns></returns>
         public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId) {
-            PlayerProfile newPP = new PlayerProfile();
-            //newPP.CreateOrLoadPlayerProfile(_avatarId);
-            return newPP;
+
+            PlayerProfile returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
+            if (returnProfile == null) {
+                returnProfile = new PlayerProfile();
+                // create new
+                returnProfile.Id = AvailablePlayerProfiles.Count + 1;
+                returnProfile.AvatarId = _avatarId;
+                returnProfile.Key = returnProfile.Id.ToString();
+                returnProfile = AppManager.Instance.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
+                //GameManager.Instance.PlayerProfile.ActivePlayer = this;
+
+            }
+            AppManager.Instance.PlayerProfileManager.ActualPlayer = returnProfile as PlayerProfile;
+            //AppManager.Instance.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer);
+            //AppManager.Instance.GameSettings.AvailablePlayers.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer.Id.ToString());
+            SaveGameSettings();
+            return AppManager.Instance.PlayerProfileManager.ActualPlayer;
         }
 
+        /// <summary>
+        /// Loads the player profile by avatar identifier.
+        /// </summary>
+        /// <param name="_avatarId">The avatar identifier.</param>
+        /// <returns></returns>
+        public PlayerProfile LoadPlayerProfileByAvatarId(int _avatarId) {
+            return LoadPlayerProfileById(GetPlayerIdFromAvatarId(_avatarId));
+        }
+
+        /// <summary>
+        /// Loads the player profile by identifier.
+        /// </summary>
+        /// <param name="_Id">The identifier.</param>
+        /// <returns></returns>
+        public PlayerProfile LoadPlayerProfileById(int _Id) {
+            return AppManager.Instance.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_Id.ToString()) as PlayerProfile;
+        }
+
+        /// <summary>
+        /// Saves the game settings.
+        /// </summary>
+        public void SaveGameSettings() {
+            AppManager.Instance.Modules.PlayerProfile.Options = AppManager.Instance.GameSettings;
+            AppManager.Instance.Modules.PlayerProfile.SaveAllOptions();
+            reloadAvailablePlayerProfilesList();
+        }
+
+        /// <summary>
+        /// WARNING! Deletes all profiles.
+        /// </summary>
+        public void DeleteAllProfiles() {
+            AppManager.Instance.Modules.PlayerProfile.DeleteAllPlayerProfiles();
+        }
+
+        /// <summary>
+        /// Gets the player identifier from avatar identifier.
+        /// </summary>
+        /// <param name="_avatarId">The avatar identifier.</param>
+        /// <returns></returns>
+        public int GetPlayerIdFromAvatarId(int _avatarId) {
+            PlayerProfile pp = availablePlayerProfiles.Find(p => p.AvatarId == _avatarId);
+            if (pp != null)
+                return pp.Id;
+            else
+                return 0;
+        }
+        #endregion
 
     }
 }
