@@ -78,34 +78,11 @@ namespace EA4S
 
         }
 
-        /// <summary>
-        /// Load or create new playerprofile with this id.
-        /// </summary>
-        /// <param name="_avatarId"></param>
-        public PlayerProfile CreateOrLoadPlayerProfile(string _avatarId) {
-
-            IPlayerProfile savedProfile = GameManager.Instance.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_avatarId);
-            if (savedProfile != null) { // already exist
-                //GameManager.Instance.PlayerProfile.ActivePlayer = savedProfile as PlayerProfile;
-            } else {  // create new
-                int.TryParse(_avatarId, out Id);
-                if (Id == 0) {
-                    new Exception("Invalid Avatar selected");
-                }
-                Key = _avatarId;
-                AvatarId = Id;
-                savedProfile = GameManager.Instance.PlayerProfile.CreateNewPlayer(this);
-                //GameManager.Instance.PlayerProfile.ActivePlayer = this;
-                
-            }
-            return savedProfile as PlayerProfile;
-        }
 
         public void DeleteThisProfile() { }
 
-        public void SaveGlobalOptions() {
-            GameManager.Instance.PlayerProfile.Options = AppManager.Instance.GameSettings;
-            GameManager.Instance.PlayerProfile.SaveAllOptions();
+        public void SaveGameSettings() {
+            AppManager.Instance.PlayerProfileManager.SaveGameSettings();
         }
         #endregion 
     }
