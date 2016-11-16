@@ -27,6 +27,8 @@ namespace EA4S.Tobogan
         const int STARS_2_THRESHOLD = 8;
         const int STARS_3_THRESHOLD = 12;
 
+        public IQuestionProvider SunMoonQuestions { get; set; }
+
         public int CurrentStars
         {
             get
@@ -70,7 +72,8 @@ namespace EA4S.Tobogan
             tutorial = true;
 
             pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
-            
+            SunMoonQuestions = new SunMoonTutorialQuestionProvider(ToboganConfiguration.Instance.Questions);
+
             QuestionState = new ToboganQuestionState(this);
             PlayState = new ToboganPlayState(this);
             ResultState = new ToboganResultGameState(this);
