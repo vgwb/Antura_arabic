@@ -31,7 +31,7 @@ namespace EA4S.ColorTickle
 
         // LL vanishing vars
         bool m_bLLVanishing = false;
-        float m_fTimeToDisappear = 2f;
+        float m_fTimeToDisappear = 3f;
         float m_fDisappearTimeProgress = 0;
 
         #endregion
@@ -44,7 +44,7 @@ namespace EA4S.ColorTickle
         public void EnterState()
         {
             m_Rounds = game.rounds;
-			m_MaxLives = game.lives;
+			m_MaxLives = game.lives; //max number of lives is already setted in the game according to difficulty
             m_Stars = 3.0f;
 
 			//Init ColorCanvas and PercentageLetterColoredButton
@@ -141,16 +141,18 @@ namespace EA4S.ColorTickle
                     //LL does win or lose animation 
                     if(m_PercentageLetterColored >= 100)
                     {
-                        m_LetterObjectView.DoDancingWin();
+                        //m_LetterObjectView.DoDancingWin();
+                        m_LetterObjectView.DoHorray();
                         AudioManager.I.PlaySfx(Sfx.Win);
                     }
                     else if (m_Lives <= 0)
                     {
-                        m_LetterObjectView.DoDancingLose();
+                        m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
+                        m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
                         AudioManager.I.PlaySfx(Sfx.Lose);
                     }
 
-                    m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
+                    
 
                 }
             }
@@ -234,7 +236,8 @@ namespace EA4S.ColorTickle
             //--
 
             m_Lives--;
-            m_Stars -= 0.3f;
+            //m_Stars -= 0.3f;
+            m_Stars -= (3f/(float)m_Rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
             game.gameUI.SetLives(m_Lives);
             Debug.Log("Lives : " + m_Lives);
         }

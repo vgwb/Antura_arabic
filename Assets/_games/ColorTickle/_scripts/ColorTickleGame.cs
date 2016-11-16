@@ -26,6 +26,9 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private int m_MaxLives = 3;
         [SerializeField]
+        [Range(0f,1f)]
+        private float m_fDifficulty = 0;
+        [SerializeField]
         private Music m_oBackgroundMusic;
 
         [HideInInspector]
@@ -94,6 +97,12 @@ namespace EA4S.ColorTickle
             set { m_Rounds = value; }
         }
 
+        public float difficulty
+        {
+            get { return m_fDifficulty; }
+            set { m_fDifficulty = value; }
+        }
+
         public IOverlayWidget gameUI
         {
             get { return m_GameUI; }
@@ -115,6 +124,32 @@ namespace EA4S.ColorTickle
             TutorialState = new TutorialGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
+
+            //Difficulty is decided like this: 0 <= easy <= 0.333 < medium <= 0.666 < hard <=1
+            #if UNITY_EDITOR
+                //while running from editor use the difficult setted from the inspector
+            #else
+                m_fDifficulty = GetConfiguration().Difficulty;
+            #endif
+
+
+            //Adjust parameters accordingly:
+            //- max lives: 1 on hard, full lives on easy, mean of the two on medium
+            //- Antura's probability to scare LL: linear with the difficulty, the base value is the minimum
+            if (m_fDifficulty>0.666f) //hard
+            {
+                m_MaxLives = 1;
+            }
+            else if(m_fDifficulty > 0.333f) //medium
+            {
+                m_MaxLives = (m_MaxLives + 1) / 2;
+            }
+            else //easy
+            {
+                //on easy use the base value of max lives
+            }
+            m_AnturaController.probabilityToScareLL = Mathf.Max(m_AnturaController.probabilityToScareLL, m_fDifficulty * 100); //at least the base value
+
         }
 
         protected override IGameState GetInitialState()

@@ -22,7 +22,7 @@ namespace EA4S.ColorTickle
 
         // LL vanishing vars
         bool m_bLLVanishing = false;
-        float m_fTimeToDisappear = 2f;
+        float m_fTimeToDisappear = 3f;
         float m_fDisappearTimeProgress = 0;
         #endregion
 
@@ -96,8 +96,9 @@ namespace EA4S.ColorTickle
                 AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
 
                 //LL does win animation 
-                m_LetterObjectView.DoDancingWin();
-                m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
+                //m_LetterObjectView.DoDancingWin();
+                //m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
+                m_LetterObjectView.DoHorray();
                 AudioManager.I.PlaySfx(Sfx.Win);
 
             }
