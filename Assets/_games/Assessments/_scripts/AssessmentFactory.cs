@@ -5,27 +5,37 @@ namespace EA4S.Assessment
     /// </summary>
     public static class AssessmentFactory
     {
-        public static IAssessment CreateLetterInWordAssessment( IAssessmentConfiguration configuration)
+        public static IAssessment CreateLetterInWordAssessment()
         {
             Init(); // common initialization stuff
-            var generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
-
+            IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
+            IAudioManager audioManager      = configuration.Context.GetAudioManager();
+            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            ILogicInjector injector         = new DefaultLogicInjector();
+            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
+            IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
             //            return new DefaultAssessment();
             return null;
         }
 
-        public static IAssessment LetterShapeAssessment( IAssessmentConfiguration configuration)
+        public static IAssessment CreateLetterShapeAssessment()
         {
             Init(); // common initialization stuff
-            var generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
+            IAudioManager audioManager = configuration.Context.GetAudioManager();
+            IGameContext context = configuration.Context;
+            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            ILogicInjector injector = new DefaultLogicInjector();
+            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager);
+            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
-            //            return new DefaultAssessment();
-            return null;
+            return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
         }
 
-        public static IAssessment WordsWithLetterAssessment( IAssessmentConfiguration configuration)
+        public static IAssessment CreateWordsWithLetterAssessment()
         {
             Init(); // common initialization stuff
+            IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
             var generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
 
             //            return new DefaultAssessment();
