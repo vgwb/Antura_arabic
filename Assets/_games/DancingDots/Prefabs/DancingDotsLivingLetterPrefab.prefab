@@ -3960,6 +3960,7 @@ MonoBehaviour:
   dotlessText: {fileID: 114000010028320920}
   fullTextGO: {fileID: 1000010490400506}
   rainbow: {fileID: 1000010050584340}
+  game: {fileID: 0}
 --- !u!114 &114000014114888778
 MonoBehaviour:
   m_ObjectHideFlags: 1

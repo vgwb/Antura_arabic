@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ModularFramework.Helpers;
+using ArabicSupport;
 
 namespace EA4S
 {
@@ -45,15 +46,11 @@ namespace EA4S
                     commonLetters.Clear();
                     uncommonLetters.Clear();
 
-                    UnityEngine.Debug.Log("--- Reached Checkpoint -A- on iteration #" + iteration + " ---");
-
                     newWordData1 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
                     foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData1.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
                     {
                         wordLetters1.Add(letterData);
                     }
-
-                    UnityEngine.Debug.Log("--- Reached Checkpoint -B- on iteration #" + iteration + " ---");
 
                     int innerLoopAttempts = 50;
                     do
@@ -63,49 +60,45 @@ namespace EA4S
                     } while(newWordData2.Key == newWordData1.Key && innerLoopAttempts > 0);
                     if (innerLoopAttempts <= 0)
                     {
-                        UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find enough data!");
+                        UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find 2 different words!");
                     }
-
-                    UnityEngine.Debug.Log("--- Reached Checkpoint -C- on iteration #" + iteration + " ---");
 
                     foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData2.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
                     {
                         wordLetters2.Add(letterData);
                     }
 
-                    UnityEngine.Debug.Log("--- Reached Checkpoint -D- on iteration #" + iteration + " ---");
-
                     // Find common letter(s) (without repetition)
                     for (int i = 0; i < wordLetters1.Count; i++)
                     {
                         var letter = wordLetters1[i];
 
-                        if (wordLetters2.Contains(letter))
+                        //if (wordLetters2.Contains(letter))
+                        if (wordLetters2.Exists(x => x.Key == letter.Key))
                         {
-                            if (!commonLetters.Contains(letter))
+                            //if (!commonLetters.Contains(letter))
+                            if (!commonLetters.Exists(x => x.Key == letter.Key))
                             {
                                 commonLetters.Add(letter);
                             }
                         }
                     }
 
-                    UnityEngine.Debug.Log("--- Reached Checkpoint -E- on iteration #" + iteration + " ---");
-
                     // Find uncommon letters (without repetition)
                     for (int i = 0; i < wordLetters1.Count; i++)
                     {
                         var letter = wordLetters1[i];
 
-                        if (!wordLetters2.Contains(letter))
+                        //if (!wordLetters2.Contains(letter))
+                        if (!wordLetters2.Exists(x => x.Key == letter.Key))
                         {
-                            if (!uncommonLetters.Contains(letter))
+                            //if (!uncommonLetters.Contains(letter))
+                            if (!uncommonLetters.Exists(x => x.Key == letter.Key))
                             {
                                 uncommonLetters.Add(letter);
                             }
                         }
                     }
-
-                    UnityEngine.Debug.Log("--- Reached Checkpoint -F- on iteration #" + iteration + " ---");
 
                     for (int i = 0; i < wordLetters2.Count; i++)
                     {
@@ -123,10 +116,11 @@ namespace EA4S
                 } while(commonLetters.Count == 0 && outerLoopAttempts > 0);
                 if (outerLoopAttempts <= 0)
                 {
-                    UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find enough data!");
+                    UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find enough data for QuestionPack #" + iteration
+                        + "\nInfo: Word1: " + ArabicFixer.Fix(newWordData1.TextForLivingLetter) + " Word2: " + ArabicFixer.Fix(newWordData2.TextForLivingLetter)
+                    + "\nWordLetters1: " + wordLetters1.Count + " WordLetters2: " + wordLetters2.Count
+                    + "\nCommonLetters: " + commonLetters.Count + " UncommonLetters: " + uncommonLetters.Count);
                 }
-
-                UnityEngine.Debug.Log("--- Reached Checkpoint -G- on iteration #" + iteration + " ---");
 
                 commonLetters.Shuffle();
                 uncommonLetters.Shuffle();
@@ -136,8 +130,6 @@ namespace EA4S
 
                 var currentPack = new SampleWordsWithCommonLettersPack(newWordData1, newWordData2, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
-
-                UnityEngine.Debug.Log("--- Reached Checkpoint -H- on iteration #" + iteration + " ---");
             }
         }
 
