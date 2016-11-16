@@ -1,29 +1,80 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ReadingGameAntura : MonoBehaviour
+namespace EA4S.ReadingGame
 {
-    AnturaAnimationController anim;
-
-    public bool angry = false;
-
-	void Awake ()
+    public class ReadingGameAntura : MonoBehaviour
     {
-        anim = GetComponent<AnturaAnimationController>();
-    }
-	
-	void Update ()
-    {
-        anim.IsAngry = angry;
-        SetSitting(true);
-    }
+        public enum AnturaMood
+        {
+            HAPPY,
+            ANGRY,
+            SAD
+        }
 
-    public void SetSitting(bool sitting)
-    {
-        // emp
-        if (sitting)
-            anim.State = AnturaAnimationStates.sitting;
-        else
-            anim.State = AnturaAnimationStates.idle;
+        [HideInInspector]
+        public AnturaAnimationController animator;
+
+        GameStateManager stateManager = new GameStateManager();
+
+        public WalkAnturaState WalkingState { get; private set; }
+        public IdleAnturaState IdleState { get; private set; }
+
+
+        AnturaMood mood;
+        public AnturaMood Mood
+        {
+            get
+            {
+                return mood;
+            }
+
+            set
+            {
+                if (this.mood == value)
+                    return;
+
+                mood = value;
+                if (value == ReadingGameAntura.AnturaMood.ANGRY)
+                {
+                    if (animator.State == AnturaAnimationStates.sitting)
+                        animator.State = AnturaAnimationStates.idle;
+
+                    animator.DoShout(() => { ReadingGameConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking); });
+                }
+            }
+        }
+
+        public bool AllowSitting = true;
+
+        void Awake()
+        {
+            animator = GetComponent<AnturaAnimationController>();
+
+            WalkingState = new WalkAnturaState(this);
+            IdleState = new IdleAnturaState(this);
+
+            SetCurrentState(IdleState);
+        }
+
+        void Update()
+        {
+            stateManager.Update(Time.deltaTime);
+        }
+
+        void FixedUpdate()
+        {
+            stateManager.UpdatePhysics(Time.fixedDeltaTime);
+        }
+
+        public void SetCurrentState(AnturaState state)
+        {
+            stateManager.CurrentState = state;
+        }
+
+        public AnturaState GetCurrentState()
+        {
+            return (AnturaState)stateManager.CurrentState;
+        }
     }
 }

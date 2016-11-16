@@ -3,7 +3,7 @@
     public class FastCrowdResultState : IGameState
     {
         FastCrowdGame game;
-        
+
         public FastCrowdResultState(FastCrowdGame game)
         {
             this.game = game;
@@ -13,7 +13,8 @@
         {
             if (game.CurrentChallenge != null)
             {
-                game.ShowChallengePopupWidget(true, OnPopupCloseRequested);
+                if (!game.ShowChallengePopupWidget(true, OnPopupCloseRequested))
+                    game.SetCurrentState(game.QuestionState);
             }
         }
 

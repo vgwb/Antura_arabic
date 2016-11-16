@@ -11,6 +11,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000010381400336}
   m_IsPrefabParent: 1
+--- !u!1 &1000010015678064
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011098580556}
+  m_Layer: 0
+  m_Name: tutorialPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010113632284
 GameObject:
   m_ObjectHideFlags: 1
@@ -607,6 +622,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000012179353380
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012202849074}
+  m_Layer: 0
+  m_Name: tutorialPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012179780154
 GameObject:
   m_ObjectHideFlags: 1
@@ -788,6 +818,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000012934511150
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014232884378}
+  m_Layer: 0
+  m_Name: tutorialPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000013020641182
 GameObject:
   m_ObjectHideFlags: 1
@@ -945,6 +990,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013944352146
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011123814228}
+  m_Layer: 0
+  m_Name: tutorialPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000014117386290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1121,32 @@ Transform:
   - {fileID: 4000013343784784}
   m_Father: {fileID: 4000010261221210}
   m_RootOrder: 0
+--- !u!4 &4000011098580556
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010015678064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013622838498}
+  m_RootOrder: 1
+--- !u!4 &4000011123814228
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013944352146}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012567565670}
+  m_RootOrder: 1
 --- !u!4 &4000011266856248
 Transform:
   m_ObjectHideFlags: 1
@@ -1230,6 +1316,19 @@ Transform:
   - {fileID: 4000013301229652}
   m_Father: {fileID: 4000012634072114}
   m_RootOrder: 0
+--- !u!4 &4000012202849074
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012179353380}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013911381520}
+  m_RootOrder: 1
 --- !u!4 &4000012292148818
 Transform:
   m_ObjectHideFlags: 1
@@ -1314,6 +1413,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013953929722}
+  - {fileID: 4000014232884378}
   m_Father: {fileID: 4000012329667958}
   m_RootOrder: 1
 --- !u!4 &4000012442827930
@@ -1357,6 +1457,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011910561778}
+  - {fileID: 4000011123814228}
   m_Father: {fileID: 4000012329667958}
   m_RootOrder: 3
 --- !u!4 &4000012622194238
@@ -1614,6 +1715,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011703780276}
+  - {fileID: 4000011098580556}
   m_Father: {fileID: 4000012329667958}
   m_RootOrder: 0
 --- !u!4 &4000013668333898
@@ -1668,6 +1770,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011357404000}
+  - {fileID: 4000012202849074}
   m_Father: {fileID: 4000012329667958}
   m_RootOrder: 2
 --- !u!4 &4000013953929722
@@ -1710,6 +1813,19 @@ Transform:
   m_Children:
   - {fileID: 4000012967369806}
   m_Father: {fileID: 4000012622194238}
+  m_RootOrder: 1
+--- !u!4 &4000014232884378
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012934511150}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012429063950}
   m_RootOrder: 1
 --- !u!23 &23000010094738284
 MeshRenderer:
@@ -2611,6 +2727,7 @@ MonoBehaviour:
   trembling: {fileID: 114000013443144596}
   signTransform: {fileID: 4000013837974056}
   signCollider: {fileID: 64000013972673268}
+  tutorialPoint: {fileID: 4000014232884378}
   active: 0
   disappearHeight: 7.5
   easeCurve:
@@ -2950,6 +3067,7 @@ MonoBehaviour:
   trembling: {fileID: 114000013582891254}
   signTransform: {fileID: 4000010568978068}
   signCollider: {fileID: 64000010408049172}
+  tutorialPoint: {fileID: 4000011123814228}
   active: 0
   disappearHeight: 7.5
   easeCurve:
@@ -3120,6 +3238,7 @@ MonoBehaviour:
   trembling: {fileID: 114000010126261494}
   signTransform: {fileID: 4000012634072114}
   signCollider: {fileID: 64000011764297878}
+  tutorialPoint: {fileID: 4000011098580556}
   active: 0
   disappearHeight: 7.5
   easeCurve:
@@ -3346,6 +3465,7 @@ MonoBehaviour:
   trembling: {fileID: 114000011513052510}
   signTransform: {fileID: 4000012346902294}
   signCollider: {fileID: 64000010240575728}
+  tutorialPoint: {fileID: 4000012202849074}
   active: 0
   disappearHeight: 7.5
   easeCurve:

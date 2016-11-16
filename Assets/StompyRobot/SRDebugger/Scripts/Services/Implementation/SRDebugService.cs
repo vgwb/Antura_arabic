@@ -12,6 +12,10 @@
     {
         private readonly IDebugPanelService _debugPanelService;
         private readonly IDebugTriggerService _debugTrigger;
+        private readonly ISystemInformationService _informationService;
+        private readonly IOptionsService _optionsService;
+        private readonly IPinnedUIService _pinnedUiService;
+
         private bool _entryCodeEnabled;
         private bool _hasAuthorised;
         private DefaultTabs? _queuedTab;
@@ -25,6 +29,10 @@
 
             // Setup trigger service
             _debugTrigger = SRServiceManager.GetService<IDebugTriggerService>();
+
+            _informationService = SRServiceManager.GetService<ISystemInformationService>();
+            _pinnedUiService = SRServiceManager.GetService<IPinnedUIService>();
+            _optionsService = SRServiceManager.GetService<IOptionsService>();
 
             // Create debug panel service (this does not actually load any UI resources until opened)
             _debugPanelService = SRServiceManager.GetService<IDebugPanelService>();
@@ -77,6 +85,11 @@
             set { Service.PinnedUI.IsProfilerPinned = value; }
         }
 
+        public void AddSystemInfo(InfoEntry entry, string category = "Default")
+        {
+            _informationService.Add(entry, category);
+        }
+
         public void ShowDebugPanel(bool requireEntryCode = true)
         {
             if (requireEntryCode && _entryCodeEnabled && !_hasAuthorised)
@@ -112,6 +125,70 @@
             _debugPanelService.Unload();
         }
 
+        #region Options
+
+        public void AddOptionContainer(object container)
+        {
+            _optionsService.AddContainer(container);
+        }
+
+        public void RemoveOptionContainer(object container)
+        {
+            _optionsService.RemoveContainer(container);
+        }
+
+        public void PinAllOptions(string category)
+        {
+            foreach (var op in _optionsService.Options)
+            {
+                if (op.Category == category)
+                {
+                    _pinnedUiService.Pin(op);
+                }
+            }
+        }
+
+        public void UnpinAllOptions(string category)
+        {
+            foreach (var op in _optionsService.Options)
+            {
+                if (op.Category == category)
+                {
+                    _pinnedUiService.Unpin(op);
+                }
+            }
+        }
+
+        public void PinOption(string name)
+        {
+            foreach (var op in _optionsService.Options)
+            {
+                if (op.Name == name)
+                {
+                    _pinnedUiService.Pin(op);
+                }
+            }
+        }
+
+        public void UnpinOption(string name)
+        {
+            foreach (var op in _optionsService.Options)
+            {
+                if (op.Name == name)
+                {
+                    _pinnedUiService.Unpin(op);
+                }
+            }
+        }
+
+        public void ClearPinnedOptions()
+        {
+            _pinnedUiService.UnpinAll();
+        }
+
+        #endregion
+
+        #region Bug Reporter
         public void ShowBugReportSheet(ActionCompleteCallback onComplete = null, bool takeScreenshot = true,
             string descriptionContent = null)
         {
@@ -130,6 +207,8 @@
                 }
             }, takeScreenshot, descriptionContent);
         }
+
+        #endregion
 
         public IDockConsoleService DockConsole
         {
@@ -159,31 +238,31 @@
         private void PromptEntryCode()
         {
             SRServiceManager.GetService<IPinEntryService>()
-                            .ShowPinEntry(Settings.Instance.EntryCode, SRDebugStrings.Current.PinEntryPrompt,
-                                entered =>
-                                {
-                                    if (entered)
-                                    {
-                                        if (!Settings.Instance.RequireEntryCodeEveryTime)
-                                        {
-                                            _hasAuthorised = true;
-                                        }
+                .ShowPinEntry(Settings.Instance.EntryCode, SRDebugStrings.Current.PinEntryPrompt,
+                    entered =>
+                    {
+                        if (entered)
+                        {
+                            if (!Settings.Instance.RequireEntryCodeEveryTime)
+                            {
+                                _hasAuthorised = true;
+                            }
 
-                                        if (_queuedTab.HasValue)
-                                        {
-                                            var t = _queuedTab.Value;
+                            if (_queuedTab.HasValue)
+                            {
+                                var t = _queuedTab.Value;
 
-                                            _queuedTab = null;
-                                            ShowDebugPanel(t, false);
-                                        }
-                                        else
-                                        {
-                                            ShowDebugPanel(false);
-                                        }
-                                    }
+                                _queuedTab = null;
+                                ShowDebugPanel(t, false);
+                            }
+                            else
+                            {
+                                ShowDebugPanel(false);
+                            }
+                        }
 
-                                    _queuedTab = null;
-                                });
+                        _queuedTab = null;
+                    });
         }
     }
 }

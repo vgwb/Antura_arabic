@@ -116,6 +116,7 @@ namespace EA4S.SickLetters
             game.LLPrefab.GetComponent<LetterObjectView>().Init(newLetter);
             game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
             game.LLPrefab.correctDot.text = newLetter.TextForLivingLetter;
+
             
             //correctDotPos = LLPrefab.correctDot.transform.TransformPoint(Vector3.Lerp(LLPrefab.correctDot.mesh.vertices[0], game.LLPrefab.correctDot.mesh.vertices[2], 0.5f));
 

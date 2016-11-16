@@ -20,6 +20,8 @@ namespace EA4S.Tobogan
 
         public Collider signCollider;
 
+        public Transform tutorialPoint;
+
         public bool IsCorrectAnswer { get; private set; }
         public ILivingLetterData Data { get; private set; }
 

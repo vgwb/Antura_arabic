@@ -7,19 +7,24 @@ namespace EA4S.ThrowBalls
     public class BallController : MonoBehaviour
     {
         public static Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
+        private readonly Vector3 REBOUND_DESTINATION = new Vector3(0, 18f, -30f);
+        public const float BALL_RESPAWN_TIME = 3f;
+        public const float INTERCEPTION_PAUSE_TIME = 0.33f;
+        public const float INTERCEPTION_RISE_DELTA_Y = 3f;
+        public const float INTERCEPTION_RISE_TIME = 0.2f;
+        public const float REBOUND_TIME = 1f;
         public static BallController instance;
 
         public Rigidbody rigidBody;
-        public bool IsLaunched
+
+        private enum State
         {
-            get
-            {
-                return isLaunched;
-            }
+            Anchored, Dragging, Launched, Intercepted, Rebounding
         }
 
-        private bool isLaunched;
-        private bool isHeld;
+        private State state;
+        private float stateTime;
+
         private float cameraDistance;
 
         private float yzStretchRange = 3f;
@@ -49,9 +54,7 @@ namespace EA4S.ThrowBalls
             rigidBody.angularVelocity = new Vector3(0, 0, 0);
             rigidBody.velocity = new Vector3(0, 0, 0);
             rigidBody.isKinematic = false;
-            isLaunched = false;
-
-            isHeld = false;
+            SetState(State.Anchored);
         }
 
         public void Enable()
@@ -66,14 +69,100 @@ namespace EA4S.ThrowBalls
             BallShadowController.instance.Disable();
         }
 
+        private void SetState(State state)
+        {
+            this.state = state;
+
+            switch (state)
+            {
+                case State.Anchored:
+                    rigidBody.isKinematic = true;
+                    break;
+                case State.Dragging:
+                    rigidBody.isKinematic = true;
+                    break;
+                case State.Launched:
+                    rigidBody.isKinematic = false;
+                    break;
+                case State.Intercepted:
+                    rigidBody.isKinematic = true;
+                    break;
+                case State.Rebounding:
+                    rigidBody.isKinematic = false;
+                    break;
+                default:
+                    break;
+            }
+
+            stateTime = 0;
+        }
+
+        public bool IsLaunched()
+        {
+            return state == State.Launched;
+        }
+
+        public void OnIntercepted()
+        {
+            if (state != State.Intercepted)
+            {
+                StartCoroutine(OnInterceptedCoroutine());
+            }
+        }
+
+        private IEnumerator OnInterceptedCoroutine()
+        {
+            SetState(State.Intercepted);
+
+            //yield return new WaitForSeconds(INTERCEPTION_PAUSE_TIME);
+
+            float destinationY = transform.position.y + INTERCEPTION_RISE_DELTA_Y;
+            float yIncrement = (Time.fixedDeltaTime * INTERCEPTION_RISE_DELTA_Y) / INTERCEPTION_RISE_TIME;
+
+            float riseTime = 0;
+
+            while (riseTime < INTERCEPTION_RISE_TIME)
+            {
+                Vector3 position = transform.position;
+                position.y += yIncrement;
+                transform.position = position;
+                riseTime += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            yield return new WaitForSeconds(INTERCEPTION_PAUSE_TIME);
+
+            SetState(State.Rebounding);
+
+            Vector3 initialVelocity = new Vector3();
+            initialVelocity.x = (REBOUND_DESTINATION.x - transform.position.x) / REBOUND_TIME;
+            initialVelocity.z = (REBOUND_DESTINATION.z - transform.position.z) / REBOUND_TIME;
+
+            initialVelocity.y = (REBOUND_DESTINATION.y - (Constants.GRAVITY.y * Mathf.Pow(REBOUND_TIME, 2f) * 0.5f) - transform.position.y) / REBOUND_TIME;
+
+            rigidBody.AddForce(initialVelocity, ForceMode.VelocityChange);
+        }
+
         void FixedUpdate()
         {
-            if (isLaunched)
+            if (state == State.Launched)
             {
                 rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
 
-                if (transform.position.y < -9)
+                if (transform.position.y < -9 || stateTime > BALL_RESPAWN_TIME)
                 {
+                    ThrowBallsGameManager.Instance.OnBallLost();
+                    Reset();
+                }
+            }
+
+            else if (state == State.Rebounding)
+            {
+                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
+
+                if ((transform.position - REBOUND_DESTINATION).sqrMagnitude <= 1)
+                {
+                    UIController.instance.OnScreenCracked();
                     ThrowBallsGameManager.Instance.OnBallLost();
                     Reset();
                 }
@@ -93,14 +182,15 @@ namespace EA4S.ThrowBalls
 
                         RaycastHit hit;
 
-                        if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider.gameObject.tag == Constants.TAG_POKEBALL && !isLaunched)
+                        if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider.gameObject.tag == Constants.TAG_POKEBALL
+                            && state == State.Anchored)
                         {
-                            isHeld = true;
+                            SetState(State.Dragging);
                         }
 
                         break;
                     case TouchPhase.Moved:
-                        if (isHeld)
+                        if (state == State.Dragging)
                         {
                             float clampedInputY = touch.position.y > Screen.height / 3 ? Screen.height / 3 : touch.position.y;
 
@@ -117,12 +207,12 @@ namespace EA4S.ThrowBalls
                     case TouchPhase.Stationary:
                         break;
                     case TouchPhase.Ended:
-                        if (isHeld)
+                        if (state == State.Dragging)
                         {
                             Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
                             rigidBody.isKinematic = false;
                             rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
-                            isLaunched = true;
+                            SetState(State.Launched);
                         }
 
                         break;
@@ -132,6 +222,8 @@ namespace EA4S.ThrowBalls
                         break;
                 }
             }
+
+            stateTime += Time.deltaTime;
         }
 
         #region Mouse controls
@@ -172,7 +264,7 @@ namespace EA4S.ThrowBalls
             Vector3 forceToApply = SlingshotController.instance.GetLaunchForce();
             rigidBody.isKinematic = false;
             rigidBody.AddForce(forceToApply, ForceMode.VelocityChange);
-            isLaunched = true;
+            SetState(State.Launched);
         }
 
         #endregion

@@ -477,6 +477,12 @@ namespace SRDebugger
             set { _consoleAlignment = value; }
         }
 
+        public int MaximumConsoleEntries
+        {
+            get { return _maximumConsoleEntries; }
+            set { _maximumConsoleEntries = value; }
+        }
+
         #endregion
 
         #region Serialization
@@ -538,6 +544,8 @@ namespace SRDebugger
         [SerializeField] private ConsoleAlignment _consoleAlignment = ConsoleAlignment.Top;
 
         [SerializeField] private PinAlignment _triggerPosition = PinAlignment.TopLeft;
+
+        [SerializeField] private int _maximumConsoleEntries = 1500;
 
         #endregion
 

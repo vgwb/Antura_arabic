@@ -10,22 +10,32 @@ namespace EA4S
         private int nCorrect;
         private int nWrong;
         private bool firstCorrectIsQuestion;
+        private PackListHistory packListHistory;
+        private PackListHistory wrongAnswersPackListHistory;
 
-        public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false)
+        public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false,
+            PackListHistory packListHistory = PackListHistory.NoFilter,
+            PackListHistory wrongAnswersPackListHistory = PackListHistory.NoFilter)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
+            this.packListHistory = packListHistory;
+            this.wrongAnswersPackListHistory = wrongAnswersPackListHistory;
         }
 
+        private List<string> previousPacksIDs = new List<string>();
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
+            previousPacksIDs.Clear();
+
             List<QuestionPackData> packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
-                packs.Add(CreateSingleQuestionPackData());
+                var pack = CreateSingleQuestionPackData();
+                packs.Add(pack);
             }
             return packs;
         }
@@ -34,18 +44,26 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            var correctLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetAllLetters(), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect));
-            correctLetters = correctLetters.RandomSelect(nCorrect);
+            var correctLetters = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetAllLetters(),
+                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect,
+                        packListHistory: this.packListHistory, filteringIds: previousPacksIDs)
+                );
+            previousPacksIDs.AddRange(correctLetters.ConvertAll(x => x.GetId()).ToArray());
 
-            var wrongLetters = teacher.wordAI.SelectLetters(() => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()), new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, true));
-            wrongLetters = wrongLetters.RandomSelect(nWrong);
+            var wrongLetters = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()),
+                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney:true,
+                     packListHistory: this.wrongAnswersPackListHistory, filteringIds: previousPacksIDs)
+                );
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
 
             // Debug
             if (ConfigAI.verboseTeacher)
             {
-                string debugString = "Correct Letters: " + correctLetters.Count;
+                string debugString = "--------- TEACHER: question pack result ---------";
+                debugString += "\nCorrect Letters: " + correctLetters.Count;
                 foreach (var l in correctLetters) debugString += " " + l;
                 debugString += "\nWrong Letters: " + wrongLetters.Count;
                 foreach (var l in wrongLetters) debugString += " " + l;

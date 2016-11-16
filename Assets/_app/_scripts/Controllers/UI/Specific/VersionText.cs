@@ -8,6 +8,6 @@ public class VersionText : MonoBehaviour
 
     void Start()
     {
-        gameObject.GetComponent<TextMeshProUGUI>().text = "v " + Config.AppVersion;
+        gameObject.GetComponent<TextMeshProUGUI>().text = "v " + AppConstants.AppVersion;
     }
 }

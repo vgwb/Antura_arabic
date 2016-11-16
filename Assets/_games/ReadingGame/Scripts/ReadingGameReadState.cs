@@ -24,6 +24,7 @@ namespace EA4S.ReadingGame
 
         public void EnterState()
         {
+            game.antura.AllowSitting = true;
             game.isTimesUp = false;
 
             if (game.CurrentQuestionNumber >= ReadingGameGame.MAX_QUESTIONS)
@@ -121,7 +122,14 @@ namespace EA4S.ReadingGame
                 completedDragging = false;
             }
 
-            game.antura.angry = (gameTime.Time < 0.5f * gameTime.Duration);
+            float perc = gameTime.Time / gameTime.Duration;
+
+            if (perc < 0.05f)
+                game.antura.Mood = ReadingGameAntura.AnturaMood.SAD;
+            else if(perc < 0.5f)
+                game.antura.Mood = ReadingGameAntura.AnturaMood.ANGRY;
+            else
+                game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
         }
 
         public void UpdatePhysics(float delta)
@@ -135,6 +143,9 @@ namespace EA4S.ReadingGame
             game.barSet.active = false;
             game.isTimesUp = true;
             game.Context.GetOverlayWidget().OnClockCompleted();
+
+            if (game.RemoveLife())
+                return;
 
             // show time's up and back
             game.Context.GetPopupWidget().ShowTimeUp(

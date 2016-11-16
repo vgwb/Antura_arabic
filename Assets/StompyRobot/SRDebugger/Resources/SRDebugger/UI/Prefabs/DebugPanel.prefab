@@ -1243,6 +1243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _retinaScale: 2
   _thresholdDpi: 250
+  _disablePixelPerfect: 1
 --- !u!114 &11408716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1459,8 +1460,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 67
-  m_PreferredHeight: 67.4375
+  m_PreferredWidth: 64
+  m_PreferredHeight: 64
   m_FlexibleWidth: 0
   m_FlexibleHeight: 0
 --- !u!114 &11408746
@@ -2726,7 +2727,7 @@ RectTransform:
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40.5, y: 36.75}
+  m_SizeDelta: {x: 51, y: 51}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22408696
 RectTransform:

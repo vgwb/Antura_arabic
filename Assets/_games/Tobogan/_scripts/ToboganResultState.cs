@@ -19,7 +19,7 @@
 
             game.Context.GetAudioManager().PlayMusic(Music.Relax);
 
-            if(game.isTimesUp)
+            if (game.isTimesUp)
             {
                 game.Context.GetPopupWidget().ShowTimeUp(OnPopupTimeUpCloseRequested);
             }
@@ -31,9 +31,7 @@
             }
         }
 
-        public void ExitState()
-        {
-        }
+        public void ExitState() { }
 
         void OnPopupTimeUpCloseRequested()
         {
@@ -44,7 +42,7 @@
 
         public void Update(float delta)
         {
-            if(!game.isTimesUp || goToEndGame)
+            if (!game.isTimesUp || goToEndGame)
                 timer -= delta;
 
             if (timer < 0)
@@ -53,8 +51,6 @@
             }
         }
 
-        public void UpdatePhysics(float delta)
-        {
-        }
+        public void UpdatePhysics(float delta) { }
     }
 }

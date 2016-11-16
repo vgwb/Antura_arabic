@@ -1,7 +1,6 @@
 ﻿namespace SRDebugger.Profiler
 {
     using System.Diagnostics;
-    using CircularBuffer;
     using Services;
     using SRF;
     using SRF.Service;
@@ -62,16 +61,16 @@
             base.Update();
 
             // Set the frame time for the last frame
-            if (FrameBuffer.Size > 0)
+            if (FrameBuffer.Count > 0)
             {
                 var frame = FrameBuffer.Back();
                 frame.FrameTime = Time.deltaTime;
-                FrameBuffer[FrameBuffer.Size - 1] = frame;
+                FrameBuffer[FrameBuffer.Count - 1] = frame;
             }
 
             LastFrameTime = Time.deltaTime;
 
-            var frameCount = Mathf.Min(20, FrameBuffer.Size);
+            var frameCount = Mathf.Min(20, FrameBuffer.Count);
 
             var f = 0d;
             for (var i = 0; i < frameCount; i++)

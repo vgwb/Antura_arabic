@@ -1,5 +1,6 @@
 ﻿namespace SRDebugger.UI.Controls
 {
+    using Internal;
     using SRF;
     using UnityEngine.UI;
 
@@ -8,6 +9,8 @@
         private bool _selectionModeEnabled;
 
         [RequiredField] public Toggle SelectionModeToggle;
+
+        public OptionDefinition Option;
 
         public bool SelectionModeEnabled
         {
