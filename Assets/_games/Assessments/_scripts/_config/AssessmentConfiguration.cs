@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -6,7 +7,40 @@ namespace EA4S.Assessment
     {
         // Game configuration
         public IGameContext Context { get; set; }
-        public IQuestionProvider RandomQuestions { get; set; }
+
+        private IQuestionProvider questionProvider;
+        public IQuestionProvider Questions
+        {
+            get
+            {
+                return GetQuestionProvider();
+            }
+            set
+            {
+                Debug.Log("AssessmentConfiguration: Injected Provider");
+                questionProvider = value;
+            }
+        }
+
+        private IQuestionProvider GetQuestionProvider()
+        {
+            
+            if(questionProvider == null)
+            {
+                switch (assessmentType)
+                {
+                    case AssessmentCode.LetterShape:
+                        Debug.Log( "Created LetterShape_TestProvider");
+                        return questionProvider = new LetterShape_TestProvider( 2, 2, 3);
+
+                    default:
+                        Debug.LogWarning( "Created SampleQuestionProvider");
+                        return questionProvider = new SampleQuestionProvider();
+                }
+            }
+            return questionProvider;
+        }
+
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
         public int Rounds { get; set; }
@@ -24,25 +58,28 @@ namespace EA4S.Assessment
                 return instance;
             }
         }
+        /////////////////
 
         public string Description { get { return "Missing description"; } private set { } }
-
-        public IQuestionProvider Questions { get; set; }
-
-        /////////////////
 
         private AssessmentConfiguration()
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Questions = new SampleQuestionProvider();
+            questionProvider = null;
             Context = new SampleGameContext();
             SimultaneosQuestions = 2;
             Rounds = 2;
         }
 
+        /// <summary>
+        /// This is called by MiniGameAPI to create QuestionProvider, that means that if I start game
+        /// from debug scene, I need a custom test Provider.
+        /// </summary>
+        /// <returns></returns>
         public IQuestionBuilder SetupBuilder()
         {
+            Debug.Log( "2) SetupQuestionBuilder");
             switch (assessmentType)
             {
                 case AssessmentCode.LetterShape:

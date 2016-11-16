@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -31,7 +32,7 @@ namespace EA4S.Assessment
 
         public void InitRound()
         {
-            if (state != QuestionGeneratorState.Uninitialized || state != QuestionGeneratorState.Completed)
+            if (state != QuestionGeneratorState.Uninitialized && state != QuestionGeneratorState.Completed)
                 throw new InvalidOperationException("Cannot initialized");
 
             state = QuestionGeneratorState.Initialized;
@@ -92,7 +93,7 @@ namespace EA4S.Assessment
             currentPack = provider.GetNextQuestion();
 
             List< IAnswer> answers = new List< IAnswer>();
-            ILivingLetterData question = currentPack.GetQuestion();
+            ILivingLetterData questionData = currentPack.GetQuestion();
 
             //____________________________________
             //Prepare answers for next method call
@@ -118,11 +119,14 @@ namespace EA4S.Assessment
 
             partialAnswers = answers.ToArray();
 
-            return GenerateQuestion( question, correctCount);
+            var question = GenerateQuestion( questionData, correctCount);
+            totalQuestions.Add( question);
+            return question;
         }
 
         private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
         {
+            Debug.Log(" GenerateQuestion( data, "+correctCount+")");
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
             return new DefaultQuestion( q, correctCount, questionType);
         }

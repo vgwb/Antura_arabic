@@ -5,12 +5,12 @@ namespace EA4S.Assessment
 {
     public class DefaultAssessment : IAssessment
     {
-        DefaultAssessment(  IAnswerPlacer answ_placer,
-                            IQuestionPlacer question_placer,
-                            IQuestionGenerator question_generator,
-                            ILogicInjector logic_injector,
-                            IAssessmentConfiguration game_conf,
-                            IGameContext game_context)
+        public DefaultAssessment(   IAnswerPlacer answ_placer,
+                                    IQuestionPlacer question_placer,
+                                    IQuestionGenerator question_generator,
+                                    ILogicInjector logic_injector,
+                                    IAssessmentConfiguration game_conf,
+                                    IGameContext game_context)
         {
             AnswerPlacer = answ_placer;
             QuestionGenerator = question_generator;

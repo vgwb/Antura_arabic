@@ -1,4 +1,4 @@
-﻿using EA4S;
+using EA4S;
 
 namespace EA4S.Assessment
 {
@@ -14,8 +14,10 @@ namespace EA4S.Assessment
         /////////////////
         // Singleton Pattern
         static MatchLettersToWordConfiguration instance;
-        public static MatchLettersToWordConfiguration Instance {
-            get {
+        public static MatchLettersToWordConfiguration Instance
+        {
+            get
+            {
                 if (instance == null)
                     instance = new MatchLettersToWordConfiguration();
                 return instance;
@@ -45,7 +47,7 @@ namespace EA4S.Assessment
             int nCorrect = Difficulty > 0.6f ? 2 : 1;
             int nWrong = Difficulty > 0.3f ? 1 : 0;
 
-            builder = new LettersInWordQuestionBuilder(Rounds, nCorrect, nWrong);
+            builder = new LettersInWordQuestionBuilder( Rounds, nCorrect, nWrong);
             return builder;
         }
 

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace EA4S.Assessment
 {
     public class AssessmentGameState : IGameState
@@ -16,20 +18,23 @@ namespace EA4S.Assessment
             switch (AssessmentConfiguration.Instance.assessmentType)
             {
                 case AssessmentCode.MatchLettersToWord:
-                    return AssessmentFactory.CreateLetterInWordAssessment(
-                        MatchLettersToWordConfiguration.Instance);
+                    return AssessmentFactory.CreateLetterInWordAssessment();
 
                 case AssessmentCode.LetterShape:
-                    return null;
+                    return AssessmentFactory.CreateLetterShapeAssessment();
 
                 case AssessmentCode.WordsWithLetter:
-                    return null;
+                    return AssessmentFactory.CreateWordsWithLetterAssessment();
             }
             return null;
         }
 
         public void EnterState()
         {
+            if (assessment == null)
+                Debug.Log("AssessmentNull");
+
+            assessmentGame.Context.GetAudioManager().PlayMusic( Music.Theme7);
             Coroutine.Start( assessment.PlayCoroutine( SetNextState));
         }
 

@@ -49,7 +49,7 @@ namespace EA4S.Assessment
             var pos = Vector3.zero;
             List< Vector3> positions = new List< Vector3>();
             bool overlapping = false;
-            int attemps = 20;
+            int attemps = 80;
             for (int i = 0; i < attemps; i++)
             {
                 pos = WorldBounds.Instance.RandomAnswerPosition();
@@ -58,7 +58,7 @@ namespace EA4S.Assessment
                 {
                     // If overlapping, which is the nearest tile?
                     float localDistance = pos.SquaredDistance( p);
-                    if (pos.DistanceIsLessThan( p, 1.3f * WorldBounds.Instance.LetterSize()))
+                    if (pos.DistanceIsLessThan( p, 2.1f * WorldBounds.Instance.LetterSize()))
                         overlapping = true;
                 }
 
@@ -69,7 +69,7 @@ namespace EA4S.Assessment
             positions.Add( pos);
             go.transform.localPosition = pos;
             go.transform.DOScale( 1, 0.4f);
-            go.GetComponent< LetterObjectView>().Poof();
+            go.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
             audioManager.PlaySound( Sfx.Poof);
 
             yield return TimeEngine.Wait( Random.Range( 0.07f, 0.13f));
@@ -88,7 +88,7 @@ namespace EA4S.Assessment
         {  
             audioManager.PlaySound( Sfx.Poof);
 
-            answ.GetComponent< LetterObjectView>().Poof();
+            answ.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
             answ.transform.DOScale( 0, 0.3f).OnComplete(() => GameObject.Destroy( answ));
 
             yield return TimeEngine.Wait( 0.1f);
