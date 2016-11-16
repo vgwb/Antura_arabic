@@ -35,10 +35,9 @@ namespace EA4S
         private QuestionPackData CreateSingleQuestionPackData()
         {
             var teacher = AppManager.Instance.Teacher;
-            //var db = AppManager.Instance.DB;
 
             // Get the word
-            Db.WordData question = teacher.wordHelper.GetWordsByCategory(category, drawingNeeded).RandomSelectOne();
+            var question = teacher.wordHelper.GetWordsByCategory(category, drawingNeeded).RandomSelectOne();
 
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);

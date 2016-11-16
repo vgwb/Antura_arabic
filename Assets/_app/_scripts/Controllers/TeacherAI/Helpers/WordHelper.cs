@@ -57,6 +57,16 @@ namespace EA4S.Db
             return dbManager.FindLetterData(x => x.SunMoon == choice && x.IsOfKindCategory(category));
         }
 
+        public List<LetterData> GetConsonantLetter(LetterKindCategory category = LetterKindCategory.Real)
+        {
+            return dbManager.FindLetterData(x => x.Type == LetterDataType.Consonant || x.Type == LetterDataType.Powerful && x.IsOfKindCategory(category));
+        }
+
+        public List<LetterData> GetVowelLetter(LetterKindCategory category = LetterKindCategory.Real)
+        {
+            return dbManager.FindLetterData(x => x.Type == LetterDataType.LongVowel && x.IsOfKindCategory(category));
+        }
+
         public List<LetterData> GetLettersByType(LetterDataType choice, LetterKindCategory category = LetterKindCategory.Real)
         {
             return dbManager.FindLetterData(x => x.Type == choice && x.IsOfKindCategory(category));
