@@ -11,28 +11,53 @@
         private Stopwatch _stopwatch;
         public Action<ProfilerCameraListener, double> RenderDurationCallback;
 
+        protected Stopwatch Stopwatch
+        {
+            get
+            {
+                if (_stopwatch == null)
+                {
+                    _stopwatch = new Stopwatch();
+                }
+
+                return _stopwatch;
+            }
+        }
+
         public Camera Camera
         {
-            get { return _camera; }
-        }
+            get
+            {
+                if (_camera == null)
+                {
+                    _camera = GetComponent<Camera>();
+                }
 
-        private void OnEnable()
-        {
-            _camera = GetComponent<Camera>();
-            _stopwatch = new Stopwatch();
+                return _camera;
+            }
         }
-
+        
         private void OnPreCull()
         {
-            _stopwatch.Start();
+            if (!isActiveAndEnabled)
+            {
+                return;
+            }
+
+            Stopwatch.Start();
         }
 
         private void OnPostRender()
         {
+            if (!isActiveAndEnabled)
+            {
+                return;
+            }
+
             var renderTime = _stopwatch.Elapsed.TotalSeconds;
 
-            _stopwatch.Stop();
-            _stopwatch.Reset();
+            Stopwatch.Stop();
+            Stopwatch.Reset();
 
             if (RenderDurationCallback == null)
             {

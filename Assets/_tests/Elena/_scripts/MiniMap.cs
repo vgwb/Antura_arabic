@@ -12,12 +12,12 @@ namespace EA4S
         [Header("Letter")]
         public GameObject letter;
 
-        [Header("Cameras")]
-        public GameObject[] cameraM;
-
         [Header("Pines")]
         public Transform[] posPines;
         public int numStepsBetweenPines;
+
+        [Header("Ropes")]
+        public GameObject[] ropes;
 
         [Header("Steps")]
         public GameObject dot;
@@ -26,24 +26,24 @@ namespace EA4S
         public Vector3 pinLeft, pinRight;
         Quaternion rot;
         int numDot=0;
-        int p;
+        int numLearningBlock;
         void Awake()
         {
             posDots = new GameObject[22];
-            for(p=0; p<(posPines.Length-1);p++)
+            for(numLearningBlock = 0; numLearningBlock < (posPines.Length-1); numLearningBlock++)
             {
-                pinLeft = posPines[p].position;
-                pinRight = posPines[p+1].position;
+                pinLeft = posPines[numLearningBlock].position;
+                pinRight = posPines[numLearningBlock + 1].position;
 
                 CalculateStepsBetweenPines(pinLeft, pinRight);        
             }
             pinLeft = posPines[0].position;
             pinRight = posPines[1].position;
-            // CameraGameplayController.I.MoveToPosition(cameraM[0].transform.position, cameraM[0].transform.rotation);
         }
 
         List<Db.PlaySessionData> myList = new List<Db.PlaySessionData>();
         List<PlaySessionState> myListPlaySessionState = new List<PlaySessionState>();
+
         void Start()
         {
             Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
@@ -60,53 +60,34 @@ namespace EA4S
         {
             Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
             Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if(hit.collider.name == "pin-11")
-                    {
-                        pinRight = posPines[1].position;
-                        pinLeft = posPines[2].position;
-
-                        CalculateStepsBetweenPines(pinLeft, pinRight);
-
-                        CameraGameplayController.I.MoveToPosition(cameraM[1].transform.position, cameraM[1].transform.rotation);
-
-                        letter.GetComponent<LetterMovement>().ResetPosLetter(2, pinRight);
-                    }
-
-                }
-            }
         }
+
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
         {
-           // int i = 0;
-           // posDots = new Vector3[numStepsBetweenPines];
             float step = 1f / (numStepsBetweenPines + 1);
             for (float perc = step; perc < 1f; perc += step)
             {
                 Vector3 v = Vector3.Lerp(p1, p2, perc);
-                //posDots[numDot].transform.position = new Vector3(v.x, v.y, v.z);
                 
                 rot.eulerAngles = new Vector3(90, 0, 0);
                 GameObject dotGo;
                 dotGo = Instantiate(dot, v, rot) as GameObject;
-                dotGo.GetComponent<Dot>().learningBlockActual = p+1;
+                dotGo.GetComponent<Dot>().learningBlockActual = numLearningBlock + 1;
+                dotGo.GetComponent<Dot>().pos = numDot;
+                if (numLearningBlock < posPines.Length - 1)
+                {
+                    ropes[numLearningBlock].GetComponent<Rope>().dots.Add(dotGo);
+                    ropes[numLearningBlock].GetComponent<Rope>().learningBlockRope = numLearningBlock + 1;
+                }                              
                 if(numDot%2==0)
-                    dotGo.GetComponent<Dot>().playSessionActual = 2;
+                    dotGo.GetComponent<Dot>().playSessionActual = 1;
                 else
-                    dotGo.GetComponent<Dot>().playSessionActual = 3;
+                    dotGo.GetComponent<Dot>().playSessionActual = 2;
                 dotGo.transform.parent = stepsParent.transform;
                 posDots[numDot] = dotGo;
                 numDot++;
             }
         }
-
-
 
         private class PlaySessionState
         {
@@ -159,12 +140,5 @@ namespace EA4S
             else
                 GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GamesSelector");
         }
-       /* public void Play()
-        {
-            if (AppManager.Instance.IsAssessmentTime)
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Assessment");
-            else
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Wheel");
-        }*/
     }
 }

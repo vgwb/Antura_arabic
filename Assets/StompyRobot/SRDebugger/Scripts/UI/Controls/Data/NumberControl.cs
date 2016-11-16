@@ -121,7 +121,11 @@
         protected override void OnValueUpdated(object newValue)
         {
             var value = Convert.ToString(newValue);
-            NumberSpinner.text = value;
+
+            if (value != _lastValue)
+            {
+                NumberSpinner.text = value;
+            }
 
             _lastValue = value;
         }

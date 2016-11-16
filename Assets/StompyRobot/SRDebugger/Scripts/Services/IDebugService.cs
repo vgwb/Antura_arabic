@@ -25,7 +25,16 @@ namespace SRDebugger.Services
         bool IsTriggerEnabled { get; set; }
 
         IDockConsoleService DockConsole { get; }
+
         bool IsProfilerDocked { get; set; }
+
+        /// <summary>
+        /// Add <paramref name="entry"/> to the system information tab. See <seealso cref="InfoEntry"/> for how to create
+        /// an info instance.
+        /// </summary>
+        /// <param name="entry">The entry to be added.</param>
+        /// <param name="category">The category the entry should be added to.</param>
+        void AddSystemInfo(InfoEntry entry, string category = "Default");
 
         /// <summary>
         /// Show the debug panel
@@ -55,6 +64,41 @@ namespace SRDebugger.Services
         /// Hide the debug panel, then remove it from the scene to save memory.
         /// </summary>
         void DestroyDebugPanel();
+
+        /// <summary>
+        /// Add all an objects compatible properties and methods to the options panel.
+        /// <remarks>NOTE: It is not recommended to use this on a MonoBehaviour, it should be used on a standard
+        /// class made specifically for use as a settings object.</remarks>
+        /// </summary>
+        /// <param name="container">The object to add.</param>
+        void AddOptionContainer(object container);
+        
+        /// <summary>
+        /// Remove all properties and methods that the <paramref name="container"/> added to the options panel.
+        /// </summary>
+        /// <param name="container">The container to remove.</param>
+        void RemoveOptionContainer(object container);
+
+        /// <summary>
+        /// Pin all options in a category.
+        /// </summary>
+        /// <param name="category"></param>
+        void PinAllOptions(string category);
+
+        /// <summary>
+        /// Unpin all options in a category.
+        /// </summary>
+        /// <param name="category"></param>
+        void UnpinAllOptions(string category);
+
+        void PinOption(string name);
+
+        void UnpinOption(string name);
+
+        /// <summary>
+        /// Clear all pinned options.
+        /// </summary>
+        void ClearPinnedOptions();
 
         /// <summary>
         /// Open a bug report sheet.

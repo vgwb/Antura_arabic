@@ -9,11 +9,18 @@
  * https://github.com/joaoportela/CircullarBuffer-CSharp
 */
 
-namespace CircularBuffer
+namespace SRDebugger
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
+
+    public interface IReadOnlyList<T> : IEnumerable<T>
+    {
+        int Count { get; }
+
+        T this[int index] { get; }
+    }
 
     /// <summary>
     /// Circular buffer.
@@ -24,9 +31,9 @@ namespace CircularBuffer
     /// http://www.boost.org/doc/libs/1_53_0/libs/circular_buffer/doc/circular_buffer.html
     /// because I liked their interface.
     /// </summary>
-    public class CircularBuffer<T> : IEnumerable<T>
+    public class CircularBuffer<T> : IEnumerable<T>, IReadOnlyList<T>
     {
-        private T[] _buffer;
+        private readonly T[] _buffer;
 
         /// <summary>
         /// The _end. Index after the last element in the buffer.
@@ -36,7 +43,7 @@ namespace CircularBuffer
         /// <summary>
         /// The _size. Buffer size.
         /// </summary>
-        private int _size;
+        private int _count;
 
         /// <summary>
         /// The _start. Index of the first element in buffer.
@@ -47,7 +54,7 @@ namespace CircularBuffer
             : this(capacity, new T[] {}) {}
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CircularBuffer.CircularBuffer`1" /> class.
+        /// Initializes a new instance of the <see cref="CircularBuffer{T}" /> class.
         /// </summary>
         /// <param name='capacity'>
         /// Buffer capacity. Must be positive.
@@ -77,10 +84,10 @@ namespace CircularBuffer
             _buffer = new T[capacity];
 
             Array.Copy(items, _buffer, items.Length);
-            _size = items.Length;
+            _count = items.Length;
 
             _start = 0;
-            _end = _size == capacity ? 0 : _size;
+            _end = _count == capacity ? 0 : _count;
         }
 
         /// <summary>
@@ -94,20 +101,20 @@ namespace CircularBuffer
 
         public bool IsFull
         {
-            get { return Size == Capacity; }
+            get { return Count == Capacity; }
         }
 
         public bool IsEmpty
         {
-            get { return Size == 0; }
+            get { return Count == 0; }
         }
 
         /// <summary>
         /// Current buffer size (the number of elements that the buffer has).
         /// </summary>
-        public int Size
+        public int Count
         {
-            get { return _size; }
+            get { return _count; }
         }
 
         public T this[int index]
@@ -118,10 +125,10 @@ namespace CircularBuffer
                 {
                     throw new IndexOutOfRangeException(string.Format("Cannot access index {0}. Buffer is empty", index));
                 }
-                if (index >= _size)
+                if (index >= _count)
                 {
                     throw new IndexOutOfRangeException(string.Format("Cannot access index {0}. Buffer size is {1}",
-                        index, _size));
+                        index, _count));
                 }
                 var actualIndex = InternalIndex(index);
                 return _buffer[actualIndex];
@@ -132,10 +139,10 @@ namespace CircularBuffer
                 {
                     throw new IndexOutOfRangeException(string.Format("Cannot access index {0}. Buffer is empty", index));
                 }
-                if (index >= _size)
+                if (index >= _count)
                 {
                     throw new IndexOutOfRangeException(string.Format("Cannot access index {0}. Buffer size is {1}",
-                        index, _size));
+                        index, _count));
                 }
                 var actualIndex = InternalIndex(index);
                 _buffer[actualIndex] = value;
@@ -167,6 +174,12 @@ namespace CircularBuffer
 
         #endregion
 
+        #region IList<T> implementation
+
+        
+
+        #endregion
+
         /// <summary>
         /// Element at the front of the buffer - this[0].
         /// </summary>
@@ -184,7 +197,7 @@ namespace CircularBuffer
         public T Back()
         {
             ThrowIfEmpty();
-            return _buffer[(_end != 0 ? _end : _size) - 1];
+            return _buffer[(_end != 0 ? _end : _count) - 1];
         }
 
         /// <summary>
@@ -206,7 +219,7 @@ namespace CircularBuffer
             {
                 _buffer[_end] = item;
                 Increment(ref _end);
-                ++_size;
+                ++_count;
             }
         }
 
@@ -229,7 +242,7 @@ namespace CircularBuffer
             {
                 Decrement(ref _start);
                 _buffer[_start] = item;
-                ++_size;
+                ++_count;
             }
         }
 
@@ -242,7 +255,7 @@ namespace CircularBuffer
             ThrowIfEmpty("Cannot take elements from an empty buffer.");
             Decrement(ref _end);
             _buffer[_end] = default(T);
-            --_size;
+            --_count;
         }
 
         /// <summary>
@@ -254,7 +267,7 @@ namespace CircularBuffer
             ThrowIfEmpty("Cannot take elements from an empty buffer.");
             _buffer[_start] = default(T);
             Increment(ref _start);
-            --_size;
+            --_count;
         }
 
         /// <summary>
@@ -265,7 +278,7 @@ namespace CircularBuffer
         /// <returns>A new array with a copy of the buffer contents.</returns>
         public T[] ToArray()
         {
-            var newArray = new T[Size];
+            var newArray = new T[Count];
             var newArrayOffset = 0;
             var segments = new ArraySegment<T>[2] {ArrayOne(), ArrayTwo()};
             foreach (var segment in segments)

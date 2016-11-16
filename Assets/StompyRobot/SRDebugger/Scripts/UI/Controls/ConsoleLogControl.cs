@@ -25,6 +25,7 @@ namespace SRDebugger.UI.Controls
         private bool _showInfo = true;
         private bool _showWarnings = true;
         public Action<ConsoleEntry> SelectedItemChanged;
+        private string _filter;
 
         public bool ShowErrors
         {
@@ -60,6 +61,18 @@ namespace SRDebugger.UI.Controls
         {
             get { return _consoleScrollLayoutGroup.EnableSelection; }
             set { _consoleScrollLayoutGroup.EnableSelection = value; }
+        }
+
+        public string Filter
+        {
+            get { return _filter; }
+            set {
+                if (_filter != value)
+                {
+                    _filter = value;
+                    _isDirty = true;
+                }
+            }
         }
 
         protected override void Awake()
@@ -139,17 +152,29 @@ namespace SRDebugger.UI.Controls
                 if ((e.LogType == LogType.Error || e.LogType == LogType.Exception || e.LogType == LogType.Assert) &&
                     !ShowErrors)
                 {
+                    if (e == _consoleScrollLayoutGroup.SelectedItem) _consoleScrollLayoutGroup.SelectedItem = null;
                     continue;
                 }
 
                 if (e.LogType == LogType.Warning && !ShowWarnings)
                 {
+                    if (e == _consoleScrollLayoutGroup.SelectedItem) _consoleScrollLayoutGroup.SelectedItem = null;
                     continue;
                 }
 
                 if (e.LogType == LogType.Log && !ShowInfo)
                 {
+                    if (e == _consoleScrollLayoutGroup.SelectedItem) _consoleScrollLayoutGroup.SelectedItem = null;
                     continue;
+                }
+
+                if (!string.IsNullOrEmpty(Filter))
+                {
+                    if (e.Message.IndexOf(Filter, StringComparison.InvariantCultureIgnoreCase) < 0)
+                    {
+                        if (e == _consoleScrollLayoutGroup.SelectedItem) _consoleScrollLayoutGroup.SelectedItem = null;
+                        continue;
+                    }
                 }
 
                 _consoleScrollLayoutGroup.AddItem(e);

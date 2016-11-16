@@ -1,30 +1,36 @@
-﻿using UnityEngine;
+﻿// Modified by: Daniele Giardini - 2016/11/15
+
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using DG.Tweening;
-using UniRx;
 
 namespace EA4S
 {
     [RequireComponent(typeof(RectTransform))]
     public class ActionFeedbackComponent : MonoBehaviour
     {
+        public Sprite YesSprite, NoSprite;
 
-        public Image OkImage;
-        public Image KoImage;
+        Image img;
+        Tween showTween;
 
-        public Vector2 ShowPos = new Vector2(0, 150);
-        public Vector2 HidePos = new Vector2(0, -150);
-
-        bool show = false;
-        bool feedback = false;
-        RectTransform rt;
-
-        // Use this for initialization
-        void Start()
+        void Awake()
         {
-            rt = GetComponent<RectTransform>();
-            rt.anchoredPosition = HidePos;
+            img = this.GetComponent<Image>();
+
+            showTween = DOTween.Sequence().SetAutoKill(false).Pause()
+                .Append(this.transform.DOPunchScale(Vector3.one * 0.4f, 0.5f, 12))
+                .AppendInterval(0.45f)
+                .Append(this.transform.DOScale(0.001f, 0.3f).SetEase(Ease.InQuart))
+                .OnComplete(() => this.gameObject.SetActive(false))
+                .OnPlay(() => this.gameObject.SetActive(true));
+
+            showTween.Complete();
+        }
+
+        void OnDestroy()
+        {
+            showTween.Kill();
         }
 
         /// <summary>
@@ -33,16 +39,8 @@ namespace EA4S
         /// <param name="_feedback"></param>
         public void Show(bool _feedback)
         {
-            OkImage.enabled = _feedback;
-            KoImage.enabled = !_feedback;
-
-            Sequence sequence = DOTween.Sequence();
-            TweenParams tParms = new TweenParams()
-                .SetEase(Ease.OutElastic);
-            sequence.Play();
-            sequence.Append(rt.DOAnchorPos(ShowPos, 0.3f).SetAs(tParms));
-            sequence.AppendInterval(_feedback ? 0.5f : 0.2f);
-            sequence.Append(rt.DOAnchorPos(HidePos, 0.3f).SetAs(tParms));
+            img.sprite = _feedback ? YesSprite : NoSprite;
+            showTween.Restart();
         }
     }
 }

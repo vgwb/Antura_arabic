@@ -42,7 +42,7 @@ namespace EA4S
         Vector3 startScale;
         Vector2 startTextScale;
         float lastScale = 1.0f;
-        [Range(1,2)]
+        [Range(1, 2)]
         public float Scale = 1.0f;
 
         public GameObject[] normalGraphics;
@@ -361,6 +361,22 @@ namespace EA4S
             }
         }
 
+        public void DoChestStop()
+        {
+            if ((State != LLAnimationStates.LL_still) &&
+                (State != LLAnimationStates.LL_idle))
+            {
+                if (!hasToGoBackState)
+                    backState = State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
+            animator.SetTrigger("doChestStop");
+        }
+
         public void DoAngry()
         {
             if ((State != LLAnimationStates.LL_still) &&
@@ -481,12 +497,14 @@ namespace EA4S
         /// <summary>
         /// Produces a poof nearby the LL
         /// </summary>
-        public void Poof()
+        public void Poof( float verticalOffset = 0)
         {
             var puffGo = GameObject.Instantiate(poofPrefab);
             puffGo.AddComponent<AutoDestroy>().duration = 2;
             puffGo.SetActive(true);
-            puffGo.transform.position = transform.position + transform.up * 3 + transform.forward * 2;
+            var position = transform.position + transform.up * 3 + transform.forward * 2;
+            position.y += verticalOffset;
+            puffGo.transform.position = position;
             puffGo.transform.localScale *= 0.75f;
         }
 

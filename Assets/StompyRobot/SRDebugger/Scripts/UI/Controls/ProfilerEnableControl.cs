@@ -4,6 +4,9 @@
     using SRF;
     using UnityEngine;
     using UnityEngine.UI;
+#if UNITY_5_5_OR_NEWER
+    using UnityEngine.Profiling;
+#endif
 
     public class ProfilerEnableControl : SRMonoBehaviourEx
     {
@@ -16,7 +19,7 @@
         {
             base.Start();
 
-            if (!UnityEngine.Profiler.supported)
+            if (!Profiler.supported)
             {
                 Text.text = SRDebugStrings.Current.Profiler_NotSupported;
                 EnableButton.gameObject.SetActive(false);
@@ -37,7 +40,7 @@
 
         protected void UpdateLabels()
         {
-            if (!UnityEngine.Profiler.enabled)
+            if (!Profiler.enabled)
             {
                 Text.text = SRDebugStrings.Current.Profiler_EnableProfilerInfo;
                 ButtonText.text = "Enable";
@@ -48,14 +51,14 @@
                 ButtonText.text = "Disable";
             }
 
-            _previousState = UnityEngine.Profiler.enabled;
+            _previousState = Profiler.enabled;
         }
 
         protected override void Update()
         {
             base.Update();
 
-            if (UnityEngine.Profiler.enabled != _previousState)
+            if (Profiler.enabled != _previousState)
             {
                 UpdateLabels();
             }
@@ -64,7 +67,7 @@
         public void ToggleProfiler()
         {
             Debug.Log("Toggle Profiler");
-            UnityEngine.Profiler.enabled = !UnityEngine.Profiler.enabled;
+            Profiler.enabled = !Profiler.enabled;
         }
     }
 }

@@ -24,23 +24,27 @@ namespace EA4S
         public ActionFeedbackComponent ActionFeedback { get; private set; }
 
         const string ResourceId = "Prefabs/UI/GlobalUI";
+        const string SceneTransitionerResourceId = "Prefabs/UI/SceneTransitionerUI";
 
         public static void Init()
         {
-            if (I != null)
-                return;
+            if (I != null) return;
 
             GameObject go = Instantiate(Resources.Load<GameObject>(ResourceId));
             go.name = "[GlobalUI]";
-            //DontDestroyOnLoad(go);
+//            DontDestroyOnLoad(go);
         }
 
         void Awake()
         {
             I = this;
 
-            // Awake all global UI elements
-            SceneTransitioner = StoreAndAwake<SceneTransitioner>();
+            // Awake or instantiate all global UI elements
+            if (SceneTransitioner == null) {
+                SceneTransitioner = Instantiate(Resources.Load<SceneTransitioner>(SceneTransitionerResourceId));
+                SceneTransitioner.name = "[SceneTransitionerUI]";
+                DontDestroyOnLoad(SceneTransitioner.gameObject);
+            }
             ContinueScreen = StoreAndAwake<ContinueScreen>();
             WidgetPopupWindow = StoreAndAwake<WidgetPopupWindow>();
             WidgetSubtitles = StoreAndAwake<WidgetSubtitles>();
@@ -50,7 +54,7 @@ namespace EA4S
 
         void OnDestroy()
         {
-            I = null;
+            if (I == this) I = null;
         }
 
         /// <summary>
@@ -73,7 +77,6 @@ namespace EA4S
         {
             PauseMenu.gameObject.SetActive(visible);
         }
-
 
         T StoreAndAwake<T>() where T : Component
         {

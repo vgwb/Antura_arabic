@@ -47,10 +47,12 @@ namespace EA4S.TakeMeHome
 				//if (IsAnturaTime)
 				//	SetRandomTarget();
 				if (IsAnturaTime) {
-					
-					//SetAnturaTime (false, initialPosition);
-					GetComponent<Antura> ().SetAnimation (AnturaAnim.SitBreath);
-					StartCoroutine (waitAndReturn (1));
+
+                    //SetAnturaTime (false, initialPosition);
+                    GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.sitting;
+
+                    //GetComponent<Antura> ().SetAnimation (AnturaAnim.SitBreath);
+                    StartCoroutine (waitAndReturn (1));
 				}
 			}
 			else
@@ -80,9 +82,12 @@ namespace EA4S.TakeMeHome
 			
 			IsAnturaTime = _isAnturaTime;
 
-			GetComponent<Antura> ().SetAnimation (AnturaAnim.Run);
+            GetComponent<AnturaAnimationController>().SetWalkingSpeed(ANTURA_SPEED);
+            GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.walking;
 
-			if (IsAnturaTime)
+            //GetComponent<Antura> ().SetAnimation (AnturaAnim.Run);
+
+            if (IsAnturaTime)
 			{
 				target = position;
 

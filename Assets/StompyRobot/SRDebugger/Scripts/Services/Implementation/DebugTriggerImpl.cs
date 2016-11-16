@@ -104,14 +104,27 @@ namespace SRDebugger.Services.Implementation
                 default:
                     throw new Exception("Unhandled TriggerBehaviour");
             }
+            
+            SRDebuggerUtil.EnsureEventSystemExists();
 
 #if USE_NEW_SCENE_MANAGEMENT
-            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += (s1, s2) => {
-                SRDebuggerUtil.EnsureEventSystemExists();
-            };
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnActiveSceneChanged;
 #endif
+        }
+
+
+#if USE_NEW_SCENE_MANAGEMENT
+        protected override void OnDestroy()
+        {
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+            base.OnDestroy();
+        }
+
+        private static void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene s1, UnityEngine.SceneManagement.Scene s2)
+        {
             SRDebuggerUtil.EnsureEventSystemExists();
         }
+#endif
 
 #if !USE_NEW_SCENE_MANAGEMENT
         private void OnLevelWasLoaded(int level)

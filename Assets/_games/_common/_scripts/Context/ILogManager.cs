@@ -3,38 +3,53 @@
     /// Interface for Log Manager providers.
     /// </summary>
     public interface ILogManager {
+
         /// <summary>
-        /// Answer result for question pack.
+        /// Initializes the gameplay log session.
+        /// </summary>
+        /// <param name="_minigameCode">The minigame code.</param>
+        void InitGameplayLogSession(MiniGameCode _minigameCode);
+
+        /// <summary>
+        /// To be called to any action of player linked to learnig objective and with positive or negative vote.
         /// </summary>
         /// <param name="_data"></param>
         /// <param name="_isPositiveResult"></param>
         void OnAnswer(ILivingLetterData _data, bool _isPositiveResult);
 
         /// <summary>
-        /// Answer result for single player action.
+        /// Called when minigame is finished.
         /// </summary>
-        /// <param name="_questionPack"></param>
-        /// <param name="_isPositiveResult"></param>
-        void OnAnswer(IQuestionPack _questionPack, bool _isPositiveResult);
+        /// <param name="_valuation">The valuation.</param>
+        void OnGameplaySessionResult(int _valuation);
 
         /// <summary>
-        /// Called when player perform action during gameplay.
+        /// Logs the play session score.
+        /// </summary>
+        /// <param name="_playSessionId">The play session identifier.</param>
+        /// <param name="_score">The score.</param>
+        void LogPlaySessionScore(string _playSessionId, float _score);
+
+        /// <summary>
+        /// Logs the learning block score.
+        /// </summary>
+        /// <param name="_learningBlock">The learning block.</param>
+        /// <param name="_score">The score.</param>
+        void LogLearningBlockScore(int _learningBlock, float _score);
+
+        /// <summary>
+        /// Called when player perform a [gameplay skill action] action during gameplay. .
         /// </summary>
         /// <param name="_ability">The ability.</param>
-        /// <param name="_isPositive">if set to <c>true</c> [is positive].</param>
-        void OnGameplayEvent(API.PlayerAbilities _ability, bool _isPositive);
+        /// <param name="_score">The score.</param>
+        void OnGameplaySkillAction(PlaySkill _ability, float _score);
 
-        // TODO rename to ~MinigameSession~
-        void OnGameplaySessionResult(int _valuation);
-        
         /// <summary>
-        /// 
+        /// Log a generic info data.
         /// </summary>
-        /// <param name="_area"></param>
-        /// <param name="_context"></param>
-        /// <param name="_action"></param>
-        /// <param name="_data"></param>
-        void Log(string _area, string _context, string _action, string _data);
+        /// <param name="_event">The event.</param>
+        /// <param name="_data">The data.</param>
+        void LogInfoData(InfoEvent _event, string _data);
     }
 
 }

@@ -28,9 +28,6 @@ namespace EA4S.ThrowBalls
 
         public TMP_Text letterTextView;
 
-        private Animator animator;
-        private IEnumerator animationResetter;
-
         private float yEquilibrium;
 
         private LL_LetterData letterData;
@@ -52,13 +49,18 @@ namespace EA4S.ThrowBalls
         private bool isStill = false;
 
         private MotionVariation motionVariation;
-
+        
         public GameObject shadow;
+
+        [HideInInspector]
+        public LetterObjectView letterObjectView;
+
+        public GameObject victoryRays;
 
         // Use this for initialization
         void Start()
         {
-            animator = GetComponent<Animator>();
+            letterObjectView = GetComponent<LetterObjectView>();
 
             foreach (Collider collider in GetComponentsInChildren<Collider>())
             {
@@ -184,13 +186,8 @@ namespace EA4S.ThrowBalls
 
                 else
                 {
-                    animator.Play("run");
-                    if (animationResetter != null)
-                    {
-                        StopCoroutine(animationResetter);
-                    }
-                    animationResetter = ResetAnimation();
-                    StartCoroutine(animationResetter);
+                    letterObjectView.DoChestStop();
+                    BallController.instance.OnIntercepted(true);
                 }
             }
 
@@ -493,11 +490,14 @@ namespace EA4S.ThrowBalls
             gameObject.SetActive(false);
         }
 
-        private IEnumerator ResetAnimation()
+        public void Enable()
         {
-            yield return new WaitForSeconds(0.5f);
-            animator.Play("idle");
-            animationResetter = null;
+            gameObject.SetActive(true);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
         }
 
         public void Reset()
@@ -514,6 +514,13 @@ namespace EA4S.ThrowBalls
             isStill = false;
             SetIsColliderEnabled(true);
             shadow.SetActive(true);
+            victoryRays.SetActive(false);
+            letterObjectView.SetState(LLAnimationStates.LL_idle);
+        }
+
+        public void ShowVictoryRays()
+        {
+            victoryRays.SetActive(true);
         }
 
         void OnMouseDown()

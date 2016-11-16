@@ -274,11 +274,11 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: dff6bf51d54250840bdef2ca8260c146, type: 3}
-    m_FontSize: 18
+    m_FontSize: 41
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 20
+    m_MaxSize: 41
     m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -326,11 +326,11 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: dff6bf51d54250840bdef2ca8260c146, type: 3}
-    m_FontSize: 12
+    m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 18
     m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Text: 'Developed by Stompy Robot LTD
 
 
-    (c) 2015
+    (c) 2015-2016
 
 
     www.stompyrobot.uk

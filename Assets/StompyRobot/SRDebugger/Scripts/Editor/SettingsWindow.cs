@@ -41,7 +41,7 @@ namespace SRDebugger.Editor
         [MenuItem(SRDebugPaths.SettingsMenuItemPath)]
         public static void Open()
         {
-            GetWindowWithRect<SRDebuggerSettingsWindow>(new Rect(0, 0, 449, 500), true, "SRDebugger - Settings", true);
+            GetWindowWithRect<SRDebuggerSettingsWindow>(new Rect(0, 0, 449, 520), true, "SRDebugger - Settings", true);
         }
 
         private void OnEnable()
@@ -629,6 +629,12 @@ namespace SRDebugger.Editor
                     new GUIContent("Rich Text in Console", "Parse rich text tags in console log entries."),
                     Settings.Instance.RichTextInConsole);
 
+            Settings.Instance.MaximumConsoleEntries =
+                EditorGUILayout.IntSlider(
+                    new GUIContent("Max Console Entries",
+                        "The maximum size of the console buffer. Higher values may cause performance issues on slower devices."),
+                    Settings.Instance.MaximumConsoleEntries, 100, 6000);
+
             EditorGUILayout.Separator();
             GUILayout.Label("Display", SRDebugEditorUtil.Styles.InspectorHeaderStyle);
 
@@ -714,7 +720,6 @@ namespace SRDebugger.Editor
             }
 
             EditorGUILayout.Separator();
-            GUILayout.Label("Migrations", SRDebugEditorUtil.Styles.InspectorHeaderStyle);
 
             if (GUILayout.Button("Run Migrations"))
             {
