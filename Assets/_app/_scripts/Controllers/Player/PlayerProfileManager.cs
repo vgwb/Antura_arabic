@@ -7,6 +7,8 @@ namespace EA4S {
     /// </summary>
     public class PlayerProfileManager {
 
+        #region Properties
+
         /// <summary>
         /// Max number of player profiles usables.
         /// </summary>
@@ -19,8 +21,11 @@ namespace EA4S {
         public PlayerProfile ActualPlayer {
             get { return actualPlayer; }
             set {
-                if (actualPlayer != value)
+                if (actualPlayer != value) {
                     AppManager.Instance.Player = value;
+                    AppManager.Instance.GameSettings.LastActivePlayerId = value.Id;
+                    SaveGameSettings();
+                }
                 actualPlayer = value;
             }
         }
@@ -32,6 +37,38 @@ namespace EA4S {
         public List<PlayerProfile> AvailablePlayerProfiles {
             get { return availablePlayerProfiles; }
             set { availablePlayerProfiles = value; }
+        }
+
+        #endregion
+
+        #region internal functions
+        void reloadGameSettings() {
+            AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
+            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            if(AppManager.Instance.GameSettings.LastActivePlayerId>0)
+                ActualPlayer = new PlayerProfile().CreateOrLoadPlayerProfile(AppManager.Instance.GameSettings.LastActivePlayerId == 0 
+                    ? "1"
+                    : AppManager.Instance.GameSettings.LastActivePlayerId.ToString());
+        }
+
+        void reloadAvailablePlayerProfilesList() {
+            List<PlayerProfile> returnList = new List<PlayerProfile>();
+            foreach (string pId in AppManager.Instance.GameSettings.AvailablePlayers) {
+                PlayerProfile pp = AppManager.Instance.Modules.PlayerProfile.LoadPlayerSettings<PlayerProfile>(pId) as PlayerProfile;
+                if (pp != null)
+                    returnList.Add(pp);
+            }
+            availablePlayerProfiles = returnList;
+        }
+        #endregion
+
+        #region API        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlayerProfileManager"/> class.
+        /// </summary>
+        public PlayerProfileManager() {
+            reloadGameSettings();
+            reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>
@@ -55,10 +92,24 @@ namespace EA4S {
         /// <returns></returns>
         public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId) {
             PlayerProfile newPP = new PlayerProfile();
-            //newPP.CreateOrLoadPlayerProfile(_avatarId);
+            ActualPlayer = newPP.CreateOrLoadPlayerProfile(_avatarId.ToString());
             return newPP;
         }
 
+        /// <summary>
+        /// Saves the game settings.
+        /// </summary>
+        public void SaveGameSettings() {
+            AppManager.Instance.Modules.PlayerProfile.SaveAllOptions();
+        }
+
+        /// <summary>
+        /// WARNING! Deletes all profiles.
+        /// </summary>
+        public void DeleteAllProfiles() {
+            AppManager.Instance.Modules.PlayerProfile.DeleteAllPlayerProfiles();
+        }
+        #endregion
 
     }
 }
