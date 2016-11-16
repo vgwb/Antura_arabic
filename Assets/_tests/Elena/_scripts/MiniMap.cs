@@ -80,9 +80,9 @@ namespace EA4S
                     ropes[numLearningBlock].GetComponent<Rope>().learningBlockRope = numLearningBlock + 1;
                 }                              
                 if(numDot%2==0)
-                    dotGo.GetComponent<Dot>().playSessionActual = 2;
+                    dotGo.GetComponent<Dot>().playSessionActual = 1;
                 else
-                    dotGo.GetComponent<Dot>().playSessionActual = 3;
+                    dotGo.GetComponent<Dot>().playSessionActual = 2;
                 dotGo.transform.parent = stepsParent.transform;
                 posDots[numDot] = dotGo;
                 numDot++;
