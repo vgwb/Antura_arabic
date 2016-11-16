@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +21,11 @@ namespace EA4S.ReadingGame
         public bool isTimesUp;
 
         int lives = 3;
+
+        [HideInInspector]
+        public KaraokeSong alphabetSong;
+        public AudioClip alphabetSongAudio;
+        public TextAsset alphabetSongSrt;
 
         public const int TIME_TO_ANSWER = 20;
         public const int MAX_QUESTIONS = 5;
@@ -62,10 +69,18 @@ namespace EA4S.ReadingGame
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
 
-            Context.GetOverlayWidget().Initialize(true, true, true);
+            bool isSong = (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong) ;
+
+            Context.GetOverlayWidget().Initialize(true, !isSong, !isSong);
             Context.GetOverlayWidget().SetMaxLives(lives);
             Context.GetOverlayWidget().SetLives(lives);
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
+            {
+                ISongParser parser = new VttSongParser();
+                alphabetSong = new KaraokeSong(parser.Parse(new MemoryStream(Encoding.UTF8.GetBytes(alphabetSongSrt.text))));
+            }
         }
 
         public void AddScore(int score)

@@ -22,6 +22,8 @@ namespace EA4S.Tobogan
         // return aswer result
         public event Action<bool> onAnswered;
 
+
+
         public QuestionsManager(ToboganGame game)
         {
             this.game = game;
