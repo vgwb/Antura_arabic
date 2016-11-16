@@ -23,6 +23,8 @@ namespace EA4S.Tobogan
 
         public void EnterState()
         {
+            game.InitializeOverlayWidget();
+
             game.questionsManager.StartNewQuestion();
 
             game.isTimesUp = false;

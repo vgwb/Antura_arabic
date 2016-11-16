@@ -21,6 +21,9 @@ namespace EA4S.Tobogan
         
         // return aswer result
         public event Action<bool> onAnswered;
+        public event Action<bool> playerInputPointerUp;
+
+        bool sunMoonGameVariation;
 
         public QuestionsManager(ToboganGame game)
         {
@@ -46,7 +49,18 @@ namespace EA4S.Tobogan
 
         public void StartNewQuestion()
         {
-            var nextQuestionPack = ToboganConfiguration.Instance.Questions.GetNextQuestion();
+            sunMoonGameVariation = ToboganVariation.SunMoon == ToboganConfiguration.Instance.Variation;
+
+            IQuestionPack nextQuestionPack = null;
+            
+            if(sunMoonGameVariation)
+            {
+                nextQuestionPack = ToboganConfiguration.Instance.SunMoonQuestions.GetNextQuestion();
+            }
+            else
+            {
+                nextQuestionPack = ToboganConfiguration.Instance.Questions.GetNextQuestion();
+            }
 
             UpdateQuestion(nextQuestionPack);
             PrepareLettersToAnswer();
@@ -79,7 +93,7 @@ namespace EA4S.Tobogan
                 wrongAnswers[n] = value;
             }
 
-            game.pipesAnswerController.SetPipeAnswers(wrongAnswers, correctAnswer);
+            game.pipesAnswerController.SetPipeAnswers(wrongAnswers, correctAnswer, sunMoonGameVariation);
         }
 
         void CreateQuestionLivingLetters()
@@ -190,6 +204,9 @@ namespace EA4S.Tobogan
                 RaycastHit hitInfo;
                 if (questionLivingLetter.GetComponent<Collider>().Raycast(screenRay, out hitInfo, game.tubesCamera.farClipPlane))
                 {
+                    if (playerInputPointerUp != null)
+                        playerInputPointerUp(false);
+
                     draggingLetter = questionLivingLetter;
                     questionLivingLetter.OnPointerDown(pointerPosition);
                 }
@@ -198,6 +215,9 @@ namespace EA4S.Tobogan
 
         void OnPointerUp()
         {
+            if (playerInputPointerUp != null)
+                playerInputPointerUp(true);
+
             draggingLetter = null;
 
             if (questionLivingLetter != null)
