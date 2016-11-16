@@ -86,8 +86,7 @@ namespace EA4S
 
             IPlayerProfile savedProfile = GameManager.Instance.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_avatarId);
             if (savedProfile != null) { // already exist
-                GameManager.Instance.PlayerProfile.ActivePlayer = savedProfile as PlayerProfile;
-                return savedProfile as PlayerProfile;
+                //GameManager.Instance.PlayerProfile.ActivePlayer = savedProfile as PlayerProfile;
             } else {  // create new
                 int.TryParse(_avatarId, out Id);
                 if (Id == 0) {
@@ -95,10 +94,11 @@ namespace EA4S
                 }
                 Key = _avatarId;
                 AvatarId = Id;
-                GameManager.Instance.PlayerProfile.CreateNewPlayer(this);
-                GameManager.Instance.PlayerProfile.ActivePlayer = this;
-                return this;
+                savedProfile = GameManager.Instance.PlayerProfile.CreateNewPlayer(this);
+                //GameManager.Instance.PlayerProfile.ActivePlayer = this;
+                
             }
+            return savedProfile as PlayerProfile;
         }
 
         public void DeleteThisProfile() { }

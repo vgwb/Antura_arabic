@@ -58,7 +58,7 @@ namespace EA4S
             Instance.LogManager.LogInfo(InfoEvent.AppStarted);
         }
 
-        public PlayerProfileManager PlayerProfileManager = new PlayerProfileManager();
+        public PlayerProfileManager PlayerProfileManager;
 
         private void AdditionalSetup()
         {
@@ -73,11 +73,10 @@ namespace EA4S
 
             Instance.LogManager = new Log.AppLogManager();
 
-            /* Player profile auto select first avatar or last selected */
-            Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
-            Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
+            
+            // Player Profile
+            PlayerProfileManager = new PlayerProfileManager();
             // If "GameSettings.LastActivePlayerId == 0" force here open player selection
-            Player = new PlayerProfile().CreateOrLoadPlayerProfile(GameSettings.LastActivePlayerId == 0 ? "1" : GameSettings.LastActivePlayerId.ToString());
             Debug.Log("Active player: " + Player.Id);
         }
 
