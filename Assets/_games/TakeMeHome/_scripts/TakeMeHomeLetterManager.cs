@@ -50,37 +50,7 @@ namespace EA4S.TakeMeHome
 			if (_letter != null) 
 				_letter.OnPointerUp ();
 
-			/*
-			if (_letter != null) {
-
-				//check if they match or not
-				_letter.OnPointerUp ();
-
-				if (_letter.lastTube != null) {
-					
-
-					//for now make a random thing:
-					bool win = UnityEngine.Random.Range(0,1.0f) < 0.5f;
-
-					if (win) {
-						AudioManager.I.PlaySfx (Sfx.Win);
-						game.IncrementScore ();
-					}
-					else
-						AudioManager.I.PlaySfx (Sfx.Lose);
-
-					//TakeMeHomeConfiguration.Instance.Context.GetAudioManager ().PlaySound (Sfx.Lose);
-
-
-					_letter.lastTube = null;
-
-
-
-					//game.IncrementRound ();
-				}
-
-
-			}*/
+			
 		}
 
 		void OnPointerDrag()
