@@ -40,16 +40,15 @@ namespace EA4S
                 Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
-
-            gameObject.AddComponent<DebugManager>();
+            
         }
-
 
 
         protected override void GameSetup()
         {
             base.GameSetup();
             gameObject.AddComponent<MiniGameAPI>();
+            gameObject.AddComponent<DebugManager>();
             AdditionalSetup();
             InitDataAI();
             GameSettings.HighQualityGfx = false;
@@ -68,16 +67,11 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
-            // PlayerProfileModule Install override
-            //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
-
+            // log manager instance
             Instance.LogManager = new Log.AppLogManager();
-
             
-            // Player Profile
+            // Player Profile manager instance
             PlayerProfileManager = new PlayerProfileManager();
-            // If "GameSettings.LastActivePlayerId == 0" force here open player selection
-            Debug.Log("Active player: " + Player.Id);
         }
 
         /*void CachingLetterData()
