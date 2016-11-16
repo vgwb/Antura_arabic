@@ -4735,6 +4735,48 @@ MonoBehaviour:
   uiCamera: {fileID: 1661970738}
   percentage: 0
   pulsing: 0
+--- !u!1 &1783668019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1783668021}
+  - 114: {fileID: 1783668020}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1783668020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1783668019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de2ea4dbebeb574197243083c0950f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabSet: {fileID: 0}
+  testWorld: 0
+--- !u!4 &1783668021
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1783668019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.4804688, y: 13.373047, z: 143.75781}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1799631439
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,6 +4858,8 @@ MonoBehaviour:
   antura: {fileID: 991576443}
   radialWidget: {fileID: 1765756456}
   isTimesUp: 0
+  alphabetSongAudio: {fileID: 0}
+  alphabetSongSrt: {fileID: 4900000, guid: d5a0f2c2b114c0642bcfa081746c2edc, type: 3}
 --- !u!4 &1814291036
 Transform:
   m_ObjectHideFlags: 0
