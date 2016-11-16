@@ -13,7 +13,7 @@ namespace EA4S.ThrowBalls
         public const float INTERCEPTION_RISE_DELTA_Y = 3f;
         public const float INTERCEPTION_RISE_TIME = 0.2f;
         public const float REBOUND_TIME = 1f;
-        public const float TIME_TO_IDLE = 2f;
+        public const float TIME_TO_IDLE = 6f;
 
         public static BallController instance;
 
@@ -94,7 +94,12 @@ namespace EA4S.ThrowBalls
                     break;
                 case State.Idle:
                     rigidBody.isKinematic = true;
-                    AnturaController.instance.EnterScene();
+                    if (!ThrowBallsGameManager.Instance.IsTutorialLevel())
+                    {
+                        AnturaController.instance.Reset();
+                        AnturaController.instance.EnterScene();
+                    }
+
                     break;
                 default:
                     break;
@@ -108,18 +113,21 @@ namespace EA4S.ThrowBalls
             return state == State.Launched;
         }
 
-        public void OnIntercepted()
+        public void OnIntercepted(bool interceptedByLetter)
         {
             if (state != State.Intercepted)
             {
-                StartCoroutine(OnInterceptedCoroutine());
+                SetState(State.Intercepted);
+
+                if (interceptedByLetter)
+                {
+                    StartCoroutine(OnInterceptedCoroutine());
+                }
             }
         }
 
         private IEnumerator OnInterceptedCoroutine()
         {
-            SetState(State.Intercepted);
-
             //yield return new WaitForSeconds(INTERCEPTION_PAUSE_TIME);
 
             float destinationY = transform.position.y + INTERCEPTION_RISE_DELTA_Y;
