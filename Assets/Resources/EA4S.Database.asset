@@ -7350,7 +7350,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7435,7 +7437,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7524,7 +7528,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7616,7 +7622,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7710,7 +7718,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7802,7 +7812,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7900,7 +7912,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7998,7 +8012,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8094,7 +8110,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8192,7 +8210,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8290,7 +8310,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8382,7 +8404,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8477,7 +8501,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8560,7 +8586,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8645,7 +8673,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8734,7 +8764,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8824,7 +8856,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8911,7 +8945,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9000,7 +9036,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9089,7 +9127,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9176,7 +9216,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9265,7 +9307,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9353,7 +9397,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9440,7 +9486,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9529,7 +9577,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9618,7 +9668,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9705,7 +9757,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9794,7 +9848,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -14238,7 +14294,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
