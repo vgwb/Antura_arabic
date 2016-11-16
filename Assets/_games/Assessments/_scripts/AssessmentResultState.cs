@@ -1,4 +1,6 @@
-﻿namespace EA4S.Assessment
+using UnityEngine;
+
+namespace EA4S.Assessment
 {
     public class AssessmentResultState : IGameState
     {
@@ -27,7 +29,7 @@
 
             if (timer < 0)
             {
-                //TODO: create method EndAssessment (don't need to show result screen)
+                Debug.Log( "WARNING: SetEnd Game... needed SetEndAssessment"); // someone will implement that
                 assessmentGame.EndGame( 0, 0);
             }
         }

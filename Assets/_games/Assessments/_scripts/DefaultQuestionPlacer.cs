@@ -35,12 +35,13 @@ namespace EA4S.Assessment
             // Count questions and answers
             int questionsNumber = 0;
             int answersNumber = 0;
-            int total = questionsNumber + answersNumber;
-            foreach(var q in allQuestions)
+            foreach( var q in allQuestions)
             {
                 questionsNumber++;
                 answersNumber += q.PlaceholdersCount();
             }
+
+            int total = questionsNumber + answersNumber;
 
             var bounds = WorldBounds.Instance;
 
@@ -52,16 +53,17 @@ namespace EA4S.Assessment
 
             //  3 words => 4 white zones  (need increment by 1)
             //  |  O   O   O  |
-            float spaceIncrement = blankSpace / (allQuestions.Length + 1);
+            float spaceIncrement = blankSpace / (questionsNumber + 1);
 
             //Implement Line Break only if needed
             if ( blankSpace <= bounds.HalfLetterSize() )
                 throw new InvalidOperationException( "Need a line break becase 1 line is not enough for all");
 
             var currentPos = bounds.OneLineQuestionStart();
+            currentPos.x -= bounds.HalfLetterSize();
             int questionIndex = 0;
 
-            for(int i=0; i<total; i++)
+            for(int i=0; i< questionsNumber; i++)
             {
                 currentPos.x += spaceIncrement + bounds.LetterSize();
                 yield return PlaceQuestion(
@@ -73,6 +75,8 @@ namespace EA4S.Assessment
                     yield return PlacePlaceholder(
                         allQuestions[questionIndex], currentPos);
                 }
+
+                questionIndex++;
             }
 
             // give time to finish animating elements
@@ -82,30 +86,34 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceQuestion( IQuestion q, Vector3 position)
         {
+            Debug.Log("Position:" + position);
             var ll = q.gameObject.GetComponent< LetterObjectView>();
-            audioManager.PlaySound( Sfx.Poof);
 
-            ll.Poof();
+
+            ll.Poof(ElementsSize.PoofOffset);
+            audioManager.PlaySound(Sfx.Poof);
             ll.transform.localPosition = position;
-            ll.transform.DOScale( 1, 0.4f);
-            return TimeEngine.Wait( 0.1f);
+            ll.transform.DOScale( 1, 0.3f);
+            return TimeEngine.Wait( 0.6f);
         }
 
         private IEnumerator PlacePlaceholder( IQuestion q, Vector3 position)
         {
-            audioManager.PlaySound( Sfx.WheelTick);
+            Debug.Log("PlacePlaceholder");
+            
             var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
             placeholder.localPosition = position + new Vector3( 0, 5, 0);
             placeholder.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
 
             q.TrackPlaceholder( placeholder.gameObject);
+            audioManager.PlaySound( Sfx.StarFlower);
 
             var seq = DOTween.Sequence();
             seq
-                .Insert( 0, placeholder.DOScale( 1, 0.4f))
-                .Insert( 0, placeholder.DOMove( position, 0.6f));
+                .Insert(0, placeholder.DOScale( ElementsSize.DropZoneScale, 0.4f))
+                .Insert(0, placeholder.DOMove( position, 0.6f));
 
-            return TimeEngine.Wait( 0.06f);
+            return TimeEngine.Wait( 0.4f);
         }
 
         public void RemoveQuestions()
@@ -132,7 +140,7 @@ namespace EA4S.Assessment
         IEnumerator FadeOutQuestion( IQuestion q)
         {
             audioManager.PlaySound( Sfx.Poof);
-            q.gameObject.GetComponent< LetterObjectView>().Poof();
+            q.gameObject.GetComponent< LetterObjectView>().Poof( ElementsSize.PoofOffset);
 
 
             q.gameObject.transform.DOScale( 0, 0.4f).OnComplete(() => GameObject.Destroy( q.gameObject));
