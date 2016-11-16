@@ -2362,10 +2362,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u0643\u0631\u0629"
+      Arabic: "\u0643\u0631\u0629"
       Letters:
-      - alef
-      - lam
       - kaf
       - reh
       - teh_marbuta
@@ -2904,10 +2902,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u0645\u0639\u0637\u0641"
+      Arabic: "\u0645\u0639\u0637\u0641"
       Letters:
-      - alef
-      - lam
       - meem
       - ain
       - tah
@@ -3927,10 +3923,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u0642\u0628\u0639\u0629"
+      Arabic: "\u0642\u0628\u0639\u0629"
       Letters:
-      - alef
-      - lam
       - qaf
       - beh
       - ain
@@ -4140,8 +4134,14 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: 
-      Letters: []
+      Arabic: "\u0627\u0644\u0645\u0627\u0636\u064A"
+      Letters:
+      - alef
+      - lam
+      - meem
+      - alef
+      - dad
+      - yeh
       Difficulty: 0
       Drawing: 
     - Id: laughed
@@ -4686,8 +4686,14 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: 
-      Letters: []
+      Arabic: "\u0627\u0644\u0642\u0627\u062F\u0645"
+      Letters:
+      - alef
+      - lam
+      - qaf
+      - alef
+      - dal
+      - meem
       Difficulty: 0
       Drawing: 
     - Id: nose
@@ -5233,6 +5239,25 @@ MonoBehaviour:
       - reh
       Difficulty: 0
       Drawing: 
+    - Id: number_o11
+      Kind: 5
+      Category: 23
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0627\u0644\u062D\u0627\u062F\u064A \u0639\u0634\u0631"
+      Letters:
+      - alef
+      - lam
+      - hah
+      - alef
+      - dal
+      - yeh
+      - ain
+      - sheen
+      - reh
+      Difficulty: 0
+      Drawing: 
     - Id: of_course
       Kind: 6
       Category: 0
@@ -5449,10 +5474,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u0644\u0627\u0639\u0628"
+      Arabic: "\u0644\u0627\u0639\u0628"
       Letters:
-      - alef
-      - lam
       - lam
       - alef
       - ain
@@ -5465,10 +5488,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u0645\u0644\u0639\u0628"
+      Arabic: "\u0645\u0644\u0639\u0628"
       Letters:
-      - alef
-      - lam
       - meem
       - lam
       - ain
@@ -5809,10 +5830,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635"
+      Arabic: "\u0642\u0645\u064A\u0635"
       Letters:
-      - alef
-      - lam
       - qaf
       - meem
       - yeh
@@ -5825,10 +5844,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u062D\u0630\u0627\u0621"
+      Arabic: "\u062D\u0630\u0627\u0621"
       Letters:
-      - alef
-      - lam
       - hah
       - thal
       - alef
@@ -6883,10 +6900,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0627\u0644\u0628\u0646\u0637\u0627\u0644"
+      Arabic: "\u0628\u0646\u0637\u0627\u0644"
       Letters:
-      - alef
-      - lam
       - beh
       - noon
       - tah
@@ -16526,25 +16541,44 @@ MonoBehaviour:
       - number_16
       - and
     - Id: the_year_2017
-      English: 
-      Arabic: 
+      English: the year two thousand and seventeen
+      Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u0628\u0639\u0629
+        \u0639\u0634\u0631"
       Linked: 
-      Words: []
+      Words:
+      - year
+      - number_2000
+      - number_17
+      - and
     - Id: the_year_2018
-      English: 
-      Arabic: 
+      English: the year twothousand and eighteen
+      Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062B\u0645\u0627\u0646\u064A\u0629
+        \u0639\u0634\u0631"
       Linked: 
-      Words: []
-    - Id: the_year_2003
-      English: 
-      Arabic: 
+      Words:
+      - year
+      - number_2000
+      - number_18
+      - and
+    - Id: the_year_2015
+      English: the year two thousand and fifteen
+      Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062E\u0645\u0633\u0629
+        \u0639\u0634\u0631"
       Linked: 
-      Words: []
+      Words:
+      - year
+      - number_2000
+      - number_15
+      - and
     - Id: the_year_2009
-      English: 
-      Arabic: 
+      English: the year two thousand and nine
+      Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062A\u0633\u0639\u0629"
       Linked: 
-      Words: []
+      Words:
+      - year
+      - number_2000
+      - number_09
+      - and
     - Id: theboyopenedthewindow
       English: the boy opened the window
       Arabic: "\u0641\u062A\u062D \u0627\u0644\u0635\u0628\u064A \u0627\u0644\u0646\u0627\u0641\u0630\u0629"
@@ -16625,12 +16659,12 @@ MonoBehaviour:
       Words:
       - color_green
       - cucumber
-    - Id: thebustwent
-      English: the bus went (left)
-      Arabic: "\u0630\u0647\u0628 \u0627\u0644\u0628\u0627\u0635"
+    - Id: thecarpenterwent
+      English: the carpenter went (left)
+      Arabic: "\u0630\u0647\u0628 \u0627\u0644\u0646\u062C\u0627\u0631"
       Linked: 
       Words:
-      - bus
+      - carpenter
       - went
     - Id: thebirdflew
       English: the bird flew
@@ -16646,14 +16680,14 @@ MonoBehaviour:
       Words:
       - shop
       - small
-    - Id: thedoctoropenedtheneedle
-      English: the doctor opened the needle
-      Arabic: "\u0641\u062A\u062D \u0627\u0644\u0637\u0628\u064A\u0628 \u0627\u0644\u0627\u0628\u0631\u0629"
+    - Id: thedoctoropenedthehospital
+      English: the doctor opened the hospital
+      Arabic: "\u0641\u062A\u062D \u0627\u0644\u0637\u0628\u064A\u0628 \u0627\u0644\u0645\u0633\u062A\u0634\u0641\u0649"
       Linked: 
       Words:
       - doctor
       - opened
-      - needle
+      - hospital
     - Id: eightscientists
       English: eight scientists
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0644\u0645\u0627\u0621"
@@ -16676,17 +16710,16 @@ MonoBehaviour:
       Words:
       - the_player
       - won
-    - Id: theshirtiscleannow
-      English: the shirt is clean now
-      Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0646\u0638\u064A\u0641 \u0627\u0644\u0622\u0646"
+    - Id: theshirtisclean
+      English: the shirt is clean
+      Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0646\u0638\u064A\u0641"
       Linked: 
       Words:
       - the_shirt
       - clean
-      - now
     - Id: yesterdaywassunday
       English: yesterday was Sunday
-      Arabic: "\u0627\u0644\u0628\u0627\u0631\u062D\u0629 \u0643\u0627\u0646 \u0627\u0644\u0623\u062D\u062F"
+      Arabic: "\u0643\u0627\u0646 \u0627\u0644\u0628\u0627\u0631\u062D\u0629 \u0623\u062D\u062F"
       Linked: 
       Words:
       - yesterday
@@ -16698,29 +16731,31 @@ MonoBehaviour:
       Words:
       - winter
       - cold
-    - Id: novemberisarainymonth
-      English: November is a rainy month
+    - Id: novemberistheeleventhmonth
+      English: November is the eleventh month
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A
-        \u0634\u0647\u0631 \u0645\u0627\u0637\u0631"
+        \u0647\u0648 \u0627\u0644\u0634\u0647\u0631 \u0627\u0644\u062D\u0627\u062F\u064A
+        \u0639\u0634\u0631"
       Linked: 
       Words:
       - month_november
-      - rainy
+      - number_o11
       - month
-    - Id: abeautifulparrot
-      English: a beautiful parrot
-      Arabic: "\u0628\u0628\u063A\u0627\u0621 \u062C\u0645\u064A\u0644"
+    - Id: theparrotisbeautiful
+      English: the parrot is beautiful
+      Arabic: "\u0627\u0644\u0628\u0628\u063A\u0627\u0621 \u062C\u0645\u064A\u0644"
       Linked: 
       Words:
-      - beautiful
       - parrot
-    - Id: mayisawonderfulmonth
-      English: May is a wonderful month
-      Arabic: "\u0623\u064A\u0627\u0631 \u0634\u0647\u0631 \u0631\u0627\u0626\u0639"
+      - beautiful
+    - Id: mayisthefifthmonth
+      English: May is the fifth month
+      Arabic: "\u0623\u064A\u0627\u0631 \u0647\u0648 \u0627\u0644\u0634\u0647\u0631
+        \u0627\u0644\u062E\u0627\u0645\u0633"
       Linked: 
       Words:
       - month_may
-      - wonderful
+      - number_o05
       - month
     - Id: thepolicemanwalked
       English: the policeman walked
@@ -16731,7 +16766,7 @@ MonoBehaviour:
       - walked
     - Id: theicecreamisdelicious
       English: the ice-cream is delicious
-      Arabic: "\u0627\u0644\u0628\u0648\u0638\u0629 \u062D\u0644\u0648"
+      Arabic: "\u0627\u0644\u0628\u0648\u0638\u0629 \u062D\u0644\u0648\u0629"
       Linked: 
       Words:
       - icecream
@@ -16743,6 +16778,51 @@ MonoBehaviour:
       Words:
       - number_05
       - books
+    - Id: please
+      English: please
+      Arabic: "\u0631\u062C\u0627\u0621"
+      Linked: 
+      Words: []
+    - Id: thankyouverymuch
+      English: thank you very much
+      Arabic: "\u0634\u0643\u0631\u0627\u064B\u064B \u062C\u0632\u064A\u0644\u0627\u064B"
+      Linked: 
+      Words: []
+    - Id: goodnight_Q
+      English: good night - question
+      Arabic: "\u062A\u0635\u0628\u062D \u0639\u0644\u0649 \u062E\u064A\u0631"
+      Linked: 
+      Words: []
+    - Id: goodnight_R
+      English: good night - reply
+      Arabic: "\u0648\u0623\u0646\u062A \u0628\u062E\u064A\u0631"
+      Linked: 
+      Words: []
+    - Id: congratulations
+      English: congratulations
+      Arabic: "\u0645\u0628\u0631\u0648\u0643"
+      Linked: 
+      Words: []
+    - Id: letsgo_Q
+      English: let's go - question
+      Arabic: "\u0647\u064A\u0627 \u0644\u0646\u0630\u0647\u0628"
+      Linked: 
+      Words: []
+    - Id: letsgo_R
+      English: let's go - reply
+      Arabic: "\u0647\u064A\u0627 \u0646\u0630\u0647\u0628"
+      Linked: 
+      Words: []
+    - Id: areyouready_Q
+      English: are you ready - question
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F"
+      Linked: 
+      Words: []
+    - Id: yesiamready_R
+      English: yes I am ready - reply
+      Arabic: "\u0646\u0639\u0645 \u0623\u0646\u0627 \u062C\u0627\u0647\u0632"
+      Linked: 
+      Words: []
   stageTable:
     innerList:
     - Id: 1

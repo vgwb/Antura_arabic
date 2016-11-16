@@ -112,6 +112,11 @@ namespace EA4S.ThrowBalls
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
 
+        public bool IsTutorialLevel()
+        {
+            return roundNumber == 0;
+        }
+
         void Update()
         {
             if (roundNumber == 0)
@@ -168,6 +173,7 @@ namespace EA4S.ThrowBalls
 
         public void ResetScene()
         {
+            UIController.instance.Reset();
             UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
@@ -349,7 +355,7 @@ namespace EA4S.ThrowBalls
 
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
-            correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
+            correctLetterCntrl.MoveTo(0, 13.5f, -33f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.Show();
             correctLetterCntrl.letterObjectView.DoHorray();

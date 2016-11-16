@@ -187,6 +187,7 @@ namespace EA4S.ThrowBalls
                 else
                 {
                     letterObjectView.DoChestStop();
+                    BallController.instance.OnIntercepted();
                 }
             }
 
@@ -514,6 +515,7 @@ namespace EA4S.ThrowBalls
             SetIsColliderEnabled(true);
             shadow.SetActive(true);
             victoryRays.SetActive(false);
+            letterObjectView.SetState(LLAnimationStates.LL_idle);
         }
 
         public void ShowVictoryRays()
