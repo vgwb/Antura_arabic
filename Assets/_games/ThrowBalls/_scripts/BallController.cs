@@ -13,7 +13,7 @@ namespace EA4S.ThrowBalls
         public const float INTERCEPTION_RISE_DELTA_Y = 3f;
         public const float INTERCEPTION_RISE_TIME = 0.2f;
         public const float REBOUND_TIME = 1f;
-        public const float TIME_TO_IDLE = 6f;
+        public const float TIME_TO_IDLE = 2f;
 
         public static BallController instance;
 
