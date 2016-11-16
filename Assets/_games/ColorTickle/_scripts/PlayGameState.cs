@@ -18,6 +18,7 @@ namespace EA4S.ColorTickle
 
         Button m_PercentageLetterColoredButton;
         float m_PercentageLetterColored;
+        
 
         ColorsUIManager m_ColorsUIManager;
 
@@ -28,7 +29,11 @@ namespace EA4S.ColorTickle
         ColorTickle_LLController m_LLController;
         HitStateLLController m_HitStateLLController;
 
-        bool m_NextLetter = false;
+        // LL vanishing vars
+        bool m_bLLVanishing = false;
+        float m_fTimeToDisappear = 3f;
+        float m_fDisappearTimeProgress = 0;
+
         #endregion
 
         public PlayGameState(ColorTickleGame game)
@@ -39,7 +44,7 @@ namespace EA4S.ColorTickle
         public void EnterState()
         {
             m_Rounds = game.rounds;
-			m_MaxLives = game.lives;
+			m_MaxLives = game.lives; //max number of lives is already setted in the game according to difficulty
             m_Stars = 3.0f;
 
 			//Init ColorCanvas and PercentageLetterColoredButton
@@ -69,12 +74,47 @@ namespace EA4S.ColorTickle
             else
             {
                 CalcPercentageLetterColored();
-                m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = Mathf.FloorToInt(m_PercentageLetterColored) + "%";
 
-                if (m_PercentageLetterColored >= 100 || m_Lives <=0)
+                if (m_PercentageLetterColoredButton != null)
                 {
-                    //DisableAntura();
-                    m_LetterObjectView.Poof();
+                    m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = Mathf.FloorToInt(m_PercentageLetterColored) + "%";
+                }
+
+                if(m_bLLVanishing) //if the LL is about to vanish
+                {
+                    m_fDisappearTimeProgress += Time.deltaTime;
+
+                    //if(m_LetterObjectView.GetState()!=LLAnimationStates.LL_dancing)//when the dance is finished ---> DoDancingWin/Lose do not exit from this state
+                    if (m_fDisappearTimeProgress>=m_fTimeToDisappear)//after the given time is reached
+                    {
+                        m_LetterObjectView.Poof(); //LL vanishes
+                        m_bLLVanishing = false;
+                        m_fDisappearTimeProgress = 0;
+
+                        //just for possible reusing of the LL renable components
+                        m_TMPTextColoringLetter.enabled = true;
+                        m_SurfaceColoringLetter.enabled = true;
+                        m_HitStateLLController.enabled = true;
+
+                        m_CurrentLetter.SetActive(false);
+
+                        --m_Rounds;
+                        if (m_Rounds > 0) //activate next LL
+                        {
+                            ResetState();
+                            m_ColorsUIManager.ChangeButtonsColor();
+                            m_CurrentLetter = game.myLetters[m_Rounds - 1];
+                            m_CurrentLetter.gameObject.SetActive(true);
+                            // Initialize the next letter
+                            InitLetter();
+                        }
+                    }
+                }
+                else if (m_PercentageLetterColored >= 100 || m_Lives <=0) //else check for letter completed
+                {
+                    game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
+
+                    /*m_LetterObjectView.Poof();
                     m_CurrentLetter.SetActive(false);
                     --m_Rounds;
                     if (m_Rounds > 0)
@@ -85,7 +125,35 @@ namespace EA4S.ColorTickle
                         m_CurrentLetter.gameObject.SetActive(true);
                         // Initialize the next letter
                         InitLetter();
+                    }*/
+
+                    m_bLLVanishing = true; //LL is about to disappear
+
+                    //disable color components to avoid input in this phase (or ignore input using touch manager?)
+                    m_TMPTextColoringLetter.enabled = false;
+                    m_SurfaceColoringLetter.enabled = false;
+                    m_HitStateLLController.enabled = false;
+
+                    Debug.Log(m_LetterObjectView.Data.Key);
+
+                    AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
+
+                    //LL does win or lose animation 
+                    if(m_PercentageLetterColored >= 100)
+                    {
+                        //m_LetterObjectView.DoDancingWin();
+                        m_LetterObjectView.DoHorray();
+                        AudioManager.I.PlaySfx(Sfx.Win);
                     }
+                    else if (m_Lives <= 0)
+                    {
+                        m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
+                        m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
+                        AudioManager.I.PlaySfx(Sfx.Lose);
+                    }
+
+                    
+
                 }
             }
         }
@@ -101,14 +169,26 @@ namespace EA4S.ColorTickle
 			m_Lives = m_MaxLives;
             game.gameUI.SetLives(m_MaxLives);
             m_PercentageLetterColored = 0;
-            m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = "0 %";
+            if (m_PercentageLetterColoredButton != null)
+            {
+                m_PercentageLetterColoredButton.GetComponentInChildren<Text>().text = "0 %";
+            }        
         }
 
 		private void InitGameUI()
 		{
+            game.gameUI = game.Context.GetOverlayWidget();
+            game.gameUI.Initialize(false, false, true);
+            game.gameUI.SetMaxLives(game.lives);
+
+            game.colorsCanvas.gameObject.SetActive(true);
             m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
             m_ColorsUIManager.SetBrushColor += SetBrushColor;
-			m_PercentageLetterColoredButton = m_ColorsUIManager.percentageColoredButton;
+
+            if (m_ColorsUIManager.percentageColoredButton != null)
+            {
+                m_PercentageLetterColoredButton = m_ColorsUIManager.percentageColoredButton;
+            }
 		}
 
 		private void InitLetter()
@@ -125,7 +205,7 @@ namespace EA4S.ColorTickle
             m_HitStateLLController.LoseLife += LoseLife;
 
             m_HitStateLLController.EnableAntura += EnableAntura;
-            game.anturaController.targetToLook = m_CurrentLetter.transform;
+            //game.anturaController.targetToLook = m_CurrentLetter.transform; //make antura look at the LL on rotations
 
             SetBrushColor(m_ColorsUIManager.defaultColor);     
         }
@@ -144,8 +224,20 @@ namespace EA4S.ColorTickle
 
         private void LoseLife()
         {
+            //--TODO maybe this can be better if the LL controller handles all the LL states rather than just the hits
+            if(game.anturaController.anturaState!=AnturaContollerState.BARKING) //if the life loss wasn't caused inside Antura disruption
+            {
+                game.anturaController.ForceAnturaToGoBack();//we tickled the letter, antura turn back
+            }
+            else //if it was we need also to overwrite the LL tickling animation
+            {
+                m_LetterObjectView.SetState(LLAnimationStates.LL_walking); //keep running in fear instead of tickling
+            }
+            //--
+
             m_Lives--;
-            m_Stars -= 0.3f;
+            //m_Stars -= 0.3f;
+            m_Stars -= (3f/(float)m_Rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
             game.gameUI.SetLives(m_Lives);
             Debug.Log("Lives : " + m_Lives);
         }
@@ -162,21 +254,24 @@ namespace EA4S.ColorTickle
         }
 
         private void EnableAntura()
-        {
+        { 
             game.anturaController.TryLaunchAnturaDisruption();
         }
 
         private void AnturaReachedLetter()
         {  
-            m_LetterObjectView.SetState(LLAnimationStates.LL_still);
+            m_LetterObjectView.SetState(LLAnimationStates.LL_walking);
             m_LetterObjectView.HasFear = true;
-            m_LetterObjectView.Crouching = true;
+            m_LetterObjectView.SetWalkingSpeed(1);
+            //m_LetterObjectView.Crouching = true;
         }
 
         private void AnturaGoingAway()
         {
+            m_LetterObjectView.SetState(LLAnimationStates.LL_still);
             m_LetterObjectView.HasFear = false;
-            m_LetterObjectView.Crouching = false;
+            m_LetterObjectView.SetWalkingSpeed(0);
+            //m_LetterObjectView.Crouching = false;
         }
 
         /// <summary>
@@ -186,14 +281,17 @@ namespace EA4S.ColorTickle
         /// <param name="eState">Current state for Antura</param>
         private void AnturaInteractions( AnturaContollerState eState)
         {
-            //For now scare the LL by make it crouch 
             if (eState == AnturaContollerState.BARKING) //Antura scared the LL
             {
                 AnturaReachedLetter();
             }
             else if (eState == AnturaContollerState.COMINGBACK) //Antura is returning to his place
             {
-                AnturaGoingAway();
+                if(m_LetterObjectView.GetState()!=LLAnimationStates.LL_tickling) //if the LL is tickling antura didn't reach it (fix)
+                {
+                    AnturaGoingAway();
+                }
+                
             }
         }
 

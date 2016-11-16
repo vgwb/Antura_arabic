@@ -193,15 +193,25 @@ namespace EA4S.MissingLetter
 
             LetterObjectView tmp = mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
             tmp.Lable.text = tmp.Lable.text.Remove(index, 1);
-            tmp.Lable.text = tmp.Lable.text.Insert(index, "_");
+            tmp.Lable.text = tmp.Lable.text.Insert(index, mkRemovedLetterChar);
+
         }
 
-        void RestoreQuestion()
+        void RestoreQuestion(bool result)
         {
+
+            LetterObjectView tmp = mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            int index = tmp.Lable.text.IndexOf(mkRemovedLetterChar);
+
             foreach (GameObject _obj in mCurrentQuestionScene)
             {
                 _obj.GetComponent<LetterBehaviour>().Refresh();
             }
+
+            //change restored color letter with tag
+            string color = result ? "green" : "red";
+            string first = tmp.Lable.text[index].ToString();
+            tmp.Lable.text = tmp.Lable.text.Replace(first, "<color="+ color + ">" + first + "</color>");
         }
 
         void EnterCurrentScene() {
@@ -262,10 +272,9 @@ namespace EA4S.MissingLetter
         public void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
             mGame.SetInIdle(false);
-            //refresh the data (for graphics)
-            RestoreQuestion();
 
-            
+            //refresh the data (for graphics)
+            RestoreQuestion(isCorrectAnswer(_key));
 
             foreach (GameObject _obj in mCurrentAnswerScene) {
                 _obj.GetComponent<LetterBehaviour>().SetEnableCollider(false);
@@ -278,14 +287,21 @@ namespace EA4S.MissingLetter
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 clicked.mLetter.DoHorray();
                 clicked.LightOn();
+
+                mGame.mParticleSystem.SetActive(true);
+                mGame.mParticleSystem.transform.position = mCurrentQuestionScene[0].transform.position + Vector3.forward + Vector3.up * 2;
+                mGame.mParticleSystem.GetComponent<ParticleSystem>().Play();
+                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, delegate { mGame.mParticleSystem.SetActive(false); }));
+
                 mGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
             }
             else
             {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
                 //clicked.mLetter.DoAngry();
-                OnResponse(isCorrectAnswer(_key));
+                OnResponse(false);
             }
+
             
         }
 
@@ -339,7 +355,14 @@ namespace EA4S.MissingLetter
                 }
                 else
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoHorray();
+                    //random delay poof of wrong answer
+                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoHorray();
+                    mGame.StartCoroutine(Utils.LaunchDelay(UnityEngine.Random.Range(0, 0.5f), delegate (int index)
+                    {
+                        mCurrentAnswerScene[index].GetComponent<LetterBehaviour>().mLetter.Poof();
+                        mCurrentAnswerScene[index].transform.position = Vector3.zero;
+                        AudioManager.I.PlaySfx(Sfx.Poof);
+                    }, i));
                 }
             }
 
@@ -369,11 +392,19 @@ namespace EA4S.MissingLetter
                 else
                 {
                     mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.Crouching = true;
+                    //random delay poof of wrong answer
+                    //mGame.StartCoroutine(Utils.LaunchDelay(UnityEngine.Random.Range(0, 0.5f), delegate (int index)
+                    //{
+                    //    mCurrentAnswerScene[index].GetComponent<LetterBehaviour>().mLetter.Poof();
+                    //    mCurrentAnswerScene[index].transform.position = Vector3.zero;
+                    //    AudioManager.I.PlaySfx(Sfx.Poof);
+                    //}, i));
                 }
             }
         }
 
         #region VARS
+        private const string mkRemovedLetterChar = "_";
 
         private MissingLetterGame mGame;
 
