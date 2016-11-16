@@ -23,8 +23,6 @@ namespace EA4S.Assessment
             }
         }
 
-        private readonly float LLSize = 3.0f; //conservative size used for computations
-
         void Awake()
         {
             instance = this;
@@ -87,7 +85,6 @@ namespace EA4S.Assessment
         public Vector3 OneLineQuestionStart()
         {
             Vector3 position = QuestionSpaceStart();
-            position.x -= 0.5f * LetterSize(); // no LLs before first space
             position.y = height / 2 - SubtitlesMargin - LetterSize() * 1.5f;
             return position;
         }
@@ -109,22 +106,22 @@ namespace EA4S.Assessment
 
         public float SidesMargin()
         {
-            return LLSize * 1.4f;
+            return ElementsSize.LL * 1.4f;
         }
 
         public float TopMargin()
         {
-            return SubtitlesMargin + LLSize * 1.5f;
+            return SubtitlesMargin + ElementsSize.LL * 1.5f;
         }
 
         public float LetterSize()
         {
-            return LLSize;
+            return ElementsSize.LL;
         }
 
         public float HalfLetterSize()
         {
-            return 0.5f * LLSize;
+            return 0.5f * ElementsSize.LL;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -63,7 +63,7 @@ namespace EA4S.Assessment
 
                 // Say goodbye..
                 audioManager.PlaySound( Sfx.Poof);
-                ll.Poof();
+                ll.Poof( ElementsSize.PoofOffset);
                 ll.transform.DOScale( 0, 0.4f);
             }
 
@@ -193,7 +193,7 @@ namespace EA4S.Assessment
             letter.transform.localScale = Vector3.zero;
             letter.transform.DOScale(1, 0.4f);
             letter.GetComponent< Animator>().enabled = false;
-            letter.Poof();
+            letter.Poof( ElementsSize.PoofOffset);
             audioManager.PlaySound( Sfx.Poof);
             livingObjects.Add( letter);
 

@@ -13,13 +13,15 @@ namespace EA4S.ThrowBalls
         public const float INTERCEPTION_RISE_DELTA_Y = 3f;
         public const float INTERCEPTION_RISE_TIME = 0.2f;
         public const float REBOUND_TIME = 1f;
+        public const float TIME_TO_IDLE = 6f;
+
         public static BallController instance;
 
         public Rigidbody rigidBody;
 
         private enum State
         {
-            Anchored, Dragging, Launched, Intercepted, Rebounding
+            Anchored, Dragging, Launched, Intercepted, Rebounding, Idle
         }
 
         private State state;
@@ -40,7 +42,7 @@ namespace EA4S.ThrowBalls
         {
             cameraDistance = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
 
-            cameraDistance = 23;
+            cameraDistance = 26;
             INITIAL_BALL_POSITION.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
 
             Reset();
@@ -167,6 +169,14 @@ namespace EA4S.ThrowBalls
                     Reset();
                 }
             }
+
+            else if (state == State.Anchored)
+            {
+                if (stateTime >= TIME_TO_IDLE)
+                {
+                    SetState(State.Idle);
+                }
+            }
         }
 
         void Update()
@@ -183,7 +193,7 @@ namespace EA4S.ThrowBalls
                         RaycastHit hit;
 
                         if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider.gameObject.tag == Constants.TAG_POKEBALL
-                            && state == State.Anchored)
+                            && (state == State.Anchored || state == State.Idle))
                         {
                             SetState(State.Dragging);
                         }
@@ -229,12 +239,14 @@ namespace EA4S.ThrowBalls
         #region Mouse controls
         void OnMouseDown()
         {
-            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer || !(state == State.Idle || state == State.Anchored))
             {
                 return;
             }
 
             Vector3 mousePosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance));
+
+            SetState(State.Dragging);
         }
         void OnMouseDrag()
         {

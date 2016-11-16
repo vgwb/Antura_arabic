@@ -21,6 +21,7 @@ namespace EA4S.Assessment
         {
             IntroductionState = new AssessmentIntroState(this);
             QuestionState = new AssessmentQuestionState(this);
+            GetConfiguration();
             PlayState = new AssessmentGameState(this);
             ResultState = new AssessmentResultState(this);
         }

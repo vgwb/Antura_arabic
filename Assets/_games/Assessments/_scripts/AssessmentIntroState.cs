@@ -1,4 +1,6 @@
-﻿namespace EA4S.Assessment
+using UnityEngine;
+
+namespace EA4S.Assessment
 {
     public class AssessmentIntroState : IGameState
     {
@@ -13,6 +15,7 @@
 
         public void EnterState()
         {
+            assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
             TimeEngine.Instance.Clear();
         }
 
@@ -20,13 +23,15 @@
         {
         }
 
-        public void Update(float delta)
+        public void Update( float delta)
         {
             timer -= delta;
 
             if (timer < 0)
             {
-                assessmentGame.SetCurrentState( assessmentGame.QuestionState);
+                assessmentGame
+                    .SetCurrentState( 
+                    assessmentGame.QuestionState);
             }
         }
 
