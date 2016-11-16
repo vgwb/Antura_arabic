@@ -18,11 +18,12 @@ namespace EA4S.Tobogan
 
         int questionLetterIndex;
         List<QuestionLivingLetter> livingLetters = new List<QuestionLivingLetter>();
-
+        
         // return aswer result
         public event Action<bool> onAnswered;
-
         public event Action<bool> playerInputPointerUp;
+
+        bool sunMoonGameVariation;
 
         public QuestionsManager(ToboganGame game)
         {
@@ -48,7 +49,18 @@ namespace EA4S.Tobogan
 
         public void StartNewQuestion()
         {
-            var nextQuestionPack = ToboganConfiguration.Instance.Questions.GetNextQuestion();
+            sunMoonGameVariation = ToboganVariation.SunMoon == ToboganConfiguration.Instance.Variation;
+
+            IQuestionPack nextQuestionPack = null;
+            
+            if(sunMoonGameVariation)
+            {
+                nextQuestionPack = ToboganConfiguration.Instance.SunMoonQuestions.GetNextQuestion();
+            }
+            else
+            {
+                nextQuestionPack = ToboganConfiguration.Instance.Questions.GetNextQuestion();
+            }
 
             UpdateQuestion(nextQuestionPack);
             PrepareLettersToAnswer();
@@ -81,7 +93,7 @@ namespace EA4S.Tobogan
                 wrongAnswers[n] = value;
             }
 
-            game.pipesAnswerController.SetPipeAnswers(wrongAnswers, correctAnswer);
+            game.pipesAnswerController.SetPipeAnswers(wrongAnswers, correctAnswer, sunMoonGameVariation);
         }
 
         void CreateQuestionLivingLetters()
