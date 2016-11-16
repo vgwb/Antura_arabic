@@ -25,6 +25,8 @@ namespace EA4S.TestE
         Rope ropeSelected;
 
         void Start () {
+            AppManager.Instance.Player.CurrentJourneyPosition.Stage = 1;
+
             ResetPosLetter(1, miniMapScript.pinRight);
             miniMapScript.posDots[0].GetComponent<Renderer>().material = red;
         }
