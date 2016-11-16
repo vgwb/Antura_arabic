@@ -28,11 +28,11 @@
 				AudioManager.I.PlaySfx (Sfx.Win);
 				win = true;
 				game.IncrementScore ();
-
+                TutorialUI.MarkYes(game.currentLetter.transform.position + new UnityEngine.Vector3(0,0,-5));
 			} else {
 				AudioManager.I.PlaySfx (Sfx.Lose);
-
-			}
+                TutorialUI.MarkNo(game.currentLetter.transform.position + new UnityEngine.Vector3(0, 0, -5));
+            }
 
 			game.currentLetter.followTube (win);
 		}

@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: b2bf929db012382438933383bd28b3c4
+labels:
+- Core
 timeCreated: 1477490965
 licenseType: Free
 DefaultImporter:

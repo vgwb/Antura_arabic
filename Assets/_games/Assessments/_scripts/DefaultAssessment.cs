@@ -5,12 +5,12 @@ namespace EA4S.Assessment
 {
     public class DefaultAssessment : IAssessment
     {
-        DefaultAssessment(  IAnswerPlacer answ_placer,
-                            IQuestionPlacer question_placer,
-                            IQuestionGenerator question_generator,
-                            ILogicInjector logic_injector,
-                            IAssessmentConfiguration game_conf,
-                            IGameContext game_context)
+        public DefaultAssessment(   IAnswerPlacer answ_placer,
+                                    IQuestionPlacer question_placer,
+                                    IQuestionGenerator question_generator,
+                                    ILogicInjector logic_injector,
+                                    IAssessmentConfiguration game_conf,
+                                    IGameContext game_context)
         {
             AnswerPlacer = answ_placer;
             QuestionGenerator = question_generator;
@@ -33,10 +33,13 @@ namespace EA4S.Assessment
                         QuestionGenerator.GetNextAnswers()      );
                 
                 QuestionGenerator.CompleteRound();
-                QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
-                AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
 
-                while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating())
+                QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
+                while (QuestionPlacer.IsAnimating())
+                    yield return null;
+
+                AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
+                while (AnswerPlacer.IsAnimating())
                     yield return null;
 
                 LogicInjector.EnableGamePlay();

@@ -112,6 +112,11 @@ namespace EA4S.ThrowBalls
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         }
 
+        public bool IsTutorialLevel()
+        {
+            return roundNumber == 0;
+        }
+
         void Update()
         {
             if (roundNumber == 0)
@@ -145,7 +150,7 @@ namespace EA4S.ThrowBalls
 
         void FixedUpdate()
         {
-            if (isIdle && !BallController.instance.IsLaunched)
+            if (roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
             {
                 timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
 
@@ -168,6 +173,7 @@ namespace EA4S.ThrowBalls
 
         public void ResetScene()
         {
+            UIController.instance.Reset();
             UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
@@ -197,6 +203,18 @@ namespace EA4S.ThrowBalls
             isRoundOngoing = false;
         }
 
+        private void DisableLetters(bool disablePropsToo)
+        {
+            foreach (LetterController letterController in letterControllers)
+            {
+                letterController.Disable();
+                if (disablePropsToo)
+                {
+                    letterController.DisableProps();
+                }
+            }
+        }
+
         public IEnumerator StartNewRound()
         {
             ResetScene();
@@ -214,7 +232,7 @@ namespace EA4S.ThrowBalls
 
             AudioManager.I.PlayLetter(correctLetter.Key);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1f);
 
             int numLettersInRound = GetNumLettersInRound();
 
@@ -277,12 +295,12 @@ namespace EA4S.ThrowBalls
                 {
                     numRoundsWon++;
 
-                    if (numRoundsWon == 2)
+                    if (numRoundsWon == 1)
                     {
                         MinigamesUI.Starbar.GotoStar(0);
                     }
 
-                    else if (numRoundsWon == 4)
+                    else if (numRoundsWon == 3)
                     {
                         MinigamesUI.Starbar.GotoStar(1);
                     }
@@ -309,11 +327,19 @@ namespace EA4S.ThrowBalls
         {
             if (isRoundOngoing)
             {
-                DisplayRoundResult(false);
                 ballController.Disable();
-
                 isRoundOngoing = false;
+                DisableLetters(true);
+
+                StartCoroutine(OnRoundLostCoroutine());
             }
+        }
+
+        private IEnumerator OnRoundLostCoroutine()
+        {
+            AudioManager.I.PlaySfx(Sfx.Lose);
+            yield return new WaitForSeconds(3f);
+            OnRoundConcluded();
         }
 
         private IEnumerator ShowWinSequence(LetterController correctLetterCntrl)
@@ -329,7 +355,7 @@ namespace EA4S.ThrowBalls
 
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);
-            correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
+            correctLetterCntrl.MoveTo(0, 13.5f, -33f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.Show();
             correctLetterCntrl.letterObjectView.DoHorray();
@@ -337,9 +363,9 @@ namespace EA4S.ThrowBalls
 
             AudioManager.I.PlaySfx(Sfx.Win);
 
-            yield return new WaitForSeconds(1.3f);
+            yield return new WaitForSeconds(3f);
 
-            DisplayRoundResult(true);
+            OnRoundConcluded();
         }
 
         public void OnBallLost()
@@ -363,26 +389,8 @@ namespace EA4S.ThrowBalls
             }
         }
 
-        private void DisplayRoundResult(bool win)
+        public void OnRoundConcluded()
         {
-            UIController.instance.Disable();
-
-            if (win)
-            {
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
-            }
-
-            else
-            {
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
-            }
-        }
-
-        public void OnRoundResultPressed()
-        {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-            WidgetPopupWindow.I.Close();
-
             roundNumber++;
 
             if (roundNumber > MAX_NUM_ROUNDS)
@@ -424,17 +432,17 @@ namespace EA4S.ThrowBalls
 
             int numberOfStars = 2;
 
-            if (numRoundsWon <= 0)
+            if (numRoundsWon == 0)
             {
                 numberOfStars = 0;
                 WidgetSubtitles.I.DisplaySentence("game_result_retry");
             }
-            else if (numRoundsWon <= 2)
+            else if (numRoundsWon == 1 || numRoundsWon == 2)
             {
                 numberOfStars = 1;
                 WidgetSubtitles.I.DisplaySentence("game_result_fair");
             }
-            else if (numRoundsWon <= 4)
+            else if (numRoundsWon == 3 || numRoundsWon == 4)
             {
                 numberOfStars = 2;
                 WidgetSubtitles.I.DisplaySentence("game_result_good");

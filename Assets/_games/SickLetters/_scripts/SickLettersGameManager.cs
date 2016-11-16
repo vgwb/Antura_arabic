@@ -40,15 +40,16 @@ namespace EA4S.SickLetters
             StartCoroutine(game.scale.dropVase(3, true));
         }
 
-        public void holeON()
+        public void holeON(float speed = 1)
         {
-            StartCoroutine(coHoleOn());
+            StartCoroutine(coHoleOn(speed));
         }
 
-        IEnumerator coHoleOn()
+        IEnumerator coHoleOn(float speed)
         {
+            game.hole.gameObject.SetActive(true);
             game.hole["Take 001"].wrapMode = WrapMode.PingPong;
-            game.hole["Take 001"].speed = 1;
+            game.hole["Take 001"].speed = speed;
             game.hole.Play("Take 001");
             yield return new WaitForSeconds(game.hole["Take 001"].length * 2 / game.hole["Take 001"].speed);
             //game.hole["Take 001"]

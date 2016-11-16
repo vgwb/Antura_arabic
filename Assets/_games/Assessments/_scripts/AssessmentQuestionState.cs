@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -6,7 +7,7 @@ namespace EA4S.Assessment
     {
         private AssessmentGame assessmentGame;
 
-        public AssessmentQuestionState(AssessmentGame assessmentGame)
+        public AssessmentQuestionState( AssessmentGame assessmentGame)
         {
             this.assessmentGame = assessmentGame;
         }
@@ -16,34 +17,13 @@ namespace EA4S.Assessment
             // Enable popup widget
             var popupWidget = assessmentGame.Context.GetPopupWidget();
             popupWidget.Show();
-            popupWidget.SetButtonCallback(OnPopupCloseRequested);
-            popupWidget.SetMessage(GetDescription(), true);
-        }
-
-        private string GetDescription()
-        {
-            switch (assessmentGame.assessmentCode) {
-                case AssessmentCode.MatchLettersToWord:
-                    return MatchLettersToWordConfiguration.Instance.Description;
-
-                case AssessmentCode.LetterShape:
-                    return null;
-
-                case AssessmentCode.WordsWithLetter:
-                    return null;
-            }
-
-            return null;
-        }
-
-        void OnQuestionCompleted()
-        {
-            assessmentGame.SetCurrentState(assessmentGame.PlayState);
+            popupWidget.SetButtonCallback( OnPopupCloseRequested);
+            popupWidget.SetMessage( AssessmentConfiguration.Instance.Description, true);
         }
 
         void OnPopupCloseRequested()
         {
-            assessmentGame.SetCurrentState(assessmentGame.PlayState);
+            assessmentGame.SetCurrentState( assessmentGame.PlayState);
         }
 
         public void ExitState()

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace EA4S
+﻿namespace EA4S.Tobogan
 {
     public class SunMoonTutorialQuestionProvider : IQuestionProvider
     {

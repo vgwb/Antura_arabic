@@ -29,7 +29,7 @@ namespace EA4S.ThrowBalls
         {
             Vector3 centerPosition = center.transform.position;
             float cameraDistance = Mathf.Abs(Camera.main.transform.position.z - centerPosition.z);
-            cameraDistance = 23f;
+            cameraDistance = 26f;
             centerPosition.y = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 3, cameraDistance)).y;
             center.transform.position = centerPosition;
 
@@ -40,7 +40,7 @@ namespace EA4S.ThrowBalls
 
         void FixedUpdate()
         {
-            if (!BallController.instance.IsLaunched)
+            if (!BallController.instance.IsLaunched())
             {
                 UpdateLaunchForce();
                 UpdatePointOfImpact();
