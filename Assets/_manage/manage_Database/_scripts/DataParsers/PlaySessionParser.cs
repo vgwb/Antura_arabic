@@ -45,6 +45,8 @@ namespace EA4S.Db.Management
                 }
                 minigameStruct.MiniGameCode = (MiniGameCode)System.Enum.Parse(typeof(MiniGameCode), assessmentType);
                 minigameStruct.Weight = 1;  // weight is forced to be 1
+
+                list.Add(minigameStruct);
             }
             else
             {
