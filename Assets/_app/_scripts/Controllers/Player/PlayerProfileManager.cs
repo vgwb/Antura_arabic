@@ -90,20 +90,21 @@ namespace EA4S {
         /// <returns></returns>
         public PlayerProfile CreateOrLoadPlayerProfile(int _avatarId) {
 
-            PlayerProfile retunrProfile = LoadPlayerProfileByAvatarId(_avatarId);
-            if (retunrProfile == null) {
-                retunrProfile = new PlayerProfile();
+            PlayerProfile returnProfile = LoadPlayerProfileByAvatarId(_avatarId);
+            if (returnProfile == null) {
+                returnProfile = new PlayerProfile();
                 // create new
-                retunrProfile.Id = AvailablePlayerProfiles.Count + 1;
-                retunrProfile.AvatarId = _avatarId;
-                retunrProfile.Key = retunrProfile.Id.ToString();
-                retunrProfile = AppManager.Instance.Modules.PlayerProfile.CreateNewPlayer(retunrProfile) as PlayerProfile;
+                returnProfile.Id = AvailablePlayerProfiles.Count + 1;
+                returnProfile.AvatarId = _avatarId;
+                returnProfile.Key = returnProfile.Id.ToString();
+                returnProfile = AppManager.Instance.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
                 //GameManager.Instance.PlayerProfile.ActivePlayer = this;
 
             }
-            AppManager.Instance.PlayerProfileManager.AvailablePlayerProfiles.Add(retunrProfile);
+            AppManager.Instance.PlayerProfileManager.ActualPlayer = returnProfile as PlayerProfile;
+            //AppManager.Instance.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer);
+            //AppManager.Instance.GameSettings.AvailablePlayers.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer.Id.ToString());
             SaveGameSettings();
-            AppManager.Instance.PlayerProfileManager.ActualPlayer = retunrProfile as PlayerProfile;
             return AppManager.Instance.PlayerProfileManager.ActualPlayer;
         }
 
@@ -129,8 +130,9 @@ namespace EA4S {
         /// Saves the game settings.
         /// </summary>
         public void SaveGameSettings() {
-            AppManager.Instance.PlayerProfile.Options = AppManager.Instance.GameSettings;
-            AppManager.Instance.PlayerProfile.SaveAllOptions();
+            AppManager.Instance.Modules.PlayerProfile.Options = AppManager.Instance.GameSettings;
+            AppManager.Instance.Modules.PlayerProfile.SaveAllOptions();
+            reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>
