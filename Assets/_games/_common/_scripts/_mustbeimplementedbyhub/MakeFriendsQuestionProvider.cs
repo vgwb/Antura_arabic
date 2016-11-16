@@ -9,7 +9,7 @@ namespace EA4S
     /// <summary>
     /// This sample class generates 10 quizzes of type "I give you 2 words, you find the common letter(s)"
     /// </summary>
-    public class SampleWordsWithCommonLettersProvider : IQuestionProvider
+    public class MakeFriendsQuestionProvider : IQuestionProvider
     {
         List<SampleWordsWithCommonLettersPack> questions = new List<SampleWordsWithCommonLettersPack>();
         string description;
@@ -17,7 +17,7 @@ namespace EA4S
         int currentQuestion;
         readonly int quizzesCount = 10;
 
-        public SampleWordsWithCommonLettersProvider()
+        public MakeFriendsQuestionProvider()
         {
             currentQuestion = 0;
             description = "Questions description";
@@ -35,6 +35,7 @@ namespace EA4S
             for (int iteration = 0; iteration < quizzesCount; iteration++)
             {
                 // Get 2 words with at least 1 common letter
+                int outerLoopAttempts = 50;
                 do
                 {
                     newWordData1 = null;
@@ -44,22 +45,35 @@ namespace EA4S
                     commonLetters.Clear();
                     uncommonLetters.Clear();
 
+                    UnityEngine.Debug.Log("--- Reached Checkpoint -A- on iteration #" + iteration + " ---");
+
                     newWordData1 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
                     foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData1.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
                     {
                         wordLetters1.Add(letterData);
                     }
 
+                    UnityEngine.Debug.Log("--- Reached Checkpoint -B- on iteration #" + iteration + " ---");
+
+                    int innerLoopAttempts = 50;
                     do
                     {
                         newWordData2 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
-                    } while(newWordData2.Key == newWordData1.Key);
+                        innerLoopAttempts--;
+                    } while(newWordData2.Key == newWordData1.Key && innerLoopAttempts > 0);
+                    if (innerLoopAttempts <= 0)
+                    {
+                        UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find enough data!");
+                    }
+
+                    UnityEngine.Debug.Log("--- Reached Checkpoint -C- on iteration #" + iteration + " ---");
 
                     foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData2.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
                     {
                         wordLetters2.Add(letterData);
                     }
 
+                    UnityEngine.Debug.Log("--- Reached Checkpoint -D- on iteration #" + iteration + " ---");
 
                     // Find common letter(s) (without repetition)
                     for (int i = 0; i < wordLetters1.Count; i++)
@@ -75,6 +89,8 @@ namespace EA4S
                         }
                     }
 
+                    UnityEngine.Debug.Log("--- Reached Checkpoint -E- on iteration #" + iteration + " ---");
+
                     // Find uncommon letters (without repetition)
                     for (int i = 0; i < wordLetters1.Count; i++)
                     {
@@ -88,6 +104,9 @@ namespace EA4S
                             }
                         }
                     }
+
+                    UnityEngine.Debug.Log("--- Reached Checkpoint -F- on iteration #" + iteration + " ---");
+
                     for (int i = 0; i < wordLetters2.Count; i++)
                     {
                         var letter = wordLetters2[i];
@@ -100,7 +119,14 @@ namespace EA4S
                             }
                         }
                     }
-                } while(commonLetters.Count == 0);
+                    outerLoopAttempts--;
+                } while(commonLetters.Count == 0 && outerLoopAttempts > 0);
+                if (outerLoopAttempts <= 0)
+                {
+                    UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find enough data!");
+                }
+
+                UnityEngine.Debug.Log("--- Reached Checkpoint -G- on iteration #" + iteration + " ---");
 
                 commonLetters.Shuffle();
                 uncommonLetters.Shuffle();
@@ -110,6 +136,8 @@ namespace EA4S
 
                 var currentPack = new SampleWordsWithCommonLettersPack(newWordData1, newWordData2, wrongAnswers, correctAnswers);
                 questions.Add(currentPack);
+
+                UnityEngine.Debug.Log("--- Reached Checkpoint -H- on iteration #" + iteration + " ---");
             }
         }
 
