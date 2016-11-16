@@ -50,7 +50,10 @@ namespace EA4S
                         }
                         else
                         {
-                            item.text = item.text + " " + line;
+                            if (string.IsNullOrEmpty(item.text))
+                                item.text = line;
+                            else
+                                item.text = item.text + " " + line;
                         }
                     }
 
