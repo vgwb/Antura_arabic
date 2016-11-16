@@ -92,6 +92,10 @@ namespace EA4S.ThrowBalls
                 case State.Rebounding:
                     rigidBody.isKinematic = false;
                     break;
+                case State.Idle:
+                    rigidBody.isKinematic = true;
+                    AnturaController.instance.EnterScene();
+                    break;
                 default:
                     break;
             }
