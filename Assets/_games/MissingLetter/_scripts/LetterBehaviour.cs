@@ -302,12 +302,15 @@ namespace EA4S.MissingLetter
         private GameObject spotLight;
         private bool mbIsSpeaking;
 
-        public ILivingLetterData mLetterData;
-
         public LetterObjectView mLetter;
 
+        [HideInInspector]
+        public ILivingLetterData mLetterData;
+        [HideInInspector]
         public Action endTransformToCallback;
+        [HideInInspector]
         public Action<string> onLetterClick;
+        [HideInInspector]
         public event Action<GameObject> onLetterBecameInvisible;
 
         //public for pool

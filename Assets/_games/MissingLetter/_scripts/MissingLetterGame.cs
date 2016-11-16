@@ -14,6 +14,9 @@ namespace EA4S.MissingLetter
 
         public GameObject mLetterPrefab;
         public GameObject mAnturaRef;
+
+        //ref to particle System
+        public GameObject mParticleSystem;
         public Collider mFeedBackDisableLetters;
 
         public Transform mQuestionCamera;
