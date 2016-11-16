@@ -36,8 +36,8 @@ namespace EA4S
         public float Musicality;
         public float Sight;
 
-        public JourneyPosition MaxJourneyPosition;
-        public JourneyPosition CurrentJourneyPosition;
+        public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
+        public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
         public int CurrentMiniGameInPlaySession;
 
         #region Oldies
