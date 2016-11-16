@@ -42,15 +42,16 @@ namespace EA4S.Assessment
                 while (AnswerPlacer.IsAnimating())
                     yield return null;
 
+                //////////////////////////////
+                //// GAME LOGIC (WIP)
+                ////----
                 LogicInjector.EnableGamePlay();
 
                 while (LogicInjector.AllAnswersCorrect() == false)
                     yield return null;
-
-                // No score/time needed
-                LogicInjector.DisableGamePlay();
-
-                yield return null;
+                ////___
+                //// GAME LOGIC END
+                //////////////////////////////
 
                 QuestionPlacer.RemoveQuestions();
                 AnswerPlacer.RemoveAnswers();

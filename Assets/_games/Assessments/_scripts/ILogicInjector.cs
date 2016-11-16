@@ -1,4 +1,4 @@
-﻿namespace EA4S.Assessment
+namespace EA4S.Assessment
 {
     /// <summary>
     /// This class adds game-specific logic to LivingLetters Objects
@@ -8,6 +8,5 @@
         void Wire( IQuestion question, IAnswer[] answers);
         void EnableGamePlay();
         bool AllAnswersCorrect();
-        void DisableGamePlay();
     }
 }

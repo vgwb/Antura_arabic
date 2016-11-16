@@ -9,9 +9,11 @@ namespace EA4S.Assessment
         {
             Init(); // common initialization stuff
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
+            IGameContext context = configuration.Context;
+            IDragManager dragManager = new DefaultDragManager();
             IAudioManager audioManager      = configuration.Context.GetAudioManager();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
-            ILogicInjector injector         = new DefaultLogicInjector();
+            ILogicInjector injector         = new DefaultLogicInjector( dragManager);
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
             //            return new DefaultAssessment();
@@ -24,8 +26,9 @@ namespace EA4S.Assessment
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
             IAudioManager audioManager = configuration.Context.GetAudioManager();
             IGameContext context = configuration.Context;
+            IDragManager dragManager = new DefaultDragManager();
             IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
-            ILogicInjector injector = new DefaultLogicInjector();
+            ILogicInjector injector = new DefaultLogicInjector( dragManager);
             IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager);
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 

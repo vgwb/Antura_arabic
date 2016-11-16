@@ -1,8 +1,8 @@
-﻿namespace EA4S.Assessment
+namespace EA4S.Assessment
 {
-    internal interface ITickable
+    public interface ITickable
     {
-        //returns true as long as it is updated.
+        //returns true when updating is over
         bool Update( float deltaTime);
     }
 }
