@@ -27,5 +27,17 @@ namespace EA4S.Assessment
         {
             return isCorrect;
         }
+
+        int answerSet = 0;
+
+        public void SetAnswerSet( int set)
+        {
+            answerSet = set;
+        }
+
+        public int GetAnswerSet()
+        {
+            return answerSet;
+        }
     }
 }
