@@ -10,6 +10,10 @@ namespace EA4S.Tobogan
 
         bool hurryUpSfx;
 
+        float nextQuestionTimer;
+        float nextQuestiontime = 1f;
+        bool requestNextQueston;
+
         public ToboganPlayState(ToboganGame game)
         {
             this.game = game;
@@ -23,7 +27,7 @@ namespace EA4S.Tobogan
 
             game.isTimesUp = false;
             game.ResetScore();
-            
+
             // Reset game timer
             gameTime.Reset();
             gameTime.Start();
@@ -31,20 +35,26 @@ namespace EA4S.Tobogan
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
-
             hurryUpSfx = false;
 
             game.questionsManager.Enabled = true;
+
+            nextQuestionTimer = 0f;
+            requestNextQueston = false;
+
+            game.questionsManager.onAnswered += OnAnswered;
         }
 
 
         public void ExitState()
         {
+            game.questionsManager.onAnswered -= OnAnswered;
+
             game.questionsManager.Enabled = false;
 
             if (timesUpAudioSource != null)
                 timesUpAudioSource.Stop();
-            
+
             gameTime.Stop();
             game.pipesAnswerController.HidePipes();
         }
@@ -60,7 +70,7 @@ namespace EA4S.Tobogan
 
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
 
-            if(!hurryUpSfx)
+            if (!hurryUpSfx)
             {
                 if (gameTime.Time < 4f)
                 {
@@ -69,15 +79,31 @@ namespace EA4S.Tobogan
                     timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
                 }
             }
-            
+
             gameTime.Update(delta);
 
-            game.questionsManager.Update(delta);
+            if (requestNextQueston)
+            {
+                nextQuestionTimer -= delta;
+
+                if (nextQuestionTimer <= 0f)
+                {
+                    game.questionsManager.StartNewQuestion();
+                    requestNextQueston = false;
+                }
+            }
         }
 
-        public void UpdatePhysics(float delta)
-        {
+        public void UpdatePhysics(float delta) { }
 
+        void OnAnswered(bool result)
+        {
+            requestNextQueston = true;
+            nextQuestionTimer = nextQuestiontime;
+
+            game.questionsManager.QuestionEnd();
+
+            game.OnResult(result);
         }
 
         void OnTimesUp()

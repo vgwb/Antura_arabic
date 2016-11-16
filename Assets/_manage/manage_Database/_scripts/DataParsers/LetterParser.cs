@@ -34,41 +34,35 @@ namespace EA4S.Db.Management
         protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
         {
             ExtractEnum(rowdicts_list, "Kind");
-            ExtractEnum(rowdicts_list, "Type", addNoneValue:true);
-            ExtractEnum(rowdicts_list, "SunMoon", addNoneValue:true);
+            ExtractEnum(rowdicts_list, "Type", addNoneValue: true);
+            ExtractEnum(rowdicts_list, "SunMoon", addNoneValue: true);
         }
 
         protected override void FinalValidation(LetterTable table, Database db)
         {
             // Fields 'BaseLetter' and 'Symbol' are validated with a final validation step, since they are based on this same table
             // Also, Combination letters are validated with their BaseLetter and Symbol.
-            foreach (var data in table.GetValuesTyped())
-            {
-                if (data.Kind == LetterDataKind.Combination)
-                {
-                    if (data.BaseLetter == "")
-                    {
+            foreach (var data in table.GetValuesTyped()) {
+                if (data.Kind == LetterDataKind.Combination) {
+                    if (data.BaseLetter == "") {
                         LogValidation(data, "LetterData with id  " + data.Id + " is a Combination but does not have a BaseLetter.");
                     }
 
-                    if (data.Symbol == "")
-                    {
+                    if (data.Symbol == "") {
                         LogValidation(data, "LetterData with id  " + data.Id + " is a Combination but does not have a Symbol.");
                     }
 
-                    if (data.Id != data.BaseLetter + "_" + data.Symbol)
-                    {
+                    if ((data.Id != data.BaseLetter + "_" + data.Symbol) && (data.Id != "alef_hamza_hi" && data.Id != "alef_hamza_low")) {
+                        // alef_hamza_hi and alef_hamza_low are the only exceptions in the name format on Combinations
                         LogValidation(data, "LetterData with id  " + data.Id + " is a Combination, but the BaseLetter and Symbol do not match the Id.");
                     }
                 }
 
-                if (data.BaseLetter != "" && table.GetValue(data.BaseLetter) == null)
-                {
+                if (data.BaseLetter != "" && table.GetValue(data.BaseLetter) == null) {
                     LogValidation(data, "Cannot find id of LetterData for BaseLetter value " + data.BaseLetter + " (found in letter " + data.Id + ")");
                 }
 
-                if (data.Symbol != "" && table.GetValue(data.Symbol) == null)
-                {
+                if (data.Symbol != "" && table.GetValue(data.Symbol) == null) {
                     LogValidation(data, "Cannot find id of LetterData for Symbol value " + data.Symbol + " (found in letter " + data.Id + ")");
                 }
             }

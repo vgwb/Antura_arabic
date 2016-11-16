@@ -65,7 +65,7 @@ namespace EA4S.ThrowBalls
             UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
 
             // Layer 8 = Terrain. Layer 12 = Ball.
-            Physics.IgnoreLayerCollision(8, 12);
+            //Physics.IgnoreLayerCollision(8, 12);
 
             letterSpawner = new LetterSpawner();
 
@@ -95,7 +95,7 @@ namespace EA4S.ThrowBalls
             StartCoroutine("StartNewRound");
 
             AudioManager.I.PlayMusic(Music.MainTheme);
-            
+
             //LoggerEA4S.Log("minigame", "template", "start", "");
             //LoggerEA4S.Save();
         }
@@ -110,6 +110,11 @@ namespace EA4S.ThrowBalls
         {
             isIdle = true;
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
+        }
+
+        public bool IsTutorialLevel()
+        {
+            return roundNumber == 0;
         }
 
         void Update()
@@ -145,7 +150,7 @@ namespace EA4S.ThrowBalls
 
         void FixedUpdate()
         {
-            if (isIdle && !BallController.instance.IsLaunched)
+            if (roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
             {
                 timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
 
@@ -168,6 +173,7 @@ namespace EA4S.ThrowBalls
 
         public void ResetScene()
         {
+            UIController.instance.Reset();
             UIController.instance.Disable();
 
             foreach (LetterController letterController in letterControllers)
@@ -176,24 +182,13 @@ namespace EA4S.ThrowBalls
                 letterController.DisableProps();
             }
 
-            if (roundNumber == 0)
+            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3, roundNumber == 0);
+
+            for (int i = 0; i < GetNumLettersInRound(); i++)
             {
-                Vector3 tutorialPosition = letterSpawner.GetTutorialPosition();
-                GameObject letter = letterPool[0];
-                letter.transform.position = tutorialPosition;
+                GameObject letter = letterPool[i];
+                letter.transform.position = randomPositions[i];
                 letter.SetActive(false);
-            }
-
-            else
-            {
-                Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(3);
-
-                for (int i = 0; i < GetNumLettersInRound(); i++)
-                {
-                    GameObject letter = letterPool[i];
-                    letter.transform.position = randomPositions[i];
-                    letter.SetActive(false);
-                }
             }
 
             ballController.Reset();
@@ -204,8 +199,20 @@ namespace EA4S.ThrowBalls
             {
                 MinigamesUI.Lives.ResetToMax();
             }
-            
+
             isRoundOngoing = false;
+        }
+
+        private void DisableLetters(bool disablePropsToo)
+        {
+            foreach (LetterController letterController in letterControllers)
+            {
+                letterController.Disable();
+                if (disablePropsToo)
+                {
+                    letterController.DisableProps();
+                }
+            }
         }
 
         public IEnumerator StartNewRound()
@@ -225,13 +232,9 @@ namespace EA4S.ThrowBalls
 
             AudioManager.I.PlayLetter(correctLetter.Key);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1f);
 
             int numLettersInRound = GetNumLettersInRound();
-            bool evenLevelsMoveRight = UnityEngine.Random.Range(0, 2) % 2 == 0;
-
-            // Pick a random letter as the correct letter:
-            int correctLetterIndex = UnityEngine.Random.Range(0, numLettersInRound);
 
             for (int i = 0; i < numLettersInRound; i++)
             {
@@ -243,7 +246,7 @@ namespace EA4S.ThrowBalls
 
                 letterControllers[i].SetPropVariation(GetPropOfRound());
 
-                if (i == correctLetterIndex)
+                if (i == 0)
                 {
                     letterObj.tag = Constants.TAG_CORRECT_LETTER;
                     letterControllers[i].SetLetter(correctLetter);
@@ -263,13 +266,10 @@ namespace EA4S.ThrowBalls
 
             BallController.instance.Enable();
 
-            if (roundNumber > 0)
-            {
-                UIController.instance.Enable();
-                UIController.instance.SetLetterHint(correctLetter);
-            }
+            UIController.instance.Enable();
+            UIController.instance.SetLetterHint(correctLetter);
 
-            else
+            if (roundNumber == 0)
             {
                 ShowTutorialUI();
             }
@@ -281,7 +281,7 @@ namespace EA4S.ThrowBalls
 
             Vector3 worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(0, 8, -20));
             Vector3 fromPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
-            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-0.75f, 4.5f, -22));
+            worldToScreen = Camera.main.WorldToScreenPoint(new Vector3(-1.5f, 4.5f, -22));
             Vector3 toPoint = Camera.main.ScreenToWorldPoint(new Vector3(worldToScreen.x, worldToScreen.y, 20f));
             TutorialUI.DrawLine(fromPoint, toPoint, TutorialUI.DrawLineMode.FingerAndArrow);
             timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
@@ -295,12 +295,12 @@ namespace EA4S.ThrowBalls
                 {
                     numRoundsWon++;
 
-                    if (numRoundsWon == 2)
+                    if (numRoundsWon == 1)
                     {
                         MinigamesUI.Starbar.GotoStar(0);
                     }
 
-                    else if (numRoundsWon == 4)
+                    else if (numRoundsWon == 3)
                     {
                         MinigamesUI.Starbar.GotoStar(1);
                     }
@@ -327,11 +327,19 @@ namespace EA4S.ThrowBalls
         {
             if (isRoundOngoing)
             {
-                DisplayRoundResult(false);
                 ballController.Disable();
-
                 isRoundOngoing = false;
+                DisableLetters(true);
+
+                StartCoroutine(OnRoundLostCoroutine());
             }
+        }
+
+        private IEnumerator OnRoundLostCoroutine()
+        {
+            AudioManager.I.PlaySfx(Sfx.Lose);
+            yield return new WaitForSeconds(3f);
+            OnRoundConcluded();
         }
 
         private IEnumerator ShowWinSequence(LetterController correctLetterCntrl)
@@ -350,10 +358,14 @@ namespace EA4S.ThrowBalls
             correctLetterCntrl.MoveTo(0, 15.7f, -31.6f);
             correctLetterCntrl.transform.rotation = Quaternion.Euler(-Camera.main.transform.rotation.eulerAngles.x, 180, 0);
             correctLetterCntrl.Show();
+            correctLetterCntrl.letterObjectView.DoHorray();
+            correctLetterCntrl.ShowVictoryRays();
 
-            yield return new WaitForSeconds(1.3f);
+            AudioManager.I.PlaySfx(Sfx.Win);
 
-            DisplayRoundResult(true);
+            yield return new WaitForSeconds(3f);
+
+            OnRoundConcluded();
         }
 
         public void OnBallLost()
@@ -377,26 +389,8 @@ namespace EA4S.ThrowBalls
             }
         }
 
-        private void DisplayRoundResult(bool win)
+        public void OnRoundConcluded()
         {
-            UIController.instance.Disable();
-
-            if (win)
-            {
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
-            }
-
-            else
-            {
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
-            }
-        }
-
-        public void OnRoundResultPressed()
-        {
-            AudioManager.I.PlaySfx(Sfx.UIButtonClick);
-            WidgetPopupWindow.I.Close();
-
             roundNumber++;
 
             if (roundNumber > MAX_NUM_ROUNDS)
@@ -417,15 +411,8 @@ namespace EA4S.ThrowBalls
 
         private int GetNumLettersInRound()
         {
-            if (roundNumber == 0)
-            {
-                return 1;
-            }
 
-            else
-            {
-                return 3;
-            }
+            return 3;
         }
 
         private void EndGame()
@@ -445,17 +432,17 @@ namespace EA4S.ThrowBalls
 
             int numberOfStars = 2;
 
-            if (numRoundsWon <= 0)
+            if (numRoundsWon == 0)
             {
                 numberOfStars = 0;
                 WidgetSubtitles.I.DisplaySentence("game_result_retry");
             }
-            else if (numRoundsWon <= 2)
+            else if (numRoundsWon == 1 || numRoundsWon == 2)
             {
                 numberOfStars = 1;
                 WidgetSubtitles.I.DisplaySentence("game_result_fair");
             }
-            else if (numRoundsWon <= 4)
+            else if (numRoundsWon == 3 || numRoundsWon == 4)
             {
                 numberOfStars = 2;
                 WidgetSubtitles.I.DisplaySentence("game_result_good");
@@ -494,7 +481,7 @@ namespace EA4S.ThrowBalls
                 return LetterController.MotionVariation.Popping;
             }
 
-            else if(normalizedDifficulty <= 2.4f)
+            else if (normalizedDifficulty <= 2.4f)
             {
                 return LetterController.MotionVariation.Jumping;
             }

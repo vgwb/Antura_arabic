@@ -89,6 +89,10 @@ public class AnturaAnimationController : MonoBehaviour
         }
     }
 
+    // Check if animation is actually moving legs
+    int walkRefCount = 0;
+    public bool IsAnimationActuallyWalking { get { return walkRefCount > 0; } }
+
     System.Action onShoutStartedCallback;
 
     public void SetWalkingSpeed(float speed = WALKING_SPEED)
@@ -231,5 +235,15 @@ public class AnturaAnimationController : MonoBehaviour
                 break;
 
         }
+    }
+
+    void OnAnimationWalkStart()
+    {
+        ++walkRefCount;
+    }
+
+    void OnAnimationWalkEnd()
+    {
+        --walkRefCount;
     }
 }

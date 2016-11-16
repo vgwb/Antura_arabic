@@ -33,7 +33,17 @@ namespace EA4S.API {
             switch (_gameCode) {
                 case MiniGameCode.Assessment_LetterShape:
                 case MiniGameCode.Assessment_WordsWithLetter:
-                case MiniGameCode.Assessment_LetterInWord:
+                case MiniGameCode.Assessment_MatchLettersToWord:
+                case MiniGameCode.Assessment_CompleteWord:
+                case MiniGameCode.Assessment_OrderLettersOfWord:
+                case MiniGameCode.Assessment_VowelOrConsonant:
+                case MiniGameCode.Assessment_SelectPronouncedWord:
+                case MiniGameCode.Assessment_MatchWordToImage:
+                case MiniGameCode.Assessment_WordArticle:
+                case MiniGameCode.Assessment_SingularDualPlural:
+                case MiniGameCode.Assessment_SunMoonWord:
+                case MiniGameCode.Assessment_SunMoonLetter:
+                case MiniGameCode.Assessment_QuestionAndReply:
                     break;
                 case MiniGameCode.AlphabetSong:
                     // Must be defined how use sentence data structure
@@ -145,15 +155,15 @@ namespace EA4S.API {
                     // Must be defined how use sentence data structure
                     break;
                 case MiniGameCode.Scanner:
-//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
+                    //                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;
-//                case MiniGameCode.Scanner_phrase:
-//                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
-//                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
-//                    actualConfig = Scanner.ScannerConfiguration.Instance;
-//                    break;
+                //                case MiniGameCode.Scanner_phrase:
+                //                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.phrase;
+                //                    Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                //                    actualConfig = Scanner.ScannerConfiguration.Instance;
+                //                    break;
                 case MiniGameCode.ThrowBalls_letters:
                     ThrowBalls.ThrowBallsConfiguration.Instance.Variation = ThrowBalls.ThrowBallsVariation.letters;
                     ThrowBalls.ThrowBallsConfiguration.Instance.Context = AnturaMinigameContext.Default;
