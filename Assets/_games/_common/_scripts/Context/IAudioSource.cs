@@ -7,6 +7,7 @@ namespace EA4S
         float Pitch { get; set; }
         float Volume { get; set; }
         float Duration { get; }
+        float Position { get; set; }
 
         bool IsPlaying { get; }
 
