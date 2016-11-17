@@ -11,6 +11,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 		public GameObject plane;
 		public bool isDragged;
 		public bool isMoving;
+        private bool isPanicing;
 		public bool isDraggable;
 
 		public Transform livingLetterTransform;
@@ -56,7 +57,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 			lastTube = null;
 			respawn = true;
             isResetting = false;
-
+            isPanicing = false;
         }
 
 		public void Initialize(float _maxY, LetterObjectView _letter, Vector3 tubePosition)
@@ -92,7 +93,7 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 		public void PlayHoldAnimation()
         {
-            letter.SetState(LLAnimationStates.LL_hanging);
+            letter.SetState(LLAnimationStates.LL_dragging);
 
             //livingLetterTransform.localPosition = holdPosition;
         }
@@ -256,8 +257,10 @@ public class TakeMeHomeLL : MonoBehaviour {
 			if (!clampPosition) {
 				if (respawn && transform.position.y < (maxY - 20)) {
 					AudioManager.I.PlaySfx (Sfx.Splat);
-					//transform.position = 
-					transform.position = tubeSpawnPosition;
+                    //transform.position = 
+                    isPanicing = false;
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                    transform.position = tubeSpawnPosition;
 					clampPosition = true;
                     transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                     transform.DOScale(0.8f, 0.5f);
@@ -324,13 +327,13 @@ public class TakeMeHomeLL : MonoBehaviour {
 		public void panicAndRun()
 		{
             //wait few milliseconds then move:
-            
-
-			isMoving = true;
+            if (isPanicing) return;
+            isPanicing = true;
+            isMoving = true;
 			isDraggable = false;
 			dropLetter = false;
 
-            StartCoroutine(waitForSeconds(1, ()=> {
+           // StartCoroutine(waitForSeconds(1, ()=> {
 
                 RotateTo(new Vector3(0, -90, 0), 0.5f);
 
@@ -356,7 +359,7 @@ public class TakeMeHomeLL : MonoBehaviour {
                     isMoving = false;
                 });
 
-            }));
+          //  }));
 
             
 
