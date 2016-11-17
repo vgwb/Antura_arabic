@@ -18,61 +18,62 @@ namespace EA4S
 
             var words = new List<KaraokeSegment>();
 
-            var reader = new StreamReader(stream, true);
-
-            var parts = GetParts(reader);
-            if (parts.Count > 0)
+            using (var reader = new StreamReader(stream, true))
             {
-                foreach (var p in parts)
+                var parts = GetParts(reader);
+                if (parts.Count > 0)
                 {
-                    var lines = p.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-                    var item = new KaraokeSegment();
-                    bool parsedTime = false;
-                    for (int i = 0; i < lines.Length; ++i)
+                    foreach (var p in parts)
                     {
-                        var line = lines[i];
-                        line = line.Trim();
-                        if (string.IsNullOrEmpty(line))
-                            continue;
+                        var lines = p.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
-                        if (!parsedTime)
+                        var item = new KaraokeSegment();
+                        bool parsedTime = false;
+                        for (int i = 0; i < lines.Length; ++i)
                         {
-                            float startTime;
-                            float endTime;
+                            var line = lines[i];
+                            line = line.Trim();
+                            if (string.IsNullOrEmpty(line))
+                                continue;
 
-                            if (TryParseTime(line, out startTime, out endTime))
+                            if (!parsedTime)
                             {
-                                parsedTime = true;
-                                item.start = startTime;
-                                item.end = endTime;
+                                float startTime;
+                                float endTime;
+
+                                if (TryParseTime(line, out startTime, out endTime))
+                                {
+                                    parsedTime = true;
+                                    item.start = startTime;
+                                    item.end = endTime;
+                                }
+                            }
+                            else
+                            {
+                                if (string.IsNullOrEmpty(item.text))
+                                    item.text = line;
+                                else
+                                    item.text = item.text + " " + line;
                             }
                         }
-                        else
-                        {
-                            if (string.IsNullOrEmpty(item.text))
-                                item.text = line;
-                            else
-                                item.text = item.text + " " + line;
-                        }
+
+                        if (parsedTime && item.text != null)
+                            words.Add(item);
                     }
 
-                    if (parsedTime && item.text != null)
-                        words.Add(item);
-                }
-
-                if (words.Count > 0)
-                {
-                    return words;
+                    if (words.Count > 0)
+                    {
+                        return words;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("The song is empty");
+                    }
                 }
                 else
                 {
-                    throw new ArgumentException("The song is empty");
+                    throw new FormatException("Unable to parse VTT format.");
                 }
-            }
-            else
-            {
-                throw new FormatException("Unable to parse VTT format.");
             }
         }
 

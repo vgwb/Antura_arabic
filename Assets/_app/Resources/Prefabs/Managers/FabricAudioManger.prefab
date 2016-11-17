@@ -16470,16 +16470,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logInfo: 0
   fooAudioGroups:
-  - mixerGroup: {fileID: 0}
+  - mixerGroup: {fileID: 24356758, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
     id: 3
     maxSources: -1
     preallocate: 8
     recycle: 1
     fooVolume: 1
-  - mixerGroup: {fileID: 0}
+  - mixerGroup: {fileID: 24331624, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
     id: 7
     maxSources: -1
     preallocate: 8
+    recycle: 1
+    fooVolume: 1
+  - mixerGroup: {fileID: 24348940, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+    id: 4
+    maxSources: 1
+    preallocate: 1
     recycle: 1
     fooVolume: 1
   fooGlobalVolume: 1
