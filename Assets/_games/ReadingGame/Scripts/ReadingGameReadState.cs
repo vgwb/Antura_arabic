@@ -69,7 +69,7 @@ namespace EA4S.ReadingGame
             else
             {
                 game.barSet.SetData(game.alphabetSong);
-                game.barSet.PlaySong(game.Context.GetAudioManager().PlayMusic(game.alphabetSongAudio));
+                game.barSet.PlaySong(game.Context.GetAudioManager().PlayMusic(game.alphabetSongAudio), OnSongEnded);
             }
 
             game.barSet.active = true;
@@ -192,6 +192,11 @@ namespace EA4S.ReadingGame
         void OnPointerUp()
         {
             dragging = null;
+        }
+
+        void OnSongEnded()
+        {
+            game.EndGame(game.CurrentStars, game.CurrentScore);
         }
     }
 }
