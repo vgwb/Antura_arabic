@@ -193,4 +193,12 @@ public class ReadingBar : MonoBehaviour
     {
         return Vector3.Lerp(start.position, endCompleted.position, currentReading);
     }
+
+    public float GetWidth()
+    {
+        var startScreen = Camera.main.WorldToScreenPoint(start.position);
+        var endScreen = Camera.main.WorldToScreenPoint(endCompleted.position);
+
+        return Vector3.Distance(startScreen, endScreen);
+    }
 }
