@@ -6,6 +6,7 @@ namespace EA4S
 {
     public class SampleAudioManager : IAudioManager
     {
+        DeAudioGroup musicGroup;
         DeAudioGroup wordsLettersGroup;
         DeAudioGroup sfxGroup;
 
@@ -25,10 +26,16 @@ namespace EA4S
                 if (musicEnabled)
                 {
                     PlayMusic(currentMusic);
+                    
+                    if (musicGroup != null)
+                        musicGroup.Resume();
                 }
                 else
                 {
                     StopMusic();
+
+                    if (musicGroup != null)
+                        musicGroup.Pause();
                 }
             }
         }
@@ -78,7 +85,9 @@ namespace EA4S
         public void PlayMusic(Music music)
         {
             currentMusic = music;
-            AudioManager.I.PlayMusic(music);
+
+            if (musicEnabled)
+                AudioManager.I.PlayMusic(music);
         }
 
         public IAudioSource PlaySound(Sfx sfx)
@@ -109,6 +118,19 @@ namespace EA4S
         public void Reset()
         {
             AudioManager.I.ClearCache();
+        }
+
+        public IAudioSource PlayMusic(AudioClip clip)
+        {
+            if (musicGroup == null)
+            {
+                musicGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Music);
+                musicGroup.mixerGroup = AudioManager.I.musicGroup;
+            }
+
+            var source = musicGroup.Play(clip);
+
+            return new SampleAudioSource(source, musicGroup);
         }
     }
 }

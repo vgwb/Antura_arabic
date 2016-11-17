@@ -35,7 +35,9 @@ namespace EA4S {
         /// List of available player profiles (already created).
         /// </summary>
         public List<PlayerProfile> AvailablePlayerProfiles {
-            get { return availablePlayerProfiles; }
+            get {
+                reloadAvailablePlayerProfilesList();
+                return availablePlayerProfiles; }
             set { availablePlayerProfiles = value; }
         }
 
@@ -47,6 +49,7 @@ namespace EA4S {
             AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             if (AppManager.Instance.GameSettings.LastActivePlayerId > 0)
                 ActualPlayer = LoadPlayerProfileById(AppManager.Instance.GameSettings.LastActivePlayerId);
+            reloadAvailablePlayerProfilesList();
         }
 
         void reloadAvailablePlayerProfilesList() {
@@ -66,7 +69,6 @@ namespace EA4S {
         /// </summary>
         public PlayerProfileManager() {
             reloadGameSettings();
-            reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>
@@ -98,14 +100,20 @@ namespace EA4S {
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
                 returnProfile = AppManager.Instance.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
-                //GameManager.Instance.PlayerProfile.ActivePlayer = this;
-
             }
             AppManager.Instance.PlayerProfileManager.ActualPlayer = returnProfile as PlayerProfile;
-            //AppManager.Instance.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer);
+            AppManager.Instance.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer);
             //AppManager.Instance.GameSettings.AvailablePlayers.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer.Id.ToString());
             SaveGameSettings();
             return AppManager.Instance.PlayerProfileManager.ActualPlayer;
+        }
+
+        /// <summary>
+        /// Saves the player settings.
+        /// </summary>
+        /// <param name="_playerProfile">The player profile.</param>
+        public void SavePlayerSettings(PlayerProfile _playerProfile) {
+            AppManager.Instance.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
         }
 
         /// <summary>

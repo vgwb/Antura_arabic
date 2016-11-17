@@ -219,16 +219,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 114000012269035834}
   start: {fileID: 224000012405920772}
-  end: {fileID: 224000011639594234}
+  target: {fileID: 224000011639594234}
   endCompleted: {fileID: 224000011636451664}
   clearColor: {r: 1, g: 1, b: 1, a: 1}
   doneColor: {r: 0.5294118, g: 0.4733564, b: 0.41262978, a: 1}
   currentReading: 0
+  currentTarget: 1
   startOffset: 2
   endOffset: 2
   glass: {fileID: 114000013343536864}
   backSprite: {fileID: 114000013361117970}
   alpha: 0
+  Id: 0
 --- !u!114 &114000011169587322
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -25,17 +25,16 @@ namespace EA4S
         public GameObject stepsParent;
         public Vector3 pinLeft, pinRight;
         Quaternion rot;
-        int numDot=0;
+        int numDot = 0;
         int numLearningBlock;
         void Awake()
         {
             posDots = new GameObject[22];
-            for(numLearningBlock = 0; numLearningBlock < (posPines.Length-1); numLearningBlock++)
-            {
+            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++) {
                 pinLeft = posPines[numLearningBlock].position;
                 pinRight = posPines[numLearningBlock + 1].position;
 
-                CalculateStepsBetweenPines(pinLeft, pinRight);        
+                CalculateStepsBetweenPines(pinLeft, pinRight);
             }
             pinLeft = posPines[0].position;
             pinRight = posPines[1].position;
@@ -46,6 +45,17 @@ namespace EA4S
 
         void Start()
         {
+            /* FIRST CONTACT FEATURE */
+            if (AppManager.Instance.Player.IsFirstContact()) {
+                // Put Here logic for first contact only situation
+                // ...
+                
+                // ..and set first contact done.
+                AppManager.Instance.Player.FirstContactPassed();
+                Debug.Log("First Contact finished! Good Luck!");
+            }
+            /* --------------------- */
+
             Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
             Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
             //Debug.Log("LBlock " + AppManager.Instance.Teacher.GetMiniGamesForCurrentPlaySession());
@@ -58,28 +68,26 @@ namespace EA4S
         }
         void Update()
         {
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
-            Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
+            //Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+            //Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
         }
 
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
         {
             float step = 1f / (numStepsBetweenPines + 1);
-            for (float perc = step; perc < 1f; perc += step)
-            {
+            for (float perc = step; perc < 1f; perc += step) {
                 Vector3 v = Vector3.Lerp(p1, p2, perc);
-                
+
                 rot.eulerAngles = new Vector3(90, 0, 0);
                 GameObject dotGo;
                 dotGo = Instantiate(dot, v, rot) as GameObject;
                 dotGo.GetComponent<Dot>().learningBlockActual = numLearningBlock + 1;
                 dotGo.GetComponent<Dot>().pos = numDot;
-                if (numLearningBlock < posPines.Length - 1)
-                {
+                if (numLearningBlock < posPines.Length - 1) {
                     ropes[numLearningBlock].GetComponent<Rope>().dots.Add(dotGo);
                     ropes[numLearningBlock].GetComponent<Rope>().learningBlockRope = numLearningBlock + 1;
-                }                              
-                if(numDot%2==0)
+                }
+                if (numDot % 2 == 0)
                     dotGo.GetComponent<Dot>().playSessionActual = 1;
                 else
                     dotGo.GetComponent<Dot>().playSessionActual = 2;
@@ -113,8 +121,7 @@ namespace EA4S
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();
-            for (int i = 0; i < scoreData_list.Count; i++)
-            {
+            for (int i = 0; i < scoreData_list.Count; i++) {
                 var data = AppManager.Instance.DB.GetPlaySessionDataById(scoreData_list[i].ElementId);
                 playSessionState_list.Add(new PlaySessionState(data, scoreData_list[i].Score));
             }

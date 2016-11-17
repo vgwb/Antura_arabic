@@ -37,10 +37,14 @@ namespace EA4S.ReadingGame
 
             // Reset game timer
             gameTime.Reset(ReadingGameGame.TIME_TO_ANSWER);
-            gameTime.Start();
 
-            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
-            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+            {
+                gameTime.Start();
+
+                game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
+                game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+            }
 
             hurryUpSfx = false;
 
@@ -48,19 +52,27 @@ namespace EA4S.ReadingGame
 
             inputManager.onPointerDown += OnPointerDown;
             inputManager.onPointerUp += OnPointerUp;
-            
+
             game.blurredText.SetActive(true);
             //game.circleBox.SetActive(false);
 
-            // Pick a question
-            var pack = ReadingGameConfiguration.Instance.Questions.GetNextQuestion();
-            game.CurrentQuestion = pack;
-            game.barSet.active = true;
-            if (pack != null)
-                game.barSet.SetData(pack.GetQuestion());
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+            {
+                // Pick a question
+                var pack = ReadingGameConfiguration.Instance.Questions.GetNextQuestion();
+                game.CurrentQuestion = pack;
+                if (pack != null)
+                    game.barSet.SetData(pack.GetQuestion());
+                else
+                    game.EndGame(game.CurrentStars, game.CurrentScore);
+            }
             else
-                game.EndGame(game.CurrentStars, game.CurrentScore);
+            {
+                game.barSet.SetData(game.alphabetSong);
+                game.barSet.PlaySong(game.Context.GetAudioManager().PlayMusic(game.alphabetSongAudio));
+            }
 
+            game.barSet.active = true;
             completedDragging = false;
         }
 
@@ -101,32 +113,41 @@ namespace EA4S.ReadingGame
             if (dragging != null)
             {
                 var inputManager = game.Context.GetInputManager();
-                completedDragging = dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset);
+                completedDragging = dragging.SetGlassScreenPosition(inputManager.LastPointerPosition + draggingOffset,
+                    ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer);
             }
             else
             {
-                if (completedDragging)
+                if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
                 {
-                    var completedAllBars = game.barSet.SwitchToNextBar();
 
-                    if (completedAllBars)
+                    if (completedDragging)
                     {
-                        // go to Buttons State
-                        game.AnswerState.ReadTime = gameTime.Time;
-                        game.AnswerState.MaxTime = gameTime.Duration;
-                        game.SetCurrentState(game.AnswerState);
-                        return;
-                    }
-                }
+                        var completedAllBars = game.barSet.SwitchToNextBar();
 
-                completedDragging = false;
+                        if (completedAllBars)
+                        {
+                            // go to Buttons State
+                            game.AnswerState.ReadTime = gameTime.Time;
+                            game.AnswerState.MaxTime = gameTime.Duration;
+                            game.SetCurrentState(game.AnswerState);
+                            return;
+                        }
+                    }
+
+                    completedDragging = false;
+                }
+                else // AlphabetSong
+                {
+
+                }
             }
 
             float perc = gameTime.Time / gameTime.Duration;
 
             if (perc < 0.05f)
                 game.antura.Mood = ReadingGameAntura.AnturaMood.SAD;
-            else if(perc < 0.5f)
+            else if (perc < 0.5f)
                 game.antura.Mood = ReadingGameAntura.AnturaMood.ANGRY;
             else
                 game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
