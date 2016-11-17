@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace EA4S.Assessment
 {
@@ -14,6 +15,11 @@ namespace EA4S.Assessment
                     instance = new TimeEngine();
                 return instance;
             }
+        }
+
+        public static void AddTickable( ITickable tickable)
+        {
+            instance.yieldInstructions.Add( tickable);
         }
 
         List<ITickable> yieldInstructions = new List< ITickable>();
