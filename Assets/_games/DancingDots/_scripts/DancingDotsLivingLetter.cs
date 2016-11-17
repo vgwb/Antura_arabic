@@ -42,7 +42,7 @@ namespace EA4S.DancingDots
 		{
 
 			fullText = fullTextGO.GetComponent<TextMeshPro>();
-
+			HideRainbow();
 			PlayAnimation();
 		}
 
