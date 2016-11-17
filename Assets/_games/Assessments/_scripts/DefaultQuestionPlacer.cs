@@ -102,7 +102,8 @@ namespace EA4S.Assessment
             audioManager.PlaySound(Sfx.Poof);
             ll.transform.localPosition = position;
             ll.transform.DOScale( 1, 0.3f);
-            return TimeEngine.Wait( 0.6f);
+            q.gameObject.GetComponent<QuestionBehaviour>().OnSpawned();
+            return TimeEngine.Wait( 1.0f);
         }
 
         private IEnumerator PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)

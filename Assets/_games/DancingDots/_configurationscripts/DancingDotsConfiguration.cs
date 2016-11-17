@@ -36,8 +36,6 @@
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 			Context = new SampleGameContext();
 
-            Questions = new SampleQuestionProvider();
-
             Variation = DancingDotsVariation.V_1;
 			Questions = new DancingDotsQuestionProvider();
 			DancingDotsQuestions = new DancingDotsQuestionProvider();

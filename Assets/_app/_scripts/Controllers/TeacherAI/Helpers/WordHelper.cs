@@ -306,11 +306,27 @@ namespace EA4S.Db
             return dbManager.GetAllPhraseData();
         }
 
+        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice)
+        {
+            return dbManager.FindPhraseData(x => x.Category == choice);
+        }
+
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
         {
             var data = dbManager.GetPhraseDataById(startPhraseId);
+            return GetLinkedPhraseOf(data);
+        }
+
+        public PhraseData GetLinkedPhraseOf(PhraseData data)
+        {
             if (data.Linked == "") return null;
             return dbManager.FindPhraseData(x => x.Id == data.Linked)[0];
+        }
+
+        public List<PhraseData> GetPhrasesNotIn(params PhraseData[] tabooArray)
+        {
+            var tabooList = new List<PhraseData>(tabooArray);
+            return dbManager.FindPhraseData(x => !tabooList.Contains(x));
         }
 
         #endregion

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace EA4S.Assessment
@@ -7,10 +6,12 @@ namespace EA4S.Assessment
     {
         private int AnswerSetNumber = 0; // used to determine if answer is correct or not
         private IDragManager dragManager = null;
+        private IQuestionDecorator decorator = null;
 
-        public DefaultLogicInjector( IDragManager dragManager)
+        public DefaultLogicInjector( IDragManager dragManager, IQuestionDecorator decorator)
         {
             this.dragManager = dragManager;
+            this.decorator = decorator;
             ResetRound();
         }
 
@@ -48,10 +49,9 @@ namespace EA4S.Assessment
             WireAnswers( answers);
         }
 
-        private void WireQuestion( IQuestion question)
+        private void WireQuestion( IQuestion q)
         {
-            // Add Cover/Uncover for letter shape and audio pronunciation
-            // Logic injector complete apart that
+            decorator.DecorateQuestion( q.gameObject.GetComponent< QuestionBehaviour>());
         }
 
         private void WireAnswers( IAnswer[] answers)
@@ -79,6 +79,7 @@ namespace EA4S.Assessment
                 var behaviour = p.GetComponent< PlaceholderBehaviour>();
                 behaviour.Placeholder = new DragNDropPlaceholder();
                 behaviour.Placeholder.SetAnswer( AnswerSetNumber);
+                behaviour.Placeholder.SetQuestion( question);
                 placeholdersList.Add( behaviour);
             }
         }
