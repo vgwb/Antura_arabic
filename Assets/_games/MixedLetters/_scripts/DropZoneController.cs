@@ -25,11 +25,6 @@ namespace EA4S.MixedLetters
         void Start()
         {
             THROB_INIT_SCALE = transform.localScale.x;
-
-            Vector3 rotateButtonPosition = transform.position;
-            rotateButtonPosition.y += 2.2f;
-            rotateButtonPosition.z += 0.5f;
-            rotateButtonController.SetPosition(rotateButtonPosition);
         }
         
         void FixedUpdate()
@@ -44,6 +39,11 @@ namespace EA4S.MixedLetters
         public void SetPosition(Vector3 position)
         {
             transform.position = position;
+
+            Vector3 rotateButtonPosition = transform.position;
+            rotateButtonPosition.y += 2.2f;
+            rotateButtonPosition.z += 0.5f;
+            rotateButtonController.SetPosition(rotateButtonPosition);
         }
 
         public void Highlight()
@@ -143,11 +143,11 @@ namespace EA4S.MixedLetters
 
         public void OnRotateLetter()
         {
-            if (droppedLetter != null)
+            if (droppedLetter != null && !droppedLetter.IsRotating())
             {
                 droppedLetter.RotateCCW();
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.WheelTick);
-                MixedLettersGame.instance.VerifyLetters();
+                
             }
         }
 

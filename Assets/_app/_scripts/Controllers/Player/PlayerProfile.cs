@@ -144,7 +144,7 @@ namespace EA4S
 
         #region Profile completion
 
-        #region First contact (ProfileCompletion = 1)
+        #region First contact (ProfileCompletion = 1 & 2)
         /// <summary>
         /// Determines whether [is first contact].
         /// </summary>
@@ -152,22 +152,47 @@ namespace EA4S
         ///   <c>true</c> if [is first contact]; otherwise, <c>false</c>.
         /// </returns>
         public bool IsFirstContact() {
-            if (ProfileCompletion < 1)
+            if (ProfileCompletion < 2)
                 return true;
             else
                 return false;
         }
 
         /// <summary>
-        /// Set firsts contact flag as passed.
+        /// Determines whether [is first contact] whit [the specified step] (1 or 2).
         /// </summary>
-        public void FirstContactPassed() {
-            ProfileCompletion = 1;
+        /// <param name="_step">The step.</param>
+        /// <returns>
+        ///   <c>true</c> if [is first contact] [the specified step]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsFirstContact(int _step) {
+            if (_step < 0) return true;
+            if (_step > 2) return false;
+            if (ProfileCompletion == _step-1)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Set firsts contact flag as passed for step specified.
+        /// </summary>
+        /// <param name="_step">The step (1 (default) or 2).</param>
+        public void FirstContactPassed(int _step = 1) {
+            switch (_step) {
+                case 1:
+                    ProfileCompletion = _step;
+                    break;
+                case 2:
+                    ProfileCompletion = _step;
+                    break;
+            }
+            
             Save();
         }
         #endregion
 
-        #region BookVisited (ProfileCompletion = 2)                
+        #region BookVisited (ProfileCompletion = 3)                
         /// <summary>
         /// Determines whether [is first time book].
         /// </summary>
@@ -175,7 +200,7 @@ namespace EA4S
         ///   <c>true</c> if [is first time book]; otherwise, <c>false</c>.
         /// </returns>
         public bool IsFirstTimeBook() {
-            if (ProfileCompletion < 2)
+            if (ProfileCompletion < 3)
                 return true;
             else
                 return false;

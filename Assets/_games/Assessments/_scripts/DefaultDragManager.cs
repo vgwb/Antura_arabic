@@ -89,13 +89,13 @@ namespace EA4S.Assessment
 
         public void StopDragging( IDroppable droppable)
         {
-            if (this.droppable != droppable)
-                throw new InvalidOperationException("Can drop only previously dragged objet");
-
-            audioManager.PlaySound( Sfx.ThrowObj);
-            CheckCollidedWithPlaceholder();
-            this.droppable.StopDrag();
-            this.droppable = null;
+            if (this.droppable == droppable)
+            {
+                audioManager.PlaySound(Sfx.ThrowObj);
+                CheckCollidedWithPlaceholder();
+                this.droppable.StopDrag();
+                this.droppable = null;
+            }
         }
 
         private void CheckCollidedWithPlaceholder()
@@ -109,7 +109,7 @@ namespace EA4S.Assessment
                 }
 
             // In case we just moved out a LL
-            droppable.Detach(false);
+            droppable.Detach( false);
         }
 
         bool NearEnoughToDrop( Transform zone)
@@ -117,7 +117,7 @@ namespace EA4S.Assessment
             var p1 = zone.transform.position;
             var p2 = droppable.GetTransform().localPosition;
             p1.z = p2.z = 0;
-            return p1.DistanceIsLessThan( p2, 3f);
+            return p1.DistanceIsLessThan( p2, 2f);
         }
 
         bool ticking = false;
