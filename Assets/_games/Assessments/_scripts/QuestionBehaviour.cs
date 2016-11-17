@@ -25,6 +25,12 @@ namespace EA4S.Assessment
             return question;
         }
 
+        void OnMouseDown()
+        {
+            AssessmentConfiguration.Instance.Context.GetAudioManager()
+                .PlayLetterData( GetComponent< LetterObjectView>().Data);
+        }
+
         public IQuestionAnswered questionAnswered;
 
         internal void OnQuestionAnswered( IAudioManager audioManager)
