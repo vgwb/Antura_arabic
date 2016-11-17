@@ -73,6 +73,7 @@ namespace EA4S.Egg
             questionManager = new QuestionManager();
 
             tutorial = true;
+            overlayWidgetInitialized = false;
 
             currentStage = 0;
             correctStages = 0;
@@ -81,6 +82,16 @@ namespace EA4S.Egg
             eggButtonBox.Initialize(eggButtonPrefab, context.GetAudioManager());
             runLettersBox.Initialize(letterObjectPrefab, shadowPrefab);
             antura.Initialize(anturaPrefab);
+        }
+
+        bool overlayWidgetInitialized;
+        public void InitializeOverlayWidget()
+        {
+            if(!overlayWidgetInitialized)
+            {
+                overlayWidgetInitialized = true;
+                Context.GetOverlayWidget().Initialize(true, false, false);
+            }
         }
     }
 }
