@@ -7796,8 +7796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f042f9bb26c4a7c8d6d8ba0769b11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxGroup: {fileID: 0}
-  lettersGroup: {fileID: 0}
+  musicGroup: {fileID: 24348940, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+  sfxGroup: {fileID: 24356758, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+  lettersGroup: {fileID: 24331624, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
 --- !u!114 &11439240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16469,16 +16470,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logInfo: 0
   fooAudioGroups:
-  - mixerGroup: {fileID: 0}
+  - mixerGroup: {fileID: 24356758, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
     id: 3
     maxSources: -1
     preallocate: 8
     recycle: 1
     fooVolume: 1
-  - mixerGroup: {fileID: 0}
+  - mixerGroup: {fileID: 24331624, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
     id: 7
     maxSources: -1
     preallocate: 8
+    recycle: 1
+    fooVolume: 1
+  - mixerGroup: {fileID: 24348940, guid: 70c451da8e70e4eb0b5d0d3a49057230, type: 2}
+    id: 4
+    maxSources: 1
+    preallocate: 1
     recycle: 1
     fooVolume: 1
   fooGlobalVolume: 1

@@ -33,14 +33,6 @@ namespace EA4S.ThrowBalls
 
         public void EnterScene()
         {
-            if (!gameObject.activeSelf)
-            {
-                Enable();
-            }
-
-            animator.State = AnturaAnimationStates.walking;
-            animator.SetWalkingSpeed(1f);
-
             Vector3 ballPosition = BallController.instance.transform.position;
             Vector3 anturaPosition = ballPosition;
             anturaPosition.y = GroundController.instance.transform.position.y;
@@ -72,11 +64,11 @@ namespace EA4S.ThrowBalls
             transform.position = anturaPosition;
             jumpPoint = anturaPosition;
 
-            float velocityFactor = (-1 * JUMP_INIT_VELOCITY) - Mathf.Sqrt(Mathf.Pow(JUMP_INIT_VELOCITY, 2) - (2 * (anturaPosition.y + 4f - ballPosition.y) * Constants.GRAVITY.y));
+            float velocityFactor = (-1 * JUMP_INIT_VELOCITY) - Mathf.Sqrt(Mathf.Pow(JUMP_INIT_VELOCITY, 2) + (2 * (anturaPosition.y + 4f - ballPosition.y) * Constants.GRAVITY.y));
             velocityFactor = Mathf.Pow(velocityFactor, -1);
             velocityFactor *= Constants.GRAVITY.y;
 
-            jumpPoint.x = (ballPosition.x - 6.65f * Mathf.Sign(velocity.x)) - (velocity.x / velocityFactor);
+            jumpPoint.x = (ballPosition.x - 2f * Mathf.Sign(velocity.x)) - (velocity.x / velocityFactor);
 
             jumped = false;
             landed = false;
@@ -98,14 +90,14 @@ namespace EA4S.ThrowBalls
                     velocity.y = 0;
                     landed = true;
 
-                    //animator.OnJumpEnded();
+                    animator.OnJumpEnded();
 
                     Debug.Log("Landed");
                 }
 
                 else if (velocity.y < 0 && !reachedJumpMaxNotified)
                 {
-                    //animator.OnJumpMaximumHeightReached();
+                    animator.OnJumpMaximumHeightReached();
                     reachedJumpMaxNotified = true;
                 }
             }
@@ -119,7 +111,8 @@ namespace EA4S.ThrowBalls
 
                 jumped = true;
 
-                //animator.OnJumpStart();
+                Debug.Log("Jump started");
+                animator.OnJumpStart();
             }
 
             if (ballGrabbed)
@@ -131,13 +124,12 @@ namespace EA4S.ThrowBalls
             {
                 if (ballGrabbed)
                 {
+                    ballGrabbed = false;
                     ThrowBallsGameManager.Instance.OnBallLost();
                     BallController.instance.Reset();
                 }
-                
-                velocity = new Vector3(0, 0, 0);
 
-                ballGrabbed = false;
+                Disable();
             }
         }
 
@@ -145,9 +137,9 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL && !ballGrabbed)
             {
-                //animator.OnJumpGrab();
+                animator.OnJumpGrab();
                 BallController.instance.OnIntercepted(false);
-                ballOffset = BallController.instance.transform.position - transform.position;
+                ballOffset = new Vector3(Mathf.Sign(velocity.x) * 7.56f, 2f, 0f);
                 ballGrabbed = true;
             }
         }
@@ -177,6 +169,8 @@ namespace EA4S.ThrowBalls
             landed = false;
             reachedJumpMaxNotified = false;
             ballGrabbed = false;
+
+            //animator.State = AnturaAnimationStates.idle;
             animator.State = AnturaAnimationStates.walking;
             animator.SetWalkingSpeed(1f);
         }
