@@ -47,15 +47,54 @@ namespace EA4S.API {
                     actualConfig = Assessment.AssessmentConfiguration.Instance;
                     break;
                 case MiniGameCode.Assessment_CompleteWord:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.CompleteWord;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_OrderLettersOfWord:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.OrderLettersOfWord;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_VowelOrConsonant:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.VowelOrConsonant;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_SelectPronouncedWord:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.SelectPronouncedWord;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_MatchWordToImage:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.MatchWordToImage;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_WordArticle:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.WordArticle;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_SingularDualPlural:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.SingularDualPlural;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_SunMoonWord:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.SunMoonWord;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_SunMoonLetter:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.SunMoonLetter;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_QuestionAndReply:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.QuestionAndReply;
+                    Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
                     break;
                 case MiniGameCode.AlphabetSong:
                     // Must be defined how use sentence data structure
