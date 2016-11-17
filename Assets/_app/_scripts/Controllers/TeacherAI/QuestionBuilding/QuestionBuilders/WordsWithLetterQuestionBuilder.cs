@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
-
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
     public class WordsWithLetterQuestionBuilder : IQuestionBuilder
     {
+        // focus: Words & Letters
+        // pack history filter: TODO
+        // journey: TODO
+
         private int nPacks;
         private int nCorrect;
         private int nWrong;
@@ -47,6 +51,18 @@ namespace EA4S
                 var wrongWords = teacher.wordHelper.GetWordsNotIn(correctWords.ToArray()).RandomSelect(nWrong);
                 pack = QuestionPackData.Create(letter, correctWords, wrongWords);
                 found = true;
+
+                if (ConfigAI.verboseTeacher)
+                {
+                    string debugString = "--------- TEACHER: question pack result ---------";
+                    debugString += "\nQuestion: " + letter;
+                    debugString += "\nCorrect Answers: " + correctWords.Count;
+                    foreach (var l in correctWords) debugString += " " + l;
+                    debugString += "\nWrong Answers: " + wrongWords.Count;
+                    foreach (var l in wrongWords) debugString += " " + l;
+                    UnityEngine.Debug.Log(debugString);
+                }
+
             }
             if (!found)
             {

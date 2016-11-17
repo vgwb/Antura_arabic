@@ -3,13 +3,19 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public class ArticleWordsQuestionBuilder : IQuestionBuilder
+    public class LettersBySunMoonQuestionBuilder : IQuestionBuilder
     {
-        private int nPacks;
+        // focus: Letters
+        // pack history filter: by default, all different
+        // journey: enabled
 
-        public ArticleWordsQuestionBuilder(int nPacks)
+        private int nPacks;
+        SelectionSeverity severity;
+
+        public LettersBySunMoonQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
         {
             this.nPacks = nPacks;
+            this.severity = severity;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -18,25 +24,32 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             var db = AppManager.Instance.DB;
-
-            var withArticleWord = db.GetWordDataById("with_article");
-            var withoutArticleWord = db.GetWordDataById("without_article");
+            var choice1 = db.GetWordDataById("the_sun");
+            var choice2 = db.GetWordDataById("the_moon");
 
             int nPerType = nPacks / 2;
-            var wordsWithArticle = teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative).RandomSelect(nPerType);
-            var wordsWithoutArticle = teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.None).RandomSelect(nPerType);
 
-            foreach (var wordWithArticle in wordsWithArticle)
+            var list_choice1 = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun),
+                new SelectionParameters(severity, nPerType)
+                );
+
+            var list_choice2 = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon),
+                new SelectionParameters(severity, nPerType)
+                );
+
+            foreach (var data in list_choice1)
             {
                 var correctWords = new List<Db.WordData>();
                 var wrongWords = new List<Db.WordData>();
-                correctWords.Add(withArticleWord);
-                wrongWords.Add(withoutArticleWord);
+                correctWords.Add(choice1);
+                wrongWords.Add(choice2);
 
                 if (ConfigAI.verboseTeacher)
                 {
                     string debugString = "--------- TEACHER: question pack result ---------";
-                    debugString += "\nQuestion: " + wordWithArticle;
+                    debugString += "\nQuestion: " + data;
                     debugString += "\nCorrect Word: " + correctWords.Count;
                     foreach (var l in correctWords) debugString += " " + l;
                     debugString += "\nWrong Word: " + wrongWords.Count;
@@ -44,21 +57,21 @@ namespace EA4S
                     UnityEngine.Debug.Log(debugString);
                 }
 
-                var pack = QuestionPackData.Create(wordWithArticle, correctWords, wrongWords);
+                var pack = QuestionPackData.Create(data, correctWords, wrongWords);
                 packs.Add(pack);
             }
 
-            foreach (var wordWithoutArticle in wordsWithoutArticle)
+            foreach (var data in list_choice2)
             {
                 var correctWords = new List<Db.WordData>();
                 var wrongWords = new List<Db.WordData>();
-                correctWords.Add(withoutArticleWord);
-                wrongWords.Add(withArticleWord);
+                correctWords.Add(choice2);
+                wrongWords.Add(choice1);
 
                 if (ConfigAI.verboseTeacher)
                 {
                     string debugString = "--------- TEACHER: question pack result ---------";
-                    debugString += "\nQuestion: " + wordWithoutArticle;
+                    debugString += "\nQuestion: " + data;
                     debugString += "\nCorrect Word: " + correctWords.Count;
                     foreach (var l in correctWords) debugString += " " + l;
                     debugString += "\nWrong Word: " + wrongWords.Count;
@@ -66,7 +79,7 @@ namespace EA4S
                     UnityEngine.Debug.Log(debugString);
                 }
 
-                var pack = QuestionPackData.Create(wordWithoutArticle, correctWords, wrongWords);
+                var pack = QuestionPackData.Create(data, correctWords, wrongWords);
                 packs.Add(pack);
             }
 
