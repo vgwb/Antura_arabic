@@ -35,7 +35,7 @@ namespace EA4S
         {
             if (isTMPro && isUI && isArabic) {
                 if (!gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText) {
-                    Debug.LogError("TextMeshPro on component " + gameObject.name + " isn't RTL");
+                    Debug.LogWarning("TextMeshPro on component " + gameObject.name + " isn't RTL");
                 }
             }
         }
