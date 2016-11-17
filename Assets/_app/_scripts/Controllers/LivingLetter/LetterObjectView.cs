@@ -413,7 +413,7 @@ namespace EA4S
         /// <summary>
         /// Used by SpecialStateEventBehaviour
         /// </summary>
-        public void OnActionCompleted()
+        void OnActionCompleted()
         {
             if (hasToGoBackState)
             {
@@ -525,6 +525,11 @@ namespace EA4S
         public void OnIdleAlternativeExit()
         {
             inIdleAlternative = false;
+        }
+
+        void OnEnable()
+        {
+            OnStateChanged(state, state);
         }
     }
 }

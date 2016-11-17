@@ -21,13 +21,23 @@ namespace EA4S
 
         void Start()
         {
-            updateText();
+            checkConfiguration();
+            if (text != "") updateText();
         }
 
         public void setText(string _text, bool arabic = false)
         {
             isArabic = arabic;
             text = _text;
+        }
+
+        void checkConfiguration()
+        {
+            if (isTMPro && isUI && isArabic) {
+                if (!gameObject.GetComponent<TextMeshProUGUI>().isRightToLeftText) {
+                    Debug.LogWarning("TextMeshPro on component " + gameObject.name + " isn't RTL");
+                }
+            }
         }
 
         void updateText()

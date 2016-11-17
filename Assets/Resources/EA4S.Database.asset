@@ -1322,7 +1322,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0627\u064E"
       Initial: 
       Medial: 
       Final: 
@@ -1341,7 +1341,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0627\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1360,7 +1360,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0627\u0653"
       Initial: 
       Medial: 
       Final: 
@@ -1379,7 +1379,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0639\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1398,7 +1398,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0639\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1417,7 +1417,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0628\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1436,7 +1436,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0628\u064E"
       Initial: 
       Medial: 
       Final: 
@@ -1455,7 +1455,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0628\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1474,7 +1474,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0636\u064E"
       Initial: 
       Medial: 
       Final: 
@@ -1493,7 +1493,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062F\u064C"
       Initial: 
       Medial: 
       Final: 
@@ -1512,7 +1512,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062F\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1531,7 +1531,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0630\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1550,7 +1550,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0641\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1569,7 +1569,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0641\u0652"
       Initial: 
       Medial: 
       Final: 
@@ -1588,7 +1588,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0647\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1607,7 +1607,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0647\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1626,7 +1626,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062D\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1645,7 +1645,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062D\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1664,7 +1664,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062D\u0651"
       Initial: 
       Medial: 
       Final: 
@@ -1683,7 +1683,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062C\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1702,7 +1702,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062C\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1721,7 +1721,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062C\u0651"
       Initial: 
       Medial: 
       Final: 
@@ -1740,7 +1740,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0643\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1759,7 +1759,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0643\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1778,7 +1778,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1797,7 +1797,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1816,7 +1816,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u064D"
       Initial: 
       Medial: 
       Final: 
@@ -1835,7 +1835,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u0652"
       Initial: 
       Medial: 
       Final: 
@@ -1854,7 +1854,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0645\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1873,7 +1873,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0645\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1892,7 +1892,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0645\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1911,7 +1911,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0646\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1930,7 +1930,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0646\u064D"
       Initial: 
       Medial: 
       Final: 
@@ -1949,7 +1949,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0646\u0652"
       Initial: 
       Medial: 
       Final: 
@@ -1967,8 +1967,8 @@ MonoBehaviour:
       Tag: 
       Notes: 
       SunMoon: 0
-      Sound: "\u0642\u064E"
-      Isolated: "\u0642\u200E"
+      Sound: 
+      Isolated: "\u0642\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1987,7 +1987,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0631\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2006,7 +2006,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0631\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -2025,7 +2025,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0635\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2044,7 +2044,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0633\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2063,7 +2063,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0634\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2082,7 +2082,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0637\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2101,7 +2101,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062A\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -2120,7 +2120,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: "\u062A\u064E"
+      Isolated: "\u062A\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -2139,7 +2139,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0629\u064C"
       Initial: 
       Medial: 
       Final: 
@@ -2177,7 +2177,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0632\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2196,7 +2196,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0632\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -7297,16 +7297,21 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0645\u0639 \u0627\u0644\u0645\u0627\u062F\u0629"
+      Arabic: "\u0645\u0639 \u0623\u062F\u0627\u0629 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
       Letters:
       - meem
       - ain
+      - alef_hamza_hi
+      - dal
+      - alef
+      - teh_marbuta
       - alef
       - lam
-      - meem
-      - alef
-      - dal
-      - teh_marbuta
+      - teh
+      - ain
+      - reh
+      - yeh
+      - feh
       Difficulty: 0
       Drawing: 
     - Id: without_article
@@ -7315,17 +7320,22 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u062F\u0648\u0646 \u0627\u0644\u0645\u0627\u062F\u0629"
+      Arabic: "\u062F\u0648\u0646 \u0623\u062F\u0627\u0629 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
       Letters:
       - dal
       - waw
       - noon
+      - alef_hamza_hi
+      - dal
+      - alef
+      - teh_marbuta
       - alef
       - lam
-      - meem
-      - alef
-      - dal
-      - teh_marbuta
+      - teh
+      - ain
+      - reh
+      - yeh
+      - feh
       Difficulty: 0
       Drawing: 
     - Id: singular
@@ -7348,12 +7358,12 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u062B\u0646\u0627\u0626\u064A"
+      Arabic: "\u0645\u062B\u0646\u0649"
       Letters:
+      - meem
       - theh
       - noon
-      - alef
-      - yeh
+      - alef_maqsura
       Difficulty: 0
       Drawing: 
     - Id: plural
@@ -7362,14 +7372,8 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0635\u064A\u063A\u0629 \u0627\u0644\u062C\u0645\u0639"
+      Arabic: "\u062C\u0645\u0639"
       Letters:
-      - sad
-      - yeh
-      - ghain
-      - teh_marbuta
-      - alef
-      - lam
       - jeem
       - meem
       - ain
@@ -7381,16 +7385,14 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u062D\u0631\u0641 \u0645\u062A\u062D\u0631\u0643"
+      Arabic: "\u062D\u0631\u0641 \u0639\u0644\u0629"
       Letters:
       - hah
       - reh
       - feh
-      - meem
-      - teh
-      - hah
-      - reh
-      - kaf
+      - ain
+      - lam
+      - teh_marbuta
       Difficulty: 0
       Drawing: 
     - Id: consonant
