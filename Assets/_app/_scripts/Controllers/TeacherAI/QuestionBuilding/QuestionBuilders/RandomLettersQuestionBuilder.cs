@@ -6,23 +6,27 @@ namespace EA4S
 
     public class RandomLettersQuestionBuilder : IQuestionBuilder
     {
+        // focus: Letters
+        // pack history filter: parameterized
+        // journey: enabled
+
         private int nPacks;
         private int nCorrect;
         private int nWrong;
         private bool firstCorrectIsQuestion;
-        private PackListHistory packListHistory;
-        private PackListHistory wrongAnswersPackListHistory;
+        private PackListHistory correctChoicesHistory;
+        private PackListHistory wrongChoicesHistory;
 
         public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false,
-            PackListHistory packListHistory = PackListHistory.NoFilter,
-            PackListHistory wrongAnswersPackListHistory = PackListHistory.NoFilter)
+            PackListHistory correctChoicesHistory = PackListHistory.NoFilter,
+            PackListHistory wrongChoicesHistory = PackListHistory.NoFilter)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
-            this.packListHistory = packListHistory;
-            this.wrongAnswersPackListHistory = wrongAnswersPackListHistory;
+            this.correctChoicesHistory = correctChoicesHistory;
+            this.wrongChoicesHistory = wrongChoicesHistory;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -47,19 +51,19 @@ namespace EA4S
             var correctLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetAllLetters(),
                     new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect,
-                        packListHistory: this.packListHistory, filteringIds: previousPacksIDs)
+                        packListHistory: correctChoicesHistory, filteringIds: previousPacksIDs)
                 );
-            previousPacksIDs.AddRange(correctLetters.ConvertAll(x => x.GetId()).ToArray());
+            //if (correctChoicesHistory != PackListHistory.NoFilter) previousPacksIDs.AddRange(correctLetters.ConvertAll(x => x.GetId()).ToArray());
 
             var wrongLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()),
                     new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney:true,
-                     packListHistory: this.wrongAnswersPackListHistory, filteringIds: previousPacksIDs)
+                     packListHistory: wrongChoicesHistory, filteringIds: previousPacksIDs)
                 );
+            //if (wrongChoicesHistory != PackListHistory.NoFilter) previousPacksIDs.AddRange(wrongLetters.ConvertAll(x => x.GetId()).ToArray());
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
 
-            // Debug
             if (ConfigAI.verboseTeacher)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";

@@ -131,6 +131,12 @@ namespace EA4S.Teacher
                 UnityEngine.Debug.Log(debugString);
             }
 
+            // Update the filtering ids
+            if (selectionParams.packListHistory != PackListHistory.NoFilter)
+            {
+                selectionParams.filteringIds.AddRange(selectedList.ConvertAll<string>(x => x.GetId()).ToArray());
+            }
+
             return selectedList;
         }
 

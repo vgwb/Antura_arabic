@@ -22,8 +22,9 @@ namespace EA4S.Assessment
 
         void OnMouseDown()
         {
-            AssessmentConfiguration.Instance.Context.GetAudioManager()
-                .PlayLetterData( GetComponent< LetterObjectView>().Data);
+            if(AssessmentConfiguration.Instance.PronunceAnswerWhenClicked)
+                AssessmentConfiguration.Instance.Context.GetAudioManager()
+                    .PlayLetterData( GetComponent< LetterObjectView>().Data);
         }
 
         public IAnswer GetAnswer()

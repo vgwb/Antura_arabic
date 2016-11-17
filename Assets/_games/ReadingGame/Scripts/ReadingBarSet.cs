@@ -27,6 +27,7 @@ public class ReadingBarSet : MonoBehaviour
     bool playingSong = false;
     bool songStarted = false;
     bool barsCompleted = false;
+    bool songInsideAWord = false;
     IAudioSource songSource;
     System.Action onSongCompleted;
 
@@ -234,6 +235,17 @@ public class ReadingBarSet : MonoBehaviour
         return null;
     }
 
+    public bool GetFollowingDistance(out float distance)
+    {
+        distance = 0;
+
+        if (activeBar == null || !songInsideAWord)
+            return false;
+
+        distance = (activeBar.currentTarget - activeBar.currentReading)*activeBar.GetWidth();
+        return true;
+    }
+
     void Update()
     {
         for (int i = 0; i < bars.Count; ++i)
@@ -247,6 +259,7 @@ public class ReadingBarSet : MonoBehaviour
             bar.Show(show);
         }
 
+        songInsideAWord = false;
         if (playingSong)
         {
             if (songSource != null && songSource.IsPlaying)
@@ -295,6 +308,7 @@ public class ReadingBarSet : MonoBehaviour
 
                             float t = Mathf.Lerp(currentBarWord.start, currentBarWord.end, tInWord);
                             activeBar.currentTarget = t;
+                            songInsideAWord = true;
 
                             break;
                         }
