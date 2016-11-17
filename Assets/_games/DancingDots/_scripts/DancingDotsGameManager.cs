@@ -131,7 +131,7 @@ namespace EA4S.DancingDots
 
 			isPlaying = true;
 
-			StartCoroutine(AnimateAntura());
+//			StartCoroutine(AnimateAntura());
 
 		}
 
