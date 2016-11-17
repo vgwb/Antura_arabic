@@ -246,4 +246,9 @@ public class AnturaAnimationController : MonoBehaviour
     {
         --walkRefCount;
     }
+
+    void OnEnable()
+    {
+        OnStateChanged(state, state);
+    }
 }
