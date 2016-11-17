@@ -7,7 +7,7 @@ namespace EA4S.DancingDots
     public class DancingDotsTutorial : MonoBehaviour
     {
 
-        public TextMeshPro hitDot;
+        public TextMeshPro hintDot;
         public DancingDotsDiacriticPosition[] targetDDs;
         //public Vector3[] path;
         public float repeatDely = 3;
@@ -88,7 +88,7 @@ namespace EA4S.DancingDots
                         continue;
 
                     if (doTutOnDots)
-                        targetPosition = hitDot.transform.TransformPoint(Vector3.Lerp(hitDot.mesh.vertices[0], hitDot.mesh.vertices[2], 0.5f));
+                        targetPosition = hintDot.transform.TransformPoint(Vector3.Lerp(hintDot.mesh.vertices[0], hintDot.mesh.vertices[2], 0.5f));
                     else
                         targetPosition = target.position;
 

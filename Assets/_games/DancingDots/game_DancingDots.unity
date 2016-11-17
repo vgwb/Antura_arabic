@@ -8360,16 +8360,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4722a1d3c1f230047bb54eb846a3e826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDot: {fileID: 1427352933}
+  hintDot: {fileID: 1427352933}
   targetDDs:
   - {fileID: 489500359}
   - {fileID: 489500358}
   - {fileID: 489500357}
   - {fileID: 489500356}
-  path:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  repeatConter: 0
+  repeatDely: 3
 --- !u!114 &1350710320 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000013677804830, guid: 380988909aba2462c8a2d2888f035197,
