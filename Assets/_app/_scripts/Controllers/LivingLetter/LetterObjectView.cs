@@ -36,6 +36,8 @@ namespace EA4S
         public Transform contentTransform;
         public RectTransform textTransform;
 
+        public Transform boneToScaleTransform;
+
         public TMP_Text Lable;
         public SpriteRenderer ImageSprite;
 
@@ -246,12 +248,15 @@ namespace EA4S
             float oldSpeed = animator.GetFloat("walkSpeed");
 
             animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 6.0f));
+        }
 
-            if (Scale != lastScale && Scale >= 1.0f)
+        void LateUpdate()
+        {
+            //if (Scale != lastScale && Scale >= 1.0f)
             {
                 if (contentTransform)
                 {
-                    transform.localScale = new Vector3(startScale.x * Scale, startScale.y, startScale.z);
+                    boneToScaleTransform.localScale = new Vector3(startScale.x, startScale.y, startScale.z * Scale);
                     contentTransform.localScale = new Vector3(1 / Scale, 1, 1);
                     textTransform.sizeDelta = new Vector3(startTextScale.x * Scale, startTextScale.y);
                 }
