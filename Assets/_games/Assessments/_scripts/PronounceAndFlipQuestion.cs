@@ -3,20 +3,29 @@ using UnityEngine;
 
 namespace EA4S.Assessment
 {
-    internal class PronounceAndFlipQuestion : MonoBehaviour, IQuestionAnswered
+    internal class PronounceAndFlipQuestion : MonoBehaviour, IQuestionDecoration
     {
         bool triggered = false;
-        public void Trigger( IAudioManager audioManager)
+        public void TriggerOnAnswered()
         {
             if (triggered)
                 return;
 
             triggered = true;
-            audioManager
-                .PlayLetterData(
-                    GetComponent< LetterObjectView>().Data);
+            PlaySound();
 
             transform.DORotate( new Vector3( 0, 180, 0), 1);
+        }
+
+        private void PlaySound()
+        {
+            AssessmentConfiguration.Instance.Context.GetAudioManager()
+                .PlayLetterData(GetComponent<LetterObjectView>().Data);
+        }
+
+        public void TriggerOnSpawned()
+        {
+            PlaySound();
         }
 
         void Awake()
