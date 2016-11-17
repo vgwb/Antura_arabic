@@ -89,13 +89,13 @@ namespace EA4S.Assessment
 
         public void StopDragging( IDroppable droppable)
         {
-            if (this.droppable != droppable)
-                throw new InvalidOperationException("Can drop only previously dragged objet");
-
-            audioManager.PlaySound( Sfx.ThrowObj);
-            CheckCollidedWithPlaceholder();
-            this.droppable.StopDrag();
-            this.droppable = null;
+            if (this.droppable == droppable)
+            {
+                audioManager.PlaySound(Sfx.ThrowObj);
+                CheckCollidedWithPlaceholder();
+                this.droppable.StopDrag();
+                this.droppable = null;
+            }
         }
 
         private void CheckCollidedWithPlaceholder()
@@ -109,7 +109,7 @@ namespace EA4S.Assessment
                 }
 
             // In case we just moved out a LL
-            droppable.Detach(false);
+            droppable.Detach( false);
         }
 
         bool NearEnoughToDrop( Transform zone)

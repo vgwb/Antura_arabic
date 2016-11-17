@@ -9,12 +9,13 @@ namespace EA4S.Assessment
         {
             Init(); // common initialization stuff
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
-            IGameContext context = configuration.Context;
+            IGameContext context            = configuration.Context;
             IAudioManager audioManager      = configuration.Context.GetAudioManager();
-            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget());
-            IDragManager dragManager = new DefaultDragManager(audioManager, checker);
+            IAnswerChecker checker          = new DefaultAnswerChecker( audioManager, context.GetCheckmarkWidget());
+            IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
-            ILogicInjector injector         = new DefaultLogicInjector( dragManager);
+            ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
             
@@ -25,14 +26,15 @@ namespace EA4S.Assessment
         {
             Init(); // common initialization stuff
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
-            IGameContext context = configuration.Context;
-            IAudioManager audioManager = configuration.Context.GetAudioManager();
-            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget());
-            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
-            IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
-            ILogicInjector injector = new DefaultLogicInjector( dragManager);
-            IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager);
-            IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
+            IGameContext context            = configuration.Context;
+            IAudioManager audioManager      = configuration.Context.GetAudioManager();
+            IAnswerChecker checker          = new DefaultAnswerChecker( audioManager, context.GetCheckmarkWidget());
+            IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
+            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
+            IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
             return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
         }
