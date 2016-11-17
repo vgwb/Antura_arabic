@@ -68,7 +68,9 @@ namespace EA4S.ColorTickle
         {
             if (m_Rounds <= 0)
             {
+                Debug.Log("Final Stars: " + m_Stars);
                 game.m_Stars = Mathf.RoundToInt(m_Stars);
+                Debug.Log("Final int Stars: " + m_Stars);
                 game.SetCurrentState(game.ResultState);
             }
             else
@@ -232,7 +234,8 @@ namespace EA4S.ColorTickle
 
             m_Lives--;
             //m_Stars -= 0.3f;
-            m_Stars -= (3f/(float)m_Rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
+            m_Stars -= (3f/(float)game.rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
+            Debug.Log("Stars now: " + m_Stars);
             game.gameUI.SetLives(m_Lives);
             Debug.Log("Lives : " + m_Lives);
         }
