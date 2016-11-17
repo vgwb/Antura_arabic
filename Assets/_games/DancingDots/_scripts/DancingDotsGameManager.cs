@@ -119,7 +119,8 @@ namespace EA4S.DancingDots
 			SceneTransitioner.Close();
 
 			Debug.Log("Before Music");
-			DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+			AudioManager.I.PlayMusic(Music.MainTheme);
+//			DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
 			Debug.Log("After Music");
 
 			questionsManager = new DancingDotsQuestionsManager();
