@@ -90,14 +90,14 @@ namespace EA4S.ThrowBalls
                     velocity.y = 0;
                     landed = true;
 
-                    //animator.OnJumpEnded();
+                    animator.OnJumpEnded();
 
                     Debug.Log("Landed");
                 }
 
                 else if (velocity.y < 0 && !reachedJumpMaxNotified)
                 {
-                    //animator.OnJumpMaximumHeightReached();
+                    animator.OnJumpMaximumHeightReached();
                     reachedJumpMaxNotified = true;
                 }
             }
@@ -111,7 +111,8 @@ namespace EA4S.ThrowBalls
 
                 jumped = true;
 
-                //animator.OnJumpStart();
+                Debug.Log("Jump started");
+                animator.OnJumpStart();
             }
 
             if (ballGrabbed)
@@ -136,7 +137,7 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL && !ballGrabbed)
             {
-                //animator.OnJumpGrab();
+                animator.OnJumpGrab();
                 BallController.instance.OnIntercepted(false);
                 ballOffset = new Vector3(Mathf.Sign(velocity.x) * 7.56f, 2f, 0f);
                 ballGrabbed = true;
@@ -168,8 +169,7 @@ namespace EA4S.ThrowBalls
             landed = false;
             reachedJumpMaxNotified = false;
             ballGrabbed = false;
-
-            //animator.State = AnturaAnimationStates.idle;
+            
             animator.State = AnturaAnimationStates.walking;
             animator.SetWalkingSpeed(1f);
         }
