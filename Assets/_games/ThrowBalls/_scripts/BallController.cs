@@ -78,10 +78,10 @@ namespace EA4S.ThrowBalls
             switch (state)
             {
                 case State.Anchored:
-                    rigidBody.isKinematic = true;
+                    rigidBody.isKinematic = false;
                     break;
                 case State.Dragging:
-                    rigidBody.isKinematic = true;
+                    rigidBody.isKinematic = false;
                     break;
                 case State.Launched:
                     rigidBody.isKinematic = false;
@@ -93,9 +93,10 @@ namespace EA4S.ThrowBalls
                     rigidBody.isKinematic = false;
                     break;
                 case State.Idle:
-                    rigidBody.isKinematic = true;
+                    rigidBody.isKinematic = false;
                     if (!ThrowBallsGameManager.Instance.IsTutorialLevel())
                     {
+                        AnturaController.instance.Enable();
                         AnturaController.instance.Reset();
                         AnturaController.instance.EnterScene();
                     }
@@ -110,7 +111,7 @@ namespace EA4S.ThrowBalls
 
         public bool IsLaunched()
         {
-            return state == State.Launched;
+            return state == State.Launched || state == State.Intercepted || state == State.Rebounding;
         }
 
         public void OnIntercepted(bool interceptedByLetter)

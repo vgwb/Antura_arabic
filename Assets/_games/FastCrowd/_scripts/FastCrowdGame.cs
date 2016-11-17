@@ -47,6 +47,8 @@ namespace EA4S.FastCrowd
                         return 5;
                     case FastCrowdVariation.Alphabet:
                         return 5;
+                    case FastCrowdVariation.Letter:
+                        return 2;
                     default:
                         return 3;
                 }
@@ -65,8 +67,10 @@ namespace EA4S.FastCrowd
                         return 10;
                     case FastCrowdVariation.Alphabet:
                         return 10;
+                    case FastCrowdVariation.Letter:
+                        return 3;
                     default:
-                        return 5;
+                        return 4;
                 }
             }
         }
@@ -83,8 +87,10 @@ namespace EA4S.FastCrowd
                         return 15;
                     case FastCrowdVariation.Alphabet:
                         return 15;
+                    case FastCrowdVariation.Letter:
+                        return 4;
                     default:
-                        return 7;
+                        return 5;
                 }
             }
         }

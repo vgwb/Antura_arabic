@@ -59,11 +59,22 @@ namespace EA4S
             }
         }
 
-
         public float Duration {
             get
             {
                 return source.duration;
+            }
+        }
+
+        public float Position
+        {
+            get
+            {
+                return source.time;
+            }
+            set
+            {
+                source.time = value;
             }
         }
 

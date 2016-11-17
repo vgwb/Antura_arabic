@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012799336938}
   - 212: {fileID: 212000013226755032}
+  - 114: {fileID: 114000011941152058}
   m_Layer: 2
   m_Name: DropZone
   m_TagString: Untagged
@@ -40,6 +41,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000011941152058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011656232934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce4ef2b8aeff9045a55cb152d73fad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000013226755032
 SpriteRenderer:
   m_ObjectHideFlags: 1

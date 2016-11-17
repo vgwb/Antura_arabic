@@ -99,6 +99,7 @@ namespace EA4S.Assessment
             //Prepare answers for next method call
             //____________________________________
 
+
             foreach (var wrong in currentPack.GetWrongAnswers())
             {
                 var wrongAnsw = GenerateWrongAnswer( wrong);
@@ -119,14 +120,19 @@ namespace EA4S.Assessment
 
             partialAnswers = answers.ToArray();
 
+            // Generate the question
             var question = GenerateQuestion( questionData, correctCount);
             totalQuestions.Add( question);
+
+            // Generate placeholders
+            foreach (var correct in currentPack.GetCorrectAnswers())
+                GeneratePlaceHolder( question);
+
             return question;
         }
 
         private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
-        {
-            Debug.Log(" GenerateQuestion( data, "+correctCount+")");
+        {            
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
             return new DefaultQuestion( q, correctCount, questionType);
         }
@@ -138,6 +144,14 @@ namespace EA4S.Assessment
 
                 //wrong
                 , false);
+        }
+
+        private void GeneratePlaceHolder( IQuestion question)
+        {
+            var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
+            placeholder.localPosition = new Vector3( 0, 5, 0);
+            placeholder.localScale = Vector3.zero;
+            question.TrackPlaceholder( placeholder.gameObject);
         }
 
         private IAnswer GenerateCorrectAnswer( ILivingLetterData correctAnswer)
