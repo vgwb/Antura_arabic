@@ -15,6 +15,10 @@ namespace EA4S.ReadingGame
         ReadingBar dragging;
         Vector2 draggingOffset;
 
+        // song related
+        float timeFarFromTarget = 0;
+        float scoreAccumulator = 0;
+
         public ReadingGameReadState(ReadingGameGame game)
         {
             this.game = game;
@@ -137,20 +141,50 @@ namespace EA4S.ReadingGame
 
                     completedDragging = false;
                 }
-                else // AlphabetSong
-                {
-
-                }
             }
 
-            float perc = gameTime.Time / gameTime.Duration;
 
-            if (perc < 0.05f)
-                game.antura.Mood = ReadingGameAntura.AnturaMood.SAD;
-            else if (perc < 0.5f)
-                game.antura.Mood = ReadingGameAntura.AnturaMood.ANGRY;
-            else
-                game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+            {
+                float perc = gameTime.Time / gameTime.Duration;
+
+                if (perc < 0.05f)
+                    game.antura.Mood = ReadingGameAntura.AnturaMood.SAD;
+                else if (perc < 0.5f)
+                    game.antura.Mood = ReadingGameAntura.AnturaMood.ANGRY;
+                else
+                    game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
+            }
+            else // Alphabet Song
+            {
+                float distance;
+                if (game.barSet.GetFollowingDistance(out distance))
+                {
+                    if (distance > 100)
+                    {
+                        timeFarFromTarget += delta;
+                    }
+                    else
+                    {
+                        timeFarFromTarget = 0;
+                        if (distance < 50)
+                            scoreAccumulator += 1.15f * delta;
+                        else
+                            scoreAccumulator += 1 * delta;
+
+                        if (scoreAccumulator >= 1)
+                        {
+                            game.AddScore((int)scoreAccumulator);
+                            scoreAccumulator = scoreAccumulator - (int)scoreAccumulator;
+                        }
+                    }
+
+                    if (timeFarFromTarget > 1.0f)
+                        game.antura.Mood = ReadingGameAntura.AnturaMood.ANGRY;
+                    else
+                        game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
+                }
+            }
         }
 
         public void UpdatePhysics(float delta)
