@@ -49,6 +49,7 @@ namespace EA4S.ColorTickle
         GameObject[] m_MyLetters;
         GameObject m_TutorialLetter;
         IOverlayWidget m_GameUI;
+        TutorialUIManager m_TutorialUIManager;
 
         #endregion
 
@@ -113,6 +114,12 @@ namespace EA4S.ColorTickle
         {
             get { return m_oBackgroundMusic; }
             set { m_oBackgroundMusic = value; }
+        }
+
+        public TutorialUIManager tutorialUIManager
+        {
+            get { return m_TutorialUIManager; }
+            set { m_TutorialUIManager = value; }
         }
 
         #endregion

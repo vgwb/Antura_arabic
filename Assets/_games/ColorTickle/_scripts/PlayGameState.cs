@@ -85,16 +85,14 @@ namespace EA4S.ColorTickle
                     m_fDisappearTimeProgress += Time.deltaTime;
 
                     //if(m_LetterObjectView.GetState()!=LLAnimationStates.LL_dancing)//when the dance is finished ---> DoDancingWin/Lose do not exit from this state
-                    if (m_fDisappearTimeProgress>=m_fTimeToDisappear)//after the given time is reached
+                    if (m_fDisappearTimeProgress >= m_fTimeToDisappear)//after the given time is reached
                     {
                         m_LetterObjectView.Poof(); //LL vanishes
                         m_bLLVanishing = false;
                         m_fDisappearTimeProgress = 0;
 
                         //just for possible reusing of the LL renable components
-                        m_TMPTextColoringLetter.enabled = true;
-                        m_SurfaceColoringLetter.enabled = true;
-                        m_HitStateLLController.enabled = true;
+                        EnableLetterComponents();
 
                         m_CurrentLetter.SetActive(false);
 
@@ -113,26 +111,10 @@ namespace EA4S.ColorTickle
                 else if (m_PercentageLetterColored >= 100 || m_Lives <=0) //else check for letter completed
                 {
                     game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
-
-                    /*m_LetterObjectView.Poof();
-                    m_CurrentLetter.SetActive(false);
-                    --m_Rounds;
-                    if (m_Rounds > 0)
-                    {
-                        ResetState();
-                        m_ColorsUIManager.ChangeButtonsColor();
-                        m_CurrentLetter = game.myLetters[m_Rounds - 1];
-                        m_CurrentLetter.gameObject.SetActive(true);
-                        // Initialize the next letter
-                        InitLetter();
-                    }*/
-
                     m_bLLVanishing = true; //LL is about to disappear
 
                     //disable color components to avoid input in this phase (or ignore input using touch manager?)
-                    m_TMPTextColoringLetter.enabled = false;
-                    m_SurfaceColoringLetter.enabled = false;
-                    m_HitStateLLController.enabled = false;
+                    DisableLetterComponents();
 
                     Debug.Log(m_LetterObjectView.Data.Key);
 
@@ -210,6 +192,19 @@ namespace EA4S.ColorTickle
             SetBrushColor(m_ColorsUIManager.defaultColor);     
         }
 
+        private void EnableLetterComponents()
+        {
+            m_TMPTextColoringLetter.enabled = true;
+            m_SurfaceColoringLetter.enabled = true;
+            m_HitStateLLController.enabled = true;
+        }
+
+        private void DisableLetterComponents()
+        {
+            m_TMPTextColoringLetter.enabled = false;
+            m_SurfaceColoringLetter.enabled = false;
+            m_HitStateLLController.enabled = false;
+        }
 
         private void SetBrushColor(Color color)
         {
