@@ -132,8 +132,7 @@ namespace EA4S.Assessment
         }
 
         private IQuestion GenerateQuestion( ILivingLetterData data, int correctCount)
-        {
-            Debug.Log(" GenerateQuestion( data, "+correctCount+")");
+        {            
             var q = LivingLetterFactory.Instance.SpawnQuestion( data);
             return new DefaultQuestion( q, correctCount, questionType);
         }

@@ -7,15 +7,19 @@ namespace EA4S.Assessment
     internal class DefaultDragManager : IDragManager, ITickable
     {
         private IAudioManager audioManager;
-        public DefaultDragManager( IAudioManager audioManager)
+        private IAnswerChecker checker;
+
+        public DefaultDragManager( IAudioManager audioManager, IAnswerChecker checker)
         {
             this.audioManager = audioManager;
+            this.checker = checker;
             ResetRound();
         }
 
         List< PlaceholderBehaviour> placeholders = null;
         List< DroppableBehaviour> answers = null;
 
+        // This should be called onlye once
         public void AddElements( List< PlaceholderBehaviour> placeholders, List< AnswerBehaviour> answers)
         {
             this.placeholders = placeholders;
@@ -25,14 +29,35 @@ namespace EA4S.Assessment
             {
                 var droppable = a.gameObject.AddComponent< DroppableBehaviour>();
                 droppable.SetDragManager( this);
-                this.answers.Add(droppable);
+                this.answers.Add( droppable);
             }
         }
 
         public bool AllAnswered()
         {
+            bool allAnswered = true;
+            foreach (var p in placeholders)
+            {
+                if (p.LinkedDroppable == null)
+                    return false;
+
+                if (p.LinkedDroppable.gameObject.GetComponent< AnswerBehaviour>() == null)
+                    return false;
+
+                var droppa = p.LinkedDroppable.gameObject.GetComponent< AnswerBehaviour>();
+                var place = p.Placeholder;
+                place.LinkAnswer( droppa.GetAnswer().GetAnswerSet());
+                if (place.IsAnswered() == false)
+                    allAnswered = false;
+            }
+
+            if (allAnswered)
+                Debug.Log("allAnswered");
             
-            return false;
+            if (allAnswered && !checker.IsAnimating())
+                checker.Check( placeholders, this);
+
+            return checker.AllCorrect();
         }
 
         public void Enable()
@@ -105,6 +130,18 @@ namespace EA4S.Assessment
                 droppable.GetTransform().localPosition = pos;
             }
             return !ticking;
+        }
+
+        public void DisableInput()
+        {
+            foreach (var a in answers)
+                a.Disable();
+        }
+
+        public void EnableInput()
+        {
+            foreach (var a in answers)
+                a.Enable();
         }
     }
 }

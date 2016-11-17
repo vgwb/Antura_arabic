@@ -7,6 +7,10 @@ namespace EA4S.Assessment
         void ResetRound();
         bool AllAnswered();
         void Enable();
+
+        void DisableInput();
+        void EnableInput();
+
         void AddElements(   List< PlaceholderBehaviour> placeholders,
                             List< AnswerBehaviour> answers);
 

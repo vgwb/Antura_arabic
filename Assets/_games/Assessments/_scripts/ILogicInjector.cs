@@ -7,6 +7,8 @@ namespace EA4S.Assessment
     {
         void Wire( IQuestion question, IAnswer[] answers);
         void EnableGamePlay();
+        void CompleteWiring();
+        void ResetRound();
         bool AllAnswersCorrect();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace EA4S.Assessment
@@ -16,7 +17,7 @@ namespace EA4S.Assessment
         List< PlaceholderBehaviour> placeholdersList;
         List< AnswerBehaviour> answersList;
 
-        private void ResetRound()
+        public void ResetRound()
         {
             placeholdersList = new List< PlaceholderBehaviour>();
             answersList = new List< AnswerBehaviour>();
@@ -37,6 +38,7 @@ namespace EA4S.Assessment
             dragManager.Enable();
         }
 
+        // Called many times (for loop in assessment)
         public void Wire( IQuestion question, IAnswer[] answers)
         {
             AnswerSetNumber++; // This one is a new question
@@ -44,8 +46,6 @@ namespace EA4S.Assessment
             WireQuestion( question);
             WirePlaceHolders( question);
             WireAnswers( answers);
-
-            dragManager.AddElements( placeholdersList, answersList);
         }
 
         private void WireQuestion( IQuestion question)
@@ -59,14 +59,15 @@ namespace EA4S.Assessment
             foreach (var a in answers)
             {
                 var behaviour = a.gameObject.GetComponent< AnswerBehaviour>();
-                answersList.Add(behaviour);
+                answersList.Add( behaviour);
                 if (a.IsCorrect())
                 {
                     behaviour.GetAnswer().SetAnswerSet( AnswerSetNumber);
                 }
                 else
                 {
-                    behaviour.GetAnswer().SetAnswerSet( 0);
+                    // I have to set the answer value when detaching to 0
+                    behaviour.GetAnswer().SetAnswerSet( -1);
                 }
             }
         }
@@ -80,6 +81,12 @@ namespace EA4S.Assessment
                 behaviour.Placeholder.SetAnswer( AnswerSetNumber);
                 placeholdersList.Add( behaviour);
             }
+        }
+
+        public void CompleteWiring()
+        {
+            // Problem probably here (Readding) EIGEN CALLED 1*N
+            dragManager.AddElements( placeholdersList, answersList);
         }
     }
 }

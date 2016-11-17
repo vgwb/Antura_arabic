@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace EA4S.Assessment
@@ -128,8 +128,6 @@ namespace EA4S.Assessment
 
         private void Match( DropZone zone)
         {
-            Debug.Log("Match");
-
             audioManager.PlaySound( Sfx.StampOK);
             //TODO CONT SCORE ++
             draggable.PlacedOnCorrectPlace(zone.transform.localPosition);
