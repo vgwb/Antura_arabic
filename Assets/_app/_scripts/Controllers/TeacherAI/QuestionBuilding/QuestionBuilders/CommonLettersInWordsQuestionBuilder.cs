@@ -5,6 +5,10 @@ namespace EA4S
 {
     public class CommonLettersInWordQuestionBuilder : IQuestionBuilder
     {
+        // focus: Letters & Words
+        // pack history filter: TODO
+        // journey: TODO
+
         private int nPacks;
         private int nMinCommonLetters;
         private int nMaxCommonLetters;
@@ -51,7 +55,7 @@ namespace EA4S
                 var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
-                if (ConfigAI.verboseDataSelection)
+                if (ConfigAI.verboseTeacher)
                 { 
                     string debugString = "--------- TEACHER: question pack result ---------";
                     debugString += "\nCommon letters: ";
