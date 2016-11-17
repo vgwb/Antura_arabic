@@ -7,6 +7,8 @@
         public float end;
         public bool starsWithLineBreak;
 
+        public float Length { get { return end - start; } }
+
         public KaraokeSegment()
         {
             text = "";
