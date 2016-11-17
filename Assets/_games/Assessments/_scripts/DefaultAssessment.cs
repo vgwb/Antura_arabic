@@ -31,6 +31,8 @@ namespace EA4S.Assessment
                     LogicInjector.Wire( 
                         QuestionGenerator.GetNextQuestion(),                 
                         QuestionGenerator.GetNextAnswers()      );
+
+                LogicInjector.CompleteWiring();
                 
                 QuestionGenerator.CompleteRound();
 
@@ -58,6 +60,8 @@ namespace EA4S.Assessment
 
                 while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating())
                     yield return null;
+
+                LogicInjector.ResetRound();
             }
 
             gameEndedCallback();

@@ -14,6 +14,8 @@ namespace EA4S.Assessment
         public GameObject Answers = null;
         public GameObject Placeholders = null;
 
+        private int counter = 0;
+
         public LetterObjectView SpawnQuestion( ILivingLetterData data)
         {
             // Organize LLs in inspector (just aestetical change)
@@ -32,9 +34,11 @@ namespace EA4S.Assessment
 
         private LetterObjectView SpawnLivingLetter( ILivingLetterData data)
         {
+            counter++;
             var letter = (Instantiate( LivingLetterPrefab) as GameObject)
                     .GetComponent<LetterObjectView>();
 
+            letter.gameObject.name= "instance_" + counter;
             letter.Init( data);
             letter.gameObject.SetActive( true);            
             letter.transform.localScale = Vector3.zero;          

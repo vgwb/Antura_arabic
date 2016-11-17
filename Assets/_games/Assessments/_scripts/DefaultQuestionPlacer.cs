@@ -96,9 +96,7 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceQuestion( IQuestion q, Vector3 position)
         {
-            Debug.Log("Position:" + position);
             var ll = q.gameObject.GetComponent< LetterObjectView>();
-
 
             ll.Poof(ElementsSize.PoofOffset);
             audioManager.PlaySound(Sfx.Poof);
@@ -109,21 +107,11 @@ namespace EA4S.Assessment
 
         private IEnumerator PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
         {
-            Debug.Log("PlacePlaceholder");
-
-            /*var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
-            placeholder.localPosition = position + new Vector3( 0, 5, 0);
-            placeholder.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
-
-            // OK called after wire. So If I get placeholders in "Wire" method the count is necessarily not correct
-            // Current bug
-            q.TrackPlaceholder( placeholder.gameObject);*/
             Transform tr = placeholder.transform;
             tr.localPosition = position + new Vector3( 0, 5, 0);
             tr.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
             audioManager.PlaySound( Sfx.StarFlower);
             
-
             var seq = DOTween.Sequence();
             seq
                 .Insert( 0, tr.DOScale( ElementsSize.DropZoneScale, 0.4f))
