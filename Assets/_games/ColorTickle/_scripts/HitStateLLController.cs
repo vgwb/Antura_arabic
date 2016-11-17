@@ -3,18 +3,22 @@ using System.Collections;
 
 namespace EA4S.ColorTickle
 {
+    public enum eHitState
+    {
+        HIT_NONE = 0, HIT_LETTERINSIDE_AND_BODY, HIT_LETTERINSIDE, HIT_LETTEROUTSIDE
+    }
+
     public class HitStateLLController : MonoBehaviour
     {
+        //        public enum eLLState
+        //        {
+        //            IDLE, SCARED, TICKLING
+        //        }
 
-        enum eHitState
-        {
-            HIT_NONE = 0, HIT_LETTERINSIDE_AND_BODY, HIT_LETTERINSIDE, HIT_LETTEROUTSIDE
-        }
-
-//        public enum eLLState
-//        {
-//            IDLE, SCARED, TICKLING
-//        }
+        #region EXPOSED MEMBERS
+        [SerializeField]
+        private Sfx m_oLLTickleSfx;
+        #endregion
 
         #region PRIVATE MEMBERS
         LetterObjectView m_LetterObjectView;
@@ -26,6 +30,19 @@ namespace EA4S.ColorTickle
         #region EVENTS
         public event System.Action LoseLife;
         public event System.Action EnableAntura;
+        #endregion
+
+        #region GETTER/SETTER
+        public eHitState hitState
+        {
+            get { return m_HitState; }
+        }
+
+        public Sfx LLTickleSfx
+        {
+            get { return m_oLLTickleSfx; }
+            set { m_oLLTickleSfx = value; }
+        }
         #endregion
 
         // Use this for initialization
@@ -95,6 +112,9 @@ namespace EA4S.ColorTickle
         {
             m_Tickle = true;
             m_LetterObjectView.SetState(LLAnimationStates.LL_tickling);
+
+            AudioManager.I.PlaySfx(m_oLLTickleSfx);
+
             if (LoseLife != null)
             {
                 LoseLife();

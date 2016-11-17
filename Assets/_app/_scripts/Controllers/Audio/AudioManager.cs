@@ -12,6 +12,7 @@ namespace EA4S
         const string LETTERS_PREFIX = "VOX/Letter/";
         const string WORDS_PREFIX = "VOX_Words_";
 
+        public AudioMixerGroup musicGroup;
         public AudioMixerGroup sfxGroup;
         public AudioMixerGroup lettersGroup;
 

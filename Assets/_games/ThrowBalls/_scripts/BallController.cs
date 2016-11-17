@@ -78,10 +78,10 @@ namespace EA4S.ThrowBalls
             switch (state)
             {
                 case State.Anchored:
-                    rigidBody.isKinematic = true;
+                    rigidBody.isKinematic = false;
                     break;
                 case State.Dragging:
-                    rigidBody.isKinematic = true;
+                    rigidBody.isKinematic = false;
                     break;
                 case State.Launched:
                     rigidBody.isKinematic = false;
@@ -92,6 +92,16 @@ namespace EA4S.ThrowBalls
                 case State.Rebounding:
                     rigidBody.isKinematic = false;
                     break;
+                case State.Idle:
+                    rigidBody.isKinematic = false;
+                    if (!ThrowBallsGameManager.Instance.IsTutorialLevel())
+                    {
+                        AnturaController.instance.Enable();
+                        AnturaController.instance.Reset();
+                        AnturaController.instance.EnterScene();
+                    }
+
+                    break;
                 default:
                     break;
             }
@@ -101,21 +111,24 @@ namespace EA4S.ThrowBalls
 
         public bool IsLaunched()
         {
-            return state == State.Launched;
+            return state == State.Launched || state == State.Intercepted || state == State.Rebounding;
         }
 
-        public void OnIntercepted()
+        public void OnIntercepted(bool interceptedByLetter)
         {
             if (state != State.Intercepted)
             {
-                StartCoroutine(OnInterceptedCoroutine());
+                SetState(State.Intercepted);
+
+                if (interceptedByLetter)
+                {
+                    StartCoroutine(OnInterceptedCoroutine());
+                }
             }
         }
 
         private IEnumerator OnInterceptedCoroutine()
         {
-            SetState(State.Intercepted);
-
             //yield return new WaitForSeconds(INTERCEPTION_PAUSE_TIME);
 
             float destinationY = transform.position.y + INTERCEPTION_RISE_DELTA_Y;

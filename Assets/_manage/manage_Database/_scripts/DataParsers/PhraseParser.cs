@@ -13,6 +13,7 @@ namespace EA4S.Db.Management
             data.Id = ToString(dict["Id"]);
             data.English = ToString(dict["English"]);
             data.Arabic = ToString(dict["Arabic"]);
+            data.Category = ParseEnum<PhraseDataCategory>(data, dict["Category"]);
             data.Linked = ToString(dict["Linked"]);
             data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
 
@@ -21,15 +22,14 @@ namespace EA4S.Db.Management
 
         protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
         {
+            ExtractEnum(rowdicts_list, "Category", addNoneValue: true);
         }
 
         protected override void FinalValidation(PhraseTable table, Database db)
         {
             // Field 'Linked' is validated with a final validation step, since it is based on this same table
-            foreach(var data in table.GetValuesTyped())
-            {
-                if (data.Linked != "" && table.GetValue(data.Linked) == null)
-                {
+            foreach (var data in table.GetValuesTyped()) {
+                if (data.Linked != "" && table.GetValue(data.Linked) == null) {
                     LogValidation(data, "Cannot find id of PhraseData for Linked value " + data.Linked + " (found in phrase " + data.Id + ")");
                 }
             }

@@ -9,14 +9,26 @@ namespace EA4S
         float lettersTimer = 2;
         float anturaEnterTimer = 5;
         float anturaExitTimer = 10;
+        CountdownTimer countDown = new CountdownTimer(5);
 
         void Start()
         {
             GlobalUI.ShowPauseMenu(false);
+            countDown.Start();
+            countDown.onTimesUp += CountDown_onTimesUp;
+        }
+
+        private void CountDown_onTimesUp() {
+            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
+        }
+
+        void OnDisable() {
+            countDown.onTimesUp -= CountDown_onTimesUp;
         }
 
         void Update()
         {
+            countDown.Update(Time.deltaTime);
             if (lettersTimer > 0)
             {
                 lettersTimer -= Time.deltaTime;

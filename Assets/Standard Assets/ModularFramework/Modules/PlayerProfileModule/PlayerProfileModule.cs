@@ -153,6 +153,8 @@ namespace ModularFramework.Modules {
         /// WARNING! Delete all stored profiles and set actual profile to null.
         /// </summary>
         public void DeleteAllPlayerProfiles() {
+            while(Options.AvailablePlayers.Count > 0)
+                DeletePlayer(Options.AvailablePlayers[0]);
             Options.AvailablePlayers.Clear();
             SaveAllOptions();
             ActivePlayer = null;

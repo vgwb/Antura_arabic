@@ -12,8 +12,6 @@ namespace EA4S
 {
     public class ProfileSelectorUI : MonoBehaviour
     {
-        [Tooltip("If selected, uses dummy debug data")]
-        public bool DummyDebugData;
         [Header("References")]
         public UIButton BtAdd;
         public UIButton BtPlay;
@@ -56,6 +54,13 @@ namespace EA4S
 
             // Listeners
             BtAdd.Bt.onClick.AddListener(()=> OnClick(BtAdd));
+            BtPlay.Bt.onClick.AddListener(() => {
+                BtPlay.AnimateClick();
+                if(AppManager.Instance.Player.IsFirstContact())
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Intro");
+                else
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
+            });
             foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
                 ProfileSelectorAvatarButton b = bt;
                 b.Bt.onClick.AddListener(()=> OnClick(b));
@@ -81,12 +86,6 @@ namespace EA4S
             btAddTween.PlayBackwards();
 
             PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
-            if (DummyDebugData) {
-                if (ProfileManager.AvailablePlayerProfiles == null) ProfileManager.AvailablePlayerProfiles = new List<PlayerProfile>();
-                ProfileManager.AvailablePlayerProfiles.Add(pp);
-                pp.Id = ProfileManager.AvailablePlayerProfiles.Count;
-                pp.AvatarId = _avatarId;
-            }
             ProfileManager.ActualPlayer = pp;
 
             Setup();

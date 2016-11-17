@@ -95,11 +95,11 @@ namespace EA4S
                 Destroy(this.gameObject);
                 instance = null;
                 Show(new List<MiniGameData>() {
-                    new MiniGameData() { Main = MiniGameCode.Maze.ToString() },
-                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString() },
-                    new MiniGameData() { Main = MiniGameCode.MakeFriends.ToString() },
-                    new MiniGameData() { Main = MiniGameCode.Egg.ToString() },
-                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString() }
+                    new MiniGameData() { Main = MiniGameCode.Maze.ToString(), Variation = "letters" },
+                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString(), Variation = "words" },
+                    new MiniGameData() { Main = MiniGameCode.MakeFriends.ToString(), Variation = "spelling" },
+                    new MiniGameData() { Main = MiniGameCode.Egg.ToString(), Variation = "sunmoon" },
+                    new MiniGameData() { Main = MiniGameCode.DancingDots.ToString(), Variation = "counting" }
                 });
                 return;
             }
@@ -206,8 +206,9 @@ namespace EA4S
             float area = totBubbles * bubbleW + (totBubbles - 1) * bubblesDist;
             float startX = -area * 0.5f + bubbleW * 0.5f;
             for (int i = 0; i < totBubbles; ++i) {
+                MiniGameData mgData = games[i];
                 GamesSelectorBubble bubble = i == 0 ? mainBubble : (GamesSelectorBubble)Instantiate(mainBubble, this.transform);
-                bubble.Setup(games[i].GetIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
+                bubble.Setup(mgData.GetIconResourcePath(), mgData.GetBadgeIconResourcePath(), startX + (bubbleW + bubblesDist) * i);
                 bubbles.Add(bubble);
             }
         }
@@ -225,8 +226,9 @@ namespace EA4S
 
         void AutoLoadMinigames()
         {
+            AppManager.Instance.InitDataAI();
             OnComplete += GoToMinigame;
-            Show(TeacherAI.I.CurrentPlaySessionMiniGames);
+            if (TeacherAI.I.CurrentPlaySessionMiniGames.Count > 0) Show(TeacherAI.I.CurrentPlaySessionMiniGames);
         }
 
         void GoToMinigame()

@@ -33,5 +33,9 @@ namespace EA4S.Db
             return "Images/GameIcons/minigame_Ico_" + Main;
         }
 
+        public string GetBadgeIconResourcePath()
+        {
+            return "Images/GameIcons/minigame_BadgeIco_" + Variation;
+        }
     }
 }

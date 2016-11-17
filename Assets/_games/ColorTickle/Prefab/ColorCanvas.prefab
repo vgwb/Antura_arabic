@@ -64,16 +64,16 @@ MonoBehaviour:
     type: 2}
   m_NumberOfButtons: 4
   m_YDefaultResolution: 720
-  m_ButtonSelectedSizeScale: 1.5
+  m_ButtonSelectedSizeScale: 1.2
   m_Colors:
-  - {r: 0.99264705, g: 0, b: 0.8823081, a: 0}
+  - {r: 1, g: 0, b: 1, a: 0}
   - {r: 0, g: 1, b: 0, a: 0}
-  - {r: 0.022545436, g: 0.07079766, b: 1, a: 0}
-  - {r: 1, g: 0.94727075, b: 0.00746108, a: 0}
-  - {r: 0.022545457, g: 1, b: 0.91910714, a: 0}
+  - {r: 0, g: 0, b: 1, a: 0}
+  - {r: 1, g: 1, b: 0.00746108, a: 0}
+  - {r: 0.022545457, g: 1, b: 1, a: 0}
   - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0.509, g: 0.872, b: 0.342128, a: 0}
-  - {r: 1, g: 0.7180527, b: 0, a: 0}
+  - {r: 0.6137934, g: 0, b: 1, a: 0}
+  - {r: 1, g: 0.6, b: 0, a: 0}
 --- !u!114 &114000010511584324
 MonoBehaviour:
   m_ObjectHideFlags: 1
