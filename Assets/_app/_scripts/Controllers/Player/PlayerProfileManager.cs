@@ -49,6 +49,7 @@ namespace EA4S {
             AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
             if (AppManager.Instance.GameSettings.LastActivePlayerId > 0)
                 ActualPlayer = LoadPlayerProfileById(AppManager.Instance.GameSettings.LastActivePlayerId);
+            reloadAvailablePlayerProfilesList();
         }
 
         void reloadAvailablePlayerProfilesList() {
@@ -68,7 +69,6 @@ namespace EA4S {
         /// </summary>
         public PlayerProfileManager() {
             reloadGameSettings();
-            reloadAvailablePlayerProfilesList();
         }
 
         /// <summary>
@@ -106,6 +106,14 @@ namespace EA4S {
             //AppManager.Instance.GameSettings.AvailablePlayers.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer.Id.ToString());
             SaveGameSettings();
             return AppManager.Instance.PlayerProfileManager.ActualPlayer;
+        }
+
+        /// <summary>
+        /// Saves the player settings.
+        /// </summary>
+        /// <param name="_playerProfile">The player profile.</param>
+        public void SavePlayerSettings(PlayerProfile _playerProfile) {
+            AppManager.Instance.Modules.PlayerProfile.SavePlayerSettings(_playerProfile);
         }
 
         /// <summary>
