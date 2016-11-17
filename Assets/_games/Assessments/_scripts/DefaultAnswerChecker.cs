@@ -58,10 +58,11 @@ namespace EA4S.Assessment
                 }
                 else
                 {
-                    //TODO: Inject the question behaviour
+                    var behaviour =
                     p.Placeholder.GetQuestion().gameObject
-                        .GetComponent< QuestionBehaviour>().OnQuestionAnswered();
-                    yield return TimeEngine.Wait(1.0f);
+                        .GetComponent<QuestionBehaviour>();
+                    behaviour.OnQuestionAnswered();
+                    yield return TimeEngine.Wait(behaviour.TimeToWait());
                 }
             }
 

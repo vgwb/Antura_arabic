@@ -42,5 +42,10 @@ namespace EA4S.Assessment
         {
             questionAnswered.TriggerOnSpawned();
         }
+
+        internal float TimeToWait()
+        {
+            return questionAnswered.TimeToWait();
+        }
     }
 }

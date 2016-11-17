@@ -19,8 +19,8 @@ namespace EA4S.Assessment
             ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
-            
-            return null;
+
+            return new DefaultAssessment(answerPlacer, questionplacer, generator, injector, configuration, context);
         }
 
         public static IAssessment CreateLetterShapeAssessment()
@@ -44,10 +44,17 @@ namespace EA4S.Assessment
         {
             Init(); // common initialization stuff
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
-            var generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            IGameContext context            = configuration.Context;
+            IAudioManager audioManager      = configuration.Context.GetAudioManager();
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget());
+            IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
+            IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
+            IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
+            ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
+            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
+            IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
-            //            return new DefaultAssessment();
-            return null;
+            return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
         }
 
         //private LivingLetterFactory livingLetterFactory;

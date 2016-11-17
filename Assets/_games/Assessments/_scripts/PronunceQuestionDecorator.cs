@@ -6,7 +6,7 @@ namespace EA4S.Assessment
     {
         public void DecorateQuestion( QuestionBehaviour question)
         {
-            var comp = question.gameObject.AddComponent< PronounceQuestion>();
+            var comp = question.gameObject.AddComponent< NoEvent>();
             question.questionAnswered = comp;
         }
     }
