@@ -31,9 +31,7 @@ namespace EA4S.Assessment
 
         public bool AllAnswered()
         {
-            // TODO: This is the only missing piece for this class
-
-            // TODO: ticking false
+            
             return false;
         }
 
@@ -76,13 +74,17 @@ namespace EA4S.Assessment
         }
 
         private void CheckCollidedWithPlaceholder()
-        {
+        { 
             foreach(var p in placeholders)
                 if ( NearEnoughToDrop( p.transform))
                 {
+                    droppable.Detach(false);
                     droppable.LinkToPlaceholder( p);
                     return;
                 }
+
+            // In case we just moved out a LL
+            droppable.Detach(false);
         }
 
         bool NearEnoughToDrop( Transform zone)
