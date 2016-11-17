@@ -23,8 +23,8 @@ namespace EA4S.ThrowBalls
 
             float ballElevation = ballPosition.y - groundPosition.y;
 
-            float scale = 0.4f + ballElevation * 0.1f / 7f;
-            transform.localScale = new Vector3(scale, scale, 1);
+            float scale = 7f + ballElevation * 0.5f;
+            transform.localScale = new Vector3(scale, scale, 12.72f);
         }
 
         public void Enable()
