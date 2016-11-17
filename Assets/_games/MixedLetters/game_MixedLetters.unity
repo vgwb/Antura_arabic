@@ -662,6 +662,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011925495770, guid: c50d89ee61f6e41448d352919186fec7,
+        type: 2}
+      propertyPath: dropZone
+      value: 
+      objectReference: {fileID: 262885506}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c50d89ee61f6e41448d352919186fec7, type: 2}
   m_IsPrefabParent: 0
@@ -802,6 +807,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: rotateButtonController
+      value: 
+      objectReference: {fileID: 1421242962}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -1534,6 +1544,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: rotateButtonController
+      value: 
+      objectReference: {fileID: 499891285}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -1592,6 +1607,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011925495770, guid: c50d89ee61f6e41448d352919186fec7,
+        type: 2}
+      propertyPath: dropZone
+      value: 
+      objectReference: {fileID: 689475480}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c50d89ee61f6e41448d352919186fec7, type: 2}
   m_IsPrefabParent: 0
@@ -1949,6 +1969,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: rotateButtonController
+      value: 
+      objectReference: {fileID: 1659463683}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -2007,6 +2032,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011925495770, guid: c50d89ee61f6e41448d352919186fec7,
+        type: 2}
+      propertyPath: dropZone
+      value: 
+      objectReference: {fileID: 1988701460}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c50d89ee61f6e41448d352919186fec7, type: 2}
   m_IsPrefabParent: 0
@@ -3060,19 +3090,13 @@ MonoBehaviour:
   - {fileID: 689475480}
   - {fileID: 1511924036}
   - {fileID: 23003274}
-  rotateButtonControllers:
-  - {fileID: 1841736816}
-  - {fileID: 168131471}
-  - {fileID: 595965598}
-  - {fileID: 499891285}
-  - {fileID: 1421242962}
-  - {fileID: 1659463683}
   wordInPlay:
     Id: 
     Kind: 0
     Category: 0
     Form: 0
     Article: 0
+    LinkedWord: 
     Arabic: 
     Letters: []
     Difficulty: 0
@@ -6585,6 +6609,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011925495770, guid: c50d89ee61f6e41448d352919186fec7,
+        type: 2}
+      propertyPath: dropZone
+      value: 
+      objectReference: {fileID: 1511924036}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c50d89ee61f6e41448d352919186fec7, type: 2}
   m_IsPrefabParent: 0
@@ -6887,6 +6916,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: rotateButtonController
+      value: 
+      objectReference: {fileID: 1841736816}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -7422,6 +7456,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: rotateButtonController
+      value: 
+      objectReference: {fileID: 595965598}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -7743,6 +7782,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011925495770, guid: c50d89ee61f6e41448d352919186fec7,
+        type: 2}
+      propertyPath: dropZone
+      value: 
+      objectReference: {fileID: 23003274}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c50d89ee61f6e41448d352919186fec7, type: 2}
   m_IsPrefabParent: 0
@@ -8030,6 +8074,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011410575750, guid: 793a56ee08bf1094196209e7145d9e19,
+        type: 2}
+      propertyPath: rotateButtonController
+      value: 
+      objectReference: {fileID: 168131471}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a56ee08bf1094196209e7145d9e19, type: 2}
   m_IsPrefabParent: 0
@@ -8446,6 +8495,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011925495770, guid: c50d89ee61f6e41448d352919186fec7,
+        type: 2}
+      propertyPath: dropZone
+      value: 
+      objectReference: {fileID: 605322469}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c50d89ee61f6e41448d352919186fec7, type: 2}
   m_IsPrefabParent: 0

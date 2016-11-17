@@ -17,7 +17,6 @@ namespace EA4S.MixedLetters
         public ResultGameState ResultState { get; private set; }
 
         public DropZoneController[] dropZoneControllers;
-        public RotateButtonController[] rotateButtonControllers;
 
         public LL_WordData wordData;
         public Db.WordData wordInPlay;
@@ -37,11 +36,6 @@ namespace EA4S.MixedLetters
             ResultState = new ResultGameState(this);
 
             lettersInOrder = new List<LL_LetterData>();
-
-            for (int i = 0; i < rotateButtonControllers.Length; i++)
-            {
-                rotateButtonControllers[i].SetDropZone(dropZoneControllers[i]);
-            }
 
             Physics.IgnoreLayerCollision(0, 5);
             Physics.IgnoreLayerCollision(12, 11);
@@ -77,20 +71,11 @@ namespace EA4S.MixedLetters
                 Vector3 dropZonePosition = dropZoneController.transform.position;
                 dropZonePosition.x = dropZoneXStart - i * dropZoneWidthWithSpace;
                 dropZoneController.SetPosition(dropZonePosition);
-
-                RotateButtonController rotateButtonController = rotateButtonControllers[i];
-                rotateButtonController.Enable();
-
-                Vector3 rotateButtonPosition = dropZonePosition;
-                rotateButtonPosition.y += 2.2f;
-                rotateButtonPosition.z += 0.5f;
-                rotateButtonController.SetPosition(rotateButtonPosition);
             }
 
             for (int i = numLetters; i < dropZoneControllers.Length; i++)
             {
                 dropZoneControllers[i].Disable();
-                rotateButtonControllers[i].Disable();
             }
         }
 
@@ -107,11 +92,6 @@ namespace EA4S.MixedLetters
             foreach (DropZoneController dropZoneController in dropZoneControllers)
             {
                 dropZoneController.Disable();
-            }
-
-            foreach (RotateButtonController rotateButtonController in rotateButtonControllers)
-            {
-                rotateButtonController.Disable();
             }
         }
 
