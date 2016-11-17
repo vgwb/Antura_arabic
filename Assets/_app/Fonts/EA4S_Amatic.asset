@@ -15,286 +15,221 @@ Material:
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2805796}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _BumpMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _FaceTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _OutlineTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Cube
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MaskTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Cube
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _FaceTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2805796}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MaskTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _OutlineTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: _Stencil
-        second: 0
-      data:
-        first:
-          name: _StencilComp
-        second: 8
-      data:
-        first:
-          name: _StencilOp
-        second: 0
-      data:
-        first:
-          name: _StencilReadMask
-        second: 255
-      data:
-        first:
-          name: _StencilWriteMask
-        second: 255
-      data:
-        first:
-          name: _ColorMask
-        second: 15
-      data:
-        first:
-          name: _FaceDilate
-        second: 0
-      data:
-        first:
-          name: _OutlineWidth
-        second: 0
-      data:
-        first:
-          name: _OutlineSoftness
-        second: 0
-      data:
-        first:
-          name: _GlowOffset
-        second: 0
-      data:
-        first:
-          name: _GlowInner
-        second: 0.05
-      data:
-        first:
-          name: _GlowOuter
-        second: 0.05
-      data:
-        first:
-          name: _GlowPower
-        second: 0.75
-      data:
-        first:
-          name: _WeightNormal
-        second: 0
-      data:
-        first:
-          name: _WeightBold
-        second: 0.75
-      data:
-        first:
-          name: _ShaderFlags
-        second: 0
-      data:
-        first:
-          name: _ScaleRatioA
-        second: 0.8333333
-      data:
-        first:
-          name: _ScaleRatioB
-        second: 0.8333333
-      data:
-        first:
-          name: _ScaleRatioC
-        second: 0.8333333
-      data:
-        first:
-          name: _TextureWidth
-        second: 512
-      data:
-        first:
-          name: _TextureHeight
-        second: 512
-      data:
-        first:
-          name: _GradientScale
-        second: 6
-      data:
-        first:
-          name: _ScaleX
-        second: 1
-      data:
-        first:
-          name: _ScaleY
-        second: 1
-      data:
-        first:
-          name: _PerspectiveFilter
-        second: 0.875
-      data:
-        first:
-          name: _VertexOffsetX
-        second: 0
-      data:
-        first:
-          name: _VertexOffsetY
-        second: 0
-      data:
-        first:
-          name: _FaceUVSpeedX
-        second: 0
-      data:
-        first:
-          name: _FaceUVSpeedY
-        second: 0
-      data:
-        first:
-          name: _OutlineUVSpeedX
-        second: 0
-      data:
-        first:
-          name: _OutlineUVSpeedY
-        second: 0
-      data:
-        first:
-          name: _Bevel
-        second: 0.5
-      data:
-        first:
-          name: _BevelOffset
-        second: 0
-      data:
-        first:
-          name: _BevelWidth
-        second: 0
-      data:
-        first:
-          name: _BevelClamp
-        second: 0
-      data:
-        first:
-          name: _BevelRoundness
-        second: 0
-      data:
-        first:
-          name: _LightAngle
-        second: 3.1416
-      data:
-        first:
-          name: _SpecularPower
-        second: 2
-      data:
-        first:
-          name: _Reflectivity
-        second: 10
-      data:
-        first:
-          name: _Diffuse
-        second: 0.5
-      data:
-        first:
-          name: _Ambient
-        second: 0.5
-      data:
-        first:
-          name: _BumpOutline
-        second: 0
-      data:
-        first:
-          name: _BumpFace
-        second: 0
-      data:
-        first:
-          name: _UnderlayOffsetX
-        second: 0
-      data:
-        first:
-          name: _UnderlayOffsetY
-        second: 0
-      data:
-        first:
-          name: _UnderlayDilate
-        second: 0
-      data:
-        first:
-          name: _UnderlaySoftness
-        second: 0
-      data:
-        first:
-          name: _MaskSoftnessX
-        second: 0
-      data:
-        first:
-          name: _MaskSoftnessY
-        second: 0
+    - first:
+        name: _Ambient
+      second: 0.5
+    - first:
+        name: _Bevel
+      second: 0.5
+    - first:
+        name: _BevelClamp
+      second: 0
+    - first:
+        name: _BevelOffset
+      second: 0
+    - first:
+        name: _BevelRoundness
+      second: 0
+    - first:
+        name: _BevelWidth
+      second: 0
+    - first:
+        name: _BumpFace
+      second: 0
+    - first:
+        name: _BumpOutline
+      second: 0
+    - first:
+        name: _ColorMask
+      second: 15
+    - first:
+        name: _Diffuse
+      second: 0.5
+    - first:
+        name: _FaceDilate
+      second: 0
+    - first:
+        name: _FaceUVSpeedX
+      second: 0
+    - first:
+        name: _FaceUVSpeedY
+      second: 0
+    - first:
+        name: _GlowInner
+      second: 0.05
+    - first:
+        name: _GlowOffset
+      second: 0
+    - first:
+        name: _GlowOuter
+      second: 0.05
+    - first:
+        name: _GlowPower
+      second: 0.75
+    - first:
+        name: _GradientScale
+      second: 6
+    - first:
+        name: _LightAngle
+      second: 3.1416
+    - first:
+        name: _MaskSoftnessX
+      second: 0
+    - first:
+        name: _MaskSoftnessY
+      second: 0
+    - first:
+        name: _OutlineSoftness
+      second: 0
+    - first:
+        name: _OutlineUVSpeedX
+      second: 0
+    - first:
+        name: _OutlineUVSpeedY
+      second: 0
+    - first:
+        name: _OutlineWidth
+      second: 0
+    - first:
+        name: _PerspectiveFilter
+      second: 0.875
+    - first:
+        name: _Reflectivity
+      second: 10
+    - first:
+        name: _ScaleRatioA
+      second: 0.8333333
+    - first:
+        name: _ScaleRatioB
+      second: 0.8333333
+    - first:
+        name: _ScaleRatioC
+      second: 0.8333333
+    - first:
+        name: _ScaleX
+      second: 1
+    - first:
+        name: _ScaleY
+      second: 1
+    - first:
+        name: _ShaderFlags
+      second: 0
+    - first:
+        name: _SpecularPower
+      second: 2
+    - first:
+        name: _Stencil
+      second: 0
+    - first:
+        name: _StencilComp
+      second: 8
+    - first:
+        name: _StencilOp
+      second: 0
+    - first:
+        name: _StencilReadMask
+      second: 255
+    - first:
+        name: _StencilWriteMask
+      second: 255
+    - first:
+        name: _TextureHeight
+      second: 512
+    - first:
+        name: _TextureWidth
+      second: 512
+    - first:
+        name: _UnderlayDilate
+      second: 0
+    - first:
+        name: _UnderlayOffsetX
+      second: 0
+    - first:
+        name: _UnderlayOffsetY
+      second: 0
+    - first:
+        name: _UnderlaySoftness
+      second: 0
+    - first:
+        name: _VertexOffsetX
+      second: 0
+    - first:
+        name: _VertexOffsetY
+      second: 0
+    - first:
+        name: _WeightBold
+      second: 0.75
+    - first:
+        name: _WeightNormal
+      second: 0
     m_Colors:
-      data:
-        first:
-          name: _ClipRect
-        second: {r: -10000, g: -10000, b: 10000, a: 10000}
-      data:
-        first:
-          name: _FaceColor
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _GlowColor
-        second: {r: 0, g: 1, b: 0, a: 0.5}
-      data:
-        first:
-          name: _SpecularColor
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _ReflectFaceColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _ReflectOutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _EnvMatrixRotation
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
-          name: _UnderlayColor
-        second: {r: 0, g: 0, b: 0, a: 0.5}
-      data:
-        first:
-          name: _MaskCoord
-        second: {r: 0, g: 0, b: 10000, a: 10000}
+    - first:
+        name: _ClipRect
+      second: {r: -10000, g: -10000, b: 10000, a: 10000}
+    - first:
+        name: _EnvMatrixRotation
+      second: {r: 0, g: 0, b: 0, a: 0}
+    - first:
+        name: _FaceColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _GlowColor
+      second: {r: 0, g: 1, b: 0, a: 0.5}
+    - first:
+        name: _MaskCoord
+      second: {r: 0, g: 0, b: 10000, a: 10000}
+    - first:
+        name: _OutlineColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _ReflectFaceColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _ReflectOutlineColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _SpecularColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _UnderlayColor
+      second: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!28 &2805796
 Texture2D:
   m_ObjectHideFlags: 0
@@ -337,9 +272,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
-  m_Name: AmaticSC-Bold SDF
+  m_Name: EA4S_Amatic
   m_EditorClassIdentifier: 
-  hashCode: -2037340678
+  hashCode: 262060207
   material: {fileID: 2110704}
   materialHashCode: -1695885519
   fontAssetType: 1
@@ -351,6 +286,7 @@ MonoBehaviour:
     LineHeight: 124.8125
     Baseline: 0
     Ascender: 100.625
+    CapHeight: 74.625
     Descender: -24.1875
     CenterLine: 0
     SuperscriptOffset: 100.625
@@ -372,6 +308,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 100.625
     xAdvance: 14
+    scale: 1
   - id: 33
     x: 120
     y: 335
@@ -380,6 +317,7 @@ MonoBehaviour:
     xOffset: 3.375
     yOffset: 76
     xAdvance: 16.6875
+    scale: 1
   - id: 34
     x: 491
     y: 311
@@ -388,6 +326,7 @@ MonoBehaviour:
     xOffset: 4.9375
     yOffset: 76.3125
     xAdvance: 23.625
+    scale: 1
   - id: 35
     x: 171
     y: 425
@@ -396,6 +335,7 @@ MonoBehaviour:
     xOffset: 2.75
     yOffset: 75.75
     xAdvance: 38.4375
+    scale: 1
   - id: 36
     x: 66
     y: 43
@@ -404,6 +344,7 @@ MonoBehaviour:
     xOffset: 3.1875
     yOffset: 79.375
     xAdvance: 26.1875
+    scale: 1
   - id: 37
     x: 62
     y: 431
@@ -412,6 +353,7 @@ MonoBehaviour:
     xOffset: 3.4375
     yOffset: 75.125
     xAdvance: 54.5
+    scale: 1
   - id: 38
     x: 121
     y: 432
@@ -420,6 +362,7 @@ MonoBehaviour:
     xOffset: 3.75
     yOffset: 83.5625
     xAdvance: 45.3125
+    scale: 1
   - id: 39
     x: 491
     y: 251
@@ -428,6 +371,7 @@ MonoBehaviour:
     xOffset: 4.8125
     yOffset: 76.3125
     xAdvance: 15.375
+    scale: 1
   - id: 40
     x: 6
     y: 117
@@ -436,6 +380,7 @@ MonoBehaviour:
     xOffset: 3.8125
     yOffset: 79.8125
     xAdvance: 22.5625
+    scale: 1
   - id: 41
     x: 6
     y: 13
@@ -444,6 +389,7 @@ MonoBehaviour:
     xOffset: 2.125
     yOffset: 78.375
     xAdvance: 23.3125
+    scale: 1
   - id: 42
     x: 154
     y: 33
@@ -452,6 +398,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 75.75
     xAdvance: 43.1875
+    scale: 1
   - id: 43
     x: 455
     y: 52
@@ -460,6 +407,7 @@ MonoBehaviour:
     xOffset: 4
     yOffset: 46.8125
     xAdvance: 35.75
+    scale: 1
   - id: 44
     x: 491
     y: 281
@@ -468,6 +416,7 @@ MonoBehaviour:
     xOffset: 3.9375
     yOffset: 8.9375
     xAdvance: 20.5625
+    scale: 1
   - id: 45
     x: 66
     y: 27
@@ -476,6 +425,7 @@ MonoBehaviour:
     xOffset: 5
     yOffset: 38.625
     xAdvance: 31.375
+    scale: 1
   - id: 46
     x: 465
     y: 342
@@ -484,6 +434,7 @@ MonoBehaviour:
     xOffset: 5.0625
     yOffset: 5.8125
     xAdvance: 17.1875
+    scale: 1
   - id: 47
     x: 227
     y: 252
@@ -492,6 +443,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 75.125
     xAdvance: 27.4375
+    scale: 1
   - id: 48
     x: 330
     y: 251
@@ -500,6 +452,7 @@ MonoBehaviour:
     xOffset: 4.6875
     yOffset: 75.5625
     xAdvance: 31.125
+    scale: 1
   - id: 49
     x: 260
     y: 252
@@ -508,6 +461,7 @@ MonoBehaviour:
     xOffset: 2.625
     yOffset: 76.1875
     xAdvance: 29.125
+    scale: 1
   - id: 50
     x: 330
     y: 338
@@ -516,6 +470,7 @@ MonoBehaviour:
     xOffset: 2.6875
     yOffset: 76.75
     xAdvance: 27.9375
+    scale: 1
   - id: 51
     x: 295
     y: 260
@@ -524,6 +479,7 @@ MonoBehaviour:
     xOffset: 2.5625
     yOffset: 76.0625
     xAdvance: 29
+    scale: 1
   - id: 52
     x: 430
     y: 252
@@ -532,6 +488,7 @@ MonoBehaviour:
     xOffset: 4.25
     yOffset: 74.625
     xAdvance: 26.75
+    scale: 1
   - id: 53
     x: 397
     y: 339
@@ -540,6 +497,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 76.125
     xAdvance: 27.9375
+    scale: 1
   - id: 54
     x: 462
     y: 251
@@ -548,6 +506,7 @@ MonoBehaviour:
     xOffset: 4.375
     yOffset: 76.6875
     xAdvance: 25.6875
+    scale: 1
   - id: 55
     x: 95
     y: 146
@@ -556,6 +515,7 @@ MonoBehaviour:
     xOffset: 3.1875
     yOffset: 76.5
     xAdvance: 22.5
+    scale: 1
   - id: 56
     x: 34
     y: 133
@@ -564,6 +524,7 @@ MonoBehaviour:
     xOffset: 3.375
     yOffset: 77.6875
     xAdvance: 25.4375
+    scale: 1
   - id: 57
     x: 98
     y: 244
@@ -572,6 +533,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 78.0625
     xAdvance: 25.6875
+    scale: 1
   - id: 58
     x: 491
     y: 117
@@ -580,6 +542,7 @@ MonoBehaviour:
     xOffset: 4.5
     yOffset: 53.375
     xAdvance: 17.125
+    scale: 1
   - id: 59
     x: 465
     y: 361
@@ -588,6 +551,7 @@ MonoBehaviour:
     xOffset: 4
     yOffset: 53.375
     xAdvance: 19.8125
+    scale: 1
   - id: 60
     x: 304
     y: 83
@@ -596,6 +560,7 @@ MonoBehaviour:
     xOffset: 3.125
     yOffset: 70
     xAdvance: 26.75
+    scale: 1
   - id: 61
     x: 455
     y: 26
@@ -604,6 +569,7 @@ MonoBehaviour:
     xOffset: 5.3125
     yOffset: 42.1875
     xAdvance: 37.875
+    scale: 1
   - id: 62
     x: 336
     y: 89
@@ -612,6 +578,7 @@ MonoBehaviour:
     xOffset: 2.8125
     yOffset: 69.9375
     xAdvance: 27.9375
+    scale: 1
   - id: 63
     x: 127
     y: 244
@@ -620,6 +587,7 @@ MonoBehaviour:
     xOffset: 3.3125
     yOffset: 77.5
     xAdvance: 22.4375
+    scale: 1
   - id: 64
     x: 6
     y: 417
@@ -628,6 +596,7 @@ MonoBehaviour:
     xOffset: 4.3125
     yOffset: 83.125
     xAdvance: 52.125
+    scale: 1
   - id: 65
     x: 216
     y: 340
@@ -636,6 +605,7 @@ MonoBehaviour:
     xOffset: 2.75
     yOffset: 74.625
     xAdvance: 34.25
+    scale: 1
   - id: 66
     x: 154
     y: 166
@@ -644,6 +614,7 @@ MonoBehaviour:
     xOffset: 5
     yOffset: 74.3125
     xAdvance: 30.1875
+    scale: 1
   - id: 67
     x: 415
     y: 428
@@ -652,6 +623,7 @@ MonoBehaviour:
     xOffset: 4
     yOffset: 75.6875
     xAdvance: 33.125
+    scale: 1
   - id: 68
     x: 190
     y: 253
@@ -660,6 +632,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 75.0625
     xAdvance: 33.375
+    scale: 1
   - id: 69
     x: 489
     y: 341
@@ -668,6 +641,7 @@ MonoBehaviour:
     xOffset: 5.3125
     yOffset: 75
     xAdvance: 24.4375
+    scale: 1
   - id: 70
     x: 127
     y: 69
@@ -676,6 +650,7 @@ MonoBehaviour:
     xOffset: 3.3125
     yOffset: 75.125
     xAdvance: 21.875
+    scale: 1
   - id: 71
     x: 215
     y: 426
@@ -684,6 +659,7 @@ MonoBehaviour:
     xOffset: 3.8125
     yOffset: 76.9375
     xAdvance: 37.25
+    scale: 1
   - id: 72
     x: 364
     y: 251
@@ -692,6 +668,7 @@ MonoBehaviour:
     xOffset: 4
     yOffset: 75.3125
     xAdvance: 30.1875
+    scale: 1
   - id: 73
     x: 255
     y: 340
@@ -700,6 +677,7 @@ MonoBehaviour:
     xOffset: 2.9375
     yOffset: 75.125
     xAdvance: 23.625
+    scale: 1
   - id: 74
     x: 91
     y: 335
@@ -708,6 +686,7 @@ MonoBehaviour:
     xOffset: 2.25
     yOffset: 75.125
     xAdvance: 22.9375
+    scale: 1
   - id: 75
     x: 452
     y: 426
@@ -716,6 +695,7 @@ MonoBehaviour:
     xOffset: 4.4375
     yOffset: 77.1875
     xAdvance: 33.375
+    scale: 1
   - id: 76
     x: 489
     y: 428
@@ -724,6 +704,7 @@ MonoBehaviour:
     xOffset: 4.25
     yOffset: 76
     xAdvance: 23.4375
+    scale: 1
   - id: 77
     x: 256
     y: 427
@@ -732,6 +713,7 @@ MonoBehaviour:
     xOffset: 5.0625
     yOffset: 76.75
     xAdvance: 41.3125
+    scale: 1
   - id: 78
     x: 298
     y: 427
@@ -740,6 +722,7 @@ MonoBehaviour:
     xOffset: 4.4375
     yOffset: 77.1875
     xAdvance: 36.9375
+    scale: 1
   - id: 79
     x: 154
     y: 253
@@ -748,6 +731,7 @@ MonoBehaviour:
     xOffset: 3.875
     yOffset: 76.625
     xAdvance: 33.5625
+    scale: 1
   - id: 80
     x: 140
     y: 344
@@ -756,6 +740,7 @@ MonoBehaviour:
     xOffset: 3.1875
     yOffset: 75.75
     xAdvance: 26.625
+    scale: 1
   - id: 81
     x: 6
     y: 226
@@ -764,6 +749,7 @@ MonoBehaviour:
     xOffset: 3.9375
     yOffset: 76.1875
     xAdvance: 34.8125
+    scale: 1
   - id: 82
     x: 122
     y: 156
@@ -772,6 +758,7 @@ MonoBehaviour:
     xOffset: 4.875
     yOffset: 75.3125
     xAdvance: 29.0625
+    scale: 1
   - id: 83
     x: 58
     y: 327
@@ -780,6 +767,7 @@ MonoBehaviour:
     xOffset: 3.0625
     yOffset: 76.125
     xAdvance: 28.0625
+    scale: 1
   - id: 84
     x: 187
     y: 166
@@ -788,6 +776,7 @@ MonoBehaviour:
     xOffset: 2.25
     yOffset: 74.9375
     xAdvance: 26.25
+    scale: 1
   - id: 85
     x: 337
     y: 429
@@ -796,6 +785,7 @@ MonoBehaviour:
     xOffset: 3.1875
     yOffset: 74.6875
     xAdvance: 36.375
+    scale: 1
   - id: 86
     x: 377
     y: 428
@@ -804,6 +794,7 @@ MonoBehaviour:
     xOffset: 2.4375
     yOffset: 75.875
     xAdvance: 32.125
+    scale: 1
   - id: 87
     x: 6
     y: 327
@@ -812,6 +803,7 @@ MonoBehaviour:
     xOffset: 2.5
     yOffset: 77
     xAdvance: 45.9375
+    scale: 1
   - id: 88
     x: 254
     y: 165
@@ -820,6 +812,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 74.9375
     xAdvance: 27.9375
+    scale: 1
   - id: 89
     x: 287
     y: 165
@@ -828,6 +821,7 @@ MonoBehaviour:
     xOffset: 2.5625
     yOffset: 74.75
     xAdvance: 25.25
+    scale: 1
   - id: 90
     x: 98
     y: 58
@@ -836,6 +830,7 @@ MonoBehaviour:
     xOffset: 2.875
     yOffset: 75.625
     xAdvance: 23.875
+    scale: 1
   - id: 91
     x: 35
     y: 40
@@ -844,6 +839,7 @@ MonoBehaviour:
     xOffset: 3.4375
     yOffset: 76.1875
     xAdvance: 25.3125
+    scale: 1
   - id: 92
     x: 397
     y: 251
@@ -852,6 +848,7 @@ MonoBehaviour:
     xOffset: 2.875
     yOffset: 75.1875
     xAdvance: 27.125
+    scale: 1
   - id: 93
     x: 65
     y: 135
@@ -860,6 +857,7 @@ MonoBehaviour:
     xOffset: 2.5625
     yOffset: 76.3125
     xAdvance: 24.4375
+    scale: 1
   - id: 94
     x: 127
     y: 37
@@ -868,6 +866,7 @@ MonoBehaviour:
     xOffset: 4
     yOffset: 83.5625
     xAdvance: 23.125
+    scale: 1
   - id: 95
     x: 455
     y: 8
@@ -876,6 +875,7 @@ MonoBehaviour:
     xOffset: 4.3125
     yOffset: 0
     xAdvance: 47.5
+    scale: 1
   - id: 96
     x: 35
     y: 19
@@ -884,6 +884,7 @@ MonoBehaviour:
     xOffset: 4.375
     yOffset: 83.4375
     xAdvance: 28.1875
+    scale: 1
   - id: 97
     x: 391
     y: 173
@@ -892,6 +893,7 @@ MonoBehaviour:
     xOffset: 3
     yOffset: 65.9375
     xAdvance: 32.5625
+    scale: 1
   - id: 98
     x: 429
     y: 94
@@ -900,6 +902,7 @@ MonoBehaviour:
     xOffset: 4.375
     yOffset: 66.875
     xAdvance: 26.1875
+    scale: 1
   - id: 99
     x: 397
     y: 94
@@ -908,6 +911,7 @@ MonoBehaviour:
     xOffset: 3.6875
     yOffset: 65.9375
     xAdvance: 27.4375
+    scale: 1
   - id: 100
     x: 233
     y: 10
@@ -916,6 +920,7 @@ MonoBehaviour:
     xOffset: 4.125
     yOffset: 65.4375
     xAdvance: 31.1875
+    scale: 1
   - id: 101
     x: 428
     y: 173
@@ -924,6 +929,7 @@ MonoBehaviour:
     xOffset: 4.9375
     yOffset: 65.375
     xAdvance: 25
+    scale: 1
   - id: 102
     x: 202
     y: 9
@@ -932,6 +938,7 @@ MonoBehaviour:
     xOffset: 4
     yOffset: 65.9375
     xAdvance: 26.125
+    scale: 1
   - id: 103
     x: 233
     y: 87
@@ -940,6 +947,7 @@ MonoBehaviour:
     xOffset: 3.4375
     yOffset: 65.5
     xAdvance: 31.625
+    scale: 1
   - id: 104
     x: 456
     y: 173
@@ -948,6 +956,7 @@ MonoBehaviour:
     xOffset: 4.625
     yOffset: 66.625
     xAdvance: 30.3125
+    scale: 1
   - id: 105
     x: 267
     y: 10
@@ -956,6 +965,7 @@ MonoBehaviour:
     xOffset: 2.5625
     yOffset: 65.625
     xAdvance: 26.625
+    scale: 1
   - id: 106
     x: 363
     y: 339
@@ -964,6 +974,7 @@ MonoBehaviour:
     xOffset: 2
     yOffset: 65.75
     xAdvance: 27.5
+    scale: 1
   - id: 107
     x: 354
     y: 172
@@ -972,6 +983,7 @@ MonoBehaviour:
     xOffset: 4.6875
     yOffset: 65.625
     xAdvance: 33.625
+    scale: 1
   - id: 108
     x: 364
     y: 10
@@ -980,6 +992,7 @@ MonoBehaviour:
     xOffset: 4.625
     yOffset: 65.5625
     xAdvance: 25.25
+    scale: 1
   - id: 109
     x: 285
     y: 348
@@ -988,6 +1001,7 @@ MonoBehaviour:
     xOffset: 4.0625
     yOffset: 65.375
     xAdvance: 42.4375
+    scale: 1
   - id: 110
     x: 194
     y: 88
@@ -996,6 +1010,7 @@ MonoBehaviour:
     xOffset: 4.75
     yOffset: 65.25
     xAdvance: 37.1875
+    scale: 1
   - id: 111
     x: 269
     y: 86
@@ -1004,6 +1019,7 @@ MonoBehaviour:
     xOffset: 3.6875
     yOffset: 65.4375
     xAdvance: 32.3125
+    scale: 1
   - id: 112
     x: 488
     y: 173
@@ -1012,6 +1028,7 @@ MonoBehaviour:
     xOffset: 4.6875
     yOffset: 64.875
     xAdvance: 26.125
+    scale: 1
   - id: 113
     x: 46
     y: 228
@@ -1020,6 +1037,7 @@ MonoBehaviour:
     xOffset: 3.75
     yOffset: 66.1875
     xAdvance: 31.625
+    scale: 1
   - id: 114
     x: 394
     y: 13
@@ -1028,6 +1046,7 @@ MonoBehaviour:
     xOffset: 4.1875
     yOffset: 66
     xAdvance: 26.9375
+    scale: 1
   - id: 115
     x: 369
     y: 92
@@ -1036,6 +1055,7 @@ MonoBehaviour:
     xOffset: 3.625
     yOffset: 66.8125
     xAdvance: 24.1875
+    scale: 1
   - id: 116
     x: 300
     y: 6
@@ -1044,6 +1064,7 @@ MonoBehaviour:
     xOffset: 2.3125
     yOffset: 65.75
     xAdvance: 26.6875
+    scale: 1
   - id: 117
     x: 317
     y: 171
@@ -1052,6 +1073,7 @@ MonoBehaviour:
     xOffset: 3.875
     yOffset: 67.1875
     xAdvance: 33.75
+    scale: 1
   - id: 118
     x: 154
     y: 87
@@ -1060,6 +1082,7 @@ MonoBehaviour:
     xOffset: 2.75
     yOffset: 66.625
     xAdvance: 35.375
+    scale: 1
   - id: 119
     x: 171
     y: 344
@@ -1068,6 +1091,7 @@ MonoBehaviour:
     xOffset: 2.75
     yOffset: 66.625
     xAdvance: 40.625
+    scale: 1
   - id: 120
     x: 425
     y: 17
@@ -1076,6 +1100,7 @@ MonoBehaviour:
     xOffset: 3.125
     yOffset: 65.125
     xAdvance: 25.6875
+    scale: 1
   - id: 121
     x: 458
     y: 94
@@ -1084,6 +1109,7 @@ MonoBehaviour:
     xOffset: 2.75
     yOffset: 65.875
     xAdvance: 28.0625
+    scale: 1
   - id: 122
     x: 333
     y: 6
@@ -1092,6 +1118,7 @@ MonoBehaviour:
     xOffset: 3.125
     yOffset: 65.75
     xAdvance: 26.5625
+    scale: 1
   - id: 123
     x: 430
     y: 340
@@ -1100,6 +1127,7 @@ MonoBehaviour:
     xOffset: 2.75
     yOffset: 72.3125
     xAdvance: 29
+    scale: 1
   - id: 124
     x: 81
     y: 235
@@ -1108,6 +1136,7 @@ MonoBehaviour:
     xOffset: 5.3125
     yOffset: 76.625
     xAdvance: 16.5
+    scale: 1
   - id: 125
     x: 220
     y: 166
@@ -1116,6 +1145,7 @@ MonoBehaviour:
     xOffset: 2.875
     yOffset: 72.3125
     xAdvance: 28.75
+    scale: 1
   - id: 160
     x: 6
     y: 517
@@ -1124,6 +1154,7 @@ MonoBehaviour:
     xOffset: 0
     yOffset: 0
     xAdvance: 14
+    scale: 1
   - id: 8230
     x: 65
     y: 8
@@ -1132,6 +1163,7 @@ MonoBehaviour:
     xOffset: 5.0625
     yOffset: 5.8125
     xAdvance: 45.125
+    scale: 1
   m_kerningInfo:
     kerningPairs: []
   m_kerningPair:
