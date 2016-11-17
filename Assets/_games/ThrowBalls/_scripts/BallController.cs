@@ -111,7 +111,7 @@ namespace EA4S.ThrowBalls
 
         public bool IsLaunched()
         {
-            return state == State.Launched;
+            return state == State.Launched || state == State.Intercepted || state == State.Rebounding;
         }
 
         public void OnIntercepted(bool interceptedByLetter)

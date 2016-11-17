@@ -17,6 +17,9 @@ namespace EA4S
         public int Age;
         public string Name;
 
+        //profile comlpetion
+        public int ProfileCompletion = 0;
+
         // Mood (1 to 5 indicators)
         public float MainMood = 3f;
         public float Impatient = 3f;
@@ -137,6 +140,56 @@ namespace EA4S
         public void SetMaxJourneyPosition(JourneyPosition _journeyPosition) {
             AppManager.Instance.Player.MaxJourneyPosition = _journeyPosition;
         }
+        #endregion
+
+        #region Profile completion
+
+        #region First contact (ProfileCompletion = 1)
+        /// <summary>
+        /// Determines whether [is first contact].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is first contact]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsFirstContact() {
+            if (ProfileCompletion < 1)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Set firsts contact flag as passed.
+        /// </summary>
+        public void FirstContactPassed() {
+            ProfileCompletion = 1;
+            Save();
+        }
+        #endregion
+
+        #region BookVisited (ProfileCompletion = 2)                
+        /// <summary>
+        /// Determines whether [is first time book].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is first time book]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsFirstTimeBook() {
+            if (ProfileCompletion < 2)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Firsts the time book passed.
+        /// </summary>
+        public void FirstTimeBookPassed() {
+            ProfileCompletion = 2;
+            Save();
+        }
+        #endregion
+
         #endregion
 
         #endregion
