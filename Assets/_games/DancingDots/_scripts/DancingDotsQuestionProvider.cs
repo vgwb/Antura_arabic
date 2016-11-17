@@ -63,7 +63,7 @@ namespace EA4S.DancingDots
 			}
 			while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
 
-			DancingDotsQuestionsPack dataPack = new DancingDotsQuestionsPack(newLetter);
+//			DancingDotsQuestionsPack dataPack = new DancingDotsQuestionsPack(newLetter);
 			return newLetter;
 		}
 
