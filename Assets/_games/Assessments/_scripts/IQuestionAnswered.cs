@@ -4,6 +4,8 @@ namespace EA4S.Assessment
     {
         void TriggerOnAnswered();
 
+        float TimeToWait();
+
         void TriggerOnSpawned();
     }
 }

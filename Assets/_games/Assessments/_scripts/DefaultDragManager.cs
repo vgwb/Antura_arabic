@@ -117,7 +117,7 @@ namespace EA4S.Assessment
             var p1 = zone.transform.position;
             var p2 = droppable.GetTransform().localPosition;
             p1.z = p2.z = 0;
-            return p1.DistanceIsLessThan( p2, 3f);
+            return p1.DistanceIsLessThan( p2, 2f);
         }
 
         bool ticking = false;

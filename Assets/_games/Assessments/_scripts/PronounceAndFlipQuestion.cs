@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -31,6 +32,11 @@ namespace EA4S.Assessment
         void Awake()
         {
             transform.rotation = Quaternion.Euler( Vector3.zero);
+        }
+
+        public float TimeToWait()
+        {
+            return 1.0f;
         }
     }
 }
