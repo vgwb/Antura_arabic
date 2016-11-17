@@ -70,6 +70,7 @@ namespace EA4S
 
         #region API
 
+        #region management
         /// <summary>
         /// Automatically select first avatar profile.
         /// </summary>
@@ -80,13 +81,64 @@ namespace EA4S
 
         public void DeleteThisProfile() { }
 
+        /// <summary>
+        /// Saves this instance.
+        /// </summary>
         public void Save() {
-            AppManager.Instance.Modules.PlayerProfile.SavePlayerSettings(this);
+            AppManager.Instance.PlayerProfileManager.SavePlayerSettings(this);
         }
 
+        /// <summary>
+        /// TBD if accessible form player instance.
+        /// Saves the general game settings.
+        /// </summary>
         public void SaveGameSettings() {
             AppManager.Instance.PlayerProfileManager.SaveGameSettings();
         }
-        #endregion 
+        #endregion
+
+        #region journey position
+        /// <summary>
+        /// Sets the actual journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_stage">The stage.</param>
+        /// <param name="_lb">The lb.</param>
+        /// <param name="_ps">The ps.</param>
+        public void SetActualJourneyPosition(int _stage, int _lb, int _ps) {
+            SetActualJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
+        }
+
+        /// <summary>
+        /// Sets the actual journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_journeyPosition">The journey position.</param>
+        public void SetActualJourneyPosition(JourneyPosition _journeyPosition) {
+            AppManager.Instance.Player.CurrentJourneyPosition = _journeyPosition;
+        }
+
+        /// <summary>
+        /// Sets the maximum journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_stage">The stage.</param>
+        /// <param name="_lb">The lb.</param>
+        /// <param name="_ps">The ps.</param>
+        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps) {
+            SetMaxJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
+        }
+
+        /// <summary>
+        /// Sets the maximum journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_journeyPosition">The journey position.</param>
+        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition) {
+            AppManager.Instance.Player.MaxJourneyPosition = _journeyPosition;
+        }
+        #endregion
+
+        #endregion
     }
 }
