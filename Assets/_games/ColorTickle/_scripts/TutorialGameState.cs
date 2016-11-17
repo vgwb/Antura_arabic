@@ -9,7 +9,7 @@ namespace EA4S.ColorTickle
         #region PRIVATE MEMBERS
 
         ColorTickleGame game;
-        GameObject TutorialLetter;
+        GameObject m_TutorialLetter;
 
         float m_PercentageLetterColored;
 
@@ -35,11 +35,9 @@ namespace EA4S.ColorTickle
         {
             m_PercentageLetterColored = 0.0f;
 
-            //game.anturaController.OnStateChanged += AnturaInteractions;
-
             //Init the tutorial letter
-            TutorialLetter = game.tutorialLetter;
-            TutorialLetter.gameObject.SetActive(true);
+            m_TutorialLetter = game.tutorialLetter;
+            m_TutorialLetter.gameObject.SetActive(true);
             InitTutorialLetter();
         }
 
@@ -51,17 +49,6 @@ namespace EA4S.ColorTickle
         {
             CalcPercentageLetterColored();
 
-            /*if (m_PercentageLetterColored >= 100)
-            {
-                game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
-
-                m_LetterObjectView.Poof();
-                TutorialLetter.SetActive(false);
-
-                game.SetCurrentState(game.PlayState);
-                
-
-            }*/
             if (m_bLLVanishing) //if the LL is about to vanish
             {
                 m_fDisappearTimeProgress += Time.deltaTime;
@@ -73,11 +60,9 @@ namespace EA4S.ColorTickle
                     m_fDisappearTimeProgress = 0;
 
                     //just for possible reusing of the LL renable components
-                    m_TMPTextColoringLetter.enabled = true;
-                    m_SurfaceColoringLetter.enabled = true;
-                    m_HitStateLLController.enabled = true;
+                    EnableLetterComponents();
 
-                    TutorialLetter.SetActive(false);
+                    m_TutorialLetter.SetActive(false);
 
                     game.SetCurrentState(game.PlayState);
                 }
@@ -89,18 +74,12 @@ namespace EA4S.ColorTickle
                 m_bLLVanishing = true; //LL is about to disappear
 
                 //disable color components to avoid input in this phase (or ignore input using touch manager?)
-                m_TMPTextColoringLetter.enabled = false;
-                m_SurfaceColoringLetter.enabled = false;
-                m_HitStateLLController.enabled = false;
+                DisableLetterComponents();
 
                 AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
 
-                //LL does win animation 
-                //m_LetterObjectView.DoDancingWin();
-                //m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
                 m_LetterObjectView.DoHorray();
                 AudioManager.I.PlaySfx(Sfx.Win);
-
             }
         }
         
@@ -115,21 +94,37 @@ namespace EA4S.ColorTickle
 
         private void InitTutorialLetter()
         {
-            m_LetterObjectView = TutorialLetter.GetComponent<LetterObjectView>();
+            m_LetterObjectView = m_TutorialLetter.GetComponent<LetterObjectView>();
 
-            m_TMPTextColoringLetter = TutorialLetter.GetComponent<TMPTextColoring>();
-            m_SurfaceColoringLetter = TutorialLetter.GetComponent<SurfaceColoring>();
+            m_TMPTextColoringLetter = m_TutorialLetter.GetComponent<TMPTextColoring>();
+            m_SurfaceColoringLetter = m_TutorialLetter.GetComponent<SurfaceColoring>();
 
-            m_LLController = TutorialLetter.GetComponent<ColorTickle_LLController>();
+            m_LLController = m_TutorialLetter.GetComponent<ColorTickle_LLController>();
             m_LLController.movingToDestination = true;
 
-            m_HitStateLLController = TutorialLetter.GetComponent<HitStateLLController>();
-
-            //m_HitStateLLController.LoseLife += LoseLife;
-            //m_HitStateLLController.EnableAntura += EnableAntura;
-            //game.anturaController.targetToLook = m_CurrentLetter.transform; //make antura look at the LL on rotations
+            m_HitStateLLController = m_TutorialLetter.GetComponent<HitStateLLController>();
+            m_HitStateLLController.LoseLife += LoseLife;
+            m_HitStateLLController.EnableTutorial += EnableTutorialAnimation;
 
             SetBrushColor(new Color(255, 0, 0, 255));
+
+            m_LLController.OnDestinationReached += EnableTutorialAnimation;
+
+            //m_TMPTextColoringLetter.percentageRequiredToWin = 95;
+        }
+
+        private void EnableLetterComponents()
+        {
+            m_TMPTextColoringLetter.enabled = true;
+            m_SurfaceColoringLetter.enabled = true;
+            m_HitStateLLController.enabled = true;
+        }
+
+        private void DisableLetterComponents()
+        {
+            m_TMPTextColoringLetter.enabled = false;
+            m_SurfaceColoringLetter.enabled = false;
+            m_HitStateLLController.enabled = false;
         }
 
         private void SetBrushColor(Color color)
@@ -145,7 +140,7 @@ namespace EA4S.ColorTickle
 
         private void LoseLife()
         {
-            game.anturaController.ForceAnturaToGoBack();//we tickled the letter, antura turn back
+            game.tutorialUIManager.StartTutorial = false;
         }
 
         private void CalcPercentageLetterColored()
@@ -186,6 +181,11 @@ namespace EA4S.ColorTickle
             {
                 AnturaGoingAway();
             }
+        }
+
+        private void EnableTutorialAnimation()
+        {
+            game.tutorialUIManager.StartTutorial = true;
         }
 
         #endregion

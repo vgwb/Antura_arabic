@@ -86,6 +86,7 @@ namespace EA4S.ColorTickle
         public int percentageRequiredToWin
         {
             get { return m_iPercentageRequiredToWin; }
+            set { m_iPercentageRequiredToWin = value; }
         }
         #endregion
 
