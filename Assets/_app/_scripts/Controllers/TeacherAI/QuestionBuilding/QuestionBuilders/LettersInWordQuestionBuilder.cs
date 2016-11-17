@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
-
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
     public class LettersInWordQuestionBuilder : IQuestionBuilder
     {
+        // focus: Letters & Words
+        // pack history filter: TODO
+        // journey: TODO
+
         private int nPacks;
         private int nCorrect;
         private bool useAllCorrectLetters;
@@ -12,7 +16,8 @@ namespace EA4S
         private Db.WordDataCategory category;
         private bool drawingNeeded;
 
-        public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None, bool drawingNeeded = false)
+        public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
+            bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None, bool drawingNeeded = false)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
@@ -46,6 +51,17 @@ namespace EA4S
             if (!useAllCorrectLetters) correctAnswers = wordLetters.RandomSelect(nCorrect);
 
             var wrongAnswers = teacher.wordHelper.GetLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
+
+            if (ConfigAI.verboseTeacher)
+            {
+                string debugString = "--------- TEACHER: question pack result ---------";
+                debugString += "\nQuestion: " + question;
+                debugString += "\nCorrect Word: " + correctAnswers.Count;
+                foreach (var l in correctAnswers) debugString += " " + l;
+                debugString += "\nWrong Word: " + wrongAnswers.Count;
+                foreach (var l in wrongAnswers) debugString += " " + l;
+                UnityEngine.Debug.Log(debugString);
+            }
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
