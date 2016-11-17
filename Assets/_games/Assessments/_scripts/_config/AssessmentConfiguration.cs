@@ -49,9 +49,41 @@ namespace EA4S.Assessment
             return questionProvider;
         }
 
+        internal void SetupDefault(AssessmentCode code)
+        {
+            if (Instance.assessmentType == AssessmentCode.Unsetted)
+            {
+                Instance.assessmentType = code;
+
+                switch (assessmentType)
+                {
+                    case AssessmentCode.LetterShape:
+                        SimultaneosQuestions = 1;
+                        Rounds = 3;
+                        break;
+
+                    case AssessmentCode.MatchLettersToWord:
+                        SimultaneosQuestions = 1;
+                        Rounds = 2;
+                        break;
+
+                    case AssessmentCode.WordsWithLetter:
+                        SimultaneosQuestions = 2;
+                        Rounds = 1;
+                        break;
+
+                    default:
+                        throw new NotImplementedException("NotImplemented Yet!");
+                }
+            }
+        }
+
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
         public int Rounds { get; set; }
+
+        public bool PronunceQuestionWhenClicked { get; set; }
+        public bool PronunceAnswerWhenClicked { get; set; }
         public AssessmentCode assessmentType = AssessmentCode.Unsetted;
 
         /////////////////
@@ -76,8 +108,7 @@ namespace EA4S.Assessment
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             questionProvider = null;
             Context = new SampleGameContext();
-            SimultaneosQuestions = 2;
-            Rounds = 2;
+
         }
 
         /// <summary>
