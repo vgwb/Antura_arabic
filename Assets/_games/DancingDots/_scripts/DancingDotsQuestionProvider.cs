@@ -5,7 +5,7 @@ using System;
 
 namespace EA4S.DancingDots
 {
-	public class DancingDotsQuestionProvider : MonoBehaviour, IQuestionProvider
+	public class DancingDotsQuestionProvider : IQuestionProvider
 	{
 		string dotlessLetters = " - ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter="", newLetterString="X";
 
