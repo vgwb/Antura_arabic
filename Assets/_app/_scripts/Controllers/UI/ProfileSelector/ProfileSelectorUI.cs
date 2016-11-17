@@ -56,7 +56,10 @@ namespace EA4S
             BtAdd.Bt.onClick.AddListener(()=> OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
                 BtPlay.AnimateClick();
-                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
+                if(AppManager.Instance.Player.IsFirstContact())
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Intro");
+                else
+                    AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Mood");
             });
             foreach (ProfileSelectorAvatarButton bt in avatarButtons) {
                 ProfileSelectorAvatarButton b = bt;
