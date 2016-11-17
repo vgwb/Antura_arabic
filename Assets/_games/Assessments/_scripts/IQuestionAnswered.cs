@@ -1,7 +1,9 @@
 namespace EA4S.Assessment
 {
-    public interface IQuestionAnswered
+    public interface IQuestionDecoration
     {
-        void Trigger(IAudioManager audioManager);
+        void TriggerOnAnswered();
+
+        void TriggerOnSpawned();
     }
 }

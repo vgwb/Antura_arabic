@@ -7,12 +7,10 @@ namespace EA4S.Assessment
     internal class DefaultAnswerChecker : IAnswerChecker
     {
         private ICheckmarkWidget checkmarkWidget;
-        private IAudioManager audioManager;
 
-        public DefaultAnswerChecker( IAudioManager audioManager, ICheckmarkWidget checkmarkWidget)
+        public DefaultAnswerChecker( ICheckmarkWidget checkmarkWidget)
         {
             this.checkmarkWidget = checkmarkWidget;
-            this.audioManager = audioManager;
         }
 
         private bool isAnimating = false;
@@ -62,7 +60,7 @@ namespace EA4S.Assessment
                 {
                     //TODO: Inject the question behaviour
                     p.Placeholder.GetQuestion().gameObject
-                        .GetComponent< QuestionBehaviour>().OnQuestionAnswered( audioManager);
+                        .GetComponent< QuestionBehaviour>().OnQuestionAnswered();
                     yield return TimeEngine.Wait(1.0f);
                 }
             }

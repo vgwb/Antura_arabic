@@ -8,10 +8,11 @@ namespace EA4S.Assessment
         public static IAssessment CreateLetterInWordAssessment()
         {
             Init(); // common initialization stuff
+            //TODO: GET RID OF AUDIO MANAGERS => Configuration is singleton
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
             IGameContext context            = configuration.Context;
             IAudioManager audioManager      = configuration.Context.GetAudioManager();
-            IAnswerChecker checker          = new DefaultAnswerChecker( audioManager, context.GetCheckmarkWidget());
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget());
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
@@ -28,7 +29,7 @@ namespace EA4S.Assessment
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
             IGameContext context            = configuration.Context;
             IAudioManager audioManager      = configuration.Context.GetAudioManager();
-            IAnswerChecker checker          = new DefaultAnswerChecker( audioManager, context.GetCheckmarkWidget());
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget());
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);

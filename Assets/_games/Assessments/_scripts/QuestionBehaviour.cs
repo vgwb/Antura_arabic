@@ -31,11 +31,16 @@ namespace EA4S.Assessment
                 .PlayLetterData( GetComponent< LetterObjectView>().Data);
         }
 
-        public IQuestionAnswered questionAnswered;
+        public IQuestionDecoration questionAnswered;
 
-        internal void OnQuestionAnswered( IAudioManager audioManager)
+        internal void OnQuestionAnswered()
         {
-            questionAnswered.Trigger( audioManager);
+            questionAnswered.TriggerOnAnswered();
+        }
+
+        internal void OnSpawned()
+        {
+            questionAnswered.TriggerOnSpawned();
         }
     }
 }
