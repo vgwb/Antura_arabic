@@ -3,13 +3,19 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public class TypeLetterQuestionBuilder : IQuestionBuilder
+    public class LettersByTypeQuestionBuilder : IQuestionBuilder
     {
-        private int nPacks;
+        // focus: Letters
+        // pack history filter: by default, all different
+        // journey: enabled
 
-        public TypeLetterQuestionBuilder(int nPacks)
+        private int nPacks;
+        SelectionSeverity severity;
+
+        public LettersByTypeQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
         {
             this.nPacks = nPacks;
+            this.severity = severity;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -18,25 +24,32 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             var db = AppManager.Instance.DB;
-
-            var consonantWord = db.GetWordDataById("consonant");
-            var vowelWord = db.GetWordDataById("vowel");
+            var choice1 = db.GetWordDataById("consonant");
+            var choice2 = db.GetWordDataById("vowel");
 
             int nPerType = nPacks / 2;
-            var wordsConsonant = teacher.wordHelper.GetConsonantLetter().RandomSelect(nPerType);
-            var wordsVowel = teacher.wordHelper.GetVowelLetter().RandomSelect(nPerType);
 
-            foreach (var word in wordsConsonant)
+            var list_choice1 = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetConsonantLetter(),
+                new SelectionParameters(severity, nPerType) 
+                );
+
+            var list_choice2 = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetVowelLetter(),
+                new SelectionParameters(severity, nPerType)
+                );
+
+            foreach (var data in list_choice1)
             {
                 var correctWords = new List<Db.WordData>();
                 var wrongWords = new List<Db.WordData>();
-                correctWords.Add(consonantWord);
-                wrongWords.Add(vowelWord);
+                correctWords.Add(choice1);
+                wrongWords.Add(choice2);
 
                 if (ConfigAI.verboseTeacher)
                 {
                     string debugString = "--------- TEACHER: question pack result ---------";
-                    debugString += "\nQuestion: " + word;
+                    debugString += "\nQuestion: " + data;
                     debugString += "\nCorrect Word: " + correctWords.Count;
                     foreach (var l in correctWords) debugString += " " + l;
                     debugString += "\nWrong Word: " + wrongWords.Count;
@@ -44,21 +57,21 @@ namespace EA4S
                     UnityEngine.Debug.Log(debugString);
                 }
 
-                var pack = QuestionPackData.Create(word, correctWords, wrongWords);
+                var pack = QuestionPackData.Create(data, correctWords, wrongWords);
                 packs.Add(pack);
             }
 
-            foreach (var word in wordsVowel)
+            foreach (var data in list_choice2)
             {
                 var correctWords = new List<Db.WordData>();
                 var wrongWords = new List<Db.WordData>();
-                correctWords.Add(vowelWord);
-                wrongWords.Add(consonantWord);
+                correctWords.Add(choice2);
+                wrongWords.Add(choice1);
 
                 if (ConfigAI.verboseTeacher)
                 {
                     string debugString = "--------- TEACHER: question pack result ---------";
-                    debugString += "\nQuestion: " + word;
+                    debugString += "\nQuestion: " + data;
                     debugString += "\nCorrect Word: " + correctWords.Count;
                     foreach (var l in correctWords) debugString += " " + l;
                     debugString += "\nWrong Word: " + wrongWords.Count;
@@ -66,7 +79,7 @@ namespace EA4S
                     UnityEngine.Debug.Log(debugString);
                 }
 
-                var pack = QuestionPackData.Create(word, correctWords, wrongWords);
+                var pack = QuestionPackData.Create(data, correctWords, wrongWords);
                 packs.Add(pack);
             }
 

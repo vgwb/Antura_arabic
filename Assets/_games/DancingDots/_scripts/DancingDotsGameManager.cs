@@ -118,7 +118,9 @@ namespace EA4S.DancingDots
 			AppManager.Instance.CurrentGameManagerGO = gameObject;
 			SceneTransitioner.Close();
 
+			Debug.Log("Before Music");
 			DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+			Debug.Log("After Music");
 
 			questionsManager = new DancingDotsQuestionsManager();
 
@@ -239,6 +241,7 @@ namespace EA4S.DancingDots
 			numberOfRoundsPlayed++;
 
 			splats.Clear();
+			dancingDotsLL.HideRainbow();
 
 			Debug.Log("[Dancing Dots] Round: " + numberOfRoundsPlayed);
 			numberOfFailedMoves = 0;
@@ -369,23 +372,18 @@ namespace EA4S.DancingDots
 		IEnumerator CorrectMove(bool roundWon)
 		{
 			AudioManager.I.PlayDialog("comment_welldone");
+			dancingDotsLL.ShowRainbow();
 
 			if (roundWon) 
 			{			
-				dancingDotsLL.ShowRainbow();
 				StartCoroutine(RoundWon());
 			}
 			else
 			{
 				dancingDotsLL.letterObjectView.DoHorray(); // ("Jump");
-
-				yield return new WaitForSeconds(0.25f);
-//				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
-//				dancingDotsLL.letterObjectView.SetWalkingSpeed(1f);
-				yield return new WaitForSeconds(0.5f);
-//				dancingDotsLL.letterObjectView.SetWalkingSpeed(0f);
+				yield return new WaitForSeconds(1f);
 				dancingDotsLL.HideRainbow();
-                yield return new WaitForSeconds(1f);
+//                yield return new WaitForSeconds(1f);
                 tutorial.doTutorial();
 
 
@@ -454,10 +452,8 @@ namespace EA4S.DancingDots
 			{
 				dancingDotsLL.letterObjectView.DoDancingTwirl(null);
 				foreach (DancingDotsSplat splat in splats) splat.CleanSplat();
-				yield return new WaitForSeconds(0.25f);
-				dancingDotsLL.HideRainbow();
+				yield return new WaitForSeconds(1f);
 				StartRound();
-				yield return new WaitForSeconds(0.75f);
 				dancingDotsLL.letterObjectView.ToggleDance();
 			}
 		}

@@ -11,5 +11,14 @@ namespace EA4S
         {
             this.lines.AddRange(segments);
         }
+
+        public float GetSegmentsLength()
+        {
+            float length = 0;
+            for (int i = 0, count = lines.Count; i < count; ++i)
+                length += lines[i].Length;
+
+            return length;
+        }
     }
 }

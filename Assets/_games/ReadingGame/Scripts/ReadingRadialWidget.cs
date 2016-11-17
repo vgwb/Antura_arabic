@@ -84,6 +84,11 @@ public class ReadingRadialWidget : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void PoofAndHide()
     {
         var puffGo = GameObject.Instantiate(poofPrefab);

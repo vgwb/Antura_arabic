@@ -10,9 +10,8 @@ namespace EA4S.DancingDots
         public TextMeshPro hintDot;
         public DancingDotsDiacriticPosition[] targetDDs;
         //public Vector3[] path;
-        public float repeatDely = 3;
+        public float repeatDelay = 3;
 
-        private int repeatConter = 0;
         private bool doTutOnDots;
 
         DancingDotsGameManager gameManager;
@@ -83,7 +82,7 @@ namespace EA4S.DancingDots
                 if (gameManager.isTutRound && currentDD)
                 {
 
-                    yield return new WaitForSeconds(repeatDely);
+                    yield return new WaitForSeconds(repeatDelay);
                     if (currentDD.isDragging || !gameManager.isTutRound)
                         continue;
 
