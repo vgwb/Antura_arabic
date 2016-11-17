@@ -5,6 +5,10 @@ namespace EA4S
 {
     public class AlphabetQuestionBuilder : IQuestionBuilder
     {
+        // focus: Letters
+        // pack history filter: only 1 pack
+        // journey: enabled
+
         public AlphabetQuestionBuilder(){}
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -30,7 +34,6 @@ namespace EA4S
                 }
             );
 
-            // Debug
             if (ConfigAI.verboseTeacher)
             {
                 string debugString = "Letters: " + alphabetLetters.Count;
