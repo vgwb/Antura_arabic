@@ -27,7 +27,7 @@ namespace EA4S.Assessment
 
         PlaceholderBehaviour GetLinkedPlaceholder();
 
-        void Detach();
+        void Detach(bool jumpBack);
 
         Transform GetTransform();
     }

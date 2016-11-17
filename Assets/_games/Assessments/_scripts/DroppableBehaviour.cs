@@ -79,11 +79,14 @@ namespace EA4S.Assessment
             behaviour.LinkedDroppable = this;
         }
 
-        public void Detach()
+        public void Detach( bool jumpBack = true)
         {
-            linkedBehaviour.LinkedDroppable = null;
+            if(jumpBack)
+                transform.DOLocalMove( origin, 0.7f).SetEase( Ease.OutBounce);
+
+            if(linkedBehaviour != null)
+                linkedBehaviour.LinkedDroppable = null;
             linkedBehaviour = null;
-            transform.DOLocalMove( origin, 0.7f).SetEase( Ease.InBounce);
         }
 
         public Transform GetTransform()
