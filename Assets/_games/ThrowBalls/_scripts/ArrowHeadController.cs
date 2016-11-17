@@ -16,7 +16,7 @@ namespace EA4S.ThrowBalls
         {
             if (Mathf.Approximately(ArrowBodyController.instance.transform.localScale.x, 0f))
             {
-                transform.position = new Vector3(0, -9, 0);
+                transform.position = new Vector3(0, 0, -100f);
                 return;
             }
 

@@ -31,6 +31,8 @@ namespace EA4S.Assessment
                     LogicInjector.Wire( 
                         QuestionGenerator.GetNextQuestion(),                 
                         QuestionGenerator.GetNextAnswers()      );
+
+                LogicInjector.CompleteWiring();
                 
                 QuestionGenerator.CompleteRound();
 
@@ -42,21 +44,24 @@ namespace EA4S.Assessment
                 while (AnswerPlacer.IsAnimating())
                     yield return null;
 
+                //////////////////////////////
+                //// GAME LOGIC (WIP)
+                ////----
                 LogicInjector.EnableGamePlay();
 
                 while (LogicInjector.AllAnswersCorrect() == false)
                     yield return null;
-
-                // No score/time needed
-                LogicInjector.DisableGamePlay();
-
-                yield return null;
+                ////___
+                //// GAME LOGIC END
+                //////////////////////////////
 
                 QuestionPlacer.RemoveQuestions();
                 AnswerPlacer.RemoveAnswers();
 
                 while (QuestionPlacer.IsAnimating() || AnswerPlacer.IsAnimating())
                     yield return null;
+
+                LogicInjector.ResetRound();
             }
 
             gameEndedCallback();

@@ -7,7 +7,7 @@ public class ReadingBar : MonoBehaviour
     public TMPro.TextMeshPro text;
 
     public RectTransform start;
-    public RectTransform end;
+    public RectTransform target;
     public RectTransform endCompleted;
 
     public Color clearColor;
@@ -16,20 +16,30 @@ public class ReadingBar : MonoBehaviour
     [Range(0, 1)]
     public float currentReading = 0;
 
+    [Range(0, 1)]
+    public float currentTarget = 1;
+
     public float startOffset = 2;
     public float endOffset = 4;
 
+    bool completed = false;
+
     public MagnifingGlass glass;
     public ThreeSlicesSprite backSprite;
+    SpriteFader glassFader;
 
     [Range(0, 1)]
     public float alpha = 0;
 
-    SpriteRenderer[] spriteRenderers;
+    SpriteFader[] spriteFaders;
+
     Color[] startColors;
     Color startTextColor;
 
     bool active;
+
+    public int Id;
+
     public bool Active
     {
         get
@@ -40,32 +50,27 @@ public class ReadingBar : MonoBehaviour
         {
             active = value;
 
-            glass.gameObject.SetActive(active);
+            glassFader.show = active;
             start.GetComponent<SpriteRenderer>().color = doneColor;
+            target.gameObject.SetActive(active && !completed);
         }
 
     }
 
     void Awake()
     {
-        alpha = 0;
+        glassFader = glass.gameObject.GetComponent<SpriteFader>();
+
         Active = false;
 
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
-        startColors = new Color[spriteRenderers.Length];
-
-        for (int i = 0; i < spriteRenderers.Length; ++i)
-            startColors[i] = spriteRenderers[i].color;
-        startTextColor = text.color;
-
-        for (int i = 0; i < spriteRenderers.Length; ++i)
+        spriteFaders = GetComponentsInChildren<SpriteFader>(true);
+        for (int i = 0; i < spriteFaders.Length; ++i)
         {
-            var color = spriteRenderers[i].color;
-            color.a = 0;
-            spriteRenderers[i].color = color;
+            spriteFaders[i].SetAlphaImmediate(0); 
         }
 
         var textColor = text.color;
+        startTextColor = textColor;
         textColor.a = 0;
         text.color = textColor;
     }
@@ -73,11 +78,20 @@ public class ReadingBar : MonoBehaviour
     void Start()
     {
         Update();
-
+        
+        // Set glass and target
+        target.localPosition = Vector3.Lerp(start.localPosition, endCompleted.localPosition, currentTarget);
         glass.transform.position = GetGlassWorldPosition();
-        end.gameObject.SetActive(true);
+        
+        target.gameObject.SetActive(active);
         endCompleted.gameObject.SetActive(false);
-        start.GetComponent<SpriteRenderer>().color = active ? doneColor : clearColor;
+
+        var startColor = active ? doneColor : clearColor;
+        var oldColor = start.GetComponent<SpriteRenderer>().color;
+        oldColor.r = startColor.r;
+        oldColor.g = startColor.g;
+        oldColor.b = startColor.b;
+        start.GetComponent<SpriteRenderer>().color = oldColor;
     }
 
     void Update()
@@ -88,33 +102,29 @@ public class ReadingBar : MonoBehaviour
         oldStartPos.x = size.x * 0.5f + startOffset;
         start.localPosition = oldStartPos;
 
-        var oldEndPos = end.localPosition;
+        var oldEndPos = endCompleted.localPosition;
         oldEndPos.x = -size.x * 0.5f - endOffset;
-        end.localPosition = oldEndPos;
         endCompleted.localPosition = oldEndPos;
 
-        glass.transform.position = Vector3.Lerp(glass.transform.position, GetGlassWorldPosition(), Time.deltaTime * 20);
-        float glassPercPos = Vector3.Distance(glass.transform.position, start.position)/Vector3.Distance(start.position, end.position);
+        // set target position
+        var targetLocalPosition = Vector3.Lerp(start.localPosition, endCompleted.localPosition, currentTarget);
+        target.localPosition = Vector3.Lerp(target.localPosition, targetLocalPosition, Time.deltaTime * 20);
 
+        // set glass position
+        glass.transform.position = Vector3.Lerp(glass.transform.position, GetGlassWorldPosition(), Time.deltaTime * 20);
 
         // Set Back Sprite
+        float glassPercPos = Vector3.Distance(glass.transform.position, start.position) / Vector3.Distance(start.position, endCompleted.position);
         var oldPos = backSprite.transform.localPosition;
 
-        oldPos.x = (start.localPosition.x + end.localPosition.x) * 0.5f;
+        oldPos.x = (start.localPosition.x + endCompleted.localPosition.x) * 0.5f;
         backSprite.transform.localPosition = oldPos;
         backSprite.donePercentage = 1 - glassPercPos;
         var oldScale = backSprite.transform.localScale;
-        oldScale.x = (start.localPosition.x - end.localPosition.x) * 0.25f;
+        oldScale.x = (start.localPosition.x - endCompleted.localPosition.x) * 0.25f;
         backSprite.transform.localScale = oldScale;
 
         const float ALPHA_LERP_SPEED = 5.0f;
-
-        for (int i = 0; i < spriteRenderers.Length; ++i)
-        {
-            var color = spriteRenderers[i].color;
-            color.a = Mathf.Lerp(color.a, startColors[i].a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
-            spriteRenderers[i].color = color;
-        }
 
         var textColor = text.color;
         textColor.a = Mathf.Lerp(textColor.a, startTextColor.a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
@@ -123,22 +133,30 @@ public class ReadingBar : MonoBehaviour
 
     public void Complete()
     {
-        end.gameObject.SetActive(false);
+        completed = true;
+        target.gameObject.SetActive(false);
         endCompleted.gameObject.SetActive(true);
-        endCompleted.GetComponent<SpriteRenderer>().color = doneColor;
+        var oldColor = endCompleted.GetComponent<SpriteRenderer>().color;
+        oldColor.r = doneColor.r;
+        oldColor.g = doneColor.g;
+        oldColor.b = doneColor.b;
+        endCompleted.GetComponent<SpriteRenderer>().color = oldColor;
         currentReading = 1;
+        currentTarget = 1;
     }
 
-    public bool SetGlassScreenPosition(Vector2 position)
+    public bool SetGlassScreenPosition(Vector2 position, bool applyMagnetEffect)
     {
+        if (!active)
+            return completed;
+
         var startScreen = Camera.main.WorldToScreenPoint(start.position);
-        var endScreen = Camera.main.WorldToScreenPoint(end.position);
+        var endScreen = Camera.main.WorldToScreenPoint(endCompleted.position);
 
         var glassScreenSize = Camera.main.WorldToScreenPoint(glass.transform.position + glass.GetSize())
             - Camera.main.WorldToScreenPoint(glass.transform.position);
-
-        bool completed = false;
-        if (Mathf.Abs(endScreen.x - position.x) < Mathf.Abs(glassScreenSize.x) / 2)
+        
+        if (applyMagnetEffect && Mathf.Abs(endScreen.x - position.x) < Mathf.Abs(glassScreenSize.x) / 2)
         {
             position = endScreen;
             completed = true;
@@ -155,19 +173,24 @@ public class ReadingBar : MonoBehaviour
     public void Show(bool show)
     {
         alpha = show ? 1 : 0;
-       // text.gameObject.SetActive(show);
+
+        for (int i = 0; i < spriteFaders.Length; ++i)
+        {
+            spriteFaders[i].show = show;
+        }
+        glassFader.show = active;
     }
 
     public Vector2 GetGlassScreenPosition()
     {
         var startScreen = Camera.main.WorldToScreenPoint(start.position);
-        var endScreen = Camera.main.WorldToScreenPoint(end.position);
+        var endScreen = Camera.main.WorldToScreenPoint(endCompleted.position);
 
         return Vector3.Lerp(startScreen, endScreen, currentReading);
     }
 
     public Vector3 GetGlassWorldPosition()
     {
-        return Vector3.Lerp(start.position, end.position, currentReading);
+        return Vector3.Lerp(start.position, endCompleted.position, currentReading);
     }
 }

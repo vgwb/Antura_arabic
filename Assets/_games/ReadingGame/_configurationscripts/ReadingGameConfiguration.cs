@@ -1,10 +1,17 @@
 ﻿namespace EA4S.ReadingGame
 {
+    public enum ReadingGameVariation : int
+    {
+        ReadAndAnswer = 1,
+        AlphabetSong = 2,
+    }
+
     public class ReadingGameConfiguration : IGameConfiguration
     {
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
+        public ReadingGameVariation Variation { get; set; }
 
         public float Difficulty { get; set; }
 
@@ -36,6 +43,8 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleReadingGameQuestionProvider();
+            //Variation = ReadingGameVariation.ReadAndAnswer;
+            Variation = ReadingGameVariation.AlphabetSong;
 
             Context = new SampleGameContext();
             Difficulty = 0.0f;

@@ -6,6 +6,6 @@ public class SpecialStateEventBehaviour : StateMachineBehaviour
 {
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<LetterObjectView>().OnActionCompleted();
+        animator.gameObject.SendMessage("OnActionCompleted");
     }
 }

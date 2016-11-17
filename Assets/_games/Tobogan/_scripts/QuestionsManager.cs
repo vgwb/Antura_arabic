@@ -25,6 +25,8 @@ namespace EA4S.Tobogan
 
         bool sunMoonGameVariation;
 
+
+
         public QuestionsManager(ToboganGame game)
         {
             this.game = game;

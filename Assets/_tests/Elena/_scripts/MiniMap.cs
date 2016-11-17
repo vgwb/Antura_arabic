@@ -45,6 +45,17 @@ namespace EA4S
 
         void Start()
         {
+            /* FIRST CONTACT FEATURE */
+            if (AppManager.Instance.Player.IsFirstContact()) {
+                // Put Here logic for first contact only situation
+                // ...
+                
+                // ..and set first contact done.
+                AppManager.Instance.Player.FirstContactPassed();
+                Debug.Log("First Contact finished! Good Luck!");
+            }
+            /* --------------------- */
+
             Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
             Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
             //Debug.Log("LBlock " + AppManager.Instance.Teacher.GetMiniGamesForCurrentPlaySession());
