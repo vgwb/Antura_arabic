@@ -16,6 +16,9 @@ public class AnturaAnimationController : MonoBehaviour
     public const float WALKING_SPEED = 0.0f;
     public const float RUN_SPEED = 1.0f;
 
+    AnturaAnimationStates backState = AnturaAnimationStates.idle;
+    bool hasToGoBackState = false;
+
     AnturaAnimationStates state = AnturaAnimationStates.idle;
     public AnturaAnimationStates State
     {
@@ -28,6 +31,7 @@ public class AnturaAnimationController : MonoBehaviour
                 state = value;
                 OnStateChanged(oldState, state);
             }
+            hasToGoBackState = false;
         }
     }
 
@@ -102,7 +106,14 @@ public class AnturaAnimationController : MonoBehaviour
 
     public void DoSniff()
     {
-        State = AnturaAnimationStates.idle;
+        if (State != AnturaAnimationStates.idle)
+        {
+            if (!hasToGoBackState)
+                backState = State;
+            State = AnturaAnimationStates.idle;
+            hasToGoBackState = true;
+        }
+
         animator.SetTrigger("doSniff");
     }
 
@@ -123,6 +134,14 @@ public class AnturaAnimationController : MonoBehaviour
 
     public void DoSpit(bool openMouth)
     {
+        if (State != AnturaAnimationStates.idle)
+        {
+            if (!hasToGoBackState)
+                backState = State;
+            State = AnturaAnimationStates.idle;
+            hasToGoBackState = true;
+        }
+
         if (openMouth)
             animator.SetTrigger("doSpitOpen");
         else
@@ -131,6 +150,15 @@ public class AnturaAnimationController : MonoBehaviour
 
     public void OnJumpStart()
     {
+        if (State != AnturaAnimationStates.idle &&
+            State != AnturaAnimationStates.walking)
+        {
+            if (!hasToGoBackState)
+                backState = State;
+            State = AnturaAnimationStates.idle;
+            hasToGoBackState = true;
+        }
+
         animator.SetBool("jumping", true);
         animator.SetBool("falling", true);
     }
@@ -250,5 +278,17 @@ public class AnturaAnimationController : MonoBehaviour
     void OnEnable()
     {
         OnStateChanged(state, state);
+    }
+
+    /// <summary>
+    /// Used by SpecialStateEventBehaviour
+    /// </summary>
+    void OnActionCompleted()
+    {
+        if (hasToGoBackState)
+        {
+            hasToGoBackState = false;
+            State = backState;
+        }
     }
 }
