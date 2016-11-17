@@ -45,7 +45,6 @@ namespace EA4S.ThrowBalls
                 UpdateLaunchForce();
                 UpdatePointOfImpact();
                 UpdateArrow();
-                //UpdateArc();
             }
         }
 

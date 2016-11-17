@@ -9,14 +9,16 @@ namespace EA4S
 {
 
     [Serializable]
-    public class PlayerProfile : IPlayerProfile
-    {
+    public class PlayerProfile : IPlayerProfile {
 
         public string Key { get; set; }
         public int Id;
         public int AvatarId;
         public int Age;
         public string Name;
+
+        //profile comlpetion
+        public int ProfileCompletion = 0;
 
         // Mood (1 to 5 indicators)
         public float MainMood = 3f;
@@ -36,8 +38,8 @@ namespace EA4S
         public float Musicality;
         public float Sight;
 
-        public JourneyPosition MaxJourneyPosition;
-        public JourneyPosition CurrentJourneyPosition;
+        public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
+        public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
         public int CurrentMiniGameInPlaySession;
 
         #region Oldies
@@ -71,6 +73,7 @@ namespace EA4S
 
         #region API
 
+        #region management
         /// <summary>
         /// Automatically select first avatar profile.
         /// </summary>
@@ -78,35 +81,117 @@ namespace EA4S
 
         }
 
-        /// <summary>
-        /// Load or create new playerprofile with this id.
-        /// </summary>
-        /// <param name="_avatarId"></param>
-        public PlayerProfile CreateOrLoadPlayerProfile(string _avatarId) {
-
-            IPlayerProfile savedProfile = GameManager.Instance.PlayerProfile.LoadPlayerSettings<PlayerProfile>(_avatarId);
-            if (savedProfile != null) { // already exist
-                GameManager.Instance.PlayerProfile.ActivePlayer = savedProfile as PlayerProfile;
-                return savedProfile as PlayerProfile;
-            } else {  // create new
-                int.TryParse(_avatarId, out Id);
-                if (Id == 0) {
-                    new Exception("Invalid Avatar selected");
-                }
-                Key = _avatarId;
-                AvatarId = Id;
-                GameManager.Instance.PlayerProfile.CreateNewPlayer(this);
-                GameManager.Instance.PlayerProfile.ActivePlayer = this;
-                return this;
-            }
-        }
 
         public void DeleteThisProfile() { }
 
-        public void SaveGlobalOptions() {
-            GameManager.Instance.PlayerProfile.Options = AppManager.Instance.GameSettings;
-            GameManager.Instance.PlayerProfile.SaveAllOptions();
+        /// <summary>
+        /// Saves this instance.
+        /// </summary>
+        public void Save() {
+            AppManager.Instance.PlayerProfileManager.SavePlayerSettings(this);
         }
-        #endregion 
+
+        /// <summary>
+        /// TBD if accessible form player instance.
+        /// Saves the general game settings.
+        /// </summary>
+        public void SaveGameSettings() {
+            AppManager.Instance.PlayerProfileManager.SaveGameSettings();
+        }
+        #endregion
+
+        #region journey position
+        /// <summary>
+        /// Sets the actual journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_stage">The stage.</param>
+        /// <param name="_lb">The lb.</param>
+        /// <param name="_ps">The ps.</param>
+        public void SetActualJourneyPosition(int _stage, int _lb, int _ps) {
+            SetActualJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
+        }
+
+        /// <summary>
+        /// Sets the actual journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_journeyPosition">The journey position.</param>
+        public void SetActualJourneyPosition(JourneyPosition _journeyPosition) {
+            AppManager.Instance.Player.CurrentJourneyPosition = _journeyPosition;
+        }
+
+        /// <summary>
+        /// Sets the maximum journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_stage">The stage.</param>
+        /// <param name="_lb">The lb.</param>
+        /// <param name="_ps">The ps.</param>
+        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps) {
+            SetMaxJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
+        }
+
+        /// <summary>
+        /// Sets the maximum journey position and save to profile.
+        /// @note: check valid data before insert.
+        /// </summary>
+        /// <param name="_journeyPosition">The journey position.</param>
+        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition) {
+            AppManager.Instance.Player.MaxJourneyPosition = _journeyPosition;
+        }
+        #endregion
+
+        #region Profile completion
+
+        #region First contact (ProfileCompletion = 1)
+        /// <summary>
+        /// Determines whether [is first contact].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is first contact]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsFirstContact() {
+            if (ProfileCompletion < 1)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Set firsts contact flag as passed.
+        /// </summary>
+        public void FirstContactPassed() {
+            ProfileCompletion = 1;
+            Save();
+        }
+        #endregion
+
+        #region BookVisited (ProfileCompletion = 2)                
+        /// <summary>
+        /// Determines whether [is first time book].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [is first time book]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsFirstTimeBook() {
+            if (ProfileCompletion < 2)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Firsts the time book passed.
+        /// </summary>
+        public void FirstTimeBookPassed() {
+            ProfileCompletion = 2;
+            Save();
+        }
+        #endregion
+
+        #endregion
+
+        #endregion
     }
 }

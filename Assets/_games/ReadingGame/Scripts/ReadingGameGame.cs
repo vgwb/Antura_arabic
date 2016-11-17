@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -20,12 +22,17 @@ namespace EA4S.ReadingGame
 
         int lives = 3;
 
+        [HideInInspector]
+        public KaraokeSong alphabetSong;
+        public AudioClip alphabetSongAudio;
+        public TextAsset alphabetSongSrt;
+
         public const int TIME_TO_ANSWER = 20;
         public const int MAX_QUESTIONS = 5;
         const int STARS_1_THRESHOLD = 8 * MAX_QUESTIONS;
         const int STARS_2_THRESHOLD = 12 * MAX_QUESTIONS;
         const int STARS_3_THRESHOLD = 15 * MAX_QUESTIONS;
-        
+
 
         public int CurrentStars
         {
@@ -40,7 +47,7 @@ namespace EA4S.ReadingGame
                 return 3;
             }
         }
-        
+
         public ReadingGameInitialState InitialState { get; private set; }
         public ReadingGameReadState ReadState { get; private set; }
         public ReadingGameAnswerState AnswerState { get; private set; }
@@ -62,10 +69,22 @@ namespace EA4S.ReadingGame
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
 
-            Context.GetOverlayWidget().Initialize(true, true, true);
+            bool isSong = (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong);
+
+            Context.GetOverlayWidget().Initialize(true, !isSong, !isSong);
             Context.GetOverlayWidget().SetMaxLives(lives);
             Context.GetOverlayWidget().SetLives(lives);
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
+            {
+                ISongParser parser = new AkrSongParser();
+
+                using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(alphabetSongSrt.text)))
+                {
+                    alphabetSong = new KaraokeSong(parser.Parse(stream));
+                }
+            }
         }
 
         public void AddScore(int score)

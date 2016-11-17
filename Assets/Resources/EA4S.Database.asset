@@ -1322,7 +1322,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0627\u064E"
       Initial: 
       Medial: 
       Final: 
@@ -1341,7 +1341,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0627\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1360,7 +1360,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0627\u0653"
       Initial: 
       Medial: 
       Final: 
@@ -1379,7 +1379,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0639\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1398,7 +1398,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0639\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1417,7 +1417,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0628\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1436,7 +1436,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0628\u064E"
       Initial: 
       Medial: 
       Final: 
@@ -1455,7 +1455,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0628\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1474,7 +1474,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0636\u064E"
       Initial: 
       Medial: 
       Final: 
@@ -1493,7 +1493,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062F\u064C"
       Initial: 
       Medial: 
       Final: 
@@ -1512,7 +1512,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062F\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1531,7 +1531,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0630\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1550,7 +1550,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0641\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1569,7 +1569,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0641\u0652"
       Initial: 
       Medial: 
       Final: 
@@ -1588,7 +1588,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0647\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1607,7 +1607,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0647\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1626,7 +1626,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062D\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1645,7 +1645,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062D\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1664,7 +1664,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062D\u0651"
       Initial: 
       Medial: 
       Final: 
@@ -1683,7 +1683,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062C\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1702,7 +1702,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062C\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1721,7 +1721,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062C\u0651"
       Initial: 
       Medial: 
       Final: 
@@ -1740,7 +1740,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0643\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1759,7 +1759,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0643\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1778,7 +1778,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1797,7 +1797,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1816,7 +1816,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u064D"
       Initial: 
       Medial: 
       Final: 
@@ -1835,7 +1835,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0644\u0652"
       Initial: 
       Medial: 
       Final: 
@@ -1854,7 +1854,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0645\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -1873,7 +1873,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0645\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1892,7 +1892,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0645\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -1911,7 +1911,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0646\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1930,7 +1930,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0646\u064D"
       Initial: 
       Medial: 
       Final: 
@@ -1949,7 +1949,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0646\u0652"
       Initial: 
       Medial: 
       Final: 
@@ -1967,8 +1967,8 @@ MonoBehaviour:
       Tag: 
       Notes: 
       SunMoon: 0
-      Sound: "\u0642\u064E"
-      Isolated: "\u0642\u200E"
+      Sound: 
+      Isolated: "\u0642\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -1987,7 +1987,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0631\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2006,7 +2006,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0631\u0650"
       Initial: 
       Medial: 
       Final: 
@@ -2025,7 +2025,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0635\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2044,7 +2044,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0633\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2063,7 +2063,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0634\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2082,7 +2082,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0637\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2101,7 +2101,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u062A\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -2120,7 +2120,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: "\u062A\u064E"
+      Isolated: "\u062A\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -2139,7 +2139,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0629\u064C"
       Initial: 
       Medial: 
       Final: 
@@ -2177,7 +2177,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0632\u064B"
       Initial: 
       Medial: 
       Final: 
@@ -2196,7 +2196,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
-      Isolated: 
+      Isolated: "\u0632\u064F"
       Initial: 
       Medial: 
       Final: 
@@ -2328,7 +2328,7 @@ MonoBehaviour:
       - meem
       - teh_marbuta
       Difficulty: 1
-      Drawing: 
+      Drawing: A1
     - Id: aunt_mother
       Kind: 5
       Category: 5
@@ -2342,7 +2342,7 @@ MonoBehaviour:
       - lam
       - teh_marbuta
       Difficulty: 2
-      Drawing: 
+      Drawing: 3B
     - Id: back
       Kind: 5
       Category: 6
@@ -2368,7 +2368,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: A3
     - Id: banana
       Kind: 5
       Category: 4
@@ -2659,7 +2659,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - khah
       Difficulty: 1
-      Drawing: 
+      Drawing: 2F
     - Id: bulgar
       Kind: 5
       Category: 4
@@ -2673,7 +2673,7 @@ MonoBehaviour:
       - ghain
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 5F
     - Id: bus
       Kind: 5
       Category: 15
@@ -3195,7 +3195,7 @@ MonoBehaviour:
       - waw
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: 2B
     - Id: day_friday
       Kind: 5
       Category: 19
@@ -3211,7 +3211,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 2212
     - Id: day_monday
       Kind: 5
       Category: 19
@@ -3228,7 +3228,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: D7
     - Id: day_saturday
       Kind: 5
       Category: 19
@@ -3243,7 +3243,7 @@ MonoBehaviour:
       - beh
       - teh
       Difficulty: 0
-      Drawing: 
+      Drawing: F7
     - Id: day_sunday
       Kind: 5
       Category: 19
@@ -3258,7 +3258,7 @@ MonoBehaviour:
       - hah
       - dal
       Difficulty: 0
-      Drawing: 
+      Drawing: 3D
     - Id: day_thursday
       Kind: 5
       Category: 19
@@ -3274,7 +3274,7 @@ MonoBehaviour:
       - yeh
       - seen
       Difficulty: 0
-      Drawing: 
+      Drawing: 2260
     - Id: day_tuesday
       Kind: 5
       Category: 19
@@ -3292,7 +3292,7 @@ MonoBehaviour:
       - alef
       - hamza
       Difficulty: 0
-      Drawing: 
+      Drawing: 3E
     - Id: day_wednesday
       Kind: 5
       Category: 19
@@ -3310,7 +3310,7 @@ MonoBehaviour:
       - alef
       - hamza
       Difficulty: 0
-      Drawing: 
+      Drawing: 3C
     - Id: deer
       Kind: 5
       Category: 10
@@ -3474,7 +3474,7 @@ MonoBehaviour:
       - alef
       - hamza
       Difficulty: 0
-      Drawing: 
+      Drawing: 7D
     - Id: eye
       Kind: 5
       Category: 6
@@ -3514,7 +3514,7 @@ MonoBehaviour:
       - yeh
       - feh
       Difficulty: 0
-      Drawing: 
+      Drawing: 7B
     - Id: farmer
       Kind: 5
       Category: 16
@@ -3542,7 +3542,7 @@ MonoBehaviour:
       - beh
       - alef
       Difficulty: 1
-      Drawing: 
+      Drawing: 5B
     - Id: field
       Kind: 5
       Category: 8
@@ -3652,7 +3652,7 @@ MonoBehaviour:
       - kaf
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 5D
     - Id: foot
       Kind: 5
       Category: 6
@@ -3930,7 +3930,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: C9
     - Id: head
       Kind: 5
       Category: 6
@@ -4113,7 +4113,7 @@ MonoBehaviour:
       - lam
       - dal
       Difficulty: 0
-      Drawing: 
+      Drawing: 28
     - Id: knowledge
       Kind: 5
       Category: 0
@@ -4200,7 +4200,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 
+      Drawing: 29
     - Id: light
       Kind: 5
       Category: 0
@@ -4241,7 +4241,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 2039
     - Id: lion_plural
       Kind: 5
       Category: 10
@@ -4256,7 +4256,7 @@ MonoBehaviour:
       - dal
       - dammah_tanwin
       Difficulty: 0
-      Drawing: 
+      Drawing: 203A
     - Id: lips
       Kind: 5
       Category: 6
@@ -4286,7 +4286,7 @@ MonoBehaviour:
       - lam
       - kasrah_tanwin
       Difficulty: 0
-      Drawing: 
+      Drawing: 2D
     - Id: market
       Kind: 5
       Category: 8
@@ -4299,7 +4299,7 @@ MonoBehaviour:
       - waw
       - qaf
       Difficulty: 0
-      Drawing: 
+      Drawing: AB
     - Id: meat
       Kind: 5
       Category: 4
@@ -4325,7 +4325,7 @@ MonoBehaviour:
       - beh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: BB
     - Id: month
       Kind: 5
       Category: 19
@@ -4338,7 +4338,7 @@ MonoBehaviour:
       - heh
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2265
     - Id: month_april
       Kind: 5
       Category: 19
@@ -4353,7 +4353,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 2264
     - Id: month_august
       Kind: 5
       Category: 19
@@ -4364,7 +4364,7 @@ MonoBehaviour:
       Letters:
       - beh
       Difficulty: 0
-      Drawing: 
+      Drawing: B1
     - Id: month_december
       Kind: 5
       Category: 19
@@ -4384,7 +4384,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 2248
     - Id: month_february
       Kind: 5
       Category: 19
@@ -4398,7 +4398,7 @@ MonoBehaviour:
       - alef
       - tah
       Difficulty: 0
-      Drawing: 
+      Drawing: 7E
     - Id: month_january
       Kind: 5
       Category: 19
@@ -4419,7 +4419,7 @@ MonoBehaviour:
       - noon
       - yeh
       Difficulty: 0
-      Drawing: 
+      Drawing: AC
     - Id: month_july
       Kind: 5
       Category: 19
@@ -4433,7 +4433,7 @@ MonoBehaviour:
       - waw
       - zain
       Difficulty: 0
-      Drawing: 
+      Drawing: 2205
     - Id: month_june
       Kind: 5
       Category: 19
@@ -4449,7 +4449,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 221E
     - Id: month_march
       Kind: 5
       Category: 19
@@ -4462,7 +4462,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 222B
     - Id: month_may
       Kind: 5
       Category: 19
@@ -4476,7 +4476,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 220F
     - Id: month_november
       Kind: 5
       Category: 19
@@ -4497,7 +4497,7 @@ MonoBehaviour:
       - noon
       - yeh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2211
     - Id: month_october
       Kind: 5
       Category: 19
@@ -4517,7 +4517,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 221A
     - Id: month_september
       Kind: 5
       Category: 19
@@ -4532,7 +4532,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 2202
     - Id: moon
       Kind: 5
       Category: 14
@@ -4559,7 +4559,7 @@ MonoBehaviour:
       - alef
       - hah
       Difficulty: 0
-      Drawing: 
+      Drawing: 25
     - Id: mother
       Kind: 5
       Category: 5
@@ -4601,7 +4601,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: B0
     - Id: mountain_plural
       Kind: 5
       Category: 14
@@ -4615,7 +4615,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 7C
     - Id: mouse
       Kind: 5
       Category: 10
@@ -4749,7 +4749,7 @@ MonoBehaviour:
       - feh
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2669
     - Id: number_01
       Kind: 5
       Category: 22
@@ -4763,7 +4763,7 @@ MonoBehaviour:
       - hah
       - dal
       Difficulty: 0
-      Drawing: 
+      Drawing: 266A
     - Id: number_02
       Kind: 5
       Category: 22
@@ -4778,7 +4778,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 266B
     - Id: number_03
       Kind: 5
       Category: 22
@@ -4793,7 +4793,7 @@ MonoBehaviour:
       - theh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 266C
     - Id: number_04
       Kind: 5
       Category: 22
@@ -4808,7 +4808,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 266D
     - Id: number_05
       Kind: 5
       Category: 22
@@ -4822,7 +4822,7 @@ MonoBehaviour:
       - seen
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 266E
     - Id: number_06
       Kind: 5
       Category: 22
@@ -4835,7 +4835,7 @@ MonoBehaviour:
       - teh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 266F
     - Id: number_07
       Kind: 5
       Category: 22
@@ -4850,7 +4850,7 @@ MonoBehaviour:
       - teh_marbuta
       - dammah_tanwin
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D184
     - Id: number_08
       Kind: 5
       Category: 22
@@ -4866,7 +4866,7 @@ MonoBehaviour:
       - yeh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D183
     - Id: number_09
       Kind: 5
       Category: 22
@@ -4880,7 +4880,7 @@ MonoBehaviour:
       - ain
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D114
     - Id: number_10
       Kind: 5
       Category: 22
@@ -4894,7 +4894,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D115
     - Id: number_11
       Kind: 5
       Category: 22
@@ -4910,7 +4910,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D112
     - Id: number_12
       Kind: 5
       Category: 22
@@ -4927,7 +4927,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D15C
     - Id: number_13
       Kind: 5
       Category: 22
@@ -4945,7 +4945,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D1B8
     - Id: number_14
       Kind: 5
       Category: 22
@@ -4963,7 +4963,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D1C3
     - Id: number_15
       Kind: 5
       Category: 22
@@ -4980,7 +4980,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D121
     - Id: number_16
       Kind: 5
       Category: 22
@@ -4996,7 +4996,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D113
     - Id: number_17
       Kind: 5
       Category: 22
@@ -5013,7 +5013,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D104
     - Id: number_18
       Kind: 5
       Category: 22
@@ -5032,7 +5032,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D145
     - Id: number_19
       Kind: 5
       Category: 22
@@ -5049,7 +5049,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D1D7
     - Id: number_20
       Kind: 5
       Category: 22
@@ -5064,7 +5064,7 @@ MonoBehaviour:
       - waw
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D1D5
     - Id: number_2000
       Kind: 5
       Category: 22
@@ -5079,7 +5079,7 @@ MonoBehaviour:
       - yeh
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D15B
     - Id: number_o01
       Kind: 5
       Category: 23
@@ -5094,7 +5094,7 @@ MonoBehaviour:
       - waw
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D15A
     - Id: number_o02
       Kind: 5
       Category: 23
@@ -5110,7 +5110,7 @@ MonoBehaviour:
       - noon
       - yeh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D10C
     - Id: number_o03
       Kind: 5
       Category: 23
@@ -5126,7 +5126,7 @@ MonoBehaviour:
       - lam
       - theh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D134
     - Id: number_o04
       Kind: 5
       Category: 23
@@ -5142,7 +5142,7 @@ MonoBehaviour:
       - beh
       - ain
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D192
     - Id: number_o05
       Kind: 5
       Category: 23
@@ -5158,7 +5158,7 @@ MonoBehaviour:
       - meem
       - seen
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D1CF
     - Id: number_o06
       Kind: 5
       Category: 23
@@ -5174,7 +5174,7 @@ MonoBehaviour:
       - dal
       - seen
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D135
     - Id: number_o07
       Kind: 5
       Category: 23
@@ -5190,7 +5190,7 @@ MonoBehaviour:
       - beh
       - ain
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D10A
     - Id: number_o08
       Kind: 5
       Category: 23
@@ -5206,7 +5206,7 @@ MonoBehaviour:
       - meem
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D109
     - Id: number_o09
       Kind: 5
       Category: 23
@@ -5222,7 +5222,7 @@ MonoBehaviour:
       - seen
       - ain
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D1B4
     - Id: number_o10
       Kind: 5
       Category: 23
@@ -5238,7 +5238,7 @@ MonoBehaviour:
       - sheen
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 1D1B5
     - Id: number_o11
       Kind: 5
       Category: 23
@@ -5325,7 +5325,7 @@ MonoBehaviour:
       - alef
       - zah
       Difficulty: 0
-      Drawing: 
+      Drawing: A9
     - Id: opened
       Kind: 2
       Category: 0
@@ -5354,7 +5354,7 @@ MonoBehaviour:
       - reh
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: A7
     - Id: paper
       Kind: 5
       Category: 7
@@ -5396,7 +5396,7 @@ MonoBehaviour:
       - alef
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: 40
     - Id: pear
       Kind: 5
       Category: 4
@@ -5426,7 +5426,7 @@ MonoBehaviour:
       - reh
       - alef_maqsura
       Difficulty: 0
-      Drawing: 
+      Drawing: B6
     - Id: pearl
       Kind: 5
       Category: 0
@@ -5481,7 +5481,7 @@ MonoBehaviour:
       - ain
       - beh
       Difficulty: 0
-      Drawing: 
+      Drawing: 20AC
     - Id: playground
       Kind: 5
       Category: 8
@@ -5596,7 +5596,7 @@ MonoBehaviour:
       - fathah
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: 26
     - Id: rice
       Kind: 5
       Category: 4
@@ -5636,7 +5636,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 2195
     - Id: river_plural
       Kind: 5
       Category: 14
@@ -5651,7 +5651,7 @@ MonoBehaviour:
       - alef
       - reh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2194
     - Id: room
       Kind: 5
       Category: 8
@@ -5750,7 +5750,7 @@ MonoBehaviour:
       - seen
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 2196
     - Id: scientist
       Kind: 5
       Category: 16
@@ -5780,7 +5780,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 2190
     - Id: scientist_plural
       Kind: 5
       Category: 16
@@ -5795,7 +5795,7 @@ MonoBehaviour:
       - alef
       - hamza
       Difficulty: 0
-      Drawing: 
+      Drawing: 2199
     - Id: scissors
       Kind: 5
       Category: 7
@@ -5837,7 +5837,7 @@ MonoBehaviour:
       - yeh
       - sad
       Difficulty: 0
-      Drawing: 
+      Drawing: ED
     - Id: shoe
       Kind: 5
       Category: 17
@@ -5866,7 +5866,7 @@ MonoBehaviour:
       - noon
       - kasrah_tanwin
       Difficulty: 0
-      Drawing: 
+      Drawing: 2198
     - Id: sister
       Kind: 5
       Category: 5
@@ -5961,7 +5961,7 @@ MonoBehaviour:
       - yeh
       - ain
       Difficulty: 0
-      Drawing: 
+      Drawing: 2192
     - Id: station
       Kind: 5
       Category: 8
@@ -5975,7 +5975,7 @@ MonoBehaviour:
       - tah
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: 2197
     - Id: studied
       Kind: 2
       Category: 0
@@ -6004,7 +6004,7 @@ MonoBehaviour:
       - kaf
       - reh
       Difficulty: 1
-      Drawing: 
+      Drawing: 2191
     - Id: summer
       Kind: 5
       Category: 14
@@ -6017,7 +6017,7 @@ MonoBehaviour:
       - yeh
       - feh
       Difficulty: 0
-      Drawing: 
+      Drawing: 2030
     - Id: sun
       Kind: 5
       Category: 14
@@ -6102,7 +6102,7 @@ MonoBehaviour:
       - alef
       - zain
       Difficulty: 0
-      Drawing: 
+      Drawing: A5
     - Id: thankyou
       Kind: 6
       Category: 0
@@ -6163,7 +6163,7 @@ MonoBehaviour:
       - reh
       - teh_marbuta
       Difficulty: 0
-      Drawing: 
+      Drawing: A3
     - Id: the_bear
       Kind: 5
       Category: 10
@@ -6474,7 +6474,7 @@ MonoBehaviour:
       - ain
       - beh
       Difficulty: 0
-      Drawing: 
+      Drawing: 20AC
     - Id: the_playground
       Kind: 5
       Category: 8
@@ -6725,7 +6725,7 @@ MonoBehaviour:
       - alef
       - ain
       Difficulty: 0
-      Drawing: 
+      Drawing: 24
     - Id: the_worker
       Kind: 5
       Category: 16
@@ -6908,7 +6908,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: F8
     - Id: uncle_father
       Kind: 5
       Category: 5
@@ -6920,7 +6920,7 @@ MonoBehaviour:
       - ain
       - meem
       Difficulty: 1
-      Drawing: 
+      Drawing: A4
     - Id: uncle_mother
       Kind: 5
       Category: 5
@@ -6933,7 +6933,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 1
-      Drawing: 
+      Drawing: A2
     - Id: understood
       Kind: 2
       Category: 0
@@ -7029,7 +7029,7 @@ MonoBehaviour:
       - meem
       - yeh
       Difficulty: 1
-      Drawing: 
+      Drawing: 2019
     - Id: watermelon
       Kind: 5
       Category: 4
@@ -7171,7 +7171,7 @@ MonoBehaviour:
       - alef
       - ain
       Difficulty: 0
-      Drawing: 
+      Drawing: 24
     - Id: wore
       Kind: 2
       Category: 0
@@ -7217,7 +7217,7 @@ MonoBehaviour:
       - alef
       - noon
       Difficulty: 0
-      Drawing: 
+      Drawing: 201D
     - Id: worker_plural
       Kind: 5
       Category: 16
@@ -7231,7 +7231,7 @@ MonoBehaviour:
       - alef
       - lam
       Difficulty: 0
-      Drawing: 
+      Drawing: 2018
     - Id: wrote
       Kind: 2
       Category: 0
@@ -7260,7 +7260,7 @@ MonoBehaviour:
       - alef
       - meem
       Difficulty: 0
-      Drawing: 
+      Drawing: 201C
     - Id: yesterday
       Kind: 6
       Category: 19
@@ -7291,6 +7291,127 @@ MonoBehaviour:
       - noon
       Difficulty: 1
       Drawing: 2A
+    - Id: with_article
+      Kind: 7
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0639 \u0623\u062F\u0627\u0629 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
+      Letters:
+      - meem
+      - ain
+      - alef_hamza_hi
+      - dal
+      - alef
+      - teh_marbuta
+      - alef
+      - lam
+      - teh
+      - ain
+      - reh
+      - yeh
+      - feh
+      Difficulty: 0
+      Drawing: 
+    - Id: without_article
+      Kind: 7
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062F\u0648\u0646 \u0623\u062F\u0627\u0629 \u0627\u0644\u062A\u0639\u0631\u064A\u0641"
+      Letters:
+      - dal
+      - waw
+      - noon
+      - alef_hamza_hi
+      - dal
+      - alef
+      - teh_marbuta
+      - alef
+      - lam
+      - teh
+      - ain
+      - reh
+      - yeh
+      - feh
+      Difficulty: 0
+      Drawing: 
+    - Id: singular
+      Kind: 7
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u0641\u0631\u062F"
+      Letters:
+      - meem
+      - feh
+      - reh
+      - dal
+      Difficulty: 0
+      Drawing: 
+    - Id: dual
+      Kind: 7
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u0645\u062B\u0646\u0649"
+      Letters:
+      - meem
+      - theh
+      - noon
+      - alef_maqsura
+      Difficulty: 0
+      Drawing: 
+    - Id: plural
+      Kind: 7
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062C\u0645\u0639"
+      Letters:
+      - jeem
+      - meem
+      - ain
+      Difficulty: 0
+      Drawing: 
+    - Id: vowel
+      Kind: 7
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062D\u0631\u0641 \u0639\u0644\u0629"
+      Letters:
+      - hah
+      - reh
+      - feh
+      - ain
+      - lam
+      - teh_marbuta
+      Difficulty: 0
+      Drawing: 
+    - Id: consonant
+      Kind: 7
+      Category: 0
+      Form: 0
+      Article: 0
+      LinkedWord: 
+      Arabic: "\u062D\u0631\u0641 \u0633\u0627\u0643\u0646"
+      Letters:
+      - hah
+      - reh
+      - feh
+      - seen
+      - alef
+      - kaf
+      - noon
+      Difficulty: 0
+      Drawing: 
   playSessionTable:
     innerList:
     - Id: 1.1.1
@@ -7350,7 +7471,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7435,7 +7558,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7524,7 +7649,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7616,7 +7743,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7710,7 +7839,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7802,7 +7933,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7900,7 +8033,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -7998,7 +8133,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8094,7 +8231,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8192,7 +8331,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8290,7 +8431,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8382,7 +8525,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8477,7 +8622,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8560,7 +8707,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8645,7 +8794,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8734,7 +8885,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8824,7 +8977,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -8911,7 +9066,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9000,7 +9157,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9089,7 +9248,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9176,7 +9337,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9265,7 +9428,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9353,7 +9518,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9440,7 +9607,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9529,7 +9698,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9618,7 +9789,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 102
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9705,7 +9878,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -9794,7 +9969,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 101
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -14238,7 +14415,9 @@ MonoBehaviour:
       PlaySession: 100
       Type: Assessment
       Order: 1
-      Minigames: []
+      Minigames:
+      - MiniGameCode: 100
+        Weight: 1
       Letters: []
       Words: []
       Words_previous: []
@@ -16468,72 +16647,85 @@ MonoBehaviour:
     - Id: goodmorning_Q
       English: good morning - question
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631"
+      Category: 1
       Linked: goodmorning_R
       Words:
       - morning
     - Id: goodmorning_R
       English: good morning - reply
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u0646\u0648\u0631"
+      Category: 2
       Linked: goodmorning_Q
       Words:
       - morning
     - Id: goodevening_Q
       English: good evening - question
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u062E\u064A\u0631"
+      Category: 1
       Linked: goodevening_R
       Words:
       - evening
     - Id: goodevening_R
       English: good evening - reply
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u0646\u0648\u0631"
+      Category: 2
       Linked: goodevening_Q
       Words:
       - evening
     - Id: hi
       English: Hi
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
+      Category: 3
       Linked: 
       Words: []
     - Id: yourwelcome
       English: you are welcome
       Arabic: "\u0623\u0647\u0644\u0627\u064B \u0648\u0633\u0647\u0644\u0627\u064B"
+      Category: 3
       Linked: 
       Words:
       - and
     - Id: howareyou
       English: how are you doing?
       Arabic: "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643\u061F"
+      Category: 3
       Linked: 
       Words: []
     - Id: fine
       English: fine
       Arabic: "\u0628\u062E\u064A\u0631"
+      Category: 3
       Linked: 
       Words: []
     - Id: thankyou
       English: thank you
       Arabic: "\u0634\u0643\u0631\u0627\u064B"
+      Category: 3
       Linked: 
       Words: []
     - Id: sure
       English: sure
       Arabic: "\u0639\u0641\u0648\u0627\u064B"
+      Category: 3
       Linked: 
       Words: []
     - Id: seeyou
       English: see you
       Arabic: "\u0625\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621"
+      Category: 3
       Linked: 
       Words: []
     - Id: goodbye
       English: good-bye
       Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
+      Category: 3
       Linked: 
       Words: []
     - Id: the_year_2016
       English: the year two thousand and sixteen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
         \u0639\u0634\u0631"
+      Category: 4
       Linked: 
       Words:
       - year
@@ -16544,6 +16736,7 @@ MonoBehaviour:
       English: the year two thousand and seventeen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u0628\u0639\u0629
         \u0639\u0634\u0631"
+      Category: 4
       Linked: 
       Words:
       - year
@@ -16554,6 +16747,7 @@ MonoBehaviour:
       English: the year twothousand and eighteen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062B\u0645\u0627\u0646\u064A\u0629
         \u0639\u0634\u0631"
+      Category: 4
       Linked: 
       Words:
       - year
@@ -16564,6 +16758,7 @@ MonoBehaviour:
       English: the year two thousand and fifteen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062E\u0645\u0633\u0629
         \u0639\u0634\u0631"
+      Category: 4
       Linked: 
       Words:
       - year
@@ -16573,6 +16768,7 @@ MonoBehaviour:
     - Id: the_year_2009
       English: the year two thousand and nine
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062A\u0633\u0639\u0629"
+      Category: 4
       Linked: 
       Words:
       - year
@@ -16582,6 +16778,7 @@ MonoBehaviour:
     - Id: theboyopenedthewindow
       English: the boy opened the window
       Arabic: "\u0641\u062A\u062D \u0627\u0644\u0635\u0628\u064A \u0627\u0644\u0646\u0627\u0641\u0630\u0629"
+      Category: 5
       Linked: 
       Words:
       - boy
@@ -16590,6 +16787,7 @@ MonoBehaviour:
     - Id: theteacherlaughed
       English: the teacher laughed
       Arabic: "\u0636\u062D\u0643 \u0627\u0644\u0645\u0639\u0644\u0645"
+      Category: 5
       Linked: 
       Words:
       - teacher
@@ -16597,6 +16795,7 @@ MonoBehaviour:
     - Id: theworkercarriedthebox
       English: the worker carried the box
       Arabic: "\u062D\u0645\u0644 \u0627\u0644\u0639\u0627\u0645\u0644 \u0627\u0644\u0635\u0646\u062F\u0648\u0642"
+      Category: 5
       Linked: 
       Words:
       - worker
@@ -16605,6 +16804,7 @@ MonoBehaviour:
     - Id: thegirldrankthejuice
       English: the girl drank the juice
       Arabic: "\u0634\u0631\u0628\u062A \u0627\u0644\u0628\u0646\u062A \u0627\u0644\u0639\u0635\u064A\u0631"
+      Category: 5
       Linked: 
       Words:
       - girl
@@ -16613,6 +16813,7 @@ MonoBehaviour:
     - Id: themountainisbig
       English: the mountain is big
       Arabic: "\u0627\u0644\u062C\u0628\u0644 \u0643\u0628\u064A\u0631"
+      Category: 5
       Linked: 
       Words:
       - mountain
@@ -16620,6 +16821,7 @@ MonoBehaviour:
     - Id: therestaurantisclean
       English: the restaurant is clean
       Arabic: "\u0627\u0644\u0645\u0637\u0639\u0645 \u0646\u0638\u064A\u0641"
+      Category: 5
       Linked: 
       Words:
       - restaurant
@@ -16627,6 +16829,7 @@ MonoBehaviour:
     - Id: thetigeratethedeer
       English: the tiger ate the deer
       Arabic: "\u0623\u0643\u0644 \u0627\u0644\u0646\u0645\u0631 \u0627\u0644\u063A\u0632\u0627\u0644"
+      Category: 5
       Linked: 
       Words:
       - tiger
@@ -16634,6 +16837,7 @@ MonoBehaviour:
     - Id: redberry
       English: red berry
       Arabic: "\u062A\u0648\u062A \u0623\u062D\u0645\u0631"
+      Category: 5
       Linked: 
       Words:
       - color_red
@@ -16641,6 +16845,7 @@ MonoBehaviour:
     - Id: yellowflower
       English: yellowe flower
       Arabic: "\u0648\u0631\u062F \u0623\u0635\u0641\u0631"
+      Category: 5
       Linked: 
       Words:
       - color_yellow
@@ -16648,6 +16853,7 @@ MonoBehaviour:
     - Id: greywolf
       English: grey wolf
       Arabic: "\u0630\u0626\u0628 \u0631\u0645\u0627\u062F\u064A"
+      Category: 5
       Linked: 
       Words:
       - color_grey
@@ -16655,6 +16861,7 @@ MonoBehaviour:
     - Id: greencucumber
       English: green cucumber
       Arabic: "\u062E\u064A\u0627\u0631 \u0623\u062E\u0636\u0631"
+      Category: 5
       Linked: 
       Words:
       - color_green
@@ -16662,6 +16869,7 @@ MonoBehaviour:
     - Id: thecarpenterwent
       English: the carpenter went (left)
       Arabic: "\u0630\u0647\u0628 \u0627\u0644\u0646\u062C\u0627\u0631"
+      Category: 5
       Linked: 
       Words:
       - carpenter
@@ -16669,6 +16877,7 @@ MonoBehaviour:
     - Id: thebirdflew
       English: the bird flew
       Arabic: "\u0637\u0627\u0631 \u0627\u0644\u0639\u0635\u0641\u0648\u0631"
+      Category: 5
       Linked: 
       Words:
       - bird
@@ -16676,6 +16885,7 @@ MonoBehaviour:
     - Id: theshopissmall
       English: the shop is small
       Arabic: "\u0627\u0644\u062F\u0643\u0627\u0646 \u0635\u063A\u064A\u0631"
+      Category: 5
       Linked: 
       Words:
       - shop
@@ -16683,6 +16893,7 @@ MonoBehaviour:
     - Id: thedoctoropenedthehospital
       English: the doctor opened the hospital
       Arabic: "\u0641\u062A\u062D \u0627\u0644\u0637\u0628\u064A\u0628 \u0627\u0644\u0645\u0633\u062A\u0634\u0641\u0649"
+      Category: 5
       Linked: 
       Words:
       - doctor
@@ -16691,6 +16902,7 @@ MonoBehaviour:
     - Id: eightscientists
       English: eight scientists
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0644\u0645\u0627\u0621"
+      Category: 5
       Linked: 
       Words:
       - number_08
@@ -16698,6 +16910,7 @@ MonoBehaviour:
     - Id: theengineerworethecoat
       English: the engineer wore the coat
       Arabic: "\u0644\u0628\u0633 \u0627\u0644\u0645\u0647\u0646\u062F\u0633 \u0627\u0644\u0645\u0639\u0637\u0641"
+      Category: 5
       Linked: 
       Words:
       - the_engineer
@@ -16706,6 +16919,7 @@ MonoBehaviour:
     - Id: theplayerwon
       English: the player won
       Arabic: "\u0631\u0628\u062D \u0627\u0644\u0644\u0627\u0639\u0628"
+      Category: 5
       Linked: 
       Words:
       - the_player
@@ -16713,6 +16927,7 @@ MonoBehaviour:
     - Id: theshirtisclean
       English: the shirt is clean
       Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0646\u0638\u064A\u0641"
+      Category: 5
       Linked: 
       Words:
       - the_shirt
@@ -16720,6 +16935,7 @@ MonoBehaviour:
     - Id: yesterdaywassunday
       English: yesterday was Sunday
       Arabic: "\u0643\u0627\u0646 \u0627\u0644\u0628\u0627\u0631\u062D\u0629 \u0623\u062D\u062F"
+      Category: 5
       Linked: 
       Words:
       - yesterday
@@ -16727,6 +16943,7 @@ MonoBehaviour:
     - Id: thewinteriscold
       English: the winter is cold
       Arabic: "\u0627\u0644\u0634\u062A\u0627\u0621 \u0628\u0627\u0631\u062F"
+      Category: 5
       Linked: 
       Words:
       - winter
@@ -16736,6 +16953,7 @@ MonoBehaviour:
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A
         \u0647\u0648 \u0627\u0644\u0634\u0647\u0631 \u0627\u0644\u062D\u0627\u062F\u064A
         \u0639\u0634\u0631"
+      Category: 5
       Linked: 
       Words:
       - month_november
@@ -16744,6 +16962,7 @@ MonoBehaviour:
     - Id: theparrotisbeautiful
       English: the parrot is beautiful
       Arabic: "\u0627\u0644\u0628\u0628\u063A\u0627\u0621 \u062C\u0645\u064A\u0644"
+      Category: 5
       Linked: 
       Words:
       - parrot
@@ -16752,6 +16971,7 @@ MonoBehaviour:
       English: May is the fifth month
       Arabic: "\u0623\u064A\u0627\u0631 \u0647\u0648 \u0627\u0644\u0634\u0647\u0631
         \u0627\u0644\u062E\u0627\u0645\u0633"
+      Category: 5
       Linked: 
       Words:
       - month_may
@@ -16760,6 +16980,7 @@ MonoBehaviour:
     - Id: thepolicemanwalked
       English: the policeman walked
       Arabic: "\u0645\u0634\u0649 \u0627\u0644\u0634\u0631\u0637\u064A"
+      Category: 5
       Linked: 
       Words:
       - policeman
@@ -16767,6 +16988,7 @@ MonoBehaviour:
     - Id: theicecreamisdelicious
       English: the ice-cream is delicious
       Arabic: "\u0627\u0644\u0628\u0648\u0638\u0629 \u062D\u0644\u0648\u0629"
+      Category: 5
       Linked: 
       Words:
       - icecream
@@ -16774,6 +16996,7 @@ MonoBehaviour:
     - Id: fivebooks
       English: five books
       Arabic: "\u062E\u0645\u0633\u0629 \u0643\u062A\u0628"
+      Category: 5
       Linked: 
       Words:
       - number_05
@@ -16781,47 +17004,56 @@ MonoBehaviour:
     - Id: please
       English: please
       Arabic: "\u0631\u062C\u0627\u0621"
+      Category: 3
       Linked: 
       Words: []
     - Id: thankyouverymuch
       English: thank you very much
       Arabic: "\u0634\u0643\u0631\u0627\u064B\u064B \u062C\u0632\u064A\u0644\u0627\u064B"
+      Category: 3
       Linked: 
       Words: []
     - Id: goodnight_Q
       English: good night - question
       Arabic: "\u062A\u0635\u0628\u062D \u0639\u0644\u0649 \u062E\u064A\u0631"
-      Linked: 
+      Category: 1
+      Linked: goodnight_R
       Words: []
     - Id: goodnight_R
       English: good night - reply
       Arabic: "\u0648\u0623\u0646\u062A \u0628\u062E\u064A\u0631"
-      Linked: 
+      Category: 2
+      Linked: goodnight_Q
       Words: []
     - Id: congratulations
       English: congratulations
       Arabic: "\u0645\u0628\u0631\u0648\u0643"
+      Category: 3
       Linked: 
       Words: []
     - Id: letsgo_Q
       English: let's go - question
       Arabic: "\u0647\u064A\u0627 \u0644\u0646\u0630\u0647\u0628"
-      Linked: 
+      Category: 1
+      Linked: letsgo_R
       Words: []
     - Id: letsgo_R
       English: let's go - reply
       Arabic: "\u0647\u064A\u0627 \u0646\u0630\u0647\u0628"
-      Linked: 
+      Category: 2
+      Linked: letsgo_Q
       Words: []
     - Id: areyouready_Q
       English: are you ready - question
       Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F"
-      Linked: 
+      Category: 1
+      Linked: yesiamready_R
       Words: []
     - Id: yesiamready_R
       English: yes I am ready - reply
       Arabic: "\u0646\u0639\u0645 \u0623\u0646\u0627 \u062C\u0627\u0647\u0632"
-      Linked: 
+      Category: 2
+      Linked: areyouready_Q
       Words: []
   stageTable:
     innerList:

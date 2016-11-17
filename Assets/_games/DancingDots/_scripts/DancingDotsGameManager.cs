@@ -32,6 +32,23 @@ namespace EA4S.DancingDots
 		public GameObject[] diacritics;
 		public DancingDotsDiacriticPosition activeDiacritic;
 
+		[HideInInspector]
+		public DancingDotsQuestionsManager questionsManager;
+
+
+        DancingDotsTutorial tutorial;
+
+        public bool isTutRound
+        {
+            get
+            {
+                if (numberOfRoundsPlayed == 0)
+                    return true;
+                else
+                    return false;
+            }
+        } 
+
 		public string currentLetter = "";
 		private int _dotsCount;
 		public int dotsCount
@@ -75,7 +92,7 @@ namespace EA4S.DancingDots
 		private bool isCorrectDiacritic = false;
 
 		private int numberOfRoundsWon = 0;
-		private int numberOfRoundsPlayed = 0;
+		private int numberOfRoundsPlayed = -1;
 		private int numberOfFailedMoves = 0;
 
 		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
@@ -95,11 +112,15 @@ namespace EA4S.DancingDots
 		{
 
 			base.Start();
+            tutorial = GetComponent<DancingDotsTutorial>();
 
-
-			AppManager.Instance.InitDataAI();
+            AppManager.Instance.InitDataAI();
 			AppManager.Instance.CurrentGameManagerGO = gameObject;
 			SceneTransitioner.Close();
+
+			DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+
+			questionsManager = new DancingDotsQuestionsManager();
 
 			splats = new List<DancingDotsSplat>();
 
@@ -252,6 +273,7 @@ namespace EA4S.DancingDots
 
 			SetLevel(currentLevel);
 
+            tutorial.doTutorial();
 
 		}
 			
@@ -363,7 +385,11 @@ namespace EA4S.DancingDots
 				yield return new WaitForSeconds(0.5f);
 //				dancingDotsLL.letterObjectView.SetWalkingSpeed(0f);
 				dancingDotsLL.HideRainbow();
-			}
+                yield return new WaitForSeconds(1f);
+                tutorial.doTutorial();
+
+
+            }
 		}
 
 		IEnumerator PoofOthers(DancingDotsDraggableDot[] draggables)
@@ -399,6 +425,8 @@ namespace EA4S.DancingDots
 			
 		public void WrongMove(Vector3 pos)
 		{
+            
+
 			numberOfFailedMoves++;
 			GameObject splat = (GameObject) Instantiate(splatPrefab);
 			splat.transform.parent = splatParent;
@@ -430,10 +458,7 @@ namespace EA4S.DancingDots
 				dancingDotsLL.HideRainbow();
 				StartRound();
 				yield return new WaitForSeconds(0.75f);
-				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_dancing);
-
-//				dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
-//				dancingDotsLL.letterObjectView.SetWalkingSpeed(0);
+				dancingDotsLL.letterObjectView.ToggleDance();
 			}
 		}
 
@@ -449,13 +474,14 @@ namespace EA4S.DancingDots
 			dancingDotsLL.letterObjectView.DoDancingLose(); // ("FallAndStand");
 			yield return new WaitForSeconds(1.5f);
 			dancingDotsLL.letterObjectView.DoSmallJump();
-			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_dancing);
+			dancingDotsLL.letterObjectView.ToggleDance(); //  SetState(LLAnimationStates.LL_dancing);
 			StartCoroutine(CheckNewRound());
 		}
 
 		IEnumerator RoundWon()
 		{
-			numberOfRoundsWon++;
+            if(!isTutRound)
+			    numberOfRoundsWon++;
 
 			yield return new WaitForSeconds(0.25f);
 //			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);

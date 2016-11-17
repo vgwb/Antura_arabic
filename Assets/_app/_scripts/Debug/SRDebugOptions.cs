@@ -52,6 +52,13 @@ public partial class SROptions
     }
 
     [Category("Minigames")]
+    [Sort(10)]
+    public void AlphabetSong()
+    {
+        LaunchMinigame(MiniGameCode.AlphabetSong);
+    }
+
+    [Category("Minigames")]
     [Sort(11)]
     public void BalloonsLetter()
     {
@@ -183,6 +190,13 @@ public partial class SROptions
     public void MixedLettersAlphabet()
     {
         LaunchMinigame(MiniGameCode.MixedLetters_alphabet);
+    }
+
+    [Category("Minigames")]
+    [Sort(21)]
+    public void ReadingGame()
+    {
+        LaunchMinigame(MiniGameCode.ReadingGame);
     }
 
     [Category("Minigames")]
