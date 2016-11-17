@@ -79,7 +79,11 @@ namespace EA4S
             RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
             while (!animator.IsComplete)
                 yield return null;
-
+            /* FIRST CONTACT FEATURE */
+            if (AppManager.Instance.Player.IsFirstContact()) {
+                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
+            }
+            /* --------------------- */
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 

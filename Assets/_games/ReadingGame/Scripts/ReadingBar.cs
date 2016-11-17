@@ -26,11 +26,13 @@ public class ReadingBar : MonoBehaviour
 
     public MagnifingGlass glass;
     public ThreeSlicesSprite backSprite;
+    SpriteFader glassFader;
 
     [Range(0, 1)]
     public float alpha = 0;
 
-    SpriteRenderer[] spriteRenderers;
+    SpriteFader[] spriteFaders;
+
     Color[] startColors;
     Color startTextColor;
 
@@ -48,7 +50,7 @@ public class ReadingBar : MonoBehaviour
         {
             active = value;
 
-            glass.gameObject.SetActive(active);
+            glassFader.show = active;
             start.GetComponent<SpriteRenderer>().color = doneColor;
             target.gameObject.SetActive(active && !completed);
         }
@@ -57,24 +59,18 @@ public class ReadingBar : MonoBehaviour
 
     void Awake()
     {
-        alpha = 0;
+        glassFader = glass.gameObject.GetComponent<SpriteFader>();
+
         Active = false;
 
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
-        startColors = new Color[spriteRenderers.Length];
-
-        for (int i = 0; i < spriteRenderers.Length; ++i)
-            startColors[i] = spriteRenderers[i].color;
-        startTextColor = text.color;
-
-        for (int i = 0; i < spriteRenderers.Length; ++i)
+        spriteFaders = GetComponentsInChildren<SpriteFader>(true);
+        for (int i = 0; i < spriteFaders.Length; ++i)
         {
-            var color = spriteRenderers[i].color;
-            color.a = 0;
-            spriteRenderers[i].color = color;
+            spriteFaders[i].SetAlphaImmediate(0); 
         }
 
         var textColor = text.color;
+        startTextColor = textColor;
         textColor.a = 0;
         text.color = textColor;
     }
@@ -82,12 +78,20 @@ public class ReadingBar : MonoBehaviour
     void Start()
     {
         Update();
-
+        
+        // Set glass and target
+        target.localPosition = Vector3.Lerp(start.localPosition, endCompleted.localPosition, currentTarget);
         glass.transform.position = GetGlassWorldPosition();
         
         target.gameObject.SetActive(active);
         endCompleted.gameObject.SetActive(false);
-        start.GetComponent<SpriteRenderer>().color = active ? doneColor : clearColor;
+
+        var startColor = active ? doneColor : clearColor;
+        var oldColor = start.GetComponent<SpriteRenderer>().color;
+        oldColor.r = startColor.r;
+        oldColor.g = startColor.g;
+        oldColor.b = startColor.b;
+        start.GetComponent<SpriteRenderer>().color = oldColor;
     }
 
     void Update()
@@ -122,13 +126,6 @@ public class ReadingBar : MonoBehaviour
 
         const float ALPHA_LERP_SPEED = 5.0f;
 
-        for (int i = 0; i < spriteRenderers.Length; ++i)
-        {
-            var color = spriteRenderers[i].color;
-            color.a = Mathf.Lerp(color.a, startColors[i].a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
-            spriteRenderers[i].color = color;
-        }
-
         var textColor = text.color;
         textColor.a = Mathf.Lerp(textColor.a, startTextColor.a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
         text.color = textColor;
@@ -139,7 +136,11 @@ public class ReadingBar : MonoBehaviour
         completed = true;
         target.gameObject.SetActive(false);
         endCompleted.gameObject.SetActive(true);
-        endCompleted.GetComponent<SpriteRenderer>().color = doneColor;
+        var oldColor = endCompleted.GetComponent<SpriteRenderer>().color;
+        oldColor.r = doneColor.r;
+        oldColor.g = doneColor.g;
+        oldColor.b = doneColor.b;
+        endCompleted.GetComponent<SpriteRenderer>().color = oldColor;
         currentReading = 1;
         currentTarget = 1;
     }
@@ -172,7 +173,12 @@ public class ReadingBar : MonoBehaviour
     public void Show(bool show)
     {
         alpha = show ? 1 : 0;
-       // text.gameObject.SetActive(show);
+
+        for (int i = 0; i < spriteFaders.Length; ++i)
+        {
+            spriteFaders[i].show = show;
+        }
+        glassFader.show = active;
     }
 
     public Vector2 GetGlassScreenPosition()

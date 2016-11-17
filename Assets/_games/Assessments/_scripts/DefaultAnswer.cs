@@ -12,7 +12,7 @@ namespace EA4S.Assessment
             view = letter;
             isCorrect = correct;
             var answer = letter.gameObject.AddComponent< AnswerBehaviour>();
-            answer.SetAnswer( this);
+            answer.SetAnswer(this);
         }
 
         public GameObject gameObject

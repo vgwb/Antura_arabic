@@ -6,6 +6,9 @@ namespace EA4S.MixedLetters
 {
     public class SeparateLetterController : MonoBehaviour
     {
+        // How fast the letter rotates when the rotate button is pressed, in degrees per second:
+        private const float ROTATION_SPEED = 720f;
+
         public TMP_Text TMP_text;
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
@@ -15,6 +18,8 @@ namespace EA4S.MixedLetters
         private float cameraDistance;
         private LL_LetterData letterData;
         public DropZoneController droppedZone;
+
+        private bool isRotating;
 
         void Start()
         {
@@ -90,6 +95,11 @@ namespace EA4S.MixedLetters
             }
         }
 
+        public bool IsRotating()
+        {
+            return isRotating;
+        }
+
         void FixedUpdate()
         {
             rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
@@ -117,9 +127,39 @@ namespace EA4S.MixedLetters
 
         public void RotateCCW()
         {
-            Vector3 rotation = transform.localEulerAngles;
-            rotation.z += 90;
-            transform.localRotation = Quaternion.Euler(rotation);
+            StartCoroutine(RotateCoroutine());
+        }
+
+        private IEnumerator RotateCoroutine()
+        {
+            isRotating = true;
+
+            float currentZRotation = transform.localEulerAngles.z;
+            float targetZRotation = currentZRotation + 90;
+
+            float increment = Time.fixedDeltaTime * ROTATION_SPEED;
+
+            while (true)
+            {
+                currentZRotation += increment;
+
+                if (currentZRotation >= targetZRotation)
+                {
+                    transform.localRotation = Quaternion.Euler(0, 0, targetZRotation % 360);
+                    break;
+                }
+
+                else
+                {
+                    transform.localRotation = Quaternion.Euler(0, 0, currentZRotation);
+                }
+
+                yield return new WaitForFixedUpdate();
+            }
+
+            isRotating = false;
+
+            MixedLettersGame.instance.VerifyLetters();
         }
 
         public void Reset()
@@ -129,6 +169,7 @@ namespace EA4S.MixedLetters
             SetIsKinematic(true);
             SetRotation(new Vector3(0, 0, 0));
             droppedZone = null;
+            isRotating = false;
         }
 
         public void SetPosition(Vector3 position, bool offsetOnZ)

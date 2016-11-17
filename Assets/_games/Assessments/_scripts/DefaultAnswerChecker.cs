@@ -51,13 +51,22 @@ namespace EA4S.Assessment
                 place.LinkAnswer( droppa.GetAnswer().GetAnswerSet());
                 if (place.IsAnswerCorrect() == false)
                 {
+                    // NEED TO FIND QUESTION HERE
                     areAllCorrect = false;
                     p.LinkedDroppable.Detach();
                     p.Placeholder.LinkAnswer(0);
                 }
+                else
+                {
+                    var behaviour =
+                    p.Placeholder.GetQuestion().gameObject
+                        .GetComponent<QuestionBehaviour>();
+                    behaviour.OnQuestionAnswered();
+                    yield return TimeEngine.Wait(behaviour.TimeToWait());
+                }
             }
+
             allCorrect = areAllCorrect;
-            //allCorrect = true;
             checkmarkWidget.Show( allCorrect);
 
             yield return TimeEngine.Wait( 1.0f);
