@@ -10,7 +10,10 @@ namespace EA4S.DancingDots
 		private Vector3 screenPoint;
 		private Vector3 offset;
 
-		public bool isDot;
+        public DancingDotsGameManager gameManager;
+
+
+        public bool isDot;
 		[Range (0, 3)] public int dots;
 
 		public Diacritic diacritic;
@@ -20,7 +23,7 @@ namespace EA4S.DancingDots
 
 		public bool isNeeded = false;
 
-		bool isDragging = false;
+		public bool isDragging = false;
 		bool overDestinationMarker = false;
 		bool overPlayermarker = false;
 
@@ -61,8 +64,16 @@ namespace EA4S.DancingDots
 			{
 				if (overPlayermarker && !isNeeded)
 				{
-					DancingDotsGameManager.instance.WrongMove(transform.position);
-					isDragging = false;
+                    isDragging = false;
+
+                    if (gameManager.isTutRound)
+                    {
+                        Reset();
+                        return;
+                    }
+
+                    DancingDotsGameManager.instance.WrongMove(transform.position);
+					
 					gameObject.SetActive(false);
 				}
 				else

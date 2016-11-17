@@ -1,5 +1,6 @@
 ﻿using EA4S.API;
 using System;
+using EA4S.Log;
 
 namespace EA4S
 {
@@ -7,7 +8,7 @@ namespace EA4S
     {
         IAudioManager audioManager = new SampleAudioManager();
         IInputManager inputManager = new SampleInputManager();
-        ILogManager logManager = new AnturaLogManager();
+        ILogManager logManager = new MinigameLogManager();
 
         ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
         IStarsWidget starsWidget = new SampleStarsWidget();

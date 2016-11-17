@@ -36,6 +36,19 @@ namespace EA4S.DancingDots
 		public DancingDotsQuestionsManager questionsManager;
 
 
+        DancingDotsTutorial tutorial;
+
+        public bool isTutRound
+        {
+            get
+            {
+                if (numberOfRoundsPlayed == 0)
+                    return true;
+                else
+                    return false;
+            }
+        } 
+
 		public string currentLetter = "";
 		private int _dotsCount;
 		public int dotsCount
@@ -79,7 +92,7 @@ namespace EA4S.DancingDots
 		private bool isCorrectDiacritic = false;
 
 		private int numberOfRoundsWon = 0;
-		private int numberOfRoundsPlayed = 0;
+		private int numberOfRoundsPlayed = -1;
 		private int numberOfFailedMoves = 0;
 
 		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
@@ -99,8 +112,9 @@ namespace EA4S.DancingDots
 		{
 
 			base.Start();
+            tutorial = GetComponent<DancingDotsTutorial>();
 
-			AppManager.Instance.InitDataAI();
+            AppManager.Instance.InitDataAI();
 			AppManager.Instance.CurrentGameManagerGO = gameObject;
 			SceneTransitioner.Close();
 
@@ -259,6 +273,7 @@ namespace EA4S.DancingDots
 
 			SetLevel(currentLevel);
 
+            tutorial.doTutorial();
 
 		}
 			
@@ -370,7 +385,11 @@ namespace EA4S.DancingDots
 				yield return new WaitForSeconds(0.5f);
 //				dancingDotsLL.letterObjectView.SetWalkingSpeed(0f);
 				dancingDotsLL.HideRainbow();
-			}
+                yield return new WaitForSeconds(1f);
+                tutorial.doTutorial();
+
+
+            }
 		}
 
 		IEnumerator PoofOthers(DancingDotsDraggableDot[] draggables)
@@ -406,6 +425,8 @@ namespace EA4S.DancingDots
 			
 		public void WrongMove(Vector3 pos)
 		{
+            
+
 			numberOfFailedMoves++;
 			GameObject splat = (GameObject) Instantiate(splatPrefab);
 			splat.transform.parent = splatParent;
@@ -459,7 +480,8 @@ namespace EA4S.DancingDots
 
 		IEnumerator RoundWon()
 		{
-			numberOfRoundsWon++;
+            if(!isTutRound)
+			    numberOfRoundsWon++;
 
 			yield return new WaitForSeconds(0.25f);
 //			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
