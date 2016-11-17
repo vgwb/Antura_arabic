@@ -7,10 +7,12 @@ namespace EA4S.Assessment
     internal class DefaultAnswerChecker : IAnswerChecker
     {
         private ICheckmarkWidget checkmarkWidget;
+        private IAudioManager audioManager;
 
-        public DefaultAnswerChecker( ICheckmarkWidget checkmarkWidget)
+        public DefaultAnswerChecker( IAudioManager audioManager, ICheckmarkWidget checkmarkWidget)
         {
             this.checkmarkWidget = checkmarkWidget;
+            this.audioManager = audioManager;
         }
 
         private bool isAnimating = false;
@@ -51,13 +53,21 @@ namespace EA4S.Assessment
                 place.LinkAnswer( droppa.GetAnswer().GetAnswerSet());
                 if (place.IsAnswerCorrect() == false)
                 {
+                    // NEED TO FIND QUESTION HERE
                     areAllCorrect = false;
                     p.LinkedDroppable.Detach();
                     p.Placeholder.LinkAnswer(0);
                 }
+                else
+                {
+                    //TODO: Inject the question behaviour
+                    p.Placeholder.GetQuestion().gameObject
+                        .GetComponent< QuestionBehaviour>().OnQuestionAnswered( audioManager);
+                    yield return TimeEngine.Wait(1.0f);
+                }
             }
+
             allCorrect = areAllCorrect;
-            //allCorrect = true;
             checkmarkWidget.Show( allCorrect);
 
             yield return TimeEngine.Wait( 1.0f);

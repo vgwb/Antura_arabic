@@ -7,6 +7,10 @@ namespace EA4S.Assessment
 
         bool IsAnswerCorrect();
 
+        void SetQuestion( IQuestion question);
+
+        IQuestion GetQuestion();
+
         /// <summary>
         /// "know-ahead correct answer
         /// </summary>

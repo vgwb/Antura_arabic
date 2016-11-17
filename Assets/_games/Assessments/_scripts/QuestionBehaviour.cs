@@ -24,5 +24,12 @@ namespace EA4S.Assessment
         {
             return question;
         }
+
+        public IQuestionAnswered questionAnswered;
+
+        internal void OnQuestionAnswered( IAudioManager audioManager)
+        {
+            questionAnswered.Trigger( audioManager);
+        }
     }
 }
