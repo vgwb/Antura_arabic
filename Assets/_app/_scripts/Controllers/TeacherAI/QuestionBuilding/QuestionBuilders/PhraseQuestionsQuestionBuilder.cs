@@ -3,23 +3,21 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public class WordsInPhraseQuestionBuilder : IQuestionBuilder
+    public class PhraseQuestionsQuestionBuilder : IQuestionBuilder
     {
-        // Focus: Words & Phrases
+        // Focus: Phrases
         // pack history filter: TODO
         // journey: TODO
 
         private int nPacks;
         private int nCorrect;
         private int nWrong;
-        private bool useAllCorrectWords;
 
-        public WordsInPhraseQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool useAllCorrectWords = false)
+        public PhraseQuestionsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
-            this.useAllCorrectWords = useAllCorrectWords;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -36,16 +34,17 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            // Get a phrase
-            var question = teacher.wordHelper.GetAllPhrases().RandomSelectOne();
+            // Get a question phrase at random
+            var question = teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question).RandomSelectOne();
 
-            // Get words of that phrases
-            var phraseWords = teacher.wordHelper.GetWordsInPhrase(question);
+            // Get the linked reply phrase
+            var reply = teacher.wordHelper.GetLinkedPhraseOf(question);
 
-            var correctAnswers = new List<Db.WordData>(phraseWords);
-            if (!useAllCorrectWords) correctAnswers = phraseWords.RandomSelect(nCorrect);
+            var correctAnswers = new List<Db.PhraseData>();
+            correctAnswers.Add(reply);
 
-            var wrongAnswers = teacher.wordHelper.GetWordsNotIn(phraseWords.ToArray()).RandomSelect(nWrong);
+            // Get random wrong phrases
+            var wrongAnswers = teacher.wordHelper.GetPhrasesNotIn(question, reply).RandomSelect(nWrong);
 
             if (ConfigAI.verboseTeacher)
             {

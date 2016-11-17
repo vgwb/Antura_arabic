@@ -3,13 +3,19 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public class FormWordsQuestionBuilder : IQuestionBuilder
+    public class WordsByFormQuestionBuilder : IQuestionBuilder
     {
-        private int nPacks;
+        // focus: Words
+        // pack history filter: by default, all different
+        // journey: enabled
 
-        public FormWordsQuestionBuilder(int nPacks)
+        private int nPacks;
+        SelectionSeverity severity;
+
+        public WordsByFormQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
         {
             this.nPacks = nPacks;
+            this.severity = severity;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -18,23 +24,34 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             var db = AppManager.Instance.DB;
-
-            var singularWord = db.GetWordDataById("with_article");
-            var pluralWord = db.GetWordDataById("without_article");
-            var dualWord = db.GetWordDataById("without_article");
+            var choice1 = db.GetWordDataById("singular");
+            var choice2 = db.GetWordDataById("plural");
+            var choice3 = db.GetWordDataById("dual");
 
             int nPerType = nPacks / 3;
-            var wordsSingular = teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Singular).RandomSelect(nPerType);
-            var wordsPlural = teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural).RandomSelect(nPerType);
-            var wordsDual = teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Dual).RandomSelect(nPerType);
 
-            foreach (var word in wordsSingular)
+            var list_choice1 = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Singular),
+                new SelectionParameters(severity, nPerType)
+                );
+
+            var list_choice2 = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural),
+                new SelectionParameters(severity, nPerType)
+                );
+
+            var list_choice3 = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Dual),
+                new SelectionParameters(severity, nPerType)
+                );
+
+            foreach (var word in list_choice1)
             {
                 var correctWords = new List<Db.WordData>();
                 var wrongWords = new List<Db.WordData>();
-                correctWords.Add(singularWord);
-                wrongWords.Add(pluralWord);
-                wrongWords.Add(dualWord);
+                correctWords.Add(choice1);
+                wrongWords.Add(choice2);
+                wrongWords.Add(choice3);
 
                 if (ConfigAI.verboseTeacher)
                 {
@@ -51,13 +68,13 @@ namespace EA4S
                 packs.Add(pack);
             }
 
-            foreach (var word in wordsPlural)
+            foreach (var word in list_choice2)
             {
                 var correctWords = new List<Db.WordData>();
                 var wrongWords = new List<Db.WordData>();
-                correctWords.Add(pluralWord);
-                wrongWords.Add(singularWord);
-                wrongWords.Add(dualWord);
+                correctWords.Add(choice2);
+                wrongWords.Add(choice1);
+                wrongWords.Add(choice3);
 
                 if (ConfigAI.verboseTeacher)
                 {
@@ -74,13 +91,13 @@ namespace EA4S
                 packs.Add(pack);
             }
 
-            foreach (var word in wordsDual)
+            foreach (var word in list_choice3)
             {
                 var correctWords = new List<Db.WordData>();
                 var wrongWords = new List<Db.WordData>();
-                correctWords.Add(dualWord);
-                wrongWords.Add(singularWord);
-                wrongWords.Add(pluralWord);
+                correctWords.Add(choice3);
+                wrongWords.Add(choice1);
+                wrongWords.Add(choice2);
 
                 if (ConfigAI.verboseTeacher)
                 {
