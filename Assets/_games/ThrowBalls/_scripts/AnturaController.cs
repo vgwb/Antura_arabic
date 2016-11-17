@@ -169,7 +169,7 @@ namespace EA4S.ThrowBalls
             reachedJumpMaxNotified = false;
             ballGrabbed = false;
 
-            animator.State = AnturaAnimationStates.idle;
+            //animator.State = AnturaAnimationStates.idle;
             animator.State = AnturaAnimationStates.walking;
             animator.SetWalkingSpeed(1f);
         }
