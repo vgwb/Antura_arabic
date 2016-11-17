@@ -189,7 +189,8 @@ public class TakeMeHomeLL : MonoBehaviour {
 			
 			if (!dragging)
 			{
-				lastTube = null;
+                if (lastTube) lastTube.deactivate();
+                lastTube = null;
 				dragging = true;
 
 				var data = letter.Data;
@@ -309,12 +310,19 @@ public class TakeMeHomeLL : MonoBehaviour {
             transform.DOScale(0.1f, 0.1f);
 
             Vector3 targetPosition = lastTube.transform.FindChild("Cube").position;
-            lastTube = null;
+            lastTube.deactivate();
+           
             moveTweener = transform.DOLocalMove(targetPosition/*transform.position + lastTube.transform.up*5 + new Vector3(0,0,20)*/, 0.3f).OnComplete(delegate () { 
 				PlayIdleAnimation(); 
 				if (endTransformToCallback != null) endTransformToCallback();
 
-				transform.rotation = Quaternion.Euler (new Vector3 (0, 180, 0));
+                if(lastTube != null)
+                {
+                    lastTube.hideWinParticles();
+                }
+                
+                lastTube = null;
+                transform.rotation = Quaternion.Euler (new Vector3 (0, 180, 0));
 				transform.position = tubeSpawnPosition;
                 transform.DOScale(0.8f, 0.5f);
                 clampPosition = true;
@@ -377,13 +385,18 @@ public class TakeMeHomeLL : MonoBehaviour {
 			isDraggable = false;
 			dropLetter = false;
 
-			if (win) {
+
+            if(win)
+            {
+                lastTube.showWinParticles();
+            }
+			/*if (win) {
 				letter.Poof ();
 				letter.DoHighFive ();
 				StartCoroutine (waitForSeconds (2,moveUp));
 
 				return;
-			}
+			}*/
 
 
 
@@ -435,7 +448,8 @@ public class TakeMeHomeLL : MonoBehaviour {
 
 
 			if (!dragging) {
-				lastTube = null;
+                if (lastTube) lastTube.deactivate();
+                lastTube = null;
 				return;
 			}
 			
@@ -443,30 +457,43 @@ public class TakeMeHomeLL : MonoBehaviour {
 			if (!tube)
 				return;
             Debug.Log("entering tube: " + tube.gameObject.name);
+            if (lastTube) lastTube.deactivate();
+            lastTube = tube;
 
-			lastTube = tube;
-			tube.shake ();
+            
+            tube.shake ();
+            tube.activate();
 		}
 
         void OnTriggerStay(Collider other)
         {
-            TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube>();
+            /*TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube>();
             if (!tube || lastTube != tube)
                 return;
             
-            tube.shake();
+            tube.shake();*/
+            
         }
 
 
         void OnTriggerExit(Collider other)
 		{
-          
-            if (!isDraggable) return;
+
+            Debug.Log("exiting: " + other.gameObject.name);
+           // if (!isDraggable) return;
 
 			TakeMeHomeTube tube = other.gameObject.GetComponent<TakeMeHomeTube> ();
-			if (!tube || lastTube != tube)
-				return;
+            if(tube)
+            {
+                tube.deactivate();
+                Debug.Log("exiting tube: " + tube.gameObject.name);
+            }
 
+            
+
+            if (!tube || lastTube != tube)
+				return;
+            if (lastTube) lastTube.deactivate();
             lastTube = null;
 		}
 	}
