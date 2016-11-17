@@ -12,7 +12,6 @@ namespace EA4S.Assessment
 
         public DefaultQuestion( LetterObjectView letter, int placeholders, QuestionType type)
         {
-            Debug.Log("Placeholders: " + placeholders);
             view = letter;
             placeholdersCount = placeholders;
             placeholdersSet = new List<GameObject>();
@@ -58,8 +57,6 @@ namespace EA4S.Assessment
 
         public IEnumerable< GameObject> GetPlaceholders()
         {
-            Debug.Log( "PlaceholderSet.Count: "+ placeholdersSet.Count);
-
             if (placeholdersSet.Count != placeholdersCount)
                 throw new InvalidOperationException( "Something wrong. Check Question placer");
 

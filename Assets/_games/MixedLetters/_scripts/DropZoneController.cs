@@ -20,16 +20,18 @@ namespace EA4S.MixedLetters
         private bool isChosen = false;
         public SeparateLetterController droppedLetter;
 
-        void Awake()
-        {
-        }
-        // Use this for initialization
+        public RotateButtonController rotateButtonController;
+        
         void Start()
         {
             THROB_INIT_SCALE = transform.localScale.x;
-        }
 
-        // Update is called once per frame
+            Vector3 rotateButtonPosition = transform.position;
+            rotateButtonPosition.y += 2.2f;
+            rotateButtonPosition.z += 0.5f;
+            rotateButtonController.SetPosition(rotateButtonPosition);
+        }
+        
         void FixedUpdate()
         {
             if (isChosen && chosenDropZone != this)
@@ -56,13 +58,23 @@ namespace EA4S.MixedLetters
 
         public void SetDroppedLetter(SeparateLetterController letter)
         {
-            if (letter != null && droppedLetter != null)
+            if (letter != null)
             {
-                Vector3 position = transform.position;
-                position.y += LETTER_SWAP_DROP_OFFSET;
-                droppedLetter.SetPosition(position, false);
-                droppedLetter.SetIsKinematic(false);
-                droppedLetter.droppedZone = null;
+                if (droppedLetter != null)
+                {
+                    Vector3 position = transform.position;
+                    position.y += LETTER_SWAP_DROP_OFFSET;
+                    droppedLetter.SetPosition(position, false);
+                    droppedLetter.SetIsKinematic(false);
+                    droppedLetter.droppedZone = null;
+                }
+
+                rotateButtonController.Enable();
+            }
+
+            else
+            {
+                rotateButtonController.Disable();
             }
 
             droppedLetter = letter;
@@ -144,6 +156,8 @@ namespace EA4S.MixedLetters
             droppedLetter = null;
             Unhighlight();
             isChosen = false;
+
+            rotateButtonController.Disable();
         }
 
         public void Enable()

@@ -9,12 +9,15 @@ namespace EA4S.Assessment
         {
             Init(); // common initialization stuff
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
+            IGameContext context = configuration.Context;
             IAudioManager audioManager      = configuration.Context.GetAudioManager();
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget());
+            IDragManager dragManager = new DefaultDragManager(audioManager, checker);
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
-            ILogicInjector injector         = new DefaultLogicInjector();
+            ILogicInjector injector         = new DefaultLogicInjector( dragManager);
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
-            //            return new DefaultAssessment();
+            
             return null;
         }
 
@@ -22,10 +25,12 @@ namespace EA4S.Assessment
         {
             Init(); // common initialization stuff
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
-            IAudioManager audioManager = configuration.Context.GetAudioManager();
             IGameContext context = configuration.Context;
+            IAudioManager audioManager = configuration.Context.GetAudioManager();
+            IAnswerChecker checker = new DefaultAnswerChecker( context.GetCheckmarkWidget());
+            IDragManager dragManager = new DefaultDragManager( audioManager, checker);
             IQuestionGenerator generator = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
-            ILogicInjector injector = new DefaultLogicInjector();
+            ILogicInjector injector = new DefaultLogicInjector( dragManager);
             IQuestionPlacer questionplacer = new DefaultQuestionPlacer( audioManager);
             IAnswerPlacer answerPlacer = new DefaultAnswerPlacer( audioManager);
 
