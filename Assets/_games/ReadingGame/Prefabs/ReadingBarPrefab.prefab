@@ -230,6 +230,7 @@ MonoBehaviour:
   glass: {fileID: 114000013343536864}
   backSprite: {fileID: 114000013361117970}
   alpha: 0
+  Id: 0
 --- !u!114 &114000011169587322
 MonoBehaviour:
   m_ObjectHideFlags: 1

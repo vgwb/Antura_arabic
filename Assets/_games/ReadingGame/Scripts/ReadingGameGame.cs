@@ -32,7 +32,7 @@ namespace EA4S.ReadingGame
         const int STARS_1_THRESHOLD = 8 * MAX_QUESTIONS;
         const int STARS_2_THRESHOLD = 12 * MAX_QUESTIONS;
         const int STARS_3_THRESHOLD = 15 * MAX_QUESTIONS;
-        
+
 
         public int CurrentStars
         {
@@ -47,7 +47,7 @@ namespace EA4S.ReadingGame
                 return 3;
             }
         }
-        
+
         public ReadingGameInitialState InitialState { get; private set; }
         public ReadingGameReadState ReadState { get; private set; }
         public ReadingGameAnswerState AnswerState { get; private set; }
@@ -69,7 +69,7 @@ namespace EA4S.ReadingGame
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
 
-            bool isSong = (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong) ;
+            bool isSong = (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong);
 
             Context.GetOverlayWidget().Initialize(true, !isSong, !isSong);
             Context.GetOverlayWidget().SetMaxLives(lives);
@@ -78,8 +78,12 @@ namespace EA4S.ReadingGame
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
-                ISongParser parser = new VttSongParser();
-                alphabetSong = new KaraokeSong(parser.Parse(new MemoryStream(Encoding.UTF8.GetBytes(alphabetSongSrt.text))));
+                ISongParser parser = new AkrSongParser();
+
+                using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(alphabetSongSrt.text)))
+                {
+                    alphabetSong = new KaraokeSong(parser.Parse(stream));
+                }
             }
         }
 

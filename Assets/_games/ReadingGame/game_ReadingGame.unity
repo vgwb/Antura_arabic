@@ -4858,7 +4858,7 @@ MonoBehaviour:
   antura: {fileID: 991576443}
   radialWidget: {fileID: 1765756456}
   isTimesUp: 0
-  alphabetSongAudio: {fileID: 0}
+  alphabetSongAudio: {fileID: 8300000, guid: eef764bc2e9ee684caba6f984981e22f, type: 3}
   alphabetSongSrt: {fileID: 4900000, guid: d5a0f2c2b114c0642bcfa081746c2edc, type: 3}
 --- !u!4 &1814291036
 Transform:

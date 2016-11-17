@@ -16,7 +16,7 @@ public class ReadingBarSet : MonoBehaviour
     public Transform barsStart;
     public float distanceBetweenBars = 3;
     int completedBars = 0;
-    public const float MAX_BAR_SIZE = 9;
+    public const float MAX_BAR_SIZE = 10;
 
     ReadingBar activeBar;
     Vector3 barsStartInitialPosition;
@@ -70,7 +70,7 @@ public class ReadingBarSet : MonoBehaviour
         for (int i = 0; i < splitText.Length - 1; ++i)
             splitText[i] = splitText[i] + " ";
 
-        currentBarWords = SetData(splitText, null);
+        currentBarWords = SetData(splitText, null, true);
         currentBarSong = null;
     }
 
@@ -86,7 +86,7 @@ public class ReadingBarSet : MonoBehaviour
             lineBreaks[i] = karaokeLines[i].starsWithLineBreak;
         }
 
-        currentBarWords = SetData(words, lineBreaks);
+        currentBarWords = SetData(words, lineBreaks, false);
         currentBarSong = data;
     }
 
@@ -100,7 +100,7 @@ public class ReadingBarSet : MonoBehaviour
     }
 
 
-    ReadingBarWord[] SetData(string[] words, bool[] forceLineBreaks)
+    ReadingBarWord[] SetData(string[] words, bool[] forceLineBreaks, bool addOffsets)
     {
         Clear();
 
@@ -119,6 +119,11 @@ public class ReadingBarSet : MonoBehaviour
         currentReadingBar.transform.localPosition = Vector3.zero;
         currentReadingBar.text.text = words[0];
         currentReadingBar.Id = 0;
+        if (!addOffsets)
+        {
+            currentReadingBar.startOffset = 0;
+            currentReadingBar.endOffset = 0;
+        }
 
         bars.Add(currentReadingBar);
         SetActiveBar(currentReadingBar);
@@ -146,6 +151,11 @@ public class ReadingBarSet : MonoBehaviour
                 currentReadingBar.transform.localPosition = Vector3.down * (bars.Count % 2) * distanceBetweenBars;
                 currentReadingBar.text.text = word;
                 currentReadingBar.Id = barWords[i].barId + 1;
+                if (!addOffsets)
+                {
+                    currentReadingBar.startOffset = 0;
+                    currentReadingBar.endOffset = 0;
+                }
 
                 barWords[i].start = 0;
                 barWords[i].barId = currentReadingBar.Id;
