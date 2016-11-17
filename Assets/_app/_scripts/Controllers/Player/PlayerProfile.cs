@@ -9,8 +9,7 @@ namespace EA4S
 {
 
     [Serializable]
-    public class PlayerProfile : IPlayerProfile
-    {
+    public class PlayerProfile : IPlayerProfile {
 
         public string Key { get; set; }
         public int Id;
@@ -80,6 +79,10 @@ namespace EA4S
 
 
         public void DeleteThisProfile() { }
+
+        public void Save() {
+            AppManager.Instance.Modules.PlayerProfile.SavePlayerSettings(this);
+        }
 
         public void SaveGameSettings() {
             AppManager.Instance.PlayerProfileManager.SaveGameSettings();

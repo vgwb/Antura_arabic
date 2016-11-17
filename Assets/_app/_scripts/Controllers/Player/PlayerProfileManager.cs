@@ -35,7 +35,9 @@ namespace EA4S {
         /// List of available player profiles (already created).
         /// </summary>
         public List<PlayerProfile> AvailablePlayerProfiles {
-            get { return availablePlayerProfiles; }
+            get {
+                reloadAvailablePlayerProfilesList();
+                return availablePlayerProfiles; }
             set { availablePlayerProfiles = value; }
         }
 
@@ -98,11 +100,9 @@ namespace EA4S {
                 returnProfile.AvatarId = _avatarId;
                 returnProfile.Key = returnProfile.Id.ToString();
                 returnProfile = AppManager.Instance.Modules.PlayerProfile.CreateNewPlayer(returnProfile) as PlayerProfile;
-                //GameManager.Instance.PlayerProfile.ActivePlayer = this;
-
             }
             AppManager.Instance.PlayerProfileManager.ActualPlayer = returnProfile as PlayerProfile;
-            //AppManager.Instance.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer);
+            AppManager.Instance.PlayerProfileManager.availablePlayerProfiles.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer);
             //AppManager.Instance.GameSettings.AvailablePlayers.Add(AppManager.Instance.PlayerProfileManager.ActualPlayer.Id.ToString());
             SaveGameSettings();
             return AppManager.Instance.PlayerProfileManager.ActualPlayer;
