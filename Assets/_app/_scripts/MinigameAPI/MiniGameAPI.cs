@@ -32,8 +32,20 @@ namespace EA4S.API {
 
             switch (_gameCode) {
                 case MiniGameCode.Assessment_LetterShape:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.LetterShape;
+                    Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_WordsWithLetter:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.WordsWithLetter;
+                    Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_MatchLettersToWord:
+                    Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.MatchLettersToWord;
+                    Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = Assessment.AssessmentConfiguration.Instance;
+                    break;
                 case MiniGameCode.Assessment_CompleteWord:
                 case MiniGameCode.Assessment_OrderLettersOfWord:
                 case MiniGameCode.Assessment_VowelOrConsonant:
