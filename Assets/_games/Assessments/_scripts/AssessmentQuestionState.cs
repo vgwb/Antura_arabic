@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 namespace EA4S.Assessment
 {
     public class AssessmentQuestionState : IGameState
