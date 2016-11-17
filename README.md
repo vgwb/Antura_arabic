@@ -5,7 +5,6 @@ by CGL / VGWB / Wixel
 
 the developer docs are here: [/Docs/](https://github.com/VGWB/EA4S_Antura_U3D/tree/master/Docs)
 
-
 ## Licensing
 
 ### Code
