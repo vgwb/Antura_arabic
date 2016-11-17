@@ -1,4 +1,6 @@
-﻿namespace EA4S
+﻿using UnityEngine;
+
+namespace EA4S
 {
     public interface IAudioManager
     {
@@ -12,12 +14,16 @@
         /// </summary>
         IAudioSource PlayLetterData(ILivingLetterData id, bool stopAllLetters = false);
 
+        IAudioSource PlayMusic(AudioClip clip);
+        //TODO: IAudioSource PlayMusic(Music music);
+
+        void Reset();
+
+        // TODO: To be removed in next version
         void PlayMusic(Music music);
         void StopMusic();
 
         void PlayDialogue(TextID text, System.Action onCompleted = null);
-
-        void Reset();
 
         //UnityEngine.AudioClip GetAudioClip(Sfx sfx);
 
