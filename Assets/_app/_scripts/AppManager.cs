@@ -20,6 +20,7 @@ namespace EA4S
         public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
+        public Log.AppLogManager LogManager;
 
         #region Init
 
@@ -39,25 +40,24 @@ namespace EA4S
                 Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
-
-            gameObject.AddComponent<DebugManager>();
+            
         }
-
 
 
         protected override void GameSetup()
         {
             base.GameSetup();
             gameObject.AddComponent<MiniGameAPI>();
+            gameObject.AddComponent<DebugManager>();
             AdditionalSetup();
             InitDataAI();
             GameSettings.HighQualityGfx = false;
             //ResetProgressionData();
 
-
+            Instance.LogManager.LogInfo(InfoEvent.AppStarted);
         }
 
-        public PlayerProfileManager PlayerProfileManager = new PlayerProfileManager();
+        public PlayerProfileManager PlayerProfileManager;
 
         private void AdditionalSetup()
         {
@@ -67,18 +67,11 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
-            // PlayerProfileModule Install override
-            //PlayerProfile.SetupModule(new PlayerProfileModuleDefault());
+            // log manager instance
+            Instance.LogManager = new Log.AppLogManager();
             
-
-
-            /* Player profile auto select first avatar or last selected */
-            AppManager.Instance.GameSettings = new AppSettings() { AvailablePlayers = new List<string>() { } };
-            AppManager.Instance.GameSettings = AppManager.Instance.PlayerProfile.LoadGlobalOptions<AppSettings>(new AppSettings()) as AppSettings;
-            // If "GameSettings.LastActivePlayerId == 0" force here open player selection
-            Player = new PlayerProfile().CreateOrLoadPlayerProfile(GameSettings.LastActivePlayerId == 0 ? "1" : GameSettings.LastActivePlayerId.ToString());
-            Debug.Log("Active player: " + Player.Id);
-
+            // Player Profile manager instance
+            PlayerProfileManager = new PlayerProfileManager();
         }
 
         /*void CachingLetterData()
@@ -100,7 +93,9 @@ namespace EA4S
             }
         }
 
-        // Change this to change position of assessment in the alpha.
+        /// <summary>
+        /// The current minigame.
+        /// </summary>
         [HideInInspector]
         public Db.MiniGameData CurrentMinigame;
 

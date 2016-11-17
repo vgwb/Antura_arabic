@@ -379,12 +379,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aa296ff8af54011a93e8da8485819e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   isDot: 0
   dots: 0
   diacritic: 0
   fingerOffset: {x: 0, y: 2, z: 0}
   draggableText: {fileID: 114000013677804830}
   isNeeded: 0
+  isDragging: 0
 --- !u!114 &114000014061327064
 MonoBehaviour:
   m_ObjectHideFlags: 1

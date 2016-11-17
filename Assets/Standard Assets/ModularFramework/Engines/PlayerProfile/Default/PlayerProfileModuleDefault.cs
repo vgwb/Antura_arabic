@@ -77,6 +77,7 @@ namespace ModularFramework.Modules
         /// </summary>
         /// <param name="_playerId"></param>
         public void DeletePlayer(string _playerId) {
+            PlayerPrefs.DeleteKey(GetStoreKeyForPlayer(_playerId));
             Options.AvailablePlayers.Remove(_playerId);
         }
 
