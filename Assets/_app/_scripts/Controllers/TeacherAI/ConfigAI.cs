@@ -4,7 +4,7 @@ namespace EA4S.Teacher
     public static class ConfigAI
     {
         // Debug
-        public static bool verboseTeacher = true;
+        public static bool verboseTeacher = false;
         public static bool verboseDataSelection = false;
         public static bool forceJourneyIgnore = true; // If true, the journey progression logic is turned off, so that all data is usable
 

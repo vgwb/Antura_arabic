@@ -15,6 +15,8 @@ namespace EA4S.TestE
         public Vector3 posDot;
         public Material black;
         public Material red;
+        public Material blackPin;
+        public Material redPin;
         public int pos;
 
         float distanceNextDotToHitPoint;
@@ -23,6 +25,7 @@ namespace EA4S.TestE
         int numDots;
         int posDotMiniMapScript, dotCloser;
         Rope ropeSelected;
+        Collider colliderRaycast;
 
         void Start () {
             AppManager.Instance.Player.CurrentJourneyPosition.Stage = 1;
@@ -43,7 +46,8 @@ namespace EA4S.TestE
                 {
                     if (hit.collider.tag == "Rope")
                     {
-
+                        if((colliderRaycast!= null)&&(colliderRaycast.tag == "Pin"))
+                            colliderRaycast.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
                         int numDotsRope = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots.Count;
 
                         float distaceHitToDot = 1000;
@@ -68,30 +72,47 @@ namespace EA4S.TestE
                         ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
 
                         ropeSelected = hit.transform.parent.transform.gameObject.GetComponent<Rope>();
-
-                        if (hit.collider.tag == "Pin")
-                        {
-                            transform.position = hit.transform.position;
-                            posDot = hit.transform.position;
-                            pos = hit.transform.gameObject.GetComponent<MapPin>().posBefore;
-
-                            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
-                            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = hit.transform.gameObject.GetComponent<MapPin>().Number;
-                        }
-
+                  
+                        colliderRaycast = hit.collider;
+                    }
+                    if (hit.collider.tag == "Pin")
+                    {
+                        miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
+                        ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
+                        hit.transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
+                        colliderRaycast = hit.collider;
                     }
                 }
             }
 
             if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                
-                posDot = miniMapScript.posDots[posDotMiniMapScript].transform.position;
-                if (ropeSelected.learningBlockRope != AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock)
-                    transform.position = miniMapScript.posDots[posDotMiniMapScript].transform.position;
+                if(colliderRaycast.tag == "Rope")
+                {
+                    posDot = miniMapScript.posDots[posDotMiniMapScript].transform.position;
+                    if (ropeSelected.learningBlockRope != AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock)
+                        transform.position = miniMapScript.posDots[posDotMiniMapScript].transform.position;
 
-                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
-                AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
+                    AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = ropeSelected.dots[dotCloser].GetComponent<Dot>().playSessionActual;
+                    AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = ropeSelected.dots[dotCloser].GetComponent<Dot>().learningBlockActual;
+                }
+                if (colliderRaycast.tag == "Pin")
+                {
+                    if((colliderRaycast.GetComponent<MapPin>().Number == AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock) ||
+                        (colliderRaycast.GetComponent<MapPin>().Number == AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock+1))
+                    {
+                        posDot = colliderRaycast.transform.position;
+                    }
+                    else
+                        transform.position = colliderRaycast.transform.position;
+
+                    posDot = colliderRaycast.transform.position;
+                    pos = colliderRaycast.transform.gameObject.GetComponent<MapPin>().posBefore;
+
+                    AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
+                    AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = colliderRaycast.transform.gameObject.GetComponent<MapPin>().Number;
+                }
+
             }
         }
 
@@ -101,6 +122,7 @@ namespace EA4S.TestE
             {
                 ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                 posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position;
+                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
                 AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
                 AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock++;
             }
@@ -108,6 +130,7 @@ namespace EA4S.TestE
             {
                 if (pos % 2 != 0)
                     pos++;
+                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock-1].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
                 posDot = miniMapScript.posDots[pos].transform.position;
                 ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
                 AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
@@ -134,6 +157,7 @@ namespace EA4S.TestE
                 if(pos>0)
                 {
                     ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
+                    miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock-1].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
                     posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position;
                     AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
                     //AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock++;
@@ -143,6 +167,7 @@ namespace EA4S.TestE
             {
                 if(pos%2==0)
                    pos--;
+                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock-1].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
                 posDot = miniMapScript.posDots[pos].transform.position;
                 ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
                 AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
