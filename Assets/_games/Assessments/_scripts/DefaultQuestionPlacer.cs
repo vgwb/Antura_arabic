@@ -69,12 +69,22 @@ namespace EA4S.Assessment
                 yield return PlaceQuestion(
                     allQuestions[questionIndex], currentPos);
 
-                for (int j=0; j< allQuestions[questionIndex].PlaceholdersCount();j++)
+
+                foreach( var p in allQuestions[questionIndex].GetPlaceholders())
+                {
+                    currentPos.x += bounds.LetterSize();
+                    PlacePlaceholder(allQuestions[questionIndex], p, currentPos);
+                }
+
+                /////// DEPRECATED \\\\\\\\\\\\\\\\_____
+                /*for (int j=0; j< allQuestions[questionIndex].PlaceholdersCount();j++)
                 {
                     currentPos.x += bounds.LetterSize();
                     yield return PlacePlaceholder(
                         allQuestions[questionIndex], currentPos);
-                }
+                }*/
+                /////// DEPRECATED//////////////// ^^^^
+
 
                 questionIndex++;
             }
@@ -97,21 +107,27 @@ namespace EA4S.Assessment
             return TimeEngine.Wait( 0.6f);
         }
 
-        private IEnumerator PlacePlaceholder( IQuestion q, Vector3 position)
+        private IEnumerator PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
         {
             Debug.Log("PlacePlaceholder");
-            
-            var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
+
+            /*var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
             placeholder.localPosition = position + new Vector3( 0, 5, 0);
             placeholder.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
 
-            q.TrackPlaceholder( placeholder.gameObject);
+            // OK called after wire. So If I get placeholders in "Wire" method the count is necessarily not correct
+            // Current bug
+            q.TrackPlaceholder( placeholder.gameObject);*/
+            Transform tr = placeholder.transform;
+            tr.localPosition = position + new Vector3( 0, 5, 0);
+            tr.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
             audioManager.PlaySound( Sfx.StarFlower);
+            
 
             var seq = DOTween.Sequence();
             seq
-                .Insert(0, placeholder.DOScale( ElementsSize.DropZoneScale, 0.4f))
-                .Insert(0, placeholder.DOMove( position, 0.6f));
+                .Insert( 0, tr.DOScale( ElementsSize.DropZoneScale, 0.4f))
+                .Insert( 0, tr.DOMove( position, 0.6f));
 
             return TimeEngine.Wait( 0.4f);
         }
@@ -127,9 +143,9 @@ namespace EA4S.Assessment
             foreach( var q in allQuestions)
             {
                 foreach (var p in q.GetPlaceholders())
-                    yield return FadeOutPlaceholder(p);
+                    yield return FadeOutPlaceholder( p);
 
-                yield return FadeOutQuestion(q);
+                yield return FadeOutQuestion( q);
             }
 
             // give time to finish animating elements

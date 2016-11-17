@@ -9,5 +9,8 @@ namespace EA4S.Assessment
         void Enable();
         void AddElements(   List< PlaceholderBehaviour> placeholders,
                             List< AnswerBehaviour> answers);
+
+        void StartDragging( IDroppable droppable);
+        void StopDragging( IDroppable droppable);
     }
 }
