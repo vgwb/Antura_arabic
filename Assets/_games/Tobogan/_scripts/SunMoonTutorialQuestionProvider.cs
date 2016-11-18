@@ -14,12 +14,12 @@
 
             var db = AppManager.Instance.DB;
             var sunWord = db.GetWordDataById("the_sun");
-            var sunData = new LL_WordData(sunWord.Id, sunWord);
+            var sunData = new LL_ImageData(sunWord.Id, sunWord);
             var moonWord = db.GetWordDataById("the_moon");
-            var moonData = new LL_WordData(moonWord.Id, moonWord);
+            var moonData = new LL_ImageData(moonWord.Id, moonWord);
 
-            sunQuestion = new SampleQuestionPack(sunData, new ILivingLetterData[] { moonData }, new ILivingLetterData[] { sunData });
-            moonQuestion = new SampleQuestionPack(moonData, new ILivingLetterData[] { sunData }, new ILivingLetterData[] { moonData });
+            sunQuestion = new SampleQuestionPack(new LL_WordData(sunWord.Id, sunWord), new ILivingLetterData[] { moonData }, new ILivingLetterData[] { sunData });
+            moonQuestion = new SampleQuestionPack(new LL_WordData(moonWord.Id, moonWord), new ILivingLetterData[] { sunData }, new ILivingLetterData[] { moonData });
         }
 
         IQuestionPack IQuestionProvider.GetNextQuestion()
