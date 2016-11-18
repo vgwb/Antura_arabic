@@ -1,20 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using EA4S;
 using EA4S.Db;
-using TMPro;
-
 
 namespace EA4S
 {
-    public class BookController : MonoBehaviour
+    public class BookPanel : MonoBehaviour
     {
 
         [Header("References")]
         public GameObject ButtonPrefab;
         public GameObject WordsContainer;
         public TextRender ArabicText;
-        public TextMeshProUGUI Drawing;
+        public TMPro.TextMeshProUGUI Drawing;
 
         public LetterObjectView LLText;
         public LetterObjectView LLDrawing;
