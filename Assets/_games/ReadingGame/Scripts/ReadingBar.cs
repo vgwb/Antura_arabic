@@ -28,6 +28,12 @@ public class ReadingBar : MonoBehaviour
     public ThreeSlicesSprite backSprite;
     SpriteFader glassFader;
 
+    public bool showTarget = true;
+    public bool showArrows = true;
+    public bool shineWhenNearTarget = false;
+    public float maxShineDistance = 100;
+    public float minShineDistance = 50;
+
     [Range(0, 1)]
     public float alpha = 0;
 
@@ -52,7 +58,7 @@ public class ReadingBar : MonoBehaviour
 
             glassFader.show = active;
             start.GetComponent<SpriteRenderer>().color = doneColor;
-            target.gameObject.SetActive(active && !completed);
+            target.gameObject.SetActive(active && !completed && showTarget);
         }
 
     }
@@ -66,7 +72,7 @@ public class ReadingBar : MonoBehaviour
         spriteFaders = GetComponentsInChildren<SpriteFader>(true);
         for (int i = 0; i < spriteFaders.Length; ++i)
         {
-            spriteFaders[i].SetAlphaImmediate(0); 
+            spriteFaders[i].SetAlphaImmediate(0);
         }
 
         var textColor = text.color;
@@ -78,12 +84,14 @@ public class ReadingBar : MonoBehaviour
     void Start()
     {
         Update();
-        
+
         // Set glass and target
         target.localPosition = Vector3.Lerp(start.localPosition, endCompleted.localPosition, currentTarget);
         glass.transform.position = GetGlassWorldPosition();
-        
-        target.gameObject.SetActive(active);
+
+        glass.ShowArrows = showArrows;
+
+        target.gameObject.SetActive(active && showTarget);
         endCompleted.gameObject.SetActive(false);
 
         var startColor = active ? doneColor : clearColor;
@@ -129,6 +137,20 @@ public class ReadingBar : MonoBehaviour
         var textColor = text.color;
         textColor.a = Mathf.Lerp(textColor.a, startTextColor.a * alpha, ALPHA_LERP_SPEED * Time.deltaTime);
         text.color = textColor;
+
+        if (shineWhenNearTarget)
+        {
+            var distance = GetDistanceFromTarget();
+            glass.Shining = 1.0f - Mathf.SmoothStep(0, 1, (Mathf.Abs(distance) - minShineDistance) / (maxShineDistance - minShineDistance));
+            glass.Bad = Mathf.Lerp(glass.Bad, 1 - glass.Shining, Time.deltaTime * 5);
+            glass.DistanceFactor = distance / 100;
+        }
+        else
+        {
+            glass.Shining = 0;
+            glass.Bad = 0;
+            glass.DistanceFactor = 0;
+        }
     }
 
     public void Complete()
@@ -155,7 +177,7 @@ public class ReadingBar : MonoBehaviour
 
         var glassScreenSize = Camera.main.WorldToScreenPoint(glass.transform.position + glass.GetSize())
             - Camera.main.WorldToScreenPoint(glass.transform.position);
-        
+
         if (applyMagnetEffect && Mathf.Abs(endScreen.x - position.x) < Mathf.Abs(glassScreenSize.x) / 2)
         {
             position = endScreen;
@@ -200,5 +222,10 @@ public class ReadingBar : MonoBehaviour
         var endScreen = Camera.main.WorldToScreenPoint(endCompleted.position);
 
         return Vector3.Distance(startScreen, endScreen);
+    }
+
+    public float GetDistanceFromTarget()
+    {
+        return (currentTarget - currentReading) * GetWidth();
     }
 }
