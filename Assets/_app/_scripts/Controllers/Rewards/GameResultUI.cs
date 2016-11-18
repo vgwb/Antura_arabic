@@ -19,7 +19,12 @@ namespace EA4S
         {
             if (I != null) return;
 
-            I = Instantiate(Resources.Load<EA4S.GameResultUI>(ResourcesPath));
+            I = Instantiate(Resources.Load<GameResultUI>(ResourcesPath));
+        }
+
+        void Awake()
+        {
+            I = this;
         }
 
         void OnDestroy()
