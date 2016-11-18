@@ -29,6 +29,8 @@ namespace EA4S.ColorTickle
         [Range(0f,1f)]
         private float m_fDifficulty = 0;
         [SerializeField]
+        private GameObject m_oWinParticle;
+        [SerializeField]
         private Music m_oBackgroundMusic;
 
         [HideInInspector]
@@ -108,6 +110,12 @@ namespace EA4S.ColorTickle
         {
             get { return m_GameUI; }
             set { m_GameUI = value; }
+        }
+
+        public GameObject winParticle
+        {
+            get { return m_oWinParticle; }
+            set { m_oWinParticle = value; }
         }
 
         public Music backgroundMusic
