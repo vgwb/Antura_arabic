@@ -56,7 +56,7 @@ namespace EA4S
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
 
-            LLText.Lable.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
+            LLText.Label.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
 
             if (word.Drawing != "") {
                 var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
@@ -67,7 +67,7 @@ namespace EA4S
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
                 Drawing.text = "";
-                LLDrawing.Lable.text = "";
+                LLDrawing.Label.text = "";
             }
         }
 

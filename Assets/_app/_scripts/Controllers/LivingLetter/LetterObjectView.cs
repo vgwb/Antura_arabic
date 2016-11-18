@@ -38,7 +38,7 @@ namespace EA4S
 
         public Transform boneToScaleTransform;
 
-        public TMP_Text Lable;
+        public TMP_Text Label;
         public TextMeshPro Drawing;
         public SpriteRenderer ImageSprite;
 
@@ -140,7 +140,7 @@ namespace EA4S
             {
                 ImageSprite.enabled = false;
                 Drawing.enabled = false;
-                Lable.enabled = false;
+                Label.enabled = false;
             }
             else
             {
@@ -150,14 +150,14 @@ namespace EA4S
                     Drawing.enabled = true;
                     //ImageSprite.sprite = Data.DrawForLivingLetter;
                     //ImageSprite.enabled = true;
-                    Lable.enabled = false;
+                    Label.enabled = false;
                 }
                 else
                 {
                     ImageSprite.enabled = false;
                     Drawing.enabled = false;
-                    Lable.enabled = true;
-                    Lable.text = Data.TextForLivingLetter;
+                    Label.enabled = true;
+                    Label.text = Data.TextForLivingLetter;
                 }
             }
         }
