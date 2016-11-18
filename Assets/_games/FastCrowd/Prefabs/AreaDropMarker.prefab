@@ -238,8 +238,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 6
-    height: 6
+    width: 12
+    height: 12
   m_margins: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114000011240437044
 MonoBehaviour:
@@ -432,12 +432,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 80
-  m_fontSizeMax: 100
+  m_fontSizeMin: 1
+  m_fontSizeMax: 60
   m_fontStyle: 0
   m_textAlignment: 17
   m_characterSpacing: 0
@@ -567,5 +567,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.0000822544}
-  m_SizeDelta: {x: 6, y: 6}
+  m_SizeDelta: {x: 12, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
