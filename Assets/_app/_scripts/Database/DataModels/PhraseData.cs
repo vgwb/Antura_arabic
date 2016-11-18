@@ -11,7 +11,8 @@ namespace EA4S.Db
         public string Arabic;
         public PhraseDataCategory Category;
         public string Linked;
-        public string[] Words; // TODO @Michele : parse list of words tht are in the phrase
+        public string[] Words;
+        public string[] Answers;
 
         public override string ToString()
         {
@@ -25,8 +26,7 @@ namespace EA4S.Db
 
         public ILivingLetterData ConvertToLivingLetterData()
         {
-            throw new NotImplementedException("PhraseData should be convertible to its LL_data counterpart, which does not exist yet.");
-           // return new LL_PhraseData(GetId(), this);
+            return new LL_PhraseData(GetId(), this);
         }
     }
 }
