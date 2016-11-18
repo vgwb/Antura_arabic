@@ -9,6 +9,7 @@ namespace EA4S.Assessment
         {
             Init(); // common initialization stuff
             //TODO: GET RID OF AUDIO MANAGERS => Configuration is singleton
+            
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
             IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
@@ -22,7 +23,7 @@ namespace EA4S.Assessment
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
-            return new DefaultAssessment(answerPlacer, questionplacer, generator, injector, configuration, context);
+            return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
         }
 
         public static IAssessment CreateLetterShapeAssessment()
@@ -67,6 +68,8 @@ namespace EA4S.Assessment
 
         private static void Init()
         {
+            //ARABIC SETTINGS
+            AssessmentConfiguration.Instance.LocaleTextFlow = AssessmentConfiguration.TextFlow.RightToLeft;
             TimeEngine.Instance.Clear();
         }
     }
