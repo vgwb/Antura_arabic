@@ -68,7 +68,9 @@ namespace EA4S.ColorTickle
         {
             if (m_Rounds <= 0)
             {
+                Debug.Log("Final Stars: " + m_Stars);
                 game.m_Stars = Mathf.RoundToInt(m_Stars);
+                Debug.Log("Final int Stars: " + m_Stars);
                 game.SetCurrentState(game.ResultState);
             }
             else
@@ -85,16 +87,14 @@ namespace EA4S.ColorTickle
                     m_fDisappearTimeProgress += Time.deltaTime;
 
                     //if(m_LetterObjectView.GetState()!=LLAnimationStates.LL_dancing)//when the dance is finished ---> DoDancingWin/Lose do not exit from this state
-                    if (m_fDisappearTimeProgress>=m_fTimeToDisappear)//after the given time is reached
+                    if (m_fDisappearTimeProgress >= m_fTimeToDisappear)//after the given time is reached
                     {
                         m_LetterObjectView.Poof(); //LL vanishes
                         m_bLLVanishing = false;
                         m_fDisappearTimeProgress = 0;
 
                         //just for possible reusing of the LL renable components
-                        m_TMPTextColoringLetter.enabled = true;
-                        m_SurfaceColoringLetter.enabled = true;
-                        m_HitStateLLController.enabled = true;
+                        EnableLetterComponents();
 
                         m_CurrentLetter.SetActive(false);
 
@@ -113,30 +113,16 @@ namespace EA4S.ColorTickle
                 else if (m_PercentageLetterColored >= 100 || m_Lives <=0) //else check for letter completed
                 {
                     game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
-
-                    /*m_LetterObjectView.Poof();
-                    m_CurrentLetter.SetActive(false);
-                    --m_Rounds;
-                    if (m_Rounds > 0)
-                    {
-                        ResetState();
-                        m_ColorsUIManager.ChangeButtonsColor();
-                        m_CurrentLetter = game.myLetters[m_Rounds - 1];
-                        m_CurrentLetter.gameObject.SetActive(true);
-                        // Initialize the next letter
-                        InitLetter();
-                    }*/
-
                     m_bLLVanishing = true; //LL is about to disappear
 
                     //disable color components to avoid input in this phase (or ignore input using touch manager?)
-                    m_TMPTextColoringLetter.enabled = false;
-                    m_SurfaceColoringLetter.enabled = false;
-                    m_HitStateLLController.enabled = false;
+                    DisableLetterComponents();
 
                     Debug.Log(m_LetterObjectView.Data.Key);
 
                     AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
+
+                    m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
 
                     //LL does win or lose animation 
                     if(m_PercentageLetterColored >= 100)
@@ -147,8 +133,9 @@ namespace EA4S.ColorTickle
                     }
                     else if (m_Lives <= 0)
                     {
-                        m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
-                        m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
+                        /*m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
+                        m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);*/
+                        m_LetterObjectView.DoAngry();
                         AudioManager.I.PlaySfx(Sfx.Lose);
                     }
 
@@ -210,6 +197,19 @@ namespace EA4S.ColorTickle
             SetBrushColor(m_ColorsUIManager.defaultColor);     
         }
 
+        private void EnableLetterComponents()
+        {
+            m_TMPTextColoringLetter.enabled = true;
+            m_SurfaceColoringLetter.enabled = true;
+            m_HitStateLLController.enabled = true;
+        }
+
+        private void DisableLetterComponents()
+        {
+            m_TMPTextColoringLetter.enabled = false;
+            m_SurfaceColoringLetter.enabled = false;
+            m_HitStateLLController.enabled = false;
+        }
 
         private void SetBrushColor(Color color)
         {
@@ -236,10 +236,11 @@ namespace EA4S.ColorTickle
             //--
 
             m_Lives--;
-            //m_Stars -= 0.3f;
-            m_Stars -= (3f/(float)m_Rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
+            
+            m_Stars -= (3f/(float)game.rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
+         
             game.gameUI.SetLives(m_Lives);
-            Debug.Log("Lives : " + m_Lives);
+       
         }
 
 
