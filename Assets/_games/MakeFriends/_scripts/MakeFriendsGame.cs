@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
+using ArabicSupport;
 using EA4S;
 
 namespace EA4S.MakeFriends
@@ -181,6 +182,10 @@ namespace EA4S.MakeFriends
             wordData2 = words[1] as LL_WordData;
             commonLetters = question.GetCorrectAnswers().ToList();
             uncommonLetters = question.GetWrongAnswers().ToList();
+
+            Debug.Log("[New Round] Word 1: " + ArabicFixer.Fix(wordData1.Data.Arabic) + ", Word 2: " + ArabicFixer.Fix(wordData2.Data.Arabic)
+                + "\nCommon: " + string.Join(" / ", commonLetters.Select(x => x.TextForLivingLetter.ToString()).Reverse().ToArray())
+                + ", Uncommon: " + string.Join(" / ", uncommonLetters.Select(x => x.TextForLivingLetter.ToString()).Reverse().ToArray()));
         }
 
         private void SetLetterChoices()

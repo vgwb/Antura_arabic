@@ -290,7 +290,7 @@ namespace EA4S.Balloons
             wordLetters = question.GetCorrectAnswers().Cast<LL_LetterData>().ToList();
             wordPrompt.DisplayWord(wordLetters);
 
-            Debug.Log("Word: " + ArabicFixer.Fix(word) + ", Letters (" + wordLetters.Count + "): " + string.Join(" / ", wordLetters.Select(x => x.Data.Isolated).Reverse().ToArray()));
+            Debug.Log("[New Round] Word: " + ArabicFixer.Fix(word) + ", Letters (" + wordLetters.Count + "): " + string.Join(" / ", wordLetters.Select(x => x.Data.Isolated).Reverse().ToArray()));
         }
 
         private void CreateFloatingLetters(int numberOfExtraLetters)
