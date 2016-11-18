@@ -13,6 +13,7 @@ public class PlayerBookManager : MonoBehaviour
 
     enum PlayerBookPanel
     {
+        None,
         Book,
         Player,
         Parents
@@ -26,7 +27,7 @@ public class PlayerBookManager : MonoBehaviour
     public GameObject PlayerPanel;
     public GameObject ParentsPanel;
 
-    PlayerBookPanel currentPanel;
+    PlayerBookPanel currentPanel = PlayerBookPanel.None;
 
     void Start()
     {
