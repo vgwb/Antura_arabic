@@ -52,7 +52,7 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            // TODO
+            builder = new WordsInPhraseQuestionBuilder(nPacks:10, nCorrect:1, nWrong:5, usePhraseAnswersIfFound:true);
             return builder;
         }
 

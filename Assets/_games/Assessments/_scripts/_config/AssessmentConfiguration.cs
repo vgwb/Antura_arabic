@@ -88,7 +88,9 @@ namespace EA4S.Assessment
 
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
-        public int Rounds { get; set; }
+
+        private int _rounds = 0;
+        public int Rounds { get { return _rounds; } set { _rounds = value; Debug.Log("Setted Rounds:" + value); } }
 
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
@@ -122,6 +124,8 @@ namespace EA4S.Assessment
 
         }
 
+        private DifficultyRegulation snag;
+
         /// <summary>
         /// This is called by MiniGameAPI to create QuestionProvider, that means that if I start game
         /// from debug scene, I need a custom test Provider.
@@ -129,7 +133,8 @@ namespace EA4S.Assessment
         /// <returns></returns>
         public IQuestionBuilder SetupBuilder()
         {
-            Debug.Log( "2) SetupQuestionBuilder");
+            snag = new DifficultyRegulation( Difficulty);
+
             switch (assessmentType)
             {
                 case AssessmentCode.LetterShape:
@@ -148,17 +153,39 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
-            return new WordsWithLetterQuestionBuilder( nPacks: 2, nCorrect: 3, nWrong: 3);
+            SimultaneosQuestions = snag.Increase( 1,2);
+            Rounds = snag.Increase( 2, 4);
+            return new WordsWithLetterQuestionBuilder( 
+
+                SimultaneosQuestions*Rounds,// Total Answers
+                snag.Decrease( 3, 2),       // Correct Answers
+                snag.Increase( 1, 4));      // Wrong Answers
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
-            return new LettersInWordQuestionBuilder( nPacks: 2, useAllCorrectLetters: true, nWrong: 2);
+            SimultaneosQuestions = 1;
+            Rounds = snag.Increase( 2, 3);
+            return new LettersInWordQuestionBuilder(
+
+                SimultaneosQuestions * Rounds,  // Total Answers
+                snag.Decrease( 3, 2),            // CorrectAnswers
+                snag.Increase( 1, 4),            // WrongAnswers
+                useAllCorrectLetters: false);
         }
 
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
-            return new RandomLettersQuestionBuilder(nPacks: 2, nCorrect:1, firstCorrectIsQuestion:true, nWrong: 3, correctChoicesHistory: Teacher.PackListHistory.ForceAllDifferent, wrongChoicesHistory: Teacher.PackListHistory.ForceAllDifferent);
+            SimultaneosQuestions = 1;
+            Rounds = snag.Decrease( 4, 1);      // We assume letter shapes are just a basic thing so we don't insist
+            return new RandomLettersQuestionBuilder(
+
+                SimultaneosQuestions * Rounds,  // Total Answers
+                1,                              // CorrectAnswers
+                snag.Increase( 3, 6),           // WrongAnswers
+                firstCorrectIsQuestion:true,
+                correctChoicesHistory: Teacher.PackListHistory.ForceAllDifferent,
+                wrongChoicesHistory: Teacher.PackListHistory.ForceAllDifferent);
         }
 
         public MiniGameLearnRules SetupLearnRules()

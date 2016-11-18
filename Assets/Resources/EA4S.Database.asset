@@ -3817,11 +3817,10 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u062C\u062F\u0648"
+      Arabic: "\u062C\u062F"
       Letters:
       - jeem
       - dal
-      - waw
       Difficulty: 1
       Drawing: 34
     - Id: grandmother
@@ -3830,12 +3829,11 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0646\u0627\u0646\u0627"
+      Arabic: "\u062C\u062F\u0629"
       Letters:
-      - noon
-      - alef
-      - noon
-      - alef
+      - jeem
+      - dal
+      - teh_marbuta
       Difficulty: 1
       Drawing: 35
     - Id: grandson
@@ -7024,10 +7022,11 @@ MonoBehaviour:
       Form: 0
       Article: 0
       LinkedWord: 
-      Arabic: "\u0645\u064A"
+      Arabic: "\u0645\u0627\u0621"
       Letters:
       - meem
-      - yeh
+      - alef
+      - hamza
       Difficulty: 1
       Drawing: 2019
     - Id: watermelon
@@ -16651,6 +16650,7 @@ MonoBehaviour:
       Linked: goodmorning_R
       Words:
       - morning
+      Answers: []
     - Id: goodmorning_R
       English: good morning - reply
       Arabic: "\u0635\u0628\u0627\u062D \u0627\u0644\u0646\u0648\u0631"
@@ -16658,6 +16658,7 @@ MonoBehaviour:
       Linked: goodmorning_Q
       Words:
       - morning
+      Answers: []
     - Id: goodevening_Q
       English: good evening - question
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u062E\u064A\u0631"
@@ -16665,6 +16666,7 @@ MonoBehaviour:
       Linked: goodevening_R
       Words:
       - evening
+      Answers: []
     - Id: goodevening_R
       English: good evening - reply
       Arabic: "\u0645\u0633\u0627\u0621 \u0627\u0644\u0646\u0648\u0631"
@@ -16672,12 +16674,14 @@ MonoBehaviour:
       Linked: goodevening_Q
       Words:
       - evening
+      Answers: []
     - Id: hi
       English: Hi
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: yourwelcome
       English: you are welcome
       Arabic: "\u0623\u0647\u0644\u0627\u064B \u0648\u0633\u0647\u0644\u0627\u064B"
@@ -16685,42 +16689,49 @@ MonoBehaviour:
       Linked: 
       Words:
       - and
+      Answers: []
     - Id: howareyou
       English: how are you doing?
       Arabic: "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643\u061F"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: fine
       English: fine
       Arabic: "\u0628\u062E\u064A\u0631"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: thankyou
       English: thank you
       Arabic: "\u0634\u0643\u0631\u0627\u064B"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: sure
       English: sure
       Arabic: "\u0639\u0641\u0648\u0627\u064B"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: seeyou
       English: see you
       Arabic: "\u0625\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: goodbye
       English: good-bye
       Arabic: "\u0648\u062F\u0627\u0639\u0627\u064B"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: the_year_2016
       English: the year two thousand and sixteen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u062A\u0629
@@ -16732,6 +16743,7 @@ MonoBehaviour:
       - number_2000
       - number_16
       - and
+      Answers: []
     - Id: the_year_2017
       English: the year two thousand and seventeen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u0633\u0628\u0639\u0629
@@ -16743,6 +16755,7 @@ MonoBehaviour:
       - number_2000
       - number_17
       - and
+      Answers: []
     - Id: the_year_2018
       English: the year twothousand and eighteen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062B\u0645\u0627\u0646\u064A\u0629
@@ -16754,6 +16767,7 @@ MonoBehaviour:
       - number_2000
       - number_18
       - and
+      Answers: []
     - Id: the_year_2015
       English: the year two thousand and fifteen
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062E\u0645\u0633\u0629
@@ -16765,6 +16779,7 @@ MonoBehaviour:
       - number_2000
       - number_15
       - and
+      Answers: []
     - Id: the_year_2009
       English: the year two thousand and nine
       Arabic: "\u0639\u0627\u0645 \u0627\u0644\u0641\u064A\u0646 \u0648\u062A\u0633\u0639\u0629"
@@ -16775,6 +16790,7 @@ MonoBehaviour:
       - number_2000
       - number_09
       - and
+      Answers: []
     - Id: theboyopenedthewindow
       English: the boy opened the window
       Arabic: "\u0641\u062A\u062D \u0627\u0644\u0635\u0628\u064A \u0627\u0644\u0646\u0627\u0641\u0630\u0629"
@@ -16784,6 +16800,7 @@ MonoBehaviour:
       - boy
       - opened
       - window
+      Answers: []
     - Id: theteacherlaughed
       English: the teacher laughed
       Arabic: "\u0636\u062D\u0643 \u0627\u0644\u0645\u0639\u0644\u0645"
@@ -16792,6 +16809,7 @@ MonoBehaviour:
       Words:
       - teacher
       - laughed
+      Answers: []
     - Id: theworkercarriedthebox
       English: the worker carried the box
       Arabic: "\u062D\u0645\u0644 \u0627\u0644\u0639\u0627\u0645\u0644 \u0627\u0644\u0635\u0646\u062F\u0648\u0642"
@@ -16801,6 +16819,7 @@ MonoBehaviour:
       - worker
       - carried
       - box
+      Answers: []
     - Id: thegirldrankthejuice
       English: the girl drank the juice
       Arabic: "\u0634\u0631\u0628\u062A \u0627\u0644\u0628\u0646\u062A \u0627\u0644\u0639\u0635\u064A\u0631"
@@ -16810,6 +16829,7 @@ MonoBehaviour:
       - girl
       - drank
       - juice
+      Answers: []
     - Id: themountainisbig
       English: the mountain is big
       Arabic: "\u0627\u0644\u062C\u0628\u0644 \u0643\u0628\u064A\u0631"
@@ -16818,6 +16838,7 @@ MonoBehaviour:
       Words:
       - mountain
       - big
+      Answers: []
     - Id: therestaurantisclean
       English: the restaurant is clean
       Arabic: "\u0627\u0644\u0645\u0637\u0639\u0645 \u0646\u0638\u064A\u0641"
@@ -16826,6 +16847,7 @@ MonoBehaviour:
       Words:
       - restaurant
       - clean
+      Answers: []
     - Id: thetigeratethedeer
       English: the tiger ate the deer
       Arabic: "\u0623\u0643\u0644 \u0627\u0644\u0646\u0645\u0631 \u0627\u0644\u063A\u0632\u0627\u0644"
@@ -16834,6 +16856,7 @@ MonoBehaviour:
       Words:
       - tiger
       - deer
+      Answers: []
     - Id: redberry
       English: red berry
       Arabic: "\u062A\u0648\u062A \u0623\u062D\u0645\u0631"
@@ -16842,6 +16865,7 @@ MonoBehaviour:
       Words:
       - color_red
       - berry
+      Answers: []
     - Id: yellowflower
       English: yellowe flower
       Arabic: "\u0648\u0631\u062F \u0623\u0635\u0641\u0631"
@@ -16850,6 +16874,7 @@ MonoBehaviour:
       Words:
       - color_yellow
       - flower
+      Answers: []
     - Id: greywolf
       English: grey wolf
       Arabic: "\u0630\u0626\u0628 \u0631\u0645\u0627\u062F\u064A"
@@ -16858,6 +16883,7 @@ MonoBehaviour:
       Words:
       - color_grey
       - wolf
+      Answers: []
     - Id: greencucumber
       English: green cucumber
       Arabic: "\u062E\u064A\u0627\u0631 \u0623\u062E\u0636\u0631"
@@ -16866,6 +16892,7 @@ MonoBehaviour:
       Words:
       - color_green
       - cucumber
+      Answers: []
     - Id: thecarpenterwent
       English: the carpenter went (left)
       Arabic: "\u0630\u0647\u0628 \u0627\u0644\u0646\u062C\u0627\u0631"
@@ -16874,6 +16901,7 @@ MonoBehaviour:
       Words:
       - carpenter
       - went
+      Answers: []
     - Id: thebirdflew
       English: the bird flew
       Arabic: "\u0637\u0627\u0631 \u0627\u0644\u0639\u0635\u0641\u0648\u0631"
@@ -16882,6 +16910,7 @@ MonoBehaviour:
       Words:
       - bird
       - flew
+      Answers: []
     - Id: theshopissmall
       English: the shop is small
       Arabic: "\u0627\u0644\u062F\u0643\u0627\u0646 \u0635\u063A\u064A\u0631"
@@ -16890,6 +16919,7 @@ MonoBehaviour:
       Words:
       - shop
       - small
+      Answers: []
     - Id: thedoctoropenedthehospital
       English: the doctor opened the hospital
       Arabic: "\u0641\u062A\u062D \u0627\u0644\u0637\u0628\u064A\u0628 \u0627\u0644\u0645\u0633\u062A\u0634\u0641\u0649"
@@ -16899,6 +16929,7 @@ MonoBehaviour:
       - doctor
       - opened
       - hospital
+      Answers: []
     - Id: eightscientists
       English: eight scientists
       Arabic: "\u062B\u0645\u0627\u0646\u064A\u0629 \u0639\u0644\u0645\u0627\u0621"
@@ -16907,6 +16938,7 @@ MonoBehaviour:
       Words:
       - number_08
       - scientist_plural
+      Answers: []
     - Id: theengineerworethecoat
       English: the engineer wore the coat
       Arabic: "\u0644\u0628\u0633 \u0627\u0644\u0645\u0647\u0646\u062F\u0633 \u0627\u0644\u0645\u0639\u0637\u0641"
@@ -16916,6 +16948,7 @@ MonoBehaviour:
       - the_engineer
       - wore
       - the_coat
+      Answers: []
     - Id: theplayerwon
       English: the player won
       Arabic: "\u0631\u0628\u062D \u0627\u0644\u0644\u0627\u0639\u0628"
@@ -16924,6 +16957,7 @@ MonoBehaviour:
       Words:
       - the_player
       - won
+      Answers: []
     - Id: theshirtisclean
       English: the shirt is clean
       Arabic: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0646\u0638\u064A\u0641"
@@ -16932,6 +16966,7 @@ MonoBehaviour:
       Words:
       - the_shirt
       - clean
+      Answers: []
     - Id: yesterdaywassunday
       English: yesterday was Sunday
       Arabic: "\u0643\u0627\u0646 \u0627\u0644\u0628\u0627\u0631\u062D\u0629 \u0623\u062D\u062F"
@@ -16940,6 +16975,7 @@ MonoBehaviour:
       Words:
       - yesterday
       - day_sunday
+      Answers: []
     - Id: thewinteriscold
       English: the winter is cold
       Arabic: "\u0627\u0644\u0634\u062A\u0627\u0621 \u0628\u0627\u0631\u062F"
@@ -16948,6 +16984,7 @@ MonoBehaviour:
       Words:
       - winter
       - cold
+      Answers: []
     - Id: novemberistheeleventhmonth
       English: November is the eleventh month
       Arabic: "\u062A\u0634\u0631\u064A\u0646 \u0627\u0644\u062B\u0627\u0646\u064A
@@ -16959,6 +16996,7 @@ MonoBehaviour:
       - month_november
       - number_o11
       - month
+      Answers: []
     - Id: theparrotisbeautiful
       English: the parrot is beautiful
       Arabic: "\u0627\u0644\u0628\u0628\u063A\u0627\u0621 \u062C\u0645\u064A\u0644"
@@ -16967,6 +17005,7 @@ MonoBehaviour:
       Words:
       - parrot
       - beautiful
+      Answers: []
     - Id: mayisthefifthmonth
       English: May is the fifth month
       Arabic: "\u0623\u064A\u0627\u0631 \u0647\u0648 \u0627\u0644\u0634\u0647\u0631
@@ -16977,6 +17016,7 @@ MonoBehaviour:
       - month_may
       - number_o05
       - month
+      Answers: []
     - Id: thepolicemanwalked
       English: the policeman walked
       Arabic: "\u0645\u0634\u0649 \u0627\u0644\u0634\u0631\u0637\u064A"
@@ -16985,6 +17025,7 @@ MonoBehaviour:
       Words:
       - policeman
       - walked
+      Answers: []
     - Id: theicecreamisdelicious
       English: the ice-cream is delicious
       Arabic: "\u0627\u0644\u0628\u0648\u0638\u0629 \u062D\u0644\u0648\u0629"
@@ -16993,6 +17034,7 @@ MonoBehaviour:
       Words:
       - icecream
       - delicious
+      Answers: []
     - Id: fivebooks
       English: five books
       Arabic: "\u062E\u0645\u0633\u0629 \u0643\u062A\u0628"
@@ -17001,60 +17043,103 @@ MonoBehaviour:
       Words:
       - number_05
       - books
+      Answers: []
     - Id: please
       English: please
       Arabic: "\u0631\u062C\u0627\u0621"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: thankyouverymuch
       English: thank you very much
       Arabic: "\u0634\u0643\u0631\u0627\u064B\u064B \u062C\u0632\u064A\u0644\u0627\u064B"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: goodnight_Q
       English: good night - question
       Arabic: "\u062A\u0635\u0628\u062D \u0639\u0644\u0649 \u062E\u064A\u0631"
       Category: 1
       Linked: goodnight_R
       Words: []
+      Answers: []
     - Id: goodnight_R
       English: good night - reply
       Arabic: "\u0648\u0623\u0646\u062A \u0628\u062E\u064A\u0631"
       Category: 2
       Linked: goodnight_Q
       Words: []
+      Answers: []
     - Id: congratulations
       English: congratulations
       Arabic: "\u0645\u0628\u0631\u0648\u0643"
       Category: 3
       Linked: 
       Words: []
+      Answers: []
     - Id: letsgo_Q
       English: let's go - question
       Arabic: "\u0647\u064A\u0627 \u0644\u0646\u0630\u0647\u0628"
       Category: 1
       Linked: letsgo_R
       Words: []
+      Answers: []
     - Id: letsgo_R
       English: let's go - reply
       Arabic: "\u0647\u064A\u0627 \u0646\u0630\u0647\u0628"
       Category: 2
       Linked: letsgo_Q
       Words: []
+      Answers: []
     - Id: areyouready_Q
       English: are you ready - question
       Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F"
       Category: 1
       Linked: yesiamready_R
       Words: []
+      Answers: []
     - Id: yesiamready_R
       English: yes I am ready - reply
       Arabic: "\u0646\u0639\u0645 \u0623\u0646\u0627 \u062C\u0627\u0647\u0632"
       Category: 2
       Linked: areyouready_Q
       Words: []
+      Answers: []
+    - Id: question_1
+      English: i am question 1
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 1"
+      Category: 1
+      Linked: 
+      Words: []
+      Answers:
+      - banana
+    - Id: question_2
+      English: i am question 2
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 2"
+      Category: 1
+      Linked: 
+      Words: []
+      Answers:
+      - hat
+      - the_hat
+    - Id: question_3
+      English: i am question 3
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 3"
+      Category: 1
+      Linked: 
+      Words: []
+      Answers:
+      - ball
+    - Id: question_4
+      English: i am question 4
+      Arabic: "\u0647\u0644 \u0623\u0646\u062A \u062C\u0627\u0647\u0632\u061F 4"
+      Category: 1
+      Linked: 
+      Words: []
+      Answers:
+      - kid
   stageTable:
     innerList:
     - Id: 1

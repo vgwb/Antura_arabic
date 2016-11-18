@@ -36,7 +36,7 @@ namespace EA4S {
         // Use this for initialization
         void Start() {
             transform.DOScale(0, 0);
-            CleanEmoticonIcons();
+            SetEmoticon(Icon, false);
 
         }
 
@@ -80,6 +80,15 @@ namespace EA4S {
             if (_open) {
                 Open(true);
             }
+        }
+
+
+        void Update() {
+            if (Input.GetKeyDown(KeyCode.E))
+                Open(true);
+
+            if (Input.GetKeyDown(KeyCode.R))
+                Open(false);
         }
 
         // TEST
