@@ -42,7 +42,12 @@ namespace EA4S.ColorTickle
 
             if (timer < 0)
             {
-				game.SetCurrentState(game.QuestionState);
+				for (int i = 0; i < game.rounds; ++i) {
+					game.myLetters[i].gameObject.SetActive (false);
+				}
+				game.tutorialLetter.gameObject.SetActive(false);
+
+				game.SetCurrentState(game.TutorialState);
             }
         }
 
