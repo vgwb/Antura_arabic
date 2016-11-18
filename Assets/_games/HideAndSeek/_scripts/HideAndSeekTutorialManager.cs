@@ -147,9 +147,19 @@ namespace EA4S.HideAndSeek
 
         private IEnumerator GoToPlay()
         {
-            var winInitialDelay = 1f;//2
+            var winInitialDelay = 3f;
             yield return new WaitForSeconds(winInitialDelay);
-            
+
+            foreach(GameObject x in ArrayLetters)
+            {
+                x.GetComponent<LetterObjectView>().Poof();
+                AudioManager.I.PlaySfx(Sfx.Poof);
+                x.SetActive(false);
+            }
+
+            var delay = 1f;
+            yield return new WaitForSeconds(delay);
+
             game.SetCurrentState(game.PlayState);
             
         }
