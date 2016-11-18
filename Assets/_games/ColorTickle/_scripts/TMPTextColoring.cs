@@ -30,9 +30,9 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
         private Texture2D m_tLetterDynamicTexture; //Generated texture to color by touch
-        private Texture2D m_tBaseLetterFullTexture; //The texture from wich the letter is rendered (likely an atlas with all the alphabet)
-        private Texture2D m_tSingleLetterRenderedTextureScaledToDynamic; //Generated texture for the single letter rendered, scaled to match the one to color
-        private Texture2D m_tSingleLetterAlphaTextureScaledToDynamic; //Generated texture for the single letter with relaxed face dilatation, scaled to match the one to color
+        public Texture2D m_tBaseLetterFullTexture; //The texture from wich the letter is rendered (likely an atlas with all the alphabet)
+        public Texture2D m_tSingleLetterRenderedTextureScaledToDynamic; //Generated texture for the single letter rendered, scaled to match the one to color
+        public Texture2D m_tSingleLetterAlphaTextureScaledToDynamic; //Generated texture for the single letter with relaxed face dilatation, scaled to match the one to color
         private RaycastHit m_oRayHit; //Store the data on the last collision
         private MeshCollider m_oLetterMeshCollider; //The mesh used for the letter raycast
         private Vector2[] m_aUVLetterInMainTexture; //The original UVs of the letter's base texture
@@ -96,9 +96,14 @@ namespace EA4S.ColorTickle
 
             if (m_oTextMeshObject.fontMaterial.mainTexture is Texture2D)
             {
-                m_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
+                //m_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D; //old font atlas was readable
 
+                //assuming the atlas isn't readable, make a copy of the raw data
+                Texture2D _tTempAtlas = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
+                m_tBaseLetterFullTexture = new Texture2D(_tTempAtlas.width, _tTempAtlas.height, TextureFormat.Alpha8,false);
+                m_tBaseLetterFullTexture.LoadRawTextureData(_tTempAtlas.GetRawTextureData());
             }
+           
 
             SetupLetterMeshCollider(); //prepare the letter mesh for the raycast
 
@@ -260,8 +265,7 @@ namespace EA4S.ColorTickle
             //(2) - m_tSingleLetterAlphaTextureScaledToDynamic: scale the letter alpha texture with greater dilatation to match the size of the dynamic one and having a 1:1 matching on the check for the hit
 
             //m_tBaseLetterTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
-            m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
-
+            
 
             //retrive the letter size and width in pixels on the original texture
             int _iSingleLetterWidthUnscaled = Mathf.FloorToInt(Mathf.Abs(m_aUVLetterInMainTexture[0].x - m_aUVLetterInMainTexture[3].x) * m_tBaseLetterFullTexture.width);
@@ -276,7 +280,17 @@ namespace EA4S.ColorTickle
             _tSingleLetterTextureUnscaled.Apply();
 
             //finally scale the texture 
-            Color[] _aColorSingleLetterScaled = TextureUtilities.ScaleTexture(_tSingleLetterTextureUnscaled, m_tSingleLetterRenderedTextureScaledToDynamic.width / (float)_tSingleLetterTextureUnscaled.width, m_tSingleLetterRenderedTextureScaledToDynamic.height / (float)_tSingleLetterTextureUnscaled.height);
+            Color[] _aColorSingleLetterScaled = TextureUtilities.ScaleTexture(_tSingleLetterTextureUnscaled, m_tLetterDynamicTexture.width / (float)_tSingleLetterTextureUnscaled.width, m_tLetterDynamicTexture.height / (float)_tSingleLetterTextureUnscaled.height);
+
+            //float f = (float)_tSingleLetterTextureUnscaled.width * (float)m_tLetterDynamicTexture.width / (float)_tSingleLetterTextureUnscaled.width;
+
+            
+            //f = (float)_tSingleLetterTextureUnscaled.height * (float)m_tLetterDynamicTexture.height / (float)_tSingleLetterTextureUnscaled.height;
+            
+
+            m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
+
+            
 
             //----TEMPORARY SOLUTION?
             //Depending on the face dilate property(but also others like bold, softness,...) of the letter material,
@@ -325,7 +339,9 @@ namespace EA4S.ColorTickle
                 m_tSingleLetterRenderedTextureScaledToDynamic.Apply();
 
                 m_tSingleLetterAlphaTextureScaledToDynamic.SetPixels(_aColorSingleLetterScaled_ErrorCheckShape);
-                m_tSingleLetterAlphaTextureScaledToDynamic.Apply(); ;
+                m_tSingleLetterAlphaTextureScaledToDynamic.Apply();
+
+                Debug.Log(m_oTextMeshObject.text);
             }
 
         }
