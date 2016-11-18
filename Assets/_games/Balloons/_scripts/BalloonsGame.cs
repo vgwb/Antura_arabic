@@ -253,7 +253,6 @@ namespace EA4S.Balloons
 
         private void ResetScene()
         {
-            timer.StopTimer();
             timer.ResetTimer();
             timer.DisplayTime();
             roundNumberText.text = "#" + currentRound.ToString();
