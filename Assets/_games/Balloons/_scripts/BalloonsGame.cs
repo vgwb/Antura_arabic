@@ -296,7 +296,10 @@ namespace EA4S.Balloons
         private void CreateFloatingLetters(int numberOfExtraLetters)
         {
             var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
+            var wrongLettersList = question.GetWrongAnswers().Cast<LL_LetterData>().ToList();
             var wrongLetters = question.GetWrongAnswers().Cast<LL_LetterData>().GetEnumerator();
+
+            Debug.Log("Random Letters (" + wrongLettersList.Count + "): " + string.Join(" / ", wrongLettersList.Select(x => x.Data.Isolated).Reverse().ToArray()));
 
             // Determine indices of required letters
             List<int> requiredLetterIndices = new List<int>();
@@ -369,18 +372,30 @@ namespace EA4S.Balloons
                     letter.isRequired = true;
                     letter.associatedPromptIndex = requiredLetterIndex;
                     letter.Init(wordLetters[requiredLetterIndex]);
+                    Debug.Log("Create word balloon with: " + wordLetters[requiredLetterIndex].Data.Isolated);
                 }
                 else
                 {
                     // Set a random letter that is not a required letter
                     LL_LetterData randomLetter;
+                    bool invalid = false;
                     do
                     {
                         //randomLetter = AppManager.Instance.Letters.GetRandomElement();
                         randomLetter = wrongLetters.Current;
                         wrongLetters.MoveNext();
-                    } while (wordLetters.Contains(randomLetter));
-                    letter.Init(randomLetter);
+                        invalid = randomLetter == null || wordLetters.Exists(x => x.Key == randomLetter.Key);
+                    } while (invalid);
+
+                    if (invalid)
+                    {
+                        Debug.LogError("Error getting valid random letter for balloon!");
+                    }
+                    else
+                    {
+                        letter.Init(randomLetter);
+                        Debug.Log("Create random balloon with: " + randomLetter.Data.Isolated);
+                    }
                 }
                     
                 floatingLetters.Add(floatingLetter);
@@ -534,7 +549,7 @@ namespace EA4S.Balloons
                 case Result.CLEAR:
                     CurrentScore++;
                     win = true;
-                   AudioManager.PlaySound(Sfx.Win);
+                    AudioManager.PlaySound(Sfx.Win);
                     break;
                 case Result.FAIL:
                     win = false;
