@@ -38,6 +38,8 @@ namespace EA4S.Teacher.Test
 
             baseignorejourney_in.onValueChanged.AddListener(x => { baseIgnoreJourney = x; });
             wrongignorejourney_in.onValueChanged.AddListener(x => { wrongIgnoreJourney = x; });
+
+            GlobalUI.ShowPauseMenu(false);
         }
 
         int currentJourneyStage = 1;
@@ -51,8 +53,6 @@ namespace EA4S.Teacher.Test
         bool baseIgnoreJourney = false;
         bool wrongIgnoreJourney = false;
 
-        #region  Question Builder testing
-
         void SetupFakeGame()
         {
             AppManager.Instance.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
@@ -60,6 +60,17 @@ namespace EA4S.Teacher.Test
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
         }
+
+        public void SimulateMiniGame(MiniGameCode code)
+        {
+            var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
+            SetupFakeGame();
+            var builder = config.SetupBuilder();
+            builder.CreateAllQuestionPacks();
+        }
+
+        #region  Question Builder testing
+
 
         public void RandomLettersTest()
         {
@@ -162,6 +173,7 @@ namespace EA4S.Teacher.Test
         }
 
         #endregion
+
     }
 
 }

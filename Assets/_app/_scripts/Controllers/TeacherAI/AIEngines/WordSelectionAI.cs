@@ -37,7 +37,7 @@ namespace EA4S.Teacher
         {
             currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
             currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
-            currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId));
+            currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true));
 
             journeyLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId, true));
             journeyWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId, true, true));
@@ -67,21 +67,25 @@ namespace EA4S.Teacher
             // @note: not the best of solutions, but I do not seem to be able to get more generic than this without rewriting most stuff.
             System.Type typeParameterType = typeof(T);
             HashSet<T> journeyData = null;
+            HashSet<T> currentPSData = null;
             DbTables table = DbTables.Letters;
             if (typeParameterType == typeof(LetterData))
             {
                 table = DbTables.Letters;
                 journeyData = new HashSet<T>(journeyLetters.Cast<T>());
+                currentPSData = new HashSet<T>(currentPlaySessionLetters.Cast<T>());
             }
             else if (typeParameterType == typeof(WordData))
             {
                 table = DbTables.Words;
                 journeyData = new HashSet<T>(journeyWords.Cast<T>());
+                currentPSData = new HashSet<T>(currentPlaySessionWords.Cast<T>());
             }
             else if (typeParameterType == typeof(PhraseData))
             {
                 table = DbTables.Phrases;
                 journeyData = new HashSet<T>(journeyPhrases.Cast<T>());
+                currentPSData = new HashSet<T>(currentPlaySessionPhrases.Cast<T>());
             }
 
             // Get unfiltered data based on the builder's logic
@@ -140,7 +144,7 @@ namespace EA4S.Teacher
             // Weighted selection on the remaining number
             List<T> selectedList = null;
             if (selectionParams.getAllData) selectedList = dataList;
-            else selectedList = WeightedDataSelect(dataList, selectionParams.nRequired, table);
+            else selectedList = WeightedDataSelect(dataList, currentPSData, selectionParams.nRequired, table);
             debugString += (" \tSelection: " + selectedList.Count);
 
             if (ConfigAI.verboseDataSelection)
@@ -162,7 +166,7 @@ namespace EA4S.Teacher
             return selectedList;
         }
 
-        private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, DbTables table) where T : IData
+        private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, DbTables table) where T : IData
         {
             // Given a (filtered) list of data, select some using weights
             List<ScoreData> score_data_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = '" + table.ToString() + "'");
@@ -194,9 +198,9 @@ namespace EA4S.Teacher
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
                 cumulativeWeight += recentPlayWeight * ConfigAI.data_recentPlayWeight;
 
-                // @todo: Current focus weight [1,0]: higher if the data is part of the current play session
-                dbManager.FindPlaySessionData(x => x.Words.Contains(sourceData.GetId())); 
-
+                // Current focus weight [1,0]: higher if the data is part of the current play session
+                float currentPlaySessionWeight = currentPSData.Contains(sourceData) ? 1 : 0f;
+                cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
                 if (cumulativeWeight <= 0)
