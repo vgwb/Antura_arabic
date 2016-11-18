@@ -5,6 +5,14 @@ namespace EA4S.Assessment
 {
     public class AssessmentConfiguration : IAssessmentConfiguration
     {
+        public enum TextFlow
+        {
+            LeftToRight,
+            RightToLeft
+        }
+
+        public TextFlow LocaleTextFlow { get; set; }
+
         // Game configuration
         public IGameContext Context { get; set; }
 
@@ -73,7 +81,7 @@ namespace EA4S.Assessment
                         break;
 
                     default:
-                        throw new NotImplementedException("NotImplemented Yet!");
+                        throw new NotImplementedException( "NotImplemented Yet!");
                 }
             }
         }
@@ -84,6 +92,8 @@ namespace EA4S.Assessment
 
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
+
+
         public AssessmentCode assessmentType = AssessmentCode.Unsetted;
 
         /////////////////
@@ -108,6 +118,7 @@ namespace EA4S.Assessment
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             questionProvider = null;
             Context = new SampleGameContext();
+            LocaleTextFlow = TextFlow.RightToLeft;
 
         }
 

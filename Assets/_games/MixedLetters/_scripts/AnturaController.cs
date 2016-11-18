@@ -7,10 +7,13 @@ namespace EA4S.MixedLetters
     {
         public static AnturaController instance;
 
-        public BoxCollider boxCollider;
+        public CapsuleCollider capsuleCollider;
 
         private Vector3 velocity;
-        private System.Action notifyFightBeganCallback;
+        private System.Action NotifyFightBeganCallback;
+        private System.Action NotifyAnturaExitedScene;
+
+        private AnturaAnimationController animator;
 
         void Awake()
         {
@@ -24,7 +27,11 @@ namespace EA4S.MixedLetters
                 collider.enabled = false;
             }
 
-            boxCollider.enabled = true;
+            capsuleCollider.enabled = true;
+
+            animator = GetComponent<AnturaAnimationController>();
+
+            Reset();
         }
 
         void Update()
@@ -35,11 +42,12 @@ namespace EA4S.MixedLetters
 
             if (IsOffScreen() && velocity.x * transform.position.x > 0)
             {
+                NotifyAnturaExitedScene();
                 Disable();
             }
         }
 
-        public void EnterScene(System.Action notifyFightBeganCallback)
+        public void EnterScene(System.Action notifyFightBeganCallback, System.Action notifyAnturaExitedScene)
         {
             Vector3 victimLLPosition = VictimLLController.instance.transform.position;
             Vector3 anturaPosition = victimLLPosition;
@@ -47,7 +55,7 @@ namespace EA4S.MixedLetters
             float frustumHeight = 2.0f * Mathf.Abs(anturaPosition.z - Camera.main.transform.position.z) * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
             float frustumWidth = frustumHeight * Camera.main.aspect;
 
-            anturaPosition.x = frustumWidth / 2 + 2f;
+            anturaPosition.x = frustumWidth / 2 + 12f;
 
             if (victimLLPosition.x > 0)
             {
@@ -58,22 +66,18 @@ namespace EA4S.MixedLetters
 
             if (velocity.x > 0)
             {
-                transform.rotation = Quaternion.Euler(0, 90, 0);
+                transform.rotation = Quaternion.Euler(0, 270, 0);
             }
 
             else
             {
-                transform.rotation = Quaternion.Euler(0, 270, 0);
+                transform.rotation = Quaternion.Euler(0, 90, 0);
             }
 
             transform.position = anturaPosition;
 
-            this.notifyFightBeganCallback = notifyFightBeganCallback;
-        }
-
-        public void ExitScene()
-        {
-
+            NotifyFightBeganCallback = notifyFightBeganCallback;
+            NotifyAnturaExitedScene = notifyAnturaExitedScene;
         }
 
         private bool IsOffScreen()
@@ -82,7 +86,7 @@ namespace EA4S.MixedLetters
             float frustumWidth = frustumHeight * Camera.main.aspect;
             float halfFrustumWidth = frustumWidth / 2;
 
-            if (Mathf.Abs(transform.position.x) - 2f > halfFrustumWidth)
+            if (Mathf.Abs(transform.position.x) - 12f > halfFrustumWidth)
             {
                 return true;
             }
@@ -97,7 +101,7 @@ namespace EA4S.MixedLetters
         {
             if (collision.gameObject.tag == "Destination")
             {
-                notifyFightBeganCallback.Invoke();
+                NotifyFightBeganCallback.Invoke();
             }
         }
 
@@ -115,6 +119,9 @@ namespace EA4S.MixedLetters
         {
             velocity = Vector3.zero;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+            animator.State = AnturaAnimationStates.walking;
+            animator.SetWalkingSpeed(1f);
         }
 
         public void Enable()

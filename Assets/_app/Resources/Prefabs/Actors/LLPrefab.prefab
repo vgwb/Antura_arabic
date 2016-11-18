@@ -1933,6 +1933,7 @@ MonoBehaviour:
   - {fileID: 1000013317295026}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  DancingSpeed: 1
 --- !u!114 &114000011454261102
 MonoBehaviour:
   m_ObjectHideFlags: 1

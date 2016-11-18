@@ -26,8 +26,6 @@ namespace EA4S.ThrowBalls
         public CratePileController cratePileController;
         public BushController bushController;
 
-        public TMP_Text letterTextView;
-
         private float yEquilibrium;
 
         private LL_LetterData letterData;
@@ -165,7 +163,7 @@ namespace EA4S.ThrowBalls
         public void SetLetter(LL_LetterData _data)
         {
             letterData = _data;
-            letterTextView.text = letterData.TextForLivingLetter;
+            letterObjectView.Lable.SetText(letterData.TextForLivingLetter);
         }
 
         public LL_LetterData GetLetter()

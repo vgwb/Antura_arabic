@@ -61,7 +61,9 @@ namespace EA4S
             if (word.Drawing != "") {
                 var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
-                LLDrawing.Lable.text = drawingChar;
+                //LLDrawing.Lable.text = drawingChar;
+                var LLView = new LL_ImageData(word.GetId(), word);
+                LLDrawing.Init(LLView);
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
                 Drawing.text = "";
