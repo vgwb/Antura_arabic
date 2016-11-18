@@ -59,5 +59,6 @@ namespace EA4S.Assessment
         /// </summary>
         /// <returns>Enumerable to placeholders set</returns>
         IEnumerable<GameObject> GetPlaceholders();
+
     }
 }

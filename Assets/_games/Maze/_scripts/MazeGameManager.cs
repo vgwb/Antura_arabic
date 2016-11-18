@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
 using EA4S;
@@ -305,7 +306,8 @@ namespace EA4S.Maze
 
 			}
 			if (currentCharacter != null) {
-				currentCharacter.initialize ();
+                
+                currentCharacter.initialize ();
 
 			}
 

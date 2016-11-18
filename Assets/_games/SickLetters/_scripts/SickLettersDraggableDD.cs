@@ -69,12 +69,14 @@ namespace EA4S.SickLetters
             origLocalPosition = transform.localPosition;
             origBoxColliderSize = boxCollider.bounds.size;
             origBoxColliderCenter = boxCollider.bounds.center;
+            
 
             transform.parent = null;
 
             if (isCorrect)
             {
-                game.wrongDraggCount++;
+                if(game.roundsCount > 0)
+                    game.wrongDraggCount++;
                 shake = true;
                 correctStartPos = draggableText.transform.localPosition;
                 draggableText.transform.parent = transform;
@@ -109,11 +111,14 @@ namespace EA4S.SickLetters
             releaseDD();
         }
 
+       
+
         public void releaseDD()
         {
             release = true;
             isDragging = shake = false;
-            
+            StartCoroutine(offToON());
+
             if (overPlayermarker)//pointer Still over LL
             {
                 if (isCorrect)
@@ -122,7 +127,7 @@ namespace EA4S.SickLetters
                 }
                 else
                 {
-                    resetWronDD();
+                    resetWrongDD();
                 }
             }
             else //pointer isn't over LL
@@ -154,8 +159,9 @@ namespace EA4S.SickLetters
 		public void Reset()
 		{
             transform.parent = origParent;
+            draggableText.transform.localScale = Vector3.one;
 
-            if(transform.parent)
+            if (transform.parent)
                 transform.localPosition = new Vector3(startX, startY, startZ);
             else
                 transform.position = new Vector3(startX, startY, startZ);
@@ -172,7 +178,7 @@ namespace EA4S.SickLetters
             startZ = initPos.z;
         }
 
-        public void resetWronDD() {
+        public void resetWrongDD() {
             transform.parent = origParent;
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = origLocalRotation;
@@ -226,6 +232,7 @@ namespace EA4S.SickLetters
             draggableText.transform.parent = origParent;
             draggableText.transform.localPosition = new Vector3(-0.5f, 0.5f,0);
             draggableText.transform.localEulerAngles = new Vector3(90, 0.0f, 90);
+            draggableText.transform.localScale = Vector3.one;
 
             boxCollider.size = new Vector3(1,1,1.21f);
             boxCollider.isTrigger = true;
@@ -253,12 +260,12 @@ namespace EA4S.SickLetters
         {
             if (coll.gameObject.tag == "Obstacle")
                 poofOnCollision(coll);
-            else if (!isDragging &&!isInVase && coll.gameObject.tag == "Finish")
+            /*else if (!isDragging &&!isInVase && coll.gameObject.tag == "Finish")
             {
                 game.scale.addNewDDToVas(this);
                 thisRigidBody.isKinematic = true;
                 
-            }
+            }*/
         }
         void OnCollisionStay(Collision coll)
         {
@@ -274,7 +281,12 @@ namespace EA4S.SickLetters
 
                 if (game.roundsCount == 0 && !isInVase)
                 {
-                    resetWronDD();
+                    if(isCorrect)
+                        resetCorrectDD();
+                    else
+                        resetWrongDD();
+
+                    game.onWrongMove();
                     game.tut.doTutorial();
                     return;
                 }
@@ -315,7 +327,13 @@ namespace EA4S.SickLetters
 
         }
 
-        
+        IEnumerator offToON()
+        {
+            //yield return new WaitForSeconds(.25f);
+            boxCollider.enabled = false;
+            yield return new WaitForSeconds(.1f);
+            boxCollider.enabled = true;
+        }
     }
 
 }

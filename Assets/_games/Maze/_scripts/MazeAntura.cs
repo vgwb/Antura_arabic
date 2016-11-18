@@ -7,7 +7,7 @@ namespace EA4S.Maze
     {
 
         Vector3 target;
-        public const float ANTURA_SPEED = 5.0f;
+        public const float ANTURA_SPEED = 15.0f;
 
         public bool IsAnturaTime { get; private set; }
 
@@ -50,7 +50,7 @@ namespace EA4S.Maze
                 {
 
                     //SetAnturaTime (false, initialPosition);
-                    GetComponent<Antura>().SetAnimation(AnturaAnim.SitBreath);
+                    GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.sitting;
                     StartCoroutine(waitAndReturn(1));
                 }
             }
@@ -81,7 +81,8 @@ namespace EA4S.Maze
 
             IsAnturaTime = _isAnturaTime;
 
-            GetComponent<Antura>().SetAnimation(AnturaAnim.Run);
+            GetComponent<AnturaAnimationController>().SetWalkingSpeed(ANTURA_SPEED);
+            GetComponent<AnturaAnimationController>().State = AnturaAnimationStates.walking;
 
             if (IsAnturaTime)
             {

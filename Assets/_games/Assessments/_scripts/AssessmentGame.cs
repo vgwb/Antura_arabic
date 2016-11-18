@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 namespace EA4S.Assessment
 {
@@ -33,8 +32,7 @@ namespace EA4S.Assessment
 
         protected override IGameConfiguration GetConfiguration()
         {
-            if (AssessmentConfiguration.Instance.assessmentType == AssessmentCode.Unsetted)
-                AssessmentConfiguration.Instance.assessmentType = assessmentCode;
+            AssessmentConfiguration.Instance.SetupDefault( assessmentCode);
 
             return AssessmentConfiguration.Instance;
         }

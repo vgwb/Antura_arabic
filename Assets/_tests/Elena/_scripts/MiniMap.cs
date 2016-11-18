@@ -47,12 +47,7 @@ namespace EA4S
         {
             /* FIRST CONTACT FEATURE */
             if (AppManager.Instance.Player.IsFirstContact()) {
-                // Put Here logic for first contact only situation
-                // ...
-                
-                // ..and set first contact done.
-                AppManager.Instance.Player.FirstContactPassed();
-                Debug.Log("First Contact finished! Good Luck!");
+                FirstContactBehaviour();
             }
             /* --------------------- */
 
@@ -66,11 +61,48 @@ namespace EA4S
             //myListPlaySessionState = GetAllPlaySessionStateForStage(1);
             //Debug.Log(myListPlaySessionState[0].data.Description);
         }
+
         void Update()
         {
+            // Remove this with First Contact Temp Behaviour
+            UpdateTimer();
             //Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
             //Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
         }
+
+        #region First Contact Session        
+        /// <summary>
+        /// Firsts the contact behaviour.
+        /// Put Here logic for first contact only situations.
+        /// </summary>
+        void FirstContactBehaviour() {
+            
+            if (AppManager.Instance.Player.IsFirstContact(1)) {
+                // First contact step 1:
+                #region Temp Behaviour (to be deleted)
+                countDown.Start();
+                #endregion
+                // ..and set first contact done.
+                AppManager.Instance.Player.FirstContactPassed();
+                Debug.Log("First Contact Step1 finished! Go to Antura Space!");
+            } else if (AppManager.Instance.Player.IsFirstContact(2)) {
+                // First contact step 2:
+
+                // ..and set first contact done.
+                AppManager.Instance.Player.FirstContactPassed(2);
+                Debug.Log("First Contact Step2 finished! Good Luck!");
+            }
+            
+        }
+        #region Temp Behaviour (to be deleted)
+        CountdownTimer countDown = new CountdownTimer(5);
+        void OnEnable() { countDown.onTimesUp += CountDown_onTimesUp; }
+        void OnDisable() { countDown.onTimesUp -= CountDown_onTimesUp; }
+        private void CountDown_onTimesUp() { AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards"); }
+        private void UpdateTimer() { countDown.Update(Time.deltaTime); }
+        #endregion
+
+        #endregion
 
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
         {

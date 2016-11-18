@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace EA4S.Db
@@ -133,14 +134,13 @@ namespace EA4S.Db
         public List<LetterData> GetCommonLettersInWords(params WordData[] words)
         {
             Dictionary<LetterData, int> countDict = new Dictionary<LetterData, int>();
-            foreach(var word in words)
-            {
+            foreach (var word in words) {
                 HashSet<LetterData> nonRepeatingLettersOfWord = new HashSet<LetterData>();
 
                 var letters = GetLettersInWord(word);
                 foreach (var letter in letters) nonRepeatingLettersOfWord.Add(letter);
 
-                foreach(var letter in nonRepeatingLettersOfWord) { 
+                foreach (var letter in nonRepeatingLettersOfWord) {
                     if (!countDict.ContainsKey(letter)) countDict[letter] = 0;
                     countDict[letter] += 1;
                 }
@@ -148,10 +148,8 @@ namespace EA4S.Db
 
             // Get only these letters that are in all words
             var commonLettersList = new List<LetterData>();
-            foreach(var letter in countDict.Keys)
-            {
-                if (countDict[letter] == words.Length)
-                {
+            foreach (var letter in countDict.Keys) {
+                if (countDict[letter] == words.Length) {
                     commonLettersList.Add(letter);
                 }
             }
@@ -171,6 +169,7 @@ namespace EA4S.Db
         /// <param name="word">WordData.</param>
         public string GetWordDrawing(WordData word)
         {
+            Debug.Log("the int of hex:" + word.Drawing + " is " + int.Parse(word.Drawing, NumberStyles.HexNumber));
             return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
         }
 
@@ -307,11 +306,27 @@ namespace EA4S.Db
             return dbManager.GetAllPhraseData();
         }
 
+        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice)
+        {
+            return dbManager.FindPhraseData(x => x.Category == choice);
+        }
+
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
         {
             var data = dbManager.GetPhraseDataById(startPhraseId);
+            return GetLinkedPhraseOf(data);
+        }
+
+        public PhraseData GetLinkedPhraseOf(PhraseData data)
+        {
             if (data.Linked == "") return null;
             return dbManager.FindPhraseData(x => x.Id == data.Linked)[0];
+        }
+
+        public List<PhraseData> GetPhrasesNotIn(params PhraseData[] tabooArray)
+        {
+            var tabooList = new List<PhraseData>(tabooArray);
+            return dbManager.FindPhraseData(x => !tabooList.Contains(x));
         }
 
         #endregion

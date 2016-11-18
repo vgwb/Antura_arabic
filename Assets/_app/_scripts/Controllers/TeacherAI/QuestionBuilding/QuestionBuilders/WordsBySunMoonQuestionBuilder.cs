@@ -3,13 +3,19 @@ using System.Collections.Generic;
 
 namespace EA4S
 {
-    public class SunMoonWordsQuestionBuilder : IQuestionBuilder
+    public class WordsBySunMoonQuestionBuilder : IQuestionBuilder
     {
-        private int nPacks;
+        // focus: Words
+        // pack history filter: by default, all different
+        // journey: enabled
 
-        public SunMoonWordsQuestionBuilder(int nPacks)
+        private int nPacks;
+        SelectionSeverity severity;
+
+        public WordsBySunMoonQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
         {
             this.nPacks = nPacks;
+            this.severity = severity;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -18,11 +24,15 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             var db = AppManager.Instance.DB;
-            var sunWord = db.GetWordDataById("the_sun");
-            var moonWord = db.GetWordDataById("the_moon");
+            var choice1 = db.GetWordDataById("the_sun");
+            var choice2 = db.GetWordDataById("the_moon");
 
-            var wordsWithArticle = teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative).RandomSelect(nPacks);
-            foreach(var wordWithArticle in wordsWithArticle)
+            var wordsWithArticle = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative),
+                new SelectionParameters(severity, nPacks)
+                );
+
+            foreach (var wordWithArticle in wordsWithArticle)
             {
                 int articleLength = 2;
                 var letterAfterArticle = teacher.wordHelper.GetLettersInWord(wordWithArticle)[articleLength];
@@ -31,13 +41,13 @@ namespace EA4S
                 switch (letterAfterArticle.SunMoon)
                 {
                     case Db.LetterDataSunMoon.Sun:
-                        correctWords.Add(sunWord);
-                        wrongWords.Add(moonWord);
+                        correctWords.Add(choice1);
+                        wrongWords.Add(choice2);
                         break;
 
                     case Db.LetterDataSunMoon.Moon:
-                        correctWords.Add(moonWord);
-                        wrongWords.Add(sunWord);
+                        correctWords.Add(choice2);
+                        wrongWords.Add(choice1);
                         break;
                 }
 
