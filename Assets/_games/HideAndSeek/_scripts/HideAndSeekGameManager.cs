@@ -84,14 +84,14 @@ namespace EA4S.HideAndSeek
                 LockTrees();
                 StartCoroutine(DelayAnimation(true));
                 script.resultAnimation(true);
-                Debug.Log("winner");
+                //Debug.Log("winner");
                 game.OnResult();
                 buttonRepeater.SetActive(false);
                 AudioManager.I.PlaySfx(Sfx.Win);
             }
             else
             {
-                Debug.Log("WRONG!");
+                //Debug.Log("WRONG!");
                 RemoveLife();
                 script.resultAnimation(false);
                 if (lifes == 0)
