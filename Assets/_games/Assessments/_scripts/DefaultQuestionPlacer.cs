@@ -63,20 +63,43 @@ namespace EA4S.Assessment
             currentPos.x -= bounds.HalfLetterSize();
             int questionIndex = 0;
 
-            for(int i=0; i< questionsNumber; i++)
+            var flow = AssessmentConfiguration.Instance.LocaleTextFlow;
+
+            if (flow == AssessmentConfiguration.TextFlow.RightToLeft)
             {
-                currentPos.x += spaceIncrement + bounds.LetterSize();
-                yield return PlaceQuestion(
-                    allQuestions[questionIndex], currentPos);
-
-                for (int j=0; j< allQuestions[questionIndex].PlaceholdersCount();j++)
+                for (int i = 0; i < questionsNumber; i++)
                 {
-                    currentPos.x += bounds.LetterSize();
-                    yield return PlacePlaceholder(
-                        allQuestions[questionIndex], currentPos);
-                }
+                    currentPos.x += spaceIncrement + bounds.LetterSize();
 
-                questionIndex++;
+                    foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
+                    {
+                        yield return PlacePlaceholder( allQuestions[ questionIndex], p, currentPos);
+                        currentPos.x += bounds.LetterSize();
+                    }
+
+                    yield return PlaceQuestion(
+                        allQuestions[ questionIndex], currentPos);
+
+                    questionIndex++;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < questionsNumber; i++)
+                {
+                    currentPos.x += spaceIncrement + bounds.LetterSize();
+
+                    yield return PlaceQuestion(
+                        allQuestions[ questionIndex], currentPos);
+
+                    foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
+                    {
+                        currentPos.x += bounds.LetterSize();
+                        yield return PlacePlaceholder( allQuestions[ questionIndex], p, currentPos);
+                    }
+
+                    questionIndex++;
+                }
             }
 
             // give time to finish animating elements
@@ -86,32 +109,27 @@ namespace EA4S.Assessment
 
         private IEnumerator PlaceQuestion( IQuestion q, Vector3 position)
         {
-            Debug.Log("Position:" + position);
             var ll = q.gameObject.GetComponent< LetterObjectView>();
-
 
             ll.Poof(ElementsSize.PoofOffset);
             audioManager.PlaySound(Sfx.Poof);
             ll.transform.localPosition = position;
             ll.transform.DOScale( 1, 0.3f);
-            return TimeEngine.Wait( 0.6f);
+            q.gameObject.GetComponent<QuestionBehaviour>().OnSpawned();
+            return TimeEngine.Wait( 1.0f);
         }
 
-        private IEnumerator PlacePlaceholder( IQuestion q, Vector3 position)
+        private IEnumerator PlacePlaceholder( IQuestion q, GameObject placeholder, Vector3 position)
         {
-            Debug.Log("PlacePlaceholder");
-            
-            var placeholder = LivingLetterFactory.Instance.SpawnCustomElement( CustomElement.Placeholder).transform;
-            placeholder.localPosition = position + new Vector3( 0, 5, 0);
-            placeholder.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
-
-            q.TrackPlaceholder( placeholder.gameObject);
+            Transform tr = placeholder.transform;
+            tr.localPosition = position + new Vector3( 0, 5, 0);
+            tr.localScale = new Vector3( 0.5f, 0.5f, 0.5f);
             audioManager.PlaySound( Sfx.StarFlower);
-
+            
             var seq = DOTween.Sequence();
             seq
-                .Insert(0, placeholder.DOScale( ElementsSize.DropZoneScale, 0.4f))
-                .Insert(0, placeholder.DOMove( position, 0.6f));
+                .Insert( 0, tr.DOScale( ElementsSize.DropZoneScale, 0.4f))
+                .Insert( 0, tr.DOMove( position, 0.6f));
 
             return TimeEngine.Wait( 0.4f);
         }
@@ -127,9 +145,9 @@ namespace EA4S.Assessment
             foreach( var q in allQuestions)
             {
                 foreach (var p in q.GetPlaceholders())
-                    yield return FadeOutPlaceholder(p);
+                    yield return FadeOutPlaceholder( p);
 
-                yield return FadeOutQuestion(q);
+                yield return FadeOutQuestion( q);
             }
 
             // give time to finish animating elements

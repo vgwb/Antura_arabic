@@ -38,9 +38,9 @@ namespace EA4S
         }
 
         #region API
-            /// <summary>
-            /// Living Letter Text To Display.
-            /// </summary>
+        /// <summary>
+        /// Living Letter Text To Display.
+        /// </summary>
         public string TextForLivingLetter {
             get {
                 switch (ShowAs) {
@@ -56,6 +56,11 @@ namespace EA4S
             }
         }
 
+        public string DrawingCharForLivingLetter {
+            get { return null; }
+        }
+
+        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
         public Sprite DrawForLivingLetter {
             get { return null; }
         }

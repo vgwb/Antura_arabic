@@ -54,6 +54,7 @@ namespace EA4S.SickLetters
             yield return new WaitForSeconds(game.hole["Take 001"].length * 2 / game.hole["Take 001"].speed);
             //game.hole["Take 001"]
             game.hole.Stop("Take 001");
+            game.hole.gameObject.SetActive(false);
         }
     }
 }

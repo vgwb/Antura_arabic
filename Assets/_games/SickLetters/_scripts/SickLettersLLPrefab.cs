@@ -19,14 +19,15 @@ namespace EA4S.SickLetters
         public letterStatus LLStatus = letterStatus.idle;
         public Animator letterAnimator;
         public List<SickLettersDraggableDD> thisLLWrongDDs = new List<SickLettersDraggableDD>();
-        
-        
-        
+
+
+        private SkinnedMeshRenderer[] LLMesh;
         Vector3 statPos;
 
         // Use this for initialization
         void Start()
         {
+            LLMesh = GetComponentsInChildren<SkinnedMeshRenderer>();
             letterView = GetComponent<LetterObjectView>();
             letterAnimator = GetComponent<Animator>();
             statPos = transform.position;
@@ -54,7 +55,7 @@ namespace EA4S.SickLetters
 
         IEnumerator coJumpIn()
         {
-
+            showLLMesh(true);
             getNewLetterData();
             scatterDDs();
 
@@ -90,7 +91,10 @@ namespace EA4S.SickLetters
             letterView.Falling = true;
             GetComponent<CapsuleCollider>().isTrigger = true;
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.25f);
+            game.Poof(transform.position + Vector3.up *8.5f - Vector3.forward);
+            showLLMesh(false);
+            yield return new WaitForSeconds(.75f);
 
             if (!endGame)
             {
@@ -155,5 +159,12 @@ namespace EA4S.SickLetters
             }
         }
 
+        void showLLMesh(bool show)
+        {
+            foreach (SkinnedMeshRenderer sm in LLMesh)
+                sm.enabled = show;
+            correctDot.gameObject.SetActive(show);
+            dotlessLetter.gameObject.SetActive(show);
+        }
     }
 }

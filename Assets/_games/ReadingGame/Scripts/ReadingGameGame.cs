@@ -29,22 +29,31 @@ namespace EA4S.ReadingGame
 
         public const int TIME_TO_ANSWER = 20;
         public const int MAX_QUESTIONS = 5;
-        const int STARS_1_THRESHOLD = 8 * MAX_QUESTIONS;
-        const int STARS_2_THRESHOLD = 12 * MAX_QUESTIONS;
-        const int STARS_3_THRESHOLD = 15 * MAX_QUESTIONS;
+        static readonly int[] READING_STARS_THRESHOLDS =
+            new int[] { 8 * MAX_QUESTIONS, 12 * MAX_QUESTIONS, 15 * MAX_QUESTIONS };
 
+
+        int GetStarsThreshold(int stars)
+        {
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+                return READING_STARS_THRESHOLDS[stars - 1];
+
+            var t = (int)(alphabetSong.GetSegmentsLength()/(4 - stars));
+            return t;
+        }
 
         public int CurrentStars
         {
             get
             {
-                if (CurrentScore < STARS_1_THRESHOLD)
+                if (CurrentScore < GetStarsThreshold(1))
                     return 0;
-                if (CurrentScore < STARS_2_THRESHOLD)
+                if (CurrentScore < GetStarsThreshold(2))
                     return 1;
-                if (CurrentScore < STARS_3_THRESHOLD)
+                if (CurrentScore < GetStarsThreshold(3))
                     return 2;
                 return 3;
+
             }
         }
 
@@ -74,7 +83,6 @@ namespace EA4S.ReadingGame
             Context.GetOverlayWidget().Initialize(true, !isSong, !isSong);
             Context.GetOverlayWidget().SetMaxLives(lives);
             Context.GetOverlayWidget().SetLives(lives);
-            Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
@@ -85,6 +93,10 @@ namespace EA4S.ReadingGame
                     alphabetSong = new KaraokeSong(parser.Parse(stream));
                 }
             }
+
+            radialWidget.Hide();
+
+            Context.GetOverlayWidget().SetStarsThresholds(GetStarsThreshold(1), GetStarsThreshold(2), GetStarsThreshold(3));
         }
 
         public void AddScore(int score)

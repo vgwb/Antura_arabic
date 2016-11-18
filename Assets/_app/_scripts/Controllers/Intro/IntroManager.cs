@@ -11,15 +11,14 @@ namespace EA4S
         float anturaExitTimer = 10;
         CountdownTimer countDown = new CountdownTimer(5);
 
-        void Start()
-        {
+        void Start() {
             GlobalUI.ShowPauseMenu(false);
             countDown.Start();
             countDown.onTimesUp += CountDown_onTimesUp;
         }
 
         private void CountDown_onTimesUp() {
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
+            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
         }
 
         void OnDisable() {

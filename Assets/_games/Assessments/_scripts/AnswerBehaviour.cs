@@ -20,6 +20,13 @@ namespace EA4S.Assessment
                 throw new ArgumentException( "Answer already added");
         }
 
+        void OnMouseDown()
+        {
+            if(AssessmentConfiguration.Instance.PronunceAnswerWhenClicked)
+                AssessmentConfiguration.Instance.Context.GetAudioManager()
+                    .PlayLetterData( GetComponent< LetterObjectView>().Data);
+        }
+
         public IAnswer GetAnswer()
         {
             return answer;

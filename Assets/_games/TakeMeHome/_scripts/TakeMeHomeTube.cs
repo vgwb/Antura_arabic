@@ -11,10 +11,32 @@ public class TakeMeHomeTube : MonoBehaviour {
 		Tweener moveTweener;
 
 		Vector3 originalPosition;
-		// Use this for initialization
-		void Start () {
+        public GameObject aspiration;
+        public GameObject winParticles;
+        // Use this for initialization
+        void Start () {
 			originalPosition = transform.position;
-		}
+            aspiration.SetActive(false);
+            winParticles.SetActive(false);
+        }
+
+        public void showWinParticles()
+        {
+            winParticles.SetActive(true);
+        }
+        public void hideWinParticles()
+        {
+            winParticles.SetActive(false);
+        }
+        public void activate()
+        {
+            aspiration.SetActive(true);
+        }
+
+        public void deactivate()
+        {
+            aspiration.SetActive(false);
+        }
 		
 		// Update is called once per frame
 		void Update () {

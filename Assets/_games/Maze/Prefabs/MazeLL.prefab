@@ -1717,9 +1717,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTransform: {fileID: 4000011783673362}
+  contentTransform: {fileID: 0}
+  textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
   Lable: {fileID: 114000012988545536}
   ImageSprite: {fileID: 212000010025911944}
-  maxSize: 1.5
+  Scale: 1
   normalGraphics:
   - {fileID: 1000012557112972}
   - {fileID: 1000010284346450}
