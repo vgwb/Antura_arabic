@@ -131,8 +131,9 @@ namespace EA4S.ColorTickle
                     }
                     else if (m_Lives <= 0)
                     {
-                        m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
-                        m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);
+                        /*m_LetterObjectView.DoDancingLose(); //this just set trigger for lose on dancing animation
+                        m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);*/
+                        m_LetterObjectView.DoAngry();
                         AudioManager.I.PlaySfx(Sfx.Lose);
                     }
 
