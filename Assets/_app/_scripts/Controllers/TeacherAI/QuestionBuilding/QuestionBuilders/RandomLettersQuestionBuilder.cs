@@ -56,14 +56,12 @@ namespace EA4S
                     new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect,
                         packListHistory: correctChoicesHistory, filteringIds: previousPacksIDs)
                 );
-            //if (correctChoicesHistory != PackListHistory.NoFilter) previousPacksIDs.AddRange(correctLetters.ConvertAll(x => x.GetId()).ToArray());
 
             var wrongLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()),
                     new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney: wrongIgnoreJourney,
                      packListHistory: wrongChoicesHistory, filteringIds: previousPacksIDs)
                 );
-            //if (wrongChoicesHistory != PackListHistory.NoFilter) previousPacksIDs.AddRange(wrongLetters.ConvertAll(x => x.GetId()).ToArray());
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
 

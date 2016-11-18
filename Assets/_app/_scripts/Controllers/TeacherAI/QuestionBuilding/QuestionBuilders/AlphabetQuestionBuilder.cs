@@ -6,7 +6,7 @@ namespace EA4S
     public class AlphabetQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters
-        // pack history filter: only 1 pack
+        // pack history filter: forced - only 1 pack
         // journey: enabled
 
         private bool ignoreJourney;
