@@ -33,6 +33,10 @@ namespace EA4S
             get { return ArabicAlphabetHelper.ParseWord(Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()); }
         }
 
+        public string DrawingCharForLivingLetter {
+            get { return AppManager.Instance.Teacher.wordHelper.GetWordDrawing(Data); }
+        }
+
         /// <summary>
         /// Return draw of word.
         /// </summary>
