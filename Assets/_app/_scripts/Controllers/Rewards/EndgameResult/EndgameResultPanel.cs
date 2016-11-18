@@ -16,6 +16,7 @@ namespace EA4S
         public EndgameStar[] Stars;
 
         bool setupDone;
+        int numStars;
         RectTransform raysRT;
         Tween showTween, bgTween;
 
@@ -30,7 +31,8 @@ namespace EA4S
 
             showTween = this.GetComponent<RectTransform>().DOAnchorPosY(-960, 0.35f).From()
                 .SetEase(Ease.OutBack).SetAutoKill(false).Pause()
-                .OnRewind(()=> this.gameObject.SetActive(false));
+                .OnRewind(()=> this.gameObject.SetActive(false))
+                .OnComplete(()=> this.StartCoroutine(CO_ShowComplete()));
             bgTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(Rays.DOFade(0, 0.35f).From())
                 .Join(Rays.transform.DORotate(new Vector3(0, 0, 360), 9f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(9999));
@@ -59,36 +61,32 @@ namespace EA4S
 
             this.StopAllCoroutines();
             bgTween.Rewind();
+            ContinueScreen.Close(true);
             if (_doShow) {
+                numStars = _numStars;
                 this.gameObject.SetActive(true);
-                this.StartCoroutine(CO_Show(_numStars));
-            } else {
-                showTween.PlayBackwards();
-                ContinueScreen.Close(true);
-            }
+                foreach (EndgameStar star in Stars) star.Reset();
+                showTween.Restart();
+                this.gameObject.SetActive(true);
+            } else showTween.PlayBackwards();
         }
 
         #endregion
 
         #region Methods
 
-        IEnumerator CO_Show(int _numStars)
+        IEnumerator CO_ShowComplete()
         {
-            foreach (EndgameStar star in Stars) star.Reset();
-            showTween.Restart();
-            yield return showTween.WaitForCompletion();
-            yield return new WaitForSeconds(0.15f);
-
             int id = 0;
-            while (id < _numStars) {
+            while (id < numStars) {
                 Stars[id].Gain();
                 yield return new WaitForSeconds(0.2f);
                 id++;
             }
 
-            if (_numStars > 0) {
-                if (_numStars == 1) raysRT.SetAnchoredPosX(Stars[0].RectT.anchoredPosition.x);
-                else if (_numStars == 2) raysRT.SetAnchoredPosX(Stars[0].RectT.anchoredPosition.x + (Stars[1].RectT.anchoredPosition.x - Stars[0].RectT.anchoredPosition.x) * 0.5f);
+            if (numStars > 0) {
+                if (numStars == 1) raysRT.SetAnchoredPosX(Stars[0].RectT.anchoredPosition.x);
+                else if (numStars == 2) raysRT.SetAnchoredPosX(Stars[0].RectT.anchoredPosition.x + (Stars[1].RectT.anchoredPosition.x - Stars[0].RectT.anchoredPosition.x) * 0.5f);
                 else raysRT.SetAnchoredPosX(0);
                 bgTween.Restart();
             }
