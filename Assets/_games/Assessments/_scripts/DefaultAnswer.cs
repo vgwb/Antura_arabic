@@ -12,7 +12,7 @@ namespace EA4S.Assessment
             view = letter;
             isCorrect = correct;
             var answer = letter.gameObject.AddComponent< AnswerBehaviour>();
-            answer.SetAnswer( this);
+            answer.SetAnswer(this);
         }
 
         public GameObject gameObject
@@ -26,6 +26,18 @@ namespace EA4S.Assessment
         public bool IsCorrect()
         {
             return isCorrect;
+        }
+
+        int answerSet = 0;
+
+        public void SetAnswerSet( int set)
+        {
+            answerSet = set;
+        }
+
+        public int GetAnswerSet()
+        {
+            return answerSet;
         }
     }
 }

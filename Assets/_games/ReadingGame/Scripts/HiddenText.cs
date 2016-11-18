@@ -24,6 +24,7 @@ public class HiddenText : MonoBehaviour
     public void UpdateTarget()
     {
         hasElements = true;
+        //var renderers = target.GetComponentsInChildren<Renderer>(true);
         var renderers = target.GetComponentsInChildren<Renderer>();
 
         Vector3 min = new Vector3(Screen.width, Screen.height, 0);

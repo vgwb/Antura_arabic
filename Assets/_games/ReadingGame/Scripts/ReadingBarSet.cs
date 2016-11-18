@@ -25,7 +25,11 @@ public class ReadingBarSet : MonoBehaviour
     KaraokeSong currentBarSong;
 
     bool playingSong = false;
+    bool songStarted = false;
+    bool barsCompleted = false;
+    bool songInsideAWord = false;
     IAudioSource songSource;
+    System.Action onSongCompleted;
 
     void Awake()
     {
@@ -72,6 +76,8 @@ public class ReadingBarSet : MonoBehaviour
 
         currentBarWords = SetData(splitText, null, true);
         currentBarSong = null;
+
+        SetActiveBar(bars[0]);
     }
 
     public void SetData(KaraokeSong data)
@@ -88,15 +94,19 @@ public class ReadingBarSet : MonoBehaviour
 
         currentBarWords = SetData(words, lineBreaks, false);
         currentBarSong = data;
+
+        for (int i = 0; i < bars.Count; ++i)
+            bars[i].currentTarget = 0;
     }
 
-    public void PlaySong(IAudioSource source)
+    public void PlaySong(IAudioSource source, System.Action onSongCompleted)
     {
         if (playingSong)
             return;
 
         playingSong = true;
         songSource = source;
+        this.onSongCompleted = onSongCompleted;
     }
 
 
@@ -126,7 +136,6 @@ public class ReadingBarSet : MonoBehaviour
         }
 
         bars.Add(currentReadingBar);
-        SetActiveBar(currentReadingBar);
         float lastBarSize = barWords[0].end = currentReadingBar.text.GetPreferredValues().x;
 
         for (int i = 1; i < wordsCount; ++i)
@@ -226,6 +235,17 @@ public class ReadingBarSet : MonoBehaviour
         return null;
     }
 
+    public bool GetFollowingDistance(out float distance)
+    {
+        distance = 0;
+
+        if (activeBar == null || !songInsideAWord)
+            return false;
+
+        distance = (activeBar.currentTarget - activeBar.currentReading)*activeBar.GetWidth();
+        return true;
+    }
+
     void Update()
     {
         for (int i = 0; i < bars.Count; ++i)
@@ -239,53 +259,75 @@ public class ReadingBarSet : MonoBehaviour
             bar.Show(show);
         }
 
+        songInsideAWord = false;
         if (playingSong)
         {
-            if (songSource != null)
+            if (songSource != null && songSource.IsPlaying)
             {
                 float currentTime = songSource.Position;
 
                 var songWords = currentBarSong.lines;
-                bool songCompleted = true;
-                for (int i = 0; i < songWords.Count; ++i)
+                
+                var songStart = songWords[0].start;
+                if (currentTime > songStart - 2)
                 {
-                    var currentSongWord = songWords[i];
-                    var currentBarWord = currentBarWords[i];
+                    if (!songStarted)
+                        SetActiveBar(bars[0]);
 
-                    var timeStart = currentSongWord.start;
-                    var timeEnd = currentSongWord.end;
+                    songStarted = true;
+                }
 
-                    // Move to currentBarWord
-                    while (activeBar != null && activeBar.Id < currentBarWord.barId)
-                        SwitchToNextBar();
-
-                    if (currentTime < timeStart)
+                if (songStarted)
+                {
+                    for (int i = 0; i < songWords.Count; ++i)
                     {
-                        songCompleted = false;
-                        if (activeBar != null && activeBar.Id == currentBarWord.barId)
-                            activeBar.currentTarget = 0;
+                        var currentSongWord = songWords[i];
+                        var currentBarWord = currentBarWords[i];
 
-                        break;
-                    }
-                    else if (currentTime > timeEnd)
-                    {
-                    }
-                    else 
-                    {
-                        songCompleted = false;
-                        float tInWord = (currentTime - timeStart) / (timeEnd - timeStart);
+                        var timeStart = currentSongWord.start;
+                        var timeEnd = currentSongWord.end;
 
-                        float t = Mathf.Lerp(currentBarWord.start, currentBarWord.end, tInWord);
-                        activeBar.currentTarget = t;
+                        // Move to currentBarWord
+                        while (activeBar != null && activeBar.Id < currentBarWord.barId)
+                            SwitchToNextBar();
 
-                        break;
+                        if (currentTime < timeStart)
+                        {
+                            if (activeBar != null && activeBar.Id == currentBarWord.barId)
+                                activeBar.currentTarget = 0;
+
+                            break;
+                        }
+                        else if (currentTime > timeEnd)
+                        {
+                            barsCompleted = (i == songWords.Count - 1);
+                        }
+                        else
+                        {
+                            float tInWord = (currentTime - timeStart) / (timeEnd - timeStart);
+
+                            float t = Mathf.Lerp(currentBarWord.start, currentBarWord.end, tInWord);
+                            activeBar.currentTarget = t;
+                            songInsideAWord = true;
+
+                            break;
+                        }
                     }
                 }
 
-                if (songCompleted)
+                if (barsCompleted)
                 {
                     SetActiveBar(null);
                 }
+            }
+            else if (barsCompleted)
+            {
+                songStarted = false;
+                playingSong = false;
+                songSource = null;
+
+                if (onSongCompleted != null)
+                    onSongCompleted();
             }
         }
     }

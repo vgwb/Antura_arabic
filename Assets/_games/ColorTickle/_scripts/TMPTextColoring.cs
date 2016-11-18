@@ -121,8 +121,7 @@ namespace EA4S.ColorTickle
                 //check for ray collision
                 if (m_oLetterMeshCollider.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
                 {
-                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
-
+                    
                     //Now we find out which color we hitted to check if we are inside the letter outline
                     //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect)
                     Vector2 fullUV = TextureUtilities.CombineSubUV(m_oRayHit.textureCoord, m_aUVLetterInMainTexture[0], m_aUVLetterInMainTexture[1].y - m_aUVLetterInMainTexture[0].y, m_aUVLetterInMainTexture[2].x - m_aUVLetterInMainTexture[1].x);
@@ -143,11 +142,7 @@ namespace EA4S.ColorTickle
                     else
                     {
 
-                        //Debug.Log("COLORING!!!");
-
                         ColorLetterTexturePoint(m_oRayHit.textureCoord); //paint a single brush
-
-                        //CheckLetterCompletation(); //check for letter coverage
 
                         if (OnShapeHit != null)
                         {
@@ -199,37 +194,6 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE FUNCTIONS
 
-        /// <summary>
-        /// Checks if the letter has been colored to the indicated target percentage.
-        /// This checks each pixel of the colored texture with the relative on the letter one.
-        /// Note: pixels processed sequentially, potentially heavy.
-        /// </summary>
-        /// <returns></returns>
-        private bool CheckLetterCompletation()
-        {
-            int _iCounter = 0;
-            Color[] _aColoredMatrix = m_tLetterDynamicTexture.GetPixels(); //Format is ARGB32
-            Color[] _aLetterShapeMatrix = m_tSingleLetterRenderedTextureScaledToDynamic.GetPixels(); //Format is Alpha8
-
-
-            for (int idx = 0; idx < _aLetterShapeMatrix.Length; ++idx)
-            {
-                //increase the counter each time the pixel of the letter is inside (alpha > 0) and the color is not white (only white has grayscale==1)
-                _iCounter += Mathf.CeilToInt(_aLetterShapeMatrix[idx].a) * (1 - Mathf.FloorToInt(_aColoredMatrix[idx].grayscale));
-            }
-
-            //Debug.Log("Completation check: " + _iCounter + "/" + m_iTotalShapePixels);
-
-            if (_iCounter >= m_iTotalShapePixels * m_iPercentageRequiredToWin / 100f)
-            {
-                //Debug.Log("SUCCESS!!! Required number was: " + (m_iTotalShapePixels * m_iPercentageRequiredToWin / 100f));
-                return true;
-            }
-
-            return false;
-        }
-
-
         #region MEMBERS INITIALIZATIONS
 
         /// <summary>
@@ -279,8 +243,6 @@ namespace EA4S.ColorTickle
             m_tLetterDynamicTexture.SetPixels(TextureUtilities.FillTextureWithColor(m_tLetterDynamicTexture, m_oBaseColor)); //initialiaze it to white
             m_tLetterDynamicTexture.Apply();
 
-            //Debug.Log("Dynamic Tex size are " + m_tLetterDynamicTexture.width + "," + m_tLetterDynamicTexture.height);
-
             //link the dynamic texture to the TextMeshPro Text as the material's face texture 
             m_oTextMeshObject.fontMaterial.SetTexture("_FaceTex", m_tLetterDynamicTexture);
         }
@@ -291,15 +253,11 @@ namespace EA4S.ColorTickle
         /// frequent use of GetPixelBilinear() at each frame when accessing letter texture data.
         /// </summary>
         private void SetupLetterShapeTexture()
-        {
-            
+        { 
 
             //here we setup two textures:
-
-
             //(1) - m_tSingleLetterRenderedTextureScaledToDynamic: scale the letter alpha texture to match the size of the dynamic one and having a 1:1 matching on the color coverage
             //(2) - m_tSingleLetterAlphaTextureScaledToDynamic: scale the letter alpha texture with greater dilatation to match the size of the dynamic one and having a 1:1 matching on the check for the hit
-
 
             //m_tBaseLetterTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
             m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
@@ -370,13 +328,6 @@ namespace EA4S.ColorTickle
                 m_tSingleLetterAlphaTextureScaledToDynamic.Apply(); ;
             }
 
-            /*
-            alphaletter = new Texture2D(m_tSingleLetterRenderedTextureScaledToDynamic.width, m_tSingleLetterRenderedTextureScaledToDynamic.height, TextureFormat.Alpha8, false);
-           
-            alphaletter.SetPixels(_aColorSingleLetterScaled);
-            alphaletter.Apply();*/
-
-            //m_tBaseLetterTextureScaledToDynamic = alphaletter;
         }
         #endregion
 
@@ -394,7 +345,7 @@ namespace EA4S.ColorTickle
                 return;
             }
 
-            //Before color with the brush's texture we need to verify that it fits 
+            //Before coloring with the brush's texture we need to verify that it fits 
             //in the target's bound and eventually split it
 
             //store pixel touched in the texture

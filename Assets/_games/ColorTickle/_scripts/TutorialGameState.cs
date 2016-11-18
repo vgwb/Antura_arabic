@@ -69,6 +69,8 @@ namespace EA4S.ColorTickle
             }
             else if (m_PercentageLetterColored >= 100) //else check for letter completed
             {
+				game.tutorialUIManager.StartTutorial = false;
+
                 game.anturaController.ForceAnturaToGoBack();//we completed the letter, antura turn back
 
                 m_bLLVanishing = true; //LL is about to disappear

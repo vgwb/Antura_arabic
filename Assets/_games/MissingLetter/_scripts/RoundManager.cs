@@ -35,6 +35,8 @@ namespace EA4S.MissingLetter
             int ansPoolSize = mGame.m_iNumberOfPossibleAnswers * 4;
             mGame.mLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(mAnsPos + Vector3.right * mGame.mAnswerINOffset, mAnsPos, mAnsPos + Vector3.right * mGame.mAnswerOUTOffset);
             mAnswerPool = new GameObjectPool(mGame.mLetterPrefab, ansPoolSize, false);
+
+            m_oEmoticonsController = new MissingLetterEmoticonsController(mGame.m_oEmoticonsController);
         }
 
         public void SetTutorial(bool _enabled) {
@@ -97,6 +99,8 @@ namespace EA4S.MissingLetter
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
             qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
             mCurrentQuestionScene.Add(oQuestion);
+
+            m_oEmoticonsController.init(qstBehaviour.transform);
 
             //after insert in mCurrentQuestionScene
             RemoveLetterfromQuestion();
@@ -207,7 +211,11 @@ namespace EA4S.MissingLetter
             {
                 _obj.GetComponent<LetterBehaviour>().Refresh();
             }
-
+            if(result)
+                m_oEmoticonsController.EmoticonPositive();
+            else
+                m_oEmoticonsController.EmoticonNegative();
+            
             //change restored color letter with tag
             string color = result ? "#1B5E20" : "#DD2C00";
             string first = tmp.Lable.text[index].ToString();
@@ -423,6 +431,8 @@ namespace EA4S.MissingLetter
 
         private RoundType mRoundType;
         private bool m_bTutorialEnabled;
+
+        private MissingLetterEmoticonsController m_oEmoticonsController;
         #endregion
 
     }

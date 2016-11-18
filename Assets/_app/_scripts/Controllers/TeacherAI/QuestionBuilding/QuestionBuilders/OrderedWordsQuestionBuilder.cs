@@ -1,14 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
     public class OrderedWordsQuestionBuilder : IQuestionBuilder
     {
-        Db.WordDataCategory category;
+        // focus: Words
+        // pack history filter: only 1 pack
+        // journey: enabled
 
-        public OrderedWordsQuestionBuilder(Db.WordDataCategory _category)
+        Db.WordDataCategory category;
+        SelectionSeverity severity;
+
+        public OrderedWordsQuestionBuilder(Db.WordDataCategory category, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
         {
-            this.category = _category;
+            this.category = category;
+            this.severity = severity;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -20,17 +27,28 @@ namespace EA4S
 
         private QuestionPackData CreateSingleQuestionPackData()
         {
-            var db = AppManager.Instance.DB;
+            var teacher = AppManager.Instance.Teacher;
 
             // Ordered words
-            var correctAnswers = db.FindWordData(x => x.Category == category);
-            correctAnswers.Sort((x, y) =>
+            var words = teacher.wordAI.SelectData(
+                 () => teacher.wordHelper.GetWordsByCategory(category),
+                 new SelectionParameters(severity, 100)    // @todo: use a number that means 'all'
+               );
+
+            words.Sort((x, y) =>
                 {
                     return x.ToString().CompareTo(y.ToString());
                 }
             );
 
-            return QuestionPackData.CreateFromCorrect(null, correctAnswers);
+            if (ConfigAI.verboseTeacher)
+            {
+                string debugString = "Words: " + words.Count;
+                foreach (var w in words) debugString += " " + w;
+                UnityEngine.Debug.Log(debugString);
+            }
+
+            return QuestionPackData.CreateFromCorrect(null, words);
         }
 
     }

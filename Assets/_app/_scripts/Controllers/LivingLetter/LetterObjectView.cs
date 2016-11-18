@@ -36,7 +36,10 @@ namespace EA4S
         public Transform contentTransform;
         public RectTransform textTransform;
 
+        public Transform boneToScaleTransform;
+
         public TMP_Text Lable;
+        public TextMeshPro Drawing;
         public SpriteRenderer ImageSprite;
 
         Vector3 startScale;
@@ -49,6 +52,9 @@ namespace EA4S
         public GameObject[] limblessGraphics;
 
         public GameObject poofPrefab;
+
+        public float DancingSpeed = 1;
+        int dancingRefs = 0;
 
         LLAnimationStates backState = LLAnimationStates.LL_idle;
         bool hasToGoBackState = false;
@@ -133,19 +139,23 @@ namespace EA4S
             if (Data == null)
             {
                 ImageSprite.enabled = false;
+                Drawing.enabled = false;
                 Lable.enabled = false;
             }
             else
             {
                 if (Data.DataType == LivingLetterDataType.Image)
                 {
-                    ImageSprite.sprite = Data.DrawForLivingLetter;
-                    ImageSprite.enabled = true;
+                    Drawing.text = Data.DrawingCharForLivingLetter;
+                    Drawing.enabled = true;
+                    //ImageSprite.sprite = Data.DrawForLivingLetter;
+                    //ImageSprite.enabled = true;
                     Lable.enabled = false;
                 }
                 else
                 {
                     ImageSprite.enabled = false;
+                    Drawing.enabled = false;
                     Lable.enabled = true;
                     Lable.text = Data.TextForLivingLetter;
                 }
@@ -247,11 +257,19 @@ namespace EA4S
 
             animator.SetFloat("walkSpeed", Mathf.Lerp(oldSpeed, walkingSpeed, Time.deltaTime * 6.0f));
 
-            if (Scale != lastScale && Scale >= 1.0f)
+            if (dancingRefs > 0)
+                animator.speed = Mathf.Lerp(animator.speed, DancingSpeed, Time.deltaTime * 10.0f);
+            else
+                animator.speed = Mathf.Lerp(animator.speed, 1, Time.deltaTime * 10.0f);
+        }
+
+        void LateUpdate()
+        {
+            //if (Scale != lastScale && Scale >= 1.0f)
             {
                 if (contentTransform)
                 {
-                    transform.localScale = new Vector3(startScale.x * Scale, startScale.y, startScale.z);
+                    boneToScaleTransform.localScale = new Vector3(startScale.x, startScale.y, startScale.z * Scale);
                     contentTransform.localScale = new Vector3(1 / Scale, 1, 1);
                     textTransform.sizeDelta = new Vector3(startTextScale.x * Scale, startTextScale.y);
                 }
@@ -340,6 +358,12 @@ namespace EA4S
         public void SetWalkingSpeed(float speed = WALKING_SPEED)
         {
             walkingSpeed = speed;
+        }
+
+
+        public void SetDancingSpeed(float speed)
+        {
+            DancingSpeed = speed;
         }
 
         public void DoHorray()
@@ -436,10 +460,30 @@ namespace EA4S
         /// onLetterShowingBack is called when the letter is twirling and it shows you the back;
         /// so you can swap letter in that moment!
         /// </summary>
+
+        [System.Obsolete("Use DoTwirl instead; now twirl is used also in other states")]
         public void DoDancingTwirl(System.Action onLetterShowingBack)
         {
+            DoTwirl(onLetterShowingBack);
+        }
+       
+        public void DoTwirl(System.Action onLetterShowingBack)
+        {
+            if ((State != LLAnimationStates.LL_still) &&
+                (State != LLAnimationStates.LL_idle) &&
+                (State != LLAnimationStates.LL_dancing))
+            {
+                if (!hasToGoBackState)
+                    backState = State;
+                SetState(LLAnimationStates.LL_still);
+                hasToGoBackState = true;
+            }
+
+            if (inIdleAlternative)
+                animator.SetTrigger("stopAlternative");
+
             onTwirlCallback = onLetterShowingBack;
-            animator.SetTrigger("doDancingTwirl");
+            animator.SetTrigger("doTwirl");
         }
 
         public void ToggleDance()
@@ -497,7 +541,7 @@ namespace EA4S
         /// <summary>
         /// Produces a poof nearby the LL
         /// </summary>
-        public void Poof( float verticalOffset = 0)
+        public void Poof(float verticalOffset = 0)
         {
             var puffGo = GameObject.Instantiate(poofPrefab);
             puffGo.AddComponent<AutoDestroy>().duration = 2;
@@ -530,6 +574,16 @@ namespace EA4S
         void OnEnable()
         {
             OnStateChanged(state, state);
+        }
+
+        void OnDancingStart()
+        {
+            ++dancingRefs;
+        }
+
+        void OnDancingEnd()
+        {
+            --dancingRefs;
         }
     }
 }

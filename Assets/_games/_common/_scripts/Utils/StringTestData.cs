@@ -11,28 +11,28 @@ namespace EA4S
             this.text = text;
         }
 
-        public LivingLetterDataType DataType
-        {
-            get
-            {
+        public LivingLetterDataType DataType {
+            get {
                 return LivingLetterDataType.Word;
             }
         }
 
-        public Sprite DrawForLivingLetter
-        {
-            get
-            {
+        public string DrawingCharForLivingLetter {
+            get {
                 return null;
             }
         }
 
-        public string Key        {            get; set;        }
+        public Sprite DrawForLivingLetter {
+            get {
+                return null;
+            }
+        }
 
-        public string TextForLivingLetter
-        {
-            get
-            {
+        public string Key { get; set; }
+
+        public string TextForLivingLetter {
+            get {
                 return text;
             }
         }

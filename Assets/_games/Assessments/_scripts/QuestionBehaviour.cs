@@ -24,5 +24,29 @@ namespace EA4S.Assessment
         {
             return question;
         }
+
+        void OnMouseDown()
+        {
+            if(AssessmentConfiguration.Instance.PronunceQuestionWhenClicked)
+                AssessmentConfiguration.Instance.Context.GetAudioManager()
+                    .PlayLetterData( GetComponent< LetterObjectView>().Data);
+        }
+
+        public IQuestionDecoration questionAnswered;
+
+        internal void OnQuestionAnswered()
+        {
+            questionAnswered.TriggerOnAnswered();
+        }
+
+        internal void OnSpawned()
+        {
+            questionAnswered.TriggerOnSpawned();
+        }
+
+        internal float TimeToWait()
+        {
+            return questionAnswered.TimeToWait();
+        }
     }
 }

@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
-
+﻿using EA4S.Teacher;
+using System.Collections.Generic;
 
 namespace EA4S
 {
     public class WordsInPhraseQuestionBuilder : IQuestionBuilder
     {
+        // Focus: Words & Phrases
+        // pack history filter: TODO
+        // journey: TODO
+
         private int nPacks;
         private int nCorrect;
         private int nWrong;
@@ -42,6 +46,17 @@ namespace EA4S
             if (!useAllCorrectWords) correctAnswers = phraseWords.RandomSelect(nCorrect);
 
             var wrongAnswers = teacher.wordHelper.GetWordsNotIn(phraseWords.ToArray()).RandomSelect(nWrong);
+
+            if (ConfigAI.verboseTeacher)
+            {
+                string debugString = "--------- TEACHER: question pack result ---------";
+                debugString += "\nQuestion: " + question;
+                debugString += "\nCorrect Answers: " + correctAnswers.Count;
+                foreach (var l in correctAnswers) debugString += " " + l;
+                debugString += "\nWrong Answers: " + wrongAnswers.Count;
+                foreach (var l in wrongAnswers) debugString += " " + l;
+                UnityEngine.Debug.Log(debugString);
+            }
 
             return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
         }
