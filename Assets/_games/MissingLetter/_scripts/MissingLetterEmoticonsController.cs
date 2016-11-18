@@ -3,20 +3,8 @@ using UnityEngine.Assertions;
 
 namespace EA4S.MissingLetter {
     public class MissingLetterEmoticonsController {
-        EmoticonsController emoticonsController;
 
-        bool autoClose;
-        bool emoticonsClosed;
-        Emoticons? currentEmoticon;
-
-        PaletteColors internalColor = PaletteColors.white;
-        PaletteTone internalTone = PaletteTone.light;
-        PaletteColors externalColor = PaletteColors.white;
-        PaletteTone externalTone = PaletteTone.light;
-        PaletteColors cineticLinesColor = PaletteColors.white;
-        PaletteTone cineticLinesTone = PaletteTone.light;
-
-
+        #region API
         public MissingLetterEmoticonsController(GameObject _EmoticonsController) {
             Assert.IsNotNull<EmoticonsController>(_EmoticonsController.GetComponent<EmoticonsController>(), "Please attach the EmoticonsController script to the prefab : " + _EmoticonsController.name);
             emoticonsController = _EmoticonsController.GetComponent<EmoticonsController>();
@@ -29,19 +17,6 @@ namespace EA4S.MissingLetter {
             emoticonsController.transform.forward = Vector3.back;
 
             CloseEmoticons();
-        }
-
-        public void EmoticonHappy() {
-            internalColor = PaletteColors.azure;
-            internalTone = PaletteTone.dark;
-            externalColor = PaletteColors.green;
-            externalTone = PaletteTone.mid;
-            cineticLinesColor = PaletteColors.orange;
-            cineticLinesTone = PaletteTone.dark;
-
-            OpenEmoticons(Emoticons.vfx_emo_happy);
-
-            autoClose = true;
         }
 
         public void EmoticonPositive() {
@@ -70,19 +45,16 @@ namespace EA4S.MissingLetter {
             autoClose = true;
         }
 
-        public void EmoticonInterrogative() {
-            internalColor = PaletteColors.green;
-            internalTone = PaletteTone.dark;
-            externalColor = PaletteColors.red;
-            externalTone = PaletteTone.light;
-            cineticLinesColor = PaletteColors.pink;
-            cineticLinesTone = PaletteTone.mid;
 
-            OpenEmoticons(Emoticons.vfx_emo_interrogative);
+        public void CloseEmoticons() {
+            emoticonsController.Open(false);
 
-            autoClose = false;
+            emoticonsClosed = true;
+            currentEmoticon = null;
         }
+        #endregion
 
+        #region PRIVATE_FUNCTION
         void OpenEmoticons(Emoticons icon) {
             if (!currentEmoticon.HasValue || (currentEmoticon.HasValue && currentEmoticon.Value != icon)) {
                 currentEmoticon = icon;
@@ -94,24 +66,36 @@ namespace EA4S.MissingLetter {
             emoticonsClosed = false;
         }
 
-        public void CloseEmoticons() {
-            emoticonsController.Open(false);
-
-            emoticonsClosed = true;
-            currentEmoticon = null;
-        }
-
-        void UpdateEmoticonsColor() {
+        void UpdateEmoticonsColor()
+        {
             changeMaterials(MaterialManager.LoadMaterial(internalColor, internalTone), emoticonsController.Internal);
             changeMaterials(MaterialManager.LoadMaterial(externalColor, externalTone), emoticonsController.External);
             changeMaterials(MaterialManager.LoadMaterial(cineticLinesColor, cineticLinesTone), emoticonsController.Cinetic);
         }
 
-        void changeMaterials(Material _material, SkinnedMeshRenderer[] _meshRenderer) {
-            foreach (var item in _meshRenderer) {
+        void changeMaterials(Material _material, SkinnedMeshRenderer[] _meshRenderer)
+        {
+            foreach (var item in _meshRenderer)
+            {
                 SkinnedMeshRenderer m = item.gameObject.GetComponent<SkinnedMeshRenderer>();
                 m.materials = new Material[] { _material };
             }
         }
+        #endregion
+
+        #region VARS
+        EmoticonsController emoticonsController;
+
+        bool autoClose;
+        bool emoticonsClosed;
+        Emoticons? currentEmoticon;
+
+        PaletteColors internalColor = PaletteColors.white;
+        PaletteTone internalTone = PaletteTone.light;
+        PaletteColors externalColor = PaletteColors.white;
+        PaletteTone externalTone = PaletteTone.light;
+        PaletteColors cineticLinesColor = PaletteColors.white;
+        PaletteTone cineticLinesTone = PaletteTone.light;
+        #endregion
     }
 }
