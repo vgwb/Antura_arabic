@@ -347,8 +347,9 @@ namespace EA4S.Egg
             tutorialStop = true;
             DisableAllGameplayInput();
             game.stagePositiveResult = true;
-
+            
             game.eggButtonBox.SetButtonsOnStandardColor();
+            game.eggController.ParticleWinDisabled();
 
             if (isSequence)
             {
