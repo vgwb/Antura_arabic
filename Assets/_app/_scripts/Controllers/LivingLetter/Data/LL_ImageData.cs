@@ -40,6 +40,7 @@ namespace EA4S
         /// <summary>
         /// Return draw of word.
         /// </summary>
+        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
         public Sprite DrawForLivingLetter {
             get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Key); }
         }
