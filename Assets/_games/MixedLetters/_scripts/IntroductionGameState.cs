@@ -41,19 +41,14 @@ namespace EA4S.MixedLetters
             if (anturaEnterTimer < 0 && !anturaEntered)
             {
                 AnturaController.instance.Enable();
-                AnturaController.instance.EnterScene(OnFightBegan);
+                AnturaController.instance.EnterScene(OnFightBegan, OnAnturaExitedScene);
                 anturaEntered = true;
             }
+        }
 
-            if (anturaExited)
-            {
-                anturaExitTimer -= delta;
-
-                if (anturaExitTimer < 0)
-                {
-                    game.SetCurrentState(game.PlayState);
-                }
-            }
+        private void OnAnturaExitedScene()
+        {
+            game.SetCurrentState(game.PlayState);
         }
 
         public void UpdatePhysics(float delta)
