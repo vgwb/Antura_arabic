@@ -53,14 +53,14 @@ namespace EA4S
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
 
-            LLText.Label.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
+            LLText.Init(new LL_WordData(word.GetId(), word));
+            //LLText.Label.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
 
             if (word.Drawing != "") {
                 var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
                 //LLDrawing.Lable.text = drawingChar;
-                var LLView = new LL_ImageData(word.GetId(), word);
-                LLDrawing.Init(LLView);
+                LLDrawing.Init(new LL_ImageData(word.GetId(), word));
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
                 Drawing.text = "";

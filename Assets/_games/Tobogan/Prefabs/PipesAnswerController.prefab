@@ -2939,10 +2939,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 37.35
-  m_fontSizeBase: 37.35
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 60
   m_fontStyle: 0
@@ -3339,10 +3339,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 37.35
-  m_fontSizeBase: 37.35
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 60
   m_fontStyle: 0
@@ -3506,10 +3506,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 37.35
-  m_fontSizeBase: 37.35
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 60
   m_fontStyle: 0
@@ -3649,8 +3649,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 2
+    height: 2
   m_margins: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114000012904514908
 MonoBehaviour:
@@ -3669,8 +3669,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 2
+    height: 2
   m_margins: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114000013120432162
 MonoBehaviour:
@@ -4214,8 +4214,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 2
+    height: 2
   m_margins: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114000013847395708
 MonoBehaviour:
@@ -4283,10 +4283,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 37.35
-  m_fontSizeBase: 37.35
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 60
   m_fontStyle: 0
@@ -4369,8 +4369,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 2
+    height: 2
   m_margins: {x: 0, y: 0, z: 0, w: 0}
 --- !u!198 &198000010248401886
 ParticleSystem:
@@ -24572,7 +24572,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -3.7900028, y: -0.680038}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000010281411516
 RectTransform:
@@ -24590,7 +24590,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -3.7419987, y: -0.69502974}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000010436020198
 RectTransform:
@@ -24644,7 +24644,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -3.7499952, y: -0.6999426}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012576305208
 RectTransform:
@@ -24698,5 +24698,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -3.7799969, y: -0.66998196}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
