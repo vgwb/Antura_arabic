@@ -11,6 +11,8 @@ namespace EA4S
     {
         LivingLetterDataType DataType { get; }
         string TextForLivingLetter { get; }
+        [System.Obsolete("Use DrawingCharForLivingLetter instead of this.")]
+        Sprite DrawForLivingLetter { get; }
         string DrawingCharForLivingLetter { get; }
         string Key { get; set; }
     }
