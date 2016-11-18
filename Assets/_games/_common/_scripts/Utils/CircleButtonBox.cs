@@ -45,7 +45,7 @@ namespace EA4S
             buttons.Clear();
         }
 
-        public void AddButton(ILivingLetterData letterData, System.Action<CircleButton> onClicked, float enterAnimationDelay)
+        public CircleButton AddButton(ILivingLetterData letterData, System.Action<CircleButton> onClicked, float enterAnimationDelay)
         {
             CircleButton button = CreateButton();
             button.Answer = letterData;
@@ -55,6 +55,8 @@ namespace EA4S
             button.DoEnterAnimation(enterAnimationDelay);
 
             dirty = true;
+
+            return button;
         }
 
         CircleButton CreateButton()

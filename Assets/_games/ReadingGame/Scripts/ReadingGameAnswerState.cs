@@ -1,4 +1,5 @@
 ﻿using DG.DeExtensions;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +13,7 @@ namespace EA4S.ReadingGame
 
         public float ReadTime;
         public float MaxTime;
+        CircleButton correctButton;
 
         public ReadingGameAnswerState(ReadingGameGame game)
         {
@@ -39,8 +41,13 @@ namespace EA4S.ReadingGame
             float delay = 0;
             foreach (var c in choices)
             {
-                box.AddButton(c, OnAnswered, delay);
+                var button = box.AddButton(c, OnAnswered, delay);
                 delay += 0.2f;
+
+                if (c == correct)
+                {
+                    correctButton = button;
+                }
             }
 
             game.radialWidget.Show();
@@ -55,7 +62,7 @@ namespace EA4S.ReadingGame
             var inputManager = game.Context.GetInputManager();
 
             game.circleBox.GetComponent<CircleButtonBox>().Clear();
-            
+
             game.radialWidget.inFront = false;
         }
 
@@ -79,7 +86,8 @@ namespace EA4S.ReadingGame
                 game.AddScore((int)(ReadTime) + 1);
                 game.radialWidget.percentage = 0;
                 game.radialWidget.pulsing = false;
-                game.Context.GetCheckmarkWidget().Show(true);
+
+                game.StartCoroutine(DoEndAnimation(true, correctButton));
 
                 game.antura.Mood = ReadingGameAntura.AnturaMood.HAPPY;
             }
@@ -87,16 +95,25 @@ namespace EA4S.ReadingGame
             {
                 game.radialWidget.PoofAndHide();
 
-                game.Context.GetCheckmarkWidget().Show(false);
-
-                if (game.RemoveLife())
-                    return;
+                game.StartCoroutine(DoEndAnimation(false, correctButton));
 
                 game.antura.animator.DoShout(() => { ReadingGameConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking); });
             }
+        }
 
-            game.circleBox.GetComponent<CircleButtonBox>().Clear(()
-                =>
+        IEnumerator DoEndAnimation(bool correct, CircleButton correctButton)
+        {
+            if (correct)
+                correctButton.SetColor(UnityEngine.Color.green);
+            else
+                correctButton.SetColor(UnityEngine.Color.red);
+
+            yield return new UnityEngine.WaitForSeconds(1.0f);
+
+            if (!correct && game.RemoveLife())
+                yield break;
+
+            game.circleBox.GetComponent<CircleButtonBox>().Clear(() =>
             {
                 game.SetCurrentState(game.ReadState);
             }, 0.5f);

@@ -7974,7 +7974,7 @@ MonoBehaviour:
   m_fQuestionINOffset: 20
   m_fQuestionOUTOffset: -30
   m_fQuestionHeightOffset: -4
-  m_fAnswerINOffset: -20
+  m_fAnswerINOffset: -40
   m_fAnswerOUTOffset: 30
   m_fAnswerHeightOffset: -4
   m_fAnturaAnimDuration: 7
