@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
+using ArabicSupport;
 using EA4S;
 using TMPro;
 
@@ -286,11 +287,9 @@ namespace EA4S.Balloons
             word = wordData.Data.Arabic;
             //wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
             wordLetters = question.GetCorrectAnswers().Cast<LL_LetterData>().ToList();
-            foreach (var letter in wordLetters)
-            {
-                Debug.Log(letter.Data.Isolated);
-            }
             wordPrompt.DisplayWord(wordLetters);
+
+            Debug.Log("Word: " + ArabicFixer.Fix(word) + ", Letters (" + wordLetters.Count + "): " + string.Join(" / ", wordLetters.Select(x => x.Data.Isolated).Reverse().ToArray()));
         }
 
         private void CreateFloatingLetters(int numberOfExtraLetters)
