@@ -87,11 +87,12 @@ namespace EA4S.SickLetters
         {
             if (dd.isCorrect)
             {
-                game.onWrongMove();
+                
                 game.Poof(dd.transform.position);
-
-                StartCoroutine(onDroppingCorrectDD());
                 dd.resetCorrectDD();
+                game.onWrongMove();
+                StartCoroutine(onDroppingCorrectDD());
+                
             }
             else if (!dd.isInVase)
             {
@@ -135,7 +136,8 @@ namespace EA4S.SickLetters
 
         public IEnumerator onDroppingCorrectDD() {
 
-            
+            if (game.roundsCount == 0)
+                yield break;
 
             StartCoroutine(game.antura.bark());
 

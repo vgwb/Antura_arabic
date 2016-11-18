@@ -3609,6 +3609,7 @@ MonoBehaviour:
   innerTransform: {fileID: 0}
   contentTransform: {fileID: 0}
   textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
   Lable: {fileID: 114000012767302348}
   ImageSprite: {fileID: 212000011836431938}
   Scale: 1
