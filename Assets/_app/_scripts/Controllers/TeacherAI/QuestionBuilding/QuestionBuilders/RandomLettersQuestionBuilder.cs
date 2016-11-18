@@ -16,12 +16,12 @@ namespace EA4S
         private bool firstCorrectIsQuestion;
         private PackListHistory correctChoicesHistory;
         private PackListHistory wrongChoicesHistory;
-        private bool wrongIgnoreJourney;
+        private bool wrongUseJourney;
 
         public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false,
             PackListHistory correctChoicesHistory = PackListHistory.NoFilter,
             PackListHistory wrongChoicesHistory = PackListHistory.NoFilter,
-            bool wrongIgnoreJourney = false)
+            bool wrongUseJourney = false)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
@@ -29,7 +29,7 @@ namespace EA4S
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
             this.correctChoicesHistory = correctChoicesHistory;
             this.wrongChoicesHistory = wrongChoicesHistory;
-            this.wrongIgnoreJourney = wrongIgnoreJourney;
+            this.wrongUseJourney = wrongUseJourney;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -59,7 +59,7 @@ namespace EA4S
 
             var wrongLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()),
-                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney: wrongIgnoreJourney,
+                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney: !wrongUseJourney,
                      packListHistory: wrongChoicesHistory, filteringIds: previousPacksIDs)
                 );
 
