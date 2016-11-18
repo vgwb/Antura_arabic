@@ -33,7 +33,7 @@ namespace EA4S.ReadingGame
             new int[] { 8 * MAX_QUESTIONS, 12 * MAX_QUESTIONS, 15 * MAX_QUESTIONS };
 
 
-        int GetStarsThreshold(int stars)
+        public int GetStarsThreshold(int stars)
         {
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
                 return READING_STARS_THRESHOLDS[stars - 1];
