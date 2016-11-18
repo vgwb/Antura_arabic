@@ -21,7 +21,7 @@
 
             if (m_fTimer < 0)
             {
-                m_oGame.SetCurrentState(m_oGame.QuestionState);
+                m_oGame.SetCurrentState(m_oGame.TutorialState);
             }
         }
 

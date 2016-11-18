@@ -80,6 +80,9 @@ namespace EA4S.ColorTickle
 
                 AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
 
+                m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
+
+
                 m_LetterObjectView.DoHorray();
                 AudioManager.I.PlaySfx(Sfx.Win);
             }
