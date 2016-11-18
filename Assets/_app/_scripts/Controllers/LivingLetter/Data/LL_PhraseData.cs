@@ -32,8 +32,8 @@ namespace EA4S
         /// </summary>
         public string TextForLivingLetter {
             get {
-                new System.Exception("TextForLivingLetter for LL_PhraseData not ready yet");
-                return string.Empty;
+                return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic);
+                //                return string.Empty;
             }
         }
 
@@ -49,7 +49,7 @@ namespace EA4S
             get {
                 new System.Exception("DrawingCharForLivingLetter for LL_PhraseData not ready yet");
                 return string.Empty;
-                }
+            }
         }
 
         /// <summary>
