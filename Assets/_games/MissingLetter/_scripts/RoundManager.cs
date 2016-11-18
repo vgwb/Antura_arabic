@@ -192,8 +192,8 @@ namespace EA4S.MissingLetter
             }
 
             LetterObjectView tmp = mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            tmp.Lable.text = tmp.Lable.text.Remove(index, 1);
-            tmp.Lable.text = tmp.Lable.text.Insert(index, mkRemovedLetterChar);
+            tmp.Label.text = tmp.Label.text.Remove(index, 1);
+            tmp.Label.text = tmp.Label.text.Insert(index, mkRemovedLetterChar);
 
         }
 
@@ -201,7 +201,7 @@ namespace EA4S.MissingLetter
         {
 
             LetterObjectView tmp = mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            int index = tmp.Lable.text.IndexOf(mkRemovedLetterChar);
+            int index = tmp.Label.text.IndexOf(mkRemovedLetterChar);
 
             foreach (GameObject _obj in mCurrentQuestionScene)
             {
@@ -210,8 +210,8 @@ namespace EA4S.MissingLetter
 
             //change restored color letter with tag
             string color = result ? "green" : "red";
-            string first = tmp.Lable.text[index].ToString();
-            tmp.Lable.text = tmp.Lable.text.Replace(first, "<color="+ color + ">" + first + "</color>");
+            string first = tmp.Label.text[index].ToString();
+            tmp.Label.text = tmp.Label.text.Replace(first, "<color="+ color + ">" + first + "</color>");
         }
 
         void EnterCurrentScene() {

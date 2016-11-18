@@ -299,7 +299,7 @@ ModelImporter:
       name: EM_Close
       takeName: Take 001
       firstFrame: 10
-      lastFrame: 10
+      lastFrame: 11
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -424,7 +424,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 9.900001
     isReadable: 1
   meshes:
     lODScreenPercentages: []
