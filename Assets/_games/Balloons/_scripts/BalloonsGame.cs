@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
+using ArabicSupport;
 using EA4S;
 using TMPro;
 
@@ -72,6 +73,10 @@ namespace EA4S.Balloons
         //        }
 
         private int _currentScore = 0;
+
+        private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
+
+        private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
 
         public int CurrentScore
         {
@@ -175,14 +180,14 @@ namespace EA4S.Balloons
 
         public void OnRoundStartPressed()
         {
-            WidgetPopupWindow.I.Close();
+            Popup.Hide();
             BeginGameplay();
         }
 
         public void OnRoundResultPressed()
         {
-            GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
-            WidgetPopupWindow.I.Close();
+            AudioManager.PlaySound(Sfx.UIButtonClick);
+            Popup.Hide();
             Play();
         }
 
@@ -212,20 +217,18 @@ namespace EA4S.Balloons
             float delay = 0.75f;
             yield return new WaitForSeconds(delay);
 
-            GetConfiguration().Context.GetAudioManager().PlayLetterData(wordData);
-            WidgetPopupWindow.I.ShowStringAndWord(OnRoundStartPressed, "#" + currentRound, wordData);
-            //var popup = GetConfiguration().Context.GetPopupWidget();
-            //popup.SetButtonCallback(OnRoundStartPressed);
-            //popup.SetMessage("#" + currentRound, false);
-            //popup.SetWord(wordData);
-            //popup.Show();
+            AudioManager.PlayLetterData(wordData);
+            //WidgetPopupWindow.I.ShowStringAndWord(OnRoundStartPressed, "#" + currentRound, wordData);
+            Popup.Show();
+            Popup.SetButtonCallback(OnRoundStartPressed);
+            Popup.SetWord(wordData);
 
             uiCanvas.gameObject.SetActive(true);
         }
 
         private void EndRound(Result result)
         {
-            GetConfiguration().Context.GetAudioManager().PlayMusic(Music.Relax);
+            AudioManager.PlayMusic(Music.Relax);
             DisableFloatingLetters();
             timer.StopTimer();
             ProcessRoundResult(result);
@@ -270,7 +273,7 @@ namespace EA4S.Balloons
             CreateFloatingLetters(currentRound);
             runningAntura.SetActive(true);
             timer.StartTimer();
-            GetConfiguration().Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            AudioManager.PlayMusic(Music.MainTheme);
         }
 
         private void AnimateCountdown(string text)
@@ -286,11 +289,9 @@ namespace EA4S.Balloons
             word = wordData.Data.Arabic;
             //wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
             wordLetters = question.GetCorrectAnswers().Cast<LL_LetterData>().ToList();
-            foreach (var letter in wordLetters)
-            {
-                Debug.Log(letter.Data.Isolated);
-            }
             wordPrompt.DisplayWord(wordLetters);
+
+            Debug.Log("Word: " + ArabicFixer.Fix(word) + ", Letters (" + wordLetters.Count + "): " + string.Join(" / ", wordLetters.Select(x => x.Data.Isolated).Reverse().ToArray()));
         }
 
         private void CreateFloatingLetters(int numberOfExtraLetters)
@@ -419,7 +420,7 @@ namespace EA4S.Balloons
         {
             remainingLives--;
             wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
-            GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
+            AudioManager.PlaySound(Sfx.LetterSad);
 
             if (remainingLives <= 0)
             {
@@ -430,7 +431,7 @@ namespace EA4S.Balloons
 
         public void OnPoppedRequiredBalloon(int promptIndex)
         {
-            GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.KO);
+            AudioManager.PlaySound(Sfx.KO);
             wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
         }
 
@@ -524,21 +525,21 @@ namespace EA4S.Balloons
                 case Result.PERFECT:
                     CurrentScore++;
                     win = true;
-                    GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
+                    AudioManager.PlaySound(Sfx.Win);
                     break;
                 case Result.GOOD:
                     CurrentScore++;
                     win = true;
-                    GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
+                    AudioManager.PlaySound(Sfx.Win);
                     break;
                 case Result.CLEAR:
                     CurrentScore++;
                     win = true;
-                    GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
+                   AudioManager.PlaySound(Sfx.Win);
                     break;
                 case Result.FAIL:
                     win = false;
-                    GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
+                    AudioManager.PlaySound(Sfx.Lose);
                     break;
             }
 
@@ -559,16 +560,21 @@ namespace EA4S.Balloons
                 var winInitialDelay = 2f;
                 yield return new WaitForSeconds(winInitialDelay);
 
-                GetConfiguration().Context.GetAudioManager().PlayDialogue(TextID.WELL_DONE);
+                AudioManager.PlayDialogue(TextID.WELL_DONE);
                 var winPopUpDelay = 0.25f;
                 yield return new WaitForSeconds(winPopUpDelay);
 
-                WidgetPopupWindow.I.ShowSentenceAndWordWithMark(OnRoundResultPressed, "comment_welldone", wordData, true);
+                //WidgetPopupWindow.I.ShowSentenceAndWordWithMark(OnRoundResultPressed, "comment_welldone", wordData, true);
+                Popup.Show();
+                Popup.SetButtonCallback(OnRoundResultPressed);
+                Popup.SetTitle(TextID.WELL_DONE);
+                Popup.SetWord(wordData);
+                Popup.SetMark(true, true);
 
                 var winSpeakWordDelay = 0.75f;
                 yield return new WaitForSeconds(winSpeakWordDelay);
 
-                GetConfiguration().Context.GetAudioManager().PlayLetterData(wordData);
+                AudioManager.PlayLetterData(wordData);
 
             }
             else
@@ -582,12 +588,18 @@ namespace EA4S.Balloons
                 {
                     case How2Die.TimeEnd:
                         sentence = TextID.TIMES_UP.ToString();
-                        WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailTime);
+                        //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailTime);
+                        Popup.ShowTimeUp(OnRoundResultPressed);
                         break;
                     case How2Die.WrongBalloon:
                         var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
                         sentence = sentenceOptions[Random.Range(0, sentenceOptions.Length)];
-                        WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailWrongBalloon);
+                        //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailWrongBalloon);
+                        Popup.Show();
+                        Popup.SetButtonCallback(OnRoundResultPressed);
+                        Popup.SetMark(true, false);
+                        Popup.SetImage(FailWrongBalloon);
+                        Popup.SetTitle(TextID.GAME_RESULT_RETRY);
                         break;
                 }
             }
