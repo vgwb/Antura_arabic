@@ -56,9 +56,9 @@ namespace EA4S
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;
-                debugString += "\nCorrect Word: " + correctAnswers.Count;
+                debugString += "\nCorrect Answers: " + correctAnswers.Count;
                 foreach (var l in correctAnswers) debugString += " " + l;
-                debugString += "\nWrong Word: " + wrongAnswers.Count;
+                debugString += "\nWrong Answers: " + wrongAnswers.Count;
                 foreach (var l in wrongAnswers) debugString += " " + l;
                 UnityEngine.Debug.Log(debugString);
             }
