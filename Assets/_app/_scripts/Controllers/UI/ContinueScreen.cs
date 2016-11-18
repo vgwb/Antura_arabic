@@ -61,8 +61,9 @@ namespace EA4S
             onContinueCallback = _onContinue;
             Bg.gameObject.SetActive(_mode != ContinueScreenMode.Button);
             BtContinue.gameObject.SetActive(_mode != ContinueScreenMode.FullscreenBg);
-            if (btIdleTween.IsPlaying())
-                btIdleTween.Rewind();
+            if (btIdleTween != null) btIdleTween.Rewind();
+            btIdleTween = btRT.DOAnchorPosX(10, 0.5f).SetRelative().SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo)
+                .SetUpdate(true).SetAutoKill(false).Pause();
             if (_mode == ContinueScreenMode.ButtonFullscreen) {
                 SideSnapshot.Apply(btRT, IcoContinue);
             } else {
@@ -128,8 +129,8 @@ namespace EA4S
             btClickTween = btRT.DOPunchRotation(new Vector3(0, 0, 20), 0.3f, 12, 0.5f).SetUpdate(true).SetAutoKill(false).Pause()
                 .OnComplete(Continue);
 
-            btIdleTween = btRT.DOAnchorPosX(10, 0.5f).SetRelative().SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo)
-                .SetUpdate(true).SetAutoKill(false).Pause();
+//            btIdleTween = btRT.DOAnchorPosX(10, 0.5f).SetRelative().SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo)
+//                .SetUpdate(true).SetAutoKill(false).Pause();
 
             CenterSnapshot.Apply(btRT, IcoContinue);
             this.gameObject.SetActive(false);

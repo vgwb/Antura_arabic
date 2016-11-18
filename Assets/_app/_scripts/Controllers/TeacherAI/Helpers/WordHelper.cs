@@ -100,7 +100,8 @@ namespace EA4S.Db
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
             var letter_ids_list = new List<string>(wordData.Letters);
-            List<LetterData> list = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
+            List<LetterData> list = new List<LetterData>();
+            foreach (var letter_id in letter_ids_list) list.Add(dbManager.GetLetterDataById(letter_id));
             return list;
         }
         public List<LetterData> GetLettersInWord(string wordId)

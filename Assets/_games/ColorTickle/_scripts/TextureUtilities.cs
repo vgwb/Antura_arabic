@@ -16,11 +16,11 @@ namespace EA4S.ColorTickle
         /// <returns>Resulting pixels</returns>
         static public Color[] ScaleTexture(Texture2D source, float fXScaling, float fYScaling)
         {
-            int _iScaledWidth = Mathf.FloorToInt(source.width * fXScaling);
+            int _iScaledWidth = Mathf.CeilToInt(source.width * fXScaling);
             int _iScaledHeight = Mathf.FloorToInt(source.height * fYScaling);
 
-            float _fXSampleUnit = 1f / _iScaledWidth;
-            float _fYSampleUnit = 1f / _iScaledHeight;
+            float _fXSampleUnit = 1f / (float)_iScaledWidth;
+            float _fYSampleUnit = 1f / (float)_iScaledHeight;
 
             Color[] resultMatrix = new Color[_iScaledWidth * _iScaledHeight];
 

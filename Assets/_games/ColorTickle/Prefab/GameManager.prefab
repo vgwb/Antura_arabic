@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013682659882}
   - 114: {fileID: 114000013493082588}
+  - 114: {fileID: 114000011111333640}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -34,12 +35,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011353243712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75.19079, y: 74.00947, z: 186.47545}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000011111333640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011353243712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5f4b078d9162740aec50eb7fbe174f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StartFingerPosition: {fileID: 0}
+  m_EndFingerPosition: {fileID: 0}
+  m_MaxDelay: 2
+  StartTutorial: 0
 --- !u!114 &114000013493082588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,12 +68,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  m_LetterPrefab: {fileID: 114000010869263054, guid: 1b25171b478604a4ea9e3f79293a93b9,
-    type: 2}
+  m_LetterPrefab: {fileID: 0}
   m_ColorsCanvas: {fileID: 0}
-  m_AnimatorTickleState: 10
-  m_Lives: 3
-  m_ClockTime: 10
-  m_BrushLimitVelocity: 500
   m_AnturaController: {fileID: 0}
-  m_Rounds: 0
+  m_EndCanvas: {fileID: 0}
+  m_StarsFlowers: {fileID: 0}
+  m_Rounds: 3
+  m_MaxLives: 3
+  m_fDifficulty: 0
+  m_oBackgroundMusic: 1
+  m_Stars: 0
