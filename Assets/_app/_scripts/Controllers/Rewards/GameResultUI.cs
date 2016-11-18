@@ -1,7 +1,6 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/11/18
 
-using System.Collections;
 using UnityEngine;
 
 namespace EA4S
@@ -37,7 +36,7 @@ namespace EA4S
         #region Public Methods
 
         /// <summary>
-        /// Never use this directly! Use Davide Barbieri's interfaces to access game result elements
+        /// Never use this directly! Use the <code>Minigames Interface</code> instead.
         /// </summary>
         public static void HideEndgameResult()
         {
@@ -47,7 +46,7 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Never use this directly! Use Davide Barbieri's interfaces to access game result elements
+        /// Never use this directly! Use the <code>Minigames Interface</code> instead.
         /// </summary>
         public static void ShowEndgameResult(int _numStars)
         {

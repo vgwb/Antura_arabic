@@ -1161,12 +1161,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTransform: {fileID: 0}
-  Lable: {fileID: 114000010901255416}
+  contentTransform: {fileID: 0}
+  textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000014278341224}
-  maxSize: 1.5
+  Scale: 1
   normalGraphics: []
   limblessGraphics: []
   poofPrefab: {fileID: 0}
+  DancingSpeed: 1
 --- !u!137 &137000013662908692
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
