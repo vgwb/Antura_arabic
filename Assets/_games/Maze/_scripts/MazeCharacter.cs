@@ -15,7 +15,7 @@ namespace EA4S.Maze
 		public List<Vector3> characterWayPoints;
 
 		public GameObject collider;
-        public GameObject particles;
+        public List<GameObject> particles;
 
 		public List<GameObject> Fruits;
 
@@ -75,7 +75,7 @@ namespace EA4S.Maze
         }
 
 		public void toggleVisibility(bool value) {
-            if (particles) particles.SetActive(value);
+            foreach(GameObject particle in particles) particle.SetActive(value);
             // toggles the visibility of this gameobject and all it's children
             /*Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
 			foreach (Renderer r in renderers)
@@ -230,7 +230,8 @@ namespace EA4S.Maze
 
 		void waitAndRestartScene()
 		{
-            if (particles) particles.SetActive(false);
+            //if (particles) particles.SetActive(false);
+            foreach (GameObject particle in particles) particle.SetActive(false);
             //stop for a second and restart the level:
             StartCoroutine(waitAndPerformCallback(1,()=>{
 				MazeGameManager.Instance.showAllCracks();
@@ -332,7 +333,8 @@ namespace EA4S.Maze
 			
 			characterIsMoving = true;
 			GetComponent<BoxCollider> ().enabled = true;
-            if (particles) particles.SetActive(true);
+           // if (particles) particles.SetActive(true);
+            foreach (GameObject particle in particles) particle.SetActive(true);
             foreach (GameObject fruit in _fruits) {
 				fruit.GetComponent<BoxCollider> ().enabled = true;
 			}
@@ -443,7 +445,8 @@ namespace EA4S.Maze
 						transform.rotation = initialRotation;
 						if (currentFruitIndex == _fruits.Count) {
 							print ("Won");
-                            if (particles) particles.SetActive(false);
+                           // if (particles) particles.SetActive(false);
+                            foreach (GameObject particle in particles) particle.SetActive(false);
                             GetComponent<BoxCollider> ().enabled = false;
 							characterIsMoving = false;
 							MazeGameManager.Instance.moveToNext (true);

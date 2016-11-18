@@ -91,11 +91,14 @@ namespace EA4S.Egg
             }
         }
 
-        public void SetButtonsOnStandardColor()
+        public void SetButtonsOnStandardColor(EggButton without = null)
         {
             for (int i = 0; i < eggButtons.Count; i++)
             {
-                eggButtons[i].SetOnStandardColor();
+                if (eggButtons[i] != without)
+                {
+                    eggButtons[i].SetOnStandardColor();
+                }
             }
         }
 

@@ -131,6 +131,7 @@ namespace EA4S.TakeMeHome
 
 		public void IncrementScore()
 		{
+            
 			++CurrentScore;
             //update stars:
             int stars = CurrentStars;
@@ -236,11 +237,10 @@ namespace EA4S.TakeMeHome
 			if (!currentLetter)
 				return;
 
-			currentLetter.panicAndRun ();
+			//currentLetter.panicAndRun ();
 
 			antura.SetActive (true);
-
-			//antura.GetComponent<AnturaCo
+            
 
 			antura.GetComponent<TakeMeHomeAntura> ().SetAnturaTime (true, new Vector3(8.4f, -3.44f, -15));
 		}

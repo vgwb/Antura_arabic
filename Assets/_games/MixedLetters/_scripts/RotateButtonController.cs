@@ -6,7 +6,7 @@ namespace EA4S.MixedLetters
     public class RotateButtonController : MonoBehaviour
     {
         public BoxCollider boxCollider;
-        private DropZoneController dropZone;
+        public DropZoneController dropZone;
         // Use this for initialization
         void Start()
         {

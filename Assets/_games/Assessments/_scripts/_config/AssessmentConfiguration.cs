@@ -33,6 +33,14 @@ namespace EA4S.Assessment
                         Debug.Log( "Created LetterShape_TestProvider");
                         return questionProvider = new LetterShape_TestProvider( 2, 2, 3);
 
+                    case AssessmentCode.WordsWithLetter:
+                        Debug.Log("Created WordsWithLetterProvider_Tester");
+                        return questionProvider = new WordsWithLetterProvider_Tester( rounds:2, simultaneos:2, correct:3, wrong:2);
+
+                    case AssessmentCode.MatchLettersToWord:
+                        Debug.Log("Created WordsWithLetterProvider_Tester");
+                        return questionProvider = new MatchLettersToWordProvider_Tester( rounds: 2, simultaneos: 2, correct: 3, wrong: 2);
+
                     default:
                         Debug.LogWarning( "Created SampleQuestionProvider");
                         return questionProvider = new SampleQuestionProvider();
@@ -41,9 +49,41 @@ namespace EA4S.Assessment
             return questionProvider;
         }
 
+        internal void SetupDefault(AssessmentCode code)
+        {
+            if (Instance.assessmentType == AssessmentCode.Unsetted)
+            {
+                Instance.assessmentType = code;
+
+                switch (assessmentType)
+                {
+                    case AssessmentCode.LetterShape:
+                        SimultaneosQuestions = 1;
+                        Rounds = 3;
+                        break;
+
+                    case AssessmentCode.MatchLettersToWord:
+                        SimultaneosQuestions = 1;
+                        Rounds = 2;
+                        break;
+
+                    case AssessmentCode.WordsWithLetter:
+                        SimultaneosQuestions = 2;
+                        Rounds = 1;
+                        break;
+
+                    default:
+                        throw new NotImplementedException("NotImplemented Yet!");
+                }
+            }
+        }
+
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
         public int Rounds { get; set; }
+
+        public bool PronunceQuestionWhenClicked { get; set; }
+        public bool PronunceAnswerWhenClicked { get; set; }
         public AssessmentCode assessmentType = AssessmentCode.Unsetted;
 
         /////////////////
@@ -68,8 +108,7 @@ namespace EA4S.Assessment
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             questionProvider = null;
             Context = new SampleGameContext();
-            SimultaneosQuestions = 2;
-            Rounds = 2;
+
         }
 
         /// <summary>
@@ -98,17 +137,17 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
-            return new WordsWithLetterQuestionBuilder(nPacks: 10, nCorrect: 5, nWrong: 5);
+            return new WordsWithLetterQuestionBuilder( nPacks: 2, nCorrect: 3, nWrong: 3);
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
-            return new LettersInWordQuestionBuilder(nPacks: 10, useAllCorrectLetters: true, nWrong: 5);
+            return new LettersInWordQuestionBuilder( nPacks: 2, useAllCorrectLetters: true, nWrong: 2);
         }
 
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
-            return new RandomLettersQuestionBuilder(nPacks: 10, nCorrect:1, firstCorrectIsQuestion:true, nWrong: 5, packListHistory: Teacher.PackListHistory.ForceAllDifferent, wrongAnswersPackListHistory: Teacher.PackListHistory.ForceAllDifferent);
+            return new RandomLettersQuestionBuilder(nPacks: 2, nCorrect:1, firstCorrectIsQuestion:true, nWrong: 3, correctChoicesHistory: Teacher.PackListHistory.ForceAllDifferent, wrongChoicesHistory: Teacher.PackListHistory.ForceAllDifferent);
         }
 
         public MiniGameLearnRules SetupLearnRules()
