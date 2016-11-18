@@ -209,7 +209,7 @@ namespace EA4S.MissingLetter
             }
 
             //change restored color letter with tag
-            string color = result ? "green" : "red";
+            string color = result ? "#1B5E20" : "#DD2C00";
             string first = tmp.Lable.text[index].ToString();
             tmp.Lable.text = tmp.Lable.text.Replace(first, "<color="+ color + ">" + first + "</color>");
         }
