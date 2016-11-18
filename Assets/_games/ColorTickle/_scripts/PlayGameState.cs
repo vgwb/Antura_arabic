@@ -122,6 +122,8 @@ namespace EA4S.ColorTickle
 
                     AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
 
+                    m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
+
                     //LL does win or lose animation 
                     if(m_PercentageLetterColored >= 100)
                     {
@@ -234,11 +236,11 @@ namespace EA4S.ColorTickle
             //--
 
             m_Lives--;
-            //m_Stars -= 0.3f;
+            
             m_Stars -= (3f/(float)game.rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
-            Debug.Log("Stars now: " + m_Stars);
+         
             game.gameUI.SetLives(m_Lives);
-            Debug.Log("Lives : " + m_Lives);
+       
         }
 
 

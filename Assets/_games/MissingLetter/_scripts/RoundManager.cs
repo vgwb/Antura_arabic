@@ -214,7 +214,7 @@ namespace EA4S.MissingLetter
                 m_oEmoticonsController.EmoticonNegative();
             
             //change restored color letter with tag
-            string color = result ? "#1B5E20" : "#DD2C00";
+            string color = result ? "#4CAF50" : "#DD2C00";
             string first = tmp.Lable.text[index].ToString();
             tmp.Lable.text = tmp.Lable.text.Replace(first, "<color="+ color + ">" + first + "</color>");
         }

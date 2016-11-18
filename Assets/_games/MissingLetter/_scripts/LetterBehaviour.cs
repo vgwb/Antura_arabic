@@ -157,8 +157,8 @@ namespace EA4S.MissingLetter
             if (spotLight == null) {
                 spotLight = new GameObject("SpotLight");
 
-                spotLight.transform.position = gameObject.transform.position + Vector3.up * 8 + Vector3.back * 6;
-                spotLight.transform.Rotate(Vector3.right, 50);
+                spotLight.transform.position = gameObject.transform.position + Vector3.up * 12 + Vector3.back * 5;
+                spotLight.transform.Rotate(Vector3.right, 65);
                 spotLight.transform.parent = gameObject.transform;
                 Light cSpotLight = spotLight.AddComponent<Light>();
                 cSpotLight.type = LightType.Spot;
