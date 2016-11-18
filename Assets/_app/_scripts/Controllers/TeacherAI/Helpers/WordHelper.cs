@@ -169,7 +169,7 @@ namespace EA4S.Db
         /// <param name="word">WordData.</param>
         public string GetWordDrawing(WordData word)
         {
-            Debug.Log("the int of hex:" + word.Drawing + " is " + int.Parse(word.Drawing, NumberStyles.HexNumber));
+            //Debug.Log("the int of hex:" + word.Drawing + " is " + int.Parse(word.Drawing, NumberStyles.HexNumber));
             return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
         }
 
