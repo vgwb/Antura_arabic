@@ -107,8 +107,28 @@ public class ReadingBarSet : MonoBehaviour
         playingSong = true;
         songSource = source;
         this.onSongCompleted = onSongCompleted;
+
+        for (int i = 0; i < bars.Count; ++i)
+        {
+            bars[i].shineWhenNearTarget = true;
+        }
     }
 
+    public void SetShowTargets(bool show)
+    {
+        for (int i = 0; i < bars.Count; ++i)
+        {
+            bars[i].showTarget = show;
+        }
+    }
+
+    public void SetShowArrows(bool show)
+    {
+        for (int i = 0; i < bars.Count; ++i)
+        {
+            bars[i].showArrows = show;
+        }
+    }
 
     ReadingBarWord[] SetData(string[] words, bool[] forceLineBreaks, bool addOffsets)
     {
@@ -242,7 +262,7 @@ public class ReadingBarSet : MonoBehaviour
         if (activeBar == null || !songInsideAWord)
             return false;
 
-        distance = (activeBar.currentTarget - activeBar.currentReading)*activeBar.GetWidth();
+        distance = activeBar.GetDistanceFromTarget();
         return true;
     }
 

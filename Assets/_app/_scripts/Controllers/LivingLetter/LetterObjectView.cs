@@ -71,8 +71,6 @@ namespace EA4S
         {
             get
             {
-                if (data == null)
-                    InitAsDummy();
                 return data;
             }
             private set
@@ -120,15 +118,7 @@ namespace EA4S
         {
             startScale = transform.localScale;
             startTextScale = textTransform.sizeDelta;
-        }
-
-        /// <summary>
-        /// Fallback function to set dummy data to letter if no data is provided.
-        /// </summary>
-        void InitAsDummy()
-        {
-            var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
-            Init(new LL_LetterData(letterData.GetId()));
+            OnModelChanged();
         }
 
         /// <summary>
