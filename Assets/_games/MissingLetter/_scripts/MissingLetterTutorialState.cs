@@ -44,7 +44,7 @@ namespace EA4S.MissingLetter {
             delayTime -= delta;
             if(delayTime < 0 && !suggested)
             {
-                game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().SuggestLetter();
+                game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                 Vector3 pos = game.m_RoundManager.GetCorrectLLObject().transform.position + Vector3.back * 0.8f + Vector3.up * 3;
                 TutorialUI.ClickRepeat(pos, 90, 1.5f);
                 suggested = true;
