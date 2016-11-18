@@ -3096,13 +3096,13 @@ Prefab:
         type: 2}
       propertyPath: m_StartFingerPosition
       value: 
-      objectReference: {fileID: 4000010887741550, guid: 796eee7304949dd499b4d4a199341ec4,
+      objectReference: {fileID: 4000011080517408, guid: 0e68f3cb4318c5b45a58a58bde4afe23,
         type: 2}
     - target: {fileID: 114000011111333640, guid: e63175941f7154444bf3608253b4de18,
         type: 2}
       propertyPath: m_EndFingerPosition
       value: 
-      objectReference: {fileID: 4000011080517408, guid: 0e68f3cb4318c5b45a58a58bde4afe23,
+      objectReference: {fileID: 4000010887741550, guid: 796eee7304949dd499b4d4a199341ec4,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e63175941f7154444bf3608253b4de18, type: 2}
