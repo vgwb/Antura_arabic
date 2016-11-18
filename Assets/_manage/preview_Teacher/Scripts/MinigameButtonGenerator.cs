@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
 namespace EA4S.Teacher.Test
@@ -12,11 +13,10 @@ namespace EA4S.Teacher.Test
 
         void Start()
         {
-            foreach (var enumValue in GenericUtilities.SortEnums<MiniGameCode>())
-            {
+            foreach (var enumValue in GenericUtilities.SortEnums<MiniGameCode>()) {
                 var btnGO = Instantiate(buttonPrefab);
                 btnGO.transform.SetParent(this.transform);
-                btnGO.GetComponentInChildren<Text>().text = enumValue.ToString();
+                btnGO.GetComponentInChildren<Text>().text = (enumValue.ToString()).Replace("_", "\n");
                 btnGO.GetComponent<Button>().onClick.AddListener(() => tester.SimulateMiniGame(enumValue));
             }
             Destroy(buttonPrefab);
