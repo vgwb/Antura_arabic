@@ -29,7 +29,7 @@ namespace EA4S
         int numLearningBlock;
         void Awake()
         {
-            posDots = new GameObject[22];
+            posDots = new GameObject[28];
             for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++) {
                 pinLeft = posPines[numLearningBlock].position;
                 pinRight = posPines[numLearningBlock + 1].position;
