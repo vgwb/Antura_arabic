@@ -60,6 +60,7 @@ namespace EA4S
             get { return null; }
         }
 
+        [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
         public Sprite DrawForLivingLetter {
             get { return null; }
         }
