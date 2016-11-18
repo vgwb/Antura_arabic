@@ -12,7 +12,6 @@ namespace EA4S
         LivingLetterDataType DataType { get; }
         string TextForLivingLetter { get; }
         string DrawingCharForLivingLetter { get; }
-        Sprite DrawForLivingLetter { get; }
         string Key { get; set; }
     }
 
@@ -21,5 +20,6 @@ namespace EA4S
         Letter,
         Word,
         Image,
+        Phrase,
     }
 }

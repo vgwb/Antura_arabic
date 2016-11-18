@@ -63,30 +63,43 @@ namespace EA4S.Assessment
             currentPos.x -= bounds.HalfLetterSize();
             int questionIndex = 0;
 
-            for(int i=0; i< questionsNumber; i++)
+            var flow = AssessmentConfiguration.Instance.LocaleTextFlow;
+
+            if (flow == AssessmentConfiguration.TextFlow.RightToLeft)
             {
-                currentPos.x += spaceIncrement + bounds.LetterSize();
-                yield return PlaceQuestion(
-                    allQuestions[questionIndex], currentPos);
-
-
-                foreach( var p in allQuestions[questionIndex].GetPlaceholders())
+                for (int i = 0; i < questionsNumber; i++)
                 {
-                    currentPos.x += bounds.LetterSize();
-                    PlacePlaceholder(allQuestions[questionIndex], p, currentPos);
+                    currentPos.x += spaceIncrement + bounds.LetterSize();
+
+                    foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
+                    {
+                        yield return PlacePlaceholder( allQuestions[ questionIndex], p, currentPos);
+                        currentPos.x += bounds.LetterSize();
+                    }
+
+                    yield return PlaceQuestion(
+                        allQuestions[ questionIndex], currentPos);
+
+                    questionIndex++;
                 }
-
-                /////// DEPRECATED \\\\\\\\\\\\\\\\_____
-                /*for (int j=0; j< allQuestions[questionIndex].PlaceholdersCount();j++)
+            }
+            else
+            {
+                for (int i = 0; i < questionsNumber; i++)
                 {
-                    currentPos.x += bounds.LetterSize();
-                    yield return PlacePlaceholder(
-                        allQuestions[questionIndex], currentPos);
-                }*/
-                /////// DEPRECATED//////////////// ^^^^
+                    currentPos.x += spaceIncrement + bounds.LetterSize();
 
+                    yield return PlaceQuestion(
+                        allQuestions[ questionIndex], currentPos);
 
-                questionIndex++;
+                    foreach (var p in allQuestions[ questionIndex].GetPlaceholders())
+                    {
+                        currentPos.x += bounds.LetterSize();
+                        yield return PlacePlaceholder( allQuestions[ questionIndex], p, currentPos);
+                    }
+
+                    questionIndex++;
+                }
             }
 
             // give time to finish animating elements
