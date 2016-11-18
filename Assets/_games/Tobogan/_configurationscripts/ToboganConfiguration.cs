@@ -42,9 +42,9 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            Questions = new SampleQuestionProvider();
-
-            //PipeQuestions = new SunMoonQuestionProvider();
+            //Questions = new SampleQuestionProvider();
+            Questions = new SunMoonQuestionProvider();
+            
             Variation = ToboganVariation.SunMoon;
             //Variation = ToboganVariation.LetterInAWord;
 
