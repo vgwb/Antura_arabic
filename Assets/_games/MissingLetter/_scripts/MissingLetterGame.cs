@@ -14,7 +14,7 @@ namespace EA4S.MissingLetter
 
         public GameObject mLetterPrefab;
         public GameObject mAnturaRef;
-
+        public GameObject m_oEmoticonsController;
         //ref to particle System
         public GameObject mParticleSystem;
         public Collider mFeedBackDisableLetters;
