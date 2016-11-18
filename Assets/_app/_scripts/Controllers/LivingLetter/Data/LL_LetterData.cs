@@ -38,9 +38,9 @@ namespace EA4S
         }
 
         #region API
-            /// <summary>
-            /// Living Letter Text To Display.
-            /// </summary>
+        /// <summary>
+        /// Living Letter Text To Display.
+        /// </summary>
         public string TextForLivingLetter {
             get {
                 switch (ShowAs) {
@@ -54,6 +54,10 @@ namespace EA4S
                         return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
                 }
             }
+        }
+
+        public string DrawingCharForLivingLetter {
+            get { return null; }
         }
 
         public Sprite DrawForLivingLetter {

@@ -4,13 +4,13 @@ using System;
 
 namespace EA4S
 {
-    public class LL_WordData : ILivingLetterData
+    public class LL_ImageData : ILivingLetterData
     {
 
         public Db.WordData Data;
 
         public LivingLetterDataType DataType {
-            get { return LivingLetterDataType.Word; }
+            get { return LivingLetterDataType.Image; }
         }
 
         public string Key {
@@ -20,7 +20,7 @@ namespace EA4S
 
         private string key;
 
-        public LL_WordData(string _keyRow, Db.WordData _data)
+        public LL_ImageData(string _keyRow, Db.WordData _data)
         {
             Key = _keyRow;
             Data = _data;
