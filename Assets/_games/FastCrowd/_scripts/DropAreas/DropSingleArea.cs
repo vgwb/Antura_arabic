@@ -6,7 +6,7 @@ namespace EA4S {
     public class DropSingleArea : MonoBehaviour {
 
         public TMP_Text LetterLable;
-        public SpriteRenderer DrawSprite;
+        public TextMeshPro DrawText;
         public ILivingLetterData Data;
         public DropContainer DropContain;
 
@@ -20,12 +20,13 @@ namespace EA4S {
             if (asImage && !(_data is LL_LetterData))
             {
                 LetterLable.text = string.Empty;
-                DrawSprite.gameObject.SetActive(true);
-                DrawSprite.sprite = Data.DrawForLivingLetter;
+                DrawText.gameObject.SetActive(true);
+                
+                DrawText.text = Data.DrawingCharForLivingLetter;
             } else
             {
                 LetterLable.text = Data.TextForLivingLetter;
-                DrawSprite.gameObject.SetActive(false);
+                DrawText.gameObject.SetActive(false);
             }
 
             AreaState = State.disabled;
@@ -38,7 +39,7 @@ namespace EA4S {
             Data = _data;
 
             LetterLable.text = text;
-            DrawSprite.gameObject.SetActive(false);
+            DrawText.gameObject.SetActive(false);
 
             AreaState = State.disabled;
         }
