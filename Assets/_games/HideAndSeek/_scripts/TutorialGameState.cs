@@ -11,14 +11,16 @@
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            AudioManager.I.PlayMusic(Music.Relax);
             game.TutorialManager.enabled = true;
         }
 
         public void ExitState()
         {
             game.TutorialManager.enabled = false;
-            game.Context.GetAudioManager().StopMusic();
+            //game.Context.GetAudioManager().StopMusic();
+            AudioManager.I.StopMusic();
         }
 
         public void Update(float delta) { }

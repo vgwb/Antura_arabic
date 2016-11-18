@@ -6,10 +6,14 @@ namespace EA4S
     public class AlphabetQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters
-        // pack history filter: only 1 pack
+        // pack history filter: forced - only 1 pack
         // journey: enabled
 
-        public AlphabetQuestionBuilder(){}
+        private bool ignoreJourney;
+
+        public AlphabetQuestionBuilder(bool ignoreJourney = false){
+            this.ignoreJourney = ignoreJourney;
+        }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
@@ -25,7 +29,7 @@ namespace EA4S
             // Fully ordered alphabet, only 1 pack
             var alphabetLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetAllLetters(Db.LetterKindCategory.Base),
-                new SelectionParameters(SelectionSeverity.AsManyAsPossible, 28)  // 28: letters in the alphabet
+                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getAllData:true, ignoreJourney: ignoreJourney)
                 );
 
             alphabetLetters.Sort((x, y) =>

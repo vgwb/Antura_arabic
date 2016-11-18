@@ -16,6 +16,35 @@ namespace EA4S.Test
 
         #endregion
 
+        #region ContinueScreen
+
+        public void ContinueScreen_ShowButton()
+        {
+            ContinueScreen.Show(null, ContinueScreenMode.Button);
+        }
+
+        public void ContinueScreen_ShowButtonWithBg()
+        {
+            ContinueScreen.Show(null, ContinueScreenMode.ButtonWithBg);
+        }
+
+        public void ContinueScreen_ShowButtonWithBgFullscreen()
+        {
+            ContinueScreen.Show(null, ContinueScreenMode.ButtonWithBgFullscreen);
+        }
+
+        public void ContinueScreen_ShowButtonFullscreen()
+        {
+            ContinueScreen.Show(null, ContinueScreenMode.ButtonFullscreen);
+        }
+
+        public void ContinueScreen_ShowFullscreenBg()
+        {
+            ContinueScreen.Show(null, ContinueScreenMode.FullscreenBg);
+        }
+
+        #endregion
+
         #region WidgetPopup
 
         public void Popup_ShowSentence()

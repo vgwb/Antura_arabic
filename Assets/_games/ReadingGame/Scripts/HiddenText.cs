@@ -24,8 +24,7 @@ public class HiddenText : MonoBehaviour
     public void UpdateTarget()
     {
         hasElements = true;
-        //var renderers = target.GetComponentsInChildren<Renderer>(true);
-        var renderers = target.GetComponentsInChildren<Renderer>();
+        var renderers = target.GetComponentsInChildren<MeshRenderer>(true);
 
         Vector3 min = new Vector3(Screen.width, Screen.height, 0);
         Vector3 max = Vector3.zero;
