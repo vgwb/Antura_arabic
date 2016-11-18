@@ -16,9 +16,10 @@ namespace EA4S.Teacher
         public const float minigame_playSessionWeight = 1f;
         public const float minigame_recentPlayWeight = 1f;
 
-        // Word selection weights
+        // Data selection weights
         public const float data_scoreWeight = 1f;
         public const float data_recentPlayWeight = 1f;
+        public const float data_currentPlaySessionWeight = 1f;
         public const float data_minimumTotalWeight = 0.1f;
 
         // Difficulty selection weights

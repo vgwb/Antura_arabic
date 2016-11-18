@@ -13,6 +13,8 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private float m_fRotationSpeed = 180; //Rotation speed by degree
         [SerializeField]
+        private bool m_bSetStartPosition = false;
+        [SerializeField]
         private Vector3 m_v3StartPosition;
         [SerializeField]
         private Transform m_Destination;
@@ -81,7 +83,14 @@ namespace EA4S.ColorTickle
         void Start()
         {
             m_oLetter = gameObject.GetComponent<LetterObjectView>();
-			m_v3StartPosition =  m_oLetter.gameObject.transform.position;
+            if (!m_bSetStartPosition)
+            {
+                m_v3StartPosition = m_oLetter.gameObject.transform.position;
+            }
+            else
+            {
+                m_oLetter.gameObject.transform.position = m_v3StartPosition;
+            }			
 			m_v3Destination = m_Destination.position;
         }
 

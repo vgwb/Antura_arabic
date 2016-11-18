@@ -69,7 +69,6 @@ namespace EA4S.ColorTickle
                 //check for ray collision
                 if (m_oBody.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity))
                 {
-                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
                     if (OnBodyHit != null)
                     {
                         OnBodyHit(true);
@@ -118,8 +117,6 @@ namespace EA4S.ColorTickle
                 false);
             m_tBodyTexture.SetPixels(TextureUtilities.FillTextureWithColor(m_tBodyTexture, m_oBaseColor)); //initialiaze it to white
             m_tBodyTexture.Apply();
-
-            //Debug.Log("Body Tex size are " + m_tBodyTexture.width + "," + m_tBodyTexture.height);
 
             //link the body texture as the material's main texture
             m_oSurfaceRenderer.material.SetTexture("_MainTex", m_tBodyTexture);
