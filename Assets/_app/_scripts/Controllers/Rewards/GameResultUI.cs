@@ -36,6 +36,9 @@ namespace EA4S
 
         #region Public Methods
 
+        /// <summary>
+        /// Never use this directly! Use Davide Barbieri's interfaces to access game result elements
+        /// </summary>
         public static void HideEndgameResult()
         {
             if (I == null) return;
@@ -43,6 +46,9 @@ namespace EA4S
             I.EndgameResultPanel.Show(false);
         }
 
+        /// <summary>
+        /// Never use this directly! Use Davide Barbieri's interfaces to access game result elements
+        /// </summary>
         public static void ShowEndgameResult(int _numStars)
         {
             Init();
