@@ -14,7 +14,7 @@ namespace EA4S.ColorTickle
 		int m_MaxLives;
         int m_Lives;
         int m_Rounds;
-        float m_Stars;
+        int m_iRoundsSuccessfull;
 
         Button m_PercentageLetterColoredButton;
         float m_PercentageLetterColored;
@@ -45,7 +45,7 @@ namespace EA4S.ColorTickle
         {
             m_Rounds = game.rounds;
 			m_MaxLives = game.lives; //max number of lives is already setted in the game according to difficulty
-            m_Stars = 3.0f;
+            m_iRoundsSuccessfull = 0;
 
 			//Init ColorCanvas and PercentageLetterColoredButton
 			InitGameUI();
@@ -68,9 +68,12 @@ namespace EA4S.ColorTickle
         {
             if (m_Rounds <= 0)
             {
-                Debug.Log("Final Stars: " + m_Stars);
-                game.m_Stars = Mathf.RoundToInt(m_Stars);
-                Debug.Log("Final int Stars: " + m_Stars);
+                /*Debug.Log("Final Stars: " + m_iRoundsSuccessfull);
+                game.m_Stars = Mathf.RoundToInt(m_iRoundsSuccessfull);
+                Debug.Log("Final int Stars: " + m_iRoundsSuccessfull);*/
+               
+                game.m_Stars = Mathf.CeilToInt(m_iRoundsSuccessfull / 2f);
+
                 game.SetCurrentState(game.ResultState);
             }
             else
@@ -90,6 +93,14 @@ namespace EA4S.ColorTickle
                     if (m_fDisappearTimeProgress >= m_fTimeToDisappear)//after the given time is reached
                     {
                         m_LetterObjectView.Poof(); //LL vanishes
+
+                        //stop win particle
+                        foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
+                        {
+                            particles.Stop();
+                        }
+                        game.winParticle.SetActive(false);
+
                         m_bLLVanishing = false;
                         m_fDisappearTimeProgress = 0;
 
@@ -127,9 +138,18 @@ namespace EA4S.ColorTickle
                     //LL does win or lose animation 
                     if(m_PercentageLetterColored >= 100)
                     {
-                        //m_LetterObjectView.DoDancingWin();
+                        m_iRoundsSuccessfull += 1;
+
                         m_LetterObjectView.DoHorray();
                         AudioManager.I.PlaySfx(Sfx.Win);
+
+                        //play win particle
+                        game.winParticle.SetActive(true);
+                        foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
+                        {
+                            particles.Play();
+                        }
+
                     }
                     else if (m_Lives <= 0)
                     {
@@ -237,7 +257,7 @@ namespace EA4S.ColorTickle
 
             m_Lives--;
             
-            m_Stars -= (3f/(float)game.rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
+            //m_Stars -= (3f/(float)game.rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
          
             game.gameUI.SetLives(m_Lives);
        

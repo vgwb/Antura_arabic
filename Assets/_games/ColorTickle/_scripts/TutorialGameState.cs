@@ -56,6 +56,14 @@ namespace EA4S.ColorTickle
                 if (m_fDisappearTimeProgress >= m_fTimeToDisappear)//after the given time is reached
                 {
                     m_LetterObjectView.Poof(); //LL vanishes
+
+                    //stop win particle
+                    foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
+                    {
+                        particles.Stop();
+                    }
+                    game.winParticle.SetActive(false);
+
                     m_bLLVanishing = false;
                     m_fDisappearTimeProgress = 0;
 
@@ -85,6 +93,14 @@ namespace EA4S.ColorTickle
 
                 m_LetterObjectView.DoHorray();
                 AudioManager.I.PlaySfx(Sfx.Win);
+
+                //play win particle
+                game.winParticle.SetActive(true);
+                foreach (var particles in game.winParticle.GetComponentsInChildren<ParticleSystem>(true))
+                {
+                    particles.Play();
+                }
+        
             }
         }
         
