@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace EA4S.HideAndSeek
 {
@@ -176,13 +177,15 @@ namespace EA4S.HideAndSeek
                 {
 
                     ActiveTrees.Add(ArrayTrees[index]);
-       
-                    ArrayLetters[i].transform.position = ArrayPlaceholder[index].transform.position;
+                    Vector3 hiddenPosition = new Vector3(ArrayPlaceholder[index].transform.position.x, ArrayPlaceholder[index].transform.position.y-3f, ArrayPlaceholder[index].transform.position.z+3f);
+                    ArrayLetters[i].transform.position = hiddenPosition;
                     HideAndSeekLetterController scriptComponent = ArrayLetters[i].GetComponent<HideAndSeekLetterController>();
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
                     SetLetterMovement(index, scriptComponent);
                     ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Init(letterList[i]);
+
+                    ArrayLetters[i].transform.DOMove(ArrayPlaceholder[index].transform.position, 0.5f);
                 }
             }
             StartCoroutine(DisplayRound_Coroutine());
