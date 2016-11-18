@@ -15,8 +15,8 @@ namespace EA4S.Teacher.Test
         public InputField nwrong_in;
         public Dropdown severity_in;
         public Dropdown history_in;
-        public Toggle baseignorejourney_in;
-        public Toggle wrongignorejourney_in;
+        public Toggle journeybase_in;
+        public Toggle journeywrong_in;
 
         void Start()
         {
@@ -36,8 +36,10 @@ namespace EA4S.Teacher.Test
             severity_in.onValueChanged.AddListener(x => { selectionSeverity = (SelectionSeverity)x; });
             history_in.onValueChanged.AddListener(x => { questionHistory = (PackListHistory)x; });
 
-            baseignorejourney_in.onValueChanged.AddListener(x => { baseIgnoreJourney = x; });
-            wrongignorejourney_in.onValueChanged.AddListener(x => { wrongIgnoreJourney = x; });
+            journeybase_in.onValueChanged.AddListener(x => { journeyEnabledForBase = x; });
+            journeywrong_in.onValueChanged.AddListener(x => { journeyEnabledForWrong = x; });
+
+            GlobalUI.ShowPauseMenu(false);
         }
 
         int currentJourneyStage = 1;
@@ -48,10 +50,8 @@ namespace EA4S.Teacher.Test
         int nWrong = 1;
         SelectionSeverity selectionSeverity;
         PackListHistory questionHistory;
-        bool baseIgnoreJourney = false;
-        bool wrongIgnoreJourney = false;
-
-        #region  Question Builder testing
+        bool journeyEnabledForBase = true;
+        bool journeyEnabledForWrong = true;
 
         void SetupFakeGame()
         {
@@ -61,18 +61,29 @@ namespace EA4S.Teacher.Test
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
         }
 
+        public void SimulateMiniGame(MiniGameCode code)
+        {
+            var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
+            SetupFakeGame();
+            var builder = config.SetupBuilder();
+            builder.CreateAllQuestionPacks();
+        }
+
+        #region  Question Builder testing
+
+
         public void RandomLettersTest()
         {
             SetupFakeGame();
             var builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, 
-                firstCorrectIsQuestion: true, wrongIgnoreJourney: wrongIgnoreJourney, correctChoicesHistory:questionHistory, wrongChoicesHistory:questionHistory);
+                firstCorrectIsQuestion: true, wrongUseJourney: journeyEnabledForWrong, correctChoicesHistory:questionHistory, wrongChoicesHistory:questionHistory);
             builder.CreateAllQuestionPacks();
         }
 
         public void AlphabetTest()
         {
             SetupFakeGame();
-            var builder = new AlphabetQuestionBuilder(ignoreJourney: baseIgnoreJourney);
+            var builder = new AlphabetQuestionBuilder(ignoreJourney: journeyEnabledForBase);
             builder.CreateAllQuestionPacks();
         }
 
@@ -162,6 +173,7 @@ namespace EA4S.Teacher.Test
         }
 
         #endregion
+
     }
 
 }

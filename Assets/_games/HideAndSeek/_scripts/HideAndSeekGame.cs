@@ -49,10 +49,6 @@ namespace EA4S.HideAndSeek
             TutorialState = new TutorialGameState(this);
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
-            
-            Debug.Log(GameManager.gameObject.name);
-
-            
         }
 
         public void ResetScore()

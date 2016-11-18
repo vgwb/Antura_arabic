@@ -1,0 +1,27 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+namespace EA4S.Teacher.Test
+{
+
+    public class MinigameButtonGenerator : MonoBehaviour
+    {
+        public GameObject buttonPrefab;
+        public TeacherTester tester;
+
+        void Start()
+        {
+            foreach (var enumValue in GenericUtilities.SortEnums<MiniGameCode>())
+            {
+                var btnGO = Instantiate(buttonPrefab);
+                btnGO.transform.SetParent(this.transform);
+                btnGO.GetComponentInChildren<Text>().text = enumValue.ToString();
+                btnGO.GetComponent<Button>().onClick.AddListener(() => tester.SimulateMiniGame(enumValue));
+            }
+            Destroy(buttonPrefab);
+        }
+
+    }
+
+}

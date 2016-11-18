@@ -30,7 +30,30 @@ namespace EA4S.API {
             IQuestionBuilder rules = null;
             IGameConfiguration actualConfig = null;
 
-            switch (_gameCode) {
+            actualConfig = GetGameConfigurationForMiniGameCode(_gameCode);
+
+            // Set game configuration instance with game data
+            // game difficulty
+            actualConfig.Difficulty = _gameConfiguration.Difficulty;
+            // rule setted in config and used by AI to create correct game data
+            rules = actualConfig.SetupBuilder();
+            // question packs (game data)
+            actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
+
+            // Save current game code to appmanager currentminigame
+            AppManager.Instance.CurrentMinigame = miniGameData;
+
+            // Comunicate to LogManager that start new single minigame play session.
+            actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
+
+            // Call game start
+            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
+        }
+
+        public IGameConfiguration GetGameConfigurationForMiniGameCode(MiniGameCode code)
+        {
+            IGameConfiguration actualConfig = null;
+            switch (code) {
                 case MiniGameCode.Assessment_LetterShape:
                     Assessment.AssessmentConfiguration.Instance.assessmentType = Assessment.AssessmentCode.LetterShape;
                     Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
@@ -134,7 +157,6 @@ namespace EA4S.API {
                 case MiniGameCode.Egg:
                     Egg.EggConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Egg.EggConfiguration.Instance;
-                    miniGameScene = "game_Egg"; // TODO: check
                     break;
                 case MiniGameCode.FastCrowd_alphabet:
                     FastCrowd.FastCrowdConfiguration.Instance.Variation = FastCrowd.FastCrowdVariation.Alphabet;
@@ -241,26 +263,10 @@ namespace EA4S.API {
                     actualConfig = Tobogan.ToboganConfiguration.Instance;
                     break;
                 default:
-                    Debug.LogWarningFormat("Minigame selected {0} not found.", _gameCode.ToString());
+                    Debug.LogWarningFormat("Minigame selected {0} not found.", code.ToString());
                     break;
             }
-
-            // Set game configuration instance with game data
-            // game difficulty
-            actualConfig.Difficulty = _gameConfiguration.Difficulty;
-            // rule setted in config and used by AI to create correct game data
-            rules = actualConfig.SetupBuilder();
-            // question packs (game data)
-            actualConfig.Questions = new FindRightLetterQuestionProvider(AppManager.Instance.GameLauncher.RetrieveQuestionPacks(rules), miniGameData.Description);
-
-            // Save current game code to appmanager currentminigame
-            AppManager.Instance.CurrentMinigame = miniGameData;
-
-            // Comunicate to LogManager that start new single minigame play session.
-            actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
-
-            // Call game start
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
+            return actualConfig;
         }
 
         #endregion
