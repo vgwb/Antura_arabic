@@ -193,16 +193,14 @@ namespace EA4S.MissingLetter
             }
 
             LetterObjectView tmp = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            tmp.Lable.text = tmp.Lable.text.Remove(index, 1);
-            tmp.Lable.text = tmp.Lable.text.Insert(index, mk_sRemovedLetterChar);
-
+            tmp.Label.text = tmp.Label.text.Remove(index, 1);
+            tmp.Label.text = tmp.Label.text.Insert(index, mk_sRemovedLetterChar);
         }
 
         void RestoreQuestion(bool result)
         {
-
             LetterObjectView tmp = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            int index = tmp.Lable.text.IndexOf(mk_sRemovedLetterChar);
+            int index = tmp.Label.text.IndexOf(mk_sRemovedLetterChar);
 
             foreach (GameObject _obj in m_aoCurrentQuestionScene)
             {
@@ -215,8 +213,8 @@ namespace EA4S.MissingLetter
             
             //change restored color letter with tag
             string color = result ? "#4CAF50" : "#DD2C00";
-            string first = tmp.Lable.text[index].ToString();
-            tmp.Lable.text = tmp.Lable.text.Replace(first, "<color="+ color + ">" + first + "</color>");
+            string first = tmp.Label.text[index].ToString();
+            tmp.Label.text = tmp.Label.text.Replace(first, "<color="+ color + ">" + first + "</color>");
         }
 
         void EnterCurrentScene() {

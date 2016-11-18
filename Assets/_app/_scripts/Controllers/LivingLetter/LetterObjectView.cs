@@ -38,7 +38,7 @@ namespace EA4S
 
         public Transform boneToScaleTransform;
 
-        public TMP_Text Lable;
+        public TMP_Text Label;
         public TextMeshPro Drawing;
         public SpriteRenderer ImageSprite;
 
@@ -71,8 +71,6 @@ namespace EA4S
         {
             get
             {
-                if (data == null)
-                    InitAsDummy();
                 return data;
             }
             private set
@@ -120,15 +118,7 @@ namespace EA4S
         {
             startScale = transform.localScale;
             startTextScale = textTransform.sizeDelta;
-        }
-
-        /// <summary>
-        /// Fallback function to set dummy data to letter if no data is provided.
-        /// </summary>
-        void InitAsDummy()
-        {
-            var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
-            Init(new LL_LetterData(letterData.GetId()));
+            OnModelChanged();
         }
 
         /// <summary>
@@ -140,7 +130,7 @@ namespace EA4S
             {
                 ImageSprite.enabled = false;
                 Drawing.enabled = false;
-                Lable.enabled = false;
+                Label.enabled = false;
             }
             else
             {
@@ -150,14 +140,14 @@ namespace EA4S
                     Drawing.enabled = true;
                     //ImageSprite.sprite = Data.DrawForLivingLetter;
                     //ImageSprite.enabled = true;
-                    Lable.enabled = false;
+                    Label.enabled = false;
                 }
                 else
                 {
                     ImageSprite.enabled = false;
                     Drawing.enabled = false;
-                    Lable.enabled = true;
-                    Lable.text = Data.TextForLivingLetter;
+                    Label.enabled = true;
+                    Label.text = Data.TextForLivingLetter;
                 }
             }
         }

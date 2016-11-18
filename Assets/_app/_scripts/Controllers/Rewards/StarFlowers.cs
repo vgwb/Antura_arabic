@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using DG.Tweening;
 using ModularFramework.Core;
 
 namespace EA4S
 {
+    [Obsolete("Replaced by EA4S.GameResultUI (but always use the <code>Minigames Interface</code> to access it)")]
     public class StarFlowers : MonoBehaviour
     {
         public static StarFlowers I;

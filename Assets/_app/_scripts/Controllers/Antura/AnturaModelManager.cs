@@ -1,13 +1,17 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+
 namespace EA4S {
+
     public class AnturaModelManager : MonoBehaviour {
 
-        public static AnturaModelManager Instance;
-
+        #region CONST
         public const string ANTURA_REWARDS_CONFIG_PATH = "Configs/" + "AnturaRewardsConfig";
         public const string ANTURA_REWARDS_PREFABS_PATH = "Prefabs/Rewards/";
+        #endregion
+
+        public static AnturaModelManager Instance;
 
         [Header("Bones Attach")]
         public Transform Dog_head;
@@ -21,27 +25,34 @@ namespace EA4S {
         [HideInInspector]
         public Transform transformParent;
 
+        void Awake() {
+            Instance = this;
+            LoadFromConfig();
+        }
+
+        #region Configuration        
+        /// <summary>
+        /// The configuration
+        /// </summary>
         public RewardConfig config;
+
+        /// <summary>
+        /// Loads from configuration.
+        /// </summary>
+        void LoadFromConfig() {
+            TextAsset configData = Resources.Load(ANTURA_REWARDS_CONFIG_PATH) as TextAsset;
+            string configString = configData.text;
+            config = JsonUtility.FromJson<RewardConfig>(configString);
+        }
+        #endregion
 
         /// <summary>
         /// The actual rewards for place positions.
         /// </summary>
         List<Reward> actualRewardsForPositions = new List<Reward>();
 
-        void Awake() {
-            Instance = this;
-            LoadFromConfig();
-        }
 
-        void Start() {
-            
-        }
 
-        void LoadFromConfig() {
-            TextAsset configData = Resources.Load(ANTURA_REWARDS_CONFIG_PATH) as TextAsset;
-            string configString = configData.text;
-            config = JsonUtility.FromJson<RewardConfig>(configString);
-        }
 
         /// <summary>
         /// Adds reward to active rewards list and if already exist reward for same bone and category substitute it.

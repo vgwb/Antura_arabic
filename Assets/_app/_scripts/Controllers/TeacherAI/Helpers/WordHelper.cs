@@ -100,7 +100,8 @@ namespace EA4S.Db
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
             var letter_ids_list = new List<string>(wordData.Letters);
-            List<LetterData> list = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
+            List<LetterData> list = new List<LetterData>();
+            foreach (var letter_id in letter_ids_list) list.Add(dbManager.GetLetterDataById(letter_id));
             return list;
         }
         public List<LetterData> GetLettersInWord(string wordId)
@@ -296,6 +297,13 @@ namespace EA4S.Db
             return list;
         }
 
+        public List<WordData> GetAnswersToPhrase(PhraseData phraseData)
+        {
+            var words_ids_list = new List<string>(phraseData.Answers);
+            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
+            return list;
+        }
+
 
         #endregion
 
@@ -304,6 +312,11 @@ namespace EA4S.Db
         public List<PhraseData> GetAllPhrases()
         {
             return dbManager.GetAllPhraseData();
+        }
+
+        public List<PhraseData> GetPhrasesWithAnswers()
+        {
+            return dbManager.FindPhraseData(x => x.Answers.Length > 0);
         }
 
         public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice)

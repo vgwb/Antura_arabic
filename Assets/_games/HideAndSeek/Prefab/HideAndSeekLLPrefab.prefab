@@ -1758,7 +1758,9 @@ MonoBehaviour:
   innerTransform: {fileID: 4000010426995980}
   contentTransform: {fileID: 0}
   textTransform: {fileID: 0}
-  Lable: {fileID: 114000013431863218}
+  boneToScaleTransform: {fileID: 0}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000012329662328}
   Scale: 1
   normalGraphics:
@@ -1768,6 +1770,7 @@ MonoBehaviour:
   - {fileID: 1000013056875078}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  DancingSpeed: 1
 --- !u!114 &114000013431863218
 MonoBehaviour:
   m_ObjectHideFlags: 1
