@@ -18,6 +18,10 @@ namespace EA4S
 
         void Start()
         {
+        }
+
+        void OnEnable()
+        {
             InitUI();
             Drawing.text = "";
         }
