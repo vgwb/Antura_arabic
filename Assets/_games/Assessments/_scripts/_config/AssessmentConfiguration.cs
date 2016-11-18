@@ -73,7 +73,7 @@ namespace EA4S.Assessment
                         break;
 
                     default:
-                        throw new NotImplementedException("NotImplemented Yet!");
+                        throw new NotImplementedException( "NotImplemented Yet!");
                 }
             }
         }
