@@ -74,10 +74,6 @@ namespace EA4S.Balloons
 
         private int _currentScore = 0;
 
-        private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
-
-        private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
-
         public int CurrentScore
         {
             get { return _currentScore; }
@@ -133,6 +129,10 @@ namespace EA4S.Balloons
         }
 
         How2Die howDied;
+
+        private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
+
+        private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
 
         public BalloonsIntroductionState IntroductionState { get; private set; }
 
