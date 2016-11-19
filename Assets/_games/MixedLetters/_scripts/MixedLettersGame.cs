@@ -123,7 +123,7 @@ namespace EA4S.MixedLetters
             wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
             wordInPlay = wordData.Data;
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()));
-            VictimLLController.instance.letterObjectView.Label.SetText(wordData.TextForLivingLetter);
+            VictimLLController.instance.letterObjectView.Init(wordData);
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayWord(wordData);
         }
 
