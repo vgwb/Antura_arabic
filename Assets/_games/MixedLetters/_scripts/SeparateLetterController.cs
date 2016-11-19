@@ -217,7 +217,7 @@ namespace EA4S.MixedLetters
         public void SetLetter(LL_LetterData letterData)
         {
             this.letterData = letterData;
-            letterObjectView.Label.SetText(letterData.TextForLivingLetter);
+            letterObjectView.Init(letterData);
         }
 
         public LL_LetterData GetLetter()

@@ -163,7 +163,7 @@ namespace EA4S.ThrowBalls
         public void SetLetter(LL_LetterData _data)
         {
             letterData = _data;
-            letterObjectView.Label.SetText(letterData.TextForLivingLetter);
+            letterObjectView.Init(letterData);
         }
 
         public LL_LetterData GetLetter()
