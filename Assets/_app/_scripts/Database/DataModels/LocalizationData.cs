@@ -8,11 +8,11 @@ namespace EA4S.Db
     {
         public string Id;
         public string Character;
+        public string When;
         public string Context;
         public string English;
         public string Arabic;
         public string AudioFile;
-        public string EnglishOld;
 
         public override string ToString()
         {
