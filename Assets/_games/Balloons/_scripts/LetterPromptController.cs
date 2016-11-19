@@ -12,7 +12,7 @@ namespace EA4S.Balloons
     public class LetterPromptController : MonoBehaviour
     {
         public TMP_Text LetterLabel;
-        public LL_LetterData Data;
+        public ILivingLetterData Data;
         public Animator animator;
 
         public enum PromptState
@@ -36,10 +36,10 @@ namespace EA4S.Balloons
         }
 
 
-        public void Init(LL_LetterData _letterData)
+        public void Init(ILivingLetterData _letterData)
         {
             Data = _letterData;
-            LetterLabel.text = ArabicAlphabetHelper.GetLetterFromUnicode(Data.Data.Isolated_Unicode);
+            LetterLabel.text = Data.TextForLivingLetter;
         }
 
         void OnStateChanged()
