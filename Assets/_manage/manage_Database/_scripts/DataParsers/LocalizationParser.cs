@@ -12,6 +12,7 @@ namespace EA4S.Db.Management
 
             data.Id = ToString(dict["Id"]);
             data.Character = ToString(dict["Character"]);
+            data.When = ToString(dict["When"]);
             data.Context = ToString(dict["Context"]);
             data.English = ToString(dict["English"]);
             data.Arabic = ToString(dict["Arabic"]);
@@ -22,7 +23,7 @@ namespace EA4S.Db.Management
 
         protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
         {
-            
+
         }
     }
 }
