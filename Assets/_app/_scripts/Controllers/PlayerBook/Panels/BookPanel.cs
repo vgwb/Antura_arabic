@@ -70,71 +70,49 @@ namespace EA4S
 
         void LettersPanel()
         {
-            foreach (Transform t in ElementsContainer.transform) {
-                Destroy(t.gameObject);
-            }
-
+            emptyContainer();
             foreach (LetterData item in AppManager.Instance.DB.GetAllLetterData()) {
                 btnGO = Instantiate(LetterItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponentInChildren<Text>().text = item.Id;
+                btnGO.GetComponent<ItemLetter>().Init(this, item);
             }
         }
 
         void PhrasesPanel()
         {
-            foreach (Transform t in ElementsContainer.transform) {
-                Destroy(t.gameObject);
-            }
+            emptyContainer();
 
             foreach (PhraseData item in AppManager.Instance.DB.GetAllPhraseData()) {
                 btnGO = Instantiate(PhraseItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponentInChildren<Text>().text = item.Id;
+                btnGO.GetComponent<ItemPhrase>().Init(this, item);
             }
         }
 
         void MinigamesPanel()
         {
-            foreach (Transform t in ElementsContainer.transform) {
-                Destroy(t.gameObject);
-            }
+            emptyContainer();
 
-            foreach (MiniGameData item in AppManager.Instance.DB.GetAllMiniGameData()) {
+            foreach (MiniGameData item in AppManager.Instance.DB.GetActiveMinigames()) {
                 btnGO = Instantiate(MinigameItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponentInChildren<Text>().text = item.GetId();
+                btnGO.GetComponent<ItemMiniGame>().Init(this, item);
             }
         }
 
         void WordsPanel()
         {
-
-            //// Words
-            foreach (Transform t in ElementsContainer.transform) {
-                Destroy(t.gameObject);
-            }
+            emptyContainer();
 
             foreach (WordData item in AppManager.Instance.DB.GetAllWordData()) {
                 btnGO = Instantiate(WordItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponentInChildren<Text>().text = item.Id;
-                if (item.Drawing != "") {
-                    btnGO.GetComponent<Image>().color = Color.green;
-                }
-                AddListenerWord(btnGO.GetComponent<Button>(), item);
-                //btnGO.GetComponent<Button>().onClick.AddListener(() => PlayWord(word));
+                btnGO.GetComponent<ItemWord>().Init(this, item);
             }
-
             Drawing.text = "";
         }
 
-        void AddListenerWord(Button b, WordData word)
-        {
-            b.onClick.AddListener(() => PlayWord(word));
-        }
-
-        void PlayWord(WordData word)
+        public void DetailWord(WordData word)
         {
             Debug.Log("playing word :" + word.Id);
             AudioManager.I.PlayWord(word.Id);
@@ -151,7 +129,28 @@ namespace EA4S
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
                 Drawing.text = "";
-                LLDrawing.Label.text = "";
+                LLDrawing.Init(new LL_ImageData(word.GetId(), word));
+            }
+        }
+
+        public void DetailLetter(LetterData data)
+        {
+
+        }
+        public void DetailPhrase(PhraseData data)
+        {
+
+        }
+
+        public void DetailMiniGame(MiniGameData data)
+        {
+
+        }
+
+        void emptyContainer()
+        {
+            foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
             }
         }
 
