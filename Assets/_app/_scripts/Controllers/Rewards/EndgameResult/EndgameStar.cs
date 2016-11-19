@@ -15,29 +15,31 @@ namespace EA4S
         public Color ungainedColor = Color.red;
         [Header("References")]
         public GameObject Bg;
-        public Image BgRays, BgCircle;
+        public Image BgRays;
 
         public RectTransform RectT { get; private set; }
+        public Image StarImg { get; private set; }
         bool setupDone;
         Tween gainTween;
 
         #region Unity + Setup
 
-        void Setup()
+        public void Setup()
         {
             if (setupDone) return;
 
             setupDone = true;
             RectT = this.GetComponent<RectTransform>();
+            StarImg = this.GetComponent<Image>();
 
             gainTween = DOTween.Sequence().SetAutoKill(false).Pause()
-                .Append(BgRays.transform.DOScale(0.001f, 0.3f).From())
-                .Join(BgCircle.DOFade(0, 0.3f).From())
+                .Append(BgRays.transform.DOScale(0.0001f, 0.3f).From())
                 .Append(BgRays.transform.DORotate(new Vector3(0, 0, -360), 9f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(999))
-                .Insert(0, this.GetComponent<Image>().DOColor(ungainedColor, 0.3f).From())
+                .Insert(0, StarImg.DOColor(ungainedColor, 0.3f).From())
                 .Join(this.transform.DOScale(0.5f, 0.0001f).From())
                 .Join(this.transform.DOPunchRotation(new Vector3(0, 0, 36), 0.5f))
                 .Insert(0.0001f, this.transform.DOPunchScale(Vector3.one * 0.2f, 0.5f));
+            gainTween.ForceInit();
         }
 
         void Awake()
