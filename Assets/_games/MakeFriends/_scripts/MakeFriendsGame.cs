@@ -69,6 +69,10 @@ namespace EA4S.MakeFriends
             }
         }
 
+        private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
+
+        private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
+
         public MakeFriendsIntroductionState IntroductionState { get; private set; }
 
         public MakeFriendsQuestionState QuestionState { get; private set; }
@@ -263,7 +267,7 @@ namespace EA4S.MakeFriends
         public void OnRoundResultPressed()
         {
             GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
-            WidgetPopupWindow.I.Close();
+            Popup.Hide();
             Play();
         }
 
@@ -343,7 +347,11 @@ namespace EA4S.MakeFriends
                 FriendsZonesManager.instance.IncrementCurrentZone();
                 yield return new WaitForSeconds(winDelay2);
                 HideDropZone();
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
+                //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
+                Popup.Show();
+                Popup.SetButtonCallback(OnRoundResultPressed);
+                Popup.SetTitle(TextID.WELL_DONE);
+                Popup.SetMark(true, true);
             }
             else
             {
@@ -352,7 +360,11 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
+                //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
+                Popup.Show();
+                Popup.SetButtonCallback(OnRoundResultPressed);
+                Popup.SetTitle(TextID.GAME_RESULT_RETRY);
+                Popup.SetMark(true, false);
             }
         }
 
