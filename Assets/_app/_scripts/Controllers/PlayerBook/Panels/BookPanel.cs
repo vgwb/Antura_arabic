@@ -6,15 +6,32 @@ namespace EA4S
 {
     public class BookPanel : MonoBehaviour
     {
+        enum BookPanelArea
+        {
+            None,
+            Letters,
+            Words,
+            Phrases,
+            Minigames
+        }
+
+        [Header("Prefabs")]
+        public GameObject WordItemPrefab;
+        public GameObject LetterItemPrefab;
+        public GameObject MinigameItemPrefab;
+        public GameObject PhraseItemPrefab;
 
         [Header("References")]
-        public GameObject ButtonPrefab;
-        public GameObject WordsContainer;
+        public GameObject SubmenuContainer;
+        public GameObject ElementsContainer;
         public TextRender ArabicText;
         public TMPro.TextMeshProUGUI Drawing;
 
         public LetterObjectView LLText;
         public LetterObjectView LLDrawing;
+
+        BookPanelArea currentArea = BookPanelArea.None;
+        GameObject btnGO;
 
         void Start()
         {
@@ -22,28 +39,94 @@ namespace EA4S
 
         void OnEnable()
         {
-            InitUI();
-            Drawing.text = "";
+            OpenArea(BookPanelArea.Words);
         }
 
-        void InitUI()
+        void OpenArea(BookPanelArea newArea)
         {
-            GameObject btnGO;
+            if (newArea != currentArea) {
+                currentArea = newArea;
+                activatePanel(currentArea, true);
+            }
+        }
 
-            //// Words
-            foreach (Transform t in WordsContainer.transform) {
+        void activatePanel(BookPanelArea panel, bool status)
+        {
+            switch (panel) {
+                case BookPanelArea.Letters:
+                    LettersPanel();
+                    break;
+                case BookPanelArea.Words:
+                    WordsPanel();
+                    break;
+                case BookPanelArea.Phrases:
+                    PhrasesPanel();
+                    break;
+                case BookPanelArea.Minigames:
+                    MinigamesPanel();
+                    break;
+            }
+        }
+
+        void LettersPanel()
+        {
+            foreach (Transform t in ElementsContainer.transform) {
                 Destroy(t.gameObject);
             }
 
-            foreach (WordData word in AppManager.Instance.DB.GetAllWordData()) {
-                btnGO = Instantiate(ButtonPrefab);
-                btnGO.transform.SetParent(WordsContainer.transform, false);
-                btnGO.GetComponentInChildren<Text>().text = word.Id;
-                if (word.Drawing != "") {
+            foreach (LetterData item in AppManager.Instance.DB.GetAllLetterData()) {
+                btnGO = Instantiate(LetterItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponentInChildren<Text>().text = item.Id;
+            }
+        }
+
+        void PhrasesPanel()
+        {
+            foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
+            }
+
+            foreach (PhraseData item in AppManager.Instance.DB.GetAllPhraseData()) {
+                btnGO = Instantiate(PhraseItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponentInChildren<Text>().text = item.Id;
+            }
+        }
+
+        void MinigamesPanel()
+        {
+            foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
+            }
+
+            foreach (MiniGameData item in AppManager.Instance.DB.GetAllMiniGameData()) {
+                btnGO = Instantiate(MinigameItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponentInChildren<Text>().text = item.GetId();
+            }
+        }
+
+        void WordsPanel()
+        {
+
+            //// Words
+            foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
+            }
+
+            foreach (WordData item in AppManager.Instance.DB.GetAllWordData()) {
+                btnGO = Instantiate(WordItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponentInChildren<Text>().text = item.Id;
+                if (item.Drawing != "") {
                     btnGO.GetComponent<Image>().color = Color.green;
                 }
-                AddListenerWord(btnGO.GetComponent<Button>(), word);
+                AddListenerWord(btnGO.GetComponent<Button>(), item);
+                //btnGO.GetComponent<Button>().onClick.AddListener(() => PlayWord(word));
             }
+
+            Drawing.text = "";
         }
 
         void AddListenerWord(Button b, WordData word)
@@ -72,5 +155,24 @@ namespace EA4S
             }
         }
 
+        public void BtnOpenLetters()
+        {
+            OpenArea(BookPanelArea.Letters);
+        }
+
+        public void BtnOpenWords()
+        {
+            OpenArea(BookPanelArea.Words);
+        }
+
+        public void BtnOpenPhrases()
+        {
+            OpenArea(BookPanelArea.Phrases);
+        }
+
+        public void BtnOpenMinigames()
+        {
+            OpenArea(BookPanelArea.Minigames);
+        }
     }
 }
