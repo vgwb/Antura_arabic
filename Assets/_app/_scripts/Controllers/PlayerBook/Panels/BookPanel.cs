@@ -145,7 +145,11 @@ namespace EA4S
         public void DetailMiniGame(MiniGameData data)
         {
 
+
+
+
         }
+
 
         void emptyContainer()
         {
