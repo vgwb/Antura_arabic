@@ -13,12 +13,6 @@ namespace EA4S
         public GameObject ElementsContainer;
 
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
         void OnEnable()
         {
             InitUI();
@@ -33,11 +27,17 @@ namespace EA4S
                 Destroy(t.gameObject);
             }
 
-            foreach (LearningBlockData word in AppManager.Instance.DB.GetAllLearningBlockData()) {
+            foreach (LearningBlockData item in AppManager.Instance.DB.GetAllLearningBlockData()) {
                 btnGO = Instantiate(LearningBlockItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponentInChildren<Text>().text = word.Title_En;
+                btnGO.GetComponent<ItemLearningBlock>().Init(this, item);
             }
+        }
+
+
+        public void DetailLearningBlock(LearningBlockData data)
+        {
+
         }
     }
 }
