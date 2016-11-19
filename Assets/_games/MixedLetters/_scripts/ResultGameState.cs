@@ -20,7 +20,7 @@ namespace EA4S.MixedLetters
         {
             if (PlayGameState.RoundWon)
             {
-                popupWidget.Show(OnResultPressed, TextID.WELL_DONE, true);
+                popupWidget.Show(OnResultPressed, "Keeper_Good_5", true);
             }
             else
             {

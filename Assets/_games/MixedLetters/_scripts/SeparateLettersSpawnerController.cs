@@ -19,18 +19,6 @@ namespace EA4S.MixedLetters
             instance = this;
         }
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void SetPosition(Vector3 position)
         {
             transform.position = position;
@@ -67,7 +55,7 @@ namespace EA4S.MixedLetters
                 separateLetterController.Enable();
                 separateLetterController.SetPosition(transform.position, false);
                 separateLetterController.SetLetter(letterToSpawn);
-                separateLetterController.SetRotation(new Vector3(0, 180, Random.Range(0, 4) * 90));
+                separateLetterController.SetRotation(new Vector3(0, 0, Random.Range(0, 4) * 90));
                 separateLetterController.SetIsKinematic(false);
                 separateLetterController.AddForce(new Vector3(throwLetterToTheRight ? Random.Range(2f, 6f) : Random.Range(-6f, -2f), Constants.GRAVITY.y * -0.45f), ForceMode.VelocityChange);
 

@@ -72,8 +72,6 @@ namespace EA4S.ColorTickle
                 game.m_Stars = Mathf.RoundToInt(m_iRoundsSuccessfull);
                 Debug.Log("Final int Stars: " + m_iRoundsSuccessfull);*/
                
-                game.m_Stars = Mathf.CeilToInt(m_iRoundsSuccessfull / 2f);
-
                 game.SetCurrentState(game.ResultState);
             }
             else
@@ -139,6 +137,8 @@ namespace EA4S.ColorTickle
                     if(m_PercentageLetterColored >= 100)
                     {
                         m_iRoundsSuccessfull += 1;
+                        game.m_Stars = Mathf.CeilToInt(m_iRoundsSuccessfull / 2f);
+                        game.gameUI.SetStarsScore(game.m_Stars);
 
                         m_LetterObjectView.DoHorray();
                         AudioManager.I.PlaySfx(Sfx.Win);
@@ -157,10 +157,7 @@ namespace EA4S.ColorTickle
                         m_LetterObjectView.SetState(LLAnimationStates.LL_dancing);*/
                         m_LetterObjectView.DoAngry();
                         AudioManager.I.PlaySfx(Sfx.Lose);
-                    }
-
-                    
-
+                    }                   
                 }
             }
         }
@@ -185,8 +182,9 @@ namespace EA4S.ColorTickle
 		private void InitGameUI()
 		{
             game.gameUI = game.Context.GetOverlayWidget();
-            game.gameUI.Initialize(false, false, true);
+            game.gameUI.Initialize(true, false, true);
             game.gameUI.SetMaxLives(game.lives);
+            game.gameUI.SetStarsScore(0);
 
             game.colorsCanvas.gameObject.SetActive(true);
             m_ColorsUIManager = game.colorsCanvas.GetComponentInChildren<ColorsUIManager>();
