@@ -9,7 +9,6 @@ namespace EA4S.MixedLetters
         // How fast the letter rotates when the rotate button is pressed, in degrees per second:
         private const float ROTATION_SPEED = 720f;
 
-        public TMP_Text TMP_text;
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
 
@@ -17,9 +16,23 @@ namespace EA4S.MixedLetters
         private bool isDraggable = false;
         private float cameraDistance;
         private LL_LetterData letterData;
+
+        [HideInInspector]
         public DropZoneController droppedZone;
 
         private bool isRotating;
+
+        public LetterObjectView letterObjectView;
+
+        void Awake()
+        {
+            foreach (Collider collider in GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
+
+            boxCollider.enabled = true;
+        }
 
         void Start()
         {
@@ -29,6 +42,8 @@ namespace EA4S.MixedLetters
             inputManager.onPointerUp += OnPointerUp;
 
             cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
+
+            letterObjectView.State = LLAnimationStates.LL_limbless;
         }
 
         private void OnPointerDown()
@@ -112,6 +127,7 @@ namespace EA4S.MixedLetters
 
         public void SetRotation(Vector3 eulerAngles)
         {
+            //transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
             transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
         }
 
@@ -145,13 +161,13 @@ namespace EA4S.MixedLetters
 
                 if (currentZRotation >= targetZRotation)
                 {
-                    transform.localRotation = Quaternion.Euler(0, 0, targetZRotation % 360);
+                    SetRotation(new Vector3(0, 0, targetZRotation % 360));
                     break;
                 }
 
                 else
                 {
-                    transform.localRotation = Quaternion.Euler(0, 0, currentZRotation);
+                    SetRotation(new Vector3(0, 0, currentZRotation));
                 }
 
                 yield return new WaitForFixedUpdate();
@@ -167,7 +183,7 @@ namespace EA4S.MixedLetters
             isBeingDragged = false;
             isDraggable = false;
             SetIsKinematic(true);
-            SetRotation(new Vector3(0, 0, 0));
+            SetRotation(new Vector3(0, 180, 0));
             droppedZone = null;
             isRotating = false;
         }
@@ -201,7 +217,7 @@ namespace EA4S.MixedLetters
         public void SetLetter(LL_LetterData letterData)
         {
             this.letterData = letterData;
-            TMP_text.SetText(letterData.TextForLivingLetter);
+            letterObjectView.Label.SetText(letterData.TextForLivingLetter);
         }
 
         public LL_LetterData GetLetter()

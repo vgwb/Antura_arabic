@@ -88,11 +88,11 @@ namespace EA4S.ThrowBalls
                 letter.SetActive(false);
             }
 
-            letterWithPropsPrefab.SetActive(false);
+            //letterWithPropsPrefab.SetActive(false);
 
-            ResetScene();
+            //ResetScene();
 
-            StartCoroutine("StartNewRound");
+            //StartCoroutine("StartNewRound");
 
             AudioManager.I.PlayMusic(Music.MainTheme);
 
