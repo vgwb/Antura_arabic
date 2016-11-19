@@ -59,6 +59,7 @@ namespace EA4S
         LLAnimationStates backState = LLAnimationStates.LL_idle;
         bool hasToGoBackState = false;
         bool inIdleAlternative = false;
+        bool started = false;
 
         #endregion
 
@@ -119,6 +120,11 @@ namespace EA4S
             startScale = transform.localScale;
             startTextScale = textTransform.sizeDelta;
             OnModelChanged();
+        }
+
+        void Start()
+        {
+            started = true;
         }
 
         /// <summary>
@@ -182,7 +188,8 @@ namespace EA4S
             if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless)
             {
                 // going limbless
-                Poof();
+                if (started)
+                    Poof();
 
                 for (int i = 0; i < normalGraphics.Length; ++i)
                     normalGraphics[i].SetActive(false);
@@ -191,7 +198,9 @@ namespace EA4S
             }
             else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless)
             {
-                Poof();
+                if (started)
+                    Poof();
+
                 for (int i = 0; i < normalGraphics.Length; ++i)
                     normalGraphics[i].SetActive(true);
                 for (int i = 0; i < limblessGraphics.Length; ++i)
@@ -564,6 +573,12 @@ namespace EA4S
         void OnEnable()
         {
             OnStateChanged(state, state);
+            started = true;
+        }
+
+        void OnDisable()
+        {
+            started = false;
         }
 
         void OnDancingStart()
