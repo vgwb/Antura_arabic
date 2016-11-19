@@ -82,7 +82,7 @@ namespace EA4S.MixedLetters
             if (isBeingDragged)
             {
                 Vector2 lastPointerPosition = MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
-                Vector3 pointerPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y, cameraDistance));
+                Vector3 pointerPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y, Mathf.Abs(transform.position.z - Camera.main.transform.position.z)));
 
                 transform.position = pointerPosInWorldUnits;
             }
