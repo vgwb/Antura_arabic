@@ -7,7 +7,7 @@ namespace EA4S
     public class ParentsPanel : MonoBehaviour
     {
         [Header("Prefabs")]
-        public GameObject ButtonPrefab;
+        public GameObject LearningBlockItemPrefab;
 
         [Header("References")]
         public GameObject ElementsContainer;
@@ -34,7 +34,7 @@ namespace EA4S
             }
 
             foreach (LearningBlockData word in AppManager.Instance.DB.GetAllLearningBlockData()) {
-                btnGO = Instantiate(ButtonPrefab);
+                btnGO = Instantiate(LearningBlockItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponentInChildren<Text>().text = word.Title_En;
             }
