@@ -30,6 +30,10 @@ namespace EA4S.Teacher
             this.teacher = _teacher;
         }
 
+        public string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
+        {
+            return journeyPosition.Stage + "." + journeyPosition.LearningBlock + "." + journeyPosition.PlaySession;
+        }
 
         #region Info getters
 
