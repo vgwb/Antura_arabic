@@ -9,7 +9,7 @@ namespace EA4S.TakeMeHome
 	public class TakeMeHomeModel {
 
 		public int[][] tubesToLetters = new int[4][];
-	
+        List<int> usedLetters = new List<int>();
 		/////////////////
 		// Singleton Pattern
 		static TakeMeHomeModel instance;
@@ -35,8 +35,12 @@ namespace EA4S.TakeMeHome
 
 		public int getRandomLetterOnTube(int tubeId)
 		{
-            
-			return tubesToLetters [tubeId][UnityEngine.Random.Range(0,tubesToLetters[tubeId].Length)];
+            int randLetter = tubesToLetters[tubeId][UnityEngine.Random.Range(0, tubesToLetters[tubeId].Length)];
+            while(usedLetters.IndexOf(randLetter) != -1)
+                randLetter = tubesToLetters[tubeId][UnityEngine.Random.Range(0, tubesToLetters[tubeId].Length)];
+
+            usedLetters.Add(randLetter);
+            return randLetter;
 		}
 
 	}
