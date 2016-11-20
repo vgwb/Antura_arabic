@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EA4S
@@ -48,6 +49,22 @@ namespace EA4S
             return FromTimestamp(timestamp_to) - FromTimestamp(timestamp_from);
         }
 
+        #endregion
+
+        #region Math
+        public static float GetAverage(List<float> floatsList)
+        {
+            if (floatsList.Count < 1)
+                return 0f;
+
+            var average = 0f;
+
+            foreach (var item in floatsList) {
+                average += item;
+            }
+
+            return (average / floatsList.Count);
+        }
         #endregion
     }
 }
