@@ -21,17 +21,15 @@ namespace EA4S
         private PlayerProfile playerProfile;
 
         // Inner engines
-        public LogAI logIntelligence;
+        public LogAI logAI;
+        public WordSelectionAI wordAI;
+        MiniGameSelectionAI minigameSelectionAI;
+        DifficultySelectionAI difficultySelectionAI;
 
         // Helpers
         public WordHelper wordHelper;
         public JourneyHelper journeyHelper;
         public ScoreHelper scoreHelper;
-
-        // Selection engines
-        MiniGameSelectionAI minigameSelectionAI;
-        public WordSelectionAI wordAI;
-        DifficultySelectionAI difficultySelectionAI;
 
         // State
         private List<MiniGameData> currentPlaySessionMiniGames = new List<MiniGameData>();
@@ -44,12 +42,11 @@ namespace EA4S
             dbManager = _dbManager;
             playerProfile = _playerProfile;
 
-            logIntelligence = new LogAI(_dbManager);
-
             wordHelper = new WordHelper(_dbManager, this);
             journeyHelper = new JourneyHelper(_dbManager, this);
             scoreHelper = new ScoreHelper(_dbManager);
 
+            logAI = new LogAI(_dbManager);
             minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             wordAI = new WordSelectionAI(dbManager, playerProfile, this, wordHelper);
             difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
