@@ -6942,6 +6942,9 @@ MonoBehaviour:
   characterIsMoving: 0
   dot: {fileID: 114000012861757694}
   nextPosition: {fileID: 4000011061758224}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  isAppearing: 0
 --- !u!114 &114000010420478418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7002,6 +7005,7 @@ MonoBehaviour:
   - {fileID: 1000010219344208}
   - {fileID: 1000011230532312}
   isStopped: 0
+  isShownOnce: 0
 --- !u!114 &114000011022313444
 MonoBehaviour:
   m_ObjectHideFlags: 1
