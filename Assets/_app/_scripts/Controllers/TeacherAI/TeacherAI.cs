@@ -54,12 +54,12 @@ namespace EA4S
 
         private void ResetPlaySession()
         {
-            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
 
-            this.currentPlaySessionMiniGames.Clear();
+            currentPlaySessionMiniGames.Clear();
 
-            this.minigameSelectionAI.InitialiseNewPlaySession();
-            this.wordAI.InitialiseNewPlaySession(currentPlaySessionId);
+            minigameSelectionAI.InitialiseNewPlaySession();
+            wordAI.InitialiseNewPlaySession(currentPlaySessionId);
         }
 
         #endregion
@@ -74,7 +74,7 @@ namespace EA4S
         private List<MiniGameData> InitialiseCurrentPlaySession(int nMinigamesToSelect)
         {
             ResetPlaySession();
-            this.currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
+            currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
             //this.currentUsableWords = SelectWordsForPlaySession();
             return currentPlaySessionMiniGames;
         }
@@ -93,7 +93,7 @@ namespace EA4S
 
         private List<MiniGameData> SelectMiniGamesForCurrentPlaySession(int nMinigamesToSelect)
         {
-            var currentPlaySessionId = JourneyPositionToPlaySessionId(this.playerProfile.CurrentJourneyPosition);
+            var currentPlaySessionId = journeyHelper.JourneyPositionToPlaySessionId(playerProfile.CurrentJourneyPosition);
             return SelectMiniGamesForPlaySession(currentPlaySessionId, nMinigamesToSelect);
         }
 
@@ -112,12 +112,6 @@ namespace EA4S
         }
 
         #endregion
-
-        // HELPER (move to JourneyHelper?)
-        public string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
-        {
-            return journeyPosition.Stage + "." + journeyPosition.LearningBlock + "." + journeyPosition.PlaySession;
-        }
 
         #region Assessment
 
