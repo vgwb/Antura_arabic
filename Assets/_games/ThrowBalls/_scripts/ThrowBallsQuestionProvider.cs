@@ -49,7 +49,7 @@ namespace EA4S.ThrowBalls
         static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
         {
             for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Key == letter.Key)
+                if (list[i].Id == letter.Id)
                     return true;
             return false;
         }

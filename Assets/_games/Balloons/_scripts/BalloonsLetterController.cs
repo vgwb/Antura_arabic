@@ -123,7 +123,7 @@ namespace EA4S.Balloons
 
         private void SpeakLetter()
         {
-            if (letterData != null && letterData.Key != null)
+            if (letterData != null && letterData.Id != null)
             {
                 BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }

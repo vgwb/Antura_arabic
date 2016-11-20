@@ -169,7 +169,7 @@ namespace EA4S.Log {
                                 // data type not found. Make soft exception.
                                 break;
                         }
-                        actualLearnResult.elementId = l._data.Key;
+                        actualLearnResult.elementId = l._data.Id;
                     }
                 }
                 // update learn objective log...

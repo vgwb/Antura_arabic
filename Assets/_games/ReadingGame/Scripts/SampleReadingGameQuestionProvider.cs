@@ -26,7 +26,7 @@ namespace EA4S
             {
                 var randomData = AppManager.Instance.DB.GetWordDataByRandom();
 
-                if (randomData.Id != answerData.Id && !wrongAnswers.Any((a) => { return a.Key == randomData.Id; }))
+                if (randomData.Id != answerData.Id && !wrongAnswers.Any((a) => { return a.Id == randomData.Id; }))
                 {
                     wrongAnswers.Add(randomData.ConvertToLivingLetterData());
                 }

@@ -13,16 +13,15 @@ namespace EA4S
             get { return LivingLetterDataType.Word; }
         }
 
-        public string Key {
-            get { return key; }
-            set { key = value; }
+        string id;
+        public string Id {
+            get { return id; }
+            set { id = value; }
         }
 
-        private string key;
-
-        public LL_WordData(string _keyRow, Db.WordData _data)
+        public LL_WordData(string _id, Db.WordData _data)
         {
-            Key = _keyRow;
+            Id = _id;
             Data = _data;
         }
 
@@ -32,7 +31,6 @@ namespace EA4S
         public string TextForLivingLetter {
             get {
                 return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic);
-                // return ArabicAlphabetHelper.ParseWord(Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()); 
             }
         }
 
@@ -45,7 +43,7 @@ namespace EA4S
         /// </summary>
         [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
         public Sprite DrawForLivingLetter {
-            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Key); }
+            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Id); }
         }
 
     }
