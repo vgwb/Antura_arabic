@@ -13,19 +13,22 @@ namespace EA4S
             get { return LivingLetterDataType.Word; }
         }
 
-        string id;
         public string Id {
-            get { return id; }
-            set { id = value; }
+            get { return Data.Id; }
+            set { Data = AppManager.Instance.DB.GetWordDataById(value); }
         }
 
-        public LL_WordData(string _id) : this(_id, AppManager.Instance.DB.GetWordDataById(_id))
+        public LL_WordData(string _id) : this(AppManager.Instance.DB.GetWordDataById(_id))
         {
         }
 
-        public LL_WordData(string _id, Db.WordData _data)
+        public LL_WordData(string _id, Db.WordData _data) : this(_data)
         {
-            Id = _id;
+        }
+
+        public LL_WordData(Db.WordData _data)
+        {
+
             Data = _data;
         }
 

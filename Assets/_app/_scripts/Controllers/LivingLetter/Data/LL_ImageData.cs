@@ -13,19 +13,21 @@ namespace EA4S
             get { return LivingLetterDataType.Image; }
         }
 
-        string id;
         public string Id {
-            get { return id; }
-            set { id = value; }
+            get { return Data.Id; }
+            set { Data = AppManager.Instance.DB.GetWordDataById(value); }
         }
 
-        public LL_ImageData(string _id) : this(_id, AppManager.Instance.DB.GetWordDataById(_id))
+        public LL_ImageData(string _id) : this(AppManager.Instance.DB.GetWordDataById(_id))
         {
         }
 
-        public LL_ImageData(string _id, Db.WordData _data)
+        public LL_ImageData(string _id, Db.WordData _data) : this(_data)
         {
-            Id = _id;
+        }
+
+        public LL_ImageData(Db.WordData _data)
+        {
             Data = _data;
         }
 
