@@ -38,22 +38,12 @@ namespace EA4S
         public string TextForLivingLetter {
             get {
                 return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic);
-                //                return string.Empty;
             }
         }
 
-        /// <summary>
-        /// @note Not ready yet!
-        /// Gets the drawing character for living letter.
-        /// </summary>
-        /// <value>
-        /// The drawing character for living letter.
-        /// </value>
         public string DrawingCharForLivingLetter {
-            ///
             get {
-                new System.Exception("DrawingCharForLivingLetter for LL_PhraseData not ready yet");
-                return string.Empty;
+                return null;
             }
         }
 
