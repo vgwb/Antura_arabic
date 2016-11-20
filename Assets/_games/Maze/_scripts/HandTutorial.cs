@@ -24,6 +24,8 @@ namespace EA4S.Maze
 		public bool isStopped = false;
 
 		private Vector3 startingPosition;
+
+        public bool isShownOnce = false;
 		// Use this for initialization
 		void Start () {
 
@@ -41,7 +43,7 @@ namespace EA4S.Maze
 
 			gameObject.SetActive (false);
 
-            
+            isShownOnce = false;
         }
 		
 		// Update is called once per frame
@@ -118,7 +120,7 @@ namespace EA4S.Maze
            
 
             currentWayPoint = 0;
-
+            isShownOnce = true;
             MazeGameManager.Instance.timer.StartTimer();
             if (wayPoints.Count == 1)
                 TutorialUI.ClickRepeat(wayPoints[0]);

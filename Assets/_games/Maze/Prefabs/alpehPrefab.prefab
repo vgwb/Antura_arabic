@@ -5357,6 +5357,7 @@ MonoBehaviour:
   numbersToShow:
   - {fileID: 1000011798021068}
   isStopped: 0
+  isShownOnce: 0
 --- !u!114 &114000010157091712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5592,6 +5593,9 @@ MonoBehaviour:
   characterIsMoving: 0
   dot: {fileID: 0}
   nextPosition: {fileID: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  isAppearing: 0
 --- !u!114 &114000011771877874
 MonoBehaviour:
   m_ObjectHideFlags: 1

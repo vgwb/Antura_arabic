@@ -37,8 +37,13 @@ namespace EA4S.Maze
 				if (transform.position.x == 0) {
 					AudioManager.I.PlayLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL()[letterIndex].Id);
 					movingIn = false;
-					MazeGameManager.Instance.showCurrentTutorial ();
-				}
+
+
+                    //MazeGameManager.Instance.showCurrentTutorial ();
+                    MazeGameManager.Instance.showCharacterMovingIn();
+                    // MazeGameManager.Instance.currentCharacter.transform.position = MazeGameManager.Instance.getRandFleePosition();
+
+                }
 				return;
 			}
 
