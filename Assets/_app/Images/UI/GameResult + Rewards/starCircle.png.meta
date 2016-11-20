@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6ab002e5a8d3949daaf2f3d7c7bb2840
-timeCreated: 1468166427
+guid: 0aa89ec40ea0ecf4bb4f3daa8b802296
+timeCreated: 1479518073
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -30,7 +30,7 @@ TextureImporter:
   maxTextureSize: 512
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -53,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: GameResultUI
+  spritePackingTag: RewardsUI
   userData: 
   assetBundleName: 
   assetBundleVariant: 
