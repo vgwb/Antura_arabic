@@ -19,6 +19,8 @@ namespace EA4S
     {
         public static DebugManager I;
 
+        public bool CheatMode = false;
+
         private DifficulyLevels _difficultyLevel = DifficulyLevels.Normal;
         public DifficulyLevels DifficultyLevel {
             get { return _difficultyLevel; }

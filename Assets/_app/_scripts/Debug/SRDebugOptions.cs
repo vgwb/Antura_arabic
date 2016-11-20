@@ -16,6 +16,10 @@ public partial class SROptions
     }
 
     [Category("Options")]
+    [Sort(1)]
+    public bool Cheat { get { return DebugManager.I.CheatMode; } set { DebugManager.I.CheatMode = value; } }
+
+    [Category("Options")]
     [NumberRange(1, 6)]
     [Sort(1)]
     public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
