@@ -15,7 +15,7 @@ namespace EA4S.Log {
         string playSession;
         MiniGameCode miniGameCode;
         List<ILivingLetterAnswerData> logLearnBuffer = new List<ILivingLetterAnswerData>();
-        List<LogIntelligence.PlayResultParameters> logPlayBuffer = new List<LogIntelligence.PlayResultParameters>();
+        List<LogAI.PlayResultParameters> logPlayBuffer = new List<LogAI.PlayResultParameters>();
         #endregion
 
         #region Initializations
@@ -89,7 +89,7 @@ namespace EA4S.Log {
         /// <param name="_ability">The ability.</param>
         /// <param name="_score">The score.</param>
         public void OnGameplaySkillAction(PlaySkill _ability, float _score) {
-            bufferizeLogPlayData(new LogIntelligence.PlayResultParameters() {
+            bufferizeLogPlayData(new LogAI.PlayResultParameters() {
                 playEvent = PlayEvent.Skill,
                 skill = _ability,
                 score = _score,
@@ -118,7 +118,7 @@ namespace EA4S.Log {
             /// Bufferizes the log play data.
             /// </summary>
             /// <param name="_playResultParameters">The play result parameters.</param>
-        void bufferizeLogPlayData(LogIntelligence.PlayResultParameters _playResultParameters) {
+        void bufferizeLogPlayData(LogAI.PlayResultParameters _playResultParameters) {
             logPlayBuffer.Add(_playResultParameters);
         }
         /// <summary>
@@ -142,9 +142,9 @@ namespace EA4S.Log {
         /// Flushes the log learn data to app teacher log intellingence.
         /// </summary>
         void flushLogLearn() {
-            List<LogIntelligence.LearnResultParameters> resultsList = new List<LogIntelligence.LearnResultParameters>();
+            List<LogAI.LearnResultParameters> resultsList = new List<LogAI.LearnResultParameters>();
             ILivingLetterData actualData = null;
-            LogIntelligence.LearnResultParameters actualLearnResult = new LogIntelligence.LearnResultParameters();
+            LogAI.LearnResultParameters actualLearnResult = new LogAI.LearnResultParameters();
 
             foreach (var l in logLearnBuffer) {
                 if (actualData != l._data) {
@@ -154,7 +154,7 @@ namespace EA4S.Log {
                         // save actualLearnResult to data log list to send, if exist...
                         resultsList.Add(actualLearnResult);
                         // ...and reset actualLearnResult for new learn objective with new properties
-                        actualLearnResult = new LogIntelligence.LearnResultParameters();
+                        actualLearnResult = new LogAI.LearnResultParameters();
                         switch (l._data.DataType) {
                             case LivingLetterDataType.Letter:
                                 actualLearnResult.table = Db.DbTables.Letters;

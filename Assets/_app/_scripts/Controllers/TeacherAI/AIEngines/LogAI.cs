@@ -5,12 +5,12 @@ using EA4S.Db;
 
 namespace EA4S.Teacher
 {
-    public class LogIntelligence
+    public class LogAI
     {
         // References
         DatabaseManager db;
 
-        public LogIntelligence(DatabaseManager db)
+        public LogAI(DatabaseManager db)
         {
             this.db = db;
         }
