@@ -19,6 +19,10 @@ namespace EA4S
             set { id = value; }
         }
 
+        public LL_WordData(string _id) : this(_id, AppManager.Instance.DB.GetWordDataById(_id))
+        {
+        }
+
         public LL_WordData(string _id, Db.WordData _data)
         {
             Id = _id;
