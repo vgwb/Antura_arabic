@@ -21,7 +21,7 @@ namespace EA4S
         private PlayerProfile playerProfile;
 
         // Inner engines
-        public LogIntelligence logIntelligence;
+        public LogAI logIntelligence;
 
         // Helpers
         public WordHelper wordHelper;
@@ -44,7 +44,7 @@ namespace EA4S
             dbManager = _dbManager;
             playerProfile = _playerProfile;
 
-            logIntelligence = new LogIntelligence(_dbManager);
+            logIntelligence = new LogAI(_dbManager);
 
             wordHelper = new WordHelper(_dbManager, this);
             journeyHelper = new JourneyHelper(_dbManager, this);

@@ -31,11 +31,11 @@ namespace EA4S.Log {
             AppManager.Instance.Teacher.logIntelligence.LogMiniGameScore(miniGameCode, score);
         }
         
-        protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.PlayResultParameters> resultsList) {
+        protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.PlayResultParameters> resultsList) {
             AppManager.Instance.Teacher.logIntelligence.LogPlay(Session, playSession, miniGameCode, resultsList);
         }
 
-        protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.LearnResultParameters> resultsList) {
+        protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.LearnResultParameters> resultsList) {
             AppManager.Instance.Teacher.logIntelligence.LogLearn(Session, playSession, miniGameCode, resultsList);
         }
 
