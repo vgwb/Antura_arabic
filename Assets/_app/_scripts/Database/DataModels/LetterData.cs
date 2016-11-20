@@ -9,6 +9,14 @@ namespace EA4S.Db
         Base
     }
 
+    public enum LetterPosition
+    {
+        Isolated = 0,
+        Initial = 1,
+        Medial = 2,
+        Final = 3
+    }
+
     [Serializable]
     public class LetterData : IData, IConvertibleToLivingLetterData
     {
@@ -46,13 +54,12 @@ namespace EA4S.Db
         public bool IsOfKindCategory(LetterKindCategory category)
         {
             bool isIt = false;
-            switch (category)
-            {
+            switch (category) {
                 case LetterKindCategory.Base:
                     isIt = IsBaseLetter();
                     break;
                 case LetterKindCategory.Combo:
-                    isIt = IsComboLetter(); 
+                    isIt = IsComboLetter();
                     break;
                 case LetterKindCategory.Real:
                     isIt = IsRealLetter();
@@ -81,5 +88,32 @@ namespace EA4S.Db
             return new LL_LetterData(GetId(), this);
         }
 
+        public string GetChar(LetterPosition position = LetterPosition.Isolated)
+        {
+            switch (position) {
+                case LetterPosition.Initial:
+                    return Initial;
+                case LetterPosition.Medial:
+                    return Medial;
+                case LetterPosition.Final:
+                    return Final;
+                default:
+                    return Isolated;
+            }
+        }
+
+        public string GetUnicode(LetterPosition position = LetterPosition.Isolated)
+        {
+            switch (position) {
+                case LetterPosition.Initial:
+                    return Initial_Unicode;
+                case LetterPosition.Medial:
+                    return Medial_Unicode;
+                case LetterPosition.Final:
+                    return Final_Unicode;
+                default:
+                    return Isolated_Unicode;
+            }
+        }
     }
 }

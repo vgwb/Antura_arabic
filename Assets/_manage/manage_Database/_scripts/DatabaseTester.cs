@@ -244,8 +244,8 @@ namespace EA4S.Db.Management
             bool useLetter = RND.value > 0.5f;
             newData.TableName = useLetter ? "LetterData" : "WordData";
             newData.ElementId = useLetter
-                ? GenericUtilities.GetRandom(dbManager.GetAllLetterData()).GetId()
-                : GenericUtilities.GetRandom(dbManager.GetAllWordData()).GetId();
+                ? RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId()
+                : RandomHelper.GetRandom(dbManager.GetAllWordData()).GetId();
 
             newData.Score = RND.Range(-1f, 1f);
 
@@ -290,31 +290,31 @@ namespace EA4S.Db.Management
             switch (rndTableValue) {
                 case 0:
                     rndTable = DbTables.Letters;
-                    rndId = GenericUtilities.GetRandom(dbManager.GetAllLetterData()).GetId();
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllLetterData()).GetId();
                     break;
                 case 1:
                     rndTable = DbTables.Words;
-                    rndId = GenericUtilities.GetRandom(dbManager.GetAllWordData()).GetId();
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllWordData()).GetId();
                     break;
                 case 2:
                     rndTable = DbTables.Phrases;
-                    rndId = GenericUtilities.GetRandom(dbManager.GetAllPhraseData()).GetId();
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllPhraseData()).GetId();
                     break; ;
                 case 3:
                     rndTable = DbTables.MiniGames;
-                    rndId = GenericUtilities.GetRandom(dbManager.GetAllMiniGameData()).GetId();
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllMiniGameData()).GetId();
                     break;
                 case 4:
                     rndTable = DbTables.PlaySessions;
-                    rndId = GenericUtilities.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllPlaySessionData()).GetId();
                     break;
                 case 5:
                     rndTable = DbTables.Stages;
-                    rndId = GenericUtilities.GetRandom(dbManager.GetAllStageData()).GetId();
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllStageData()).GetId();
                     break;
                 case 6:
                     rndTable = DbTables.Rewards;
-                    rndId = GenericUtilities.GetRandom(dbManager.GetAllRewardData()).GetId();
+                    rndId = RandomHelper.GetRandom(dbManager.GetAllRewardData()).GetId();
                     break;
             }
 
@@ -407,7 +407,7 @@ namespace EA4S.Db.Management
 
         public void Teacher_LatestScores()
         {
-            var scores = teacherAI.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
+            var scores = teacherAI.scoreHelper.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
 
             string output = "Scores:\n";
             foreach (var score in scores) output += score.ToString() + "\n";
@@ -416,7 +416,7 @@ namespace EA4S.Db.Management
 
         public void Teacher_AllPlaySessionScores()
         {
-            var list = teacherAI.GetCurrentScoreForAllPlaySessions();
+            var list = teacherAI.scoreHelper.GetCurrentScoreForAllPlaySessions();
 
             string output = "All play session scores:\n";
             foreach (var data in list) output += data.ElementId + ": " + data.Score + "\n";

@@ -71,7 +71,7 @@ namespace EA4S.MissingLetter
         public GameObject GetCorrectLLObject()
         {
             foreach (GameObject _obj in m_aoCurrentAnswerScene) {
-                if (_obj.GetComponent<LetterBehaviour>().LetterData.Key == m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
+                if (_obj.GetComponent<LetterBehaviour>().LetterData.Id == m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id)
                 {
                     return _obj;
                 }
@@ -186,7 +186,7 @@ namespace EA4S.MissingLetter
             int index = 0;
             for(; index < Letters.Count; ++index)
             {
-                if(Letters[index].Key == letter.Key)
+                if(Letters[index].Id == letter.Id)
                 {
                     break;
                 }
@@ -259,14 +259,14 @@ namespace EA4S.MissingLetter
 
         private bool isCorrectAnswer(string _key)
         {
-            return m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key;
+            return m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id == _key;
         }
 
         private LetterBehaviour GetAnswerById(string _key)
         {
             foreach (GameObject _obj in m_aoCurrentAnswerScene)
             {
-                if (_obj.GetComponent<LetterBehaviour>().mLetterData.Key == _key)
+                if (_obj.GetComponent<LetterBehaviour>().mLetterData.Id == _key)
                     return _obj.GetComponent<LetterBehaviour>();
             }
             return null;
@@ -351,7 +351,7 @@ namespace EA4S.MissingLetter
         {
             for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
             {
-                if(isCorrectAnswer(m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key))
+                if(isCorrectAnswer(m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id))
                 {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
@@ -395,7 +395,7 @@ namespace EA4S.MissingLetter
 
             for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
             {
-                if (m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
+                if (m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id == m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id)
                 {
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
                     m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();

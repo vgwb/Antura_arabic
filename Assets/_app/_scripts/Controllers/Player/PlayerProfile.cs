@@ -9,15 +9,17 @@ namespace EA4S
 {
 
     [Serializable]
-    public class PlayerProfile : IPlayerProfile {
-
+    public class PlayerProfile : IPlayerProfile
+    {
         public string Key { get; set; }
         public int Id;
         public int AvatarId;
         public int Age;
         public string Name;
 
-        //profile comlpetion
+        //int to track first visit
+        //First contact (ProfileCompletion = 1 & 2)
+        //BookVisited: ProfileCompletion = 3
         public int ProfileCompletion = 0;
 
         // Mood (1 to 5 indicators)
@@ -77,7 +79,8 @@ namespace EA4S
         /// <summary>
         /// Automatically select first avatar profile.
         /// </summary>
-        public PlayerProfile() {
+        public PlayerProfile()
+        {
 
         }
 
@@ -87,7 +90,8 @@ namespace EA4S
         /// <summary>
         /// Saves this instance.
         /// </summary>
-        public void Save() {
+        public void Save()
+        {
             AppManager.Instance.PlayerProfileManager.SavePlayerSettings(this);
         }
 
@@ -95,7 +99,8 @@ namespace EA4S
         /// TBD if accessible form player instance.
         /// Saves the general game settings.
         /// </summary>
-        public void SaveGameSettings() {
+        public void SaveGameSettings()
+        {
             AppManager.Instance.PlayerProfileManager.SaveGameSettings();
         }
         #endregion
@@ -108,7 +113,8 @@ namespace EA4S
         /// <param name="_stage">The stage.</param>
         /// <param name="_lb">The lb.</param>
         /// <param name="_ps">The ps.</param>
-        public void SetActualJourneyPosition(int _stage, int _lb, int _ps) {
+        public void SetActualJourneyPosition(int _stage, int _lb, int _ps)
+        {
             SetActualJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
         }
 
@@ -117,7 +123,8 @@ namespace EA4S
         /// @note: check valid data before insert.
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
-        public void SetActualJourneyPosition(JourneyPosition _journeyPosition) {
+        public void SetActualJourneyPosition(JourneyPosition _journeyPosition)
+        {
             AppManager.Instance.Player.CurrentJourneyPosition = _journeyPosition;
         }
 
@@ -128,7 +135,8 @@ namespace EA4S
         /// <param name="_stage">The stage.</param>
         /// <param name="_lb">The lb.</param>
         /// <param name="_ps">The ps.</param>
-        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps) {
+        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps)
+        {
             SetMaxJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
         }
 
@@ -137,7 +145,8 @@ namespace EA4S
         /// @note: check valid data before insert.
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
-        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition) {
+        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition)
+        {
             AppManager.Instance.Player.MaxJourneyPosition = _journeyPosition;
         }
         #endregion
@@ -151,7 +160,8 @@ namespace EA4S
         /// <returns>
         ///   <c>true</c> if [is first contact]; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsFirstContact() {
+        public bool IsFirstContact()
+        {
             if (ProfileCompletion < 2)
                 return true;
             else
@@ -165,10 +175,11 @@ namespace EA4S
         /// <returns>
         ///   <c>true</c> if [is first contact] [the specified step]; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsFirstContact(int _step) {
+        public bool IsFirstContact(int _step)
+        {
             if (_step < 0) return true;
             if (_step > 2) return false;
-            if (ProfileCompletion == _step-1)
+            if (ProfileCompletion == _step - 1)
                 return true;
             else
                 return false;
@@ -178,7 +189,8 @@ namespace EA4S
         /// Set firsts contact flag as passed for step specified.
         /// </summary>
         /// <param name="_step">The step (1 (default) or 2).</param>
-        public void FirstContactPassed(int _step = 1) {
+        public void FirstContactPassed(int _step = 1)
+        {
             switch (_step) {
                 case 1:
                     ProfileCompletion = _step;
@@ -187,7 +199,7 @@ namespace EA4S
                     ProfileCompletion = _step;
                     break;
             }
-            
+
             Save();
         }
         #endregion
@@ -199,7 +211,8 @@ namespace EA4S
         /// <returns>
         ///   <c>true</c> if [is first time book]; otherwise, <c>false</c>.
         /// </returns>
-        public bool IsFirstTimeBook() {
+        public bool IsFirstTimeBook()
+        {
             if (ProfileCompletion < 3)
                 return true;
             else
@@ -209,7 +222,8 @@ namespace EA4S
         /// <summary>
         /// Firsts the time book passed.
         /// </summary>
-        public void FirstTimeBookPassed() {
+        public void FirstTimeBookPassed()
+        {
             ProfileCompletion = 2;
             Save();
         }

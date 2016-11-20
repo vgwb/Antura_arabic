@@ -6,7 +6,7 @@ namespace EA4S.Teacher
         // Debug
         public static bool verboseTeacher = false;
         public static bool verboseDataSelection = false;
-        public static bool forceJourneyIgnore = true; // If true, the journey progression logic is turned off, so that all data is usable
+        public static bool forceJourneyIgnore = false; // If true, the journey progression logic is turned off, so that all data is usable
 
         // General configuration
         public const int daysForMaximumRecentPlayMalus = 4;   // Days at which we get the maximum malus for a recent play weight

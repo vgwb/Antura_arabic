@@ -136,7 +136,7 @@ namespace EA4S.MakeFriends
 
         public void SpeakWord()
         {
-            if (wordData != null && wordData.Key != null)
+            if (wordData != null && wordData.Id != null)
             {
                 MakeFriendsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
             }

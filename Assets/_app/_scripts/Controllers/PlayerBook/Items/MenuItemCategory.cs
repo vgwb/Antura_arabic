@@ -5,26 +5,23 @@ using EA4S.Db;
 
 namespace EA4S
 {
-    public class ItemLetter : MonoBehaviour, IPointerClickHandler
+    public class MenuItemCategory : MonoBehaviour, IPointerClickHandler
     {
-        LetterData data;
+        GenericCategoryData data;
         public TextRender Title;
-        public TextRender SubTitle;
-
         BookPanel manager;
 
-        public void Init(BookPanel _manager, LetterData _data)
+        public void Init(BookPanel _manager, GenericCategoryData _data)
         {
             data = _data;
             manager = _manager;
 
-            Title.text = ArabicAlphabetHelper.GetLetterToDisplay(data);
-            SubTitle.text = data.Id;
+            Title.text = data.Title;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            manager.DetailLetter(data);
+            manager.SelectSubCategory(data);
         }
     }
 }

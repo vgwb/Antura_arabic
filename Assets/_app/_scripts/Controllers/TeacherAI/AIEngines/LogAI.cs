@@ -5,12 +5,12 @@ using EA4S.Db;
 
 namespace EA4S.Teacher
 {
-    public class LogIntelligence
+    public class LogAI
     {
         // References
         DatabaseManager db;
 
-        public LogIntelligence(DatabaseManager db)
+        public LogAI(DatabaseManager db)
         {
             this.db = db;
         }
@@ -51,8 +51,7 @@ namespace EA4S.Teacher
         public void LogPlay(string session, string playSession, MiniGameCode miniGameCode, List<PlayResultParameters> resultsList)
         {
             // The teacher receives a score for each play skill the minigame deems worthy of analysis
-            foreach (var result in resultsList)
-            {
+            foreach (var result in resultsList) {
                 var data = new LogPlayData(session, playSession, miniGameCode, result.playEvent, result.skill, result.score);
                 db.Insert(data);
             }
@@ -77,12 +76,10 @@ namespace EA4S.Teacher
         {
             var learnRules = GetLearnRules(miniGameCode);
 
-            foreach (var result in resultsList)
-            {
+            foreach (var result in resultsList) {
                 float score = 0f;
                 float successRatio = result.nCorrect * 1f / (result.nCorrect + result.nWrong);
-                switch (learnRules.voteLogic)
-                {
+                switch (learnRules.voteLogic) {
                     case MiniGameLearnRules.VoteLogic.Threshold:
                         // Uses a binary threshold
                         float threshold = learnRules.logicParameter;
@@ -107,8 +104,7 @@ namespace EA4S.Teacher
         private MiniGameLearnRules GetLearnRules(MiniGameCode code)
         {
             MiniGameLearnRules rules = new MiniGameLearnRules();
-            switch (code)
-            {
+            switch (code) {
                 case MiniGameCode.Balloons_letter:  // @todo: set correct ones per each minigame
                     rules.voteLogic = MiniGameLearnRules.VoteLogic.Threshold;
                     rules.logicParameter = 0.5f;
@@ -149,8 +145,7 @@ namespace EA4S.Teacher
             string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '{0}' AND ElementId = '{1}'", table.ToString(), elementId);
             List<ScoreData> scoreDataList = db.FindScoreDataByQuery(query);
             float previousMaxScore = 0;
-            if (scoreDataList.Count > 0)
-            {
+            if (scoreDataList.Count > 0) {
                 previousMaxScore = scoreDataList[0].Score;
             }
             float newMaxScore = Mathf.Max(previousMaxScore, newScore);
@@ -162,8 +157,7 @@ namespace EA4S.Teacher
             string query = string.Format("SELECT * FROM ScoreData WHERE TableName = '{0}' AND ElementId = '{1}'", table.ToString(), elementId);
             List<ScoreData> scoreDataList = db.FindScoreDataByQuery(query);
             float previousAverageScore = 0;
-            if (scoreDataList.Count > 0)
-            {
+            if (scoreDataList.Count > 0) {
                 previousAverageScore = scoreDataList[0].Score;
             }
             // @note: for the first movingAverageSpan values, this won't be accurate

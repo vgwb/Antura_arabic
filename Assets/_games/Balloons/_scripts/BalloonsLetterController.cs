@@ -13,7 +13,7 @@ namespace EA4S.Balloons
         public Animator animator;
         public Collider letterCollider;
         public Rigidbody body;
-        public LL_LetterData letter;
+        public ILivingLetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
         public ILivingLetterData letterData;
@@ -72,7 +72,7 @@ namespace EA4S.Balloons
             }
         }
 
-        public void Init(LL_LetterData _data)
+        public void Init(ILivingLetterData _data)
         {
             letterData = _data;
             LLPrefab.Init(_data);
@@ -123,7 +123,7 @@ namespace EA4S.Balloons
 
         private void SpeakLetter()
         {
-            if (letterData != null && letterData.Key != null)
+            if (letterData != null && letterData.Id != null)
             {
                 BalloonsConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterData);
             }

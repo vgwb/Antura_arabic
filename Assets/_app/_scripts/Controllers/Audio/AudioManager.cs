@@ -185,10 +185,10 @@ namespace EA4S
         public AudioClip GetAudioClip(ILivingLetterData letterData)
         {
             if (letterData.DataType == LivingLetterDataType.Letter)
-                return GetAudioClip(LETTERS_PREFIX + letterData.Key);
+                return GetAudioClip(LETTERS_PREFIX + letterData.Id);
             else if (letterData.DataType == LivingLetterDataType.Word)
             {
-                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + letterData.Key);
+                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + letterData.Id);
             }
             return null;
         }

@@ -230,7 +230,7 @@ namespace EA4S.ThrowBalls
             LL_LetterData correctLetter = (LL_LetterData)newQuestionPack.GetCorrectAnswers().ToList()[0];
             List<ILivingLetterData> wrongLetters = newQuestionPack.GetWrongAnswers().ToList();
 
-            AudioManager.I.PlayLetter(correctLetter.Key);
+            AudioManager.I.PlayLetter(correctLetter.Id);
 
             yield return new WaitForSeconds(1f);
 
@@ -351,7 +351,7 @@ namespace EA4S.ThrowBalls
 
             yield return new WaitForSeconds(0.7f);
 
-            AudioManager.I.PlayLetter(correctLetterCntrl.GetLetter().Key);
+            AudioManager.I.PlayLetter(correctLetterCntrl.GetLetter().Id);
 
             correctLetterCntrl.SetMotionVariation(LetterController.MotionVariation.Idle);
             correctLetterCntrl.SetPropVariation(LetterController.PropVariation.Nothing);

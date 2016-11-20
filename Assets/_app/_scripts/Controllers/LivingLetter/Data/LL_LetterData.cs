@@ -3,37 +3,31 @@ using UnityEngine;
 
 namespace EA4S
 {
-    public enum LetterDataForm : int
-    {
-        ISOLATED,
-        INITIAL,
-        MEDIAL,
-        FINAL
-    }
 
     public class LL_LetterData : ILivingLetterData
     {
+        public Db.LetterData Data;
+        public Db.LetterPosition ShowAs = Db.LetterPosition.Isolated;
+
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Letter; }
         }
 
-        private string key;
-        public string Key {
-            get { return key; }
-            set { key = value; }
+        public string Id {
+            get { return Data.Id; }
+            set { Data = AppManager.Instance.DB.GetLetterDataById(value); }
         }
 
-        public Db.LetterData Data;
-
-        public LetterDataForm ShowAs = LetterDataForm.ISOLATED;
-
-        public LL_LetterData(string _keyRow) : this(_keyRow, AppManager.Instance.DB.GetLetterDataById(_keyRow))
+        public LL_LetterData(string _id) : this(AppManager.Instance.DB.GetLetterDataById(_id))
         {
         }
 
-        public LL_LetterData(string _key, Db.LetterData _data)
+        public LL_LetterData(string _id, Db.LetterData _data) : this(_data)
         {
-            Key = _key;
+        }
+
+        public LL_LetterData(Db.LetterData _data)
+        {
             Data = _data;
         }
 
@@ -43,16 +37,7 @@ namespace EA4S
         /// </summary>
         public string TextForLivingLetter {
             get {
-                switch (ShowAs) {
-                    case LetterDataForm.INITIAL:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Initial_Unicode);
-                    case LetterDataForm.MEDIAL:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Medial_Unicode);
-                    case LetterDataForm.FINAL:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Final_Unicode);
-                    default:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
-                }
+                return ArabicAlphabetHelper.GetLetterToDisplay(Data, ShowAs);
             }
         }
 

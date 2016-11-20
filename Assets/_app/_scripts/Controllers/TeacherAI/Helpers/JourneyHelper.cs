@@ -30,6 +30,10 @@ namespace EA4S.Teacher
             this.teacher = _teacher;
         }
 
+        public string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
+        {
+            return journeyPosition.Stage + "." + journeyPosition.LearningBlock + "." + journeyPosition.PlaySession;
+        }
 
         #region Info getters
 
@@ -38,8 +42,7 @@ namespace EA4S.Teacher
             List<LearningBlockInfo> learningBlockInfo_list = new List<LearningBlockInfo>();
 
             List<Db.LearningBlockData> learningBlockData_list = FindLearningBlockDataOfStage(targetStage);
-            foreach (var learningBlockData in learningBlockData_list)
-            {
+            foreach (var learningBlockData in learningBlockData_list) {
                 LearningBlockInfo info = new LearningBlockInfo();
                 info.data = learningBlockData;
                 info.score = 0; // 0 if not found otherwise in the next step
@@ -47,9 +50,8 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<Db.ScoreData> scoreData_list = teacher.GetCurrentScoreForLearningBlocksOfStage(targetStage);
-            for (int i = 0; i < learningBlockInfo_list.Count; i++)
-            {
+            List<Db.ScoreData> scoreData_list = teacher.scoreHelper.GetCurrentScoreForLearningBlocksOfStage(targetStage);
+            for (int i = 0; i < learningBlockInfo_list.Count; i++) {
                 var info = learningBlockInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.TableName == typeof(Db.LearningBlockData).Name && x.ElementId == info.data.Id);
                 info.score = scoreData.Score;
@@ -70,8 +72,7 @@ namespace EA4S.Teacher
 
             // @todo: place this Find ps -> lb -> stage somewhere else where it is easier to find (maybe the dbManager itself? or this journeyHelper instead?)
             List<Db.PlaySessionData> playSessionData_list = FindPlaySessionDataOfStageAndLearningBlock(targetStage, targetLearningBlock);
-            foreach (var playSessionData in playSessionData_list)
-            {
+            foreach (var playSessionData in playSessionData_list) {
                 PlaySessionInfo info = new PlaySessionInfo();
                 info.data = playSessionData;
                 info.score = 0; // 0 if not found otherwise in the next step
@@ -79,9 +80,8 @@ namespace EA4S.Teacher
             }
 
             // Find all previous scores
-            List<Db.ScoreData> scoreData_list = teacher.GetCurrentScoreForPlaySessionsOfStageAndLearningBlock(targetStage, targetLearningBlock);
-            for (int i = 0; i < playSessionInfo_list.Count; i++)
-            {
+            List<Db.ScoreData> scoreData_list = teacher.scoreHelper.GetLearningBlockScores(targetStage, targetLearningBlock);
+            for (int i = 0; i < playSessionInfo_list.Count; i++) {
                 var info = playSessionInfo_list[i];
                 var scoreData = scoreData_list.Find(x => x.TableName == typeof(Db.PlaySessionData).Name && x.ElementId == info.data.Id);
                 info.score = scoreData.Score;
