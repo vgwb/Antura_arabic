@@ -81,7 +81,7 @@ namespace EA4S
                 newDatas.Add(newData);
                 Draws[i].Init(newData, false);
                 Draws[i].InjectManager(this);
-                serializedWordsForLog += string.Format(" - {0}", newData.Key);
+                serializedWordsForLog += string.Format(" - {0}", newData.Id);
             }
             newDatas.Shuffle();
             for (int i = 0; i < newDatas.Count; i++) {
@@ -119,7 +119,7 @@ namespace EA4S
                 ILivingLetterData d, w;
                 d = Draws.Find(o => o.Color == c).data;
                 w = Words.Find(o => o.Color == c).data;
-                if (d.Key == w.Key) {
+                if (d.Id == w.Id) {
                     rightCounter++;
                     Words.Find(o => o.Color == c).ShowResult(true);
                 } else {

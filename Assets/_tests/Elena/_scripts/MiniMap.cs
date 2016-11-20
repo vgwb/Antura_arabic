@@ -75,8 +75,9 @@ namespace EA4S
         /// Firsts the contact behaviour.
         /// Put Here logic for first contact only situations.
         /// </summary>
-        void FirstContactBehaviour() {
-            
+        void FirstContactBehaviour()
+        {
+
             if (AppManager.Instance.Player.IsFirstContact(1)) {
                 // First contact step 1:
                 #region Temp Behaviour (to be deleted)
@@ -92,7 +93,7 @@ namespace EA4S
                 AppManager.Instance.Player.FirstContactPassed(2);
                 Debug.Log("First Contact Step2 finished! Good Luck!");
             }
-            
+
         }
         #region Temp Behaviour (to be deleted)
         CountdownTimer countDown = new CountdownTimer(5);
@@ -149,7 +150,7 @@ namespace EA4S
         private List<PlaySessionState> GetAllPlaySessionStateForStage(int _stage)
         {
             // Get all available scores for this stage
-            List<Db.ScoreData> scoreData_list = AppManager.Instance.Teacher.GetCurrentScoreForPlaySessionsOfStage(_stage);
+            List<Db.ScoreData> scoreData_list = AppManager.Instance.Teacher.scoreHelper.GetCurrentScoreForPlaySessionsOfStage(_stage);
 
             // For each score entry, get its play session data and build a structure containing both
             List<PlaySessionState> playSessionState_list = new List<PlaySessionState>();

@@ -150,7 +150,7 @@ namespace EA4S.DancingDots
 		private void SpeakLetter()
 		{
 			if (letterData != null) {
-				AudioManager.I.PlayLetter(letterData.Key);
+				AudioManager.I.PlayLetter(letterData.Id);
 			}
 		}
 

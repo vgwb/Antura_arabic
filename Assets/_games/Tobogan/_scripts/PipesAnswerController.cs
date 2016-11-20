@@ -66,7 +66,7 @@ namespace EA4S.Tobogan
                 int correctIndex = 0;
                 int wrongIndex = 1;
 
-                if(correctAnswers.Key == "the_sun")
+                if(correctAnswers.Id == "the_sun")
                 {
                     correctIndex = 1;
                     wrongIndex = 0;

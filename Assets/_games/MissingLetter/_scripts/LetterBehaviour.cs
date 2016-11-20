@@ -128,11 +128,11 @@ namespace EA4S.MissingLetter
                 mbIsSpeaking = true;
                 if (mLetterData.DataType == LivingLetterDataType.Letter)
                 {
-                    AudioManager.I.PlayLetter(mLetterData.Key);
+                    AudioManager.I.PlayLetter(mLetterData.Id);
                 }
                 else
                 {
-                    AudioManager.I.PlayWord(mLetterData.Key);
+                    AudioManager.I.PlayWord(mLetterData.Id);
                 }
                 StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
@@ -236,7 +236,7 @@ namespace EA4S.MissingLetter
 
             if (onLetterClick != null)
             {
-                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Key));
+                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Id));
                 mCollider.enabled = false;
             }
         }

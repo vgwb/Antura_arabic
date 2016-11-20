@@ -1,25 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using EA4S.Db;
 
 namespace EA4S
 {
+    public enum BookPanelArea
+    {
+        None,
+        Letters,
+        Words,
+        Phrases,
+        Minigames
+    }
+
+    public struct GenericCategoryData
+    {
+        public BookPanelArea area;
+        public string Id;
+        public string Title;
+        public WordDataCategory wordCategory;
+    }
+
     public class BookPanel : MonoBehaviour
     {
-        enum BookPanelArea
-        {
-            None,
-            Letters,
-            Words,
-            Phrases,
-            Minigames
-        }
 
         [Header("Prefabs")]
         public GameObject WordItemPrefab;
         public GameObject LetterItemPrefab;
         public GameObject MinigameItemPrefab;
         public GameObject PhraseItemPrefab;
+        public GameObject CategoryItemPrefab;
 
         [Header("References")]
         public GameObject SubmenuContainer;
@@ -32,6 +43,8 @@ namespace EA4S
 
         BookPanelArea currentArea = BookPanelArea.None;
         GameObject btnGO;
+        string currentCategory;
+        WordDataCategory currentWordCategory;
 
         void Start()
         {
@@ -39,7 +52,7 @@ namespace EA4S
 
         void OnEnable()
         {
-            OpenArea(BookPanelArea.Words);
+            OpenArea(BookPanelArea.Letters);
         }
 
         void OpenArea(BookPanelArea newArea)
@@ -68,19 +81,84 @@ namespace EA4S
             }
         }
 
-        void LettersPanel()
+        void LettersPanel(string _category = "")
         {
-            emptyContainer();
-            foreach (LetterData item in AppManager.Instance.DB.GetAllLetterData()) {
+            currentCategory = _category;
+            List<LetterData> list;
+            switch (currentCategory) {
+                case "combo":
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Combination));
+                    break;
+                case "symbol":
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
+                    break;
+                default:
+                    list = AppManager.Instance.DB.GetAllLetterData();
+                    break;
+            }
+
+            emptyListContainers();
+            foreach (LetterData item in list) {
                 btnGO = Instantiate(LetterItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemLetter>().Init(this, item);
             }
+
+            //btnGO = Instantiate(CategoryItemPrefab);
+            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            //btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "all", Title = "All" });
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "letter", Title = "Letters" });
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "symbol", Title = "Symbols" });
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "combo", Title = "Combinations" });
+
+        }
+
+        void WordsPanel(WordDataCategory _category = WordDataCategory.None)
+        {
+            currentWordCategory = _category;
+            List<WordData> list;
+            switch (currentWordCategory) {
+
+                case WordDataCategory.None:
+                    list = AppManager.Instance.DB.GetAllWordData();
+                    break;
+                default:
+                    list = AppManager.Instance.DB.FindWordDataByCategory(currentWordCategory);
+                    break;
+            }
+            emptyListContainers();
+
+            foreach (WordData item in list) {
+                btnGO = Instantiate(WordItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponent<ItemWord>().Init(this, item);
+            }
+            Drawing.text = "";
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { Id = WordDataCategory.None.ToString(), Title = "All" });
+
+            foreach (WordDataCategory cat in GenericUtilities.SortEnums<WordDataCategory>()) {
+                btnGO = Instantiate(CategoryItemPrefab);
+                btnGO.transform.SetParent(SubmenuContainer.transform, false);
+                btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Words, wordCategory = cat, Title = cat.ToString() });
+            }
+
         }
 
         void PhrasesPanel()
         {
-            emptyContainer();
+            emptyListContainers();
 
             foreach (PhraseData item in AppManager.Instance.DB.GetAllPhraseData()) {
                 btnGO = Instantiate(PhraseItemPrefab);
@@ -91,7 +169,7 @@ namespace EA4S
 
         void MinigamesPanel()
         {
-            emptyContainer();
+            emptyListContainers();
 
             foreach (MiniGameData item in AppManager.Instance.DB.GetActiveMinigames()) {
                 btnGO = Instantiate(MinigameItemPrefab);
@@ -100,43 +178,48 @@ namespace EA4S
             }
         }
 
-        void WordsPanel()
+        public void SelectSubCategory(GenericCategoryData _category)
         {
-            emptyContainer();
-
-            foreach (WordData item in AppManager.Instance.DB.GetAllWordData()) {
-                btnGO = Instantiate(WordItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemWord>().Init(this, item);
+            switch (_category.area) {
+                case BookPanelArea.Letters:
+                    LettersPanel(_category.Id);
+                    break;
+                case BookPanelArea.Words:
+                    WordsPanel(_category.wordCategory);
+                    break;
             }
-            Drawing.text = "";
         }
 
         public void DetailWord(WordData word)
         {
-            Debug.Log("playing word :" + word.Id);
+            Debug.Log("Detail Word :" + word.Id);
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
 
-            LLText.Init(new LL_WordData(word.GetId(), word));
+            LLText.Init(new LL_WordData(word));
             //LLText.Label.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
 
             if (word.Drawing != "") {
                 var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
                 //LLDrawing.Lable.text = drawingChar;
-                LLDrawing.Init(new LL_ImageData(word.GetId(), word));
+                LLDrawing.Init(new LL_ImageData(word));
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
                 Drawing.text = "";
-                LLDrawing.Init(new LL_ImageData(word.GetId(), word));
+                LLDrawing.Init(new LL_ImageData(word));
             }
         }
 
-        public void DetailLetter(LetterData data)
+        public void DetailLetter(LetterData letter)
         {
+            Debug.Log("Detail Letter :" + letter.Id);
+            AudioManager.I.PlayLetter(letter.Id);
 
+            ArabicText.text = ArabicAlphabetHelper.GetLetterToDisplay(letter);
+            LLText.Init(new LL_LetterData(letter));
         }
+
         public void DetailPhrase(PhraseData data)
         {
 
@@ -145,15 +228,14 @@ namespace EA4S
         public void DetailMiniGame(MiniGameData data)
         {
 
-
-
-
         }
 
-
-        void emptyContainer()
+        void emptyListContainers()
         {
             foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
+            }
+            foreach (Transform t in SubmenuContainer.transform) {
                 Destroy(t.gameObject);
             }
         }

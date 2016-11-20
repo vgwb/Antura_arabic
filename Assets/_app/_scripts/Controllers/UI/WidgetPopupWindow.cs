@@ -206,7 +206,7 @@ namespace EA4S
 
             //AudioManager.I.PlayDialog(SentenceId);
 
-            SetWord(wordData.Key, wordData.Data.Arabic);
+            SetWord(wordData.Id, wordData.Data.Arabic);
 
             Show(true);
         }
@@ -224,7 +224,7 @@ namespace EA4S
 
             //AudioManager.I.PlayDialog(SentenceId);
 
-            SetWord(wordData.Key, wordData.Data.Arabic);
+            SetWord(wordData.Id, wordData.Data.Arabic);
 
             Show(true);
         }
@@ -245,7 +245,7 @@ namespace EA4S
 
             //AudioManager.I.PlayDialog(SentenceId);
 
-            SetWord(wordData.Key, wordData.Data.Arabic);
+            SetWord(wordData.Id, wordData.Data.Arabic);
 
             Show(true);
         }

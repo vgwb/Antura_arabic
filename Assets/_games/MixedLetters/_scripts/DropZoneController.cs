@@ -168,6 +168,7 @@ namespace EA4S.MixedLetters
         public void Disable()
         {
             gameObject.SetActive(false);
+            rotateButtonController.Disable();
         }
     }
 }

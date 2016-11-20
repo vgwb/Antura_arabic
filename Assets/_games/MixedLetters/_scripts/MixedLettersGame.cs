@@ -85,10 +85,10 @@ namespace EA4S.MixedLetters
             ShowDropZones();
             UIController.instance.EnableTimer();
             UIController.instance.SetTimer(time);
-            SeparateLettersSpawnerController.instance.SetLettersDraggable(true);
+            SeparateLettersSpawnerController.instance.SetLettersDraggable();
         }
 
-        private void HideDropZones()
+        public void HideDropZones()
         {
             foreach (DropZoneController dropZoneController in dropZoneControllers)
             {
@@ -133,7 +133,7 @@ namespace EA4S.MixedLetters
             {
                 DropZoneController dropZone = dropZoneControllers[i];
                 if (dropZone.droppedLetter == null
-                    || dropZone.droppedLetter.GetLetter().Key != lettersInOrder[i].Key
+                    || dropZone.droppedLetter.GetLetter().Id != lettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
                     return;
