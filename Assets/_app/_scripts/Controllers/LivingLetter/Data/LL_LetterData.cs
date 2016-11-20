@@ -3,13 +3,6 @@ using UnityEngine;
 
 namespace EA4S
 {
-    public enum LetterDataForm : int
-    {
-        ISOLATED,
-        INITIAL,
-        MEDIAL,
-        FINAL
-    }
 
     public class LL_LetterData : ILivingLetterData
     {
@@ -24,8 +17,7 @@ namespace EA4S
         }
 
         public Db.LetterData Data;
-
-        public LetterDataForm ShowAs = LetterDataForm.ISOLATED;
+        public Db.LetterPosition ShowAs = Db.LetterPosition.Isolated;
 
         public LL_LetterData(string _keyRow) : this(_keyRow, AppManager.Instance.DB.GetLetterDataById(_keyRow))
         {
@@ -44,11 +36,11 @@ namespace EA4S
         public string TextForLivingLetter {
             get {
                 switch (ShowAs) {
-                    case LetterDataForm.INITIAL:
+                    case Db.LetterPosition.Initial:
                         return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Initial_Unicode);
-                    case LetterDataForm.MEDIAL:
+                    case Db.LetterPosition.Medial:
                         return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Medial_Unicode);
-                    case LetterDataForm.FINAL:
+                    case Db.LetterPosition.Final:
                         return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Final_Unicode);
                     default:
                         return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
