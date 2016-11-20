@@ -25,6 +25,14 @@ namespace EA4S
             var icoPath = data.GetIconResourcePath();
             var badgePath = data.GetBadgeIconResourcePath();
 
+            var score = GenericUtilities.GetAverage(TeacherAI.I.scoreHelper.GetLatestScoresForMiniGame(data.Code, -1));
+
+            if (score < 0.1f) {
+                // disabled
+                GetComponent<Button>().interactable = false;
+                //GetComponent<Image>().color = Color.grey;
+            }
+
             Icon.sprite = Resources.Load<Sprite>(icoPath);
             if (badgePath != "") {
                 BadgeIcon.sprite = Resources.Load<Sprite>(badgePath);

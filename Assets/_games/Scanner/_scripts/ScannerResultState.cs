@@ -17,7 +17,7 @@ namespace EA4S.Scanner
 		public void EnterState()
 		{
 			timer = 4;
-			game.Context.GetAudioManager().PlayMusic(Music.Relax);
+			AudioManager.I.PlayMusic(Music.Relax);
 
 		}
 
