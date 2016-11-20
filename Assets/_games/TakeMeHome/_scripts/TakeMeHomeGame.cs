@@ -90,8 +90,12 @@ namespace EA4S.TakeMeHome
 		public TakeMeHomeEndState EndState { get; private set; }
 		public TakeMeHomeResetState ResetState { get; private set; }
 		public TakeMeHomeAnturaState AntureState { get; private set; }
+        public TakeMeHomeTutorialIntroState TutorialIntroState { get; private set; }
+        public TakeMeHomeTutorialPlayState TutorialPlayState { get; private set; }
+        public TakeMeHomeTutorialResetState TutorialResetState { get; private set; }
 
-		public void InitTubes()
+
+        public void InitTubes()
 		{
 			letterManager = GetComponent<TakeMeHomeLetterManager> ();
 			activeTubes = new List<GameObject> ();
@@ -163,7 +167,7 @@ namespace EA4S.TakeMeHome
 			spawnLetteAtTube ();
 		}
 
-		void spawnLetteAtTube()
+		public void spawnLetteAtTube()
 		{
 			
 			currentTube = UnityEngine.Random.Range(0,_activeTubes);
@@ -184,14 +188,16 @@ namespace EA4S.TakeMeHome
 
 		protected override IGameState GetInitialState()
 		{
-			return IntroductionState;
+			return TutorialIntroState;
 		}
 
 		protected override void OnInitialize(IGameContext context)
 		{
-			//float difficulty = FastCrowdConfiguration.Instance.Difficulty;
-
-			IntroductionState = new TakeMeHomeIntroductionState(this);
+            //float difficulty = FastCrowdConfiguration.Instance.Difficulty;
+            TutorialIntroState = new TakeMeHomeTutorialIntroState(this);
+            TutorialPlayState = new TakeMeHomeTutorialPlayState(this);
+            TutorialResetState = new TakeMeHomeTutorialResetState(this);
+            IntroductionState = new TakeMeHomeIntroductionState(this);
 			PlayState = new TakeMeHomePlayState(this);
 			ResultState = new TakeMeHomeResultState(this);
 			EndState = new TakeMeHomeEndState(this);
@@ -218,21 +224,29 @@ namespace EA4S.TakeMeHome
             //add antura specific script:
             antura.AddComponent<TakeMeHomeAntura>();
 
-            //ui:
-            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+            
 
             /*gameTime = new CountdownTimer(UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
 			gameTime.onTimesUp += OnTimesUp;
 
 			gameTime.Reset();*/
             isTimesUp = false;
-            MinigamesUI.Timer.Setup( UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
+
+            
 
 
             activateTubes(UnityEngine.Mathf.RoundToInt(TakeMeHomeConfiguration.Instance.Difficulty * 4));
         }
 
-		public void followLetter()
+        public void initUI()
+        {
+            //ui:
+            MinigamesUI.Init(MinigamesUIElement.Starbar | MinigamesUIElement.Timer);
+            MinigamesUI.Timer.Setup( UnityEngine.Mathf.Lerp(90.0f, 60.0f, TakeMeHomeConfiguration.Instance.Difficulty));
+        }
+
+
+        public void followLetter()
 		{
 			if (!currentLetter)
 				return;
