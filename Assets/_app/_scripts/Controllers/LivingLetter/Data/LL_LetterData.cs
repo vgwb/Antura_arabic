@@ -13,19 +13,21 @@ namespace EA4S
             get { return LivingLetterDataType.Letter; }
         }
 
-        string id;
         public string Id {
-            get { return id; }
-            set { id = value; }
+            get { return Data.Id; }
+            set { Data = AppManager.Instance.DB.GetLetterDataById(value); }
         }
 
-        public LL_LetterData(string _id) : this(_id, AppManager.Instance.DB.GetLetterDataById(_id))
+        public LL_LetterData(string _id) : this(AppManager.Instance.DB.GetLetterDataById(_id))
         {
         }
 
-        public LL_LetterData(string _id, Db.LetterData _data)
+        public LL_LetterData(string _id, Db.LetterData _data) : this(_data)
         {
-            Id = _id;
+        }
+
+        public LL_LetterData(Db.LetterData _data)
+        {
             Data = _data;
         }
 

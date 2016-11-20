@@ -164,18 +164,18 @@ namespace EA4S
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
 
-            LLText.Init(new LL_WordData(word.GetId(), word));
+            LLText.Init(new LL_WordData(word));
             //LLText.Label.text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word.Arabic);
 
             if (word.Drawing != "") {
                 var drawingChar = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(word);
                 Drawing.text = drawingChar;
                 //LLDrawing.Lable.text = drawingChar;
-                LLDrawing.Init(new LL_ImageData(word.GetId(), word));
+                LLDrawing.Init(new LL_ImageData(word));
                 Debug.Log("Drawing: " + word.Drawing);
             } else {
                 Drawing.text = "";
-                LLDrawing.Init(new LL_ImageData(word.GetId(), word));
+                LLDrawing.Init(new LL_ImageData(word));
             }
         }
 
@@ -185,7 +185,7 @@ namespace EA4S
             AudioManager.I.PlayLetter(letter.Id);
 
             ArabicText.text = ArabicAlphabetHelper.GetLetterToDisplay(letter);
-            LLText.Init(new LL_LetterData(letter.GetId(), letter));
+            LLText.Init(new LL_LetterData(letter));
         }
 
         public void DetailPhrase(PhraseData data)
