@@ -5,23 +5,25 @@ using EA4S.Db;
 
 namespace EA4S
 {
-    public struct CategoryData
+    public enum BookPanelArea
     {
+        None,
+        Letters,
+        Words,
+        Phrases,
+        Minigames
+    }
+
+    public struct GenericCategoryData
+    {
+        public BookPanelArea area;
         public string Id;
         public string Title;
+        public WordDataCategory wordCategory;
     }
 
     public class BookPanel : MonoBehaviour
     {
-        enum BookPanelArea
-        {
-            None,
-            Letters,
-            Words,
-            Phrases,
-            Minigames
-        }
-
 
         [Header("Prefabs")]
         public GameObject WordItemPrefab;
@@ -42,6 +44,7 @@ namespace EA4S
         BookPanelArea currentArea = BookPanelArea.None;
         GameObject btnGO;
         string currentCategory;
+        WordDataCategory currentWordCategory;
 
         void Start()
         {
@@ -107,15 +110,49 @@ namespace EA4S
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "letter", Title = "Letters" });
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "letter", Title = "Letters" });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "symbol", Title = "Symbols" });
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "symbol", Title = "Symbols" });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "combo", Title = "Combinations" });
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Letters, Id = "combo", Title = "Combinations" });
+
+        }
+
+        void WordsPanel(WordDataCategory _category = WordDataCategory.None)
+        {
+            currentWordCategory = _category;
+            List<WordData> list;
+            switch (currentWordCategory) {
+
+                case WordDataCategory.None:
+                    list = AppManager.Instance.DB.GetAllWordData();
+                    break;
+                default:
+                    list = AppManager.Instance.DB.FindWordDataByCategory(currentWordCategory);
+                    break;
+            }
+            emptyListContainers();
+
+            foreach (WordData item in list) {
+                btnGO = Instantiate(WordItemPrefab);
+                btnGO.transform.SetParent(ElementsContainer.transform, false);
+                btnGO.GetComponent<ItemWord>().Init(this, item);
+            }
+            Drawing.text = "";
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { Id = WordDataCategory.None.ToString(), Title = "All" });
+
+            foreach (WordDataCategory cat in GenericUtilities.SortEnums<WordDataCategory>()) {
+                btnGO = Instantiate(CategoryItemPrefab);
+                btnGO.transform.SetParent(SubmenuContainer.transform, false);
+                btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { area = BookPanelArea.Words, wordCategory = cat, Title = cat.ToString() });
+            }
 
         }
 
@@ -141,21 +178,16 @@ namespace EA4S
             }
         }
 
-        void WordsPanel()
+        public void SelectSubCategory(GenericCategoryData _category)
         {
-            emptyListContainers();
-
-            foreach (WordData item in AppManager.Instance.DB.GetAllWordData()) {
-                btnGO = Instantiate(WordItemPrefab);
-                btnGO.transform.SetParent(ElementsContainer.transform, false);
-                btnGO.GetComponent<ItemWord>().Init(this, item);
+            switch (_category.area) {
+                case BookPanelArea.Letters:
+                    LettersPanel(_category.Id);
+                    break;
+                case BookPanelArea.Words:
+                    WordsPanel(_category.wordCategory);
+                    break;
             }
-            Drawing.text = "";
-        }
-
-        public void SelectSubCategory(CategoryData _category)
-        {
-            LettersPanel(_category.Id);
         }
 
         public void DetailWord(WordData word)
