@@ -95,7 +95,7 @@ namespace EA4S
             LivingLetterAnim newAnimationState = LivingLetterAnim.Nothing;
 
             while ((newAnimationState == LivingLetterAnim.Nothing) || (newAnimationState == AnimationState)) {
-                newAnimationState = GenericUtilities.GetRandomEnum<LivingLetterAnim>();
+                newAnimationState = RandomHelper.GetRandomEnum<LivingLetterAnim>();
             }
 
             AnimationState = newAnimationState;

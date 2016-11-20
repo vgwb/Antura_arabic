@@ -1,27 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace EA4S
 {
     public static class GenericUtilities
     {
-        private static readonly Random _random = new Random(DateTime.Now.Millisecond);
-        public static T GetRandom<T>(this IList<T> list)
-        {
-            if (list.Count == 0) {
-                throw new System.Exception("Cannot get a random element from the list as count is zero.");
-            }
-            return list[_random.Next(0, list.Count)];
-        }
-
-        public static T GetRandomEnum<T>()
-        {
-            var A = Enum.GetValues(typeof(T));
-            var V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
-            return V;
-        }
 
         /// <summary>
         /// sort an Enum by its names.. returns List;
