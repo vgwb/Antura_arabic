@@ -407,7 +407,7 @@ namespace EA4S.Db.Management
 
         public void Teacher_LatestScores()
         {
-            var scores = teacherAI.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
+            var scores = teacherAI.scoreHelper.GetLatestScoresForMiniGame(MiniGameCode.Balloons_counting, 3);
 
             string output = "Scores:\n";
             foreach (var score in scores) output += score.ToString() + "\n";
@@ -416,7 +416,7 @@ namespace EA4S.Db.Management
 
         public void Teacher_AllPlaySessionScores()
         {
-            var list = teacherAI.GetCurrentScoreForAllPlaySessions();
+            var list = teacherAI.scoreHelper.GetCurrentScoreForAllPlaySessions();
 
             string output = "All play session scores:\n";
             foreach (var data in list) output += data.ElementId + ": " + data.Score + "\n";
