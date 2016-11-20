@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
+using EA4S.Db;
 
-public class PlayerPanel : MonoBehaviour {
+namespace EA4S
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    public class PlayerPanel : MonoBehaviour
+    {
+        public TextRender output;
+
+
+        void Start()
+        {
+            output.text = AppManager.Instance.DB.GetLocalizationDataById("Game_Title").Arabic;
+            output.text += "\n" + AppManager.Instance.DB.GetLocalizationDataById("Game_Title2").Arabic;
+
+        }
+
+    }
 }

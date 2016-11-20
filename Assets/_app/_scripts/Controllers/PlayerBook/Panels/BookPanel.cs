@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using EA4S.Db;
 
 namespace EA4S
 {
+    public struct CategoryData
+    {
+        public string Id;
+        public string Title;
+    }
+
     public class BookPanel : MonoBehaviour
     {
         enum BookPanelArea
@@ -15,11 +22,13 @@ namespace EA4S
             Minigames
         }
 
+
         [Header("Prefabs")]
         public GameObject WordItemPrefab;
         public GameObject LetterItemPrefab;
         public GameObject MinigameItemPrefab;
         public GameObject PhraseItemPrefab;
+        public GameObject CategoryItemPrefab;
 
         [Header("References")]
         public GameObject SubmenuContainer;
@@ -32,6 +41,7 @@ namespace EA4S
 
         BookPanelArea currentArea = BookPanelArea.None;
         GameObject btnGO;
+        string Category;
 
         void Start()
         {
@@ -68,14 +78,45 @@ namespace EA4S
             }
         }
 
-        void LettersPanel()
+        void LettersPanel(string Category = "")
         {
             emptyContainer();
-            foreach (LetterData item in AppManager.Instance.DB.GetAllLetterData()) {
+
+            List<LetterData> list;
+            switch (Category) {
+                case "combo":
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Combination));
+                    break;
+                case "symbol":
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
+                    break;
+                default:
+                    list = AppManager.Instance.DB.GetAllLetterData();
+                    break;
+            }
+
+            foreach (LetterData item in list) {
                 btnGO = Instantiate(LetterItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
                 btnGO.GetComponent<ItemLetter>().Init(this, item);
             }
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "all", Title = "All" });
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "letter", Title = "Letters" });
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "symbol", Title = "Symbols" });
+
+            btnGO = Instantiate(CategoryItemPrefab);
+            btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "combo", Title = "Combinations" });
+
         }
 
         void PhrasesPanel()
@@ -110,6 +151,11 @@ namespace EA4S
                 btnGO.GetComponent<ItemWord>().Init(this, item);
             }
             Drawing.text = "";
+        }
+
+        public void SelectSubCategory(CategoryData _category)
+        {
+            LettersPanel(_category.Id);
         }
 
         public void DetailWord(WordData word)
@@ -154,6 +200,9 @@ namespace EA4S
         void emptyContainer()
         {
             foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
+            }
+            foreach (Transform t in SubmenuContainer.transform) {
                 Destroy(t.gameObject);
             }
         }

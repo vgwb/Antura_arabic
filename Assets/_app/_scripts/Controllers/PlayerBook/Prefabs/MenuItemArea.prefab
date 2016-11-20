@@ -20,12 +20,11 @@ GameObject:
   m_Component:
   - 224: {fileID: 224000010509986518}
   - 222: {fileID: 222000013940592670}
-  - 114: {fileID: 114000013116937736}
   - 114: {fileID: 114000014245332690}
   - 114: {fileID: 114000011453616060}
   - 114: {fileID: 114000013235287840}
   m_Layer: 5
-  m_Name: MenuItemCategory
+  m_Name: MenuItemArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,30 +39,14 @@ GameObject:
   m_Component:
   - 224: {fileID: 224000010203060586}
   - 222: {fileID: 222000012836532216}
-  - 114: {fileID: 114000011148778510}
   - 114: {fileID: 114000013763657942}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114000011148778510
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012099085976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6e49fa5c3fe4d65ba8553977228fcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_text: 
-  isTMPro: 0
-  isUI: 1
-  isArabic: 0
 --- !u!114 &114000011453616060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,18 +88,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114000013116937736
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011946225420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26a0ee0680054bb38d4d1fbd39761e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Title: {fileID: 114000011148778510}
 --- !u!114 &114000013235287840
 MonoBehaviour:
   m_ObjectHideFlags: 1
