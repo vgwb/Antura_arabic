@@ -24,11 +24,11 @@ public class TakeMeHomeTube : MonoBehaviour {
 
         public void showWinParticles()
         {
-            winParticles.SetActive(true);
+            //winParticles.SetActive(true);
         }
         public void hideWinParticles()
         {
-            winParticles.SetActive(false);
+            //winParticles.SetActive(false);
         }
         public void activate()
         {
