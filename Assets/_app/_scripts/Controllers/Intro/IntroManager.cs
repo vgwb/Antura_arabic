@@ -1,24 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S
 {
     public class IntroManager : MonoBehaviour
     {
         public IntroFactory factory;
-        public float lettersTimer = 1;
-        public float anturaEnterTimer = 1.5f;
-        public float anturaExitTimer = 5;
 
         CountdownTimer countDown;
+
+        public float m_StateDelay = 2.0f;
+        public float m_EndDelay = 2.0f;
 
         bool m_Start = true;
         bool m_End = false;
 
         void Start() {
             GlobalUI.ShowPauseMenu(false);
-            countDown = new CountdownTimer(2);
-            //countDown.Start();
-            //countDown.onTimesUp += CountDown_onTimesUp;
+            countDown = new CountdownTimer(m_EndDelay);
         }
 
         private void CountDown_onTimesUp() {
@@ -34,80 +34,49 @@ namespace EA4S
             if (m_Start)
             {
                 m_Start = false;
-                WidgetSubtitles.I.DisplaySentence("Intro_welcome", 2, true, WelcomeEnd);
-                //WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, WelcomeEnd);
+                Debug.Log("Start Introduction");
+                //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", FirstIntroLetter));
+                StartCoroutine(ChangeIntroductionState("Intro_welcome", FirstIntroLetter));
             }
 
             if (m_End)
             {
                 countDown.Update(Time.deltaTime);
             }
-            
-
-            //if (lettersTimer > 0)
-            //{
-            //    lettersTimer -= Time.deltaTime;
-
-            //    if (lettersTimer <= 0)
-            //    {
-            //        crowd.AddLivingLetter(null);
-            //        crowd.AddLivingLetter(null);
-            //        crowd.AddLivingLetter(null);
-            //        factory.StartSpawning = true;
-            //    }
-            //}
-
-            //if (anturaEnterTimer > 0)
-            //{
-            //    anturaEnterTimer -= Time.deltaTime;
-
-            //    if (anturaEnterTimer <= 0)
-            //    {
-            //        factory.antura.SetAnturaTime(true);
-            //    }
-            //}
-            //else if (anturaExitTimer > 0)
-            //{
-            //    anturaExitTimer -= Time.deltaTime;
-
-            //    if (anturaExitTimer <= 0)
-            //    {
-            //        factory.antura.SetAnturaTime(false);
-            //    }
-            //}
+                      
         }
 
-        public void WelcomeEnd()
+        public void FirstIntroLetter()
         {
+            Debug.Log("Start Spawning");
             factory.StartSpawning = true;
-            Debug.Log("Start Spawing");
-            WidgetSubtitles.I.DisplaySentence("Intro_Letters_1", 2, true, IntroLetterEnd);
-            //WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, IntroLetterEnd);
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", SecondIntroLetter));
+            StartCoroutine(ChangeIntroductionState("Intro_Letters_1", SecondIntroLetter));
         }
 
-        public void IntroLetterEnd()
+        public void SecondIntroLetter()
         {
-            Debug.Log("First Intro Letter is Concluded");
-            WidgetSubtitles.I.DisplaySentence("Intro_Letters_2", 2, true, EnableAntura);
-            //WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, EnableAntura);
+            Debug.Log("Second Intro Letter");
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EnableAntura));
+            StartCoroutine(ChangeIntroductionState("Intro_Letters_2", EnableAntura));
         }
 
         public void EnableAntura()
         {
             factory.antura.SetAnturaTime(true);
-            Debug.Log("Antara is enable");
-            WidgetSubtitles.I.DisplaySentence("Intro_Dog", 2, true, AnturaEnd);
-            //WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, AnturaEnd);
+            Debug.Log("Antura is enable");
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EndIntroduction));
+            StartCoroutine(ChangeIntroductionState("Intro_Dog", EndIntroduction));
         } 
 
-        public void AnturaEnd()
+        public void EndIntroduction()
         {
             Debug.Log("EndIntroduction");
-            WidgetSubtitles.I.DisplaySentence("Intro_Dog_Chase", 2, true);
-            //WidgetSubtitles.I.DisplaySentence("end_learningblock_A2", 2, true, EndIntroduction);
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", DisableAntura));
+            StartCoroutine(ChangeIntroductionState("Intro_Dog_Chase", DisableAntura));
         }
 
-        public void EndIntroduction()
+        public void DisableAntura()
         {
             factory.antura.SetAnturaTime(false);
             countDown.Start();
@@ -115,5 +84,12 @@ namespace EA4S
             m_End = true;
         }
 
+
+        IEnumerator ChangeIntroductionState(string audioI, System.Action nextState)
+        {
+            Debug.Log("Start Coroutine");
+            yield return new WaitForSeconds(m_StateDelay);
+            WidgetSubtitles.I.DisplaySentence(audioI, 2, true, nextState);
+        }
     }    
 }
