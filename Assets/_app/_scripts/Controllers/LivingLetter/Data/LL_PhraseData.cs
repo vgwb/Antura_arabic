@@ -13,16 +13,15 @@ namespace EA4S
             get { return LivingLetterDataType.Phrase; }
         }
 
-        public string Key {
-            get { return key; }
-            set { key = value; }
+        string id;
+        public string Id {
+            get { return id; }
+            set { id = value; }
         }
 
-        private string key;
-
-        public LL_PhraseData(string _keyRow, Db.PhraseData _data)
+        public LL_PhraseData(string _id, Db.PhraseData _data)
         {
-            Key = _keyRow;
+            Id = _id;
             Data = _data;
         }
 

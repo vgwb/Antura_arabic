@@ -24,12 +24,12 @@
             }
 
             if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter) {
-                LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Key);
+                LL_LetterData isolated = new LL_LetterData(question.GetQuestion().Id);
                 isolated.ShowAs = Db.LetterPosition.Isolated;
                 game.CurrentChallenge.Add(isolated);
 
                 for (int i = 0; i < 3; ++i) {
-                    LL_LetterData data = new LL_LetterData(question.GetQuestion().Key);
+                    LL_LetterData data = new LL_LetterData(question.GetQuestion().Id);
 
                     if (i == 0) {
                         if (data.Data.Initial_Unicode == data.Data.Isolated_Unicode)

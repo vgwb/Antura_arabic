@@ -13,16 +13,15 @@ namespace EA4S
             get { return LivingLetterDataType.Image; }
         }
 
-        public string Key {
-            get { return key; }
-            set { key = value; }
+        string id;
+        public string Id {
+            get { return id; }
+            set { id = value; }
         }
 
-        private string key;
-
-        public LL_ImageData(string _keyRow, Db.WordData _data)
+        public LL_ImageData(string _id, Db.WordData _data)
         {
-            Key = _keyRow;
+            Id = _id;
             Data = _data;
         }
 
@@ -42,7 +41,7 @@ namespace EA4S
         /// </summary>
         [Obsolete("Use DrawingCharForLivingLetter instead of this.")]
         public Sprite DrawForLivingLetter {
-            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Key); }
+            get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Id); }
         }
 
     }

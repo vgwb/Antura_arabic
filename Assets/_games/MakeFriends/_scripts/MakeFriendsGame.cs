@@ -213,7 +213,7 @@ namespace EA4S.MakeFriends
                     {
                         letter = uncommonLetters[i] as LL_LetterData;
                         //Debug.Log("Considering as choice: " + letter.TextForLivingLetter);
-                        if (choiceLetters.Exists(x => x.Key == letter.Key))
+                        if (choiceLetters.Exists(x => x.Id == letter.Id))
                         {
                             letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement();
                             //Debug.Log("Using random choice instead: " + letter);
@@ -224,7 +224,7 @@ namespace EA4S.MakeFriends
                         letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement();
                         //Debug.Log("No more word letters, using random: " + letter.TextForLivingLetter);
                     }
-                } while (choiceLetters.Exists(x => x.Key == letter.Key));
+                } while (choiceLetters.Exists(x => x.Id == letter.Id));
                 choiceLetters.Add(letter);
                 //Debug.Log("Added " + letter.TextForLivingLetter + " to choices");
             }
@@ -275,14 +275,14 @@ namespace EA4S.MakeFriends
         {
             letterPicker.BlockForSeconds(2f);
 
-            if (commonLetters.Exists(x => x.Key == letterChoice.letterData.Key))
+            if (commonLetters.Exists(x => x.Id == letterChoice.letterData.Id))
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.CORRECT;
                 //letterChoice.SpawnBalloon(true);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
 
-                if (!correctChoices.Exists(x => x.Key == letterChoice.letterData.Key))
+                if (!correctChoices.Exists(x => x.Id == letterChoice.letterData.Id))
                 {
                     correctChoices.Add(letterChoice.letterData);
                 }

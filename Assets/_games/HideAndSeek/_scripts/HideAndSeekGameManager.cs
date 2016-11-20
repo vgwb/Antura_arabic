@@ -60,7 +60,7 @@ namespace EA4S.HideAndSeek
 
         public void RepeatAudio()
         {
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
+            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
         }
 
         private IEnumerator DelayAnimation()
@@ -88,7 +88,7 @@ namespace EA4S.HideAndSeek
 		{
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
-            if (script.view.Data.Key == currentQuestion.GetAnswer().Key)
+            if (script.view.Data.Id == currentQuestion.GetAnswer().Id)
             {
                 LockTrees();
                 StartCoroutine(DelayAnimation());
@@ -214,7 +214,7 @@ namespace EA4S.HideAndSeek
             var winInitialDelay = 0.5f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
+            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
             game.PlayState.gameTime.Start();
 
             buttonRepeater.SetActive(true);

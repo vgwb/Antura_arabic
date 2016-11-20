@@ -6,26 +6,26 @@ namespace EA4S
 
     public class LL_LetterData : ILivingLetterData
     {
+        public Db.LetterData Data;
+        public Db.LetterPosition ShowAs = Db.LetterPosition.Isolated;
+
         public LivingLetterDataType DataType {
             get { return LivingLetterDataType.Letter; }
         }
 
-        private string key;
-        public string Key {
-            get { return key; }
-            set { key = value; }
+        string id;
+        public string Id {
+            get { return id; }
+            set { id = value; }
         }
 
-        public Db.LetterData Data;
-        public Db.LetterPosition ShowAs = Db.LetterPosition.Isolated;
-
-        public LL_LetterData(string _keyRow) : this(_keyRow, AppManager.Instance.DB.GetLetterDataById(_keyRow))
+        public LL_LetterData(string _id) : this(_id, AppManager.Instance.DB.GetLetterDataById(_id))
         {
         }
 
-        public LL_LetterData(string _key, Db.LetterData _data)
+        public LL_LetterData(string _id, Db.LetterData _data)
         {
-            Key = _key;
+            Id = _id;
             Data = _data;
         }
 
