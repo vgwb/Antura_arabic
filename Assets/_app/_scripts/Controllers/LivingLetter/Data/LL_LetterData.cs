@@ -35,16 +35,7 @@ namespace EA4S
         /// </summary>
         public string TextForLivingLetter {
             get {
-                switch (ShowAs) {
-                    case Db.LetterPosition.Initial:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Initial_Unicode);
-                    case Db.LetterPosition.Medial:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Medial_Unicode);
-                    case Db.LetterPosition.Final:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Final_Unicode);
-                    default:
-                        return ArabicAlphabetHelper.GetLetterFromUnicode(Data.Isolated_Unicode);
-                }
+                return ArabicAlphabetHelper.GetLetterToDisplay(Data, ShowAs);
             }
         }
 

@@ -160,7 +160,7 @@ namespace EA4S
 
         public void DetailWord(WordData word)
         {
-            Debug.Log("playing word :" + word.Id);
+            Debug.Log("Detail Word :" + word.Id);
             AudioManager.I.PlayWord(word.Id);
             ArabicText.text = word.Arabic;
 
@@ -179,10 +179,15 @@ namespace EA4S
             }
         }
 
-        public void DetailLetter(LetterData data)
+        public void DetailLetter(LetterData letter)
         {
+            Debug.Log("Detail Letter :" + letter.Id);
+            AudioManager.I.PlayLetter(letter.Id);
 
+            ArabicText.text = ArabicAlphabetHelper.GetLetterToDisplay(letter);
+            LLText.Init(new LL_LetterData(letter.GetId(), letter));
         }
+
         public void DetailPhrase(PhraseData data)
         {
 
