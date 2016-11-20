@@ -11,9 +11,7 @@ namespace EA4S.MixedLetters
 
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
-
-        private bool isBeingDragged = false;
-        private bool isDraggable = false;
+        
         private float cameraDistance;
         private LL_LetterData letterData;
 
@@ -23,6 +21,13 @@ namespace EA4S.MixedLetters
         private bool isRotating;
 
         public LetterObjectView letterObjectView;
+
+        private enum State
+        {
+            NonInteractive, Draggable, Dragging
+        }
+
+        private State state;
 
         void Awake()
         {
@@ -48,7 +53,7 @@ namespace EA4S.MixedLetters
 
         private void OnPointerDown()
         {
-            if (!isBeingDragged && isDraggable)
+            if (state == State.Draggable)
             {
                 Ray ray = Camera.main.ScreenPointToRay(MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition);
 
@@ -56,7 +61,7 @@ namespace EA4S.MixedLetters
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider == boxCollider)
                 {
-                    isBeingDragged = true;
+                    state = State.Dragging;
                     SetIsKinematic(true);
 
                     if (transform.position.z != DropZoneController.DropZoneZ)
@@ -79,7 +84,7 @@ namespace EA4S.MixedLetters
 
         private void OnPointerDrag()
         {
-            if (isBeingDragged)
+            if (state == State.Dragging)
             {
                 Vector2 lastPointerPosition = MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
                 Vector3 pointerPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y, Mathf.Abs(transform.position.z - Camera.main.transform.position.z)));
@@ -90,7 +95,7 @@ namespace EA4S.MixedLetters
 
         private void OnPointerUp()
         {
-            if (isBeingDragged)
+            if (state == State.Dragging)
             {
                 if (DropZoneController.chosenDropZone != null)
                 {
@@ -106,7 +111,7 @@ namespace EA4S.MixedLetters
                     SetIsKinematic(false);
                 }
 
-                isBeingDragged = false;
+                state = State.Draggable;
             }
         }
 
@@ -131,9 +136,9 @@ namespace EA4S.MixedLetters
             transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
         }
 
-        public void SetDraggable(bool isDraggable)
+        public void SetDraggable()
         {
-            this.isDraggable = isDraggable;
+            state = State.Draggable;
         }
 
         public void AddForce(Vector3 force, ForceMode forceMode)
@@ -180,8 +185,7 @@ namespace EA4S.MixedLetters
 
         public void Reset()
         {
-            isBeingDragged = false;
-            isDraggable = false;
+            state = State.NonInteractive;
             SetIsKinematic(true);
             SetRotation(new Vector3(0, 180, 0));
             droppedZone = null;

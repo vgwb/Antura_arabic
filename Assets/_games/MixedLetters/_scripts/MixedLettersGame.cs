@@ -85,7 +85,7 @@ namespace EA4S.MixedLetters
             ShowDropZones();
             UIController.instance.EnableTimer();
             UIController.instance.SetTimer(time);
-            SeparateLettersSpawnerController.instance.SetLettersDraggable(true);
+            SeparateLettersSpawnerController.instance.SetLettersDraggable();
         }
 
         private void HideDropZones()

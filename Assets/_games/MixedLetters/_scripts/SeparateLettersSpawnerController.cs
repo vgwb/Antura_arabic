@@ -73,11 +73,11 @@ namespace EA4S.MixedLetters
             spawnOverCallback.Invoke();
         }
 
-        public void SetLettersDraggable(bool isDraggable)
+        public void SetLettersDraggable()
         {
             foreach (SeparateLetterController separateLetterController in separateLetterControllers)
             {
-                separateLetterController.SetDraggable(isDraggable);
+                separateLetterController.SetDraggable();
             }
         }
 
