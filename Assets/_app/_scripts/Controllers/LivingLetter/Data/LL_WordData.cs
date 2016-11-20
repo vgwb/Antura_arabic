@@ -28,7 +28,6 @@ namespace EA4S
 
         public LL_WordData(Db.WordData _data)
         {
-
             Data = _data;
         }
 
