@@ -171,7 +171,10 @@ namespace EA4S.Db
         public string GetWordDrawing(WordData word)
         {
             //Debug.Log("the int of hex:" + word.Drawing + " is " + int.Parse(word.Drawing, NumberStyles.HexNumber));
-            return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+            if (word.Drawing != "") {
+                return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+            }
+            return "";
         }
 
         public List<WordData> GetAllWords()
