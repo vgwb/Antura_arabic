@@ -13,6 +13,8 @@ public class TakeMeHomeTube : MonoBehaviour {
 		Vector3 originalPosition;
         public GameObject aspiration;
         public GameObject winParticles;
+        public GameObject cubeInfo;
+
         // Use this for initialization
         void Start () {
 			originalPosition = transform.position;
