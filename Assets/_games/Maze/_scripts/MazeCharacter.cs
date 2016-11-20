@@ -14,6 +14,8 @@ namespace EA4S.Maze
 
 		public List<Vector3> characterWayPoints;
 
+        public LetterObjectView LL;
+
 		public GameObject collider;
         public List<GameObject> particles;
 
@@ -52,6 +54,8 @@ namespace EA4S.Maze
 
 		void Start()
 		{
+            LL.SetState(LLAnimationStates.LL_rocketing);
+           
             isFleeing = false;
             characterIsMoving = false;
 			characterWayPoints = new List<Vector3>();
