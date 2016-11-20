@@ -88,7 +88,7 @@ namespace EA4S.MixedLetters
             SeparateLettersSpawnerController.instance.SetLettersDraggable();
         }
 
-        private void HideDropZones()
+        public void HideDropZones()
         {
             foreach (DropZoneController dropZoneController in dropZoneControllers)
             {
