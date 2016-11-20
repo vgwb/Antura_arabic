@@ -14,6 +14,28 @@ namespace EA4S.Teacher
         }
 
 
+        #region List Helper
+
+        /// <summary>
+        /// TODO take count of the numberOfItems variable
+        /// </summary>
+        /// <returns>The average score.</returns>
+        /// <param name="_scoreList">Score list.</param>
+        /// <param name="numberOfItems">Number of items.</param>
+        public float GetAverageScore(List<ScoreData> _scoreList, int numberOfItems = -1)
+        {
+            var average = 0f;
+
+            foreach (var item in _scoreList) {
+                average += item.Score;
+            }
+
+            return (average / _scoreList.Count);
+        }
+
+        #endregion
+
+
         public List<float> GetLatestScoresForMiniGame(MiniGameCode minigameCode, int nLastDays)
         {
             int fromTimestamp = GenericUtilities.GetRelativeTimestampFromNow(-nLastDays);
@@ -60,7 +82,6 @@ namespace EA4S.Teacher
             List<ScoreData> filtered_score_list = all_score_list.FindAll(x => eligiblePlaySessionData_id_list.Contains(x.ElementId));
             return filtered_score_list;
         }
-
 
         public List<ScoreData> GetCurrentScoreForLearningBlocksOfStage(int stage)
         {
