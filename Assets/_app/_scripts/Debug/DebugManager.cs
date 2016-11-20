@@ -21,6 +21,15 @@ namespace EA4S
 
         public bool CheatMode = false;
 
+        private bool _ignoreJourneyData = false;
+        public bool IgnoreJourneyData {
+            get { return _ignoreJourneyData; }
+            set {
+                _ignoreJourneyData = value;
+                Teacher.ConfigAI.forceJourneyIgnore = _ignoreJourneyData;
+            }
+        }
+
         private DifficulyLevels _difficultyLevel = DifficulyLevels.Normal;
         public DifficulyLevels DifficultyLevel {
             get { return _difficultyLevel; }
