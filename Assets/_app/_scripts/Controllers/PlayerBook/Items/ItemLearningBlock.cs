@@ -9,6 +9,7 @@ namespace EA4S
     {
         LearningBlockData data;
         public TextRender Title;
+        public TextRender Info;
         public TextRender SubTitle;
 
         ParentsPanel manager;
@@ -20,7 +21,7 @@ namespace EA4S
 
             Title.text = data.Title_Ar;
             SubTitle.text = data.Title_En;
-
+            Info.text = "Score: " + "";
         }
 
         public void OnPointerClick(PointerEventData eventData)
