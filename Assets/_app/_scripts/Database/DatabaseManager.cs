@@ -26,8 +26,7 @@ namespace EA4S
             staticDb = Resources.Load<Database>(staticDbNameToLoad);
 
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
-            if(staticDb.GetPlaySessionTable().GetDataCount() == 0)
-            {
+            if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
                 throw new System.Exception("Database is empty, it was probably not setup correctly. Make sure it has been statically loaded by the management scene.");
             }
 
@@ -336,7 +335,11 @@ namespace EA4S
 
         public LocalizationData GetLocalizationDataById(string id)
         {
-            return staticDb.GetById(staticDb.GetLocalizationTable(), id);
+            var locData = staticDb.GetById(staticDb.GetLocalizationTable(), id);
+            if (locData != null) {
+                return locData;
+            }
+            return new LocalizationData { Id = id, Arabic = ("MISSING " + id), English = ("MISSING " + id) };
         }
 
         public RewardData GetRewardDataById(string id)
