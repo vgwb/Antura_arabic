@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Text;
 using System.Collections.Generic;
 using ArabicSupport;
 
@@ -21,6 +22,29 @@ namespace EA4S
                 return GenericUtilities.ReverseText(ArabicFixer.Fix(str, true, true));
             }
             return ArabicFixer.Fix(str, true, true);
+        }
+
+        /// <summary>
+        /// Return single letter string
+        /// </summary>
+        public static string GetLetterToDisplay(Db.LetterData letterData, Db.LetterPosition letterPosition = Db.LetterPosition.Isolated)
+        {
+            //DebugLetter(letterData);
+            if (letterData.Kind == Db.LetterDataKind.Letter) {
+                return GetLetterFromUnicode(letterData.GetUnicode(letterPosition));
+            } else {
+                return letterData.GetChar(letterPosition);
+            }
+        }
+
+        public static void DebugLetter(Db.LetterData letterData)
+        {
+            byte[] bytesUtf16 = Encoding.Unicode.GetBytes(letterData.Isolated);
+            foreach (var item in bytesUtf16) {
+                Debug.Log("DebugLetter " + letterData.Id + " lenght: " + letterData.Isolated.Length + " - " + item);
+            }
+            // Encoding.Convert(Encoding.UTF8, Encoding.Unicode, encodedBytes);
+            //Debug.Log("DebugLetter " + str + " lenght: " + str.Length);
         }
 
         /// <summary>

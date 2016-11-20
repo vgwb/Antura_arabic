@@ -41,7 +41,7 @@ namespace EA4S
 
         BookPanelArea currentArea = BookPanelArea.None;
         GameObject btnGO;
-        string Category;
+        string currentCategory;
 
         void Start()
         {
@@ -49,7 +49,7 @@ namespace EA4S
 
         void OnEnable()
         {
-            OpenArea(BookPanelArea.Words);
+            OpenArea(BookPanelArea.Letters);
         }
 
         void OpenArea(BookPanelArea newArea)
@@ -78,12 +78,11 @@ namespace EA4S
             }
         }
 
-        void LettersPanel(string Category = "")
+        void LettersPanel(string _category = "")
         {
-            emptyContainer();
-
+            currentCategory = _category;
             List<LetterData> list;
-            switch (Category) {
+            switch (currentCategory) {
                 case "combo":
                     list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Combination));
                     break;
@@ -95,6 +94,7 @@ namespace EA4S
                     break;
             }
 
+            emptyListContainers();
             foreach (LetterData item in list) {
                 btnGO = Instantiate(LetterItemPrefab);
                 btnGO.transform.SetParent(ElementsContainer.transform, false);
@@ -121,7 +121,7 @@ namespace EA4S
 
         void PhrasesPanel()
         {
-            emptyContainer();
+            emptyListContainers();
 
             foreach (PhraseData item in AppManager.Instance.DB.GetAllPhraseData()) {
                 btnGO = Instantiate(PhraseItemPrefab);
@@ -132,7 +132,7 @@ namespace EA4S
 
         void MinigamesPanel()
         {
-            emptyContainer();
+            emptyListContainers();
 
             foreach (MiniGameData item in AppManager.Instance.DB.GetActiveMinigames()) {
                 btnGO = Instantiate(MinigameItemPrefab);
@@ -143,7 +143,7 @@ namespace EA4S
 
         void WordsPanel()
         {
-            emptyContainer();
+            emptyListContainers();
 
             foreach (WordData item in AppManager.Instance.DB.GetAllWordData()) {
                 btnGO = Instantiate(WordItemPrefab);
@@ -191,13 +191,9 @@ namespace EA4S
         public void DetailMiniGame(MiniGameData data)
         {
 
-
-
-
         }
 
-
-        void emptyContainer()
+        void emptyListContainers()
         {
             foreach (Transform t in ElementsContainer.transform) {
                 Destroy(t.gameObject);
