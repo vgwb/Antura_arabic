@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using TMPro;
 
 
 namespace EA4S.Scanner
@@ -18,7 +19,8 @@ namespace EA4S.Scanner
 		public Vector3 fingerOffset;
 		public float depth;
 		public bool isCorrectAnswer = false;
-		public SpriteRenderer spriteRenderer;
+		public TextMeshPro drawing;
+		public GameObject shadow;
 
 
 		bool overPlayermarker = false;
@@ -56,12 +58,14 @@ namespace EA4S.Scanner
 			isDragging = false;
 			transform.localScale = new Vector3(0.25f,0.25f,0.25f);
 			gameObject.SetActive(true);
+			shadow.SetActive(true);
 			StartCoroutine(Coroutine_ScaleOverTime(1f));
 
 		}
 
 		void OnMouseDown()
 		{
+			shadow.SetActive(false);
 			isDragging = true;
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
