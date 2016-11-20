@@ -11,20 +11,18 @@ namespace EA4S.MixedLetters
 
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
-        
+
         private float cameraDistance;
         private LL_LetterData letterData;
 
         [HideInInspector]
         public DropZoneController droppedZone;
 
-        private bool isRotating;
-
         public LetterObjectView letterObjectView;
 
         private enum State
         {
-            NonInteractive, Draggable, Dragging
+            NonInteractive, Draggable, Dragging, Rotating
         }
 
         private State state;
@@ -117,7 +115,7 @@ namespace EA4S.MixedLetters
 
         public bool IsRotating()
         {
-            return isRotating;
+            return state == State.Rotating;
         }
 
         void FixedUpdate()
@@ -130,15 +128,25 @@ namespace EA4S.MixedLetters
             rigidBody.isKinematic = isKinematic;
         }
 
+        public void Vanish()
+        {
+            letterObjectView.Poof();
+            Disable();
+        }
+
         public void SetRotation(Vector3 eulerAngles)
         {
-            //transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
             transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
         }
 
         public void SetDraggable()
         {
             state = State.Draggable;
+        }
+
+        public void SetNonInteractive()
+        {
+            state = State.NonInteractive;
         }
 
         public void AddForce(Vector3 force, ForceMode forceMode)
@@ -148,12 +156,12 @@ namespace EA4S.MixedLetters
 
         public void RotateCCW()
         {
-            StartCoroutine(RotateCoroutine());
+            StartCoroutine(RotateCCWCoroutine());
         }
 
-        private IEnumerator RotateCoroutine()
+        private IEnumerator RotateCCWCoroutine()
         {
-            isRotating = true;
+            state = State.Rotating;
 
             float currentZRotation = transform.localEulerAngles.z;
             float targetZRotation = currentZRotation + 90;
@@ -178,7 +186,7 @@ namespace EA4S.MixedLetters
                 yield return new WaitForFixedUpdate();
             }
 
-            isRotating = false;
+            state = State.Draggable;
 
             MixedLettersGame.instance.VerifyLetters();
         }
@@ -189,7 +197,6 @@ namespace EA4S.MixedLetters
             SetIsKinematic(true);
             SetRotation(new Vector3(0, 180, 0));
             droppedZone = null;
-            isRotating = false;
         }
 
         public void SetPosition(Vector3 position, bool offsetOnZ)

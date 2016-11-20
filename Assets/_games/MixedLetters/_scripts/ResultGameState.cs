@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Collections;
+using UnityEngine;
 
 namespace EA4S.MixedLetters
 {
@@ -18,13 +20,16 @@ namespace EA4S.MixedLetters
 
         public void EnterState()
         {
-            if (PlayGameState.RoundWon)
+            SeparateLettersSpawnerController.instance.SetLettersNonInteractive();
+
+            if (!PlayGameState.RoundWon)
             {
-                popupWidget.Show(OnResultPressed, "Keeper_Good_5", true);
+                SeparateLettersSpawnerController.instance.ShowLoseAnimation(OnResultAnimationEnded);
             }
+            
             else
             {
-                popupWidget.ShowTimeUp(OnResultPressed);
+                OnResultAnimationEnded();
             }
         }
 
@@ -33,15 +38,13 @@ namespace EA4S.MixedLetters
             game.ResetScene();
         }
 
-        public void OnResultPressed()
+        public void OnResultAnimationEnded()
         {
-            popupWidget.Hide();
-
             if (game.roundNumber < 6)
             {
                 game.SetCurrentState(game.IntroductionState);
             }
-            
+
             else
             {
                 isGameOver = true;
