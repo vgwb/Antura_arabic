@@ -101,9 +101,9 @@ namespace EA4S
                 btnGO.GetComponent<ItemLetter>().Init(this, item);
             }
 
-            btnGO = Instantiate(CategoryItemPrefab);
-            btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "all", Title = "All" });
+            //btnGO = Instantiate(CategoryItemPrefab);
+            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            //btnGO.GetComponent<MenuItemCategory>().Init(this, new CategoryData { Id = "all", Title = "All" });
 
             btnGO = Instantiate(CategoryItemPrefab);
             btnGO.transform.SetParent(SubmenuContainer.transform, false);

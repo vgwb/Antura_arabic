@@ -20,8 +20,8 @@ namespace EA4S
             manager = _manager;
 
             Title.text = data.Title_Ar;
-            SubTitle.text = data.Title_En;
-            Info.text = "Score: " + "";
+            SubTitle.text = data.Title_En + " " + data.Id;
+            Info.text = "Score: " + TeacherAI.I.GetLearningBlockScore(data);
         }
 
         public void OnPointerClick(PointerEventData eventData)

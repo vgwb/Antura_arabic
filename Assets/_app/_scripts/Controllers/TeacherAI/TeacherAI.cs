@@ -49,7 +49,7 @@ namespace EA4S
             logAI = new LogAI(_dbManager);
             minigameSelectionAI = new MiniGameSelectionAI(dbManager, playerProfile);
             wordAI = new WordSelectionAI(dbManager, playerProfile, this, wordHelper);
-            difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile, this);
+            difficultySelectionAI = new DifficultySelectionAI(dbManager, playerProfile);
         }
 
         private void ResetPlaySession()
@@ -109,6 +109,16 @@ namespace EA4S
         public float GetCurrentDifficulty(MiniGameCode miniGameCode)
         {
             return difficultySelectionAI.SelectDifficulty(miniGameCode);
+        }
+
+        #endregion
+
+        #region Learning Blocks
+
+        public float GetLearningBlockScore(LearningBlockData lb)
+        {
+            var allScores = scoreHelper.GetLearningBlockScores(lb.Stage, lb.LearningBlock);
+            return scoreHelper.GetAverageScore(allScores);
         }
 
         #endregion
