@@ -22,13 +22,17 @@ namespace EA4S.MixedLetters
         {
             SeparateLettersSpawnerController.instance.SetLettersNonInteractive();
 
+            MinigamesUI.Timer.Pause();
+
             if (!PlayGameState.RoundWon)
             {
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Lose);
                 SeparateLettersSpawnerController.instance.ShowLoseAnimation(OnResultAnimationEnded);
             }
             
             else
             {
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 SeparateLettersSpawnerController.instance.ShowWinAnimation(OnResultAnimationEnded);
             }
         }
