@@ -6,22 +6,30 @@ namespace EA4S
     public class PhraseQuestionsQuestionBuilder : IQuestionBuilder
     {
         // Focus: Phrases
-        // pack history filter: TODO
-        // journey: TODO
+        // pack history filter: enabled
+        // journey: enabled
 
         private int nPacks;
         private int nCorrect;
         private int nWrong;
+        private QuestionBuilderParameters parameters;
 
-        public PhraseQuestionsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0)
+        public PhraseQuestionsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
+            QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
+            this.parameters = parameters;
         }
+
+        private List<string> previousPacksIDs = new List<string>();
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
+            previousPacksIDs.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
@@ -35,7 +43,12 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             // Get a question phrase at random
-            var question = teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question).RandomSelectOne();
+            int nToUse = 1;
+            var usablePhrases = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question),
+                    new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
+            var question = usablePhrases[0];
 
             // Get the linked reply phrase
             var reply = teacher.wordHelper.GetLinkedPhraseOf(question);
@@ -44,7 +57,10 @@ namespace EA4S
             correctAnswers.Add(reply);
 
             // Get random wrong phrases
-            var wrongAnswers = teacher.wordHelper.GetPhrasesNotIn(question, reply).RandomSelect(nWrong);
+            var wrongPhrases = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetPhrasesNotIn(question, reply),
+                    new SelectionParameters(parameters.correctSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
+                        packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs));
 
             if (ConfigAI.verboseTeacher)
             {
@@ -52,12 +68,12 @@ namespace EA4S
                 debugString += "\nQuestion: " + question;
                 debugString += "\nCorrect Answers: " + correctAnswers.Count;
                 foreach (var l in correctAnswers) debugString += " " + l;
-                debugString += "\nWrong Answers: " + wrongAnswers.Count;
-                foreach (var l in wrongAnswers) debugString += " " + l;
+                debugString += "\nWrong Answers: " + wrongPhrases.Count;
+                foreach (var l in wrongPhrases) debugString += " " + l;
                 UnityEngine.Debug.Log(debugString);
             }
 
-            return QuestionPackData.Create(question, correctAnswers, wrongAnswers);
+            return QuestionPackData.Create(question, correctAnswers, wrongPhrases);
         }
 
 

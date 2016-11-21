@@ -6,29 +6,33 @@ namespace EA4S
     public class LettersInWordQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters & Words
-        // pack history filter: TODO
-        // journey: TODO
+        // pack history filter: enabled
+        // journey: enabled
 
         private int nPacks;
         private int nCorrect;
         private bool useAllCorrectLetters;
         private int nWrong;
         private Db.WordDataCategory category;
-        private bool drawingNeeded;
+        private QuestionBuilderParameters parameters;
 
         public LettersInWordQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
-            bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None, bool drawingNeeded = false)
+            bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None,
+            QuestionBuilderParameters parameters = null)
         {
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.useAllCorrectLetters = useAllCorrectLetters;
             this.category = category;
-            this.drawingNeeded = drawingNeeded;
+            this.parameters = parameters;
         }
+
+        private List<string> previousPacksIDs = new List<string>();
 
         public List<QuestionPackData> CreateAllQuestionPacks()
         {
+            previousPacksIDs.Clear();
             List<QuestionPackData> packs = new List<QuestionPackData>();
             for (int pack_i = 0; pack_i < nPacks; pack_i++)
             {
@@ -41,17 +45,23 @@ namespace EA4S
         {
             var teacher = AppManager.Instance.Teacher;
 
-            // Get the word
-            var wordFilters = new WordFilters();
-            var question = teacher.wordHelper.GetWordsByCategory(category, wordFilters).RandomSelectOne();
+            // Get a word
+            var usableWords = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters),
+                    new SelectionParameters(parameters.correctSeverity, 1, useJourney: parameters.useJourneyForCorrect,
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
+            var question = usableWords[0];
 
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);
 
-            var correctAnswers = new List<Db.LetterData>(wordLetters);
-            if (!useAllCorrectLetters) correctAnswers = wordLetters.RandomSelect(nCorrect);
+            var correctAnswers = teacher.wordAI.SelectData(
+                () => wordLetters,
+                 new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, useJourney: parameters.useJourneyForCorrect));
 
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(new LetterFilters(), wordLetters.ToArray()).RandomSelect(nWrong);
+            var wrongAnswers = teacher.wordAI.SelectData(
+                () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
+                    new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong));
 
             if (ConfigAI.verboseTeacher)
             {
