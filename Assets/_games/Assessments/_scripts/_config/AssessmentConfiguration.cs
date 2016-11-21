@@ -155,7 +155,7 @@ namespace EA4S.Assessment
 
         private IQuestionBuilder Setup_WordsWithLetter_Builder()
         {
-            SimultaneosQuestions = snag.Increase( 1,2);
+            SimultaneosQuestions = 1;
             Rounds = snag.Increase( 2, 4);
 
             var builderParams = new Teacher.QuestionBuilderParameters();
@@ -164,6 +164,7 @@ namespace EA4S.Assessment
             builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
 
+            
             return new WordsWithLetterQuestionBuilder( 
 
                 SimultaneosQuestions*Rounds,// Total Answers
