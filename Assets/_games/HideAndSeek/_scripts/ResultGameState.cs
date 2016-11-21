@@ -15,25 +15,20 @@
         public void EnterState()
         {
             goToEndGame = false;
+            
+            AudioManager.I.PlayMusic(Music.Lullaby);
 
-            game.Context.GetAudioManager().PlayMusic(Music.Lullaby);
-
-            if (game.isTimesUp)
+           if (game.isTimesUp)
             {
-                game.Context.GetPopupWidget().ShowTimeUp(OnPopupTimeUpCloseRequested);
+                game.Context.GetPopupWidget().Hide();
+                timer = 1;
+                goToEndGame = true;
             }
         }
 
         public void ExitState()
         {
-            game.Context.GetAudioManager().StopMusic();
-        }
-
-        void OnPopupTimeUpCloseRequested()
-        {
-            game.Context.GetPopupWidget().Hide();
-            timer = 1;
-            goToEndGame = true;
+            AudioManager.I.StopMusic();
         }
 
         public void Update(float delta)

@@ -11,16 +11,9 @@
 
         public void EnterState()
         {
-            //game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true);
-
             var popupWidget = game.Context.GetPopupWidget();
             popupWidget.Show();
             popupWidget.SetButtonCallback(OnQuestionCompleted);
-
-            for (int i = 0; i < game.rounds; ++i) {
-				game.myLetters[i].gameObject.SetActive (false);
-			}
-            game.tutorialLetter.gameObject.SetActive(false);
         }
 
         public void ExitState()

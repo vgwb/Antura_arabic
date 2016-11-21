@@ -30,7 +30,7 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
         private Texture2D m_tLetterDynamicTexture; //Generated texture to color by touch
-        private Texture2D m_tBaseLetterFullTexture; //The texture from wich the letter is rendered (likely an atlas with all the alphabet)
+        //private Texture2D m_tBaseLetterFullTexture; //The texture from wich the letter is rendered (likely an atlas with all the alphabet)
         private Texture2D m_tSingleLetterRenderedTextureScaledToDynamic; //Generated texture for the single letter rendered, scaled to match the one to color
         private Texture2D m_tSingleLetterAlphaTextureScaledToDynamic; //Generated texture for the single letter with relaxed face dilatation, scaled to match the one to color
         private RaycastHit m_oRayHit; //Store the data on the last collision
@@ -38,6 +38,10 @@ namespace EA4S.ColorTickle
         private Vector2[] m_aUVLetterInMainTexture; //The original UVs of the letter's base texture
         private int m_iTotalShapePixels = 0; //The number of pixels in the m_tBaseLetterTextureScaledToDynamic to constitute the letter body
         private int m_iCurrentShapePixelsColored = 0; //The number of pixels on the letter shape colored
+        #endregion
+
+        #region STATIC VARIABLES
+        private static Texture2D s_tBaseLetterFullTexture; //The texture from wich the letter is rendered (likely an atlas with all the alphabet), needed only for the initialization and most likely the same for all the letters of the same font
         #endregion
 
         //public Texture2D alphaletter;
@@ -86,6 +90,7 @@ namespace EA4S.ColorTickle
         public int percentageRequiredToWin
         {
             get { return m_iPercentageRequiredToWin; }
+            set { m_iPercentageRequiredToWin = value; }
         }
         #endregion
 
@@ -93,11 +98,16 @@ namespace EA4S.ColorTickle
         void Start()
         {
 
-            if (m_oTextMeshObject.fontMaterial.mainTexture is Texture2D)
+            if (s_tBaseLetterFullTexture==null || m_oTextMeshObject.fontMaterial.mainTexture is Texture2D) //if there isn't a copy already
             {
-                m_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
+                //m_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D; //old font atlas was readable
 
+                //assuming the atlas isn't readable, make a copy of the raw data
+                Texture2D _tTempAtlas = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
+                s_tBaseLetterFullTexture = new Texture2D(_tTempAtlas.width, _tTempAtlas.height, TextureFormat.Alpha8,false);
+                s_tBaseLetterFullTexture.LoadRawTextureData(_tTempAtlas.GetRawTextureData());
             }
+           
 
             SetupLetterMeshCollider(); //prepare the letter mesh for the raycast
 
@@ -120,8 +130,7 @@ namespace EA4S.ColorTickle
                 //check for ray collision
                 if (m_oLetterMeshCollider.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
                 {
-                    //Debug.Log("Hitted " + m_oRayHit.collider.name + " at " + m_oRayHit.textureCoord.x + " ; " + m_oRayHit.textureCoord.y);
-
+                    
                     //Now we find out which color we hitted to check if we are inside the letter outline
                     //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect)
                     Vector2 fullUV = TextureUtilities.CombineSubUV(m_oRayHit.textureCoord, m_aUVLetterInMainTexture[0], m_aUVLetterInMainTexture[1].y - m_aUVLetterInMainTexture[0].y, m_aUVLetterInMainTexture[2].x - m_aUVLetterInMainTexture[1].x);
@@ -142,11 +151,7 @@ namespace EA4S.ColorTickle
                     else
                     {
 
-                        //Debug.Log("COLORING!!!");
-
                         ColorLetterTexturePoint(m_oRayHit.textureCoord); //paint a single brush
-
-                        //CheckLetterCompletation(); //check for letter coverage
 
                         if (OnShapeHit != null)
                         {
@@ -184,7 +189,7 @@ namespace EA4S.ColorTickle
 
             if (m_oTextMeshObject.fontMaterial.mainTexture is Texture2D)
             {
-                m_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
+                s_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
 
             }
 
@@ -194,40 +199,18 @@ namespace EA4S.ColorTickle
 
             SetupLetterShapeTexture(); //prepare the scaled letter texture used for 1:1 matching
         }
+
+        /// <summary>
+        /// Clean the base Atlas reference.
+        /// Use this when you want to instantiate a new letter from an atlas different from the last one used.
+        /// </summary>
+        public static void ClearBaseAtltas()
+        {
+            s_tBaseLetterFullTexture = null;
+        }
         #endregion
 
         #region PRIVATE FUNCTIONS
-
-        /// <summary>
-        /// Checks if the letter has been colored to the indicated target percentage.
-        /// This checks each pixel of the colored texture with the relative on the letter one.
-        /// Note: pixels processed sequentially, potentially heavy.
-        /// </summary>
-        /// <returns></returns>
-        private bool CheckLetterCompletation()
-        {
-            int _iCounter = 0;
-            Color[] _aColoredMatrix = m_tLetterDynamicTexture.GetPixels(); //Format is ARGB32
-            Color[] _aLetterShapeMatrix = m_tSingleLetterRenderedTextureScaledToDynamic.GetPixels(); //Format is Alpha8
-
-
-            for (int idx = 0; idx < _aLetterShapeMatrix.Length; ++idx)
-            {
-                //increase the counter each time the pixel of the letter is inside (alpha > 0) and the color is not white (only white has grayscale==1)
-                _iCounter += Mathf.CeilToInt(_aLetterShapeMatrix[idx].a) * (1 - Mathf.FloorToInt(_aColoredMatrix[idx].grayscale));
-            }
-
-            //Debug.Log("Completation check: " + _iCounter + "/" + m_iTotalShapePixels);
-
-            if (_iCounter >= m_iTotalShapePixels * m_iPercentageRequiredToWin / 100f)
-            {
-                //Debug.Log("SUCCESS!!! Required number was: " + (m_iTotalShapePixels * m_iPercentageRequiredToWin / 100f));
-                return true;
-            }
-
-            return false;
-        }
-
 
         #region MEMBERS INITIALIZATIONS
 
@@ -278,8 +261,6 @@ namespace EA4S.ColorTickle
             m_tLetterDynamicTexture.SetPixels(TextureUtilities.FillTextureWithColor(m_tLetterDynamicTexture, m_oBaseColor)); //initialiaze it to white
             m_tLetterDynamicTexture.Apply();
 
-            //Debug.Log("Dynamic Tex size are " + m_tLetterDynamicTexture.width + "," + m_tLetterDynamicTexture.height);
-
             //link the dynamic texture to the TextMeshPro Text as the material's face texture 
             m_oTextMeshObject.fontMaterial.SetTexture("_FaceTex", m_tLetterDynamicTexture);
         }
@@ -290,26 +271,21 @@ namespace EA4S.ColorTickle
         /// frequent use of GetPixelBilinear() at each frame when accessing letter texture data.
         /// </summary>
         private void SetupLetterShapeTexture()
-        {
-            
+        { 
 
             //here we setup two textures:
-
-
             //(1) - m_tSingleLetterRenderedTextureScaledToDynamic: scale the letter alpha texture to match the size of the dynamic one and having a 1:1 matching on the color coverage
             //(2) - m_tSingleLetterAlphaTextureScaledToDynamic: scale the letter alpha texture with greater dilatation to match the size of the dynamic one and having a 1:1 matching on the check for the hit
 
-
             //m_tBaseLetterTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
-            m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
-
+            
 
             //retrive the letter size and width in pixels on the original texture
-            int _iSingleLetterWidthUnscaled = Mathf.FloorToInt(Mathf.Abs(m_aUVLetterInMainTexture[0].x - m_aUVLetterInMainTexture[3].x) * m_tBaseLetterFullTexture.width);
-            int _iSingleLetterHeightUnscaled = Mathf.FloorToInt(Mathf.Abs(m_aUVLetterInMainTexture[0].y - m_aUVLetterInMainTexture[1].y) * m_tBaseLetterFullTexture.height);
+            int _iSingleLetterWidthUnscaled = Mathf.FloorToInt(Mathf.Abs(m_aUVLetterInMainTexture[0].x - m_aUVLetterInMainTexture[3].x) * s_tBaseLetterFullTexture.width);
+            int _iSingleLetterHeightUnscaled = Mathf.FloorToInt(Mathf.Abs(m_aUVLetterInMainTexture[0].y - m_aUVLetterInMainTexture[1].y) * s_tBaseLetterFullTexture.height);
 
             //retrive the colors(shape) of the letter
-            Color[] _aColorSingleLetterUnscaled = m_tBaseLetterFullTexture.GetPixels(Mathf.FloorToInt(m_aUVLetterInMainTexture[0].x * m_tBaseLetterFullTexture.width), Mathf.FloorToInt(m_aUVLetterInMainTexture[0].y * m_tBaseLetterFullTexture.height), _iSingleLetterWidthUnscaled, _iSingleLetterHeightUnscaled);
+            Color[] _aColorSingleLetterUnscaled = s_tBaseLetterFullTexture.GetPixels(Mathf.FloorToInt(m_aUVLetterInMainTexture[0].x * s_tBaseLetterFullTexture.width), Mathf.FloorToInt(m_aUVLetterInMainTexture[0].y * s_tBaseLetterFullTexture.height), _iSingleLetterWidthUnscaled, _iSingleLetterHeightUnscaled);
             
             //generate a texture with the founded size and colors
             Texture2D _tSingleLetterTextureUnscaled = new Texture2D(_iSingleLetterWidthUnscaled, _iSingleLetterHeightUnscaled, TextureFormat.Alpha8, false);
@@ -317,7 +293,17 @@ namespace EA4S.ColorTickle
             _tSingleLetterTextureUnscaled.Apply();
 
             //finally scale the texture 
-            Color[] _aColorSingleLetterScaled = TextureUtilities.ScaleTexture(_tSingleLetterTextureUnscaled, m_tSingleLetterRenderedTextureScaledToDynamic.width / (float)_tSingleLetterTextureUnscaled.width, m_tSingleLetterRenderedTextureScaledToDynamic.height / (float)_tSingleLetterTextureUnscaled.height);
+            Color[] _aColorSingleLetterScaled = TextureUtilities.ScaleTexture(_tSingleLetterTextureUnscaled, m_tLetterDynamicTexture.width / (float)_tSingleLetterTextureUnscaled.width, m_tLetterDynamicTexture.height / (float)_tSingleLetterTextureUnscaled.height);
+
+            //float f = (float)_tSingleLetterTextureUnscaled.width * (float)m_tLetterDynamicTexture.width / (float)_tSingleLetterTextureUnscaled.width;
+
+            
+            //f = (float)_tSingleLetterTextureUnscaled.height * (float)m_tLetterDynamicTexture.height / (float)_tSingleLetterTextureUnscaled.height;
+            
+
+            m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
+
+            
 
             //----TEMPORARY SOLUTION?
             //Depending on the face dilate property(but also others like bold, softness,...) of the letter material,
@@ -366,16 +352,11 @@ namespace EA4S.ColorTickle
                 m_tSingleLetterRenderedTextureScaledToDynamic.Apply();
 
                 m_tSingleLetterAlphaTextureScaledToDynamic.SetPixels(_aColorSingleLetterScaled_ErrorCheckShape);
-                m_tSingleLetterAlphaTextureScaledToDynamic.Apply(); ;
+                m_tSingleLetterAlphaTextureScaledToDynamic.Apply();
+
+                Debug.Log(m_oTextMeshObject.text);
             }
 
-            /*
-            alphaletter = new Texture2D(m_tSingleLetterRenderedTextureScaledToDynamic.width, m_tSingleLetterRenderedTextureScaledToDynamic.height, TextureFormat.Alpha8, false);
-           
-            alphaletter.SetPixels(_aColorSingleLetterScaled);
-            alphaletter.Apply();*/
-
-            //m_tBaseLetterTextureScaledToDynamic = alphaletter;
         }
         #endregion
 
@@ -393,7 +374,7 @@ namespace EA4S.ColorTickle
                 return;
             }
 
-            //Before color with the brush's texture we need to verify that it fits 
+            //Before coloring with the brush's texture we need to verify that it fits 
             //in the target's bound and eventually split it
 
             //store pixel touched in the texture

@@ -14,7 +14,7 @@ namespace EA4S
         [System.Obsolete("Use DrawingCharForLivingLetter instead of this.")]
         Sprite DrawForLivingLetter { get; }
         string DrawingCharForLivingLetter { get; }
-        string Key { get; set; }
+        string Id { get; set; }
     }
 
     public enum LivingLetterDataType

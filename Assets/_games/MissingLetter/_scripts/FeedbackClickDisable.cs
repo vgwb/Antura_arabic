@@ -5,13 +5,12 @@ namespace EA4S.MissingLetter
 {
     public class FeedbackClickDisable : MonoBehaviour
     {
-        bool mIsPlaying = false;
 
         void OnMouseDown()
         {
-            if(!mIsPlaying)
+            if(!m_bIsPlaying)
             {
-                mIsPlaying = true;
+                m_bIsPlaying = true;
                 AudioManager.I.PlaySfx(Sfx.Splat);
                 StartCoroutine(Utils.LaunchDelay(0.5f, setPlaying, false));
             }
@@ -19,7 +18,9 @@ namespace EA4S.MissingLetter
 
         void setPlaying(bool _isPlaying)
         {
-            mIsPlaying = _isPlaying;
+            m_bIsPlaying = _isPlaying;
         }
+
+        private bool m_bIsPlaying = false;
     }
 }

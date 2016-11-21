@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012313761794
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,9 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092453d1a75e9f14388033a7e7412683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 114000010969576884}
   image: {fileID: 114000014247656228}
   text: {fileID: 114000011610390978}
-  poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
 --- !u!114 &114000014247656228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,7 +357,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012318309826
 RectTransform:
@@ -394,5 +394,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1075.3982, y: -899.3578}
-  m_SizeDelta: {x: 160, y: 160}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}

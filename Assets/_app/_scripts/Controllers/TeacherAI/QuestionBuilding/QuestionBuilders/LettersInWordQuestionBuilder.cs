@@ -42,7 +42,8 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             // Get the word
-            var question = teacher.wordHelper.GetWordsByCategory(category, drawingNeeded).RandomSelectOne();
+            var wordFilters = new WordFilters();
+            var question = teacher.wordHelper.GetWordsByCategory(category, wordFilters).RandomSelectOne();
 
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);
@@ -50,15 +51,15 @@ namespace EA4S
             var correctAnswers = new List<Db.LetterData>(wordLetters);
             if (!useAllCorrectLetters) correctAnswers = wordLetters.RandomSelect(nCorrect);
 
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
+            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(new LetterFilters(), wordLetters.ToArray()).RandomSelect(nWrong);
 
             if (ConfigAI.verboseTeacher)
             {
                 string debugString = "--------- TEACHER: question pack result ---------";
                 debugString += "\nQuestion: " + question;
-                debugString += "\nCorrect Word: " + correctAnswers.Count;
+                debugString += "\nCorrect Answers: " + correctAnswers.Count;
                 foreach (var l in correctAnswers) debugString += " " + l;
-                debugString += "\nWrong Word: " + wrongAnswers.Count;
+                debugString += "\nWrong Answers: " + wrongAnswers.Count;
                 foreach (var l in wrongAnswers) debugString += " " + l;
                 UnityEngine.Debug.Log(debugString);
             }

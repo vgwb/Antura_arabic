@@ -141,8 +141,12 @@ namespace EA4S.ColorTickle
             m_fBarkTimeProgress = 0;
 			m_v3Destination = m_oDestination.position;
 
+            m_oAntura.State = AnturaAnimationStates.sitting;
             m_oAntura.WalkingSpeed = 0; //walk-0, run-1
-            //m_oAntura.IsExcited = true;
+
+            m_eAnturaState = AnturaContollerState.ROTATION;
+            m_bRotatingToTarget = true;
+            
         }
 
         void Update()

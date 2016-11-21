@@ -2,12 +2,9 @@
 {
     public class MissingLetterIntroductionState : IGameState
     {
-        MissingLetterGame game;
-
-        float timer = 1;
-        public MissingLetterIntroductionState(MissingLetterGame game)
+        public MissingLetterIntroductionState(MissingLetterGame _game)
         {
-            this.game = game;
+            this.m_oGame = _game;
         }
 
         public void EnterState()
@@ -18,18 +15,21 @@
         {
         }
 
-        public void Update(float delta)
+        public void Update(float _delta)
         {
-            timer -= delta;
+            m_fTimer -= _delta;
 
-            if (timer < 0)
+            if (m_fTimer < 0)
             {
-                game.SetCurrentState(game.QuestionState);
+                m_oGame.SetCurrentState(m_oGame.TutorialState);
             }
         }
 
-        public void UpdatePhysics(float delta)
+        public void UpdatePhysics(float _delta)
         {
         }
+
+        MissingLetterGame m_oGame;
+        float m_fTimer = 1;
     }
 }

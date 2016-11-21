@@ -57,7 +57,7 @@ namespace EA4S.Balloons
         private IQuestionPack question;
         private LL_WordData wordData;
         private string word;
-        private List<LL_LetterData> wordLetters = new List<LL_LetterData>();
+        private List<ILivingLetterData> wordLetters = new List<ILivingLetterData>();
         private int currentRound = 0;
         private int remainingLives;
 
@@ -73,10 +73,6 @@ namespace EA4S.Balloons
         //        }
 
         private int _currentScore = 0;
-
-        private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
-
-        private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
 
         public int CurrentScore
         {
@@ -133,6 +129,10 @@ namespace EA4S.Balloons
         }
 
         How2Die howDied;
+
+        private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
+
+        private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
 
         public BalloonsIntroductionState IntroductionState { get; private set; }
 
@@ -221,7 +221,7 @@ namespace EA4S.Balloons
             //WidgetPopupWindow.I.ShowStringAndWord(OnRoundStartPressed, "#" + currentRound, wordData);
             Popup.Show();
             Popup.SetButtonCallback(OnRoundStartPressed);
-            Popup.SetWord(wordData);
+            Popup.SetWord(wordData as LL_WordData);
 
             uiCanvas.gameObject.SetActive(true);
         }
@@ -253,7 +253,6 @@ namespace EA4S.Balloons
 
         private void ResetScene()
         {
-            timer.StopTimer();
             timer.ResetTimer();
             timer.DisplayTime();
             roundNumberText.text = "#" + currentRound.ToString();
@@ -288,16 +287,19 @@ namespace EA4S.Balloons
             wordData = question.GetQuestion() as LL_WordData;
             word = wordData.Data.Arabic;
             //wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
-            wordLetters = question.GetCorrectAnswers().Cast<LL_LetterData>().ToList();
+            wordLetters = question.GetCorrectAnswers().Cast<ILivingLetterData>().ToList();
             wordPrompt.DisplayWord(wordLetters);
 
-            Debug.Log("Word: " + ArabicFixer.Fix(word) + ", Letters (" + wordLetters.Count + "): " + string.Join(" / ", wordLetters.Select(x => x.Data.Isolated).Reverse().ToArray()));
+            Debug.Log("[New Round] Word: " + ArabicFixer.Fix(word) + ", Letters (" + wordLetters.Count + "): " + string.Join(" / ", wordLetters.Select(x => x.TextForLivingLetter).Reverse().ToArray()));
         }
 
         private void CreateFloatingLetters(int numberOfExtraLetters)
         {
             var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
-            var wrongLetters = question.GetWrongAnswers().Cast<LL_LetterData>().GetEnumerator();
+            var wrongLettersList = question.GetWrongAnswers().ToList();
+            var wrongLetters = question.GetWrongAnswers().GetEnumerator();
+
+            Debug.Log("Random Letters (" + wrongLettersList.Count + "): " + string.Join(" / ", wrongLettersList.Select(x => x.TextForLivingLetter).Reverse().ToArray()));
 
             // Determine indices of required letters
             List<int> requiredLetterIndices = new List<int>();
@@ -370,18 +372,30 @@ namespace EA4S.Balloons
                     letter.isRequired = true;
                     letter.associatedPromptIndex = requiredLetterIndex;
                     letter.Init(wordLetters[requiredLetterIndex]);
+                    Debug.Log("Create word balloon with: " + wordLetters[requiredLetterIndex].TextForLivingLetter);
                 }
                 else
                 {
                     // Set a random letter that is not a required letter
-                    LL_LetterData randomLetter;
+                    ILivingLetterData randomLetter;
+                    bool invalid = false;
                     do
                     {
                         //randomLetter = AppManager.Instance.Letters.GetRandomElement();
                         randomLetter = wrongLetters.Current;
                         wrongLetters.MoveNext();
-                    } while (wordLetters.Contains(randomLetter));
-                    letter.Init(randomLetter);
+                        invalid = randomLetter == null || wordLetters.Exists(x => x.Id == randomLetter.Id);
+                    } while (invalid);
+
+                    if (invalid)
+                    {
+                        Debug.LogError("Error getting valid random letter for balloon!");
+                    }
+                    else
+                    {
+                        letter.Init(randomLetter);
+                        Debug.Log("Create random balloon with: " + randomLetter.TextForLivingLetter);
+                    }
                 }
                     
                 floatingLetters.Add(floatingLetter);
@@ -398,9 +412,9 @@ namespace EA4S.Balloons
             {
                 isRequired = letter.isRequired;
                 promptIndex = letter.associatedPromptIndex;
-                if (letter.letterData != null && !string.IsNullOrEmpty(letter.letterData.Key))
+                if (letter.letterData != null && !string.IsNullOrEmpty(letter.letterData.Id))
                 {
-                    letterKey = letter.letterData.Key;
+                    letterKey = letter.letterData.Id;
                 }
             }
 
@@ -535,7 +549,7 @@ namespace EA4S.Balloons
                 case Result.CLEAR:
                     CurrentScore++;
                     win = true;
-                   AudioManager.PlaySound(Sfx.Win);
+                    AudioManager.PlaySound(Sfx.Win);
                     break;
                 case Result.FAIL:
                     win = false;

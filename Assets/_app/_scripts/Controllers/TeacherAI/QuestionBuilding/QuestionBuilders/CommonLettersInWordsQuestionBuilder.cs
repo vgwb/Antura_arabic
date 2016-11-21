@@ -44,7 +44,7 @@ namespace EA4S
             bool found = false;
             while (nAttempts > 0 && !found)
             {
-                var words = teacher.wordHelper.GetAllWords().RandomSelect(nWords);
+                var words = teacher.wordHelper.GetAllWords(new WordFilters()).RandomSelect(nWords);
                 var commonLetters = teacher.wordHelper.GetCommonLettersInWords(words.ToArray());
 
                 if (commonLetters.Count < nMinCommonLetters || commonLetters.Count > nMaxCommonLetters)
@@ -52,7 +52,7 @@ namespace EA4S
                     nAttempts--;
                     continue;
                 }
-                var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(commonLetters.ToArray()).RandomSelect(nWrong);
+                var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(new LetterFilters(), commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
                 if (ConfigAI.verboseTeacher)

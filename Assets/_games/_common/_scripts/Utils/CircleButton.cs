@@ -7,6 +7,7 @@ namespace EA4S
 {
     public class CircleButton : MonoBehaviour
     {
+        public UnityEngine.UI.Image button;
         public UnityEngine.UI.Image image;
         public TMPro.TextMeshProUGUI text;
 
@@ -58,6 +59,10 @@ namespace EA4S
 
         }
 
+        public void SetColor(Color color)
+        {
+            button.color = color;
+        }
 
         public void Destroy(float delay = 0, System.Action onAnimationCompleted = null)
         {

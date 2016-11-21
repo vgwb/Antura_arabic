@@ -2,6 +2,38 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+namespace EA4S
+{
+    // Filter parameters for letters
+    public class LetterFilters
+    {
+        public bool excludeDiacritics;
+
+        public LetterFilters(bool excludeDiacritics = true)
+        {
+            this.excludeDiacritics = excludeDiacritics;
+        }
+    }
+
+    // Filter parameters for words
+    public class WordFilters
+    {
+        public bool excludeDiacritics;
+        public bool excludeArticles;
+        public bool excludePluralDual;
+        public bool excludeNoDrawing;
+
+        public WordFilters(bool excludeDiacritics = true, bool excludeArticles = true, bool excludePluralDual = true, bool excludeNoDrawing = true)
+        {
+            this.excludeDiacritics = excludeDiacritics;
+            this.excludeArticles = excludeArticles;
+            this.excludePluralDual = excludePluralDual;
+            this.excludeNoDrawing = excludeNoDrawing;
+        }
+    }
+
+}
+
 namespace EA4S.Db
 {
     /// <summary>
@@ -10,67 +42,69 @@ namespace EA4S.Db
     public class WordHelper
     {
         private DatabaseManager dbManager;
-        //private WordSelectionAI wordSelectionAI;
-        //private TeacherAI teacher;
 
-        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher)// Teacher.WordSelectionAI _wordSelectionAI)
+        public WordHelper(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
-            //this.wordSelectionAI = _wordSelectionAI;
-            //this.teacher = _teacher;
         }
+
+        #region Letter Utilities
+
+        private bool CheckFilters(LetterFilters filters, LetterData data)
+        {
+            if (filters.excludeDiacritics && !data.IsOfKindCategory(LetterKindCategory.Base)) return false;
+            return true;
+        }
+
+        #endregion
 
         #region Letter -> Letter
 
         public List<LetterData> GetAllBaseLetters()
         {
-            return GetAllLetters(LetterKindCategory.Base);
+            var p = new LetterFilters(excludeDiacritics: true);
+            return GetAllLetters(p);
         }
 
-        public List<LetterData> GetAllLetters(LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetAllLetters(LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => CheckFilters(filters, x));
         }
 
-        private List<LetterData> GetLettersNotIn(List<string> tabooList, LetterKindCategory category = LetterKindCategory.Real)
+        private List<LetterData> GetLettersNotIn(List<string> tabooList, LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && CheckFilters(filters, x));
         }
 
-
-        public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
-        {
-            return GetLettersNotIn(LetterKindCategory.Real, tabooArray);
-        }
-        public List<LetterData> GetLettersNotIn(LetterKindCategory category = LetterKindCategory.Real, params LetterData[] tabooArray)
+        public List<LetterData> GetLettersNotIn(LetterFilters filters, params LetterData[] tabooArray)
         {
             var tabooList = new List<LetterData>(tabooArray);
-            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id), category);
+            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id), filters);
         }
 
         public List<LetterData> GetLettersByKind(LetterDataKind choice)
         {
-            return dbManager.FindLetterData(x => x.Kind == choice);
+            return dbManager.FindLetterData(x => x.Kind == choice); // @note: this does not use filters, special case
         }
 
-        public List<LetterData> GetLettersBySunMoon(LetterDataSunMoon choice, LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetLettersBySunMoon(LetterDataSunMoon choice, LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.SunMoon == choice && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.SunMoon == choice && CheckFilters(filters, x));
         }
 
-        public List<LetterData> GetConsonantLetter(LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetConsonantLetter(LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.Type == LetterDataType.Consonant || x.Type == LetterDataType.Powerful && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.Type == LetterDataType.Consonant || x.Type == LetterDataType.Powerful && CheckFilters(filters, x));
         }
 
-        public List<LetterData> GetVowelLetter(LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetVowelLetter(LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.Type == LetterDataType.LongVowel && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.Type == LetterDataType.LongVowel && CheckFilters(filters, x));
         }
 
-        public List<LetterData> GetLettersByType(LetterDataType choice, LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetLettersByType(LetterDataType choice, LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.Type == choice && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.Type == choice && CheckFilters(filters, x));
         }
 
         public LetterData GetBaseOf(string letterId)
@@ -100,7 +134,8 @@ namespace EA4S.Db
         public List<LetterData> GetLettersInWord(WordData wordData)
         {
             var letter_ids_list = new List<string>(wordData.Letters);
-            List<LetterData> list = dbManager.FindLetterData(x => letter_ids_list.Contains(x.Id));
+            List<LetterData> list = new List<LetterData>();
+            foreach (var letter_id in letter_ids_list) list.Add(dbManager.GetLetterDataById(letter_id));
             return list;
         }
         public List<LetterData> GetLettersInWord(string wordId)
@@ -160,7 +195,25 @@ namespace EA4S.Db
 
         #endregion
 
-        #region Word -> Word
+        #region Word Utilities
+
+        private bool CheckFilters(WordFilters filters, WordData data)
+        {
+            if (filters.excludeArticles && data.Article != WordDataArticle.None) return false;
+            if (filters.excludeNoDrawing && !data.HasDrawing()) return false;
+            if (filters.excludePluralDual && data.Form != WordDataForm.Singular) return false;
+            if (filters.excludeDiacritics && this.WordHasDiacritics(data)) return false;
+            return true;
+        }
+
+        private bool WordHasDiacritics(WordData data)
+        {
+            foreach (var letter in GetLettersInWord(data))
+                if (!letter.IsOfKindCategory(LetterKindCategory.Base))
+                    return true;
+            return false;
+        }
+
 
         /// <summary>
         /// tranformsf the hex string of the glyph into the corresponding char
@@ -170,47 +223,57 @@ namespace EA4S.Db
         public string GetWordDrawing(WordData word)
         {
             //Debug.Log("the int of hex:" + word.Drawing + " is " + int.Parse(word.Drawing, NumberStyles.HexNumber));
-            return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+            if (word.Drawing != "")
+            {
+                int result = 0;
+                if (int.TryParse(word.Drawing, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out result))
+                {
+                    return ((char)result).ToString();
+                }
+                return "";
+            }
+            return "";
         }
 
-        public List<WordData> GetAllWords()
+        #endregion
+
+        #region Word -> Word
+
+        public List<WordData> GetAllWords(WordFilters filters)
         {
-            return dbManager.GetAllWordData();
+            return dbManager.FindWordData(x => CheckFilters(filters, x));
         }
 
-        private List<WordData> GetWordsNotIn(List<string> tabooList)
+        private List<WordData> GetWordsNotIn(WordFilters filters, List<string> tabooList)
         {
-            return dbManager.FindWordData(x => !tabooList.Contains(x.Id));
+            return dbManager.FindWordData(x => !tabooList.Contains(x.Id) && CheckFilters(filters, x));
         }
-        public List<WordData> GetWordsNotIn(params WordData[] tabooArray)
+
+        public List<WordData> GetWordsNotIn(WordFilters filters, params WordData[] tabooArray)
         {
             var tabooList = new List<WordData>(tabooArray);
-            return GetWordsNotIn(tabooList.ConvertAll(x => x.Id));
+            return GetWordsNotIn(filters, tabooList.ConvertAll(x => x.Id));
         }
 
-        public List<WordData> GetWordsByCategory(WordDataCategory choice, bool withDrawing = false)
+        public List<WordData> GetWordsByCategory(WordDataCategory choice, WordFilters filters)
         {
-            if (choice == WordDataCategory.None) return dbManager.GetAllWordData();
-            if (withDrawing) {
-                return dbManager.FindWordData(x => x.Category == choice && x.HasDrawing());
-            } else {
-                return dbManager.FindWordData(x => x.Category == choice);
-            }
+            if (choice == WordDataCategory.None) return this.GetAllWords(filters);
+            return dbManager.FindWordData(x => x.Category == choice && CheckFilters(filters, x));
         }
 
-        public List<WordData> GetWordsByArticle(WordDataArticle choice)
+        public List<WordData> GetWordsByArticle(WordDataArticle choice, WordFilters filters)
         {
-            return dbManager.FindWordData(x => x.Article == choice);
+            return dbManager.FindWordData(x => x.Article == choice && CheckFilters(filters, x));
         }
 
-        public List<WordData> GetWordsByForm(WordDataForm choice)
+        public List<WordData> GetWordsByForm(WordDataForm choice, WordFilters filters)
         {
-            return dbManager.FindWordData(x => x.Form == choice);
+            return dbManager.FindWordData(x => x.Form == choice && CheckFilters(filters, x));
         }
 
-        public List<WordData> GetWordsByKind(WordDataKind choice)
+        public List<WordData> GetWordsByKind(WordDataKind choice, WordFilters filters)
         {
-            return dbManager.FindWordData(x => x.Kind == choice);
+            return dbManager.FindWordData(x => x.Kind == choice && CheckFilters(filters, x));
         }
 
         #endregion
@@ -296,6 +359,13 @@ namespace EA4S.Db
             return list;
         }
 
+        public List<WordData> GetAnswersToPhrase(PhraseData phraseData)
+        {
+            var words_ids_list = new List<string>(phraseData.Answers);
+            List<WordData> list = dbManager.FindWordData(x => words_ids_list.Contains(x.Id));
+            return list;
+        }
+
 
         #endregion
 
@@ -304,6 +374,11 @@ namespace EA4S.Db
         public List<PhraseData> GetAllPhrases()
         {
             return dbManager.GetAllPhraseData();
+        }
+
+        public List<PhraseData> GetPhrasesWithAnswers()
+        {
+            return dbManager.FindPhraseData(x => x.Answers.Length > 0);
         }
 
         public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice)

@@ -171,8 +171,10 @@ namespace EA4S
                         _sequence.Append(_dropArea.LetterLable.transform.DOLocalMove(new Vector3(getPosition(_position).x, -2, getPosition(_position).z), durantion));
                         // pro only
                         // sequence.Append(Aree[actualAreaIndex].LetterLable.DOFade(0, 0.4f));
-                        if (_dropArea.DrawSprite)
-                            _dropArea.DrawSprite.DOFade(0, 0.4f);
+                        //if (_dropArea.DrawSprite)
+                        //    _dropArea.DrawSprite.DOFade(0, 0.4f);
+                        if (_dropArea.DrawText)
+                            _dropArea.DrawText.DOFade(0, 0.4f);
                     }
                     if (_callback != null)
                         _callback();

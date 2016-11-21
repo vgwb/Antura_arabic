@@ -9,35 +9,29 @@ namespace EA4S.MissingLetter
 {
     public class AnturaBehaviour : MonoBehaviour {
 
-        [SerializeField]
-        private Transform mStart, mEnd;
-
-        private Transform nextPos;
-        private AnturaAnimationController mAntura;
-
         void Start()
         {
-            mAntura = GetComponent<AnturaAnimationController>();
-            Assert.IsNotNull<AnturaAnimationController>(mAntura, "Add Antura Script to " + name);
-            transform.position = mStart.position;
-            nextPos = mEnd;
+            m_oAnturaCtrl = GetComponent<AnturaAnimationController>();
+            Assert.IsNotNull<AnturaAnimationController>(m_oAnturaCtrl, "Add Antura Script to " + name);
+            transform.position = m_oStart.position;
+            m_oNextPos = m_oEnd;
         }
 
-        public void EnterScene(float duration)
+        public void EnterScene(float _duration)
         {
-            //Old prefab
-            //mAntura.BarkWhenRunning = true;
-            //mAntura.SetAnimation(AnturaAnim.Run);
-            //transform.LookAt(transform.position + Vector3.right * (nextPos.position.x - transform.position.x));
-            //transform.DOMove(nextPos.position, duration).OnComplete(delegate {  mAntura.SetAnimation(AnturaAnim.SitBreath); }) ;
+            m_oAnturaCtrl.State = AnturaAnimationStates.walking;
+            m_oAnturaCtrl.IsAngry = true;
+            m_oAnturaCtrl.DoShout();
+            transform.LookAt(transform.position + Vector3.left * (m_oNextPos.position.x - transform.position.x));
+            transform.DOMove(m_oNextPos.position, _duration).OnComplete(delegate { m_oAnturaCtrl.State = AnturaAnimationStates.idle; }) ;
 
-            mAntura.State = AnturaAnimationStates.walking;
-            mAntura.IsAngry = true;
-            mAntura.DoShout();
-            transform.LookAt(transform.position + Vector3.left * (nextPos.position.x - transform.position.x));
-            transform.DOMove(nextPos.position, duration).OnComplete(delegate { mAntura.State = AnturaAnimationStates.idle; }) ;
-
-            nextPos = nextPos == mStart ? mEnd : mStart;
+            m_oNextPos = m_oNextPos == m_oStart ? m_oEnd : m_oStart;
         }
+
+        [SerializeField]
+        private Transform m_oStart, m_oEnd;
+
+        private Transform m_oNextPos;
+        private AnturaAnimationController m_oAnturaCtrl;
     }
 }

@@ -28,12 +28,18 @@ namespace EA4S.Maze
 		// Update is called once per frame
 		void Update () {
 			if (character.characterIsMoving)
-				return;
+            {
+                anturaSeconds = 0;
+                return;
+            }
 
 			//should we replay tutorial?
 			if (!isInside) {
 
-                if(MazeGameManager.Instance.isShowingAntura == false)
+                if (!MazeGameManager.Instance.currentCharacter || MazeGameManager.Instance.currentCharacter.isFleeing || MazeGameManager.Instance.currentCharacter.isAppearing)
+                    return;
+
+                if(MazeGameManager.Instance.currentTutorial && MazeGameManager.Instance.currentTutorial.isShownOnce && MazeGameManager.Instance.isShowingAntura == false)
                 {
                     anturaSeconds += Time.deltaTime;
 
@@ -48,7 +54,7 @@ namespace EA4S.Maze
 
                 if (MazeGameManager.Instance.currentTutorial != null && 
 					MazeGameManager.Instance.currentTutorial.isStopped == false &&
-					MazeGameManager.Instance.currentTutorial.isCurrentTutorialDone() == true) {
+					MazeGameManager.Instance.currentTutorial.isShownOnce == true) {
 
 					idleSeconds += Time.deltaTime;
 
@@ -61,7 +67,9 @@ namespace EA4S.Maze
 
 			
 			if(isInside) {
-				character.calculateMovementAndRotation();
+                anturaSeconds = 0;
+
+                character.calculateMovementAndRotation();
 			}
 		}
 

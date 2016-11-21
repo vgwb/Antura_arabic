@@ -4,6 +4,32 @@ using System.Collections.Generic;
 namespace EA4S
 {
 
+    public class QuestionBuilderParameters
+    {
+        public PackListHistory correctChoicesHistory;
+        public PackListHistory wrongChoicesHistory;
+        public bool useJourneyForWrong;
+        public bool useJourneyForCorrect;
+        public SelectionSeverity correctSeverity;
+        public SelectionSeverity wrongSeverity;
+
+        // data-based params
+        public LetterFilters letterFilters;
+        public WordFilters wordFilters;
+
+        public QuestionBuilderParameters()
+        {
+            this.correctChoicesHistory = PackListHistory.NoFilter;
+            this.wrongChoicesHistory = PackListHistory.ForceAllDifferent;
+            this.useJourneyForCorrect = true;
+            this.useJourneyForWrong = true;
+            this.correctSeverity = SelectionSeverity.AsManyAsPossible;
+            this.wrongSeverity = SelectionSeverity.AsManyAsPossible;
+            this.letterFilters = new LetterFilters();
+            this.wordFilters = new WordFilters();
+        }
+    }
+
     public class RandomLettersQuestionBuilder : IQuestionBuilder
     {
         // focus: Letters
@@ -14,19 +40,17 @@ namespace EA4S
         private int nCorrect;
         private int nWrong;
         private bool firstCorrectIsQuestion;
-        private PackListHistory correctChoicesHistory;
-        private PackListHistory wrongChoicesHistory;
+        private QuestionBuilderParameters parameters;
 
-        public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false,
-            PackListHistory correctChoicesHistory = PackListHistory.NoFilter,
-            PackListHistory wrongChoicesHistory = PackListHistory.NoFilter)
+        public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false, QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
-            this.correctChoicesHistory = correctChoicesHistory;
-            this.wrongChoicesHistory = wrongChoicesHistory;
+            this.parameters = parameters;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -49,18 +73,16 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             var correctLetters = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetAllLetters(),
-                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect,
-                        packListHistory: correctChoicesHistory, filteringIds: previousPacksIDs)
+                () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
+                    new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs)
                 );
-            //if (correctChoicesHistory != PackListHistory.NoFilter) previousPacksIDs.AddRange(correctLetters.ConvertAll(x => x.GetId()).ToArray());
 
             var wrongLetters = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersNotIn(correctLetters.ToArray()),
-                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney:true,
-                     packListHistory: wrongChoicesHistory, filteringIds: previousPacksIDs)
+                () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, correctLetters.ToArray()),
+                    new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
+                     packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs)
                 );
-            //if (wrongChoicesHistory != PackListHistory.NoFilter) previousPacksIDs.AddRange(wrongLetters.ConvertAll(x => x.GetId()).ToArray());
 
             var question = firstCorrectIsQuestion ? correctLetters[0] : null;
 

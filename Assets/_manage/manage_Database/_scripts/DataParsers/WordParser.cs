@@ -17,6 +17,7 @@ namespace EA4S.Db.Management
             data.Article = ParseEnum<WordDataArticle>(data, dict["Article"]);
             data.LinkedWord = ToString(dict["LinkedWord"]);
             data.Arabic = ToString(dict["Arabic"]);
+            data.Value = ToString(dict["Value"]);
             data.Letters = CustomParseLetters(data, db);
             data.Difficulty = ToInt(dict["Difficulty"]);
             data.Drawing = ToString(dict["Drawing"]);

@@ -115,7 +115,7 @@ namespace EA4S.MakeFriends
 
             int nPacks = 10;
             int nMinCommonLetters = 1;
-            int nMaxCommonLetters = 2;
+            int nMaxCommonLetters = 1;
             int nWrong = 5;
             int nWords = 2;
 

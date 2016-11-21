@@ -13,6 +13,8 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private float m_fRotationSpeed = 180; //Rotation speed by degree
         [SerializeField]
+        private bool m_bSetStartPosition = false;
+        [SerializeField]
         private Vector3 m_v3StartPosition;
         [SerializeField]
         private Transform m_Destination;
@@ -81,7 +83,14 @@ namespace EA4S.ColorTickle
         void Start()
         {
             m_oLetter = gameObject.GetComponent<LetterObjectView>();
-			m_v3StartPosition =  m_oLetter.gameObject.transform.position;
+            if (!m_bSetStartPosition)
+            {
+                m_v3StartPosition = m_oLetter.gameObject.transform.position;
+            }
+            else
+            {
+                m_oLetter.gameObject.transform.position = m_v3StartPosition;
+            }			
 			m_v3Destination = m_Destination.position;
         }
 
@@ -139,7 +148,7 @@ namespace EA4S.ColorTickle
                 //change animation and play sound
                 m_oLetter.SetWalkingSpeed(0);
                 m_oLetter.SetState(m_eAnimationOnDestReached);
-                AudioManager.I.PlayLetter(m_oLetter.Data.Key);
+                AudioManager.I.PlayLetter(m_oLetter.Data.Id);
 
                 if(OnDestinationReached!=null) //launch event
                 {

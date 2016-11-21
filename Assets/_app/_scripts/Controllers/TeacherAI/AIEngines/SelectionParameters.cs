@@ -21,15 +21,17 @@ namespace EA4S.Teacher
     {
         public SelectionSeverity severity;
         public int nRequired;
-        public bool ignoreJourney;
+        public bool getAllData;
+        public bool useJourney;
         public PackListHistory packListHistory;
         public List<string> filteringIds;
 
-        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool ignoreJourney = false, PackListHistory packListHistory = PackListHistory.NoFilter, List < string> filteringIds = null)
+        public SelectionParameters(SelectionSeverity severity, int nRequired = 0, bool getAllData = false, bool useJourney = true, PackListHistory packListHistory = PackListHistory.NoFilter, List < string> filteringIds = null)
         {
             this.nRequired = nRequired;
+            this.getAllData = getAllData;
             this.severity = severity;
-            this.ignoreJourney = ignoreJourney;
+            this.useJourney = useJourney;
             this.packListHistory = packListHistory;
             this.filteringIds = filteringIds;
         }

@@ -86,7 +86,7 @@ namespace EA4S
         private void SpeakLetter()
         {
             if (letterData != null) {
-                AudioManager.I.PlayLetter(letterData.Key);
+                AudioManager.I.PlayLetter(letterData.Id);
             }
         }
 
@@ -95,7 +95,7 @@ namespace EA4S
             LivingLetterAnim newAnimationState = LivingLetterAnim.Nothing;
 
             while ((newAnimationState == LivingLetterAnim.Nothing) || (newAnimationState == AnimationState)) {
-                newAnimationState = GenericUtilities.GetRandomEnum<LivingLetterAnim>();
+                newAnimationState = RandomHelper.GetRandomEnum<LivingLetterAnim>();
             }
 
             AnimationState = newAnimationState;

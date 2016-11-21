@@ -72,5 +72,17 @@ namespace EA4S
                 }
             }
         }
+
+        public void SetColor(Color color)
+        {
+            if (isTMPro) {
+                if (isUI) {
+                    gameObject.GetComponent<TextMeshProUGUI>().color = color;
+                } else {
+                    gameObject.GetComponent<TextMeshPro>().color = color;
+                }
+            }
+        }
+
     }
 }

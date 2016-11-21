@@ -10,7 +10,7 @@ namespace EA4S.Tobogan
     public class PipeAnswer : MonoBehaviour
     {
         public TMP_Text answerText;
-        public Image answerImage;
+        public TextMeshPro answerWordDrawings;
 
         public GameObject aspirationParticle;
         public GameObject graphics;
@@ -102,6 +102,8 @@ namespace EA4S.Tobogan
         public void SetAnswer(ILivingLetterData livingLetterData, bool correct)
         {
             Data = livingLetterData;
+            
+            /*
             if (livingLetterData.DataType == LivingLetterDataType.Letter)
             {
                 answerText.gameObject.SetActive(true);
@@ -117,6 +119,8 @@ namespace EA4S.Tobogan
                 answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
                 //answerImage.sprite = livingLetterData.DrawForLivingLetter;
             }
+            */
+            
             //else
             //{
             //    answerImage.gameObject.SetActive(true);
@@ -124,6 +128,30 @@ namespace EA4S.Tobogan
 
             //    answerText.gameObject.SetActive(false);
             //}
+
+            if(livingLetterData.DataType == LivingLetterDataType.Image)
+            {
+                answerText.gameObject.SetActive(false);
+                answerWordDrawings.gameObject.SetActive(true);
+
+                answerWordDrawings.text = livingLetterData.DrawingCharForLivingLetter;
+            }
+            else
+            {
+                answerText.gameObject.SetActive(true);
+                answerWordDrawings.gameObject.SetActive(false);
+
+                //answerText.text = livingLetterData.TextForLivingLetter;
+                if (livingLetterData.DataType == LivingLetterDataType.Letter)
+                {
+                    answerText.text = ArabicAlphabetHelper.GetLetterFromUnicode(((LL_LetterData)livingLetterData).Data.Isolated_Unicode);
+                }
+                else if (livingLetterData.DataType == LivingLetterDataType.Word)
+                {
+                    answerText.text = ArabicFixer.Fix(((LL_WordData)livingLetterData).Data.Arabic, false, false);
+                }
+            }
+
             IsCorrectAnswer = correct;
         }
 

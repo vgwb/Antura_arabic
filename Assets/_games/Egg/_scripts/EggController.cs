@@ -457,7 +457,7 @@ namespace EA4S.Egg
 
         public void ParticleWinEnabled()
         {
-            eggParticleWin.SetActive(true);
+            //eggParticleWin.SetActive(true);
 
             foreach (var particles in eggParticleWin.GetComponentsInChildren<ParticleSystem>(true))
             {
@@ -472,7 +472,7 @@ namespace EA4S.Egg
                 particles.Stop();
             }
 
-            eggParticleWin.SetActive(false);
+            //eggParticleWin.SetActive(false);
         }
 
         public void StartShake()

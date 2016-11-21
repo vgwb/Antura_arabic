@@ -16,6 +16,7 @@ namespace EA4S.Db.Management
             data.Category = ParseEnum<PhraseDataCategory>(data, dict["Category"]);
             data.Linked = ToString(dict["Linked"]);
             data.Words = ParseIDArray<WordData, WordTable>(data, (string)dict["Words"], db.GetWordTable());
+            data.Answers = ParseIDArray<WordData, WordTable>(data, (string)dict["Answers"], db.GetWordTable());
 
             return data;
         }

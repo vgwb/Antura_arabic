@@ -15,23 +15,19 @@ namespace EA4S
         private int nWrong;
         private bool firstCorrectIsQuestion;
         private Db.WordDataCategory category;
-        private bool drawingNeeded;
-        private PackListHistory correctChoicesHistory;
-        private PackListHistory wrongChoicesHistory;
+        private QuestionBuilderParameters parameters;
 
         public RandomWordsQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, 
-            bool firstCorrectIsQuestion = false, Db.WordDataCategory category = Db.WordDataCategory.None, bool drawingNeeded = false,
-            PackListHistory correctChoicesHistory = PackListHistory.NoFilter,
-            PackListHistory wrongChoicesHistory = PackListHistory.NoFilter)
+            bool firstCorrectIsQuestion = false, Db.WordDataCategory category = Db.WordDataCategory.None, QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.firstCorrectIsQuestion = firstCorrectIsQuestion;
             this.category = category;
-            this.drawingNeeded = drawingNeeded;
-            this.correctChoicesHistory = correctChoicesHistory;
-            this.wrongChoicesHistory = wrongChoicesHistory;
+            this.parameters = parameters;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -55,15 +51,15 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             var correctWords = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByCategory(category, drawingNeeded), 
-                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nCorrect, 
-                        packListHistory: correctChoicesHistory, filteringIds:previousPacksIDs)
+                () => teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters), 
+                    new SelectionParameters(parameters.correctSeverity, nCorrect, useJourney: parameters.useJourneyForCorrect,
+                        packListHistory: parameters.correctChoicesHistory, filteringIds:previousPacksIDs)
                 );
 
             var wrongWords = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsNotIn(correctWords.ToArray()), 
-                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nWrong, ignoreJourney: true,
-                        packListHistory: wrongChoicesHistory, filteringIds: previousPacksIDs)
+                () => teacher.wordHelper.GetWordsNotIn(parameters.wordFilters, correctWords.ToArray()), 
+                    new SelectionParameters(parameters.wrongSeverity, nWrong, useJourney: parameters.useJourneyForWrong,
+                        packListHistory: parameters.wrongChoicesHistory, filteringIds: previousPacksIDs)
                 );
 
             var question = firstCorrectIsQuestion ? correctWords[0] : null;

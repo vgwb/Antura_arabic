@@ -81,10 +81,10 @@
                     builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
                     break;  
                 case BalloonsVariation.Spelling:
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, nWrong:nWrong);
                     break;
                 case BalloonsVariation.Words:
-                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, true);
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
                     break;
             }
 

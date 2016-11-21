@@ -60,7 +60,7 @@ namespace EA4S.ColorTickle
             Vector3 buttonStartPosition = new Vector3(Screen.width / 2 - distBetwButtons, 0, 0);
 			float buttonSize = Screen.height / (float)m_YDefaultResolution;
 
-            BuildOutlineButton(buttonStartPosition);
+            BuildOutlineButton(buttonStartPosition, buttonSize);
 
             m_PercentageButton = null;
             BuildButtons(buttonStartPosition, distBetwButtons, buttonSize);
@@ -71,14 +71,14 @@ namespace EA4S.ColorTickle
         {			
         }
 
-        void BuildOutlineButton(Vector3 buttonStartPosition)
+        void BuildOutlineButton(Vector3 buttonStartPosition, float buttonSize)
         {
             m_OutlineButton = Instantiate(m_SampleButton);
             m_OutlineButton.transform.SetParent(gameObject.transform);
             m_OutlineButton.transform.position = gameObject.transform.position;
             m_OutlineButton.transform.position += buttonStartPosition;
             m_OutlineButton.transform.position -= Vector3.forward;
-            m_OutlineButton.image.rectTransform.sizeDelta *= m_OutlineSize;
+            m_OutlineButton.image.rectTransform.sizeDelta *= buttonSize * m_OutlineSize;
             Color newcolor = m_OutlineColor;
             m_OutlineButton.image.color = newcolor;
         }
