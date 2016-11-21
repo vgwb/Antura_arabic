@@ -90,7 +90,7 @@ namespace EA4S.Assessment
         public int SimultaneosQuestions { get; set; }
 
         private int _rounds = 0;
-        public int Rounds { get { return _rounds; } set { _rounds = value; Debug.Log("Setted Rounds:" + value); } }
+        public int Rounds { get { return _rounds; } set { _rounds = value; } }
 
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
