@@ -9,19 +9,28 @@ namespace EA4S.MixedLetters
 {
     public class SeparateLettersSpawnerController : MonoBehaviour
     {
-        private const float LOSE_ANIMATION_DROP_DELAY = 0.5f;
-        private const float LOSE_ANIMATION_DROP_OFFSET = 0.1f;
-        private const float LOSE_ANIMATION_POOF_DELAY = 1f;
-        private const float LOSE_ANIMATION_POOF_OFFSET = 0.1f;
-        private const float LOSE_ANIMATION_END_DELAY = 1.5f;
-
         public static SeparateLettersSpawnerController instance;
 
+        // The delay to start dropping the letters, in seconds:
+        private const float LOSE_ANIMATION_DROP_DELAY = 0.5f;
+
+        // The time offset between each letter drop, in seconds:
+        private const float LOSE_ANIMATION_DROP_OFFSET = 0.1f;
+
+        // The delay to start vanishing the letters, in seconds:
+        private const float LOSE_ANIMATION_POOF_DELAY = 1f;
+
+        // The time offset between each letter vanish, in seconds:
+        private const float LOSE_ANIMATION_POOF_OFFSET = 0.1f;
+
+        // The delay to announce the end of the animation, in seconds:
+        private const float LOSE_ANIMATION_END_DELAY = 1.5f;
+        
         public SeparateLetterController[] separateLetterControllers;
+        
+        public AudioSource audioSource;
 
         private IEnumerator spawnLettersCoroutine;
-
-        public AudioSource audioSource;
 
         void Awake()
         {
@@ -33,13 +42,13 @@ namespace EA4S.MixedLetters
             transform.position = position;
         }
 
-        public void SpawnLetters(List<LL_LetterData> lettersToSpawn, System.Action spawnOverCallback)
+        public void SpawnLetters(List<LL_LetterData> lettersToSpawn, Action spawnOverCallback)
         {
             spawnLettersCoroutine = SpawnLettersCoroutine(lettersToSpawn, spawnOverCallback);
             StartCoroutine(spawnLettersCoroutine);
         }
 
-        private IEnumerator SpawnLettersCoroutine(List<LL_LetterData> lettersToSpawn, System.Action spawnOverCallback)
+        private IEnumerator SpawnLettersCoroutine(List<LL_LetterData> lettersToSpawn, Action spawnOverCallback)
         {
             PlayCartoonFightSfx();
 

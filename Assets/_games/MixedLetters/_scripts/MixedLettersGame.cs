@@ -96,6 +96,22 @@ namespace EA4S.MixedLetters
             }
         }
 
+        public void HideRotationButtons()
+        {
+            foreach (DropZoneController dropZoneController in dropZoneControllers)
+            {
+                dropZoneController.HideRotationButton();
+            }
+        }
+
+        public void ShowGreenTicks()
+        {
+            foreach (DropZoneController dropZoneController in dropZoneControllers)
+            {
+                dropZoneController.ShowGreenTick();
+            }
+        }
+
         private void ResetDropZones()
         {
             foreach (DropZoneController dropZoneController in dropZoneControllers)
@@ -124,7 +140,7 @@ namespace EA4S.MixedLetters
             wordInPlay = wordData.Data;
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()));
             VictimLLController.instance.letterObjectView.Init(wordData);
-            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayWord(wordData);
+            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
         }
 
         public void VerifyLetters()
@@ -140,8 +156,18 @@ namespace EA4S.MixedLetters
                 }
             }
 
+            OnRoundWon();
+        }
+
+        private void OnRoundWon()
+        {
             PlayGameState.RoundWon = true;
             numRoundsWon++;
+
+            Context.GetAudioManager().PlaySound(Sfx.Win);
+
+            HideRotationButtons();
+            ShowGreenTicks();
         }
     }
 }

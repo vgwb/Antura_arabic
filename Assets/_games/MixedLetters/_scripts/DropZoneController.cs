@@ -11,22 +11,31 @@ namespace EA4S.MixedLetters
         public static float DropZoneZ = -41.5f;
 
         public SpriteRenderer spriteRenderer;
-        
+
+        // The equilibrium scale of the throbbing. It is automatically set to how it is configured in the scene:
         private float THROB_INIT_SCALE;
-        private float THROB_SCALE_MULTIPLIER = 1.2f;
-        private float THROB_PERIOD = 0.33f;
-        private float LETTER_SWAP_DROP_OFFSET = -1f;
+
+        // The factor by which the drop zone expands when throbbing:
+        private const float THROB_SCALE_MULTIPLIER = 1.2f;
+
+        // The period of the throb, in seconds:
+        private const float THROB_PERIOD = 0.33f;
+
+        // If the drop zone already has a letter and it is swapped, translate the letter by this amount on the Y-axis
+        // before dropping it:
+        private const float LETTER_SWAP_DROP_OFFSET = -1f;
+
         private IEnumerator throbAnimation;
         private bool isChosen = false;
         public SeparateLetterController droppedLetter;
 
         public RotateButtonController rotateButtonController;
-        
+
         void Start()
         {
             THROB_INIT_SCALE = transform.localScale.x;
         }
-        
+
         void FixedUpdate()
         {
             if (isChosen && chosenDropZone != this)
@@ -83,13 +92,10 @@ namespace EA4S.MixedLetters
 
         public void OnTriggerEnter(Collider collider)
         {
-            //if (droppedLetter == null)
-            //{
-                Throb();
-                isChosen = true;
-                chosenDropZone = this;
-                Highlight();
-            //}
+            Throb();
+            isChosen = true;
+            chosenDropZone = this;
+            Highlight();
         }
 
         public void OnTriggerExit(Collider collider)
@@ -101,6 +107,16 @@ namespace EA4S.MixedLetters
             }
 
             Unhighlight();
+        }
+
+        public void HideRotationButton()
+        {
+            rotateButtonController.Disable();
+        }
+
+        public void ShowGreenTick()
+        {
+            TutorialUI.MarkYes(rotateButtonController.transform.position);
         }
 
         private void Throb()
@@ -147,7 +163,6 @@ namespace EA4S.MixedLetters
             {
                 droppedLetter.RotateCCW();
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.WheelTick);
-                
             }
         }
 
