@@ -62,6 +62,13 @@ namespace EA4S.Db
             return value;
         }
 
+        public bool HasById<T>(SerializableDataTable<T> table, string id) where T : IData
+        {
+            T value = (T)table.GetValue(id);
+            if (value == null) return false;
+            return true;
+        }
+
         public IEnumerable<List<IData>> GetAllData()
         {
             foreach (var table in GetAllTables())
