@@ -25,9 +25,21 @@ namespace EA4S.MixedLetters
 
         // The delay to announce the end of the animation, in seconds:
         private const float LOSE_ANIMATION_END_DELAY = 1.5f;
-        
+
+        // The delay to start vanishing the letters (for the win animation), in seconds:
+        private const float WIN_ANIMATION_POOF_DELAY = 1f;
+
+        // The time offset between each letter vanish, in seconds:
+        private const float WIN_ANIMATION_POOF_OFFSET = 0.1f;
+
+        // The delay for the big LL (with the whole word) to appear, in seconds:
+        private const float WIN_ANIMATION_BIG_LL_DELAY = 0.5f;
+
+        // The delay to announce the end of the animation, in seconds:
+        private const float WIN_ANIMATION_END_DELAY = 2f;
+
         public SeparateLetterController[] separateLetterControllers;
-        
+
         public AudioSource audioSource;
 
         private IEnumerator spawnLettersCoroutine;
@@ -172,6 +184,37 @@ namespace EA4S.MixedLetters
             }
 
             yield return new WaitForSeconds(LOSE_ANIMATION_END_DELAY);
+
+            OnAnimationEnded();
+        }
+
+        public void ShowWinAnimation(Action OnAnimationEnded)
+        {
+            StartCoroutine(WinAnimationCoroutine(OnAnimationEnded));
+        }
+
+        private IEnumerator WinAnimationCoroutine(Action OnAnimationEnded)
+        {
+            yield return new WaitForSeconds(WIN_ANIMATION_POOF_DELAY);
+
+            for (int i = 0; i < MixedLettersGame.instance.lettersInOrder.Count; i++)
+            {
+                if (i != 0)
+                {
+                    yield return new WaitForSeconds(WIN_ANIMATION_POOF_OFFSET);
+                }
+
+                MixedLettersGame.instance.dropZoneControllers[i].droppedLetter.Vanish();
+            }
+
+            MixedLettersGame.instance.HideDropZones();
+
+            yield return new WaitForSeconds(WIN_ANIMATION_BIG_LL_DELAY);
+
+            VictimLLController.instance.Enable();
+            VictimLLController.instance.DoHooray();
+
+            yield return new WaitForSeconds(WIN_ANIMATION_END_DELAY);
 
             OnAnimationEnded();
         }

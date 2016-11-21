@@ -106,9 +106,9 @@ namespace EA4S.MixedLetters
 
         public void ShowGreenTicks()
         {
-            foreach (DropZoneController dropZoneController in dropZoneControllers)
+            for (int i = 0; i < lettersInOrder.Count; i++)
             {
-                dropZoneController.ShowGreenTick();
+                dropZoneControllers[i].ShowGreenTick();
             }
         }
 

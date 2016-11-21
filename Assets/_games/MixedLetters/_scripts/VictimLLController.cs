@@ -37,5 +37,10 @@ namespace EA4S.MixedLetters
         {
             gameObject.SetActive(false);
         }
+
+        public void DoHooray()
+        {
+            letterObjectView.DoHorray();
+        }
     }
 }
