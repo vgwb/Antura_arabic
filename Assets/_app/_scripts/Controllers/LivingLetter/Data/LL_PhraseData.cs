@@ -13,16 +13,21 @@ namespace EA4S
             get { return LivingLetterDataType.Phrase; }
         }
 
-        public string Key {
-            get { return key; }
-            set { key = value; }
+        public string Id {
+            get { return Data.Id; }
+            set { Data = AppManager.Instance.DB.GetPhraseDataById(value); }
         }
 
-        private string key;
-
-        public LL_PhraseData(string _keyRow, Db.PhraseData _data)
+        public LL_PhraseData(string _id) : this(_id, AppManager.Instance.DB.GetPhraseDataById(_id))
         {
-            Key = _keyRow;
+        }
+
+        public LL_PhraseData(string _id, Db.PhraseData _data) : this(_data)
+        {
+        }
+
+        public LL_PhraseData(Db.PhraseData _data)
+        {
             Data = _data;
         }
 
@@ -33,22 +38,12 @@ namespace EA4S
         public string TextForLivingLetter {
             get {
                 return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic);
-                //                return string.Empty;
             }
         }
 
-        /// <summary>
-        /// @note Not ready yet!
-        /// Gets the drawing character for living letter.
-        /// </summary>
-        /// <value>
-        /// The drawing character for living letter.
-        /// </value>
         public string DrawingCharForLivingLetter {
-            ///
             get {
-                new System.Exception("DrawingCharForLivingLetter for LL_PhraseData not ready yet");
-                return string.Empty;
+                return null;
             }
         }
 

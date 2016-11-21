@@ -1,20 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S
 {
-    // Sample Intro Manager
     public class IntroManager : MonoBehaviour
     {
-        public LetterCrowd crowd;
-        float lettersTimer = 2;
-        float anturaEnterTimer = 5;
-        float anturaExitTimer = 10;
-        CountdownTimer countDown = new CountdownTimer(5);
+        public IntroFactory factory;
+
+        CountdownTimer countDown;
+
+        public float m_StateDelay = 2.0f;
+        public float m_EndDelay = 2.0f;
+
+        bool m_Start = true;
+        bool m_End = false;
 
         void Start() {
             GlobalUI.ShowPauseMenu(false);
-            countDown.Start();
-            countDown.onTimesUp += CountDown_onTimesUp;
+            countDown = new CountdownTimer(m_EndDelay);
         }
 
         private void CountDown_onTimesUp() {
@@ -27,37 +31,65 @@ namespace EA4S
 
         void Update()
         {
-            countDown.Update(Time.deltaTime);
-            if (lettersTimer > 0)
+            if (m_Start)
             {
-                lettersTimer -= Time.deltaTime;
-
-                if (lettersTimer <= 0)
-                {
-                    crowd.AddLivingLetter(null);
-                    crowd.AddLivingLetter(null);
-                    crowd.AddLivingLetter(null);
-                }
+                m_Start = false;
+                Debug.Log("Start Introduction");
+                //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", FirstIntroLetter));
+                StartCoroutine(ChangeIntroductionState("Intro_welcome", FirstIntroLetter));
             }
 
-            if (anturaEnterTimer > 0)
+            if (m_End)
             {
-                anturaEnterTimer -= Time.deltaTime;
-
-                if (anturaEnterTimer <= 0)
-                {
-                    crowd.antura.SetAnturaTime(true);
-                }
+                countDown.Update(Time.deltaTime);
             }
-            else if (anturaExitTimer > 0)
-            {
-                anturaExitTimer -= Time.deltaTime;
-
-                if (anturaExitTimer <= 0)
-                {
-                    crowd.antura.SetAnturaTime(false);
-                }
-            }
+                      
         }
-    }
+
+        public void FirstIntroLetter()
+        {
+            Debug.Log("Start Spawning");
+            factory.StartSpawning = true;
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", SecondIntroLetter));
+            StartCoroutine(ChangeIntroductionState("Intro_Letters_1", SecondIntroLetter));
+        }
+
+        public void SecondIntroLetter()
+        {
+            Debug.Log("Second Intro Letter");
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EnableAntura));
+            StartCoroutine(ChangeIntroductionState("Intro_Letters_2", EnableAntura));
+        }
+
+        public void EnableAntura()
+        {
+            factory.antura.SetAnturaTime(true);
+            Debug.Log("Antura is enable");
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EndIntroduction));
+            StartCoroutine(ChangeIntroductionState("Intro_Dog", EndIntroduction));
+        } 
+
+        public void EndIntroduction()
+        {
+            Debug.Log("EndIntroduction");
+            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", DisableAntura));
+            StartCoroutine(ChangeIntroductionState("Intro_Dog_Chase", DisableAntura));
+        }
+
+        public void DisableAntura()
+        {
+            factory.antura.SetAnturaTime(false);
+            countDown.Start();
+            countDown.onTimesUp += CountDown_onTimesUp;
+            m_End = true;
+        }
+
+
+        IEnumerator ChangeIntroductionState(string audioI, System.Action nextState)
+        {
+            Debug.Log("Start Coroutine");
+            yield return new WaitForSeconds(m_StateDelay);
+            WidgetSubtitles.I.DisplaySentence(audioI, 2, true, nextState);
+        }
+    }    
 }

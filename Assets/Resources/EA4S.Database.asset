@@ -20,8 +20,8 @@ MonoBehaviour:
       Type: 1
       Main: AlphabetSong
       Variation: alphabet
-      Description: video
-      Scene: game_AlphabetSong
+      Description: 
+      Scene: game_ReadingGame
     - Title_En: Complete the Word
       Title_Ar: 
       Code: 103

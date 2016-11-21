@@ -75,7 +75,7 @@ namespace EA4S.Test
         static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
         {
             for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Key == letter.Key)
+                if (list[i].Id == letter.Id)
                     return true;
             return false;
         }
@@ -84,7 +84,7 @@ namespace EA4S.Test
         static bool CheckIfContains(List<LL_LetterData> list, ILivingLetterData letter)
         {
             for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Key == letter.Key)
+                if (list[i].Id == letter.Id)
                     return true;
             return false;
         }
@@ -92,7 +92,7 @@ namespace EA4S.Test
         static bool CheckIfContains(List<LL_WordData> list, ILivingLetterData letter)
         {
             for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Key == letter.Key)
+                if (list[i].Id == letter.Id)
                     return true;
             return false;
         }

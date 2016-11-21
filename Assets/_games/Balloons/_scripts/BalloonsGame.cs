@@ -384,7 +384,7 @@ namespace EA4S.Balloons
                         //randomLetter = AppManager.Instance.Letters.GetRandomElement();
                         randomLetter = wrongLetters.Current;
                         wrongLetters.MoveNext();
-                        invalid = randomLetter == null || wordLetters.Exists(x => x.Key == randomLetter.Key);
+                        invalid = randomLetter == null || wordLetters.Exists(x => x.Id == randomLetter.Id);
                     } while (invalid);
 
                     if (invalid)
@@ -412,9 +412,9 @@ namespace EA4S.Balloons
             {
                 isRequired = letter.isRequired;
                 promptIndex = letter.associatedPromptIndex;
-                if (letter.letterData != null && !string.IsNullOrEmpty(letter.letterData.Key))
+                if (letter.letterData != null && !string.IsNullOrEmpty(letter.letterData.Id))
                 {
-                    letterKey = letter.letterData.Key;
+                    letterKey = letter.letterData.Id;
                 }
             }
 

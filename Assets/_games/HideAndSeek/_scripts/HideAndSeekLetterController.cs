@@ -144,7 +144,7 @@ namespace EA4S.HideAndSeek
 		void OnMouseDown()
 		{
 			if (isClickable && onLetterTouched != null) {
-                AudioManager.I.PlayLetter(view.Data.Key);
+                AudioManager.I.PlayLetter(view.Data.Id);
                 isClickable = false;
                 onLetterTouched (id);
 			}

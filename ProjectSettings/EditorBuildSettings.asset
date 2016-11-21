@@ -46,6 +46,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_games/MixedLetters/game_MixedLetters.unity
   - enabled: 1
+    path: Assets/_games/ReadingGame/game_ReadingGame.unity
+  - enabled: 1
     path: Assets/_games/Scanner/game_Scanner.unity
   - enabled: 1
     path: Assets/_games/SickLetters/game_SickLetters.unity

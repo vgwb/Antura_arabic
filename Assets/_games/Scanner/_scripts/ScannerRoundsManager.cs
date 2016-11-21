@@ -80,7 +80,8 @@ namespace EA4S.Scanner
 				ss.Reset();
 				if (i == correctOne)
 				{
-					ss.spriteRenderer.sprite = game.wordData.DrawForLivingLetter;
+					Debug.Log(game.wordData.TextForLivingLetter);
+					ss.drawing.text = game.wordData.DrawingCharForLivingLetter;
 					ss.isCorrectAnswer = true;
 				}
 				else
@@ -91,7 +92,8 @@ namespace EA4S.Scanner
 						wrongWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 					} while (chosenWords.Contains(wrongWord.Data.Id));
 					chosenWords.Add(wrongWord.Data.Id);
-					ss.spriteRenderer.sprite = wrongWord.DrawForLivingLetter;
+					Debug.Log(wrongWord.TextForLivingLetter);
+					ss.drawing.text = wrongWord.DrawingCharForLivingLetter;
 					ss.isCorrectAnswer = false;
 				}
 			}
@@ -146,8 +148,6 @@ namespace EA4S.Scanner
 			game.CreatePoof(GO.transform.position,2f,true);
 			GO.SetActive(false);
 
-			game.scannerLL.Sad();
-
 			if (numberOfFailedMoves >= game.allowedFailedMoves)
 			{
 				game.StartCoroutine(RoundLost());
@@ -155,7 +155,7 @@ namespace EA4S.Scanner
 
 		}
 
-		IEnumerator CheckNewRound()
+		IEnumerator CheckNewRound(bool won)
 		{
 			if (numberOfRoundsPlayed >= game.numberOfRounds)
 			{
@@ -164,6 +164,15 @@ namespace EA4S.Scanner
 			else
 			{
 				yield return new WaitForSeconds(0.5f);
+				if (won)
+				{
+					game.scannerLL.RoundWon();
+				}
+				else
+				{
+					game.scannerLL.RoundLost();
+				}
+
 				StartRound();
 			}
 		}
@@ -177,7 +186,7 @@ namespace EA4S.Scanner
 
 			yield return new WaitForSeconds(1.5f);
 
-			game.StartCoroutine(CheckNewRound());
+			game.StartCoroutine(CheckNewRound(false));
 		}
 
 		IEnumerator RoundWon()
@@ -189,9 +198,7 @@ namespace EA4S.Scanner
 			AudioManager.I.PlaySfx(Sfx.Win);
 			yield return new WaitForSeconds(2f);
 
-			game.scannerLL.Happy();
-
-			game.StartCoroutine(CheckNewRound());
+			game.StartCoroutine(CheckNewRound(true));
 		}
 
 		IEnumerator PoofOthers(ScannerSuitcase[] draggables)

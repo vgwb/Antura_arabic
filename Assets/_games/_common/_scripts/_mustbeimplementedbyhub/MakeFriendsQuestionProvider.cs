@@ -57,7 +57,7 @@ namespace EA4S
                     {
                         newWordData2 = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
                         innerLoopAttempts--;
-                    } while(newWordData2.Key == newWordData1.Key && innerLoopAttempts > 0);
+                    } while(newWordData2.Id == newWordData1.Id && innerLoopAttempts > 0);
                     if (innerLoopAttempts <= 0)
                     {
                         UnityEngine.Debug.LogError("MakeFriends QuestionProvider Could not find 2 different words!");
@@ -74,10 +74,10 @@ namespace EA4S
                         var letter = wordLetters1[i];
 
                         //if (wordLetters2.Contains(letter))
-                        if (wordLetters2.Exists(x => x.Key == letter.Key))
+                        if (wordLetters2.Exists(x => x.Id == letter.Id))
                         {
                             //if (!commonLetters.Contains(letter))
-                            if (!commonLetters.Exists(x => x.Key == letter.Key))
+                            if (!commonLetters.Exists(x => x.Id == letter.Id))
                             {
                                 commonLetters.Add(letter);
                             }
@@ -90,10 +90,10 @@ namespace EA4S
                         var letter = wordLetters1[i];
 
                         //if (!wordLetters2.Contains(letter))
-                        if (!wordLetters2.Exists(x => x.Key == letter.Key))
+                        if (!wordLetters2.Exists(x => x.Id == letter.Id))
                         {
                             //if (!uncommonLetters.Contains(letter))
-                            if (!uncommonLetters.Exists(x => x.Key == letter.Key))
+                            if (!uncommonLetters.Exists(x => x.Id == letter.Id))
                             {
                                 uncommonLetters.Add(letter);
                             }
