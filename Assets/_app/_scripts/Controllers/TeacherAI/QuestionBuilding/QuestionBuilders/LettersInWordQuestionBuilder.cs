@@ -20,6 +20,7 @@ namespace EA4S
             bool useAllCorrectLetters = false, Db.WordDataCategory category = Db.WordDataCategory.None,
             QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;

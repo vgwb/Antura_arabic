@@ -19,6 +19,7 @@ namespace EA4S
         public CommonLettersInWordQuestionBuilder(int nPacks, int nMinCommonLetters = 1, int nMaxCommonLetters = 1, int nWrong = 0, int nWords = 1,
             QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nPacks = nPacks;
             this.nMinCommonLetters = nMinCommonLetters;
             this.nMaxCommonLetters = nMaxCommonLetters;
