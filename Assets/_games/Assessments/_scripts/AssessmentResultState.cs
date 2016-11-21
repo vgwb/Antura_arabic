@@ -19,9 +19,14 @@ namespace EA4S.Assessment
             assessmentGame.Context.GetAudioManager().PlaySound( Sfx.TickAndWin);
         }
 
+        bool exited = false;
         public void ExitState()
         {
-
+            if (exited == false)
+            {
+                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards");
+                exited = true;
+            }
         }
 
         public void Update( float delta)
@@ -29,10 +34,7 @@ namespace EA4S.Assessment
             timer -= delta;
 
             if (timer < 0)
-            {
-                Debug.Log("Loaded app_Rewards");
-                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition( "app_Rewards");
-            }
+                ExitState();
         }
 
         public void UpdatePhysics( float delta)
