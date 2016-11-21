@@ -43,6 +43,9 @@ public partial class SROptions
                     if(AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
                         return new JourneyPosition(s, lb, ps);
                 }
+                int assessmentCode = 100;
+                if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
+                    return new JourneyPosition(s, lb, assessmentCode);
             }
         }
         return null;
