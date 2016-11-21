@@ -17,6 +17,7 @@ namespace EA4S
         public WordsWithLetterQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
             QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
