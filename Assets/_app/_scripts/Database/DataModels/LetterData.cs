@@ -31,6 +31,7 @@ namespace EA4S.Db
         public string Notes;
         public LetterDataSunMoon SunMoon;
         public string Sound;
+        public string SoundZone;
         public string Isolated;
         public string Initial;
         public string Medial;
