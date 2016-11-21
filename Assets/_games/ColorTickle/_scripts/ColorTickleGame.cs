@@ -10,17 +10,15 @@ namespace EA4S.ColorTickle
     public class ColorTickleGame : MiniGame
     {
         #region PUBLIC MEMBERS
-        
-        public GameObject m_LetterPrefab;
 
+        [SerializeField]
+        private GameObject m_LetterPrefab;
         [SerializeField]
         private Canvas m_ColorsCanvas;
         [SerializeField]
         private ColorTickle_AnturaController m_AnturaController;
         [SerializeField]
         private Canvas m_EndCanvas;
-        [SerializeField]
-        private StarFlowers m_StarsFlowers;
         [SerializeField]
         private int m_Rounds = 3;
         [SerializeField]
@@ -33,10 +31,6 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private Music m_oBackgroundMusic;
 
-        [HideInInspector]
-        public int m_Stars = 0;
-
-
         // GAME STATES
         public IntroductionGameState IntroductionState { get; private set; }
         //public QuestionGameState QuestionState { get; private set; }
@@ -48,6 +42,7 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
 
+        private int m_Stars = 0;
         GameObject[] m_MyLetters;
         GameObject m_TutorialLetter;
         IOverlayWidget m_GameUI;
@@ -56,6 +51,12 @@ namespace EA4S.ColorTickle
         #endregion
 
         #region GETTER/SETTER
+
+        public GameObject letterPrefab
+        {
+            get { return m_LetterPrefab; }
+            set { m_LetterPrefab = value; }
+        }
 
         public GameObject[] myLetters
         {
@@ -84,14 +85,15 @@ namespace EA4S.ColorTickle
             get { return m_EndCanvas; }
         }
 
-        public StarFlowers starFlowers
-        {
-            get { return m_StarsFlowers; }
-        }
-
         public int lives
         {
             get { return m_MaxLives; }
+        }
+
+        public int starsAwarded
+        {
+            get { return m_Stars; }
+            set { m_Stars = value; }
         }
 
         public int rounds
