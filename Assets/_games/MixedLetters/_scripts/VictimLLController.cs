@@ -8,6 +8,8 @@ namespace EA4S.MixedLetters
         public static VictimLLController instance;
         public LetterObjectView letterObjectView;
 
+        public GameObject victoryRays;
+
         void Awake()
         {
             instance = this;
@@ -41,6 +43,16 @@ namespace EA4S.MixedLetters
         public void DoHooray()
         {
             letterObjectView.DoHorray();
+        }
+
+        public void ShowVictoryRays()
+        {
+            victoryRays.SetActive(true);
+        }
+
+        public void HideVictoryRays()
+        {
+            victoryRays.SetActive(false);
         }
     }
 }
