@@ -100,7 +100,7 @@ namespace EA4S.Teacher
             }
             if (selectionParams.severity == SelectionSeverity.AllRequired) 
             {
-                if (dataList.Count < selectionParams.nRequired  || selectionParams.getMaxData && dataList.Count < nAfterBuilder)
+                if (!CheckRequiredNumberReached(dataList, selectionParams, nAfterBuilder))
                 {
                     throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
                 }
@@ -118,8 +118,9 @@ namespace EA4S.Teacher
                 case PackListHistory.ForceAllDifferent:
                     // filter only by those that have not been found already in this pack, if possible
                     dataList = dataList.FindAll(x => !selectionParams.filteringIds.Contains(x.GetId()));
-                    if (dataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
+                    if (!CheckRequiredNumberReached(dataList, selectionParams, nAfterBuilder))
                     {
+                        UnityEngine.Debug.Log(debugString);
                         throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the pack-history logic.");
                     }
                     break;
@@ -164,6 +165,12 @@ namespace EA4S.Teacher
             }
 
             return selectedList;
+        }
+
+        private bool CheckRequiredNumberReached<T>(List<T> dataList, SelectionParameters selectionParams, int nAfterBuilder)
+        {
+            return (!selectionParams.getMaxData && dataList.Count >= selectionParams.nRequired)
+                || (selectionParams.getMaxData && dataList.Count >= nAfterBuilder);
         }
 
         private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, DbTables table) where T : IData
