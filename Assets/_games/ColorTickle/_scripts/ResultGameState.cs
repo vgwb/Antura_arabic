@@ -15,7 +15,6 @@ namespace EA4S.ColorTickle
 
         public void EnterState()
         {
-            game.endCanvas.gameObject.SetActive(true);
             Debug.Log("Result State activated");
         }
 
@@ -29,7 +28,7 @@ namespace EA4S.ColorTickle
 
             if (timer < 0)
             {
-                game.EndGame(game.m_Stars,0);
+                game.EndGame(game.starsAwarded,0);
             }
         }
 

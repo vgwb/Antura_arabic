@@ -154,23 +154,41 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = snag.Increase( 1,2);
             Rounds = snag.Increase( 2, 4);
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
+
             return new WordsWithLetterQuestionBuilder( 
 
                 SimultaneosQuestions*Rounds,// Total Answers
                 snag.Decrease( 3, 2),       // Correct Answers
-                snag.Increase( 1, 4));      // Wrong Answers
+                snag.Increase( 1, 4),         // Wrong Answers
+                parameters: builderParams
+                );     
+
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 1;
             Rounds = snag.Increase( 2, 3);
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
+
             return new LettersInWordQuestionBuilder(
 
                 SimultaneosQuestions * Rounds,   // Total Answers
                 snag.Decrease( 3, 2),            // CorrectAnswers
                 snag.Increase( 1, 4),            // WrongAnswers
-                useAllCorrectLetters: false);
+                useAllCorrectLetters: false,
+                parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_LetterShape_Builder()
