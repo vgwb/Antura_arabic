@@ -430,6 +430,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: aa
+      SoundZone: D
       Isolated: "\u0627"
       Initial: "\u0627"
       Medial: "\uFE8E"
@@ -449,6 +450,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: b
+      SoundZone: A
       Isolated: "\u0628\u200E"
       Initial: "\u0628\u0640\u200E"
       Medial: "\u0640\u0628\u0640\u200E"
@@ -468,6 +470,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: t
+      SoundZone: B
       Isolated: "\u062A\u200E"
       Initial: "\u062A\u0640\u200E"
       Medial: "\u0640\u062A\u0640\u200E"
@@ -487,6 +490,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: th
+      SoundZone: A
       Isolated: "\u062B\u200E"
       Initial: "\u062B\u0640\u200E"
       Medial: "\u0640\u062B\u0640\u200E"
@@ -506,6 +510,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: j
+      SoundZone: C
       Isolated: "\u062C\u200E"
       Initial: "\u062C\u0640\u200E"
       Medial: "\u0640\u062C\u0640\u200E"
@@ -525,6 +530,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: H
+      SoundZone: D
       Isolated: "\u062D\u200E"
       Initial: "\u062D\u0640\u200E"
       Medial: "\u0640\u062D\u0640\u200E"
@@ -544,6 +550,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: kh
+      SoundZone: D
       Isolated: "\u062E\u200E"
       Initial: "\u062E\u0640\u200E"
       Medial: "\u0640\u062E\u0640\u200E"
@@ -563,6 +570,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: d
+      SoundZone: B
       Isolated: "\u062F\u200E"
       Initial: "\u062F\u200E"
       Medial: "\u0640\u062F\u200E"
@@ -582,6 +590,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: dh
+      SoundZone: A
       Isolated: "\u0630\u200E"
       Initial: "\u0630\u200E"
       Medial: "\u0640\u0630\u200E"
@@ -601,6 +610,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: r
+      SoundZone: B
       Isolated: "\u0631\u200E"
       Initial: "\u0631\u200E"
       Medial: "\u0640\u0631\u200E"
@@ -620,6 +630,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: z
+      SoundZone: A
       Isolated: "\u0632\u200E"
       Initial: "\u0632\u200E"
       Medial: "\u0640\u0632\u200E"
@@ -639,6 +650,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: s
+      SoundZone: A
       Isolated: "\u0633\u200E"
       Initial: "\u0633\u0640\u200E"
       Medial: "\u0640\u0633\u0640\u200E"
@@ -658,6 +670,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: sh
+      SoundZone: C
       Isolated: "\u0634\u200E"
       Initial: "\u0634\u0640\u200E"
       Medial: "\u0640\u0634\u0640\u200E"
@@ -677,6 +690,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: S
+      SoundZone: A
       Isolated: "\u0635\u200E"
       Initial: "\u0635\u0640\u200E"
       Medial: "\u0640\u0635\u0640\u200E"
@@ -696,6 +710,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: D
+      SoundZone: C
       Isolated: "\u0636\u200E"
       Initial: "\u0636\u0640\u200E"
       Medial: "\u0640\u0636\u0640\u200E"
@@ -715,6 +730,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: T
+      SoundZone: B
       Isolated: "\u0637\u200E"
       Initial: "\u0637\u0640\u200E"
       Medial: "\u0640\u0637\u0640\u200E"
@@ -734,6 +750,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: DH
+      SoundZone: A
       Isolated: "\u0638\u200E"
       Initial: "\u0638\u0640\u200E"
       Medial: "\u0640\u0638\u0640\u200E"
@@ -753,6 +770,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: x
+      SoundZone: D
       Isolated: "\u0639\u200E"
       Initial: "\u0639\u0640\u200E"
       Medial: "\u0640\u0639\u0640\u200E"
@@ -772,6 +790,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: gh
+      SoundZone: D
       Isolated: "\u063A\u200E"
       Initial: "\u063A\u0640\u200E"
       Medial: "\u0640\u063A\u0640\u200E"
@@ -791,6 +810,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: f
+      SoundZone: A
       Isolated: "\u0641\u200E"
       Initial: "\u0641\u0640\u200E"
       Medial: "\u0640\u0641\u0640\u200E"
@@ -810,6 +830,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: q
+      SoundZone: D
       Isolated: "\u0642\u200E"
       Initial: "\u0642\u0640\u200E"
       Medial: "\u0640\u0642\u0640\u200E"
@@ -829,6 +850,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: k
+      SoundZone: D
       Isolated: "\u0643\u200E"
       Initial: "\u0643\u0640\u200E"
       Medial: "\u0640\u0643\u0640\u200E"
@@ -848,6 +870,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: l
+      SoundZone: B
       Isolated: "\u0644\u200E"
       Initial: "\u0644\u0640\u200E"
       Medial: "\u0640\u0644\u0640\u200E"
@@ -867,6 +890,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: m
+      SoundZone: A
       Isolated: "\u0645\u200E"
       Initial: "\u0645\u0640\u200E"
       Medial: "\u0640\u0645\u0640\u200E"
@@ -886,6 +910,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 2
       Sound: n
+      SoundZone: B
       Isolated: "\u0646\u200E"
       Initial: "\u0646\u0640\u200E"
       Medial: "\u0640\u0646\u0640\u200E"
@@ -905,6 +930,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 1
       Sound: h
+      SoundZone: D
       Isolated: "\u0647\u200E"
       Initial: "\u0647\u0640\u200E"
       Medial: "\u0640\u0647\u0640\u200E"
@@ -924,6 +950,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: w, uu
+      SoundZone: A
       Isolated: "\u0648\u200E"
       Initial: "\u0648\u200E"
       Medial: "\u0640\u0648\u200E"
@@ -943,6 +970,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: y, ii
+      SoundZone: C
       Isolated: "\u064A\u200E"
       Initial: "\u064A\u0640\u200E"
       Medial: "\u0640\u064A\u0640\u200E"
@@ -962,6 +990,7 @@ MonoBehaviour:
       Notes: applied just on the long vowels Alef, waw, and yeh
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0621"
       Initial: 
       Medial: 
@@ -981,6 +1010,7 @@ MonoBehaviour:
       Notes: short vowel
       SunMoon: 0
       Sound: u
+      SoundZone: 
       Isolated: "\u0640\u064F"
       Initial: 
       Medial: 
@@ -1000,6 +1030,7 @@ MonoBehaviour:
       Notes: double dammah
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "-\u064C"
       Initial: 
       Medial: 
@@ -1019,6 +1050,7 @@ MonoBehaviour:
       Notes: short vowel
       SunMoon: 0
       Sound: a
+      SoundZone: 
       Isolated: "\u0640\u064E"
       Initial: 
       Medial: 
@@ -1038,6 +1070,7 @@ MonoBehaviour:
       Notes: double fathah
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "-\u064B"
       Initial: 
       Medial: 
@@ -1057,6 +1090,7 @@ MonoBehaviour:
       Notes: short vowel
       SunMoon: 0
       Sound: i
+      SoundZone: 
       Isolated: "\u0640\u0650"
       Initial: 
       Medial: 
@@ -1076,6 +1110,7 @@ MonoBehaviour:
       Notes: double kasrah
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "-\u064D"
       Initial: 
       Medial: 
@@ -1095,6 +1130,7 @@ MonoBehaviour:
       Notes: applied just on the long vowel Alef
       SunMoon: 0
       Sound: aa
+      SoundZone: 
       Isolated: "\u0640\u0653"
       Initial: 
       Medial: 
@@ -1114,6 +1150,7 @@ MonoBehaviour:
       Notes: doubling the consonant sound
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "-\u0651"
       Initial: 
       Medial: 
@@ -1133,6 +1170,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: mute
+      SoundZone: 
       Isolated: "-\u0652"
       Initial: 
       Medial: 
@@ -1152,6 +1190,7 @@ MonoBehaviour:
       Notes: variation of Alef
       SunMoon: 0
       Sound: Aa
+      SoundZone: 
       Isolated: "\u0623"
       Initial: "\u0623"
       Medial: 
@@ -1171,6 +1210,7 @@ MonoBehaviour:
       Notes: variation of Alef
       SunMoon: 0
       Sound: Aa
+      SoundZone: 
       Isolated: "\u0625"
       Initial: "\u0625"
       Medial: 
@@ -1190,6 +1230,7 @@ MonoBehaviour:
       Notes: dotless yeh
       SunMoon: 0
       Sound: a
+      SoundZone: 
       Isolated: "\u0649"
       Initial: 
       Medial: 
@@ -1209,6 +1250,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0626"
       Initial: "\uFE8B"
       Medial: 
@@ -1228,6 +1270,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u064A\u0621"
       Initial: 
       Medial: 
@@ -1247,6 +1290,7 @@ MonoBehaviour:
       Notes: variation of teh
       SunMoon: 0
       Sound: a
+      SoundZone: 
       Isolated: "\uFFFD\u0629"
       Initial: 
       Medial: 
@@ -1266,6 +1310,7 @@ MonoBehaviour:
       Notes: combination of laam & alef together
       SunMoon: 0
       Sound: laa
+      SoundZone: 
       Isolated: "\u0644\u0627"
       Initial: 
       Medial: 
@@ -1285,6 +1330,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0627\u064E"
       Initial: 
       Medial: 
@@ -1304,6 +1350,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0627\u064B"
       Initial: 
       Medial: 
@@ -1323,6 +1370,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0627\u0653"
       Initial: 
       Medial: 
@@ -1342,6 +1390,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0639\u064B"
       Initial: 
       Medial: 
@@ -1361,6 +1410,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0639\u0650"
       Initial: 
       Medial: 
@@ -1380,6 +1430,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0628\u064F"
       Initial: 
       Medial: 
@@ -1399,6 +1450,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0628\u064E"
       Initial: 
       Medial: 
@@ -1418,6 +1470,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0628\u0650"
       Initial: 
       Medial: 
@@ -1437,6 +1490,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0636\u064E"
       Initial: 
       Medial: 
@@ -1456,6 +1510,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062F\u064C"
       Initial: 
       Medial: 
@@ -1475,6 +1530,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062F\u064B"
       Initial: 
       Medial: 
@@ -1494,6 +1550,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0630\u064B"
       Initial: 
       Medial: 
@@ -1513,6 +1570,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0641\u064B"
       Initial: 
       Medial: 
@@ -1532,6 +1590,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0641\u0652"
       Initial: 
       Medial: 
@@ -1551,6 +1610,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0647\u064B"
       Initial: 
       Medial: 
@@ -1570,6 +1630,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0647\u0650"
       Initial: 
       Medial: 
@@ -1589,6 +1650,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062D\u064B"
       Initial: 
       Medial: 
@@ -1608,6 +1670,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062D\u0650"
       Initial: 
       Medial: 
@@ -1627,6 +1690,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062D\u0651"
       Initial: 
       Medial: 
@@ -1646,6 +1710,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062C\u064F"
       Initial: 
       Medial: 
@@ -1665,6 +1730,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062C\u064B"
       Initial: 
       Medial: 
@@ -1684,6 +1750,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062C\u0651"
       Initial: 
       Medial: 
@@ -1703,6 +1770,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0643\u064F"
       Initial: 
       Medial: 
@@ -1722,6 +1790,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0643\u064B"
       Initial: 
       Medial: 
@@ -1741,6 +1810,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0644\u064B"
       Initial: 
       Medial: 
@@ -1760,6 +1830,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0644\u0650"
       Initial: 
       Medial: 
@@ -1779,6 +1850,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0644\u064D"
       Initial: 
       Medial: 
@@ -1798,6 +1870,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0644\u0652"
       Initial: 
       Medial: 
@@ -1817,6 +1890,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0645\u064F"
       Initial: 
       Medial: 
@@ -1836,6 +1910,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0645\u064B"
       Initial: 
       Medial: 
@@ -1855,6 +1930,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0645\u0650"
       Initial: 
       Medial: 
@@ -1874,6 +1950,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0646\u064B"
       Initial: 
       Medial: 
@@ -1893,6 +1970,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0646\u064D"
       Initial: 
       Medial: 
@@ -1912,6 +1990,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0646\u0652"
       Initial: 
       Medial: 
@@ -1931,6 +2010,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0642\u064B"
       Initial: 
       Medial: 
@@ -1950,6 +2030,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0631\u064B"
       Initial: 
       Medial: 
@@ -1969,6 +2050,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0631\u0650"
       Initial: 
       Medial: 
@@ -1988,6 +2070,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0635\u064B"
       Initial: 
       Medial: 
@@ -2007,6 +2090,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0633\u064B"
       Initial: 
       Medial: 
@@ -2026,6 +2110,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0634\u064B"
       Initial: 
       Medial: 
@@ -2045,6 +2130,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0637\u064B"
       Initial: 
       Medial: 
@@ -2064,6 +2150,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062A\u064F"
       Initial: 
       Medial: 
@@ -2083,6 +2170,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u062A\u064F"
       Initial: 
       Medial: 
@@ -2102,6 +2190,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0629\u064C"
       Initial: 
       Medial: 
@@ -2121,6 +2210,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0624"
       Initial: 
       Medial: 
@@ -2140,6 +2230,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0632\u064B"
       Initial: 
       Medial: 
@@ -2159,6 +2250,7 @@ MonoBehaviour:
       Notes: 
       SunMoon: 0
       Sound: 
+      SoundZone: 
       Isolated: "\u0632\u064F"
       Initial: 
       Medial: 
