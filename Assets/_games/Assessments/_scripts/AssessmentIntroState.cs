@@ -26,7 +26,6 @@ namespace EA4S.Assessment
             Coroutine.Start( TutorialClicks());
 
             anturaController  = GameObject.Instantiate( assessmentGame.antura) as AssessmentAnturaController;
-            anturaController.enabled = false;
             anturaController.gameObject.SetActive(true);
 
             anturaController.SetFinishedAnimationCallback( () => SetNextState());
@@ -47,7 +46,7 @@ namespace EA4S.Assessment
             }
 
             yield return TimeEngine.Wait( 0.1f);
-            anturaController.enabled = true;
+            anturaController.EnableClick();
         }
 
         public void ExitState()
