@@ -46,8 +46,13 @@ namespace EA4S.Teacher
             // Get all minigame codes for the given playsession
             // ... also, use the weights to determine insertion order (used to determine the sequential order)
             SortedDictionary<float, MiniGameCode> ordered_minigamecodes = new SortedDictionary<float, MiniGameCode>();
+            int fakeNumber = 1000;
             foreach (var minigameInPlaySession in playSessionData.Minigames)
             {
+                if (ordered_minigamecodes.ContainsKey(minigameInPlaySession.Weight)){
+                    ordered_minigamecodes[fakeNumber] = minigameInPlaySession.MiniGameCode;
+                    fakeNumber++;
+                }
                 ordered_minigamecodes[minigameInPlaySession.Weight] = minigameInPlaySession.MiniGameCode;
             }
 
