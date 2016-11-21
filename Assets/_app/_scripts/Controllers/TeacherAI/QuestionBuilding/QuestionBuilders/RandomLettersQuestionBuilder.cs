@@ -44,10 +44,7 @@ namespace EA4S
 
         public RandomLettersQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0, bool firstCorrectIsQuestion = false, QuestionBuilderParameters parameters = null)
         {
-            if (parameters == null)
-            {
-                parameters = new QuestionBuilderParameters();
-            }
+            if (parameters == null) parameters = new QuestionBuilderParameters();
 
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
