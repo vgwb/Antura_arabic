@@ -31,10 +31,6 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-            if (assessment == null)
-                Debug.Log("AssessmentNull");
-
-            assessmentGame.Context.GetAudioManager().PlayMusic( Music.Theme7);
             Coroutine.Start( assessment.PlayCoroutine( SetNextState));
         }
 
