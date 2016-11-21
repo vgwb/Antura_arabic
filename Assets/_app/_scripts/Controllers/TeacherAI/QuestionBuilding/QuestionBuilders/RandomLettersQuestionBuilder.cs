@@ -20,7 +20,7 @@ namespace EA4S
         public QuestionBuilderParameters()
         {
             this.correctChoicesHistory = PackListHistory.NoFilter;
-            this.wrongChoicesHistory = PackListHistory.ForceAllDifferent;
+            this.wrongChoicesHistory = PackListHistory.NoFilter;
             this.useJourneyForCorrect = true;
             this.useJourneyForWrong = true;
             this.correctSeverity = SelectionSeverity.AsManyAsPossible;

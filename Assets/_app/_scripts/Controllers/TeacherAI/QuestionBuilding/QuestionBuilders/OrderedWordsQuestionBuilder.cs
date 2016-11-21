@@ -9,13 +9,15 @@ namespace EA4S
         // pack history filter: only 1 pack
         // journey: enabled
 
-        Db.WordDataCategory category;
-        SelectionSeverity severity;
+        private Db.WordDataCategory category;
+        private QuestionBuilderParameters parameters;
 
-        public OrderedWordsQuestionBuilder(Db.WordDataCategory category, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
+        public OrderedWordsQuestionBuilder(Db.WordDataCategory category, QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.category = category;
-            this.severity = severity;
+            this.parameters = parameters;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -31,8 +33,8 @@ namespace EA4S
 
             // Ordered words
             var words = teacher.wordAI.SelectData(
-                 () => teacher.wordHelper.GetWordsByCategory(category, new WordFilters()),
-                 new SelectionParameters(severity, 100)    // @todo: use a number that means 'all'
+                 () => teacher.wordHelper.GetWordsByCategory(category, parameters.wordFilters),
+                 new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney:parameters.useJourneyForCorrect) 
                );
 
             words.Sort((x, y) =>

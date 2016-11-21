@@ -14,18 +14,20 @@ namespace EA4S
         private int nWrong;
         private bool useAllCorrectWords;
         private bool usePhraseAnswersIfFound;
-        private PackListHistory questionHistory;
+        private QuestionBuilderParameters parameters;
 
         public WordsInPhraseQuestionBuilder(int nPacks, int nCorrect = 1, int nWrong = 0,
             bool useAllCorrectWords = false, bool usePhraseAnswersIfFound = false,
-            PackListHistory questionHistory = PackListHistory.NoFilter)
+            QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
             this.nCorrect = nCorrect;
             this.nWrong = nWrong;
             this.useAllCorrectWords = useAllCorrectWords;
             this.usePhraseAnswersIfFound = usePhraseAnswersIfFound;
-            this.questionHistory = questionHistory;
+            this.parameters = parameters;
         }
 
         private List<string> previousPacksIDs = new List<string>();
@@ -49,8 +51,8 @@ namespace EA4S
             int nToUse = 1;
             var usablePhrases = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question),
-                    new SelectionParameters(SelectionSeverity.AsManyAsPossible, nToUse,
-                        packListHistory: questionHistory, filteringIds: previousPacksIDs));
+                    new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
+                        packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usablePhrases[0];
 
             // Get words related to the phrase

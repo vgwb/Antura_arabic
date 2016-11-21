@@ -59,7 +59,7 @@ namespace EA4S.Teacher
         public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams) where T : IData
         {
             // skip if we require 0 values
-            if (selectionParams.nRequired == 0 && !selectionParams.getAllData) return new List<T>();
+            if (selectionParams.nRequired == 0 && !selectionParams.getMaxData) return new List<T>();
 
             string debugString = "";
             //debugString += "--------- TEACHER: data selection --------- ";
@@ -100,7 +100,7 @@ namespace EA4S.Teacher
             }
             if (selectionParams.severity == SelectionSeverity.AllRequired) 
             {
-                if (dataList.Count < selectionParams.nRequired  || selectionParams.getAllData && dataList.Count < nAfterBuilder)
+                if (dataList.Count < selectionParams.nRequired  || selectionParams.getMaxData && dataList.Count < nAfterBuilder)
                 {
                     throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
                 }
@@ -143,7 +143,7 @@ namespace EA4S.Teacher
 
             // Weighted selection on the remaining number
             List<T> selectedList = null;
-            if (selectionParams.getAllData) selectedList = dataList;
+            if (selectionParams.getMaxData) selectedList = dataList;
             else selectedList = WeightedDataSelect(dataList, currentPSData, selectionParams.nRequired, table);
             debugString += (" \tSelection: " + selectedList.Count);
 
