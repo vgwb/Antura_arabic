@@ -61,12 +61,6 @@ namespace EA4S.Teacher.Test
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
 
-            var psId = AppManager.Instance.Teacher.journeyHelper.JourneyPositionToPlaySessionId(AppManager.Instance.Player.CurrentJourneyPosition);
-          //  if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(psId, code))
-            {
-
-            }
-
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = questionHistory;
             builderParams.wrongChoicesHistory = wrongHistory;
@@ -118,7 +112,7 @@ namespace EA4S.Teacher.Test
         public void LettersInWordTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect:nCorrect, nWrong:nWrong, useAllCorrectLetters:true);
+            var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect:nCorrect, nWrong:nWrong, useAllCorrectLetters:true, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
@@ -139,14 +133,14 @@ namespace EA4S.Teacher.Test
         public void OrderedWordsTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal, selectionSeverity);
+            var builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal, parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
         
         public void WordsWithLetterTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong);
+            var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
 
@@ -174,14 +168,14 @@ namespace EA4S.Teacher.Test
         public void WordsInPhraseTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new WordsInPhraseQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectWords: false, usePhraseAnswersIfFound: true, questionHistory: questionHistory);
+            var builder = new WordsInPhraseQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectWords: false, usePhraseAnswersIfFound: true, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
         public void PhraseQuestions()
         {
             var builderParams = SetupFakeGame();
-            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong);
+            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
