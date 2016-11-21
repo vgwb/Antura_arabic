@@ -52,12 +52,12 @@ namespace EA4S.Teacher
 
         public QuestionBuilderParameters()
         {
-            this.correctChoicesHistory = PackListHistory.NoFilter;
-            this.wrongChoicesHistory = PackListHistory.NoFilter;
+            this.correctChoicesHistory = PackListHistory.RepeatWhenFull;
+            this.wrongChoicesHistory = PackListHistory.RepeatWhenFull;
             this.useJourneyForCorrect = true;
-            this.useJourneyForWrong = true;
-            this.correctSeverity = SelectionSeverity.AsManyAsPossible;
-            this.wrongSeverity = SelectionSeverity.AsManyAsPossible;
+            this.useJourneyForWrong = false;
+            this.correctSeverity = SelectionSeverity.MayRepeatIfNotEnough;
+            this.wrongSeverity = SelectionSeverity.MayRepeatIfNotEnough;
             this.letterFilters = new LetterFilters();
             this.wordFilters = new WordFilters();
         }

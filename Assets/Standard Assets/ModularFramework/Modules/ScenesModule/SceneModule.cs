@@ -1,4 +1,4 @@
-﻿/* --------------------------------------------------------------
+/* --------------------------------------------------------------
 *   Indie Contruction : Modular Framework for Unity
 *   Copyright(c) 2016 Indie Construction / Paolo Bragonzi
 *   All rights reserved. 
@@ -64,7 +64,7 @@ namespace ModularFramework.Modules {
         }
 
         /// <summary>
-        /// Load scene.
+        /// Load scene. Call just once, otherwise transition will be resetted and not triggered.
         /// </summary>
         /// <param name="_sceneToLoad"></param>
         public void LoadSceneWithTransition(string _sceneToLoad) {
