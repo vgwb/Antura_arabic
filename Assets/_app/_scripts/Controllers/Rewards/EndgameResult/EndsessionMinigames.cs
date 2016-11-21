@@ -78,8 +78,26 @@ namespace EA4S
 
         internal void Hide()
         {
-            minigamesTween.Kill();
+            minigamesTween.Kill(true);
             showTween.Rewind();
+        }
+
+        internal List<RectTransform> CloneStarsToMainPanel()
+        {
+            List<RectTransform> starsClones = new List<RectTransform>();
+            foreach (EndsessionMinigame mg in minigames) {
+                if (!mg.gameObject.activeSelf) continue;
+                for (int i = 0; i < mg.GainedStars; ++i) {
+                    RectTransform orStar = mg.Stars[i].GetComponent<RectTransform>();
+                    RectTransform star = Instantiate(orStar);
+                    star.SetParent(this.transform.parent, false);
+                    star.transform.position = orStar.transform.position;
+                    starsClones.Add(star);
+                    mg.Stars[i].gameObject.SetActive(false);
+                }
+            }
+
+            return starsClones;
         }
 
         #endregion
