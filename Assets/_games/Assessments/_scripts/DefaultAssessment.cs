@@ -23,7 +23,8 @@ namespace EA4S.Assessment
 
         public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
-            Debug.Log("AssessmentConfiguration.Rounds:" + AssessmentConfiguration.Rounds);
+            yield return TimeEngine.Wait(0.7f);
+
             for (int round = 0; round< AssessmentConfiguration.Rounds; round++)
             {
                 QuestionGenerator.InitRound();

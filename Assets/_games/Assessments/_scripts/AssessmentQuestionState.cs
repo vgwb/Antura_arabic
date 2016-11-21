@@ -13,7 +13,7 @@ namespace EA4S.Assessment
         {
             // Enable popup widget
             assessmentGame.Context.GetAudioManager().PlaySound( Sfx.UIPopup);
-            var popupWidget = assessmentGame.Context.GetPopupWidget();
+            var popupWidget = assessmentGame.Context.GetPopupWidget();            
             popupWidget.Show();
             popupWidget.SetButtonCallback( OnPopupCloseRequested);
             popupWidget.SetMessage( AssessmentConfiguration.Instance.Description, true);
