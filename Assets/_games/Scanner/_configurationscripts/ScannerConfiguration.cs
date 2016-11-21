@@ -50,7 +50,7 @@
             int nCorrect = 4;
             int nWrong = 4;
 
-            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, drawingNeeded: true);
+            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
 
             return builder;
         }

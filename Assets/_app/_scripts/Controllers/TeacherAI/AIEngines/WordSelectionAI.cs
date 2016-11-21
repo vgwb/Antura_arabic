@@ -152,9 +152,9 @@ namespace EA4S.Teacher
                 UnityEngine.Debug.Log(debugString);
             }
 
-            if (selectedList.Count == 0 && ConfigAI.verboseDataSelection)
+            if (selectedList.Count == 0)
             {
-                UnityEngine.Debug.LogWarning("The teacher could not find enough data with the current filters.");
+                throw new System.Exception("The teacher could not find any data with the current filters. The game does not seem to be playable at the selected play session.");
             }
 
             // Update the filtering ids
