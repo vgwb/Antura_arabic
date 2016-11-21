@@ -9,6 +9,7 @@ namespace EA4S
         AudioClip clip;
         DeAudioSource source;
         DeAudioGroup group;
+        SampleAudioManager manager;
 
         bool paused = false;
 
@@ -16,109 +17,150 @@ namespace EA4S
         {
             get
             {
-                if (source.audioSource == null)
+                if (source == null || source.audioSource == null)
                     return false;
 
                 return source.isPlaying;
             }
         }
 
+        bool loop;
         public bool Loop
         {
             get
             {
-                return source.loop;
+                return loop;
             }
 
             set
             {
-                source.loop = value;
+                loop = value;
+
+                if (source != null)
+                    source.loop = value;
             }
         }
 
+        float pitch;
         public float Pitch
         {
             get
             {
-                return source.pitch;
+                return pitch;
             }
 
             set
             {
-                source.pitch = value;
+                pitch = value;
+
+                if (source != null)
+                    source.pitch = value;
             }
         }
 
+        float volume;
         public float Volume
         {
             get
             {
-                return source.volume;
+                return volume;
             }
 
             set
             {
-                source.volume = value;
+                volume = value;
+
+                if (source != null)
+                    source.volume = value;
             }
         }
 
-        public float Duration {
+        float duration;
+        public float Duration
+        {
             get
             {
-                return source.duration;
+                return duration;
             }
         }
-
+        
         public float Position
         {
             get
             {
+                if (source == null || source.audioSource == null)
+                    return 0;
+
                 return source.time;
             }
             set
             {
-                source.time = value;
+                if (source != null)
+                    source.time = value;
             }
         }
 
         public void Stop()
         {
-            if (source != null)
+            if (source != null && source.audioSource != null)
                 source.Stop();
+
+            source = null;
+            paused = false;
         }
 
         public void Play()
         {
-            if (paused)
+            if (paused && source != null)
             {
-                paused = false;
                 source.Resume();
             }
             else
             {
-                var oldPitch = source.pitch;
-                var oldVolume = source.volume;
-                var oldLoop = source.loop;
+                paused = false;
 
                 source = group.Play(clip);
-
-                source.pitch = oldPitch;
-                source.volume = oldVolume;
-                source.loop = oldLoop;
+                source.locked = true;
+                
+                source.pitch = pitch;
+                source.volume = volume;
+                source.loop = loop;
+                manager.OnAudioStarted(this);
             }
         }
 
         public void Pause()
         {
-            if (source.Pause())
+            if (source != null && source.Pause())
                 paused = true;
         }
 
-        public SampleAudioSource(DeAudioSource source, DeAudioGroup group)
+        public bool Update()
+        {
+            if (source != null)
+            {
+                if (!source.isPlaying && !source.isPaused)
+                {
+                    source.locked = false;
+                    source = null;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public SampleAudioSource(DeAudioSource source, DeAudioGroup group, SampleAudioManager manager)
         {
             this.source = source;
             this.group = group;
+            this.manager = manager;
             this.clip = source.clip;
+            duration = source.duration;
+            loop = source.loop;
+            volume = source.volume;
+            pitch = source.pitch;
+
+            manager.OnAudioStarted(this);
         }
     }
 }

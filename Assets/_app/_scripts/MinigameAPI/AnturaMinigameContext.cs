@@ -57,6 +57,7 @@ namespace EA4S.API {
 
         public void Reset() {
             inputManager.Reset();
+            audioManager.Reset();
         }
 
         #region CheckmarkWidget provider
