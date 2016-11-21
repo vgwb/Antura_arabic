@@ -5,16 +5,15 @@ namespace EA4S.Assessment
     /// </summary>
     public static class AssessmentFactory
     {
+        private static AssessmentConfiguration configuration;
+        private static IGameContext context;
+        private static IAudioManager audioManager;
+
         public static IAssessment CreateLetterInWordAssessment()
         {
-            Init(); // common initialization stuff
-            //TODO: GET RID OF AUDIO MANAGERS => Configuration is singleton
-            
+            Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
-            IGameContext context            = configuration.Context;
-            IAudioManager audioManager      = configuration.Context.GetAudioManager();
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -28,12 +27,9 @@ namespace EA4S.Assessment
 
         public static IAssessment CreateLetterShapeAssessment()
         {
-            Init(); // common initialization stuff
+            Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
-            IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
-            IGameContext context            = configuration.Context;
-            IAudioManager audioManager      = configuration.Context.GetAudioManager();
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
@@ -47,12 +43,9 @@ namespace EA4S.Assessment
 
         public static IAssessment CreateWordsWithLetterAssessment()
         {
-            Init(); // common initialization stuff
+            Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            IAssessmentConfiguration configuration = AssessmentConfiguration.Instance;
-            IGameContext context            = configuration.Context;
-            IAudioManager audioManager      = configuration.Context.GetAudioManager();
             IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
@@ -64,13 +57,16 @@ namespace EA4S.Assessment
             return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
         }
 
-        //private LivingLetterFactory livingLetterFactory;
-
         private static void Init()
         {
-            //ARABIC SETTINGS
+            // ARABIC SETTINGS
             AssessmentConfiguration.Instance.LocaleTextFlow = AssessmentConfiguration.TextFlow.RightToLeft;
+
+            // Common Stuff
             TimeEngine.Instance.Clear();
+            configuration = AssessmentConfiguration.Instance;
+            context = configuration.Context;
+            audioManager = configuration.Context.GetAudioManager();
         }
     }
 }

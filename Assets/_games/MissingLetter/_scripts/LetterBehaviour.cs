@@ -165,6 +165,7 @@ namespace EA4S.MissingLetter
                 cSpotLight.range = 40;
                 cSpotLight.intensity = 8;
                 cSpotLight.spotAngle = 50;
+                cSpotLight.renderMode = LightRenderMode.ForcePixel;
             }
         }
         
