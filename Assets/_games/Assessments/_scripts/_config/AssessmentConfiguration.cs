@@ -179,8 +179,10 @@ namespace EA4S.Assessment
             Rounds = snag.Decrease( 6, 1);      // We assume letter shapes are just a basic thing so we don't insist
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
 
             return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * Rounds,  // Total Answers
