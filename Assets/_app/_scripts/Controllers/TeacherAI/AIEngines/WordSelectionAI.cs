@@ -94,7 +94,7 @@ namespace EA4S.Teacher
             debugString += ("Builder: " + dataList.Count);
 
             // Filtering based on journey
-            if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
+            if (selectionParams.useJourney && !ConfigAI.forceJourneyIgnore)
             {
                 dataList = dataList.FindAll(x => journeyData.Contains(x));
             }

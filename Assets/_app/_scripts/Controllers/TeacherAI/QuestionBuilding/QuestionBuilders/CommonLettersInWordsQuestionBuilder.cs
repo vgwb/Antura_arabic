@@ -52,7 +52,7 @@ namespace EA4S
                     nAttempts--;
                     continue;
                 }
-                var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(commonLetters.ToArray()).RandomSelect(nWrong);
+                var nonCommonLetters = teacher.wordHelper.GetLettersNotIn(new LetterFilters(), commonLetters.ToArray()).RandomSelect(nWrong);
 
                 // Debug
                 if (ConfigAI.verboseTeacher)

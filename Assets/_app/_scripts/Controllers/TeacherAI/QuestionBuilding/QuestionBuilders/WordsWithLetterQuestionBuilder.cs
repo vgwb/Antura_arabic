@@ -39,7 +39,7 @@ namespace EA4S
             bool found = false;
             while(nAttempts > 0 && !found)
             {
-                var letter = teacher.wordHelper.GetAllLetters().RandomSelectOne();
+                var letter = teacher.wordHelper.GetAllLetters(new LetterFilters()).RandomSelectOne();
                 var correctWords = teacher.wordHelper.GetWordsWithLetter(letter.Id);
                 //UnityEngine.Debug.Log("Trying letter " + letter + " found n words " + correctWords.Count + " out of " + db.GetAllWordData().Count);
                 if (correctWords.Count < nCorrect)

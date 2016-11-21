@@ -185,7 +185,7 @@ namespace EA4S
         public List<LL_LetterData> GetAllTestLetterDataLL()
         {
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in this.wordHelper.GetAllLetters())
+            foreach (var letterData in this.wordHelper.GetAllLetters(new LetterFilters()))
                 list.Add(BuildLetterData_LL(letterData));
             return list;
         }
@@ -197,7 +197,7 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetAllLetters().RandomSelectOne();
+            var data = this.wordHelper.GetAllLetters(new LetterFilters()).RandomSelectOne();
             return BuildLetterData_LL(data);
         }
 
@@ -208,7 +208,7 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.BodyPart).RandomSelectOne();
+            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal).RandomSelectOne();
             return BuildWordData_LL(data);
         }
 

@@ -30,12 +30,12 @@ namespace EA4S
             int nPerType = nPacks / 2;
 
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun),
+                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun, new LetterFilters()),
                 new SelectionParameters(severity, nPerType)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon),
+                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon, new LetterFilters()),
                 new SelectionParameters(severity, nPerType)
                 );
 
