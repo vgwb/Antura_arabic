@@ -119,7 +119,7 @@ namespace EA4S.Teacher.Test
         public void CommonLettersInWordTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks);
+            var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nMaxCommonLetters:3, parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
 
