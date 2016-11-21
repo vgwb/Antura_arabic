@@ -34,7 +34,7 @@ namespace EA4S.MixedLetters
 
             if (game.roundNumber == 1)
             {
-                MinigamesUI.Init(MinigamesUIElement.Timer);
+                MinigamesUI.Init(MinigamesUIElement.Timer | MinigamesUIElement.Starbar);
                 MinigamesUI.Timer.Setup(timePerRound);
             }
 

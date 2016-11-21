@@ -162,9 +162,7 @@ namespace EA4S.MixedLetters
         {
             PlayGameState.RoundWon = true;
             numRoundsWon++;
-
-            Context.GetAudioManager().PlaySound(Sfx.Win);
-
+            
             HideRotationButtons();
             ShowGreenTicks();
         }
