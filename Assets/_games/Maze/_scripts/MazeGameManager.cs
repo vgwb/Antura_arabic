@@ -206,6 +206,7 @@ namespace EA4S.Maze
 				return;
 			} else {
 				roundNumber.text = "#" + (currentLetterIndex + 1);
+                
 				restartCurrentLetter ();
 			}
 			
@@ -240,8 +241,12 @@ namespace EA4S.Maze
             //show message:
             if (won)
 				AudioManager.I.PlaySfx (Sfx.Win);
-			else 
-				AudioManager.I.PlaySfx (Sfx.Lose);
+			else
+            {
+                AudioManager.I.PlaySfx(Sfx.Lose);
+                
+            }
+				
 
 			currentPrefab.SendMessage("moveOut",won);
 
@@ -289,13 +294,18 @@ namespace EA4S.Maze
 					currentTutorial = child.GetComponent<HandTutorial> ();
 			}
 
-			//
-			/*if (currentTutorial != null) {
-				currentTutorial.showCurrentTutorial ();
+            currentCharacter.gameObject.SetActive(false);
 
-			}*/
+        }
 
-		}
+        public void showCharacterMovingIn()
+        {
+            currentCharacter.initialPosition = currentCharacter.transform.position;
+            currentCharacter.initialRotation = currentCharacter.transform.rotation;
+            currentCharacter.transform.position = getRandFleePosition();
+            currentCharacter.gameObject.SetActive(true);
+            currentCharacter.appear();
+        }
 
 		public void showCurrentTutorial()
 		{
@@ -474,6 +484,12 @@ namespace EA4S.Maze
 
             int randIndex = UnityEngine.Random.Range(0, fleePositions.Count);
             currentCharacter.fleeTo(fleePositions[randIndex]);
+        }
+
+        public Vector3 getRandFleePosition()
+        {
+            int randIndex = UnityEngine.Random.Range(0, fleePositions.Count);
+            return (fleePositions[randIndex]);
         }
 
         //states

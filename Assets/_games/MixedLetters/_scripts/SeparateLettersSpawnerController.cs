@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+
+using Random = UnityEngine.Random;
 
 namespace EA4S.MixedLetters
 {
@@ -8,27 +11,42 @@ namespace EA4S.MixedLetters
     {
         public static SeparateLettersSpawnerController instance;
 
+        // The delay to start dropping the letters, in seconds:
+        private const float LOSE_ANIMATION_DROP_DELAY = 0.5f;
+
+        // The time offset between each letter drop, in seconds:
+        private const float LOSE_ANIMATION_DROP_OFFSET = 0.1f;
+
+        // The delay to start vanishing the letters, in seconds:
+        private const float LOSE_ANIMATION_POOF_DELAY = 1f;
+
+        // The time offset between each letter vanish, in seconds:
+        private const float LOSE_ANIMATION_POOF_OFFSET = 0.1f;
+
+        // The delay to announce the end of the animation, in seconds:
+        private const float LOSE_ANIMATION_END_DELAY = 1.5f;
+
+        // The delay to start vanishing the letters (for the win animation), in seconds:
+        private const float WIN_ANIMATION_POOF_DELAY = 1f;
+
+        // The time offset between each letter vanish, in seconds:
+        private const float WIN_ANIMATION_POOF_OFFSET = 0.1f;
+
+        // The delay for the big LL (with the whole word) to appear, in seconds:
+        private const float WIN_ANIMATION_BIG_LL_DELAY = 0.5f;
+
+        // The delay to announce the end of the animation, in seconds:
+        private const float WIN_ANIMATION_END_DELAY = 2f;
+
         public SeparateLetterController[] separateLetterControllers;
 
-        private IEnumerator spawnLettersCoroutine;
-
         public AudioSource audioSource;
+
+        private IEnumerator spawnLettersCoroutine;
 
         void Awake()
         {
             instance = this;
-        }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public void SetPosition(Vector3 position)
@@ -36,16 +54,16 @@ namespace EA4S.MixedLetters
             transform.position = position;
         }
 
-        public void SpawnLetters(List<LL_LetterData> lettersToSpawn, System.Action spawnOverCallback)
+        public void SpawnLetters(List<LL_LetterData> lettersToSpawn, Action spawnOverCallback)
         {
             spawnLettersCoroutine = SpawnLettersCoroutine(lettersToSpawn, spawnOverCallback);
             StartCoroutine(spawnLettersCoroutine);
         }
 
-        private IEnumerator SpawnLettersCoroutine(List<LL_LetterData> lettersToSpawn, System.Action spawnOverCallback)
+        private IEnumerator SpawnLettersCoroutine(List<LL_LetterData> lettersToSpawn, Action spawnOverCallback)
         {
-            audioSource.pitch = Random.Range(0.8f, 1.2f);
-            audioSource.Play();
+            PlayCartoonFightSfx();
+
             yield return new WaitForSeconds(1);
 
             List<int> indices = new List<int>();
@@ -74,7 +92,7 @@ namespace EA4S.MixedLetters
                 throwLetterToTheRight = !throwLetterToTheRight;
 
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.ThrowObj);
-                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetter(letterToSpawn);
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterToSpawn);
 
                 yield return new WaitForSeconds(0.75f);
             }
@@ -85,11 +103,136 @@ namespace EA4S.MixedLetters
             spawnOverCallback.Invoke();
         }
 
-        public void SetLettersDraggable(bool isDraggable)
+        private void PlayCartoonFightSfx()
+        {
+            audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.Play();
+        }
+
+        public void ShowLoseAnimation(Action OnAnimationEnded)
+        {
+            StartCoroutine(LoseAnimationCoroutine(OnAnimationEnded));
+        }
+
+        private IEnumerator LoseAnimationCoroutine(Action OnAnimationEnded)
+        {
+            int numLettersToDrop = 0;
+
+            foreach (DropZoneController dropZoneController in MixedLettersGame.instance.dropZoneControllers)
+            {
+                if (dropZoneController.isActiveAndEnabled && dropZoneController.droppedLetter != null)
+                {
+                    numLettersToDrop++;
+                }
+            }
+
+            MixedLettersGame.instance.HideDropZones();
+
+            if (numLettersToDrop != 0)
+            {
+                yield return new WaitForSeconds(LOSE_ANIMATION_DROP_DELAY);
+
+                foreach (DropZoneController dropZoneController in MixedLettersGame.instance.dropZoneControllers)
+                {
+                    if (dropZoneController.droppedLetter != null)
+                    {
+                        dropZoneController.droppedLetter.SetIsKinematic(false);
+                        numLettersToDrop--;
+
+                        if (numLettersToDrop == 0)
+                        {
+                            break;
+                        }
+
+                        else
+                        {
+                            yield return new WaitForSeconds(LOSE_ANIMATION_DROP_OFFSET);
+                        }
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(LOSE_ANIMATION_POOF_DELAY);
+
+            List<int> letterIndicesList = new List<int>();
+            List<float> letterAbscissasList = new List<float>();
+
+            for (int i = 0; i < separateLetterControllers.Length; i++)
+            {
+                SeparateLetterController letterController = separateLetterControllers[i];
+
+                if (letterController.isActiveAndEnabled)
+                {
+                    letterIndicesList.Add(i);
+                    letterAbscissasList.Add(letterController.transform.position.x);
+                }
+            }
+
+            int[] letterIndicesArray = letterIndicesList.ToArray();
+            float[] letterAbscissasArray = letterAbscissasList.ToArray();
+
+            Array.Sort(letterAbscissasArray, letterIndicesArray);
+
+            for (int i = letterIndicesArray.Length - 1; i >= 0; i--)
+            {
+                separateLetterControllers[letterIndicesArray[i]].Vanish();
+
+                if (i != 0)
+                {
+                    yield return new WaitForSeconds(LOSE_ANIMATION_POOF_OFFSET);
+                }
+            }
+
+            yield return new WaitForSeconds(LOSE_ANIMATION_END_DELAY);
+
+            OnAnimationEnded();
+        }
+
+        public void ShowWinAnimation(Action OnAnimationEnded)
+        {
+            StartCoroutine(WinAnimationCoroutine(OnAnimationEnded));
+        }
+
+        private IEnumerator WinAnimationCoroutine(Action OnAnimationEnded)
+        {
+            yield return new WaitForSeconds(WIN_ANIMATION_POOF_DELAY);
+
+            for (int i = 0; i < MixedLettersGame.instance.lettersInOrder.Count; i++)
+            {
+                if (i != 0)
+                {
+                    yield return new WaitForSeconds(WIN_ANIMATION_POOF_OFFSET);
+                }
+
+                MixedLettersGame.instance.dropZoneControllers[i].droppedLetter.Vanish();
+            }
+
+            MixedLettersGame.instance.HideDropZones();
+
+            yield return new WaitForSeconds(WIN_ANIMATION_BIG_LL_DELAY);
+
+            VictimLLController.instance.Enable();
+            VictimLLController.instance.DoHooray();
+            VictimLLController.instance.ShowVictoryRays();
+
+            yield return new WaitForSeconds(WIN_ANIMATION_END_DELAY);
+
+            OnAnimationEnded();
+        }
+
+        public void SetLettersDraggable()
         {
             foreach (SeparateLetterController separateLetterController in separateLetterControllers)
             {
-                separateLetterController.SetDraggable(isDraggable);
+                separateLetterController.SetDraggable();
+            }
+        }
+
+        public void SetLettersNonInteractive()
+        {
+            foreach (SeparateLetterController separateLetterController in separateLetterControllers)
+            {
+                separateLetterController.SetNonInteractive();
             }
         }
 

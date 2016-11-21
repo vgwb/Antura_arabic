@@ -30,6 +30,7 @@ namespace EA4S.ColorTickle
         #region EVENTS
         public event System.Action LoseLife;
         public event System.Action EnableAntura;
+        public event System.Action EnableTutorial;
         #endregion
 
         #region GETTER/SETTER
@@ -130,7 +131,11 @@ namespace EA4S.ColorTickle
                 {
                     m_Tickle = false;
                     m_TickleTime = 2.0f;
-                    m_LetterObjectView.SetState(LLAnimationStates.LL_still);                
+                    m_LetterObjectView.SetState(LLAnimationStates.LL_still);
+                    if (EnableTutorial != null)
+                    {
+                        EnableTutorial();
+                    }
                 }
             }
         }

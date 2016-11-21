@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,33 +9,32 @@ using System;
 namespace EA4S.MissingLetter
 {
 
-    //TODO merge with gameManager missingLetterGame
     public class RoundManager
     {
-
-        public RoundManager(MissingLetterGame game)
+        public RoundManager(MissingLetterGame _game)
         {
-            mGame = game;
+            m_oGame = _game;
         }
 
         public void Initialize()
         {
-            mCurrQuestionPack = null;
-            mRoundType = RoundType.WORD;
+            m_eCurrQuestionPack = null;
 
-            mQstPos = mGame.mQuestionCamera.position + new Vector3(0, mGame.mQuestionHeightOffset, 20);
-            mAnsPos = mGame.mAnswerCamera.position + new Vector3(0, mGame.mAnswerHeightOffset, 20);
-            mGame.mLetterPrefab.GetComponent<LetterBehaviour>().mfDistanceBetweenLetters = mGame.m_fDistanceBetweenLetters;
+            //set the answers and questions center position
+            m_v3QstPos = m_oGame.m_oQuestionCamera.position + new Vector3(0, m_oGame.m_fQuestionHeightOffset, 20);
+            m_v3AnsPos = m_oGame.m_oAnswerCamera.position + new Vector3(0, m_oGame.m_fAnswerHeightOffset, 20);
+            m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().mfDistanceBetweenLetters = m_oGame.m_fDistanceBetweenLetters;
 
-            int maxSentenceSize = 5;
             int qstPoolSize = 3;
-            qstPoolSize *= (mRoundType == RoundType.WORD) ? 1 : maxSentenceSize;
-            mGame.mLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(mQstPos + Vector3.right * mGame.mQuestionINOffset, mQstPos, mQstPos + Vector3.right * mGame.mQuestionOUTOffset);
-            mQuestionPool = new GameObjectPool(mGame.mLetterPrefab, 3, false);
+            qstPoolSize *= (m_oGame.m_eGameType == GameType.WORD) ? 1 : m_oGame.m_iMaxSentenceSize;
+            m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(m_v3QstPos + Vector3.right * m_oGame.m_fQuestionINOffset, m_v3QstPos, m_v3QstPos + Vector3.right * m_oGame.m_fQuestionOUTOffset);
+            m_oQuestionPool = new GameObjectPool(m_oGame.m_oLetterPrefab, 3, false);
 
-            int ansPoolSize = mGame.m_iNumberOfPossibleAnswers * 4;
-            mGame.mLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(mAnsPos + Vector3.right * mGame.mAnswerINOffset, mAnsPos, mAnsPos + Vector3.right * mGame.mAnswerOUTOffset);
-            mAnswerPool = new GameObjectPool(mGame.mLetterPrefab, ansPoolSize, false);
+            int ansPoolSize = m_oGame.m_iNumberOfPossibleAnswers * 4;
+            m_oGame.m_oLetterPrefab.GetComponent<LetterBehaviour>().SetPositions(m_v3AnsPos + Vector3.right * m_oGame.m_fAnswerINOffset, m_v3AnsPos, m_v3AnsPos + Vector3.right * m_oGame.m_fAnswerOUTOffset);
+            m_oAnswerPool = new GameObjectPool(m_oGame.m_oLetterPrefab, ansPoolSize, false);
+
+            m_oEmoticonsController = new MissingLetterEmoticonsController(m_oGame.m_oEmoticonsController);
         }
 
         public void SetTutorial(bool _enabled) {
@@ -43,10 +43,10 @@ namespace EA4S.MissingLetter
 
         public void NewRound()
         {
-            mGame.SetInIdle(false);
+            m_oGame.SetInIdle(false);
             ExitCurrentScene();
 
-            if (mRoundType == RoundType.WORD)
+            if (m_oGame.m_eGameType == GameType.WORD)
             {
                 NextWordQuestion();
             }
@@ -55,24 +55,23 @@ namespace EA4S.MissingLetter
                 NextSentenceQuestion();
             }
 
-
-            if (mGame.GetCurrentState() == mGame.PlayState || m_bTutorialEnabled)
+            if (m_oGame.GetCurrentState() == m_oGame.PlayState || m_bTutorialEnabled)
             {
                 EnterCurrentScene();
-                mGame.StartCoroutine(Utils.LaunchDelay(2.0f, mGame.SetInIdle, true));
+                m_oGame.StartCoroutine(Utils.LaunchDelay(2.0f, m_oGame.SetInIdle, true));
             }
         }
 
         public void Terminate()
         {
-            if(mGame.mCurrentRound < mGame.m_iRoundsLimit)
+            if(m_oGame.m_iCurrentRound < m_oGame.m_iRoundsLimit)
                 ExitCurrentScene();
         }
 
         public GameObject GetCorrectLLObject()
         {
-            foreach (GameObject _obj in mCurrentAnswerScene) {
-                if (_obj.GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
+            foreach (GameObject _obj in m_aoCurrentAnswerScene) {
+                if (_obj.GetComponent<LetterBehaviour>().LetterData.Id == m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id)
                 {
                     return _obj;
                 }
@@ -82,13 +81,13 @@ namespace EA4S.MissingLetter
 
         void NextWordQuestion() {
 
-            mCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
-            ILivingLetterData questionData = mCurrQuestionPack.GetQuestion();
+            m_eCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            ILivingLetterData questionData = m_eCurrQuestionPack.GetQuestion();
 
-            var _wrongAnswers = mCurrQuestionPack.GetWrongAnswers().ToList();
-            var _correctAnswers = mCurrQuestionPack.GetCorrectAnswers().ToList();
+            var _wrongAnswers = m_eCurrQuestionPack.GetWrongAnswers().ToList();
+            var _correctAnswers = m_eCurrQuestionPack.GetCorrectAnswers().ToList();
 
-            GameObject oQuestion = mQuestionPool.GetElement();
+            GameObject oQuestion = m_oQuestionPool.GetElement();
 
             LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
             qstBehaviour.Reset();
@@ -96,12 +95,14 @@ namespace EA4S.MissingLetter
             qstBehaviour.endTransformToCallback += qstBehaviour.Speak;
             qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
             qstBehaviour.m_oDefaultIdleAnimation = LLAnimationStates.LL_idle;
-            mCurrentQuestionScene.Add(oQuestion);
+            m_aoCurrentQuestionScene.Add(oQuestion);
+
+            m_oEmoticonsController.init(qstBehaviour.transform);
 
             //after insert in mCurrentQuestionScene
             RemoveLetterfromQuestion();
 
-            GameObject _correctAnswerObject = mAnswerPool.GetElement();
+            GameObject _correctAnswerObject = m_oAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
             corrAnsBheaviour.Reset();
             corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(0);
@@ -110,10 +111,10 @@ namespace EA4S.MissingLetter
 
             corrAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
 
-            mCurrentAnswerScene.Add(_correctAnswerObject);
+            m_aoCurrentAnswerScene.Add(_correctAnswerObject);
 
-            for (int i = 1; i < mGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i) {
-                GameObject _wrongAnswerObject = mAnswerPool.GetElement();
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i) {
+                GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
@@ -123,147 +124,149 @@ namespace EA4S.MissingLetter
                 wrongAnsBheaviour.onLetterClick += OnAnswerClicked;
                 wrongAnsBheaviour.m_oDefaultIdleAnimation = m_bTutorialEnabled ? LLAnimationStates.LL_still : LLAnimationStates.LL_idle;
 
-                mCurrentAnswerScene.Add(_wrongAnswerObject);
+                m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
 
-            mCurrentAnswerScene.Shuffle();
+            m_aoCurrentAnswerScene.Shuffle();
         }
 
         void NextSentenceQuestion()
         {
-            mCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
+            m_eCurrQuestionPack = MissingLetterConfiguration.Instance.PipeQuestions.GetNextQuestion();
             //mCurrQuestionPack.GetQuestion() must return a list of word
             List<LL_WordData> questionData = new List<LL_WordData>();//mCurrQuestionPack.GetQuestion();
 
-            var _wrongAnswers = mCurrQuestionPack.GetWrongAnswers();
-            var _correctAnswers = mCurrQuestionPack.GetCorrectAnswers();
+            var _wrongAnswers = m_eCurrQuestionPack.GetWrongAnswers();
+            var _correctAnswers = m_eCurrQuestionPack.GetCorrectAnswers();
 
 
             foreach(LL_WordData _word in questionData)
             {
-                GameObject oQuestion = mQuestionPool.GetElement();
+                GameObject oQuestion = m_oQuestionPool.GetElement();
                 LetterBehaviour qstBehaviour = oQuestion.GetComponent<LetterBehaviour>();
 
                 qstBehaviour.Reset();
                 qstBehaviour.LetterData = _word;
                 qstBehaviour.onLetterBecameInvisible += OnQuestionLetterBecameInvisible;
 
-                mCurrentQuestionScene.Add(oQuestion);
+                m_aoCurrentQuestionScene.Add(oQuestion);
             }
 
 
-            GameObject _correctAnswerObject = mAnswerPool.GetElement();
+            GameObject _correctAnswerObject = m_oAnswerPool.GetElement();
             LetterBehaviour corrAnsBheaviour = _correctAnswerObject.GetComponent<LetterBehaviour>();
 
             corrAnsBheaviour.Reset();
             corrAnsBheaviour.LetterData = _correctAnswers.ElementAt(0);
             corrAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
-            mCurrentAnswerScene.Add(_correctAnswerObject);
+            m_aoCurrentAnswerScene.Add(_correctAnswerObject);
 
-            for (int i = 1; i < mGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i)
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i)
             {
-                GameObject _wrongAnswerObject = mAnswerPool.GetElement();
+                GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
                 wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i - 1);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
-                mCurrentAnswerScene.Add(_wrongAnswerObject);
+                m_aoCurrentAnswerScene.Add(_wrongAnswerObject);
             }
 
-            mCurrentAnswerScene.Shuffle();
+            m_aoCurrentAnswerScene.Shuffle();
         }
 
         void RemoveLetterfromQuestion()
         {
-            LL_WordData word = (LL_WordData)mCurrQuestionPack.GetQuestion();
+            LL_WordData word = (LL_WordData)m_eCurrQuestionPack.GetQuestion();
             var Letters = ArabicAlphabetHelper.LetterDataListFromWord(word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL());
 
-            LL_LetterData letter = (LL_LetterData)mCurrQuestionPack.GetCorrectAnswers().ToList()[0];
+            LL_LetterData letter = (LL_LetterData)m_eCurrQuestionPack.GetCorrectAnswers().ToList()[0];
             int index = 0;
             for(; index < Letters.Count; ++index)
             {
-                if(Letters[index].Key == letter.Key)
+                if(Letters[index].Id == letter.Id)
                 {
                     break;
                 }
             }
 
-            LetterObjectView tmp = mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            tmp.Lable.text = tmp.Lable.text.Remove(index, 1);
-            tmp.Lable.text = tmp.Lable.text.Insert(index, mkRemovedLetterChar);
-
+            LetterObjectView tmp = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            tmp.Label.text = tmp.Label.text.Remove(index, 1);
+            tmp.Label.text = tmp.Label.text.Insert(index, mk_sRemovedLetterChar);
         }
 
         void RestoreQuestion(bool result)
         {
+            LetterObjectView tmp = m_aoCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
+            int index = tmp.Label.text.IndexOf(mk_sRemovedLetterChar);
 
-            LetterObjectView tmp = mCurrentQuestionScene[0].GetComponent<LetterBehaviour>().mLetter;
-            int index = tmp.Lable.text.IndexOf(mkRemovedLetterChar);
-
-            foreach (GameObject _obj in mCurrentQuestionScene)
+            foreach (GameObject _obj in m_aoCurrentQuestionScene)
             {
                 _obj.GetComponent<LetterBehaviour>().Refresh();
             }
-
+            if(result)
+                m_oEmoticonsController.EmoticonPositive();
+            else
+                m_oEmoticonsController.EmoticonNegative();
+            
             //change restored color letter with tag
-            string color = result ? "green" : "red";
-            string first = tmp.Lable.text[index].ToString();
-            tmp.Lable.text = tmp.Lable.text.Replace(first, "<color="+ color + ">" + first + "</color>");
+            string color = result ? "#4CAF50" : "#DD2C00";
+            string first = tmp.Label.text[index].ToString();
+            tmp.Label.text = tmp.Label.text.Replace(first, "<color="+ color + ">" + first + "</color>");
         }
 
         void EnterCurrentScene() {
-            Vector3 startPos = mQstPos + new Vector3(mGame.mQuestionINOffset, 0, 0);
-            foreach (GameObject _obj in mCurrentQuestionScene) {
+            Vector3 startPos = m_v3QstPos + new Vector3(m_oGame.m_fQuestionINOffset, 0, 0);
+            foreach (GameObject _obj in m_aoCurrentQuestionScene) {
                 _obj.GetComponent<LetterBehaviour>().EnterScene();
             }
 
-            startPos = mAnsPos + new Vector3(mGame.mAnswerINOffset, 0, 0);
+            startPos = m_v3AnsPos + new Vector3(m_oGame.m_fAnswerINOffset, 0, 0);
             int _pos = 0;
-            foreach (GameObject _obj in mCurrentAnswerScene) {
-                _obj.GetComponent<LetterBehaviour>().EnterScene( _pos, mCurrentAnswerScene.Count());
+            foreach (GameObject _obj in m_aoCurrentAnswerScene) {
+                _obj.GetComponent<LetterBehaviour>().EnterScene( _pos, m_aoCurrentAnswerScene.Count());
                 ++_pos;
             }
         }
 
         void ExitCurrentScene() {
-            if (mCurrQuestionPack != null) {
+            if (m_eCurrQuestionPack != null) {
 
-                foreach (GameObject _obj in mCurrentQuestionScene) {
+                foreach (GameObject _obj in m_aoCurrentQuestionScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
-                mCurrentQuestionScene.Clear();
+                m_aoCurrentQuestionScene.Clear();
 
-                foreach (GameObject _obj in mCurrentAnswerScene) {
+                foreach (GameObject _obj in m_aoCurrentAnswerScene) {
                     _obj.GetComponent<LetterBehaviour>().ExitScene();
                 }
-                mCurrentAnswerScene.Clear();
+                m_aoCurrentAnswerScene.Clear();
             }
         }
 
 
         void OnQuestionLetterBecameInvisible(GameObject _obj) {
-            mQuestionPool.FreeElement(_obj);
+            m_oQuestionPool.FreeElement(_obj);
             _obj.GetComponent<LetterBehaviour>().onLetterBecameInvisible -= OnQuestionLetterBecameInvisible;
         }
 
         void OnAnswerLetterBecameInvisible(GameObject _obj) {
-            mAnswerPool.FreeElement(_obj);
+            m_oAnswerPool.FreeElement(_obj);
             _obj.GetComponent<LetterBehaviour>().onLetterBecameInvisible -= OnAnswerLetterBecameInvisible;
         }
 
         private bool isCorrectAnswer(string _key)
         {
-            return mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key == _key;
+            return m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id == _key;
         }
 
         private LetterBehaviour GetAnswerById(string _key)
         {
-            foreach (GameObject _obj in mCurrentAnswerScene)
+            foreach (GameObject _obj in m_aoCurrentAnswerScene)
             {
-                if (_obj.GetComponent<LetterBehaviour>().mLetterData.Key == _key)
+                if (_obj.GetComponent<LetterBehaviour>().mLetterData.Id == _key)
                     return _obj.GetComponent<LetterBehaviour>();
             }
             return null;
@@ -271,12 +274,12 @@ namespace EA4S.MissingLetter
 
         public void OnAnswerClicked(string _key) {
             Debug.Log("Answer: " + _key);
-            mGame.SetInIdle(false);
+            m_oGame.SetInIdle(false);
 
             //refresh the data (for graphics)
             RestoreQuestion(isCorrectAnswer(_key));
 
-            foreach (GameObject _obj in mCurrentAnswerScene) {
+            foreach (GameObject _obj in m_aoCurrentAnswerScene) {
                 _obj.GetComponent<LetterBehaviour>().SetEnableCollider(false);
             }
 
@@ -288,17 +291,13 @@ namespace EA4S.MissingLetter
                 clicked.mLetter.DoHorray();
                 clicked.LightOn();
 
-                mGame.mParticleSystem.SetActive(true);
-                mGame.mParticleSystem.transform.position = mCurrentQuestionScene[0].transform.position + Vector3.forward + Vector3.up * 2;
-                mGame.mParticleSystem.GetComponent<ParticleSystem>().Play();
-                mGame.StartCoroutine(Utils.LaunchDelay(1.5f, delegate { mGame.mParticleSystem.SetActive(false); }));
+                PlayPartcileSystem(m_aoCurrentQuestionScene[0].transform.position + Vector3.up * 2);
 
-                mGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
+                m_oGame.StartCoroutine(Utils.LaunchDelay(0.5f, OnResponse, true));
             }
             else
             {
                 clicked.PlayAnimation(LLAnimationStates.LL_still);
-                //clicked.mLetter.DoAngry();
                 OnResponse(false);
             }
 
@@ -308,7 +307,6 @@ namespace EA4S.MissingLetter
         //call after clicked answer animation
         private void OnResponse(bool correct)
         {
-            //sad, happy sound -> onclick or on response??
             if (correct)
             {
                 AudioManager.I.PlaySfx(Sfx.LetterHappy);
@@ -322,114 +320,115 @@ namespace EA4S.MissingLetter
 
             if (onAnswered != null)
             {
-                mGame.StartCoroutine(Utils.LaunchDelay(2.0f, onAnswered, correct));
+                m_oGame.StartCoroutine(Utils.LaunchDelay(2.0f, onAnswered, correct));
             }
+        }
 
+        private void PlayPartcileSystem(Vector3 _pos)
+        {
+            m_oGame.m_oParticleSystem.SetActive(true);
+            m_oGame.m_oParticleSystem.transform.position = _pos;
+            m_oGame.m_oParticleSystem.GetComponent<ParticleSystem>().Play();
+            m_oGame.StartCoroutine(Utils.LaunchDelay(1.5f, delegate { m_oGame.m_oParticleSystem.SetActive(false); }));
         }
 
         //shuffle current answer order and tell to letter change pos
         public void ShuffleLetters(float duration)
         {
-
-            if (mGame.IsInIdle()) {
-                mGame.SetInIdle(false);
-                mCurrentAnswerScene.Shuffle();
-                for (int i = 0; i < mCurrentAnswerScene.Count; ++i) {
+            if (m_oGame.IsInIdle()) {
+                m_oGame.SetInIdle(false);
+                m_aoCurrentAnswerScene.Shuffle();
+                for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i) {
                     float offsetDuration = UnityEngine.Random.Range(-2.0f, 0.0f);
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, mCurrentAnswerScene.Count, duration + offsetDuration);
+                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().ChangePos(i, m_aoCurrentAnswerScene.Count, duration + offsetDuration);
                 }
-                mGame.StartCoroutine(Utils.LaunchDelay(duration, mGame.SetInIdle, true));
-            }
-            
+                m_oGame.StartCoroutine(Utils.LaunchDelay(duration, m_oGame.SetInIdle, true));
+            }         
         }
 
         //win animation: quesion high five, correct answer dancing other horray
         private void DoWinAnimations()
         {
-            for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
+            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
             {
-                if(isCorrectAnswer(mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key))
+                if(isCorrectAnswer(m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id))
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
+                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoDancingWin();
                 }
                 else
                 {
                     //random delay poof of wrong answer
-                    //mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoHorray();
-                    mGame.StartCoroutine(Utils.LaunchDelay(UnityEngine.Random.Range(0, 0.5f), delegate (int index)
-                    {
-                        mCurrentAnswerScene[index].GetComponent<LetterBehaviour>().mLetter.Poof();
-                        mCurrentAnswerScene[index].transform.position = Vector3.zero;
-                        AudioManager.I.PlaySfx(Sfx.Poof);
-                    }, i));
+                    m_oGame.StartCoroutine(Utils.LaunchDelay(UnityEngine.Random.Range(0, 0.5f), PoofLetter, m_aoCurrentAnswerScene[i]));
                 }
             }
 
-            for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
+            for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
             {
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
+                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoHighFive();
+                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
+        }
+
+        //poof the gameobject letter
+        private void PoofLetter(GameObject letter)
+        {
+            if (!letter.GetComponent<LetterBehaviour>())
+            {
+                Debug.LogWarning("Cannot poof letter " + letter.name);
+                return;
+            }
+
+            letter.GetComponent<LetterBehaviour>().mLetter.Poof();
+            letter.transform.position = Vector3.zero;
+            AudioManager.I.PlaySfx(Sfx.Poof);
         }
 
         //lose animation: quesion and correct answer angry other crouch
         private void DoLoseAnimations()
         {
-            for (int i = 0; i < mCurrentQuestionScene.Count; ++i)
+            for (int i = 0; i < m_aoCurrentQuestionScene.Count; ++i)
             {
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
-                mCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
+                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
+                m_aoCurrentQuestionScene[i].GetComponent<LetterBehaviour>().LightOn();
             }
 
-            for (int i = 0; i < mCurrentAnswerScene.Count; ++i)
+            for (int i = 0; i < m_aoCurrentAnswerScene.Count; ++i)
             {
-                if (mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Key == mCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Key)
+                if (m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LetterData.Id == m_eCurrQuestionPack.GetCorrectAnswers().ElementAt(0).Id)
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();
+                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.DoAngry();
+                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().LightOn();
                 }
                 else
                 {
-                    mCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.Crouching = true;
-                    //random delay poof of wrong answer
-                    //mGame.StartCoroutine(Utils.LaunchDelay(UnityEngine.Random.Range(0, 0.5f), delegate (int index)
-                    //{
-                    //    mCurrentAnswerScene[index].GetComponent<LetterBehaviour>().mLetter.Poof();
-                    //    mCurrentAnswerScene[index].transform.position = Vector3.zero;
-                    //    AudioManager.I.PlaySfx(Sfx.Poof);
-                    //}, i));
+                    m_aoCurrentAnswerScene[i].GetComponent<LetterBehaviour>().mLetter.Crouching = true;
                 }
             }
         }
 
         #region VARS
-        private const string mkRemovedLetterChar = "_";
+        private const string mk_sRemovedLetterChar = "_";
 
-        private MissingLetterGame mGame;
+        private MissingLetterGame m_oGame;
 
-        private IQuestionPack mCurrQuestionPack;
+        private IQuestionPack m_eCurrQuestionPack;
 
-        private GameObjectPool mAnswerPool;
-        private GameObjectPool mQuestionPool;
+        private GameObjectPool m_oAnswerPool;
+        private GameObjectPool m_oQuestionPool;
 
-        private List<GameObject> mCurrentQuestionScene = new List<GameObject>();
-        private List<GameObject> mCurrentAnswerScene = new List<GameObject>();
+        private List<GameObject> m_aoCurrentQuestionScene = new List<GameObject>();
+        private List<GameObject> m_aoCurrentAnswerScene = new List<GameObject>();
 
-        private Vector3 mAnsPos;
-        private Vector3 mQstPos;
+        private Vector3 m_v3AnsPos;
+        private Vector3 m_v3QstPos;
 
         public event Action<bool> onAnswered;
 
-        private RoundType mRoundType;
         private bool m_bTutorialEnabled;
+
+        private MissingLetterEmoticonsController m_oEmoticonsController;
         #endregion
 
-    }
-
-    public enum RoundType
-    {
-        WORD = 0,
-        SENTENCE = 1
     }
 }

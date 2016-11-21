@@ -163,7 +163,7 @@ namespace EA4S.ThrowBalls
         public void SetLetter(LL_LetterData _data)
         {
             letterData = _data;
-            letterObjectView.Lable.SetText(letterData.TextForLivingLetter);
+            letterObjectView.Init(letterData);
         }
 
         public LL_LetterData GetLetter()
@@ -525,7 +525,7 @@ namespace EA4S.ThrowBalls
         {
             if (ThrowBallsGameManager.Instance.isRoundOngoing)
             {
-                AudioManager.I.PlayLetter(letterData.Key);
+                AudioManager.I.PlayLetter(letterData.Id);
             }
         }
     }

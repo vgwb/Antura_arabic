@@ -21,6 +21,10 @@ namespace EA4S.Teacher
         private HashSet<WordData> journeyWords = new HashSet<WordData>();
         private HashSet<PhraseData> journeyPhrases = new HashSet<PhraseData>();
 
+        private HashSet<LetterData> currentPlaySessionLetters = new HashSet<LetterData>();
+        private HashSet<WordData> currentPlaySessionWords = new HashSet<WordData>();
+        private HashSet<PhraseData> currentPlaySessionPhrases = new HashSet<PhraseData>();
+
         public WordSelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher, WordHelper _wordHelper)
         {
             this.dbManager = _dbManager;
@@ -31,6 +35,10 @@ namespace EA4S.Teacher
 
         public void InitialiseNewPlaySession(string currentPlaySessionId)
         {
+            currentPlaySessionLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId));
+            currentPlaySessionWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId));
+            currentPlaySessionPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true));
+
             journeyLetters = new HashSet<LetterData>(GetLettersInPlaySession(currentPlaySessionId, true));
             journeyWords = new HashSet<WordData>(GetWordsInPlaySession(currentPlaySessionId, true, true));
             journeyPhrases = new HashSet<PhraseData>(GetPhrasesInPlaySession(currentPlaySessionId, true, true));
@@ -38,7 +46,7 @@ namespace EA4S.Teacher
             if (ConfigAI.verboseDataSelection)
             {
                 string debugString = "";
-                debugString += "--------- TEACHER: play session initialisation (journey) --------- ";
+                debugString += "--------- TEACHER: play session initialisation (journey " + currentPlaySessionId + ") --------- ";
                 debugString += "\n" + journeyLetters.Count + " letters available";
                 debugString += "\n" + journeyWords.Count + " words available";
                 debugString += "\n" + journeyPhrases.Count + " phrases available";
@@ -50,43 +58,54 @@ namespace EA4S.Teacher
 
         public List<T> SelectData<T>(System.Func<List<T>> builderSelectionFunction, SelectionParameters selectionParams) where T : IData
         {
+            // skip if we require 0 values
+            if (selectionParams.nRequired == 0 && !selectionParams.getAllData) return new List<T>();
+
             string debugString = "";
-            debugString += "--------- TEACHER: data selection --------- ";
+            //debugString += "--------- TEACHER: data selection --------- ";
 
             // @note: not the best of solutions, but I do not seem to be able to get more generic than this without rewriting most stuff.
             System.Type typeParameterType = typeof(T);
             HashSet<T> journeyData = null;
+            HashSet<T> currentPSData = null;
             DbTables table = DbTables.Letters;
             if (typeParameterType == typeof(LetterData))
             {
                 table = DbTables.Letters;
                 journeyData = new HashSet<T>(journeyLetters.Cast<T>());
+                currentPSData = new HashSet<T>(currentPlaySessionLetters.Cast<T>());
             }
             else if (typeParameterType == typeof(WordData))
             {
                 table = DbTables.Words;
                 journeyData = new HashSet<T>(journeyWords.Cast<T>());
+                currentPSData = new HashSet<T>(currentPlaySessionWords.Cast<T>());
             }
             else if (typeParameterType == typeof(PhraseData))
             {
                 table = DbTables.Phrases;
                 journeyData = new HashSet<T>(journeyPhrases.Cast<T>());
+                currentPSData = new HashSet<T>(currentPlaySessionPhrases.Cast<T>());
             }
 
             // Get unfiltered data based on the builder's logic
             var dataList = builderSelectionFunction();
-            debugString += ("\nBuilder: " + dataList.Count);
+            int nAfterBuilder = dataList.Count;
+            debugString += ("Builder: " + dataList.Count);
 
             // Filtering based on journey
-            if (!selectionParams.ignoreJourney && !ConfigAI.forceJourneyIgnore)
+            if (selectionParams.useJourney && !ConfigAI.forceJourneyIgnore)
             {
                 dataList = dataList.FindAll(x => journeyData.Contains(x));
             }
-            if (dataList.Count < selectionParams.nRequired && selectionParams.severity == SelectionSeverity.AllRequired)
+            if (selectionParams.severity == SelectionSeverity.AllRequired) 
             {
-                throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
+                if (dataList.Count < selectionParams.nRequired  || selectionParams.getAllData && dataList.Count < nAfterBuilder)
+                {
+                    throw new System.Exception("The teacher could not find " + selectionParams.nRequired + " data instances after applying the journey logic.");
+                }
             }
-            debugString += ("\nJourney: " + dataList.Count);
+            debugString += (" \tJourney: " + dataList.Count);
 
             // Filtering based on pack-list history 
             PackListHistory sev = selectionParams.packListHistory;
@@ -120,15 +139,22 @@ namespace EA4S.Teacher
                     }
                     break;
             }
-            debugString += ("\nPack-history: " + dataList.Count);
+            debugString += (" \tHistory: " + dataList.Count);
 
             // Weighted selection on the remaining number
-            var selectedList = WeightedDataSelect(dataList, selectionParams.nRequired, table);
-            debugString += ("\nWeighted selection: " + selectedList.Count);
+            List<T> selectedList = null;
+            if (selectionParams.getAllData) selectedList = dataList;
+            else selectedList = WeightedDataSelect(dataList, currentPSData, selectionParams.nRequired, table);
+            debugString += (" \tSelection: " + selectedList.Count);
 
             if (ConfigAI.verboseDataSelection)
             {
                 UnityEngine.Debug.Log(debugString);
+            }
+
+            if (selectedList.Count == 0)
+            {
+                throw new System.Exception("The teacher could not find any data with the current filters. The game does not seem to be playable at the selected play session.");
             }
 
             // Update the filtering ids
@@ -140,7 +166,7 @@ namespace EA4S.Teacher
             return selectedList;
         }
 
-        private List<T> WeightedDataSelect<T>(List<T> source_data_list, int nToSelect, DbTables table) where T : IData
+        private List<T> WeightedDataSelect<T>(List<T> source_data_list, HashSet<T> currentPSData, int nToSelect, DbTables table) where T : IData
         {
             // Given a (filtered) list of data, select some using weights
             List<ScoreData> score_data_list = dbManager.FindScoreDataByQuery("SELECT * FROM ScoreData WHERE TableName = '" + table.ToString() + "'");
@@ -172,7 +198,9 @@ namespace EA4S.Teacher
                 float recentPlayWeight = 1f - UnityEngine.Mathf.Min(1, weightMalus);
                 cumulativeWeight += recentPlayWeight * ConfigAI.data_recentPlayWeight;
 
-                // @todo: Current focus weight [1,0]: higher if the data is part of the current session
+                // Current focus weight [1,0]: higher if the data is part of the current play session
+                float currentPlaySessionWeight = currentPSData.Contains(sourceData) ? 1 : 0f;
+                cumulativeWeight += currentPlaySessionWeight * ConfigAI.data_currentPlaySessionWeight;
 
                 // If the cumulative weight goes to the negatives, we give it a fixed weight
                 if (cumulativeWeight <= 0)

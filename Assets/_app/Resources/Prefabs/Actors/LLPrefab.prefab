@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 25.05
+  m_fontSize: 23.25
   m_fontSizeBase: 37.35
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   contentTransform: {fileID: 4000010958295660}
   textTransform: {fileID: 224000013990165804}
   boneToScaleTransform: {fileID: 4000011503675170}
-  Lable: {fileID: 114000010673987186}
+  Label: {fileID: 114000010673987186}
   Drawing: {fileID: 114000013927319314}
   ImageSprite: {fileID: 212000010347254602}
   Scale: 1
@@ -2116,8 +2116,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 2.8
-    height: 2.8
+    width: 2.6
+    height: 2.6
   m_margins: {x: 0, y: 0, z: 0, w: 0}
 --- !u!137 &137000010111564634
 SkinnedMeshRenderer:
@@ -2534,5 +2534,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000000029802322, y: -0.000000059604645}
-  m_SizeDelta: {x: 2.8, y: 2.8}
+  m_SizeDelta: {x: 2.6, y: 2.6}
   m_Pivot: {x: 0.5, y: 0.5}

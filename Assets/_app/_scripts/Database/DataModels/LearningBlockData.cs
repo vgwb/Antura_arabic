@@ -12,8 +12,8 @@ namespace EA4S.Db
         public int LearningBlock;
         public int NumberOfPlaySessions;
         public string Description;
-        public string Title;
-        public string IntroArabic;
+        public string Title_En;
+        public string Title_Ar;
         public string Reward;
         public LearningBlockDataFocus Focus;
         //        public string AssessmentData;

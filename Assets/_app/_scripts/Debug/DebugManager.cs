@@ -19,6 +19,17 @@ namespace EA4S
     {
         public static DebugManager I;
 
+        public bool CheatMode = false;
+
+        private bool _ignoreJourneyData = false;
+        public bool IgnoreJourneyData {
+            get { return _ignoreJourneyData; }
+            set {
+                _ignoreJourneyData = value;
+                Teacher.ConfigAI.forceJourneyIgnore = _ignoreJourneyData;
+            }
+        }
+
         private DifficulyLevels _difficultyLevel = DifficulyLevels.Normal;
         public DifficulyLevels DifficultyLevel {
             get { return _difficultyLevel; }
@@ -78,8 +89,6 @@ namespace EA4S
             }
         }
 
-
-
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
             AppManager.Instance.Player.CurrentJourneyPosition.Stage = Stage;
@@ -97,57 +106,5 @@ namespace EA4S
 
         }
 
-
-        #region Test Helpers
-
-        private static List<LL_LetterData> GetLettersFromWord(LL_WordData _word)
-        {
-            var letters = new List<LL_LetterData>();
-            foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(_word.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL())) {
-                letters.Add(letterData);
-            }
-            return letters;
-        }
-
-        private static List<LL_LetterData> GetLettersNotContained(List<LL_LetterData> _lettersToAvoid, int _count)
-        {
-            var letterListToReturn = new List<LL_LetterData>();
-            for (var i = 0; i < _count; i++) {
-                var letter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-
-                if (!CheckIfContains(_lettersToAvoid, letter) && !CheckIfContains(letterListToReturn, letter)) {
-                    letterListToReturn.Add(letter);
-                }
-            }
-            return letterListToReturn;
-        }
-
-
-        private static bool CheckIfContains(List<ILivingLetterData> list, ILivingLetterData letter)
-        {
-            for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Key == letter.Key)
-                    return true;
-            return false;
-        }
-
-
-        private static bool CheckIfContains(List<LL_LetterData> list, ILivingLetterData letter)
-        {
-            for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Key == letter.Key)
-                    return true;
-            return false;
-        }
-
-        private static bool CheckIfContains(List<LL_WordData> list, ILivingLetterData letter)
-        {
-            for (int i = 0, count = list.Count; i < count; ++i)
-                if (list[i].Key == letter.Key)
-                    return true;
-            return false;
-        }
-
-        #endregion
     }
 }

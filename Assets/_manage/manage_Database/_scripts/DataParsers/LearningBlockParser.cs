@@ -15,8 +15,8 @@ namespace EA4S.Db.Management
             data.Id = data.Stage + "." + data.LearningBlock;
 
             data.Description = ToString(dict["Description"]);
-            data.Title = ToString(dict["Title"]);
-            data.IntroArabic = ToString(dict["IntroArabic"]);
+            data.Title_Ar = ToString(dict["Title_Ar"]);
+            data.Title_En = ToString(dict["Title_En"]);
             data.Reward = ParseID<RewardData, RewardTable>(data, (string)dict["Reward"], db.GetRewardTable());
             data.Focus = ParseEnum<LearningBlockDataFocus>(data, (string)dict["Focus"]);
 
@@ -26,8 +26,7 @@ namespace EA4S.Db.Management
         }
 
         protected override bool CanHaveSameKeyMultipleTimes {
-            get
-            {
+            get {
                 return true;
             }
         }

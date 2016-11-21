@@ -44,6 +44,8 @@ namespace EA4S.MixedLetters
             ResetScene();
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
+
+            
         }
 
         protected override IGameState GetInitialState()
@@ -80,19 +82,33 @@ namespace EA4S.MixedLetters
             }
         }
 
-        public void OnRoundStarted(int time)
+        public void OnRoundStarted()
         {
             ShowDropZones();
-            UIController.instance.EnableTimer();
-            UIController.instance.SetTimer(time);
-            SeparateLettersSpawnerController.instance.SetLettersDraggable(true);
+            SeparateLettersSpawnerController.instance.SetLettersDraggable();
         }
 
-        private void HideDropZones()
+        public void HideDropZones()
         {
             foreach (DropZoneController dropZoneController in dropZoneControllers)
             {
                 dropZoneController.Disable();
+            }
+        }
+
+        public void HideRotationButtons()
+        {
+            foreach (DropZoneController dropZoneController in dropZoneControllers)
+            {
+                dropZoneController.HideRotationButton();
+            }
+        }
+
+        public void ShowGreenTicks()
+        {
+            for (int i = 0; i < lettersInOrder.Count; i++)
+            {
+                dropZoneControllers[i].ShowGreenTick();
             }
         }
 
@@ -112,7 +128,6 @@ namespace EA4S.MixedLetters
             SeparateLettersSpawnerController.instance.ResetLetters();
             SeparateLettersSpawnerController.instance.DisableLetters();
             lettersInOrder.Clear();
-            UIController.instance.DisableTimer();
             ParticleSystemController.instance.Reset();
             ParticleSystemController.instance.Disable();
             AnturaController.instance.Disable();
@@ -123,8 +138,8 @@ namespace EA4S.MixedLetters
             wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
             wordInPlay = wordData.Data;
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()));
-            VictimLLController.instance.letterObjectView.Lable.SetText(wordData.TextForLivingLetter);
-            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayWord(wordData);
+            VictimLLController.instance.letterObjectView.Init(wordData);
+            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
         }
 
         public void VerifyLetters()
@@ -133,15 +148,23 @@ namespace EA4S.MixedLetters
             {
                 DropZoneController dropZone = dropZoneControllers[i];
                 if (dropZone.droppedLetter == null
-                    || dropZone.droppedLetter.GetLetter().Key != lettersInOrder[i].Key
+                    || dropZone.droppedLetter.GetLetter().Id != lettersInOrder[i].Id
                       || Mathf.Abs(dropZone.droppedLetter.transform.rotation.z) > 0.1f)
                 {
                     return;
                 }
             }
 
+            OnRoundWon();
+        }
+
+        private void OnRoundWon()
+        {
             PlayGameState.RoundWon = true;
             numRoundsWon++;
+            
+            HideRotationButtons();
+            ShowGreenTicks();
         }
     }
 }

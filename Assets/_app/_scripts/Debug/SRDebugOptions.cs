@@ -10,28 +10,43 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        WidgetPopupWindow.I.Close();
-        DebugManager.I.LaunchMinigGame(minigameCode);
-        SRDebug.Instance.HideDebugPanel();
+        if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        {
+            WidgetPopupWindow.I.Close();
+            DebugManager.I.LaunchMinigGame(minigameCode);
+            SRDebug.Instance.HideDebugPanel();
+        }
+        else
+        {
+            Debug.LogError("Minigame " + minigameCode + " cannot be played at this playsession.");
+        }
     }
 
     [Category("Options")]
-    [NumberRange(1, 6)]
     [Sort(1)]
+    public bool Cheat { get { return DebugManager.I.CheatMode; } set { DebugManager.I.CheatMode = value; } }
+
+    [Category("Options")]
+    [Sort(1)]
+    public bool IgnoreJourneyData { get { return DebugManager.I.IgnoreJourneyData; } set { DebugManager.I.IgnoreJourneyData = value; } }
+
+    [Category("Options")]
+    [NumberRange(1, 6)]
+    [Sort(10)]
     public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
 
     [Category("Options")]
     [NumberRange(1, 6)]
-    [Sort(2)]
+    [Sort(20)]
     public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
 
     [Category("Options")]
     [NumberRange(1, 6)]
-    [Sort(3)]
+    [Sort(30)]
     public int PlaySession { get { return DebugManager.I.PlaySession; } set { DebugManager.I.PlaySession = value; } }
 
     [Category("Options")]
-    [Sort(4)]
+    [Sort(40)]
     public DifficulyLevels DifficultyLevel { get { return DebugManager.I.DifficultyLevel; } set { DebugManager.I.DifficultyLevel = value; } }
 
     [Category("Options")]
@@ -337,23 +352,6 @@ public partial class SROptions
     //    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("manage_Database");
     //    SRDebug.Instance.HideDebugPanel();
     //}
-
-    ////[Category("Minigames")]
-    ////public void DontWakeUp()
-    ////{
-    ////    WidgetPopupWindow.I.Close();
-    ////    GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_DontWakeUp");
-    ////    SRDebug.Instance.HideDebugPanel();
-    ////}
-
-    //[Category("Shortcuts")]
-    //public void EndFastCrowdGame()
-    //{
-    //    //      EA4S.FastCrowd.FastCrowd.Instance.DebugForceEndGame();
-    //    SRDebug.Instance.HideDebugPanel();
-    //}
-
-
 
     /// MakeFriends
     [Category("MakeFriends")]

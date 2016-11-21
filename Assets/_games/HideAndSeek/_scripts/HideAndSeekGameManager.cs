@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace EA4S.HideAndSeek
 {
@@ -50,60 +51,64 @@ namespace EA4S.HideAndSeek
             return -1;
         }
 
-        void NewRoundSetup()
+        /*void NewRoundSetup()
         {
             StartNewRound = true;
             SetTime();
             WidgetPopupWindow.I.Close();
-        }
+        }*/
 
         public void RepeatAudio()
         {
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
+            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
         }
 
-        private IEnumerator DelayAnimation(bool answer)
+        private IEnumerator DelayAnimation()
         {
             game.PlayState.gameTime.Stop();
 
             var initialDelay = 3f;
             yield return new WaitForSeconds(initialDelay);
-            
-            if(answer)
-                WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", true, image);
-            else
-                WidgetPopupWindow.I.ShowSentenceWithMark(NewRoundSetup, "comment_welldone", false, image);
+
+            foreach (GameObject x in ArrayLetters)
+            {
+                x.GetComponent<LetterObjectView>().Poof();
+                AudioManager.I.PlaySfx(Sfx.Poof);
+                x.SetActive(false);
+            }
+
+            var delay = 0.5f;
+            yield return new WaitForSeconds(delay);
+
+            StartNewRound = true;
+            SetTime();
         }
 
         void CheckResult(int id)
 		{
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
-            if (script.view.Data.Key == currentQuestion.GetAnswer().Key)
+            if (script.view.Data.Id == currentQuestion.GetAnswer().Id)
             {
                 LockTrees();
-                StartCoroutine(DelayAnimation(true));
+                StartCoroutine(DelayAnimation());
                 script.resultAnimation(true);
-                Debug.Log("winner");
                 game.OnResult();
                 buttonRepeater.SetActive(false);
                 AudioManager.I.PlaySfx(Sfx.Win);
             }
             else
             {
-                Debug.Log("WRONG!");
                 RemoveLife();
                 script.resultAnimation(false);
                 if (lifes == 0)
                 {
                     LockTrees();
                     AudioManager.I.PlaySfx(Sfx.Lose);
-                    StartCoroutine(DelayAnimation(false));
+                    StartCoroutine(DelayAnimation());
                     buttonRepeater.SetActive(false);
                 }
-               
             }
-                
         }
 
         void RemoveLife()
@@ -120,7 +125,6 @@ namespace EA4S.HideAndSeek
                     game.Context.GetOverlayWidget().SetLives(0);
                     break;
             }
-
         }
 
         void SetFullLife()
@@ -145,6 +149,7 @@ namespace EA4S.HideAndSeek
         {
             for(int i = 0; i < MAX_OBJECT; ++i)
             {
+                ArrayLetters[i].SetActive(true);
                 ArrayLetters[i].transform.position = originLettersPlaceholder.position;
                 ArrayLetters[i].GetComponent<HideAndSeekLetterController>().ResetLetter();
                 UsedPlaceholder[i] = false;
@@ -172,18 +177,19 @@ namespace EA4S.HideAndSeek
                 {
 
                     ActiveTrees.Add(ArrayTrees[index]);
-       
-                    ArrayLetters[i].transform.position = ArrayPlaceholder[index].transform.position;
+                    Vector3 hiddenPosition = new Vector3(ArrayPlaceholder[index].transform.position.x, ArrayPlaceholder[index].transform.position.y-3f, ArrayPlaceholder[index].transform.position.z+3f);
+                    ArrayLetters[i].transform.position = hiddenPosition;
                     HideAndSeekLetterController scriptComponent = ArrayLetters[i].GetComponent<HideAndSeekLetterController>();
                     scriptComponent.SetStartPosition(ArrayPlaceholder[index].transform.position);
                     scriptComponent.id = index;
                     SetLetterMovement(index, scriptComponent);
                     ArrayLetters[i].GetComponentInChildren<LetterObjectView>().Init(letterList[i]);
+
+                    ArrayLetters[i].transform.DOMove(ArrayPlaceholder[index].transform.position, 0.5f);
                 }
             }
-            WidgetPopupWindow.I.ShowSentence(BeginRound, "comment_welldone", image);
+            StartCoroutine(DisplayRound_Coroutine());
 
-            
         }
 
         public void SetLetterMovement( int placeholder, HideAndSeekLetterController script)
@@ -197,25 +203,18 @@ namespace EA4S.HideAndSeek
             else
                 script.SetMovement(MovementType.Normal);
         }
-
-        void BeginRound()
-        {
-            StartCoroutine(DisplayRound_Coroutine());
-        }
         
         private IEnumerator DisplayRound_Coroutine()
         {
-            WidgetPopupWindow.I.Close();
-
             foreach(GameObject tree in ActiveTrees)
             {
                 tree.GetComponent<CapsuleCollider>().enabled = true;
             }
 
-            var winInitialDelay = 1f;
+            var winInitialDelay = 0.5f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
+            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
             game.PlayState.gameTime.Start();
 
             buttonRepeater.SetActive(true);

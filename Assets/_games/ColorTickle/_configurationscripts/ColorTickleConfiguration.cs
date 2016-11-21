@@ -34,6 +34,7 @@
 
             int nPacks = 10;
             int nCorrect = 1;
+            var builderParams = new QuestionBuilderParameters();
 
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect);
 

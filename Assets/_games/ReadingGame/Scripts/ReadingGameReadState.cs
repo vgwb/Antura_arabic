@@ -72,6 +72,9 @@ namespace EA4S.ReadingGame
             }
             else
             {
+                game.barSet.SetShowTargets(ReadingGameConfiguration.Instance.Difficulty < 0.3f);
+                game.barSet.SetShowArrows(ReadingGameConfiguration.Instance.Difficulty < 0.6f);
+
                 game.barSet.SetData(game.alphabetSong);
                 game.barSet.PlaySong(game.Context.GetAudioManager().PlayMusic(game.alphabetSongAudio), OnSongEnded);
             }

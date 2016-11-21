@@ -8,14 +8,13 @@ namespace EA4S.Db
     {
         // Source
         public string Title_En;
+        public string Title_Ar;
         public MiniGameCode Code;
         public bool Available;
         public MiniGameDataType Type;
         public string Main;
         public string Variation;
         public string Description;
-        public string IntroArabic;
-        public string Title_Ar;
         public string Scene;
 
         public string GetId()

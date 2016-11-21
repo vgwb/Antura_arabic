@@ -9,68 +9,66 @@ namespace EA4S.MissingLetter
     public class MissingLetterPlayState : IGameState
     {
         
-        public MissingLetterPlayState(MissingLetterGame game)
+        public MissingLetterPlayState(MissingLetterGame _game)
         {
-            this.game = game;
-            gameTime = new CountdownTimer(game.m_fGameTime);
-            gameTime.onTimesUp += OnTimesUp;
+            this.m_oGame = _game;
+            M_oGameTime = new CountdownTimer(_game.m_fGameTime);
+            M_oGameTime.onTimesUp += OnTimesUp;
         }
 
         public void EnterState()
         {
-            game.m_RoundManager.onAnswered += OnRoundResult;
-            game.mIsTimesUp = false;
-            game.ResetScore();
+            m_oGame.m_oRoundManager.onAnswered += OnRoundResult;
+            m_oGame.m_bIsTimesUp = false;
+            m_oGame.ResetScore();
 
-            hurryUpSfx = false;
+            m_bHurryUpSfx = false;
 
-            gameTime.Reset();
-            gameTime.Start();
+            M_oGameTime.Reset();
+            M_oGameTime.Start();
 
-            game.Context.GetOverlayWidget().Initialize(true, true, false);
+            m_oGame.Context.GetOverlayWidget().Initialize(true, true, false);
 
-            game.Context.GetOverlayWidget().SetStarsThresholds(game.STARS_1_THRESHOLD, game.STARS_2_THRESHOLD, game.STARS_3_THRESHOLD);
-            game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
-            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+            m_oGame.Context.GetOverlayWidget().SetStarsThresholds(m_oGame.STARS_1_THRESHOLD, m_oGame.STARS_2_THRESHOLD, m_oGame.STARS_3_THRESHOLD);
+            m_oGame.Context.GetOverlayWidget().SetClockDuration(M_oGameTime.Duration);
+            m_oGame.Context.GetOverlayWidget().SetClockTime(M_oGameTime.Time);
 
-            game.m_RoundManager.NewRound();
+            m_oGame.m_oRoundManager.NewRound();
         }
 
         public void ExitState()
         {
-            if (timesUpAudioSource != null)
-                timesUpAudioSource.Stop();
-
-            gameTime.Stop();
+            AudioManager.I.StopMusic();
+            AudioManager.I.StopSfx(Sfx.DangerClockLong);
+            M_oGameTime.Stop();
         }
 
-        public void Update(float delta)
+        public void Update(float _delta)
         {
 
-            if(game.miAnturaTriggersIndex < game.mafAnturaEnterTriggers.Length && gameTime.Time <= game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex]) {
-                if (game.IsInIdle()) {
-                    ++game.miAnturaTriggersIndex;
-                    game.mAnturaRef.GetComponent<AnturaBehaviour>().EnterScene(game.mfAnturaAnimDuration);
-                    game.StartCoroutine(Utils.LaunchDelay(game.mfAnturaAnimDuration / 6, game.m_RoundManager.ShuffleLetters, game.mfAnturaAnimDuration / 2));
+            if(m_oGame.m_iAnturaTriggersIndex < m_oGame.m_afAnturaEnterTriggers.Length && M_oGameTime.Time <= m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex]) {
+                if (m_oGame.IsInIdle()) {
+                    ++m_oGame.m_iAnturaTriggersIndex;
+                    m_oGame.m_oAntura.GetComponent<AnturaBehaviour>().EnterScene(m_oGame.m_fAnturaAnimDuration);
+                    m_oGame.StartCoroutine(Utils.LaunchDelay(m_oGame.m_fAnturaAnimDuration / 6, m_oGame.m_oRoundManager.ShuffleLetters, m_oGame.m_fAnturaAnimDuration / 2));
                 } else {
-                    game.mafAnturaEnterTriggers[game.miAnturaTriggersIndex] -= 3.0f;
+                    m_oGame.m_afAnturaEnterTriggers[m_oGame.m_iAnturaTriggersIndex] -= 3.0f;
                 }
             }
 
-            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+            m_oGame.Context.GetOverlayWidget().SetClockTime(M_oGameTime.Time);
 
 
-            if (!hurryUpSfx)
+            if (!m_bHurryUpSfx)
             {
-                if (gameTime.Time < 4f)
+                if (M_oGameTime.Time < 4f)
                 {
-                    hurryUpSfx = true;
-
-                    timesUpAudioSource = game.Context.GetAudioManager().PlaySound(Sfx.DangerClockLong);
+                    m_bHurryUpSfx = true;
+                    AudioManager.I.PlaySfx(Sfx.DangerClockLong);
                 }
             }
 
-            gameTime.Update(delta);
+            M_oGameTime.Update(_delta);
         }
 
         public void UpdatePhysics(float delta)
@@ -82,24 +80,23 @@ namespace EA4S.MissingLetter
         void OnTimesUp()
         {
             // Time's up!
-            game.mIsTimesUp = true;
-            game.Context.GetOverlayWidget().OnClockCompleted();
-            game.SetCurrentState(game.ResultState);
+            m_oGame.m_bIsTimesUp = true;
+            m_oGame.Context.GetOverlayWidget().OnClockCompleted();
+            m_oGame.SetCurrentState(m_oGame.ResultState);
         }
 
 
         void OnRoundResult(bool _result) {
-            game.OnResult(_result);
-            game.m_RoundManager.NewRound();
+            m_oGame.OnResult(_result);
+            m_oGame.m_oRoundManager.NewRound();
         }
 
 
         #region VARS
 
-        CountdownTimer gameTime;
-        MissingLetterGame game;
-        IAudioSource timesUpAudioSource;
-        bool hurryUpSfx;
+        CountdownTimer M_oGameTime;
+        MissingLetterGame m_oGame;
+        bool m_bHurryUpSfx;
 
         #endregion
     }

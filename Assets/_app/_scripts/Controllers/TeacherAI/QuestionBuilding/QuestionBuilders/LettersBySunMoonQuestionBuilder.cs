@@ -10,12 +10,14 @@ namespace EA4S
         // journey: enabled
 
         private int nPacks;
-        SelectionSeverity severity;
+        private QuestionBuilderParameters parameters;
 
-        public LettersBySunMoonQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
+        public LettersBySunMoonQuestionBuilder(int nPacks, QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
-            this.severity = severity;
+            this.parameters = parameters;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -30,13 +32,13 @@ namespace EA4S
             int nPerType = nPacks / 2;
 
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun),
-                new SelectionParameters(severity, nPerType)
+                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Sun, parameters.letterFilters),
+                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon),
-                new SelectionParameters(severity, nPerType)
+                () => teacher.wordHelper.GetLettersBySunMoon(Db.LetterDataSunMoon.Moon, parameters.letterFilters),
+                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             foreach (var data in list_choice1)

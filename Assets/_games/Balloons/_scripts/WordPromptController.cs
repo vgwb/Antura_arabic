@@ -18,7 +18,7 @@ namespace EA4S.Balloons
         }
 
 
-        public void DisplayWord(List<LL_LetterData> wordLetters)
+        public void DisplayWord(List<ILivingLetterData> wordLetters)
         {
             for (int i = 0; i < wordLetters.Count; i++)
             {

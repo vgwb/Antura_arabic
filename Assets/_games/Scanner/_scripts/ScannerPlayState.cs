@@ -19,7 +19,7 @@ namespace EA4S.Scanner
 		{
 			game.ResetScore();
 
-			game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+			AudioManager.I.PlayMusic(Music.MainTheme);
 
 			game.roundsManager.Initialize();
 			game.roundsManager.onRoundsFinished += OnRoundsFinished;

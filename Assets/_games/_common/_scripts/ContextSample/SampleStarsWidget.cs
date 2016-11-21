@@ -11,13 +11,17 @@ namespace EA4S
             // WARNING: temp hack. Star Flowers must be instanced and active to work.
             // Add Star flowers to Global UI
 
-            StarFlowers.I.gameObject.SetActive(true);
-            StarFlowers.I.Show(stars);
+//            StarFlowers.I.gameObject.SetActive(true);
+//            StarFlowers.I.Show(stars);
+
+            GameResultUI.ShowEndgameResult(stars);
         }
 
         public void Hide()
         {
-            StarFlowers.I.gameObject.SetActive(false);
+//            StarFlowers.I.gameObject.SetActive(false);
+
+            GameResultUI.HideEndgameResult();
         }
     }
 }

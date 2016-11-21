@@ -1625,10 +1625,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e78d0579d8bde45abacb621dc3b425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TMP_text: {fileID: 0}
   rigidBody: {fileID: 0}
   boxCollider: {fileID: 0}
   droppedZone: {fileID: 0}
+  letterObjectView: {fileID: 0}
 --- !u!114 &114000010582908254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1775,12 +1775,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTransform: {fileID: 0}
-  Lable: {fileID: 114000010582908254}
+  contentTransform: {fileID: 0}
+  textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000012689547346}
-  maxSize: 1.5
+  Scale: 1
   normalGraphics: []
   limblessGraphics: []
   poofPrefab: {fileID: 0}
+  DancingSpeed: 1
 --- !u!137 &137000010926566610
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

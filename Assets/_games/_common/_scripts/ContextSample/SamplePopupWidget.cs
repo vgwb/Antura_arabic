@@ -101,7 +101,7 @@ namespace EA4S
 
         public void SetWord(LL_WordData data)
         {
-            WidgetPopupWindow.I.SetWord(data.Key, ((LL_WordData)data).Data.Arabic);
+            WidgetPopupWindow.I.SetWord(data.Id, ((LL_WordData)data).Data.Arabic);
         }
     }
 }

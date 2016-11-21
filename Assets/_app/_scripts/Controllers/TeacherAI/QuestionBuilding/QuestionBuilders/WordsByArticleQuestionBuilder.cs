@@ -10,12 +10,17 @@ namespace EA4S
         // journey: enabled
 
         private int nPacks;
-        SelectionSeverity severity;
+        private QuestionBuilderParameters parameters;
 
-        public WordsByArticleQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
+        public WordsByArticleQuestionBuilder(int nPacks, QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
-            this.severity = severity;
+            this.parameters = parameters;
+
+            // Forced parameters
+            this.parameters.wordFilters.excludeArticles = false;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -30,13 +35,13 @@ namespace EA4S
             int nPerType = nPacks / 2;
 
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative),
-                new SelectionParameters(severity, nPerType)
+                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative, parameters.wordFilters),
+                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney:parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.None),
-                new SelectionParameters(severity, nPerType)
+                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.None, parameters.wordFilters),
+                new SelectionParameters(parameters.wrongSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             foreach (var wordWithArticle in list_choice1)

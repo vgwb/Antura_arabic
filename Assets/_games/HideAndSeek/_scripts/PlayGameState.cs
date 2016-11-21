@@ -34,7 +34,8 @@ namespace EA4S.HideAndSeek
             
             hurryUpSfx = false;
 
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            //game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+            AudioManager.I.PlayMusic(Music.MainTheme);
 
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
@@ -51,8 +52,9 @@ namespace EA4S.HideAndSeek
                 timesUpAudioSource.Stop();
 
             gameTime.Stop();
-            
-            game.Context.GetAudioManager().StopMusic();
+
+            //game.Context.GetAudioManager().StopMusic();
+            AudioManager.I.StopMusic();
 
             game.inGame = false;
             game.GameManager.enabled = false;

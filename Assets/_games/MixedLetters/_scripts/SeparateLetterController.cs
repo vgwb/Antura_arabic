@@ -9,17 +9,33 @@ namespace EA4S.MixedLetters
         // How fast the letter rotates when the rotate button is pressed, in degrees per second:
         private const float ROTATION_SPEED = 720f;
 
-        public TMP_Text TMP_text;
         public Rigidbody rigidBody;
         public BoxCollider boxCollider;
 
-        private bool isBeingDragged = false;
-        private bool isDraggable = false;
         private float cameraDistance;
         private LL_LetterData letterData;
+
+        [HideInInspector]
         public DropZoneController droppedZone;
 
-        private bool isRotating;
+        public LetterObjectView letterObjectView;
+
+        private enum State
+        {
+            NonInteractive, Draggable, Dragging, Rotating
+        }
+
+        private State state;
+
+        void Awake()
+        {
+            foreach (Collider collider in GetComponentsInChildren<Collider>())
+            {
+                collider.enabled = false;
+            }
+
+            boxCollider.enabled = true;
+        }
 
         void Start()
         {
@@ -29,11 +45,13 @@ namespace EA4S.MixedLetters
             inputManager.onPointerUp += OnPointerUp;
 
             cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
+
+            letterObjectView.State = LLAnimationStates.LL_limbless;
         }
 
         private void OnPointerDown()
         {
-            if (!isBeingDragged && isDraggable)
+            if (state == State.Draggable)
             {
                 Ray ray = Camera.main.ScreenPointToRay(MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition);
 
@@ -41,7 +59,7 @@ namespace EA4S.MixedLetters
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.collider == boxCollider)
                 {
-                    isBeingDragged = true;
+                    state = State.Dragging;
                     SetIsKinematic(true);
 
                     if (transform.position.z != DropZoneController.DropZoneZ)
@@ -64,10 +82,10 @@ namespace EA4S.MixedLetters
 
         private void OnPointerDrag()
         {
-            if (isBeingDragged)
+            if (state == State.Dragging)
             {
                 Vector2 lastPointerPosition = MixedLettersConfiguration.Instance.Context.GetInputManager().LastPointerPosition;
-                Vector3 pointerPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y, cameraDistance));
+                Vector3 pointerPosInWorldUnits = Camera.main.ScreenToWorldPoint(new Vector3(lastPointerPosition.x, lastPointerPosition.y, Mathf.Abs(transform.position.z - Camera.main.transform.position.z)));
 
                 transform.position = pointerPosInWorldUnits;
             }
@@ -75,7 +93,7 @@ namespace EA4S.MixedLetters
 
         private void OnPointerUp()
         {
-            if (isBeingDragged)
+            if (state == State.Dragging)
             {
                 if (DropZoneController.chosenDropZone != null)
                 {
@@ -91,13 +109,13 @@ namespace EA4S.MixedLetters
                     SetIsKinematic(false);
                 }
 
-                isBeingDragged = false;
+                state = State.Draggable;
             }
         }
 
         public bool IsRotating()
         {
-            return isRotating;
+            return state == State.Rotating;
         }
 
         void FixedUpdate()
@@ -110,14 +128,25 @@ namespace EA4S.MixedLetters
             rigidBody.isKinematic = isKinematic;
         }
 
+        public void Vanish()
+        {
+            letterObjectView.Poof();
+            Disable();
+        }
+
         public void SetRotation(Vector3 eulerAngles)
         {
             transform.localRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
         }
 
-        public void SetDraggable(bool isDraggable)
+        public void SetDraggable()
         {
-            this.isDraggable = isDraggable;
+            state = State.Draggable;
+        }
+
+        public void SetNonInteractive()
+        {
+            state = State.NonInteractive;
         }
 
         public void AddForce(Vector3 force, ForceMode forceMode)
@@ -127,12 +156,12 @@ namespace EA4S.MixedLetters
 
         public void RotateCCW()
         {
-            StartCoroutine(RotateCoroutine());
+            StartCoroutine(RotateCCWCoroutine());
         }
 
-        private IEnumerator RotateCoroutine()
+        private IEnumerator RotateCCWCoroutine()
         {
-            isRotating = true;
+            state = State.Rotating;
 
             float currentZRotation = transform.localEulerAngles.z;
             float targetZRotation = currentZRotation + 90;
@@ -145,31 +174,29 @@ namespace EA4S.MixedLetters
 
                 if (currentZRotation >= targetZRotation)
                 {
-                    transform.localRotation = Quaternion.Euler(0, 0, targetZRotation % 360);
+                    SetRotation(new Vector3(0, 0, targetZRotation % 360));
                     break;
                 }
 
                 else
                 {
-                    transform.localRotation = Quaternion.Euler(0, 0, currentZRotation);
+                    SetRotation(new Vector3(0, 0, currentZRotation));
                 }
 
                 yield return new WaitForFixedUpdate();
             }
 
-            isRotating = false;
+            state = State.Draggable;
 
             MixedLettersGame.instance.VerifyLetters();
         }
 
         public void Reset()
         {
-            isBeingDragged = false;
-            isDraggable = false;
+            state = State.NonInteractive;
             SetIsKinematic(true);
-            SetRotation(new Vector3(0, 0, 0));
+            SetRotation(new Vector3(0, 180, 0));
             droppedZone = null;
-            isRotating = false;
         }
 
         public void SetPosition(Vector3 position, bool offsetOnZ)
@@ -201,7 +228,7 @@ namespace EA4S.MixedLetters
         public void SetLetter(LL_LetterData letterData)
         {
             this.letterData = letterData;
-            TMP_text.SetText(letterData.TextForLivingLetter);
+            letterObjectView.Init(letterData);
         }
 
         public LL_LetterData GetLetter()

@@ -3,27 +3,24 @@
 namespace EA4S.MissingLetter {
 
     public class MissingLetterTutorialState : IGameState {
-        MissingLetterGame game;
-        float delayTime = 2f;
-        bool suggested = false;
 
-        public MissingLetterTutorialState(MissingLetterGame game) {
-            this.game = game;
+        public MissingLetterTutorialState(MissingLetterGame _game) {
+            this.m_oGame = _game;
         }
 
         public void EnterState() {
-            game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
-            game.m_RoundManager.SetTutorial(true);
-            game.m_RoundManager.NewRound();
-            game.m_RoundManager.onAnswered += OnRoundResult;
+            AudioManager.I.PlayMusic(Music.MainTheme);
+            m_oGame.m_oRoundManager.SetTutorial(true);
+            m_oGame.m_oRoundManager.NewRound();
+            m_oGame.m_oRoundManager.onAnswered += OnRoundResult;
         }
 
 
         public void ExitState() {
             TutorialUI.Clear(true);
-            game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().StopSuggest();
-            game.m_RoundManager.SetTutorial(false);
-            game.m_RoundManager.onAnswered -= OnRoundResult;
+            m_oGame.m_oRoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().StopSuggest();
+            m_oGame.m_oRoundManager.SetTutorial(false);
+            m_oGame.m_oRoundManager.onAnswered -= OnRoundResult;
         }
 
         void OnRoundResult(bool _result)
@@ -31,28 +28,32 @@ namespace EA4S.MissingLetter {
             if (_result)
             {
                 //TODO: tutorial finito ... mostrare qualcosa a livello di UI ?
-                game.SetCurrentState(game.PlayState);
+                m_oGame.SetCurrentState(m_oGame.PlayState);
             }
             else
             {
-                var _LL = game.m_RoundManager.GetCorrectLLObject();
+                var _LL = m_oGame.m_oRoundManager.GetCorrectLLObject();
                 _LL.GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
             }
         }
 
         public void Update(float delta) {
-            delayTime -= delta;
-            if(delayTime < 0 && !suggested)
+            m_fDelayTime -= delta;
+            if(m_fDelayTime < 0 && !m_bSuggested)
             {
-                game.m_RoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().SuggestLetter();
-                Vector3 pos = game.m_RoundManager.GetCorrectLLObject().transform.position + Vector3.back * 0.8f + Vector3.up * 3;
+                m_oGame.m_oRoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
+                Vector3 pos = m_oGame.m_oRoundManager.GetCorrectLLObject().transform.position + Vector3.back * 0.8f + Vector3.up * 3;
                 TutorialUI.ClickRepeat(pos, 90, 1.5f);
-                suggested = true;
+                m_bSuggested = true;
             }
         }
 
         public void UpdatePhysics(float delta) {
 
         }
+
+        MissingLetterGame m_oGame;
+        float m_fDelayTime = 2f;
+        bool m_bSuggested = false;
     }
 }

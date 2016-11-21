@@ -15,104 +15,7 @@ namespace EA4S.MissingLetter
     public class LetterBehaviour : MonoBehaviour
     {
 
-        void Start()
-        {
-            //Assert.IsNotNull<LetterObjectView>(mLetter, "LetterView Not Set in " + name);
-            mCollider = gameObject.GetComponent<Collider>();
-            Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
-            mCollider.enabled = false;
-            mbIsSpeaking = false;
-            mLetter.SetWalkingSpeed(1);
-        }
-
-        public void PlayAnimation(LLAnimationStates animation)
-        {
-            mLetter.SetState(animation);
-        }
-
-        void MoveTo(Vector3 position, float duration, bool IdleAtEnd = true)
-        {
-            PlayAnimation(LLAnimationStates.LL_walking);
-            mLetter.SetWalkingSpeed(1);
-
-            if (moveTweener != null)
-            {
-                moveTweener.Kill();
-            }
-
-            moveTweener = transform.DOLocalMove(position, duration).OnComplete(
-                delegate () {
-                    if (IdleAtEnd)
-                        PlayAnimation(m_oDefaultIdleAnimation);
-                    if (endTransformToCallback != null)
-                        endTransformToCallback();
-                });
-        }
-
-        void RotateTo(Vector3 rotation, float duration)
-        {
-            if (rotationTweener != null)
-            {
-                rotationTweener.Kill();
-            }
-            rotationTweener = transform.DORotate(rotation, duration);
-        }
-
-        void OnEndLifeCycle()
-        {
-            Reset();
-
-            if (onLetterBecameInvisible != null)
-            {
-                onLetterBecameInvisible(gameObject);
-            }
-        }
-
-        void OnMouseDown()
-        {
-            Debug.Log("Answer Clicked: " + mLetterData.Key);
-
-            Speak();
-
-            if (onLetterClick != null)
-            {
-                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Key));
-                mCollider.enabled = false;
-            }
-        }
-
-        private Vector3 CalculatePos(int _idxPos, int maxItemsInScreen)
-        {
-            float _zeroPosX = mv3CenterPosition.x + 1.0f; // +1.0 beacuse we have some UI Widget at the left
-
-            if (maxItemsInScreen % 2 == 0)
-            {
-                _zeroPosX += mfDistanceBetweenLetters / 2;
-            }
-
-            Vector3 _GoalPos;
-
-            if (_idxPos == 0)
-            {
-                _GoalPos = new Vector3(_zeroPosX, mv3CenterPosition.y, mv3CenterPosition.z);
-            }
-            else
-            {
-                int _n = ((_idxPos + 1) / 2);
-                if (_idxPos % 2 != 0)
-                {
-                    _GoalPos = new Vector3(_zeroPosX - (_n * mfDistanceBetweenLetters), mv3CenterPosition.y, mv3CenterPosition.z);
-                }
-                else
-                {
-                    _GoalPos = new Vector3(_zeroPosX + (_n * mfDistanceBetweenLetters), mv3CenterPosition.y, mv3CenterPosition.z);
-                }
-            }
-            return _GoalPos;
-        }
-
-
-        #region INTERFACE
+        #region API
 
         public void Reset() {
             gameObject.transform.position = mv3StartPosition;
@@ -122,24 +25,16 @@ namespace EA4S.MissingLetter
             LightOff();
         }
 
-        public void SetPositions(Vector3 start, Vector3 center, Vector3 end)
+        public void PlayAnimation(LLAnimationStates _animation)
         {
-            mv3StartPosition = start;
-            mv3CenterPosition = center;
-            mv3EndPosition = end;
+            mLetter.SetState(_animation);
         }
 
-        public ILivingLetterData LetterData
+        public void SetPositions(Vector3 _start, Vector3 _center, Vector3 _end)
         {
-            get
-            {
-                return mLetterData;
-            }
-            set
-            {
-                mLetterData = value;
-                mLetter.Init(value);
-            }
+            mv3StartPosition = _start;
+            mv3CenterPosition = _center;
+            mv3EndPosition = _end;
         }
 
         public void Refresh()
@@ -228,17 +123,16 @@ namespace EA4S.MissingLetter
 
         public void Speak()
         {
-            Debug.Log("Speaking the word: " + mLetterData.Key);
             if (mLetterData != null && !mbIsSpeaking)
             {
                 mbIsSpeaking = true;
                 if (mLetterData.DataType == LivingLetterDataType.Letter)
                 {
-                    AudioManager.I.PlayLetter(mLetterData.Key);
+                    AudioManager.I.PlayLetter(mLetterData.Id);
                 }
                 else
                 {
-                    AudioManager.I.PlayWord(mLetterData.Key);
+                    AudioManager.I.PlayWord(mLetterData.Id);
                 }
                 StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
             }
@@ -256,17 +150,15 @@ namespace EA4S.MissingLetter
         public void SuggestLetter()
         {
             PlayAnimation(LLAnimationStates.LL_dancing);
-            //mLetter.DoHighFive();
             LightOn();
         }
-
-        
+      
         public void LightOn() {
             if (spotLight == null) {
                 spotLight = new GameObject("SpotLight");
 
-                spotLight.transform.position = gameObject.transform.position + Vector3.up * 8 + Vector3.back * 6;
-                spotLight.transform.Rotate(Vector3.right, 50);
+                spotLight.transform.position = gameObject.transform.position + Vector3.up * 12 + Vector3.back * 5;
+                spotLight.transform.Rotate(Vector3.right, 65);
                 spotLight.transform.parent = gameObject.transform;
                 Light cSpotLight = spotLight.AddComponent<Light>();
                 cSpotLight.type = LightType.Spot;
@@ -280,8 +172,7 @@ namespace EA4S.MissingLetter
             if (spotLight != null) {
                 Destroy(spotLight);
                 spotLight = null;
-            }
-                
+            }              
         }
 
         public void StopSuggest()
@@ -291,8 +182,97 @@ namespace EA4S.MissingLetter
 
         #endregion
 
-        #region VARS
+        #region PRIVATE_FUNCTION
+        void Start()
+        {
+            mCollider = gameObject.GetComponent<Collider>();
+            Assert.IsNotNull<Collider>(mCollider, "Collider Not Set in " + name);
+            mCollider.enabled = false;
+            mbIsSpeaking = false;
+            mLetter.SetWalkingSpeed(1);
+        }
 
+        void MoveTo(Vector3 _position, float _duration, bool _IdleAtEnd = true)
+        {
+            PlayAnimation(LLAnimationStates.LL_walking);
+            mLetter.SetWalkingSpeed(1);
+
+            if (moveTweener != null)
+            {
+                moveTweener.Kill();
+            }
+
+            moveTweener = transform.DOLocalMove(_position, _duration).OnComplete(
+                delegate () {
+                    if (_IdleAtEnd)
+                        PlayAnimation(m_oDefaultIdleAnimation);
+                    if (endTransformToCallback != null)
+                        endTransformToCallback();
+                });
+        }
+
+        void RotateTo(Vector3 _rotation, float _duration)
+        {
+            if (rotationTweener != null)
+            {
+                rotationTweener.Kill();
+            }
+            rotationTweener = transform.DORotate(_rotation, _duration);
+        }
+
+        void OnEndLifeCycle()
+        {
+            Reset();
+
+            if (onLetterBecameInvisible != null)
+            {
+                onLetterBecameInvisible(gameObject);
+            }
+        }
+
+        void OnMouseDown()
+        {
+            Speak();
+
+            if (onLetterClick != null)
+            {
+                StartCoroutine(Utils.LaunchDelay(0.2f, onLetterClick, mLetterData.Id));
+                mCollider.enabled = false;
+            }
+        }
+
+        private Vector3 CalculatePos(int _idxPos, int _maxItemsInScreen)
+        {
+            float _zeroPosX = mv3CenterPosition.x + 1.0f; // +1.0 beacuse we have some UI Widget at the left
+
+            if (_maxItemsInScreen % 2 == 0)
+            {
+                _zeroPosX += mfDistanceBetweenLetters / 2;
+            }
+
+            Vector3 _GoalPos;
+
+            if (_idxPos == 0)
+            {
+                _GoalPos = new Vector3(_zeroPosX, mv3CenterPosition.y, mv3CenterPosition.z);
+            }
+            else
+            {
+                int _n = ((_idxPos + 1) / 2);
+                if (_idxPos % 2 != 0)
+                {
+                    _GoalPos = new Vector3(_zeroPosX - (_n * mfDistanceBetweenLetters), mv3CenterPosition.y, mv3CenterPosition.z);
+                }
+                else
+                {
+                    _GoalPos = new Vector3(_zeroPosX + (_n * mfDistanceBetweenLetters), mv3CenterPosition.y, mv3CenterPosition.z);
+                }
+            }
+            return _GoalPos;
+        }
+        #endregion
+
+        #region VARS
         private List<Vector3> positions = new List<Vector3>();
 
         private Tweener moveTweener;
@@ -301,6 +281,19 @@ namespace EA4S.MissingLetter
 
         private GameObject spotLight;
         private bool mbIsSpeaking;
+
+        public ILivingLetterData LetterData
+        {
+            get
+            {
+                return mLetterData;
+            }
+            set
+            {
+                mLetterData = value;
+                mLetter.Init(value);
+            }
+        }
 
         public LetterObjectView mLetter;
 
@@ -326,8 +319,6 @@ namespace EA4S.MissingLetter
 
         public LLAnimationStates m_oDefaultIdleAnimation { get; set; }
         #endregion
-
-
 
     }
 }

@@ -28,15 +28,15 @@ namespace EA4S.Log {
         #region Proxy From Minigame log manager provider To App Log Intellingence
 
         protected internal void LogMinigameScore(MiniGameCode miniGameCode, float score) {
-            AppManager.Instance.Teacher.logIntelligence.LogMiniGameScore(miniGameCode, score);
+            AppManager.Instance.Teacher.logAI.LogMiniGameScore(miniGameCode, score);
         }
         
-        protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.PlayResultParameters> resultsList) {
-            AppManager.Instance.Teacher.logIntelligence.LogPlay(Session, playSession, miniGameCode, resultsList);
+        protected internal void LogPlay(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.PlayResultParameters> resultsList) {
+            AppManager.Instance.Teacher.logAI.LogPlay(Session, playSession, miniGameCode, resultsList);
         }
 
-        protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogIntelligence.LearnResultParameters> resultsList) {
-            AppManager.Instance.Teacher.logIntelligence.LogLearn(Session, playSession, miniGameCode, resultsList);
+        protected internal void LogLearn(string playSession, MiniGameCode miniGameCode, List<Teacher.LogAI.LearnResultParameters> resultsList) {
+            AppManager.Instance.Teacher.logAI.LogLearn(Session, playSession, miniGameCode, resultsList);
         }
 
         #endregion
@@ -48,7 +48,7 @@ namespace EA4S.Log {
         /// <param name="playSessionId">The play session identifier.</param>
         /// <param name="score">The score.</param>
         public void LogPlaySessionScore(string playSessionId, float score) {
-            AppManager.Instance.Teacher.logIntelligence.LogPlaySessionScore(playSessionId, score);
+            AppManager.Instance.Teacher.logAI.LogPlaySessionScore(playSessionId, score);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace EA4S.Log {
         /// <param name="learningBlock">The learning block.</param>
         /// <param name="score">The score.</param>
         public void LogLearningBlockScore(int learningBlock, float score) {
-            AppManager.Instance.Teacher.logIntelligence.LogLearningBlockScore(learningBlock, score);
+            AppManager.Instance.Teacher.logAI.LogLearningBlockScore(learningBlock, score);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace EA4S.Log {
         /// <param name="infoEvent">The information event.</param>
         /// <param name="parametersString">The parameters string.</param>
         public void LogInfo(InfoEvent infoEvent, string parametersString = "") {
-            AppManager.Instance.Teacher.logIntelligence.LogInfo(Session, infoEvent, parametersString);
+            AppManager.Instance.Teacher.logAI.LogInfo(Session, infoEvent, parametersString);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace EA4S.Log {
         /// </summary>
         /// <param name="mood">The mood.</param>
         public void LogMood(int mood) {
-            AppManager.Instance.Teacher.logIntelligence.LogMood(mood);
+            AppManager.Instance.Teacher.logAI.LogMood(mood);
         }
 
         public void StartApp() {

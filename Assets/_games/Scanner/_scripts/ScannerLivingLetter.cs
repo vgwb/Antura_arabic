@@ -7,11 +7,11 @@ namespace EA4S.Scanner
 
 	public class ScannerLivingLetter : MonoBehaviour {
 
-		private enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Angry, Happy };
+		public enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Lost, Won, Happy, Sad };
 		public GameObject livingLetter;
 		public float slideSpeed = 2f;
 		public bool facingCamera;
-		private LLStatus status = LLStatus.None;
+		public LLStatus status = LLStatus.None;
 		private float turnAngle;
 		private Vector3 startingPosition;
 		private Quaternion startingRotation;
@@ -21,23 +21,21 @@ namespace EA4S.Scanner
 		public event Action onReset;
 
 
-		// Use this for initialization
-		void Start () 
+		void Start()
 		{
 			letterObjectView = livingLetter.GetComponent<LetterObjectView>();
-
 			startingPosition = transform.position;
 			startingRotation = letterObjectView.transform.rotation;
+
 			Reset();
-
 		}
-
 
 		public void Reset()
 		{
 			StopAllCoroutines();
-			transform.position = startingPosition;
+
 			letterObjectView.transform.rotation = startingRotation;
+			transform.position = startingPosition;
 
 			turnAngle = facingCamera ? 180 : 0;
 			letterObjectView.SetState(LLAnimationStates.LL_still);
@@ -55,12 +53,12 @@ namespace EA4S.Scanner
 			{
 				transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2,0);
 			}
-			else if (status == LLStatus.Happy)
+			else if (status == LLStatus.Won)
 			{
 				// TODO fly then Reset
 				Reset();
 			}
-			else if (status == LLStatus.Angry)
+			else if (status == LLStatus.Lost)
 			{
 				// Poof then Reset
 				Reset();
@@ -75,23 +73,28 @@ namespace EA4S.Scanner
 
 		public void RoundLost()
 		{
-			status = LLStatus.Angry;
+			StopAllCoroutines();
+			letterObjectView.SetState(LLAnimationStates.LL_idle);
+			status = LLStatus.Lost;
 		}
 
-		public void Happy()
+		public void RoundWon()
+		{
+
+			status = LLStatus.Won;
+		}
+
+		public void CorrectMove()
+		{
+			StopAllCoroutines();
+//			letterObjectView.SetState(LLAnimationStates.LL_idle);
+			letterObjectView.DoHorray();
+		}
+
+		public void WrongMove()
 		{
 			StopAllCoroutines();
 			letterObjectView.SetState(LLAnimationStates.LL_idle);
-			letterObjectView.DoHorray();
-			status = LLStatus.Happy;
-		}
-
-		public void Sad()
-		{
-			letterObjectView.StopAllCoroutines();
-			letterObjectView.SetState(LLAnimationStates.LL_idle);
-			letterObjectView.DoAngry();
-			letterObjectView.Poof();
 		}
 
 

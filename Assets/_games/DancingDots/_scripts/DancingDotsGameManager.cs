@@ -241,6 +241,8 @@ namespace EA4S.DancingDots
 			
 			numberOfRoundsPlayed++;
 
+			dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
+
 			splats.Clear();
 			dancingDotsLL.HideRainbow();
 
@@ -374,6 +376,8 @@ namespace EA4S.DancingDots
 		{
 			AudioManager.I.PlayDialog("comment_welldone");
 			dancingDotsLL.ShowRainbow();
+			dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
+
 
 			if (roundWon) 
 			{			
@@ -427,6 +431,7 @@ namespace EA4S.DancingDots
             
 
 			numberOfFailedMoves++;
+			dancingDotsLL.letterObjectView.SetDancingSpeed(1f - numberOfFailedMoves * 0.25f);
 			GameObject splat = (GameObject) Instantiate(splatPrefab);
 			splat.transform.parent = splatParent;
 			splat.transform.localScale = new Vector3(1f,1f,1f);
@@ -445,13 +450,15 @@ namespace EA4S.DancingDots
 
 		IEnumerator CheckNewRound()
 		{
+			dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
+
 			if (numberOfRoundsPlayed >= numberOfRounds)
 			{
 				EndGame();
 			}
 			else
 			{
-				dancingDotsLL.letterObjectView.DoDancingTwirl(null);
+				dancingDotsLL.letterObjectView.DoTwirl(null);
 				foreach (DancingDotsSplat splat in splats) splat.CleanSplat();
 				yield return new WaitForSeconds(1f);
 				StartRound();
@@ -468,6 +475,7 @@ namespace EA4S.DancingDots
 
 			StartCoroutine(PoofOthers(dragableDots));
 			StartCoroutine(PoofOthers(dragableDiacritics));
+			dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
 			dancingDotsLL.letterObjectView.DoDancingLose(); // ("FallAndStand");
 			yield return new WaitForSeconds(1.5f);
 			dancingDotsLL.letterObjectView.DoSmallJump();
@@ -492,6 +500,7 @@ namespace EA4S.DancingDots
 
 		private void EndGame()
 		{
+			dancingDotsLL.letterObjectView.DoDancingWin();
 			StartCoroutine(EndGame_Coroutine());
 		}
 

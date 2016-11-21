@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ModularFramework.Core;
 using ModularFramework.Helpers;
+using ArabicSupport;
 using EA4S;
 
 namespace EA4S.MakeFriends
@@ -67,6 +68,10 @@ namespace EA4S.MakeFriends
                 }
             }
         }
+
+        private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
+
+        private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
 
         public MakeFriendsIntroductionState IntroductionState { get; private set; }
 
@@ -181,6 +186,10 @@ namespace EA4S.MakeFriends
             wordData2 = words[1] as LL_WordData;
             commonLetters = question.GetCorrectAnswers().ToList();
             uncommonLetters = question.GetWrongAnswers().ToList();
+
+            Debug.Log("[New Round] Word 1: " + ArabicFixer.Fix(wordData1.Data.Arabic) + ", Word 2: " + ArabicFixer.Fix(wordData2.Data.Arabic)
+                + "\nCommon: " + string.Join(" / ", commonLetters.Select(x => x.TextForLivingLetter.ToString()).Reverse().ToArray())
+                + ", Uncommon: " + string.Join(" / ", uncommonLetters.Select(x => x.TextForLivingLetter.ToString()).Reverse().ToArray()));
         }
 
         private void SetLetterChoices()
@@ -204,7 +213,7 @@ namespace EA4S.MakeFriends
                     {
                         letter = uncommonLetters[i] as LL_LetterData;
                         //Debug.Log("Considering as choice: " + letter.TextForLivingLetter);
-                        if (choiceLetters.Exists(x => x.Key == letter.Key))
+                        if (choiceLetters.Exists(x => x.Id == letter.Id))
                         {
                             letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement();
                             //Debug.Log("Using random choice instead: " + letter);
@@ -215,7 +224,7 @@ namespace EA4S.MakeFriends
                         letter = AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement();
                         //Debug.Log("No more word letters, using random: " + letter.TextForLivingLetter);
                     }
-                } while (choiceLetters.Exists(x => x.Key == letter.Key));
+                } while (choiceLetters.Exists(x => x.Id == letter.Id));
                 choiceLetters.Add(letter);
                 //Debug.Log("Added " + letter.TextForLivingLetter + " to choices");
             }
@@ -258,7 +267,7 @@ namespace EA4S.MakeFriends
         public void OnRoundResultPressed()
         {
             GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
-            WidgetPopupWindow.I.Close();
+            Popup.Hide();
             Play();
         }
 
@@ -266,14 +275,14 @@ namespace EA4S.MakeFriends
         {
             letterPicker.BlockForSeconds(2f);
 
-            if (commonLetters.Exists(x => x.Key == letterChoice.letterData.Key))
+            if (commonLetters.Exists(x => x.Id == letterChoice.letterData.Id))
             {
                 letterChoice.State = LetterChoiceController.ChoiceState.CORRECT;
                 //letterChoice.SpawnBalloon(true);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterHappy);
                 dropZone.AnimateCorrect();
 
-                if (!correctChoices.Exists(x => x.Key == letterChoice.letterData.Key))
+                if (!correctChoices.Exists(x => x.Id == letterChoice.letterData.Id))
                 {
                     correctChoices.Add(letterChoice.letterData);
                 }
@@ -338,7 +347,11 @@ namespace EA4S.MakeFriends
                 FriendsZonesManager.instance.IncrementCurrentZone();
                 yield return new WaitForSeconds(winDelay2);
                 HideDropZone();
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
+                //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
+                Popup.Show();
+                Popup.SetButtonCallback(OnRoundResultPressed);
+                Popup.SetTitle(TextID.WELL_DONE);
+                Popup.SetMark(true, true);
             }
             else
             {
@@ -347,7 +360,11 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Lose);
                 yield return new WaitForSeconds(loseDelay);
                 HideDropZone();
-                WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
+                //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
+                Popup.Show();
+                Popup.SetButtonCallback(OnRoundResultPressed);
+                Popup.SetTitle(TextID.GAME_RESULT_RETRY);
+                Popup.SetMark(true, false);
             }
         }
 

@@ -38,7 +38,7 @@ namespace EA4S
 
         public Transform boneToScaleTransform;
 
-        public TMP_Text Lable;
+        public TMP_Text Label;
         public TextMeshPro Drawing;
         public SpriteRenderer ImageSprite;
 
@@ -59,6 +59,7 @@ namespace EA4S
         LLAnimationStates backState = LLAnimationStates.LL_idle;
         bool hasToGoBackState = false;
         bool inIdleAlternative = false;
+        bool started = false;
 
         #endregion
 
@@ -67,29 +68,21 @@ namespace EA4S
         /// Gets the data.
         /// </summary>
         ILivingLetterData data;
-        public ILivingLetterData Data
-        {
-            get
-            {
-                if (data == null)
-                    InitAsDummy();
+        public ILivingLetterData Data {
+            get {
                 return data;
             }
-            private set
-            {
+            private set {
                 data = value;
 
                 OnModelChanged();
             }
         }
 
-        public LLAnimationStates State
-        {
+        public LLAnimationStates State {
             get { return state; }
-            set
-            {
-                if (state != value)
-                {
+            set {
+                if (state != value) {
                     var oldState = state;
                     state = value;
                     OnStateChanged(oldState, state);
@@ -99,10 +92,8 @@ namespace EA4S
         }
         private LLAnimationStates state = LLAnimationStates.LL_idle;
 
-        Animator animator
-        {
-            get
-            {
+        Animator animator {
+            get {
                 if (!anim)
                     anim = GetComponentInChildren<Animator>();
                 return anim;
@@ -120,15 +111,12 @@ namespace EA4S
         {
             startScale = transform.localScale;
             startTextScale = textTransform.sizeDelta;
+            OnModelChanged();
         }
 
-        /// <summary>
-        /// Fallback function to set dummy data to letter if no data is provided.
-        /// </summary>
-        void InitAsDummy()
+        void Start()
         {
-            var letterData = AppManager.Instance.DB.GetLetterDataById("alef");
-            Init(new LL_LetterData(letterData.GetId()));
+            started = true;
         }
 
         /// <summary>
@@ -136,28 +124,28 @@ namespace EA4S
         /// </summary>
         void OnModelChanged()
         {
-            if (Data == null)
-            {
+            if (Data == null) {
                 ImageSprite.enabled = false;
                 Drawing.enabled = false;
-                Lable.enabled = false;
-            }
-            else
-            {
-                if (Data.DataType == LivingLetterDataType.Image)
-                {
+                Label.enabled = false;
+            } else {
+                if (Data.DataType == LivingLetterDataType.Image) {
                     Drawing.text = Data.DrawingCharForLivingLetter;
                     Drawing.enabled = true;
+
+                    LL_ImageData data = (LL_ImageData)Data;
+                    if (data.Data.Category == Db.WordDataCategory.Color) {
+                        Drawing.color = GenericUtilities.GetColorFromString(data.Data.Value);
+                    }
+
                     //ImageSprite.sprite = Data.DrawForLivingLetter;
                     //ImageSprite.enabled = true;
-                    Lable.enabled = false;
-                }
-                else
-                {
+                    Label.enabled = false;
+                } else {
                     ImageSprite.enabled = false;
                     Drawing.enabled = false;
-                    Lable.enabled = true;
-                    Lable.text = Data.TextForLivingLetter;
+                    Label.enabled = true;
+                    Label.text = Data.TextForLivingLetter;
                 }
             }
         }
@@ -189,27 +177,26 @@ namespace EA4S
             animator.SetBool("tickling", false);
             animator.SetBool("idle", false);
 
-            if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless)
-            {
+            if (_oldState != LLAnimationStates.LL_limbless && _newState == LLAnimationStates.LL_limbless) {
                 // going limbless
-                Poof();
+                if (started)
+                    Poof();
 
                 for (int i = 0; i < normalGraphics.Length; ++i)
                     normalGraphics[i].SetActive(false);
                 for (int i = 0; i < limblessGraphics.Length; ++i)
                     limblessGraphics[i].SetActive(true);
-            }
-            else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless)
-            {
-                Poof();
+            } else if (_oldState == LLAnimationStates.LL_limbless && _newState != LLAnimationStates.LL_limbless) {
+                if (started)
+                    Poof();
+
                 for (int i = 0; i < normalGraphics.Length; ++i)
                     normalGraphics[i].SetActive(true);
                 for (int i = 0; i < limblessGraphics.Length; ++i)
                     limblessGraphics[i].SetActive(false);
             }
 
-            switch (_newState)
-            {
+            switch (_newState) {
                 case LLAnimationStates.LL_idle:
                 case LLAnimationStates.LL_still:
                     animator.SetBool("idle", true);
@@ -240,12 +227,10 @@ namespace EA4S
 
         void Update()
         {
-            if (State == LLAnimationStates.LL_idle)
-            {
+            if (State == LLAnimationStates.LL_idle) {
                 idleTimer -= Time.deltaTime;
 
-                if (idleTimer < 0.0f)
-                {
+                if (idleTimer < 0.0f) {
                     idleTimer = Random.Range(3, 8);
                     animator.SetFloat("random", Random.value);
                     animator.SetTrigger("doAlternative");
@@ -267,8 +252,7 @@ namespace EA4S
         {
             //if (Scale != lastScale && Scale >= 1.0f)
             {
-                if (contentTransform)
-                {
+                if (contentTransform) {
                     boneToScaleTransform.localScale = new Vector3(startScale.x, startScale.y, startScale.z * Scale);
                     contentTransform.localScale = new Vector3(1 / Scale, 1, 1);
                     textTransform.sizeDelta = new Vector3(startTextScale.x * Scale, startTextScale.y);
@@ -290,11 +274,9 @@ namespace EA4S
         }
 
         bool crouch;
-        public bool Crouching
-        {
+        public bool Crouching {
             get { return crouch; }
-            set
-            {
+            set {
                 crouch = value;
                 animator.SetBool("crouch", value);
 
@@ -303,11 +285,9 @@ namespace EA4S
 
         bool jumping;
         bool falling;
-        public bool Falling
-        {
+        public bool Falling {
             get { return falling; }
-            set
-            {
+            set {
                 falling = value;
                 animator.SetBool("falling", value);
 
@@ -315,11 +295,9 @@ namespace EA4S
         }
 
         bool fear;
-        public bool HasFear
-        {
+        public bool HasFear {
             get { return fear; }
-            set
-            {
+            set {
                 fear = value;
                 animator.SetBool("fear", value);
             }
@@ -327,14 +305,11 @@ namespace EA4S
 
 
         bool hooraying;
-        public bool Horraying
-        {
+        public bool Horraying {
             get { return hooraying; }
-            set
-            {
+            set {
                 animator.SetBool("holdHorray", value);
-                if (value)
-                {
+                if (value) {
                     DoHorray();
                 }
                 hooraying = value;
@@ -369,16 +344,14 @@ namespace EA4S
         public void DoHorray()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle))
-            {
+                (State != LLAnimationStates.LL_idle)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
                 hasToGoBackState = true;
             }
 
-            if (!hooraying)
-            {
+            if (!hooraying) {
                 if (inIdleAlternative)
                     animator.SetTrigger("stopAlternative");
                 animator.SetTrigger("doHorray");
@@ -388,8 +361,7 @@ namespace EA4S
         public void DoChestStop()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle))
-            {
+                (State != LLAnimationStates.LL_idle)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -404,8 +376,7 @@ namespace EA4S
         public void DoAngry()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle))
-            {
+                (State != LLAnimationStates.LL_idle)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -421,8 +392,7 @@ namespace EA4S
         public void DoHighFive()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle))
-            {
+                (State != LLAnimationStates.LL_idle)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -439,8 +409,7 @@ namespace EA4S
         /// </summary>
         void OnActionCompleted()
         {
-            if (hasToGoBackState)
-            {
+            if (hasToGoBackState) {
                 hasToGoBackState = false;
                 SetState(backState);
             }
@@ -466,13 +435,12 @@ namespace EA4S
         {
             DoTwirl(onLetterShowingBack);
         }
-       
+
         public void DoTwirl(System.Action onLetterShowingBack)
         {
             if ((State != LLAnimationStates.LL_still) &&
                 (State != LLAnimationStates.LL_idle) &&
-                (State != LLAnimationStates.LL_dancing))
-            {
+                (State != LLAnimationStates.LL_dancing)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -496,8 +464,7 @@ namespace EA4S
         {
             if ((State != LLAnimationStates.LL_still) &&
                 (State != LLAnimationStates.LL_idle) &&
-                (State != LLAnimationStates.LL_walking))
-            {
+                (State != LLAnimationStates.LL_walking)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -525,8 +492,7 @@ namespace EA4S
         public void DoSmallJump()
         {
             if ((State != LLAnimationStates.LL_still) &&
-                (State != LLAnimationStates.LL_idle))
-            {
+                (State != LLAnimationStates.LL_idle)) {
                 if (!hasToGoBackState)
                     backState = State;
                 SetState(LLAnimationStates.LL_still);
@@ -554,8 +520,7 @@ namespace EA4S
 
         void OnTwirlBack()
         {
-            if (onTwirlCallback != null)
-            {
+            if (onTwirlCallback != null) {
                 onTwirlCallback();
                 onTwirlCallback = null;
             }
@@ -574,6 +539,12 @@ namespace EA4S
         void OnEnable()
         {
             OnStateChanged(state, state);
+            started = true;
+        }
+
+        void OnDisable()
+        {
+            started = false;
         }
 
         void OnDancingStart()

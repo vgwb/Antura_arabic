@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class ThreeSlicesSprite : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;

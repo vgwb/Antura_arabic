@@ -2,17 +2,16 @@
 {
     public class MissingLetterQuestionState : IGameState
     {
-        MissingLetterGame game;
         
-        public MissingLetterQuestionState(MissingLetterGame game)
+        public MissingLetterQuestionState(MissingLetterGame _game)
         {
-            this.game = game;
+            this.M_oGgame = _game;
         }
 
         public void EnterState()
         {
             // Show questions description
-            var popupWidget = game.Context.GetPopupWidget();
+            var popupWidget = M_oGgame.Context.GetPopupWidget();
             popupWidget.Show();
             popupWidget.SetButtonCallback(OnPopupCloseRequested);
             popupWidget.SetMessage("MissingLetter\n Game description", true);
@@ -20,17 +19,17 @@
 
         void OnPopupCloseRequested()
         {
-            game.SetCurrentState(game.TutorialState);
+            M_oGgame.SetCurrentState(M_oGgame.TutorialState);
         }
 
         public void ExitState()
         {
-            game.Context.GetPopupWidget().Hide();
+            M_oGgame.Context.GetPopupWidget().Hide();
         }
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.TutorialState);
+            M_oGgame.SetCurrentState(M_oGgame.TutorialState);
         }
 
         public void Update(float delta)
@@ -41,5 +40,7 @@
         public void UpdatePhysics(float delta)
         {
         }
+
+        MissingLetterGame M_oGgame;
     }
 }

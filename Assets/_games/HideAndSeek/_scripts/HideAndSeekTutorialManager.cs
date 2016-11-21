@@ -55,23 +55,19 @@ namespace EA4S.HideAndSeek
 
         private IEnumerator WaitTutorial()
         {
-            
             var winInitialDelay = 1f;
             yield return new WaitForSeconds(winInitialDelay);
 
-            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Key);
-            
+            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
+
+            buttonRepeater.SetActive(true);
+
             ShowFinger();
-            
-
-
         }
 
         void ShowFinger()
         {
-            timeFinger = Time.time + animDuration + timeToWait;
-
-            Vector3 offset = new Vector3(0f, 3f, -1f);
+            Vector3 offset = new Vector3(0f, 3f, -1.5f);
             Vector3 offsetCentral = new Vector3(0f, 2.5f, -2f);
             Vector3 offsetFirst = new Vector3(0.5f, 2f, -2f);
 
@@ -79,19 +75,21 @@ namespace EA4S.HideAndSeek
             switch (phase)
             {
                 case 0:
-                    TutorialUI.ClickRepeat(ArrayTrees[0].transform.position + offsetFirst, animDuration, 2);
+                    TutorialUI.ClickRepeat(ArrayTrees[0].transform.position + offsetFirst, animDuration, 1);
                     break;
                 case 1:
-                    TutorialUI.ClickRepeat(ArrayLetters[0].transform.position + offset, animDuration, 2);
+                    TutorialUI.ClickRepeat(ArrayLetters[0].transform.position + offset, animDuration, 1);
                     break;
                 case 2:
-                    TutorialUI.ClickRepeat(ArrayTrees[1].transform.position + offsetCentral, animDuration, 2);
+                    TutorialUI.ClickRepeat(ArrayTrees[1].transform.position + offsetCentral, animDuration, 1);
                     break;
                 case 3:
-                    TutorialUI.ClickRepeat(ArrayLetters[1].transform.position + offset, animDuration, 2);
+                    TutorialUI.ClickRepeat(ArrayLetters[1].transform.position + offset, animDuration, 1);
                     break;
 
             }
+
+            timeFinger = Time.time + animDuration + timeToWait;
         }
 
         void MoveObject(int id)
@@ -107,6 +105,7 @@ namespace EA4S.HideAndSeek
                 ArrayTrees[0].GetComponent<CapsuleCollider>().enabled = false;
                 phase = 1;
                 TutorialUI.Clear(false);
+                timeFinger = Time.time + animDuration + timeToWait;
             }
                 
 
@@ -115,6 +114,7 @@ namespace EA4S.HideAndSeek
                 ArrayTrees[1].GetComponent<CapsuleCollider>().enabled = false;
                 phase = 3;
                 TutorialUI.Clear(false);
+                timeFinger = Time.time + animDuration + timeToWait;
             }
                 
         }
@@ -123,13 +123,14 @@ namespace EA4S.HideAndSeek
         {
             letterInAnimation = GetIdFromPosition(id);
             HideAndSeekLetterController script = ArrayLetters[letterInAnimation].GetComponent<HideAndSeekLetterController>();
-            if (script.view.Data.Key == currentQuestion.GetAnswer().Key)
+            if (script.view.Data.Id == currentQuestion.GetAnswer().Id)
             {
                 script.resultAnimation(true);
                 AudioManager.I.PlaySfx(Sfx.Win);
                 game.Context.GetCheckmarkWidget().Show(true);
                 StartCoroutine(GoToPlay());
                 phase = -1;
+                buttonRepeater.SetActive(false);
             }
             else
             {
@@ -139,15 +140,26 @@ namespace EA4S.HideAndSeek
                 TutorialUI.Clear(false);
                 AudioManager.I.PlaySfx(Sfx.Lose);
                 game.Context.GetCheckmarkWidget().Show(false);
+                timeFinger = Time.time + animDuration + timeToWait;
             }
 
         }
 
         private IEnumerator GoToPlay()
         {
-            var winInitialDelay = 2f;
+            var winInitialDelay = 3f;
             yield return new WaitForSeconds(winInitialDelay);
-            
+
+            foreach(GameObject x in ArrayLetters)
+            {
+                x.GetComponent<LetterObjectView>().Poof();
+                AudioManager.I.PlaySfx(Sfx.Poof);
+                x.SetActive(false);
+            }
+
+            var delay = 1f;
+            yield return new WaitForSeconds(delay);
+
             game.SetCurrentState(game.PlayState);
             
         }
@@ -160,6 +172,11 @@ namespace EA4S.HideAndSeek
                     return i;
             }
             return -1;
+        }
+
+        public void RepeatAudio()
+        {
+            AudioManager.I.PlayLetter(currentQuestion.GetAnswer().Id);
         }
 
         public GameObject[] ArrayTrees;
@@ -177,9 +194,11 @@ namespace EA4S.HideAndSeek
 
         int phase;
 
-        public float timeToWait = 2.5f;
+        public float timeToWait = 0f;//
         float timeFinger = -1f;
 
-        float animDuration = 1.5f;
+        float animDuration = 1f;//
+
+        public GameObject buttonRepeater;
     }
 }

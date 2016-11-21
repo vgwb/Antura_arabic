@@ -3610,7 +3610,8 @@ MonoBehaviour:
   contentTransform: {fileID: 0}
   textTransform: {fileID: 0}
   boneToScaleTransform: {fileID: 0}
-  Lable: {fileID: 114000012767302348}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000011836431938}
   Scale: 1
   normalGraphics:
@@ -3620,6 +3621,7 @@ MonoBehaviour:
   - {fileID: 1000012753670882}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  DancingSpeed: 1
 --- !u!136 &136000012375517638
 CapsuleCollider:
   m_ObjectHideFlags: 1

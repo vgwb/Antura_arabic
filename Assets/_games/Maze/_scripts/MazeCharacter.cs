@@ -14,6 +14,8 @@ namespace EA4S.Maze
 
 		public List<Vector3> characterWayPoints;
 
+        public LetterObjectView LL;
+
 		public GameObject collider;
         public List<GameObject> particles;
 
@@ -30,8 +32,8 @@ namespace EA4S.Maze
 		int currentCharacterWayPoint;
 
 
-		Vector3 initialPosition;
-		Quaternion initialRotation;
+		public Vector3 initialPosition;
+		public Quaternion initialRotation;
 		Vector3 targetPos;
 		Quaternion targetRotation;
 		int currentWayPoint;
@@ -47,11 +49,15 @@ namespace EA4S.Maze
 
 		private bool startCheckingForCollision = false;
 		private bool donotHandleBorderCollision = false;
-        private bool isFleeing = false;
+        public bool isFleeing = false;
         private Vector3 fleePosition;
+
+        public bool isAppearing = false;
 
 		void Start()
 		{
+            LL.SetState(LLAnimationStates.LL_rocketing);
+           
             isFleeing = false;
             characterIsMoving = false;
 			characterWayPoints = new List<Vector3>();
@@ -64,13 +70,13 @@ namespace EA4S.Maze
 
 			collider.GetComponent<MeshRenderer> ().enabled = false;
 			collider.SetActive(false);
-            
+
 
             //foreach (GameObject fruitList in Fruits)
             //	fruitList.SetActive (false);
 
 
-
+              
 
         }
 
@@ -237,7 +243,8 @@ namespace EA4S.Maze
 				MazeGameManager.Instance.showAllCracks();
 				donotHandleBorderCollision = true;
 				characterIsMoving = false;
-			},
+               
+            },
 				()=>{
 					MazeGameManager.Instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}));
@@ -380,6 +387,11 @@ namespace EA4S.Maze
 
 		}
 
+        public void appear()
+        {
+            toggleVisibility(true);
+            isAppearing = true;
+        }
         public void fleeTo(Vector3 position)
         {
             //wait and flee:
@@ -397,21 +409,38 @@ namespace EA4S.Maze
         }
 
 
+        void moveTowards(Vector3 position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * 10);
+
+            var dir = transform.position - position;
+            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
+            targetRotation = Quaternion.AngleAxis(-angle, Vector3.up) * initialRotation;
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
+        }
+
 		void Update()
 		{
-			
+			if(isAppearing)
+            {
+                moveTowards(initialPosition);
+                if (transform.position == initialPosition)
+                {
+                    toggleVisibility(false);
+                    isAppearing = false;
+                    transform.rotation = initialRotation;
+                    MazeGameManager.Instance.showCurrentTutorial();
+                }
+                return;
+            }
             if(isFleeing)
             {
-                transform.position = Vector3.MoveTowards(transform.position, fleePosition, Time.deltaTime * 10);
 
-                var dir = transform.position - fleePosition;
-                var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+                moveTowards(fleePosition);
 
-                targetRotation = Quaternion.AngleAxis(-angle, Vector3.up) * initialRotation;
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
-
-                if(transform.position == fleePosition)
+                if (transform.position == fleePosition)
                 {
                     MazeGameManager.Instance.showAllCracks();
                     MazeGameManager.Instance.lostCurrentLetter();
