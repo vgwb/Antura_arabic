@@ -33,9 +33,9 @@ public partial class SROptions
     }
     
     public EA4S.JourneyPosition GetMinimumPlaysessionForGame(MiniGameCode minigameCode) {
-        int Stages = 2;
-        int LearningBlocks = 10;
-        int PlaySessions = 2;
+        int Stages = 6;
+        int LearningBlocks = 15;
+        int PlaySessions = 3;
 
         for (int s = 1; s <= Stages; s++) {
             for (int lb = 1; lb <= LearningBlocks; lb++) {
