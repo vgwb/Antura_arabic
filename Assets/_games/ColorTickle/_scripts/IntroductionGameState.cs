@@ -63,7 +63,7 @@ namespace EA4S.ColorTickle
 
             for (int i = 0; i < game.rounds; ++i)
             {
-                game.myLetters[i] = Object.Instantiate(game.m_LetterPrefab);
+                game.myLetters[i] = Object.Instantiate(game.letterPrefab);
                 game.myLetters[i].SetActive(true);
                 // HACK fix for the automatic reset of the color after update at Unity 5.4.2
                 game.myLetters[i].GetComponent<LetterObjectView>().Label.color = Color.white;
@@ -81,7 +81,7 @@ namespace EA4S.ColorTickle
         void BuildTutorialLetter()
         {
             LL_LetterData LLdata = new LL_LetterData("alef");
-            game.tutorialLetter = Object.Instantiate(game.m_LetterPrefab);
+            game.tutorialLetter = Object.Instantiate(game.letterPrefab);
             game.tutorialLetter.SetActive(true);
             // HACK fix for the automatic reset of the color after update at Unity 5.4.2
             game.tutorialLetter.GetComponent<LetterObjectView>().Label.color = Color.white;
