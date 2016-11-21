@@ -52,7 +52,15 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            builder = new WordsInPhraseQuestionBuilder(nPacks:10, nCorrect:1, nWrong:5, usePhraseAnswersIfFound:true);
+            switch (Variation)
+            {
+                case ReadingGameVariation.AlphabetSong:
+                    builder = new EmptyQuestionBuilder();
+                    break;
+                case ReadingGameVariation.ReadAndAnswer:
+                    builder = new WordsInPhraseQuestionBuilder(nPacks: 10, nCorrect: 1, nWrong: 5, usePhraseAnswersIfFound: true);
+                    break;
+            } 
             return builder;
         }
 
