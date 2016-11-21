@@ -104,10 +104,13 @@ namespace EA4S
 
         public bool CanMiniGameBePlayedAtPlaySession(string playSessionId, MiniGameCode code)
         {
-            var psData = dbManager.GetPlaySessionDataById(playSessionId);
-            foreach (var minigameInPlaySession in psData.Minigames)
-                if (minigameInPlaySession.MiniGameCode == code)
-                    return true;
+            if (dbManager.HasPlaySessionDataById(playSessionId))
+            {
+                var psData = dbManager.GetPlaySessionDataById(playSessionId);
+                foreach (var minigameInPlaySession in psData.Minigames)
+                    if (minigameInPlaySession.MiniGameCode == code)
+                        return true;
+            }
             return false;
         }
 
