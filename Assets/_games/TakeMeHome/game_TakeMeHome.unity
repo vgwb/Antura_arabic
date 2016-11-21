@@ -10064,6 +10064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aspiration: {fileID: 479134823}
   winParticles: {fileID: 1829816476}
+  cubeInfo: {fileID: 1761557367}
 --- !u!65 &515542246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16097,6 +16098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aspiration: {fileID: 1463282307}
   winParticles: {fileID: 375510106}
+  cubeInfo: {fileID: 1929776365}
 --- !u!65 &736827278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29134,19 +29136,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412076, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.661285
+      value: -0.66128504
       objectReference: {fileID: 0}
     - target: {fileID: 412076, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.7398478
+      value: 0.73984784
       objectReference: {fileID: 0}
     - target: {fileID: 412076, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.09878132
+      value: -0.098781325
       objectReference: {fileID: 0}
     - target: {fileID: 412076, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.07463016
+      value: -0.07463017
       objectReference: {fileID: 0}
     - target: {fileID: 408510, guid: 5a61c183b1562474a8bd7a93374adf56, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -31577,6 +31579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aspiration: {fileID: 2119592079}
   winParticles: {fileID: 1778698975}
+  cubeInfo: {fileID: 898343857}
 --- !u!65 &1467929917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45269,6 +45272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aspiration: {fileID: 454414093}
   winParticles: {fileID: 214969412}
+  cubeInfo: {fileID: 1333796814}
 --- !u!65 &1940027206
 BoxCollider:
   m_ObjectHideFlags: 0

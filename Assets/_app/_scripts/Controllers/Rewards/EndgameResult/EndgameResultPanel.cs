@@ -34,7 +34,10 @@ namespace EA4S
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
                 .Join(ContentRT.DOAnchorPosY(-960, 0.35f).From().SetEase(Ease.OutBack))
-                .OnRewind(()=> this.gameObject.SetActive(false))
+                .OnRewind(() => {
+                    this.gameObject.SetActive(false);
+                    bgTween.Rewind();
+                })
                 .OnComplete(()=> this.StartCoroutine(CO_ShowComplete()));
             for (int i = 0; i < Stars.Length; ++i) {
                 EndgameStar star = Stars[i];
@@ -64,20 +67,27 @@ namespace EA4S
 
         #region Public Methods
 
-        public void Show(bool _doShow, int _numStars = 0)
+        public void Show(int _numStars = 0)
         {
             Setup();
 
             this.StopAllCoroutines();
-            bgTween.Rewind();
             ContinueScreen.Close(true);
-            if (_doShow) {
-                numStars = _numStars;
-                this.gameObject.SetActive(true);
-                foreach (EndgameStar star in Stars) star.Reset();
-                showTween.Restart();
-                this.gameObject.SetActive(true);
-            } else showTween.PlayBackwards();
+            numStars = _numStars;
+            this.gameObject.SetActive(true);
+            foreach (EndgameStar star in Stars) star.Reset();
+            showTween.Restart();
+            this.gameObject.SetActive(true);
+        }
+
+        public void Hide(bool _immediate)
+        {
+            if (!setupDone) return;
+
+            this.StopAllCoroutines();
+            ContinueScreen.Close(true);
+            if (_immediate) showTween.Rewind();
+            else showTween.PlayBackwards();
         }
 
         #endregion
@@ -93,12 +103,7 @@ namespace EA4S
                 id++;
             }
 
-            if (numStars > 0) {
-//                if (numStars == 1) raysRT.SetAnchoredPosX(Stars[0].RectT.anchoredPosition.x);
-//                else if (numStars == 2) raysRT.SetAnchoredPosX(Stars[0].RectT.anchoredPosition.x + (Stars[1].RectT.anchoredPosition.x - Stars[0].RectT.anchoredPosition.x) * 0.5f);
-//                else raysRT.SetAnchoredPosX(0);
-                bgTween.Restart();
-            }
+            if (numStars > 0) bgTween.Restart();
 
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }

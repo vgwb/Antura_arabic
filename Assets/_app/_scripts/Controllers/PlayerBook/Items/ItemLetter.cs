@@ -18,8 +18,7 @@ namespace EA4S
             data = _data;
             manager = _manager;
 
-            //Title.text = data.Isolated;
-            Title.text = ArabicAlphabetHelper.GetLetterFromUnicode(data.Isolated_Unicode);
+            Title.text = ArabicAlphabetHelper.GetLetterToDisplay(data);
             SubTitle.text = data.Id;
         }
 

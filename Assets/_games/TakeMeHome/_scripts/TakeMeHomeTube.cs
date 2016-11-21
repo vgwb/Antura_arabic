@@ -13,6 +13,8 @@ public class TakeMeHomeTube : MonoBehaviour {
 		Vector3 originalPosition;
         public GameObject aspiration;
         public GameObject winParticles;
+        public GameObject cubeInfo;
+
         // Use this for initialization
         void Start () {
 			originalPosition = transform.position;
@@ -22,11 +24,11 @@ public class TakeMeHomeTube : MonoBehaviour {
 
         public void showWinParticles()
         {
-            winParticles.SetActive(true);
+            //winParticles.SetActive(true);
         }
         public void hideWinParticles()
         {
-            winParticles.SetActive(false);
+            //winParticles.SetActive(false);
         }
         public void activate()
         {

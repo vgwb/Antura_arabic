@@ -29,7 +29,7 @@ namespace EA4S
             }
         }
 
-        public string Key { get; set; }
+        public string Id { get; set; }
 
         public string TextForLivingLetter {
             get {

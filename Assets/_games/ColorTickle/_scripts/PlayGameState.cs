@@ -127,9 +127,9 @@ namespace EA4S.ColorTickle
                     //disable color components to avoid input in this phase (or ignore input using touch manager?)
                     DisableLetterComponents();
 
-                    Debug.Log(m_LetterObjectView.Data.Key);
+                    Debug.Log(m_LetterObjectView.Data.Id);
 
-                    AudioManager.I.PlayLetter(m_LetterObjectView.Data.Key);//play letter pronounce again
+                    AudioManager.I.PlayLetter(m_LetterObjectView.Data.Id);//play letter pronounce again
 
                     m_SurfaceColoringLetter.Reset();//reset to clean surface of LL (maybe make a function to clean it rather than reinitialize it)
 

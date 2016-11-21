@@ -206,7 +206,7 @@ namespace EA4S.DontWakeUp
 
         public void SpeakCurrentLetter()
         {
-            AudioManager.I.PlayWord(currentWord.Key);
+            AudioManager.I.PlayWord(currentWord.Id);
         }
 
         void SetupLevel()
@@ -215,7 +215,7 @@ namespace EA4S.DontWakeUp
             currentWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
 
             myLetter.SetActive(true);
-            myLetter.GetComponent<MyLetter>().Init(currentWord.Key);
+            myLetter.GetComponent<MyLetter>().Init(currentWord.Id);
             myLetter.transform.position = currentLevelController.GetStartPosition().position;
             myLetter.transform.eulerAngles = new Vector3(0, currentLevelController.GetStartPosition().rotation.eulerAngles.y, 0);
 

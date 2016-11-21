@@ -7,11 +7,11 @@ namespace EA4S
 {
     public class MenuItemCategory : MonoBehaviour, IPointerClickHandler
     {
-        CategoryData data;
+        GenericCategoryData data;
         public TextRender Title;
         BookPanel manager;
 
-        public void Init(BookPanel _manager, CategoryData _data)
+        public void Init(BookPanel _manager, GenericCategoryData _data)
         {
             data = _data;
             manager = _manager;

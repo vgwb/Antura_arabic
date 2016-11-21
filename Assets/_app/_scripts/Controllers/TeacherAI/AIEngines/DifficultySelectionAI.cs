@@ -7,24 +7,22 @@ namespace EA4S.Teacher
     /// <summary>
     /// Handles the selection of the difficulty to use for a given minigame
     /// </summary>
-    public class DifficultySelectionAI 
+    public class DifficultySelectionAI
     {
 
         // References
         private DatabaseManager dbManager;
         private PlayerProfile playerProfile;
-        //private TeacherAI teacher;
 
         // Weights
         private float ageWeight = ConfigAI.difficulty_weight_age;       // Higher age -> higher difficulty
         private float journeyWeight = ConfigAI.difficulty_weight_journey;     // Higher journey stage -> higher difficulty
         private float performanceWeight = ConfigAI.difficulty_weight_performance;       // Higher performance -> higher difficulty
 
-        public DifficultySelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile, TeacherAI _teacher)
+        public DifficultySelectionAI(DatabaseManager _dbManager, PlayerProfile _playerProfile)
         {
             this.dbManager = _dbManager;
             this.playerProfile = _playerProfile;
-            //this.teacher = _teacher;
         }
 
         public float SelectDifficulty(MiniGameCode miniGameCode)
@@ -46,12 +44,9 @@ namespace EA4S.Teacher
             float playerPerformance;
             string query = string.Format("SELECT * FROM ScoreData WHERE TableName = 'MiniGames' AND ElementId = '{0}'", (int)miniGameCode);
             List<Db.ScoreData> minigame_scoreData_list = dbManager.FindScoreDataByQuery(query);
-            if (minigame_scoreData_list.Count == 0)
-            {
+            if (minigame_scoreData_list.Count == 0) {
                 playerPerformance = ConfigAI.startingDifficultyForNewMiniGame;
-            }
-            else
-            {
+            } else {
                 float minigameScore = minigame_scoreData_list[0].Score;
                 playerPerformance = minigameScore;
             }
@@ -63,8 +58,7 @@ namespace EA4S.Teacher
             float totalDifficulty = weightedAgeDifficulty + weightedJourneyDifficulty + weightedPerformanceDifficulty;
 
             // Debug log
-            if (ConfigAI.verboseTeacher)
-            {
+            if (ConfigAI.verboseTeacher) {
                 string debugString = "-----  TEACHER: Selected Difficulty: " + totalDifficulty + " -----";
                 debugString += "\n From Age (W " + ageWeight + "): " + ageDifficulty + " xw(" + weightedAgeDifficulty + ")";
                 debugString += "\n From Stage (W " + journeyWeight + "): " + journeyDifficulty + " xw(" + weightedJourneyDifficulty + ")";

@@ -6403,7 +6403,7 @@ MonoBehaviour:
   m_iPixelPerUnit: 50
   m_oBaseColor: {r: 1, g: 1, b: 1, a: 1}
   m_bEnableColor: 1
-  m_iPercentageRequiredToWin: 99
+  m_iPercentageRequiredToWin: 98
   m_fErrorOffsetFactor: 0.15
 --- !u!114 &1898769500
 MonoBehaviour:
