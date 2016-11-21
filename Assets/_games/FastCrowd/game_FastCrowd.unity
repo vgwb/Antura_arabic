@@ -19,7 +19,7 @@ RenderSettings:
   m_FogMode: 2
   m_FogDensity: 0
   m_LinearFogStart: 0
-  m_LinearFogEnd: 0.01
+  m_LinearFogEnd: 0
   m_AmbientSkyColor: {r: 0.35294116, g: 0.35294116, b: 0.35294116, a: 0.75}
   m_AmbientEquatorColor: {r: 0.0855, g: 0.09375, b: 0.09975, a: 0.75}
   m_AmbientGroundColor: {r: 0.03525, g: 0.032250002, b: 0.026250001, a: 0.75}
@@ -634,11 +634,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 461
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -260
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_SizeDelta.x
@@ -650,19 +650,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22431820, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
       propertyPath: m_Pivot.x
@@ -712,6 +712,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11472148, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625,
+        type: 2}
+    - target: {fileID: 11472148, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93f4f30e2c55d914b93c9df9aaac69e6, type: 2}
   m_IsPrefabParent: 0

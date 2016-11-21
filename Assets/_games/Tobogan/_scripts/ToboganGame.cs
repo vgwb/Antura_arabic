@@ -82,8 +82,6 @@ namespace EA4S.Tobogan
             questionsManager = new QuestionsManager(this);
 
             feedbackGraphics.Initialize();
-
-            Physics.gravity = new Vector3(0, -80, 0);
         }
 
         public void OnResult(bool result)
@@ -109,6 +107,11 @@ namespace EA4S.Tobogan
         {
             Context.GetOverlayWidget().Initialize(true, true, false);
             Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
+        }
+
+        public override Vector3 GetGravity()
+        {
+            return Vector3.up * (-80);
         }
     }
 }
