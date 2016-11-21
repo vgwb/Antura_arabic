@@ -16,7 +16,6 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
             TimeEngine.Instance.Clear();
 

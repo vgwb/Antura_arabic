@@ -132,6 +132,9 @@ namespace EA4S.Assessment
         /// <returns></returns>
         public IQuestionBuilder SetupBuilder()
         {
+            // Testing question builders
+            Teacher.ConfigAI.verboseDataSelection = true;
+            Teacher.ConfigAI.verboseTeacher = true;
             snag = new DifficultyRegulation( Difficulty);
 
             switch (assessmentType)
