@@ -2867,6 +2867,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 0
+  soundBasePitch: 1
+  soundBaseVolume: 1
+  soundTurnOnSpeed: 3
+  soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -3242,6 +3247,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 0
+  soundBasePitch: 1
+  soundBaseVolume: 1
+  soundTurnOnSpeed: 3
+  soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -3986,6 +3996,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 0
+  soundBasePitch: 1
+  soundBaseVolume: 1
+  soundTurnOnSpeed: 3
+  soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -4004,6 +4019,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 0
+  soundBasePitch: 1
+  soundBaseVolume: 1
+  soundTurnOnSpeed: 3
+  soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50

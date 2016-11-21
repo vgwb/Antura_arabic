@@ -8,8 +8,8 @@ namespace EA4S
     public class CircleButton : MonoBehaviour
     {
         public UnityEngine.UI.Image button;
-        public UnityEngine.UI.Image image;
         public TMPro.TextMeshProUGUI text;
+        public TMPro.TextMeshProUGUI textImage;
 
         public System.Action<CircleButton> onClicked;
 
@@ -33,9 +33,9 @@ namespace EA4S
 
                 answer = value;
                 text.text = value.TextForLivingLetter;
-                image.sprite = value.DrawForLivingLetter;
-                text.gameObject.SetActive(!ImageMode || image.sprite == null);
-                image.gameObject.SetActive(ImageMode && image.sprite != null);
+                textImage.text = value.DrawingCharForLivingLetter;
+                text.gameObject.SetActive(!ImageMode || string.IsNullOrEmpty(textImage.text));
+                textImage.gameObject.SetActive(ImageMode && !string.IsNullOrEmpty(textImage.text));
             }
 
         }
@@ -53,8 +53,8 @@ namespace EA4S
                     return;
 
                 imageMode = value;
-                text.gameObject.SetActive(!value || image.sprite == null);
-                image.gameObject.SetActive(value && image.sprite != null);
+                text.gameObject.SetActive(!value || string.IsNullOrEmpty(textImage.text));
+                textImage.gameObject.SetActive(value && !string.IsNullOrEmpty(textImage.text));
             }
 
         }

@@ -42,6 +42,9 @@ namespace EA4S
         GameStateManager stateManager = new GameStateManager();
         public GameStateManager StateManager { get { return stateManager; } }
 
+        bool initialized = false;
+        Vector3 oldGravity;
+
         void Initialize(IGameContext context)
         {
             Context = context;
@@ -51,10 +54,17 @@ namespace EA4S
             base.Start();
             OnInitialize(context);
             this.SetCurrentState(GetInitialState());
+
+            oldGravity = Physics.gravity;
+            Physics.gravity = GetGravity();
+            initialized = true;
         }
 
         void OnDestroy()
         {
+            if (initialized)
+                Physics.gravity = oldGravity;
+
             if (Context != null)
                 Context.Reset();
         }
@@ -67,11 +77,13 @@ namespace EA4S
             stateManager.Update(Time.deltaTime);
 
             var inputManager = Context.GetInputManager();
+            var audioManager = Context.GetAudioManager();
 
             // TODO: move this outside this method (actually it is useless with the current implementation of PauseMenu)
             inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
 
             inputManager.Update(Time.deltaTime);
+            audioManager.Update();
 
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -95,6 +107,11 @@ namespace EA4S
             base.Start();
 
             Initialize(GetConfiguration().Context);
+        }
+
+        public virtual Vector3 GetGravity()
+        {
+            return Vector3.up * (-80);
         }
     }
 }

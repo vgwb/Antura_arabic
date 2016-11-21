@@ -140,8 +140,6 @@ namespace EA4S.ColorTickle
                     if (m_tSingleLetterAlphaTextureScaledToDynamic.GetPixelBilinear(m_oRayHit.textureCoord.x, m_oRayHit.textureCoord.y).a == 0)
                     {
 
-                        //Debug.Log("OUTSIDE!!!Color Hitted " + m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y) + " at coordinates: " + m_oRayHit.textureCoord.x + " " + m_oRayHit.textureCoord.y);
-                        //Debug.Log("OUTSIDE!!!");
                         if (OnShapeHit != null)
                         {
                             OnShapeHit(false);
@@ -225,7 +223,7 @@ namespace EA4S.ColorTickle
             //Make a copy of the text letter's mesh
             Mesh _oMeshColliderStructure = Instantiate<Mesh>(m_oTextMeshObject.textInfo.meshInfo[0].mesh);
 
-            //UV's need to be correctly setted since the original data takes the uv of the specific letter in the alphabet's atlas;
+            //UVs need to be correctly setted since the original data takes the uv of the specific letter in the alphabet's atlas;
             //the uvs (and vertices eventually) cannot be directly setted, a separate array must be modified and assigned
             m_aUVLetterInMainTexture = _oMeshColliderStructure.uv; //save a copy of these for later
             Vector2[] newUV = new Vector2[_oMeshColliderStructure.uv.Length];
@@ -295,15 +293,7 @@ namespace EA4S.ColorTickle
             //finally scale the texture 
             Color[] _aColorSingleLetterScaled = TextureUtilities.ScaleTexture(_tSingleLetterTextureUnscaled, m_tLetterDynamicTexture.width / (float)_tSingleLetterTextureUnscaled.width, m_tLetterDynamicTexture.height / (float)_tSingleLetterTextureUnscaled.height);
 
-            //float f = (float)_tSingleLetterTextureUnscaled.width * (float)m_tLetterDynamicTexture.width / (float)_tSingleLetterTextureUnscaled.width;
-
-            
-            //f = (float)_tSingleLetterTextureUnscaled.height * (float)m_tLetterDynamicTexture.height / (float)_tSingleLetterTextureUnscaled.height;
-            
-
             m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
-
-            
 
             //----TEMPORARY SOLUTION?
             //Depending on the face dilate property(but also others like bold, softness,...) of the letter material,

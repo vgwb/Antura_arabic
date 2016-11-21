@@ -1,4 +1,6 @@
-﻿namespace EA4S.Tobogan
+﻿using System.Linq;
+
+namespace EA4S.Tobogan
 {
     public class SunMoonTutorialQuestionProvider : IQuestionProvider
     {
@@ -31,7 +33,23 @@
             else if (questionsDone == 2)
                 return moonQuestion;
             else
-                return provider.GetNextQuestion();
+            {
+                var data = provider.GetNextQuestion();
+
+                var correct = data.GetCorrectAnswers();
+                var wrong = data.GetWrongAnswers();
+
+                var correctImages = correct.ToArray();
+                var wrongImages = wrong.ToArray();
+
+                for (int i=0; i< correctImages.Length; ++i)
+                    correctImages[i] = new LL_ImageData(correctImages[i].Id);
+
+                for (int i = 0; i < wrongImages.Length; ++i)
+                    wrongImages[i] = new LL_ImageData(wrongImages[i].Id);
+
+                return new SampleQuestionPack(data.GetQuestion(), wrongImages, correctImages);
+            }
         }
     }
 }

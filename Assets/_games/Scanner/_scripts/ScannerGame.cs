@@ -104,9 +104,6 @@ namespace EA4S.Scanner
 			roundsManager = new ScannerRoundsManager(this);
 //			roundManager.onRoundsFinished += OnResult;
 
-
-			Physics.gravity = new Vector3(0, -80, 0);
-
 			Context.GetOverlayWidget().Initialize(false, false, false);
 			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
@@ -126,34 +123,39 @@ namespace EA4S.Scanner
 			Destroy(poof, duration);
 		}
 
-//		public void CorrectMove(GameObject GO)
-//		{
-//
-//		}
-//
-//		public void WrongMove(GameObject GO)
-//		{
-//		}
+        public override Vector3 GetGravity()
+        {
+            return Vector3.up * (-80);
+        }
+
+        //		public void CorrectMove(GameObject GO)
+        //		{
+        //
+        //		}
+        //
+        //		public void WrongMove(GameObject GO)
+        //		{
+        //		}
 
 
-//		IEnumerator AnimateAntura()
-//		{
-//			yield return new WaitForSeconds(1f);
-//			//			Vector3 pos = antura.transform.position;
-//			// Move antura off screen because SetActive is reseting the animation to running
-//			//			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-//			do
-//			{
-//				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
-//				//				CreatePoof(pos, 2f, false);
-//				yield return new WaitForSeconds(0.4f);
-//				//				antura.transform.position = pos;
-//				//
-//				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
-//				//				CreatePoof(pos, 2f, false);
-//				//				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-//			} while (isPlaying);
-//
-//		}
-	}
+        //		IEnumerator AnimateAntura()
+        //		{
+        //			yield return new WaitForSeconds(1f);
+        //			//			Vector3 pos = antura.transform.position;
+        //			// Move antura off screen because SetActive is reseting the animation to running
+        //			//			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
+        //			do
+        //			{
+        //				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
+        //				//				CreatePoof(pos, 2f, false);
+        //				yield return new WaitForSeconds(0.4f);
+        //				//				antura.transform.position = pos;
+        //				//
+        //				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
+        //				//				CreatePoof(pos, 2f, false);
+        //				//				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
+        //			} while (isPlaying);
+        //
+        //		}
+    }
 }

@@ -1,8 +1,14 @@
-﻿using UnityEngine;
+﻿using EA4S.Tobogan;
+using UnityEngine;
 
 public class TremblingTube : MonoBehaviour
 {
     public bool Trembling;
+    public bool playSound = false;
+    public float soundBasePitch = 1;
+    public float soundBaseVolume = 1;
+    public float soundTurnOnSpeed = 3;
+    public float soundTurnOffSpeed = 3;
 
     float tremblingAmount;
     Vector3 tremblingOffset;
@@ -15,20 +21,39 @@ public class TremblingTube : MonoBehaviour
     public float tremblingAmountY = 0.1f;
     public float tremblingAmountZ = 0.1f;
 
+    TubeAudio audioLooper;
     void Start()
     {
         initialPosition = transform.localPosition;
+
+        if (playSound)
+        {
+            var source = EA4S.Tobogan.ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(EA4S.Sfx.PipeBlowIn);
+            source.Loop = true;
+            source.Volume = 0;
+            audioLooper = new TubeAudio(source);
+            audioLooper.basePitch = soundBasePitch;
+            audioLooper.baseVolume = soundBaseVolume;
+            audioLooper.turnOnSpeed = soundTurnOnSpeed;
+            audioLooper.turnOffSpeed = soundTurnOffSpeed;
+        }
     }
 
     void Update()
     {
         // Trembling
         Vector3 noise = new Vector3(
-            tremblingAmountX*Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedX, 2 * Mathf.PI)),
+            tremblingAmountX * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedX, 2 * Mathf.PI)),
             tremblingAmountY * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedY, 2 * Mathf.PI)),
             tremblingAmountZ * Mathf.Cos(Mathf.Repeat(Time.realtimeSinceStartup * tremblingSpeedZ, 2 * Mathf.PI)));
 
         tremblingOffset = Vector3.Lerp(tremblingOffset, noise, 40.0f * Time.deltaTime);
+
+        if (audioLooper != null)
+        {
+            audioLooper.enable = Trembling;
+            audioLooper.Update(Time.deltaTime);
+        }
 
         if (Trembling)
         {
@@ -39,7 +64,12 @@ public class TremblingTube : MonoBehaviour
             tremblingAmount = Mathf.Lerp(tremblingAmount, 0.0f, 5.0f * Time.deltaTime);
         }
 
-
         transform.localPosition = Vector3.Lerp(initialPosition, initialPosition + tremblingOffset, tremblingAmount);
+    }
+
+    void OnDisable()
+    {
+        if (audioLooper != null)
+            audioLooper.Stop();
     }
 }
