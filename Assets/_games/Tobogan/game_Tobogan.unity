@@ -589,6 +589,51 @@ Prefab:
       propertyPath: basePosition
       value: 
       objectReference: {fileID: 1477876837}
+    - target: {fileID: 114000010126261494, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6789e0d9059e742918a504060036dbd2, type: 3}
+    - target: {fileID: 114000013582891254, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: playSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011513052510, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: playSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010126261494, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: playSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013443144596, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: playSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013582891254, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: soundBaseVolume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011513052510, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: soundBaseVolume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010126261494, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: soundBaseVolume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013443144596, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: soundBaseVolume
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83dc25c8719051e4184214377d8dd1bf, type: 2}
   m_IsPrefabParent: 0
@@ -924,6 +969,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 1
+  soundBasePitch: 0.6
+  soundBaseVolume: 0.5
+  soundTurnOnSpeed: 5
+  soundTurnOffSpeed: 1.5
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -3079,6 +3129,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 1
+  soundBasePitch: 0.6
+  soundBaseVolume: 0.5
+  soundTurnOnSpeed: 5
+  soundTurnOffSpeed: 1.5
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -4344,7 +4399,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1140923183}
   m_LocalRotation: {x: 0.026760578, y: -0.028509095, z: 0.6056116, w: 0.7947992}
-  m_LocalPosition: {x: 0.43, y: 0.73, z: 6.52}
+  m_LocalPosition: {x: 0.315, y: 0.762, z: 6.521}
   m_LocalScale: {x: 0.12482363, y: 0.12482372, z: 0.12482372}
   m_LocalEulerAnglesHint: {x: 4.3820004, y: -0.72, z: 74.894005}
   m_Children: []
@@ -5239,6 +5294,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 1
+  soundBasePitch: 0.6
+  soundBaseVolume: 0.5
+  soundTurnOnSpeed: 5
+  soundTurnOffSpeed: 1.5
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -5370,6 +5430,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 1
+  soundBasePitch: 0.6
+  soundBaseVolume: 0.5
+  soundTurnOnSpeed: 5
+  soundTurnOffSpeed: 1.5
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50

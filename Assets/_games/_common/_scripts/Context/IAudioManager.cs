@@ -36,5 +36,7 @@ namespace EA4S
 
         [System.Obsolete("Use PlayDialogue", false)]
         void PlayText(TextID text);
+
+        void Update();
     }
 }
