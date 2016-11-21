@@ -10,12 +10,17 @@ namespace EA4S
         // journey: enabled
 
         private int nPacks;
-        SelectionSeverity severity;
+        private QuestionBuilderParameters parameters;
 
-        public WordsByFormQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
+        public WordsByFormQuestionBuilder(int nPacks, QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
-            this.severity = severity;
+            this.parameters = parameters;
+
+            // Forced parameters
+            this.parameters.wordFilters.excludePluralDual = false;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -30,22 +35,19 @@ namespace EA4S
 
             int nPerType = nPacks / 3;
 
-            var wordFilters = new WordFilters();
-            wordFilters.excludePluralDual = false;
-
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Singular, wordFilters),
-                new SelectionParameters(severity, nPerType)
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Singular, parameters.wordFilters),
+                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural, wordFilters),
-                new SelectionParameters(severity, nPerType)
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural, parameters.wordFilters),
+                new SelectionParameters(parameters.wrongSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice3 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Dual, wordFilters),
-                new SelectionParameters(severity, nPerType)
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Dual, parameters.wordFilters),
+                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             foreach (var word in list_choice1)

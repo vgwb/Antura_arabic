@@ -10,12 +10,17 @@ namespace EA4S
         // journey: enabled
 
         private int nPacks;
-        SelectionSeverity severity;
+        private QuestionBuilderParameters parameters;
 
-        public WordsBySunMoonQuestionBuilder(int nPacks, SelectionSeverity severity = SelectionSeverity.AsManyAsPossible)
+        public WordsBySunMoonQuestionBuilder(int nPacks, QuestionBuilderParameters parameters = null)
         {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
             this.nPacks = nPacks;
-            this.severity = severity;
+            this.parameters = parameters;
+
+            // Forced parameters
+            this.parameters.wordFilters.excludeArticles = false;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -27,12 +32,9 @@ namespace EA4S
             var choice1 = db.GetWordDataById("the_sun");
             var choice2 = db.GetWordDataById("the_moon");
 
-            var wordFilters = new WordFilters();
-            wordFilters.excludeArticles = false;
-
             var wordsWithArticle = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative, wordFilters),
-                new SelectionParameters(severity, nPacks)
+                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative, parameters.wordFilters),
+                new SelectionParameters(parameters.correctSeverity, nPacks, useJourney: parameters.useJourneyForCorrect)
                 );
 
             foreach (var wordWithArticle in wordsWithArticle)
@@ -65,7 +67,6 @@ namespace EA4S
                     foreach (var l in wrongWords) debugString += " " + l;
                     UnityEngine.Debug.Log(debugString);
                 }
-
 
                 var pack = QuestionPackData.Create(wordWithArticle, correctWords, wrongWords);
                 packs.Add(pack);
