@@ -1,32 +1,35 @@
 ﻿using System;
 using DG.DeAudio;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace EA4S
 {
     public class SampleAudioManager : IAudioManager
     {
+        List<SampleAudioSource> playingAudio = new List<SampleAudioSource>();
+
         DeAudioGroup musicGroup;
         DeAudioGroup wordsLettersGroup;
         DeAudioGroup sfxGroup;
 
         Music currentMusic;
-        bool musicEnabled;
         public bool MusicEnabled
         {
             get
             {
-                return musicEnabled;
+                return AudioManager.I.MusicEnabled;
             }
 
             set
             {
-                musicEnabled = value;
+                if (AudioManager.I.MusicEnabled != value)
+                    AudioManager.I.ToggleMusic();
 
-                if (musicEnabled)
+                if (AudioManager.I.MusicEnabled)
                 {
                     PlayMusic(currentMusic);
-                    
+
                     if (musicGroup != null)
                         musicGroup.Resume();
                 }
@@ -55,7 +58,7 @@ namespace EA4S
 
             var source = wordsLettersGroup.Play(clip);
 
-            return new SampleAudioSource(source, wordsLettersGroup);
+            return new SampleAudioSource(source, wordsLettersGroup, this);
 
         }
 
@@ -86,7 +89,7 @@ namespace EA4S
         {
             currentMusic = music;
 
-            if (musicEnabled)
+            if (MusicEnabled)
                 AudioManager.I.PlayMusic(music);
         }
 
@@ -102,7 +105,7 @@ namespace EA4S
 
             var source = sfxGroup.Play(clip);
 
-            return new SampleAudioSource(source, sfxGroup);
+            return new SampleAudioSource(source, sfxGroup, this);
         }
 
         public UnityEngine.AudioClip GetAudioClip(Sfx sfx)
@@ -118,6 +121,7 @@ namespace EA4S
         public void Reset()
         {
             AudioManager.I.ClearCache();
+            playingAudio.Clear();
         }
 
         public IAudioSource PlayMusic(AudioClip clip)
@@ -130,7 +134,38 @@ namespace EA4S
 
             var source = musicGroup.Play(clip);
 
-            return new SampleAudioSource(source, musicGroup);
+            return new SampleAudioSource(source, musicGroup, this);
+        }
+
+        public IAudioSource PlaySound(AudioClip clip)
+        {
+            if (sfxGroup == null)
+            {
+                sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
+                sfxGroup.mixerGroup = AudioManager.I.sfxGroup;
+            }
+
+            var source = sfxGroup.Play(clip);
+
+            return new SampleAudioSource(source, sfxGroup, this);
+        }
+
+        public void Update()
+        {
+            for (int i = 0; i < playingAudio.Count; ++i)
+            {
+                if (playingAudio[i].Update())
+                {
+                    // could be collected
+                    playingAudio.RemoveAt(i--);
+                }
+            }
+        }
+
+        public void OnAudioStarted(SampleAudioSource source)
+        {
+            if (!playingAudio.Contains(source))
+                playingAudio.Add(source);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace EA4S.Egg
 
             game.questionManager.StartNewQuestion(game.gameDifficulty, onlyLetter);
             game.eggController.Reset();
-
+            
             game.Context.GetAudioManager().PlaySound(Sfx.TickAndWin);
             game.eggController.MoveNext(2f, OnEggEnterComplete);
         }

@@ -16,6 +16,39 @@ namespace EA4S.MissingLetter
         SENTENCE = 1
     }
 
+    [System.Serializable]
+    public struct LLOffset
+    {
+        public float fINOffset;
+        public float fOUTOffset;
+        public float fHeightOffset;
+    }
+
+    [System.Serializable]
+    public struct DifficultyConfig
+    {
+        public int iRoundNumberMin;
+        public int iRoundNumberMax;
+
+        public float fGameTimeMin;
+        public float fGameTimeMax;
+
+        public int iAnswerLettersNumberMin;
+        public int iAnswerLettersNumberMax;
+        public float fLLTotalWidth;
+        public float fLLWidth;
+        public float fLLMaxDistance;
+
+        public int iAnturaTriggersNumberMin;
+        public int iAnturaTriggersNumberMax;
+        public float fAnturaTriggersMinoffset;
+
+        public float fRoundNumberThresold;
+        public float fGameTimeThresold;
+        public float fAnswerLettersNumberThresold;
+        public float fAnturaTriggersNumbersThresold;
+    }
+
     public class MissingLetterGame : MiniGame
     {
         #region VARS
@@ -31,37 +64,15 @@ namespace EA4S.MissingLetter
 
         public int m_iMaxSentenceSize = 5;
 
-        public float m_fQuestionINOffset = 20;
-        public float m_fQuestionOUTOffset = -30;
-        public float m_fQuestionHeightOffset = -2;
-
-        public float m_fAnswerINOffset = -20;
-        public float m_fAnswerOUTOffset = 30;
-        public float m_fAnswerHeightOffset = -2;
-
         public float m_fAnturaAnimDuration = 7.0f;
 
-        // START Difficulty CONFIG
-        public int m_iRoundNumberMin = 4;
-        public int m_iRoundNumberMax = 20;
+        public float m_fDistanceBetweenLetters = 8.0f;
 
-        public float m_fGameTimeMin = 30.0f;
-        public float m_fGameTimeMax = 60.0f;
+        public LLOffset m_sQuestionOffset;
+        public LLOffset m_sAnswerOffset;
 
-        public int m_iAnswerLettersNumberMin = 2;
-        public int m_iAnswerLettersNumberMax = 6;
-        public float m_fLLTotalWidth = 30.0f;
-        public float m_fLLWidth = 2.0f;
-        public float m_fLLMaxDistance = 10.0f;
-
-        public int m_iAnturaTriggersNumberMin = 1;
-        public int m_iAnturaTriggersNumberMax = 4;
-        public float m_fAnturaTriggersMinoffset = 10.0f;
-
-        public float m_fRoundNumberThresold = 0.0f;
-        public float m_fGameTimeThresold = 0.25f;
-        public float m_fAnswerLettersNumberThresold = 0.0f;
-        public float m_fAnturaTriggersNumbersThresold = 0.33f;
+        [SerializeField]
+        private DifficultyConfig m_sDifficultyConfig;
 
         [HideInInspector]
         public int STARS_1_THRESHOLD = 2;
@@ -69,13 +80,10 @@ namespace EA4S.MissingLetter
         public int STARS_2_THRESHOLD = 5;
         [HideInInspector]
         public int STARS_3_THRESHOLD = 9;
-        //END Difficulty CONFIG
 
 
         [HideInInspector]
         public int m_iNumberOfPossibleAnswers = 4;
-
-        public float m_fDistanceBetweenLetters = 8.0f;
 
         [HideInInspector]
         public float[] m_afAnturaEnterTriggers; // when remains 40 and 20 seconds left
@@ -104,7 +112,6 @@ namespace EA4S.MissingLetter
         [HideInInspector]
         public float m_fGameTime;
 
-        private bool m_bInIdle { get; set; }
 
         public int m_iCurrentStars
         {
@@ -119,6 +126,8 @@ namespace EA4S.MissingLetter
                 return 3;
             }
         }
+
+        private bool m_bInIdle { get; set; }
 
         public MissingLetterIntroductionState IntroductionState { get; private set; }
         public MissingLetterQuestionState QuestionState { get; private set; }
@@ -201,41 +210,57 @@ namespace EA4S.MissingLetter
             float _diff = MissingLetterConfiguration.Instance.Difficulty;
 
             //At least, they are all sets to the minimun
-            m_iRoundsLimit = m_iRoundNumberMin;
-            m_iNumberOfPossibleAnswers = m_iAnswerLettersNumberMin;
-            m_fGameTime = m_fGameTimeMin;
-            m_iAnturaTriggersNumber = m_iAnturaTriggersNumberMin;
+            m_iRoundsLimit = m_sDifficultyConfig.iRoundNumberMin;
+            m_iNumberOfPossibleAnswers = m_sDifficultyConfig.iAnswerLettersNumberMin;
+            m_fGameTime = m_sDifficultyConfig.fGameTimeMin;
+            m_iAnturaTriggersNumber = m_sDifficultyConfig.iAnturaTriggersNumberMin;
 
 
             //linear calc of numbers of round (after the thresold)
-            if (_diff >= m_fRoundNumberThresold) {
-                m_iRoundsLimit = (int)Mathf.Lerp(m_iRoundNumberMin, m_iRoundNumberMax, Mathf.Lerp(0.0f, 1.0f, _diff - m_fRoundNumberThresold));
+            if (_diff >= m_sDifficultyConfig.fRoundNumberThresold) {
+                m_iRoundsLimit = (int)Mathf.Lerp(
+                    m_sDifficultyConfig.iRoundNumberMin, 
+                    m_sDifficultyConfig.iRoundNumberMax, 
+                    Mathf.Lerp(0.0f, 1.0f, _diff - m_sDifficultyConfig.fRoundNumberThresold)
+                    );
             }
 
             //linear calc of game time (after the thresold)
-            if (_diff >= m_fGameTimeThresold) {
-                m_fGameTime = Mathf.Lerp(m_fGameTimeMax, m_fGameTimeMin, Mathf.Lerp(0.0f, 1.0f, _diff - m_fGameTimeThresold));
+            if (_diff >= m_sDifficultyConfig.fGameTimeThresold) {
+                m_fGameTime = Mathf.Lerp(
+                    m_sDifficultyConfig.fGameTimeMax,
+                    m_sDifficultyConfig.fGameTimeMin,
+                    Mathf.Lerp(0.0f, 1.0f, _diff - m_sDifficultyConfig.fGameTimeThresold)
+                    );
             }
 
             //linear calc of possible answers (after the thresold)
-            if (_diff >= m_fAnswerLettersNumberThresold) {
-                m_iNumberOfPossibleAnswers = (int)Mathf.Lerp(m_iAnswerLettersNumberMin, m_iAnswerLettersNumberMax, Mathf.Lerp(0.0f, 1.0f, _diff - m_fAnswerLettersNumberThresold));
+            if (_diff >= m_sDifficultyConfig.fAnswerLettersNumberThresold) {
+                m_iNumberOfPossibleAnswers = (int)Mathf.Lerp(
+                    m_sDifficultyConfig.iAnswerLettersNumberMin, 
+                    m_sDifficultyConfig.iAnswerLettersNumberMax,
+                    Mathf.Lerp(0.0f, 1.0f, _diff - m_sDifficultyConfig.fAnswerLettersNumberThresold)
+                    );
             }
 
             //linear calc of numbers of times that antura enter (after the thresold)
-            if (_diff >= m_fAnturaTriggersNumbersThresold) {
-                m_iAnturaTriggersNumber = (int)Mathf.Lerp(m_iAnturaTriggersNumberMin, m_iAnturaTriggersNumberMax, Mathf.Lerp(0.0f, 1.0f, _diff - m_fAnturaTriggersNumbersThresold));
+            if (_diff >= m_sDifficultyConfig.fAnturaTriggersNumbersThresold) {
+                m_iAnturaTriggersNumber = (int)Mathf.Lerp(
+                    m_sDifficultyConfig.iAnturaTriggersNumberMin,
+                    m_sDifficultyConfig.iAnturaTriggersNumberMax, 
+                    Mathf.Lerp(0.0f, 1.0f, _diff - m_sDifficultyConfig.fAnturaTriggersNumbersThresold)
+                    );
             }
 
             //Calculating time entry point for Antura based off how many times it should enter
             m_afAnturaEnterTriggers = new float[m_iAnturaTriggersNumber];
             for(int i=0; i< m_iAnturaTriggersNumber; ++i) {
-                m_afAnturaEnterTriggers[i] = ((m_fGameTime - m_fAnturaTriggersMinoffset) / m_iAnturaTriggersNumber) * (m_iAnturaTriggersNumber - i);
+                m_afAnturaEnterTriggers[i] = ((m_fGameTime - m_sDifficultyConfig.fAnturaTriggersMinoffset) / m_iAnturaTriggersNumber) * (m_iAnturaTriggersNumber - i);
             }
 
             //Calculating space between LL bases on how many should be
-            m_fDistanceBetweenLetters = (m_fLLTotalWidth - (m_fLLWidth * m_iNumberOfPossibleAnswers)) / (m_iNumberOfPossibleAnswers - 1);
-            m_fDistanceBetweenLetters = Mathf.Clamp(m_fDistanceBetweenLetters, 0.0f, m_fLLMaxDistance);
+            m_fDistanceBetweenLetters = (m_sDifficultyConfig.fLLTotalWidth - (m_sDifficultyConfig.fLLWidth * m_iNumberOfPossibleAnswers)) / (m_iNumberOfPossibleAnswers - 1);
+            m_fDistanceBetweenLetters = Mathf.Clamp(m_fDistanceBetweenLetters, 0.0f, m_sDifficultyConfig.fLLMaxDistance);
 
             //Calculating stars thresold based on Rounds Number
             STARS_1_THRESHOLD = (int)(m_iRoundsLimit * 0.25);
