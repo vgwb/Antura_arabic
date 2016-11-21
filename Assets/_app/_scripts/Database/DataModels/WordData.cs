@@ -13,6 +13,7 @@ namespace EA4S.Db
         public WordDataArticle Article;
         public string LinkedWord;
         public string Arabic;
+        public string Value;
         public string[] Letters;
         //public LetterSymbol[] Symbols; //TODO
         public int Difficulty;

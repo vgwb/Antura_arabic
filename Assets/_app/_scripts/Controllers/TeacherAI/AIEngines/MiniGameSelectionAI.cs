@@ -78,7 +78,6 @@ namespace EA4S.Teacher
             return selectedMiniGameData;
         }
 
-
         private List<Db.MiniGameData> PerformSelection_Random(Db.PlaySessionData playSessionData, int numberToSelect)
         { 
             // Get all minigames ids for the given playsession (from PlaySessionData)

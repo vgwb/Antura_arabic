@@ -102,6 +102,15 @@ namespace EA4S
             return minigameSelectionAI.PerformSelection(playSessionId, numberToSelect);
         }
 
+        public bool CanMiniGameBePlayedAtPlaySession(string playSessionId, MiniGameCode code)
+        {
+            var psData = dbManager.GetPlaySessionDataById(playSessionId);
+            foreach (var minigameInPlaySession in psData.Minigames)
+                if (minigameInPlaySession.MiniGameCode == code)
+                    return true;
+            return false;
+        }
+
         #endregion
 
         #region Difficulty
