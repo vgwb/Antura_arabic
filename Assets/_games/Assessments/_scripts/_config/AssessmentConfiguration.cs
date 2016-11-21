@@ -178,14 +178,17 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 1;
             Rounds = snag.Decrease( 4, 1);      // We assume letter shapes are just a basic thing so we don't insist
-            return new RandomLettersQuestionBuilder(
 
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
+
+            return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * Rounds,  // Total Answers
                 1,                              // CorrectAnswers
-                snag.Increase( 3, 6),           // WrongAnswers
+                snag.Increase(3, 6),           // WrongAnswers
                 firstCorrectIsQuestion:true,
-                correctChoicesHistory: Teacher.PackListHistory.ForceAllDifferent,
-                wrongChoicesHistory: Teacher.PackListHistory.ForceAllDifferent);
+                parameters:builderParams);
         }
 
         public MiniGameLearnRules SetupLearnRules()

@@ -50,7 +50,7 @@ namespace EA4S
             var correctAnswers = new List<Db.LetterData>(wordLetters);
             if (!useAllCorrectLetters) correctAnswers = wordLetters.RandomSelect(nCorrect);
 
-            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(wordLetters.ToArray()).RandomSelect(nWrong);
+            var wrongAnswers = teacher.wordHelper.GetLettersNotIn(new LetterFilters(), wordLetters.ToArray()).RandomSelect(nWrong);
 
             if (ConfigAI.verboseTeacher)
             {

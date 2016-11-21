@@ -50,21 +50,29 @@ namespace EA4S.Teacher.Test
         int nWrong = 1;
         SelectionSeverity selectionSeverity;
         PackListHistory questionHistory;
+        PackListHistory wrongHistory;
         bool journeyEnabledForBase = true;
         bool journeyEnabledForWrong = true;
 
-        void SetupFakeGame()
+        QuestionBuilderParameters SetupFakeGame()
         {
             AppManager.Instance.Player.CurrentJourneyPosition.Stage = currentJourneyStage;
             AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
+
+            var builderParams = new QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = questionHistory;
+            builderParams.wrongChoicesHistory = wrongHistory;
+            builderParams.useJourneyForCorrect = journeyEnabledForBase;
+            builderParams.useJourneyForWrong = journeyEnabledForWrong;
+            return builderParams;
         }
 
         public void SimulateMiniGame(MiniGameCode code)
         {
             var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
-            SetupFakeGame();
+            var builderParams = SetupFakeGame();
             var builder = config.SetupBuilder();
             builder.CreateAllQuestionPacks();
         }
@@ -74,9 +82,9 @@ namespace EA4S.Teacher.Test
 
         public void RandomLettersTest()
         {
-            SetupFakeGame();
+            var builderParams = SetupFakeGame();
             var builder = new RandomLettersQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, 
-                firstCorrectIsQuestion: true, wrongUseJourney: journeyEnabledForWrong, correctChoicesHistory:questionHistory, wrongChoicesHistory:questionHistory);
+                firstCorrectIsQuestion: true, parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
 

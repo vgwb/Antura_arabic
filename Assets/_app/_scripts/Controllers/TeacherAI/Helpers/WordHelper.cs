@@ -2,6 +2,38 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+namespace EA4S
+{
+    // Filter parameters for letters
+    public class LetterFilters
+    {
+        public bool excludeDiacritics;
+
+        public LetterFilters(bool excludeDiacritics = true)
+        {
+            this.excludeDiacritics = excludeDiacritics;
+        }
+    }
+
+    // Filter parameters for words
+    public class WordFilters
+    {
+        public bool excludeDiacritics;
+        public bool excludeArticles;
+        public bool excludePluralDual;
+        public bool excludeNoDrawing;
+
+        public WordFilters(bool excludeDiacritics = true, bool excludeArticles = true, bool excludePluralDual = true, bool excludeNoDrawing = true)
+        {
+            this.excludeDiacritics = excludeDiacritics;
+            this.excludeArticles = excludeArticles;
+            this.excludePluralDual = excludePluralDual;
+            this.excludeNoDrawing = excludeNoDrawing;
+        }
+    }
+
+}
+
 namespace EA4S.Db
 {
     /// <summary>
@@ -20,32 +52,44 @@ namespace EA4S.Db
             //this.teacher = _teacher;
         }
 
+        #region Letter Utilities
+
+        private bool CheckFilters(LetterFilters filters, LetterData data)
+        {
+            if (filters.excludeDiacritics && !data.IsOfKindCategory(LetterKindCategory.Base)) return false;
+            return true;
+        }
+
+        #endregion
+
+
         #region Letter -> Letter
 
         public List<LetterData> GetAllBaseLetters()
         {
-            return GetAllLetters(LetterKindCategory.Base);
+            var p = new LetterFilters(excludeDiacritics: true);
+            return GetAllLetters(p);
         }
 
-        public List<LetterData> GetAllLetters(LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetAllLetters(LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => CheckFilters(filters, x));
         }
 
-        private List<LetterData> GetLettersNotIn(List<string> tabooList, LetterKindCategory category = LetterKindCategory.Real)
+        private List<LetterData> GetLettersNotIn(List<string> tabooList, LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && CheckFilters(filters, x));
         }
 
 
-        public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
+        /*public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
         {
-            return GetLettersNotIn(LetterKindCategory.Real, tabooArray);
-        }
-        public List<LetterData> GetLettersNotIn(LetterKindCategory category = LetterKindCategory.Real, params LetterData[] tabooArray)
+            return GetLettersNotIn(tabooArray);
+        }*/
+        public List<LetterData> GetLettersNotIn(LetterFilters filters, params LetterData[] tabooArray)
         {
             var tabooList = new List<LetterData>(tabooArray);
-            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id), category);
+            return GetLettersNotIn(tabooList.ConvertAll(x => x.Id), filters);
         }
 
         public List<LetterData> GetLettersByKind(LetterDataKind choice)
@@ -53,24 +97,24 @@ namespace EA4S.Db
             return dbManager.FindLetterData(x => x.Kind == choice);
         }
 
-        public List<LetterData> GetLettersBySunMoon(LetterDataSunMoon choice, LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetLettersBySunMoon(LetterDataSunMoon choice, LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.SunMoon == choice && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.SunMoon == choice && CheckFilters(filters, x));
         }
 
-        public List<LetterData> GetConsonantLetter(LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetConsonantLetter(LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.Type == LetterDataType.Consonant || x.Type == LetterDataType.Powerful && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.Type == LetterDataType.Consonant || x.Type == LetterDataType.Powerful && CheckFilters(filters, x));
         }
 
-        public List<LetterData> GetVowelLetter(LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetVowelLetter(LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.Type == LetterDataType.LongVowel && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.Type == LetterDataType.LongVowel && CheckFilters(filters, x));
         }
 
-        public List<LetterData> GetLettersByType(LetterDataType choice, LetterKindCategory category = LetterKindCategory.Real)
+        public List<LetterData> GetLettersByType(LetterDataType choice, LetterFilters filters)
         {
-            return dbManager.FindLetterData(x => x.Type == choice && x.IsOfKindCategory(category));
+            return dbManager.FindLetterData(x => x.Type == choice && CheckFilters(filters, x));
         }
 
         public LetterData GetBaseOf(string letterId)
@@ -161,7 +205,25 @@ namespace EA4S.Db
 
         #endregion
 
-        #region Word -> Word
+        #region Word Utilities
+
+        private bool CheckFilters(WordFilters filters, WordData data)
+        {
+            if (filters.excludeArticles && data.Article != WordDataArticle.None) return false;
+            if (filters.excludeNoDrawing && !data.HasDrawing()) return false;
+            if (filters.excludePluralDual && data.Form != WordDataForm.Singular) return false;
+            if (filters.excludeDiacritics && this.WordHasDiacritics(data)) return false;
+            return true;
+        }
+
+        private bool WordHasDiacritics(WordData data)
+        {
+            foreach (var letter in GetLettersInWord(data))
+                if (!letter.IsOfKindCategory(LetterKindCategory.Base))
+                    return true;
+            return false;
+        }
+
 
         /// <summary>
         /// tranformsf the hex string of the glyph into the corresponding char
@@ -171,11 +233,21 @@ namespace EA4S.Db
         public string GetWordDrawing(WordData word)
         {
             //Debug.Log("the int of hex:" + word.Drawing + " is " + int.Parse(word.Drawing, NumberStyles.HexNumber));
-            if (word.Drawing != "") {
-                return ((char)int.Parse(word.Drawing, NumberStyles.HexNumber)).ToString();
+            if (word.Drawing != "")
+            {
+                int result = 0;
+                if (int.TryParse(word.Drawing, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out result))
+                {
+                    return ((char)result).ToString();
+                }
+                return "";
             }
             return "";
         }
+
+        #endregion
+
+        #region Word -> Word
 
         public List<WordData> GetAllWords()
         {

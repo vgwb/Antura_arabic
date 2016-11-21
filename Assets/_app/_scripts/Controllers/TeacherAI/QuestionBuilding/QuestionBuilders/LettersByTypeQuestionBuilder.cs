@@ -30,12 +30,12 @@ namespace EA4S
             int nPerType = nPacks / 2;
 
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetConsonantLetter(),
+                () => teacher.wordHelper.GetConsonantLetter(new LetterFilters()),
                 new SelectionParameters(severity, nPerType) 
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetVowelLetter(),
+                () => teacher.wordHelper.GetVowelLetter(new LetterFilters()),
                 new SelectionParameters(severity, nPerType)
                 );
 
