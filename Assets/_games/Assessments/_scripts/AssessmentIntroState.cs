@@ -16,7 +16,7 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-            assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
+            assessmentGame.Context.GetAudioManager().PlayMusic( Music.Theme7);
             TimeEngine.Instance.Clear();
 
             // A GameObject with TutorialHelper component is needed
