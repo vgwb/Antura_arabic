@@ -42,7 +42,7 @@ namespace EA4S.Teacher.Test
             GlobalUI.ShowPauseMenu(false);
         }
 
-        int currentJourneyStage = 1;
+        int currentJourneyStage = 3;
         int currentJourneyLB = 1;
         int currentJourneyPS = 1;
         int nPacks = 5;
@@ -60,6 +60,12 @@ namespace EA4S.Teacher.Test
             AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = currentJourneyLB;
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
+
+            var psId = AppManager.Instance.Teacher.journeyHelper.JourneyPositionToPlaySessionId(AppManager.Instance.Player.CurrentJourneyPosition);
+          //  if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(psId, code))
+            {
+
+            }
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = questionHistory;
@@ -91,7 +97,7 @@ namespace EA4S.Teacher.Test
         public void AlphabetTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new AlphabetQuestionBuilder(ignoreJourney: journeyEnabledForBase);
+            var builder = new AlphabetQuestionBuilder(parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
 

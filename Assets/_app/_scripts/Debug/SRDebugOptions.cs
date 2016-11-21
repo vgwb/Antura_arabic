@@ -10,9 +10,16 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        WidgetPopupWindow.I.Close();
-        DebugManager.I.LaunchMinigGame(minigameCode);
-        SRDebug.Instance.HideDebugPanel();
+        if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        {
+            WidgetPopupWindow.I.Close();
+            DebugManager.I.LaunchMinigGame(minigameCode);
+            SRDebug.Instance.HideDebugPanel();
+        }
+        else
+        {
+            Debug.LogError("Minigame " + minigameCode + " cannot be played at this playsession.");
+        }
     }
 
     [Category("Options")]

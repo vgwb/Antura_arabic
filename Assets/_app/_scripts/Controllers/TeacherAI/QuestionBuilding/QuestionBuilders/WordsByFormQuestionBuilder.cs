@@ -42,7 +42,7 @@ namespace EA4S
 
             var list_choice2 = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural, parameters.wordFilters),
-                new SelectionParameters(parameters.wrongSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
+                new SelectionParameters(parameters.correctSeverity, nPerType, useJourney: parameters.useJourneyForCorrect)
                 );
 
             var list_choice3 = teacher.wordAI.SelectData(
