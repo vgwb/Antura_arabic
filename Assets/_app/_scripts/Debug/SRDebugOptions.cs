@@ -27,8 +27,8 @@ public partial class SROptions
             Stage = minJ.Stage;
             LearningBlock = minJ.LearningBlock;
             PlaySession = minJ.PlaySession;
-            SRDebug.Instance.Settings.AutoLoad = true;
-
+            SRDebug.Instance.HideDebugPanel();
+            SRDebug.Instance.ShowDebugPanel();
         }
     }
     
