@@ -220,9 +220,10 @@ namespace EA4S
             LLText.Init(new LL_LetterData(letter));
         }
 
-        public void DetailPhrase(PhraseData data)
+        public void DetailPhrase(PhraseData phrase)
         {
-
+            Debug.Log("Detail Phrase :" + phrase.Id);
+            AudioManager.I.PlayPhrase(phrase.Id);
         }
 
         public void DetailMiniGame(MiniGameData data)

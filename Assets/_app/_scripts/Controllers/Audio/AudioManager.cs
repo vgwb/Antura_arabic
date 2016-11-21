@@ -148,7 +148,15 @@ namespace EA4S
         public void PlayWord(string wordId)
         {
             //Debug.Log("PlayWord: " + wordId);
-            Fabric.EventManager.Instance.PostEvent("Words", Fabric.EventAction.SetAudioClipReference, "Words/VOX_Words_" + wordId);
+            Fabric.EventManager.Instance.PostEvent("Words", Fabric.EventAction.SetAudioClipReference, "Words/" + wordId);
+            Fabric.EventManager.Instance.PostEvent("Words");
+            //Fabric.EventManager.Instance.PostEvent(WORDS_PREFIX + wordId);
+        }
+
+        public void PlayPhrase(string phraseId)
+        {
+            //Debug.Log("PlayWord: " + wordId);
+            Fabric.EventManager.Instance.PostEvent("Words", Fabric.EventAction.SetAudioClipReference, "Phrases/" + phraseId);
             Fabric.EventManager.Instance.PostEvent("Words");
             //Fabric.EventManager.Instance.PostEvent(WORDS_PREFIX + wordId);
         }
@@ -186,8 +194,7 @@ namespace EA4S
         {
             if (letterData.DataType == LivingLetterDataType.Letter)
                 return GetAudioClip(LETTERS_PREFIX + letterData.Id);
-            else if (letterData.DataType == LivingLetterDataType.Word)
-            {
+            else if (letterData.DataType == LivingLetterDataType.Word) {
                 return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + letterData.Id);
             }
             return null;
