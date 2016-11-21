@@ -37,4 +37,31 @@ namespace EA4S.Teacher
         }
     }
 
+    public class QuestionBuilderParameters
+    {
+        public PackListHistory correctChoicesHistory;
+        public PackListHistory wrongChoicesHistory;
+        public bool useJourneyForWrong;
+        public bool useJourneyForCorrect;
+        public SelectionSeverity correctSeverity;
+        public SelectionSeverity wrongSeverity;
+
+        // data-based params
+        public LetterFilters letterFilters;
+        public WordFilters wordFilters;
+
+        public QuestionBuilderParameters()
+        {
+            this.correctChoicesHistory = PackListHistory.NoFilter;
+            this.wrongChoicesHistory = PackListHistory.NoFilter;
+            this.useJourneyForCorrect = true;
+            this.useJourneyForWrong = true;
+            this.correctSeverity = SelectionSeverity.AsManyAsPossible;
+            this.wrongSeverity = SelectionSeverity.AsManyAsPossible;
+            this.letterFilters = new LetterFilters();
+            this.wordFilters = new WordFilters();
+        }
+    }
+
+
 }
