@@ -9,6 +9,7 @@
 
         public void EnterState()
         {
+            //game.Context.GetSubtitleWidget().DisplaySentence(TextID.EGG_INTRO);
             game.antura.ResetAnturaIn(EggGame.numberOfStage, 2);
         }
 

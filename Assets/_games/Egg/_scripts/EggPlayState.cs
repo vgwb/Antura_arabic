@@ -77,6 +77,15 @@ namespace EA4S.Egg
             if (showTutorial)
             {
                 TutorialPressCorrect();
+
+                if(isSequence)
+                {
+                    //game.Context.GetSubtitleWidget().DisplaySentence(TextID.EGG_TUTO_SEQUENCE, 2f, false, delegate() { game.Context.GetSubtitleWidget().Clear(); });
+                }
+                else
+                {
+                    //game.Context.GetSubtitleWidget().DisplaySentence(TextID.EGG_TUTO_BUTTON, 2f, false, delegate () { game.Context.GetSubtitleWidget().Clear(); });
+                }
             }
 
             if (!showTutorial)
@@ -129,6 +138,7 @@ namespace EA4S.Egg
                 PlayPositiveAudioFeedback();
                 game.eggController.EmoticonPositive();
                 game.eggController.StartShake();
+                game.eggController.ParticleCorrectEnabled();
 
                 progressInput = false;
                 if (inputButtonTimer >= 0)
@@ -252,6 +262,8 @@ namespace EA4S.Egg
             float crackingProgress = (float)questionProgress / (float)correctAnswers;
 
             game.eggController.Cracking(crackingProgress);
+
+            game.eggController.ParticleCorrectEnabled();
 
             if (crackingProgress == 1f)
             {

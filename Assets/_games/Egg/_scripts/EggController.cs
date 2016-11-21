@@ -36,9 +36,11 @@ namespace EA4S.Egg
         }
 
         public GameObject eggParticleWin;
+        public GameObject eggParticleCorrect;
 
-        public AnimationCurve inMoveCurve;
-        public AnimationCurve outMoveCurve;
+        Sequence particleCorrectSequence;
+
+        float particleCorrectTimer;
 
         Tween moveEggParentTween;
         Tween moveEggTeewn;
@@ -74,6 +76,7 @@ namespace EA4S.Egg
 
             EggShow(false);
             eggParticleWin.SetActive(false);
+            eggParticleCorrect.SetActive(false);
 
             this.audioManager = audioManager;
 
@@ -98,9 +101,12 @@ namespace EA4S.Egg
             DestroyQuestionLetters();
             EggShow(true);
 
-            eggParticleWin.SetActive(true);            
+            eggParticleWin.SetActive(true);
+            eggParticleCorrect.SetActive(true);
 
             ParticleWinDisabled();
+            ParticleCorrectDisabled();
+            particleCorrectTimer = 0f;
 
             audioSource = null;
 
@@ -122,20 +128,9 @@ namespace EA4S.Egg
 
             currentRotation.z += 90f;
 
-            AnimationCurve moveCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-
-            if (currentPosition == 1)
-            {
-                moveCurve = inMoveCurve;
-            }
-            else if (currentPosition == eggPositions.Length - 1)
-            {
-                moveCurve = outMoveCurve;
-            }
-
             bool inOutRotation = currentPosition == 1 || currentPosition == eggPositions.Length - 1;
 
-            TransformTo(eggPositions[currentPosition], inOutRotation, moveCurve, currentRotation, duration, callback);
+            TransformTo(eggPositions[currentPosition], inOutRotation, currentRotation, duration, callback);
         }
 
         public bool isNextToExit
@@ -167,34 +162,11 @@ namespace EA4S.Egg
 
         public void Cracking(float progress)
         {
-            //StartTrembling();
-
-            //int eggPiecesProgress = (int)(progress * eggPieces.Length);
-
-            //for (int i = 0; i < eggPiecesProgress; i++)
-            //{
-            //    int index = isNextToExit ? ((eggPieces.Length - 1) - i) : i;
-
-            //    bool poofDirRight = (i % 2 == 0);
-
-            //    if ((currentPosition == 2) && (i < 2))
-            //    {
-            //        poofDirRight = false;
-            //    }
-
-            //    eggPieces[index].Poof(poofDirRight);
-            //}
-            
             if (progress == 1f)
             {
-                for(int i=0; i<eggPieces.Length; i++)
+                for (int i = 0; i < eggPieces.Length; i++)
                 {
                     bool poofDirRight = (i % 2 == 0);
-
-                    //if ((currentPosition == 2) && (i < 2))
-                    //{
-                    //    poofDirRight = false;
-                    //}
 
                     eggPieces[i].Poof(poofDirRight);
                 }
@@ -210,7 +182,7 @@ namespace EA4S.Egg
             }
         }
 
-        void MoveTo(Vector3 position, float duration, AnimationCurve moveCurve)
+        void MoveTo(Vector3 position, float duration)
         {
             if (moveEggParentTween != null)
             {
@@ -226,9 +198,7 @@ namespace EA4S.Egg
                     onEggExitComplete();
                 }
 
-            })
-            ;
-            //.SetEase(moveCurve);
+            });
         }
 
         void InOutRotation(Vector3 rotation, float duration)
@@ -277,9 +247,9 @@ namespace EA4S.Egg
             });
         }
 
-        void TransformTo(Vector3 localPosition, bool inOutRotation, AnimationCurve moveAnimationCurve, Vector3 rotation, float duration, Action callback)
+        void TransformTo(Vector3 localPosition, bool inOutRotation, Vector3 rotation, float duration, Action callback)
         {
-            MoveTo(localPosition, duration, moveAnimationCurve);
+            MoveTo(localPosition, duration);
 
             if (inOutRotation)
             {
@@ -457,8 +427,6 @@ namespace EA4S.Egg
 
         public void ParticleWinEnabled()
         {
-            //eggParticleWin.SetActive(true);
-
             foreach (var particles in eggParticleWin.GetComponentsInChildren<ParticleSystem>(true))
             {
                 particles.Play();
@@ -471,13 +439,40 @@ namespace EA4S.Egg
             {
                 particles.Stop();
             }
+        }
 
-            //eggParticleWin.SetActive(false);
+        public void ParticleCorrectEnabled()
+        {
+            if (particleCorrectSequence != null && particleCorrectSequence.IsPlaying())
+                return;
+
+            foreach (var particles in eggParticleCorrect.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Play();
+            }
+
+            particleCorrectSequence = DOTween.Sequence();
+
+            particleCorrectSequence.AppendInterval(0.5f);
+            particleCorrectSequence.AppendCallback(delegate() { ParticleCorrectDisabled(); });
+
+            particleCorrectSequence.Play();
+        }
+
+        public void ParticleCorrectDisabled()
+        {
+            if (particleCorrectSequence != null)
+                particleCorrectSequence.Kill();
+
+            foreach (var particles in eggParticleCorrect.GetComponentsInChildren<ParticleSystem>(true))
+            {
+                particles.Stop();
+            }
         }
 
         public void StartShake()
         {
-            for(int i=0; i<eggPieces.Length; i++)
+            for (int i = 0; i < eggPieces.Length; i++)
             {
                 eggPieces[i].Shake();
             }
@@ -497,8 +492,7 @@ namespace EA4S.Egg
         void ShowEndLetters()
         {
             EggLivingLetter letter;
-
-            //float startDelay = 0.7f;
+            
             float startDelay = 0f;
 
             float jumpDelay = 0.5f;
@@ -507,15 +501,8 @@ namespace EA4S.Egg
 
             for (int i = 0; i < questionData.Count; i++)
             {
-                Action jumpCallback = null;
-
-                if (i == questionData.Count - 1)
-                {
-                    jumpCallback = OnLettersJumpComplete;
-                }
-
                 Vector3 lLetterPosition = new Vector3(transform.localPosition.x, egg.transform.localPosition.y, transform.localPosition.z);
-                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, shadowPrefab, questionData[i], lLetterPosition, transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, jumpCallback);
+                letter = new EggLivingLetter(transform.parent, letterObjectViewPrefab, shadowPrefab, questionData[i], lLetterPosition, transform.localPosition, lettersEndPositions[i], (jumpDelay * i) + startDelay, null);
 
                 eggLivingLetters.Add(letter);
             }
@@ -548,11 +535,6 @@ namespace EA4S.Egg
             }
 
             return lettersEndPositions;
-        }
-
-        void OnLettersJumpComplete()
-        {
-
         }
 
         public void EmoticonHappy()

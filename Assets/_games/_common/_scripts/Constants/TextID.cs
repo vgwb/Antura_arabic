@@ -21,6 +21,12 @@
         public static readonly TextID WELL_DONE = new TextID("comment_welldone");
         public static readonly TextID TIMES_UP = new TextID("game_generic_timeup");
 
+        // Egg
+
+        public static readonly TextID EGG_INTRO = new TextID("Egg_Intro");
+        public static readonly TextID EGG_TUTO_BUTTON = new TextID("Egg_Tuto_Button");
+        public static readonly TextID EGG_TUTO_SEQUENCE = new TextID("Egg_Tuto_Sequence");
+
         // ...
 
         public static TextID GetTextIDFromStars(int stars)
