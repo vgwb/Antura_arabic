@@ -10,6 +10,7 @@ public class WrongTube : MonoBehaviour
 
     public TremblingTube tube;
     float spittingTimer = 0;
+    bool sfxPlayed = false;
 
     GameObject spittingLetter;
 
@@ -48,11 +49,17 @@ public class WrongTube : MonoBehaviour
             };
 
         }
-        
+
         if (spittingTimer > 0)
         {
             tube.Trembling = true;
             spittingTimer -= Time.deltaTime;
+
+            if (!sfxPlayed && spittingTimer < 0.3f)
+            {
+                sfxPlayed = true;
+                EA4S.Tobogan.ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(EA4S.Sfx.UIPauseIn);
+            }
 
             if (spittingTimer <= 0)
             {
@@ -66,7 +73,7 @@ public class WrongTube : MonoBehaviour
         }
         else
         {
-
+            sfxPlayed = false;
             tube.Trembling = false;
         }
     }
