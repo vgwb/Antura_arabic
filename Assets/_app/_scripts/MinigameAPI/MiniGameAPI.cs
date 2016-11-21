@@ -119,9 +119,6 @@ namespace EA4S.API {
                     Assessment.AssessmentConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Assessment.AssessmentConfiguration.Instance;
                     break;
-                case MiniGameCode.AlphabetSong:
-                    // Must be defined how use sentence data structure
-                    break;
                 case MiniGameCode.Balloons_counting:
                     Balloons.BalloonsConfiguration.Instance.Variation = Balloons.BalloonsVariation.Counting;
                     Balloons.BalloonsConfiguration.Instance.Context = AnturaMinigameContext.Default;
@@ -225,10 +222,16 @@ namespace EA4S.API {
                     actualConfig = SickLetters.SickLettersConfiguration.Instance;
                     break;
                 case MiniGameCode.ReadingGame:
-                    // Must be defined how use sentence data structure
+                    ReadingGame.ReadingGameConfiguration.Instance.Variation = ReadingGame.ReadingGameVariation.ReadAndAnswer;
+                    ReadingGame.ReadingGameConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = ReadingGame.ReadingGameConfiguration.Instance;
+                    break;
+                case MiniGameCode.AlphabetSong:
+                    ReadingGame.ReadingGameConfiguration.Instance.Variation = ReadingGame.ReadingGameVariation.AlphabetSong;
+                    ReadingGame.ReadingGameConfiguration.Instance.Context = AnturaMinigameContext.Default;
+                    actualConfig = ReadingGame.ReadingGameConfiguration.Instance;
                     break;
                 case MiniGameCode.Scanner:
-                    //                    Scanner.ScannerConfiguration.Instance.Variation = Scanner.ScannerVariation.V_1;
                     Scanner.ScannerConfiguration.Instance.Context = AnturaMinigameContext.Default;
                     actualConfig = Scanner.ScannerConfiguration.Instance;
                     break;

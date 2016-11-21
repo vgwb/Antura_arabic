@@ -11,19 +11,19 @@ namespace EA4S
         DeAudioGroup sfxGroup;
 
         Music currentMusic;
-        bool musicEnabled;
         public bool MusicEnabled
         {
             get
             {
-                return musicEnabled;
+                return AudioManager.I.MusicEnabled;
             }
 
             set
             {
-                musicEnabled = value;
+                if (AudioManager.I.MusicEnabled != value)
+                    AudioManager.I.ToggleMusic();
 
-                if (musicEnabled)
+                if (AudioManager.I.MusicEnabled)
                 {
                     PlayMusic(currentMusic);
                     
@@ -86,7 +86,7 @@ namespace EA4S
         {
             currentMusic = music;
 
-            if (musicEnabled)
+            if (MusicEnabled)
                 AudioManager.I.PlayMusic(music);
         }
 
@@ -131,6 +131,19 @@ namespace EA4S
             var source = musicGroup.Play(clip);
 
             return new SampleAudioSource(source, musicGroup);
+        }
+
+        public IAudioSource PlaySound(AudioClip clip)
+        {
+            if (sfxGroup == null)
+            {
+                sfxGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.FX);
+                sfxGroup.mixerGroup = AudioManager.I.sfxGroup;
+            }
+
+            var source = sfxGroup.Play(clip);
+
+            return new SampleAudioSource(source, sfxGroup);
         }
     }
 }

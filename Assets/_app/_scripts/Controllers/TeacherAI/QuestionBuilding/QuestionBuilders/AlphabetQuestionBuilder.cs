@@ -32,7 +32,7 @@ namespace EA4S
             // Fully ordered alphabet, only 1 pack
             var alphabetLetters = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
-                new SelectionParameters(parameters.correctSeverity, getAllData:true, useJourney: parameters.useJourneyForCorrect)
+                new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney: parameters.useJourneyForCorrect)
                 );
 
             alphabetLetters.Sort((x, y) =>

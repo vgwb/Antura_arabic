@@ -177,6 +177,11 @@ namespace EA4S
         #endregion
 
         #region PlaySession
+        public bool HasPlaySessionDataById(string id)
+        {
+            return staticDb.HasById(staticDb.GetPlaySessionTable(), id);
+        }
+
         public PlaySessionData GetPlaySessionDataById(string id)
         {
             return staticDb.GetById(staticDb.GetPlaySessionTable(), id);
