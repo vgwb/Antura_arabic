@@ -55,7 +55,7 @@ namespace EA4S.Teacher
             this.correctChoicesHistory = PackListHistory.NoFilter;
             this.wrongChoicesHistory = PackListHistory.NoFilter;
             this.useJourneyForCorrect = true;
-            this.useJourneyForWrong = true;
+            this.useJourneyForWrong = false;
             this.correctSeverity = SelectionSeverity.AsManyAsPossible;
             this.wrongSeverity = SelectionSeverity.AsManyAsPossible;
             this.letterFilters = new LetterFilters();
