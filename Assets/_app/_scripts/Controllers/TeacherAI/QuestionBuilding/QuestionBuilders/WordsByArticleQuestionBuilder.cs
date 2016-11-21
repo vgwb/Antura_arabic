@@ -29,13 +29,16 @@ namespace EA4S
 
             int nPerType = nPacks / 2;
 
+            var wordFilters = new WordFilters();
+            wordFilters.excludeArticles = false;
+
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative),
+                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative, wordFilters),
                 new SelectionParameters(severity, nPerType)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.None),
+                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.None, wordFilters),
                 new SelectionParameters(severity, nPerType)
                 );
 

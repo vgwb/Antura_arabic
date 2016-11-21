@@ -30,18 +30,21 @@ namespace EA4S
 
             int nPerType = nPacks / 3;
 
+            var wordFilters = new WordFilters();
+            wordFilters.excludePluralDual = false;
+
             var list_choice1 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Singular),
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Singular, wordFilters),
                 new SelectionParameters(severity, nPerType)
                 );
 
             var list_choice2 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural),
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Plural, wordFilters),
                 new SelectionParameters(severity, nPerType)
                 );
 
             var list_choice3 = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Dual),
+                () => teacher.wordHelper.GetWordsByForm(Db.WordDataForm.Dual, wordFilters),
                 new SelectionParameters(severity, nPerType)
                 );
 

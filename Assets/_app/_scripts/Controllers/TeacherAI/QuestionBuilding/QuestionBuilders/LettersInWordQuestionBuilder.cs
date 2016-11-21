@@ -42,7 +42,8 @@ namespace EA4S
             var teacher = AppManager.Instance.Teacher;
 
             // Get the word
-            var question = teacher.wordHelper.GetWordsByCategory(category, drawingNeeded).RandomSelectOne();
+            var wordFilters = new WordFilters();
+            var question = teacher.wordHelper.GetWordsByCategory(category, wordFilters).RandomSelectOne();
 
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);

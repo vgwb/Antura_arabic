@@ -27,8 +27,11 @@ namespace EA4S
             var choice1 = db.GetWordDataById("the_sun");
             var choice2 = db.GetWordDataById("the_moon");
 
+            var wordFilters = new WordFilters();
+            wordFilters.excludeArticles = false;
+
             var wordsWithArticle = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative),
+                () => teacher.wordHelper.GetWordsByArticle(Db.WordDataArticle.Determinative, wordFilters),
                 new SelectionParameters(severity, nPacks)
                 );
 
