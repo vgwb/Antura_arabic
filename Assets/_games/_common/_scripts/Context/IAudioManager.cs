@@ -7,6 +7,7 @@ namespace EA4S
         bool MusicEnabled { get; set; }
 
         IAudioSource PlaySound(Sfx sfx);
+        IAudioSource PlaySound(AudioClip clip);
 
         /// <summary>
         /// Play sound for letter or word,
