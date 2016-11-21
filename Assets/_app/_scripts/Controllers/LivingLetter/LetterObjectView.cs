@@ -146,6 +146,19 @@ namespace EA4S
                     Drawing.enabled = false;
                     Label.enabled = true;
                     Label.text = Data.TextForLivingLetter;
+
+                    // Scale modification
+                    switch (data.DataType) {
+                        case LivingLetterDataType.Word:
+                            Scale = 1.3f;
+                            break;
+                        case LivingLetterDataType.Phrase:
+                            Scale = 2f;
+                            break;
+                        default:
+                            Scale = 1f;
+                            break;
+                    }
                 }
             }
         }
