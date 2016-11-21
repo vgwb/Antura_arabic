@@ -11,6 +11,8 @@ namespace EA4S.MixedLetters
         private float anturaExitTimer;
         private bool anturaExited = false;
 
+        private float timePerRound = 30f;
+
         public IntroductionGameState(MixedLettersGame game)
         {
             this.game = game;
@@ -29,6 +31,14 @@ namespace EA4S.MixedLetters
             VictimLLController.instance.SetPosition(victimLLPosition);
 
             game.roundNumber++;
+
+            if (game.roundNumber == 1)
+            {
+                MinigamesUI.Init(MinigamesUIElement.Timer);
+                MinigamesUI.Timer.Setup(timePerRound);
+            }
+
+            MinigamesUI.Timer.Rewind();
         }
 
         public void ExitState()

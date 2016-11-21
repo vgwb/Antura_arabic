@@ -44,6 +44,8 @@ namespace EA4S.MixedLetters
             ResetScene();
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
+
+            
         }
 
         protected override IGameState GetInitialState()
@@ -80,11 +82,9 @@ namespace EA4S.MixedLetters
             }
         }
 
-        public void OnRoundStarted(int time)
+        public void OnRoundStarted()
         {
             ShowDropZones();
-            UIController.instance.EnableTimer();
-            UIController.instance.SetTimer(time);
             SeparateLettersSpawnerController.instance.SetLettersDraggable();
         }
 
@@ -128,7 +128,6 @@ namespace EA4S.MixedLetters
             SeparateLettersSpawnerController.instance.ResetLetters();
             SeparateLettersSpawnerController.instance.DisableLetters();
             lettersInOrder.Clear();
-            UIController.instance.DisableTimer();
             ParticleSystemController.instance.Reset();
             ParticleSystemController.instance.Disable();
             AnturaController.instance.Disable();
