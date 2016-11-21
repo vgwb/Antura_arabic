@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,12 +12,10 @@ namespace EA4S.Assessment
             this.assessmentGame = assessmentGame;
         }
 
-        float timer = 200;
         AssessmentAnturaController anturaController;
 
         public void EnterState()
         {
-
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
             TimeEngine.Instance.Clear();
 
@@ -26,18 +23,15 @@ namespace EA4S.Assessment
             Coroutine.Start( TutorialClicks());
 
             anturaController  = GameObject.Instantiate( assessmentGame.antura) as AssessmentAnturaController;
-            anturaController.enabled = false;
             anturaController.gameObject.SetActive(true);
 
             anturaController.SetFinishedAnimationCallback( () => SetNextState());
         }
 
-
-
         private IEnumerator TutorialClicks()
         {
             yield return TimeEngine.Wait( 0.6f);
-            TutorialUI.ClickRepeat(TutorialHelper.GetWorldPosition());
+            TutorialUI.ClickRepeat( TutorialHelper.GetWorldPosition());
             yield return TimeEngine.Wait( 0.1f);
 
             for (int i = 0; i < 9; i++)
@@ -47,7 +41,7 @@ namespace EA4S.Assessment
             }
 
             yield return TimeEngine.Wait( 0.1f);
-            anturaController.enabled = true;
+            anturaController.EnableClick();
         }
 
         public void ExitState()
