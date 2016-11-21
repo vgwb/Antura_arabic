@@ -26,8 +26,8 @@ namespace EA4S
                     return;
 
                 // sun
-                var sunData = AppManager.Instance.DB.GetWordDataById("sun");
-                var moonData = AppManager.Instance.DB.GetWordDataById("moon");
+                var sunData = AppManager.Instance.DB.GetWordDataById("the_sun");
+                var moonData = AppManager.Instance.DB.GetWordDataById("the_moon");
 
                 ILivingLetterData sunWord = new LL_ImageData(sunData.GetId(), sunData);
                 ILivingLetterData moonWord = new LL_ImageData(moonData.GetId(), moonData);
