@@ -3567,10 +3567,10 @@ MonoBehaviour:
       - alef_maqsura
       Difficulty: 0
       Drawing: 
-    - Id: duck
+    - Id: ducks
       Kind: 5
       Category: 10
-      Form: 0
+      Form: 2
       Article: 0
       LinkedWord: 
       Arabic: "\u0628\u0637"
@@ -8431,7 +8431,7 @@ MonoBehaviour:
       - back
       Words_previous:
       - potato
-      - duck
+      - ducks
       - nail
       - clean
       - belly
@@ -10520,7 +10520,7 @@ MonoBehaviour:
       Words:
       - flew
       - potato
-      - duck
+      - ducks
       - month_february
       Words_previous:
       - slow
@@ -12099,7 +12099,7 @@ MonoBehaviour:
       Words:
       - restaurant
       Words_previous:
-      - duck
+      - ducks
       - needle
       - apricot
       - number_05
