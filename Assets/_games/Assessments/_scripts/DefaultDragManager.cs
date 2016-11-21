@@ -49,9 +49,6 @@ namespace EA4S.Assessment
                 if (place.IsAnswered() == false)
                     allAnswered = false;
             }
-
-            if (allAnswered)
-                Debug.Log("allAnswered");
             
             if (allAnswered && !checker.IsAnimating())
                 checker.Check( placeholders, this);

@@ -42,7 +42,6 @@ namespace EA4S.Assessment
         private bool coroutineEnded = false;
         private IEnumerator CheckCoroutine( List< PlaceholderBehaviour> placeholders, IDragManager dragManager)
         {
-            Debug.Log("CheckCoroutine");
             dragManager.DisableInput();
 
             bool areAllCorrect = true;

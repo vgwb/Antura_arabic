@@ -31,18 +31,19 @@ namespace EA4S.Assessment
         void Start()
         {
             TimeEngine.AddTickable( this);
-            StartCoroutine( CheckStateAndSetAnimation());
+            Coroutine.Start( CheckStateAndSetAnimation());
         }
 
         void OnMouseUp()
         {
             AnturaPressed();
-            
         }
 
         private void AnturaPressed()
         {
             currentTreshold += GainPerClick;
+            if(currentState<4)
+                audioManager.PlaySound( soundOnClick);
         }
 
         [Header("Prefabs")]
@@ -52,6 +53,7 @@ namespace EA4S.Assessment
         [Header("Tutorial Configuration")]
         public float Treshold = 0.61f;
         public float GainPerClick = 0.3f;
+        public Sfx soundOnClick;
 
         private float currentTreshold = 0;
         private float currentMaxTreshold = 1f;
@@ -81,10 +83,7 @@ namespace EA4S.Assessment
                 if (stateDelta < 0)
                     DecreaseState();
 
-                Debug.Log("Antura Pressed State: "+currentState);
-
                 var emission = sleepingParticles.emission;
-
                 
                 switch (currentState)
                 {
@@ -120,6 +119,7 @@ namespace EA4S.Assessment
                         break;
 
                     case 4:
+                        audioManager.PlaySound( Sfx.Win);
                         antura.DoCharge( ()=> StartMoving());
                         TurnAntura(-65f);
                         break;

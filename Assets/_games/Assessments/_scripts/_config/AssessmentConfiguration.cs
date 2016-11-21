@@ -32,7 +32,6 @@ namespace EA4S.Assessment
 
         private IQuestionProvider GetQuestionProvider()
         {
-            
             if(questionProvider == null)
             {
                 switch (assessmentType)
@@ -42,11 +41,11 @@ namespace EA4S.Assessment
                         return questionProvider = new LetterShape_TestProvider( 2, 2, 3);
 
                     case AssessmentCode.WordsWithLetter:
-                        Debug.Log("Created WordsWithLetterProvider_Tester");
+                        Debug.Log( "Created WordsWithLetterProvider_Tester");
                         return questionProvider = new WordsWithLetterProvider_Tester( rounds:2, simultaneos:2, correct:3, wrong:2);
 
                     case AssessmentCode.MatchLettersToWord:
-                        Debug.Log("Created WordsWithLetterProvider_Tester");
+                        Debug.Log( "Created WordsWithLetterProvider_Tester");
                         return questionProvider = new MatchLettersToWordProvider_Tester( rounds: 2, simultaneos: 2, correct: 3, wrong: 2);
 
                     default:
@@ -57,7 +56,7 @@ namespace EA4S.Assessment
             return questionProvider;
         }
 
-        internal void SetupDefault(AssessmentCode code)
+        internal void SetupDefault( AssessmentCode code)
         {
             if (Instance.assessmentType == AssessmentCode.Unsetted)
             {
@@ -112,7 +111,7 @@ namespace EA4S.Assessment
         }
         /////////////////
 
-        public string Description { get { return "Missing description"; } private set { } }
+        public string Description { get { return "Missing description AND audio"; } private set { } }
 
         private AssessmentConfiguration()
         {
@@ -168,7 +167,7 @@ namespace EA4S.Assessment
             Rounds = snag.Increase( 2, 3);
             return new LettersInWordQuestionBuilder(
 
-                SimultaneosQuestions * Rounds,  // Total Answers
+                SimultaneosQuestions * Rounds,   // Total Answers
                 snag.Decrease( 3, 2),            // CorrectAnswers
                 snag.Increase( 1, 4),            // WrongAnswers
                 useAllCorrectLetters: false);
@@ -177,7 +176,7 @@ namespace EA4S.Assessment
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
             SimultaneosQuestions = 1;
-            Rounds = snag.Decrease( 4, 1);      // We assume letter shapes are just a basic thing so we don't insist
+            Rounds = snag.Decrease( 6, 1);      // We assume letter shapes are just a basic thing so we don't insist
 
             var builderParams = new QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
@@ -186,7 +185,7 @@ namespace EA4S.Assessment
             return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * Rounds,  // Total Answers
                 1,                              // CorrectAnswers
-                snag.Increase(3, 6),           // WrongAnswers
+                snag.Increase( 3, 6),           // WrongAnswers
                 firstCorrectIsQuestion:true,
                 parameters:builderParams);
         }
