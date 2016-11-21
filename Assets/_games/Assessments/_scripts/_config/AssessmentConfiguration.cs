@@ -179,7 +179,7 @@ namespace EA4S.Assessment
             SimultaneosQuestions = 1;
             Rounds = snag.Decrease( 4, 1);      // We assume letter shapes are just a basic thing so we don't insist
 
-            var builderParams = new QuestionBuilderParameters();
+            var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
             builderParams.wrongChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
 
