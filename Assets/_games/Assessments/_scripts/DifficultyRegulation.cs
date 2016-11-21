@@ -20,6 +20,7 @@ using UnityEngine;
 public class DifficultyRegulation : MonoBehaviour {
 
     float difficulty;
+    float startingFrom;
 
     public DifficultyRegulation( float diff)
     {
@@ -33,12 +34,18 @@ public class DifficultyRegulation : MonoBehaviour {
         Debug.Log("FinalDifficulty:" + difficulty + " (started from: " + diff + ")");
     }
 
+    public void SetStartingFrom( float from)
+    {
+        startingFrom = from;
+    }
+
 	public int Increase( int min, int max)
     {
         if (min > max)
             throw new ArgumentException( "This parameter should only increase.");
 
-        return (int)Mathf.RoundToInt( Mathf.Lerp( min, max, difficulty));
+        float finalVal = Mathf.Clamp01(difficulty - startingFrom);
+        return (int)Mathf.RoundToInt( Mathf.Lerp( min, max, finalVal));
     }
 
     public int Decrease( int max, int min)
@@ -46,6 +53,7 @@ public class DifficultyRegulation : MonoBehaviour {
         if (min > max)
             throw new ArgumentException( "This parameter should only decrease.");
 
-        return (int)Mathf.RoundToInt( Mathf.Lerp( max, min, difficulty));
+        float finalVal = Mathf.Clamp01(difficulty - startingFrom);
+        return (int)Mathf.RoundToInt( Mathf.Lerp( max, min, finalVal));
     }
 }
