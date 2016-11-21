@@ -22,6 +22,17 @@ namespace EA4S.Assessment
             instance.yieldInstructions.Add( tickable);
         }
 
+        /// <summary>
+        /// Remove a previously added tickable (if you don't want to bother returning
+        /// "true" when something is finished)
+        /// </summary>
+        /// <param name="tickable"></param>
+        public static void RemoveTickable( ITickable tickable)
+        {
+            if (instance.yieldInstructions.Remove(tickable) == false)
+                throw new InvalidOperationException("Cannot remove something that was not added");
+        }
+
         List<ITickable> yieldInstructions = new List< ITickable>();
 
         public void Clear()

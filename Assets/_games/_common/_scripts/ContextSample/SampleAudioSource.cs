@@ -16,6 +16,9 @@ namespace EA4S
         {
             get
             {
+                if (source.audioSource == null)
+                    return false;
+
                 return source.isPlaying;
             }
         }

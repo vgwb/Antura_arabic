@@ -11,6 +11,9 @@ namespace EA4S.Assessment
         [Header("Configuration")]
         public AssessmentCode assessmentCode;
 
+        [Header("Prefabs")]
+        public AssessmentAnturaController antura;
+
         public AssessmentIntroState IntroductionState { get; private set; }
         public AssessmentQuestionState QuestionState { get; private set; }
         public AssessmentGameState PlayState { get; private set; }

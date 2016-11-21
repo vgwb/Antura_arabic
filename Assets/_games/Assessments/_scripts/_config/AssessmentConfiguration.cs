@@ -32,7 +32,6 @@ namespace EA4S.Assessment
 
         private IQuestionProvider GetQuestionProvider()
         {
-            
             if(questionProvider == null)
             {
                 switch (assessmentType)
@@ -42,11 +41,11 @@ namespace EA4S.Assessment
                         return questionProvider = new LetterShape_TestProvider( 2, 2, 3);
 
                     case AssessmentCode.WordsWithLetter:
-                        Debug.Log("Created WordsWithLetterProvider_Tester");
+                        Debug.Log( "Created WordsWithLetterProvider_Tester");
                         return questionProvider = new WordsWithLetterProvider_Tester( rounds:2, simultaneos:2, correct:3, wrong:2);
 
                     case AssessmentCode.MatchLettersToWord:
-                        Debug.Log("Created WordsWithLetterProvider_Tester");
+                        Debug.Log( "Created WordsWithLetterProvider_Tester");
                         return questionProvider = new MatchLettersToWordProvider_Tester( rounds: 2, simultaneos: 2, correct: 3, wrong: 2);
 
                     default:
@@ -57,7 +56,7 @@ namespace EA4S.Assessment
             return questionProvider;
         }
 
-        internal void SetupDefault(AssessmentCode code)
+        internal void SetupDefault( AssessmentCode code)
         {
             if (Instance.assessmentType == AssessmentCode.Unsetted)
             {
@@ -90,7 +89,7 @@ namespace EA4S.Assessment
         public int SimultaneosQuestions { get; set; }
 
         private int _rounds = 0;
-        public int Rounds { get { return _rounds; } set { _rounds = value; Debug.Log("Setted Rounds:" + value); } }
+        public int Rounds { get { return _rounds; } set { _rounds = value; } }
 
         public bool PronunceQuestionWhenClicked { get; set; }
         public bool PronunceAnswerWhenClicked { get; set; }
@@ -112,7 +111,7 @@ namespace EA4S.Assessment
         }
         /////////////////
 
-        public string Description { get { return "Missing description"; } private set { } }
+        public string Description { get { return "Missing description AND audio"; } private set { } }
 
         private AssessmentConfiguration()
         {
@@ -133,6 +132,9 @@ namespace EA4S.Assessment
         /// <returns></returns>
         public IQuestionBuilder SetupBuilder()
         {
+            // Testing question builders
+            Teacher.ConfigAI.verboseDataSelection = true;
+            Teacher.ConfigAI.verboseTeacher = true;
             snag = new DifficultyRegulation( Difficulty);
 
             switch (assessmentType)
@@ -155,38 +157,58 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = snag.Increase( 1,2);
             Rounds = snag.Increase( 2, 4);
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
+
             return new WordsWithLetterQuestionBuilder( 
 
                 SimultaneosQuestions*Rounds,// Total Answers
                 snag.Decrease( 3, 2),       // Correct Answers
-                snag.Increase( 1, 4));      // Wrong Answers
+                snag.Increase( 1, 4),         // Wrong Answers
+                parameters: builderParams
+                );     
+
         }
 
         private IQuestionBuilder Setup_MatchLettersToWord_Builder()
         {
             SimultaneosQuestions = 1;
             Rounds = snag.Increase( 2, 3);
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
+
             return new LettersInWordQuestionBuilder(
 
-                SimultaneosQuestions * Rounds,  // Total Answers
+                SimultaneosQuestions * Rounds,   // Total Answers
                 snag.Decrease( 3, 2),            // CorrectAnswers
                 snag.Increase( 1, 4),            // WrongAnswers
-                useAllCorrectLetters: false);
+                useAllCorrectLetters: false,
+                parameters: builderParams);
         }
 
         private IQuestionBuilder Setup_LetterShape_Builder()
         {
             SimultaneosQuestions = 1;
-            Rounds = snag.Decrease( 4, 1);      // We assume letter shapes are just a basic thing so we don't insist
+            Rounds = snag.Decrease( 6, 1);      // We assume letter shapes are just a basic thing so we don't insist
 
-            var builderParams = new QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
+            builderParams.useJourneyForWrong = false;
 
             return new RandomLettersQuestionBuilder(
                 SimultaneosQuestions * Rounds,  // Total Answers
                 1,                              // CorrectAnswers
-                snag.Increase(3, 6),           // WrongAnswers
+                snag.Increase( 3, 6),           // WrongAnswers
                 firstCorrectIsQuestion:true,
                 parameters:builderParams);
         }
