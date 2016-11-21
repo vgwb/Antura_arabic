@@ -395,6 +395,8 @@ namespace EA4S.Tobogan
             fallingLetter = letter;
             letter.GetComponentInChildren<LetterObjectView>().Falling = true;
             spawnTimer = 0;
+
+            EA4S.Tobogan.ToboganConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.UIPopup);
         }
 
         void UpdateBacklog()

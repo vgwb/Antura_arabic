@@ -77,11 +77,13 @@ namespace EA4S
             stateManager.Update(Time.deltaTime);
 
             var inputManager = Context.GetInputManager();
+            var audioManager = Context.GetAudioManager();
 
             // TODO: move this outside this method (actually it is useless with the current implementation of PauseMenu)
             inputManager.Enabled = !(GlobalUI.PauseMenu.IsMenuOpen);
 
             inputManager.Update(Time.deltaTime);
+            audioManager.Update();
 
 #if UNITY_EDITOR
             if (Input.GetKeyDown(KeyCode.Alpha0))
