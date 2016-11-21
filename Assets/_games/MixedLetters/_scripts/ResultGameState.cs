@@ -34,6 +34,21 @@ namespace EA4S.MixedLetters
             {
                 MixedLettersConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.Win);
                 SeparateLettersSpawnerController.instance.ShowWinAnimation(OnResultAnimationEnded);
+
+                if (game.numRoundsWon == 1)
+                {
+                    MinigamesUI.Starbar.GotoStar(0);
+                }
+
+                else if (game.numRoundsWon == 3)
+                {
+                    MinigamesUI.Starbar.GotoStar(1);
+                }
+
+                else if (game.numRoundsWon == 5)
+                {
+                    MinigamesUI.Starbar.GotoStar(2);
+                }
             }
         }
 
@@ -44,7 +59,7 @@ namespace EA4S.MixedLetters
 
         public void OnResultAnimationEnded()
         {
-            if (game.roundNumber < 6)
+            if (game.roundNumber < 5)
             {
                 game.SetCurrentState(game.IntroductionState);
             }
@@ -65,15 +80,15 @@ namespace EA4S.MixedLetters
                 {
                     int numberOfStars;
 
-                    if (game.numRoundsWon <= 0)
+                    if (game.numRoundsWon == 0)
                     {
                         numberOfStars = 0;
                     }
-                    else if (game.numRoundsWon <= 2)
+                    else if (game.numRoundsWon == 1 || game.numRoundsWon == 2)
                     {
                         numberOfStars = 1;
                     }
-                    else if (game.numRoundsWon <= 5)
+                    else if (game.numRoundsWon == 3 || game.numRoundsWon == 4)
                     {
                         numberOfStars = 2;
                     }
