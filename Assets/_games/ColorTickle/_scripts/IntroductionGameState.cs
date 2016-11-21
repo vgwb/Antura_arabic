@@ -59,19 +59,20 @@ namespace EA4S.ColorTickle
         {
             game.myLetters = new GameObject[game.rounds];
 
-            LL_LetterData LLdata;
+            //LL_LetterData LLdata;
 
             for (int i = 0; i < game.rounds; ++i)
             {
-                game.myLetters[i] = Object.Instantiate(game.m_LetterPrefab);
+                game.myLetters[i] = Object.Instantiate(game.letterPrefab);
                 game.myLetters[i].SetActive(true);
                 // HACK fix for the automatic reset of the color after update at Unity 5.4.2
                 game.myLetters[i].GetComponent<LetterObjectView>().Label.color = Color.white;
 
-                //game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement()); //we don't use combinations
-                LLdata = new LL_LetterData(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement().Data.Id.Split('_')[0]);//TODO change this with the question provider for only base letters
+                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement()); //we don't want diacritic letters for our game (default builder)
+
+                /*LLdata = new LL_LetterData(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement().Data.Id.Split('_')[0]);//old hack to get non-diacritic letters
                 game.myLetters[i].GetComponent<LetterObjectView>().Init(LLdata);
-                Debug.Log("Introd LL data " + LLdata.Data.Id );
+                */
 
                 game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
             }
@@ -80,7 +81,7 @@ namespace EA4S.ColorTickle
         void BuildTutorialLetter()
         {
             LL_LetterData LLdata = new LL_LetterData("alef");
-            game.tutorialLetter = Object.Instantiate(game.m_LetterPrefab);
+            game.tutorialLetter = Object.Instantiate(game.letterPrefab);
             game.tutorialLetter.SetActive(true);
             // HACK fix for the automatic reset of the color after update at Unity 5.4.2
             game.tutorialLetter.GetComponent<LetterObjectView>().Label.color = Color.white;

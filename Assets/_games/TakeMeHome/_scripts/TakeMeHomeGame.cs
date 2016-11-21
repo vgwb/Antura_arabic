@@ -206,10 +206,6 @@ namespace EA4S.TakeMeHome
 
 			timerText.gameObject.SetActive(false);
 			roundText.gameObject.SetActive(false);
-			Physics.gravity = new Vector3(0, -10, 0);
-
-
-			Physics.gravity = Vector3.up * -40;
 
 			InitTubes ();
 
@@ -269,5 +265,10 @@ namespace EA4S.TakeMeHome
 
 			this.SetCurrentState(EndState);
 		}
-	}
+
+        public override Vector3 GetGravity()
+        {
+            return Vector3.up * (-40);
+        }
+    }
 }

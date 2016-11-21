@@ -24,6 +24,9 @@ namespace EA4S
 
             if (data.Drawing != "") {
                 Drawing.text = AppManager.Instance.Teacher.wordHelper.GetWordDrawing(data);
+                if (data.Category == Db.WordDataCategory.Color) {
+                    Drawing.SetColor(GenericUtilities.GetColorFromString(data.Value));
+                }
                 //GetComponent<Image>().color = Color.green;
             } else {
                 Drawing.text = "";

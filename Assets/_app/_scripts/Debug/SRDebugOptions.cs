@@ -10,9 +10,45 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        WidgetPopupWindow.I.Close();
-        DebugManager.I.LaunchMinigGame(minigameCode);
-        SRDebug.Instance.HideDebugPanel();
+        if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        {
+            WidgetPopupWindow.I.Close();
+            DebugManager.I.LaunchMinigGame(minigameCode);
+            SRDebug.Instance.HideDebugPanel();
+        }
+        else
+        {
+            JourneyPosition minJ = GetMinimumPlaysessionForGame(minigameCode);
+            if (minJ == null) {
+                Debug.LogErrorFormat("Minigame {0} cannot be played never!!!", minigameCode);
+                return;
+            }
+            Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
+            Stage = minJ.Stage;
+            LearningBlock = minJ.LearningBlock;
+            PlaySession = minJ.PlaySession;
+            SRDebug.Instance.HideDebugPanel();
+            SRDebug.Instance.ShowDebugPanel();
+        }
+    }
+    
+    public EA4S.JourneyPosition GetMinimumPlaysessionForGame(MiniGameCode minigameCode) {
+        int Stages = 6;
+        int LearningBlocks = 15;
+        int PlaySessions = 3;
+
+        for (int s = 1; s <= Stages; s++) {
+            for (int lb = 1; lb <= LearningBlocks; lb++) {
+                for (int ps = 1; ps <= PlaySessions; ps++) {
+                    if(AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
+                        return new JourneyPosition(s, lb, ps);
+                }
+                int assessmentCode = 100;
+                if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
+                    return new JourneyPosition(s, lb, assessmentCode);
+            }
+        }
+        return null;
     }
 
     [Category("Options")]

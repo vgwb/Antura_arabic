@@ -9,10 +9,13 @@ namespace EA4S
         // pack history filter: forced - only 1 pack
         // journey: enabled
 
-        private bool ignoreJourney;
+        private QuestionBuilderParameters parameters;
 
-        public AlphabetQuestionBuilder(bool ignoreJourney = false){
-            this.ignoreJourney = ignoreJourney;
+        public AlphabetQuestionBuilder(QuestionBuilderParameters parameters = null)
+        {
+            if (parameters == null) parameters = new QuestionBuilderParameters();
+
+            this.parameters = parameters;
         }
 
         public List<QuestionPackData> CreateAllQuestionPacks()
@@ -28,8 +31,8 @@ namespace EA4S
 
             // Fully ordered alphabet, only 1 pack
             var alphabetLetters = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetAllLetters(new LetterFilters()),
-                new SelectionParameters(SelectionSeverity.AsManyAsPossible, getAllData:true, useJourney: ignoreJourney)
+                () => teacher.wordHelper.GetAllLetters(parameters.letterFilters),
+                new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney: parameters.useJourneyForCorrect)
                 );
 
             alphabetLetters.Sort((x, y) =>

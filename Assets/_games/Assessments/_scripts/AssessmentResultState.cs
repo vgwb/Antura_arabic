@@ -11,16 +11,22 @@ namespace EA4S.Assessment
             this.assessmentGame = assessmentGame;
         }
 
-        float timer = 0.7f;
+        float timer = 4f;
 
         public void EnterState()
         {
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
+            assessmentGame.Context.GetAudioManager().PlaySound( Sfx.TickAndWin);
         }
 
-
+        bool exited = false;
         public void ExitState()
         {
+            if (exited == false)
+            {
+                AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards");
+                exited = true;
+            }
         }
 
         public void Update( float delta)
@@ -28,10 +34,7 @@ namespace EA4S.Assessment
             timer -= delta;
 
             if (timer < 0)
-            {
-                Debug.Log( "WARNING: SetEnd Game... needed SetEndAssessment"); // someone will implement that
-                assessmentGame.EndGame( 0, 0);
-            }
+                ExitState();
         }
 
         public void UpdatePhysics( float delta)
