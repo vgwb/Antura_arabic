@@ -36,7 +36,14 @@ namespace EA4S.Assessment
 
         void OnMouseUp()
         {
-            AnturaPressed();
+            if(clickEnabled)
+                AnturaPressed();
+        }
+
+        private bool clickEnabled = false;
+        public void EnableClick()
+        {
+            clickEnabled = true;
         }
 
         private void AnturaPressed()
@@ -59,6 +66,8 @@ namespace EA4S.Assessment
         private float currentMaxTreshold = 1f;
         private int currentState;
         private int stateDelta;
+
+        
 
         void OnDestroy()
         {

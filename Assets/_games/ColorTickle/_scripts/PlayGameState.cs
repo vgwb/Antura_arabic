@@ -137,8 +137,8 @@ namespace EA4S.ColorTickle
                     if(m_PercentageLetterColored >= 100)
                     {
                         m_iRoundsSuccessfull += 1;
-                        game.m_Stars = Mathf.CeilToInt(m_iRoundsSuccessfull / 2f);
-                        game.gameUI.SetStarsScore(game.m_Stars);
+                        game.starsAwarded = Mathf.CeilToInt(m_iRoundsSuccessfull / 2f);
+                        game.gameUI.SetStarsScore(game.starsAwarded);
 
                         m_LetterObjectView.DoHorray();
                         AudioManager.I.PlaySfx(Sfx.Win);
