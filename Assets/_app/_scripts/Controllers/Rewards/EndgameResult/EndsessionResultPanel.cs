@@ -1,6 +1,7 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/11/20
 
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace EA4S
         [Header("Settings")]
         public float Godrays360Duration = 15f;
         [Header("References")]
+        public EndsessionMinigames Minigames;
+        public EndsessionBar Bar;
         public CanvasGroup GodraysCanvas;
         public RectTransform Godray0, Godray1;
 
@@ -48,6 +51,7 @@ namespace EA4S
 
         void OnDestroy()
         {
+            this.StopAllCoroutines();
             showTween.Kill();
             godraysTween.Kill();
         }
@@ -60,18 +64,38 @@ namespace EA4S
         {
             Setup();
 
+            this.StopAllCoroutines();
             if (_immediate) showTween.Complete();
             else showTween.Restart();
             godraysTween.Restart();
             this.gameObject.SetActive(true);
+            this.StartCoroutine(CO_Show(_sessionData));
         }
 
         public void Hide(bool _immediate)
         {
             if (!setupDone) return;
 
+            this.StopAllCoroutines();
             if (_immediate) showTween.Rewind();
             else showTween.PlayBackwards();
+            Bar.Hide();
+            Minigames.Hide();
+        }
+
+        #endregion
+
+        #region Methods
+
+        IEnumerator CO_Show(List<EndsessionResultData> _sessionData)
+        {
+            yield return null;
+
+            Bar.Hide();
+            Minigames.Show(_sessionData);
+            yield return new WaitForSeconds(1);
+
+            Bar.Show();
         }
 
         #endregion

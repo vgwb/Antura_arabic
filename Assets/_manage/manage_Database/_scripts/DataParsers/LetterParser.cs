@@ -19,6 +19,7 @@ namespace EA4S.Db.Management
             data.Notes = ToString(dict["Notes"]);
             data.SunMoon = ParseEnum<LetterDataSunMoon>(data, dict["SunMoon"]);
             data.Sound = ToString(dict["Sound"]);
+            data.SoundZone = ToString(dict["SoundZone"]);
             data.Isolated = ToString(dict["Isolated"]);
             data.Initial = ToString(dict["Initial"]);
             data.Medial = ToString(dict["Medial"]);
