@@ -12,7 +12,8 @@ namespace EA4S.Assessment
         public void EnterState()
         {
             // Enable popup widget
-            var popupWidget = assessmentGame.Context.GetPopupWidget();
+            assessmentGame.Context.GetAudioManager().PlaySound( Sfx.UIPopup);
+            var popupWidget = assessmentGame.Context.GetPopupWidget();            
             popupWidget.Show();
             popupWidget.SetButtonCallback( OnPopupCloseRequested);
             popupWidget.SetMessage( AssessmentConfiguration.Instance.Description, true);
@@ -28,12 +29,12 @@ namespace EA4S.Assessment
             assessmentGame.Context.GetPopupWidget().Hide();
         }
 
-        public void Update(float delta)
+        public void Update( float delta)
         {
-
+            TimeEngine.Instance.Update( delta);
         }
 
-        public void UpdatePhysics(float delta)
+        public void UpdatePhysics( float delta)
         {
 
         }

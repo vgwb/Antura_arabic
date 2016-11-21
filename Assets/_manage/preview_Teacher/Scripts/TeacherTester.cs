@@ -14,7 +14,9 @@ namespace EA4S.Teacher.Test
         public InputField ncorrect_in;
         public InputField nwrong_in;
         public Dropdown severity_in;
+        public Dropdown severitywrong_in;
         public Dropdown history_in;
+        public Dropdown historywrong_in;
         public Toggle journeybase_in;
         public Toggle journeywrong_in;
 
@@ -33,8 +35,11 @@ namespace EA4S.Teacher.Test
             ncorrect_in.onValueChanged.AddListener(x => { nCorrect = int.Parse(x); });
             nwrong_in.onValueChanged.AddListener(x => { nWrong = int.Parse(x); });
 
-            severity_in.onValueChanged.AddListener(x => { selectionSeverity = (SelectionSeverity)x; });
-            history_in.onValueChanged.AddListener(x => { questionHistory = (PackListHistory)x; });
+            severity_in.onValueChanged.AddListener(x => { correctSeverity = (SelectionSeverity)x; });
+            severitywrong_in.onValueChanged.AddListener(x => { wrongSeverity = (SelectionSeverity)x; });
+
+            history_in.onValueChanged.AddListener(x => { correctHistory = (PackListHistory)x; });
+            historywrong_in.onValueChanged.AddListener(x => { wrongHistory = (PackListHistory)x; });
 
             journeybase_in.onValueChanged.AddListener(x => { journeyEnabledForBase = x; });
             journeywrong_in.onValueChanged.AddListener(x => { journeyEnabledForWrong = x; });
@@ -48,8 +53,9 @@ namespace EA4S.Teacher.Test
         int nPacks = 5;
         int nCorrect = 1;
         int nWrong = 1;
-        SelectionSeverity selectionSeverity;
-        PackListHistory questionHistory;
+        SelectionSeverity correctSeverity;
+        SelectionSeverity wrongSeverity;
+        PackListHistory correctHistory;
         PackListHistory wrongHistory;
         bool journeyEnabledForBase = true;
         bool journeyEnabledForWrong = true;
@@ -61,15 +67,11 @@ namespace EA4S.Teacher.Test
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = currentJourneyPS;
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
 
-            var psId = AppManager.Instance.Teacher.journeyHelper.JourneyPositionToPlaySessionId(AppManager.Instance.Player.CurrentJourneyPosition);
-          //  if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(psId, code))
-            {
-
-            }
-
             var builderParams = new QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = questionHistory;
+            builderParams.correctChoicesHistory = correctHistory;
             builderParams.wrongChoicesHistory = wrongHistory;
+            builderParams.correctSeverity = correctSeverity;
+            builderParams.wrongSeverity = wrongSeverity;
             builderParams.useJourneyForCorrect = journeyEnabledForBase;
             builderParams.useJourneyForWrong = journeyEnabledForWrong;
             return builderParams;
@@ -118,14 +120,14 @@ namespace EA4S.Teacher.Test
         public void LettersInWordTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect:nCorrect, nWrong:nWrong, useAllCorrectLetters:true);
+            var builder = new LettersInWordQuestionBuilder(nPacks: nPacks, nCorrect:nCorrect, nWrong:nWrong, useAllCorrectLetters:true, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
         public void CommonLettersInWordTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks);
+            var builder = new CommonLettersInWordQuestionBuilder(nPacks: nPacks, nMaxCommonLetters: 3, nWords:2, parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
 
@@ -139,14 +141,14 @@ namespace EA4S.Teacher.Test
         public void OrderedWordsTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal, selectionSeverity);
+            var builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal, parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
         
         public void WordsWithLetterTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong);
+            var builder = new WordsWithLetterQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters:builderParams);
             builder.CreateAllQuestionPacks();
         }
 
@@ -174,14 +176,14 @@ namespace EA4S.Teacher.Test
         public void WordsInPhraseTest()
         {
             var builderParams = SetupFakeGame();
-            var builder = new WordsInPhraseQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectWords: false, usePhraseAnswersIfFound: true, questionHistory: questionHistory);
+            var builder = new WordsInPhraseQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, useAllCorrectWords: false, usePhraseAnswersIfFound: true, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
         public void PhraseQuestions()
         {
             var builderParams = SetupFakeGame();
-            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong);
+            var builder = new PhraseQuestionsQuestionBuilder(nPacks: nPacks, nCorrect: nCorrect, nWrong: nWrong, parameters: builderParams);
             builder.CreateAllQuestionPacks();
         }
 
