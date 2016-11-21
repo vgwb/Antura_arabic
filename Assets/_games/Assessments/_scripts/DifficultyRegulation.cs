@@ -21,15 +21,16 @@ public class DifficultyRegulation : MonoBehaviour {
 
     float difficulty;
 
-    public DifficultyRegulation( float difficulty)
+    public DifficultyRegulation( float diff)
     {
-        this.difficulty = difficulty;
+        difficulty = diff;
         difficulty *= 1.33f;
         difficulty -= 0.32f; // difficulty is never setted to 0. however
-                            // configuration is based on assumption the whole 
-                            // difficulty range is used.
+                                  // configuration is based on assumption the whole 
+                                  // difficulty range is used.
 
         difficulty = Mathf.Clamp01( difficulty);
+        Debug.Log("FinalDifficulty:" + difficulty + " (started from: " + diff + ")");
     }
 
 	public int Increase( int min, int max)
