@@ -82,7 +82,7 @@ namespace EA4S.Egg
             externalTone = PaletteTone.mid;
             cineticLinesColor = PaletteColors.azure;
             cineticLinesTone = PaletteTone.dark;
-            
+
             OpenEmoticons(Emoticons.vfx_emo_negative);
 
             autoClose = true;
