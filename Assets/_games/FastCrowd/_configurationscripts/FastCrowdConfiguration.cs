@@ -87,7 +87,7 @@
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong:nWrong, useAllCorrectLetters:true);
                     break;
                 case FastCrowdVariation.Words:
-                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, drawingNeeded: true);
+                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
                     break;
             }
 
