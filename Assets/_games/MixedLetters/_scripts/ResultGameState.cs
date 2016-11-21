@@ -29,7 +29,7 @@ namespace EA4S.MixedLetters
             
             else
             {
-                OnResultAnimationEnded();
+                //OnResultAnimationEnded();
             }
         }
 
