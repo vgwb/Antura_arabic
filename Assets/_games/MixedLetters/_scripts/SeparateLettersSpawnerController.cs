@@ -213,6 +213,7 @@ namespace EA4S.MixedLetters
 
             VictimLLController.instance.Enable();
             VictimLLController.instance.DoHooray();
+            VictimLLController.instance.ShowVictoryRays();
 
             yield return new WaitForSeconds(WIN_ANIMATION_END_DELAY);
 
