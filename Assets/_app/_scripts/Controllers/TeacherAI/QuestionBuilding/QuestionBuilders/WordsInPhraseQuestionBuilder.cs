@@ -68,7 +68,7 @@ namespace EA4S
             correctWords.AddRange(relatedWords);
             if (!useAllCorrectWords) correctWords = correctWords.RandomSelect(nCorrect);
 
-            var wrongWords = teacher.wordHelper.GetWordsNotIn(relatedWords.ToArray()).RandomSelect(nWrong);
+            var wrongWords = teacher.wordHelper.GetWordsNotIn(new WordFilters(), relatedWords.ToArray()).RandomSelect(nWrong);
 
             if (ConfigAI.verboseTeacher)
             {

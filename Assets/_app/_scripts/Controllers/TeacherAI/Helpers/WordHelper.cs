@@ -42,14 +42,10 @@ namespace EA4S.Db
     public class WordHelper
     {
         private DatabaseManager dbManager;
-        //private WordSelectionAI wordSelectionAI;
-        //private TeacherAI teacher;
 
-        public WordHelper(DatabaseManager _dbManager, TeacherAI _teacher)// Teacher.WordSelectionAI _wordSelectionAI)
+        public WordHelper(DatabaseManager _dbManager)
         {
             this.dbManager = _dbManager;
-            //this.wordSelectionAI = _wordSelectionAI;
-            //this.teacher = _teacher;
         }
 
         #region Letter Utilities
@@ -61,7 +57,6 @@ namespace EA4S.Db
         }
 
         #endregion
-
 
         #region Letter -> Letter
 
@@ -81,11 +76,6 @@ namespace EA4S.Db
             return dbManager.FindLetterData(x => !tabooList.Contains(x.Id) && CheckFilters(filters, x));
         }
 
-
-        /*public List<LetterData> GetLettersNotIn(params LetterData[] tabooArray)
-        {
-            return GetLettersNotIn(tabooArray);
-        }*/
         public List<LetterData> GetLettersNotIn(LetterFilters filters, params LetterData[] tabooArray)
         {
             var tabooList = new List<LetterData>(tabooArray);
@@ -94,7 +84,7 @@ namespace EA4S.Db
 
         public List<LetterData> GetLettersByKind(LetterDataKind choice)
         {
-            return dbManager.FindLetterData(x => x.Kind == choice);
+            return dbManager.FindLetterData(x => x.Kind == choice); // @note: this does not use filters, special case
         }
 
         public List<LetterData> GetLettersBySunMoon(LetterDataSunMoon choice, LetterFilters filters)
@@ -249,44 +239,41 @@ namespace EA4S.Db
 
         #region Word -> Word
 
-        public List<WordData> GetAllWords()
+        public List<WordData> GetAllWords(WordFilters filters)
         {
-            return dbManager.GetAllWordData();
+            return dbManager.FindWordData(x => CheckFilters(filters, x));
         }
 
-        private List<WordData> GetWordsNotIn(List<string> tabooList)
+        private List<WordData> GetWordsNotIn(WordFilters filters, List<string> tabooList)
         {
-            return dbManager.FindWordData(x => !tabooList.Contains(x.Id));
+            return dbManager.FindWordData(x => !tabooList.Contains(x.Id) && CheckFilters(filters, x));
         }
-        public List<WordData> GetWordsNotIn(params WordData[] tabooArray)
+
+        public List<WordData> GetWordsNotIn(WordFilters filters, params WordData[] tabooArray)
         {
             var tabooList = new List<WordData>(tabooArray);
-            return GetWordsNotIn(tabooList.ConvertAll(x => x.Id));
+            return GetWordsNotIn(filters, tabooList.ConvertAll(x => x.Id));
         }
 
-        public List<WordData> GetWordsByCategory(WordDataCategory choice, bool withDrawing = false)
+        public List<WordData> GetWordsByCategory(WordDataCategory choice, WordFilters filters)
         {
-            if (choice == WordDataCategory.None) return dbManager.GetAllWordData();
-            if (withDrawing) {
-                return dbManager.FindWordData(x => x.Category == choice && x.HasDrawing());
-            } else {
-                return dbManager.FindWordData(x => x.Category == choice);
-            }
+            if (choice == WordDataCategory.None) return this.GetAllWords(filters);
+            return dbManager.FindWordData(x => x.Category == choice && CheckFilters(filters, x));
         }
 
-        public List<WordData> GetWordsByArticle(WordDataArticle choice)
+        public List<WordData> GetWordsByArticle(WordDataArticle choice, WordFilters filters)
         {
-            return dbManager.FindWordData(x => x.Article == choice);
+            return dbManager.FindWordData(x => x.Article == choice && CheckFilters(filters, x));
         }
 
-        public List<WordData> GetWordsByForm(WordDataForm choice)
+        public List<WordData> GetWordsByForm(WordDataForm choice, WordFilters filters)
         {
-            return dbManager.FindWordData(x => x.Form == choice);
+            return dbManager.FindWordData(x => x.Form == choice && CheckFilters(filters, x));
         }
 
-        public List<WordData> GetWordsByKind(WordDataKind choice)
+        public List<WordData> GetWordsByKind(WordDataKind choice, WordFilters filters)
         {
-            return dbManager.FindWordData(x => x.Kind == choice);
+            return dbManager.FindWordData(x => x.Kind == choice && CheckFilters(filters, x));
         }
 
         #endregion

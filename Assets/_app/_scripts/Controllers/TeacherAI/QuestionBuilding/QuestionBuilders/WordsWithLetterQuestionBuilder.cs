@@ -48,7 +48,7 @@ namespace EA4S
                     continue;
                 }
                 correctWords = correctWords.RandomSelect(nCorrect);
-                var wrongWords = teacher.wordHelper.GetWordsNotIn(correctWords.ToArray()).RandomSelect(nWrong);
+                var wrongWords = teacher.wordHelper.GetWordsNotIn(new WordFilters(), correctWords.ToArray()).RandomSelect(nWrong);
                 pack = QuestionPackData.Create(letter, correctWords, wrongWords);
                 found = true;
 

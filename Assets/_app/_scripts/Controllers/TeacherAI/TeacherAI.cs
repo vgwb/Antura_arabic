@@ -42,7 +42,7 @@ namespace EA4S
             dbManager = _dbManager;
             playerProfile = _playerProfile;
 
-            wordHelper = new WordHelper(_dbManager, this);
+            wordHelper = new WordHelper(_dbManager);
             journeyHelper = new JourneyHelper(_dbManager, this);
             scoreHelper = new ScoreHelper(_dbManager);
 
@@ -208,7 +208,7 @@ namespace EA4S
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal).RandomSelectOne();
+            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal, new WordFilters()).RandomSelectOne();
             return BuildWordData_LL(data);
         }
 

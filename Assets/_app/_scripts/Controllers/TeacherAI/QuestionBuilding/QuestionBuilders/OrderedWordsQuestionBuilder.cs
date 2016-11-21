@@ -31,7 +31,7 @@ namespace EA4S
 
             // Ordered words
             var words = teacher.wordAI.SelectData(
-                 () => teacher.wordHelper.GetWordsByCategory(category),
+                 () => teacher.wordHelper.GetWordsByCategory(category, new WordFilters()),
                  new SelectionParameters(severity, 100)    // @todo: use a number that means 'all'
                );
 
