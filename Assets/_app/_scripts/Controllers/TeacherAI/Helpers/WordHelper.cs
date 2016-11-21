@@ -280,27 +280,27 @@ namespace EA4S.Db
 
         #region Letter -> Word
 
-        public List<WordData> GetWordsWithLetter(string okLetter)
+        public List<WordData> GetWordsWithLetter(WordFilters filters, string okLetter)
         {
-            return GetWordsByLetters(new string[] { okLetter }, null);
+            return GetWordsByLetters(filters, new string[] { okLetter }, null);
         }
 
-        public List<WordData> GetWordsWithLetters(params string[] okLetters)
+        public List<WordData> GetWordsWithLetters(WordFilters filters, params string[] okLetters)
         {
-            return GetWordsByLetters(okLetters, null);
+            return GetWordsByLetters(filters, okLetters, null);
         }
 
-        public List<WordData> GetWordsWithoutLetter(string tabooLetter)
+        public List<WordData> GetWordsWithoutLetter(WordFilters filters, string tabooLetter)
         {
-            return GetWordsByLetters(null, new string[] { tabooLetter });
+            return GetWordsByLetters(filters, null, new string[] { tabooLetter });
         }
 
-        public List<WordData> GetWordsWithoutLetters(params string[] tabooLetters)
+        public List<WordData> GetWordsWithoutLetters(WordFilters filters, params string[] tabooLetters)
         {
-            return GetWordsByLetters(null, tabooLetters);
+            return GetWordsByLetters(filters, null, tabooLetters);
         }
 
-        public List<WordData> GetWordsByLetters(string[] okLettersArray, string[] tabooLettersArray)
+        public List<WordData> GetWordsByLetters(WordFilters filters, string[] okLettersArray, string[] tabooLettersArray)
         {
             if (okLettersArray == null) okLettersArray = new string[] { };
             if (tabooLettersArray == null) tabooLettersArray = new string[] { };
@@ -309,6 +309,8 @@ namespace EA4S.Db
             var tabooLetters = new HashSet<string>(tabooLettersArray);
 
             List<WordData> list = dbManager.FindWordData(x => {
+
+                if (!CheckFilters(filters, x)) return false;
 
                 if (tabooLetters.Count > 0) {
                     foreach (var letter_id in x.Letters) {

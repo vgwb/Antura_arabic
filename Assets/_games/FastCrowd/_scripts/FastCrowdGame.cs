@@ -150,8 +150,6 @@ namespace EA4S.FastCrowd
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling
                 );
 
-            Physics.gravity = Vector3.up * -40;
-
             Context.GetOverlayWidget().Initialize(true, true, false);
             Context.GetOverlayWidget().SetStarsThresholds(stars1Threshold, stars2Threshold, stars3Threshold);
         }
@@ -179,6 +177,11 @@ namespace EA4S.FastCrowd
                 return true;
             }
             return false;
+        }
+
+        public override Vector3 GetGravity()
+        {
+            return Vector3.up * (-40);
         }
     }
 }
