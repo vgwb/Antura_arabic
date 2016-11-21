@@ -2,7 +2,10 @@
 // Created: 2016/11/20
 namespace EA4S
 {
-    public struct EndsessionResultData
+    /// <summary>
+    /// NOTE: could be a struct, but will probably need to be a class later, so keeping it as class from the beginning
+    /// </summary>
+    public class EndsessionResultData
     {
         public int Stars;
         public string MinigameIconResourcesPath;

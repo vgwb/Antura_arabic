@@ -15,6 +15,7 @@ namespace EA4S
         public Image Ico;
         public Image[] Stars;
 
+        public int GainedStars { get; private set; }
         Color starDefColor;
 
         #region Unity
@@ -41,8 +42,10 @@ namespace EA4S
 
         internal void SetStars(int _numStars)
         {
+            GainedStars = _numStars;
             for (int i = 0; i < Stars.Length; ++i) {
                 Image star = Stars[i];
+                star.gameObject.SetActive(true);
                 if (i < _numStars) {
                     star.color = starDefColor;
                     star.transform.localScale = Vector3.one;

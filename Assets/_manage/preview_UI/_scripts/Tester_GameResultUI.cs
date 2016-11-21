@@ -22,7 +22,7 @@ namespace EA4S.Test
 
         #region EndsessionResult
 
-        public void EndsessionResult_Show()
+        public void EndsessionResult_Show(int _totMinigamesStars)
         {
             GameResultUI.HideEndgameResult();
 
@@ -34,6 +34,11 @@ namespace EA4S.Test
                 new EndsessionResultData(0, d1.GetIconResourcePath(), d1.GetBadgeIconResourcePath()),
                 new EndsessionResultData(3, d2.GetIconResourcePath(), d2.GetBadgeIconResourcePath()),
             };
+            for (int i = 0; i < 3; ++i) {
+                int num = Mathf.Min(3, _totMinigamesStars);
+                _totMinigamesStars -= num;
+                res[i].Stars = num;
+            }
             GameResultUI.ShowEndsessionResult(res);
         }
 
