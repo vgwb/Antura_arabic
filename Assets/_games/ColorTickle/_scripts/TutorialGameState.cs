@@ -24,6 +24,8 @@ namespace EA4S.ColorTickle
         bool m_bLLVanishing = false;
         float m_fTimeToDisappear = 3f;
         float m_fDisappearTimeProgress = 0;
+
+        //private System.Action OnTutoDialogueFinish;
         #endregion
 
         public TutorialGameState(ColorTickleGame game)
@@ -34,6 +36,9 @@ namespace EA4S.ColorTickle
         public void EnterState()
         {
             m_PercentageLetterColored = 0.0f;
+
+            //OnTutoDialogueFinish += InitTutorialLetter;
+            //AudioManager.I.PlayDialog(TextID.COLORTICKLE_TUTO.ToString(), OnTutoDialogueFinish); //Init the letter when the dialogue finish --- no, this broke
 
             //Init the tutorial letter
             m_TutorialLetter = game.tutorialLetter;
@@ -131,7 +136,6 @@ namespace EA4S.ColorTickle
 
             m_LLController.OnDestinationReached += EnableTutorialAnimation;
 
-            //m_TMPTextColoringLetter.percentageRequiredToWin = 95;
         }
 
         private void EnableLetterComponents()
