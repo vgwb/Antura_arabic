@@ -403,4 +403,8 @@ public partial class SROptions
         get { return ThrowBallselasticity; }
         set { ThrowBallselasticity = value; }
     }
+
+    [Category("Player Profile")]
+    [Sort(1)]
+    public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; } }
 }

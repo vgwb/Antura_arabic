@@ -6,13 +6,14 @@ using System;
 namespace EA4S.Log {
     /// <summary>
     /// Concrete implementation of log manager to store log data on db.
+    /// Use this to log from minigame.
     /// </summary>
     public class MinigameLogManager : ILogManager {
 
         #region Runtime variables
         // Minigame
         public string session { get { return AppManager.Instance.LogManager.Session; }  }
-        string playSession;
+        string minigameSession;
         MiniGameCode miniGameCode;
         List<ILivingLetterAnswerData> logLearnBuffer = new List<ILivingLetterAnswerData>();
         List<LogAI.PlayResultParameters> logPlayBuffer = new List<LogAI.PlayResultParameters>();
@@ -25,7 +26,7 @@ namespace EA4S.Log {
         }
 
         public void InitPlaySession() {
-            playSession = DateTime.Now.Ticks.ToString();
+            
         }
 
         /// <summary>
@@ -33,13 +34,15 @@ namespace EA4S.Log {
         /// </summary>
         public void InitGameplayLogSession(MiniGameCode _minigameCode) {
             miniGameCode = _minigameCode;
+            minigameSession = DateTime.Now.Ticks.ToString();
+            AppManager.Instance.LogManager.LogInfo(InfoEvent.GameStart, miniGameCode.ToString());
         }
 
 
 
         #endregion
 
-        #region API       
+        #region API
 
         /// <summary>
         /// To be called to any action of player linked to learnig objective and with positive or negative vote.
@@ -68,10 +71,10 @@ namespace EA4S.Log {
         /// <summary>
         /// Logs the play session score.
         /// </summary>
-        /// <param name="_playSessionId">The play session identifier.</param>
         /// <param name="_score">The score.</param>
-        public void LogPlaySessionScore(string _playSessionId, float _score) {
-            AppManager.Instance.LogManager.LogPlaySessionScore(_playSessionId, _score);
+        public void LogPlaySessionScore(float _score) {
+            // TODO: Check if CurrentJourneyPosition is correct.
+            AppManager.Instance.LogManager.LogPlaySessionScore(AppManager.Instance.Player.CurrentJourneyPosition.ToString(), _score);
         }
 
         /// <summary>
@@ -125,7 +128,7 @@ namespace EA4S.Log {
         /// Flushes the log play to app teacher log intellingence.
         /// </summary>
         void flushLogPlay() {
-            AppManager.Instance.LogManager.LogPlay(playSession, miniGameCode, logPlayBuffer);
+            AppManager.Instance.LogManager.LogPlay(minigameSession, miniGameCode, logPlayBuffer);
         }
         #endregion
 
@@ -179,7 +182,7 @@ namespace EA4S.Log {
                     actualLearnResult.nWrong ++;
             }
 
-            AppManager.Instance.LogManager.LogLearn(playSession, miniGameCode, resultsList);
+            AppManager.Instance.LogManager.LogLearn(minigameSession, miniGameCode, resultsList);
 
         }
         #endregion
