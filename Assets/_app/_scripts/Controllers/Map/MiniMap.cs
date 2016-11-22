@@ -46,9 +46,9 @@ namespace EA4S
         void Start()
         {
             /* FIRST CONTACT FEATURE */
-            if (AppManager.Instance.Player.IsFirstContact()) {
+           /* if (AppManager.Instance.Player.IsFirstContact()) {
                 FirstContactBehaviour();
-            }
+            }*/
             /* --------------------- */
 
             Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
