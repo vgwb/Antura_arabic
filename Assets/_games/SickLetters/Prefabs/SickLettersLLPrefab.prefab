@@ -3333,6 +3333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39660f94e699f649afe2dc8f7346c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shadow: {fileID: 0}
   dotlessLetter: {fileID: 114000014015666130}
   correctDot: {fileID: 114000013984627258}
   correctDotCollider: {fileID: 114000012577066656}
