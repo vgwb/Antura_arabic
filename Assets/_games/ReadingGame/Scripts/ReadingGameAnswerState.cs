@@ -19,6 +19,8 @@ namespace EA4S.ReadingGame
         CircleButton correctButton;
         CircleButtonBox box;
 
+        float rightButtonTimer = 0;
+
         public ReadingGameAnswerState(ReadingGameGame game)
         {
             this.game = game;
@@ -55,12 +57,7 @@ namespace EA4S.ReadingGame
             }
 
             box.Active = true;
-
-            if (TutorialMode) {
-                // Requires a delay otherwise the buttons are not correctly set
-                DOVirtual.DelayedCall(1f, StartButtonTutorial, false);
-            }
-            else
+            
             {
                 game.radialWidget.Show();
                 game.radialWidget.Reset(ReadTime / MaxTime);
@@ -68,17 +65,6 @@ namespace EA4S.ReadingGame
                 game.radialWidget.pulsing = true;
             }
         }
-
-        void StartButtonTutorial()
-        {
-            var uicamera = UnityEngine.GameObject.Find("UICamera").GetComponent<UnityEngine.Camera>();
-            var tutorialCamera = UnityEngine.GameObject.Find("TutorialUICamera").GetComponent<UnityEngine.Camera>();
-            TutorialUI.SetCamera(tutorialCamera);
-            Vector3 screenPos = UnityEngine.RectTransformUtility.WorldToScreenPoint(uicamera, correctButton.transform.position);
-            screenPos.z = tutorialCamera.nearClipPlane + 3;
-            TutorialUI.Click(tutorialCamera.ScreenToWorldPoint(screenPos));
-        }
-
 
         public void ExitState()
         {
@@ -94,7 +80,15 @@ namespace EA4S.ReadingGame
 
         public void Update(float delta)
         {
+            rightButtonTimer -= delta;
 
+            if (correctButton != null && TutorialMode && rightButtonTimer < 0 && box.IsReady())
+            {
+                rightButtonTimer = 3;
+                var uicamera = game.uiCamera;
+                TutorialUI.SetCamera(uicamera);
+                TutorialUI.Click(correctButton.transform.position);
+            }
         }
 
         public void UpdatePhysics(float delta)
