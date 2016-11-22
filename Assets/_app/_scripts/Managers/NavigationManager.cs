@@ -80,7 +80,7 @@ namespace EA4S
                             /// - Reset CurrentMiniGameInPlaySession
                             /// - Reward screen
                             /// *-- check first contact : 
-                            //AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                            AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
@@ -91,7 +91,7 @@ namespace EA4S
                 case AppScene.AnturaSpace:
                     break;
                 case AppScene.Rewards:
-                    AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                    //AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
                     GoToScene(AppScene.Map);
                     break;
                 case AppScene.PlaySessionResult:

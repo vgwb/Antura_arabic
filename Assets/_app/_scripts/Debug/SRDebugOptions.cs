@@ -50,7 +50,7 @@ public partial class SROptions
         }
         return null;
     }
-
+    
     [Category("Options")]
     [Sort(1)]
     public bool Cheat { get { return DebugManager.I.CheatMode; } set { DebugManager.I.CheatMode = value; } }
@@ -65,12 +65,12 @@ public partial class SROptions
     public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
 
     [Category("Options")]
-    [NumberRange(1, 6)]
+    [NumberRange(1, 15)]
     [Sort(20)]
     public int LearningBlock { get { return DebugManager.I.LearningBlock; } set { DebugManager.I.LearningBlock = value; } }
 
     [Category("Options")]
-    [NumberRange(1, 6)]
+    [NumberRange(1, 100)]
     [Sort(30)]
     public int PlaySession { get { return DebugManager.I.PlaySession; } set { DebugManager.I.PlaySession = value; } }
 
@@ -407,4 +407,29 @@ public partial class SROptions
     [Category("Player Profile")]
     [Sort(1)]
     public bool FirstContactPassed { get { return DebugManager.I.FirstContactPassed; } set { DebugManager.I.FirstContactPassed = value; } }
+
+    [Category("Max Journey Position")]
+    [Sort(5)]
+    public string CurrentMaxJouneryPosition {
+        get { return AppManager.Instance.Player.MaxJourneyPosition.ToString(); }
+    }
+
+    [Category("Max Journey Position")]
+    [Sort(6)]
+    public void ForwardMaxPosition() {
+        JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.MaxJourneyPosition);
+        if (newPos != null) {
+            AppManager.Instance.Player.SetMaxJourneyPosition(newPos, true);
+        }
+        SRDebug.Instance.HideDebugPanel();
+        SRDebug.Instance.ShowDebugPanel();
+    }
+
+    [Category("Max Journey Position")]
+    [Sort(7)]
+    public void ResetMaxPosition() {
+        AppManager.Instance.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 1), true);
+        SRDebug.Instance.HideDebugPanel();
+        SRDebug.Instance.ShowDebugPanel();
+    }
 }
