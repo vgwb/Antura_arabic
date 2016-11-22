@@ -37,6 +37,16 @@
         public static readonly TextID TOBOGAN_WORDS_TUTO_ARTICLE = new TextID("Tobogan_words_Tuto_Article");
         public static readonly TextID TOBOGAN_WORDS_TUTO_LETTER = new TextID("Tobogan_words_Tuto_Letter");
 
+        // Reading Game
+        public static readonly TextID READINGGAME_TITLE = new TextID("ReadingGame_Title");
+        public static readonly TextID READINGGAME_INTRO = new TextID("ReadingGame_Intro");
+        public static readonly TextID READINGGAME_TUTORIAL = new TextID("ReadingGame_Tuto");
+
+        // Alphabet Song
+        public static readonly TextID ALPHABETSONG_TITLE = new TextID("AlphabetSong_Title");
+        public static readonly TextID ALPHABETSONG_INTRO = new TextID("AlphabetSong_Intro");
+        public static readonly TextID ALPHABETSONG_TUTORIAL = new TextID("AlphabetSong_Tuto");
+
         // ...
 
         public static TextID GetTextIDFromStars(int stars)

@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
+using UnityEngine;
 
 namespace EA4S.ReadingGame
 {
     public class ReadingGameAnswerState : IGameState
     {
+        public bool TutorialMode = false;
         ReadingGameGame game;
 
         ILivingLetterData correct;
@@ -14,6 +17,7 @@ namespace EA4S.ReadingGame
         public float ReadTime;
         public float MaxTime;
         CircleButton correctButton;
+        CircleButtonBox box;
 
         public ReadingGameAnswerState(ReadingGameGame game)
         {
@@ -26,7 +30,7 @@ namespace EA4S.ReadingGame
             game.isTimesUp = false;
 
             game.circleBox.SetActive(true);
-            var box = game.circleBox.GetComponent<CircleButtonBox>();
+            box = game.circleBox.GetComponent<CircleButtonBox>();
             box.Clear();
             box.ImageMode = true;
 
@@ -50,10 +54,29 @@ namespace EA4S.ReadingGame
                 }
             }
 
-            game.radialWidget.Show();
-            game.radialWidget.Reset(ReadTime / MaxTime);
-            game.radialWidget.inFront = true;
-            game.radialWidget.pulsing = true;
+            box.Active = true;
+
+            if (TutorialMode) {
+                // Requires a delay otherwise the buttons are not correctly set
+                DOVirtual.DelayedCall(1f, StartButtonTutorial, false);
+            }
+            else
+            {
+                game.radialWidget.Show();
+                game.radialWidget.Reset(ReadTime / MaxTime);
+                game.radialWidget.inFront = true;
+                game.radialWidget.pulsing = true;
+            }
+        }
+
+        void StartButtonTutorial()
+        {
+            var uicamera = UnityEngine.GameObject.Find("UICamera").GetComponent<UnityEngine.Camera>();
+            var tutorialCamera = UnityEngine.GameObject.Find("TutorialUICamera").GetComponent<UnityEngine.Camera>();
+            TutorialUI.SetCamera(tutorialCamera);
+            Vector3 screenPos = UnityEngine.RectTransformUtility.WorldToScreenPoint(uicamera, correctButton.transform.position);
+            screenPos.z = tutorialCamera.nearClipPlane + 3;
+            TutorialUI.Click(tutorialCamera.ScreenToWorldPoint(screenPos));
         }
 
 
@@ -64,6 +87,9 @@ namespace EA4S.ReadingGame
             game.circleBox.GetComponent<CircleButtonBox>().Clear();
 
             game.radialWidget.inFront = false;
+
+            if (TutorialMode)
+                TutorialUI.Clear(true);
         }
 
         public void Update(float delta)
@@ -83,9 +109,12 @@ namespace EA4S.ReadingGame
             if (button.Answer == correct)
             {
                 // Assign score
-                game.AddScore((int)(ReadTime) + 1);
-                game.radialWidget.percentage = 0;
-                game.radialWidget.pulsing = false;
+                if (!TutorialMode)
+                {
+                    game.AddScore((int)(ReadTime) + 1);
+                    game.radialWidget.percentage = 0;
+                    game.radialWidget.pulsing = false;
+                }
 
                 game.StartCoroutine(DoEndAnimation(true, correctButton));
 
@@ -93,16 +122,25 @@ namespace EA4S.ReadingGame
             }
             else
             {
-                game.radialWidget.PoofAndHide();
+                if (TutorialMode)
+                {
+                    button.SetColor(UnityEngine.Color.red);
+                }
+                else
+                {
+                    if (!TutorialMode)
+                        game.radialWidget.PoofAndHide();
 
-                game.StartCoroutine(DoEndAnimation(false, correctButton));
+                    game.StartCoroutine(DoEndAnimation(false, correctButton));
 
-                game.antura.animator.DoShout(() => { ReadingGameConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking); });
+                    game.antura.animator.DoShout(() => { ReadingGameConfiguration.Instance.Context.GetAudioManager().PlaySound(Sfx.DogBarking); });
+                }
             }
         }
 
         IEnumerator DoEndAnimation(bool correct, CircleButton correctButton)
         {
+            box.Active = false;
             if (correct)
                 correctButton.SetColor(UnityEngine.Color.green);
             else
@@ -115,7 +153,7 @@ namespace EA4S.ReadingGame
 
             game.circleBox.GetComponent<CircleButtonBox>().Clear(() =>
             {
-                game.SetCurrentState(game.ReadState);
+                game.SetCurrentState(game.QuestionState);
             }, 0.5f);
         }
     }

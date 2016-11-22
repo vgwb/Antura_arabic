@@ -54,13 +54,13 @@ namespace EA4S.MixedLetters
             transform.position = position;
         }
 
-        public void SpawnLetters(List<LL_LetterData> lettersToSpawn, Action spawnOverCallback)
+        public void SpawnLetters(List<ILivingLetterData> lettersToSpawn, Action spawnOverCallback)
         {
             spawnLettersCoroutine = SpawnLettersCoroutine(lettersToSpawn, spawnOverCallback);
             StartCoroutine(spawnLettersCoroutine);
         }
 
-        private IEnumerator SpawnLettersCoroutine(List<LL_LetterData> lettersToSpawn, Action spawnOverCallback)
+        private IEnumerator SpawnLettersCoroutine(List<ILivingLetterData> lettersToSpawn, Action spawnOverCallback)
         {
             PlayCartoonFightSfx();
 
@@ -79,7 +79,7 @@ namespace EA4S.MixedLetters
                 int randIndex = indices[Random.Range(0, indices.Count)];
                 indices.Remove(randIndex);
 
-                LL_LetterData letterToSpawn = lettersToSpawn[randIndex];
+                LL_LetterData letterToSpawn = (LL_LetterData)lettersToSpawn[randIndex];
 
                 SeparateLetterController separateLetterController = separateLetterControllers[i];
                 separateLetterController.Enable();

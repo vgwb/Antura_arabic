@@ -7,6 +7,19 @@ namespace EA4S
 {
     public class CircleButton : MonoBehaviour
     {
+        bool active = true;
+        public bool Active
+        {
+            get
+            {
+                return active;
+            }
+            set
+            {
+                active = value;
+            }
+        }
+
         public UnityEngine.UI.Image button;
         public TMPro.TextMeshProUGUI text;
         public TMPro.TextMeshProUGUI textImage;
@@ -73,6 +86,9 @@ namespace EA4S
 
         public void OnClicked()
         {
+            if (!Active)
+                return;
+
             if (isDestroying)
                 return;
 
