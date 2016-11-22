@@ -49,9 +49,9 @@ namespace EA4S
             NavigationManager.I.CurrentScene = AppScene.Map;
 
             /* FIRST CONTACT FEATURE */
-            if (AppManager.Instance.Player.IsFirstContact()) {
+           /* if (AppManager.Instance.Player.IsFirstContact()) {
                 FirstContactBehaviour();
-            }
+            }*/
             /* --------------------- */
 
             Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
