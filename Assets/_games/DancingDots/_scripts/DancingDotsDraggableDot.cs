@@ -10,7 +10,7 @@ namespace EA4S.DancingDots
 		private Vector3 screenPoint;
 		private Vector3 offset;
 
-        public DancingDotsGameManager gameManager;
+        public DancingDotsGame gameManager;
 
 
         public bool isDot;
@@ -52,11 +52,11 @@ namespace EA4S.DancingDots
 			{
 				if (isDot)
 				{
-					DancingDotsGameManager.instance.CorrectDot(); 
+                    DancingDotsGame.instance.CorrectDot(); 
 				}
 				else
 				{
-					DancingDotsGameManager.instance.CorrectDiacritic();
+                    DancingDotsGame.instance.CorrectDiacritic();
 				}
 				gameObject.SetActive(false);
 			}
@@ -72,7 +72,7 @@ namespace EA4S.DancingDots
                         return;
                     }
 
-                    DancingDotsGameManager.instance.WrongMove(transform.position);
+                    DancingDotsGame.instance.WrongMove(transform.position);
 					
 					gameObject.SetActive(false);
 				}
@@ -145,10 +145,10 @@ namespace EA4S.DancingDots
 
 			if (isDot)
 			{
-				if (other.tag == DancingDotsGameManager.DANCING_DOTS)
+				if (other.tag == DancingDotsGame.DANCING_DOTS)
 				{
-					if (other.GetComponent<DancingDotsDropZone>().letters.Contains(DancingDotsGameManager.instance.currentLetter) 
-						&& DancingDotsGameManager.instance.dotsCount == dots)
+					if (other.GetComponent<DancingDotsDropZone>().letters.Contains(DancingDotsGame.instance.currentLetter) 
+						&& DancingDotsGame.instance.dotsCount == dots)
 					{
 						overDestinationMarker = markerStatus;
 					}
@@ -156,9 +156,9 @@ namespace EA4S.DancingDots
 			}
 			else
 			{
-				if (other.tag == DancingDotsGameManager.DANCING_DIACRITICS)
+				if (other.tag == DancingDotsGame.DANCING_DIACRITICS)
 				{
-					if (DancingDotsGameManager.instance.activeDiacritic.diacritic == diacritic)
+					if (DancingDotsGame.instance.activeDiacritic.diacritic == diacritic)
 					{
 						overDestinationMarker = markerStatus;
 					}
