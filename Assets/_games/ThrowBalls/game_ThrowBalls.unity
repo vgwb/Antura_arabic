@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.9411765, g: 0.87058824, b: 0.7254902, a: 1}
   m_FogMode: 1
-  m_FogDensity: 1.52
+  m_FogDensity: 1
   m_LinearFogStart: 20
   m_LinearFogEnd: 160
   m_AmbientSkyColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
@@ -6821,7 +6821,7 @@ GameObject:
   - 54: {fileID: 1532162132}
   m_Layer: 0
   m_Name: Bush
-  m_TagString: Untagged
+  m_TagString: Bush
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6866,10 +6866,10 @@ BoxCollider:
   m_GameObject: {fileID: 1532162130}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2, y: 1.63, z: 1.23}
-  m_Center: {x: 0, y: -0.15, z: 0}
+  m_Size: {x: 1.76, y: 1.33, z: 1.23}
+  m_Center: {x: 0.12, y: -0.15, z: 0}
 --- !u!114 &1532162134
 MonoBehaviour:
   m_ObjectHideFlags: 0

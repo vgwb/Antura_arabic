@@ -177,32 +177,25 @@ namespace EA4S
 
         public void PlayDialog(string string_id)
         {
-            var data = AppManager.Instance.DB.GetLocalizationDataById(string_id);
-            if (data.AudioFile != "") {
+            //Debug.Log("PlayDialog: " + string_id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + string_id);
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog");
             }
-        }
 
         public void PlayDialog(string string_id, System.Action callback)
         {
-            var data = AppManager.Instance.DB.GetLocalizationDataById(string_id);
-            if (data.AudioFile != "") {
                 // Debug.Log("PlayDialog with Callback: " + string_id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
                 OnNotifyEndAudio = callback;
-                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
+            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + string_id);
                 Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
-            } else {
-                Debug.Log("PlayDialog() - no audio file.. calling callback() direct");
-                callback();
             }
-        }
-        public AudioClip GetAudioClip(ILivingLetterData data)
+
+        public AudioClip GetAudioClip(ILivingLetterData letterData)
         {
-            if (data.DataType == LivingLetterDataType.Letter)
-                return GetAudioClip(LETTERS_PREFIX + data.Id);
-            else if (data.DataType == LivingLetterDataType.Word) {
-                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + data.Id);
+            if (letterData.DataType == LivingLetterDataType.Letter)
+                return GetAudioClip(LETTERS_PREFIX + letterData.Id);
+            else if (letterData.DataType == LivingLetterDataType.Word) {
+                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + letterData.Id);
             }
             return null;
         }
