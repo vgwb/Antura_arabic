@@ -32,7 +32,6 @@ namespace EA4S.Db
             return GetId() + "_Title";
         }
 
-
         public string GetIconResourcePath()
         {
             return "Images/GameIcons/minigame_Ico_" + Main;
