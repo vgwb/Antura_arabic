@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace EA4S.Log {
     /// <summary>
-    /// App Log Manager.
+    /// App Log Manager. Use this to log any event from app.
     /// </summary>
     public class AppLogManager {
 

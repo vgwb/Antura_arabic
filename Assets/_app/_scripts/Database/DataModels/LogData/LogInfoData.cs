@@ -10,6 +10,9 @@ namespace EA4S
         AppStarted = 20,
         AppClosed = 21,
 
+        GameStart = 40,
+        GameEnd = 41,
+
         Book = 30,
     }
 
