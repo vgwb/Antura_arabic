@@ -66,7 +66,7 @@ namespace EA4S.Assessment
                 {
                     case AssessmentCode.LetterShape:
                         SimultaneosQuestions = 1;
-                        Rounds = 3;
+                        Rounds = 1; // quicker testing
                         break;
 
                     case AssessmentCode.MatchLettersToWord:
