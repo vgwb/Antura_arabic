@@ -44,8 +44,6 @@ namespace EA4S.MixedLetters
             ResetScene();
 
             MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Theme6);
-
-            
         }
 
         protected override IGameState GetInitialState()
