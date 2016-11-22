@@ -51,7 +51,7 @@ namespace EA4S.Assessment
         {
             assessmentGame
                    .SetCurrentState(
-                   assessmentGame.QuestionState);
+                   assessmentGame.PlayState);
         }
 
         public void Update( float delta)

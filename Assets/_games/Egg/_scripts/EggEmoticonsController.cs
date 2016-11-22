@@ -5,6 +5,7 @@ namespace EA4S.Egg
     public class EggEmoticonsController
     {
         EmoticonsController emoticonsController;
+        EggEmoticonsMaterials eggEmoticonsMaterials;
 
         bool autoClose;
 
@@ -12,17 +13,16 @@ namespace EA4S.Egg
         float emoticonsCloseTimer = 0f;
         bool emoticonsClosed;
         Emoticons? currentEmoticon;
-        
-        PaletteColors internalColor = PaletteColors.white;
-        PaletteTone internalTone = PaletteTone.light;
-        PaletteColors externalColor = PaletteColors.white;
-        PaletteTone externalTone = PaletteTone.light;
-        PaletteColors cineticLinesColor = PaletteColors.white;
-        PaletteTone cineticLinesTone = PaletteTone.light;
-        
-        public EggEmoticonsController(Transform parent, GameObject emoticonsPrefab)
+
+        Material iconMaterial;
+        Material internalMaterial;
+        Material externalMaterial;
+        Material cineticMaterial;
+
+        public EggEmoticonsController(Transform parent, GameObject emoticonsPrefab, EggEmoticonsMaterials eggEmoticonsMaterials)
         {
             emoticonsController = Object.Instantiate(emoticonsPrefab).GetComponent<EmoticonsController>();
+            this.eggEmoticonsMaterials = eggEmoticonsMaterials;
 
             emoticonsController.transform.SetParent(parent);
             emoticonsController.transform.localPosition = new Vector3(0f, 3f);
@@ -48,12 +48,10 @@ namespace EA4S.Egg
 
         public void EmoticonHappy()
         {
-            internalColor = PaletteColors.azure;
-            internalTone = PaletteTone.dark;
-            externalColor = PaletteColors.green;
-            externalTone = PaletteTone.mid;
-            cineticLinesColor = PaletteColors.orange;
-            cineticLinesTone = PaletteTone.dark;
+            internalMaterial = eggEmoticonsMaterials.blue;
+            iconMaterial = eggEmoticonsMaterials.purple;
+            cineticMaterial = eggEmoticonsMaterials.purple;
+            externalMaterial = eggEmoticonsMaterials.orange;
 
             OpenEmoticons(Emoticons.vfx_emo_happy);
 
@@ -62,12 +60,10 @@ namespace EA4S.Egg
 
         public void EmoticonPositive()
         {
-            internalColor = PaletteColors.green;
-            internalTone = PaletteTone.mid;
-            externalColor = PaletteColors.black;
-            externalTone = PaletteTone.pure;
-            cineticLinesColor = PaletteColors.yellow;
-            cineticLinesTone = PaletteTone.dark;
+            internalMaterial = eggEmoticonsMaterials.green;
+            iconMaterial = eggEmoticonsMaterials.white;
+            cineticMaterial = eggEmoticonsMaterials.yellow;
+            externalMaterial = eggEmoticonsMaterials.orange;
 
             OpenEmoticons(Emoticons.vfx_emo_positive);
 
@@ -76,12 +72,10 @@ namespace EA4S.Egg
 
         public void EmoticonNegative()
         {
-            internalColor = PaletteColors.red;
-            internalTone = PaletteTone.dark;
-            externalColor = PaletteColors.red;
-            externalTone = PaletteTone.mid;
-            cineticLinesColor = PaletteColors.azure;
-            cineticLinesTone = PaletteTone.dark;
+            internalMaterial = eggEmoticonsMaterials.red;
+            iconMaterial = eggEmoticonsMaterials.white;
+            cineticMaterial = eggEmoticonsMaterials.black;
+            externalMaterial = eggEmoticonsMaterials.orange;
 
             OpenEmoticons(Emoticons.vfx_emo_negative);
 
@@ -90,12 +84,10 @@ namespace EA4S.Egg
 
         public void EmoticonInterrogative()
         {
-            internalColor = PaletteColors.green;
-            internalTone = PaletteTone.dark;
-            externalColor = PaletteColors.red;
-            externalTone = PaletteTone.light;
-            cineticLinesColor = PaletteColors.pink;
-            cineticLinesTone = PaletteTone.mid;
+            internalMaterial = eggEmoticonsMaterials.blue;
+            iconMaterial = eggEmoticonsMaterials.white;
+            cineticMaterial = eggEmoticonsMaterials.orange;
+            externalMaterial = eggEmoticonsMaterials.yellowDark;
 
             OpenEmoticons(Emoticons.vfx_emo_interrogative);
 
@@ -107,9 +99,8 @@ namespace EA4S.Egg
             if (!currentEmoticon.HasValue || (currentEmoticon.HasValue && currentEmoticon.Value != icon))
             {
                 currentEmoticon = icon;
-                emoticonsController.Open(false);
-                UpdateEmoticonsColor();
                 emoticonsController.SetEmoticon(icon, true);
+                UpdateEmoticonsColor();
             }
 
             emoticonsCloseTimer = emoticonsCloseTime;
@@ -126,9 +117,31 @@ namespace EA4S.Egg
 
         void UpdateEmoticonsColor()
         {
-            changeMaterials(MaterialManager.LoadMaterial(internalColor, internalTone), emoticonsController.Internal);
-            changeMaterials(MaterialManager.LoadMaterial(externalColor, externalTone), emoticonsController.External);
-            changeMaterials(MaterialManager.LoadMaterial(cineticLinesColor, cineticLinesTone), emoticonsController.Cinetic);
+            changeMaterials(iconMaterial, getIconMeshRenderer());
+            changeMaterials(internalMaterial, emoticonsController.Internal);
+            changeMaterials(externalMaterial, emoticonsController.External);
+            changeMaterials(cineticMaterial, emoticonsController.Cinetic);
+        }
+
+        MeshRenderer[] getIconMeshRenderer()
+        {
+            MeshRenderer[] meshRenderer = new MeshRenderer[emoticonsController.EmoticonParentBone.childCount];
+
+            for(int i=0; i<meshRenderer.Length; i++)
+            {
+                meshRenderer[i] = emoticonsController.EmoticonParentBone.GetChild(i).GetComponent<MeshRenderer>();
+            }
+
+            return meshRenderer;
+        }
+
+        void changeMaterials(Material _material, MeshRenderer[] _meshRenderer)
+        {
+            foreach (var item in _meshRenderer)
+            {
+                MeshRenderer m = item.gameObject.GetComponent<MeshRenderer>();
+                m.materials = new Material[] { _material };
+            }
         }
 
         void changeMaterials(Material _material, SkinnedMeshRenderer[] _meshRenderer)

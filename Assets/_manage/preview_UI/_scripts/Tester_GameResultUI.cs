@@ -39,7 +39,7 @@ namespace EA4S.Test
                 _totMinigamesStars -= num;
                 res[i].Stars = num;
             }
-            GameResultUI.ShowEndsessionResult(res);
+            GameResultUI.ShowEndsessionResult(res, UnityEngine.Random.Range(0, 3));
         }
 
         #endregion

@@ -13,6 +13,7 @@ namespace EA4S.Egg
         Vector3[] lettersMaxPositions;
 
         public GameObject emoticonPrefab;
+        public EggEmoticonsMaterials eggEmoticonsMaterials;
 
         public GameObject egg;
 
@@ -88,7 +89,7 @@ namespace EA4S.Egg
             currentRotation = new Vector3(0f, 0f, -90f);
             GoToPosition(0, currentRotation);
 
-            emoticonsController = new EggEmoticonsController(emoticonsScale, emoticonPrefab);
+            emoticonsController = new EggEmoticonsController(emoticonsScale, emoticonPrefab, eggEmoticonsMaterials);
         }
 
         public void Reset()
