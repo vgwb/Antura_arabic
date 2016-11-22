@@ -6,7 +6,7 @@ namespace EA4S.DancingDots
     {
         DancingDotsGame game;
 
-        float timer = 0;
+        float timer = 1.5f;
         public IntroductionGameState(DancingDotsGame game)
         {
             this.game = game;
@@ -14,7 +14,12 @@ namespace EA4S.DancingDots
 
         public void EnterState()
         {
+            this.game.dancingDotsLL.contentGO.SetActive(false);
             Debug.Log("Intro");
+            AudioManager.I.PlayDialog("DancingDots_Title");
+            game.dancingDotsLL.letterObjectView.DoTwirl(null);
+            game.disableInput = true;
+            //game.StartRound();
         }
 
         public void ExitState()

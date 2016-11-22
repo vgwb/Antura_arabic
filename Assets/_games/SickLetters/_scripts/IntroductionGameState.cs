@@ -9,7 +9,7 @@ namespace EA4S.SickLetters
     {
         SickLettersGame game;
 
-        float timer = 2;
+        float timer = 3;
         public IntroductionGameState(SickLettersGame game)
         {
             this.game = game;
