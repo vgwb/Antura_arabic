@@ -14,9 +14,9 @@ MonoBehaviour:
   worldPrefabs:
   - {fileID: 1000011233220214, guid: 09e4420a8e32bde448010020f8252ae9, type: 2}
   - {fileID: 1000011233220214, guid: 802139ecfcedd214fa79a67ad6ad0574, type: 2}
-  - {fileID: 1000011233220214, guid: 5c9c981f7d7346e49be0c2a5d010669d, type: 2}
-  - {fileID: 1000011233220214, guid: f4d0e1b594c4d3345a4d7d07ad789bcf, type: 2}
-  - {fileID: 1000011233220214, guid: b6240ffdb169dce46bfd998f4ebfd54f, type: 2}
-  - {fileID: 1000011233220214, guid: 71206bb26b4889c4389a49ea82f943b5, type: 2}
+  - {fileID: 1000011233220214, guid: db50f54a81d15d540a401d5ca0873eb5, type: 2}
+  - {fileID: 1000011233220214, guid: 1a6e12ac51982ee4a88d3bea13ee1608, type: 2}
+  - {fileID: 1000011233220214, guid: c8a2883c72ca40a4485bc32cbd70079b, type: 2}
+  - {fileID: 1000011233220214, guid: b0e78826df912a7499d8e0370de12296, type: 2}
   defaultPrefab: {fileID: 1000011233220214, guid: 09e4420a8e32bde448010020f8252ae9,
     type: 2}
