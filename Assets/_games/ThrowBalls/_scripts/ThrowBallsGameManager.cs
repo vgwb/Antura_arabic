@@ -65,7 +65,7 @@ namespace EA4S.ThrowBalls
             UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
 
             // Layer 8 = Terrain. Layer 12 = Ball.
-            //Physics.IgnoreLayerCollision(8, 12);
+            Physics.IgnoreLayerCollision(8, 10);
 
             letterSpawner = new LetterSpawner();
 

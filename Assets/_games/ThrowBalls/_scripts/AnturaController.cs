@@ -8,20 +8,31 @@ namespace EA4S.ThrowBalls
         public static AnturaController instance;
 
         private const float RUNNING_SPEED = 17.5f;
-        private const float JUMP_INIT_VELOCITY = 50f;
+        private const float JUMP_INIT_VELOCITY = 60f;
 
-        private Vector3 velocity;
+        private float xVelocity;
+
         private Vector3 jumpPoint;
         private Vector3 ballOffset;
         private AnturaAnimationController animator;
-        private bool jumped;
-        private bool landed;
-        private bool reachedJumpMaxNotified;
         private bool ballGrabbed;
+
+        private AnturaModelManager modelManager;
+        private Rigidbody rigidBody;
+
+        private enum State
+        {
+            AboutToJump, Jumping, Falling, Landed
+        }
+
+        private State state;
 
         void Awake()
         {
             instance = this;
+
+            modelManager = GetComponent<AnturaModelManager>();
+            rigidBody = GetComponent<Rigidbody>();
         }
 
         void Start()
@@ -47,11 +58,9 @@ namespace EA4S.ThrowBalls
                 anturaPosition.x *= -1;
             }
 
-            velocity.x = ballPosition.x - anturaPosition.x;
-            velocity.Normalize();
-            velocity *= RUNNING_SPEED;
+            xVelocity = Mathf.Sign(ballPosition.x - anturaPosition.x) * RUNNING_SPEED;
 
-            if (velocity.x > 0)
+            if (xVelocity > 0)
             {
                 transform.rotation = Quaternion.Euler(0, 270, 0);
             }
@@ -68,65 +77,67 @@ namespace EA4S.ThrowBalls
             velocityFactor = Mathf.Pow(velocityFactor, -1);
             velocityFactor *= Constants.GRAVITY.y;
 
-            jumpPoint.x = (ballPosition.x - 2f * Mathf.Sign(velocity.x)) - (velocity.x / velocityFactor);
+            jumpPoint.x = (ballPosition.x - 2f * Mathf.Sign(xVelocity)) - (xVelocity / velocityFactor);
 
-            jumped = false;
-            landed = false;
-            reachedJumpMaxNotified = false;
             ballGrabbed = false;
+
+            state = State.AboutToJump;
         }
 
         void Update()
         {
+            switch (state)
+            {
+                case State.AboutToJump:
+                    if ((jumpPoint.x - transform.position.x) * xVelocity <= 0)
+                    {
+                        rigidBody.AddForce(new Vector3(0, JUMP_INIT_VELOCITY, 0), ForceMode.VelocityChange);
+
+                        //animator.OnJumpStart();
+
+                        state = State.Jumping;
+                    }
+
+                    break;
+
+                case State.Jumping:
+                    if (rigidBody.velocity.y < 0)
+                    {
+                        //animator.OnJumpMaximumHeightReached();
+
+                        state = State.Falling;
+                    }
+
+                    break;
+
+                case State.Landed:
+                    if (IsOffScreen() && xVelocity * transform.position.x > 0)
+                    {
+                        if (ballGrabbed)
+                        {
+                            ballGrabbed = false;
+                            ThrowBallsGameManager.Instance.OnBallLost();
+                            BallController.instance.Reset();
+                        }
+
+                        Disable();
+                    }
+
+                    break;
+            }
+        }
+
+        void FixedUpdate()
+        {
+            rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
+
             Vector3 position = transform.position;
-
-            if (jumped && !landed)
-            {
-                velocity.y += Time.deltaTime * Constants.GRAVITY.y;
-
-                if (position.y < GroundController.instance.transform.position.y)
-                {
-                    position.y = GroundController.instance.transform.position.y;
-                    velocity.y = 0;
-                    landed = true;
-
-                    animator.OnJumpEnded();
-                }
-
-                else if (velocity.y < 0 && !reachedJumpMaxNotified)
-                {
-                    animator.OnJumpMaximumHeightReached();
-                    reachedJumpMaxNotified = true;
-                }
-            }
-
-            position += velocity * Time.deltaTime;
+            position.x += xVelocity * Time.fixedDeltaTime;
             transform.position = position;
-
-            if ((jumpPoint.x - position.x) * velocity.x <= 0 && !jumped)
-            {
-                velocity.y = JUMP_INIT_VELOCITY;
-
-                jumped = true;
-                
-                animator.OnJumpStart();
-            }
 
             if (ballGrabbed)
             {
-                BallController.instance.transform.position = transform.position + ballOffset;
-            }
-
-            if (IsOffScreen() && velocity.x * transform.position.x > 0)
-            {
-                if (ballGrabbed)
-                {
-                    ballGrabbed = false;
-                    ThrowBallsGameManager.Instance.OnBallLost();
-                    BallController.instance.Reset();
-                }
-
-                Disable();
+                BallController.instance.transform.position = modelManager.Dog_jaw.position + ballOffset;
             }
         }
 
@@ -134,10 +145,16 @@ namespace EA4S.ThrowBalls
         {
             if (collision.gameObject.tag == Constants.TAG_POKEBALL && !ballGrabbed)
             {
-                animator.OnJumpGrab();
+                //animator.OnJumpGrab();
                 BallController.instance.OnIntercepted();
-                ballOffset = new Vector3(Mathf.Sign(velocity.x) * 7.56f, 2f, 0f);
+                ballOffset = new Vector3(Mathf.Sign(xVelocity) * 4f, 0f, 0f);
                 ballGrabbed = true;
+            }
+
+            else if (collision.gameObject.tag == "Ground" && state == State.Falling)
+            {
+                state = State.Landed;
+                //animator.OnJumpEnded();
             }
         }
 
@@ -160,15 +177,14 @@ namespace EA4S.ThrowBalls
 
         public void Reset()
         {
-            velocity = Vector3.zero;
+            xVelocity = 0;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-            jumped = false;
-            landed = false;
-            reachedJumpMaxNotified = false;
             ballGrabbed = false;
-            
+
             animator.State = AnturaAnimationStates.walking;
             animator.SetWalkingSpeed(1f);
+
+            state = State.AboutToJump;
         }
 
         public void Enable()
