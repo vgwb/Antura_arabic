@@ -8,7 +8,7 @@ using EA4S;
 
 namespace EA4S.ThrowBalls
 {
-    public class ThrowBallsGameManager : MiniGameBase
+    public class ThrowBallsGameManager : MiniGame
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 3;
@@ -40,13 +40,23 @@ namespace EA4S.ThrowBalls
 
         private int numRoundsWon = 0;
 
-        public GameObject endGameCanvas;
-        public StarFlowers starFlowers;
-
         private LetterSpawner letterSpawner;
 
         private float timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         private bool isIdle = true;
+
+        protected override void OnInitialize(IGameContext context)
+        { }
+
+        protected override IGameConfiguration GetConfiguration()
+        {
+            return ThrowBallsConfiguration.Instance;
+        }
+
+        protected override IGameState GetInitialState()
+        {
+            return null;
+        }
 
         protected override void Awake()
         {
@@ -65,7 +75,7 @@ namespace EA4S.ThrowBalls
             UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
 
             // Layer 8 = Terrain. Layer 12 = Ball.
-            //Physics.IgnoreLayerCollision(8, 12);
+            Physics.IgnoreLayerCollision(8, 10);
 
             letterSpawner = new LetterSpawner();
 
@@ -95,9 +105,6 @@ namespace EA4S.ThrowBalls
             StartCoroutine("StartNewRound");
 
             AudioManager.I.PlayMusic(Music.MainTheme);
-
-            //LoggerEA4S.Log("minigame", "template", "start", "");
-            //LoggerEA4S.Save();
         }
 
         void Touched()
@@ -428,33 +435,26 @@ namespace EA4S.ThrowBalls
 
             yield return new WaitForSeconds(1f);
 
-            endGameCanvas.gameObject.SetActive(true);
-
             int numberOfStars = 2;
 
             if (numRoundsWon == 0)
             {
                 numberOfStars = 0;
-                WidgetSubtitles.I.DisplaySentence("game_result_retry");
             }
             else if (numRoundsWon == 1 || numRoundsWon == 2)
             {
                 numberOfStars = 1;
-                WidgetSubtitles.I.DisplaySentence("game_result_fair");
             }
             else if (numRoundsWon == 3 || numRoundsWon == 4)
             {
                 numberOfStars = 2;
-                WidgetSubtitles.I.DisplaySentence("game_result_good");
             }
             else
             {
                 numberOfStars = 3;
-                WidgetSubtitles.I.DisplaySentence("game_result_great");
             }
 
-            Debug.Log("Stars: " + numberOfStars);
-            starFlowers.Show(numberOfStars);
+            EndGame(numberOfStars, 0);
         }
 
         private LetterController.MotionVariation GetMotionOfRound()
