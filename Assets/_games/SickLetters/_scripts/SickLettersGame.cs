@@ -31,6 +31,7 @@ namespace EA4S.SickLetters
         [HideInInspector]
         public bool disableInput;
 
+        public bool enableTutorial = true;
         public int gameDuration = 120 ,  targetScale = 10, maxWieght;
         public float vaseWidth = 5.20906f;
         public bool LLCanDance = false, with7arakat;

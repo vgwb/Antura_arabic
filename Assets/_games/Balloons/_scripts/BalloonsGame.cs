@@ -16,6 +16,7 @@ namespace EA4S.Balloons
     {
         [Header("References")]
         public WordPromptController wordPrompt;
+        public WordFlexibleContainer wordFlexibleContainer;
         public GameObject floatingLetterPrefab;
         public Transform[] floatingLetterLocations;
         public AnimationClip balloonPopAnimation;
@@ -54,10 +55,13 @@ namespace EA4S.Balloons
 
         public static BalloonsGame instance;
 
-        private IQuestionPack question;
-        private LL_WordData wordData;
-        private string word;
-        private List<ILivingLetterData> wordLetters = new List<ILivingLetterData>();
+        private IQuestionPack questionPack;
+        private ILivingLetterData question;
+        private IEnumerable<ILivingLetterData> correctAnswers;
+        private IEnumerable<ILivingLetterData> wrongAnswers;
+        //private LL_WordData wordData;
+        //private string word;
+        //private List<LL_LetterData> wordLetters = new List<LL_LetterData>();
         private int currentRound = 0;
         private int remainingLives;
 
@@ -124,7 +128,7 @@ namespace EA4S.Balloons
         enum How2Die
         {
             Null,
-            TimeEnd,
+            TimeUp,
             WrongBalloon
         }
 
@@ -133,6 +137,8 @@ namespace EA4S.Balloons
         private IPopupWidget Popup { get { return GetConfiguration().Context.GetPopupWidget(); } }
 
         private IAudioManager AudioManager { get { return GetConfiguration().Context.GetAudioManager(); } }
+
+        private BalloonsVariation ActiveGameVariation { get { return (GetConfiguration() as BalloonsConfiguration).Variation; } }
 
         public BalloonsIntroductionState IntroductionState { get; private set; }
 
@@ -207,9 +213,54 @@ namespace EA4S.Balloons
         public void StartNewRound()
         {
             ResetScene();
-            question = GetConfiguration().Questions.GetNextQuestion();
-            SetNewWord();
-            StartCoroutine(StartNewRound_Coroutine());
+
+            // Get next question
+            questionPack = GetConfiguration().Questions.GetNextQuestion();
+            question = questionPack.GetQuestion();
+            correctAnswers = questionPack.GetCorrectAnswers();
+            wrongAnswers = questionPack.GetWrongAnswers();
+
+            switch (ActiveGameVariation)
+            {
+                case BalloonsVariation.Spelling:
+                    var spellingWordData = question as LL_WordData;
+                    var spellingWord = ArabicFixer.Fix(spellingWordData.Data.Arabic);
+
+                    // Display
+                    wordPrompt.DisplayWord(correctAnswers.Cast<LL_LetterData>().ToList());
+
+                    // Debug
+                    Debug.Log("[New Round] Spelling Word: " + spellingWord);
+                    Debug.Log("Letters (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.Cast<LL_LetterData>().ToList().Select(x => x.TextForLivingLetter).Reverse().ToArray()));
+                    Debug.Log("Random Letters (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_LetterData>().ToList().Select(x => x.TextForLivingLetter).Reverse().ToArray()));
+
+                    // Start round
+                    StartCoroutine(StartNewRound_Coroutine());
+                    break;
+
+                case BalloonsVariation.Letter:
+                    var letterToKeepData = question as LL_LetterData;
+                    var letterToKeep = letterToKeepData.TextForLivingLetter;
+
+                    // Display
+                    wordFlexibleContainer.gameObject.SetActive(true);
+                    wordFlexibleContainer.SetText(letterToKeep, true);
+
+                    // Debug
+                    Debug.Log("[New Round] Letter To Keep: " + letterToKeep);
+                    Debug.Log(" Words with letter (" + correctAnswers.Count() + "): " + string.Join(" / ", correctAnswers.Cast<LL_WordData>().ToList().Select(x => x.TextForLivingLetter).ToArray()));
+                    Debug.Log(" Words without letter (" + wrongAnswers.Count() + "): " + string.Join(" / ", wrongAnswers.Cast<LL_WordData>().ToList().Select(x => x.TextForLivingLetter).ToArray()));
+
+
+
+                    // Start round
+                    StartCoroutine(StartNewRound_Coroutine());
+                    break;
+
+                default:
+                    Debug.LogError("Invalid Balloons Game Variation!");
+                    break;
+            }
         }
 
         private IEnumerator StartNewRound_Coroutine()
@@ -217,13 +268,32 @@ namespace EA4S.Balloons
             float delay = 0.75f;
             yield return new WaitForSeconds(delay);
 
-            AudioManager.PlayLetterData(wordData);
-            //WidgetPopupWindow.I.ShowStringAndWord(OnRoundStartPressed, "#" + currentRound, wordData);
-            Popup.Show();
-            Popup.SetButtonCallback(OnRoundStartPressed);
-            Popup.SetWord(wordData as LL_WordData);
+            switch (ActiveGameVariation)
+            {
+                case BalloonsVariation.Spelling:
+                    AudioManager.PlayLetterData(questionPack.GetQuestion());
+                    Popup.Show();
+                    Popup.SetButtonCallback(OnRoundStartPressed);
+                    if (question.DataType == LivingLetterDataType.Word)
+                    {
+                        Popup.SetWord(question as LL_WordData);
+                    }
+                    uiCanvas.gameObject.SetActive(true);
+                    break;
 
-            uiCanvas.gameObject.SetActive(true);
+                case BalloonsVariation.Letter:
+                    AudioManager.PlayLetterData(questionPack.GetQuestion());
+                    Popup.Show();
+                    Popup.SetButtonCallback(OnRoundStartPressed);
+                    Popup.SetMessage(questionPack.GetQuestion().TextForLivingLetter, true);
+                    uiCanvas.gameObject.SetActive(true);
+                    break;
+
+                default:
+                    Debug.LogError("Invalid Balloons Game Variation!");
+                    break;
+                    
+            }
         }
 
         private void EndRound(Result result)
@@ -257,22 +327,38 @@ namespace EA4S.Balloons
             timer.DisplayTime();
             roundNumberText.text = "#" + currentRound.ToString();
             wordPrompt.Reset();
+            wordFlexibleContainer.SetText("", false);
+            wordFlexibleContainer.gameObject.SetActive(false);
             uiCanvas.gameObject.SetActive(false);
             DestroyAllBalloons();
             howDied = How2Die.Null;
-            question = null;
-            word = "";
-            wordData = null;
-            wordLetters.Clear();
+            questionPack = null;
         }
 
         private void BeginGameplay()
         {
-            timer.DisplayTime();
-            CreateFloatingLetters(currentRound);
-            runningAntura.SetActive(true);
-            timer.StartTimer();
-            AudioManager.PlayMusic(Music.MainTheme);
+            switch (ActiveGameVariation)
+            {
+                case BalloonsVariation.Spelling:
+                    timer.DisplayTime();
+                    CreateFloatingLetters_Spelling(currentRound);
+                    runningAntura.SetActive(true);
+                    timer.StartTimer();
+                    AudioManager.PlayMusic(Music.MainTheme);
+                    break;
+                
+                case BalloonsVariation.Letter:
+                    timer.DisplayTime();
+                    CreateFloatingLetters_Letter(currentRound);
+                    runningAntura.SetActive(true);
+                    timer.StartTimer();
+                    AudioManager.PlayMusic(Music.MainTheme);
+                    break;
+
+                default:
+                    Debug.LogError("Invalid Balloons Game Variation!");
+                    break;
+            }
         }
 
         private void AnimateCountdown(string text)
@@ -281,25 +367,15 @@ namespace EA4S.Balloons
             countdownAnimator.SetTrigger("Count");
         }
 
-        private void SetNewWord()
+        private void CreateFloatingLetters_Spelling(int numberOfExtraLetters)
         {
-            //wordData = AppManager.Instance.Teacher.GimmeAGoodWordData();
-            wordData = question.GetQuestion() as LL_WordData;
-            word = wordData.Data.Arabic;
-            //wordLetters = ArabicAlphabetHelper.LetterDataListFromWord(word, AppManager.Instance.Letters);
-            wordLetters = question.GetCorrectAnswers().Cast<ILivingLetterData>().ToList();
-            wordPrompt.DisplayWord(wordLetters);
+            var wordData = questionPack.GetQuestion() as LL_WordData;
+            var word = ArabicFixer.Fix(wordData.Data.Arabic);
+            var wordLetters = questionPack.GetCorrectAnswers().Cast<LL_LetterData>().ToList();
 
-            Debug.Log("[New Round] Word: " + ArabicFixer.Fix(word) + ", Letters (" + wordLetters.Count + "): " + string.Join(" / ", wordLetters.Select(x => x.TextForLivingLetter).Reverse().ToArray()));
-        }
-
-        private void CreateFloatingLetters(int numberOfExtraLetters)
-        {
             var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
-            var wrongLettersList = question.GetWrongAnswers().ToList();
-            var wrongLetters = question.GetWrongAnswers().GetEnumerator();
-
-            Debug.Log("Random Letters (" + wrongLettersList.Count + "): " + string.Join(" / ", wrongLettersList.Select(x => x.TextForLivingLetter).Reverse().ToArray()));
+            var wrongLettersList = questionPack.GetWrongAnswers().Cast<LL_LetterData>().ToList();
+            var wrongLetters = questionPack.GetWrongAnswers().Cast<LL_LetterData>().GetEnumerator();
 
             // Determine indices of required letters
             List<int> requiredLetterIndices = new List<int>();
@@ -377,7 +453,7 @@ namespace EA4S.Balloons
                 else
                 {
                     // Set a random letter that is not a required letter
-                    ILivingLetterData randomLetter;
+                    LL_LetterData randomLetter;
                     bool invalid = false;
                     do
                     {
@@ -398,6 +474,122 @@ namespace EA4S.Balloons
                     }
                 }
                     
+                floatingLetters.Add(floatingLetter);
+            }
+        }
+
+        private void CreateFloatingLetters_Letter(int numberOfExtraWords)
+        {
+            //var wordData = question.GetQuestion() as LL_WordData;
+            //var word = ArabicFixer.Fix(wordData.Data.Arabic);
+            //var wordLetters = question.GetCorrectAnswers().Cast<LL_LetterData>().ToList();
+
+            //var numberOfLetters = Mathf.Clamp(wordLetters.Count + numberOfExtraLetters, 0, floatingLetterLocations.Length);
+            //var wrongLettersList = question.GetWrongAnswers().Cast<LL_LetterData>().ToList();
+
+            var numberOfWords = Mathf.Clamp(correctAnswers.Count() + numberOfExtraWords, 0, floatingLetterLocations.Length);
+            var correctWords = correctAnswers.Cast<LL_WordData>().GetEnumerator();
+            var wrongWords = wrongAnswers.Cast<LL_WordData>().GetEnumerator();
+
+
+            // Determine indices of required words
+            var requiredWordIndices = new List<int>();
+            for (int i = 0; i < correctAnswers.Count(); i++)
+            {
+                var index = Random.Range(0, numberOfWords);
+
+                if (!requiredWordIndices.Contains(index))
+                {
+                    requiredWordIndices.Add(index);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+
+            // Create floating letters
+            for (int i = 0; i < numberOfWords; i++)
+            {
+                var instance = Instantiate(floatingLetterPrefab);
+                instance.SetActive(true);
+                instance.transform.SetParent(floatingLetterLocations[i]);
+                instance.transform.localPosition = Vector3.zero;
+
+                int requiredWordIndex = requiredWordIndices.IndexOf(i); 
+                bool isRequiredWord = requiredWordIndex > -1 ? true : false;
+
+                var floatingLetter = instance.GetComponent<FloatingLetterController>();
+
+                // Set variation, set at least 2 balloons for required words
+                if (isRequiredWord)
+                {
+                    floatingLetter.SetActiveVariation(Random.Range(1, floatingLetter.variations.Length));
+                }
+                else
+                {
+                    floatingLetter.SetActiveVariation(Random.Range(0, floatingLetter.variations.Length));
+                }
+
+                var balloons = floatingLetter.Balloons;
+                var letter = floatingLetter.Letter;
+
+                // Set random balloon colors without repetition if possible
+                var usedColorIndexes = new List<int>();
+                for (int j = 0; j < balloons.Length; j++)
+                {
+                    int randomColorIndex; 
+
+                    if (balloons.Length <= balloonColors.Length)
+                    {
+                        do
+                        {
+                            randomColorIndex = Random.Range(0, balloonColors.Length);
+                        } while(usedColorIndexes.Contains(randomColorIndex));
+                    }
+                    else
+                    {
+                        randomColorIndex = Random.Range(0, balloonColors.Length);
+                    }
+
+                    usedColorIndexes.Add(randomColorIndex);
+                    balloons[j].SetColor(balloonColors[randomColorIndex]);
+                }
+
+                // Set words
+                if (isRequiredWord)
+                {
+                    // Set correct word
+                    LL_WordData word;
+                    do
+                    {
+                        word = correctWords.Current;
+                    } while (correctWords.MoveNext() && (word == null));
+                    if (word == null)
+                    {
+                        Debug.LogError("Error getting valid word (correct answer) for balloon!");
+                    }
+                    letter.isRequired = true;
+                    letter.associatedPromptIndex = -1;
+                    letter.Init(word);
+                    Debug.Log("Create word balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
+                }
+                else
+                {
+                    // Set a random letter that is not a required letter
+                    LL_WordData randomWord;
+                    do
+                    {
+                        randomWord = wrongWords.Current;
+                    } while (wrongWords.MoveNext() && (randomWord == null));
+                    if (randomWord == null)
+                    {
+                        Debug.LogError("Error getting valid random word (wrong answer) for balloon!");
+                    }
+                    letter.Init(randomWord);
+                    Debug.Log("Create random balloon with: " + letter.LLPrefab.Data.TextForLivingLetter);
+                }
+
                 floatingLetters.Add(floatingLetter);
             }
         }
@@ -427,15 +619,18 @@ namespace EA4S.Balloons
                 //
             }
 
-            CheckRemainingBalloons();
+            CheckRemainingBalloons_Spelling();
         }
 
         public void OnDroppedRequiredLetter(int promptIndex)
         {
             remainingLives--;
-            wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
             AudioManager.PlaySound(Sfx.LetterSad);
-
+            if (promptIndex > -1)
+            {
+                wordPrompt.letterPrompts[promptIndex].State = LetterPromptController.PromptState.WRONG;
+            }
+                
             if (remainingLives <= 0)
             {
                 howDied = How2Die.WrongBalloon;
@@ -446,10 +641,13 @@ namespace EA4S.Balloons
         public void OnPoppedRequiredBalloon(int promptIndex)
         {
             AudioManager.PlaySound(Sfx.KO);
-            wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
+            if (promptIndex > -1)
+            {
+                wordPrompt.letterPrompts[promptIndex].animator.SetTrigger("Flash");
+            }
         }
 
-        private void CheckRemainingBalloons()
+        private void CheckRemainingBalloons_Spelling()
         {
             int idlePromptsCount = wordPrompt.IdleLetterPrompts.Count;
             bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.Letter.isRequired == false);
@@ -462,11 +660,11 @@ namespace EA4S.Balloons
             else if (!randomBalloonsExist)
             {
                 Result result;
-                if (idlePromptsCount == wordLetters.Count)
+                if (idlePromptsCount == wordPrompt.activePromptsCount)
                 {
                     result = Result.PERFECT;
                 }
-                else if (idlePromptsCount >= 2)
+                else if (idlePromptsCount > 1)
                 {
                     result = Result.GOOD;
                 }
@@ -518,7 +716,7 @@ namespace EA4S.Balloons
         public void OnTimeUp()
         {
             bool randomBalloonsExist = floatingLetters.Exists(balloon => balloon.Letter.isRequired == false);
-            howDied = How2Die.TimeEnd;
+            howDied = How2Die.TimeUp;
 
             if (randomBalloonsExist)
             {
@@ -578,17 +776,19 @@ namespace EA4S.Balloons
                 var winPopUpDelay = 0.25f;
                 yield return new WaitForSeconds(winPopUpDelay);
 
-                //WidgetPopupWindow.I.ShowSentenceAndWordWithMark(OnRoundResultPressed, "comment_welldone", wordData, true);
                 Popup.Show();
                 Popup.SetButtonCallback(OnRoundResultPressed);
                 Popup.SetTitle(TextID.WELL_DONE);
-                Popup.SetWord(wordData);
                 Popup.SetMark(true, true);
+                if (question.DataType == LivingLetterDataType.Word)
+                {
+                    Popup.SetWord(question as LL_WordData);
+                }
 
                 var winSpeakWordDelay = 0.75f;
                 yield return new WaitForSeconds(winSpeakWordDelay);
 
-                AudioManager.PlayLetterData(wordData);
+                AudioManager.PlayLetterData(questionPack.GetQuestion());
 
             }
             else
@@ -596,18 +796,18 @@ namespace EA4S.Balloons
                 var failDelay = 1f;
                 yield return new WaitForSeconds(failDelay);
 
-                string sentence;
+                //string sentence;
 
                 switch (howDied)
                 {
-                    case How2Die.TimeEnd:
-                        sentence = TextID.TIMES_UP.ToString();
+                    case How2Die.TimeUp:
+                        //sentence = TextID.TIMES_UP.ToString();
                         //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailTime);
                         Popup.ShowTimeUp(OnRoundResultPressed);
                         break;
                     case How2Die.WrongBalloon:
-                        var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
-                        sentence = sentenceOptions[Random.Range(0, sentenceOptions.Length)];
+                        //var sentenceOptions = new[]{ "game_balloons_commentA", "game_balloons_commentB" };
+                        //sentence = sentenceOptions[Random.Range(0, sentenceOptions.Length)];
                         //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, sentence, false, FailWrongBalloon);
                         Popup.Show();
                         Popup.SetButtonCallback(OnRoundResultPressed);

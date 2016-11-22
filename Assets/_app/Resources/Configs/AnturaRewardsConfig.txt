@@ -9,7 +9,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "HEAD",
       "RemTongue" : ""
     },
     {
@@ -21,7 +21,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "HEAD",
       "RemTongue" : ""
     },
     {
@@ -33,7 +33,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "diffuse_saturated",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "HEAD",
       "RemTongue" : ""
     },
     {
@@ -45,7 +45,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "transparent_saturated_2side",
-      "Category" : "1",
+      "Category" : "HEAD",
       "RemTongue" : ""
     },
     {
@@ -57,7 +57,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "transparent_saturated_2side",
-      "Category" : "2",
+      "Category" : "FACE",
       "RemTongue" : ""
     },
     {
@@ -69,7 +69,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "diffuse_saturated",
-      "Category" : "2",
+      "Category" : "FACE",
       "RemTongue" : ""
     },
     {
@@ -81,7 +81,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "2",
+      "Category" : "FACE",
       "RemTongue" : ""
     },
     {
@@ -93,7 +93,7 @@
       "BoneAttach" : "dog_head",
       "Material1" : "specular_saturated_2side",
       "Material2" : "trasparent_saturated",
-      "Category" : "2",
+      "Category" : "FACE",
       "RemTongue" : ""
     },
     {
@@ -105,7 +105,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "BACK",
       "RemTongue" : ""
     },
     {
@@ -117,7 +117,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "BACK",
       "RemTongue" : ""
     },
     {
@@ -129,7 +129,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "diffuse_saturated",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "BACK",
       "RemTongue" : ""
     },
     {
@@ -141,7 +141,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "diffuse_saturated",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "BACK",
       "RemTongue" : ""
     },
     {
@@ -153,7 +153,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "2",
+      "Category" : "NECK",
       "RemTongue" : ""
     },
     {
@@ -165,7 +165,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "2",
+      "Category" : "NECK",
       "RemTongue" : ""
     },
     {
@@ -177,7 +177,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "2",
+      "Category" : "NECK",
       "RemTongue" : ""
     },
     {
@@ -189,7 +189,7 @@
       "BoneAttach" : "dog_spine01",
       "Material1" : "specular_saturated_2side",
       "Material2" : "transparent_saturated_2side",
-      "Category" : "2",
+      "Category" : "NECK",
       "RemTongue" : ""
     },
     {
@@ -201,7 +201,7 @@
       "BoneAttach" : "dog_jaw",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "JAW",
       "RemTongue" : true
     },
     {
@@ -213,7 +213,7 @@
       "BoneAttach" : "dog_jaw",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "JAW",
       "RemTongue" : ""
     },
     {
@@ -225,7 +225,7 @@
       "BoneAttach" : "dog_jaw",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "JAW",
       "RemTongue" : ""
     },
     {
@@ -237,7 +237,7 @@
       "BoneAttach" : "dog_jaw",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "JAW",
       "RemTongue" : ""
     },
     {
@@ -249,7 +249,7 @@
       "BoneAttach" : "dog_Tail4",
       "Material1" : "specular_saturated_2side",
       "Material2" : "transparent_saturated_2side",
-      "Category" : "1",
+      "Category" : "TAIL",
       "RemTongue" : ""
     },
     {
@@ -261,7 +261,7 @@
       "BoneAttach" : "dog_Tail4",
       "Material1" : "specular_saturated_2side",
       "Material2" : "transparent_saturated_2side",
-      "Category" : "1",
+      "Category" : "TAIL",
       "RemTongue" : ""
     },
     {
@@ -273,7 +273,7 @@
       "BoneAttach" : "dog_Tail4",
       "Material1" : "diffuse_saturated",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "TAIL",
       "RemTongue" : ""
     },
     {
@@ -285,7 +285,7 @@
       "BoneAttach" : "dog_Tail4",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "TAIL",
       "RemTongue" : ""
     },
     {
@@ -297,7 +297,7 @@
       "BoneAttach" : "dog_Tail4",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "TAIL",
       "RemTongue" : ""
     },
     {
@@ -309,7 +309,7 @@
       "BoneAttach" : "dog_Tail4",
       "Material1" : "transparent_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "TAIL",
       "RemTongue" : ""
     },
     {
@@ -321,7 +321,7 @@
       "BoneAttach" : "dog_R_ear04",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "EAR_R",
       "RemTongue" : ""
     },
     {
@@ -333,7 +333,7 @@
       "BoneAttach" : "dog_R_ear04",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "EAR_R",
       "RemTongue" : ""
     },
     {
@@ -345,7 +345,7 @@
       "BoneAttach" : "dog_R_ear04",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "EAR_R",
       "RemTongue" : ""
     },
     {
@@ -357,7 +357,7 @@
       "BoneAttach" : "dog_R_ear04",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "EAR_R",
       "RemTongue" : ""
     },
     {
@@ -369,7 +369,7 @@
       "BoneAttach" : "dog_L_ear04",
       "Material1" : "diffuse_saturated",
       "Material2" : "diffuse_saturated",
-      "Category" : "1",
+      "Category" : "EAR_L",
       "RemTongue" : ""
     },
     {
@@ -381,7 +381,7 @@
       "BoneAttach" : "dog_L_ear04",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "EAR_L",
       "RemTongue" : ""
     },
     {
@@ -393,7 +393,7 @@
       "BoneAttach" : "dog_L_ear04",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "EAR_L",
       "RemTongue" : ""
     },
     {
@@ -405,7 +405,7 @@
       "BoneAttach" : "dog_L_ear04",
       "Material1" : "specular_saturated_2side",
       "Material2" : "specular_saturated_2side",
-      "Category" : "1",
+      "Category" : "EAR_L",
       "RemTongue" : ""
     }
   ]}

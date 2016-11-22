@@ -5,7 +5,7 @@ using EA4S;
 using EA4S.TestE;
 using System.Collections.Generic;
 
-namespace EA4S.TestE
+namespace EA4S
 {
     public class LetterMovement : MonoBehaviour {
         
@@ -30,7 +30,7 @@ namespace EA4S.TestE
         void Start () {
             AppManager.Instance.Player.CurrentJourneyPosition.Stage = 1;
 
-            ResetPosLetter(1, miniMapScript.pinRight);
+            ResetPosLetter();
             miniMapScript.posDots[0].GetComponent<Renderer>().material = red;
         }
 
@@ -190,12 +190,13 @@ namespace EA4S.TestE
             transform.LookAt(new Vector3(pinPos.x, pinPos.y + 3, pinPos.z));
         }
 
-        public void ResetPosLetter(int nPin, Vector3 pin)
+        public void ResetPosLetter()
         {
             pos = 0;
             // posDot = miniMapScript.posDots[0].transform.position;
             posDot = miniMapScript.posDots[0].transform.position;
-            transform.LookAt(pin);
+            transform.position = posDot;
+           // transform.LookAt(pin);
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
             AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = 1;
         }

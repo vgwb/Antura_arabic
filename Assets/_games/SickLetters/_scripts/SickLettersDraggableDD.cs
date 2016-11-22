@@ -90,8 +90,10 @@ namespace EA4S.SickLetters
 
 		void OnMouseDrag()
 		{
-            if (game.disableInput)
+            if (isDragging && game.disableInput)
                 releaseDD();
+            else if (game.disableInput)
+                return;
 
             if (release)
                 return;
@@ -107,7 +109,9 @@ namespace EA4S.SickLetters
 		}
 
 		void OnMouseUp()
-		{
+        {
+            if (game.disableInput)
+                return;
             releaseDD();
         }
 

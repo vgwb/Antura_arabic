@@ -67,15 +67,19 @@ namespace EA4S
         {
             switch (panel) {
                 case BookPanelArea.Letters:
+                    AudioManager.I.PlayDialog("Book_Letters");
                     LettersPanel();
                     break;
                 case BookPanelArea.Words:
+                    AudioManager.I.PlayDialog("Book_Words");
                     WordsPanel();
                     break;
                 case BookPanelArea.Phrases:
+                    AudioManager.I.PlayDialog("Book_Phrases");
                     PhrasesPanel();
                     break;
                 case BookPanelArea.Minigames:
+                    AudioManager.I.PlayDialog("Book_Games");
                     MinigamesPanel();
                     break;
             }
@@ -228,7 +232,7 @@ namespace EA4S
 
         public void DetailMiniGame(MiniGameData data)
         {
-
+            AudioManager.I.PlayDialog(data.GetTitleSoundFilename());
         }
 
         void emptyListContainers()

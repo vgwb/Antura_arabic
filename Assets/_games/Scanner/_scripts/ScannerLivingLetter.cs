@@ -7,22 +7,32 @@ namespace EA4S.Scanner
 
 	public class ScannerLivingLetter : MonoBehaviour {
 
-		public enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Lost, Won, Happy, Sad };
+		public enum LLStatus { None, Sliding, StandingOnBelt, RunningFromAntura, Lost, Won, Happy, Sad, Flying, Poofing, Falling };
 		public GameObject livingLetter;
 		public float slideSpeed = 2f;
+		public float flightSpeed = 2f;
 		public bool facingCamera;
 		public LLStatus status = LLStatus.None;
 		private float turnAngle;
 		private Vector3 startingPosition;
 		private Quaternion startingRotation;
 
+		public Transform fallOffPoint;
+
 		public LetterObjectView letterObjectView;
+		public GameObject rainbowJet;
 
 		public event Action onReset;
+		public event Action onStartFallOff;
+		public event Action onFallOff;
 
+		private Transform originalParent;
+		private float fallOffX;
 
 		void Start()
 		{
+			status = LLStatus.None;
+			originalParent = transform.parent;
 			letterObjectView = livingLetter.GetComponent<LetterObjectView>();
 			startingPosition = transform.position;
 			startingRotation = letterObjectView.transform.rotation;
@@ -34,8 +44,12 @@ namespace EA4S.Scanner
 		{
 			StopAllCoroutines();
 
+			rainbowJet.SetActive(false);
+
 			letterObjectView.transform.rotation = startingRotation;
 			transform.position = startingPosition;
+
+			fallOffX = fallOffPoint.position.x;
 
 			turnAngle = facingCamera ? 180 : 0;
 			letterObjectView.SetState(LLAnimationStates.LL_still);
@@ -53,18 +67,64 @@ namespace EA4S.Scanner
 			{
 				transform.Translate(slideSpeed * Time.deltaTime, -slideSpeed * Time.deltaTime / 2,0);
 			}
-			else if (status == LLStatus.Won)
-			{
-				// TODO fly then Reset
-				Reset();
-			}
 			else if (status == LLStatus.Lost)
 			{
-				// Poof then Reset
-				Reset();
+				status = LLStatus.Poofing;
+				StartCoroutine(co_Lost());
 			}
+			else if (status == LLStatus.Flying)
+			{
+				transform.Translate(Vector2.up * flightSpeed * Time.deltaTime);
+			}
+			else if (status == LLStatus.Falling)
+			{
+				transform.Translate(Vector2.down * flightSpeed * Time.deltaTime);
+			}
+
+			Debug.Log("Letter: " + transform.position.x + " Fall Off X: " + fallOffX);
+
+			if (livingLetter.transform.position.x > fallOffX)
+			{
+				StartCoroutine(co_FallOff());
+			}
+
+		}
+			
+
+		IEnumerator co_FlyAway()
+		{
+			letterObjectView.DoSmallJump();
+			yield return new WaitForSeconds(1f);
+			rainbowJet.SetActive(true);
+			letterObjectView.DoHorray();
+			status = LLStatus.Flying;
+			yield return new WaitForSeconds(4f);
+			Reset();
 		}
 
+		IEnumerator co_Lost()
+		{
+			letterObjectView.DoAngry();
+			yield return new WaitForSeconds(2f);
+//			letterObjectView.DoAngry();
+//			yield return new WaitForSeconds(1f);
+			letterObjectView.Poof();
+			Reset();
+		}
+
+		IEnumerator co_FallOff()
+		{
+			onStartFallOff();
+			transform.parent = originalParent;
+			letterObjectView.SetState(LLAnimationStates.LL_idle);
+			StartCoroutine(RotateGO(livingLetter, new Vector3(90,90,0),1f));
+			yield return new WaitForSeconds(0.5f);
+			letterObjectView.Falling = true;
+			status = LLStatus.Falling;
+			yield return new WaitForSeconds(3f);
+			Reset();
+			onFallOff();
+		}
 
 		void OnMouseUp()
 		{
@@ -80,8 +140,7 @@ namespace EA4S.Scanner
 
 		public void RoundWon()
 		{
-
-			status = LLStatus.Won;
+			StartCoroutine(co_FlyAway());
 		}
 
 		public void CorrectMove()
@@ -95,6 +154,7 @@ namespace EA4S.Scanner
 		{
 			StopAllCoroutines();
 			letterObjectView.SetState(LLAnimationStates.LL_idle);
+			letterObjectView.DoAngry();
 		}
 
 

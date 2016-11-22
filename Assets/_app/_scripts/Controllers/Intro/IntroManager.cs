@@ -35,8 +35,8 @@ namespace EA4S
             {
                 m_Start = false;
                 Debug.Log("Start Introduction");
-                //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", FirstIntroLetter));
-                StartCoroutine(ChangeIntroductionState("Intro_welcome", FirstIntroLetter));
+                StartCoroutine(ChangeIntroductionState("end_learningblock_A2", FirstIntroLetter));
+                //StartCoroutine(ChangeIntroductionState("Intro_welcome", FirstIntroLetter));
             }
 
             if (m_End)
@@ -50,30 +50,30 @@ namespace EA4S
         {
             Debug.Log("Start Spawning");
             factory.StartSpawning = true;
-            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", SecondIntroLetter));
-            StartCoroutine(ChangeIntroductionState("Intro_Letters_1", SecondIntroLetter));
+            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", SecondIntroLetter));
+            //StartCoroutine(ChangeIntroductionState("Intro_Letters_1", SecondIntroLetter));
         }
 
         public void SecondIntroLetter()
         {
             Debug.Log("Second Intro Letter");
-            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EnableAntura));
-            StartCoroutine(ChangeIntroductionState("Intro_Letters_2", EnableAntura));
+            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EnableAntura));
+            //StartCoroutine(ChangeIntroductionState("Intro_Letters_2", EnableAntura));
         }
 
         public void EnableAntura()
         {
             factory.antura.SetAnturaTime(true);
             Debug.Log("Antura is enable");
-            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EndIntroduction));
-            StartCoroutine(ChangeIntroductionState("Intro_Dog", EndIntroduction));
+            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EndIntroduction));
+            //StartCoroutine(ChangeIntroductionState("Intro_Dog", EndIntroduction));
         } 
 
         public void EndIntroduction()
         {
             Debug.Log("EndIntroduction");
-            //StartCoroutine(ChangeIntroductionState("end_learningblock_A2", DisableAntura));
-            StartCoroutine(ChangeIntroductionState("Intro_Dog_Chase", DisableAntura));
+            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", DisableAntura));
+            //StartCoroutine(ChangeIntroductionState("Intro_Dog_Chase", DisableAntura));
         }
 
         public void DisableAntura()

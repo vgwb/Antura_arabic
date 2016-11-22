@@ -16,15 +16,18 @@ namespace EA4S.Balloons
         {
             get { return new List<LetterPromptController>(letterPrompts).FindAll(prompt => prompt.isActiveAndEnabled && prompt.State == LetterPromptController.PromptState.IDLE); }
         }
+        [HideInInspector]
+        public int activePromptsCount;
 
 
-        public void DisplayWord(List<ILivingLetterData> wordLetters)
+        public void DisplayWord(List<LL_LetterData> wordLetters)
         {
             for (int i = 0; i < wordLetters.Count; i++)
             {
                 letterPrompts[i].gameObject.SetActive(true);
                 letterPrompts[i].Init(wordLetters[i]);
             }
+            activePromptsCount = wordLetters.Count;
         }
 
         public void Reset()
@@ -34,6 +37,7 @@ namespace EA4S.Balloons
                 prompt.State = LetterPromptController.PromptState.IDLE;
                 prompt.gameObject.SetActive(false);
             }
+            activePromptsCount = 0;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -21,14 +22,26 @@ namespace EA4S {
         public Transform Dog_R_ear04;
         public Transform Dog_L_ear04;
 
+        /// <summary>
+        /// The dog head pointer
+        /// </summary>
         Transform Dog_head_pointer, Dog_spine01_pointer, Dog_jaw_pointer, Dog_Tail3_pointer, dog_R_ear04_pointer, dog_L_ear04_pointer;
+
+        /// <summary>
+        /// Pointer to transform used as parent for add reward model (and remove if already mounted yet).
+        /// </summary>
         [HideInInspector]
         public Transform transformParent;
+
+        #region Life cycle
 
         void Awake() {
             Instance = this;
             LoadFromConfig();
+            chargeCategoryList();
         }
+
+        #endregion
 
         #region Configuration        
         /// <summary>
@@ -46,25 +59,40 @@ namespace EA4S {
         }
         #endregion
 
+        #region Rewards
+
+        /// <summary>
+        /// The category list
+        /// </summary>
+        List<string> categoryList = new List<string>();
+        /// <summary>
+        /// Charges the category list.
+        /// </summary>
+        void chargeCategoryList() {
+            foreach (var reward in config.Antura_rewards) {
+                if (!categoryList.Contains(reward.Category))
+                    categoryList.Add(reward.Category);
+            } 
+        }
+
         /// <summary>
         /// The actual rewards for place positions.
         /// </summary>
-        List<Reward> actualRewardsForPositions = new List<Reward>();
-
-
-
+        List<Reward> actualRewardsForCategory = new List<Reward>();
 
         /// <summary>
-        /// Adds reward to active rewards list and if already exist reward for same bone and category substitute it.
+        /// Adds reward to active rewards list and if already exist reward for same category substitute it.
         /// </summary>
         /// <param name="_reward">The reward.</param>
         void AddRewardActiveRewardsList(Reward _reward) {
-            Reward oldRewardInList = actualRewardsForPositions.Find(r => r.BoneAttach == _reward.BoneAttach && r.Category == _reward.Category);
+            Reward oldRewardInList = actualRewardsForCategory.Find(r => r.Category == _reward.Category);
             if (oldRewardInList != null) {
-                actualRewardsForPositions.Remove(oldRewardInList);
+                actualRewardsForCategory.Remove(oldRewardInList);
             }
-            actualRewardsForPositions.Add(_reward);
+            actualRewardsForCategory.Add(_reward);
         }
+
+        #endregion
 
         #region API
 

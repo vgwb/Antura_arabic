@@ -29,6 +29,11 @@ namespace EA4S.Db
             output += string.Format("[LearningBlock: S={0}, LB={1}, description={2}]", Stage, LearningBlock, Description);
             return output;
         }
+
+        public string GetTitleSoundFilename()
+        {
+            return "LB_" + Stage + "_" + LearningBlock.ToString("D2");
+        }
     }
 
 }

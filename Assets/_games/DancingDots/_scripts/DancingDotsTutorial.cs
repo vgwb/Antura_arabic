@@ -14,14 +14,14 @@ namespace EA4S.DancingDots
 
         private bool doTutOnDots;
 
-        DancingDotsGameManager gameManager;
+        DancingDotsGame gameManager;
         Transform source, target;
         Vector3 targetPosition;
         DancingDotsDraggableDot currentDD;
 
         void Awake()
         {
-            gameManager = GetComponent<DancingDotsGameManager>();
+            gameManager = GetComponent<DancingDotsGame>();
         }
         void Start()
         {
