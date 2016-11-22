@@ -109,6 +109,7 @@ namespace EA4S
         /// Set result and return next scene name.
         /// </summary>
         /// <returns>return next scene name.</returns>
+        [System.Obsolete("Use", true)]
         public string MiniGameDone(string actualSceneName = "")
         {
             var returnString = "_Start";
