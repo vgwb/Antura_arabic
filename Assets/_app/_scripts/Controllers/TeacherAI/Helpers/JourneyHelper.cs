@@ -30,10 +30,46 @@ namespace EA4S.Teacher
             this.teacher = _teacher;
         }
 
+        #region JourneyPosition
+
         public string JourneyPositionToPlaySessionId(JourneyPosition journeyPosition)
         {
             return journeyPosition.Stage + "." + journeyPosition.LearningBlock + "." + journeyPosition.PlaySession;
         }
+
+        public JourneyPosition PlaySessionIdToJourneyPosition(string psId)
+        {
+            var parts = psId.Split('.');
+            return new JourneyPosition(int.Parse(parts[0]), int.Parse(parts[1]), int.Parse(parts[2]));
+        }
+
+        public JourneyPosition FindNextJourneyPosition(JourneyPosition currentPosition)
+        {
+            var id = JourneyPositionToPlaySessionId(currentPosition);
+
+            var allPlaySessions = dbManager.GetAllPlaySessionData();
+            int next_id = -1;
+            for (int ps_i = 0; ps_i < allPlaySessions.Count; ps_i++)
+            {
+                if (allPlaySessions[ps_i].Id == id)
+                {
+                    next_id = ps_i + 1;
+                    break;
+                }
+            }
+
+            // Check for the last session
+            if (next_id == allPlaySessions.Count)
+            {
+                return null;
+            }
+            else
+            {
+                return PlaySessionIdToJourneyPosition(allPlaySessions[next_id].Id);
+            }
+        }
+
+        #endregion
 
         #region Info getters
 
@@ -91,6 +127,7 @@ namespace EA4S.Teacher
         }
 
         #endregion
+
 
         #region Stage -> LearningBlock -> PlaySession
 
