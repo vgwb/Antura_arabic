@@ -29,7 +29,7 @@ namespace EA4S.DancingDots
 		public LetterObjectView letterObjectView;
 		public TextMeshPro hintText;
 		public TextMeshPro dotlessText;
-		public GameObject fullTextGO;
+		public GameObject fullTextGO, contentGO;
 
 		public GameObject rainbow;
 		public DancingDotsGame game;
@@ -149,7 +149,7 @@ namespace EA4S.DancingDots
 
 		private void SpeakLetter()
 		{
-			if (letterData != null) {
+			if (letterData != null && !game.isTutRound) {
 				AudioManager.I.PlayLetter(letterData.Id);
 			}
 		}
