@@ -16,8 +16,9 @@ namespace EA4S.Db
         public string Id { get; set; }  // @note: with SQLite .Net we cannot have composite keys, so I created one
 
         public string TableName { get; set; }
-        public string ElementId { get; set; } 
+        public string ElementId { get; set; }
 
+        public bool Unlocked; //TODO @michele
         public float Score { get; set; } // [-1.0,1.0] for Letters, Words, Phrases. [1,3] for MiniGame, PlaySession, LearningBlock
         public int LastAccessTimestamp { get; set; }
 
@@ -33,6 +34,7 @@ namespace EA4S.Db
             this.ElementId = elementId;
             this.TableName = table.ToString();
             this.Id = TableName + "." + ElementId;
+            this.Unlocked = true;
             this.Score = score;
             this.LastAccessTimestamp = timestamp;
         }
@@ -44,10 +46,11 @@ namespace EA4S.Db
 
         public override string ToString()
         {
-            return string.Format("T{0},E{1},S{2},T{3}",
+            return string.Format("T{0},E{1},S{2},S{3},T{4}",
                 TableName,
                 ElementId,
                 Score,
+                Unlocked,
                 LastAccessTimestamp
                 );
         }
