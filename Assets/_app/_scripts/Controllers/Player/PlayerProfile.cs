@@ -105,7 +105,7 @@ namespace EA4S
         }
         #endregion
 
-        #region journey position
+        #region journey position        
         /// <summary>
         /// Sets the actual journey position and save to profile.
         /// @note: check valid data before insert.
@@ -113,9 +113,12 @@ namespace EA4S
         /// <param name="_stage">The stage.</param>
         /// <param name="_lb">The lb.</param>
         /// <param name="_ps">The ps.</param>
-        public void SetActualJourneyPosition(int _stage, int _lb, int _ps)
+        /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
+        public void SetActualJourneyPosition(int _stage, int _lb, int _ps, bool _save = false)
         {
             SetActualJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
+            if (_save)
+                Save();
         }
 
         /// <summary>
@@ -123,9 +126,13 @@ namespace EA4S
         /// @note: check valid data before insert.
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
-        public void SetActualJourneyPosition(JourneyPosition _journeyPosition)
+        /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
+        public void SetActualJourneyPosition(JourneyPosition _journeyPosition, bool _save = false)
         {
             AppManager.Instance.Player.CurrentJourneyPosition = _journeyPosition;
+            if(_save)
+                Save();
+
         }
 
         /// <summary>
@@ -135,9 +142,12 @@ namespace EA4S
         /// <param name="_stage">The stage.</param>
         /// <param name="_lb">The lb.</param>
         /// <param name="_ps">The ps.</param>
-        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps)
+        /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
+        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps, bool _save = false)
         {
             SetMaxJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
+            if (_save)
+                Save();
         }
 
         /// <summary>
@@ -145,9 +155,12 @@ namespace EA4S
         /// @note: check valid data before insert.
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
-        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition)
+        /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
+        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition, bool _save = false)
         {
             AppManager.Instance.Player.MaxJourneyPosition = _journeyPosition;
+            if (_save)
+                Save();
         }
         #endregion
 
