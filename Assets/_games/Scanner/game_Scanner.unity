@@ -14026,6 +14026,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012126422044, guid: b1eab1b3eca314d40b04cff3efb77336, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1eab1b3eca314d40b04cff3efb77336, type: 2}
   m_IsPrefabParent: 0
@@ -17623,7 +17627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1671368173
 Transform:
   m_ObjectHideFlags: 0
@@ -18283,17 +18287,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 33000010539157610, guid: 968db9f4005364e82be9b254cd7ce716,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011578529140, guid: 968db9f4005364e82be9b254cd7ce716,
+    - target: {fileID: 114000010967572898, guid: 968db9f4005364e82be9b254cd7ce716,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011578529140, guid: 968db9f4005364e82be9b254cd7ce716,
+    - target: {fileID: 114000010967572898, guid: 968db9f4005364e82be9b254cd7ce716,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -18303,15 +18302,20 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010967572898, guid: 968db9f4005364e82be9b254cd7ce716,
+    - target: {fileID: 114000011578529140, guid: 968db9f4005364e82be9b254cd7ce716,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010967572898, guid: 968db9f4005364e82be9b254cd7ce716,
+    - target: {fileID: 114000011578529140, guid: 968db9f4005364e82be9b254cd7ce716,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000010539157610, guid: 968db9f4005364e82be9b254cd7ce716,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1000012082208024, guid: 968db9f4005364e82be9b254cd7ce716, type: 2}
       propertyPath: m_IsActive

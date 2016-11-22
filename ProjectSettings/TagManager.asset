@@ -18,6 +18,8 @@ TagManager:
   - Scanner_Belt
   - Scanner_ScanStart
   - Scanner_ScanEnd
+  - Rope
+  - Pin
   layers:
   - Default
   - TransparentFX

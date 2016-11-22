@@ -4,7 +4,9 @@
     {
         ToboganGame game;
 
-        float timer;
+        bool nextState;
+        bool playIntro;
+
         public ToboganQuestionState(ToboganGame game)
         {
             this.game = game;
@@ -13,7 +15,23 @@
         public void EnterState()
         {
             game.questionsManager.Initialize();
-            timer = 2;
+            nextState = false;
+            playIntro = false;
+
+            if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
+            {
+                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_TITLE, delegate ()
+                {
+                    playIntro = true;
+                });
+            }
+            else
+            {
+                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_WORDS_TITLE, delegate ()
+                {
+                    playIntro = true;
+                });
+            }
 
             game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
@@ -22,9 +40,7 @@
 
         public void Update(float delta)
         {
-            timer -= delta;
-
-            if (timer < 0)
+            if (nextState)
             {
                 if (game.showTutorial)
                 {
@@ -35,6 +51,26 @@
                     game.SetCurrentState(game.PlayState);
                 }
                 return;
+            }
+
+            if(playIntro)
+            {
+                playIntro = false;
+
+                if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
+                {
+                    game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_INTRO, delegate ()
+                    {
+                        nextState = true;
+                    });
+                }
+                else
+                {
+                    game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_INTRO, delegate ()
+                    {
+                        nextState = true;
+                    });
+                }
             }
         }
 
