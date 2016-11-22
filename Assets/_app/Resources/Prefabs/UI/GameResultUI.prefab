@@ -991,6 +991,9 @@ MonoBehaviour:
   - {fileID: 114000010635335590}
   - {fileID: 114000012845475002}
   - {fileID: 114000011265900070}
+  SfxGainStar: 8
+  SfxCompleteWithStars: 6
+  SfxCompleteNoStars: 7
 --- !u!114 &114000010234858110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1035,6 +1038,10 @@ MonoBehaviour:
   GodraysCanvas: {fileID: 225000010510972818}
   Godray0: {fileID: 224000011650282800}
   Godray1: {fileID: 224000010994205896}
+  SfxMinigamePopup: 8
+  SfxIncreaseBar: 31
+  SfxGainStar: 6
+  SfxShowContinue: 10
 --- !u!114 &114000010392685046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1399,6 +1406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndgameResultPanel: {fileID: 114000010152715868}
   EndsessionResultPanel: {fileID: 114000010235054024}
+  RewardsGos: []
 --- !u!114 &114000011502595562
 MonoBehaviour:
   m_ObjectHideFlags: 1
