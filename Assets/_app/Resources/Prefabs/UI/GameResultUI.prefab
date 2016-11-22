@@ -95,6 +95,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1000010203510472
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011169709234}
+  - 20: {fileID: 20000013863950462}
+  m_Layer: 5
+  m_Name: RenderTexture CAM (0)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010277526472
 GameObject:
   m_ObjectHideFlags: 1
@@ -139,6 +155,21 @@ GameObject:
   - 114: {fileID: 114000011707190014}
   m_Layer: 5
   m_Name: Star
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000010485853014
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010873951612}
+  m_Layer: 14
+  m_Name: RewardContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -582,6 +613,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000012497131796
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013341522362}
+  - 20: {fileID: 20000010384394394}
+  m_Layer: 5
+  m_Name: RenderTexture CAM (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012529483368
 GameObject:
   m_ObjectHideFlags: 1
@@ -697,6 +744,21 @@ GameObject:
   - 114: {fileID: 114000013418852034}
   m_Layer: 5
   m_Name: Minigame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013365967704
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010495947942}
+  m_Layer: 14
+  m_Name: RewardContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -908,6 +970,128 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000010495947942
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013365967704}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 11.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013341522362}
+  m_RootOrder: 0
+--- !u!4 &4000010873951612
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010485853014}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 11.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011169709234}
+  m_RootOrder: 0
+--- !u!4 &4000011169709234
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010203510472}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -734.8148, y: -480, z: -50}
+  m_LocalScale: {x: 1.1851852, y: 1.1851852, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000010873951612}
+  m_Father: {fileID: 224000010847393536}
+  m_RootOrder: 3
+--- !u!4 &4000013341522362
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012497131796}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -616.2963, y: -480, z: -50}
+  m_LocalScale: {x: 1.1851852, y: 1.1851852, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000010495947942}
+  m_Father: {fileID: 224000010847393536}
+  m_RootOrder: 4
+--- !u!20 &20000010384394394
+Camera:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012497131796}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 4dcdbb0fc0c4de74398c945e9dedfe99, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
+--- !u!20 &20000013863950462
+Camera:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010203510472}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 1e1f87b55d2126f479f652805a5d1831, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!114 &114000010032531904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1032,12 +1216,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7aa99726dedf74895ea5504cb893e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RewardsGosLayer:
+    serializedVersion: 2
+    m_Bits: 16384
   Godrays360Duration: 15
   Minigames: {fileID: 114000010032531904}
   Bar: {fileID: 114000011568817166}
   GodraysCanvas: {fileID: 225000010510972818}
   Godray0: {fileID: 224000011650282800}
   Godray1: {fileID: 224000010994205896}
+  RewardsGos:
+  - {fileID: 1000010485853014}
+  - {fileID: 1000013365967704}
   SfxMinigamePopup: 8
   SfxIncreaseBar: 31
   SfxGainStar: 6
@@ -1406,7 +1596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndgameResultPanel: {fileID: 114000010152715868}
   EndsessionResultPanel: {fileID: 114000010235054024}
-  RewardsGos: []
 --- !u!114 &114000011502595562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2700,6 +2889,8 @@ RectTransform:
   - {fileID: 224000013948399906}
   - {fileID: 224000011237346548}
   - {fileID: 224000012006433418}
+  - {fileID: 4000011169709234}
+  - {fileID: 4000013341522362}
   m_Father: {fileID: 224000010093149628}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -3453,8 +3644,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -306.2}
-  m_SizeDelta: {x: 70, y: 619.7}
+  m_AnchoredPosition: {x: 0, y: -311.5}
+  m_SizeDelta: {x: 70, y: 625}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224000013948399906
 RectTransform:

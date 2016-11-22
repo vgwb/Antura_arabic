@@ -1,6 +1,7 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/11/18
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ namespace EA4S
     {
         public EndgameResultPanel EndgameResultPanel;
         public EndsessionResultPanel EndsessionResultPanel;
-        public GameObject[] RewardsGos;
 
         static GameResultUI I;
         const string ResourcesPath = "Prefabs/UI/GameResultUI";
@@ -59,7 +59,7 @@ namespace EA4S
         {
             Init();
             I.EndsessionResultPanel.Show(_sessionData, _immediate);
-            return I.RewardsGos;
+            return I.EndsessionResultPanel.RewardsGos;
         }
 
         /// <summary>

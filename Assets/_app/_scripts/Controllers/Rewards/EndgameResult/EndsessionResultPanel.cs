@@ -13,12 +13,14 @@ namespace EA4S
     public class EndsessionResultPanel : MonoBehaviour
     {
         [Header("Settings")]
+        public LayerMask RewardsGosLayer;
         public float Godrays360Duration = 15f;
         [Header("References")]
         public EndsessionMinigames Minigames;
         public EndsessionBar Bar;
         public CanvasGroup GodraysCanvas;
         public RectTransform Godray0, Godray1;
+        public GameObject[] RewardsGos;
         [Header("Audio")]
         public Sfx SfxMinigamePopup = Sfx.UIPopup;
         public Sfx SfxIncreaseBar = Sfx.UIPopup;
@@ -111,6 +113,8 @@ namespace EA4S
         {
             yield return null;
 
+            SetRewardsGos();
+
             // Show minigames
             Bar.Hide();
             Minigames.Show(_sessionData);
@@ -140,6 +144,12 @@ namespace EA4S
         void Continue()
         {
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.Instance.MiniGameDone());
+        }
+
+        void SetRewardsGos()
+        {
+            foreach (GameObject go in RewardsGos) go.SetLayerRecursive(RewardsGosLayer.value);
+            // TODO center
         }
 
         #endregion
