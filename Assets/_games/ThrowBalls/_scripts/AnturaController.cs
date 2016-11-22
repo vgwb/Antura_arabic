@@ -93,7 +93,7 @@ namespace EA4S.ThrowBalls
                     {
                         rigidBody.AddForce(new Vector3(0, JUMP_INIT_VELOCITY, 0), ForceMode.VelocityChange);
 
-                        //animator.OnJumpStart();
+                        animator.OnJumpStart();
 
                         state = State.Jumping;
                     }
@@ -103,7 +103,7 @@ namespace EA4S.ThrowBalls
                 case State.Jumping:
                     if (rigidBody.velocity.y < 0)
                     {
-                        //animator.OnJumpMaximumHeightReached();
+                        animator.OnJumpMaximumHeightReached();
 
                         state = State.Falling;
                     }
@@ -154,7 +154,10 @@ namespace EA4S.ThrowBalls
             else if (collision.gameObject.tag == "Ground" && state == State.Falling)
             {
                 state = State.Landed;
-                //animator.OnJumpEnded();
+
+                animator.OnJumpEnded();
+                animator.State = AnturaAnimationStates.walking;
+                
             }
         }
 
