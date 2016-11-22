@@ -24,6 +24,8 @@ namespace EA4S.ColorTickle
             game.colorsCanvas.gameObject.SetActive(false);
 
             AudioManager.I.PlayMusic(game.backgroundMusic);
+          
+            //AudioManager.I.PlayDialog(TextID.COLORTICKLE_TITLE.ToString());
 
             BuildLetters();
 
