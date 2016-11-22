@@ -26,9 +26,8 @@
         /// <summary>
         /// Logs the play session score.
         /// </summary>
-        /// <param name="_playSessionId">The play session identifier.</param>
         /// <param name="_score">The score.</param>
-        void LogPlaySessionScore(string _playSessionId, float _score);
+        void LogPlaySessionScore(float _score);
 
         /// <summary>
         /// Logs the learning block score.
