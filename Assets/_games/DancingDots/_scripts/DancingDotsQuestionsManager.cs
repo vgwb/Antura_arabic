@@ -4,7 +4,7 @@ namespace EA4S.DancingDots
 {
 	public class DancingDotsQuestionsManager
 	{
-		string dotlessLetters = " - ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter = "";
+        string dotlessLetters = /*"ض ث ق ف غ خ ج ش ي ب ت ن ة ظ"*/ " - ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter = "";
 
 		public ILivingLetterData getNewLetter()
 		{
@@ -24,7 +24,7 @@ namespace EA4S.DancingDots
 
 				}
 			}
-			while (dotlessLetters.Contains(newLetter.TextForLivingLetter) || newLetter.TextForLivingLetter == prevLetter);
+			while (!dotlessLetters.Contains(newLetter.TextForLivingLetter) || newLetter.TextForLivingLetter == prevLetter);
 
 			//ILivingLetterData newLetter = ((SampleQuestionPack)nextQuestionPack).GetQuestions();
 

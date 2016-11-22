@@ -7,7 +7,7 @@ namespace EA4S.DancingDots
 {
 	public class DancingDotsQuestionProvider : IQuestionProvider
 	{
-		string dotlessLetters = " - ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter="", newLetterString="X";
+        string dotlessLetters = /*"ض ث ق ف غ خ ج ش ي ب ت ن ة ظ"*/ " - ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter = "", newLetterString="X";
 
 		public IQuestionPack GetNextQuestion()
 		{
@@ -22,7 +22,7 @@ namespace EA4S.DancingDots
 				newLetterString = newLetter.TextForLivingLetter;
 
 			}
-			while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
+			while (newLetterString == "" || !dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
 
 			Debug.Log(newLetterString);
 			//DancingDotsQuestionsPack dataPack = new DancingDotsQuestionsPack(newLetter);

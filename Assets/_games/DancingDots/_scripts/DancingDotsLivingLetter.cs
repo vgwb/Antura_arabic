@@ -32,7 +32,7 @@ namespace EA4S.DancingDots
 		public GameObject fullTextGO;
 
 		public GameObject rainbow;
-		public DancingDotsGameManager game;
+		public DancingDotsGame game;
 
 		TextMeshPro fullText;
 
@@ -96,7 +96,7 @@ namespace EA4S.DancingDots
 		void SetupLetter()
 		{
 
-			DancingDotsGameManager.instance.currentLetter = letterData.TextForLivingLetter;
+            DancingDotsGame.instance.currentLetter = letterData.TextForLivingLetter;
 
 			string lettersWithOneDot = "ج خ غ ف ض ب ن ز ذ ظ";
 			string lettersWithTwoDots = "ة ق ي ت";
@@ -104,23 +104,23 @@ namespace EA4S.DancingDots
 
 			if (lettersWithThreeDots.Contains(letterData.TextForLivingLetter))
 			{
-				DancingDotsGameManager.instance.dotsCount = 3;
+                DancingDotsGame.instance.dotsCount = 3;
 			}
 			else if (lettersWithTwoDots.Contains(letterData.TextForLivingLetter))
 			{
-				DancingDotsGameManager.instance.dotsCount = 2;
+                DancingDotsGame.instance.dotsCount = 2;
 			}
 			else if (lettersWithOneDot.Contains(letterData.TextForLivingLetter))
 			{
-				DancingDotsGameManager.instance.dotsCount = 1;
+                DancingDotsGame.instance.dotsCount = 1;
 			}
 			else
 			{
-				DancingDotsGameManager.instance.dotsCount = 0;
+                DancingDotsGame.instance.dotsCount = 0;
 			}
 					
 			hintText.text = letterData.TextForLivingLetter;
-			ShowText(hintText, DancingDotsGameManager.instance.dotHintAlpha);
+			ShowText(hintText, DancingDotsGame.instance.dotHintAlpha);
 			dotlessText.text = letterData.TextForLivingLetter;
 			fullText.text = letterData.TextForLivingLetter;
 			fullTextGO.SetActive(false);
@@ -129,12 +129,12 @@ namespace EA4S.DancingDots
 
 		public void HideText(TextMeshPro tmp)
 		{
-			tmp.color = DancingDotsGameManager.instance.SetAlpha(tmp.color,0);
+			tmp.color = DancingDotsGame.instance.SetAlpha(tmp.color,0);
 		}
 
 		public void ShowText(TextMeshPro tmp, byte alpha)
 		{
-			tmp.color = DancingDotsGameManager.instance.SetAlpha(tmp.color, alpha);
+			tmp.color = DancingDotsGame.instance.SetAlpha(tmp.color, alpha);
 		}
 
 		public void ShowRainbow()
