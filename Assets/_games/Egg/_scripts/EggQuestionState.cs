@@ -7,9 +7,13 @@ namespace EA4S.Egg
     {
         EggGame game;
 
+        bool firstQuestion;
+
         public EggQuestionState(EggGame game)
         {
             this.game = game;
+
+            firstQuestion = true;
         }
 
         public void EnterState()
@@ -20,22 +24,44 @@ namespace EA4S.Egg
 
             game.questionManager.StartNewQuestion(game.gameDifficulty, onlyLetter);
             game.eggController.Reset();
-            
-            game.Context.GetAudioManager().PlaySound(Sfx.TickAndWin);
-            game.eggController.MoveNext(2f, OnEggEnterComplete);
+
+            if (firstQuestion)
+            {
+                game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TITLE);
+                //game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TITLE, delegate () { EggEnter(); });
+            }
+            //else
+            {
+                EggEnter();
+            }
         }
 
         public void ExitState()
         {
+            firstQuestion = false;
+
             game.eggButtonBox.SetOnPressedCallback(null);
         }
 
         public void Update(float delta) { }
         public void UpdatePhysics(float delta) { }
 
+        void EggEnter()
+        {
+            game.Context.GetAudioManager().PlaySound(Sfx.TickAndWin);
+            game.eggController.MoveNext(2f, OnEggEnterComplete);
+        }
+
         void OnEggEnterComplete()
         {
-            SetAndShowEggButtons();
+            if (firstQuestion)
+            {
+                game.Context.GetAudioManager().PlayDialogue(TextID.EGG_INTRO, delegate () { SetAndShowEggButtons(); });
+            }
+            else
+            {
+                SetAndShowEggButtons();
+            }
         }
 
         void SetAndShowEggButtons()
@@ -88,7 +114,7 @@ namespace EA4S.Egg
 
         void OnEggButtonPressed(ILivingLetterData letterData)
         {
-            if(!game.questionManager.IsSequence())
+            if (!game.questionManager.IsSequence())
             {
                 game.eggButtonBox.StopButtonsAudio();
             }
