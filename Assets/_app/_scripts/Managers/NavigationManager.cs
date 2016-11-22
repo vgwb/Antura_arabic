@@ -15,7 +15,8 @@ namespace EA4S
         GameSelector,
         MiniGame,
         AnturaSpace,
-        Rewards
+        Rewards, 
+        PlaySessionResult,
     }
 
     public class NavigationManager : MonoBehaviour
@@ -67,23 +68,34 @@ namespace EA4S
                     GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
-                    AppManager.Instance.Player.NextPlaySessionMinigame();
-                    if (AppManager.Instance.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
-                        /// - Update Journey
-                        /// - Reset CurrentMiniGameInPlaySession
-                        /// - Reward screen
-                        /// *-- check first contact : 
+                    if (AppManager.Instance.IsAssessmentTime) {
+                        // assessment ended!
+                        AppManager.Instance.Player.NextPlaySessionMinigame();
                         AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
-                        
                         GoToScene(AppScene.Rewards);
                     } else {
-                        // Next game
-                        GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                        AppManager.Instance.Player.NextPlaySessionMinigame();
+                        if (AppManager.Instance.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
+                            /// - Update Journey
+                            /// - Reset CurrentMiniGameInPlaySession
+                            /// - Reward screen
+                            /// *-- check first contact : 
+                            //AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                            GoToScene(AppScene.PlaySessionResult);
+                        } else {
+                            // Next game
+                            GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                        }
                     }
                     break;
                 case AppScene.AnturaSpace:
                     break;
                 case AppScene.Rewards:
+                    AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                    GoToScene(AppScene.Map);
+                    break;
+                case AppScene.PlaySessionResult:
+                    GoToScene(AppScene.Map);
                     break;
                 default:
                     break;
@@ -145,6 +157,8 @@ namespace EA4S
                     return "app_AnturaSpace";
                 case AppScene.Rewards:
                     return "app_Rewards";
+                case AppScene.PlaySessionResult:
+                    return "app_PlaySessionResult";
                 default:
                     return "";
             }

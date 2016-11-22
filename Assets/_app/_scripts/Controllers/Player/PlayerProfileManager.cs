@@ -27,6 +27,7 @@ namespace EA4S {
                     SaveGameSettings();
                 }
                 actualPlayer = value;
+                AppManager.Instance.InitDataAI();
             }
         }
 
