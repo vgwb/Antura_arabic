@@ -17,6 +17,10 @@ namespace EA4S
         public UIButton BtPlay;
         public GameObject ProfilesPanel;
         public ProfileSelectorAvatarSelector AvatarSelector;
+        [Header("Audio")]
+        public Sfx SfxOpenCreateProfile;
+        public Sfx SfxCreateNewProfile;
+        public Sfx SfxSelectProfile;
 
         public static ProfileSelectorUI I;
         public const string AvatarsResourcesDir = "Images/Avatars/";
@@ -56,6 +60,7 @@ namespace EA4S
             BtAdd.Bt.onClick.AddListener(()=> OnClick(BtAdd));
             BtPlay.Bt.onClick.AddListener(() => {
                 BtPlay.AnimateClick();
+                AudioManager.I.PlaySfx(Sfx.UIButtonClick);
                 if(AppManager.Instance.Player.IsFirstContact())
                     AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Intro");
                 else
@@ -87,6 +92,7 @@ namespace EA4S
 
             PlayerProfile pp = ProfileManager.CreateOrLoadPlayerProfile(_avatarId);
             ProfileManager.ActualPlayer = pp;
+            AudioManager.I.PlaySfx(SfxCreateNewProfile);
 
             Setup();
         }
@@ -94,6 +100,7 @@ namespace EA4S
         internal void SelectProfile(int _id)
         {
             ProfileManager.ActualPlayer = ProfileManager.AvailablePlayerProfiles[_id - 1];
+            AudioManager.I.PlaySfx(SfxSelectProfile);
             Setup();
         }
 

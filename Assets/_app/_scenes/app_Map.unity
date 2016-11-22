@@ -437,7 +437,7 @@ Transform:
   - {fileID: 1711248548}
   - {fileID: 1112958501}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
 --- !u!1 &7570423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 12
+  Number: 11
   RopeNode: {fileID: 2045017055}
   Dot: {fileID: 4603258}
   posBefore: 21
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 15
+  Number: 14
   RopeNode: {fileID: 2143105601}
   Dot: {fileID: 1794581394}
   posBefore: 27
@@ -1767,7 +1767,7 @@ MonoBehaviour:
   - {fileID: 176054307}
   - {fileID: 477357742}
   - {fileID: 909829987}
-  Player: {fileID: 76312636}
+  Player: {fileID: 0}
   ZoomCameraGO: {fileID: 1651395146}
 --- !u!4 &33363800
 Transform:
@@ -3534,7 +3534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 13
+  Number: 12
   RopeNode: {fileID: 1259427338}
   Dot: {fileID: 1679165205}
   posBefore: 23
@@ -4409,10 +4409,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 74614356}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &76312636 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 113144, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-  m_PrefabInternal: {fileID: 844598000}
 --- !u!1 &77097099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4970,7 +4966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
+  Number: 7
   RopeNode: {fileID: 1308240238}
   Dot: {fileID: 915543951}
   posBefore: 13
@@ -6026,7 +6022,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523182, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsTrigger
@@ -6261,7 +6257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 14
+  Number: 13
   RopeNode: {fileID: 1240086715}
   Dot: {fileID: 1136052444}
   posBefore: 25
@@ -7892,7 +7888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 7
+  Number: 6
   RopeNode: {fileID: 1673831109}
   Dot: {fileID: 1772589276}
   posBefore: 11
@@ -10789,7 +10785,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsActive
@@ -12658,7 +12654,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14925,7 +14921,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsActive
@@ -18825,7 +18821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 10
+  Number: 9
   RopeNode: {fileID: 325059841}
   Dot: {fileID: 78073098}
   posBefore: 17
@@ -20556,7 +20552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 10
+  Number: 9
   RopeNode: {fileID: 42211065}
   Dot: {fileID: 1808448392}
   posBefore: 17
@@ -21444,7 +21440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 10
+  Number: 9
   RopeNode: {fileID: 606246103}
   Dot: {fileID: 119093549}
   posBefore: 17
@@ -21654,7 +21650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 7
+  Number: 6
   RopeNode: {fileID: 64090599}
   Dot: {fileID: 1320704680}
   posBefore: 11
@@ -23424,7 +23420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 9
+  Number: 8
   RopeNode: {fileID: 1243113179}
   Dot: {fileID: 837396474}
   posBefore: 15
@@ -24949,7 +24945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
+  Number: 7
   RopeNode: {fileID: 424965175}
   Dot: {fileID: 1703476412}
   posBefore: 13
@@ -26425,7 +26421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 13
+  Number: 12
   RopeNode: {fileID: 1369063801}
   Dot: {fileID: 1879232765}
   posBefore: 23
@@ -28661,7 +28657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 6
+  Number: 5
   RopeNode: {fileID: 340568311}
   Dot: {fileID: 1100227691}
   posBefore: 9
@@ -28859,7 +28855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 9
+  Number: 8
   RopeNode: {fileID: 2088406}
   Dot: {fileID: 807504166}
   posBefore: 15
@@ -30920,7 +30916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 6
+  Number: 5
   RopeNode: {fileID: 918383558}
   Dot: {fileID: 935145932}
   posBefore: 9
@@ -31367,7 +31363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 10
+  Number: 9
   RopeNode: {fileID: 1629120475}
   Dot: {fileID: 900087622}
   posBefore: 17
@@ -34955,7 +34951,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523182, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsTrigger
@@ -37382,7 +37378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
+  Number: 7
   RopeNode: {fileID: 1159022979}
   Dot: {fileID: 1376290639}
   posBefore: 13
@@ -37605,7 +37601,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1001 &714210849
 Prefab:
   m_ObjectHideFlags: 0
@@ -38587,7 +38583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 11
+  Number: 10
   RopeNode: {fileID: 15195043}
   Dot: {fileID: 279665423}
   posBefore: 19
@@ -39403,7 +39399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 14
+  Number: 13
   RopeNode: {fileID: 1492174523}
   Dot: {fileID: 1669629797}
   posBefore: 25
@@ -40201,7 +40197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 12
+  Number: 11
   RopeNode: {fileID: 123261428}
   Dot: {fileID: 1156464794}
   posBefore: 21
@@ -40968,7 +40964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 14
+  Number: 13
   RopeNode: {fileID: 179622702}
   Dot: {fileID: 1386892671}
   posBefore: 25
@@ -42671,7 +42667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 13
+  Number: 12
   RopeNode: {fileID: 274419102}
   Dot: {fileID: 2024305468}
   posBefore: 23
@@ -43362,6 +43358,10 @@ Prefab:
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
+      propertyPath: Number
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
@@ -44586,104 +44586,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
-  m_IsPrefabParent: 0
---- !u!1001 &844598000
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 31.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 10.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.68850946
-      objectReference: {fileID: 0}
-    - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.040607117
-      objectReference: {fileID: 0}
-    - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.7181946
-      objectReference: {fileID: 0}
-    - target: {fileID: 477566, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.09220875
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 471690, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: ClickToSpeakLetter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: ClickToChangeLetter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: ClickToChangeAnimation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11477802, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: AnimationState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3385508, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 113144, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &845895397
 Prefab:
@@ -46505,7 +46407,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523182, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsTrigger
@@ -47196,6 +47098,10 @@ Prefab:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
+      propertyPath: Number
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
   m_IsPrefabParent: 0
@@ -47474,7 +47380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 9
+  Number: 8
   RopeNode: {fileID: 1436646286}
   Dot: {fileID: 273712543}
   posBefore: 15
@@ -47879,7 +47785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 15
+  Number: 14
   RopeNode: {fileID: 1244332802}
   Dot: {fileID: 1459214122}
   posBefore: 27
@@ -49056,7 +48962,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -49341,7 +49247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 6
+  Number: 5
   RopeNode: {fileID: 946857627}
   Dot: {fileID: 149486805}
   posBefore: 9
@@ -49775,7 +49681,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -51843,7 +51749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 7
+  Number: 6
   RopeNode: {fileID: 317890085}
   Dot: {fileID: 1639234021}
   posBefore: 11
@@ -53358,7 +53264,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523182, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsTrigger
@@ -54467,7 +54373,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -54904,7 +54810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 15
+  Number: 14
   RopeNode: {fileID: 213127094}
   Dot: {fileID: 996413271}
   posBefore: 27
@@ -55376,7 +55282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 13
+  Number: 12
   RopeNode: {fileID: 1198253572}
   Dot: {fileID: 548676482}
   posBefore: 23
@@ -55736,7 +55642,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523182, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsTrigger
@@ -55844,7 +55750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 13
+  Number: 12
   RopeNode: {fileID: 1892475683}
   Dot: {fileID: 1137689528}
   posBefore: 23
@@ -57589,6 +57495,10 @@ Prefab:
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
+      propertyPath: Number
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
@@ -60455,7 +60365,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -61685,7 +61595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 12
+  Number: 11
   RopeNode: {fileID: 1481799260}
   Dot: {fileID: 33498032}
   posBefore: 21
@@ -62697,7 +62607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 12
+  Number: 11
   RopeNode: {fileID: 1837926402}
   Dot: {fileID: 386179905}
   posBefore: 21
@@ -63606,7 +63516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 12
+  Number: 11
   RopeNode: {fileID: 666107845}
   Dot: {fileID: 1719371022}
   posBefore: 21
@@ -63747,7 +63657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 7
+  Number: 6
   RopeNode: {fileID: 1165812066}
   Dot: {fileID: 441895154}
   posBefore: 11
@@ -64182,7 +64092,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -64445,7 +64355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 13
+  Number: 12
   RopeNode: {fileID: 1057344142}
   Dot: {fileID: 714914915}
   posBefore: 23
@@ -66029,7 +65939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 11
+  Number: 10
   RopeNode: {fileID: 1923582308}
   Dot: {fileID: 596783568}
   posBefore: 19
@@ -66329,7 +66239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 11
+  Number: 10
   RopeNode: {fileID: 1848174566}
   Dot: {fileID: 427411885}
   posBefore: 19
@@ -69823,7 +69733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 10
+  Number: 9
   RopeNode: {fileID: 1392679305}
   Dot: {fileID: 1190653255}
   posBefore: 17
@@ -73222,7 +73132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 11
+  Number: 10
   RopeNode: {fileID: 735936512}
   Dot: {fileID: 948973386}
   posBefore: 19
@@ -74203,7 +74113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 9
+  Number: 8
   RopeNode: {fileID: 991032135}
   Dot: {fileID: 2053346786}
   posBefore: 15
@@ -74605,7 +74515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 15
+  Number: 14
   RopeNode: {fileID: 513913952}
   Dot: {fileID: 135314826}
   posBefore: 27
@@ -75791,7 +75701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
+  Number: 7
   RopeNode: {fileID: 1168469497}
   Dot: {fileID: 1322636123}
   posBefore: 13
@@ -75893,7 +75803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 15
+  Number: 14
   RopeNode: {fileID: 355981311}
   Dot: {fileID: 1740700423}
   posBefore: 27
@@ -78864,7 +78774,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -79045,7 +78955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 14
+  Number: 13
   RopeNode: {fileID: 1987210316}
   Dot: {fileID: 1635510154}
   posBefore: 25
@@ -81087,7 +80997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 11
+  Number: 10
   RopeNode: {fileID: 608536081}
   Dot: {fileID: 457914960}
   posBefore: 19
@@ -81228,7 +81138,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -82154,7 +82064,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -85250,7 +85160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 7
+  Number: 6
   RopeNode: {fileID: 61079242}
   Dot: {fileID: 2118658765}
   posBefore: 11
@@ -85836,7 +85746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 6
+  Number: 5
   RopeNode: {fileID: 131764430}
   Dot: {fileID: 562993275}
   posBefore: 9
@@ -87894,7 +87804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 14
+  Number: 13
   RopeNode: {fileID: 423225278}
   Dot: {fileID: 2027482635}
   posBefore: 25
@@ -88315,7 +88225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 9
+  Number: 8
   RopeNode: {fileID: 361155327}
   Dot: {fileID: 937611367}
   posBefore: 15
@@ -89171,7 +89081,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -89663,7 +89573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 6
+  Number: 5
   RopeNode: {fileID: 245799875}
   Dot: {fileID: 1632456158}
   posBefore: 9
@@ -90989,7 +90899,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6523182, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsTrigger
@@ -95731,6 +95641,10 @@ Prefab:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
+      propertyPath: Number
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
   m_IsPrefabParent: 0
@@ -96373,7 +96287,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -97782,7 +97696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 10
+  Number: 9
   RopeNode: {fileID: 1692738446}
   Dot: {fileID: 486760221}
   posBefore: 17
@@ -98512,7 +98426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 7
+  Number: 6
   RopeNode: {fileID: 1580075452}
   Dot: {fileID: 476216387}
   posBefore: 11
@@ -98640,7 +98554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 15
+  Number: 14
   RopeNode: {fileID: 1589257603}
   Dot: {fileID: 1183028625}
   posBefore: 27
@@ -100312,7 +100226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
+  Number: 7
   RopeNode: {fileID: 627235530}
   Dot: {fileID: 902326301}
   posBefore: 13
@@ -100401,7 +100315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 11
+  Number: 10
   RopeNode: {fileID: 1823715258}
   Dot: {fileID: 102995383}
   posBefore: 19
@@ -101858,7 +101772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 6
+  Number: 5
   RopeNode: {fileID: 702898718}
   Dot: {fileID: 1928438138}
   posBefore: 9
@@ -102089,7 +102003,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsActive
@@ -102679,7 +102593,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 84c1a6a5e4d4c0c47ae0237f0a42ff5c, type: 2}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 454946, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -107500,7 +107414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 9
+  Number: 8
   RopeNode: {fileID: 15329427}
   Dot: {fileID: 1277378175}
   posBefore: 15
@@ -108065,6 +107979,10 @@ Prefab:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
+      propertyPath: Number
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
   m_IsPrefabParent: 0
@@ -108153,7 +108071,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsActive
@@ -108576,7 +108494,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsActive
@@ -111706,7 +111624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 14
+  Number: 13
   RopeNode: {fileID: 647486093}
   Dot: {fileID: 519855921}
   posBefore: 25
@@ -111990,7 +111908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 12
+  Number: 11
   RopeNode: {fileID: 126919333}
   Dot: {fileID: 421232387}
   posBefore: 21
@@ -112196,7 +112114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: Number
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_IsActive
@@ -112466,6 +112384,10 @@ Prefab:
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
+      propertyPath: Number
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
@@ -113101,7 +113023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d8b8f282928415091d6de8c585c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 8
+  Number: 7
   RopeNode: {fileID: 1523076489}
   Dot: {fileID: 998463178}
   posBefore: 13
