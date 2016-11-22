@@ -82,6 +82,16 @@ namespace EA4S
             return button;
         }
 
+        public bool IsReady()
+        {
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (!buttons[i].IsReady())
+                    return false;
+            }
+            return true;
+        }
+
         public void ShowButtons()
         {
             for (int i = 0; i < buttons.Count; i++)
