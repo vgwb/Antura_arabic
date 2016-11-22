@@ -48,7 +48,8 @@ namespace EA4S.API {
 
 
             // Call game start
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
+            NavigationManager.I.GoToNextScene();
+            //AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
         }
 
         public IGameConfiguration GetGameConfigurationForMiniGameCode(MiniGameCode code)

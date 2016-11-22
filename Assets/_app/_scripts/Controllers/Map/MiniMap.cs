@@ -45,6 +45,9 @@ namespace EA4S
 
         void Start()
         {
+            // Navigation manager 
+            NavigationManager.I.CurrentScene = AppScene.Map;
+
             /* FIRST CONTACT FEATURE */
             if (AppManager.Instance.Player.IsFirstContact()) {
                 FirstContactBehaviour();
@@ -176,10 +179,7 @@ namespace EA4S
         {
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
 
-            if (AppManager.Instance.IsAssessmentTime)
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
-            else
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GamesSelector");
+            NavigationManager.I.GoToNextScene();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace EA4S
             NavigationManager.I.CurrentScene = AppScene.Mood;
             AudioManager.I.PlayMusic(SceneMusic);
             KeeperManager.I.PlaySceneIntroduction(NavigationManager.I.CurrentScene);
+            
         }
 
         /// <summary> 

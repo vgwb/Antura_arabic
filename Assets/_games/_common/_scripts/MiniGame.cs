@@ -51,7 +51,7 @@ namespace EA4S
         void Initialize(IGameContext context)
         {
             Context = context;
-
+            
             OutcomeState = new OutcomeGameState(this);
 
             base.Start();

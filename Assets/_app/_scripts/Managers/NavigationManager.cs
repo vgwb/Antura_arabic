@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using ModularFramework.Core;
 using System.Collections;
+using EA4S.Db;
 
 namespace EA4S
 {
@@ -34,19 +35,84 @@ namespace EA4S
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
         }
 
-        public string GetNextScene()
-        {
-            return "";
+        public void GoToGameScene(MiniGameData _miniGame) {
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
         }
 
-        public void GoNextScene()
+        //public string GetNextScene()
+        //{
+        //    return "";
+        //}
+
+        public void GoToNextScene()
         {
-            var nextScene = GetNextScene();
+            //var nextScene = GetNextScene();
+            switch (CurrentScene) {
+                case AppScene.Home:
+                    break;
+                case AppScene.Mood:
+                    break;
+                case AppScene.Map:
+                    if (AppManager.Instance.IsAssessmentTime)
+                        GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                    else
+                        GoToScene(AppScene.GameSelector);
+                    break;
+                case AppScene.Book:
+                    break;
+                case AppScene.Intro:
+                    break;
+                case AppScene.GameSelector:
+                    AppManager.Instance.Player.ResetPlaySessionMinigame();
+                    GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                    break;
+                case AppScene.MiniGame:
+                    AppManager.Instance.Player.NextPlaySessionMinigame();
+                    if (AppManager.Instance.Player.CurrentMiniGameInPlaySession >= TeacherAI.I.CurrentPlaySessionMiniGames.Count) {
+                        /// - Update Journey
+                        /// - Reset CurrentMiniGameInPlaySession
+                        /// - Reward screen
+                        /// *-- check first contact : 
+                        AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.getNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                        
+                        GoToScene(AppScene.Rewards);
+                    } else {
+                        // Next game
+                        GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                    }
+                    break;
+                case AppScene.AnturaSpace:
+                    break;
+                case AppScene.Rewards:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public string GetCurrentScene()
         {
             return "";
+        }
+
+        /// <summary>
+        /// Called to notify end minigame with result (pushed continue button on UI).
+        /// </summary>
+        /// <param name="_stars">The stars.</param>
+        public void EndMinigame(int _stars) {
+            
+            // log
+        }
+
+        /// <summary>
+        /// Called to notify end of playsession (pushed continue button on UI).
+        /// </summary>
+        /// <param name="_stars">The star.</param>
+        /// <param name="_bones">The bones.</param>
+        public void EndPlaySession(int _stars, int _bones) {
+            // Logic
+            // log
+            // GoToScene ...
         }
 
         public void GoHome()

@@ -62,6 +62,9 @@ namespace EA4S
 
         void Start()
         {
+            // Navigation manager 
+            NavigationManager.I.CurrentScene = AppScene.GameSelector;
+
             if (mainBubble == null) {
                 mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
                 mainBubble.gameObject.SetActive(false);
