@@ -5,6 +5,8 @@ namespace EA4S.ReadingGame
 {
     public class ReadingGameReadState : IGameState
     {
+        public bool TutorialMode = false;
+
         CountdownTimer gameTime = new CountdownTimer(90.0f);
         ReadingGameGame game;
         IAudioSource timesUpAudioSource;
@@ -19,6 +21,10 @@ namespace EA4S.ReadingGame
         float timeFarFromTarget = 0;
         float scoreAccumulator = 0;
 
+        // tutorial
+        float drawTutorialLineTimer = 0;
+        bool firstRealRun = true;
+
         public ReadingGameReadState(ReadingGameGame game)
         {
             this.game = game;
@@ -31,23 +37,20 @@ namespace EA4S.ReadingGame
             game.antura.AllowSitting = true;
             game.isTimesUp = false;
 
-            if (game.CurrentQuestionNumber >= ReadingGameGame.MAX_QUESTIONS)
-            {
-                game.EndGame(game.CurrentStars, game.CurrentScore);
-                return;
-            }
-
-            ++game.CurrentQuestionNumber;
-
             // Reset game timer
             gameTime.Reset(ReadingGameGame.TIME_TO_ANSWER);
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
             {
-                gameTime.Start();
-
-                game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
-                game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+                if (!TutorialMode)
+                {
+                    gameTime.Start();
+                }
+                else
+                {
+                    game.Context.GetAudioManager().PlayDialogue(TextID.READINGGAME_TUTORIAL);
+                    drawTutorialLineTimer = 0;
+                }
             }
 
             hurryUpSfx = false;
@@ -60,32 +63,41 @@ namespace EA4S.ReadingGame
             game.blurredText.SetActive(true);
             //game.circleBox.SetActive(false);
 
-            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
-                // Pick a question
-                var pack = ReadingGameConfiguration.Instance.Questions.GetNextQuestion();
-                game.CurrentQuestion = pack;
-                if (pack != null)
-                    game.barSet.SetData(pack.GetQuestion());
-                else
-                    game.EndGame(game.CurrentStars, game.CurrentScore);
-            }
-            else
-            {
-                game.barSet.SetShowTargets(ReadingGameConfiguration.Instance.Difficulty < 0.3f);
-                game.barSet.SetShowArrows(ReadingGameConfiguration.Instance.Difficulty < 0.6f);
-
-                game.barSet.SetData(game.alphabetSong);
                 game.barSet.PlaySong(game.Context.GetAudioManager().PlayMusic(game.alphabetSongAudio), OnSongEnded);
             }
 
-            game.barSet.active = true;
             completedDragging = false;
+
+            if (firstRealRun)
+            {
+                bool isSong = (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong);
+
+                if (!TutorialMode)
+                {
+                    // Configure overlay
+                    var overlay = game.Context.GetOverlayWidget();
+                    overlay.Initialize(true, !isSong, !isSong);
+                    overlay.SetMaxLives(game.Lives);
+                    overlay.SetLives(game.Lives);
+                    overlay.SetClockDuration(gameTime.Duration);
+                    overlay.SetClockTime(gameTime.Time);
+                    overlay.SetStarsThresholds(game.GetStarsThreshold(1), game.GetStarsThreshold(2), game.GetStarsThreshold(3));
+
+                    firstRealRun = false;
+                }
+            }
+
+            game.barSet.SwitchToNextBar();
+            game.barSet.active = true;
         }
 
 
         public void ExitState()
         {
+            TutorialMode = false;
+
             var inputManager = game.Context.GetInputManager();
 
             inputManager.onPointerDown -= OnPointerDown;
@@ -103,7 +115,23 @@ namespace EA4S.ReadingGame
 
         public void Update(float delta)
         {
-            game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+            if (!TutorialMode)
+                game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);
+            else if (dragging == null)
+            {
+                drawTutorialLineTimer -= delta;
+
+                if (drawTutorialLineTimer < 0)
+                {
+                    var activeBar = game.barSet.GetActiveBar();
+
+                    if (activeBar != null)
+                    {
+                        drawTutorialLineTimer = 5;
+                        TutorialUI.DrawLine(activeBar.start.transform.position, activeBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+                    }
+                }
+            }
 
             if (!hurryUpSfx)
             {
@@ -137,6 +165,7 @@ namespace EA4S.ReadingGame
                             // go to Buttons State
                             game.AnswerState.ReadTime = gameTime.Time;
                             game.AnswerState.MaxTime = gameTime.Duration;
+                            game.AnswerState.TutorialMode = TutorialMode;
                             game.SetCurrentState(game.AnswerState);
                             return;
                         }

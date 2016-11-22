@@ -36,6 +36,11 @@ public class ReadingBarSet : MonoBehaviour
         barsStartInitialPosition = barsStart.transform.localPosition;
     }
 
+    public ReadingBar GetActiveBar()
+    {
+        return activeBar;
+    }
+
     void SetActiveBar(ReadingBar bar)
     {
         if (activeBar != null)
@@ -77,7 +82,7 @@ public class ReadingBarSet : MonoBehaviour
         currentBarWords = SetData(splitText, null, true);
         currentBarSong = null;
 
-        SetActiveBar(bars[0]);
+        //SetActiveBar(bars[0]);
     }
 
     public void SetData(KaraokeSong data)
@@ -217,10 +222,11 @@ public class ReadingBarSet : MonoBehaviour
 
     public bool SwitchToNextBar()
     {
-        ++completedBars;
-
         if (activeBar != null)
+        {
             activeBar.Complete();
+            ++completedBars;
+        }
 
         int nextId = bars.FindIndex((b) => { return b == activeBar; }) + 1;
 
