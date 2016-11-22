@@ -27,6 +27,16 @@
         public static readonly TextID EGG_TUTO_BUTTON = new TextID("Egg_Tuto_Button");
         public static readonly TextID EGG_TUTO_SEQUENCE = new TextID("Egg_Tuto_Sequence");
 
+        // Reading Game
+        public static readonly TextID READINGGAME_TITLE = new TextID("ReadingGame_Title");
+        public static readonly TextID READINGGAME_INTRO = new TextID("ReadingGame_Intro");
+        public static readonly TextID READINGGAME_TUTORIAL = new TextID("ReadingGame_Tuto");
+
+        // Alphabet Song
+        public static readonly TextID ALPHABETSONG_TITLE = new TextID("AlphabetSong_Title");
+        public static readonly TextID ALPHABETSONG_INTRO = new TextID("AlphabetSong_Intro");
+        public static readonly TextID ALPHABETSONG_TUTORIAL = new TextID("AlphabetSong_Tuto");
+
         // ...
 
         public static TextID GetTextIDFromStars(int stars)
