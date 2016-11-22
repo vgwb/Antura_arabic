@@ -133,7 +133,8 @@ namespace EA4S.MixedLetters
 
         public void GenerateNewWord()
         {
-            wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+            wordData = (LL_WordData)MixedLettersConfiguration.Instance.Questions.GetNextQuestion().GetQuestion();
+            AudioManager.I.PlayWord(wordData.Id);
             wordInPlay = wordData.Data;
             lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()));
             VictimLLController.instance.letterObjectView.Init(wordData);
@@ -160,7 +161,7 @@ namespace EA4S.MixedLetters
         {
             PlayGameState.RoundWon = true;
             numRoundsWon++;
-            
+
             HideRotationButtons();
             ShowGreenTicks();
         }
