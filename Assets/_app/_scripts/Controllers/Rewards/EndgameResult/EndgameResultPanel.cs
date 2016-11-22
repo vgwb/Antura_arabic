@@ -15,7 +15,12 @@ namespace EA4S
         public RectTransform ContentRT;
         public Image Rays;
         public EndgameStar[] Stars;
+        [Header("Audio")]
+        public Sfx SfxGainStar = Sfx.UIPopup;
+        public Sfx SfxCompleteWithStars = Sfx.Win;
+        public Sfx SfxCompleteNoStars = Sfx.Lose;
 
+        public static EndgameResultPanel I { get; private set; }
         bool setupDone;
         int numStars;
         RectTransform raysRT;
@@ -29,6 +34,7 @@ namespace EA4S
             if (setupDone) return;
 
             setupDone = true;
+            I = this;
             raysRT = Rays.GetComponent<RectTransform>();
 
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
@@ -59,6 +65,7 @@ namespace EA4S
 
         void OnDestroy()
         {
+            if (I == this) I = null;
             showTween.Kill();
             bgTween.Kill();
         }
@@ -105,12 +112,14 @@ namespace EA4S
 
             if (numStars > 0) bgTween.Restart();
 
+            AudioManager.I.PlaySfx(numStars > 0 ? SfxCompleteWithStars : SfxCompleteNoStars);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 
         void Continue()
         {
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.Instance.MiniGameDone());
+//            NavigationManager.I.GetNextScene();
         }
 
         #endregion
