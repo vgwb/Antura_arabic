@@ -27,12 +27,12 @@ namespace EA4S.DancingDots
 
 		public void Hide()
 		{
-			diacriticText.color = DancingDotsGameManager.instance.SetAlpha(diacriticText.color,0);
+			diacriticText.color = DancingDotsGame.instance.SetAlpha(diacriticText.color,0);
 		}
 
 		public void Show()
 		{
-			diacriticText.color = DancingDotsGameManager.instance.SetAlpha(diacriticText.color,DancingDotsGameManager.instance.dotHintAlpha);
+			diacriticText.color = DancingDotsGame.instance.SetAlpha(diacriticText.color, DancingDotsGame.instance.dotHintAlpha);
 		}
 
 		public void CheckPosition()

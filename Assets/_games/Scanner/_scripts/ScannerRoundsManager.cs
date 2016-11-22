@@ -45,6 +45,8 @@ namespace EA4S.Scanner
 				}
 				game.scannerLL = GameObject.Instantiate(game.LLPrefab).GetComponent<ScannerLivingLetter>();
 				game.scannerLL.onReset += OnLetterReset;
+				game.scannerLL.onFallOff += OnLetterFallOff;
+				game.scannerLL.onStartFallOff += OnLetterStartFallOff;
 //				game.pipesAnswerController.Initialize(game);
 //				CreateQuestionLivingLetters();
 //				questionLetterIndex = livingLetters.Count - 1;
@@ -155,7 +157,7 @@ namespace EA4S.Scanner
 
 		}
 
-		IEnumerator CheckNewRound(bool won)
+		private void CheckNewRound()
 		{
 			if (numberOfRoundsPlayed >= game.numberOfRounds)
 			{
@@ -163,42 +165,38 @@ namespace EA4S.Scanner
 			}
 			else
 			{
-				yield return new WaitForSeconds(0.5f);
-				if (won)
-				{
-					game.scannerLL.RoundWon();
-				}
-				else
-				{
-					game.scannerLL.RoundLost();
-				}
-
 				StartRound();
 			}
+		}
+
+		private void OnLetterStartFallOff()
+		{
+			AudioManager.I.PlaySfx(Sfx.Lose);
+			game.StartCoroutine(PoofOthers(game.suitcases));
+		}
+
+
+		private void OnLetterFallOff()
+		{
+			CheckNewRound();
 		}
 
 		IEnumerator RoundLost()
 		{
 			yield return new WaitForSeconds(0.5f);
 			AudioManager.I.PlaySfx(Sfx.Lose);
-
+			game.scannerLL.RoundLost();
 			game.StartCoroutine(PoofOthers(game.suitcases));
-
-			yield return new WaitForSeconds(1.5f);
-
-			game.StartCoroutine(CheckNewRound(false));
+			CheckNewRound();
 		}
 
 		IEnumerator RoundWon()
 		{
 			numberOfRoundsWon++;
-
 			yield return new WaitForSeconds(0.25f);
-
 			AudioManager.I.PlaySfx(Sfx.Win);
-			yield return new WaitForSeconds(2f);
-
-			game.StartCoroutine(CheckNewRound(true));
+			game.scannerLL.RoundWon();
+			CheckNewRound();
 		}
 
 		IEnumerator PoofOthers(ScannerSuitcase[] draggables)
@@ -211,7 +209,6 @@ namespace EA4S.Scanner
 					ss.gameObject.SetActive(false);
 					game.CreatePoof(ss.transform.position, 2f, true);
 				}
-
 			}
 		}
 

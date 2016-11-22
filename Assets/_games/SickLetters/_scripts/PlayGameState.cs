@@ -18,9 +18,9 @@ namespace EA4S.SickLetters
 
         public void EnterState()
         {
-            
-            //game.Context.GetOverlayWidget().Initialize(true, true, false);
 
+            //game.Context.GetOverlayWidget().Initialize(true, true, false);
+            
             game.peocessDifiiculties(SickLettersConfiguration.Instance.Difficulty);
 
             timer = game.gameDuration;
@@ -30,9 +30,14 @@ namespace EA4S.SickLetters
             if (game.roundsCount == 0)
                 SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.Relax);
             else
+            {
                 SickLettersConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
+                game.Context.GetOverlayWidget().Initialize(true, true, false);
+                game.Context.GetOverlayWidget().SetClockDuration(game.gameDuration);
+            }
 
             game.LLPrefab.jumpIn();
+
         }
 
         public void ExitState()

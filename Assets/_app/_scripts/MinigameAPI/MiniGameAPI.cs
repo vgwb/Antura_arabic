@@ -46,6 +46,7 @@ namespace EA4S.API {
             // Comunicate to LogManager that start new single minigame play session.
             actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
 
+
             // Call game start
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
         }

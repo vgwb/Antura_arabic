@@ -11,7 +11,7 @@ namespace EA4S.SickLetters
 
     public class SickLettersLLPrefab : MonoBehaviour
     {
-
+        public Transform shadow;
         public TextMeshPro dotlessLetter, correctDot;
         public SickLettersDraggableDD correctDotCollider;
         public SickLettersGame game;
@@ -22,11 +22,13 @@ namespace EA4S.SickLetters
 
 
         private SkinnedMeshRenderer[] LLMesh;
-        Vector3 statPos;
+        Vector3 statPos, shadowStartSize;
 
         // Use this for initialization
         void Start()
         {
+            shadowStartSize = shadow.localScale;
+            shadow.localScale = Vector3.zero;
             LLMesh = GetComponentsInChildren<SkinnedMeshRenderer>();
             letterView = GetComponent<LetterObjectView>();
             letterAnimator = GetComponent<Animator>();
@@ -58,6 +60,7 @@ namespace EA4S.SickLetters
             showLLMesh(true);
             getNewLetterData();
             scatterDDs();
+            StartCoroutine(fadShadow());
 
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<CapsuleCollider>().isTrigger = false;
@@ -70,10 +73,17 @@ namespace EA4S.SickLetters
             //letterAnimator.SetBool("idle", true);
 
             yield return new WaitForSeconds(1f);
-            SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);
 
-            if (game.roundsCount <1)
+            if (game.roundsCount == 0)
+            {
+                AudioManager.I.PlayDialog("SickLetters_Intro");
                 game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
+            }
+            else
+                SickLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(letterView.Data, true);
+
+            //if (game.roundsCount <1)
+                //game.tut.doTutorial(thisLLWrongDDs[Random.Range(0, thisLLWrongDDs.Count-1)].transform);
             
         }
 
@@ -165,6 +175,19 @@ namespace EA4S.SickLetters
                 sm.enabled = show;
             correctDot.gameObject.SetActive(show);
             dotlessLetter.gameObject.SetActive(show);
+            //shadow.gameObject.SetActive(show);
+            if (!show)
+                shadow.localScale = Vector3.zero;
+        }
+
+        IEnumerator fadShadow()
+        {
+            //shadow.gameObject.SetActive(true);
+            while(shadow.localScale.x < shadowStartSize.x - 0.01f)
+            {
+                shadow.localScale = Vector3.Lerp(shadow.localScale, shadowStartSize, Time.deltaTime*3.5f);
+                yield return null;
+            }
         }
     }
 }

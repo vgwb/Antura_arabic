@@ -32,17 +32,18 @@
             Questions = new SickLettersQuestionProvider();
             SickLettersQuestions = new SickLettersQuestionProvider();
             Difficulty = 0.1f;
+            EA4S.Teacher.ConfigAI.verboseTeacher = true;
         }
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
+            int nPacks = 20;
             int nCorrect = 1;
             int nWrong = 0;
 
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
-
+            
             return builder;
         }
 

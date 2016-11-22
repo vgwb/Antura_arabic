@@ -7,21 +7,21 @@ namespace EA4S.ThrowBalls
     public class BallController : MonoBehaviour
     {
         public static Vector3 INITIAL_BALL_POSITION = new Vector3(0, 5.25f, -20f);
-        private readonly Vector3 REBOUND_DESTINATION = new Vector3(0, 18f, -30f);
+        private readonly Vector3 REBOUND_DESTINATION = new Vector3(0, 15f, -30f);
         public const float BALL_RESPAWN_TIME = 3f;
-        public const float INTERCEPTION_PAUSE_TIME = 0.33f;
-        public const float INTERCEPTION_RISE_DELTA_Y = 3f;
-        public const float INTERCEPTION_RISE_TIME = 0.2f;
-        public const float REBOUND_TIME = 1f;
+        public const float REBOUND_TIME = 0.2f;
+        public const float SCREEN_HANG_TIME = 0.5f;
+        public const float DROP_TIME = 0.5f;
         public const float TIME_TO_IDLE = 6f;
 
         public static BallController instance;
 
         public Rigidbody rigidBody;
+        private SphereCollider sphereCollider;
 
         private enum State
         {
-            Anchored, Dragging, Launched, Intercepted, Rebounding, Idle
+            Anchored, Dragging, Launched, Intercepted, Rebounding, Hanging, Dropping, Idle
         }
 
         private State state;
@@ -36,6 +36,8 @@ namespace EA4S.ThrowBalls
             instance = this;
 
             rigidBody.maxAngularVelocity = 100;
+
+            sphereCollider = GetComponent<SphereCollider>();
         }
 
         void Start()
@@ -56,6 +58,7 @@ namespace EA4S.ThrowBalls
             rigidBody.angularVelocity = new Vector3(0, 0, 0);
             rigidBody.velocity = new Vector3(0, 0, 0);
             rigidBody.isKinematic = false;
+            sphereCollider.enabled = true;
             SetState(State.Anchored);
         }
 
@@ -79,6 +82,7 @@ namespace EA4S.ThrowBalls
             {
                 case State.Anchored:
                     rigidBody.isKinematic = false;
+                    sphereCollider.enabled = true;
                     break;
                 case State.Dragging:
                     rigidBody.isKinematic = false;
@@ -91,9 +95,17 @@ namespace EA4S.ThrowBalls
                     break;
                 case State.Rebounding:
                     rigidBody.isKinematic = false;
+                    sphereCollider.enabled = false;
+                    break;
+                case State.Hanging:
+                    rigidBody.isKinematic = true;
+                    break;
+                case State.Dropping:
+                    rigidBody.isKinematic = false;
                     break;
                 case State.Idle:
                     rigidBody.isKinematic = false;
+
                     if (!ThrowBallsGameManager.Instance.IsTutorialLevel())
                     {
                         AnturaController.instance.Enable();
@@ -111,51 +123,31 @@ namespace EA4S.ThrowBalls
 
         public bool IsLaunched()
         {
-            return state == State.Launched || state == State.Intercepted || state == State.Rebounding;
+            return !(state == State.Anchored || state == State.Dragging || state == State.Idle);
         }
 
-        public void OnIntercepted(bool interceptedByLetter)
+        public void OnIntercepted()
         {
             if (state != State.Intercepted)
             {
                 SetState(State.Intercepted);
-
-                if (interceptedByLetter)
-                {
-                    StartCoroutine(OnInterceptedCoroutine());
-                }
             }
         }
 
-        private IEnumerator OnInterceptedCoroutine()
+        public void OnRebounded()
         {
-            //yield return new WaitForSeconds(INTERCEPTION_PAUSE_TIME);
-
-            float destinationY = transform.position.y + INTERCEPTION_RISE_DELTA_Y;
-            float yIncrement = (Time.fixedDeltaTime * INTERCEPTION_RISE_DELTA_Y) / INTERCEPTION_RISE_TIME;
-
-            float riseTime = 0;
-
-            while (riseTime < INTERCEPTION_RISE_TIME)
+            if (state != State.Rebounding)
             {
-                Vector3 position = transform.position;
-                position.y += yIncrement;
-                transform.position = position;
-                riseTime += Time.fixedDeltaTime;
-                yield return new WaitForFixedUpdate();
+                SetState(State.Rebounding);
+
+                Vector3 initialVelocity = new Vector3();
+                initialVelocity.x = (REBOUND_DESTINATION.x - transform.position.x) / REBOUND_TIME;
+                initialVelocity.y = (REBOUND_DESTINATION.y - transform.position.y) / REBOUND_TIME;
+                initialVelocity.z = (REBOUND_DESTINATION.z - transform.position.z) / REBOUND_TIME;
+
+                rigidBody.velocity = new Vector3(0, 0, 0);
+                rigidBody.AddForce(initialVelocity, ForceMode.VelocityChange);
             }
-
-            yield return new WaitForSeconds(INTERCEPTION_PAUSE_TIME);
-
-            SetState(State.Rebounding);
-
-            Vector3 initialVelocity = new Vector3();
-            initialVelocity.x = (REBOUND_DESTINATION.x - transform.position.x) / REBOUND_TIME;
-            initialVelocity.z = (REBOUND_DESTINATION.z - transform.position.z) / REBOUND_TIME;
-
-            initialVelocity.y = (REBOUND_DESTINATION.y - (Constants.GRAVITY.y * Mathf.Pow(REBOUND_TIME, 2f) * 0.5f) - transform.position.y) / REBOUND_TIME;
-
-            rigidBody.AddForce(initialVelocity, ForceMode.VelocityChange);
         }
 
         void FixedUpdate()
@@ -173,13 +165,11 @@ namespace EA4S.ThrowBalls
 
             else if (state == State.Rebounding)
             {
-                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
-
-                if ((transform.position - REBOUND_DESTINATION).sqrMagnitude <= 1)
+                if (transform.position.z + rigidBody.velocity.z * Time.fixedDeltaTime <= REBOUND_DESTINATION.z)
                 {
+                    transform.position = REBOUND_DESTINATION;
                     UIController.instance.OnScreenCracked();
-                    ThrowBallsGameManager.Instance.OnBallLost();
-                    Reset();
+                    SetState(State.Hanging);
                 }
             }
 
@@ -188,6 +178,25 @@ namespace EA4S.ThrowBalls
                 if (stateTime >= TIME_TO_IDLE)
                 {
                     SetState(State.Idle);
+                }
+            }
+
+            else if (state == State.Hanging)
+            {
+                if (stateTime >= SCREEN_HANG_TIME)
+                {
+                    SetState(State.Dropping);
+                }
+            }
+
+            else if (state == State.Dropping)
+            {
+                rigidBody.AddForce(Constants.GRAVITY, ForceMode.Acceleration);
+
+                if (stateTime >= DROP_TIME)
+                {
+                    ThrowBallsGameManager.Instance.OnBallLost();
+                    Reset();
                 }
             }
         }

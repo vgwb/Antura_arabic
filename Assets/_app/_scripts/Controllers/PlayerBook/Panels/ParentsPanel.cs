@@ -12,7 +12,6 @@ namespace EA4S
         [Header("References")]
         public GameObject ElementsContainer;
 
-
         void OnEnable()
         {
             InitUI();
@@ -22,10 +21,7 @@ namespace EA4S
         {
             GameObject btnGO;
 
-            //// Words
-            foreach (Transform t in ElementsContainer.transform) {
-                Destroy(t.gameObject);
-            }
+            emptyListContainers();
 
             foreach (LearningBlockData item in AppManager.Instance.DB.GetAllLearningBlockData()) {
                 btnGO = Instantiate(LearningBlockItemPrefab);
@@ -34,10 +30,16 @@ namespace EA4S
             }
         }
 
-
         public void DetailLearningBlock(LearningBlockData data)
         {
+            AudioManager.I.PlayDialog(data.GetTitleSoundFilename());
+        }
 
+        void emptyListContainers()
+        {
+            foreach (Transform t in ElementsContainer.transform) {
+                Destroy(t.gameObject);
+            }
         }
     }
 }

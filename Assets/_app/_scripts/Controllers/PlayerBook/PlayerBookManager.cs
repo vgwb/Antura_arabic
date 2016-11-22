@@ -35,7 +35,9 @@ public class PlayerBookManager : MonoBehaviour
         AudioManager.I.PlayMusic(SceneMusic);
         SceneTransitioner.Close();
 
-        OpenPanel(PlayerBookPanel.Book);
+        AudioManager.I.PlayDialog("Book_Intro");
+
+        OpenPanel(PlayerBookPanel.Player);
     }
 
     void OpenPanel(PlayerBookPanel newPanel)

@@ -29,7 +29,7 @@ namespace EA4S
 
             if (score < 0.1f) {
                 // disabled
-                GetComponent<Button>().interactable = false;
+                //GetComponent<Button>().interactable = false;
                 //GetComponent<Image>().color = Color.grey;
             }
 

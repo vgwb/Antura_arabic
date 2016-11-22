@@ -68,23 +68,23 @@
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
-            int nCorrect = 4;
-            int nWrong = 4;
+            int nPacks = 6;
+            int nCorrect = 3;
+            int nWrong = 8;
 
             switch (Variation)
             {
-                case BalloonsVariation.Counting:
-                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal); 
-                    break;
-                case BalloonsVariation.Letter:
-                    builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
-                    break;  
                 case BalloonsVariation.Spelling:
                     builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, nWrong:nWrong);
                     break;
                 case BalloonsVariation.Words:
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
+                    break;
+                case BalloonsVariation.Letter:
+                    builder = new WordsWithLetterQuestionBuilder(nPacks, nCorrect, nWrong);
+                    break;  
+                case BalloonsVariation.Counting:
+                    builder = new OrderedWordsQuestionBuilder(Db.WordDataCategory.NumberOrdinal); 
                     break;
             }
 

@@ -10,10 +10,19 @@ namespace EA4S.SickLetters
         float repeatDely = 3;
         // Use this for initialization
         SickLettersGame game;
+        SickLettersDraggableDD curDD;
 
         void Start() {
             game = GetComponent<SickLettersGame>();
-            StartCoroutine(coDoTutorial());
+
+
+            if (!game.enableTutorial)
+            {
+                game.disableInput = false;
+                game.roundsCount = 1;
+            }
+            else
+                StartCoroutine(coDoTutorial());
         }
 
         // Update is called once per frame
@@ -27,7 +36,7 @@ namespace EA4S.SickLetters
 
         public void doTutorial(Transform start = null)
         {
-            draw = true;
+            
             if (game.roundsCount > 0)
                 return;
 
@@ -53,6 +62,10 @@ namespace EA4S.SickLetters
 
         IEnumerator coDoTutorial(Transform start = null)
         {
+            yield return new WaitForSeconds(14.75f);
+            game.disableInput = false;
+            AudioManager.I.PlayDialog("SickLetters_Tuto");
+
             while (true)
             {
                 if (game.roundsCount > 0)
@@ -60,14 +73,18 @@ namespace EA4S.SickLetters
                     TutorialUI.Clear(true);
                     break;
                 }
-                if (start = null)
+                /*if (start == null)
+                {
+                    yield return null;
                     continue;
+                }*/
 
-                yield return new WaitForSeconds(repeatDely);
+                
                 //TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.FingerAndArrow).OnComplete(() => { repeatConter++; StartCoroutine(coDoTutorial());});
                 repeatConter++;
                 TutorialUI.DrawLine(path, TutorialUI.DrawLineMode.FingerAndArrow);
-                
+                yield return new WaitForSeconds(repeatDely);
+
             }
 
             
@@ -78,5 +95,10 @@ namespace EA4S.SickLetters
             }*/
         }
 
+        IEnumerator tutDialog(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            AudioManager.I.PlayDialog("SickLetters_Tuto"); 
+        }
     }
 }
