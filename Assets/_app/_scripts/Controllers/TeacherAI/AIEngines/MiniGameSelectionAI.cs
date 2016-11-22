@@ -53,7 +53,10 @@ namespace EA4S.Teacher
                     ordered_minigamecodes[fakeNumber] = minigameInPlaySession.MiniGameCode;
                     fakeNumber++;
                 }
-                ordered_minigamecodes[minigameInPlaySession.Weight] = minigameInPlaySession.MiniGameCode;
+                else
+                {
+                    ordered_minigamecodes[minigameInPlaySession.Weight] = minigameInPlaySession.MiniGameCode;
+                }
             }
 
             // Get, in order, each minigame data, filter by availability (from the static DB)
