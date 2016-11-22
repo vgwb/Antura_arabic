@@ -15,6 +15,9 @@ namespace EA4S
 
         protected virtual void Start()
         {
+            // Navigation manager 
+            NavigationManager.I.CurrentScene = AppScene.MiniGame;
+
             if (!UseTestGameplayInfo)
                 GameplayInfo = AppManager.Instance.Modules.GameplayModule.ActualGameplayInfo as AnturaGameplayInfo;
             else // manual set on framework for test session
