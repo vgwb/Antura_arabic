@@ -75,7 +75,18 @@ namespace EA4S
         {
             ResetPlaySession();
             currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
-            //this.currentUsableWords = SelectWordsForPlaySession();
+
+            if (ConfigAI.verboseTeacher)
+            {
+                var debugString = "";
+                debugString += "--------- TEACHER: MiniGames selected ---------";
+                foreach(var minigame in currentPlaySessionMiniGames)
+                {
+                    debugString += "\n" + minigame.Code;
+                }
+                Debug.Log(debugString);
+            }
+
             return currentPlaySessionMiniGames;
         }
 
