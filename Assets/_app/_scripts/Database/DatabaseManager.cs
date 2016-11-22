@@ -227,7 +227,7 @@ namespace EA4S
             if (locData != null) {
                 return locData;
             }
-            return new LocalizationData { Id = id, Arabic = ("MISSING " + id), English = ("MISSING " + id) };
+            return new LocalizationData { Id = id, Arabic = ("MISSING " + id), English = ("MISSING " + id), AudioFile = "" };
         }
 
         public List<LocalizationData> GetAllLocalizationData()

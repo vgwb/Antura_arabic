@@ -43,7 +43,7 @@ namespace EA4S
             switch (tutorialIndex) {
                 case 10:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("game_rewards_intro1", 2, true, ShowTutor);
+                    WidgetSubtitles.I.DisplaySentence("Reward_Intro", 2, true, ShowTutor);
                     break;
                 case 11:
                     tutorialIndex++;

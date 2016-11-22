@@ -18,8 +18,6 @@ namespace EA4S.ColorTickle
         [SerializeField]
         private ColorTickle_AnturaController m_AnturaController;
         [SerializeField]
-        private Canvas m_EndCanvas;
-        [SerializeField]
         private int m_Rounds = 3;
         [SerializeField]
         private int m_MaxLives = 3;
@@ -78,11 +76,6 @@ namespace EA4S.ColorTickle
         public ColorTickle_AnturaController anturaController
         {
             get { return m_AnturaController; }
-        }
-
-        public Canvas endCanvas
-        {
-            get { return m_EndCanvas; }
         }
 
         public int lives

@@ -66,9 +66,9 @@ namespace EA4S
         {
             // Remove this with First Contact Temp Behaviour
             UpdateTimer();
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
-            Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
-            Debug.Log("Stage " + AppManager.Instance.Player.CurrentJourneyPosition.Stage);
+            //Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+            //Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
+            //Debug.Log("Stage " + AppManager.Instance.Player.CurrentJourneyPosition.Stage);
         }
 
         #region First Contact Session        

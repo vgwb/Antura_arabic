@@ -4,12 +4,11 @@
     {
         EggGame game;
 
-        float timer = 1;
+        float timer = 1f;
         public EggIntroductionState(EggGame game) { this.game = game; }
 
         public void EnterState()
         {
-            //game.Context.GetSubtitleWidget().DisplaySentence(TextID.EGG_INTRO);
             game.antura.ResetAnturaIn(EggGame.numberOfStage, 2);
         }
 
@@ -22,7 +21,7 @@
         {
             timer -= delta;
 
-            if (timer < 0)
+            if (timer <= 0f)
             {
                 game.SetCurrentState(game.QuestionState);
                 return;

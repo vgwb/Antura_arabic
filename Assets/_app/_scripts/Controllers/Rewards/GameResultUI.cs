@@ -1,6 +1,7 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/11/18
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,12 +48,18 @@ namespace EA4S
         }
 
         /// <summary>
-        /// Never use this directly! Use the <code>Minigames Interface</code> instead.
+        /// Returns an array with 2 gameObjects inside which to place the rewards prefab (0 is first reward, 1 is second).
+        /// <para><code>IMPORTANT:</code> do not modify the returned array, just use its data</para>
         /// </summary>
-        public static void ShowEndsessionResult(List<EndsessionResultData> _sessionData, bool _immediate = false)
+        /// <param name="_sessionData">A list of data for each minigame that was part of the session</param>
+        /// <param name="_totUnlockedRewards">Total rewards unlocked in previous sessions (0 to 2)</param>
+        /// <param name="_immediate">If TRUE shows the screen immediately with no animations. You can ignore this</param>
+        /// <returns></returns>
+        public static GameObject[] ShowEndsessionResult(List<EndsessionResultData> _sessionData, int _totUnlockedRewards, bool _immediate = false)
         {
             Init();
             I.EndsessionResultPanel.Show(_sessionData, _immediate);
+            return I.EndsessionResultPanel.RewardsGos;
         }
 
         /// <summary>
