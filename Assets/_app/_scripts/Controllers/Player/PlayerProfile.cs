@@ -202,6 +202,14 @@ namespace EA4S
 
             Save();
         }
+
+        /// <summary>
+        /// Resets the player profile completion.
+        /// </summary>
+        public void ResetPlayerProfileCompletion() {
+            ProfileCompletion = 0;
+            Save();
+        }
         #endregion
 
         #region BookVisited (ProfileCompletion = 3)                
