@@ -75,7 +75,18 @@ namespace EA4S
         {
             ResetPlaySession();
             currentPlaySessionMiniGames = SelectMiniGamesForCurrentPlaySession(nMinigamesToSelect);
-            //this.currentUsableWords = SelectWordsForPlaySession();
+
+            if (ConfigAI.verboseTeacher)
+            {
+                var debugString = "";
+                debugString += "--------- TEACHER: MiniGames selected ---------";
+                foreach(var minigame in currentPlaySessionMiniGames)
+                {
+                    debugString += "\n" + minigame.Code;
+                }
+                Debug.Log(debugString);
+            }
+
             return currentPlaySessionMiniGames;
         }
 
@@ -194,33 +205,39 @@ namespace EA4S
 
         private static bool giveWarningOnFake = false;
 
-        public List<LL_LetterData> GetAllTestLetterDataLL()
+        public List<LL_LetterData> GetAllTestLetterDataLL(LetterFilters filters = null)
         {
+            if (filters == null) filters = new LetterFilters();
+
             List<LL_LetterData> list = new List<LL_LetterData>();
-            foreach (var letterData in this.wordHelper.GetAllLetters(new LetterFilters()))
+            foreach (var letterData in this.wordHelper.GetAllLetters(filters))
                 list.Add(BuildLetterData_LL(letterData));
             return list;
         }
 
-        public LL_LetterData GetRandomTestLetterLL()
+        public LL_LetterData GetRandomTestLetterLL(LetterFilters filters = null)
         {
+            if (filters == null) filters = new LetterFilters();
+
             if (giveWarningOnFake) {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetAllLetters(new LetterFilters()).RandomSelectOne();
+            var data = this.wordHelper.GetAllLetters(filters).RandomSelectOne();
             return BuildLetterData_LL(data);
         }
 
-        public LL_WordData GetRandomTestWordDataLL()
+        public LL_WordData GetRandomTestWordDataLL(WordFilters filters = null)
         {
+            if (filters == null) filters = new WordFilters();
+
             if (giveWarningOnFake) {
                 Debug.LogWarning("You are using fake data for testing. Make sure to test with real data too.");
                 giveWarningOnFake = false;
             }
 
-            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal, new WordFilters()).RandomSelectOne();
+            var data = this.wordHelper.GetWordsByCategory(WordDataCategory.Animal, filters).RandomSelectOne();
             return BuildWordData_LL(data);
         }
 

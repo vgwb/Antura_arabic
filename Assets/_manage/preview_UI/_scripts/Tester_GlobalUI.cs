@@ -45,6 +45,25 @@ namespace EA4S.Test
 
         #endregion
 
+        #region PauseMenu
+
+        public void PauseMenu_ShowStart()
+        {
+            GlobalUI.ShowPauseMenu(true, PauseMenuType.StartScreen);
+        }
+
+        public void PauseMenu_ShowUtility()
+        {
+            GlobalUI.ShowPauseMenu(true, PauseMenuType.UtilityScreen);
+        }
+
+        public void PauseMenu_ShowGame()
+        {
+            GlobalUI.ShowPauseMenu(true, PauseMenuType.GameScreen);
+        }
+
+        #endregion
+
         #region WidgetPopup
 
         public void Popup_ShowSentence()

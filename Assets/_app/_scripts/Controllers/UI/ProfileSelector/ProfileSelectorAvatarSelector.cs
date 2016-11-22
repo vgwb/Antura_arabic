@@ -48,6 +48,7 @@ namespace EA4S
             if (IsShown) return;
 
             IsShown = true;
+            AudioManager.I.PlaySfx(ProfileSelectorUI.I.SfxOpenCreateProfile);
 
             // Set available avatars
             bool hasProfiles = ProfileSelectorUI.I.ProfileManager.AvailablePlayerProfiles != null
@@ -77,6 +78,7 @@ namespace EA4S
 
             IsShown = false;
             showTween.PlayBackwards();
+            AudioManager.I.PlaySfx(ProfileSelectorUI.I.SfxOpenCreateProfile);
         }
 
         #endregion

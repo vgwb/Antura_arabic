@@ -66,7 +66,8 @@ namespace EA4S
             for (int i = 0; i < totGames; ++i) {
                 EndsessionMinigame mg = minigames[i];
                 float startPos = i * 0.1f;
-                minigamesTween.Insert(startPos, mg.Bubble.DOScale(0.0001f, 0.35f).From().SetEase(Ease.OutBack));
+                minigamesTween.InsertCallback(startPos, ()=> AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxMinigamePopup))
+                    .Join(mg.Bubble.DOScale(0.0001f, 0.35f).From().SetEase(Ease.OutBack));
                 int starsLen = mg.Stars.Length;
                 for (int c = 0; c < starsLen; ++c) {
                     Image star = mg.Stars[c];
