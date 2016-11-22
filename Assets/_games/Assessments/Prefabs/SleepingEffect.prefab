@@ -11,23 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000013942840138}
   m_IsPrefabParent: 1
---- !u!1 &1000011906743424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000010462326314}
-  - 198: {fileID: 198000013845404094}
-  - 199: {fileID: 199000014035807298}
-  m_Layer: 14
-  m_Name: SleepingParticles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000013942840138
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +19,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013581116980}
+  - 198: {fileID: 198000013691418782}
+  - 199: {fileID: 199000012827634950}
   m_Layer: 14
   m_Name: SleepingEffect
   m_TagString: Untagged
@@ -43,39 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010462326314
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011906743424}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000013581116980}
-  m_RootOrder: 0
 --- !u!4 &4000013581116980
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013942840138}
-  m_LocalRotation: {x: -0, y: 0.63022375, z: -0, w: 0.77641356}
-  m_LocalPosition: {x: -1.1847827, y: 2.982884, z: -4.622421}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 4000010462326314}
+  m_LocalRotation: {x: -0.54900736, y: 0.4456355, z: 0.4456355, w: 0.54900736}
+  m_LocalPosition: {x: -1.1847827, y: 3.232884, z: -4.622421}
+  m_LocalScale: {x: 0.2500001, y: 0.25000015, z: 0.25000012}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!198 &198000013845404094
+--- !u!198 &198000013691418782
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011906743424}
+  m_GameObject: {fileID: 1000013942840138}
   serializedVersion: 4
   lengthInSec: 10
   startDelay:
@@ -120,7 +91,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 0
-  randomSeed: 1913057552
+  randomSeed: 377344940
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -1829,12 +1800,12 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!199 &199000014035807298
+--- !u!199 &199000012827634950
 ParticleSystemRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011906743424}
+  m_GameObject: {fileID: 1000013942840138}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

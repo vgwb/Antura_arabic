@@ -22,10 +22,12 @@ namespace EA4S.Assessment
 
         public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
-            yield return TimeEngine.Wait(0.7f);
+            yield return TimeEngine.Wait( 0.7f);
+            bool AnturaShowed = false;
 
             for (int round = 0; round< AssessmentConfiguration.Rounds; round++)
             {
+                #region Init
                 QuestionGenerator.InitRound();
 
                 for(int question = 0; question<AssessmentConfiguration.SimultaneosQuestions; question++)
@@ -37,15 +39,34 @@ namespace EA4S.Assessment
                 LogicInjector.CompleteWiring();
                 
                 QuestionGenerator.CompleteRound();
+                #endregion
 
-                QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
-                while (QuestionPlacer.IsAnimating())
-                    yield return null;
+                if (AnturaShowed)
+                {
+                    // Show question only after antura animation is done.
+                    QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
+                    while ( QuestionPlacer.IsAnimating())
+                        yield return null;
+                }
 
                 AnswerPlacer.Place( QuestionGenerator.GetAllAnswers());
                 while (AnswerPlacer.IsAnimating())
                     yield return null;
 
+                if (AnturaShowed == false)
+                {
+                    #region ANTURA ANIMATION
+
+                    #endregion
+
+                    QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
+                    while ( QuestionPlacer.IsAnimating())
+                        yield return null;
+
+                    AnturaShowed = true;
+                }
+
+                #region GamePlay
                 //////////////////////////////
                 //// GAME LOGIC (WIP)
                 ////----
@@ -64,6 +85,7 @@ namespace EA4S.Assessment
                     yield return null;
 
                 LogicInjector.ResetRound();
+                #endregion
             }
 
             gameEndedCallback();
