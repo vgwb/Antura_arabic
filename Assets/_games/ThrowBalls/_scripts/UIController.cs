@@ -29,7 +29,7 @@ namespace EA4S.ThrowBalls
             crackImageColor = crackImage.color;
         }
 
-        public void SetLetterHint(LL_LetterData _data)
+        public void SetLetterHint(ILivingLetterData _data)
         {
             letterHintText.text = _data.TextForLivingLetter;
         }

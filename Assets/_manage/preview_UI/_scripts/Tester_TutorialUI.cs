@@ -46,6 +46,10 @@ namespace EA4S.Test
 
         void Update()
         {
+            // Keyboard overrides
+            if (Input.GetKeyDown(KeyCode.Space)) TutorialUI.Click(MouseWorldPosition());
+
+            // Regular mouse interactions
             if (isDraggingMode) Update_Dragging();
             else Update_Click();
         }
