@@ -132,6 +132,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010934378834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012762341688}
+  m_Layer: 0
+  m_Name: Fall Off Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010940410942
 GameObject:
   m_ObjectHideFlags: 1
@@ -933,7 +948,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010346749206}
   m_Layer: 0
-  m_Name: Fall Off Point
+  m_Name: Mid Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -995,13 +1010,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014241689284}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39, y: -5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 28.24, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013676476686}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &4000010349793026
 Transform:
   m_ObjectHideFlags: 1
@@ -1460,6 +1475,19 @@ Transform:
   - {fileID: 4000011731559102}
   m_Father: {fileID: 4000011160771122}
   m_RootOrder: 0
+--- !u!4 &4000012762341688
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010934378834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013676476686}
+  m_RootOrder: 2
 --- !u!4 &4000012853194928
 Transform:
   m_ObjectHideFlags: 1
@@ -1621,6 +1649,7 @@ Transform:
   m_Children:
   - {fileID: 4000010594690782}
   - {fileID: 4000013179998576}
+  - {fileID: 4000012762341688}
   - {fileID: 4000010346749206}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2240,7 +2269,8 @@ MonoBehaviour:
   flightSpeed: 5
   facingCamera: 1
   status: 0
-  fallOffPoint: {fileID: 4000010346749206}
+  fallOffPoint: {fileID: 4000012762341688}
+  midPoint: {fileID: 4000010346749206}
   letterObjectView: {fileID: 114000010402415976}
   rainbowJet: {fileID: 1000012696403056}
 --- !u!114 &114000014181777866
