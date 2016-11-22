@@ -73,9 +73,10 @@ namespace EA4S
                 WidgetSubtitles.Close(true);
         }
 
-        public static void ShowPauseMenu(bool visible)
+        public static void ShowPauseMenu(bool _visible, PauseMenuType _type = PauseMenuType.GameScreen)
         {
-            PauseMenu.gameObject.SetActive(visible);
+            PauseMenu.gameObject.SetActive(_visible);
+            PauseMenu.SetType(_type);
         }
 
         T StoreAndAwake<T>() where T : Component
