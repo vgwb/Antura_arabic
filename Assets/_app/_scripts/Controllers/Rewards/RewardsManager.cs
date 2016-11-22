@@ -38,7 +38,8 @@ namespace EA4S
             AnturaController.SetPreset(AppManager.Instance.Player.AnturaCurrentPreset);
             LoggerEA4S.Save();
             SceneTransitioner.Close();
-            ShowTutor();
+            ShowReward();
+            //ShowTutor();
         }
 
         public void ShowTutor()
@@ -82,7 +83,7 @@ namespace EA4S
             //RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
             //while (!animator.IsComplete)
             //    yield return null;
-
+            yield return new WaitForSeconds(3.5f);
 
             /* FIRST CONTACT FEATURE */
             if (AppManager.Instance.Player.IsFirstContact()) {
@@ -97,7 +98,8 @@ namespace EA4S
         public void Continue()
         {
             //AppManager.Instance.MiniGameDone("rewards");
-            GameResultUI.ShowEndgameResult(3);
+            //GameResultUI.ShowEndgameResult(3);
+            NavigationManager.I.GoToNextScene();
         }
 
     }
