@@ -19,7 +19,13 @@ namespace EA4S
         public EndsessionBar Bar;
         public CanvasGroup GodraysCanvas;
         public RectTransform Godray0, Godray1;
+        [Header("Audio")]
+        public Sfx SfxMinigamePopup = Sfx.UIPopup;
+        public Sfx SfxIncreaseBar = Sfx.UIPopup;
+        public Sfx SfxGainStar = Sfx.Win;
+        public Sfx SfxShowContinue = Sfx.UIPauseIn;
 
+        public static EndsessionResultPanel I { get; private set; }
         bool setupDone;
         List<RectTransform> releasedMinigamesStars;
         Tween showTween, godraysTween;
@@ -32,6 +38,7 @@ namespace EA4S
             if (setupDone) return;
 
             setupDone = true;
+            I = this;
 
             showTween = DOTween.Sequence().SetAutoKill(false).Pause()
                 .Append(this.GetComponent<Image>().DOFade(0, 0.35f).From().SetEase(Ease.Linear))
@@ -54,6 +61,7 @@ namespace EA4S
 
         void OnDestroy()
         {
+            if (I == this) I = null;
             this.StopAllCoroutines();
             showTween.Kill();
             godraysTween.Kill();
@@ -125,6 +133,7 @@ namespace EA4S
                 }
                 yield return new WaitForSeconds(minigamesStarsToBarTween.Duration());
             }
+            AudioManager.I.PlaySfx(SfxShowContinue);
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
         }
 
