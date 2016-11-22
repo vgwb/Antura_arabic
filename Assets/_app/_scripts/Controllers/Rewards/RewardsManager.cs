@@ -14,6 +14,9 @@ namespace EA4S
 
         void Start()
         {
+            // Navigation manager 
+            NavigationManager.I.CurrentScene = AppScene.Rewards;
+
             AudioManager.I.PlayMusic(Music.Theme4);
             Debug.Log("RewardsManager playsession: " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
 
@@ -76,21 +79,25 @@ namespace EA4S
         IEnumerator StartReward()
         {
             // Wait for animation to complete
-            RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
-            while (!animator.IsComplete)
-                yield return null;
+            //RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
+            //while (!animator.IsComplete)
+            //    yield return null;
+
+
             /* FIRST CONTACT FEATURE */
             if (AppManager.Instance.Player.IsFirstContact()) {
                 AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
             }
             /* --------------------- */
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+            yield return null;
         }
 
 
         public void Continue()
         {
-            AppManager.Instance.MiniGameDone("rewards");
+            //AppManager.Instance.MiniGameDone("rewards");
+            GameResultUI.ShowEndgameResult(3);
         }
 
     }

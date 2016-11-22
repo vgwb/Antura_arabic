@@ -73,7 +73,7 @@ namespace EA4S
                         /// - Reset CurrentMiniGameInPlaySession
                         /// - Reward screen
                         /// *-- check first contact : 
-                        AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.getNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                        AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
                         
                         GoToScene(AppScene.Rewards);
                     } else {

@@ -129,7 +129,8 @@ namespace EA4S
             currentResult = rightCounter;
 
             LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
-            AppManager.Instance.MiniGameDone("assessment");
+            // MiniGameDone refactoring
+            // AppManager.Instance.MiniGameDone("assessment");
 
             WidgetSubtitles.I.DisplaySentence("assessment_result_intro", 3, true, ShowResults);
             //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);

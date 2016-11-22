@@ -118,8 +118,8 @@ namespace EA4S
 
         void Continue()
         {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.Instance.MiniGameDone());
-//            NavigationManager.I.GetNextScene();
+            //          GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(AppManager.Instance.MiniGameDone());
+            NavigationManager.I.GoToNextScene();
         }
 
         #endregion
