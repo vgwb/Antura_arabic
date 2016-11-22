@@ -50,6 +50,14 @@ namespace EA4S.ThrowBalls
             Reset();
         }
 
+        public void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.tag == "Bush")
+            {
+                stateTime += 2f;
+            }
+        }
+
         public void Reset()
         {
             transform.position = INITIAL_BALL_POSITION;
