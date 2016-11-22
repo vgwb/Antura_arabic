@@ -91,3 +91,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   learningBlockActual: 0
   playSessionActual: 0
+  pos: 0

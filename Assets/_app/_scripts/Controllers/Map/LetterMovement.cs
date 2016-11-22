@@ -31,7 +31,7 @@ namespace EA4S
             AppManager.Instance.Player.CurrentJourneyPosition.Stage = 1;
 
             ResetPosLetter();
-            miniMapScript.posDots[0].GetComponent<Renderer>().material = red;
+        
         }
 
         void Update()
@@ -123,17 +123,17 @@ namespace EA4S
                 ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                 posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position;
                 miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
-                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
-                AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock++;
+                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;              
             }
             else if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)
             {
                 if (pos % 2 != 0)
                     pos++;
-                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock-1].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
+                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
                 posDot = miniMapScript.posDots[pos].transform.position;
                 ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
                 AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
+                AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock++;
             }
             else
             {       
@@ -160,18 +160,17 @@ namespace EA4S
                     miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock-1].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
                     posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].transform.position;
                     AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;
-                    //AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock++;
+                    AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock--;
                 }
             }
             else if(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)
             {
                 if(pos%2==0)
                    pos--;
-                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock-1].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
+                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
                 posDot = miniMapScript.posDots[pos].transform.position;
                 ChangeMaterialDotToRed(miniMapScript.posDots[pos]);
-                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;
-                AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock--;
+                AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = miniMapScript.posDots[pos].GetComponent<Dot>().playSessionActual;            
             }
             else
             {
@@ -199,6 +198,7 @@ namespace EA4S
            // transform.LookAt(pin);
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
             AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = 1;
+            miniMapScript.posDots[0].GetComponent<Renderer>().material = red;
         }
 
         void ChangeMaterialDotToBlack(GameObject dot)
