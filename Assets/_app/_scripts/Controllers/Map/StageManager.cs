@@ -9,18 +9,31 @@ namespace EA4S
         public GameObject[] cameras;
         public GameObject[] miniMaps;
         public GameObject letter;
+        public int s;
+        void Awake()
+        {
+           s = AppManager.Instance.Player.CurrentJourneyPosition.Stage;
+           for(int i=1;i<= (s-1);i++)
+           {
+               miniMaps[i].GetComponent<MiniMap>().isAvailableTheWholeMap = true;
+           }
+            ChangeCamera(cameras[s]);
+            stages[s].SetActive(true);
+            letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[s].GetComponent<MiniMap>();
+            StartCoroutine("ResetPosLetter");
+        }
         public void StageLeft()
         {
             int numberStage = AppManager.Instance.Player.CurrentJourneyPosition.Stage;
-            if(numberStage < 6)
+            if(numberStage < s)
             {
                 stages[numberStage].SetActive(false);
                 stages[numberStage + 1].SetActive(true);
                 ChangeCamera(cameras[numberStage+1]);
 
                 AppManager.Instance.Player.CurrentJourneyPosition.Stage++;
-                letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage + 1].GetComponent<MiniMap>();
-                letter.GetComponent<LetterMovement>().ResetPosLetter();
+                letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage+1].GetComponent<MiniMap>();
+                StartCoroutine("ResetPosLetter");
             }
         }
         public void StageRight()
@@ -33,8 +46,8 @@ namespace EA4S
                 ChangeCamera(cameras[numberStage - 1]);
 
                 AppManager.Instance.Player.CurrentJourneyPosition.Stage--;
-                letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage - 1].GetComponent<MiniMap>();
-                letter.GetComponent<LetterMovement>().ResetPosLetter();
+                letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage-1].GetComponent<MiniMap>();
+                StartCoroutine("ResetPosLetter");
             }
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
@@ -42,6 +55,11 @@ namespace EA4S
 
             CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation);
 
+        }
+        IEnumerator ResetPosLetter()
+        {
+            yield return new WaitForSeconds(1);
+            letter.GetComponent<LetterMovement>().ResetPosLetter();
         }
     }
 }
