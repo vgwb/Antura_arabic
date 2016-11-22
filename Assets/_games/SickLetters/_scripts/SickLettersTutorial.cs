@@ -6,7 +6,8 @@ namespace EA4S.SickLetters
 
         public Vector3[] path;
         public bool draw = false;
-        public int repeatMax = 3, repeatConter = 0;
+        public float tutorialStartDelay;
+        public int  repeatMax = 3, repeatConter = 0;
         float repeatDely = 3;
         // Use this for initialization
         SickLettersGame game;
@@ -62,7 +63,7 @@ namespace EA4S.SickLetters
 
         IEnumerator coDoTutorial(Transform start = null)
         {
-            yield return new WaitForSeconds(14.75f);
+            yield return new WaitForSeconds(tutorialStartDelay);
             game.disableInput = false;
             AudioManager.I.PlayDialog("SickLetters_Tuto");
 

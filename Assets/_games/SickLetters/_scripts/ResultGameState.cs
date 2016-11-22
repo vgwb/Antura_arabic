@@ -38,6 +38,13 @@
             if (timer < 0)
             {
                 game.EndGame(game.currentStars, game.maxWieght);
+
+                if(game.currentStars == 0)
+                    AudioManager.I.PlayDialog("Reward_0Star");
+                else
+                    AudioManager.I.PlayDialog("Reward_" + game.currentStars + "Star_"+UnityEngine.Random.Range(1,4));
+
+                //WidgetSubtitles.I.DisplaySentence()
                 //game.EndGame(game.scale.counter / (game.targetScale / 3), game.scale.counter);
             }
         }
