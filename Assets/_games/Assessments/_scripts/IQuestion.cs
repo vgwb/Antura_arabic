@@ -45,6 +45,12 @@ namespace EA4S.Assessment
         int PlaceholdersCount();
 
         /// <summary>
+        /// Returns the letter size (which varies: 1, 1.5 or 2)
+        /// </summary>
+        /// <returns>Size in world units</returns>
+        float LetterSize();
+
+        /// <summary>
         /// Access the GameObject of this question
         /// </summary>
         GameObject gameObject { get; }
@@ -57,8 +63,8 @@ namespace EA4S.Assessment
         /// <summary>
         /// Get all tracked placeholders
         /// </summary>
-        /// <returns>Enumerable to placeholders set</returns>
-        IEnumerable<GameObject> GetPlaceholders();
+        /// <returns> Enumerable to placeholders set</returns>
+        IEnumerable< GameObject> GetPlaceholders();
 
     }
 }
