@@ -13,7 +13,6 @@ namespace EA4S.Balloons
         public Animator animator;
         public Collider letterCollider;
         public Rigidbody body;
-        public ILivingLetterData letter;
         public int associatedPromptIndex;
         public bool isRequired;
         public ILivingLetterData letterData;
@@ -76,7 +75,6 @@ namespace EA4S.Balloons
         {
             letterData = _data;
             LLPrefab.Init(_data);
-            //LetterView.text = _data.TextForLivingLetter; 
         }
 
         void OnMouseDown()

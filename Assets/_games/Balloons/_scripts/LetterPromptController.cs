@@ -12,7 +12,7 @@ namespace EA4S.Balloons
     public class LetterPromptController : MonoBehaviour
     {
         public TMP_Text LetterLabel;
-        public ILivingLetterData Data;
+        public LL_LetterData LetterData;
         public Animator animator;
 
         public enum PromptState
@@ -36,10 +36,10 @@ namespace EA4S.Balloons
         }
 
 
-        public void Init(ILivingLetterData _letterData)
+        public void Init(LL_LetterData _letterData)
         {
-            Data = _letterData;
-            LetterLabel.text = Data.TextForLivingLetter;
+            LetterData = _letterData;
+            LetterLabel.text = LetterData.TextForLivingLetter;
         }
 
         void OnStateChanged()
