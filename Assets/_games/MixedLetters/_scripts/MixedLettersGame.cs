@@ -18,13 +18,17 @@ namespace EA4S.MixedLetters
 
         public DropZoneController[] dropZoneControllers;
 
-        public LL_WordData wordData;
-        public Db.WordData wordInPlay;
-        public List<LL_LetterData> lettersInOrder;
+        //public LL_WordData wordData;
+        //public Db.WordData wordInPlay;
+        public List<ILivingLetterData> lettersInOrder;
         public GameObject victimLL;
+
+        public List<ILivingLetterData> allLettersInAlphabet;
 
         public int roundNumber = 0;
         public int numRoundsWon = 0;
+
+        private bool isSpelling = true;
 
         protected override void OnInitialize(IGameContext context)
         {
@@ -35,7 +39,15 @@ namespace EA4S.MixedLetters
             PlayState = new PlayGameState(this);
             ResultState = new ResultGameState(this);
 
-            lettersInOrder = new List<LL_LetterData>();
+            lettersInOrder = new List<ILivingLetterData>();
+            allLettersInAlphabet = new List<ILivingLetterData>();
+
+            isSpelling = MixedLettersConfiguration.Instance.Variation == MixedLettersConfiguration.MixedLettersVariation.Spelling;
+
+            if (!isSpelling)
+            {
+                allLettersInAlphabet = MixedLettersConfiguration.Instance.Questions.GetNextQuestion().GetCorrectAnswers().ToList();
+            }
 
             Physics.IgnoreLayerCollision(0, 5);
             Physics.IgnoreLayerCollision(12, 11);
@@ -133,12 +145,23 @@ namespace EA4S.MixedLetters
 
         public void GenerateNewWord()
         {
-            wordData = (LL_WordData)MixedLettersConfiguration.Instance.Questions.GetNextQuestion().GetQuestion();
-            AudioManager.I.PlayWord(wordData.Id);
-            wordInPlay = wordData.Data;
-            lettersInOrder.AddRange(ArabicAlphabetHelper.LetterDataListFromWord(wordInPlay.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()));
-            VictimLLController.instance.letterObjectView.Init(wordData);
-            MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
+            if (isSpelling)
+            {
+                IQuestionPack newQuestion = MixedLettersConfiguration.Instance.Questions.GetNextQuestion();
+                LL_WordData wordData = (LL_WordData)newQuestion.GetQuestion();
+                AudioManager.I.PlayWord(wordData.Id);
+                lettersInOrder = newQuestion.GetCorrectAnswers().ToList();
+                VictimLLController.instance.letterObjectView.Init(wordData);
+                MixedLettersConfiguration.Instance.Context.GetAudioManager().PlayLetterData(wordData);
+            }
+
+            else
+            {
+                int numLettersPerRound = allLettersInAlphabet.Count / 6;
+                int remainder = allLettersInAlphabet.Count % 6;
+                lettersInOrder = allLettersInAlphabet.GetRange(roundNumber * numLettersPerRound, roundNumber == 4 ? remainder : numLettersPerRound);
+                VictimLLController.instance.letterObjectView.Init(null);
+            }
         }
 
         public void VerifyLetters()
