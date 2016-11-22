@@ -16703,7 +16703,7 @@ MonoBehaviour:
       Context: Title Screen appear
       English: ANTURA AND THE LETTERS
       Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u0648\u0627\u0644\u062D\u0631\u0648\u0641"
-      AudioFile: 
+      AudioFile: Game_Title
     - Id: Action_Createprofile
       Character: Ibtissam
       When: No action (only if no created profile)
@@ -16712,7 +16712,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0625\u0634\u0627\u0631\u0629\u0650
         \u0627\u0644\u0632\u0627\u0626\u062F \u0644\u062A\u0646\u0634\u064A\u0621\u064E
         \u062D\u0633\u0627\u0628\u064E\u0643"
-      AudioFile: 
+      AudioFile: Action_Createprofile
     - Id: Action_ChooseAvatar
       Character: Ibtissam
       When: Profile Icon Selection (always)
@@ -16720,14 +16720,14 @@ MonoBehaviour:
       English: Choose an animal to represent you
       Arabic: "\u0627\u062E\u062A\u0631 \u062D\u064A\u0648\u0627\u0646\u0627\u064B
         \u064A\u0639\u0628\u0631 \u0639\u0646\u0643"
-      AudioFile: 
+      AudioFile: Action_ChooseAvatar
     - Id: Action_PressPlay
       Character: Ibtissam
       When: Play the selected Profile (only after Profile creation)
       Context: You have to press PLAY button (animated) to start
       English: Press PLAY!
       Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0628\u062F\u0621!"
-      AudioFile: 
+      AudioFile: Action_PressPlay
     - Id: Action_ConfirmNewProfile
       Character: Ibtissam
       When: Profile Creation (after the first one)
@@ -16736,7 +16736,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0644 \u0623\u0646\u062A \u0645\u062A\u0623\u0643\u062F\u064C
         \u0623\u0646\u0643 \u062A\u0631\u064A\u062F\u064F \u0625\u0646\u0634\u0627\u0621\u064E
         \u062D\u0633\u0627\u0628\u064D \u062C\u062F\u064A\u062F\u061F"
-      AudioFile: 
+      AudioFile: Action_ConfirmNewProfile
     - Id: Intro_welcome
       Character: Keeper
       When: Empty scene
@@ -16745,7 +16745,7 @@ MonoBehaviour:
       Arabic: "\u0644\u0642\u062F \u0623\u062A\u064A\u062A\u064E \u0623\u062E\u064A\u0631\u0627\u064B!
         \u0643\u0646\u062A\u064F \u0628\u0627\u0646\u062A\u0638\u0627\u0631\u0650\u0643.
         \u0623\u062D\u062A\u0627\u062C\u064F \u0645\u0633\u0627\u0639\u062F\u062A\u064E\u0643!"
-      AudioFile: 
+      AudioFile: Intro_welcome
     - Id: Intro_Letters_1
       Character: Keeper
       When: The Letters enter
@@ -16755,7 +16755,7 @@ MonoBehaviour:
         \u0641\u064A \u0643\u0644\u0651\u0650 \u062D\u0631\u0648\u0641\u064A\u060C
         \u0648\u0627\u0644\u0622\u0646 \u0647\u064A \u0645\u0646\u062A\u0634\u0631\u0629\u064C
         \u0641\u064A \u0643\u0644\u0651\u0650 \u0645\u0643\u0627\u0646."
-      AudioFile: 
+      AudioFile: Intro_Letters_1
     - Id: Intro_Letters_2
       Character: Keeper
       When: 
@@ -16765,7 +16765,7 @@ MonoBehaviour:
         \u0639\u0644\u0649 \u0625\u0639\u0627\u062F\u0629\u0650 \u062C\u0645\u064A\u0639\u0650
         \u0627\u0644\u0623\u062D\u0631\u0641 \u0625\u0644\u0649 \u0645\u0643\u0627\u0646\u0650\u0647\u0627\u061F
         \u0623\u0631\u062C\u0648\u0648\u0648\u0648\u0643."
-      AudioFile: 
+      AudioFile: Intro_Letters_2
     - Id: Intro_Dog
       Character: Keeper
       When: The Dog enter
@@ -16776,7 +16776,7 @@ MonoBehaviour:
         \u0631\u0641\u0642\u062A\u064F\u0647 \u0645\u0633\u0644\u064A\u0629\u064C
         \u0644\u0643\u0646\u0647 \u0641\u0648\u0636\u0648\u064A\u064C \u0628\u0639\u0636\u064E
         \u0627\u0644\u0634\u064A\u0621."
-      AudioFile: 
+      AudioFile: Intro_Dog
     - Id: Intro_Dog_Chase
       Character: Keeper
       When: 
@@ -16786,7 +16786,7 @@ MonoBehaviour:
         \u062D\u0627\u0644\u060C \u0623\u0639\u062A\u0642\u062F\u064F \u0623\u0646\u0651\u064E\u0643
         \u0633\u062A\u0633\u062A\u0645\u062A\u0639\u064F \u0643\u062B\u064A\u0631\u0627\u064B
         \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629."
-      AudioFile: 
+      AudioFile: Intro_Dog_Chase
     - Id: Map_Intro
       Character: Keeper
       When: No UI / no interaction
@@ -16794,7 +16794,7 @@ MonoBehaviour:
       English: You will travel the world to find all the Letters.
       Arabic: "\u0633\u062A\u062C\u0648\u0628\u064F \u0627\u0644\u0639\u0627\u0644\u0645\u064E
         \u0628\u062D\u062B\u0627\u064B \u0639\u0646 \u0627\u0644\u0623\u062D\u0631\u0641."
-      AudioFile: 
+      AudioFile: Map_Intro
     - Id: Map_Intro_AnturaSpace
       Character: Keeper
       When: Antura Space button appears
@@ -16805,7 +16805,7 @@ MonoBehaviour:
         , \u0633\u0623\u0643\u0627\u0641\u0626\u0643 \u0628\u0647\u062F\u0627\u064A\u0627
         \u0645\u0645\u064A\u0632\u0629 \u0644\u062A\u0644\u0639\u0628 \u0628\u0647\u0627
         \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629"
-      AudioFile: 
+      AudioFile: Map_Intro_AnturaSpace
     - Id: Reward_Intro
       Character: Keeper
       When: 1 ITEM (BIG REWARD) is unlocked
@@ -16814,7 +16814,7 @@ MonoBehaviour:
       Arabic: "\u0648 \u0647\u0630\u0647 \u0647\u062F\u064A\u062A\u0643 \u0627\u0644\u0627\u0648\u0644\u0649,
         \u0628\u0627\u0645\u0643\u0627\u0646\u0643 \u0644\u0627\u0627\u0646 \u0645\u0628\u0627\u0634\u0631\u0629
         \u0627\u0644\u0644\u0639\u0628 \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629"
-      AudioFile: 
+      AudioFile: Reward_Intro
     - Id: AnturaSpace_Intro
       Character: Keeper
       When: No UI
@@ -16822,7 +16822,7 @@ MonoBehaviour:
       English: Here you play with Antura, try to touch him/her
       Arabic: "\u0647\u0646\u0627 \u062A\u0644\u0639\u0628 \u0645\u0639 \u0639\u0646\u062A\u0648\u0631\u0629,
         \u062D\u0627\u0648\u0644 \u0644\u0645\u0633\u0647"
-      AudioFile: 
+      AudioFile: AnturaSpace_Intro
     - Id: AnturaSpace_Intro_Touch
       Character: Keeper
       When: 
@@ -16830,14 +16830,14 @@ MonoBehaviour:
       English: You see? Antura is always willing to play with you
       Arabic: "\u0623\u0631\u0623\u064A\u062A\u061F \u0639\u0646\u062A\u0648\u0631\u0629
         \u062D\u0627\u0636\u0631 \u0644\u0644\u0639\u0628 \u062F\u0627\u0626\u0645\u0627\u064E\u064E"
-      AudioFile: 
+      AudioFile: AnturaSpace_Intro_Touch
     - Id: AnturaSpace_Intro_Cookie
       Character: Keeper
       When: Cookie button/counter appears
       Context: Keeper explains you can throw cookies at Antura
       English: Antura loves cookies!
       Arabic: "\u0639\u0646\u062A\u0648\u0631\u0629 \u064A\u062D\u0628 \u0627\u0644\u0628\u0633\u0643\u0648\u064A\u062A"
-      AudioFile: 
+      AudioFile: AnturaSpace_Intro_Cookie
     - Id: AnturaSpace_Tuto_Cookie_1
       Character: Ibtissam
       When: 
@@ -16846,7 +16846,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631\u0651\u0650
         \u0627\u0644\u0643\u0639\u0643\u0629\u0650 \u0644\u062A\u0644\u0642\u064A\u064E
         \u0643\u0639\u0643\u0629\u064B \u0644\u0639\u0646\u062A\u0648\u0631\u0629"
-      AudioFile: 
+      AudioFile: AnturaSpace_Tuto_Cookie_1
     - Id: AnturaSpace_Tuto_Cookie_2
       Character: Ibtissam
       When: 
@@ -16856,7 +16856,7 @@ MonoBehaviour:
         \u062A\u0642\u0648\u0645 \u0628\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0639\u0643\u0629\u0650
         \u0639\u0628\u0631\u064E \u0627\u0644\u0634\u0627\u0634\u0629\u0650 \u0642\u0628\u0644
         \u0631\u0645\u064A\u0647\u0627"
-      AudioFile: 
+      AudioFile: AnturaSpace_Tuto_Cookie_2
     - Id: AnturaSpace_Custom_1
       Character: Keeper
       When: Customization UI appears
@@ -16866,7 +16866,7 @@ MonoBehaviour:
         \u0634\u0643\u0644 \u0639\u0646\u062A\u0648\u0631\u0629 \u0645\u0646 \u062E\u0644\u0627\u0644
         \u0627\u0644\u0647\u062F\u0627\u064A\u0627 \u0627\u0644\u062A\u064A \u0627\u0639\u0637\u064A\u062A\u0643
         \u0625\u064A\u0627\u0647\u0627"
-      AudioFile: 
+      AudioFile: AnturaSpace_Custom_1
     - Id: AnturaSpace_Custom_2
       Character: Ibtissam
       When: 
@@ -16874,7 +16874,7 @@ MonoBehaviour:
       English: Press the ANTURA button to customize him/her
       Arabic: "\u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0632\u0631 \u0639\u0646\u062A\u0648\u0631\u0629
         \u0644\u062A\u063A\u064A\u0631 \u0645\u0638\u0647\u0631\u0647"
-      AudioFile: 
+      AudioFile: AnturaSpace_Custom_2
     - Id: Map_First
       Character: Keeper
       When: 
@@ -16882,7 +16882,7 @@ MonoBehaviour:
       English: It's time for you to start your journey. Good luck!
       Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u0628\u062F\u0621 \u0627\u0644\u0631\u062D\u0644\u0629!
         \u062D\u0638\u0627\u064B \u0633\u0639\u064A\u062F\u0627\u064B!"
-      AudioFile: 
+      AudioFile: Map_First
     - Id: Map_Welcome_1
       Character: Keeper
       When: 
@@ -16890,7 +16890,7 @@ MonoBehaviour:
       English: You still have a long journey in front of you. Better you harry up!
       Arabic: "\u0645\u0627 \u0632\u0627\u0644\u062A \u0627\u0644\u0631\u062D\u0644\u0629
         \u0637\u0648\u064A\u0644\u0629\u060C \u0639\u0644\u064A\u0643 \u0627\u0644\u0627\u0633\u0631\u0627\u0639!"
-      AudioFile: 
+      AudioFile: Map_Welcome_1
     - Id: Map_Welcome_2
       Character: Keeper
       When: 
@@ -16898,7 +16898,7 @@ MonoBehaviour:
       English: Come on, your mission is not over yet!
       Arabic: "\u0647\u064A\u0627 \u0628\u0646\u0627\u060C \u0645\u0647\u0645\u062A\u0643
         \u0644\u0645 \u062A\u0646\u062A\u0647\u064A \u0628\u0639\u062F"
-      AudioFile: 
+      AudioFile: Map_Welcome_2
     - Id: Map_Welcome_3
       Character: Keeper
       When: 
@@ -16906,7 +16906,7 @@ MonoBehaviour:
       English: I trust you. You will complete your mission soon!
       Arabic: "\u0627\u0646\u0627 \u0648\u0627\u062B\u0642 \u0645\u0646 \u0627\u0646\u0643
         \u0633\u062A\u0646\u0647\u064A \u0627\u0644\u0645\u0647\u0645\u0629 \u0642\u0631\u064A\u0628\u0627\u064B"
-      AudioFile: 
+      AudioFile: Map_Welcome_3
     - Id: Map_Back_1
       Character: Keeper
       When: 
@@ -16914,7 +16914,7 @@ MonoBehaviour:
       English: You have progressed a lot! Keep up with the good work...
       Arabic: "\u062A\u0642\u062F\u0645 \u0645\u0644\u062D\u0648\u0638\u060C \u062A\u0627\u0628\u0639
         \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0645\u0645\u062A\u0627\u0632"
-      AudioFile: 
+      AudioFile: Map_Back_1
     - Id: Map_Back_2
       Character: Keeper
       When: 
@@ -16923,7 +16923,7 @@ MonoBehaviour:
       Arabic: "\u062C\u064A\u062F \u062C\u062F\u0627\u064B\u060C \u0627\u0635\u0628\u062D\u062A
         \u062E\u0637\u0648\u0629 \u0627\u0642\u0631\u0628 \u0644\u062A\u062D\u0642\u064A\u0642
         \u0627\u0644\u0645\u0647\u0645\u0629!"
-      AudioFile: 
+      AudioFile: Map_Back_2
     - Id: Map_Back_3
       Character: Keeper
       When: 
@@ -16931,7 +16931,7 @@ MonoBehaviour:
       English: Another step forward. Continue like that!
       Arabic: "\u062E\u0637\u0648\u0629 \u062C\u062F\u064A\u062F\u0629 \u0627\u0644\u0649
         \u0627\u0644\u0627\u0645\u0627\u0645\u060C \u062A\u0627\u0628\u0639!"
-      AudioFile: 
+      AudioFile: Map_Back_3
     - Id: Map_End_LB_1
       Character: Keeper
       When: 
@@ -16939,7 +16939,7 @@ MonoBehaviour:
       English: Are you ready to prove what you learned so far?
       Arabic: "\u0647\u0644 \u0627\u0646\u062A \u062C\u0627\u0647\u0632 \u0644\u062A\u0628\u0631\u0647\u0646
         \u0645\u0627 \u062A\u0639\u0644\u0645\u062A\u0647 \u062D\u062A\u0649 \u0627\u0644\u0627\u0646\u061F"
-      AudioFile: 
+      AudioFile: Map_End_LB_1
     - Id: Map_End_LB_2
       Character: Keeper
       When: 
@@ -16947,7 +16947,7 @@ MonoBehaviour:
       English: The next step will challenge your knowledge...
       Arabic: "\u0627\u0644\u062E\u0637\u0648\u0629 \u0627\u0644\u062A\u0627\u0644\u064A\u0629
         \u0633\u062A\u062A\u062D\u062F\u0649 \u0645\u0639\u0631\u0641\u062A\u0643"
-      AudioFile: 
+      AudioFile: Map_End_LB_2
     - Id: Map_End_LB_3
       Character: Keeper
       When: 
@@ -16958,7 +16958,7 @@ MonoBehaviour:
         \u0639\u0644\u064A\u0643 \u0627\u0646 \u062A\u0628\u0631\u0647\u0646 \u0627\u0646\u0643
         \u062A\u062A\u0642\u0646 \u0643\u0644 \u0645\u0627 \u062A\u0639\u0644\u0645\u062A
         \u062D\u062A\u0649 \u0627\u0644\u0627\u0646"
-      AudioFile: 
+      AudioFile: Map_End_LB_3
     - Id: Map_NewMap
       Character: Keeper
       When: 
@@ -16966,7 +16966,7 @@ MonoBehaviour:
       English: Wow! You discovered a new Map!
       Arabic: "\u0631\u0627\u0626\u0639! \u0627\u0643\u062A\u0634\u0641\u062A \u062E\u0631\u064A\u0637\u0629
         \u062C\u062F\u064A\u062F\u0629!"
-      AudioFile: 
+      AudioFile: Map_NewMap
     - Id: Map_EndWorld
       Character: Keeper
       When: 
@@ -16978,7 +16978,7 @@ MonoBehaviour:
         \u0644\u0643\u0646 \u0645\u0627 \u0632\u0627\u0644 \u0644\u062F\u064A\u0643
         \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u0647\u062F\u0627\u064A\u0629
         \u0644\u0644\u0641\u0648\u0632 \u0628\u0647\u0627"
-      AudioFile: 
+      AudioFile: Map_EndWorld
     - Id: Map_EndGame
       Character: Keeper
       When: 
@@ -16986,7 +16986,7 @@ MonoBehaviour:
       English: Yeaaaah! Excellent job! You completed your mission!
       Arabic: "\u0631\u0627\u0626\u0639! \u0639\u0645\u0644 \u0645\u0628\u0647\u0631!
         \u0627\u0646\u0647\u064A\u062A \u0645\u0647\u0645\u062A\u0643"
-      AudioFile: 
+      AudioFile: Map_EndGame
     - Id: Map_Intro_Map1
       Character: Keeper
       When: 
@@ -16994,7 +16994,7 @@ MonoBehaviour:
       English: First of all you have to cross all the Mountains...
       Arabic: "\u0641\u064A \u0627\u0644\u0628\u062F\u0627\u064A\u0629 \u0639\u0644\u064A\u0643
         \u062A\u0633\u0644\u0642 \u062C\u0645\u064A\u0639 \u0627\u0644\u062C\u0628\u0627\u0644.."
-      AudioFile: 
+      AudioFile: Map_Intro_Map1
     - Id: Map_Intro_Map2
       Character: Keeper
       When: 
@@ -17002,7 +17002,7 @@ MonoBehaviour:
       English: Well done! You have reached the tropical Islands.
       Arabic: "\u0631\u0627\u0626\u0639! \u0644\u0642\u062F \u0648\u0635\u0644\u062A
         \u0627\u0644\u0649 \u0627\u0644\u062C\u0632\u0631 \u0627\u0644\u0627\u0633\u062A\u0648\u0627\u0626\u064A\u0629"
-      AudioFile: 
+      AudioFile: Map_Intro_Map2
     - Id: Map_Intro_Map3
       Character: Keeper
       When: 
@@ -17011,7 +17011,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0630\u0627 \u0647\u064A \u0627\u0644\u0645\u0631\u0627\u0639\u064A
         \u0627\u0644\u062A\u064A \u0644\u0627 \u0646\u0647\u0627\u064A\u0629 \u0644\u0647\u0627.
         \u0633\u0648\u0641 \u062A\u0643\u0648\u0646 \u0631\u062D\u0644\u0629 \u0637\u0648\u064A\u0644\u0629"
-      AudioFile: 
+      AudioFile: Map_Intro_Map3
     - Id: Map_Intro_Map4
       Character: Keeper
       When: 
@@ -17021,7 +17021,7 @@ MonoBehaviour:
         \u0641\u064A \u0627\u0644\u0635\u062D\u0627\u0631\u064A \u0627\u0644\u062D\u0627\u0631\u0642\u0629.
         \u0627\u0644\u0627\u0645\u0648\u0631 \u0628\u062F\u0623\u062A \u062A\u0632\u062F\u0627\u062F
         \u0635\u0639\u0648\u0628\u0629"
-      AudioFile: 
+      AudioFile: Map_Intro_Map4
     - Id: Map_Intro_Map5
       Character: Keeper
       When: 
@@ -17031,7 +17031,7 @@ MonoBehaviour:
         \u0627\u0646\u0643 \u062A\u0642\u062A\u0631 \u0628\u0627\u0643\u062B\u0631
         \u0641\u0623\u0643\u062B\u0631 \u0645\u0646 \u062A\u062D\u0642\u064A\u0642
         \u0645\u0647\u0645\u062A\u0643"
-      AudioFile: 
+      AudioFile: Map_Intro_Map5
     - Id: Map_Intro_Map6
       Character: Keeper
       When: 
@@ -17041,14 +17041,14 @@ MonoBehaviour:
         \u0642\u0631\u064A\u0629 \u0627\u0644\u062D\u0631\u0648\u0641! \u0647\u064A\u0627
         \u0628\u0646\u0627\u060C \u0639\u0644\u064A\u0646\u0627 \u0628\u0630\u0644
         \u0645\u062C\u0647\u0648\u062F \u0627\u062E\u064A\u0631"
-      AudioFile: 
+      AudioFile: Map_Intro_Map6
     - Id: SelectGame_Tuto_1
       Character: Ibtissam
       When: Always
       Context: Tutorial finger/arrow animation
       English: Swipe to pop the bubbles
       Arabic: "\u0627\u0633\u062D\u0628 \u0644\u062A\u0641\u0642\u0639 \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A"
-      AudioFile: 
+      AudioFile: SelectGame_Tuto_1
     - Id: SelectGame_Tuto_2
       Character: Ibtissam
       When: 
@@ -17056,7 +17056,7 @@ MonoBehaviour:
       English: Swipe to discover the games you are going to play
       Arabic: "\u0627\u0633\u062D\u0628 \u0644\u062A\u0643\u062A\u0634\u0641 \u0627\u0644\u0623\u0644\u0639\u0627\u0628
         \u0627\u0644\u062A\u064A \u0633\u062A\u0644\u0639\u0628\u0647\u0627"
-      AudioFile: 
+      AudioFile: SelectGame_Tuto_2
     - Id: SelectGame_Tuto_3
       Character: Ibtissam
       When: 
@@ -17064,14 +17064,14 @@ MonoBehaviour:
       English: Touch the bubbles to make them explode
       Arabic: "\u0627\u0644\u0645\u0633 \u0627\u0644\u0641\u0642\u0627\u0639\u0627\u062A
         \u0644\u062A\u0641\u0642\u0639\u064E\u0647\u0627"
-      AudioFile: 
+      AudioFile: SelectGame_Tuto_3
     - Id: SelectGame_Begin_1
       Character: Keeper
       When: 
       Context: After the Selection
       English: Are you ready?
       Arabic: "\u0647\u0644 \u0627\u0646\u062A \u062C\u0627\u0647\u0632\u061F"
-      AudioFile: 
+      AudioFile: SelectGame_Begin_1
     - Id: SelectGame_Begin_2
       Character: Keeper
       When: 
@@ -17079,7 +17079,7 @@ MonoBehaviour:
       English: Now it's up to you...
       Arabic: "\u0627\u0644\u0627\u0646\u060C \u0643\u0644 \u0634\u064A\u0621 \u064A\u0639\u062A\u0645\u062F
         \u0639\u0644\u064A\u0643"
-      AudioFile: 
+      AudioFile: SelectGame_Begin_2
     - Id: SelectGame_Begin_3
       Character: Keeper
       When: 
@@ -17087,7 +17087,7 @@ MonoBehaviour:
       English: This is going to be challenging...
       Arabic: "\u0647\u0630\u0627 \u0633\u064A\u0643\u0648\u0646 \u062A\u062D\u062F\u064A\u0627
         ..."
-      AudioFile: 
+      AudioFile: SelectGame_Begin_3
     - Id: Mood_Question_1
       Character: Keeper
       When: Once a day
@@ -17095,7 +17095,7 @@ MonoBehaviour:
       English: '"Welcome back! How do you feel today?"'
       Arabic: "\u0627\u0647\u0644\u0627 \u0628\u0643 \u0645\u0646 \u062C\u062F\u064A\u062F\u060C
         \u0643\u064A\u0641 \u062A\u0634\u0639\u0631 \u0627\u0644\u064A\u0648\u0645"
-      AudioFile: 
+      AudioFile: Mood_Question_1
     - Id: Mood_Question_2
       Character: Keeper
       When: 
@@ -17103,7 +17103,7 @@ MonoBehaviour:
       English: '"Hello! How are you today?"'
       Arabic: "\u0645\u0631\u062D\u0628\u0627\u064B\u060C \u0643\u064A\u0641 \u062D\u0627\u0644\u0643
         \u0627\u0644\u064A\u0648\u0645\u061F"
-      AudioFile: 
+      AudioFile: Mood_Question_2
     - Id: Mood_Question_3
       Character: Keeper
       When: 
@@ -17111,7 +17111,7 @@ MonoBehaviour:
       English: '"Welcome back! How''s going?"'
       Arabic: "\u0627\u0647\u0644\u0627 \u0628\u0643 \u0645\u0646 \u062C\u062F\u064A\u062F\u060C
         \u0643\u064A\u0641 \u0627\u0644\u0627\u0645\u0648\u0631\u061F"
-      AudioFile: 
+      AudioFile: Mood_Question_3
     - Id: Reward_0Star
       Character: Keeper
       When: At the end of a Play Session
@@ -17120,7 +17120,7 @@ MonoBehaviour:
       Arabic: "\u0644\u0644\u0627\u0633\u0641\u060C \u0633\u062A\u0642\u0648\u0645
         \u0628\u0639\u0645\u0644 \u0627\u0641\u0636\u0644 \u0641\u064A \u0627\u0644\u0645\u0631\u0629
         \u0627\u0644\u0642\u0627\u062F\u0645\u0629!"
-      AudioFile: 
+      AudioFile: Reward_0Star
     - Id: Reward_1Star_1
       Character: Keeper
       When: 
@@ -17130,7 +17130,7 @@ MonoBehaviour:
       Arabic: "\u0644\u0627 \u0628\u0623\u0633\u060C \u0644\u0643\u0646 \u0639\u0644\u064A\u0643
         \u0627\u0644\u062A\u0645\u0631\u0646 \u0627\u0643\u062B\u0631 \u0644\u0643\u064A
         \u062A\u062D\u0635\u0644 \u0639\u0644\u0649 \u0643\u0627\u0641\u0629 \u0627\u0644\u0647\u062F\u0627\u064A\u0627"
-      AudioFile: 
+      AudioFile: Reward_1Star_1
     - Id: Reward_1Star_2
       Character: Keeper
       When: 
@@ -17140,7 +17140,7 @@ MonoBehaviour:
         \u0645\u062A\u0623\u0643\u062F \u0645\u0646 \u0627\u0646\u0647 \u0628\u0627\u0645\u0643\u0627\u0646\u0643
         \u062A\u0642\u062F\u064A\u0645 \u0645\u0627 \u0647\u0648 \u0627\u0641\u0636\u0644
         \u0628\u0639\u062F"
-      AudioFile: 
+      AudioFile: Reward_1Star_2
     - Id: Reward_1Star_3
       Character: Keeper
       When: 
@@ -17148,7 +17148,7 @@ MonoBehaviour:
       English: Done! And you still have lot of margin for improvement...
       Arabic: "\u0639\u0645\u0644 \u0645\u0646\u062C\u0632!\u0645\u0627 \u0632\u0627\u0644
         \u0647\u0646\u0627\u0644\u0643 \u0645\u062C\u0627\u0644 \u0644\u0644\u062A\u062D\u0633\u064A\u0646!"
-      AudioFile: 
+      AudioFile: Reward_1Star_3
     - Id: Reward_2Star_1
       Character: Keeper
       When: 
@@ -17157,7 +17157,7 @@ MonoBehaviour:
       Arabic: "\u0645\u0645\u062A\u0627\u0632\u060C \u0627\u0642\u062A\u0631\u0628\u062A
         \u0645\u0646 \u0627\u0644\u0641\u0648\u0632 \u0628\u062C\u0645\u064A\u0639
         \u0627\u0644\u0647\u062F\u0627\u064A\u0627!"
-      AudioFile: 
+      AudioFile: Reward_2Star_1
     - Id: Reward_2Star_2
       Character: Keeper
       When: 
@@ -17165,7 +17165,7 @@ MonoBehaviour:
       English: Brilliant! So close to reach the top!
       Arabic: "\u0645\u0628\u0647\u0631\u060C \u0627\u0646\u062A \u0642\u0631\u064A\u0628
         \u062C\u062F\u0627\u064B \u0645\u0646 \u0627\u0644\u0642\u0645\u0629!"
-      AudioFile: 
+      AudioFile: Reward_2Star_2
     - Id: Reward_2Star_3
       Character: Keeper
       When: 
@@ -17173,7 +17173,7 @@ MonoBehaviour:
       English: Well Done! Getting close to perfection...
       Arabic: "\u0639\u0645\u0644 \u062C\u0628\u0627\u0631\u060C \u0627\u0646\u062A
         \u0642\u0631\u064A\u0628 \u062C\u062F\u0627\u064B \u0645\u0646 \u0627\u0644\u0643\u0645\u0627\u0644"
-      AudioFile: 
+      AudioFile: Reward_2Star_3
     - Id: Reward_3Star_1
       Character: Keeper
       When: 
@@ -17182,7 +17182,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0646\u062A \u0627\u0644\u0641\u0636\u0644 \u0639\u0644\u0649
         \u0627\u0644\u0627\u0637\u0644\u0627\u0642\u060C \u0644\u0642\u062F \u062D\u0642\u0642\u062A
         \u0627\u0644\u0646\u062A\u064A\u062C\u0629 \u0627\u0644\u0643\u0627\u0645\u0644\u0629"
-      AudioFile: 
+      AudioFile: Reward_3Star_1
     - Id: Reward_3Star_2
       Character: Keeper
       When: 
@@ -17190,7 +17190,7 @@ MonoBehaviour:
       English: Brilliant! You deserved all the Gifts!
       Arabic: "\u0644\u0627\u0645\u0639\u060C \u0627\u0646\u062A \u0627\u0633\u062A\u062D\u0642\u064A\u062A
         \u0643\u0627\u0641\u0629 \u0627\u0644\u0647\u062F\u0627\u064A\u0627"
-      AudioFile: 
+      AudioFile: Reward_3Star_2
     - Id: Reward_3Star_3
       Character: Keeper
       When: 
@@ -17198,7 +17198,7 @@ MonoBehaviour:
       English: Amazing! You are a champion!
       Arabic: "\u0645\u0630\u0647\u0644\u060C \u0627\u0646\u062A \u0627\u0644\u0628\u0637\u0644
         \u0627\u0644\u0645\u0637\u0644\u0642!"
-      AudioFile: 
+      AudioFile: Reward_3Star_3
     - Id: Reward_Big_1
       Character: Keeper
       When: At the end of an Assessment
@@ -17206,7 +17206,7 @@ MonoBehaviour:
       English: Here's your special Gift! Well deserved!
       Arabic: "\u062E\u0630 \u060C\u0647\u0630\u0647 \u0647\u062F\u064A\u0629 \u0645\u0645\u064A\u0632\u0629!
         \u0627\u0633\u062A\u062D\u0642\u0627\u0642 \u0628\u062C\u062F\u0627\u0631\u0629"
-      AudioFile: 
+      AudioFile: Reward_Big_1
     - Id: Reward_Big_2
       Character: Keeper
       When: 
@@ -17214,7 +17214,7 @@ MonoBehaviour:
       English: Look at this! Antura will love it!
       Arabic: "\u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0627! \u0639\u0646\u062A\u0648\u0631\u0629
         \u0633\u064A\u062D\u0628\u0647\u0627!"
-      AudioFile: 
+      AudioFile: Reward_Big_2
     - Id: Reward_Big_3
       Character: Keeper
       When: 
@@ -17222,7 +17222,7 @@ MonoBehaviour:
       English: This is for you! It's "cool", isn't it?
       Arabic: "\u062E\u0630\u060C \u0647\u0630\u0647 \u0627\u0644\u0647\u062F\u064A\u0629
         \u0644\u0643! \u0644\u0630\u064A\u0630\u0629! \u0644\u064A\u0633 \u0643\u0630\u0644\u0643\u061F"
-      AudioFile: 
+      AudioFile: Reward_Big_3
     - Id: AlphabetSong_Intro
       Character: Keeper
       When: 
@@ -17230,7 +17230,7 @@ MonoBehaviour:
       English: It's time to sing all the letters in order.
       Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u063A\u0646\u0627\u0621 \u0627\u0644\u0627\u062D\u0631\u0641
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: AlphabetSong_Intro
     - Id: AlphabetSong_Tuto
       Character: Ibtissam
       When: 
@@ -17238,7 +17238,7 @@ MonoBehaviour:
       English: Follow the lyrics with your finger.
       Arabic: "\u062A\u062A\u0628\u0651\u0639\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0628\u0625\u0635\u0628\u0639\u0643"
-      AudioFile: 
+      AudioFile: AlphabetSong_Tuto
     - Id: Balloons_counting_Intro
       Character: Keeper
       When: 
@@ -17246,7 +17246,7 @@ MonoBehaviour:
       English: Look! All these Words are numbers...
       Arabic: "\u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0648 \u0627\u0644\u0627\u0631\u0642\u0627\u0645!"
-      AudioFile: 
+      AudioFile: Balloons_counting_Intro
     - Id: Balloons_counting_Tuto
       Character: Ibtissam
       When: 
@@ -17257,7 +17257,7 @@ MonoBehaviour:
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D:
         \u0645\u0646 \u0623\u0635\u063A\u0631 \u0631\u0642\u0645 \u0625\u0644\u0649
         \u0627\u0644\u0623\u0643\u0628\u0631"
-      AudioFile: 
+      AudioFile: Balloons_counting_Tuto
     - Id: Balloons_letter_Intro
       Character: Keeper
       When: 
@@ -17266,7 +17266,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641 \u064A\u0646\u062A\u0645\u064A
         \u0627\u0644\u0649 \u0627\u062D\u062F\u0649 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0627\u0644\u0645\u0639\u0644\u0642\u0629"
-      AudioFile: 
+      AudioFile: Balloons_letter_Intro
     - Id: Balloons_letter_Tuto
       Character: Ibtissam
       When: 
@@ -17275,7 +17275,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
         \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: 
+      AudioFile: Balloons_letter_Tuto
     - Id: Balloons_spelling_Intro
       Character: Keeper
       When: 
@@ -17284,7 +17284,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0646\u0627\u0643 \u062D\u0631\u0648\u0641 \u0627\u0643\u062B\u0631
         \u0645\u0646 \u0627\u0644\u0644\u0627\u0632\u0645 \u0644\u062A\u0643\u0648\u064A\u0646
         \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629"
-      AudioFile: 
+      AudioFile: Balloons_spelling_Intro
     - Id: Balloons_spelling_Tuto
       Character: Ibtissam
       When: 
@@ -17293,7 +17293,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
         \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: 
+      AudioFile: Balloons_spelling_Tuto
     - Id: Balloons_words_Intro
       Character: Keeper
       When: 
@@ -17302,7 +17302,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0646\u0627\u0643 \u0635\u0648\u0631\u064C \u0639\u062F\u0629!
         \u0644\u0643\u0646 \u0641\u0642\u0637 \u062A\u0639\u0628\u0631\u0639\u0646
         \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0639\u0631\u0648\u0636\u0629"
-      AudioFile: 
+      AudioFile: Balloons_words_Intro
     - Id: Balloons_words_Tuto
       Character: Ibtissam
       When: 
@@ -17311,7 +17311,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0641\u0642\u0639 \u0627\u0644\u0628\u0627\u0644\u0648\u0646\u0627\u062A
         \u062A\u0627\u0631\u0643\u0627\u064B \u0641\u0642\u0637 \u0627\u0644\u0635\u0648\u0631\u0629
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: 
+      AudioFile: Balloons_words_Tuto
     - Id: ColorTickle_Intro
       Character: Keeper
       When: 
@@ -17319,7 +17319,7 @@ MonoBehaviour:
       English: The LETTER have lost her color!
       Arabic: "\u0627\u0647\u060C \u0627\u0644\u062D\u0631\u0648\u0641 \u0641\u0642\u062F\u062A
         \u0627\u0644\u0648\u0627\u0646\u0647\u0627!"
-      AudioFile: 
+      AudioFile: ColorTickle_Intro
     - Id: ColorTickle_Tuto
       Character: Ibtissam
       When: 
@@ -17327,7 +17327,7 @@ MonoBehaviour:
       English: Color the LETTER without going out of the borders.
       Arabic: "\u0642\u0645 \u0628\u062A\u0644\u0648\u064A\u0646 \u0627\u0644\u062D\u0631\u0641
         \u062F\u0648\u0646 \u0627\u0644\u062E\u0631\u0648\u062C \u0639\u0646 \u062D\u062F\u0648\u062F\u0647."
-      AudioFile: 
+      AudioFile: ColorTickle_Tuto
     - Id: DancingDots_Intro
       Character: Keeper
       When: 
@@ -17338,7 +17338,7 @@ MonoBehaviour:
         \u0633\u062A\u0645\u062F \u0627\u0644\u062D\u0631\u0648\u0641 \u0628\u0627\u0644\u0637\u0627\u0642\u0629
         \u0644\u062A\u062A\u0645\u0643\u0646 \u0645\u0646 \u0627\u0644\u0631\u0642\u0635!
         \u062D\u0627\u0648\u0644 \u0645\u0633\u0627\u0639\u062F\u062A\u0647\u0627"
-      AudioFile: 
+      AudioFile: DancingDots_Intro
     - Id: DancingDots_Tuto
       Character: Ibtissam
       When: 
@@ -17348,7 +17348,7 @@ MonoBehaviour:
         \u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u0635\u062D\u064A\u062D\u0629\u064E
         \u0646\u062D\u0648 \u0627\u0644\u0645\u0643\u0627\u0646 \u0627\u0644\u0635\u062D\u064A\u062D
         \u0641\u0648\u0642 \u0627\u0644\u062D\u0631\u0641."
-      AudioFile: 
+      AudioFile: DancingDots_Tuto
     - Id: Egg_Intro
       Character: Keeper
       When: 
@@ -17357,7 +17357,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0647 \u064A\u0628\u062F\u0648 \u0627\u0646 \u0627\u0644\u0628\u064A\u0636\u0629
         \u0642\u0627\u0644\u062A \u0634\u064A\u0626\u0627\u064B! \u0639\u0644\u064A\u0643
         \u0645\u0633\u0627\u0639\u062F\u062A\u0647\u0627 \u0644\u062A\u0641\u0642\u0633!"
-      AudioFile: 
+      AudioFile: Egg_Intro
     - Id: Egg_Tuto_Button
       Character: Ibtissam
       When: 
@@ -17366,7 +17366,7 @@ MonoBehaviour:
       Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
         \u062B\u0645 \u0627\u0636\u063A\u0637 \u0627\u0644\u0632\u0631 \u0627\u0644\u0635\u062D\u064A\u062D
         \u0628\u0634\u0643\u0644 \u0645\u062A\u0643\u0631\u0631."
-      AudioFile: 
+      AudioFile: Egg_Tuto_Button
     - Id: Egg_Tuto_Sequence
       Character: Ibtissam
       When: 
@@ -17377,7 +17377,7 @@ MonoBehaviour:
         \u062B\u0645 \u0627\u0636\u063A\u0637 \u0639\u0644\u0649 \u0627\u0644\u0623\u0632\u0631\u0627\u0631
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D
         \u0644\u0643\u064A \u062A\u0643\u0631\u0651\u0650\u0631 \u0645\u0627 \u0633\u0645\u0639\u062A\u064E\u0647."
-      AudioFile: 
+      AudioFile: Egg_Tuto_Sequence
     - Id: FastCrowd_alphabet_Intro
       Character: Keeper
       When: 
@@ -17386,7 +17386,7 @@ MonoBehaviour:
       Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
         \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: FastCrowd_alphabet_Intro
     - Id: FastCrowd_alphabet_Tuto
       Character: Ibtissam
       When: 
@@ -17395,7 +17395,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0648\u0627\u062D\u062F\u0627\u064B
         \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631 \u062D\u0633\u0628 \u062A\u0631\u062A\u064A\u0628
         \u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0647\u062C\u0627\u0626\u064A\u0629"
-      AudioFile: 
+      AudioFile: FastCrowd_alphabet_Tuto
     - Id: FastCrowd_counting_Intro
       Character: Keeper
       When: 
@@ -17404,7 +17404,7 @@ MonoBehaviour:
       Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
         \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u0627\u0631\u0642\u0627\u0645
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: FastCrowd_counting_Intro
     - Id: FastCrowd_counting_Tuto
       Character: Ibtissam
       When: 
@@ -17415,7 +17415,7 @@ MonoBehaviour:
         \u0648\u0627\u062D\u062F\u0629 \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649
         \u0645\u0646 \u0623\u0635\u063A\u0631 \u0631\u0642\u0645 \u0625\u0644\u0649
         \u0627\u0644\u0623\u0643\u0628\u0631"
-      AudioFile: 
+      AudioFile: FastCrowd_counting_Tuto
     - Id: FastCrowd_letter_Intro
       Character: Keeper
       When: 
@@ -17424,7 +17424,7 @@ MonoBehaviour:
       Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
         \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: FastCrowd_letter_Intro
     - Id: FastCrowd_letter_Tuto
       Character: Ibtissam
       When: 
@@ -17432,7 +17432,7 @@ MonoBehaviour:
       English: Drag the correct Letters, one by one
       Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
         \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631"
-      AudioFile: 
+      AudioFile: FastCrowd_letter_Tuto
     - Id: FastCrowd_spelling_Intro
       Character: Keeper
       When: 
@@ -17442,7 +17442,7 @@ MonoBehaviour:
         \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D
         \u0644\u062A\u0643\u0648\u064A\u0646 \u0643\u0644\u0645\u0629"
-      AudioFile: 
+      AudioFile: FastCrowd_spelling_Intro
     - Id: FastCrowd_spelling_Tuto
       Character: Ibtissam
       When: 
@@ -17450,7 +17450,7 @@ MonoBehaviour:
       English: Drag the correct Letters, one by one
       Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0623\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D\u0629
         \u0648\u0627\u062D\u062F\u0627\u064B \u062A\u0644\u0648 \u0627\u0644\u0622\u062E\u0631"
-      AudioFile: 
+      AudioFile: FastCrowd_spelling_Tuto
     - Id: FastCrowd_words_Intro
       Character: Keeper
       When: 
@@ -17459,7 +17459,7 @@ MonoBehaviour:
       Arabic: "\u064A\u0627 \u0644\u0647\u0627 \u0645\u0646 \u0641\u0648\u0636\u0649!
         \u0644\u0646\u0636\u0639 \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: FastCrowd_words_Intro
     - Id: FastCrowd_words_Tuto
       Character: Ibtissam
       When: 
@@ -17468,7 +17468,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629 \u0648\u0627\u062D\u062F\u0629
         \u062A\u0644\u0648 \u0627\u0644\u0623\u062E\u0631\u0649"
-      AudioFile: 
+      AudioFile: FastCrowd_words_Tuto
     - Id: TakeMeHome_Intro
       Character: Keeper
       When: 
@@ -17479,7 +17479,7 @@ MonoBehaviour:
         \u062D\u0627\u0648\u0644 \u0627\u064A\u062C\u0627\u062F \u0627\u0644\u0645\u062F\u062E\u0644
         \u0627\u0644\u0645\u062D\u062F\u062F \u0644\u0627\u0631\u062C\u0627\u0639
         \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0649 \u0628\u064A\u062A\u0647"
-      AudioFile: 
+      AudioFile: TakeMeHome_Intro
     - Id: TakeMeHome_Tuto
       Character: Ibtissam
       When: 
@@ -17492,7 +17492,7 @@ MonoBehaviour:
         \u062C\u0632\u0621\u064D \u0645\u0646 \u0641\u0645\u0650\u0643 \u064A\u062A\u062D\u0631\u0643.
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641
         \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628\u0629 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: TakeMeHome_Tuto
     - Id: TakeMeHome_Tuto_Reminder
       Character: "\u0630"
       When: 
@@ -17502,7 +17502,7 @@ MonoBehaviour:
         \u0646\u0637\u0642\u064E \u0627\u0644\u062D\u0631\u0641 \u0628\u0635\u0648\u062A
         \u0639\u0627\u0644\u064D\u060C \u0648\u0627\u0646\u062A\u0628\u0647 \u0625\u0644\u0649
         \u062D\u0631\u0643\u0629 \u0641\u0645\u0643"
-      AudioFile: 
+      AudioFile: TakeMeHome_Tuto_Reminder
     - Id: HideSeek_Intro
       Character: Keeper
       When: 
@@ -17510,7 +17510,7 @@ MonoBehaviour:
       English: The LETTERS hide and you have to find them!
       Arabic: "\u0627\u0644\u0627\u062D\u0631\u0641 \u0633\u062A\u062E\u062A\u0628\u0649\u0621
         \u0648 \u0639\u0644\u064A\u0643 \u0645\u062D\u0627\u0648\u0644\u0629 \u0627\u064A\u062C\u0627\u062F\u0647\u0627"
-      AudioFile: 
+      AudioFile: HideSeek_Intro
     - Id: HideSeek_Tuto
       Character: Ibtissam
       When: 
@@ -17521,7 +17521,7 @@ MonoBehaviour:
         \u062B\u0645 \u0627\u0644\u0645\u0633 \u0634\u062C\u064A\u0631\u0629 \u0644\u064A\u062E\u0631\u062C
         \u0645\u0646\u0647\u0627 \u062D\u0631\u0641\u060C \u062B\u0645 \u0627\u0644\u0645\u0633
         \u0627\u0644\u062D\u0631\u0641 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: HideSeek_Tuto
     - Id: MakeFriends_Intro
       Character: Keeper
       When: 
@@ -17532,7 +17532,7 @@ MonoBehaviour:
         \u062D\u0627\u0648\u0644 \u0627\u0644\u062A\u0648\u0641\u064A\u0642 \u0628\u064A\u0646\u0647\u0627
         \u0645\u0646 \u062E\u0644\u0627\u0644 \u0627\u0638\u0647\u0627\u0631 \u0627\u0644\u0627\u0645\u0648\u0631
         \u0627\u0644\u0645\u0634\u062A\u0631\u0643\u0629"
-      AudioFile: 
+      AudioFile: MakeFriends_Intro
     - Id: MakeFriends_Tuto
       Character: Ibtissam
       When: 
@@ -17541,7 +17541,7 @@ MonoBehaviour:
       Arabic: "\u062A\u062A\u0634\u0627\u0631\u0643\u064F \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F
         \u0641\u064A \u062D\u0631\u0641\u064D \u0648\u0627\u062D\u062F. \u0627\u0633\u062D\u0628\u0652\u0647
         \u0625\u0644\u0649 \u0645\u0646\u062A\u0635\u0641 \u0627\u0644\u0634\u0627\u0634\u0629."
-      AudioFile: 
+      AudioFile: MakeFriends_Tuto
     - Id: Maze_Intro
       Character: Keeper
       When: 
@@ -17550,7 +17550,7 @@ MonoBehaviour:
       Arabic: "\u0648\u0642\u062A \u0627\u0644\u0633\u0628\u0627\u0642\u060C \u0633\u0627\u0639\u062F
         \u0627\u0644\u062D\u0631\u0641 \u0644\u0644\u0648\u0635\u0648\u0644 \u0627\u0644\u0649
         \u062E\u0637 \u0627\u0644\u0646\u0647\u0627\u064A\u0629"
-      AudioFile: 
+      AudioFile: Maze_Intro
     - Id: Maze_Tuto
       Character: Ibtissam
       When: 
@@ -17562,7 +17562,7 @@ MonoBehaviour:
         \u0627\u0644\u0633\u0631\u0639\u0629 \u0645\u0647\u0645\u0629\u060C \u0644\u0627
         \u062A\u0636\u064A\u0639 \u0648\u0642\u062A\u0627\u064B \u0648\u0644\u0627
         \u062A\u062E\u0631\u062C \u0639\u0646 \u0627\u0644\u0645\u0633\u0627\u0631."
-      AudioFile: 
+      AudioFile: Maze_Tuto
     - Id: MissingLetter_Intro
       Character: Keeper
       When: 
@@ -17571,7 +17571,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0647 \u0643\u0644\u0627\u060C \u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629
         \u0627\u0636\u0627\u0639\u0629 \u062D\u0631\u0641\u060C \u0633\u0627\u0639\u062F\u0647\u0627
         \u0644\u062A\u0633\u062A\u0631\u062F\u0647"
-      AudioFile: 
+      AudioFile: MissingLetter_Intro
     - Id: MissingLetter_Tuto
       Character: Ibtissam
       When: 
@@ -17579,7 +17579,7 @@ MonoBehaviour:
       English: Spot the missing LETTER and touch it.
       Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641\u0650
         \u0627\u0644\u0646\u0627\u0642\u0635\u0650 \u0648\u0627\u0644\u0645\u0633\u0652\u0647."
-      AudioFile: 
+      AudioFile: MissingLetter_Tuto
     - Id: MissingLetter_phrases_Intro
       Character: Keeper
       When: 
@@ -17588,7 +17588,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0647 \u0643\u0644\u0627\u060C \u0647\u0630\u0647 \u0627\u0644\u062C\u0645\u0644\u0629
         \u0627\u0636\u0627\u0639\u0629 \u0643\u0644\u0645\u0629\u060C \u0633\u0627\u0639\u062F\u0647\u0627
         \u0644\u062A\u0633\u062A\u0631\u062F\u0647\u0627"
-      AudioFile: 
+      AudioFile: MissingLetter_phrases_Intro
     - Id: MissingLetter_phrases_Tuto
       Character: Ibtissam
       When: 
@@ -17596,7 +17596,7 @@ MonoBehaviour:
       English: Spot the missing WORD and touch it.
       Arabic: "\u0627\u0639\u062B\u0631\u0652 \u0639\u0644\u0649 \u0627\u0644\u0643\u0644\u0645\u0629
         \u0627\u0644\u0646\u0627\u0642\u0635\u0629 \u0648\u0627\u0644\u0645\u0633\u0652\u0647\u0627."
-      AudioFile: 
+      AudioFile: MissingLetter_phrases_Tuto
     - Id: MixedLetters_alphabet_Intro
       Character: Keeper
       When: 
@@ -17605,7 +17605,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0646\u0638\u0631 \u0627\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u062D\u0631\u0648\u0641
         \u0627\u0644\u0645\u0628\u0639\u062B\u0631\u0629\u060C \u0627\u062C\u0645\u0639\u0647\u0627
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: MixedLetters_alphabet_Intro
     - Id: MixedLetters_alphabet_Tuto
       Character: Ibtissam
       When: 
@@ -17619,7 +17619,7 @@ MonoBehaviour:
         \u0627\u0633\u062A\u0639\u0645\u0644 \u0627\u0644\u0623\u0632\u0631\u0627\u0631
         \u0644\u062A\u062F\u0648\u064A\u0631\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u0650
         \u0628\u0634\u0643\u0644\u064D \u0635\u062D\u064A\u062D."
-      AudioFile: 
+      AudioFile: MixedLetters_alphabet_Tuto
     - Id: MixedLetters_spelling_Intro
       Character: Keeper
       When: 
@@ -17629,7 +17629,7 @@ MonoBehaviour:
         \u0627\u0644\u0645\u0628\u0639\u062B\u0631\u0629\u060C \u0633\u0627\u0639\u062F\u0647\u0627
         \u0644\u062A\u0635\u0628\u062D \u0643\u0644\u0645\u0629 \u0648\u0627\u062D\u062F\u0629
         \u0645\u0646 \u062C\u062F\u064A\u062F"
-      AudioFile: 
+      AudioFile: MixedLetters_spelling_Intro
     - Id: MixedLetters_spelling_Tuto
       Character: Ibtissam
       When: 
@@ -17642,7 +17642,7 @@ MonoBehaviour:
         \u0644\u062A\u062F\u0648\u064A\u0631\u0650 \u0627\u0644\u0623\u062D\u0631\u0641\u0650
         \u0628\u0634\u0643\u0644\u064D \u0635\u062D\u064A\u062D \u0643\u064A \u062A\u0643\u062A\u0645\u0644\u064E
         \u0627\u0644\u0643\u0644\u0645\u0629."
-      AudioFile: 
+      AudioFile: MixedLetters_spelling_Tuto
     - Id: ReadingGame_Intro
       Character: Keeper
       When: 
@@ -17651,7 +17651,7 @@ MonoBehaviour:
       Arabic: "\u0644\u063A\u0632 \u064A\u062E\u062A\u0628\u0649\u0621 \u0641\u064A
         \u0647\u0630\u0647 \u0627\u0644\u062C\u0645\u0644\u0629\u060C \u062D\u0627\u0648\u0644
         \u0627\u0643\u062A\u0634\u0627\u0641\u0647!"
-      AudioFile: 
+      AudioFile: ReadingGame_Intro
     - Id: ReadingGame_Tuto
       Character: Ibtissam
       When: 
@@ -17661,7 +17661,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0639\u062F\u0633\u0629 \u0628\u0625\u0635\u0628\u0639\u0643
         \u0648\u0627\u0642\u0631\u0623 \u0627\u0644\u062C\u0645\u0644\u0629 \u0628\u0633\u0631\u0639\u0629\u060C
         \u062B\u0645 \u0623\u062C\u0650\u0628 \u0628\u0634\u0643\u0644\u064D \u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: ReadingGame_Tuto
     - Id: Scanner_Intro
       Character: Keeper
       When: 
@@ -17670,7 +17670,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629 \u0641\u064A
         \u0635\u062F\u062F \u0627\u0644\u0633\u0641\u0631 \u0648 \u0647\u064A \u0628\u062D\u0627\u062C\u0629
         \u0627\u0644\u0649 \u062D\u0642\u0627\u0626\u0628\u0647\u0627"
-      AudioFile: 
+      AudioFile: Scanner_Intro
     - Id: Scanner_Tuto
       Character: Ibtissam
       When: 
@@ -17682,7 +17682,7 @@ MonoBehaviour:
         \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650\u0647\u0627
         \u0627\u0644\u062D\u0642\u064A\u0628\u0629\u064E \u0627\u0644\u062A\u064A
         \u0623\u062E\u0628\u0631\u062A\u0652\u0643 \u0639\u0646\u0647\u0627."
-      AudioFile: 
+      AudioFile: Scanner_Tuto
     - Id: Scanner_phrase_Intro
       Character: Keeper
       When: 
@@ -17691,7 +17691,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0641\u064A
         \u0635\u062F\u062F \u0627\u0644\u0633\u0641\u0631 \u0648 \u0647\u064A \u0628\u062D\u0627\u062C\u0629
         \u0627\u0644\u0649 \u062D\u0642\u0627\u0626\u0628\u0647\u0627"
-      AudioFile: 
+      AudioFile: Scanner_phrase_Intro
     - Id: Scanner_phrase_Tuto
       Character: Ibtissam
       When: 
@@ -17703,19 +17703,17 @@ MonoBehaviour:
         \u062A\u062A\u0643\u0644\u0645\u060C \u062B\u0645 \u0623\u0639\u0637\u0650
         \u0627\u0644\u062D\u0642\u064A\u0628\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629
         \u0644\u0643\u0644 \u0643\u0644\u0645\u0629."
-      AudioFile: 
+      AudioFile: Scanner_phrase_Tuto
     - Id: SickLetters_Intro
       Character: Keeper
       When: 
       Context: Introduction
-      English: Poor LETTER! Too many signs! Collect the wrong ones to reach the maximum
-        weight.
-      Arabic: "\u062D\u0631\u0648\u0641 \u0645\u0633\u0643\u064A\u0646\u0629! \u0639\u0644\u064A\u0647\u0627
-        \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u0627\u0634\u0627\u0631\u0627\u062A
-        \u0627\u0644\u062E\u0627\u0637\u0626\u0629!\u0627\u062C\u0645\u0639 \u0627\u0644\u0646\u0642\u0627\u0637
-        \u0648\u0627\u0644\u062D\u0631\u0643\u0627\u062A \u0627\u0644\u062E\u0627\u0637\u0626\u0629
-        \u0644\u062C\u0645\u0639 \u0627\u0643\u0628\u0631 \u0648\u0632\u0646 \u0645\u0645\u0643\u0646!"
-      AudioFile: 
+      English: Too many signs! Collect the wrong ones to reach the maximum weight.
+      Arabic: "\u0647\u0646\u0627\u0643 \u062D\u0631\u0643\u0627\u062A\u064C \u0643\u062B\u064A\u0631\u0629\u064C
+        \u062E\u0627\u0637\u0626\u0629! \u0627\u062C\u0645\u0639\u0652 \u0623\u0643\u0628\u0631\u064E
+        \u0648\u0632\u0646\u064D \u0645\u0645\u0643\u0646\u064D \u0645\u0646 \u062A\u0644\u0643
+        \u0627\u0644\u062D\u0631\u0643\u0627\u062A\u0650 \u0627\u0644\u062E\u0627\u0637\u0626\u0629!"
+      AudioFile: SickLetters_Intro
     - Id: SickLetters_Tuto
       Character: Ibtissam
       When: 
@@ -17725,7 +17723,7 @@ MonoBehaviour:
         \u0648 \u0627\u0644\u0646\u0642\u0627\u0637 \u0627\u0644\u062E\u0637\u0623
         \u062E\u0627\u0631\u062C \u0627\u0644\u062D\u0631\u0641 \u062B\u0645 \u0636\u0639\u0647\u0645
         \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u0632\u0647\u0631\u064A\u0629."
-      AudioFile: 
+      AudioFile: SickLetters_Tuto
     - Id: ThrowBalls_letters_Intro
       Character: Keeper
       When: 
@@ -17734,7 +17732,7 @@ MonoBehaviour:
       Arabic: "\u0647\u064A\u0627 \u0627\u0644\u0649 \u0627\u0644\u0646\u0642\u064A\u0641\u0629!
         \u0639\u0644\u064A\u0643 \u0627\u0635\u0627\u0628\u0629 \u0627\u0644\u0627\u0647\u062F\u0627\u0641
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: 
+      AudioFile: ThrowBalls_letters_Intro
     - Id: ThrowBalls_letters_Tuto
       Character: Ibtissam
       When: 
@@ -17746,7 +17744,7 @@ MonoBehaviour:
         \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
         \u062B\u0645 \u0635\u064E\u0648\u064E\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u062D\u0631\u0641
         \u0627\u0644\u0635\u062D\u064A\u062D."
-      AudioFile: 
+      AudioFile: ThrowBalls_letters_Tuto
     - Id: ThrowBalls_letterinword_Tuto
       Character: Ibtissam
       When: 
@@ -17758,7 +17756,7 @@ MonoBehaviour:
         \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
         \u062B\u0645 \u0635\u064E\u0648\u0651\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u0623\u062D\u0631\u0641
         \u0628\u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0635\u062D\u064A\u062D."
-      AudioFile: 
+      AudioFile: ThrowBalls_letterinword_Tuto
     - Id: ThrowBalls_words_Tuto
       Character: Ibtissam
       When: 
@@ -17770,7 +17768,7 @@ MonoBehaviour:
         \u0627\u0644\u0623\u0633\u0641\u0644 \u0644\u062A\u0634\u062F \u0627\u0644\u0645\u0642\u0644\u0627\u0639
         \u062B\u0645 \u0635\u064E\u0648\u064E\u0650\u0628 \u0639\u0644\u0649 \u0627\u0644\u0635\u0648\u0631\u0629
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: ThrowBalls_words_Tuto
     - Id: Tobogan_letters_Intro
       Character: Keeper
       When: 
@@ -17778,7 +17776,7 @@ MonoBehaviour:
       English: Let's see how tall you can build the tower!
       Arabic: "\u0644\u0646\u0631\u0649 \u0643\u0645 \u0633\u064A\u0628\u0644\u063A
         \u0637\u0648\u0644 \u0628\u0631\u062C \u0627\u0644\u062D\u0631\u0648\u0641!"
-      AudioFile: 
+      AudioFile: Tobogan_letters_Intro
     - Id: Tobogan_letters_Tuto
       Character: Ibtissam
       When: 
@@ -17787,7 +17785,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629 \u0646\u062D\u0648
         \u0627\u0644\u0623\u0646\u0628\u0648\u0628 \u0627\u0644\u0630\u064A \u064A\u062D\u062A\u0648\u064A
         \u0639\u0644\u0649 \u0623\u062D\u062F\u0650 \u0623\u062D\u0631\u0641\u0650\u0647\u0627"
-      AudioFile: 
+      AudioFile: Tobogan_letters_Tuto
     - Id: Tobogan_words_Tuto_Word
       Character: Ibtissam
       When: 
@@ -17796,7 +17794,7 @@ MonoBehaviour:
       Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629\u064E
         \u0646\u062D\u0648 \u0627\u0644\u0623\u0646\u0628\u0648\u0628 \u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: Tobogan_words_Tuto_Word
     - Id: Tobogan_words_Tuto_Article
       Character: Ibtissam
       When: 
@@ -17810,105 +17808,105 @@ MonoBehaviour:
         \u0627\u0644\u062A\u0639\u0631\u064A\u0641\". \u0647\u0644 \u062A\u064F\u0646\u0652\u0637\u064E\u0642\u064F
         \u0645\u062B\u0644\u0645\u0627 \u062A\u064F\u0646\u0652\u0637\u064E\u0642\u064F
         \u0641\u064A \"\u0627\u0644\u0634\u0651\u0645\u0633\" \u0623\u0645 \"\u0627\u0644\u0642\u0645\u0631\"\u061F"
-      AudioFile: 
+      AudioFile: Tobogan_words_Tuto_Article
     - Id: Tobogan_words_Tuto_Letter
       Character: 
       When: 
       Context: Tutorial (Moon & Sun consonants/words)
       English: Listen carefully, then drag the LETTER to the correct pipe
       Arabic: 
-      AudioFile: 
+      AudioFile: Tobogan_words_Tuto_Letter
     - Id: Keeper_Good_1
       Character: Keeper
       When: Any game, during gameplay
       Context: Keeper comments your good actions
       English: You are on fire!
       Arabic: "\u0627\u0646\u062A \u0648\u0644\u0639\u0627\u0646"
-      AudioFile: 
+      AudioFile: Keeper_Good_1
     - Id: Keeper_Good_2
       Character: Keeper
       When: 
       Context: 
       English: Continue like that!
       Arabic: "\u062A\u0627\u0628\u0639 \u0645\u0645\u062A\u0627\u0632"
-      AudioFile: 
+      AudioFile: Keeper_Good_2
     - Id: Keeper_Good_3
       Character: Keeper
       When: 
       Context: 
       English: Oh oh oh!
       Arabic: "\u0644\u0627\u0627\u0627\u0627\u0627\u0627"
-      AudioFile: 
+      AudioFile: Keeper_Good_3
     - Id: Keeper_Good_4
       Character: Keeper
       When: 
       Context: 
       English: Good!
       Arabic: "\u062C\u064A\u062F"
-      AudioFile: 
+      AudioFile: Keeper_Good_4
     - Id: Keeper_Good_5
       Character: Keeper
       When: 
       Context: 
       English: Well done!
       Arabic: "\u0623\u062D\u0633\u0646\u062A!"
-      AudioFile: 
+      AudioFile: Keeper_Good_5
     - Id: Keeper_Good_6
       Character: Keeper
       When: 
       Context: 
       English: You did it!
       Arabic: "\u0644\u0642\u062F \u0641\u0639\u0644\u062A\u0647\u0627"
-      AudioFile: 
+      AudioFile: Keeper_Good_6
     - Id: Keeper_Good_7
       Character: Keeper
       When: 
       Context: 
       English: Great!
       Arabic: "\u0639\u0638\u064A\u0645"
-      AudioFile: 
+      AudioFile: Keeper_Good_7
     - Id: Keeper_Good_8
       Character: Keeper
       When: 
       Context: 
       English: Brilliant!
       Arabic: "\u0644\u0627\u0645\u0639"
-      AudioFile: 
+      AudioFile: Keeper_Good_8
     - Id: Keeper_Good_9
       Character: Keeper
       When: 
       Context: 
       English: Yeah!
       Arabic: "\u0646\u0639\u0645\u0645\u0645\u0645"
-      AudioFile: 
+      AudioFile: Keeper_Good_9
     - Id: Keeper_Good_10
       Character: Keeper
       When: 
       Context: 
       English: Excellent!
       Arabic: "\u0645\u0645\u062A\u0627\u0632"
-      AudioFile: 
+      AudioFile: Keeper_Good_10
     - Id: Keeper_Good_11
       Character: Keeper
       When: 
       Context: 
       English: Wonderful!
       Arabic: "\u0631\u0627\u0626\u0639"
-      AudioFile: 
+      AudioFile: Keeper_Good_11
     - Id: Keeper_Good_12
       Character: Keeper
       When: 
       Context: 
       English: Amazing!
       Arabic: "\u0645\u0630\u0647\u0644"
-      AudioFile: 
+      AudioFile: Keeper_Good_12
     - Id: Keeper_Bad_1
       Character: Keeper
       When: 
       Context: Keeper comments your mistakes
       English: Too bad!
       Arabic: "\u0644\u0644\u0627\u0633\u0641"
-      AudioFile: 
+      AudioFile: Keeper_Bad_1
     - Id: Keeper_Bad_2
       Character: Keeper
       When: 
@@ -17917,21 +17915,21 @@ MonoBehaviour:
       Arabic: "\u0633\u0648\u0641 \u0646\u062D\u0642\u0642 \u0646\u062A\u0627\u0626\u062C
         \u0623\u0641\u0636\u0644 \u0641\u064A \u0627\u0644\u0645\u0631\u0629 \u0627\u0644\u0642\u0627\u062F\u0645\u0629
         !"
-      AudioFile: 
+      AudioFile: Keeper_Bad_2
     - Id: Keeper_Bad_3
       Character: Keeper
       When: 
       Context: 
       English: Oh no!
       Arabic: "\u0627\u0647 \u0643\u0644\u0627"
-      AudioFile: 
+      AudioFile: Keeper_Bad_3
     - Id: Keeper_Bad_4
       Character: Keeper
       When: 
       Context: 
       English: Come on!
       Arabic: "\u0647\u064A\u0627!"
-      AudioFile: 
+      AudioFile: Keeper_Bad_4
     - Id: Keeper_Bad_5
       Character: Keeper
       When: 
@@ -17939,56 +17937,78 @@ MonoBehaviour:
       English: Keep trying!
       Arabic: "\u0639\u0644\u064A\u0643 \u0627\u0644\u0627\u0633\u062A\u0645\u0631\u0627\u0631
         \u0628\u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629"
-      AudioFile: 
+      AudioFile: Keeper_Bad_5
     - Id: Keeper_Time_1
       Character: Keeper
       When: 
       Context: Running out of time
       English: Harry up!
       Arabic: "\u0627\u0633\u0631\u0639!"
-      AudioFile: 
+      AudioFile: Keeper_Time_1
     - Id: Keeper_Time_2
       Character: Keeper
       When: 
       Context: 
       English: Time is almost over!
       Arabic: "\u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A \u062A\u0642\u0631\u064A\u0628\u0627!"
-      AudioFile: 
+      AudioFile: Keeper_Time_2
     - Id: Keeper_Time_3
       Character: Keeper
       When: 
       Context: 
       English: Few seconds left...
       Arabic: "\u062B\u0648\u0627\u0646 \u0642\u0644\u064A\u0644\u0629 \u0628\u0627\u0642\u064A\u0629"
-      AudioFile: 
+      AudioFile: Keeper_Time_3
+    - Id: Keeper_TimeUp
+      Character: Keeper
+      When: 
+      Context: Time is Over
+      English: Time up!
+      Arabic: "\u0627\u0647, \u0627\u0646\u062A\u0647\u0649 \u0627\u0644\u0648\u0642\u062A!"
+      AudioFile: Keeper_TimeUp
     - Id: Keeper_Last_Attempt_1
       Character: Keeper
       When: 
       Context: Only one attempt/life left
       English: This is your last chance...
       Arabic: "\u0647\u0630\u0647 \u0641\u0631\u0635\u062A\u0643 \u0627\u0644\u0623\u062E\u064A\u0631\u0629"
-      AudioFile: 
+      AudioFile: Keeper_Last_Attempt_1
     - Id: Keeper_Last_Attempt_2
       Character: Keeper
       When: 
       Context: 
       English: You still have a chance
       Arabic: "\u0645\u0627 \u0632\u0627\u0644 \u0644\u062F\u064A\u0643 \u0641\u0631\u0635\u0629"
-      AudioFile: 
+      AudioFile: Keeper_Last_Attempt_2
     - Id: Keeper_Last_Attempt_3
       Character: Keeper
       When: 
       Context: 
       English: One last attempt...
       Arabic: "\u0645\u062D\u0627\u0648\u0644\u0629 \u0627\u062E\u064A\u0631\u0629"
-      AudioFile: 
+      AudioFile: Keeper_Last_Attempt_3
+    - Id: Keeper_AttempsOver
+      Character: Keeper
+      When: 
+      Context: No more attemps
+      English: you have no more chances!
+      Arabic: "\u0644\u064A\u0633 \u0644\u062F\u064A\u0643 \u0641\u0631\u0635\u064C
+        \u0623\u062E\u0631\u0649\u061F"
+      AudioFile: Keeper_AttempsOver
+    - Id: Keeper_GetReady
+      Character: Keeper
+      When: 
+      Context: At the begining of a round
+      English: Get ready!
+      Arabic: "\u0643\u0646 \u062C\u0627\u0647\u0632\u0627\u064B!"
+      AudioFile: Keeper_GetReady
     - Id: Keeper_Remember
       Character: Ibtissam
       When: After a mistake, to help the player
       Context: Tutorial (used to repeat the Tutorial sentence)
       English: 'Remember: ...'
       Arabic: "\u062A\u064E\u0630\u064E\u0643\u0651\u064E\u0631..."
-      AudioFile: 
+      AudioFile: Keeper_Remember
     - Id: Assessment_Start_1
       Character: Keeper
       When: At start
@@ -17996,7 +18016,7 @@ MonoBehaviour:
       English: It's time to prove what you learned so far!
       Arabic: "\u062D\u0627\u0646 \u0627\u0644\u0648\u0642\u062A \u0644\u062A\u062B\u0628\u062A
         \u0645\u0627 \u062A\u0639\u0644\u0645\u062A\u0647 \u062D\u062A\u0649 \u0627\u0644\u0622\u0646!"
-      AudioFile: 
+      AudioFile: Assessment_Start_1
     - Id: Assessment_Start_2
       Character: Keeper
       When: 
@@ -18004,7 +18024,7 @@ MonoBehaviour:
       English: Let's see if you paid attention lately...
       Arabic: "\u0644\u0646\u0631\u0649 \u0627\u0630\u0627 \u0643\u0646\u062A \u0645\u0631\u0643\u0632\u0627\u064E\u064E
         \u0641\u064A \u0627\u0644\u0627\u0648\u0646\u0629 \u0627\u0644\u0627\u062E\u064A\u0631\u0629"
-      AudioFile: 
+      AudioFile: Assessment_Start_2
     - Id: Assessment_Start_3
       Character: Keeper
       When: 
@@ -18012,7 +18032,7 @@ MonoBehaviour:
       English: Are you ready to show what you learned?
       Arabic: "\u0647\u0630\u0627 \u0627\u0646\u062A \u062C\u0627\u0647\u0632 \u0644\u062A\u0628\u0631\u0647\u0646
         \u0639\u0646 \u0645\u0647\u0627\u0631\u062A\u0643\u061F"
-      AudioFile: 
+      AudioFile: Assessment_Start_3
     - Id: Assessment_Upset_1
       Character: Keeper
       When: Antura enters and block interactions
@@ -18021,7 +18041,7 @@ MonoBehaviour:
       Arabic: "\u0645\u0627\u0630\u0627\u061F \u0639\u0646\u062A\u0648\u0631\u0629!
         \u0627\u0644\u0648\u0642\u062A \u063A\u064A\u0631 \u0645\u0646\u0627\u0633\u0628
         \u0644\u0644\u0639\u0628 \u0627\u0644\u0627\u0646!"
-      AudioFile: 
+      AudioFile: Assessment_Upset_1
     - Id: Assessment_Upset_2
       Character: Keeper
       When: 
@@ -18030,7 +18050,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0647 \u0643\u0644\u0627! \u0639\u0646\u062A\u0648\u0631\u0629
         \u0627\u0646\u062A \u062F\u0627\u0626\u0645\u0627\u064E\u064E \u0641\u064A
         \u0627\u0644\u0648\u0633\u0637"
-      AudioFile: 
+      AudioFile: Assessment_Upset_2
     - Id: Assessment_Upset_3
       Character: Keeper
       When: 
@@ -18039,7 +18059,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0646\u062A \u0645\u0646 \u062C\u062F\u064A\u062F! \u0644\u0627
         \u0627\u062F\u0631\u064A \u0645\u0627 \u0627\u0644\u0639\u0645\u0644 \u0645\u0639
         \u0647\u0630\u0627 \u0627\u0644\u0643\u0644\u0628!"
-      AudioFile: 
+      AudioFile: Assessment_Upset_3
     - Id: Assessment_Push_Dog_1
       Character: Keeper
       When: 
@@ -18049,7 +18069,7 @@ MonoBehaviour:
       English: Please get rid of Antura so we can start...
       Arabic: "\u0627\u0631\u062C\u0648 \u0645\u0646 \u0627\u062D\u062F \u0628\u0639\u0627\u062F
         \u0639\u0646\u062A\u0648\u0631\u0629, \u0639\u0644\u064A\u0646\u0627 \u0627\u0644\u0628\u062F\u0621!"
-      AudioFile: 
+      AudioFile: Assessment_Push_Dog_1
     - Id: Assessment_Push_Dog_2
       Character: Keeper
       When: 
@@ -18058,7 +18078,7 @@ MonoBehaviour:
       Arabic: "\u0644\u064A\u0633 \u0628\u0627\u0645\u0643\u0627\u0646\u0647 \u0627\u0644\u0628\u0642\u0627\u0621
         \u0647\u0646\u0627!\u0627\u062F\u0641\u0639 \u0628\u0647 \u0627\u0644\u0649
         \u0627\u0644\u062E\u0627\u0631\u062C"
-      AudioFile: 
+      AudioFile: Assessment_Push_Dog_2
     - Id: Assessment_Push_Dog_3
       Character: Keeper
       When: 
@@ -18066,7 +18086,7 @@ MonoBehaviour:
       English: We will start as soon as Antura leaves
       Arabic: "\u0633\u0648\u0641 \u0646\u0628\u062F\u0623 \u062D\u0627\u0644 \u062E\u0631\u0648\u062C
         \u0639\u0646\u062A\u0648\u0631\u0629"
-      AudioFile: 
+      AudioFile: Assessment_Push_Dog_3
     - Id: Assessment_Dog_Gone_1
       Character: Keeper
       When: 
@@ -18074,7 +18094,7 @@ MonoBehaviour:
       English: Well done! Now you can start...
       Arabic: "\u0645\u0645\u062A\u0627\u0632! \u0628\u0627\u0645\u0643\u0627\u0646\u0646\u0627
         \u0627\u0644\u0645\u0628\u0627\u0634\u0631\u0629 \u0627\u0644\u0627\u0646"
-      AudioFile: 
+      AudioFile: Assessment_Dog_Gone_1
     - Id: Assessment_Dog_Gone_2
       Character: Keeper
       When: 
@@ -18082,7 +18102,7 @@ MonoBehaviour:
       English: Finally! It's time to start.
       Arabic: "\u0627\u062E\u064A\u0631\u0627\u064E\u064E! \u062D\u0627\u0646 \u0648\u0642\u062A
         \u0627\u0644\u0628\u062F\u0621"
-      AudioFile: 
+      AudioFile: Assessment_Dog_Gone_2
     - Id: Assessment_Dog_Gone_3
       Character: Keeper
       When: 
@@ -18090,14 +18110,14 @@ MonoBehaviour:
       English: Bye bye Antura! Let's go...
       Arabic: "\u0627\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621 \u0639\u0646\u062A\u0648\u0631\u0629!
         \u0647\u064A\u0627 \u0628\u0646\u0627"
-      AudioFile: 
+      AudioFile: Assessment_Dog_Gone_3
     - Id: Assessment_Complete_1
       Character: Keeper
       When: Once you complete an assessment
       Context: Assessment completed successfully
       English: You did it!
       Arabic: "\u0641\u0639\u0644\u062A\u0647\u0627!"
-      AudioFile: 
+      AudioFile: Assessment_Complete_1
     - Id: Assessment_Complete_2
       Character: Keeper
       When: 
@@ -18105,14 +18125,14 @@ MonoBehaviour:
       English: I know you could do it!
       Arabic: "\u0643\u0646\u062A \u0648\u0627\u062B\u0642\u0627\u064E\u064E \u0645\u0646
         \u0646\u062C\u0627\u062D\u0643!"
-      AudioFile: 
+      AudioFile: Assessment_Complete_2
     - Id: Assessment_Complete_3
       Character: Keeper
       When: 
       Context: 
       English: Yes! Well done!
       Arabic: "\u0646\u0639\u0645! \u0645\u0645\u062A\u0627\u0632"
-      AudioFile: 
+      AudioFile: Assessment_Complete_3
     - Id: Assessment_Wrong_1
       Character: Keeper
       When: 
@@ -18120,7 +18140,7 @@ MonoBehaviour:
       English: Oh oh... let's try again...
       Arabic: "\u0627\u0647\u0647\u0647! \u0644\u0646\u062D\u0627\u0648\u0644 \u0645\u0646
         \u062C\u062F\u064A\u062F"
-      AudioFile: 
+      AudioFile: Assessment_Wrong_1
     - Id: Assessment_Wrong_2
       Character: Keeper
       When: 
@@ -18128,7 +18148,7 @@ MonoBehaviour:
       English: Mmm... now you'll do better
       Arabic: "\u0645\u0645\u0645, \u0633\u062A\u0643\u0648\u0646 \u0646\u062A\u064A\u062C\u062A\u0643
         \u0627\u0641\u0636\u0644"
-      AudioFile: 
+      AudioFile: Assessment_Wrong_2
     - Id: Assessment_Wrong_3
       Character: Keeper
       When: 
@@ -18136,7 +18156,7 @@ MonoBehaviour:
       English: Not yet... one more time...
       Arabic: "\u0644\u064A\u0633 \u0643\u0627\u0641\u064A\u0627\u064E\u064E, \u0644\u0646\u0639\u064A\u062F
         \u0645\u0631\u0629 \u0627\u062E\u0631\u0649"
-      AudioFile: 
+      AudioFile: Assessment_Wrong_3
     - Id: Assessment_Select_Letter_Listen
       Character: Ibtissam
       When: Tutorial for each "type" of assessment
@@ -18145,7 +18165,7 @@ MonoBehaviour:
       Arabic: "\u0623\u0646\u0635\u062A\u0652 \u0628\u0625\u0645\u0639\u0627\u0646\u064D
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D"
-      AudioFile: 
+      AudioFile: Assessment_Select_Letter_Listen
     - Id: Assessment_Select_Words
       Character: Ibtissam
       When: 
@@ -18154,7 +18174,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0630\u0627 \u0627\u0644\u062D\u0631\u0641\u064F \u064A\u0646\u062A\u0645\u064A
         \u0625\u0644\u0649 \u0628\u0639\u0636\u0650 \u0627\u0644\u0643\u0644\u0645\u0627\u062A\u0650
         \u0623\u062F\u0646\u0627\u0647. \u0627\u0633\u062D\u0628\u0647\u0627 \u062C\u0645\u064A\u0639\u0627\u064B."
-      AudioFile: 
+      AudioFile: Assessment_Select_Words
     - Id: Assessment_Select_Letter_Image
       Character: Ibtissam
       When: 
@@ -18163,7 +18183,7 @@ MonoBehaviour:
       Arabic: "\u0647\u0630\u0647 \u0627\u0644\u0643\u0644\u0645\u0629\u064F \u064A\u0646\u0642\u064F\u0635\u064F\u0647\u0627
         \u062D\u0631\u0641. \u0627\u0633\u062D\u0628 \u0627\u0644\u062D\u0631\u0641\u064E
         \u0627\u0644\u0635\u062D\u064A\u062D."
-      AudioFile: 
+      AudioFile: Assessment_Select_Letter_Image
     - Id: Assessment_Match_Letters_Words
       Character: Ibtissam
       When: 
@@ -18174,7 +18194,7 @@ MonoBehaviour:
         \u0625\u0644\u0649 \u062A\u0644\u0643 \u0627\u0644\u0643\u0644\u0645\u0627\u062A.
         \u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u062D\u0631\u0641\u064D
         \u0646\u062D\u0648\u064E \u0627\u0644\u0643\u0644\u0645\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: Assessment_Match_Letters_Words
     - Id: Assessment_Order_Letters
       Character: Ibtissam
       When: 
@@ -18184,7 +18204,7 @@ MonoBehaviour:
         \u0628\u0627\u0644\u0634\u0643\u0644 \u0627\u0644\u0635\u062D\u064A\u062D
         \u0644\u062A\u064F\u0634\u064E\u0643\u0651\u0650\u0644\u064E \u0647\u0630\u0647
         \u0627\u0644\u0643\u0644\u0645\u0629"
-      AudioFile: 
+      AudioFile: Assessment_Order_Letters
     - Id: Assessment_Classify_Letters
       Character: Ibtissam
       When: 
@@ -18194,7 +18214,7 @@ MonoBehaviour:
         \u0648\u0623\u062E\u0631\u0649 \u0633\u0627\u0643\u0646\u0629. \u0627\u0633\u062D\u0628
         \u0643\u0644 \u062D\u0631\u0641 \u0625\u0644\u0649 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: Assessment_Classify_Letters
     - Id: Assessment_Select_Word_Listen
       Character: Ibtissam
       When: 
@@ -18203,7 +18223,7 @@ MonoBehaviour:
       Arabic: "\u0623\u0646\u0635\u0650\u062A \u0628\u0625\u0645\u0639\u0627\u0646
         \u062B\u0645 \u0627\u0633\u062D\u0628\u0650 \u0627\u0644\u0643\u0644\u0645\u0629
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: Assessment_Select_Word_Listen
     - Id: Assessment_Match_Word_Image
       Character: Ibtissam
       When: 
@@ -18211,7 +18231,7 @@ MonoBehaviour:
       English: Drag each Word to the correct Image.
       Arabic: "\u0627\u0633\u062D\u0628 \u0643\u0644\u0651\u064E \u0643\u0644\u0645\u0629\u064D
         \u0646\u062D\u0648 \u0627\u0644\u0635\u0648\u0631\u0629\u0650 \u0627\u0644\u0635\u062D\u064A\u062D\u0629"
-      AudioFile: 
+      AudioFile: Assessment_Match_Word_Image
     - Id: Assessment_Classify_Word_Article
       Character: Ibtissam
       When: 
@@ -18223,7 +18243,7 @@ MonoBehaviour:
         \u0627\u0644\u062A\u0639\u0631\u064A\u0641. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
         \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: Assessment_Classify_Word_Article
     - Id: Assessment_Classify_Word_Nouns
       Character: Ibtissam
       When: 
@@ -18234,7 +18254,7 @@ MonoBehaviour:
         \u0623\u0648 \u062C\u0645\u0639\u0627\u064B. \u0627\u0633\u062D\u0628\u0652\u0647\u0627
         \u0646\u062D\u0648\u064E \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: Assessment_Classify_Word_Nouns
     - Id: Assessment_Classify_Letters_Article
       Character: Ibtissam
       When: 
@@ -18244,7 +18264,7 @@ MonoBehaviour:
         \u0642\u0645\u0631\u064A\u0627\u064B \u0623\u0648 \u0634\u0645\u0633\u064A\u0627\u064B.
         \u0627\u0633\u062D\u0628\u0652\u0647 \u0646\u062D\u0648 \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629\u0650
         \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: Assessment_Classify_Letters_Article
     - Id: Assessment_Classify_Words_Article
       Character: Ibtissam
       When: 
@@ -18258,7 +18278,7 @@ MonoBehaviour:
         \"\u0627\u0644\u0642\u0645\u0631\" \u0623\u0648 \"\u0627\u0644\u0634\u0645\u0633\".
         \u0627\u0633\u062D\u0628 \u0627\u0644\u0643\u0644\u0645\u0629 \u0646\u062D\u0648
         \u0627\u0644\u0645\u062C\u0645\u0648\u0639\u0629 \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: Assessment_Classify_Words_Article
     - Id: Assessment_Match_Sentences
       Character: Ibtissam
       When: 
@@ -18268,7 +18288,7 @@ MonoBehaviour:
       Arabic: "\u0627\u0633\u062D\u0628\u0652 \u0643\u0644\u0651\u064E \u062C\u0645\u0644\u0629\u064D
         \u0646\u062D\u0648\u064E \u0627\u0644\u062C\u0645\u0644\u0629\u0650 \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u0629\u0650
         \u0644\u0647\u0627."
-      AudioFile: 
+      AudioFile: Assessment_Match_Sentences
     - Id: Book_Intro
       Character: Keeper
       When: First time you enter
@@ -18280,49 +18300,49 @@ MonoBehaviour:
         \u0639\u0644\u0649 \u0643\u0644\u0651 \u0645\u0627 \u062A\u0639\u0644\u0645\u062A\u0647
         \u0648 \u0645\u0627 \u0633\u062A\u062A\u0639\u0644\u0645\u0647 \u0641\u064A
         \u0627\u0644\u0645\u0631\u0627\u062D\u0644 \u0627\u0644\u0645\u0642\u0628\u0644\u0629!"
-      AudioFile: 
+      AudioFile: Book_Intro
     - Id: Book_Letters
       Character: Ibtissam
       When: when you select a chapter
       Context: when you select a chapter
       English: Letters
       Arabic: "\u062D\u0631\u0648\u0641"
-      AudioFile: 
+      AudioFile: Book_Letters
     - Id: Book_Words
       Character: Ibtissam
       When: 
       Context: 
       English: Words
       Arabic: "\u0643\u0644\u0645\u0627\u062A"
-      AudioFile: 
+      AudioFile: Book_Words
     - Id: Book_Phrases
       Character: Ibtissam
       When: 
       Context: 
       English: Phrases
       Arabic: "\u062C\u0645\u0644"
-      AudioFile: 
+      AudioFile: Book_Phrases
     - Id: Book_Games
       Character: Ibtissam
       When: 
       Context: 
       English: Games
       Arabic: "\u0623\u0644\u0639\u0627\u0628"
-      AudioFile: 
+      AudioFile: Book_Games
     - Id: Book_Rewards
       Character: Ibtissam
       When: 
       Context: 
       English: Gifts
       Arabic: "\u0647\u062F\u0627\u064A\u0627"
-      AudioFile: 
+      AudioFile: Book_Rewards
     - Id: HideSeek_Words_Title
       Character: Keeper
       When: At start
       Context: Title
       English: Hidden Words!
       Arabic: "\u0627\u0644\u0643\u0644\u0645\u0627\u062A\u064F \u0627\u0644\u062E\u0641\u064A\u0629!"
-      AudioFile: 
+      AudioFile: HideSeek_Words_Title
     - Id: HideSeek_Words_Intro
       Character: Keeper
       When: At start
@@ -18330,7 +18350,7 @@ MonoBehaviour:
       English: The Words hide and you have to find them!
       Arabic: "\u0639\u0644\u064A\u0643 \u0627\u064A\u062C\u0627\u062F \u0627\u0644\u0643\u0644\u0645\u0627\u062A
         \u0627\u0644\u0645\u062E\u062A\u0628\u0626\u0629"
-      AudioFile: 
+      AudioFile: HideSeek_Words_Intro
     - Id: HideSeek_Words_Tuto
       Character: Ibtissam
       When: 
@@ -18341,21 +18361,231 @@ MonoBehaviour:
         \u062B\u0645 \u0627\u0644\u0645\u0633 \u0634\u062C\u064A\u0631\u0629 \u0644\u062A\u062E\u0631\u062C\u064E
         \u0645\u0646\u0647\u0627 \u0643\u0644\u0645\u0629\u060C \u062B\u0645 \u0627\u0644\u0645\u0633
         \u0627\u0644\u0643\u0644\u0645\u0629\u064E \u0627\u0644\u0635\u062D\u064A\u062D\u0629."
-      AudioFile: 
+      AudioFile: HideSeek_Words_Tuto
     - Id: Diacritic_Song_Title
       Character: Keeper
       When: At start
       Context: Title
       English: Diacritic Song
       Arabic: "\u0623\u063A\u0646\u064A\u0629\u064F \u0627\u0644\u062D\u0631\u0643\u0627\u062A"
-      AudioFile: 
+      AudioFile: Diacritic_Song_Title
     - Id: Diacritic_Song_Intro
       Character: Keeper
       When: 
       Context: Introduction
       English: It's time to sing all the letters
       Arabic: "\u062D\u0627\u0646 \u0648\u0642\u062A \u063A\u0646\u0627\u0621 \u0627\u0644\u062D\u0631\u0648\u0641"
-      AudioFile: 
+      AudioFile: Diacritic_Song_Intro
+    - Id: UI_All
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_All
+    - Id: UI_Letters
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Letters
+    - Id: UI_Words
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Words
+    - Id: UI_Phrases
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Phrases
+    - Id: UI_Games
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Games
+    - Id: UI_Symbols
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Symbols
+    - Id: UI_Combinations
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Combinations
+    - Id: UI_Special
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Special
+    - Id: UI_Noun
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Noun
+    - Id: UI_Preposition
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Preposition
+    - Id: UI_Verb
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Verb
+    - Id: UI_Animals
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Animals
+    - Id: UI_Body Parts
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Body Parts
+    - Id: UI_Clothes
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Clothes
+    - Id: UI_Colors
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Colors
+    - Id: UI_Directions
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Directions
+    - Id: UI_Family Members
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Family Members
+    - Id: UI_Feelings
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Feelings
+    - Id: UI_Food
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Food
+    - Id: UI_Furniture
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Furniture
+    - Id: UI_Jobs
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Jobs
+    - Id: UI_Nature
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Nature
+    - Id: UI_Numbers
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Numbers
+    - Id: UI_People
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_People
+    - Id: UI_Places
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Places
+    - Id: UI_Positions
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Positions
+    - Id: UI_Sports
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Sports
+    - Id: UI_Things
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Things
+    - Id: UI_Time
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Time
+    - Id: UI_Vehicles
+      Character: UI
+      When: 
+      Context: 
+      English: 
+      Arabic: 
+      AudioFile: UI_Vehicles
   phraseTable:
     innerList:
     - Id: goodmorning_Q
