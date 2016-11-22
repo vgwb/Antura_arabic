@@ -91,8 +91,6 @@ namespace EA4S.ThrowBalls
                     landed = true;
 
                     animator.OnJumpEnded();
-
-                    Debug.Log("Landed");
                 }
 
                 else if (velocity.y < 0 && !reachedJumpMaxNotified)
@@ -110,8 +108,7 @@ namespace EA4S.ThrowBalls
                 velocity.y = JUMP_INIT_VELOCITY;
 
                 jumped = true;
-
-                Debug.Log("Jump started");
+                
                 animator.OnJumpStart();
             }
 
@@ -138,7 +135,7 @@ namespace EA4S.ThrowBalls
             if (collision.gameObject.tag == Constants.TAG_POKEBALL && !ballGrabbed)
             {
                 animator.OnJumpGrab();
-                BallController.instance.OnIntercepted(false);
+                BallController.instance.OnIntercepted();
                 ballOffset = new Vector3(Mathf.Sign(velocity.x) * 7.56f, 2f, 0f);
                 ballGrabbed = true;
             }

@@ -184,8 +184,8 @@ namespace EA4S.ThrowBalls
 
                 else
                 {
-                    letterObjectView.DoChestStop();
-                    BallController.instance.OnIntercepted(true);
+                    letterObjectView.DoTwirl(null);
+                    BallController.instance.OnRebounded();
                 }
             }
 
