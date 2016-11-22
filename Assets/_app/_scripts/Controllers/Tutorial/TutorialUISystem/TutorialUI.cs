@@ -46,8 +46,10 @@ namespace EA4S
         void Awake()
         {
             I = this;
-            Cam = Camera.main;
-            CamT = Cam.transform;
+            if (Cam == null) {
+                Cam = Camera.main;
+                CamT = Cam.transform;
+            }
         }
 
         void OnDestroy()
@@ -74,6 +76,13 @@ namespace EA4S
                 I.Finger.Hide(true);
                 I.Pools.DespawnAll();
             }
+        }
+
+        public static void SetCamera(Camera _camera)
+        {
+            Init();
+            I.Cam = _camera;
+            I.CamT = I.Cam.transform;
         }
 
         /// <summary>

@@ -4492,6 +4492,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 0
+  soundBasePitch: 1
+  soundBaseVolume: 1
+  soundTurnOnSpeed: 3
+  soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -4569,12 +4574,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 1512837474}
-  answerImage: {fileID: 0}
+  answerWordDrawings: {fileID: 0}
   aspirationParticle: {fileID: 627933730}
   graphics: {fileID: 116242134}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
   signCollider: {fileID: 0}
+  tutorialPoint: {fileID: 0}
   active: 0
   disappearHeight: 6.5
   easeCurve:
@@ -5054,12 +5060,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 875939104}
-  answerImage: {fileID: 0}
+  answerWordDrawings: {fileID: 0}
   aspirationParticle: {fileID: 2092406184}
   graphics: {fileID: 1813874826}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
   signCollider: {fileID: 0}
+  tutorialPoint: {fileID: 0}
   active: 0
   disappearHeight: 6.5
   easeCurve:
@@ -8463,6 +8470,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 0
+  soundBasePitch: 1
+  soundBaseVolume: 1
+  soundTurnOnSpeed: 3
+  soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -10796,7 +10808,7 @@ Prefab:
     - target: {fileID: 224000012067009518, guid: 5ec0a834b4b8f134fa9da4a209052d30,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011571890058, guid: 5ec0a834b4b8f134fa9da4a209052d30,
         type: 2}
@@ -10866,7 +10878,7 @@ Prefab:
     - target: {fileID: 224000012618172698, guid: 5ec0a834b4b8f134fa9da4a209052d30,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 82
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ec0a834b4b8f134fa9da4a209052d30, type: 2}
@@ -17950,12 +17962,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 1372980935}
-  answerImage: {fileID: 0}
+  answerWordDrawings: {fileID: 0}
   aspirationParticle: {fileID: 1381338530}
   graphics: {fileID: 2142969419}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
   signCollider: {fileID: 0}
+  tutorialPoint: {fileID: 0}
   active: 0
   disappearHeight: 6.5
   easeCurve:
@@ -18113,6 +18126,50 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000013395359808, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000012712186240, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000012398533696, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000012197009010, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000011435691808, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000010892450350, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000010805103600, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 33000010654814062, guid: 83dc25c8719051e4184214377d8dd1bf,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010381400336, guid: 83dc25c8719051e4184214377d8dd1bf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83dc25c8719051e4184214377d8dd1bf, type: 2}
@@ -21117,6 +21174,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trembling: 1
+  playSound: 0
+  soundBasePitch: 1
+  soundBaseVolume: 1
+  soundTurnOnSpeed: 3
+  soundTurnOffSpeed: 3
   tremblingSpeedX: 80
   tremblingSpeedY: 60
   tremblingSpeedZ: 50
@@ -24776,12 +24838,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   answerText: {fileID: 1847990435}
-  answerImage: {fileID: 0}
+  answerWordDrawings: {fileID: 0}
   aspirationParticle: {fileID: 2076752266}
   graphics: {fileID: 539116933}
   trembling: {fileID: 0}
   signTransform: {fileID: 0}
   signCollider: {fileID: 0}
+  tutorialPoint: {fileID: 0}
   active: 0
   disappearHeight: 6.5
   easeCurve:
