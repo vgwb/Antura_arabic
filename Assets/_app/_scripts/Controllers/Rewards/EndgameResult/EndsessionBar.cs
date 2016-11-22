@@ -70,6 +70,7 @@ namespace EA4S
             for (int i = 0; i < Achievements.Length; ++i) {
                 Achievements[i].Achieve(i == 3 && Mathf.Approximately(toPerc, 1) || toPerc >= achievementsPercent[i]);
             }
+            AudioManager.I.PlaySfx(EndsessionResultPanel.I.SfxIncreaseBar);
         }
 
         #endregion

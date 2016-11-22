@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace EA4S.Assessment
 {
     public class AssessmentResultState : IGameState
@@ -17,6 +15,9 @@ namespace EA4S.Assessment
         {
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
             assessmentGame.Context.GetAudioManager().PlaySound( Sfx.TickAndWin);
+            AssessmentResultAntura.Instance .StartAnimation(
+                () => ExitState()
+                );
         }
 
         bool exited = false;
@@ -31,10 +32,7 @@ namespace EA4S.Assessment
 
         public void Update( float delta)
         {
-            timer -= delta;
-
-            if (timer < 0)
-                ExitState();
+            TimeEngine.Instance.Update( delta);
         }
 
         public void UpdatePhysics( float delta)
