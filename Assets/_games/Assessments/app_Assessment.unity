@@ -355,11 +355,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecfa18a3174ca09468b636bbf1b1b44a, type: 2}
   m_IsPrefabParent: 0
---- !u!198 &632908429 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198000013845404094, guid: ecfa18a3174ca09468b636bbf1b1b44a,
-    type: 2}
-  m_PrefabInternal: {fileID: 85615015}
 --- !u!1 &907652925
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,18 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f78e5e5346585e49af55f5b4ceca741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antura: {fileID: 985900502}
-  sleepingParticles: {fileID: 632908429}
-  anturaDestination: {fileID: 1548002763}
-  Treshold: 0.9
-  GainPerClick: 0.89
-  soundOnClick: 39
---- !u!114 &985900502 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000013605779992, guid: b1eab1b3eca314d40b04cff3efb77336,
-    type: 2}
-  m_PrefabInternal: {fileID: 989948732}
-  m_Script: {fileID: 11500000, guid: 8886d6a27b893af4cada5d6bfcc4342f, type: 3}
 --- !u!65 &985900503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -860,40 +843,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1337056441
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 114000013822948356, guid: 998c7211c33aab649a372bdc784b9b87,
-        type: 2}
-      propertyPath: LivingLetterPrefab
-      value: 
-      objectReference: {fileID: 12606178}
-    - target: {fileID: 4000013022712494, guid: 998c7211c33aab649a372bdc784b9b87, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010710646388, guid: 998c7211c33aab649a372bdc784b9b87,
-        type: 2}
-      propertyPath: assessmentCode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010710646388, guid: 998c7211c33aab649a372bdc784b9b87,
-        type: 2}
-      propertyPath: emoticons
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010710646388, guid: 998c7211c33aab649a372bdc784b9b87,
-        type: 2}
-      propertyPath: antura
-      value: 
-      objectReference: {fileID: 985900501}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 998c7211c33aab649a372bdc784b9b87, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1385420896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +952,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1522942596
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114000013822948356, guid: 998c7211c33aab649a372bdc784b9b87,
+        type: 2}
+      propertyPath: LivingLetterPrefab
+      value: 
+      objectReference: {fileID: 12606178}
+    - target: {fileID: 4000013022712494, guid: 998c7211c33aab649a372bdc784b9b87, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 998c7211c33aab649a372bdc784b9b87, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1548002762
 GameObject:
   m_ObjectHideFlags: 0

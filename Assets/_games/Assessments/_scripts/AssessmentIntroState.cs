@@ -22,8 +22,7 @@ namespace EA4S.Assessment
             // A GameObject with TutorialHelper component is needed
             Coroutine.Start( TutorialClicks());
 
-            anturaController  = GameObject.Instantiate( assessmentGame.antura) as AssessmentAnturaController;
-            anturaController.gameObject.SetActive(true);
+            anturaController = AnturaFactory.Instance.SleepingAntura();
 
             anturaController.SetFinishedAnimationCallback( () => SetNextState());
         }

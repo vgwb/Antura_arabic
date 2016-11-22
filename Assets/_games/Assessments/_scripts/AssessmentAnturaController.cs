@@ -7,7 +7,7 @@ namespace EA4S.Assessment
 {
     public class AssessmentAnturaController : MonoBehaviour, ITickable
     {
-        public AnturaAnimationController antura;
+        public AnturaAnimationController antura { get; set; }
 
         static AssessmentAnturaController instance;
         public static AssessmentAnturaController Instance
@@ -23,7 +23,6 @@ namespace EA4S.Assessment
         void Awake()
         {
             instance = this;
-            antura.State = AnturaAnimationStates.sleeping;
             currentState = 0;
             audioManager = AssessmentConfiguration.Instance.Context.GetAudioManager();
         }
@@ -31,6 +30,7 @@ namespace EA4S.Assessment
         void Start()
         {
             TimeEngine.AddTickable( this);
+            antura.State = AnturaAnimationStates.sleeping;
             Coroutine.Start( CheckStateAndSetAnimation());
         }
 
@@ -53,21 +53,17 @@ namespace EA4S.Assessment
                 audioManager.PlaySound( soundOnClick);
         }
 
-        [Header("Prefabs")]
-        public ParticleSystem sleepingParticles;
-        public Transform anturaDestination;
+        public ParticleSystem sleepingParticles { get; set; }
+        public Transform anturaDestination { get; set; }
 
-        [Header("Tutorial Configuration")]
-        public float Treshold = 0.61f;
-        public float GainPerClick = 0.3f;
-        public Sfx soundOnClick;
+        public readonly float Treshold = 0.9f;
+        public readonly float GainPerClick = 0.89f;
+        public readonly Sfx soundOnClick = Sfx.ThrowObj;
 
         private float currentTreshold = 0;
         private float currentMaxTreshold = 1f;
         private int currentState;
         private int stateDelta;
-
-        
 
         void OnDestroy()
         {
