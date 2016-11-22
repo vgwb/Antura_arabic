@@ -13,6 +13,7 @@ namespace EA4S.ReadingGame
         public GameObject circleBox;
         public ReadingGameAntura antura;
         public ReadingRadialWidget radialWidget;
+        public Camera uiCamera;
 
         public int CurrentScore { get; private set; }
         public int CurrentQuestionNumber { get; set; }
