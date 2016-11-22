@@ -30,9 +30,9 @@
 		{
 			// Default values
 			Context = new SampleGameContext();
-			Letters = new SampleLetterProvider ();
+			Letters = new TakeMeHomeLettersProvider();
 
-            Difficulty = 0.5f;
+            Difficulty = 0;
 		}
 
 		#region external configuration call
@@ -45,11 +45,8 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-
-            int nPacks = 10;
-            int nCorrect = 5;
-
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect);
+            
+            builder = new RandomLettersQuestionBuilder(7,7);
 
             return builder;
         }
