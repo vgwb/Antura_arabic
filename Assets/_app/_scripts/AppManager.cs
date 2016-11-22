@@ -21,7 +21,6 @@ namespace EA4S
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
         public Log.AppLogManager LogManager;
-
         #region Init
 
         public string IExist()
@@ -40,15 +39,12 @@ namespace EA4S
                 Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
-            
-        }
 
+        }
 
         protected override void GameSetup()
         {
             base.GameSetup();
-            gameObject.AddComponent<MiniGameAPI>();
-            gameObject.AddComponent<DebugManager>();
             AdditionalSetup();
             InitDataAI();
             GameSettings.HighQualityGfx = false;
@@ -67,11 +63,15 @@ namespace EA4S
                 Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
             }
 
-            // log manager instance
+            gameObject.AddComponent<MiniGameAPI>();
+
             Instance.LogManager = new Log.AppLogManager();
-            
-            // Player Profile manager instance
             PlayerProfileManager = new PlayerProfileManager();
+
+            gameObject.AddComponent<DebugManager>();
+            gameObject.AddComponent<NavigationManager>();
+            gameObject.AddComponent<KeeperManager>();
+
         }
 
         /*void CachingLetterData()
