@@ -56,6 +56,26 @@ namespace EA4S
                 }
             }
         }
+
+        private bool _firstContactPassed;
+        /// <summary>
+        /// Gets or sets a value indicating whether [first contact passed].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [first contact passed]; otherwise, <c>false</c>.
+        /// </value>
+        public bool FirstContactPassed {
+            get { return !AppManager.Instance.Player.IsFirstContact(); }
+            set {
+                    if (value) {
+                        AppManager.Instance.Player.FirstContactPassed(2);
+                    } else {
+                        AppManager.Instance.Player.ResetPlayerProfileCompletion();
+                    }
+                    _firstContactPassed = value;
+                }
+        }
+
         public float Difficulty = 0.5f;
         public int Stage = 1;
         public int LearningBlock = 1;
