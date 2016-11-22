@@ -42,11 +42,11 @@
         {
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
-            //Questions = new SampleQuestionProvider();
-            Questions = new SunMoonQuestionProvider();
+            Questions = new SampleQuestionProvider();
+            //Questions = new SunMoonQuestionProvider();
             
-            Variation = ToboganVariation.SunMoon;
-            //Variation = ToboganVariation.LetterInAWord;
+            //Variation = ToboganVariation.SunMoon;
+            Variation = ToboganVariation.LetterInAWord;
 
             Context = new SampleGameContext();
             Difficulty = 0.0f;

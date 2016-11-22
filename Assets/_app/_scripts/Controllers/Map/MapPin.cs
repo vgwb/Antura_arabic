@@ -10,7 +10,6 @@ namespace EA4S
         public Transform RopeNode;
         public GameObject Dot;
         public int posBefore;
-        public int posAfter;
 
         void Start()
         {
