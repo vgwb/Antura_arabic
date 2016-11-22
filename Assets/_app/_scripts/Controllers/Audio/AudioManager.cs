@@ -178,7 +178,7 @@ namespace EA4S
         public void PlayDialog(string string_id)
         {
             //Debug.Log("PlayDialog: " + string_id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
-            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Keeper/" + string_id);
+            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + string_id);
             Fabric.EventManager.Instance.PostEvent("KeeperDialog");
         }
 
@@ -186,7 +186,7 @@ namespace EA4S
         {
             // Debug.Log("PlayDialog with Callback: " + string_id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
             OnNotifyEndAudio = callback;
-            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Keeper/" + string_id);
+            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + string_id);
             Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
         }
 
