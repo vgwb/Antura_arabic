@@ -20,6 +20,11 @@ namespace EA4S.Assessment
             GameContext = game_context;
         }
 
+        private void PlayStartSound()
+        {
+           // GameContext.GetAudioManager().PlayDialogue( "Assessment_Start_1");
+        }
+
         public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
             yield return TimeEngine.Wait( 0.7f);
@@ -56,6 +61,11 @@ namespace EA4S.Assessment
                 if (AnturaShowed == false)
                 {
                     #region ANTURA ANIMATION
+
+                    var anturaController = AnturaFactory.Instance.SleepingAntura();
+
+                    bool anturaIsGone = false;
+                    anturaController.StartAnimation( () => anturaIsGone = true);
 
                     #endregion
 

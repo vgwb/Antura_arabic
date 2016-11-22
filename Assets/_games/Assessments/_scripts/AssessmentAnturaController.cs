@@ -20,6 +20,26 @@ namespace EA4S.Assessment
 
         private IAudioManager audioManager;
 
+        private IEnumerator TutorialClicks()
+        {
+            clickEnabled = false;
+            yield return TimeEngine.Wait( 0.6f);
+            TutorialUI.ClickRepeat( TutorialHelper.GetWorldPosition());
+            yield return TimeEngine.Wait( 0.1f);
+
+            for (int i = 0; i < 9; i++)
+            {
+                yield return TimeEngine.Wait( 0.17f);
+                var sound = 
+                AssessmentConfiguration.Instance.Context.GetAudioManager().PlaySound( Sfx.ThrowObj);
+
+                sound.Volume = 0.5f;
+            }
+
+            yield return TimeEngine.Wait( 0.1f);
+            clickEnabled = true;
+        }
+
         void Awake()
         {
             instance = this;
@@ -30,6 +50,13 @@ namespace EA4S.Assessment
         void Start()
         {
             TimeEngine.AddTickable( this);
+        }
+
+        Action onFinishedAnimation;
+
+        public void StartAnimation( Action callback)
+        {
+            onFinishedAnimation = callback;
             antura.State = AnturaAnimationStates.sleeping;
             Coroutine.Start( CheckStateAndSetAnimation());
         }
@@ -41,16 +68,15 @@ namespace EA4S.Assessment
         }
 
         private bool clickEnabled = false;
-        public void EnableClick()
-        {
-            clickEnabled = true;
-        }
 
         private void AnturaPressed()
         {
             currentTreshold += GainPerClick;
-            if(currentState<4)
-                audioManager.PlaySound( soundOnClick);
+            if (currentState < 3)
+            {
+                var sound = audioManager.PlaySound( soundOnClick);
+                sound.Volume = 0.5f;
+            }
         }
 
         public ParticleSystem sleepingParticles { get; set; }
@@ -77,7 +103,7 @@ namespace EA4S.Assessment
 
         IEnumerator CheckStateAndSetAnimation()
         {
-            while (currentState < 4)
+            while (currentState < 3)
             {
                 while (stateDelta == 0)
                     yield return null;
@@ -95,35 +121,26 @@ namespace EA4S.Assessment
                     case 0:
                         emission.enabled = true;
                         antura.State = AnturaAnimationStates.sleeping;
-                        yield return TimeEngine.Wait( 0.35f);
-                        PlayStateSound();
-                        TurnAntura(-80);
-                        yield return TimeEngine.Wait( 0.35f);
-                        break;
-
-                    case 1:
-                        emission.enabled = false;
-                        antura.State = AnturaAnimationStates.sleeping;
                         yield return TimeEngine.Wait( 0.4f);
                         PlayStateSound();
                         TurnAntura(-75f);
-                        yield return TimeEngine.Wait( 1f);
+                        yield return TimeEngine.Wait( 0.6f);
                         break;
 
-                    case 2:
+                    case 1:
                         antura.State = AnturaAnimationStates.sitting;
                         yield return TimeEngine.Wait( 0.8f);
                         PlayStateSound();
-                        yield return TimeEngine.Wait( 1.9f);
+                        yield return TimeEngine.Wait( 1.5f);
+                        break;
+
+                    case 2:
+                        antura.DoShout(() => audioManager.PlaySound( Sfx.DogBarking));
+                        PlayStateSound();
+                        yield return TimeEngine.Wait( 2f);
                         break;
 
                     case 3:
-                        antura.DoShout(() => audioManager.PlaySound( Sfx.DogBarking));
-                        PlayStateSound();
-                        yield return TimeEngine.Wait( 2.3f);
-                        break;
-
-                    case 4:
                         audioManager.PlaySound( Sfx.Win);
                         antura.DoCharge( ()=> StartMoving());
                         TurnAntura(-65f);
@@ -136,12 +153,6 @@ namespace EA4S.Assessment
                 currentTreshold = currentMaxTreshold *0.99f;
                 stateDelta = 0;
             }
-        }
-
-        Action onFinishedAnimation;
-        public void SetFinishedAnimationCallback( Action callback)
-        {
-            onFinishedAnimation = callback;
         }
 
         private void StartMoving()
