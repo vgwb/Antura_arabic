@@ -24,51 +24,41 @@ namespace EA4S
         public GameObject[] posDots;
         public GameObject stepsParent;
         public Vector3 pinLeft, pinRight;
+        public int posMax;
+        public bool isAvailableTheWholeMap;
         Quaternion rot;
         int numDot = 0;
         int numLearningBlock;
-        void Awake()
+     
+        void Start()
         {
             posDots = new GameObject[28];
-            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++) {
+            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++)
+            {
                 pinLeft = posPines[numLearningBlock].position;
                 pinRight = posPines[numLearningBlock + 1].position;
-
                 CalculateStepsBetweenPines(pinLeft, pinRight);
             }
             pinLeft = posPines[0].position;
             pinRight = posPines[1].position;
-        }
 
-        List<Db.PlaySessionData> myList = new List<Db.PlaySessionData>();
-        List<PlaySessionState> myListPlaySessionState = new List<PlaySessionState>();
+            if (!isAvailableTheWholeMap) CalculatePlaySessionAvailables();
+            CalculatePin_RopeAvailable();
 
-        void Start()
-        {
             /* FIRST CONTACT FEATURE */
-           /* if (AppManager.Instance.Player.IsFirstContact()) {
+            if (AppManager.Instance.Player.IsFirstContact()) {
                 FirstContactBehaviour();
-            }*/
+            }
             /* --------------------- */
-
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
-            Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
-            //Debug.Log("LBlock " + AppManager.Instance.Teacher.GetMiniGamesForCurrentPlaySession());
-            //Debug.Log("LBlock " + AppManager.Instance.GameSettin);
-
-            myList = GetAllPlaySessionDataForStage(1);
-            Debug.Log(myList.Count);
-            //myListPlaySessionState = GetAllPlaySessionStateForStage(1);
-            //Debug.Log(myListPlaySessionState[0].data.Description);
         }
 
         void Update()
         {
             // Remove this with First Contact Temp Behaviour
             UpdateTimer();
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+           /* Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
             Debug.Log("Learning Block " + AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
-            Debug.Log("Stage " + AppManager.Instance.Player.CurrentJourneyPosition.Stage);
+            Debug.Log("Stage " + AppManager.Instance.Player.CurrentJourneyPosition.Stage);*/
         }
 
         #region First Contact Session        
@@ -126,9 +116,48 @@ namespace EA4S
                 else
                     dotGo.GetComponent<Dot>().playSessionActual = 2;
                 dotGo.transform.parent = stepsParent.transform;
+                if(!isAvailableTheWholeMap) dotGo.SetActive(false);
                 posDots[numDot] = dotGo;
                 numDot++;
             }
+        }
+        void CalculatePlaySessionAvailables()
+        {
+            int l = AppManager.Instance.Player.MaxJourneyPosition.LearningBlock;
+            int p = AppManager.Instance.Player.MaxJourneyPosition.PlaySession;
+            int m;
+            if (p == 1) m = (l * 2) - 1;
+            else m = l * 2;
+            posMax = m;
+            for(int i=0; i<m;i++)
+            {
+                posDots[i].SetActive(true);
+            }
+        }
+        void CalculatePin_RopeAvailable()
+        {
+            if(isAvailableTheWholeMap)
+            {
+                posMax = posDots.Length - 1;
+                for (int i=0; i<(posPines.Length-1);i++)
+                {
+                    posPines[i].tag = "Pin";
+                    ropes[i].transform.GetChild(0).tag = "Rope";
+                }
+            }
+            else
+            {
+                int l = AppManager.Instance.Player.MaxJourneyPosition.LearningBlock;
+                int p = AppManager.Instance.Player.MaxJourneyPosition.PlaySession;
+                int m;
+                if (p == 100) m = l;
+                else m = l - 1;
+                for (int i = 0; i < m; i++)
+                {
+                    posPines[i].tag = "Pin";
+                    ropes[i].transform.GetChild(0).tag = "Rope";
+                }
+            }       
         }
 
         private class PlaySessionState
