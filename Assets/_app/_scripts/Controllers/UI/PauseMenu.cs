@@ -11,15 +11,17 @@ namespace EA4S
 
         [Header("Buttons")]
         public MenuButton BtPause;
-        public MenuButton BtExit, BtRestart, BtMusic, BtFx, BtResume;
+        public MenuButton BtExit, BtMusic, BtFx, BtCredits, BtResume;
         [Header("Other")]
         public GameObject PauseMenuContainer;
+        public Sprite AltPauseIconSprite;
         public Image MenuBg;
         public RectTransform SubButtonsContainer;
         public RectTransform Logo;
 
         public bool IsMenuOpen { get; private set; }
-
+        public bool typeSet;
+        Sprite defPauseIconSprite;
         MenuButton[] menuBts;
         float timeScaleAtMenuOpen = 1;
         Sequence openMenuTween;
@@ -28,6 +30,7 @@ namespace EA4S
         void Awake()
         {
             I = this;
+            defPauseIconSprite = BtPause.Bt.image.sprite;
         }
 
         void Start()
@@ -62,6 +65,8 @@ namespace EA4S
 
             // Deactivate pause menu
             PauseMenuContainer.SetActive(false);
+
+            if (!typeSet) SetType(PauseMenuType.GameScreen);
 
             // Listeners
             BtPause.Bt.onClick.AddListener(() => OnClick(BtPause));
@@ -111,6 +116,14 @@ namespace EA4S
             }
         }
 
+        public void SetType(PauseMenuType _type)
+        {
+            typeSet = true;
+            BtPause.Bt.image.sprite = _type == PauseMenuType.GameScreen ? defPauseIconSprite : AltPauseIconSprite;
+            BtCredits.gameObject.SetActive(_type == PauseMenuType.StartScreen);
+            BtExit.gameObject.SetActive(_type != PauseMenuType.StartScreen);
+        }
+
         /// <summary>
         /// Callback for button clicks
         /// </summary>
@@ -133,8 +146,8 @@ namespace EA4S
                         AppManager.Instance.ToggleQualitygfx();
                         BtFx.Toggle(AppManager.Instance.GameSettings.HighQualityGfx);
                         break;
-                    case MenuButtonType.Restart: // Restart
-                        OpenMenu(false);
+                    case MenuButtonType.Credits:
+                        // TODO
                         break;
                     case MenuButtonType.Continue: // Resume
                         OpenMenu(false);
