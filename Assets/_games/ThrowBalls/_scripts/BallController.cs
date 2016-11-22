@@ -92,6 +92,7 @@ namespace EA4S.ThrowBalls
                     break;
                 case State.Intercepted:
                     rigidBody.isKinematic = true;
+                    sphereCollider.enabled = false;
                     break;
                 case State.Rebounding:
                     rigidBody.isKinematic = false;
