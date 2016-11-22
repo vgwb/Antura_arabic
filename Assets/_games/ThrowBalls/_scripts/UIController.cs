@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using System.Collections;
 using System;
 using TMPro;
 
@@ -10,19 +10,23 @@ namespace EA4S.ThrowBalls
     {
         public static UIController instance;
 
+        private const float CRACK_FADE_DELAY = 0.5f;
+        private const float CRACK_FADE_DURATION = 1.5f;
+
         public GameObject letterHint;
         public TMP_Text letterHintText;
 
-        private int numPokeballs;
+        public GameObject crack;
 
-        public GameObject[] cracks;
-        private List<int> unusedCracks;
+        private Image crackImage;
+        private Color crackImageColor;
 
         void Awake()
         {
             instance = this;
 
-            unusedCracks = new List<int>();
+            crackImage = crack.GetComponent<Image>();
+            crackImageColor = crackImage.color;
         }
 
         public void SetLetterHint(LL_LetterData _data)
@@ -42,25 +46,37 @@ namespace EA4S.ThrowBalls
 
         public void OnScreenCracked()
         {
-            if (unusedCracks.Count != 0 && !ThrowBallsGameManager.Instance.IsTutorialLevel())
-            {
-                int randomCrackIndex = UnityEngine.Random.Range(0, unusedCracks.Count);
-                cracks[unusedCracks[randomCrackIndex]].SetActive(true);
-                unusedCracks.RemoveAt(randomCrackIndex);
-
-                AudioManager.I.PlaySfx(Sfx.ScreenHit);
-            }
+            StartCoroutine(CrackAnimationCoroutine());
         }
 
+        private IEnumerator CrackAnimationCoroutine()
+        {
+            AudioManager.I.PlaySfx(Sfx.ScreenHit);
+
+            crackImageColor.a = 1;
+            crackImage.color = crackImageColor;
+
+            yield return new WaitForSeconds(CRACK_FADE_DELAY);
+
+            float crackFadeStartTime = Time.time;
+            float sinFactor = 2 * Mathf.PI * Mathf.Pow(CRACK_FADE_DURATION, -1);
+
+            while (crackImageColor.a > 0)
+            {
+                crackImageColor.a = Mathf.Cos(sinFactor * (Time.time - crackFadeStartTime));
+                crackImage.color = crackImageColor;
+
+                yield return new WaitForFixedUpdate();
+            }
+
+            crackImageColor.a = 0;
+            crackImage.color = crackImageColor;
+        }
+        
         public void Reset()
         {
-            unusedCracks.Clear();
-
-            for (int i = 0; i < cracks.Length; i++)
-            {
-                cracks[i].SetActive(false);
-                unusedCracks.Add(i);
-            }
+            crackImageColor.a = 0;
+            crackImage.color = crackImageColor;
         }
     }
 }
