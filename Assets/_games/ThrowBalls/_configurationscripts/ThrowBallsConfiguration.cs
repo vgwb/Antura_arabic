@@ -66,7 +66,7 @@
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
                     break;
                 case ThrowBallsVariation.lettersinword:
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+                    builder = new LettersInWordQuestionBuilder(nPacks:nPacks, nWrong:nWrong, useAllCorrectLetters:true);
                     break;
             }
 

@@ -44,6 +44,15 @@ namespace EA4S
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
         public int CurrentMiniGameInPlaySession;
 
+        #region Bones/coins
+        private int totalNumberOfBones = 0;
+        public int GetTotalNumberOfBones()
+        {
+            // TODO //return totalNumberOfBones;
+            return 20;
+        }
+        #endregion
+
         #region Oldies
         public int AnturaCurrentPreset;
 

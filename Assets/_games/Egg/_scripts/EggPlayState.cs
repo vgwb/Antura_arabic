@@ -32,6 +32,8 @@ namespace EA4S.Egg
         float tutorialDelayTime = 3f;
         bool tutorialStop;
 
+        bool isPlayDialogue;
+
         public EggPlayState(EggGame game)
         {
             this.game = game;
@@ -74,17 +76,21 @@ namespace EA4S.Egg
             tutorialDelayTimer = tutorialDelayTime;
             tutorialStop = false;
 
+            isPlayDialogue = false;
+
             if (showTutorial)
             {
                 TutorialPressCorrect();
 
                 if(isSequence)
                 {
-                    //game.Context.GetSubtitleWidget().DisplaySentence(TextID.EGG_TUTO_SEQUENCE, 2f, false, delegate() { game.Context.GetSubtitleWidget().Clear(); });
+                    isPlayDialogue = true;
+                    game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TUTO_SEQUENCE, delegate() { isPlayDialogue = false; });
                 }
                 else
                 {
-                    //game.Context.GetSubtitleWidget().DisplaySentence(TextID.EGG_TUTO_BUTTON, 2f, false, delegate () { game.Context.GetSubtitleWidget().Clear(); });
+                    isPlayDialogue = true;
+                    game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TUTO_BUTTON, delegate () { isPlayDialogue = false; });
                 }
             }
 
@@ -205,6 +211,9 @@ namespace EA4S.Egg
 
         public void OnEggButtonPressed(ILivingLetterData letterData)
         {
+            //if (isPlayDialogue)
+            //    return;
+
             game.Context.GetAudioManager().PlaySound(Sfx.UIButtonClick);
 
             if (showTutorial)
