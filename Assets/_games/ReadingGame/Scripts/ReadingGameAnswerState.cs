@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 
 namespace EA4S.ReadingGame
@@ -55,13 +56,9 @@ namespace EA4S.ReadingGame
 
             box.Active = true;
 
-            if (TutorialMode)
-            {
-                var uicamera = UnityEngine.GameObject.Find("UICamera").GetComponent<UnityEngine.Camera>();
-                Vector3 screenPos = UnityEngine.RectTransformUtility.WorldToScreenPoint(uicamera, correctButton.transform.position);
-                screenPos.z = 10;
-
-                TutorialUI.Click(UnityEngine.Camera.main.ScreenToWorldPoint(screenPos));
+            if (TutorialMode) {
+                // Requires a delay otherwise the buttons are not correctly set
+                DOVirtual.DelayedCall(1f, StartButtonTutorial, false);
             }
             else
             {
@@ -70,6 +67,16 @@ namespace EA4S.ReadingGame
                 game.radialWidget.inFront = true;
                 game.radialWidget.pulsing = true;
             }
+        }
+
+        void StartButtonTutorial()
+        {
+            var uicamera = UnityEngine.GameObject.Find("UICamera").GetComponent<UnityEngine.Camera>();
+            var tutorialCamera = UnityEngine.GameObject.Find("TutorialUICamera").GetComponent<UnityEngine.Camera>();
+            TutorialUI.SetCamera(tutorialCamera);
+            Vector3 screenPos = UnityEngine.RectTransformUtility.WorldToScreenPoint(uicamera, correctButton.transform.position);
+            screenPos.z = tutorialCamera.nearClipPlane + 3;
+            TutorialUI.Click(tutorialCamera.ScreenToWorldPoint(screenPos));
         }
 
 
