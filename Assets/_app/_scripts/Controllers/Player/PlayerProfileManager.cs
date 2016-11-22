@@ -25,9 +25,10 @@ namespace EA4S {
                     AppManager.Instance.Player = value;
                     AppManager.Instance.GameSettings.LastActivePlayerId = value.Id;
                     SaveGameSettings();
+                    AppManager.Instance.InitDataAI();
                 }
                 actualPlayer = value;
-                AppManager.Instance.InitDataAI();
+                
             }
         }
 

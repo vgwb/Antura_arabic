@@ -34,7 +34,8 @@ namespace EA4S
             currentResult = 0;
 
             PanelTestGO.SetActive(false);
-            AppManager.Instance.InitDataAI();
+            // ToCheck @michele ref: https://trello.com/c/r40yCfw1
+            //AppManager.Instance.InitDataAI();
 
             SceneTransitioner.Close();
             WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);

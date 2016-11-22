@@ -35,8 +35,9 @@ namespace EA4S
                 Player = new PlayerProfile();
             if (DB == null)
                 DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
-            if (Teacher == null)
-                Teacher = new TeacherAI(DB, Player);
+            // ToCheck @michele ref: https://trello.com/c/r40yCfw1
+            //if (Teacher == null)
+            Teacher = new TeacherAI(DB, Player);
             if (GameLauncher == null)
                 GameLauncher = new MiniGameLauncher(Teacher);
 

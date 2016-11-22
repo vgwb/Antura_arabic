@@ -229,7 +229,8 @@ namespace EA4S
 
         void AutoLoadMinigames()
         {
-            AppManager.Instance.InitDataAI();
+            // ToCheck @michele ref: https://trello.com/c/r40yCfw1
+            //AppManager.Instance.InitDataAI();
             OnComplete += GoToMinigame;
             if (TeacherAI.I.CurrentPlaySessionMiniGames.Count > 0) Show(TeacherAI.I.CurrentPlaySessionMiniGames);
         }
