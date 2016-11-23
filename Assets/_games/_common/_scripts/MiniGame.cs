@@ -39,7 +39,7 @@ namespace EA4S
                 OnGameEnded(stars, score);
 
             // Log trace game result
-            Context.GetLogManager().LogPlaySessionScore(score);
+            Context.GetLogManager().LogPlaySessionScore(stars);
             
             this.SetCurrentState(OutcomeState);
         }

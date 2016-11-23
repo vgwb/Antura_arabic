@@ -17,7 +17,8 @@ namespace EA4S
         public AudioMixerGroup lettersGroup;
 
         public static AudioManager I;
-        static System.Action OnNotifyEndAudio;
+        System.Action OnNotifyEndAudio;
+        bool hasToNotifyEndAudio;
 
         public bool MusicEnabled { get { return musicEnabled; } }
 
@@ -53,6 +54,18 @@ namespace EA4S
             }
         }
 
+        void Update()
+        {
+            if (hasToNotifyEndAudio)
+            {
+                hasToNotifyEndAudio = false;
+                if (OnNotifyEndAudio != null)
+                {
+                    OnNotifyEndAudio();
+                }
+            }
+        }
+
         void OnApplicationPause(bool pauseStatus)
         {
             // app is pausing
@@ -73,9 +86,7 @@ namespace EA4S
             if (info != null) {
                 if (type == Fabric.EventNotificationType.OnAudioComponentStopped) {
                     //Debug.Log("NotifyEndAudio OnAudioComponentStopped()");
-                    if (OnNotifyEndAudio != null) {
-                        OnNotifyEndAudio();
-                    }
+                    hasToNotifyEndAudio = true;
                 }
             }
         }
@@ -107,7 +118,8 @@ namespace EA4S
 
         public void StopMusic()
         {
-            Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
+            if (Fabric.EventManager.Instance != null)
+                Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
         }
 
         /// <summary>
