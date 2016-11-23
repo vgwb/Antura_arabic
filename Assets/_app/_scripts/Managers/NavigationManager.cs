@@ -18,6 +18,7 @@ namespace EA4S
         AnturaSpace,
         Rewards,
         PlaySessionResult,
+        DebugPanel
     }
 
     public class NavigationManager : MonoBehaviour
@@ -39,7 +40,6 @@ namespace EA4S
 
         public void GoToGameScene(MiniGameData _miniGame)
         {
-            //Debug.Log("going to " + _miniGame.Code.ToString() + " " + GetSceneName(AppScene.MiniGame, _miniGame));
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
         }
 
@@ -58,7 +58,7 @@ namespace EA4S
                     break;
                 case AppScene.Map:
                     if (AppManager.Instance.IsAssessmentTime)
-                        GoToGameScene(AppManager.Instance.CurrentMinigame);
+                        GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     else
                         GoToScene(AppScene.GameSelector);
                     break;
@@ -68,8 +68,7 @@ namespace EA4S
                     break;
                 case AppScene.GameSelector:
                     AppManager.Instance.Player.ResetPlaySessionMinigame();
-                    //Debug.Log("TeacherAI is " + TeacherAI.I.CurrentMiniGame.Code.ToString());
-                    GoToGameScene(AppManager.Instance.CurrentMinigame);
+                    GoToGameScene(TeacherAI.I.CurrentMiniGame);
                     break;
                 case AppScene.MiniGame:
                     if (AppManager.Instance.IsAssessmentTime) {
@@ -89,7 +88,7 @@ namespace EA4S
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
-                            GoToGameScene(AppManager.Instance.CurrentMinigame);
+                            GoToGameScene(TeacherAI.I.CurrentMiniGame);
                         }
                     }
                     break;
@@ -101,6 +100,9 @@ namespace EA4S
                     break;
                 case AppScene.PlaySessionResult:
                     GoToScene(AppScene.Map);
+                    break;
+                case AppScene.DebugPanel:
+                    GoToGameScene(AppManager.Instance.CurrentMinigame);
                     break;
                 default:
                     break;
@@ -162,7 +164,7 @@ namespace EA4S
         {
             if (TeacherAI.I.CurrentMiniGame == null)
                 return;
-            EndsessionResultData res = new EndsessionResultData(_stars, AppManager.Instance.CurrentMinigame.GetIconResourcePath(), AppManager.Instance.CurrentMinigame.GetBadgeIconResourcePath());
+            EndsessionResultData res = new EndsessionResultData(_stars, TeacherAI.I.CurrentMiniGame.GetIconResourcePath(), TeacherAI.I.CurrentMiniGame.GetBadgeIconResourcePath());
             EndSessionResults.Add(res);
 
         }

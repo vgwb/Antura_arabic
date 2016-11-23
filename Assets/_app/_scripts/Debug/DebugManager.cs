@@ -120,7 +120,7 @@ namespace EA4S
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
 
             // Call start game with parameters
-            NavigationManager.I.CurrentScene = AppScene.GameSelector;
+            NavigationManager.I.CurrentScene = AppScene.DebugPanel;
             MiniGameAPI.Instance.StartGame(
                 miniGameCodeSelected,
                 new GameConfiguration(Difficulty)
