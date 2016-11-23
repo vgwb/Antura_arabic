@@ -10,7 +10,7 @@
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true);
+            game.Context.GetPopupWidget().Show(OnQuestionCompleted, Db.LocalizationDataId.Assessment_Complete_1, true);
         }
 
         public void ExitState()

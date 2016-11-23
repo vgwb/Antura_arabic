@@ -64,10 +64,17 @@ namespace EA4S
         /// <summary>
         /// Activate view elements if SentenceId != "" and display sentence.
         /// </summary>
-        public void DisplaySentence(string _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
+        public void DisplaySentence(Db.LocalizationDataId _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
         {
             var data = LocalizationManager.GetLocalizationData(_sentenceId);
             DisplaySentence(data, _duration, _isKeeper, _callback);
+        }
+
+        [Obsolete("USE DB.LOCALICATIONDATAID!", false)]
+        public void DisplaySentence(string _sentenceId, float _duration = 2, bool _isKeeper = false, System.Action _callback = null)
+        {
+            if (_callback != null)
+                _callback();
         }
 
         /// <summary>

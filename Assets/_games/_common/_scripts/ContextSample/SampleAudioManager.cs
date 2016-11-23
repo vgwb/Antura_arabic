@@ -72,12 +72,12 @@ namespace EA4S
             return PlayLetterData(wordId);
         }
 
-        public void PlayText(TextID text)
+        public void PlayText(Db.LocalizationDataId text)
         {
             PlayDialogue(text, null);
         }
 
-        public void PlayDialogue(TextID text, System.Action callback = null)
+        public void PlayDialogue(Db.LocalizationDataId text, System.Action callback = null)
         {
             if (callback == null)
                 AudioManager.I.PlayDialog(text.ToString());

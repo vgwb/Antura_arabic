@@ -280,22 +280,22 @@ namespace EA4S.DontWakeUp
 
         void RoundLostAlarmsFinished()
         {
-            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false, FailTouchedAlarm);
+            //WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_alarms", false, FailTouchedAlarm);
         }
 
         void RoundLostTouchedDogFinished()
         {
-            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false, FailTouchedDog);
+            //WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_antura", false, FailTouchedDog);
         }
 
         void RoundLostTooFastFinished()
         {
-            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false, null);
+            //WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_toofast", false, null);
         }
 
         void RoundLostFallFinished()
         {
-            WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_fall", false, FailFall);
+            //WidgetPopupWindow.I.ShowSentenceWithMark(RoundLostEnded, "game_dontwake_fail_fall", false, FailFall);
         }
 
 

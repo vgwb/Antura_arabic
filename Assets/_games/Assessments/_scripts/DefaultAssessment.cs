@@ -26,13 +26,13 @@ namespace EA4S.Assessment
 
         #region AUDIO
 
-        private void Dialogue( TextID ID)
+        private void Dialogue(Db.LocalizationDataId ID)
         {
             Coroutine.Start( PlayDialogueCoroutine( ID));
         }
 
         bool isPlayingAudio = false;
-        IEnumerator PlayDialogueCoroutine( TextID ID)
+        IEnumerator PlayDialogueCoroutine(Db.LocalizationDataId ID)
         {
             while (isPlayingAudio)
                 yield return null;
@@ -47,23 +47,23 @@ namespace EA4S.Assessment
 
         private void PlayStartSound()
         {
-            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSMENT_START_1,
-                                                      TextID.ASSESSMENT_START_2,
-                                                      TextID.ASSESSMENT_START_3));
+            AudioManager.PlayDialogue( RandomHelper.GetRandomParams( Db.LocalizationDataId.Assessment_Start_1,
+                                                      Db.LocalizationDataId.Assessment_Start_2,
+                                                      Db.LocalizationDataId.Assessment_Start_3));
         }
 
         private void PlayAnturaIsComingSound()
         {
-            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSSMENT_UPSET_1,
-                                                      TextID.ASSESSSMENT_UPSET_2,
-                                                      TextID.ASSESSSMENT_UPSET_3));
+            AudioManager.PlayDialogue(RandomHelper.GetRandomParams(Db.LocalizationDataId.Assessment_Upset_1,
+                                                      Db.LocalizationDataId.Assessment_Upset_2,
+                                                      Db.LocalizationDataId.Assessment_Upset_3));
         }
 
         private void PlayPushAnturaSound()
         {
-            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSSMENT_PUSH_1,
-                                                      TextID.ASSESSSMENT_PUSH_2,
-                                                      TextID.ASSESSSMENT_PUSH_3));
+            AudioManager.PlayDialogue(RandomHelper.GetRandomParams(Db.LocalizationDataId.Assessment_Push_Dog_1,
+                                                      Db.LocalizationDataId.Assessment_Push_Dog_2,
+                                                      Db.LocalizationDataId.Assessment_Push_Dog_3));
         }
         #endregion
 

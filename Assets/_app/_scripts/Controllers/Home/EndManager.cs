@@ -24,15 +24,15 @@ namespace EA4S
             switch (tutorialIndex) {
                 case 10:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("end_game_A1", 2, true, ShowTutor);
+                    WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Map_EndGame, 2, true, ShowTutor);
                     break;
                 case 11:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("end_game_A2", 2, true, ShowTutor);
+                    WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Map_EndGame, 2, true, ShowTutor);
                     break;
                 case 12:
                     tutorialIndex++;
-                    WidgetSubtitles.I.DisplaySentence("end_game_A3", 1, true, Ready2Play);
+                    WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Map_EndGame, 1, true, Ready2Play);
                     break;
             }
         }

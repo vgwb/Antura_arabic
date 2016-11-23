@@ -293,7 +293,7 @@ namespace EA4S.Balloons
                     Popup.SetButtonCallback(OnRoundStartPressed);
                     if (question.DataType == LivingLetterDataType.Word)
                     {
-                        Popup.SetWord(question as LL_WordData);
+                        Popup.SetLetterData(question as LL_WordData);
                     }
                     uiCanvas.gameObject.SetActive(true);
                     break;
@@ -304,7 +304,7 @@ namespace EA4S.Balloons
                     Popup.SetButtonCallback(OnRoundStartPressed);
                     if (question.DataType == LivingLetterDataType.Word)
                     {
-                        Popup.SetWord(question as LL_WordData);
+                        Popup.SetLetterData(question as LL_WordData);
                     }
                     uiCanvas.gameObject.SetActive(true);
                     break;
@@ -313,7 +313,7 @@ namespace EA4S.Balloons
                     AudioManager.PlayLetterData(question);
                     Popup.Show();
                     Popup.SetButtonCallback(OnRoundStartPressed);
-                    Popup.SetMessage(question.TextForLivingLetter, true);
+                    Popup.SetLetterData(question);
                     uiCanvas.gameObject.SetActive(true);
                     break;
 
