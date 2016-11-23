@@ -12,6 +12,7 @@ namespace EA4S.Db.Management
 
             data.Id = ToString(dict["Id"]);
             data.Character = ToString(dict["Character"]);
+            data.Area = ToString(dict["Area"]);
             data.When = ToString(dict["When"]);
             data.Context = ToString(dict["Context"]);
             data.English = ToString(dict["English"]);
