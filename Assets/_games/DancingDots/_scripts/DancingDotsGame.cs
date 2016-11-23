@@ -311,6 +311,7 @@ namespace EA4S.DancingDots
             {
                 // TODO Move later to Start method
                 var numberOfLevels = Enum.GetNames(typeof(Level)).Length;
+				pedagogicalLevel = DancingDotsConfiguration.Instance.Difficulty;
                 currentLevel = (Level)Mathf.Clamp((int)Mathf.Floor(pedagogicalLevel * numberOfLevels), 0, numberOfLevels - 1);
             }
 

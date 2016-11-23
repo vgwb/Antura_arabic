@@ -209,7 +209,7 @@ namespace EA4S.Db
         private bool WordHasDiacritics(WordData data)
         {
             foreach (var letter in GetLettersInWord(data))
-                if (!letter.IsOfKindCategory(LetterKindCategory.Base))
+                if (!letter.IsOfKindCategory(LetterKindCategory.BaseAndVariations))
                     return true;
             return false;
         }

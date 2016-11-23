@@ -33,7 +33,8 @@ namespace EA4S
             showTween = DOTween.Sequence().SetUpdate(true).SetAutoKill(false).Pause()
                 .Append(this.GetComponent<RectTransform>().DOAnchorPosY(170, 0.3f).From().SetEase(Ease.OutBack))
                 .OnPlay(() => this.gameObject.SetActive(true))
-                .OnRewind(() => {
+                .OnRewind(() =>
+                {
                     TextUI.text = "";
                     this.gameObject.SetActive(false);
                 });
@@ -113,7 +114,8 @@ namespace EA4S
             this.StopAllCoroutines();
             textTween.Kill();
             TextUI.text = "";
-            if (string.IsNullOrEmpty(data.Arabic)) {
+            if (string.IsNullOrEmpty(data.Arabic))
+            {
                 this.gameObject.SetActive(false);
                 return;
             }
@@ -124,7 +126,6 @@ namespace EA4S
             TextUI.text = data.Arabic != "" ? ReverseText(ArabicFixer.Fix(data.Arabic)) : data.Id;
             this.StartCoroutine(DisplayTextCoroutine(_duration));
 
-            AudioManager.I.PlayDialog(data, currentCallback);
             Debug.Log("DisplayText() " + data + " - " + data.English);
         }
 
@@ -143,14 +144,21 @@ namespace EA4S
             TextUI.maxVisibleCharacters = TextUI.textInfo.characterCount;
             textTween = DOTween.To(() => TextUI.maxVisibleCharacters, x => TextUI.maxVisibleCharacters = x, 0, _duration)
                 .From().SetUpdate(true).SetEase(Ease.Linear)
-                .OnComplete(() => WalkieTalkie.StopPulse());
+                .OnComplete(() =>
+                {
+                    WalkieTalkie.StopPulse();
+
+                    if (currentCallback != null)
+                        currentCallback();
+                });
         }
 
         string ReverseText(string _text)
         {
             char[] cArray = _text.ToCharArray();
             string reverse = String.Empty;
-            for (int i = cArray.Length - 1; i > -1; i--) {
+            for (int i = cArray.Length - 1; i > -1; i--)
+            {
                 reverse += cArray[i];
             }
             return reverse;

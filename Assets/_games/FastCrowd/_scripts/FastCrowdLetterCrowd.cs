@@ -48,7 +48,7 @@ namespace EA4S.FastCrowd
 
                 var data = dragging.GetComponent<LetterObjectView>().Data;
 
-                FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data);
+                FastCrowdConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
             }
         }
 
