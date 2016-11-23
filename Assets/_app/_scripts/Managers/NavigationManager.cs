@@ -16,7 +16,7 @@ namespace EA4S
         GameSelector,
         MiniGame,
         AnturaSpace,
-        Rewards, 
+        Rewards,
         PlaySessionResult,
     }
 
@@ -37,7 +37,9 @@ namespace EA4S
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(nextSceneName);
         }
 
-        public void GoToGameScene(MiniGameData _miniGame) {
+        public void GoToGameScene(MiniGameData _miniGame)
+        {
+            //Debug.Log("going to " + _miniGame.Code.ToString() + " " + GetSceneName(AppScene.MiniGame, _miniGame));
             GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
         }
 
@@ -56,7 +58,7 @@ namespace EA4S
                     break;
                 case AppScene.Map:
                     if (AppManager.Instance.IsAssessmentTime)
-                        GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                        GoToGameScene(AppManager.Instance.CurrentMinigame);
                     else
                         GoToScene(AppScene.GameSelector);
                     break;
@@ -66,7 +68,8 @@ namespace EA4S
                     break;
                 case AppScene.GameSelector:
                     AppManager.Instance.Player.ResetPlaySessionMinigame();
-                    GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                    //Debug.Log("TeacherAI is " + TeacherAI.I.CurrentMiniGame.Code.ToString());
+                    GoToGameScene(AppManager.Instance.CurrentMinigame);
                     break;
                 case AppScene.MiniGame:
                     if (AppManager.Instance.IsAssessmentTime) {
@@ -86,7 +89,7 @@ namespace EA4S
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
-                            GoToGameScene(TeacherAI.I.CurrentMiniGame);
+                            GoToGameScene(AppManager.Instance.CurrentMinigame);
                         }
                     }
                     break;
@@ -155,19 +158,21 @@ namespace EA4S
         /// Called to notify end minigame with result (pushed continue button on UI).
         /// </summary>
         /// <param name="_stars">The stars.</param>
-        public void EndMinigame(int _stars) {
+        public void EndMinigame(int _stars)
+        {
             if (TeacherAI.I.CurrentMiniGame == null)
                 return;
-            EndsessionResultData res = new EndsessionResultData(_stars, TeacherAI.I.CurrentMiniGame.GetIconResourcePath(), TeacherAI.I.CurrentMiniGame.GetBadgeIconResourcePath());
-            EndSessionResults.Add(res);            
-            
+            EndsessionResultData res = new EndsessionResultData(_stars, AppManager.Instance.CurrentMinigame.GetIconResourcePath(), AppManager.Instance.CurrentMinigame.GetBadgeIconResourcePath());
+            EndSessionResults.Add(res);
+
         }
 
         /// <summary>
         /// Uses the end session results and reset it.
         /// </summary>
         /// <returns></returns>
-        public List<EndsessionResultData> UseEndSessionResults() {
+        public List<EndsessionResultData> UseEndSessionResults()
+        {
             List<EndsessionResultData> returnResult = EndSessionResults;
             EndSessionResults = new List<EndsessionResultData>();
             return returnResult;
@@ -178,7 +183,8 @@ namespace EA4S
         /// </summary>
         /// <param name="_stars">The star.</param>
         /// <param name="_bones">The bones.</param>
-        public void EndPlaySession(int _stars, int _bones) {
+        public void EndPlaySession(int _stars, int _bones)
+        {
             // Logic
             // log
             // GoToScene ...

@@ -67,13 +67,13 @@ namespace EA4S
         public bool FirstContactPassed {
             get { return !AppManager.Instance.Player.IsFirstContact(); }
             set {
-                    if (value) {
-                        AppManager.Instance.Player.FirstContactPassed(2);
-                    } else {
-                        AppManager.Instance.Player.ResetPlayerProfileCompletion();
-                    }
-                    _firstContactPassed = value;
+                if (value) {
+                    AppManager.Instance.Player.FirstContactPassed(2);
+                } else {
+                    AppManager.Instance.Player.ResetPlayerProfileCompletion();
                 }
+                _firstContactPassed = value;
+            }
         }
 
         public float Difficulty = 0.5f;
@@ -111,6 +111,7 @@ namespace EA4S
 
         public void LaunchMinigGame(MiniGameCode miniGameCodeSelected)
         {
+            Debug.Log("LaunchMinigGame " + miniGameCodeSelected.ToString());
             AppManager.Instance.Player.CurrentJourneyPosition.Stage = Stage;
             AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = LearningBlock;
             AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = PlaySession;
@@ -119,6 +120,7 @@ namespace EA4S
             AppManager.Instance.Teacher.InitialiseCurrentPlaySession();
 
             // Call start game with parameters
+            NavigationManager.I.CurrentScene = AppScene.GameSelector;
             MiniGameAPI.Instance.StartGame(
                 miniGameCodeSelected,
                 new GameConfiguration(Difficulty)
