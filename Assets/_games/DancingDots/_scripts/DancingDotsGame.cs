@@ -418,7 +418,7 @@ namespace EA4S.DancingDots
             AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
             dancingDotsLL.ShowRainbow();
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
-            
+
 
             if (roundWon)
             {
@@ -499,13 +499,13 @@ namespace EA4S.DancingDots
             }
             else
             {
-                
+
                 dancingDotsLL.letterObjectView.DoTwirl(null);
                 foreach (DancingDotsSplat splat in splats) splat.CleanSplat();
                 yield return new WaitForSeconds(1f);
                 StartRound();
                 dancingDotsLL.letterObjectView.ToggleDance();
-               
+
             }
         }
 
@@ -588,10 +588,11 @@ namespace EA4S.DancingDots
                 WidgetSubtitles.I.DisplaySentence("game_result_great");
             }
 
-            LoggerEA4S.Log("minigame", "DancingDots", "correctLetters", numberOfRoundsWon.ToString());
-            LoggerEA4S.Log("minigame", "DancingDots", "wrongLetters", (numberOfRounds - numberOfRoundsWon).ToString());
-            LoggerEA4S.Save();
-
+            // LoggerEA4S.Log("minigame", "DancingDots", "correctLetters", numberOfRoundsWon.ToString());
+            // LoggerEA4S.Log("minigame", "DancingDots", "wrongLetters", (numberOfRounds - numberOfRoundsWon).ToString());
+            // LoggerEA4S.Save();
+            // TODO Log Results
+            
             starFlowers.Show(numberOfStars);
         }
         void startUI()
@@ -604,7 +605,7 @@ namespace EA4S.DancingDots
         }
     }
 
-    
+
 
     [Serializable]
     public class DancingDotsGamePlayInfo : AnturaGameplayInfo

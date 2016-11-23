@@ -25,18 +25,20 @@ namespace EA4S
                 AppManager.Instance.Player.AnturaCurrentPreset = 1;
 
                 tutorialIndex = 10;
-                LoggerEA4S.Log("app", "Reward", "get_reward", "1");
+                //LoggerEA4S.Log("app", "Reward", "get_reward", "1");
+                LogManager.I.LogInfo(InfoEvent.Reward, "reward:1");
             } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) == 2) {
                 AppManager.Instance.Player.AnturaCurrentPreset = 2;
                 tutorialIndex = 20;
-                LoggerEA4S.Log("app", "Reward", "get_reward", "2");
+                //LoggerEA4S.Log("app", "Reward", "get_reward", "2");
+                LogManager.I.LogInfo(InfoEvent.Reward, "reward:2");
             } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) > 2) {
                 AppManager.Instance.Player.AnturaCurrentPreset = 3;
                 tutorialIndex = 30;
-                LoggerEA4S.Log("app", "Reward", "get_reward", "3");
+                //LoggerEA4S.Log("app", "Reward", "get_reward", "3");
+                LogManager.I.LogInfo(InfoEvent.Reward, "reward:3");
             }
             AnturaController.SetPreset(AppManager.Instance.Player.AnturaCurrentPreset);
-            LoggerEA4S.Save();
             SceneTransitioner.Close();
             ShowReward();
             //ShowTutor();

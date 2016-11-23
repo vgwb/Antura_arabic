@@ -22,8 +22,8 @@ namespace EA4S
         {
             GlobalUI.ShowPauseMenu(true);
 
-            AppManager.Instance.LogManager.InitNewSession();
-            AppManager.Instance.LogManager.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
+            LogManager.I.InitNewSession();
+            LogManager.I.LogInfo(InfoEvent.AppPlay, JsonUtility.ToJson(new AppInfoParameters()));
 
             NavigationManager.I.GoToScene(AppScene.Mood);
         }

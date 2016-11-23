@@ -20,12 +20,43 @@ namespace EA4S
         public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
-        public Log.AppLogManager LogManager;
+        public LogManager LogManager;
         #region Init
 
         public string IExist()
         {
             return "AppManager Exists";
+        }
+
+        protected override void GameSetup()
+        {
+            base.GameSetup();
+            AdditionalSetup();
+            InitDataAI();
+            GameSettings.HighQualityGfx = false;
+
+            LogManager.I.LogInfo(InfoEvent.AppStarted);
+        }
+
+        public PlayerProfileManager PlayerProfileManager;
+
+        void AdditionalSetup()
+        {
+            // GameplayModule
+            if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
+                IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
+                Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
+            }
+
+            gameObject.AddComponent<MiniGameAPI>();
+
+            LogManager = new LogManager();
+            PlayerProfileManager = new PlayerProfileManager();
+
+            gameObject.AddComponent<DebugManager>();
+            gameObject.AddComponent<NavigationManager>();
+            gameObject.AddComponent<KeeperManager>();
+
         }
 
         public void InitDataAI()
@@ -43,37 +74,6 @@ namespace EA4S
 
         }
 
-        protected override void GameSetup()
-        {
-            base.GameSetup();
-            AdditionalSetup();
-            InitDataAI();
-            GameSettings.HighQualityGfx = false;
-            //ResetProgressionData();
-
-            Instance.LogManager.LogInfo(InfoEvent.AppStarted);
-        }
-
-        public PlayerProfileManager PlayerProfileManager;
-
-        private void AdditionalSetup()
-        {
-            // GameplayModule
-            if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
-                IGameplayModule moduleInstance = GetComponentInChildren<ModuleInstaller<IGameplayModule>>().InstallModule();
-                Modules.GameplayModule.SetupModule(moduleInstance, moduleInstance.Settings);
-            }
-
-            gameObject.AddComponent<MiniGameAPI>();
-
-            Instance.LogManager = new Log.AppLogManager();
-            PlayerProfileManager = new PlayerProfileManager();
-
-            gameObject.AddComponent<DebugManager>();
-            gameObject.AddComponent<NavigationManager>();
-            gameObject.AddComponent<KeeperManager>();
-
-        }
 
         /*void CachingLetterData()
         {
