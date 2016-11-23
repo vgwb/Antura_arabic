@@ -9,8 +9,6 @@ namespace EA4S.Assessment
             this.assessmentGame = assessmentGame;
         }
 
-        float timer = 4f;
-
         public void EnterState()
         {
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
