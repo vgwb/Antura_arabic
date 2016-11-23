@@ -21,7 +21,7 @@ namespace EA4S.ColorTickle
 
         public void EnterState()
         {
-            game.Context.GetAudioManager().PlayDialogue(TextID.COLORTICKLE_TITLE);
+            game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Title);
 
             game.colorsCanvas.gameObject.SetActive(false);
 
