@@ -1,7 +1,4 @@
-﻿using EA4S.API;
-using System;
-using EA4S.Log;
-
+﻿
 namespace EA4S
 {
     public class SampleGameContext : IGameContext
@@ -20,13 +17,14 @@ namespace EA4S
         {
             return audioManager;
         }
-        
+
         public IInputManager GetInputManager()
         {
             return inputManager;
         }
 
-        public ILogManager GetLogManager() {
+        public ILogManager GetLogManager()
+        {
             return logManager;
         }
 
@@ -55,7 +53,7 @@ namespace EA4S
         {
             return checkmarkWidget;
         }
-        
+
         public IOverlayWidget GetOverlayWidget()
         {
             return overlayWidget;

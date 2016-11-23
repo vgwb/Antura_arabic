@@ -11,6 +11,8 @@ namespace EA4S.SickLetters
         Vector3 correctDotPos;
 
         float timer = 2, t = 0;
+        int alarmIsTriggered;
+
         public PlayGameState(SickLettersGame game)
         {
             this.game = game;
@@ -57,11 +59,24 @@ namespace EA4S.SickLetters
             }
             if (timer < 0 /*|| game.roundsCount == 6*/)
             {
+                AudioManager.I.StopSfx(Sfx.DangerClockLong);
                 game.SetCurrentState(game.ResultState);
-                
+                AudioManager.I.PlayDialog("Keeper_TimeUp");
             }
 
-             if (Input.GetKeyDown(KeyCode.A))
+            if (alarmIsTriggered == 0 && timer < 20 /*|| game.roundsCount == 6*/)
+            {
+                alarmIsTriggered = 1;
+                //AudioManager.I.PlaySfx(Sfx.AlarmClock);
+                AudioManager.I.PlayDialog("Keeper_Time_"+UnityEngine.Random.Range(1,4));
+            }
+            if (alarmIsTriggered == 1 && timer < 4)
+            {
+                alarmIsTriggered = 2;
+                AudioManager.I.PlaySfx(Sfx.DangerClockLong);
+            }
+
+            if (Input.GetKeyDown(KeyCode.A))
              {
                  t = 1;
                  game.LLPrefab.jumpOut();

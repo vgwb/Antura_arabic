@@ -21,12 +21,31 @@
         public static readonly TextID WELL_DONE = new TextID("comment_welldone");
         public static readonly TextID TIMES_UP = new TextID("game_generic_timeup");
 
-        // Egg
-        
+        // Egg        
         public static readonly TextID EGG_TITLE = new TextID("Egg_Title");
         public static readonly TextID EGG_INTRO = new TextID("Egg_Intro");
         public static readonly TextID EGG_TUTO_BUTTON = new TextID("Egg_Tuto_Button");
         public static readonly TextID EGG_TUTO_SEQUENCE = new TextID("Egg_Tuto_Sequence");
+
+        // Tobogan
+        public static readonly TextID TOBOGAN_LETTERS_TITLE = new TextID("Tobogan_letters_Title");
+        public static readonly TextID TOBOGAN_LETTERS_INTRO = new TextID("Tobogan_letters_Intro");
+        public static readonly TextID TOBOGAN_LETTERS_TUTO = new TextID("Tobogan_letters_Tuto");
+
+        public static readonly TextID TOBOGAN_WORDS_TITLE = new TextID("Tobogan_words_Title");
+        public static readonly TextID TOBOGAN_WORDS_TUTO_WORD = new TextID("Tobogan_words_Tuto_Word");
+        public static readonly TextID TOBOGAN_WORDS_TUTO_ARTICLE = new TextID("Tobogan_words_Tuto_Article");
+        public static readonly TextID TOBOGAN_WORDS_TUTO_LETTER = new TextID("Tobogan_words_Tuto_Letter");
+
+        // Reading Game
+        public static readonly TextID READINGGAME_TITLE = new TextID("ReadingGame_Title");
+        public static readonly TextID READINGGAME_INTRO = new TextID("ReadingGame_Intro");
+        public static readonly TextID READINGGAME_TUTORIAL = new TextID("ReadingGame_Tuto");
+
+        // Alphabet Song
+        public static readonly TextID ALPHABETSONG_TITLE = new TextID("AlphabetSong_Title");
+        public static readonly TextID ALPHABETSONG_INTRO = new TextID("AlphabetSong_Intro");
+        public static readonly TextID ALPHABETSONG_TUTORIAL = new TextID("AlphabetSong_Tuto");
 
         // ...
 

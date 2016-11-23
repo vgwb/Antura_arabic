@@ -18,6 +18,7 @@ namespace EA4S.Scanner
 		private Quaternion startingRotation;
 
 		public Transform fallOffPoint;
+		public Transform midPoint;
 
 		public LetterObjectView letterObjectView;
 		public GameObject rainbowJet;
@@ -25,9 +26,12 @@ namespace EA4S.Scanner
 		public event Action onReset;
 		public event Action onStartFallOff;
 		public event Action onFallOff;
+		public event Action onPassedMidPoint;
 
 		private Transform originalParent;
 		private float fallOffX;
+		private float midPointX;
+		private bool passedMidPoint = false;
 
 		void Start()
 		{
@@ -50,6 +54,8 @@ namespace EA4S.Scanner
 			transform.position = startingPosition;
 
 			fallOffX = fallOffPoint.position.x;
+			midPointX = midPoint.position.x;
+			passedMidPoint = false;
 
 			turnAngle = facingCamera ? 180 : 0;
 			letterObjectView.SetState(LLAnimationStates.LL_still);
@@ -87,6 +93,13 @@ namespace EA4S.Scanner
 			{
 				StartCoroutine(co_FallOff());
 			}
+			else if (livingLetter.transform.position.x > midPointX && !passedMidPoint)
+			{
+				passedMidPoint = true;
+				onPassedMidPoint();
+			}
+
+
 
 		}
 			

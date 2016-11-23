@@ -6,6 +6,21 @@ namespace EA4S
 {
     public class CircleButtonBox : MonoBehaviour
     {
+        bool active = true;
+        public bool Active
+        {
+            get
+            {
+                return active;
+            }
+            set
+            {
+                active = value;
+                for (int i = 0; i < buttons.Count; ++i)
+                    buttons[i].Active = value;
+            }
+        }
+
         public float buttonDistance = 20f;
         public int maxButtonsPerLine = 5;
 
@@ -53,7 +68,7 @@ namespace EA4S
             button.ImageMode = ImageMode;
             buttons.Add(button);
             button.DoEnterAnimation(enterAnimationDelay);
-
+            button.Active = Active;
             dirty = true;
 
             return button;
@@ -65,6 +80,16 @@ namespace EA4S
             button.transform.SetParent(transform, false);
 
             return button;
+        }
+
+        public bool IsReady()
+        {
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (!buttons[i].IsReady())
+                    return false;
+            }
+            return true;
         }
 
         public void ShowButtons()

@@ -47,6 +47,7 @@ namespace EA4S.Scanner
 				game.scannerLL.onReset += OnLetterReset;
 				game.scannerLL.onFallOff += OnLetterFallOff;
 				game.scannerLL.onStartFallOff += OnLetterStartFallOff;
+				game.scannerLL.onPassedMidPoint += OnLetterPassedMidPoint;
 //				game.pipesAnswerController.Initialize(game);
 //				CreateQuestionLivingLetters();
 //				questionLetterIndex = livingLetters.Count - 1;
@@ -56,6 +57,13 @@ namespace EA4S.Scanner
 //				game.Context.GetInputManager().onPointerUp += OnPointerUp;
 //				game.Context.GetInputManager().onPointerDrag += OnPointerDrag;
 			}
+		}
+
+		private void OnLetterPassedMidPoint()
+		{
+			// Decide if Antura will bark
+			// Antura leaves
+			// Trapdoor drops
 		}
 
 		private void OnLetterReset()

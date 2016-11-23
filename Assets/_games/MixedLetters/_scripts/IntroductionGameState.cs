@@ -16,6 +16,28 @@ namespace EA4S.MixedLetters
         public IntroductionGameState(MixedLettersGame game)
         {
             this.game = game;
+
+            float difficulty = MixedLettersConfiguration.Instance.Difficulty;
+
+            if (difficulty <= 0.25f)
+            {
+                timePerRound = 60f;
+            }
+
+            else if (difficulty <= 0.5f)
+            {
+                timePerRound = 45f;
+            }
+
+            else if (difficulty <= 0.75f)
+            {
+                timePerRound = 30f;
+            }
+
+            else
+            {
+                timePerRound = 15f;
+            }
         }
 
         public void EnterState()

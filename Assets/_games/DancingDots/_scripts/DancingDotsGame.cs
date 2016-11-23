@@ -47,6 +47,7 @@ namespace EA4S.DancingDots
         public const string DANCING_DOTS = "DancingDots_DotZone";
         public const string DANCING_DIACRITICS = "DancingDots_Diacritic";
 
+        public bool disableInput;
         public float gameDuration = 60f;
         public DancingDotsLivingLetter dancingDotsLL;
         public GameObject antura;
@@ -272,7 +273,9 @@ namespace EA4S.DancingDots
 
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
 
-            splats.Clear();
+            if(splats != null)
+                splats.Clear();
+
             dancingDotsLL.HideRainbow();
 
             Debug.Log("[Dancing Dots] Round: " + numberOfRoundsPlayed);
@@ -411,10 +414,11 @@ namespace EA4S.DancingDots
         */
         IEnumerator CorrectMove(bool roundWon)
         {
-            AudioManager.I.PlayDialog("comment_welldone");
+            //AudioManager.I.PlayDialog("comment_welldone");
+            AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
             dancingDotsLL.ShowRainbow();
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
-            
+
 
             if (roundWon)
             {
@@ -466,7 +470,7 @@ namespace EA4S.DancingDots
         public void WrongMove(Vector3 pos)
         {
 
-
+            AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
             numberOfFailedMoves++;
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f - numberOfFailedMoves * 0.25f);
             GameObject splat = (GameObject)Instantiate(splatPrefab);
@@ -495,13 +499,13 @@ namespace EA4S.DancingDots
             }
             else
             {
-                
+
                 dancingDotsLL.letterObjectView.DoTwirl(null);
                 foreach (DancingDotsSplat splat in splats) splat.CleanSplat();
                 yield return new WaitForSeconds(1f);
                 StartRound();
                 dancingDotsLL.letterObjectView.ToggleDance();
-               
+
             }
         }
 
@@ -584,10 +588,11 @@ namespace EA4S.DancingDots
                 WidgetSubtitles.I.DisplaySentence("game_result_great");
             }
 
-            LoggerEA4S.Log("minigame", "DancingDots", "correctLetters", numberOfRoundsWon.ToString());
-            LoggerEA4S.Log("minigame", "DancingDots", "wrongLetters", (numberOfRounds - numberOfRoundsWon).ToString());
-            LoggerEA4S.Save();
-
+            // LoggerEA4S.Log("minigame", "DancingDots", "correctLetters", numberOfRoundsWon.ToString());
+            // LoggerEA4S.Log("minigame", "DancingDots", "wrongLetters", (numberOfRounds - numberOfRoundsWon).ToString());
+            // LoggerEA4S.Save();
+            // TODO Log Results
+            
             starFlowers.Show(numberOfStars);
         }
         void startUI()
@@ -600,7 +605,7 @@ namespace EA4S.DancingDots
         }
     }
 
-    
+
 
     [Serializable]
     public class DancingDotsGamePlayInfo : AnturaGameplayInfo

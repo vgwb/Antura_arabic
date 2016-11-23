@@ -14,6 +14,9 @@ namespace EA4S
 
         void Start()
         {
+            // Navigation manager 
+            NavigationManager.I.CurrentScene = AppScene.Rewards;
+
             AudioManager.I.PlayMusic(Music.Theme4);
             Debug.Log("RewardsManager playsession: " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
 
@@ -22,20 +25,23 @@ namespace EA4S
                 AppManager.Instance.Player.AnturaCurrentPreset = 1;
 
                 tutorialIndex = 10;
-                LoggerEA4S.Log("app", "Reward", "get_reward", "1");
+                //LoggerEA4S.Log("app", "Reward", "get_reward", "1");
+                LogManager.I.LogInfo(InfoEvent.Reward, "reward:1");
             } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) == 2) {
                 AppManager.Instance.Player.AnturaCurrentPreset = 2;
                 tutorialIndex = 20;
-                LoggerEA4S.Log("app", "Reward", "get_reward", "2");
+                //LoggerEA4S.Log("app", "Reward", "get_reward", "2");
+                LogManager.I.LogInfo(InfoEvent.Reward, "reward:2");
             } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1) > 2) {
                 AppManager.Instance.Player.AnturaCurrentPreset = 3;
                 tutorialIndex = 30;
-                LoggerEA4S.Log("app", "Reward", "get_reward", "3");
+                //LoggerEA4S.Log("app", "Reward", "get_reward", "3");
+                LogManager.I.LogInfo(InfoEvent.Reward, "reward:3");
             }
             AnturaController.SetPreset(AppManager.Instance.Player.AnturaCurrentPreset);
-            LoggerEA4S.Save();
             SceneTransitioner.Close();
-            ShowTutor();
+            ShowReward();
+            //ShowTutor();
         }
 
         public void ShowTutor()
@@ -76,21 +82,26 @@ namespace EA4S
         IEnumerator StartReward()
         {
             // Wait for animation to complete
-            RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
-            while (!animator.IsComplete)
-                yield return null;
+            //RewardsAnimator animator = this.GetComponent<RewardsAnimator>();
+            //while (!animator.IsComplete)
+            //    yield return null;
+            yield return new WaitForSeconds(3.5f);
+
             /* FIRST CONTACT FEATURE */
             if (AppManager.Instance.Player.IsFirstContact()) {
                 AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_AnturaSpace");
             }
             /* --------------------- */
             ContinueScreen.Show(Continue, ContinueScreenMode.Button);
+            yield return null;
         }
 
 
         public void Continue()
         {
-            AppManager.Instance.MiniGameDone("rewards");
+            AppManager.Instance.Player.ResetPlaySessionMinigame();
+            AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+            NavigationManager.I.GoToNextScene();
         }
 
     }

@@ -38,7 +38,7 @@ namespace EA4S
             data = _data;
             IsWord = _isWord;
             if (!IsWord) {
-                Draw.sprite = _data.DrawForLivingLetter;
+                //Draw.sprite = _data.DrawForLivingLetter;
                 //SetColor(_color);
                 Label.gameObject.SetActive(false);
             } else {

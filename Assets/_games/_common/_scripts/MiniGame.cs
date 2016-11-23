@@ -33,12 +33,14 @@ namespace EA4S
         {
             StarsScore = stars;
 
+            NavigationManager.I.EndMinigame(stars);
+
             if (OnGameEnded != null)
                 OnGameEnded(stars, score);
 
             // Log trace game result
             Context.GetLogManager().LogPlaySessionScore(score);
-
+            
             this.SetCurrentState(OutcomeState);
         }
 
@@ -51,7 +53,7 @@ namespace EA4S
         void Initialize(IGameContext context)
         {
             Context = context;
-
+            
             OutcomeState = new OutcomeGameState(this);
 
             base.Start();

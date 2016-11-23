@@ -46,6 +46,15 @@ namespace EA4S.Tobogan
 
             sunMoonGameVariation = ToboganConfiguration.Instance.Variation == ToboganVariation.SunMoon;
 
+            if (sunMoonGameVariation)
+            {
+                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_WORDS_TUTO_ARTICLE);
+            }
+            else
+            {
+                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_TUTO);
+            }
+
             nextQuestionTimer = 0f;
             requestNextQueston = false;
         }

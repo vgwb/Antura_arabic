@@ -111,7 +111,7 @@ namespace EA4S.TakeMeHome
 		}
 
 
-		public void activateTubes(int count = 2)
+		/*public void activateTubes(int count = 2)
 		{
             if (count < 2) count = 2;
 
@@ -125,7 +125,7 @@ namespace EA4S.TakeMeHome
                 allTubes.RemoveAt(index);
             }
 				
-		}
+		}*/
 
 
 		public void ResetScore()
@@ -169,15 +169,14 @@ namespace EA4S.TakeMeHome
 
 		public void spawnLetteAtTube()
 		{
-			
-			currentTube = UnityEngine.Random.Range(0,_activeTubes);
+            LL_LetterData ld= (LL_LetterData) TakeMeHomeConfiguration.Instance.Letters.GetNextData();
 
-            int tubeIndex = int.Parse(activeTubes[currentTube].name.Substring(5));
-
-            currentTube = tubeIndex;
-             currentLetter = letterManager.spawnLetter (AppManager.Instance.Teacher.GetAllTestLetterDataLL()[TakeMeHomeModel.Instance.getRandomLetterOnTube(tubeIndex)]);
-			currentLetter.MoveBy (new UnityEngine.Vector3 (-11, 0, 0),1.8f);
-		}
+            //check which tube to activate
+            string abcd = "ABCD";
+            currentTube = abcd.IndexOf(ld.Data.SoundZone);
+            currentLetter = letterManager.spawnLetter(ld);
+            currentLetter.MoveBy(new UnityEngine.Vector3(-11, 0, 0), 1.8f);
+        }
 
 		 
 
@@ -228,10 +227,34 @@ namespace EA4S.TakeMeHome
 			gameTime.Reset();*/
             isTimesUp = false;
 
-            
 
+            List<LL_LetterData> allLetters = ((TakeMeHomeLettersProvider)TakeMeHomeConfiguration.Instance.Letters).letters;
+            string abcd = "ABCD";
+           
+            for(int i =0; i < allLetters.Count; ++i)
+            {
+                int index = abcd.IndexOf(allLetters[i].Data.SoundZone);
+                if(!allTubes[index].activeSelf)
+                {
+                    activeTubes.Add(allTubes[index]);
+                    allTubes[index].SetActive(true);
+                    //allTubes.RemoveAt(index);
+                }
+            }
+            _activeTubes = activeTubes.Count;
+            /*
+            _activeTubes = c;
+			for (int i = 0; i < count; ++i)
+            {
+                int index = UnityEngine.Random.Range(0, allTubes.Count);
+                activeTubes.Add(allTubes[index]);
+                allTubes[index].SetActive(true);
 
-            activateTubes(UnityEngine.Mathf.RoundToInt(TakeMeHomeConfiguration.Instance.Difficulty * 4));
+                allTubes.RemoveAt(index);
+            }
+            */
+
+            // activateTubes(UnityEngine.Mathf.RoundToInt(TakeMeHomeConfiguration.Instance.Difficulty * 4));
         }
 
         public void initUI()
