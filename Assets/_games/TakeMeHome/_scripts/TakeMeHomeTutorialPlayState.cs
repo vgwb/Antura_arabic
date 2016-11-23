@@ -14,8 +14,12 @@
 
         public void EnterState()
         {
+            UnityEngine.Debug.Log("Play Tuto");
+            //create a random LL and make it move:
+            AudioManager.I.PlayDialog("TakeMeHome_Tuto");
+
             //find which tube belongs to current letter:
-            foreach(UnityEngine.GameObject go in this.game.activeTubes)
+            foreach (UnityEngine.GameObject go in this.game.activeTubes)
             {
                 if(go.name == "tube_"+ this.game.currentTube)
                 {
