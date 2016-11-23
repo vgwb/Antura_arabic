@@ -55,7 +55,7 @@ namespace EA4S
             SetWord("", "");
             MarkOK.SetActive(false);
             MarkKO.SetActive(false);
-            SetMessage("", false);
+            MessageTextGO.GetComponent<TextMeshProUGUI>().text = "";
         }
 
         public void Close(bool _immediate = false)
@@ -102,20 +102,7 @@ namespace EA4S
             currentCallback = callback;
         }
 
-        public void ShowArabicTextDirect(Action callback, string myArabicText)
-        {
-            ResetContents();
-
-            currentCallback = callback;
-            ButtonGO.gameObject.SetActive(callback != null);
-
-            TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(myArabicText, false, false);
-            TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = "";
-
-            Show(true);
-        }
-
-        public void ShowSentence(Action callback, string SentenceId)
+        public void ShowSentence(Action callback, Db.LocalizationDataId SentenceId)
         {
             ResetContents();
 
@@ -152,7 +139,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceWithMark(Action callback, string sentenceId, bool result, Sprite image2show)
+        public void ShowSentenceWithMark(Action callback, Db.LocalizationDataId sentenceId, bool result, Sprite image2show)
         {
             ResetContents();
 
@@ -211,7 +198,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceAndWord(Action callback, string SentenceId, LL_WordData wordData)
+        public void ShowSentenceAndWord(Action callback, Db.LocalizationDataId SentenceId, LL_WordData wordData)
         {
             ResetContents();
 
@@ -229,7 +216,7 @@ namespace EA4S
             Show(true);
         }
 
-        public void ShowSentenceAndWordWithMark(Action callback, string SentenceId, LL_WordData wordData, bool result)
+        public void ShowSentenceAndWordWithMark(Action callback, Db.LocalizationDataId SentenceId, LL_WordData wordData, bool result)
         {
             ResetContents();
 
@@ -252,7 +239,7 @@ namespace EA4S
 
         public void ShowTimeUp(Action callback)
         {
-            ShowSentence(callback, TextID.TIMES_UP.ToString(), gameTimeUpSprite);
+            ShowSentence(callback, LocalizationManager.GetLocalizationData(LocalizationDataId.Keeper_TimeUp).Arabic, gameTimeUpSprite);
         }
 
         public void Init(string introText, string wordCode, string arabicWord)
@@ -307,16 +294,15 @@ namespace EA4S
             */
         }
 
-        public void SetMessage(string text, bool isArabic)
+        public void SetMessage(Db.LocalizationDataId SentenceId)
         {
-            if (isArabic)
-            {
-                MessageTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
-            }
-            else
-            {
-                MessageTextGO.GetComponent<TextMeshProUGUI>().text = text;
-            }
+            Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
+            MessageTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);
+        }
+
+        public void SetMessage(string text)
+        {
+            MessageTextGO.GetComponent<TextMeshProUGUI>().text = text;
         }
 
         public void SetTitleSentence(string SentenceId)

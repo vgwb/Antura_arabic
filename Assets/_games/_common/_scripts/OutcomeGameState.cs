@@ -22,7 +22,15 @@ namespace EA4S
             game.Context.GetStarsWidget().Show(starsScore);
 
             var subTitleWidget = game.Context.GetSubtitleWidget();
-            subTitleWidget.DisplaySentence(TextID.GetTextIDFromStars(starsScore));
+
+            if (starsScore < 1)
+                subTitleWidget.DisplaySentence(Db.LocalizationDataId.Keeper_Bad_2);
+            else if (starsScore < 2)
+                subTitleWidget.DisplaySentence(Db.LocalizationDataId.Keeper_Good_5);
+            else if (starsScore < 3)
+                subTitleWidget.DisplaySentence(Db.LocalizationDataId.Keeper_Good_2);
+            else
+                subTitleWidget.DisplaySentence(Db.LocalizationDataId.Keeper_Good_1);
         }
 
         public void ExitState()

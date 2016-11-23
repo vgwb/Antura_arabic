@@ -48,11 +48,11 @@ namespace EA4S.Tobogan
 
             if (sunMoonGameVariation)
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_WORDS_TUTO_ARTICLE);
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_words_Tuto_Article);
             }
             else
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_TUTO);
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Tuto);
             }
 
             nextQuestionTimer = 0f;

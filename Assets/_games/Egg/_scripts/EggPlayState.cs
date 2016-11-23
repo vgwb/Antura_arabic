@@ -85,12 +85,12 @@ namespace EA4S.Egg
                 if(isSequence)
                 {
                     isPlayDialogue = true;
-                    game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TUTO_SEQUENCE, delegate() { isPlayDialogue = false; });
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Tuto_Sequence, delegate() { isPlayDialogue = false; });
                 }
                 else
                 {
                     isPlayDialogue = true;
-                    game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TUTO_BUTTON, delegate () { isPlayDialogue = false; });
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Tuto_Button, delegate () { isPlayDialogue = false; });
                 }
             }
 

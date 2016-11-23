@@ -38,7 +38,7 @@ namespace EA4S
             //AppManager.Instance.InitDataAI();
 
             SceneTransitioner.Close();
-            WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
+            WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Start_1, 2, true, NextSentence);
             // StartTest();
         }
 
@@ -46,12 +46,12 @@ namespace EA4S
 
         public void NextSentence()
         {
-            WidgetSubtitles.I.DisplaySentence("assessment_start_A2", 3, true, NextSentence2);
+            WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Start_2, 3, true, NextSentence2);
         }
 
         public void NextSentence2()
         {
-            WidgetSubtitles.I.DisplaySentence("assessment_start_A3", 3, true, ReadyToTest);
+            WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Start_3, 3, true, ReadyToTest);
         }
 
         public void ReadyToTest()
@@ -135,7 +135,7 @@ namespace EA4S
             // MiniGameDone refactoring
             // AppManager.Instance.MiniGameDone("assessment");
 
-            WidgetSubtitles.I.DisplaySentence("assessment_result_intro", 3, true, ShowResults);
+            WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Classify_Letters, 3, true, ShowResults);
             //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);
         }
 
@@ -150,11 +150,11 @@ namespace EA4S
             //           WidgetPopupWindow.I.ShowArabicTextDirect(AllFinished, arabicText);
 
             if (currentResult >= 5) {
-                WidgetSubtitles.I.DisplaySentence("assessment_result_verygood", 3, true);
+                WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Complete_2, 3, true);
             } else if (currentResult >= 3) {
-                WidgetSubtitles.I.DisplaySentence("assessment_result_good", 3, true);
+                WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Complete_1, 3, true);
             } else {
-                WidgetSubtitles.I.DisplaySentence("assessment_result_retry", 3, true);
+                WidgetSubtitles.I.DisplaySentence(Db.LocalizationDataId.Assessment_Wrong_1, 3, true);
             }
 
             ContinueScreen.Show(AllFinished, ContinueScreenMode.Button);
