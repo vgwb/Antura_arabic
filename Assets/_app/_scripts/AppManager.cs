@@ -20,26 +20,12 @@ namespace EA4S
         public PlayerProfile Player;
         public MiniGameLauncher GameLauncher;
         public GameObject CurrentGameManagerGO;
-        public Log.AppLogManager LogManager;
+        public LogManager LogManager;
         #region Init
 
         public string IExist()
         {
             return "AppManager Exists";
-        }
-
-        public void InitDataAI()
-        {
-
-            if (Player == null)
-                Player = new PlayerProfile();
-            if (DB == null)
-                DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
-            if (Teacher == null)
-                Teacher = new TeacherAI(DB, Player);
-            if (GameLauncher == null)
-                GameLauncher = new MiniGameLauncher(Teacher);
-
         }
 
         protected override void GameSetup()
@@ -48,14 +34,13 @@ namespace EA4S
             AdditionalSetup();
             InitDataAI();
             GameSettings.HighQualityGfx = false;
-            //ResetProgressionData();
 
-            Instance.LogManager.LogInfo(InfoEvent.AppStarted);
+            LogManager.I.LogInfo(InfoEvent.AppStarted);
         }
 
         public PlayerProfileManager PlayerProfileManager;
 
-        private void AdditionalSetup()
+        void AdditionalSetup()
         {
             // GameplayModule
             if (GetComponentInChildren<ModuleInstaller<IGameplayModule>>()) {
@@ -65,7 +50,7 @@ namespace EA4S
 
             gameObject.AddComponent<MiniGameAPI>();
 
-            Instance.LogManager = new Log.AppLogManager();
+            LogManager = new LogManager();
             PlayerProfileManager = new PlayerProfileManager();
 
             gameObject.AddComponent<DebugManager>();
@@ -73,6 +58,22 @@ namespace EA4S
             gameObject.AddComponent<KeeperManager>();
 
         }
+
+        public void InitDataAI()
+        {
+
+            if (Player == null)
+                Player = new PlayerProfile();
+            if (DB == null)
+                DB = new DatabaseManager(GameSettings.UseTestDatabase, Player);
+            // ToCheck @michele ref: https://trello.com/c/r40yCfw1
+            //if (Teacher == null)
+            Teacher = new TeacherAI(DB, Player);
+            if (GameLauncher == null)
+                GameLauncher = new MiniGameLauncher(Teacher);
+
+        }
+
 
         /*void CachingLetterData()
         {
@@ -109,6 +110,7 @@ namespace EA4S
         /// Set result and return next scene name.
         /// </summary>
         /// <returns>return next scene name.</returns>
+        [System.Obsolete("Use", true)]
         public string MiniGameDone(string actualSceneName = "")
         {
             var returnString = "_Start";

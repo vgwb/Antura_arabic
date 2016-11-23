@@ -13,6 +13,7 @@ namespace EA4S.ReadingGame
         public GameObject circleBox;
         public ReadingGameAntura antura;
         public ReadingRadialWidget radialWidget;
+        public Camera uiCamera;
 
         public int CurrentScore { get; private set; }
         public int CurrentQuestionNumber { get; set; }
@@ -21,6 +22,7 @@ namespace EA4S.ReadingGame
         public bool isTimesUp;
 
         int lives = 3;
+        public int Lives { get { return lives; } }
 
         [HideInInspector]
         public KaraokeSong alphabetSong;
@@ -53,11 +55,11 @@ namespace EA4S.ReadingGame
                 if (CurrentScore < GetStarsThreshold(3))
                     return 2;
                 return 3;
-
             }
         }
 
         public ReadingGameInitialState InitialState { get; private set; }
+        public ReadingGameQuestionState QuestionState { get; private set; }
         public ReadingGameReadState ReadState { get; private set; }
         public ReadingGameAnswerState AnswerState { get; private set; }
         public IQuestionPack CurrentQuestion { get; set; }
@@ -75,14 +77,9 @@ namespace EA4S.ReadingGame
         protected override void OnInitialize(IGameContext context)
         {
             InitialState = new ReadingGameInitialState(this);
+            QuestionState = new ReadingGameQuestionState(this);
             ReadState = new ReadingGameReadState(this);
             AnswerState = new ReadingGameAnswerState(this);
-
-            bool isSong = (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong);
-
-            Context.GetOverlayWidget().Initialize(true, !isSong, !isSong);
-            Context.GetOverlayWidget().SetMaxLives(lives);
-            Context.GetOverlayWidget().SetLives(lives);
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
@@ -95,8 +92,6 @@ namespace EA4S.ReadingGame
             }
 
             radialWidget.Hide();
-
-            Context.GetOverlayWidget().SetStarsThresholds(GetStarsThreshold(1), GetStarsThreshold(2), GetStarsThreshold(3));
         }
 
         public void AddScore(int score)

@@ -98,7 +98,11 @@ namespace EA4S
 
         public MiniGameData CurrentMiniGame {
             get {
-                return currentPlaySessionMiniGames.ElementAt(playerProfile.CurrentMiniGameInPlaySession);
+                return
+                    playerProfile.CurrentMiniGameInPlaySession < currentPlaySessionMiniGames.Count
+                        ? currentPlaySessionMiniGames.ElementAt(playerProfile.CurrentMiniGameInPlaySession)
+                        : null
+                    ;
             }
         }
 

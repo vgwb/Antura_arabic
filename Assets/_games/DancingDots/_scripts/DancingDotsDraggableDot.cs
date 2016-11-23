@@ -29,6 +29,9 @@ namespace EA4S.DancingDots
 
 		void OnMouseDown()
 		{
+            if (gameManager.disableInput)
+                return;
+
 			isDragging = true;
 			screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
@@ -39,7 +42,10 @@ namespace EA4S.DancingDots
 
 		void OnMouseDrag()
 		{
-			Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+            if (gameManager.disableInput)
+                return;
+
+            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
 			Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 			transform.position = new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, -10);
@@ -48,7 +54,10 @@ namespace EA4S.DancingDots
 
 		void OnMouseUp()
 		{
-			if (overDestinationMarker)
+            if (gameManager.disableInput)
+                return;
+
+            if (overDestinationMarker)
 			{
 				if (isDot)
 				{

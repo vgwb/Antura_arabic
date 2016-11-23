@@ -27,7 +27,7 @@ namespace EA4S.SickLetters
         [HideInInspector]
         public MinigamesUITimer uiTimer;
         //[HideInInspector]
-        public int maxRoundsCount = 6, roundsCount = 1, wrongDraggCount = 0, currentStars = 0;
+        public int maxRoundsCount = 6, roundsCount = 1, wrongDraggCount = 0, correctMoveSequence = 0, currentStars = 0;
         [HideInInspector]
         public bool disableInput;
 
@@ -42,7 +42,6 @@ namespace EA4S.SickLetters
         [HideInInspector]
         public SickLettersDropZone[] DropZones;
 
-       
 
         [HideInInspector]
         public List<SickLettersDraggableDD> allWrongDDs = new List<SickLettersDraggableDD>();
@@ -207,6 +206,8 @@ namespace EA4S.SickLetters
         public void onWrongMove()
         {
             lastMoveIsCorrect = false;
+            correctMoveSequence = 0;
+            AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1,6));
             //Context.GetCheckmarkWidget().Show(false);
             TutorialUI.MarkNo(scale.transform.position - Vector3.forward * 2 + Vector3.up, TutorialUI.MarkSize.Big);
             Context.GetAudioManager().PlaySound(Sfx.Lose);
