@@ -16,14 +16,14 @@
         {
 
 
-            if (game.currentLetter.lastTube == null)
+            if (game.currentLetter.collidedTubes.Count == 0)
             {
                 win = false;
                 game.currentLetter.respawn = true;
                 return;
             }
 
-            int tubeIndex = int.Parse(game.currentLetter.lastTube.name.Substring(5));
+            int tubeIndex = int.Parse(game.currentLetter.collidedTubes[game.currentLetter.collidedTubes.Count-1].name.Substring(5));
 
             win = false;
             if (tubeIndex == game.currentTube)
