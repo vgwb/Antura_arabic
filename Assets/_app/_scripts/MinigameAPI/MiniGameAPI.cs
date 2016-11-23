@@ -45,7 +45,8 @@ namespace EA4S.API
             actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
 
             // Call game start
-            NavigationManager.I.GoToNextScene();
+            //NavigationManager.I.GoToNextScene();
+            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameData.Scene);
         }
 
         public IGameConfiguration GetGameConfigurationForMiniGameCode(MiniGameCode code)

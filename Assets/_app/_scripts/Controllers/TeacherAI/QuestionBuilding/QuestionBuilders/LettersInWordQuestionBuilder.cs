@@ -56,9 +56,15 @@ namespace EA4S
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);
 
+            UnityEngine.Debug.Log(question);
+
+            bool useJourneyForLetters = parameters.useJourneyForCorrect; 
+            if (useAllCorrectLetters) useJourneyForLetters = false;  // @note: we force journey in this case to be off so that all letters can be found
+
             var correctAnswers = teacher.wordAI.SelectData(
                 () => wordLetters,
-                 new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, useJourney: parameters.useJourneyForCorrect));
+                 new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, 
+                 useJourney: useJourneyForLetters));  
 
             var wrongAnswers = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
