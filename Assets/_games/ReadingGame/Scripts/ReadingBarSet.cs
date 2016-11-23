@@ -93,7 +93,7 @@ public class ReadingBarSet : MonoBehaviour
 
         for (int i = 0; i < karaokeLines.Count; ++i)
         {
-            words[i] = karaokeLines[i].text;
+            words[i] = ArabicAlphabetHelper.PrepareArabicStringForDisplay(karaokeLines[i].text, true);
             lineBreaks[i] = karaokeLines[i].starsWithLineBreak;
         }
 

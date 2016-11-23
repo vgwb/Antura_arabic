@@ -89,7 +89,9 @@ namespace EA4S.ReadingGame
                 }
             }
 
-            game.barSet.SwitchToNextBar();
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+                game.barSet.SwitchToNextBar();
+
             game.barSet.active = true;
         }
 
