@@ -28,7 +28,7 @@ namespace EA4S
         Collider colliderRaycast;
 
         void Update()
-        {
+        {         
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
             if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
@@ -41,22 +41,30 @@ namespace EA4S
                     {
                         if((colliderRaycast!= null)&&(colliderRaycast.tag == "Pin"))
                             colliderRaycast.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
-                        int numDotsRope = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots.Count;
 
-                        float distaceHitToDot = 1000;
-                        float distanceHitBefore = 0;
-                        dotCloser = 0;
-
-                        for (int i = 0; i < numDotsRope; i++)
+                        if(AppManager.Instance.Player.MaxJourneyPosition.PlaySession == 2)//All dots available of all ropes
                         {
-                            distanceHitBefore = Vector3.Distance(hit.point,
-                                hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[i].transform.position);
-                            if (distanceHitBefore < distaceHitToDot)
+                            int numDotsRope = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots.Count;
+                            float distaceHitToDot = 1000;
+                            float distanceHitBefore = 0;
+                            dotCloser = 0;
+
+                            for (int i = 0; i < numDotsRope; i++)
                             {
-                                distaceHitToDot = distanceHitBefore;
-                                dotCloser = i;
+                                distanceHitBefore = Vector3.Distance(hit.point,
+                                    hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[i].transform.position);
+                                if (distanceHitBefore < distaceHitToDot)
+                                {
+                                    distaceHitToDot = distanceHitBefore;
+                                    dotCloser = i;
+                                }
                             }
                         }
+                        else
+                        {
+                            dotCloser = 0;
+                        }
+
 
                         posDotMiniMapScript = hit.transform.parent.transform.gameObject.GetComponent<Rope>().dots[dotCloser].GetComponent<Dot>().pos;
 

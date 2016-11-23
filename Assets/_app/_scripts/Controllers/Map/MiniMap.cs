@@ -29,8 +29,8 @@ namespace EA4S
         Quaternion rot;
         int numDot = 0;
         int numLearningBlock;
-     
-        void Start()
+        
+        void Awake()
         {
             posDots = new GameObject[28];
             for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++)
@@ -44,7 +44,10 @@ namespace EA4S
 
             if (!isAvailableTheWholeMap) CalculatePlaySessionAvailables();
             CalculatePin_RopeAvailable();
+        }
 
+        void Start()
+        {         
             /* FIRST CONTACT FEATURE */
             if (AppManager.Instance.Player.IsFirstContact()) {
                 FirstContactBehaviour();
