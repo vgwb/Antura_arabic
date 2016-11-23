@@ -65,8 +65,11 @@ namespace EA4S.ReadingGame
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_INTRO, () => 
+                    game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_INTRO, () =>
                     {
+                        var firstBar = game.barSet.GetNextBar();
+                        TutorialUI.DrawLine(firstBar.start.transform.position, firstBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
+
                         game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_TUTORIAL, () =>
                         {
                             completed = true;
