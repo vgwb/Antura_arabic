@@ -111,6 +111,7 @@ MonoBehaviour:
   hintText: {fileID: 1427352933}
   dotlessText: {fileID: 1198136048}
   fullTextGO: {fileID: 1761681170}
+  contentGO: {fileID: 1725073163}
   rainbow: {fileID: 1439934404}
   game: {fileID: 1326664800}
 --- !u!1001 &15998651
@@ -1978,7 +1979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u062D \u0647 \u0639 \u0635 \u0633 \u0644 \u0627 \u0645 \u0643 \u0648
-    \u0631 \u062F \u0637"
+    \u0631 \u062F \u0637 \u0622 \u0623 \u0625"
 --- !u!114 &489500347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9755,7 +9756,8 @@ MonoBehaviour:
   UseTestGameplayInfo: 0
   endGameCanvas: {fileID: 353301248}
   starFlowers: {fileID: 1205094847}
-  gameDuration: 120
+  disableInput: 0
+  gameDuration: 60
   dancingDotsLL: {fileID: 6993642}
   antura: {fileID: 1165695145}
   anturaMinDelay: 3
@@ -9832,7 +9834,8 @@ MonoBehaviour:
   - {fileID: 489500358}
   - {fileID: 489500357}
   - {fileID: 1776853326}
-  repeatDelay: 3
+  startDelay: 8.5
+  repeatDelay: 2
 --- !u!114 &1427352933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10737,6 +10740,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabSet: {fileID: 11400000, guid: f92ca4f711c17ba4abe126ec8ece6018, type: 2}
   testWorld: 0
+--- !u!1 &1725073163 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013126081262, guid: d5826ab7f51b7c549919cf0b6fe83693,
+    type: 2}
+  m_PrefabInternal: {fileID: 1988355390}
 --- !u!1 &1725246604
 GameObject:
   m_ObjectHideFlags: 0
@@ -13705,6 +13713,22 @@ Prefab:
     - target: {fileID: 4000010958295660, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010958295660, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010958295660, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010958295660, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013126081262, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}

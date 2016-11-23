@@ -11,32 +11,28 @@ namespace EA4S
         [Header("Scene Setup")]
         public Music SceneMusic;
 
-        [Header("Journey")]
-        public GameObject[] Pins;
-        public GameObject[] CurrentSteps;
-
-        [Header("References")]
-        public GameObject Player;
-        public GameObject ZoomCameraGO;
-
         int tutorialIndex = 10;
 
         void Start()
         {
+            // Navigation manager 
+            NavigationManager.I.CurrentScene = AppScene.Map;
             AudioManager.I.PlayMusic(SceneMusic);
-            ShowProgression();
-            Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
-            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 1) {
-                tutorialIndex = 10;
-            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 2) {
-                tutorialIndex = 20;
-            } else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) > 2) {
-                tutorialIndex = 30;
-            }
 
-            SceneTransitioner.Close();
+            //ShowProgression();
+            //Debug.Log("MapManager PlaySession " + AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);
+            //if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 1) {
+            //    tutorialIndex = 10;
+            //} else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) == 2) {
+            //    tutorialIndex = 20;
+            //} else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) > 2) {
+            //    tutorialIndex = 30;
+            //}
 
-            ShowTutor();
+
+            //ShowTutor();
+
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
         }
 
         public void ShowTutor()
@@ -56,7 +52,7 @@ namespace EA4S
                     break;
                 case 13:
                     WidgetSubtitles.I.DisplaySentence("map_A4", 2, true);
-                    Zoom();
+                    //Zoom();
                     break;
                 case 20:
                     tutorialIndex++;
@@ -65,7 +61,7 @@ namespace EA4S
                 case 21:
                     tutorialIndex++;
                     WidgetSubtitles.I.DisplaySentence("map1_A2", 2, true);
-                    Zoom();
+                    //Zoom();
                     break;
                 case 30:
                     tutorialIndex++;
@@ -82,69 +78,69 @@ namespace EA4S
                 case 33:
                     tutorialIndex++;
                     WidgetSubtitles.I.DisplaySentence("assessment_intro_A4", 2, true);
-                    Zoom();
+                    //Zoom();
                     break;
             }
         }
 
-        public void Zoom()
-        {
-            ChangeCamera();
-        }
+        //public void Zoom()
+        //{
+        //    ChangeCamera();
+        //}
 
-        // called by callback in camera
-        public void CameraReady()
-        {
-            Ready2Play();
-        }
+        //// called by callback in camera
+        //public void CameraReady()
+        //{
+        //    Ready2Play();
+        //}
 
-        public void Ready2Play()
-        {
-            ContinueScreen.Show(Play, ContinueScreenMode.Button);
-        }
+        //public void Ready2Play()
+        //{
+        //    ContinueScreen.Show(Play, ContinueScreenMode.Button);
+        //}
 
-        public void Play()
-        {
-            AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
+        //public void Play()
+        //{
+        //    AppManager.Instance.Teacher.InitialiseCurrentPlaySession();   // This must becalled before the games selector is loaded
 
-            if (AppManager.Instance.IsAssessmentTime)
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
-            else
-                GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GamesSelector");
-        }
+        //    if (AppManager.Instance.IsAssessmentTime)
+        //        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("game_Assessment");
+        //    else
+        //        GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_GamesSelector");
+        //}
 
-        void ShowProgression()
-        {
-            CurrentSteps[0].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 0);
-            CurrentSteps[1].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 1);
-            CurrentSteps[2].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 2);
-            CurrentSteps[3].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 3);
-            CurrentSteps[4].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 4);
+        //void ShowProgression()
+        //{
+        //    CurrentSteps[0].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 0);
+        //    CurrentSteps[1].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 1);
+        //    CurrentSteps[2].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 2);
+        //    CurrentSteps[3].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 3);
+        //    CurrentSteps[4].SetActive(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession > 4);
 
-            Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.Player.CurrentJourneyPosition.PlaySession].transform.position;
+        //    Vector3 currentDotPosition = CurrentSteps[AppManager.Instance.Player.CurrentJourneyPosition.PlaySession].transform.position;
 
-            Player.transform.position = new Vector3(currentDotPosition.x, currentDotPosition.y + 4.6f, currentDotPosition.z);
+        //    Player.transform.position = new Vector3(currentDotPosition.x, currentDotPosition.y + 4.6f, currentDotPosition.z);
 
-        }
+        //}
 
-        public void ChangeCamera()
-        {
+        //public void ChangeCamera()
+        //{
 
-            CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation);
+        //    CameraGameplayController.I.MoveToPosition(ZoomCameraGO.transform.position, ZoomCameraGO.transform.rotation);
 
-        }
+        //}
 
 
-        // TODO: use similar code to get info on the journey
-        private void TestGetJourneyInfo()
-        {
-            int stage = 1;
-            List<Teacher.LearningBlockInfo> learningBlockInfo_list = AppManager.Instance.Teacher.journeyHelper.GetLearningBlockInfosForStage(stage);
-            foreach(var info in learningBlockInfo_list)
-            {
-                Debug.Log(info.data + ": " + info.score);
-            }
-        }
+        //// TODO: use similar code to get info on the journey
+        //private void TestGetJourneyInfo()
+        //{
+        //    int stage = 1;
+        //    List<Teacher.LearningBlockInfo> learningBlockInfo_list = AppManager.Instance.Teacher.journeyHelper.GetLearningBlockInfosForStage(stage);
+        //    foreach(var info in learningBlockInfo_list)
+        //    {
+        //        Debug.Log(info.data + ": " + info.score);
+        //    }
+        //}
 
     }
 

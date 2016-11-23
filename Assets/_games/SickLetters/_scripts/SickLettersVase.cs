@@ -107,8 +107,14 @@ namespace EA4S.SickLetters
                 }
                 else*/
                 {
+                    //if (Random.value >= 0.25f || !game.lastMoveIsCorrect)
+                        AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
+
                     counter++;
+                    game.correctMoveSequence++;
                     game.lastMoveIsCorrect = true;
+                    
+
                     if (!dd.isTouchingVase)
                         dd.boxCollider.isTrigger = false;
 
@@ -116,12 +122,16 @@ namespace EA4S.SickLetters
                     //game.Context.GetCheckmarkWidget().Show(true);
                     game.Context.GetAudioManager().PlaySound(Sfx.OK);
 
+
+                    //int prevStarNum = game.currentStars;
                     if (counter > game.maxWieght)
                     {
                         game.Context.GetOverlayWidget().SetStarsThresholds((game.targetScale / 3), (game.targetScale * 2 / 3), game.targetScale);
                         game.currentStars = (counter / 2) / (game.targetScale / 6);
                         game.Context.GetOverlayWidget().SetStarsScore(counter/*game.currentStars*/);
                     }
+
+                    
 
                     dd.isInVase = true;
                     dd.gameObject.tag = "Finish";

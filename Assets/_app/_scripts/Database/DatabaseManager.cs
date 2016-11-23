@@ -35,7 +35,7 @@ namespace EA4S
 
         public void LoadDynamicDbForPlayerProfile(int profileId)
         {
-            dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".bytes", profileId);
+            dynamicDb = new DBService("EA4S_Database" + "_" + profileId + ".sqlite3", profileId);
             //dbLoaded = true;
         }
 

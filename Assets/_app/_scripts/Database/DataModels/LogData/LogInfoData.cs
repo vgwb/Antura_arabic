@@ -14,6 +14,8 @@ namespace EA4S
         GameStart = 40,
         GameEnd = 41,
 
+        Reward = 50,
+
         Book = 30,
     }
 

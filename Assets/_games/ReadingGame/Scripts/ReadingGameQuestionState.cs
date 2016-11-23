@@ -59,11 +59,23 @@ namespace EA4S.ReadingGame
             if (firstRun)
             {
                 if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+                {
                     game.Context.GetAudioManager().PlayDialogue(TextID.READINGGAME_INTRO, () => { completed = true; });
+                    game.ReadState.TutorialMode = true;
+                }
                 else
-                    game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_INTRO, () => { completed = true; });
+                {
+                    game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_INTRO, () =>
+                    {
+                        var firstBar = game.barSet.GetNextBar();
+                        TutorialUI.DrawLine(firstBar.start.transform.position, firstBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
 
-                game.ReadState.TutorialMode = true;
+                        game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_TUTORIAL, () =>
+                        {
+                            completed = true;
+                        });
+                    });
+                }
             }
             else
             {

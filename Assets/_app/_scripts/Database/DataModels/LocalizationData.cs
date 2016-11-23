@@ -8,6 +8,7 @@ namespace EA4S.Db
     {
         public string Id;
         public string Character;
+        public string Area;
         public string When;
         public string Context;
         public string English;

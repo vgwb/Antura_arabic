@@ -115,6 +115,10 @@ namespace EA4S
                 );
         }
 
+        public bool IsReady()
+        {
+            return !enterScaleTweener.IsPlaying();
+        }
 
         void ScaleTo(float scale, float duration, Action endCallback = null)
         {

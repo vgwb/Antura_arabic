@@ -23,9 +23,11 @@ using System.Collections.Generic;
 using ModularFramework.Modules;
 using UnityEngine.SceneManagement;
 
-namespace ModularFramework.Core {
+namespace ModularFramework.Core
+{
 
-    public abstract class GameManager : Singleton<GameManager> {
+    public abstract class GameManager : Singleton<GameManager>
+    {
 
         #region Game Settings
 
@@ -57,21 +59,24 @@ namespace ModularFramework.Core {
         #endregion
 
         #region Event Handlers
-        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1) {
+        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
             if (IsDuplicatedInstance)
                 return;
-            Debug.Log("SceneLoaded", this);
+            //Debug.Log("SceneLoaded", this);
             Modules.SceneModule.SceneLoadedBehaviour();
         }
         #endregion
 
         #region Event Subscription
 
-        void OnEnable() {
+        void OnEnable()
+        {
             SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         }
 
-        void OnDisable() {
+        void OnDisable()
+        {
             SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
         }
 
@@ -79,18 +84,15 @@ namespace ModularFramework.Core {
 
         #region ShortCuts properties
 
-        public UIModule UIModule
-        {
+        public UIModule UIModule {
             get { return Modules.UIModule; }
         }
 
-        public PlayerProfileModule PlayerProfile
-        {
+        public PlayerProfileModule PlayerProfile {
             get { return Modules.PlayerProfile; }
         }
 
-        public LocalizationModule Localization
-        {
+        public LocalizationModule Localization {
             get { return Modules.LocalizationModule; }
         }
 
@@ -114,7 +116,8 @@ namespace ModularFramework.Core {
             setuped = true;
         }
 
-        protected override void Awake() {
+        protected override void Awake()
+        {
             base.Awake();
             // Assert.IsTrue(!string.IsNullOrEmpty(GameSettings.GameID), "Main Game ID Can not be null or empty");
             DontDestroyOnLoad(this);
