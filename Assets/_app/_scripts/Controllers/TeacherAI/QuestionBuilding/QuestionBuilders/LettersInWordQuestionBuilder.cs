@@ -58,7 +58,8 @@ namespace EA4S
 
             var correctAnswers = teacher.wordAI.SelectData(
                 () => wordLetters,
-                 new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, useJourney: parameters.useJourneyForCorrect));
+                 new SelectionParameters(parameters.correctSeverity, nCorrect, getMaxData:useAllCorrectLetters, 
+                 useJourney: false));  // @note: we force journey to be off so that all letters can be found
 
             var wrongAnswers = teacher.wordAI.SelectData(
                 () => teacher.wordHelper.GetLettersNotIn(parameters.letterFilters, wordLetters.ToArray()),
