@@ -61,7 +61,9 @@
             int nCorrect = 1;
             int nWrong = 0;
 
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.wordFilters.excludeDiacritics = false;
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
             return builder;
         }
