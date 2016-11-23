@@ -12,6 +12,10 @@ namespace EA4S
         public int s,i;
         void Awake()
         {
+            /*AppManager.Instance.Player.MaxJourneyPosition.Stage = 2;
+            AppManager.Instance.Player.MaxJourneyPosition.LearningBlock = 3;
+            AppManager.Instance.Player.MaxJourneyPosition.PlaySession = 1;*/
+
             s = AppManager.Instance.Player.MaxJourneyPosition.Stage;
             for (i=1;i<= (s-1);i++)
             {
@@ -19,9 +23,11 @@ namespace EA4S
                 miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
             }
             miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
-            ChangeCamera(cameras[s]);
-            stages[s].SetActive(true);
-            letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[s].GetComponent<MiniMap>();
+
+            ChangeCamera(cameras[AppManager.Instance.Player.CurrentJourneyPosition.Stage]);
+            stages[AppManager.Instance.Player.CurrentJourneyPosition.Stage].SetActive(true);
+            letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.Instance.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
+
             StartCoroutine("ResetPosLetter");
         }
         public void StageLeft()
@@ -33,9 +39,10 @@ namespace EA4S
                 stages[numberStage + 1].SetActive(true);
                 ChangeCamera(cameras[numberStage+1]);
 
+                ChangePinDotToBlack();
                 AppManager.Instance.Player.CurrentJourneyPosition.Stage++;
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage+1].GetComponent<MiniMap>();
-                StartCoroutine("ResetPosLetter");
+                letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
             }
         }
         public void StageRight()
@@ -47,9 +54,10 @@ namespace EA4S
                 stages[numberStage -1].SetActive(true);
                 ChangeCamera(cameras[numberStage - 1]);
 
+                ChangePinDotToBlack();
                 AppManager.Instance.Player.CurrentJourneyPosition.Stage--;
                 letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[numberStage-1].GetComponent<MiniMap>();
-                StartCoroutine("ResetPosLetter");
+                letter.GetComponent<LetterMovement>().ResetPosLetterAfterChangeStage();
             }
         }
         public void ChangeCamera(GameObject ZoomCameraGO)
@@ -62,6 +70,13 @@ namespace EA4S
         {
             yield return new WaitForSeconds(1);
             letter.GetComponent<LetterMovement>().ResetPosLetter();
+        }
+        void ChangePinDotToBlack()
+        {
+            if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)
+                letter.GetComponent<LetterMovement>().ChangeMaterialPinToBlack(letter.GetComponent<LetterMovement>().miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().Dot);
+            else
+                letter.GetComponent<LetterMovement>().ChangeMaterialDotToBlack(letter.GetComponent<LetterMovement>().miniMapScript.posDots[letter.GetComponent<LetterMovement>().pos]);
         }
     }
 }

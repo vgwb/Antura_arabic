@@ -138,7 +138,7 @@ namespace EA4S
                 posMax = posDots.Length - 1;
                 for (int i = 0; i < (posPines.Length - 1); i++) {
                     posPines[i].tag = "Pin";
-                    ropes[i].transform.GetChild(0).tag = "Rope";
+                    //ropes[i].transform.GetChild(0).tag = "Rope";
                 }
             } else {
                 int l = AppManager.Instance.Player.MaxJourneyPosition.LearningBlock;
@@ -148,7 +148,7 @@ namespace EA4S
                 else m = l - 1;
                 for (int i = 0; i < (m + 1); i++) {
                     posPines[i].tag = "Pin";
-                    ropes[i].transform.GetChild(0).tag = "Rope";
+                   // ropes[i].transform.GetChild(0).tag = "Rope";
                 }
             }
         }
