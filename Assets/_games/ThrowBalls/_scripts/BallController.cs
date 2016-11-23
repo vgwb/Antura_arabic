@@ -115,7 +115,7 @@ namespace EA4S.ThrowBalls
                 case State.Idle:
                     rigidBody.isKinematic = false;
 
-                    if (!ThrowBallsGameManager.Instance.IsTutorialLevel())
+                    if (!GameState.instance.IsTutorialLevel())
                     {
                         AnturaController.instance.Enable();
                         AnturaController.instance.Reset();
@@ -167,7 +167,7 @@ namespace EA4S.ThrowBalls
 
                 if (transform.position.y < -9 || stateTime > BALL_RESPAWN_TIME)
                 {
-                    ThrowBallsGameManager.Instance.OnBallLost();
+                    GameState.instance.OnBallLost();
                     Reset();
                 }
             }
@@ -204,7 +204,7 @@ namespace EA4S.ThrowBalls
 
                 if (stateTime >= DROP_TIME)
                 {
-                    ThrowBallsGameManager.Instance.OnBallLost();
+                    GameState.instance.OnBallLost();
                     Reset();
                 }
             }
