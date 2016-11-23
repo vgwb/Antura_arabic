@@ -10,15 +10,32 @@ namespace EA4S
 
         CountdownTimer countDown;
 
-        public float m_StateDelay = 2.0f;
+        public float m_StateDelay = 1.0f;
         public float m_EndDelay = 2.0f;
 
         bool m_Start = true;
         bool m_End = false;
 
+        Vector3 m_CameraStartPosition;
+        Vector3 m_CameraPath;
+        public float m_CameraHeightAtStart = 30.0f;
+        public float m_CameraVelocity = 0.1f;
+
+        public IntroMazeCharacter[] m_MazeCharacters;
+        public float m_MazeCharactesVelocity = 0.1f;
+
         void Start() {
             GlobalUI.ShowPauseMenu(false);
             countDown = new CountdownTimer(m_EndDelay);
+            m_CameraStartPosition = Camera.main.transform.position;
+            Camera.main.transform.position += Vector3.up * m_CameraHeightAtStart;
+            m_CameraPath = m_CameraStartPosition - Camera.main.transform.position;
+
+            foreach (var mazeCharacter in m_MazeCharacters)
+            {
+                mazeCharacter.transform.position += new Vector3(0, m_CameraHeightAtStart - 10f, 0);
+                mazeCharacter.m_Velocity = m_MazeCharactesVelocity;
+            }          
         }
 
         private void CountDown_onTimesUp() {
@@ -35,45 +52,52 @@ namespace EA4S
             {
                 m_Start = false;
                 Debug.Log("Start Introduction");
-                StartCoroutine(ChangeIntroductionState("end_learningblock_A2", FirstIntroLetter));
-                //StartCoroutine(ChangeIntroductionState("Intro_welcome", FirstIntroLetter));
+                foreach (var mazeCharacter in m_MazeCharacters)
+                {
+                    mazeCharacter.SetDestination();
+                }
+                StartCoroutine(ChangeIntroductionState("Intro_welcome", FirstIntroLetter));
+            }
+            else
+            {
+                if (m_End)
+                {
+                    countDown.Update(Time.deltaTime);
+                }
             }
 
-            if (m_End)
+            if (Camera.main.transform.position.y > m_CameraStartPosition.y)
             {
-                countDown.Update(Time.deltaTime);
+                Camera.main.transform.position += m_CameraPath * Time.deltaTime * m_CameraVelocity;
             }
-                      
+                     
         }
 
         public void FirstIntroLetter()
         {
             Debug.Log("Start Spawning");
             factory.StartSpawning = true;
-            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", SecondIntroLetter));
-            //StartCoroutine(ChangeIntroductionState("Intro_Letters_1", SecondIntroLetter));
+            StartCoroutine(ChangeIntroductionState("Intro_Letters_1", SecondIntroLetter));
         }
 
         public void SecondIntroLetter()
         {
             Debug.Log("Second Intro Letter");
-            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EnableAntura));
-            //StartCoroutine(ChangeIntroductionState("Intro_Letters_2", EnableAntura));
+            StartCoroutine(ChangeIntroductionState("Intro_Letters_2", EnableAntura));
         }
 
         public void EnableAntura()
         {
             factory.antura.SetAnturaTime(true);
             Debug.Log("Antura is enable");
-            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", EndIntroduction));
-            //StartCoroutine(ChangeIntroductionState("Intro_Dog", EndIntroduction));
+            StartCoroutine(ChangeIntroductionState("Intro_Dog", EndIntroduction));
         } 
 
         public void EndIntroduction()
         {
             Debug.Log("EndIntroduction");
             StartCoroutine(ChangeIntroductionState("end_learningblock_A2", DisableAntura));
-            //StartCoroutine(ChangeIntroductionState("Intro_Dog_Chase", DisableAntura));
+            StartCoroutine(ChangeIntroductionState("Intro_Dog_Chase", DisableAntura));
         }
 
         public void DisableAntura()

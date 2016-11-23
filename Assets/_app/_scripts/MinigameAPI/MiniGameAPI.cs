@@ -4,15 +4,17 @@ using ModularFramework.Core;
 using System.Linq;
 using System;
 using EA4S.Db;
-using EA4S.Log;
+using EA4S;
 
-namespace EA4S.API {
+namespace EA4S.API
+{
 
     /// <summary>
     /// Entry point to start fame from app.
     /// </summary>
     /// <seealso cref="ModularFramework.Core.Singleton{EA4S.API.MiniGameAPI}" />
-    public class MiniGameAPI : Singleton<MiniGameAPI> {
+    public class MiniGameAPI : Singleton<MiniGameAPI>
+    {
 
         #region Gameplay Management
 
@@ -21,18 +23,14 @@ namespace EA4S.API {
         /// </summary>
         /// <param name="_gameCode">The game code.</param>
         /// <param name="_gameConfiguration">The game configuration.</param>
-        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration) {
-            // To be deleted
-            List<IQuestionPack> _gameData = null;
-
+        public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)
+        {
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataByCode(_gameCode);
-            string miniGameScene = miniGameData.Scene;
             IQuestionBuilder rules = null;
             IGameConfiguration actualConfig = null;
 
             actualConfig = GetGameConfigurationForMiniGameCode(_gameCode);
 
-            // Set game configuration instance with game data
             // game difficulty
             actualConfig.Difficulty = _gameConfiguration.Difficulty;
             // rule setted in config and used by AI to create correct game data
@@ -46,9 +44,8 @@ namespace EA4S.API {
             // Comunicate to LogManager that start new single minigame play session.
             actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
 
-
             // Call game start
-            AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition(miniGameScene);
+            NavigationManager.I.GoToNextScene();
         }
 
         public IGameConfiguration GetGameConfigurationForMiniGameCode(MiniGameCode code)

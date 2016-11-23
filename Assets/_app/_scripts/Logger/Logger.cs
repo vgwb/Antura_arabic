@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System;
 
-namespace EA4S
+namespace EA4S_deprecated
 {
     public static class LoggerEA4S
     {
@@ -74,7 +74,7 @@ namespace EA4S
     }
 
     [Serializable]
-    public class LogData 
+    public class LogData
     {
         public string SessionId = string.Empty;
         public string TimeInSeconds = string.Empty;

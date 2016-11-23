@@ -34,7 +34,8 @@ namespace EA4S
             currentResult = 0;
 
             PanelTestGO.SetActive(false);
-            AppManager.Instance.InitDataAI();
+            // ToCheck @michele ref: https://trello.com/c/r40yCfw1
+            //AppManager.Instance.InitDataAI();
 
             SceneTransitioner.Close();
             WidgetSubtitles.I.DisplaySentence("assessment_start_A1", 2, true, NextSentence);
@@ -88,7 +89,9 @@ namespace EA4S
                 Words[i].Init(newDatas[i], true);
                 Words[i].InjectManager(this);
             }
-            LoggerEA4S.Log("app", "assessment", "start", serializedWordsForLog);
+            // LoggerEA4S.Log("app", "assessment", "start", serializedWordsForLog);
+            LogManager.I.LogInfo(InfoEvent.GameStart, serializedWordsForLog);
+
             PanelTestGO.SetActive(true);
         }
 
@@ -128,8 +131,9 @@ namespace EA4S
             }
             currentResult = rightCounter;
 
-            LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
-            AppManager.Instance.MiniGameDone("assessment");
+            //LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
+            // MiniGameDone refactoring
+            // AppManager.Instance.MiniGameDone("assessment");
 
             WidgetSubtitles.I.DisplaySentence("assessment_result_intro", 3, true, ShowResults);
             //Debug.LogFormat("Result : {0}/{1}", rightCounter, Draws.Count);

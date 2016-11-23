@@ -10,7 +10,7 @@ namespace EA4S.DancingDots
         public TextMeshPro hintDot;
         public DancingDotsDiacriticPosition[] targetDDs;
         //public Vector3[] path;
-        public float repeatDelay = 3;
+        public float startDelay,repeatDelay = 3;
 
         private bool doTutOnDots;
 
@@ -77,14 +77,22 @@ namespace EA4S.DancingDots
 
         IEnumerator coDoTutorial()
         {
-            while (true)
+            yield return new WaitForSeconds(startDelay);
+            StartCoroutine(sayTut(repeatDelay));
+
+            while (gameManager.isTutRound)
             {
-                if (gameManager.isTutRound && currentDD)
+                if (currentDD)
                 {
 
                     yield return new WaitForSeconds(repeatDelay);
+
+
                     if (currentDD.isDragging || !gameManager.isTutRound)
+                    {
+                        yield return null;
                         continue;
+                    }
 
                     if (doTutOnDots)
                         targetPosition = hintDot.transform.TransformPoint(Vector3.Lerp(hintDot.mesh.vertices[0], hintDot.mesh.vertices[2], 0.5f));
@@ -93,12 +101,19 @@ namespace EA4S.DancingDots
 
                     TutorialUI.DrawLine(source.position - Vector3.forward*2, targetPosition - Vector3.forward*2, TutorialUI.DrawLineMode.FingerAndArrow);
 
+                    //yield return new WaitForSeconds(repeatDelay/2);
                 }
 
                 yield return null;
 
             }
 
+        }
+
+        IEnumerator sayTut(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            AudioManager.I.PlayDialog("DancingDots_Tuto");
         }
     }
 }

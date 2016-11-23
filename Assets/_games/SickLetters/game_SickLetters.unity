@@ -9614,6 +9614,7 @@ MonoBehaviour:
   maxRoundsCount: 6
   roundsCount: 0
   wrongDraggCount: 0
+  correctMoveSequence: 0
   currentStars: 0
   disableInput: 0
   enableTutorial: 1
@@ -9664,6 +9665,7 @@ MonoBehaviour:
   - {x: -3, y: 17, z: -12}
   - {x: -6, y: 12.05, z: -12}
   draw: 0
+  tutorialStartDelay: 14.75
   repeatMax: 3
   repeatConter: 0
 --- !u!1 &1479055851

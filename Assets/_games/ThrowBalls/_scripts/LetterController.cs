@@ -28,7 +28,7 @@ namespace EA4S.ThrowBalls
 
         private float yEquilibrium;
 
-        private LL_LetterData letterData;
+        private ILivingLetterData letterData;
 
         private IEnumerator customGravityCoroutine;
         private IEnumerator propUpCoroutine;
@@ -160,13 +160,13 @@ namespace EA4S.ThrowBalls
             return Mathf.Abs(vector1.x - vector2.x) <= threshold && Mathf.Abs(vector1.y - vector2.y) <= threshold && Mathf.Abs(vector1.z - vector2.z) <= threshold;
         }
 
-        public void SetLetter(LL_LetterData _data)
+        public void SetLetter(ILivingLetterData _data)
         {
             letterData = _data;
             letterObjectView.Init(letterData);
         }
 
-        public LL_LetterData GetLetter()
+        public ILivingLetterData GetLetter()
         {
             return letterData;
         }

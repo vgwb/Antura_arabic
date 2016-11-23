@@ -42,6 +42,7 @@ namespace EA4S
 
         public JourneyPosition MaxJourneyPosition = new JourneyPosition(1, 1, 1);
         public JourneyPosition CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+        [NonSerialized]
         public int CurrentMiniGameInPlaySession;
 
         #region Bones/coins
@@ -123,7 +124,7 @@ namespace EA4S
         /// <param name="_lb">The lb.</param>
         /// <param name="_ps">The ps.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetActualJourneyPosition(int _stage, int _lb, int _ps, bool _save = false)
+        public void SetActualJourneyPosition(int _stage, int _lb, int _ps, bool _save = true)
         {
             SetActualJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
             if (_save)
@@ -136,7 +137,7 @@ namespace EA4S
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetActualJourneyPosition(JourneyPosition _journeyPosition, bool _save = false)
+        public void SetActualJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
         {
             AppManager.Instance.Player.CurrentJourneyPosition = _journeyPosition;
             if(_save)
@@ -152,7 +153,7 @@ namespace EA4S
         /// <param name="_lb">The lb.</param>
         /// <param name="_ps">The ps.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps, bool _save = false)
+        public void SetMaxJourneyPosition(int _stage, int _lb, int _ps, bool _save = true)
         {
             SetMaxJourneyPosition(new JourneyPosition(_stage, _lb, _ps));
             if (_save)
@@ -165,7 +166,7 @@ namespace EA4S
         /// </summary>
         /// <param name="_journeyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition, bool _save = false)
+        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
         {
             AppManager.Instance.Player.MaxJourneyPosition = _journeyPosition;
             if (_save)
@@ -259,6 +260,21 @@ namespace EA4S
         }
         #endregion
 
+        #endregion
+
+        #region Current minigame in playsession        
+        /// <summary>
+        /// Nexts the play session minigame.
+        /// </summary>
+        public void NextPlaySessionMinigame() {
+            CurrentMiniGameInPlaySession++;
+        }
+        /// <summary>
+        /// Resets position in play session minigame.
+        /// </summary>
+        public void ResetPlaySessionMinigame() {
+            CurrentMiniGameInPlaySession = 0;
+        }
         #endregion
 
         #endregion
