@@ -35,7 +35,8 @@ namespace EA4S.SickLetters
         public int gameDuration = 120 ,  targetScale = 10, maxWieght;
         public float vaseWidth = 5.20906f;
         public bool LLCanDance = false, with7arakat;
-        public string dotlessLetters = "أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و";
+        public int numerOfWringDDs = 3;
+        public string dotlessLetters = "إ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و";
 
         public SickLettersDraggableDD[] Draggables;
 
@@ -184,6 +185,7 @@ namespace EA4S.SickLetters
 
             this.LLCanDance = LLCanDance;
             this.with7arakat = with7arakat;
+            numerOfWringDDs = targetScale/6;
         }
 
         float prevDiff = -1;
@@ -198,7 +200,7 @@ namespace EA4S.SickLetters
             if (diff < 0.333f)
                 setDifficulty(diff, 120, 18, 5.20906f, false, false);
             else if (diff < 0.666f)
-                setDifficulty(diff, 160, 42, 4.0f, false, true);
+                setDifficulty(diff, 160, 30, 4.0f, false, true);
             else
                 setDifficulty(diff, 180, 42, 3.0f, true, true);
         }

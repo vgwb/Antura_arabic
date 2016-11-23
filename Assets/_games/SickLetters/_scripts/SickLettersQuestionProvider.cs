@@ -7,7 +7,7 @@ namespace EA4S.SickLetters
 {
     public class SickLettersQuestionProvider : MonoBehaviour, IQuestionProvider
     {
-        string dotlessLetters = "ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و -", prevLetter="", newLetterString="X";
+        string dotlessLetters = "ﻻ لأ ﺉ آ ٶ ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و �ة - ", prevLetter="", newLetterString="X";
 
         public IQuestionPack GetNextQuestion()
         {
