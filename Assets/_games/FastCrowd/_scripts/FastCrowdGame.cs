@@ -115,6 +115,7 @@ namespace EA4S.FastCrowd
         public FastCrowdPlayState PlayState { get; private set; }
         public FastCrowdResultState ResultState { get; private set; }
         public FastCrowdEndState EndState { get; private set; }
+        public FastCrowdTutorialState TutorialState { get; private set; }
 
         public void ResetScore()
         {
@@ -145,6 +146,7 @@ namespace EA4S.FastCrowd
             PlayState = new FastCrowdPlayState(this);
             ResultState = new FastCrowdResultState(this);
             EndState = new FastCrowdEndState(this);
+            TutorialState = new FastCrowdTutorialState(this);
 
             QuestionManager.wordComposer.gameObject.SetActive(
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling
