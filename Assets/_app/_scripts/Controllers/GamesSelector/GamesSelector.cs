@@ -64,6 +64,7 @@ namespace EA4S
         {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.GameSelector;
+            KeeperManager.I.PlayDialog(Db.LocalizationDataId.SelectGame_Tuto_2);
 
             if (mainBubble == null) {
                 mainBubble = this.GetComponentInChildren<GamesSelectorBubble>();
@@ -255,7 +256,7 @@ namespace EA4S
                 GamesSelectorBubble bubble = bubbles[i];
                 bubble.gameObject.SetActive(true);
                 showTween.Insert(i * 0.05f, bubble.transform.DOScale(0.0001f, 0.6f).From().SetEase(Ease.OutElastic, 1, 0))
-                    .InsertCallback(i * 0.1f, ()=> AudioManager.I.PlaySfx(Sfx.BaloonPop));
+                    .InsertCallback(i * 0.1f, () => AudioManager.I.PlaySfx(Sfx.BaloonPop));
             }
             yield return showTween.WaitForCompletion();
 
