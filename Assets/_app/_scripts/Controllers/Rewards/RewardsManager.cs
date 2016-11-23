@@ -97,8 +97,8 @@ namespace EA4S
 
         public void Continue()
         {
-            //AppManager.Instance.MiniGameDone("rewards");
-            //GameResultUI.ShowEndgameResult(3);
+            AppManager.Instance.Player.ResetPlaySessionMinigame();
+            AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
             NavigationManager.I.GoToNextScene();
         }
 

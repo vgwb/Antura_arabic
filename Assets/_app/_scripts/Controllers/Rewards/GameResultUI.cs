@@ -44,6 +44,7 @@ namespace EA4S
         public static void ShowEndgameResult(int _numStars)
         {
             Init();
+            
             I.EndgameResultPanel.Show(_numStars);
         }
 
@@ -68,7 +69,7 @@ namespace EA4S
         public static void HideEndgameResult(bool _immediate = false)
         {
             if (I == null) return;
-
+            
             I.EndgameResultPanel.Hide(_immediate);
         }
 
