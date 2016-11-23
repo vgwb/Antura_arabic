@@ -8,6 +8,10 @@ namespace EA4S.Assessment
         private static AssessmentConfiguration configuration;
         private static IGameContext context;
         private static IAudioManager audioManager;
+        private static ISubtitlesWidget subtitles;
+        private static readonly float letterSize = 1f * 3;
+        private static readonly float wordSize = 1.5f * 3;
+        private static readonly float sentenceSize = 2f * 3;
 
         public static IAssessment CreateLetterInWordAssessment()
         {
@@ -19,10 +23,11 @@ namespace EA4S.Assessment
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
             ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
+            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, wordSize, letterSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
-            return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, audioManager, subtitles);
         }
 
         public static IAssessment CreateLetterShapeAssessment()
@@ -35,10 +40,11 @@ namespace EA4S.Assessment
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
             ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
+            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, letterSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
-            return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector, 
+                                            configuration, context, audioManager, subtitles);
         }
 
         public static IAssessment CreateWordsWithLetterAssessment()
@@ -51,10 +57,11 @@ namespace EA4S.Assessment
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
             ILogicInjector injector         = new DefaultLogicInjector( dragManager, questionDecorator);
-            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager);
+            IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
-            return new DefaultAssessment( answerPlacer, questionplacer, generator, injector, configuration, context);
+            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector, 
+                                            configuration, context, audioManager, subtitles);
         }
 
         private static void Init()
@@ -67,6 +74,7 @@ namespace EA4S.Assessment
             configuration = AssessmentConfiguration.Instance;
             context = configuration.Context;
             audioManager = configuration.Context.GetAudioManager();
+            subtitles = configuration.Context.GetSubtitleWidget();
         }
     }
 }

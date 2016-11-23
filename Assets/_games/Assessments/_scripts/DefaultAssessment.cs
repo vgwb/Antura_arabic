@@ -10,7 +10,9 @@ namespace EA4S.Assessment
                                     IQuestionGenerator question_generator,
                                     ILogicInjector logic_injector,
                                     IAssessmentConfiguration game_conf,
-                                    IGameContext game_context)
+                                    IGameContext game_context,
+                                    IAudioManager audio_manager,
+                                    ISubtitlesWidget subtitles)
         {
             AnswerPlacer = answ_placer;
             QuestionGenerator = question_generator;
@@ -18,10 +20,56 @@ namespace EA4S.Assessment
             LogicInjector = logic_injector;
             AssessmentConfiguration = game_conf;
             GameContext = game_context;
+            AudioManager = audio_manager;
+            Subtitles = subtitles;
         }
+
+        #region AUDIO
+
+        private void Dialogue( TextID ID)
+        {
+            Coroutine.Start( PlayDialogueCoroutine( ID));
+        }
+
+        bool isPlayingAudio = false;
+        IEnumerator PlayDialogueCoroutine( TextID ID)
+        {
+            while (isPlayingAudio)
+                yield return null;
+
+            isPlayingAudio = true;
+            AudioManager.PlayDialogue( ID);
+            Subtitles.DisplaySentence( ID, 2, false, ()=> isPlayingAudio = false);
+
+            while (isPlayingAudio)
+                yield return null;
+        }
+
+        private void PlayStartSound()
+        {
+            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSMENT_START_1,
+                                                      TextID.ASSESSMENT_START_2,
+                                                      TextID.ASSESSMENT_START_3));
+        }
+
+        private void PlayAnturaIsComingSound()
+        {
+            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSSMENT_UPSET_1,
+                                                      TextID.ASSESSSMENT_UPSET_2,
+                                                      TextID.ASSESSSMENT_UPSET_3));
+        }
+
+        private void PlayPushAnturaSound()
+        {
+            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSSMENT_PUSH_1,
+                                                      TextID.ASSESSSMENT_PUSH_2,
+                                                      TextID.ASSESSSMENT_PUSH_3));
+        }
+        #endregion
 
         public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
+            //PlayStartSound();
             yield return TimeEngine.Wait( 0.7f);
             bool AnturaShowed = false;
 
@@ -56,6 +104,11 @@ namespace EA4S.Assessment
                 if (AnturaShowed == false)
                 {
                     #region ANTURA ANIMATION
+                    /*yield return TimeEngine.Wait( 1.7f);
+                    var anturaController = AnturaFactory.Instance.SleepingAntura();
+
+                    bool anturaIsGone = false;
+                    anturaController.StartAnimation( () => anturaIsGone = true);*/
 
                     #endregion
 
@@ -102,5 +155,9 @@ namespace EA4S.Assessment
         public IAssessmentConfiguration AssessmentConfiguration { get; private set; }
 
         public IGameContext GameContext { get; private set; }
+
+        public IAudioManager AudioManager { get; private set; }
+
+        public ISubtitlesWidget Subtitles { get; private set; }
     }
 }

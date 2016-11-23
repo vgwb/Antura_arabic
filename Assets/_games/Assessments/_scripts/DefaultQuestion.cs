@@ -62,5 +62,10 @@ namespace EA4S.Assessment
 
             return placeholdersSet;
         }
+
+        public float LetterSize()
+        {
+            return view.Scale;
+        }
     }
 }
