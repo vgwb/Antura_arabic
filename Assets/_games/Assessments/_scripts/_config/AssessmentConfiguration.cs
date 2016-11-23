@@ -160,8 +160,8 @@ namespace EA4S.Assessment
             Rounds = snag.Increase( 1, 2);
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-            builderParams.correctChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
-            builderParams.wrongChoicesHistory = Teacher.PackListHistory.ForceAllDifferent;
+            builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
+            builderParams.wrongChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
             builderParams.wrongSeverity = Teacher.SelectionSeverity.MayRepeatIfNotEnough;
             builderParams.useJourneyForWrong = false;
 
