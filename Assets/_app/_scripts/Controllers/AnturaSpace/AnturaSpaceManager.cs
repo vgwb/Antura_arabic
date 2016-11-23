@@ -14,14 +14,6 @@ namespace EA4S {
         [SerializeField]
         private UnityEngine.UI.Text m_oTextBonesNumber;
 
-        [Header("Throw")]
-        [SerializeField]
-        private Vector3 m_v3BoneDefaultThrow_Direction;
-        [SerializeField]
-        private float m_fBoneDefaultThrow_Magnitude;
-        [SerializeField]
-        private ForceMode m_eBoneDefaultThrow_ForceMode;
-
         [Header("Test")]
         private int m_iTotalBones_Test = 10;
         #endregion
@@ -62,16 +54,22 @@ namespace EA4S {
         #endregion
 
         #region PUBLIC FUNCTIONS
+        /// <summary>
+        /// Go back to the map.
+        /// </summary>
         public void Exit()
         {
 
 #if UNITY_EDITOR
 #else
-            //assign new total bones used;
+            //assign new total bones used to the profile
 #endif
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
         }
 
+        /// <summary>
+        /// Activate a bone in the scene.
+        /// </summary>
         public void ThrowBone()
         {
             GameObject _oBone = get();
@@ -85,7 +83,6 @@ namespace EA4S {
             Debug.Log("Throwing bone");
             m_oTextBonesNumber.text = "" + (--m_iTotalBones_Test);
             _oBone.SetActive(true);
-            _oBone.GetComponent<Rigidbody>().AddForce(m_v3BoneDefaultThrow_Direction.normalized * m_fBoneDefaultThrow_Magnitude, m_eBoneDefaultThrow_ForceMode);
         }
 
         /// <summary>
