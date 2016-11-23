@@ -41,6 +41,20 @@ public class ReadingBarSet : MonoBehaviour
         return activeBar;
     }
 
+    public ReadingBar GetNextBar()
+    {
+        int nextId = bars.FindIndex((b) => { return b == activeBar; }) + 1;
+
+        if (nextId >= bars.Count)
+        {
+            return null;
+        }
+        else
+        {
+            return bars[nextId];
+        }
+    }
+
     void SetActiveBar(ReadingBar bar)
     {
         if (activeBar != null)
