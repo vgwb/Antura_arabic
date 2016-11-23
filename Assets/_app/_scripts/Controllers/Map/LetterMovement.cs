@@ -197,13 +197,21 @@ namespace EA4S
 
         public void ResetPosLetter()
         {
-            pos = 0;
-           // transform.LookAt(pin);
-            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
-            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = 1;
-            miniMapScript.posDots[0].GetComponent<Renderer>().material = red;
-            posDot = miniMapScript.posDots[0].transform.position;
-            transform.position = posDot;
+            if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)//Letter is on a pin
+            {
+                posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position;
+                transform.position = posDot;
+                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].GetComponent<Renderer>().material = redPin;
+            }
+            else  //Letter is on a dot
+            {
+                posDot = miniMapScript.ropes[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
+                    [AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1].transform.position;
+                transform.position = posDot;
+                pos = miniMapScript.ropes[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock - 1].GetComponent<Rope>().dots
+                    [AppManager.Instance.Player.CurrentJourneyPosition.PlaySession - 1].GetComponent<Dot>().pos;
+                miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
+            }
         }
         void UpdateCurrenJourneyPosition()
         {
