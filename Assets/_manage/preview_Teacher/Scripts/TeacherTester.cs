@@ -82,6 +82,7 @@ namespace EA4S.Teacher.Test
             var config = API.MiniGameAPI.Instance.GetGameConfigurationForMiniGameCode(code);
             var builderParams = SetupFakeGame();
             var builder = config.SetupBuilder();
+            Debug.Log("Simulating minigame: " + code + " with builder " + builder.GetType().Name);
             builder.CreateAllQuestionPacks();
         }
 
