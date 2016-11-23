@@ -179,7 +179,7 @@ namespace EA4S.ThrowBalls
 
                 if (tag == Constants.TAG_CORRECT_LETTER)
                 {
-                    ThrowBallsGameManager.Instance.OnCorrectLetterHit(this);
+                    GameState.instance.OnCorrectLetterHit(this);
                 }
 
                 else
@@ -476,14 +476,14 @@ namespace EA4S.ThrowBalls
 
         public void Show()
         {
-            GameObject poof = (GameObject)Instantiate(ThrowBallsGameManager.Instance.poofPrefab, transform.position, Quaternion.identity);
+            GameObject poof = (GameObject)Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             gameObject.SetActive(true);
         }
 
         public void Vanish()
         {
-            GameObject poof = (GameObject)Instantiate(ThrowBallsGameManager.Instance.poofPrefab, transform.position, Quaternion.identity);
+            GameObject poof = (GameObject)Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             gameObject.SetActive(false);
         }
@@ -523,7 +523,7 @@ namespace EA4S.ThrowBalls
 
         void OnMouseDown()
         {
-            if (ThrowBallsGameManager.Instance.isRoundOngoing)
+            if (GameState.instance.isRoundOngoing)
             {
                 AudioManager.I.PlayLetter(letterData.Id);
             }
