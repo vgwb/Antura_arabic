@@ -139,7 +139,7 @@ namespace EA4S
         {
             if (source != null)
             {
-                if (!source.isPlaying && !source.isPaused)
+                if (!source.isPlaying && !source.isPaused && source.time == 0)
                 {
                     source.locked = false;
                     source = null;
