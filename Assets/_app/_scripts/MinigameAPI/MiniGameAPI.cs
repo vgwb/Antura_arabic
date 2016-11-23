@@ -25,6 +25,7 @@ namespace EA4S.API
         /// <param name="_gameConfiguration">The game configuration.</param>
         public void StartGame(MiniGameCode _gameCode, GameConfiguration _gameConfiguration)
         {
+            Debug.Log("StartGame " + _gameCode.ToString());
             MiniGameData miniGameData = AppManager.Instance.DB.GetMiniGameDataByCode(_gameCode);
             IQuestionBuilder rules = null;
             IGameConfiguration actualConfig = null;
@@ -40,7 +41,6 @@ namespace EA4S.API
 
             // Save current game code to appmanager currentminigame
             AppManager.Instance.CurrentMinigame = miniGameData;
-
             // Comunicate to LogManager that start new single minigame play session.
             actualConfig.Context.GetLogManager().InitGameplayLogSession(_gameCode);
 
