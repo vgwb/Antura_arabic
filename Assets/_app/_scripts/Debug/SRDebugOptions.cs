@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using EA4S;
 using ModularFramework.Core;
 
@@ -10,47 +9,47 @@ public partial class SROptions
 {
     public void LaunchMinigame(MiniGameCode minigameCode)
     {
-        if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
-        {
-            WidgetPopupWindow.I.Close();
-            DebugManager.I.LaunchMinigGame(minigameCode);
-            SRDebug.Instance.HideDebugPanel();
-        }
-        else
-        {
-            JourneyPosition minJ = GetMinimumPlaysessionForGame(minigameCode);
-            if (minJ == null) {
-                Debug.LogErrorFormat("Minigame {0} cannot be played never!!!", minigameCode);
-                return;
-            }
-            Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
-            Stage = minJ.Stage;
-            LearningBlock = minJ.LearningBlock;
-            PlaySession = minJ.PlaySession;
-            SRDebug.Instance.HideDebugPanel();
-            SRDebug.Instance.ShowDebugPanel();
-        }
+        //if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(Stage + "." + LearningBlock + "." + PlaySession, minigameCode))
+        //{
+        WidgetPopupWindow.I.Close();
+        DebugManager.I.LaunchMinigGame(minigameCode);
+        SRDebug.Instance.HideDebugPanel();
+        //}
+        //else
+        //{
+        //    JourneyPosition minJ = GetMinimumPlaysessionForGame(minigameCode);
+        //    if (minJ == null) {
+        //        Debug.LogErrorFormat("Minigame {0} cannot be played never!!!", minigameCode);
+        //        return;
+        //    }
+        //    Debug.LogErrorFormat("Minigame {0} cannot be played at this playsession. Min: {1}", minigameCode, minJ.ToString());
+        //    Stage = minJ.Stage;
+        //    LearningBlock = minJ.LearningBlock;
+        //    PlaySession = minJ.PlaySession;
+        //    SRDebug.Instance.HideDebugPanel();
+        //    SRDebug.Instance.ShowDebugPanel();
+        //}
     }
-    
-    public EA4S.JourneyPosition GetMinimumPlaysessionForGame(MiniGameCode minigameCode) {
-        int Stages = 6;
-        int LearningBlocks = 15;
-        int PlaySessions = 3;
 
-        for (int s = 1; s <= Stages; s++) {
-            for (int lb = 1; lb <= LearningBlocks; lb++) {
-                for (int ps = 1; ps <= PlaySessions; ps++) {
-                    if(AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
-                        return new JourneyPosition(s, lb, ps);
-                }
-                int assessmentCode = 100;
-                if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
-                    return new JourneyPosition(s, lb, assessmentCode);
-            }
-        }
-        return null;
-    }
-    
+    //public EA4S.JourneyPosition GetMinimumPlaysessionForGame(MiniGameCode minigameCode) {
+    //    int Stages = 6;
+    //    int LearningBlocks = 15;
+    //    int PlaySessions = 3;
+
+    //    for (int s = 1; s <= Stages; s++) {
+    //        for (int lb = 1; lb <= LearningBlocks; lb++) {
+    //            for (int ps = 1; ps <= PlaySessions; ps++) {
+    //                if(AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + ps, minigameCode))
+    //                    return new JourneyPosition(s, lb, ps);
+    //            }
+    //            int assessmentCode = 100;
+    //            if (AppManager.Instance.Teacher.CanMiniGameBePlayedAtPlaySession(s + "." + lb + "." + assessmentCode, minigameCode))
+    //                return new JourneyPosition(s, lb, assessmentCode);
+    //        }
+    //    }
+    //    return null;
+    //}
+
     [Category("Options")]
     [Sort(1)]
     public bool Cheat { get { return DebugManager.I.CheatMode; } set { DebugManager.I.CheatMode = value; } }
@@ -416,7 +415,8 @@ public partial class SROptions
 
     [Category("Max Journey Position")]
     [Sort(6)]
-    public void ForwardMaxPosition() {
+    public void ForwardMaxPosition()
+    {
         JourneyPosition newPos = TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.MaxJourneyPosition);
         if (newPos != null) {
             AppManager.Instance.Player.SetMaxJourneyPosition(newPos, true);
@@ -427,7 +427,8 @@ public partial class SROptions
 
     [Category("Max Journey Position")]
     [Sort(7)]
-    public void ResetMaxPosition() {
+    public void ResetMaxPosition()
+    {
         AppManager.Instance.Player.SetMaxJourneyPosition(new JourneyPosition(1, 1, 1), true);
         SRDebug.Instance.HideDebugPanel();
         SRDebug.Instance.ShowDebugPanel();
