@@ -3246,7 +3246,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 100
     - Id: consonant
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -3553,7 +3553,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 
     - Id: dual
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -4155,7 +4155,7 @@ MonoBehaviour:
       Difficulty: 1
       Drawing: CA
     - Id: hi
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -4989,7 +4989,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: DC
     - Id: now
-      Kind: 6
+      Kind: 7
       Category: 19
       Form: 0
       Article: 0
@@ -5557,7 +5557,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 10C
     - Id: of_course
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -5826,7 +5826,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: E3
     - Id: plural
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -6223,7 +6223,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 2198
     - Id: singular
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -6414,7 +6414,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: F1
     - Id: sure
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -6491,7 +6491,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: A5
     - Id: thankyou
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -7199,7 +7199,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 
     - Id: today
-      Kind: 6
+      Kind: 7
       Category: 19
       Form: 0
       Article: 0
@@ -7248,7 +7248,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: FE
     - Id: tomorrow
-      Kind: 6
+      Kind: 7
       Category: 19
       Form: 0
       Article: 0
@@ -7437,7 +7437,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: F9
     - Id: vowel
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -7513,7 +7513,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 3F
     - Id: welcome
-      Kind: 6
+      Kind: 7
       Category: 0
       Form: 0
       Article: 0
@@ -7591,7 +7591,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: BF
     - Id: with_article
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -7615,7 +7615,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 
     - Id: without_article
-      Kind: 7
+      Kind: 6
       Category: 0
       Form: 0
       Article: 0
@@ -7794,7 +7794,7 @@ MonoBehaviour:
       Difficulty: 0
       Drawing: 201C
     - Id: yesterday
-      Kind: 6
+      Kind: 7
       Category: 19
       Form: 0
       Article: 0
@@ -16857,6 +16857,15 @@ MonoBehaviour:
         \u0639\u0628\u0631\u064E \u0627\u0644\u0634\u0627\u0634\u0629\u0650 \u0642\u0628\u0644
         \u0631\u0645\u064A\u0647\u0627"
       AudioFile: AnturaSpace_Tuto_Cookie_2
+    - Id: AnturaSpace_Tuto_Cookie_3
+      Character: Keeper
+      When: 
+      Context: Tutorial
+      English: "Don\u2019t worry, the more you play the more cookies you will get!"
+      Arabic: "\u0644\u0627 \u062A\u0642\u0644\u0642. \u0643\u0644\u0645\u0627 \u0644\u0639\u0628\u062A\u064E
+        \u0623\u0643\u062B\u0631 \u0633\u062A\u062D\u0635\u0644\u064F \u0639\u0644\u0649
+        \u0643\u0639\u0643\u0627\u062A\u064D \u0623\u0643\u062B\u0631."
+      AudioFile: AnturaSpace_Tuto_Cookie_3
     - Id: AnturaSpace_Custom_1
       Character: Keeper
       When: Customization UI appears
@@ -18460,7 +18469,7 @@ MonoBehaviour:
       English: 
       Arabic: 
       AudioFile: UI_Animals
-    - Id: UI_Body Parts
+    - Id: UI_BodyParts
       Character: UI
       When: 
       Context: 
@@ -18488,7 +18497,7 @@ MonoBehaviour:
       English: 
       Arabic: 
       AudioFile: UI_Directions
-    - Id: UI_Family Members
+    - Id: UI_FamilyMembers
       Character: UI
       When: 
       Context: 
