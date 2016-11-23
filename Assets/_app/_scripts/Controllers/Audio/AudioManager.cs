@@ -9,25 +9,24 @@ namespace EA4S
 
     public class AudioManager : MonoBehaviour
     {
-        const string LETTERS_PREFIX = "VOX/Letter/";
+        const string LETTERS_PREFIX = "Letter/";
         const string WORDS_PREFIX = "VOX_Words_";
+
+        public static AudioManager I;
 
         public AudioMixerGroup musicGroup;
         public AudioMixerGroup sfxGroup;
         public AudioMixerGroup lettersGroup;
 
-        public static AudioManager I;
         System.Action OnNotifyEndAudio;
-        bool hasToNotifyEndAudio;
-
-        public bool MusicEnabled { get { return musicEnabled; } }
+        bool hasToNotifyEndAudio = false;
 
         bool musicEnabled = true;
+        public bool MusicEnabled { get { return musicEnabled; } }
         Music currentMusic;
 
         Dictionary<string, Fabric.AudioComponent> eventToComponent = new Dictionary<string, Fabric.AudioComponent>();
         Dictionary<string, Fabric.RandomComponent> eventToRndComponent = new Dictionary<string, Fabric.RandomComponent>();
-
         Dictionary<string, AudioClip> audioCache = new Dictionary<string, AudioClip>();
 
         void Awake()
@@ -51,18 +50,6 @@ namespace EA4S
 
                 if (listener != null)
                     eventToRndComponent[listener._eventName] = c;
-            }
-        }
-
-        void Update()
-        {
-            if (hasToNotifyEndAudio)
-            {
-                hasToNotifyEndAudio = false;
-                if (OnNotifyEndAudio != null)
-                {
-                    OnNotifyEndAudio();
-                }
             }
         }
 
@@ -91,6 +78,7 @@ namespace EA4S
             }
         }
 
+        #region Music
         public void ToggleMusic()
         {
             musicEnabled = !musicEnabled;
@@ -122,6 +110,16 @@ namespace EA4S
                 Fabric.EventManager.Instance.PostEvent("MusicTrigger", Fabric.EventAction.StopAll);
         }
 
+        void FadeOutMusic(string n)
+        {
+            Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
+            if (component != null) {
+                component.FadeOut(0.1f, 0.5f);
+            }
+        }
+        #endregion
+
+        #region Sfx
         /// <summary>
         /// Play a soundFX
         /// </summary>
@@ -135,23 +133,21 @@ namespace EA4S
         {
             StopSound(AudioConfig.GetSfxEventName(sfx));
         }
+        #endregion
 
+        #region generic sound
         void PlaySound(string eventName)
         {
             Fabric.EventManager.Instance.PostEvent(eventName);
-        }
-
-        void PlaySound(string eventName, System.Action callback)
-        {
-            OnNotifyEndAudio = callback;
-            Fabric.EventManager.Instance.PostEventNotify(eventName, NotifyEndAudio);
         }
 
         void PlaySound(string eventName, GameObject GO)
         {
             Fabric.EventManager.Instance.PostEvent(eventName, GO);
         }
+        #endregion
 
+        #region Letters, WOrds and Phrases
         public void PlayLetter(string letterId)
         {
             Fabric.EventManager.Instance.PostEvent(LETTERS_PREFIX + letterId);
@@ -172,6 +168,7 @@ namespace EA4S
             Fabric.EventManager.Instance.PostEvent("Words");
             //Fabric.EventManager.Instance.PostEvent(WORDS_PREFIX + wordId);
         }
+        #endregion
 
         void StopSound(string eventName)
         {
@@ -179,13 +176,7 @@ namespace EA4S
                 Fabric.EventManager.Instance.PostEvent(eventName, Fabric.EventAction.StopAll);
         }
 
-        void FadeOutMusic(string n)
-        {
-            Fabric.Component component = Fabric.FabricManager.Instance.GetComponentByName(n);
-            if (component != null) {
-                component.FadeOut(0.1f, 0.5f);
-            }
-        }
+
 
         #region Dialog
         public void PlayDialog(string localizationData_id)
@@ -219,26 +210,31 @@ namespace EA4S
 
         public void PlayDialog(Db.LocalizationData data, System.Action callback)
         {
+            if (OnNotifyEndAudio != null)
+                OnNotifyEndAudio();
+
+            OnNotifyEndAudio = null;
+
             if (data.AudioFile != "") {
                 // Debug.Log("PlayDialog with Callback: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
+                
                 OnNotifyEndAudio = callback;
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
                 Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
-            }
-            else
-            {
+            } else {
                 if (callback != null)
                     callback();
             }
         }
         #endregion
 
-        public AudioClip GetAudioClip(ILivingLetterData letterData)
+        #region DeAudio utilities
+        public AudioClip GetAudioClip(ILivingLetterData data)
         {
-            if (letterData.DataType == LivingLetterDataType.Letter)
-                return GetAudioClip(LETTERS_PREFIX + letterData.Id);
-            else if (letterData.DataType == LivingLetterDataType.Word) {
-                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + letterData.Id);
+            if (data.DataType == LivingLetterDataType.Letter)
+                return GetAudioClip(LETTERS_PREFIX + data.Id);
+            else if (data.DataType == LivingLetterDataType.Word) {
+                return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + data.Id);
             }
             return null;
         }
@@ -287,6 +283,22 @@ namespace EA4S
             foreach (var r in audioCache)
                 Resources.UnloadAsset(r.Value);
             audioCache.Clear();
+        }
+        #endregion
+
+
+        void Update()
+        {
+            if (hasToNotifyEndAudio)
+            {
+                hasToNotifyEndAudio = false;
+                if (OnNotifyEndAudio != null)
+                {
+                    var oldCallback = OnNotifyEndAudio;
+                    OnNotifyEndAudio = null;
+                    oldCallback();
+                }
+            }
         }
     }
 }

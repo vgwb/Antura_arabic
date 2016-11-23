@@ -12,7 +12,7 @@ namespace EA4S
         public int s;
         void Awake()
         {
-           s = AppManager.Instance.Player.CurrentJourneyPosition.Stage;
+           s = AppManager.Instance.Player.MaxJourneyPosition.Stage;
            for(int i=1;i<= (s-1);i++)
            {
                miniMaps[i].GetComponent<MiniMap>().isAvailableTheWholeMap = true;

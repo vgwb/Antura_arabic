@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 0
   m_FogColor: {r: 0.9411765, g: 0.87058824, b: 0.7254902, a: 1}
   m_FogMode: 1
-  m_FogDensity: 1
+  m_FogDensity: 1.52
   m_LinearFogStart: 20
   m_LinearFogEnd: 160
   m_AmbientSkyColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
@@ -3435,9 +3435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  GameplayInfo:
-    GameId: 
-    PlayTime: 0
   letterPool: []
   ball: {fileID: 1034360347}
   ballController: {fileID: 1034360350}
@@ -4193,7 +4190,7 @@ Prefab:
     - target: {fileID: 11431742, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
       propertyPath: CurrentGameManagerGO
       value: 
-      objectReference: {fileID: 436118476}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 104c1af534acf1448948f93f215ff0c3, type: 2}
   m_IsPrefabParent: 0
@@ -6600,19 +6597,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.6885094
+      value: -0.68850946
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.040607113
+      value: 0.040607117
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.71819454
+      value: 0.7181946
       objectReference: {fileID: 0}
     - target: {fileID: 4000011854281390, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.09220874
+      value: 0.09220875
       objectReference: {fileID: 0}
     - target: {fileID: 1000013166069758, guid: 435ad19523f5d1c4085ae8af18702bf7, type: 2}
       propertyPath: m_IsActive

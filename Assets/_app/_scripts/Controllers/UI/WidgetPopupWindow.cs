@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using TMPro;
 using ArabicSupport;
+using DG.DeExtensions;
 using DG.Tweening;
 using EA4S;
 using EA4S.Db;
@@ -30,6 +31,7 @@ namespace EA4S
         public GameObject MarkOK;
         public GameObject MarkKO;
         public Sprite gameTimeUpSprite;
+        public GameObject[] ActivateTheseOnAwake;
 
         bool clicked;
         Action currentCallback;
@@ -38,6 +40,10 @@ namespace EA4S
         void Awake()
         {
             I = this;
+
+            if (ActivateTheseOnAwake != null) {
+                foreach (GameObject go in ActivateTheseOnAwake) go.SetActive(true);
+            }
 
             showTween = this.GetComponent<RectTransform>().DOAnchorPosY(-800, 0.5f).From().SetUpdate(timeIndependent)
                 .SetEase(Ease.OutBack).SetAutoKill(false).Pause()
@@ -193,7 +199,7 @@ namespace EA4S
 
             //AudioManager.I.PlayDialog(SentenceId);
 
-            SetWord(wordData.Id, wordData.Data.Arabic);
+            SetWord(wordData.DrawingCharForLivingLetter, wordData.Data.Arabic);
 
             Show(true);
         }
@@ -211,7 +217,7 @@ namespace EA4S
 
             //AudioManager.I.PlayDialog(SentenceId);
 
-            SetWord(wordData.Id, wordData.Data.Arabic);
+            SetWord(wordData.DrawingCharForLivingLetter, wordData.Data.Arabic);
 
             Show(true);
         }
@@ -232,7 +238,7 @@ namespace EA4S
 
             //AudioManager.I.PlayDialog(SentenceId);
 
-            SetWord(wordData.Id, wordData.Data.Arabic);
+            SetWord(wordData.DrawingCharForLivingLetter, wordData.Data.Arabic);
 
             Show(true);
         }
@@ -309,14 +315,15 @@ namespace EA4S
             TitleEnglishGO.GetComponent<TextMeshProUGUI>().text = row.English;
         }
 
-        public void SetWord(string wordCode, string arabicWord)
+        public void SetWord(string imageId, string arabicWord)
         {
-            if (wordCode != "") {
+            if (!imageId.IsNullOrEmpty()) {
                 WordTextGO.SetActive(true);
                 DrawingImageGO.SetActive(true);
                 // here set both word and drawing 
                 WordTextGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(arabicWord, false, false);
-                DrawingImageGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + wordCode);
+                DrawingImageGO.GetComponent<TextMeshProUGUI>().text = imageId;
+//                DrawingImageGO.GetComponent<Image>().sprite = Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + imageId);
             } else {
                 WordTextGO.SetActive(false);
                 DrawingImageGO.SetActive(false);
