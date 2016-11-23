@@ -25,7 +25,6 @@ namespace EA4S.ColorTickle
         float m_fTimeToDisappear = 3f;
         float m_fDisappearTimeProgress = 0;
 
-        //private System.Action OnTutoDialogueFinish;
         #endregion
 
         public TutorialGameState(ColorTickleGame game)
@@ -36,9 +35,6 @@ namespace EA4S.ColorTickle
         public void EnterState()
         {
             m_PercentageLetterColored = 0.0f;
-
-            //OnTutoDialogueFinish += InitTutorialLetter;
-            //AudioManager.I.PlayDialog(TextID.COLORTICKLE_TUTO.ToString(), OnTutoDialogueFinish); //Init the letter when the dialogue finish --- no, this broke
 
             //Init the tutorial letter
             m_TutorialLetter = game.tutorialLetter;
@@ -134,7 +130,26 @@ namespace EA4S.ColorTickle
 
             SetBrushColor(new Color(255, 0, 0, 255));
 
-            m_LLController.OnDestinationReached += EnableTutorialAnimation;
+            DisableLetterComponents();
+
+            //m_LLController.OnDestinationReached += EnableTutorialAnimation;
+
+            m_LLController.OnDestinationReached += delegate()
+            //nested function to play intro dialogue
+            {
+                game.Context.GetAudioManager().PlayDialogue(TextID.COLORTICKLE_INTRO, delegate()
+                //nested function to play tutorial dialogue on intro finish
+                {
+                    Debug.Log("play tuto");
+                    //game.Context.GetAudioManager().PlayDialogue(TextID.COLORTICKLE_TUTO); //for now this is broken, COLORTICKLE_TUTO is repeated like a loop
+                    // HACK stop audio and replay music
+                    game.Context.GetAudioManager().PlayDialogue(TextID.COLORTICKLE_TUTO, delegate() { game.Context.GetAudioManager().StopMusic(); game.Context.GetAudioManager().PlayMusic(game.backgroundMusic); });
+                    
+                    EnableLetterComponents();
+                    EnableTutorialAnimation();
+                });
+
+            };
 
         }
 
