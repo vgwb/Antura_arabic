@@ -27,6 +27,13 @@ namespace EA4S
         Rope ropeSelected;
         Collider colliderRaycast;
 
+        void Start()
+        {
+            Debug.Log(AppManager.Instance.Player.MaxJourneyPosition.Stage);
+            Debug.Log(AppManager.Instance.Player.MaxJourneyPosition.LearningBlock);
+            Debug.Log(AppManager.Instance.Player.MaxJourneyPosition.PlaySession);
+        }
+
         void Update()
         {         
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
@@ -122,16 +129,16 @@ namespace EA4S
 
         public void MoveToTheRightDot()
         {
-            if(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession==2)
+            if((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession==2) && (miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].tag == "Pin"))
             {
                 ChangeMaterialDotToBlack(miniMapScript.posDots[pos]);
                 posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position;
                 miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
                 AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 100;              
             }
-            else if (AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100)
+            else if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession == 100) && (pos < (miniMapScript.posMax - 1)))
             {
-                if (pos % 2 != 0)
+                if (pos % 2 != 0) 
                     pos++;
                 miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.gameObject.GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = blackPin;
                 posDot = miniMapScript.posDots[pos].transform.position;
@@ -201,7 +208,7 @@ namespace EA4S
             {
                 posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position;
                 transform.position = posDot;
-                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].GetComponent<Renderer>().material = redPin;
+                miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
             }
             else  //Letter is on a dot
             {

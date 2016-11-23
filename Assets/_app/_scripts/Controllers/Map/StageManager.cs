@@ -9,14 +9,16 @@ namespace EA4S
         public GameObject[] cameras;
         public GameObject[] miniMaps;
         public GameObject letter;
-        public int s;
+        public int s,i;
         void Awake()
         {
-           s = AppManager.Instance.Player.MaxJourneyPosition.Stage;
-           for(int i=1;i<= (s-1);i++)
-           {
-               miniMaps[i].GetComponent<MiniMap>().isAvailableTheWholeMap = true;
-           }
+            s = AppManager.Instance.Player.MaxJourneyPosition.Stage;
+            for (i=1;i<= (s-1);i++)
+            {
+                miniMaps[i].GetComponent<MiniMap>().isAvailableTheWholeMap = true;
+                miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
+            }
+            miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
             ChangeCamera(cameras[s]);
             stages[s].SetActive(true);
             letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[s].GetComponent<MiniMap>();

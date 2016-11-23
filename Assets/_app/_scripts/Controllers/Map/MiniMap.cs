@@ -28,23 +28,7 @@ namespace EA4S
         public bool isAvailableTheWholeMap;
         Quaternion rot;
         int numDot = 0;
-        int numLearningBlock;
-        
-        void Awake()
-        {
-            posDots = new GameObject[28];
-            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++)
-            {
-                pinLeft = posPines[numLearningBlock].position;
-                pinRight = posPines[numLearningBlock + 1].position;
-                CalculateStepsBetweenPines(pinLeft, pinRight);
-            }
-            pinLeft = posPines[0].position;
-            pinRight = posPines[1].position;
-
-            if (!isAvailableTheWholeMap) CalculatePlaySessionAvailables();
-            CalculatePin_RopeAvailable();
-        }
+        int numLearningBlock;       
 
         void Start()
         {         
@@ -95,6 +79,22 @@ namespace EA4S
         #endregion
 
         #endregion
+
+        public void CalculateSettingsStageMap()
+        {
+            posDots = new GameObject[28];
+            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++)
+            {
+                pinLeft = posPines[numLearningBlock].position;
+                pinRight = posPines[numLearningBlock + 1].position;
+                CalculateStepsBetweenPines(pinLeft, pinRight);
+            }
+            pinLeft = posPines[0].position;
+            pinRight = posPines[1].position;
+
+            if (!isAvailableTheWholeMap) CalculatePlaySessionAvailables();
+            CalculatePin_RopeAvailable();
+        }
 
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
         {
@@ -152,7 +152,7 @@ namespace EA4S
                 int m;
                 if (p == 100) m = l;
                 else m = l - 1;
-                for (int i = 0; i < m; i++)
+                for (int i = 0; i < (m+1); i++)
                 {
                     posPines[i].tag = "Pin";
                     ropes[i].transform.GetChild(0).tag = "Rope";
