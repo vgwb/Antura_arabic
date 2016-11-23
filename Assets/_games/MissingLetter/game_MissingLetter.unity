@@ -7281,7 +7281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseTestGameplayInfo: 0
-  m_eGameType: 0
+  m_eGameType: 1
   m_oLetterPrefab: {fileID: 1959708596}
   m_oAntura: {fileID: 1934510008}
   m_oEmoticonsController: {fileID: 2110279791}
@@ -7291,7 +7291,7 @@ MonoBehaviour:
   m_oAnswerCamera: {fileID: 1325625308}
   m_iMaxSentenceSize: 5
   m_fAnturaAnimDuration: 7
-  m_fDistanceBetweenLetters: 8
+  m_fDistanceBetweenLetters: 7
   m_sQuestionOffset:
     fINOffset: 30
     fOUTOffset: -40
