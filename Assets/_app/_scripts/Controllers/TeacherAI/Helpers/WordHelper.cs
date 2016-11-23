@@ -52,7 +52,7 @@ namespace EA4S.Db
 
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
-            if (filters.excludeDiacritics && !data.IsOfKindCategory(LetterKindCategory.Base)) return false;
+            if (filters.excludeDiacritics && !data.IsOfKindCategory(LetterKindCategory.BaseAndVariations)) return false;
             return true;
         }
 
@@ -209,7 +209,7 @@ namespace EA4S.Db
         private bool WordHasDiacritics(WordData data)
         {
             foreach (var letter in GetLettersInWord(data))
-                if (!letter.IsOfKindCategory(LetterKindCategory.Base))
+                if (!letter.IsOfKindCategory(LetterKindCategory.BaseAndVariations))
                     return true;
             return false;
         }
@@ -223,11 +223,9 @@ namespace EA4S.Db
         public string GetWordDrawing(WordData word)
         {
             //Debug.Log("the int of hex:" + word.Drawing + " is " + int.Parse(word.Drawing, NumberStyles.HexNumber));
-            if (word.Drawing != "")
-            {
+            if (word.Drawing != "") {
                 int result = 0;
-                if (int.TryParse(word.Drawing, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out result))
-                {
+                if (int.TryParse(word.Drawing, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out result)) {
                     return ((char)result).ToString();
                 }
                 return "";

@@ -28,6 +28,7 @@ namespace EA4S.Balloons
         public Animator countdownAnimator;
         public StarFlowers starFlowers;
         public GameObject FxParticlesPoof;
+        public WinCelebrationController winCelebration;
 
         [Header("Stage")]
         public float minX;
@@ -281,7 +282,7 @@ namespace EA4S.Balloons
 
         private IEnumerator StartNewRound_Coroutine()
         {
-            float delay = 0.75f;
+            float delay = 0.25f;
             yield return new WaitForSeconds(delay);
 
             switch (ActiveGameVariation)
@@ -330,8 +331,7 @@ namespace EA4S.Balloons
             timer.StopTimer();
             ProcessRoundResult(result);
         }
-
-
+            
         private void EndGame()
         {
             StartCoroutine(EndGame_Coroutine());
@@ -360,6 +360,7 @@ namespace EA4S.Balloons
             DestroyAllBalloons();
             howDied = How2Die.Null;
             questionPack = null;
+            winCelebration.Hide();
         }
 
         private void BeginGameplay()
@@ -859,15 +860,7 @@ namespace EA4S.Balloons
             switch (result)
             {
                 case Result.PERFECT:
-                    CurrentScore++;
-                    win = true;
-                    AudioManager.PlaySound(Sfx.Win);
-                    break;
                 case Result.GOOD:
-                    CurrentScore++;
-                    win = true;
-                    AudioManager.PlaySound(Sfx.Win);
-                    break;
                 case Result.CLEAR:
                     CurrentScore++;
                     win = true;
@@ -893,27 +886,28 @@ namespace EA4S.Balloons
             {
                 MakeWordPromptGreen();
 
-                var winInitialDelay = 2f;
+                var winInitialDelay = 1f;
                 yield return new WaitForSeconds(winInitialDelay);
 
-                AudioManager.PlayDialogue(TextID.WELL_DONE);
-                var winPopUpDelay = 0.25f;
-                yield return new WaitForSeconds(winPopUpDelay);
-
-                Popup.Show();
-                Popup.SetButtonCallback(OnRoundResultPressed);
+                //AudioManager.PlayDialogue(TextID.WELL_DONE);
+                //var winPopUpDelay = 0.25f;
+                //yield return new WaitForSeconds(winPopUpDelay);
+                //Popup.Show();
+                //Popup.SetButtonCallback(OnRoundResultPressed);
                 //Popup.SetTitle(TextID.WELL_DONE);
-                Popup.SetMark(true, true);
-                if (question.DataType == LivingLetterDataType.Word)
-                {
-                    Popup.SetWord(question as LL_WordData);
-                }
-
-                var winSpeakWordDelay = 0.75f;
-                yield return new WaitForSeconds(winSpeakWordDelay);
-
+                //Popup.SetMark(true, true);
+                //if (question.DataType == LivingLetterDataType.Word)
+                //{
+                //    Popup.SetWord(question as LL_WordData);
+                //}
+                winCelebration.Show(question);
+                //var winSpeakWordDelay = 0.75f;
+                //yield return new WaitForSeconds(winSpeakWordDelay);
                 AudioManager.PlayLetterData(question);
 
+                var resumePlayingDelay = 1.5f;
+                yield return new WaitForSeconds(resumePlayingDelay);
+                Play();
             }
             else
             {

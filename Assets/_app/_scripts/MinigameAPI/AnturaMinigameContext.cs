@@ -1,17 +1,20 @@
-﻿using EA4S.Log;
+﻿using EA4S;
 
-namespace EA4S.API {
+namespace EA4S.API
+{
 
     /// <summary>
     /// Default Context for Antura Minigame.
     /// </summary>
     /// <seealso cref="EA4S.IGameContext" />
-    public class AnturaMinigameContext : IGameContext {
+    public class AnturaMinigameContext : IGameContext
+    {
 
         #region Log Manager 
-        public ILogManager logManager = new AppLogManager().MinigameLogManager;
+        public ILogManager logManager = new LogManager().MinigameLogManager;
 
-        public ILogManager GetLogManager() {
+        public ILogManager GetLogManager()
+        {
             return logManager;
         }
         #endregion
@@ -19,7 +22,8 @@ namespace EA4S.API {
         #region AudioManager provider
         public IAudioManager audioManager = new SampleAudioManager();
 
-        public IAudioManager GetAudioManager() {
+        public IAudioManager GetAudioManager()
+        {
             return audioManager;
         }
         #endregion
@@ -27,7 +31,8 @@ namespace EA4S.API {
         #region InputManger provider
         public IInputManager inputManager = new SampleInputManager();
 
-        public IInputManager GetInputManager() {
+        public IInputManager GetInputManager()
+        {
             return inputManager;
         }
         #endregion
@@ -35,7 +40,8 @@ namespace EA4S.API {
         #region SubTitle provider
         public ISubtitlesWidget subtitleWidget = new SampleSubtitlesWidget();
 
-        public IStarsWidget GetStarsWidget() {
+        public IStarsWidget GetStarsWidget()
+        {
             return starsWidget;
         }
         #endregion
@@ -43,33 +49,38 @@ namespace EA4S.API {
         #region StarsWidget provider
         public IStarsWidget starsWidget = new SampleStarsWidget();
 
-        public ISubtitlesWidget GetSubtitleWidget() {
+        public ISubtitlesWidget GetSubtitleWidget()
+        {
             return subtitleWidget;
         }
         #endregion
 
         #region PopupWidget provider
         public IPopupWidget questionWidget = new SamplePopupWidget();
-        public IPopupWidget GetPopupWidget() {
+        public IPopupWidget GetPopupWidget()
+        {
             return questionWidget;
         }
         #endregion
 
-        public void Reset() {
+        public void Reset()
+        {
             inputManager.Reset();
             audioManager.Reset();
         }
 
         #region CheckmarkWidget provider
         public ICheckmarkWidget checkmarkWidget = new SampleCheckmarkWidget();
-        public ICheckmarkWidget GetCheckmarkWidget() {
+        public ICheckmarkWidget GetCheckmarkWidget()
+        {
             return checkmarkWidget;
         }
         #endregion
 
         #region OverlayWidget provider
         IOverlayWidget overlayWidget = new MinigamesOverlayWidget();
-        public IOverlayWidget GetOverlayWidget() {
+        public IOverlayWidget GetOverlayWidget()
+        {
             return overlayWidget;
         }
         #endregion

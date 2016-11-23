@@ -1804,9 +1804,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   innerTransform: {fileID: 4000013224332158}
-  Lable: {fileID: 114000013927319314}
+  contentTransform: {fileID: 0}
+  textTransform: {fileID: 0}
+  boneToScaleTransform: {fileID: 0}
+  Label: {fileID: 0}
+  Drawing: {fileID: 0}
   ImageSprite: {fileID: 212000010347254602}
-  maxSize: 1.5
+  Scale: 1
   normalGraphics:
   - {fileID: 1000013650677724}
   - {fileID: 1000010966819802}
@@ -1814,6 +1818,7 @@ MonoBehaviour:
   - {fileID: 1000013317295026}
   limblessGraphics: []
   poofPrefab: {fileID: 158920, guid: 2259a54d132a0614ea2de3b542a1e7ba, type: 2}
+  DancingSpeed: 1
 --- !u!114 &114000011454261102
 MonoBehaviour:
   m_ObjectHideFlags: 1

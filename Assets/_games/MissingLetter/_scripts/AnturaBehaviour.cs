@@ -17,6 +17,10 @@ namespace EA4S.MissingLetter
             m_oNextPos = m_oEnd;
         }
 
+        /// <summary>
+        /// make Antura cross scene, DoShout 
+        /// </summary>
+        /// <param name="_duration"> duration of enter/cross scene action </param>
         public void EnterScene(float _duration)
         {
             m_oAnturaCtrl.State = AnturaAnimationStates.walking;

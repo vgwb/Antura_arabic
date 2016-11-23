@@ -87,6 +87,8 @@ namespace EA4S
 
         public void PlayMusic(Music music)
         {
+            StopMusic();
+
             currentMusic = music;
 
             if (MusicEnabled)
@@ -115,17 +117,27 @@ namespace EA4S
 
         public void StopMusic()
         {
+            if (musicGroup != null)
+                musicGroup.Stop();
+
             AudioManager.I.StopMusic();
         }
 
         public void Reset()
         {
+            StopMusic();
+
+            if (wordsLettersGroup != null)
+                wordsLettersGroup.Stop();
+
             AudioManager.I.ClearCache();
             playingAudio.Clear();
         }
 
         public IAudioSource PlayMusic(AudioClip clip)
         {
+            StopMusic();
+
             if (musicGroup == null)
             {
                 musicGroup = DeAudioManager.GetAudioGroup(DeAudioGroupId.Music);

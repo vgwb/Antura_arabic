@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using EA4S.Teacher;
-using System.Linq;
 using System;
 
-namespace EA4S.Log {
+namespace EA4S
+{
     /// <summary>
     /// Concrete implementation of log manager to store log data on db.
     /// Use this to log from minigame.
     /// </summary>
-    public class MinigameLogManager : ILogManager {
+    public class MinigameLogManager : ILogManager
+    {
 
         #region Runtime variables
         // Minigame
-        public string session { get { return AppManager.Instance.LogManager.Session; }  }
+        public string session { get { return LogManager.I.Session; } }
         string minigameSession;
         MiniGameCode miniGameCode;
         List<ILivingLetterAnswerData> logLearnBuffer = new List<ILivingLetterAnswerData>();
@@ -21,24 +22,25 @@ namespace EA4S.Log {
 
         #region Initializations
 
-        public void InitLogSession() {
+        public void InitLogSession()
+        {
             //session = DateTime.Now.Ticks.ToString();
         }
 
-        public void InitPlaySession() {
-            
+        public void InitPlaySession()
+        {
+
         }
 
         /// <summary>
         /// Initializes the single minigame gameplay log session.
         /// </summary>
-        public void InitGameplayLogSession(MiniGameCode _minigameCode) {
+        public void InitGameplayLogSession(MiniGameCode _minigameCode)
+        {
             miniGameCode = _minigameCode;
             minigameSession = DateTime.Now.Ticks.ToString();
-            AppManager.Instance.LogManager.LogInfo(InfoEvent.GameStart, miniGameCode.ToString());
+            LogManager.I.LogInfo(InfoEvent.GameStart, miniGameCode.ToString());
         }
-
-
 
         #endregion
 
@@ -49,7 +51,8 @@ namespace EA4S.Log {
         /// </summary>
         /// <param name="_data"></param>
         /// <param name="_isPositiveResult"></param>
-        public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult) {
+        public void OnAnswer(ILivingLetterData _data, bool _isPositiveResult)
+        {
             ILivingLetterAnswerData newILivingLetterAnswerData = new ILivingLetterAnswerData();
             newILivingLetterAnswerData._data = _data;
             newILivingLetterAnswerData._isPositiveResult = _isPositiveResult;
@@ -60,21 +63,23 @@ namespace EA4S.Log {
         /// Called when minigame is finished.
         /// </summary>
         /// <param name="_valuation">The valuation.</param>
-        public void OnGameplaySessionResult(int _valuation) {
+        public void OnGameplaySessionResult(int _valuation)
+        {
             //MinigameResultData newGameplaySessionResultData = new MinigameResultData();
             //newGameplaySessionResultData._valuation = _valuation;
             flushLogLearn();
             flushLogPlay();
-            AppManager.Instance.LogManager.LogMinigameScore(miniGameCode, _valuation);
+            LogManager.I.LogMinigameScore(miniGameCode, _valuation);
         }
 
         /// <summary>
         /// Logs the play session score.
         /// </summary>
         /// <param name="_score">The score.</param>
-        public void LogPlaySessionScore(float _score) {
+        public void LogPlaySessionScore(float _score)
+        {
             // TODO: Check if CurrentJourneyPosition is correct.
-            AppManager.Instance.LogManager.LogPlaySessionScore(AppManager.Instance.Player.CurrentJourneyPosition.ToString(), _score);
+            LogManager.I.LogPlaySessionScore(AppManager.Instance.Player.CurrentJourneyPosition.ToString(), _score);
         }
 
         /// <summary>
@@ -82,8 +87,9 @@ namespace EA4S.Log {
         /// </summary>
         /// <param name="_learningBlock">The learning block.</param>
         /// <param name="_score">The score.</param>
-        public void LogLearningBlockScore(int _learningBlock, float _score) {
-            AppManager.Instance.LogManager.LogLearningBlockScore(_learningBlock, _score);
+        public void LogLearningBlockScore(int _learningBlock, float _score)
+        {
+            LogManager.I.LogLearningBlockScore(_learningBlock, _score);
         }
 
         /// <summary>
@@ -91,7 +97,8 @@ namespace EA4S.Log {
         /// </summary>
         /// <param name="_ability">The ability.</param>
         /// <param name="_score">The score.</param>
-        public void OnGameplaySkillAction(PlaySkill _ability, float _score) {
+        public void OnGameplaySkillAction(PlaySkill _ability, float _score)
+        {
             bufferizeLogPlayData(new LogAI.PlayResultParameters() {
                 playEvent = PlayEvent.Skill,
                 skill = _ability,
@@ -105,30 +112,34 @@ namespace EA4S.Log {
         /// <param name="_event">The event.</param>
         /// <param name="_data">The data.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void LogInfoData(InfoEvent _event, string _data = "") {
-            AppManager.Instance.LogManager.LogInfo(_event, _data);
-            
+        public void LogInfoData(InfoEvent _event, string _data = "")
+        {
+            LogManager.I.LogInfo(_event, _data);
+
         }
 
-        public void LogMood(int _mood) {
-            AppManager.Instance.LogManager.LogMood(_mood);
+        public void LogMood(int _mood)
+        {
+            LogManager.I.LogMood(_mood);
         }
 
         #endregion
 
         #region Gameplay        
         /// <summary>
-            /// Bufferizes the log play data.
-            /// </summary>
-            /// <param name="_playResultParameters">The play result parameters.</param>
-        void bufferizeLogPlayData(LogAI.PlayResultParameters _playResultParameters) {
+        /// Bufferizes the log play data.
+        /// </summary>
+        /// <param name="_playResultParameters">The play result parameters.</param>
+        void bufferizeLogPlayData(LogAI.PlayResultParameters _playResultParameters)
+        {
             logPlayBuffer.Add(_playResultParameters);
         }
         /// <summary>
         /// Flushes the log play to app teacher log intellingence.
         /// </summary>
-        void flushLogPlay() {
-            AppManager.Instance.LogManager.LogPlay(minigameSession, miniGameCode, logPlayBuffer);
+        void flushLogPlay()
+        {
+            LogManager.I.LogPlay(minigameSession, miniGameCode, logPlayBuffer);
         }
         #endregion
 
@@ -137,14 +148,16 @@ namespace EA4S.Log {
         /// Bufferizes the log learn data.
         /// </summary>
         /// <param name="_iLivingLetterAnswerData">The i living letter answer data.</param>
-        void bufferizeLogLearnData(ILivingLetterAnswerData _iLivingLetterAnswerData) {
+        void bufferizeLogLearnData(ILivingLetterAnswerData _iLivingLetterAnswerData)
+        {
             logLearnBuffer.Add(_iLivingLetterAnswerData);
         }
 
         /// <summary>
         /// Flushes the log learn data to app teacher log intellingence.
         /// </summary>
-        void flushLogLearn() {
+        void flushLogLearn()
+        {
             List<LogAI.LearnResultParameters> resultsList = new List<LogAI.LearnResultParameters>();
             ILivingLetterData actualData = null;
             LogAI.LearnResultParameters actualLearnResult = new LogAI.LearnResultParameters();
@@ -177,12 +190,12 @@ namespace EA4S.Log {
                 }
                 // update learn objective log...
                 if (l._isPositiveResult)
-                    actualLearnResult.nCorrect ++;
+                    actualLearnResult.nCorrect++;
                 else
-                    actualLearnResult.nWrong ++;
+                    actualLearnResult.nWrong++;
             }
 
-            AppManager.Instance.LogManager.LogLearn(minigameSession, miniGameCode, resultsList);
+            LogManager.I.LogLearn(minigameSession, miniGameCode, resultsList);
 
         }
         #endregion
@@ -198,11 +211,13 @@ namespace EA4S.Log {
         #endregion
 
         #region internal data structures and interfaces
-        public interface iBufferizableLog {
+        public interface iBufferizableLog
+        {
             string CachedType { get; }
         }
 
-        public struct ILivingLetterAnswerData : iBufferizableLog {
+        public struct ILivingLetterAnswerData : iBufferizableLog
+        {
             public string CachedType { get { return "ILivingLetterAnswerData"; } }
             public ILivingLetterData _data;
             public bool _isPositiveResult;

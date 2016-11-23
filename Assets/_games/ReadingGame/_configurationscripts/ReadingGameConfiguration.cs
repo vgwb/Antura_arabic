@@ -43,8 +43,8 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Questions = new SampleReadingGameQuestionProvider();
-            Variation = ReadingGameVariation.ReadAndAnswer;
-            //Variation = ReadingGameVariation.AlphabetSong;
+            //Variation = ReadingGameVariation.ReadAndAnswer;
+            Variation = ReadingGameVariation.AlphabetSong;
 
             Context = new SampleGameContext();
             Difficulty = 0.0f;

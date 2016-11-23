@@ -29,6 +29,12 @@
 
                 //game.Context.GetOverlayWidget().Hide();
                 game.EndGame(game.currStarsNum, 100);
+
+                if (game.currStarsNum == 0)
+                    AudioManager.I.PlayDialog("Reward_0Star");
+                else
+                    AudioManager.I.PlayDialog("Reward_" + game.currStarsNum + "Star_" + UnityEngine.Random.Range(1, 4));
+
             }
         }
 

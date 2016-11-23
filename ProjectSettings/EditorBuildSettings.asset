@@ -24,6 +24,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_app/_scenes/app_Rewards.unity
   - enabled: 1
+    path: Assets/_app/_scenes/app_PlaySessionResult.unity
+  - enabled: 1
     path: Assets/_games/Assessments/app_Assessment.unity
   - enabled: 1
     path: Assets/_games/Balloons/game_Balloons.unity

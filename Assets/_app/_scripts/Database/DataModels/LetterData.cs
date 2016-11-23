@@ -6,7 +6,8 @@ namespace EA4S.Db
     {
         Real = 0,   // default: Base + Combo
         Combo,
-        Base
+        Base,
+        BaseAndVariations
     }
 
     public enum LetterPosition
@@ -65,13 +66,16 @@ namespace EA4S.Db
                 case LetterKindCategory.Real:
                     isIt = IsRealLetter();
                     break;
+                case LetterKindCategory.BaseAndVariations:
+                    isIt = IsBaseAndVariationLetter();
+                    break;
             }
             return isIt;
         }
 
         private bool IsRealLetter()
         {
-            return this.IsBaseLetter() || this.IsComboLetter();
+            return this.IsBaseLetter();
         }
 
         private bool IsBaseLetter()
@@ -82,6 +86,11 @@ namespace EA4S.Db
         private bool IsComboLetter()
         {
             return this.Kind == LetterDataKind.Combination || this.Kind == LetterDataKind.LetterVariation;
+        }
+
+        private bool IsBaseAndVariationLetter()
+        {
+            return this.Kind == LetterDataKind.Letter || this.Kind == LetterDataKind.LetterVariation;
         }
 
         public ILivingLetterData ConvertToLivingLetterData()

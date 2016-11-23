@@ -104,8 +104,8 @@ namespace EA4S.DontWakeUp
             AppManager.Instance.InitDataAI();
             AppManager.Instance.CurrentGameManagerGO = gameObject;
 
-            LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
-            LoggerEA4S.Save();
+            //LoggerEA4S.Log("minigame", "dontwakeup", "start", "");
+            //LoggerEA4S.Save();
 
             ResetAntura();
 
@@ -221,7 +221,7 @@ namespace EA4S.DontWakeUp
 
             DangerDog.I.Hide();
 
-            LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Data.Arabic);
+            // LoggerEA4S.Log("minigame", "dontwakeup", "newWord", currentWord.Data.Arabic);
 
             currentLevelController.SetWord();
             ChangeCamera(false);
@@ -316,7 +316,7 @@ namespace EA4S.DontWakeUp
         {
             currentState = DontWakeUpMinigameState.Paused;
             myLetter.SetActive(false);
-            LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
+            //LoggerEA4S.Log("minigame", "dontwakeup", "wordFinished", "");
             if (currentRound < RoundsTotal) {
                 GoToNextRound();
             } else {
@@ -362,11 +362,11 @@ namespace EA4S.DontWakeUp
             }
 
             if (score > 0) {
-                LoggerEA4S.Log("minigame", "dontwakeup", "Won", score.ToString());
+                //LoggerEA4S.Log("minigame", "dontwakeup", "Won", score.ToString());
             } else {
-                LoggerEA4S.Log("minigame", "dontwakeup", "Lost", "");
+                //LoggerEA4S.Log("minigame", "dontwakeup", "Lost", "");
             }
-            LoggerEA4S.Save();
+            //LoggerEA4S.Save();
 
             StarSystems.SetActive(true);
             StarSystems.GetComponent<StarFlowers>().Show(score);
