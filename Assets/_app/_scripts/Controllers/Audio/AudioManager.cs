@@ -224,8 +224,11 @@ namespace EA4S
                 OnNotifyEndAudio = callback;
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
                 Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
-            } else {
-                callback();
+            }
+            else
+            {
+                if (callback != null)
+                    callback();
             }
         }
         #endregion
