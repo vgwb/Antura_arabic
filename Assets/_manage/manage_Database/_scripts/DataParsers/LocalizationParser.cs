@@ -23,7 +23,7 @@ namespace EA4S.Db.Management
 
         protected override void RegenerateEnums(List<Dictionary<string, object>> rowdicts_list)
         {
-
+            ExtractEnum(rowdicts_list, "Id");
         }
     }
 }
