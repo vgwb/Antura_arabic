@@ -51,7 +51,7 @@ namespace EA4S
         {
             clicked = false;
             TutorialImageGO.SetActive(false);
-            SetTitle("", false);
+            SetTitle("");
             SetWord("", "");
             MarkOK.SetActive(false);
             MarkKO.SetActive(false);
@@ -268,17 +268,14 @@ namespace EA4S
             ButtonGO.gameObject.SetActive(callback != null);
             TutorialImageGO.SetActive(false);
 
-            SetTitle(introText, false);
+            SetTitle(introText);
             SetWord(wordCode, arabicWord);
             //            Window.SetActive(true);
         }
 
-        public void SetTitle(string text, bool isArabic)
+        public void SetTitle(string text)
         {
-            if (isArabic)
-                TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(text, false, false);
-            else
-                TitleGO.GetComponent<TextMeshProUGUI>().text = text;
+            TitleGO.GetComponent<TextMeshProUGUI>().text = text;
 
             /*
             if (isArabic)

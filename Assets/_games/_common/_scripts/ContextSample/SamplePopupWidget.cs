@@ -51,11 +51,6 @@ namespace EA4S
             WidgetPopupWindow.I.SetButtonCallback(callback);
         }
 
-        public void SetTitle(string text, bool isArabic)
-        {
-            WidgetPopupWindow.I.SetTitle(text, isArabic);
-        }
-
         public void SetMessage(Db.LocalizationDataId text)
         {
             WidgetPopupWindow.I.SetMessage(text);
@@ -78,7 +73,7 @@ namespace EA4S
 
         public void SetTitle(string text)
         {
-            throw new NotImplementedException();
+            WidgetPopupWindow.I.SetTitle(text);
         }
 
         public void SetMessage(string text)
