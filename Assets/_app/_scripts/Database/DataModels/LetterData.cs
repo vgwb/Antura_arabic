@@ -67,7 +67,7 @@ namespace EA4S.Db
                     isIt = IsRealLetter();
                     break;
                 case LetterKindCategory.BaseAndVariations:
-                    isIt = IsBaseAndVariationLetter();
+                    isIt = IsBaseOrVariationLetter();
                     break;
             }
             return isIt;
@@ -75,7 +75,7 @@ namespace EA4S.Db
 
         private bool IsRealLetter()
         {
-            return this.IsBaseLetter();
+            return this.IsBaseLetter() || this.IsComboLetter();
         }
 
         private bool IsBaseLetter()
@@ -88,7 +88,7 @@ namespace EA4S.Db
             return this.Kind == LetterDataKind.Combination || this.Kind == LetterDataKind.LetterVariation;
         }
 
-        private bool IsBaseAndVariationLetter()
+        private bool IsBaseOrVariationLetter()
         {
             return this.Kind == LetterDataKind.Letter || this.Kind == LetterDataKind.LetterVariation;
         }
