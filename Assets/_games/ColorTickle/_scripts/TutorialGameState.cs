@@ -137,13 +137,13 @@ namespace EA4S.ColorTickle
             m_LLController.OnDestinationReached += delegate()
             //nested function to play intro dialogue
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.COLORTICKLE_INTRO, delegate()
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Intro, delegate()
                 //nested function to play tutorial dialogue on intro finish
                 {
                     Debug.Log("play tuto");
                     //game.Context.GetAudioManager().PlayDialogue(TextID.COLORTICKLE_TUTO); //for now this is broken, COLORTICKLE_TUTO is repeated like a loop
                     // HACK stop audio and replay music
-                    game.Context.GetAudioManager().PlayDialogue(TextID.COLORTICKLE_TUTO, delegate() { game.Context.GetAudioManager().StopMusic(); game.Context.GetAudioManager().PlayMusic(game.backgroundMusic); });
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Tuto, delegate() { game.Context.GetAudioManager().StopMusic(); game.Context.GetAudioManager().PlayMusic(game.backgroundMusic); });
                     
                     EnableLetterComponents();
                     EnableTutorialAnimation();
