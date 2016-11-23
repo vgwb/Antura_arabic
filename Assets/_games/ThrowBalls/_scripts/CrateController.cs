@@ -155,7 +155,7 @@ namespace EA4S.ThrowBalls
         {
             yield return new WaitForSeconds(delay);
 
-            GameObject poof = (GameObject)Instantiate(ThrowBallsGameManager.Instance.poofPrefab, transform.position, Quaternion.identity);
+            GameObject poof = (GameObject)Instantiate(ThrowBallsGame.instance.poofPrefab, transform.position, Quaternion.identity);
             Destroy(poof, 10);
             gameObject.SetActive(false);
         }

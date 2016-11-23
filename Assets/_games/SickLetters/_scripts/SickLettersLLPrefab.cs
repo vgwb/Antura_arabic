@@ -129,7 +129,9 @@ namespace EA4S.SickLetters
 
             game.LLPrefab.GetComponent<LetterObjectView>().Init(newLetter);
             game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
-            game.LLPrefab.correctDot.text = newLetter.TextForLivingLetter;
+
+            if (!game.dotlessLetters.Contains(newLetter.TextForLivingLetter))
+                game.LLPrefab.correctDot.text = newLetter.TextForLivingLetter;
 
             
             //correctDotPos = LLPrefab.correctDot.transform.TransformPoint(Vector3.Lerp(LLPrefab.correctDot.mesh.vertices[0], game.LLPrefab.correctDot.mesh.vertices[2], 0.5f));
@@ -148,7 +150,7 @@ namespace EA4S.SickLetters
                 {
                     if (i < game.Draggables.Length)
                     {
-                        if (game.Draggables[i].diacritic != Diacritic.None && !game.with7arakat)
+                        if (game.Draggables[i].diacritic != Diacritic.None && i>=game.numerOfWringDDs/*!game.with7arakat*/)
                         {
                             i++;
                             continue;

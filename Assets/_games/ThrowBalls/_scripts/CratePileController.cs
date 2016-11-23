@@ -76,7 +76,7 @@ namespace EA4S.ThrowBalls
             if (!hit)
             {
                 BallController.instance.Reset();
-                ThrowBallsGameManager.Instance.OnBallLost();
+                GameState.instance.OnBallLost();
                 hit = true;
             }
             

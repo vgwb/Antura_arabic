@@ -4,7 +4,7 @@ namespace EA4S.SickLetters
 {
     public class QuestionsManager
     {
-        string dotlessLetters = " - ﻻ لأ ﺉ آ إ ٶ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter = "";
+        string dotlessLetters = " - ﻻ لأ ﺉ آ ٶ ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و", prevLetter = "";
 
         public ILivingLetterData getNewLetter()
         {

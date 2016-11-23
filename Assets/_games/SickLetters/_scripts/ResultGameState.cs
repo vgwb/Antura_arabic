@@ -43,7 +43,7 @@
                     AudioManager.I.PlayDialog("Reward_0Star");
                 else
                     AudioManager.I.PlayDialog("Reward_" + game.currentStars + "Star_"+UnityEngine.Random.Range(1,4));
-
+                //game.Context.GetAudioManager().PlayDialogue(Db.LocalizationData)
                 //WidgetSubtitles.I.DisplaySentence()
                 //game.EndGame(game.scale.counter / (game.targetScale / 3), game.scale.counter);
             }

@@ -85,6 +85,11 @@ namespace EA4S
         public static readonly TextID ALPHABETSONG_INTRO = new TextID("AlphabetSong_Intro");
         public static readonly TextID ALPHABETSONG_TUTORIAL = new TextID("AlphabetSong_Tuto");
 
+        // ColorTickle
+        public static readonly TextID COLORTICKLE_TITLE = new TextID("ColorTickle_Title");
+        public static readonly TextID COLORTICKLE_INTRO = new TextID("ColorTickle_Intro");
+        public static readonly TextID COLORTICKLE_TUTO = new TextID("ColorTickle_Tuto");
+
         // ...
 
         public static TextID GetTextIDFromStars(int stars)

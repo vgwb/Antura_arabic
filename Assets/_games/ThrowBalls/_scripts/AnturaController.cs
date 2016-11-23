@@ -116,7 +116,7 @@ namespace EA4S.ThrowBalls
                         if (ballGrabbed)
                         {
                             ballGrabbed = false;
-                            ThrowBallsGameManager.Instance.OnBallLost();
+                            GameState.instance.OnBallLost();
                             BallController.instance.Reset();
                         }
 

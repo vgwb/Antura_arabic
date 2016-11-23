@@ -1,35 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EA4S;
+using System;
 
 namespace EA4S.ThrowBalls
 {
-    public class ThrowBallsGameManager : MiniGame
+    public class GameState : IGameState
     {
         public const int MAX_NUM_ROUNDS = 5;
         public const int NUM_LETTERS_IN_POOL = 7;
         public static int MAX_NUM_BALLS = 5;
 
         public const float TUTORIAL_UI_PERIOD = 4;
-
-        new public static ThrowBallsGameManager Instance;
-        new public ThrowBallsGameplayInfo GameplayInfo;
-
-        public GameObject[] letterPool;
-        private LetterController[] letterControllers;
-
-        public GameObject ball;
-        public BallController ballController;
-
-        public GameObject letterWithPropsPrefab;
-
-        public GameObject poofPrefab;
-
-        public GameObject environment;
 
         public bool isRoundOngoing;
 
@@ -40,8 +24,6 @@ namespace EA4S.ThrowBalls
 
         private int numRoundsWon = 0;
 
-        private LetterSpawner letterSpawner;
-
         private float timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
         private bool isIdle = true;
 
@@ -49,38 +31,27 @@ namespace EA4S.ThrowBalls
         private int numLettersRemaining;
         private int numLetters = 3;
 
-        protected override void OnInitialize(IGameContext context)
-        { }
+        private LetterSpawner letterSpawner;
+        public GameObject[] letterPool;
+        private LetterController[] letterControllers;
 
-        protected override IGameConfiguration GetConfiguration()
-        {
-            return ThrowBallsConfiguration.Instance;
-        }
+        private ThrowBallsGame game;
 
-        protected override IGameState GetInitialState()
-        {
-            return null;
-        }
+        public static GameState instance;
 
-        protected override void Awake()
+        public GameState(ThrowBallsGame game)
         {
-            base.Awake();
-            Instance = this;
+            this.game = game;
 
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {
                 MAX_NUM_BALLS = 10;
             }
+
+            instance = this;
         }
-
-        protected override void Start()
+        public void EnterState()
         {
-            base.Start();
-
-            AppManager.Instance.InitDataAI();
-            AppManager.Instance.CurrentGameManagerGO = gameObject;
-            SceneTransitioner.Close();
-
             UnityEngine.Random.InitState(DateTime.Now.GetHashCode());
 
             // Layer 8 = Terrain. Layer 12 = Ball.
@@ -88,7 +59,7 @@ namespace EA4S.ThrowBalls
 
             letterSpawner = new LetterSpawner();
 
-            foreach (Collider collider in environment.GetComponentsInChildren<Collider>())
+            foreach (Collider collider in ThrowBallsGame.instance.environment.GetComponentsInChildren<Collider>())
             {
                 collider.enabled = false;
             }
@@ -98,7 +69,7 @@ namespace EA4S.ThrowBalls
 
             for (int i = 0; i < letterPool.Length; i++)
             {
-                GameObject letter = Instantiate(letterWithPropsPrefab).GetComponent<LetterWithPropsController>().letter;
+                GameObject letter = ThrowBallsGame.Instantiate(game.letterWithPropsPrefab).GetComponent<LetterWithPropsController>().letter;
                 LetterController letterController = letter.GetComponent<LetterController>();
 
                 letterPool[i] = letter;
@@ -107,141 +78,21 @@ namespace EA4S.ThrowBalls
                 letter.SetActive(false);
             }
 
-            letterWithPropsPrefab.SetActive(false);
+            ThrowBallsGame.instance.letterWithPropsPrefab.SetActive(false);
 
             ResetScene();
 
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
             {
-                StartCoroutine(StartNewRound_LettersInWord());
+                game.StartCoroutine(StartNewRound_LettersInWord());
             }
 
             else
             {
-                StartCoroutine(StartNewRound());
+                game.StartCoroutine(StartNewRound());
             }
 
             AudioManager.I.PlayMusic(Music.MainTheme);
-        }
-
-        void Touched()
-        {
-            isIdle = false;
-            TutorialUI.Clear(false);
-        }
-
-        void OnMouseUp()
-        {
-            isIdle = true;
-            timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
-        }
-
-        public bool IsTutorialLevel()
-        {
-            return roundNumber == 0;
-        }
-
-        void Update()
-        {
-            if (roundNumber == 0)
-            {
-                if (Input.touchCount > 0)
-                {
-                    Touch touch = Input.GetTouch(0);
-
-                    switch (touch.phase)
-                    {
-                        case TouchPhase.Began:
-                            Touched();
-                            break;
-                        case TouchPhase.Ended:
-                            OnMouseUp();
-                            break;
-                    }
-                }
-
-                else if (Input.GetMouseButtonDown(0))
-                {
-                    Touched();
-                }
-
-                else if (Input.GetMouseButtonUp(0))
-                {
-                    OnMouseUp();
-                }
-            }
-        }
-
-        void FixedUpdate()
-        {
-            if (roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
-            {
-                timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
-
-                if (timeLeftToShowTutorialUI <= 0)
-                {
-                    ShowTutorialUI();
-                }
-            }
-        }
-
-        protected override void ReadyForGameplay()
-        {
-            base.ReadyForGameplay();
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-        }
-
-        public void ResetScene()
-        {
-            UIController.instance.Reset();
-            UIController.instance.Disable();
-
-            foreach (LetterController letterController in letterControllers)
-            {
-                letterController.Reset();
-                letterController.DisableProps();
-            }
-
-            for (int i = 0; i < letterPool.Length; i++)
-            {
-                GameObject letter = letterPool[i];
-                letter.SetActive(false);
-            }
-
-            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(numLetters, roundNumber == 0);
-
-            for (int i = 0; i < numLetters; i++)
-            {
-                GameObject letter = letterPool[i];
-                letter.transform.position = randomPositions[i];
-            }
-
-            ballController.Reset();
-
-            numBalls = MAX_NUM_BALLS;
-
-            if (roundNumber > 1)
-            {
-                MinigamesUI.Lives.ResetToMax();
-            }
-
-            isRoundOngoing = false;
-        }
-
-        private void DisableLetters(bool disablePropsToo)
-        {
-            foreach (LetterController letterController in letterControllers)
-            {
-                letterController.Disable();
-                if (disablePropsToo)
-                {
-                    letterController.DisableProps();
-                }
-            }
         }
 
         public IEnumerator StartNewRound()
@@ -413,6 +264,66 @@ namespace EA4S.ThrowBalls
             }
         }
 
+        public void OnBallLost()
+        {
+            if (isRoundOngoing && roundNumber > 0)
+            {
+                numBalls--;
+
+                MinigamesUI.Lives.SetCurrLives(numBalls);
+
+                if (numBalls == 0)
+                {
+                    BallController.instance.Disable();
+                    OnRoundLost();
+                }
+            }
+
+            else if (roundNumber == 0)
+            {
+                ShowTutorialUI();
+            }
+        }
+
+        public void OnRoundConcluded()
+        {
+            roundNumber++;
+
+            if (roundNumber > MAX_NUM_ROUNDS)
+            {
+                EndGame();
+            }
+
+            else
+            {
+                if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
+                {
+                    game.StartCoroutine(StartNewRound_LettersInWord());
+                }
+
+                else
+                {
+                    game.StartCoroutine(StartNewRound());
+                }
+            }
+        }
+
+        private void DisableLetters(bool disablePropsToo)
+        {
+            foreach (LetterController letterController in letterControllers)
+            {
+                letterController.Disable();
+                if (disablePropsToo)
+                {
+                    letterController.DisableProps();
+                }
+            }
+        }
+
+
+
+
+
         public void OnCorrectLetterHit(LetterController correctLetterCntrl)
         {
             if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword && --numLettersRemaining != 0)
@@ -449,8 +360,8 @@ namespace EA4S.ThrowBalls
                     TutorialUI.Clear(true);
                 }
 
-                StartCoroutine(ShowWinSequence(correctLetterCntrl));
-                ballController.Disable();
+                game.StartCoroutine(ShowWinSequence(correctLetterCntrl));
+                BallController.instance.Disable();
 
                 isRoundOngoing = false;
             }
@@ -460,11 +371,11 @@ namespace EA4S.ThrowBalls
         {
             if (isRoundOngoing)
             {
-                ballController.Disable();
+                BallController.instance.Disable();
                 isRoundOngoing = false;
                 DisableLetters(true);
 
-                StartCoroutine(OnRoundLostCoroutine());
+                game.StartCoroutine(OnRoundLostCoroutine());
             }
         }
 
@@ -510,50 +421,6 @@ namespace EA4S.ThrowBalls
             OnRoundConcluded();
         }
 
-        public void OnBallLost()
-        {
-            if (isRoundOngoing && roundNumber > 0)
-            {
-                numBalls--;
-
-                MinigamesUI.Lives.SetCurrLives(numBalls);
-
-                if (numBalls == 0)
-                {
-                    BallController.instance.Disable();
-                    OnRoundLost();
-                }
-            }
-
-            else if (roundNumber == 0)
-            {
-                ShowTutorialUI();
-            }
-        }
-
-        public void OnRoundConcluded()
-        {
-            roundNumber++;
-
-            if (roundNumber > MAX_NUM_ROUNDS)
-            {
-                EndGame();
-            }
-
-            else
-            {
-                if (ThrowBallsConfiguration.Instance.Variation == ThrowBallsVariation.lettersinword)
-                {
-                    StartCoroutine(StartNewRound_LettersInWord());
-                }
-
-                else
-                {
-                    StartCoroutine(StartNewRound());
-                }
-            }
-        }
-
         private Vector3 GetCratePosition(Vector3 relativeToLetterPosition)
         {
             return new Vector3(relativeToLetterPosition.x, relativeToLetterPosition.y - 2.1f, relativeToLetterPosition.z);
@@ -561,7 +428,7 @@ namespace EA4S.ThrowBalls
 
         private void EndGame()
         {
-            StartCoroutine(EndGame_Coroutine());
+            game.StartCoroutine(EndGame_Coroutine());
         }
 
         private IEnumerator EndGame_Coroutine()
@@ -591,7 +458,7 @@ namespace EA4S.ThrowBalls
                 numberOfStars = 3;
             }
 
-            EndGame(numberOfStars, 0);
+            game.EndGame(numberOfStars, 0);
         }
 
         private LetterController.MotionVariation GetMotionOfRound()
@@ -668,12 +535,107 @@ namespace EA4S.ThrowBalls
         {
             return letterControllers[index].gameObject.transform.position;
         }
-    }
 
-    [Serializable]
-    public class ThrowBallsGameplayInfo : AnturaGameplayInfo
-    {
-        [Tooltip("Play session duration in seconds.")]
-        public float PlayTime = 0f;
+        public void ResetScene()
+        {
+            UIController.instance.Reset();
+            UIController.instance.Disable();
+
+            foreach (LetterController letterController in letterControllers)
+            {
+                letterController.Reset();
+                letterController.DisableProps();
+            }
+
+            for (int i = 0; i < letterPool.Length; i++)
+            {
+                GameObject letter = letterPool[i];
+                letter.SetActive(false);
+            }
+
+            Vector3[] randomPositions = letterSpawner.GenerateRandomPositions(numLetters, roundNumber == 0);
+
+            for (int i = 0; i < numLetters; i++)
+            {
+                GameObject letter = letterPool[i];
+                letter.transform.position = randomPositions[i];
+            }
+
+            BallController.instance.Reset();
+
+            numBalls = MAX_NUM_BALLS;
+
+            if (roundNumber > 1)
+            {
+                MinigamesUI.Lives.ResetToMax();
+            }
+
+            isRoundOngoing = false;
+        }
+
+        public void ExitState()
+        {
+        }
+
+        public void Update(float delta)
+        {
+            if (roundNumber == 0)
+            {
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+
+                    switch (touch.phase)
+                    {
+                        case TouchPhase.Began:
+                            Touched();
+                            break;
+                        case TouchPhase.Ended:
+                            OnMouseUp();
+                            break;
+                    }
+                }
+
+                else if (Input.GetMouseButtonDown(0))
+                {
+                    Touched();
+                }
+
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    OnMouseUp();
+                }
+            }
+        }
+
+        public void UpdatePhysics(float delta)
+        {
+            if (roundNumber == 0 && isIdle && !BallController.instance.IsLaunched())
+            {
+                timeLeftToShowTutorialUI -= Time.fixedDeltaTime;
+
+                if (timeLeftToShowTutorialUI <= 0)
+                {
+                    ShowTutorialUI();
+                }
+            }
+        }
+
+        void Touched()
+        {
+            isIdle = false;
+            TutorialUI.Clear(false);
+        }
+
+        void OnMouseUp()
+        {
+            isIdle = true;
+            timeLeftToShowTutorialUI = TUTORIAL_UI_PERIOD;
+        }
+
+        public bool IsTutorialLevel()
+        {
+            return roundNumber == 0;
+        }
     }
 }
