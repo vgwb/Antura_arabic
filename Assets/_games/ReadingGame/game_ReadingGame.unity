@@ -3307,7 +3307,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294965247
+    m_Bits: 4294957055
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -10192,6 +10192,7 @@ MonoBehaviour:
   circleBox: {fileID: 2066362537}
   antura: {fileID: 991576443}
   radialWidget: {fileID: 1765756456}
+  uiCamera: {fileID: 1661970738}
   isTimesUp: 0
   alphabetSongAudio: {fileID: 8300000, guid: eef764bc2e9ee684caba6f984981e22f, type: 3}
   alphabetSongSrt: {fileID: 4900000, guid: 614f3d91d7fe76f4b9d351e44abe15cf, type: 3}

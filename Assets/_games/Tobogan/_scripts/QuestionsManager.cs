@@ -162,6 +162,8 @@ namespace EA4S.Tobogan
         void OnQuestionLivingLetterOnPosition()
         {
             questionLivingLetter.EnableCollider(true);
+            game.Context.GetAudioManager().PlayLetterData(questionLivingLetter.letter.Data, true);
+
         }
 
         void CheckAnswer()

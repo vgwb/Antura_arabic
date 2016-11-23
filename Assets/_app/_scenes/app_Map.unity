@@ -1102,7 +1102,7 @@ GameObject:
   - 65: {fileID: 17109529}
   m_Layer: 0
   m_Name: ColliderRope (8)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1144,7 +1144,7 @@ GameObject:
   - 114: {fileID: 19202504}
   m_Layer: 0
   m_Name: Pin12
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1180,7 +1180,6 @@ MonoBehaviour:
   RopeNode: {fileID: 2045017055}
   Dot: {fileID: 4603258}
   posBefore: 21
-  posAfter: 0
 --- !u!65 &19202505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1316,6 +1315,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
         type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -42
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -232
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
+        type: 2}
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
@@ -1344,16 +1363,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012277198220, guid: 56170391e4f87434b9a9d206e5f1274d,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012277198220, guid: 56170391e4f87434b9a9d206e5f1274d,
-        type: 2}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012920534254, guid: 56170391e4f87434b9a9d206e5f1274d,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -1363,21 +1372,6 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010331446068, guid: 56170391e4f87434b9a9d206e5f1274d,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -232
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56170391e4f87434b9a9d206e5f1274d, type: 2}
@@ -1394,7 +1388,7 @@ GameObject:
   - 114: {fileID: 29171755}
   m_Layer: 0
   m_Name: Pin15
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1430,7 +1424,6 @@ MonoBehaviour:
   RopeNode: {fileID: 2143105601}
   Dot: {fileID: 1794581394}
   posBefore: 27
-  posAfter: 0
 --- !u!65 &29171756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1742,33 +1735,19 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &33363799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33363798}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b40dc9d52fc24406c81223924da886e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SceneMusic: 2
-  Pins:
-  - {fileID: 678376362}
-  - {fileID: 1898037008}
-  - {fileID: 2118745094}
-  - {fileID: 287926040}
-  - {fileID: 183222759}
-  CurrentSteps:
-  - {fileID: 1319031010}
-  - {fileID: 363636010}
-  - {fileID: 176054307}
-  - {fileID: 477357742}
-  - {fileID: 909829987}
-  Player: {fileID: 0}
-  ZoomCameraGO: {fileID: 1651395146}
 --- !u!4 &33363800
 Transform:
   m_ObjectHideFlags: 0
@@ -1983,7 +1962,7 @@ GameObject:
   - 65: {fileID: 35168319}
   m_Layer: 0
   m_Name: ColliderRope (8)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3502,7 +3481,7 @@ GameObject:
   - 114: {fileID: 63421135}
   m_Layer: 0
   m_Name: Pin13
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3538,7 +3517,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1259427338}
   Dot: {fileID: 1679165205}
   posBefore: 23
-  posAfter: 0
 --- !u!65 &63421136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4934,7 +4912,7 @@ GameObject:
   - 114: {fileID: 86445299}
   m_Layer: 0
   m_Name: Pin8
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4970,7 +4948,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1308240238}
   Dot: {fileID: 915543951}
   posBefore: 13
-  posAfter: 14
 --- !u!65 &86445300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6030,7 +6007,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -6225,7 +6202,7 @@ GameObject:
   - 114: {fileID: 102075255}
   m_Layer: 0
   m_Name: Pin14
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6261,7 +6238,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1240086715}
   Dot: {fileID: 1136052444}
   posBefore: 25
-  posAfter: 0
 --- !u!65 &102075256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7855,7 +7831,7 @@ GameObject:
   - 114: {fileID: 131331709}
   m_Layer: 0
   m_Name: Pin7
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7892,7 +7868,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1673831109}
   Dot: {fileID: 1772589276}
   posBefore: 11
-  posAfter: 12
 --- !u!65 &131331710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9508,7 +9483,7 @@ GameObject:
   - 65: {fileID: 156228343}
   m_Layer: 0
   m_Name: ColliderRope (4)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9854,7 +9829,7 @@ GameObject:
   - 65: {fileID: 165768003}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10833,7 +10808,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -10853,10 +10828,6 @@ Prefab:
 --- !u!4 &183222758 stripped
 Transform:
   m_PrefabParentObject: {fileID: 417134, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
-  m_PrefabInternal: {fileID: 183222757}
---- !u!1 &183222759 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
   m_PrefabInternal: {fileID: 183222757}
 --- !u!1 &184309885
 GameObject:
@@ -11786,7 +11757,7 @@ GameObject:
   - 65: {fileID: 202330279}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11827,7 +11798,7 @@ GameObject:
   - 65: {fileID: 202384021}
   m_Layer: 0
   m_Name: ColliderRope (9)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11936,7 +11907,7 @@ GameObject:
   - 65: {fileID: 206170915}
   m_Layer: 0
   m_Name: ColliderRope (9)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12336,7 +12307,7 @@ GameObject:
   - 65: {fileID: 210219486}
   m_Layer: 0
   m_Name: ColliderRope (6)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12377,7 +12348,7 @@ GameObject:
   - 65: {fileID: 210414241}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12702,7 +12673,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -13046,7 +13017,7 @@ GameObject:
   - 65: {fileID: 224503019}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13973,7 +13944,7 @@ GameObject:
   - 65: {fileID: 232636322}
   m_Layer: 0
   m_Name: ColliderRope (6)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14969,7 +14940,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -16667,10 +16638,6 @@ MeshFilter:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: bad8d7abb4254204b9e309e26eaeb601, type: 3}
   m_PrefabInternal: {fileID: 461687777}
---- !u!1 &287926040 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
-  m_PrefabInternal: {fileID: 1490157524}
 --- !u!1 &288607202
 GameObject:
   m_ObjectHideFlags: 0
@@ -18747,7 +18714,7 @@ GameObject:
   - 65: {fileID: 331149873}
   m_Layer: 0
   m_Name: ColliderRope (3)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18789,7 +18756,7 @@ GameObject:
   - 114: {fileID: 332766447}
   m_Layer: 0
   m_Name: Pin10
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18825,7 +18792,6 @@ MonoBehaviour:
   RopeNode: {fileID: 325059841}
   Dot: {fileID: 78073098}
   posBefore: 17
-  posAfter: 18
 --- !u!65 &332766448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19180,7 +19146,7 @@ GameObject:
   - 65: {fileID: 347509174}
   m_Layer: 0
   m_Name: ColliderRope (2)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19919,7 +19885,7 @@ GameObject:
   - 65: {fileID: 360230188}
   m_Layer: 0
   m_Name: ColliderRope (1)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20520,7 +20486,7 @@ GameObject:
   - 114: {fileID: 370010682}
   m_Layer: 0
   m_Name: Pin10
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20556,7 +20522,6 @@ MonoBehaviour:
   RopeNode: {fileID: 42211065}
   Dot: {fileID: 1808448392}
   posBefore: 17
-  posAfter: 18
 --- !u!65 &370010683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21408,7 +21373,7 @@ GameObject:
   - 114: {fileID: 399291166}
   m_Layer: 0
   m_Name: Pin10
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21444,7 +21409,6 @@ MonoBehaviour:
   RopeNode: {fileID: 606246103}
   Dot: {fileID: 119093549}
   posBefore: 17
-  posAfter: 18
 --- !u!65 &399291167
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21468,7 +21432,7 @@ GameObject:
   - 65: {fileID: 401620669}
   m_Layer: 0
   m_Name: ColliderRope (2)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21617,7 +21581,7 @@ GameObject:
   - 114: {fileID: 407707019}
   m_Layer: 0
   m_Name: Pin7
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21654,7 +21618,6 @@ MonoBehaviour:
   RopeNode: {fileID: 64090599}
   Dot: {fileID: 1320704680}
   posBefore: 11
-  posAfter: 12
 --- !u!65 &407707020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22275,7 +22238,7 @@ GameObject:
   - 65: {fileID: 418450374}
   m_Layer: 0
   m_Name: ColliderRope (6)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22423,7 +22386,7 @@ GameObject:
   - 65: {fileID: 421032860}
   m_Layer: 0
   m_Name: ColliderRope (1)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23388,7 +23351,7 @@ GameObject:
   - 114: {fileID: 431699048}
   m_Layer: 0
   m_Name: Pin9
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23424,7 +23387,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1243113179}
   Dot: {fileID: 837396474}
   posBefore: 15
-  posAfter: 16
 --- !u!65 &431699049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24845,7 +24807,7 @@ GameObject:
   - 65: {fileID: 466742624}
   m_Layer: 0
   m_Name: ColliderRope
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24917,7 +24879,7 @@ GameObject:
   - 114: {fileID: 468088907}
   m_Layer: 0
   m_Name: Pin8
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24949,7 +24911,6 @@ MonoBehaviour:
   RopeNode: {fileID: 424965175}
   Dot: {fileID: 1703476412}
   posBefore: 13
-  posAfter: 14
 --- !u!1 &468381210
 GameObject:
   m_ObjectHideFlags: 0
@@ -25040,7 +25001,7 @@ GameObject:
   - 65: {fileID: 470341361}
   m_Layer: 0
   m_Name: ColliderRope (8)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26389,7 +26350,7 @@ GameObject:
   - 114: {fileID: 490774572}
   m_Layer: 0
   m_Name: Pin13
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26425,7 +26386,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1369063801}
   Dot: {fileID: 1879232765}
   posBefore: 23
-  posAfter: 0
 --- !u!65 &490774573
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26503,6 +26463,8 @@ MonoBehaviour:
   stepsParent: {fileID: 1372567940}
   pinLeft: {x: 0, y: 0, z: 0}
   pinRight: {x: 0, y: 0, z: 0}
+  posMax: 0
+  isAvailableTheWholeMap: 0
 --- !u!4 &498990843
 Transform:
   m_ObjectHideFlags: 0
@@ -27672,6 +27634,8 @@ MonoBehaviour:
   stepsParent: {fileID: 1555678378}
   pinLeft: {x: 0, y: 0, z: 0}
   pinRight: {x: 0, y: 0, z: 0}
+  posMax: 0
+  isAvailableTheWholeMap: 0
 --- !u!1 &530130463
 GameObject:
   m_ObjectHideFlags: 0
@@ -28610,7 +28574,7 @@ GameObject:
   - 65: {fileID: 553092388}
   m_Layer: 0
   m_Name: Pin6
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28661,7 +28625,6 @@ MonoBehaviour:
   RopeNode: {fileID: 340568311}
   Dot: {fileID: 1100227691}
   posBefore: 9
-  posAfter: 10
 --- !u!1 &555009656
 GameObject:
   m_ObjectHideFlags: 0
@@ -28827,7 +28790,7 @@ GameObject:
   - 114: {fileID: 557100040}
   m_Layer: 0
   m_Name: Pin9
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28859,7 +28822,6 @@ MonoBehaviour:
   RopeNode: {fileID: 2088406}
   Dot: {fileID: 807504166}
   posBefore: 15
-  posAfter: 16
 --- !u!1 &557240256
 GameObject:
   m_ObjectHideFlags: 0
@@ -29772,7 +29734,7 @@ GameObject:
   - 65: {fileID: 569301160}
   m_Layer: 0
   m_Name: ColliderRope (7)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30048,7 +30010,7 @@ GameObject:
   - 65: {fileID: 571490721}
   m_Layer: 0
   m_Name: ColliderRope (4)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30312,7 +30274,7 @@ GameObject:
   - 65: {fileID: 575247645}
   m_Layer: 0
   m_Name: ColliderRope (5)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30591,7 +30553,7 @@ GameObject:
   - 65: {fileID: 581122838}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30886,7 +30848,7 @@ GameObject:
   - 65: {fileID: 581906240}
   m_Layer: 0
   m_Name: Pin6
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30920,7 +30882,6 @@ MonoBehaviour:
   RopeNode: {fileID: 918383558}
   Dot: {fileID: 935145932}
   posBefore: 9
-  posAfter: 10
 --- !u!1 &585398967
 GameObject:
   m_ObjectHideFlags: 0
@@ -31110,7 +31071,7 @@ GameObject:
   - 65: {fileID: 590479151}
   m_Layer: 0
   m_Name: ColliderRope (7)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31331,7 +31292,7 @@ GameObject:
   - 114: {fileID: 592099726}
   m_Layer: 0
   m_Name: Pin10
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31367,7 +31328,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1629120475}
   Dot: {fileID: 900087622}
   posBefore: 17
-  posAfter: 18
 --- !u!65 &592099727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32330,7 +32290,7 @@ GameObject:
   - 65: {fileID: 610545178}
   m_Layer: 0
   m_Name: ColliderRope (9)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33342,6 +33302,7 @@ MonoBehaviour:
   - {fileID: 636435486}
   - {fileID: 1054023482}
   letter: {fileID: 1861864410}
+  s: 2
 --- !u!4 &626058414
 Transform:
   m_ObjectHideFlags: 0
@@ -33834,6 +33795,8 @@ MonoBehaviour:
   stepsParent: {fileID: 1126258577}
   pinLeft: {x: 0, y: 0, z: 0}
   pinRight: {x: 0, y: 0, z: 0}
+  posMax: 0
+  isAvailableTheWholeMap: 0
 --- !u!1 &637587934
 GameObject:
   m_ObjectHideFlags: 0
@@ -34315,7 +34278,7 @@ GameObject:
   - 65: {fileID: 643687155}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34430,7 +34393,7 @@ GameObject:
   - 65: {fileID: 645926840}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34842,6 +34805,8 @@ MonoBehaviour:
   stepsParent: {fileID: 1881482677}
   pinLeft: {x: 0, y: 0, z: 0}
   pinRight: {x: 0, y: 0, z: 0}
+  posMax: 0
+  isAvailableTheWholeMap: 0
 --- !u!1001 &653517505
 Prefab:
   m_ObjectHideFlags: 0
@@ -34959,7 +34924,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -35924,7 +35889,7 @@ GameObject:
   - 65: {fileID: 675500186}
   m_Layer: 0
   m_Name: ColliderRope (5)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36107,10 +36072,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 677211221}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &678376362 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
-  m_PrefabInternal: {fileID: 1783676466}
 --- !u!1 &681738753
 GameObject:
   m_ObjectHideFlags: 0
@@ -36522,7 +36483,7 @@ GameObject:
   - 65: {fileID: 696561964}
   m_Layer: 0
   m_Name: ColliderRope
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37346,7 +37307,7 @@ GameObject:
   - 114: {fileID: 707431561}
   m_Layer: 0
   m_Name: Pin8
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37382,7 +37343,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1159022979}
   Dot: {fileID: 1376290639}
   posBefore: 13
-  posAfter: 14
 --- !u!65 &707431562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38555,7 +38515,7 @@ GameObject:
   - 114: {fileID: 726927137}
   m_Layer: 0
   m_Name: Pin11
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38587,7 +38547,6 @@ MonoBehaviour:
   RopeNode: {fileID: 15195043}
   Dot: {fileID: 279665423}
   posBefore: 19
-  posAfter: 20
 --- !u!1 &729581001
 GameObject:
   m_ObjectHideFlags: 0
@@ -38678,7 +38637,7 @@ GameObject:
   - 65: {fileID: 730265819}
   m_Layer: 0
   m_Name: ColliderRope (7)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38940,7 +38899,7 @@ GameObject:
   - 65: {fileID: 734965748}
   m_Layer: 0
   m_Name: ColliderRope (4)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39367,7 +39326,7 @@ GameObject:
   - 114: {fileID: 741276642}
   m_Layer: 0
   m_Name: Pin14
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39403,7 +39362,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1492174523}
   Dot: {fileID: 1669629797}
   posBefore: 25
-  posAfter: 0
 --- !u!65 &741276643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40169,7 +40127,7 @@ GameObject:
   - 114: {fileID: 758412961}
   m_Layer: 0
   m_Name: Pin12
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40201,7 +40159,6 @@ MonoBehaviour:
   RopeNode: {fileID: 123261428}
   Dot: {fileID: 1156464794}
   posBefore: 21
-  posAfter: 0
 --- !u!1 &759118963
 GameObject:
   m_ObjectHideFlags: 0
@@ -40450,7 +40407,7 @@ GameObject:
   - 65: {fileID: 763760709}
   m_Layer: 0
   m_Name: ColliderRope (7)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40932,7 +40889,7 @@ GameObject:
   - 114: {fileID: 775787642}
   m_Layer: 0
   m_Name: Pin14
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40968,7 +40925,6 @@ MonoBehaviour:
   RopeNode: {fileID: 179622702}
   Dot: {fileID: 1386892671}
   posBefore: 25
-  posAfter: 0
 --- !u!65 &775787643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41164,7 +41120,7 @@ GameObject:
   - 65: {fileID: 779209865}
   m_Layer: 0
   m_Name: ColliderRope (3)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42635,7 +42591,7 @@ GameObject:
   - 114: {fileID: 803070398}
   m_Layer: 0
   m_Name: Pin13
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42671,7 +42627,6 @@ MonoBehaviour:
   RopeNode: {fileID: 274419102}
   Dot: {fileID: 2024305468}
   posBefore: 23
-  posAfter: 0
 --- !u!65 &803070399
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42774,7 +42729,7 @@ GameObject:
   - 65: {fileID: 805381951}
   m_Layer: 0
   m_Name: ColliderRope (6)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44285,7 +44240,7 @@ GameObject:
   - 65: {fileID: 836939846}
   m_Layer: 0
   m_Name: ColliderRope (9)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45035,7 +44990,7 @@ GameObject:
   - 65: {fileID: 849473158}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45543,7 +45498,7 @@ GameObject:
   - 65: {fileID: 858144332}
   m_Layer: 0
   m_Name: ColliderRope (2)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46200,7 +46155,7 @@ GameObject:
   - 65: {fileID: 864519586}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46415,7 +46370,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -46802,7 +46757,7 @@ GameObject:
   - 65: {fileID: 870897331}
   m_Layer: 0
   m_Name: ColliderRope (4)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47348,7 +47303,7 @@ GameObject:
   - 114: {fileID: 882471632}
   m_Layer: 0
   m_Name: Pin9
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47384,7 +47339,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1436646286}
   Dot: {fileID: 273712543}
   posBefore: 15
-  posAfter: 16
 --- !u!65 &882471633
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47753,7 +47707,7 @@ GameObject:
   - 114: {fileID: 886699830}
   m_Layer: 0
   m_Name: Pin15
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47789,7 +47743,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1244332802}
   Dot: {fileID: 1459214122}
   posBefore: 27
-  posAfter: 0
 --- !u!65 &886699831
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49010,7 +48963,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -49200,7 +49153,7 @@ GameObject:
   - 65: {fileID: 907670893}
   m_Layer: 0
   m_Name: Pin6
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49251,7 +49204,6 @@ MonoBehaviour:
   RopeNode: {fileID: 946857627}
   Dot: {fileID: 149486805}
   posBefore: 9
-  posAfter: 10
 --- !u!1001 &907675329
 Prefab:
   m_ObjectHideFlags: 0
@@ -49399,7 +49351,7 @@ GameObject:
   - 65: {fileID: 911115461}
   m_Layer: 0
   m_Name: ColliderRope (5)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49729,7 +49681,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -50339,7 +50291,7 @@ GameObject:
   - 65: {fileID: 932366948}
   m_Layer: 0
   m_Name: ColliderRope (3)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50814,7 +50766,7 @@ GameObject:
   - 65: {fileID: 943915282}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51716,7 +51668,7 @@ GameObject:
   - 114: {fileID: 962711949}
   m_Layer: 0
   m_Name: Pin7
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51753,7 +51705,6 @@ MonoBehaviour:
   RopeNode: {fileID: 317890085}
   Dot: {fileID: 1639234021}
   posBefore: 11
-  posAfter: 12
 --- !u!65 &962711950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51777,7 +51728,7 @@ GameObject:
   - 65: {fileID: 962823425}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52746,7 +52697,7 @@ GameObject:
   - 65: {fileID: 992394088}
   m_Layer: 0
   m_Name: ColliderRope (6)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53272,7 +53223,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -53563,7 +53514,7 @@ GameObject:
   - 65: {fileID: 1002076664}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54421,7 +54372,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -54778,7 +54729,7 @@ GameObject:
   - 114: {fileID: 1027938685}
   m_Layer: 0
   m_Name: Pin15
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54814,7 +54765,6 @@ MonoBehaviour:
   RopeNode: {fileID: 213127094}
   Dot: {fileID: 996413271}
   posBefore: 27
-  posAfter: 0
 --- !u!65 &1027938686
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54838,7 +54788,7 @@ GameObject:
   - 65: {fileID: 1032359702}
   m_Layer: 0
   m_Name: ColliderRope (5)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55250,7 +55200,7 @@ GameObject:
   - 114: {fileID: 1037177326}
   m_Layer: 0
   m_Name: Pin13
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55286,7 +55236,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1198253572}
   Dot: {fileID: 548676482}
   posBefore: 23
-  posAfter: 0
 --- !u!65 &1037177327
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55310,7 +55259,7 @@ GameObject:
   - 65: {fileID: 1037393695}
   m_Layer: 0
   m_Name: ColliderRope (3)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55650,7 +55599,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -55718,7 +55667,7 @@ GameObject:
   - 114: {fileID: 1045388433}
   m_Layer: 0
   m_Name: Pin13
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55754,7 +55703,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1892475683}
   Dot: {fileID: 1137689528}
   posBefore: 23
-  posAfter: 0
 --- !u!65 &1045388434
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56318,6 +56266,8 @@ MonoBehaviour:
   stepsParent: {fileID: 1214406867}
   pinLeft: {x: 0, y: 0, z: 0}
   pinRight: {x: 0, y: 0, z: 0}
+  posMax: 0
+  isAvailableTheWholeMap: 0
 --- !u!1 &1055216134
 GameObject:
   m_ObjectHideFlags: 0
@@ -58991,7 +58941,7 @@ GameObject:
   - 65: {fileID: 1103320506}
   m_Layer: 0
   m_Name: ColliderRope
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59300,7 +59250,7 @@ GameObject:
   - 65: {fileID: 1108458626}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60481,7 +60431,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -61517,7 +61467,7 @@ GameObject:
   - 65: {fileID: 1145055723}
   m_Layer: 0
   m_Name: ColliderRope (4)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61563,7 +61513,7 @@ GameObject:
   - 114: {fileID: 1146696872}
   m_Layer: 0
   m_Name: Pin12
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61599,7 +61549,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1481799260}
   Dot: {fileID: 33498032}
   posBefore: 21
-  posAfter: 0
 --- !u!65 &1146696873
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62575,7 +62524,7 @@ GameObject:
   - 114: {fileID: 1171473179}
   m_Layer: 0
   m_Name: Pin12
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62611,7 +62560,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1837926402}
   Dot: {fileID: 386179905}
   posBefore: 21
-  posAfter: 0
 --- !u!65 &1171473180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63484,7 +63432,7 @@ GameObject:
   - 114: {fileID: 1184432726}
   m_Layer: 0
   m_Name: Pin12
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63520,7 +63468,6 @@ MonoBehaviour:
   RopeNode: {fileID: 666107845}
   Dot: {fileID: 1719371022}
   posBefore: 21
-  posAfter: 0
 --- !u!65 &1184432727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63624,7 +63571,7 @@ GameObject:
   - 114: {fileID: 1187527123}
   m_Layer: 0
   m_Name: Pin7
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63661,7 +63608,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1165812066}
   Dot: {fileID: 441895154}
   posBefore: 11
-  posAfter: 12
 --- !u!65 &1187527124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64140,7 +64086,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -64323,7 +64269,7 @@ GameObject:
   - 114: {fileID: 1196099352}
   m_Layer: 0
   m_Name: Pin13
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64359,7 +64305,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1057344142}
   Dot: {fileID: 714914915}
   posBefore: 23
-  posAfter: 0
 --- !u!65 &1196099353
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64451,7 +64396,7 @@ GameObject:
   - 65: {fileID: 1196890276}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64641,7 +64586,7 @@ GameObject:
   - 65: {fileID: 1200869504}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65907,7 +65852,7 @@ GameObject:
   - 114: {fileID: 1220618578}
   m_Layer: 0
   m_Name: Pin11
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65943,7 +65888,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1923582308}
   Dot: {fileID: 596783568}
   posBefore: 19
-  posAfter: 20
 --- !u!65 &1220618579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66207,7 +66151,7 @@ GameObject:
   - 114: {fileID: 1228805540}
   m_Layer: 0
   m_Name: Pin11
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66243,7 +66187,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1848174566}
   Dot: {fileID: 427411885}
   posBefore: 19
-  posAfter: 20
 --- !u!65 &1228805541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66267,7 +66210,7 @@ GameObject:
   - 65: {fileID: 1230154938}
   m_Layer: 0
   m_Name: ColliderRope (1)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66691,7 +66634,7 @@ GameObject:
   - 65: {fileID: 1240699713}
   m_Layer: 0
   m_Name: ColliderRope (3)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67707,7 +67650,7 @@ GameObject:
   - 65: {fileID: 1259807050}
   m_Layer: 0
   m_Name: ColliderRope
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69365,7 +69308,7 @@ GameObject:
   - 65: {fileID: 1297764370}
   m_Layer: 0
   m_Name: ColliderRope (7)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69705,7 +69648,7 @@ GameObject:
   - 114: {fileID: 1303000032}
   m_Layer: 0
   m_Name: Pin10
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69737,7 +69680,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1392679305}
   Dot: {fileID: 1190653255}
   posBefore: 17
-  posAfter: 18
 --- !u!1001 &1303358495
 Prefab:
   m_ObjectHideFlags: 0
@@ -72407,7 +72349,7 @@ GameObject:
   - 65: {fileID: 1365796041}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73058,7 +73000,7 @@ GameObject:
   - 65: {fileID: 1382781094}
   m_Layer: 0
   m_Name: ColliderRope (8)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73100,7 +73042,7 @@ GameObject:
   - 114: {fileID: 1384261033}
   m_Layer: 0
   m_Name: Pin11
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73136,7 +73078,6 @@ MonoBehaviour:
   RopeNode: {fileID: 735936512}
   Dot: {fileID: 948973386}
   posBefore: 19
-  posAfter: 20
 --- !u!65 &1384261034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74081,7 +74022,7 @@ GameObject:
   - 114: {fileID: 1393292666}
   m_Layer: 0
   m_Name: Pin9
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74117,7 +74058,6 @@ MonoBehaviour:
   RopeNode: {fileID: 991032135}
   Dot: {fileID: 2053346786}
   posBefore: 15
-  posAfter: 16
 --- !u!65 &1393292667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74483,7 +74423,7 @@ GameObject:
   - 114: {fileID: 1402714432}
   m_Layer: 0
   m_Name: Pin15
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74519,7 +74459,6 @@ MonoBehaviour:
   RopeNode: {fileID: 513913952}
   Dot: {fileID: 135314826}
   posBefore: 27
-  posAfter: 0
 --- !u!65 &1402714433
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75627,7 +75566,7 @@ GameObject:
   - 65: {fileID: 1421971125}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75669,7 +75608,7 @@ GameObject:
   - 114: {fileID: 1425826902}
   m_Layer: 0
   m_Name: Pin8
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75705,7 +75644,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1168469497}
   Dot: {fileID: 1322636123}
   posBefore: 13
-  posAfter: 14
 --- !u!65 &1425826903
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75729,7 +75667,7 @@ GameObject:
   - 65: {fileID: 1426073523}
   m_Layer: 0
   m_Name: ColliderRope (7)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75771,7 +75709,7 @@ GameObject:
   - 114: {fileID: 1430849086}
   m_Layer: 0
   m_Name: Pin15
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75807,7 +75745,6 @@ MonoBehaviour:
   RopeNode: {fileID: 355981311}
   Dot: {fileID: 1740700423}
   posBefore: 27
-  posAfter: 0
 --- !u!65 &1430849087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76118,7 +76055,7 @@ GameObject:
   - 65: {fileID: 1440286840}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76159,7 +76096,7 @@ GameObject:
   - 65: {fileID: 1440425246}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78200,7 +78137,7 @@ GameObject:
   - 65: {fileID: 1471202938}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78241,7 +78178,7 @@ GameObject:
   - 65: {fileID: 1473397649}
   m_Layer: 0
   m_Name: ColliderRope (2)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78890,7 +78827,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -78923,7 +78860,7 @@ GameObject:
   - 114: {fileID: 1490995642}
   m_Layer: 0
   m_Name: Pin14
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78959,7 +78896,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1987210316}
   Dot: {fileID: 1635510154}
   posBefore: 25
-  posAfter: 0
 --- !u!65 &1490995643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79809,7 +79745,7 @@ GameObject:
   - 65: {fileID: 1501502025}
   m_Layer: 0
   m_Name: ColliderRope (8)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80039,7 +79975,7 @@ GameObject:
   - 65: {fileID: 1506545392}
   m_Layer: 0
   m_Name: ColliderRope (2)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80965,7 +80901,7 @@ GameObject:
   - 114: {fileID: 1518290010}
   m_Layer: 0
   m_Name: Pin11
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81001,7 +80937,6 @@ MonoBehaviour:
   RopeNode: {fileID: 608536081}
   Dot: {fileID: 457914960}
   posBefore: 19
-  posAfter: 20
 --- !u!65 &1518290011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81254,7 +81189,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -82180,7 +82115,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -83841,7 +83776,7 @@ GameObject:
   - 65: {fileID: 1557270067}
   m_Layer: 0
   m_Name: ColliderRope
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84028,6 +83963,8 @@ MonoBehaviour:
   stepsParent: {fileID: 281730792}
   pinLeft: {x: 0, y: 0, z: 0}
   pinRight: {x: 0, y: 0, z: 0}
+  posMax: 0
+  isAvailableTheWholeMap: 0
 --- !u!1 &1563052683
 GameObject:
   m_ObjectHideFlags: 0
@@ -84328,7 +84265,7 @@ GameObject:
   - 65: {fileID: 1571183044}
   m_Layer: 0
   m_Name: ColliderRope (3)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85127,7 +85064,7 @@ GameObject:
   - 114: {fileID: 1581748249}
   m_Layer: 0
   m_Name: Pin7
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85164,7 +85101,6 @@ MonoBehaviour:
   RopeNode: {fileID: 61079242}
   Dot: {fileID: 2118658765}
   posBefore: 11
-  posAfter: 12
 --- !u!65 &1581748250
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85699,7 +85635,7 @@ GameObject:
   - 65: {fileID: 1590286563}
   m_Layer: 0
   m_Name: Pin6
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85750,7 +85686,6 @@ MonoBehaviour:
   RopeNode: {fileID: 131764430}
   Dot: {fileID: 562993275}
   posBefore: 9
-  posAfter: 10
 --- !u!1001 &1590662884
 Prefab:
   m_ObjectHideFlags: 0
@@ -85896,7 +85831,7 @@ GameObject:
   - 65: {fileID: 1590693541}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86079,7 +86014,7 @@ GameObject:
   - 65: {fileID: 1592475762}
   m_Layer: 0
   m_Name: ColliderRope (1)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87425,7 +87360,7 @@ GameObject:
   - 65: {fileID: 1622149486}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87772,7 +87707,7 @@ GameObject:
   - 114: {fileID: 1632251792}
   m_Layer: 0
   m_Name: Pin14
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87808,7 +87743,6 @@ MonoBehaviour:
   RopeNode: {fileID: 423225278}
   Dot: {fileID: 2027482635}
   posBefore: 25
-  posAfter: 0
 --- !u!65 &1632251793
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88193,7 +88127,7 @@ GameObject:
   - 114: {fileID: 1636535036}
   m_Layer: 0
   m_Name: Pin9
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88229,7 +88163,6 @@ MonoBehaviour:
   RopeNode: {fileID: 361155327}
   Dot: {fileID: 937611367}
   posBefore: 15
-  posAfter: 16
 --- !u!65 &1636535037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88540,7 +88473,7 @@ GameObject:
   - 65: {fileID: 1644162211}
   m_Layer: 0
   m_Name: ColliderRope (1)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89197,7 +89130,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -89526,7 +89459,7 @@ GameObject:
   - 65: {fileID: 1662759544}
   m_Layer: 0
   m_Name: Pin6
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89577,7 +89510,6 @@ MonoBehaviour:
   RopeNode: {fileID: 245799875}
   Dot: {fileID: 1632456158}
   posBefore: 9
-  posAfter: 10
 --- !u!1001 &1665870871
 Prefab:
   m_ObjectHideFlags: 0
@@ -90907,7 +90839,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -91369,7 +91301,7 @@ GameObject:
   - 65: {fileID: 1696059433}
   m_Layer: 0
   m_Name: ColliderRope (4)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92633,7 +92565,7 @@ GameObject:
   - 65: {fileID: 1721720922}
   m_Layer: 0
   m_Name: ColliderRope (8)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94499,7 +94431,7 @@ GameObject:
   - 65: {fileID: 1760422914}
   m_Layer: 0
   m_Name: ColliderRope (6)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94988,7 +94920,7 @@ GameObject:
   - 65: {fileID: 1765429852}
   m_Layer: 0
   m_Name: ColliderRope (9)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96335,7 +96267,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -97278,7 +97210,7 @@ GameObject:
   - 65: {fileID: 1813908221}
   m_Layer: 0
   m_Name: ColliderRope (2)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97664,7 +97596,7 @@ GameObject:
   - 114: {fileID: 1820440642}
   m_Layer: 0
   m_Name: Pin10
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97700,7 +97632,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1692738446}
   Dot: {fileID: 486760221}
   posBefore: 17
-  posAfter: 18
 --- !u!65 &1820440643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -98398,7 +98329,7 @@ GameObject:
   - 114: {fileID: 1831526540}
   m_Layer: 0
   m_Name: Pin7
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98430,7 +98361,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1580075452}
   Dot: {fileID: 476216387}
   posBefore: 11
-  posAfter: 12
 --- !u!1 &1832338829
 GameObject:
   m_ObjectHideFlags: 0
@@ -98522,7 +98452,7 @@ GameObject:
   - 114: {fileID: 1834543007}
   m_Layer: 0
   m_Name: Pin15
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98558,7 +98488,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1589257603}
   Dot: {fileID: 1183028625}
   posBefore: 27
-  posAfter: 0
 --- !u!65 &1834543008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99199,7 +99128,7 @@ GameObject:
   - 65: {fileID: 1845234669}
   m_Layer: 0
   m_Name: ColliderRope (5)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99562,7 +99491,7 @@ GameObject:
   - 65: {fileID: 1853485952}
   m_Layer: 0
   m_Name: ColliderRope (1)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100194,7 +100123,7 @@ GameObject:
   - 114: {fileID: 1865590078}
   m_Layer: 0
   m_Name: Pin8
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100230,7 +100159,6 @@ MonoBehaviour:
   RopeNode: {fileID: 627235530}
   Dot: {fileID: 902326301}
   posBefore: 13
-  posAfter: 14
 --- !u!65 &1865590079
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100283,7 +100211,7 @@ GameObject:
   - 114: {fileID: 1869803770}
   m_Layer: 0
   m_Name: Pin11
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100319,7 +100247,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1823715258}
   Dot: {fileID: 102995383}
   posBefore: 19
-  posAfter: 20
 --- !u!65 &1869803771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100496,7 +100423,7 @@ GameObject:
   - 65: {fileID: 1876180996}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101551,10 +101478,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1897687270}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1898037008 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
-  m_PrefabInternal: {fileID: 903927516}
 --- !u!1 &1899997206
 GameObject:
   m_ObjectHideFlags: 0
@@ -101725,7 +101648,7 @@ GameObject:
   - 65: {fileID: 1901082436}
   m_Layer: 0
   m_Name: Pin6
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101776,7 +101699,6 @@ MonoBehaviour:
   RopeNode: {fileID: 702898718}
   Dot: {fileID: 1928438138}
   posBefore: 9
-  posAfter: 10
 --- !u!1 &1901338986
 GameObject:
   m_ObjectHideFlags: 0
@@ -102051,7 +101973,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -102340,7 +102262,7 @@ GameObject:
   - 65: {fileID: 1908157884}
   m_Layer: 0
   m_Name: ColliderRope (10)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102709,7 +102631,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -107382,7 +107304,7 @@ GameObject:
   - 114: {fileID: 2008823394}
   m_Layer: 0
   m_Name: Pin9
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107418,7 +107340,6 @@ MonoBehaviour:
   RopeNode: {fileID: 15329427}
   Dot: {fileID: 1277378175}
   posBefore: 15
-  posAfter: 16
 --- !u!65 &2008823395
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108119,7 +108040,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -108542,7 +108463,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -108784,7 +108705,7 @@ GameObject:
   - 65: {fileID: 2029342658}
   m_Layer: 0
   m_Name: ColliderRope (5)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109264,7 +109185,7 @@ GameObject:
   - 65: {fileID: 2037935968}
   m_Layer: 0
   m_Name: ColliderRope (9)
-  m_TagString: Rope
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111592,7 +111513,7 @@ GameObject:
   - 114: {fileID: 2094613015}
   m_Layer: 0
   m_Name: Pin14
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111628,7 +111549,6 @@ MonoBehaviour:
   RopeNode: {fileID: 647486093}
   Dot: {fileID: 519855921}
   posBefore: 25
-  posAfter: 0
 --- !u!65 &2094613016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111876,7 +111796,7 @@ GameObject:
   - 114: {fileID: 2098401086}
   m_Layer: 0
   m_Name: Pin12
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111912,7 +111832,6 @@ MonoBehaviour:
   RopeNode: {fileID: 126919333}
   Dot: {fileID: 421232387}
   posBefore: 21
-  posAfter: 0
 --- !u!65 &2098401087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112162,7 +112081,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: m_TagString
-      value: Pin
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 11427638, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
       propertyPath: posBefore
@@ -112468,10 +112387,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2118658765}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2118745094 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 137392, guid: 05bcc5a5785db4aa8b357cf621102b0e, type: 2}
-  m_PrefabInternal: {fileID: 100155573}
 --- !u!1001 &2118939794
 Prefab:
   m_ObjectHideFlags: 0
@@ -112991,7 +112906,7 @@ GameObject:
   - 114: {fileID: 2129131067}
   m_Layer: 0
   m_Name: Pin8
-  m_TagString: Pin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113027,7 +112942,6 @@ MonoBehaviour:
   RopeNode: {fileID: 1523076489}
   Dot: {fileID: 998463178}
   posBefore: 13
-  posAfter: 14
 --- !u!65 &2129131068
 BoxCollider:
   m_ObjectHideFlags: 0

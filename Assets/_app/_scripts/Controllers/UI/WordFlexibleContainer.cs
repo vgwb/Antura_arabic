@@ -7,11 +7,6 @@ public class WordFlexibleContainer : MonoBehaviour
 {
     public TextMeshProUGUI Label;
 
-    void Start()
-    {
-
-    }
-
     public void SetText(string text, bool useArabicFixer)
     {
         if (useArabicFixer) {
@@ -19,6 +14,11 @@ public class WordFlexibleContainer : MonoBehaviour
         } else {
             Label.text = text;
         }
+    }
+
+    public void Reset()
+    {
+        Label.text = "";
     }
 
 }

@@ -175,20 +175,48 @@ namespace EA4S
             }
         }
 
-        public void PlayDialog(string string_id)
+        #region Dialog
+        public void PlayDialog(string localizationData_id)
         {
-            //Debug.Log("PlayDialog: " + string_id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
-                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + string_id);
+            PlayDialog(LocalizationManager.GetLocalizationData(localizationData_id));
+        }
+
+        public void PlayDialog(Db.LocalizationDataId id)
+        {
+            PlayDialog(LocalizationManager.GetLocalizationData(id));
+        }
+
+        public void PlayDialog(Db.LocalizationData data)
+        {
+            if (data.AudioFile != "") {
+                //Debug.Log("PlayDialog: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
+                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog");
             }
+        }
 
-        public void PlayDialog(string string_id, System.Action callback)
+        public void PlayDialog(string localizationData_id, System.Action callback)
         {
-                // Debug.Log("PlayDialog with Callback: " + string_id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
+            PlayDialog(LocalizationManager.GetLocalizationData(localizationData_id), callback);
+        }
+
+        public void PlayDialog(Db.LocalizationDataId id, System.Action callback)
+        {
+            PlayDialog(LocalizationManager.GetLocalizationData(id), callback);
+        }
+
+        public void PlayDialog(Db.LocalizationData data, System.Action callback)
+        {
+            if (data.AudioFile != "") {
+                // Debug.Log("PlayDialog with Callback: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
                 OnNotifyEndAudio = callback;
-            Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + string_id);
+                Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
                 Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
+            } else {
+                callback();
             }
+        }
+        #endregion
 
         public AudioClip GetAudioClip(ILivingLetterData letterData)
         {
