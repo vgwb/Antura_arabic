@@ -68,8 +68,8 @@ namespace EA4S.Maze
 			currentWayPoint = 0;
 			GetComponent<BoxCollider> ().enabled = false;
 
-			collider.GetComponent<MeshRenderer> ().enabled = false;
-			collider.SetActive(false);
+			//collider.GetComponent<MeshRenderer> ().enabled = false;
+			//collider.SetActive(false);
 
 
             //foreach (GameObject fruitList in Fruits)
@@ -127,7 +127,7 @@ namespace EA4S.Maze
 
 				child.gameObject.AddComponent<MazeArrow> ();
 				if (count == 0) {
-					child.gameObject.transform.localScale = new Vector3 (3, 3, 3);
+					//child.gameObject.transform.localScale = new Vector3 (3, 3, 3);
 					child.gameObject.GetComponent<MazeArrow> ().pingPong = true;
 				}
 
@@ -291,7 +291,7 @@ namespace EA4S.Maze
 
 
 			setFruitsList ();
-			transform.position = nextPosition.position;
+			transform.position = _fruits[0].transform.position;
 
 
 			initialPosition = transform.position;
@@ -315,7 +315,7 @@ namespace EA4S.Maze
 
 		public bool canMouseBeDown()
 		{
-            if (MazeGameManager.Instance.isShowingAntura) return false;
+            if (_fruits == null || MazeGameManager.Instance.isShowingAntura) return false;
 
 			if (_fruits.Count == 0)
 				return false;
@@ -416,7 +416,7 @@ namespace EA4S.Maze
             var dir = transform.position - position;
             var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
-            targetRotation = Quaternion.AngleAxis(-angle, Vector3.up) * initialRotation;
+            targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
         }
@@ -430,7 +430,7 @@ namespace EA4S.Maze
                 {
                     toggleVisibility(false);
                     isAppearing = false;
-                    transform.rotation = initialRotation;
+                    //transform.rotation = initialRotation;
                     MazeGameManager.Instance.showCurrentTutorial();
                 }
                 return;
@@ -458,7 +458,7 @@ namespace EA4S.Maze
 					var dir = transform.position - characterWayPoints [currentCharacterWayPoint + 3];
 					var angle = Mathf.Atan2 (dir.z, dir.x) * Mathf.Rad2Deg;
 
-					targetRotation = Quaternion.AngleAxis (-angle, Vector3.up) * initialRotation;
+                    targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
 
 					transform.rotation = Quaternion.RotateTowards (transform.rotation, targetRotation, 5);
 				}
@@ -471,7 +471,7 @@ namespace EA4S.Maze
 					//reached the end:
 					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
 						//arrived!
-						transform.rotation = initialRotation;
+						//transform.rotation = initialRotation;
 						if (currentFruitIndex == _fruits.Count) {
 							print ("Won");
                            // if (particles) particles.SetActive(false);

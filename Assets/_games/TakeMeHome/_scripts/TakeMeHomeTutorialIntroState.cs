@@ -9,22 +9,27 @@
         {
             this.game = game;
         }
-
+       
         public void EnterState()
         {
             //create a random LL and make it move:
-            AudioManager.I.PlayDialog("TakeMeHome_Title",()=> {
-                
-                AudioManager.I.PlayDialog("TakeMeHome_Intro", () => {
-                    
-                    game.spawnLetteAtTube();
-                });
-
-               
-            });
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.TakeMeHome_Title, playedTitleSFX);
             
         }
 
+        private void playedTitleSFX()
+        {
+            UnityEngine.Debug.Log("Played Title");
+            AudioManager.I.PlayDialog(Db.LocalizationDataId.TakeMeHome_Intro, playedIntroSFX);
+        }
+       
+
+        private void playedIntroSFX()
+        {
+            UnityEngine.Debug.Log("Played Intro");
+            game.spawnLetteAtTube();
+        }
+        
         public void ExitState()
         {
         }
