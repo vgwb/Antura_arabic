@@ -39,7 +39,7 @@
             Variation = DancingDotsVariation.V_1;
 			Questions = new DancingDotsQuestionProvider();
 			DancingDotsQuestions = new DancingDotsQuestionProvider();
-            Difficulty = 0.5f;
+//            Difficulty = 0.5f;
         }
 
         #region external configuration call
@@ -57,7 +57,7 @@
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
+            int nPacks = 6;
             int nCorrect = 1;
             int nWrong = 0;
 
