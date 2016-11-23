@@ -89,7 +89,9 @@ namespace EA4S
                 Words[i].Init(newDatas[i], true);
                 Words[i].InjectManager(this);
             }
-            LoggerEA4S.Log("app", "assessment", "start", serializedWordsForLog);
+            // LoggerEA4S.Log("app", "assessment", "start", serializedWordsForLog);
+            LogManager.I.LogInfo(InfoEvent.GameStart, serializedWordsForLog);
+
             PanelTestGO.SetActive(true);
         }
 
@@ -129,7 +131,7 @@ namespace EA4S
             }
             currentResult = rightCounter;
 
-            LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
+            //LoggerEA4S.Log("app", "assessment", "result", rightCounter.ToString());
             // MiniGameDone refactoring
             // AppManager.Instance.MiniGameDone("assessment");
 

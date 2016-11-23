@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EA4S.Log
+namespace EA4S
 {
     /// <summary>
     /// App Log Manager. Use this to log any event from app.
     /// </summary>
-    public class AppLogManager
+    public class LogManager
     {
+        public static LogManager I;
 
         private string _session = "";
         /// <summary>
@@ -26,6 +27,12 @@ namespace EA4S.Log
         /// The minigame log manager concrete instance.
         /// </summary>
         public ILogManager MinigameLogManager = new MinigameLogManager();
+
+        public LogManager()
+        {
+
+            I = this;
+        }
 
         public void InitNewSession()
         {
