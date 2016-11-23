@@ -2,6 +2,7 @@
 using ModularFramework.Core;
 using System.Collections;
 using EA4S.Db;
+using System.Collections.Generic;
 
 namespace EA4S
 {
@@ -69,9 +70,9 @@ namespace EA4S
                     break;
                 case AppScene.MiniGame:
                     if (AppManager.Instance.IsAssessmentTime) {
+                        // TODO: never called
                         // assessment ended!
                         AppManager.Instance.Player.ResetPlaySessionMinigame();
-                        AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
                         GoToScene(AppScene.Rewards);
                     } else {
                         AppManager.Instance.Player.NextPlaySessionMinigame();
@@ -108,25 +109,7 @@ namespace EA4S
             return "";
         }
 
-        /// <summary>
-        /// Called to notify end minigame with result (pushed continue button on UI).
-        /// </summary>
-        /// <param name="_stars">The stars.</param>
-        public void EndMinigame(int _stars) {
-            
-            // log
-        }
 
-        /// <summary>
-        /// Called to notify end of playsession (pushed continue button on UI).
-        /// </summary>
-        /// <param name="_stars">The star.</param>
-        /// <param name="_bones">The bones.</param>
-        public void EndPlaySession(int _stars, int _bones) {
-            // Logic
-            // log
-            // GoToScene ...
-        }
 
         public void GoHome()
         {
@@ -164,5 +147,42 @@ namespace EA4S
                     return "";
             }
         }
+
+        #region temp for demo
+        List<EndsessionResultData> EndSessionResults = new List<EndsessionResultData>();
+
+        /// <summary>
+        /// Called to notify end minigame with result (pushed continue button on UI).
+        /// </summary>
+        /// <param name="_stars">The stars.</param>
+        public void EndMinigame(int _stars) {
+            if (TeacherAI.I.CurrentMiniGame == null)
+                return;
+            EndsessionResultData res = new EndsessionResultData(_stars, TeacherAI.I.CurrentMiniGame.GetIconResourcePath(), TeacherAI.I.CurrentMiniGame.GetBadgeIconResourcePath());
+            EndSessionResults.Add(res);            
+            
+        }
+
+        /// <summary>
+        /// Uses the end session results and reset it.
+        /// </summary>
+        /// <returns></returns>
+        public List<EndsessionResultData> UseEndSessionResults() {
+            List<EndsessionResultData> returnResult = EndSessionResults;
+            EndSessionResults = new List<EndsessionResultData>();
+            return returnResult;
+        }
+
+        /// <summary>
+        /// Called to notify end of playsession (pushed continue button on UI).
+        /// </summary>
+        /// <param name="_stars">The star.</param>
+        /// <param name="_bones">The bones.</param>
+        public void EndPlaySession(int _stars, int _bones) {
+            // Logic
+            // log
+            // GoToScene ...
+        }
+        #endregion
     }
 }

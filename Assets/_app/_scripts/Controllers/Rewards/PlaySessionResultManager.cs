@@ -9,10 +9,7 @@ namespace EA4S {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.PlaySessionResult;
 
-            GameResultUI.ShowEndsessionResult(
-                new System.Collections.Generic.List<EndsessionResultData>(),
-                2
-                );
+            GameObject[] objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(),2);
         }
 
     }
