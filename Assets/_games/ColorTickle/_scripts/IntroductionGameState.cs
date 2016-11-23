@@ -21,11 +21,11 @@ namespace EA4S.ColorTickle
 
         public void EnterState()
         {
+            game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ColorTickle_Title);
+
             game.colorsCanvas.gameObject.SetActive(false);
 
-            AudioManager.I.PlayMusic(game.backgroundMusic);
-          
-            //AudioManager.I.PlayDialog(TextID.COLORTICKLE_TITLE.ToString());
+            game.Context.GetAudioManager().PlayMusic(game.backgroundMusic);
 
             BuildLetters();
 
