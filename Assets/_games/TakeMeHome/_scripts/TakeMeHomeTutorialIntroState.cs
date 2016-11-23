@@ -13,7 +13,16 @@
         public void EnterState()
         {
             //create a random LL and make it move:
-            game.spawnLetteAtTube();
+            AudioManager.I.PlayDialog("TakeMeHome_Title",()=> {
+                
+                AudioManager.I.PlayDialog("TakeMeHome_Intro", () => {
+                    
+                    game.spawnLetteAtTube();
+                });
+
+               
+            });
+            
         }
 
         public void ExitState()
