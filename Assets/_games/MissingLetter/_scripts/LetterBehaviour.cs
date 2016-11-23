@@ -17,6 +17,9 @@ namespace EA4S.MissingLetter
 
         #region API
 
+        /// <summary>
+        /// reset position, rotation - disable callback, click action and light of LL
+        /// </summary>
         public void Reset() {
             gameObject.transform.position = mv3StartPosition;
             gameObject.transform.rotation = Quaternion.identity;
@@ -25,11 +28,21 @@ namespace EA4S.MissingLetter
             LightOff();
         }
 
+        /// <summary>
+        /// play animation passed by param
+        /// </summary>
+        /// <param name="_animation"> animation to play </param>
         public void PlayAnimation(LLAnimationStates _animation)
         {
             mLetter.SetState(_animation);
         }
 
+        /// <summary>
+        /// sets the positions of the LL, for its life action: start, center of scene, end
+        /// </summary>
+        /// <param name="_start"> start position, enter scene from </param>
+        /// <param name="_center"> center of sceen, calculate offset from </param>
+        /// <param name="_end"> end position, exit scene target </param>
         public void SetPositions(Vector3 _start, Vector3 _center, Vector3 _end)
         {
             mv3StartPosition = _start;
@@ -37,15 +50,23 @@ namespace EA4S.MissingLetter
             mv3EndPosition = _end;
         }
 
+        /// <summary>
+        /// refresh graphics text
+        /// </summary>
         public void Refresh()
         {
             mLetter.Init(mLetterData);
         }
 
-        public void EnterScene(int _idxPos = 0, int maxItemsInScreen = 1)
+        /// <summary>
+        /// start eneter scene action (calculate the offset by my pos and max pos), enable collider at arrive
+        /// </summary>
+        /// <param name="_idxPos"> my position </param>
+        /// <param name="_length"> number of LL </param>
+        public void EnterScene(int _idxPos = 0, int _length = 1)
         {
             Vector3 dir = (mv3CenterPosition - mv3StartPosition).normalized;
-            Vector3 _GoalPos = CalculatePos(_idxPos, maxItemsInScreen);
+            Vector3 _GoalPos = CalculatePos(_idxPos, _length);
             endTransformToCallback += delegate { mCollider.enabled = true; };
 
             //move and rotate letter
@@ -55,13 +76,13 @@ namespace EA4S.MissingLetter
             MoveTo(_GoalPos, 1);
         }
 
+        /// <summary>
+        /// start exit scene action, disable collider
+        /// </summary>
         public void ExitScene()
         {
-
             LightOff();
 
-            onLetterClick = null;
-            endTransformToCallback = null;
             endTransformToCallback += OnEndLifeCycle;
             mCollider.enabled = false;
 
@@ -74,13 +95,18 @@ namespace EA4S.MissingLetter
             MoveTo(mv3EndPosition, 1);
         }
 
-        public void ChangePos(int _idxPos, int maxItemsInScreen, float duration)
+        /// <summary>
+        /// change the position in the current scene 
+        /// </summary>
+        /// <param name="_idxPos"> my new position </param>
+        /// <param name="_length"> number of LL </param>
+        /// <param name="_duration"> duration of action </param>
+        public void ChangePos(int _idxPos, int _length, float _duration)
         {
-
             LightOff();
 
             mCollider.enabled = false;
-            Vector3 newPos = CalculatePos(_idxPos, maxItemsInScreen);
+            Vector3 newPos = CalculatePos(_idxPos, _length);
 
             Vector3 dist = (gameObject.transform.position - newPos) / 2;
 
@@ -107,7 +133,7 @@ namespace EA4S.MissingLetter
 
             transform.DOLookAt(positions[0], 1f);
 
-            TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), duration, PathType.CatmullRom);
+            TweenerCore<Vector3, Path, PathOptions> value = transform.DOPath(positions.ToArray(), _duration, PathType.CatmullRom);
             value.OnWaypointChange(delegate (int wayPoint) {
                 if (wayPoint < positions.Count)
                     transform.DOLookAt(positions[wayPoint], 1f);
@@ -120,7 +146,9 @@ namespace EA4S.MissingLetter
             });
         }
 
-
+        /// <summary>
+        /// speak the LL data
+        /// </summary>
         public void Speak()
         {
             if (mLetterData != null && !mbIsSpeaking)
@@ -134,16 +162,16 @@ namespace EA4S.MissingLetter
                 {
                     AudioManager.I.PlayWord(mLetterData.Id);
                 }
-                StartCoroutine(Utils.LaunchDelay(0.8f, SetIsSpeaking, false));
+                StartCoroutine(Utils.LaunchDelay(0.5f, SetIsSpeaking, false));
             }
         }
-
+        
         private void SetIsSpeaking(bool _isSpeaking)
         {
             mbIsSpeaking = _isSpeaking;
         }
 
-        public void SetEnableCollider(bool _enabled) {
+        public void SetEnabledCollider(bool _enabled) {
             mCollider.enabled = _enabled;
         }
 
@@ -153,6 +181,9 @@ namespace EA4S.MissingLetter
             LightOn();
         }
       
+        /// <summary>
+        /// create a spotlight target on the LL
+        /// </summary>
         public void LightOn() {
             if (spotLight == null) {
                 spotLight = new GameObject("SpotLight");
@@ -169,6 +200,9 @@ namespace EA4S.MissingLetter
             }
         }
         
+        /// <summary>
+        /// destroy the spotlight
+        /// </summary>
         public void LightOff() {
             if (spotLight != null) {
                 Destroy(spotLight);
@@ -193,7 +227,12 @@ namespace EA4S.MissingLetter
             mLetter.SetWalkingSpeed(1);
         }
 
-        void MoveTo(Vector3 _position, float _duration, bool _IdleAtEnd = true)
+        /// <summary>
+        /// move the LL with walking animation, idle at end
+        /// </summary>
+        /// <param name="_position"> target position </param>
+        /// <param name="_duration"> time for action </param>
+        void MoveTo(Vector3 _position, float _duration)
         {
             PlayAnimation(LLAnimationStates.LL_walking);
             mLetter.SetWalkingSpeed(1);
@@ -205,13 +244,17 @@ namespace EA4S.MissingLetter
 
             moveTweener = transform.DOLocalMove(_position, _duration).OnComplete(
                 delegate () {
-                    if (_IdleAtEnd)
-                        PlayAnimation(m_oDefaultIdleAnimation);
+                    PlayAnimation(m_oDefaultIdleAnimation);
                     if (endTransformToCallback != null)
                         endTransformToCallback();
                 });
         }
 
+        /// <summary>
+        /// rotate the LL
+        /// </summary>
+        /// <param name="_rotation"> rotation in eulerian angle </param>
+        /// <param name="_duration"> duration of rotation </param>
         void RotateTo(Vector3 _rotation, float _duration)
         {
             if (rotationTweener != null)
@@ -242,11 +285,17 @@ namespace EA4S.MissingLetter
             }
         }
 
-        private Vector3 CalculatePos(int _idxPos, int _maxItemsInScreen)
+        /// <summary>
+        /// calculate the position by center sceen and offset of index in length
+        /// </summary>
+        /// <param name="_idxPos"> my index position </param>
+        /// <param name="_length"> number of LL </param>
+        /// <returns></returns>
+        private Vector3 CalculatePos(int _idxPos, int _length)
         {
             float _zeroPosX = mv3CenterPosition.x + 1.0f; // +1.0 beacuse we have some UI Widget at the left
 
-            if (_maxItemsInScreen % 2 == 0)
+            if (_length % 2 == 0)
             {
                 _zeroPosX += mfDistanceBetweenLetters / 2;
             }
