@@ -29,15 +29,12 @@ namespace EA4S
         Quaternion rot;
         int numDot = 0;
         int numLearningBlock;
-     
+
         void Start()
         {
-            // Navigation manager 
-            NavigationManager.I.CurrentScene = AppScene.Map;
 
             posDots = new GameObject[28];
-            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++)
-            {
+            for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++) {
                 pinLeft = posPines[numLearningBlock].position;
                 pinRight = posPines[numLearningBlock + 1].position;
                 CalculateStepsBetweenPines(pinLeft, pinRight);
@@ -116,7 +113,7 @@ namespace EA4S
                 else
                     dotGo.GetComponent<Dot>().playSessionActual = 2;
                 dotGo.transform.parent = stepsParent.transform;
-                if(!isAvailableTheWholeMap) dotGo.SetActive(false);
+                if (!isAvailableTheWholeMap) dotGo.SetActive(false);
                 posDots[numDot] = dotGo;
                 numDot++;
             }
@@ -129,35 +126,29 @@ namespace EA4S
             if (p == 1) m = (l * 2) - 1;
             else m = l * 2;
             posMax = m;
-            for(int i=0; i<m;i++)
-            {
+            for (int i = 0; i < m; i++) {
                 posDots[i].SetActive(true);
             }
         }
         void CalculatePin_RopeAvailable()
         {
-            if(isAvailableTheWholeMap)
-            {
+            if (isAvailableTheWholeMap) {
                 posMax = posDots.Length - 1;
-                for (int i=0; i<(posPines.Length-1);i++)
-                {
+                for (int i = 0; i < (posPines.Length - 1); i++) {
                     posPines[i].tag = "Pin";
                     ropes[i].transform.GetChild(0).tag = "Rope";
                 }
-            }
-            else
-            {
+            } else {
                 int l = AppManager.Instance.Player.MaxJourneyPosition.LearningBlock;
                 int p = AppManager.Instance.Player.MaxJourneyPosition.PlaySession;
                 int m;
                 if (p == 100) m = l;
                 else m = l - 1;
-                for (int i = 0; i < m; i++)
-                {
+                for (int i = 0; i < m; i++) {
                     posPines[i].tag = "Pin";
                     ropes[i].transform.GetChild(0).tag = "Rope";
                 }
-            }       
+            }
         }
 
         private class PlaySessionState
