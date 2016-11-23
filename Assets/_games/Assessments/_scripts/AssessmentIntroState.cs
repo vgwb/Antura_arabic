@@ -4,17 +4,18 @@ namespace EA4S.Assessment
     {
         private AssessmentGame assessmentGame;
 
-        public AssessmentIntroState(AssessmentGame assessmentGame)
+        public AssessmentIntroState( AssessmentGame assessmentGame)
         {
             this.assessmentGame = assessmentGame;
         }
 
-        AssessmentAnturaController anturaController;
+        //AssessmentAnturaController anturaController;
 
         public void EnterState()
         {
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Theme7);
             TimeEngine.Instance.Clear();
+            SetNextState();
         }
 
         public void ExitState()
