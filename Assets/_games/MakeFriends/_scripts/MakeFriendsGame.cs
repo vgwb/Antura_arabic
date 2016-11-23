@@ -26,6 +26,7 @@ namespace EA4S.MakeFriends
         public GameObject letterBalloonContainer;
         public GameObject FxParticlesPoof;
         public DropZoneController dropZone;
+        public WinCelebrationController winCelebration;
         [Header("Difficulty Override")]
         public bool overrideDifficulty;
         public MakeFriendsVariation difficultySetting;
@@ -334,24 +335,29 @@ namespace EA4S.MakeFriends
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                 leftArea.Celebrate();
                 rightArea.Celebrate();
+                winCelebration.Show();
                 CurrentScore++;
 
                 yield return new WaitForSeconds(winDelay1);
                 // Go to Friends Zone
                 // ...
+                winCelebration.Hide();
                 leftArea.MakeFriendlyExit();
                 rightArea.MakeFriendlyExit();
+
                 yield return new WaitForSeconds(friendlyExitDelay);
                 leftArea.GoToFriendsZone(FriendsZonesManager.instance.currentZone);
                 rightArea.GoToFriendsZone(FriendsZonesManager.instance.currentZone);
                 FriendsZonesManager.instance.IncrementCurrentZone();
+
                 yield return new WaitForSeconds(winDelay2);
                 HideDropZone();
                 //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "comment_welldone", true, null);
-                Popup.Show();
-                Popup.SetButtonCallback(OnRoundResultPressed);
-                Popup.SetTitle(TextID.WELL_DONE);
-                Popup.SetMark(true, true);
+                //Popup.Show();
+                //Popup.SetButtonCallback(OnRoundResultPressed);
+                //Popup.SetTitle(TextID.WELL_DONE);
+                //Popup.SetMark(true, true);
+                Play();
             }
             else
             {
@@ -363,7 +369,7 @@ namespace EA4S.MakeFriends
                 //WidgetPopupWindow.I.ShowSentenceWithMark(OnRoundResultPressed, "game_balloons_commentA", false, null);
                 Popup.Show();
                 Popup.SetButtonCallback(OnRoundResultPressed);
-                Popup.SetTitle(TextID.GAME_RESULT_RETRY);
+                //Popup.SetTitle(TextID.GAME_RESULT_RETRY);
                 Popup.SetMark(true, false);
             }
         }
