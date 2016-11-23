@@ -71,7 +71,7 @@ namespace EA4S
 
         }
         #region Temp Behaviour (to be deleted)
-        CountdownTimer countDown = new CountdownTimer(0.1f);
+        CountdownTimer countDown = new CountdownTimer(1f);
         void OnEnable() { countDown.onTimesUp += CountDown_onTimesUp; }
         void OnDisable() { countDown.onTimesUp -= CountDown_onTimesUp; }
         private void CountDown_onTimesUp() { AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Rewards"); }
