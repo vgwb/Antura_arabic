@@ -1249,7 +1249,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u0629"
+  m_text: "\u0627"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66167fa22696343d0b455a5490af853a, type: 2}
   m_sharedMaterial: {fileID: 21000011497968706, guid: 66167fa22696343d0b455a5490af853a,
@@ -3671,7 +3671,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "\u0629"
+  m_text: "\u0627"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daa15f18fe1d7462ba61f8505a11cea6, type: 2}
   m_sharedMaterial: {fileID: 21000013468211058, guid: daa15f18fe1d7462ba61f8505a11cea6,
@@ -7438,7 +7438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u062A \u062B \u0642 \u0641 \u063A \u062E \u062C \u0634 \u064A \u0638
-    \u0630 \u0632 \u0629"
+    \u0630 \u0632 \u0629 \u0627 \u0623 \u0625"
 --- !u!65 &1124853657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10984,7 +10984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0636 \u062B \u0642 \u063A \u062E \u062C \u0634 \u064A \u0646 \u0630"
+  letters: "\u0636 \u062B \u0642 \u063A \u062E \u062C \u0634 \u064A \u0646 \u0630
+    \ \u0627 \u0623 \u0625"
 --- !u!65 &1901593608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11043,7 +11044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u062A \u062B \u063A \u062E \u062C \u064A \u0628 \u0632 \u0630 \u0629
-    \u0646"
+    \u0646 \u0627 \u0623 \u0625"
 --- !u!65 &1925365226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11286,7 +11287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0636 \u0634 \u062B \u0642 \u0628 \u0646  \u0629"
+  letters: "\u0636 \u0634 \u062B \u0642 \u0628 \u0646  \u0629 \u0627 \u0623 \u0625"
 --- !u!65 &1984942393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13560,7 +13561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letters: "\u062A \u062B \u0642 \u0641 \u062E \u062C \u0634 \u064A \u0628 \u0646
-    \u0636"
+    \u0636 \u0627 \u0623 \u0625"
 --- !u!65 &2070276767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13618,7 +13619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0638"
+  letters: "\u0638 \u0627 \u0623 \u0625"
 --- !u!65 &2078481831
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13722,7 +13723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d90a5d8ded54e299a97acb73a3a293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letters: "\u0629"
+  letters: "\u0629 \u0627 \u0623 \u0625"
 --- !u!65 &2125282978
 BoxCollider:
   m_ObjectHideFlags: 0

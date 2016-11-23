@@ -52,12 +52,14 @@ namespace EA4S.Assessment
             TimeEngine.AddTickable( this);
         }
 
-        Action onFinishedAnimation;
+        Action playPushAnturaSound;
 
-        public void StartAnimation( Action callback)
+        bool isAnimating = false;
+
+        public void StartAnimation( Action soundCallback)
         {
-            onFinishedAnimation = callback;
-            antura.State = AnturaAnimationStates.sleeping;
+            isAnimating = true;
+            playPushAnturaSound = soundCallback;
             Coroutine.Start( CheckStateAndSetAnimation());
         }
 
@@ -87,7 +89,7 @@ namespace EA4S.Assessment
         public readonly Sfx soundOnClick = Sfx.ThrowObj;
 
         private float currentTreshold = 0;
-        private float currentMaxTreshold = 1f;
+        private float currentMaxTreshold = 0.9f;
         private int currentState;
         private int stateDelta;
 
@@ -103,6 +105,21 @@ namespace EA4S.Assessment
 
         IEnumerator CheckStateAndSetAnimation()
         {
+            antura.State = AnturaAnimationStates.walking;
+
+            yield return TimeEngine.Wait( 1.0f);
+
+            transform.DOMove( anturaCenter.position, 3.0f)
+                .SetEase( Ease.InOutSine)
+                .OnComplete(() => playPushAnturaSound());
+
+            yield return TimeEngine.Wait( 2.6f);
+            antura.State = AnturaAnimationStates.sleeping;
+            yield return TimeEngine.Wait( 0.4f);
+
+            Coroutine.Start( TutorialClicks());
+            yield return TimeEngine.Wait( 2.0f);
+
             while (currentState < 3)
             {
                 while (stateDelta == 0)
@@ -123,7 +140,7 @@ namespace EA4S.Assessment
                         antura.State = AnturaAnimationStates.sleeping;
                         yield return TimeEngine.Wait( 0.4f);
                         PlayStateSound();
-                        TurnAntura(-75f);
+                        TurnAntura( -75f);
                         yield return TimeEngine.Wait( 0.6f);
                         break;
 
@@ -143,7 +160,7 @@ namespace EA4S.Assessment
                     case 3:
                         audioManager.PlaySound( Sfx.Win);
                         antura.DoCharge( ()=> StartMoving());
-                        TurnAntura(-65f);
+                        TurnAntura( -65f);
                         break;
 
                     default:
@@ -155,11 +172,16 @@ namespace EA4S.Assessment
             }
         }
 
+        internal bool IsAnimating()
+        {
+            return isAnimating;
+        }
+
         private void StartMoving()
         {
             transform.DOMove( anturaDestination.position, 3.0f)
                 .SetEase( Ease.InOutSine)
-                .OnComplete( ()=> onFinishedAnimation());
+                .OnComplete( ()=> isAnimating = false);
         }
 
         private void PlayStateSound()
@@ -172,11 +194,16 @@ namespace EA4S.Assessment
 
         bool playSound = false;
         Sfx soundToPlay;
+        internal Transform anturaCenter;
+
         private void DecreaseState()
         {
             soundToPlay = Sfx.LetterSad;
             playSound = true;
             stateDelta = 0;
+            if (currentState == 1)
+                Coroutine.Start( TutorialClicks());
+
             currentState--;
         }
 
@@ -191,6 +218,9 @@ namespace EA4S.Assessment
         bool ITickable.Update( float deltaTime)
         {
             currentTreshold -= deltaTime;
+
+            if (currentTreshold < 0)
+                currentTreshold = 0;
 
             if (currentTreshold < 0 && currentState > 0)
             {

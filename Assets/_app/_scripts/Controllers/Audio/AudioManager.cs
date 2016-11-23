@@ -19,7 +19,7 @@ namespace EA4S
         public AudioMixerGroup lettersGroup;
 
         System.Action OnNotifyEndAudio;
-        bool hasToNotifyEndAudio;
+        bool hasToNotifyEndAudio = false;
 
         bool musicEnabled = true;
         public bool MusicEnabled { get { return musicEnabled; } }
@@ -50,16 +50,6 @@ namespace EA4S
 
                 if (listener != null)
                     eventToRndComponent[listener._eventName] = c;
-            }
-        }
-
-        void Update()
-        {
-            if (hasToNotifyEndAudio) {
-                hasToNotifyEndAudio = false;
-                if (OnNotifyEndAudio != null) {
-                    OnNotifyEndAudio();
-                }
             }
         }
 
@@ -151,12 +141,6 @@ namespace EA4S
             Fabric.EventManager.Instance.PostEvent(eventName);
         }
 
-        void PlaySound(string eventName, System.Action callback)
-        {
-            OnNotifyEndAudio = callback;
-            Fabric.EventManager.Instance.PostEventNotify(eventName, NotifyEndAudio);
-        }
-
         void PlaySound(string eventName, GameObject GO)
         {
             Fabric.EventManager.Instance.PostEvent(eventName, GO);
@@ -226,8 +210,14 @@ namespace EA4S
 
         public void PlayDialog(Db.LocalizationData data, System.Action callback)
         {
+            if (OnNotifyEndAudio != null)
+                OnNotifyEndAudio();
+
+            OnNotifyEndAudio = null;
+
             if (data.AudioFile != "") {
                 // Debug.Log("PlayDialog with Callback: " + data.id + " - " + Fabric.EventManager.GetIDFromEventName(string_id));
+                
                 OnNotifyEndAudio = callback;
                 Fabric.EventManager.Instance.PostEvent("KeeperDialog", Fabric.EventAction.SetAudioClipReference, "Dialogs/" + data.AudioFile);
                 Fabric.EventManager.Instance.PostEventNotify("KeeperDialog", NotifyEndAudio);
@@ -295,5 +285,20 @@ namespace EA4S
             audioCache.Clear();
         }
         #endregion
+
+
+        void Update()
+        {
+            if (hasToNotifyEndAudio)
+            {
+                hasToNotifyEndAudio = false;
+                if (OnNotifyEndAudio != null)
+                {
+                    var oldCallback = OnNotifyEndAudio;
+                    OnNotifyEndAudio = null;
+                    oldCallback();
+                }
+            }
+        }
     }
 }
