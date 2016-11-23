@@ -14,8 +14,24 @@ namespace EA4S
         {
             NavigationManager.I.CurrentScene = AppScene.Mood;
             AudioManager.I.PlayMusic(SceneMusic);
-            KeeperManager.I.PlaySceneIntroduction(NavigationManager.I.CurrentScene);
-            
+            GlobalUI.ShowPauseMenu(false);
+
+            if ((AppManager.Instance.Player.CurrentJourneyPosition.PlaySession) < 2) {
+                KeeperManager.I.PlayDialog(Db.LocalizationDataId.Mood_Question_2);
+            } else {
+                int rnd = Random.Range(1, 3);
+                switch (rnd) {
+                    case 1:
+                        KeeperManager.I.PlayDialog(Db.LocalizationDataId.Mood_Question_1);
+                        break;
+                    case 3:
+                        KeeperManager.I.PlayDialog(Db.LocalizationDataId.Mood_Question_3);
+                        break;
+                    default:
+                        KeeperManager.I.PlayDialog(Db.LocalizationDataId.Mood_Question_2);
+                        break;
+                }
+            }
         }
 
         /// <summary> 
