@@ -20,14 +20,28 @@ namespace EA4S
             }
         }
 
-        public void PlayDialog(Db.LocalizationDataId id)
+        public void PlayDialog(string localizationData_id, bool autoClose = true, System.Action _callback = null)
         {
-            PlayDialog(id.ToString());
+            PlayDialog(LocalizationManager.GetLocalizationData(localizationData_id), autoClose, _callback);
         }
 
-        public void PlayDialog(string dialog_id)
+        public void PlayDialog(Db.LocalizationDataId id, bool autoClose = true, System.Action _callback = null)
         {
-            WidgetSubtitles.I.DisplaySentence(dialog_id);
+            PlayDialog(LocalizationManager.GetLocalizationData(id), autoClose, _callback);
+        }
+
+        public void PlayDialog(Db.LocalizationData data, bool autoClose = true, System.Action _callback = null)
+        {
+            if (autoClose) {
+                WidgetSubtitles.I.DisplaySentence(data, 2, true, CloseDialog);
+            } else {
+                WidgetSubtitles.I.DisplaySentence(data, 2, true, _callback);
+            }
+        }
+
+        public void CloseDialog()
+        {
+            WidgetSubtitles.I.Close();
         }
 
     }
