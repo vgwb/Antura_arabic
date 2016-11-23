@@ -7836,8 +7836,6 @@ MonoBehaviour:
       Minigames:
       - MiniGameCode: 11
         Weight: 100
-      - MiniGameCode: 18
-        Weight: 100
       - MiniGameCode: 27
         Weight: 100
       Letters:
@@ -7862,6 +7860,8 @@ MonoBehaviour:
       Order: 1
       Minigames:
       - MiniGameCode: 5
+        Weight: 100
+      - MiniGameCode: 18
         Weight: 100
       - MiniGameCode: 31
         Weight: 100
@@ -7960,7 +7960,7 @@ MonoBehaviour:
       Type: Assessment
       Order: 1
       Minigames:
-      - MiniGameCode: 101
+      - MiniGameCode: 100
         Weight: 1
       Letters: []
       Words: []
