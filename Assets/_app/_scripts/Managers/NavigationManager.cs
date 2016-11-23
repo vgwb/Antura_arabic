@@ -70,7 +70,7 @@ namespace EA4S
                 case AppScene.MiniGame:
                     if (AppManager.Instance.IsAssessmentTime) {
                         // assessment ended!
-                        AppManager.Instance.Player.NextPlaySessionMinigame();
+                        AppManager.Instance.Player.ResetPlaySessionMinigame();
                         AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
                         GoToScene(AppScene.Rewards);
                     } else {
@@ -81,6 +81,7 @@ namespace EA4S
                             /// - Reward screen
                             /// *-- check first contact : 
                             AppManager.Instance.Player.SetMaxJourneyPosition(TeacherAI.I.journeyHelper.FindNextJourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition));
+                            AppManager.Instance.Player.ResetPlaySessionMinigame();
                             GoToScene(AppScene.PlaySessionResult);
                         } else {
                             // Next game
