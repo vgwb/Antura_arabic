@@ -82,21 +82,18 @@ namespace EA4S.Assessment
             return width - 2 * SidesMargin();
         }
 
-        public Vector3 OneLineQuestionStart()
+        public Vector3 ToTheLeftQuestionStart()
         {
             Vector3 position = QuestionSpaceStart();
             position.y = height / 2 - SubtitlesMargin - LetterSize() * 1.5f;
             return position;
         }
 
-        /// <summary>
-        /// Return space occupied by question if placed in single line fashion
-        /// </summary>
-        /// <param name="questions"> questions for this round</param>
-        /// <returns>size in world units</returns>
-        public float SingleLineOccupiedSpace( int count)
+        public Vector3 ToTheRightQuestionStart()
         {
-            return (count) * LetterSize();
+            Vector3 position = QuestionSpaceEnd();
+            position.y = height / 2 - SubtitlesMargin - LetterSize() * 1.5f;
+            return position;
         }
 
         public float DefaultZ()
