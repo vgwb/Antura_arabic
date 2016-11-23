@@ -56,35 +56,6 @@ namespace EA4S.Assessment
             return questionProvider;
         }
 
-        internal void SetupDefault( AssessmentCode code)
-        {
-            if (Instance.assessmentType == AssessmentCode.Unsetted)
-            {
-                Instance.assessmentType = code;
-
-                switch (assessmentType)
-                {
-                    case AssessmentCode.LetterShape:
-                        SimultaneosQuestions = 1;
-                        Rounds = 1; // quicker testing
-                        break;
-
-                    case AssessmentCode.MatchLettersToWord:
-                        SimultaneosQuestions = 1;
-                        Rounds = 2;
-                        break;
-
-                    case AssessmentCode.WordsWithLetter:
-                        SimultaneosQuestions = 2;
-                        Rounds = 1;
-                        break;
-
-                    default:
-                        throw new NotImplementedException( "NotImplemented Yet!");
-                }
-            }
-        }
-
         public float Difficulty { get; set; }
         public int SimultaneosQuestions { get; set; }
 

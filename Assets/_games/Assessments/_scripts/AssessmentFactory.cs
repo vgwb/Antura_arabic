@@ -9,6 +9,7 @@ namespace EA4S.Assessment
         private static IGameContext context;
         private static IAudioManager audioManager;
         private static ISubtitlesWidget subtitles;
+        private static Db.LocalizationDataId gameDescription;
         private static readonly float letterSize = 1f * 3;
         private static readonly float wordSize = 1.5f * 3;
         private static readonly float sentenceSize = 2f * 3;
@@ -26,8 +27,11 @@ namespace EA4S.Assessment
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, wordSize, letterSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, audioManager, subtitles);
+            gameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
+
+            return new DefaultAssessment(answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, audioManager, subtitles,
+                                            gameDescription);
         }
 
         public static IAssessment CreateLetterShapeAssessment()
@@ -43,8 +47,11 @@ namespace EA4S.Assessment
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, letterSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
+            gameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Listen;
+
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector, 
-                                            configuration, context, audioManager, subtitles);
+                                            configuration, context, audioManager, subtitles,
+                                            gameDescription);
         }
 
         public static IAssessment CreateWordsWithLetterAssessment()
@@ -60,8 +67,11 @@ namespace EA4S.Assessment
             IQuestionPlacer questionplacer  = new DefaultQuestionPlacer( audioManager, letterSize, wordSize);
             IAnswerPlacer answerPlacer      = new DefaultAnswerPlacer( audioManager);
 
-            return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector, 
-                                            configuration, context, audioManager, subtitles);
+            gameDescription = Db.LocalizationDataId.Assessment_Select_Words;
+
+            return new DefaultAssessment(answerPlacer, questionplacer, generator, injector,
+                                            configuration, context, audioManager, subtitles,
+                                            gameDescription);
         }
 
         private static void Init()
