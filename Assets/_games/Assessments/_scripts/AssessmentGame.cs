@@ -8,32 +8,28 @@ namespace EA4S.Assessment
     /// </summary>
     public class AssessmentGame : MiniGame
     {
-        [Header("Configuration")]
+        [Header("Configuration")] //necessary since there are other public member variables in "MiniGame"
         public AssessmentCode assessmentCode;
 
-        public AssessmentIntroState IntroductionState { get; private set; }
-        public AssessmentQuestionState QuestionState { get; private set; }
+        public AssessmentIntroState IntroState { get; private set; }
         public AssessmentGameState PlayState { get; private set; }
         public AssessmentResultState ResultState { get; private set; }
 
-        protected override void OnInitialize(IGameContext context)
+        protected override void OnInitialize( IGameContext context)
         {
-            IntroductionState = new AssessmentIntroState(this);
-            QuestionState = new AssessmentQuestionState(this);
+            IntroState = new AssessmentIntroState( this);
             GetConfiguration();
-            PlayState = new AssessmentGameState(this);
-            ResultState = new AssessmentResultState(this);
+            PlayState = new AssessmentGameState( this);
+            ResultState = new AssessmentResultState( this);
         }
 
         protected override IGameState GetInitialState()
         {
-            return IntroductionState;
+            return IntroState;
         }
 
         protected override IGameConfiguration GetConfiguration()
         {
-            AssessmentConfiguration.Instance.SetupDefault( assessmentCode);
-
             return AssessmentConfiguration.Instance;
         }
     }
