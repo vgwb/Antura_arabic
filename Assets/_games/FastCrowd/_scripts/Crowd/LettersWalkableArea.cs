@@ -11,6 +11,7 @@ public class LettersWalkableArea : MonoBehaviour
     public BoxCollider[] walkingTargets;
 
     public Transform tutorialPosition;
+    public Transform focusPosition;
 
     void Awake()
     {

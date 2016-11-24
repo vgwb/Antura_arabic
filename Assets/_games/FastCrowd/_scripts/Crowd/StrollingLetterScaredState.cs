@@ -39,17 +39,29 @@ namespace EA4S
         public override void Update(float delta)
         {
             // Stay scared if danger is near
-            if (Vector3.Distance(letter.transform.position, letter.antura.transform.position) < 20.0f)
+            if (Vector3.Distance(letter.transform.position, letter.antura.transform.position) < 15.0f)
             {
                 ScaredDuration = 3;
                 ScareSource = letter.antura.transform.position;
             }
-            else if (Vector3.Distance(letter.transform.position, ScareSource) > 10.0f)
+            else if (Vector3.Distance(letter.transform.position, ScareSource) > 7.0f)
             {
                 scaredTimer = Mathf.Min(0.5f, scaredTimer);
             }
 
             scaredTimer -= delta;
+
+            Vector3 dropPosition = letter.walkableArea.focusPosition.position;
+            Vector3 dropDistance = dropPosition - letter.transform.position;
+            bool nearDropContainer = dropDistance.magnitude < 10;
+
+            bool isOutsideWalkingPath = Vector3.Distance(
+                letter.transform.position, 
+                letter.walkableArea.GetNearestPoint(letter.transform.position, true)
+                ) > 6.0f;
+
+            if (isOutsideWalkingPath && !nearDropContainer)
+                scaredTimer = Mathf.Min(0.1f, scaredTimer);
 
             if (scaredTimer <= 0)
             {
@@ -61,6 +73,11 @@ namespace EA4S
             Vector3 runDirection = letter.transform.position - ScareSource;
             runDirection.y = 0;
             runDirection.Normalize();
+
+            if (nearDropContainer)
+            {
+                runDirection = Vector3.Cross(letter.walkableArea.focusPosition.forward, Vector3.up).normalized;
+            }
 
             movement.MoveAmount(runDirection * SCARED_RUN_SPEED * delta);
             movement.LerpLookAt(letter.transform.position + runDirection, 4 * delta);

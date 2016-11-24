@@ -14015,6 +14015,7 @@ MonoBehaviour:
   walkingTargets:
   - {fileID: 1910158539}
   tutorialPosition: {fileID: 1689415714}
+  focusPosition: {fileID: 1599871826}
 --- !u!1 &1418378439
 GameObject:
   m_ObjectHideFlags: 0
