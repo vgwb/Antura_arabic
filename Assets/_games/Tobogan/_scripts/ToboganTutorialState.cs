@@ -28,6 +28,7 @@ namespace EA4S.Tobogan
 
         public void EnterState()
         {
+            game.pipesAnswerController.SetSignHidingProbability(0);
             game.questionsManager.onAnswered += OnAnswered;
             game.questionsManager.playerInputPointerUp += OnPointerUp;
 
@@ -57,6 +58,8 @@ namespace EA4S.Tobogan
 
             nextQuestionTimer = 0f;
             requestNextQueston = false;
+
+            game.questionsManager.SetEnteringAudio(false);
         }
 
         public void ExitState()
@@ -65,6 +68,9 @@ namespace EA4S.Tobogan
             game.questionsManager.playerInputPointerUp -= OnPointerUp;
 
             TutorialUI.Clear(true);
+
+            game.questionsManager.SetEnteringAudio(true);
+            game.pipesAnswerController.SetSignHidingProbability(ToboganConfiguration.Instance.Difficulty);
         }
 
         public void Update(float delta)
