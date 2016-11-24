@@ -33286,7 +33286,7 @@ MonoBehaviour:
   - {fileID: 1711248547}
   - {fileID: 1112958500}
   cameras:
-  - {fileID: 0}
+  - {fileID: 2146507731}
   - {fileID: 2146507731}
   - {fileID: 1651395146}
   - {fileID: 1683080375}
@@ -95486,7 +95486,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11489782, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11407226, guid: 0e2cf6572e414465aa24cfe7d5c1710f, type: 2}
       propertyPath: m_Enabled
@@ -99997,7 +99997,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 113144, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 113144, guid: 290e2d22a391946ada89c65a1cef5038, type: 2}
       propertyPath: m_Name
@@ -100026,7 +100026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniMapScript: {fileID: 498990842}
-  speed: 20
+  speed: 70
   posDot: {x: 30.77323, y: 0, z: 10.78536}
   black: {fileID: 2100000, guid: 4e4094f1e77806a48b7614b34330a0d6, type: 2}
   red: {fileID: 2100000, guid: a5e4f68df693e0a4b9ef30f50a24a399, type: 2}
@@ -113533,7 +113533,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2146507731}
   m_LocalRotation: {x: 0.38147366, y: -0, z: -0, w: 0.92437977}
-  m_LocalPosition: {x: 0, y: 61.4, z: -43.7}
+  m_LocalPosition: {x: 0, y: 61, z: -39}
   m_LocalScale: {x: 1, y: 1.0000004, z: 1.0000004}
   m_LocalEulerAnglesHint: {x: 44.85, y: 0, z: 0}
   m_Children: []
