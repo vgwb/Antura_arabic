@@ -67,6 +67,7 @@ namespace EA4S.API
         {
             inputManager.Reset();
             audioManager.Reset();
+            overlayWidget.Reset();
         }
 
         #region CheckmarkWidget provider
