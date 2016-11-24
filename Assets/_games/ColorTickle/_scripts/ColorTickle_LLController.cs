@@ -148,7 +148,7 @@ namespace EA4S.ColorTickle
                 //change animation and play sound
                 m_oLetter.SetWalkingSpeed(0);
                 m_oLetter.SetState(m_eAnimationOnDestReached);
-                AudioManager.I.PlayLetter(m_oLetter.Data.Id);
+                //AudioManager.I.PlayLetter(m_oLetter.Data.Id);
 
                 if(OnDestinationReached!=null) //launch event
                 {
