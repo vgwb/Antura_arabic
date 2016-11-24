@@ -127,6 +127,7 @@ namespace EA4S.Assessment
                         yield return null;
 
                     yield return PlayAnturaGoneSound();
+                    yield return TimeEngine.Wait( 0.3f);
                     yield return PlayGameDescription();
                     #endregion
 
