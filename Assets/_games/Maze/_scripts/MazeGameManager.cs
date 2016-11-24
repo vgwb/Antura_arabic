@@ -58,6 +58,19 @@ namespace EA4S.Maze
 
         private List<Vector3> fleePositions;
 
+
+        //for letters:
+        public List<string> allLetters;
+        void setupIndices()
+        {
+            allLetters = new List<string>();
+            List<LL_LetterData> list = AppManager.Instance.Teacher.GetAllTestLetterDataLL();
+            foreach (LL_LetterData ld in list)
+            {
+                allLetters.Add(ld.Id);
+            }
+        }
+
         protected override void Awake()
 		{
 			base.Awake();
@@ -68,6 +81,7 @@ namespace EA4S.Maze
 
 		public void startGame()
 		{
+            setupIndices();
             //base.Start();
 
             /*	AppManager.Instance.InitDataAI();
@@ -187,8 +201,8 @@ namespace EA4S.Maze
             if (currentCharacter.isComplete ()) {
 				correctLetters++;
 				currentLetterIndex++;
-				print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
-				if (currentLetterIndex == prefabs.Count) {
+				//print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
+				if (currentLetterIndex == 6) { //round is 6
                     endGame();
 					return;
 				} else {
@@ -208,7 +222,7 @@ namespace EA4S.Maze
 
             wrongLetters++;
 			currentLetterIndex++;
-			if (currentLetterIndex == prefabs.Count) {
+			if (currentLetterIndex == 6) {
                 endGame();
 				return;
 			} else {
@@ -296,7 +310,26 @@ namespace EA4S.Maze
 
             TutorialUI.Clear(false);
             addLine ();
-			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex]);
+
+
+            //get a new letter:
+            LL_LetterData ld = (LL_LetterData)MazeConfiguration.Instance.Letters.GetNextData();
+            int index = allLetters.IndexOf(ld.Id);
+
+            int found = -1;
+            for(int i =0; i < prefabs.Count; ++i)
+            {
+                if(prefabs[i].GetComponent<MazeLetterBuilder>().letterDataIndex == index)
+                {
+                    found = i;
+                    
+                    break;
+                }
+            }
+            if (found == -1)
+                found = UnityEngine.Random.Range(0, prefabs.Count);
+
+            currentPrefab = (GameObject)Instantiate(prefabs[found]);
 
             currentPrefab.GetComponent<MazeLetterBuilder>().build(() => {
                 foreach (Transform child in currentPrefab.transform)

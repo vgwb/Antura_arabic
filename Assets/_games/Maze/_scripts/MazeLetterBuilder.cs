@@ -78,7 +78,7 @@ namespace EA4S.Maze
                 }
             }
 
-            character.transform.position = characterPosition;
+            character.transform.position = characterPosition + new Vector3(0,0,1);
 
             //fix mazecharacter:
             mazeCharacter.collider = BorderColldider;
