@@ -81,9 +81,8 @@ namespace EA4S.Assessment
 
             particles2.transform.localScale = new Vector3(2, 2, 2);
             particles2.SetLayerRecursive( AnturaLayers.ModelsOverUI);
-            yield return TimeEngine.Wait(0.2f);
-            antura.transform.DOScale( Vector3.zero, 0.2f);
-            yield return TimeEngine.Wait( 0.2f);
+            yield return TimeEngine.Wait(0.1f);
+            antura.transform.DOScale( Vector3.zero, 0.2f).SetEase(Ease.InExpo);
             callback();
         }
     }
