@@ -15,5 +15,7 @@ namespace EA4S
 
         void SetMaxLives(int maxLives);
         void SetLives(int lives);
+
+        void Reset();
     }
 }
