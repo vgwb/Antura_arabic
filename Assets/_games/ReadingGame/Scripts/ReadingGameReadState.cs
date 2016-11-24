@@ -240,7 +240,7 @@ namespace EA4S.ReadingGame
             game.Context.GetPopupWidget().ShowTimeUp(
                 () =>
                 {
-                    game.SetCurrentState(this);
+                    game.SetCurrentState(game.QuestionState);
                     game.Context.GetPopupWidget().Hide();
                 });
         }
