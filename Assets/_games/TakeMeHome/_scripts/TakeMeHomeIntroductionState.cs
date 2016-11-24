@@ -32,7 +32,9 @@
 		public void Update(float delta)
 		{
 			if (game.currentLetter != null && !game.currentLetter.isMoving) {
-				game.currentLetter.isDraggable = true;
+                game.currentLetter.sayLetter();
+
+                game.currentLetter.isDraggable = true;
 				game.SetCurrentState(game.PlayState);
 			}
 		}
