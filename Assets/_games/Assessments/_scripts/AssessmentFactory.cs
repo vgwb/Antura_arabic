@@ -20,7 +20,7 @@ namespace EA4S.Assessment
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
@@ -40,7 +40,7 @@ namespace EA4S.Assessment
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
-            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
@@ -60,7 +60,7 @@ namespace EA4S.Assessment
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
