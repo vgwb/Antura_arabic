@@ -663,4 +663,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e57bcd1cef6ac14889dbb39e86258dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterDataIndex: 0
+  letterDataIndex: 7
