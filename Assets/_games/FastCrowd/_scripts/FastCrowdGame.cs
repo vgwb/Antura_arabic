@@ -109,6 +109,8 @@ namespace EA4S.FastCrowd
                 return 3;
             }
         }
+        
+        public bool showTutorial { get; set; }
 
         public FastCrowdIntroductionState IntroductionState { get; private set; }
         public FastCrowdQuestionState QuestionState { get; private set; }
@@ -140,7 +142,9 @@ namespace EA4S.FastCrowd
         protected override void OnInitialize(IGameContext context)
         {
             //float difficulty = FastCrowdConfiguration.Instance.Difficulty;
-
+            
+            showTutorial = true;
+            
             IntroductionState = new FastCrowdIntroductionState(this);
             QuestionState = new FastCrowdQuestionState(this);
             PlayState = new FastCrowdPlayState(this);
@@ -151,9 +155,6 @@ namespace EA4S.FastCrowd
             QuestionManager.wordComposer.gameObject.SetActive(
                 FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling
                 );
-
-            Context.GetOverlayWidget().Initialize(true, true, false);
-            Context.GetOverlayWidget().SetStarsThresholds(stars1Threshold, stars2Threshold, stars3Threshold);
         }
 
 
@@ -179,6 +180,12 @@ namespace EA4S.FastCrowd
                 return true;
             }
             return false;
+        }
+
+        public void InitializeOverlayWidget()
+        {
+            Context.GetOverlayWidget().Initialize(true, true, false);
+            Context.GetOverlayWidget().SetStarsThresholds(stars1Threshold, stars2Threshold, stars3Threshold);
         }
 
         public override Vector3 GetGravity()

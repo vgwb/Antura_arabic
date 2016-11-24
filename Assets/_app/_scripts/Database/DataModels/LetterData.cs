@@ -7,6 +7,8 @@ namespace EA4S.Db
         Real = 0,   // default: Base + Combo
         Combo,
         Base,
+        Variation,
+        Symbol,
         BaseAndVariations
     }
 
@@ -60,6 +62,12 @@ namespace EA4S.Db
                 case LetterKindCategory.Base:
                     isIt = IsBaseLetter();
                     break;
+                case LetterKindCategory.Variation:
+                    isIt = IsVariationLetter();
+                    break;
+                case LetterKindCategory.Symbol:
+                    isIt = IsSymbolLetter();
+                    break;
                 case LetterKindCategory.Combo:
                     isIt = IsComboLetter();
                     break;
@@ -81,6 +89,16 @@ namespace EA4S.Db
         private bool IsBaseLetter()
         {
             return this.Kind == LetterDataKind.Letter;
+        }
+
+        private bool IsVariationLetter()
+        {
+            return this.Kind == LetterDataKind.LetterVariation;
+        }
+
+        private bool IsSymbolLetter()
+        {
+            return this.Kind == LetterDataKind.Symbol;
         }
 
         private bool IsComboLetter()

@@ -91,6 +91,7 @@ namespace EA4S.Egg
             {
                 overlayWidgetInitialized = true;
                 Context.GetOverlayWidget().Initialize(true, false, false);
+                Context.GetOverlayWidget().SetStarsThresholds(1, 2, 3);
             }
         }
     }

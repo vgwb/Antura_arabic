@@ -15,6 +15,11 @@ namespace EA4S
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
 
+            parameters.letterFilters.excludeLetterVariations = true;
+            parameters.letterFilters.excludeDiacritics = true;
+            parameters.wordFilters.excludeLetterVariations = true;
+            parameters.wordFilters.excludeDiacritics = true;
+
             this.parameters = parameters;
         }
 
@@ -37,7 +42,7 @@ namespace EA4S
 
             alphabetLetters.Sort((x, y) =>
                 {
-                    return x.ToString().CompareTo(y.ToString());
+                    return x.Number - y.Number;
                 }
             );
 

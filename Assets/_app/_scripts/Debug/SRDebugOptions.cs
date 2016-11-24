@@ -59,6 +59,10 @@ public partial class SROptions
     public bool IgnoreJourneyData { get { return DebugManager.I.IgnoreJourneyData; } set { DebugManager.I.IgnoreJourneyData = value; } }
 
     [Category("Options")]
+    [Sort(1)]
+    public bool VerboseTeacher { get { return EA4S.Teacher.ConfigAI.verboseTeacher; } set { EA4S.Teacher.ConfigAI.verboseTeacher = value; } }
+
+    [Category("Options")]
     [NumberRange(1, 6)]
     [Sort(10)]
     public int Stage { get { return DebugManager.I.Stage; } set { DebugManager.I.Stage = value; } }
