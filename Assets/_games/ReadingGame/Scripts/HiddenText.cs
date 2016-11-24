@@ -41,6 +41,12 @@ public class HiddenText : MonoBehaviour
             var screenBoundsMin = mainCamera.WorldToScreenPoint(renderers[i].bounds.min) - new Vector3(32.0f, 32.0f, 0.0f);
             var screenBoundsMax = mainCamera.WorldToScreenPoint(renderers[i].bounds.max) + new Vector3(32.0f, 32.0f, 0.0f);
 
+            // Define a minimum size
+            screenBoundsMin.x = Mathf.Min(screenBoundsMin.x, 0.25f * Screen.width);
+            screenBoundsMin.y = Mathf.Min(screenBoundsMin.y, 0.5f * Screen.height);
+            screenBoundsMax.x = Mathf.Max(screenBoundsMax.x, 0.75f * Screen.width);
+            screenBoundsMax.y = Mathf.Max(screenBoundsMax.y, 1.0f * Screen.height);
+
             boundsMin = Vector3.Min(boundsMin, mainCamera.ScreenToWorldPoint(screenBoundsMin));
             boundsMax = Vector3.Max(boundsMax, mainCamera.ScreenToWorldPoint(screenBoundsMax));
 
@@ -84,12 +90,12 @@ public class HiddenText : MonoBehaviour
 
         blurredTextRenderTexture = new RenderTexture(width, height, 16);
         blurredTextRenderTexture.hideFlags = HideFlags.HideAndDontSave;
-        
+
         blurredTextMaterial.SetTexture("_MainTex", blurredTextRenderTexture);
-        
+
         textCamera.targetTexture = blurredTextRenderTexture;
         textCamera.GetComponent<BlurredCamera>().normalTextureOutput = textRenderTexture;
-        
+
         var oldCameraPos = textCamera.transform.position;
         oldCameraPos.x = boundsMin.x + (boundsMax.x - boundsMin.x) / 2;
         oldCameraPos.y = boundsMin.y + (boundsMax.y - boundsMin.y) / 2;
@@ -131,7 +137,7 @@ public class HiddenText : MonoBehaviour
     void OnDestroy()
     {
         if (textRenderTexture != null)
-        { 
+        {
             textRenderTexture.Release();
             textRenderTexture = null;
         }

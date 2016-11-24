@@ -9,9 +9,9 @@ namespace EA4S.Assessment
     /// </summary>
     public class Coroutine : MonoBehaviour
     {
-        public static void Start( IEnumerator coroutine)
+        public static YieldInstruction Start( IEnumerator coroutine)
         {
-            instance.StartCoroutine( coroutine);
+            return instance.StartCoroutine( coroutine);
         }
 
         public static void Stop( IEnumerator coroutine)

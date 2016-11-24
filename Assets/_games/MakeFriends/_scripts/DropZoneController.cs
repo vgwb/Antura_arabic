@@ -12,7 +12,7 @@ namespace EA4S.MakeFriends
         public Animator animator;
 
         [HideInInspector]
-        public LL_LetterData letterData;
+        public ILivingLetterData letterData;
 
 
         public void OnDrop(PointerEventData eventData)
@@ -36,10 +36,10 @@ namespace EA4S.MakeFriends
             }
         }
 
-        public void DisplayText(LL_LetterData _letterData)
+        public void DisplayText(ILivingLetterData _letterData)
         {
             letterData = _letterData;
-            LetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
+            LetterText.text = letterData.TextForLivingLetter;//ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
         }
 
 
