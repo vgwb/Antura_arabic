@@ -45,6 +45,7 @@ namespace EA4S
 
         public void Reset()
         {
+            overlayWidget.Reset();
             audioManager.Reset();
             inputManager.Reset();
         }
