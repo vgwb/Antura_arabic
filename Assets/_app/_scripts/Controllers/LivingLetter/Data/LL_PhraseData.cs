@@ -55,5 +55,13 @@ namespace EA4S
             get { return null; }
         }
 
+        public bool Equals(ILivingLetterData data)
+        {
+            LL_PhraseData other = data as LL_PhraseData;
+            if (other != null)
+                return false;
+
+            return other.Data.Id == Data.Id;
+        }
     }
 }
