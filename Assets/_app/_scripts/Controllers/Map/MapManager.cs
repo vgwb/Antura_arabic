@@ -32,7 +32,7 @@ namespace EA4S
 
             //ShowTutor();
 
-            KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
+            //KeeperManager.I.PlayDialog(Db.LocalizationDataId.Map_Intro);
         }
 
         public void ShowTutor()

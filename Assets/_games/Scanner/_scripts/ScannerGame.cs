@@ -93,6 +93,8 @@ namespace EA4S.Scanner
 			
 //			instance = this;
 
+			Debug.Log("Context: " + context);
+
 			STARS_1_THRESHOLD = 1;
 			STARS_2_THRESHOLD = numberOfRounds/2;
 			STARS_3_THRESHOLD = numberOfRounds;
@@ -110,9 +112,10 @@ namespace EA4S.Scanner
 
 		public void PlayWord(float deltaTime)
 		{
-			Debug.Log(deltaTime);
-			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
-			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
+			Debug.Log("Play word: " + deltaTime);
+//			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
+//			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
+			AudioManager.I.PlayWord(wordData.Id);
 		}
 
 		public void CreatePoof(Vector3 position, float duration, bool withSound)

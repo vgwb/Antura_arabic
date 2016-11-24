@@ -58,7 +58,7 @@
 				
 				
 			//check if we placed the CurrentLetter:
-			if (!game.currentLetter.dragging && game.currentLetter.lastTube != null) {
+			if (!game.currentLetter.dragging && game.currentLetter.collidedTubes.Count > 0) {
 				
 
 				game.SetCurrentState(game.ResetState);
