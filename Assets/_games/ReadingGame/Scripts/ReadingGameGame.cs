@@ -40,6 +40,9 @@ namespace EA4S.ReadingGame
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
                 return READING_STARS_THRESHOLDS[stars - 1];
 
+            if (alphabetSong == null)
+                return int.MaxValue;
+
             var t = (int)(alphabetSong.GetSegmentsLength()/(4 - stars));
             return t;
         }

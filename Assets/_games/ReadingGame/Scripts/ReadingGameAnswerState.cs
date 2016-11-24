@@ -119,7 +119,9 @@ namespace EA4S.ReadingGame
             {
                 if (TutorialMode)
                 {
-                    button.SetColor(UnityEngine.Color.red);
+                    //button.SetColor(UnityEngine.Color.red);
+                    if (box.IsReady())
+                        TutorialUI.MarkNo(button.transform.position);
                 }
                 else
                 {
