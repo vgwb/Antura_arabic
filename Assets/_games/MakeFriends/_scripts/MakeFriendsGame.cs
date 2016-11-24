@@ -48,6 +48,7 @@ namespace EA4S.MakeFriends
         private List<ILivingLetterData> incorrectChoices = new List<ILivingLetterData>();
         private int currentRound = 0;
         private int _currentScore = 0;
+        private bool isTutorialRound;
 
         public int CurrentScore
         {
@@ -171,6 +172,44 @@ namespace EA4S.MakeFriends
             ShowDropZone();
         }
 
+        public void PlayTutorial()
+        {
+            Debug.Log("Playing Tutorial");
+
+            isTutorialRound = true;
+            PlayIdleMusic();
+
+            Reset();
+            SetNewWords();
+            SetLetterChoices();
+            SpawnLivingLetters();
+            ShowLetterPicker();
+            ShowDropZone();
+
+            StartCoroutine(ShowTutorialUI_Coroutine());
+        }
+
+        private IEnumerator ShowTutorialUI_Coroutine()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(uiDelay);
+
+                foreach (var choice in letterPicker.CorrectLetterChoices)
+                {
+                    var from = new Vector3(0f, -1f, -1f);
+                    var to = new Vector3(0f, 7f, 0f);
+
+                    TutorialUI.DrawLine(from, to, TutorialUI.DrawLineMode.Finger, false, true);
+                }
+            }
+        }
+
+        private void HideTutorialUI()
+        {
+            TutorialUI.Clear(false);
+        }
+
         private void SetNewWords()
         {
             wordData1 = null;
@@ -232,6 +271,10 @@ namespace EA4S.MakeFriends
             choiceLetters.Shuffle();
 
             letterPicker.DisplayLetters(choiceLetters);
+            if (isTutorialRound)
+            {
+                letterPicker.SetCorrectChoices(commonLetters);
+            }
         }
 
         private void SpawnLivingLetters()
@@ -303,13 +346,15 @@ namespace EA4S.MakeFriends
                 //letterChoice.SpawnBalloon(false);
                 GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.LetterSad);
                 dropZone.AnimateWrong();
-                leftArea.MoveAwayAngrily();
-                rightArea.MoveAwayAngrily();
-
                 incorrectChoices.Add(letterChoice.letterData);
-                if (incorrectChoices.Count >= 3)
+                if (!isTutorialRound)
                 {
-                    EndRound(false);
+                    leftArea.MoveAwayAngrily();
+                    rightArea.MoveAwayAngrily();
+                    if (incorrectChoices.Count >= 3)
+                    {
+                        EndRound(false);
+                    }
                 }
             }
         }
@@ -328,7 +373,35 @@ namespace EA4S.MakeFriends
 
             HideLetterPicker();
 
-            if (win)
+            if (isTutorialRound) // Ignore score
+            {
+                if (win)
+                {
+                    Debug.Log("Cleared tutorial");
+
+                    GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
+                    leftArea.Celebrate();
+                    rightArea.Celebrate();
+                    winCelebration.Show();
+
+                    yield return new WaitForSeconds(winDelay1);
+                    winCelebration.Hide();
+                    leftArea.MakeFriendlyExit();
+                    rightArea.MakeFriendlyExit();
+
+                    yield return new WaitForSeconds(winDelay2);
+                    HideDropZone();
+
+                    isTutorialRound = false;
+                    HideTutorialUI();
+                    IntroductionState.OnFinishedTutorial();
+                }
+                else
+                {
+                    Debug.Log("This is isn't supposed to happen...");
+                }
+            }
+            else if (win)
             {
                 Debug.Log("Win");
 
