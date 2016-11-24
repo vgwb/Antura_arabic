@@ -15,6 +15,9 @@ namespace EA4S.Maze
     {
 		
 		public static MazeGameManager Instance;
+
+        public GameObject characterPrefab;
+
 		/*public MazeGameplayInfo GameplayInfo;*/
 
 		public MazeCharacter currentCharacter;
@@ -155,7 +158,8 @@ namespace EA4S.Maze
 
 		public void showAllCracks()
 		{
-			if (health == 0)
+            if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
+            if (health == 0)
 				return;
 			
 			for (int i = 0; i < _cracks.Count; ++i)
@@ -165,7 +169,9 @@ namespace EA4S.Maze
 		}
 		public void wasHit()
 		{
-			_cracks [_cracks.Count- health].SetActive (true);
+
+            if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
+            _cracks [_cracks.Count- health].SetActive (true);
 			health--;
 
 			//StartCoroutine (shakeCamera (0.5f, 0.5f));
@@ -174,7 +180,7 @@ namespace EA4S.Maze
 
 		public void moveToNext(bool won = false)
 		{
-            
+            if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
 
             isShowingAntura = false;
             //check if current letter is complete:
@@ -198,8 +204,9 @@ namespace EA4S.Maze
 
 		public void lostCurrentLetter()
 		{
-			
-			wrongLetters++;
+            if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
+
+            wrongLetters++;
 			currentLetterIndex++;
 			if (currentLetterIndex == prefabs.Count) {
                 endGame();
@@ -284,17 +291,24 @@ namespace EA4S.Maze
 
 		void initCurrentLetter()
 		{
+            currentCharacter = null;
+            currentTutorial = null;
+
             TutorialUI.Clear(false);
             addLine ();
 			currentPrefab = (GameObject)Instantiate(prefabs[currentLetterIndex]);
-			foreach (Transform child in currentPrefab.transform) {
-				if (child.name == "Mazecharacter")
-					currentCharacter = child.GetComponent<MazeCharacter> ();
-				else if(child.name == "HandTutorial")
-					currentTutorial = child.GetComponent<HandTutorial> ();
-			}
 
-            currentCharacter.gameObject.SetActive(false);
+            currentPrefab.GetComponent<MazeLetterBuilder>().build(() => {
+                foreach (Transform child in currentPrefab.transform)
+                {
+                    if (child.name == "Mazecharacter")
+                        currentCharacter = child.GetComponent<MazeCharacter>();
+                    else if (child.name == "HandTutorial")
+                        currentTutorial = child.GetComponent<HandTutorial>();
+                }
+
+                currentCharacter.gameObject.SetActive(false);
+            });
 
         }
 

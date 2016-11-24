@@ -40,7 +40,8 @@ namespace EA4S
 
         public void GoToGameScene(MiniGameData _miniGame)
         {
-            GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
+            //GameManager.Instance.Modules.SceneModule.LoadSceneWithTransition(GetSceneName(AppScene.MiniGame, _miniGame));
+            AppManager.Instance.GameLauncher.LaunchGame(_miniGame.Code);
         }
 
         //public string GetNextScene()
@@ -48,8 +49,7 @@ namespace EA4S
         //    return "";
         //}
 
-        public void GoToNextScene()
-        {
+        public void GoToNextScene() { 
             //var nextScene = GetNextScene();
             switch (CurrentScene) {
                 case AppScene.Home:

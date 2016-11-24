@@ -6086,8 +6086,6 @@ MonoBehaviour:
   - {fileID: 1000013498399312}
   linesToShow:
   - {fileID: 1000013565437136}
-  numbersToShow:
-  - {fileID: 1000010880348142}
   isStopped: 0
   isShownOnce: 0
 --- !u!114 &114000012472444594
@@ -6518,6 +6516,7 @@ MonoBehaviour:
   nextPosition: {fileID: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  isFleeing: 0
   isAppearing: 0
 --- !u!114 &114000013769788214
 MonoBehaviour:

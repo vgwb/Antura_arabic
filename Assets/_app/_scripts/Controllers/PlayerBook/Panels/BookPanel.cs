@@ -91,7 +91,7 @@ namespace EA4S
             List<LetterData> list;
             switch (currentCategory) {
                 case "combo":
-                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Combination));
+                    list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Combination || x.Kind == LetterDataKind.LetterVariation));
                     break;
                 case "symbol":
                     list = AppManager.Instance.DB.FindLetterData((x) => (x.Kind == LetterDataKind.Symbol));
