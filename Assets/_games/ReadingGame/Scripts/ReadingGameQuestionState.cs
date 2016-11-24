@@ -60,17 +60,17 @@ namespace EA4S.ReadingGame
             {
                 if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
                 {
-                    game.Context.GetAudioManager().PlayDialogue(TextID.READINGGAME_INTRO, () => { completed = true; });
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ReadingGame_Intro, () => { completed = true; });
                     game.ReadState.TutorialMode = true;
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_INTRO, () =>
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.AlphabetSong_Intro, () =>
                     {
                         var firstBar = game.barSet.GetNextBar();
                         TutorialUI.DrawLine(firstBar.start.transform.position, firstBar.endCompleted.transform.position, TutorialUI.DrawLineMode.FingerAndArrow, false, true);
 
-                        game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_TUTORIAL, () =>
+                        game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.AlphabetSong_Tuto, () =>
                         {
                             completed = true;
                         });

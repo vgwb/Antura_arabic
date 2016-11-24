@@ -1,28 +1,13 @@
 ﻿using ArabicSupport;
 using System;
 using UnityEngine;
+using EA4S.Db;
 
 namespace EA4S
 {
     public class SamplePopupWidget : IPopupWidget
     {
-        public void Show(System.Action callback, TextID text, bool markResult, LL_WordData word = null)
-        {
-            if (word != null)
-                WidgetPopupWindow.I.ShowSentenceAndWordWithMark(callback, text.ToString(), word, markResult);
-            else
-                WidgetPopupWindow.I.ShowSentenceWithMark(callback, text.ToString(), markResult, null);
-        }
-
-        public void Show(System.Action callback, TextID text, LL_WordData word = null)
-        {
-            if (word != null)
-                WidgetPopupWindow.I.ShowSentenceAndWord(callback, text.ToString(), word);
-            else
-                WidgetPopupWindow.I.ShowSentence(callback, text.ToString());
-        }
-
-        public void Show(System.Action callback, string text, bool markResult, LL_WordData word = null)
+        public void Show(System.Action callback, Db.LocalizationDataId text, bool markResult, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWordWithMark(callback, text, word, markResult);
@@ -30,20 +15,12 @@ namespace EA4S
                 WidgetPopupWindow.I.ShowSentenceWithMark(callback, text, markResult, null);
         }
 
-        public void Show(System.Action callback, string text, LL_WordData word = null)
+        public void Show(System.Action callback, Db.LocalizationDataId text, LL_WordData word = null)
         {
             if (word != null)
                 WidgetPopupWindow.I.ShowSentenceAndWord(callback, text, word);
             else
                 WidgetPopupWindow.I.ShowSentence(callback, text);
-        }
-
-        public void Show(System.Action callback, string text, bool isArabic)
-        {
-            if (isArabic)
-                WidgetPopupWindow.I.ShowArabicTextDirect(callback, text);
-            else
-                WidgetPopupWindow.I.ShowTextDirect(callback, text);
         }
 
         public void Show(Action callback, Sprite image)
@@ -74,19 +51,14 @@ namespace EA4S
             WidgetPopupWindow.I.SetButtonCallback(callback);
         }
 
-        public void SetTitle(string text, bool isArabic)
+        public void SetMessage(Db.LocalizationDataId text)
         {
-            WidgetPopupWindow.I.SetTitle(text, isArabic);
+            WidgetPopupWindow.I.SetMessage(text);
         }
 
-        public void SetMessage(string text, bool isArabic)
+        public void SetTitle(Db.LocalizationDataId text)
         {
-            WidgetPopupWindow.I.SetMessage(text, isArabic);
-        }
-
-        public void SetTitle(TextID text)
-        {
-            WidgetPopupWindow.I.SetTitleSentence(text.ToString());
+            WidgetPopupWindow.I.SetTitleSentence(LocalizationManager.GetLocalizationData(text).Arabic);
         }
 
         public void SetMark(bool visible, bool correct)
@@ -99,9 +71,22 @@ namespace EA4S
             WidgetPopupWindow.I.SetImage(image);
         }
 
-        public void SetWord(LL_WordData data)
+        public void SetTitle(string text)
         {
-            WidgetPopupWindow.I.SetWord(data.Id, ((LL_WordData)data).Data.Arabic);
+            WidgetPopupWindow.I.SetTitle(text);
+        }
+
+        public void SetMessage(string text)
+        {
+            WidgetPopupWindow.I.SetMessage(text);
+        }
+
+        public void SetLetterData(ILivingLetterData data)
+        {
+            if (!(data is LL_WordData))
+                return;
+
+            WidgetPopupWindow.I.SetWord(data.DrawingCharForLivingLetter, ((LL_WordData)data).Data.Arabic);
         }
     }
 }

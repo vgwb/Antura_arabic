@@ -24,7 +24,8 @@ namespace EA4S.Tobogan
         public event Action<bool> playerInputPointerUp;
 
         bool sunMoonGameVariation;
-
+        bool playWhenDragged = true;
+        bool playWhenEnter = true;
 
 
         public QuestionsManager(ToboganGame game)
@@ -66,6 +67,18 @@ namespace EA4S.Tobogan
 
             UpdateQuestion(nextQuestionPack);
             PrepareLettersToAnswer();
+        }
+
+        public void SetDraggingAudio(bool enabled)
+        {
+            playWhenDragged = enabled;
+            for (int i = 0; i < livingLetters.Count; i++)
+                livingLetters[i].playWhenDragged = enabled;
+        }
+
+        public void SetEnteringAudio(bool enabled)
+        {
+            playWhenEnter = enabled;
         }
 
         void UpdateQuestion(IQuestionPack questionPack)
@@ -111,6 +124,7 @@ namespace EA4S.Tobogan
                 questionLetter.EnableCollider(false);
 
                 questionLetter.GoToPosition(i);
+                questionLetter.playWhenDragged = playWhenDragged;
 
                 livingLetters.Add(questionLetter);
             }
@@ -162,7 +176,9 @@ namespace EA4S.Tobogan
         void OnQuestionLivingLetterOnPosition()
         {
             questionLivingLetter.EnableCollider(true);
-            game.Context.GetAudioManager().PlayLetterData(questionLivingLetter.letter.Data, true);
+
+            if (playWhenEnter)
+                game.Context.GetAudioManager().PlayLetterData(questionLivingLetter.letter.Data, true);
 
         }
 

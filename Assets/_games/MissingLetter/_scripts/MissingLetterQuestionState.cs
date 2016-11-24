@@ -10,16 +10,6 @@
 
         public void EnterState()
         {
-            // Show questions description
-            var popupWidget = M_oGgame.Context.GetPopupWidget();
-            popupWidget.Show();
-            popupWidget.SetButtonCallback(OnPopupCloseRequested);
-            popupWidget.SetMessage("MissingLetter\n Game description", true);
-        }
-
-        void OnPopupCloseRequested()
-        {
-            M_oGgame.SetCurrentState(M_oGgame.TutorialState);
         }
 
         public void ExitState()
@@ -34,7 +24,7 @@
 
         public void Update(float delta)
         {
-
+            M_oGgame.SetCurrentState(M_oGgame.TutorialState);
         }
 
         public void UpdatePhysics(float delta)

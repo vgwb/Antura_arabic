@@ -22,11 +22,11 @@ namespace EA4S.ReadingGame
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.READINGGAME_TITLE, () => { introCompleted = true; });
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ReadingGame_Title, () => { introCompleted = true; });
             }
             else if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.AlphabetSong)
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.ALPHABETSONG_TITLE, () => { introCompleted = true; });
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.AlphabetSong_Title, () => { introCompleted = true; });
             }
             else
             {

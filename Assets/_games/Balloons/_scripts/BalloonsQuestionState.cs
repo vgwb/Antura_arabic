@@ -14,7 +14,7 @@
             var popupWidget = game.Context.GetPopupWidget();
             popupWidget.Show();
             popupWidget.SetButtonCallback(OnQuestionCompleted);
-            popupWidget.SetMessage("", true);
+            popupWidget.SetMessage("");
         }
 
         void OnQuestionCompleted()

@@ -27,7 +27,7 @@ namespace EA4S.Egg
 
             if (firstQuestion)
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TITLE);
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Title);
                 //game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TITLE, delegate () { EggEnter(); });
             }
             //else
@@ -56,7 +56,7 @@ namespace EA4S.Egg
         {
             if (firstQuestion)
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.EGG_INTRO, delegate () { SetAndShowEggButtons(); });
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Intro, delegate () { SetAndShowEggButtons(); });
             }
             else
             {
