@@ -186,12 +186,12 @@ namespace EA4S.MakeFriends
             ShowLetterPicker();
             ShowDropZone();
 
-            StartCoroutine(ShowTutorialUI_Coroutine());
+            StartCoroutine("ShowTutorialUI_Coroutine");
         }
 
         private IEnumerator ShowTutorialUI_Coroutine()
         {
-            while (true)
+            while (isTutorialRound)
             {
                 yield return new WaitForSeconds(uiDelay);
 
@@ -207,6 +207,7 @@ namespace EA4S.MakeFriends
 
         private void HideTutorialUI()
         {
+            StopCoroutine("ShowTutorialUI_Coroutine");
             TutorialUI.Clear(false);
         }
 
@@ -379,6 +380,9 @@ namespace EA4S.MakeFriends
                 {
                     Debug.Log("Cleared tutorial");
 
+                    isTutorialRound = false;
+                    HideTutorialUI();
+
                     GetConfiguration().Context.GetAudioManager().PlaySound(Sfx.Win);
                     leftArea.Celebrate();
                     rightArea.Celebrate();
@@ -392,8 +396,6 @@ namespace EA4S.MakeFriends
                     yield return new WaitForSeconds(winDelay2);
                     HideDropZone();
 
-                    isTutorialRound = false;
-                    HideTutorialUI();
                     IntroductionState.OnFinishedTutorial();
                 }
                 else
