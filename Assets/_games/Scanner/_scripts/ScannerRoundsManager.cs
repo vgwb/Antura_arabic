@@ -18,8 +18,9 @@ namespace EA4S.Scanner
 
 		ScannerGame game;
 		bool initialized = false;
-		string lastWordDataId = "";
 
+		List <ILivingLetterData> wrongAnswers;
+		ILivingLetterData correctAnswer;
 
 		enum Level { Level1, Level2, Level3, Level4, Level5, Level6 };
 
@@ -48,14 +49,6 @@ namespace EA4S.Scanner
 				game.scannerLL.onFallOff += OnLetterFallOff;
 				game.scannerLL.onStartFallOff += OnLetterStartFallOff;
 				game.scannerLL.onPassedMidPoint += OnLetterPassedMidPoint;
-//				game.pipesAnswerController.Initialize(game);
-//				CreateQuestionLivingLetters();
-//				questionLetterIndex = livingLetters.Count - 1;
-//				nextQuestionTimer = 0f;
-//				requestNextQueston = false;
-//				game.Context.GetInputManager().onPointerDown += OnPointerDown;
-//				game.Context.GetInputManager().onPointerUp += OnPointerUp;
-//				game.Context.GetInputManager().onPointerDrag += OnPointerDrag;
 			}
 		}
 
@@ -68,42 +61,41 @@ namespace EA4S.Scanner
 
 		private void OnLetterReset()
 		{
-			do
-			{
-				game.wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
-			} while (game.wordData.Data.Id == lastWordDataId);
-			lastWordDataId = game.wordData.Data.Id;
-			game.scannerLL.letterObjectView.Init(game.wordData);
+//			do
+//			{
+//				game.wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+//			} while (game.wordData.Data.Id == lastWordDataId);
+//			lastWordDataId = game.wordData.Data.Id;
+			game.scannerLL.letterObjectView.Init(correctAnswer);
 			SetupSuitCases();
 		}
 
 
 		private void SetupSuitCases()
 		{
-			List <String> chosenWords = new List<String>();
-			chosenWords.Add(game.wordData.Data.Id);
-
 			int correctOne = UnityEngine.Random.Range(0,game.suitcases.Length);
+
+			Debug.Log("Number of suitcases: " + game.suitcases.Length);
+
 			for (int i = 0; i < game.suitcases.Length; i++)
 			{
 				ScannerSuitcase ss = game.suitcases[i];
 				ss.Reset();
+
 				if (i == correctOne)
 				{
-					Debug.Log(game.wordData.TextForLivingLetter);
-					ss.drawing.text = game.wordData.DrawingCharForLivingLetter;
+					Debug.Log((i+1) + " Correct word: " + correctAnswer.Id);
+					ss.drawing.text = correctAnswer.DrawingCharForLivingLetter;
 					ss.isCorrectAnswer = true;
 				}
 				else
 				{
-					LL_WordData wrongWord;
-					do
-					{
-						wrongWord = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
-					} while (chosenWords.Contains(wrongWord.Data.Id));
-					chosenWords.Add(wrongWord.Data.Id);
-					Debug.Log(wrongWord.TextForLivingLetter);
-					ss.drawing.text = wrongWord.DrawingCharForLivingLetter;
+					var wrongAnswer = wrongAnswers.First();
+					wrongAnswers.Remove(wrongAnswer);
+
+					Debug.Log((i+1) + " Wrong word: " + wrongAnswer.Id);
+
+					ss.drawing.text = wrongAnswer.DrawingCharForLivingLetter;
 					ss.isCorrectAnswer = false;
 				}
 			}
@@ -111,6 +103,13 @@ namespace EA4S.Scanner
 
 		private void StartRound()
 		{
+
+			var provider = ScannerConfiguration.Instance.Questions;
+			var question = provider.GetNextQuestion();
+		    wrongAnswers = question.GetWrongAnswers().ToList();
+			correctAnswer = question.GetCorrectAnswers().First();
+
+			game.wordData = correctAnswer;
 
 			numberOfRoundsPlayed++;
 			numberOfFailedMoves = 0;
@@ -145,7 +144,7 @@ namespace EA4S.Scanner
 
 		public void CorrectMove(GameObject GO)
 		{
-			AudioManager.I.PlayDialog("comment_welldone");
+			AudioManager.I.PlayDialog("Keeper_Good_" + UnityEngine.Random.Range(1, 13));
 			// TODO Drop suitcase next to LL
 			game.StartCoroutine(PoofOthers(game.suitcases));
 			game.StartCoroutine(RoundWon());
@@ -155,6 +154,7 @@ namespace EA4S.Scanner
 		public void WrongMove(GameObject GO)
 		{
 			numberOfFailedMoves++;
+			AudioManager.I.PlayDialog("Keeper_Bad_" + UnityEngine.Random.Range(1, 6));
 			game.CreatePoof(GO.transform.position,2f,true);
 			GO.SetActive(false);
 
