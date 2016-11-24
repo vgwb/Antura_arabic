@@ -62,7 +62,10 @@
             int nWrong = 0;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.letterFilters.excludeDiacritics = false;
+            builderParams.letterFilters.excludeLetterVariations = false;
             builderParams.wordFilters.excludeDiacritics = false;
+            builderParams.wordFilters.excludeLetterVariations = false;
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
             return builder;

@@ -18,7 +18,9 @@ namespace EA4S.MakeFriends
         public CanvasGroup canvasGroup;
 
         [HideInInspector]
-        public LL_LetterData letterData;
+        public ILivingLetterData letterData;
+        [HideInInspector]
+        public bool isCorrectChoice;
         [HideInInspector]
         public bool wasChosen;
 
@@ -47,11 +49,11 @@ namespace EA4S.MakeFriends
         private Vector2 initialPosition = Vector2.zero;
 
 
-        public void Init(LL_LetterData _letterData)
+        public void Init(ILivingLetterData _letterData)
         {
             Reset();
             letterData = _letterData;
-            LetterText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
+            LetterText.text = letterData.TextForLivingLetter; //ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
         }
 
         public void OnPointerDown(PointerEventData eventData)

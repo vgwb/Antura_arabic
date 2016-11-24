@@ -17,9 +17,15 @@ namespace EA4S.MakeFriends
         public LetterChoiceController letterChoiceBeingDragged;
 
         [HideInInspector]
-        public List<LetterChoiceController> IdleLetterPrompts
+        public List<LetterChoiceController> IdleLetterChoices
         {
             get { return new List<LetterChoiceController>(letterChoices).FindAll(choice => choice.isActiveAndEnabled && choice.State == LetterChoiceController.ChoiceState.IDLE); }
+        }
+
+        [HideInInspector]
+        public List<LetterChoiceController> CorrectLetterChoices
+        {
+            get { return new List<LetterChoiceController>(letterChoices).FindAll(choice => choice.isActiveAndEnabled && choice.isCorrectChoice); }
         }
 
 
@@ -29,6 +35,20 @@ namespace EA4S.MakeFriends
             {
                 letterChoices[i].gameObject.SetActive(true);
                 letterChoices[i].Init(letters[i] as LL_LetterData);
+            }
+        }
+
+        public void SetCorrectChoices(List<ILivingLetterData> commonLetters)
+        {
+            for (int i = 0; i < letterChoices.Length; i++)
+            {
+                for (int j = 0; j < commonLetters.Count; j++)
+                {
+                    if (letterChoices[i].letterData.Id == commonLetters[j].Id)
+                    {
+                        letterChoices[i].isCorrectChoice = true;
+                    }
+                }
             }
         }
 

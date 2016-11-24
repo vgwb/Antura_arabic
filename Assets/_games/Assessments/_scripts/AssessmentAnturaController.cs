@@ -109,13 +109,17 @@ namespace EA4S.Assessment
 
             yield return TimeEngine.Wait( 1.0f);
 
-            transform.DOMove( anturaCenter.position, 3.0f)
-                .SetEase( Ease.InOutSine)
-                .OnComplete(() => playPushAnturaSound());
+            yield return transform
+                .DOMove( anturaCenter.position, 3.0f)
+                .SetEase( Ease.InOutSine);
 
             yield return TimeEngine.Wait( 2.6f);
+            sleepingParticles = Instantiate( sleepingParticles, paritclesPos) as ParticleSystem;
+            sleepingParticles.transform.localPosition = Vector3.zero;
             antura.State = AnturaAnimationStates.sleeping;
-            yield return TimeEngine.Wait( 0.4f);
+            yield return TimeEngine.Wait( 2.1f);
+
+            playPushAnturaSound();            
 
             Coroutine.Start( TutorialClicks());
             yield return TimeEngine.Wait( 2.0f);
@@ -145,6 +149,7 @@ namespace EA4S.Assessment
                         break;
 
                     case 1:
+                        emission.enabled = false;
                         antura.State = AnturaAnimationStates.sitting;
                         yield return TimeEngine.Wait( 0.8f);
                         PlayStateSound();
@@ -195,6 +200,7 @@ namespace EA4S.Assessment
         bool playSound = false;
         Sfx soundToPlay;
         internal Transform anturaCenter;
+        internal Transform paritclesPos;
 
         private void DecreaseState()
         {
