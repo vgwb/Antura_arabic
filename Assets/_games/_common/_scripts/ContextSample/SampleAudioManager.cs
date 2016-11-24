@@ -62,16 +62,6 @@ namespace EA4S
 
         }
 
-        public IAudioSource PlayLetter(LL_LetterData letterId)
-        {
-            return PlayLetterData(letterId);
-        }
-
-        public IAudioSource PlayWord(LL_WordData wordId)
-        {
-            return PlayLetterData(wordId);
-        }
-
         public void PlayText(Db.LocalizationDataId text)
         {
             PlayDialogue(text, null);
