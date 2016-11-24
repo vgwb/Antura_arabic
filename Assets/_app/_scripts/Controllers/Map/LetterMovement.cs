@@ -156,7 +156,7 @@ namespace EA4S
             }
 
             Vector3 pinPos = miniMapScript.pinRight;
-            transform.LookAt(new Vector3(pinPos.x, pinPos.y + 3, pinPos.z));
+           // transform.LookAt(new Vector3(pinPos.x, pinPos.y + 3, pinPos.z));
             UpdateCurrenJourneyPosition();
         }
        public void MoveToTheLeftDot()
@@ -195,7 +195,7 @@ namespace EA4S
             }
           
             Vector3 pinPos = miniMapScript.pinLeft;
-            transform.LookAt(new Vector3(pinPos.x, pinPos.y + 3, pinPos.z));
+           // transform.LookAt(new Vector3(pinPos.x, pinPos.y + 3, pinPos.z));
             UpdateCurrenJourneyPosition();
         }
 
