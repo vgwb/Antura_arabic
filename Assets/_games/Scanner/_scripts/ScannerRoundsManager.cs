@@ -201,6 +201,9 @@ namespace EA4S.Scanner
 		IEnumerator RoundWon()
 		{
 			numberOfRoundsWon++;
+
+			game.Context.GetOverlayWidget().SetStarsScore(numberOfRoundsWon);
+
 			yield return new WaitForSeconds(0.25f);
 			AudioManager.I.PlaySfx(Sfx.Win);
 			game.scannerLL.RoundWon();
