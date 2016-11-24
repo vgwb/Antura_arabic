@@ -31,8 +31,6 @@ namespace EA4S.Scanner
 
 			if (timer < 0)
 			{
-				Debug.Log("Stars: " + game.CurrentStars);
-
 				game.EndGame(game.CurrentStars, game.CurrentScoreRecord);
 			}
 		}

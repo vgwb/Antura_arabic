@@ -81,9 +81,7 @@ namespace EA4S.Scanner
             } else if (status == LLStatus.Falling) {
                 transform.Translate(Vector2.down * flightSpeed * Time.deltaTime);
             }
-
-            // Debug.Log("Letter: " + transform.position.x + " Fall Off X: " + fallOffX);
-
+				
             if (livingLetter.transform.position.x > fallOffX) {
                 StartCoroutine(co_FallOff());
             } else if (livingLetter.transform.position.x > midPointX && !passedMidPoint) {
@@ -95,6 +93,7 @@ namespace EA4S.Scanner
 
         IEnumerator co_FlyAway()
         {
+			transform.parent = originalParent;
             letterObjectView.DoSmallJump();
             yield return new WaitForSeconds(1f);
             rainbowJet.SetActive(true);
@@ -124,8 +123,10 @@ namespace EA4S.Scanner
             letterObjectView.Falling = true;
             status = LLStatus.Falling;
             yield return new WaitForSeconds(3f);
+
+			onFallOff();
+
             Reset();
-            onFallOff();
         }
 
         void OnMouseUp()
