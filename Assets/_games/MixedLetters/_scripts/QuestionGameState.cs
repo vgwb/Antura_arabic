@@ -13,7 +13,7 @@ namespace EA4S.MixedLetters
 
         public void EnterState()
         {
-            game.Context.GetPopupWidget().Show(OnQuestionCompleted, TextID.ASSESSMENT_RESULT_GOOD, true, null);
+            game.Context.GetPopupWidget().Show(OnQuestionCompleted, Db.LocalizationDataId.Assessment_Complete_1, true, null);
         }
 
         public void ExitState()

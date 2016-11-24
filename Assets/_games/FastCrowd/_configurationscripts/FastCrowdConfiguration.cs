@@ -42,8 +42,8 @@
 
             Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
-            //Variation = FastCrowdVariation.Alphabet;
-            Variation = FastCrowdVariation.Spelling;
+            Variation = FastCrowdVariation.Alphabet;
+            //Variation = FastCrowdVariation.Spelling;
 
             //Questions = new SampleQuestionWithWordsProvider();
             //Variation = FastCrowdVariation.Counting;

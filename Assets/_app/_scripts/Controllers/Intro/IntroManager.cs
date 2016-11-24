@@ -56,7 +56,7 @@ namespace EA4S
                 {
                     mazeCharacter.SetDestination();
                 }
-                StartCoroutine(ChangeIntroductionState("Intro_welcome", FirstIntroLetter));
+                StartCoroutine(ChangeIntroductionState(Db.LocalizationDataId.Intro_welcome, FirstIntroLetter));
             }
             else
             {
@@ -77,27 +77,27 @@ namespace EA4S
         {
             Debug.Log("Start Spawning");
             factory.StartSpawning = true;
-            StartCoroutine(ChangeIntroductionState("Intro_Letters_1", SecondIntroLetter));
+            StartCoroutine(ChangeIntroductionState(Db.LocalizationDataId.Intro_Letters_1, SecondIntroLetter));
         }
 
         public void SecondIntroLetter()
         {
             Debug.Log("Second Intro Letter");
-            StartCoroutine(ChangeIntroductionState("Intro_Letters_2", EnableAntura));
+            StartCoroutine(ChangeIntroductionState(Db.LocalizationDataId.Intro_Letters_2, EnableAntura));
         }
 
         public void EnableAntura()
         {
             factory.antura.SetAnturaTime(true);
             Debug.Log("Antura is enable");
-            StartCoroutine(ChangeIntroductionState("Intro_Dog", EndIntroduction));
+            StartCoroutine(ChangeIntroductionState(Db.LocalizationDataId.Intro_Dog, EndIntroduction));
         } 
 
         public void EndIntroduction()
         {
             Debug.Log("EndIntroduction");
-            StartCoroutine(ChangeIntroductionState("end_learningblock_A2", DisableAntura));
-            StartCoroutine(ChangeIntroductionState("Intro_Dog_Chase", DisableAntura));
+            StartCoroutine(ChangeIntroductionState(Db.LocalizationDataId.Map_End_LB_2, DisableAntura));
+            StartCoroutine(ChangeIntroductionState(Db.LocalizationDataId.Intro_Dog_Chase, DisableAntura));
         }
 
         public void DisableAntura()
@@ -109,7 +109,7 @@ namespace EA4S
         }
 
 
-        IEnumerator ChangeIntroductionState(string audioI, System.Action nextState)
+        IEnumerator ChangeIntroductionState(Db.LocalizationDataId audioI, System.Action nextState)
         {
             Debug.Log("Start Coroutine");
             yield return new WaitForSeconds(m_StateDelay);

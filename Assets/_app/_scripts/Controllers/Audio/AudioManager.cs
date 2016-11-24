@@ -10,7 +10,7 @@ namespace EA4S
     public class AudioManager : MonoBehaviour
     {
         const string LETTERS_PREFIX = "Letter/";
-        const string WORDS_PREFIX = "VOX_Words_";
+        const string WORDS_PREFIX = "";
 
         public static AudioManager I;
 
@@ -233,7 +233,7 @@ namespace EA4S
         {
             if (data.DataType == LivingLetterDataType.Letter)
                 return GetAudioClip(LETTERS_PREFIX + data.Id);
-            else if (data.DataType == LivingLetterDataType.Word) {
+            else if (data.DataType == LivingLetterDataType.Word || data.DataType == LivingLetterDataType.Image) {
                 return GetCachedResource("AudioArabic/Words/" + WORDS_PREFIX + data.Id);
             }
             return null;

@@ -12,7 +12,8 @@ namespace EA4S.Assessment
                                     IAssessmentConfiguration game_conf,
                                     IGameContext game_context,
                                     IAudioManager audio_manager,
-                                    ISubtitlesWidget subtitles)
+                                    ISubtitlesWidget subtitles,
+                                    Db.LocalizationDataId gameDescription)
         {
             AnswerPlacer = answ_placer;
             QuestionGenerator = question_generator;
@@ -22,55 +23,94 @@ namespace EA4S.Assessment
             GameContext = game_context;
             AudioManager = audio_manager;
             Subtitles = subtitles;
+            GameDescription = gameDescription;
         }
 
         #region AUDIO
 
-        private void Dialogue( TextID ID)
+        private void Dialogue( Db.LocalizationDataId ID)
         {
+            isPlayingAudio = true;
             Coroutine.Start( PlayDialogueCoroutine( ID));
         }
 
-        bool isPlayingAudio = false;
-        IEnumerator PlayDialogueCoroutine( TextID ID)
+        private bool IsAudioPlaying()
         {
+            return isPlayingAudio;
+        }
+
+        bool isPlayingAudio = false;
+
+        private void StoppedPlaying()
+        {
+            isPlayingAudio = false;
+        }
+        IEnumerator PlayDialogueCoroutine( Db.LocalizationDataId ID)
+        {
+            Subtitles.DisplaySentence( ID, 1, false);
+            AudioManager.PlayDialogue( ID, () => StoppedPlaying() );
+
             while (isPlayingAudio)
                 yield return null;
 
-            isPlayingAudio = true;
-            AudioManager.PlayDialogue( ID);
-            Subtitles.DisplaySentence( ID, 2, false, ()=> isPlayingAudio = false);
-
-            while (isPlayingAudio)
-                yield return null;
+            // Clear dialog before 10 seconds
+            Subtitles.Clear();
         }
 
         private void PlayStartSound()
         {
-            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSMENT_START_1,
-                                                      TextID.ASSESSMENT_START_2,
-                                                      TextID.ASSESSMENT_START_3));
+            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Start_1,
+                                        Db.LocalizationDataId.Assessment_Start_2,
+                                        Db.LocalizationDataId.Assessment_Start_3));
         }
 
         private void PlayAnturaIsComingSound()
         {
-            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSSMENT_UPSET_1,
-                                                      TextID.ASSESSSMENT_UPSET_2,
-                                                      TextID.ASSESSSMENT_UPSET_3));
+            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Upset_2,
+                                        Db.LocalizationDataId.Assessment_Upset_3));
         }
 
         private void PlayPushAnturaSound()
         {
-            AudioManager.PlayDialogue( TextID.Random( TextID.ASSESSSMENT_PUSH_1,
-                                                      TextID.ASSESSSMENT_PUSH_2,
-                                                      TextID.ASSESSSMENT_PUSH_3));
+            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Push_Dog_1,
+                                        Db.LocalizationDataId.Assessment_Push_Dog_2,
+                                        Db.LocalizationDataId.Assessment_Push_Dog_3));
         }
+
+        private void PlayAnturaGoneSound()
+        {
+            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Dog_Gone_1,
+                                        Db.LocalizationDataId.Assessment_Dog_Gone_2,
+                                        Db.LocalizationDataId.Assessment_Dog_Gone_3));
+        }
+
+        private void PlayAssessmentCompleteSound()
+        {
+            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Complete_1,
+                                        Db.LocalizationDataId.Assessment_Complete_2,
+                                        Db.LocalizationDataId.Assessment_Complete_3));
+        }
+
+        private void PlayAssessmentWrongSound()
+        {
+            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Wrong_1,
+                                        Db.LocalizationDataId.Assessment_Wrong_2,
+                                        Db.LocalizationDataId.Assessment_Wrong_3));
+        }
+
+        private void PlayGameDescription()
+        {
+            Dialogue( GameDescription);
+        }
+
         #endregion
 
         public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
-            //PlayStartSound();
-            yield return TimeEngine.Wait( 0.7f);
+            PlayStartSound();
+            while(IsAudioPlaying())
+                yield return null;
+
             bool AnturaShowed = false;
 
             for (int round = 0; round< AssessmentConfiguration.Rounds; round++)
@@ -104,12 +144,28 @@ namespace EA4S.Assessment
                 if (AnturaShowed == false)
                 {
                     #region ANTURA ANIMATION
-                    /*yield return TimeEngine.Wait( 1.7f);
+
+                    PlayAnturaIsComingSound();
                     var anturaController = AnturaFactory.Instance.SleepingAntura();
 
-                    bool anturaIsGone = false;
-                    anturaController.StartAnimation( () => anturaIsGone = true);*/
+                    anturaController.StartAnimation( ()=> PlayPushAnturaSound());
 
+                    while (anturaController.IsAnimating() || IsAudioPlaying())
+                        yield return null;
+
+                    PlayAnturaGoneSound();
+
+                    while (IsAudioPlaying())
+                        yield return null;
+
+                    yield return TimeEngine.Wait( 0.3f);
+
+                    PlayGameDescription();
+
+                    while (IsAudioPlaying())
+                        yield return null;
+
+                    yield return TimeEngine.Wait(0.3f);
                     #endregion
 
                     QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
@@ -159,5 +215,7 @@ namespace EA4S.Assessment
         public IAudioManager AudioManager { get; private set; }
 
         public ISubtitlesWidget Subtitles { get; private set; }
+
+        public Db.LocalizationDataId GameDescription { get; private set; }
     }
 }
