@@ -15,6 +15,7 @@ public class StrollingLivingLetter : MonoBehaviour
     public StrollingLetterIdleState IdleState { get; private set; }
     public StrollingLetterFallingState FallingState { get; private set; }
     public StrollingLetterHangingState HangingState { get; private set; }
+    public StrollingLetterTutorialState TutorialState { get; private set; }
 
     // Use Scare() method instead
     private StrollingLetterScaredState ScaredState { get; set; }
@@ -34,6 +35,7 @@ public class StrollingLivingLetter : MonoBehaviour
         ScaredState = new StrollingLetterScaredState(this);
         FallingState = new StrollingLetterFallingState(this);
         HangingState = new StrollingLetterHangingState(this);
+        TutorialState = new StrollingLetterTutorialState(this);
 
         SetCurrentState(FallingState);
     }
@@ -110,6 +112,11 @@ public class StrollingLivingLetter : MonoBehaviour
             SetCurrentState(ScaredState);
     }
 
+    public void Tutorial()
+    {
+        SetCurrentState(TutorialState);
+    }
+
     void OnDestroy()
     {
         if (onDestroy != null)
@@ -123,7 +130,8 @@ public class StrollingLivingLetter : MonoBehaviour
         if (currentData != null)
         {
             //bool matching = GetComponent<LetterObjectView>().Model.Data.Key == currentData.Key;
-            bool matching = GetComponent<LetterObjectView>().Data == currentData;
+            //bool matching = GetComponent<LetterObjectView>().Data == currentData;
+            bool matching = GetComponent<LetterObjectView>().Data.Equals(currentData);
 
             if (onDropped != null)
                 onDropped(matching);

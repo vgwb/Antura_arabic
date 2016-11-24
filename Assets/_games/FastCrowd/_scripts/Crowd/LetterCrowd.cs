@@ -38,6 +38,21 @@ namespace EA4S
             }
         }
 
+        public StrollingLivingLetter GetLetter(ILivingLetterData data)
+        {
+            for (int i = 0; i < letters.Count; i++)
+            {
+                LetterObjectView lov = letters[i].gameObject.GetComponent<LetterObjectView>();
+
+                if(lov.Data == data)
+                {
+                    return letters[i];
+                }
+            }
+
+            return null;
+        }
+
         public void AddLivingLetter(ILivingLetterData letter)
         {
             toAdd.Enqueue(letter);
@@ -69,7 +84,7 @@ namespace EA4S
 
             var livingLetter = letterObjectView.gameObject.AddComponent<StrollingLivingLetter>();
             livingLetter.crowd = this;
-            
+
             letterObjectView.gameObject.AddComponent<Rigidbody>().isKinematic = true;
 
             foreach (var collider in letterObjectView.gameObject.GetComponentsInChildren<Collider>())
