@@ -16,14 +16,6 @@ namespace EA4S.DancingDots
 
 	public class DancingDotsLivingLetter : MonoBehaviour
 	{
-		[Header("Behavior")]
-		public bool ClickToChangeAnimation = false;
-		public bool ClickToChangeLetter = false;
-		public bool ClickToSpeakLetter = false;
-
-		[Header("Starting State")]
-		public LetterObjectView toDelete;
-		public bool ShowLetter = false;
 
 		[Header("References")]
 		public LetterObjectView letterObjectView;
@@ -48,48 +40,18 @@ namespace EA4S.DancingDots
 
 		public void Reset()
 		{
-
-			if (ShowLetter) {
-				RandomLetter();
-				SpeakLetter();
-			} else {
-				hintText.text = "";
-				dotlessText.text = "";
-				fullText.text = "";
-				fullTextGO.SetActive(false);
-			}
+			RandomLetter();
+			SpeakLetter();
 		}
 
 		void PlayAnimation()
 		{
 			letterObjectView.SetState(LLAnimationStates.LL_dancing);
 		}
-
-		public void Clicked()
-		{
-			if (ClickToChangeAnimation)
-				RandomAnimation();
-
-			if (ClickToChangeLetter)
-				RandomLetter();
-
-			if (ClickToSpeakLetter)
-				SpeakLetter();
-		}
 			
 		void RandomLetter()
 		{
-
-//			string lettersWithDots = "ض ث ق ف غ خ ج ة ن ت ب ي ش ظ ذ ز";
-//			do
-//			{
-//				letterData = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-//			} 
-//			while (!lettersWithDots.Contains(letterData.TextForLivingLetter) || 
-//				letterData.TextForLivingLetter == DancingDotsGameManager.instance.currentLetter);
-
 			letterData = game.questionsManager.getNewLetter();
-
 			SetupLetter();
 		}
 
@@ -152,37 +114,6 @@ namespace EA4S.DancingDots
 			if (letterData != null && !game.isTutRound) {
 				AudioManager.I.PlayLetter(letterData.Id);
 			}
-		}
-
-		void RandomAnimation()
-		{
-			// TODO delte
-		}
-
-		string GetStateName(LivingLetterAnim state)
-		{
-			var stateName = "";
-			switch (state) {
-			case LivingLetterAnim.Nothing:
-				stateName = "";
-				break;
-			case LivingLetterAnim.idle:
-				stateName = "idle";
-				break;
-			case LivingLetterAnim.hold:
-				stateName = "hold";
-				break;
-			case LivingLetterAnim.run:
-				stateName = "run";
-				break;
-			case LivingLetterAnim.walk:
-				stateName = "walk";
-				break;
-			case LivingLetterAnim.ninja:
-				stateName = "ninja";
-				break;
-			}
-			return stateName;
 		}
 
 //		public void HideAllText()
