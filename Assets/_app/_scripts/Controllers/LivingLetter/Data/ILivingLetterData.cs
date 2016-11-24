@@ -15,6 +15,7 @@ namespace EA4S
         Sprite DrawForLivingLetter { get; }
         string DrawingCharForLivingLetter { get; }
         string Id { get; set; }
+        bool Equals(ILivingLetterData data);
     }
 
     public enum LivingLetterDataType

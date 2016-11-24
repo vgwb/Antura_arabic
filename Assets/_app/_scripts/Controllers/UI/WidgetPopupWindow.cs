@@ -308,7 +308,7 @@ namespace EA4S
             MessageTextGO.GetComponent<TextMeshProUGUI>().text = text;
         }
 
-        public void SetTitleSentence(string SentenceId)
+        public void SetTitleSentence(Db.LocalizationDataId SentenceId)
         {
             Db.LocalizationData row = LocalizationManager.GetLocalizationData(SentenceId);
             TitleGO.GetComponent<TextMeshProUGUI>().text = ArabicFixer.Fix(row.Arabic, false, false);

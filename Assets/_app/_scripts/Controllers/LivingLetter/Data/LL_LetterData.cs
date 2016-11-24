@@ -49,6 +49,15 @@ namespace EA4S
         public Sprite DrawForLivingLetter {
             get { return null; }
         }
+        
+        public bool Equals(ILivingLetterData data)
+        {
+            LL_LetterData other = data as LL_LetterData;
+            if (other == null)
+                return false;
+
+            return other.Data.Id == Data.Id && other.ShowAs == ShowAs;
+        }
         #endregion
     }
 }
