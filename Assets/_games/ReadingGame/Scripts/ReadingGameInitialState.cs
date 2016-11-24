@@ -32,6 +32,9 @@ namespace EA4S.ReadingGame
             {
                 introCompleted = true;
             }
+
+            if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
+                game.Context.GetAudioManager().PlayMusic(Music.MainTheme);
         }
 
 
