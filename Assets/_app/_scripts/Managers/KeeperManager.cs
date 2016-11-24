@@ -14,7 +14,8 @@ namespace EA4S
 
         public void PlaySceneIntroduction(AppScene scene)
         {
-            switch (scene) {
+            switch (scene)
+            {
                 default:
                     break;
             }
@@ -32,10 +33,19 @@ namespace EA4S
 
         public void PlayDialog(Db.LocalizationData data, bool autoClose = true, System.Action _callback = null)
         {
-            if (autoClose) {
+            if (autoClose)
+            {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
-                AudioManager.I.PlayDialog(data, CloseDialog);
-            } else {
+                var callback = _callback;
+                AudioManager.I.PlayDialog(data, () =>
+                {
+                    CloseDialog();
+                    if (callback != null)
+                        callback();
+                });
+            }
+            else
+            {
                 WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
                 AudioManager.I.PlayDialog(data, _callback);
             }
