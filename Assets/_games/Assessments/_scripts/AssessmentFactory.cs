@@ -9,6 +9,7 @@ namespace EA4S.Assessment
         private static IGameContext context;
         private static IAudioManager audioManager;
         private static ISubtitlesWidget subtitles;
+        private static IDialogueManager dialogueManager;
         private static Db.LocalizationDataId gameDescription;
         private static readonly float letterSize = 1f * 3;
         private static readonly float wordSize = 1.5f * 3;
@@ -19,7 +20,7 @@ namespace EA4S.Assessment
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
@@ -30,7 +31,7 @@ namespace EA4S.Assessment
             gameDescription = Db.LocalizationDataId.Assessment_Match_Letters_Words;
 
             return new DefaultAssessment(answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, audioManager, subtitles,
+                                            configuration, context, dialogueManager,
                                             gameDescription);
         }
 
@@ -39,7 +40,7 @@ namespace EA4S.Assessment
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = false;
-            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceAndFlipDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
@@ -50,7 +51,7 @@ namespace EA4S.Assessment
             gameDescription = Db.LocalizationDataId.Assessment_Select_Letter_Listen;
 
             return new DefaultAssessment(   answerPlacer, questionplacer, generator, injector, 
-                                            configuration, context, audioManager, subtitles,
+                                            configuration, context, dialogueManager,
                                             gameDescription);
         }
 
@@ -59,7 +60,7 @@ namespace EA4S.Assessment
             Init();
             AssessmentConfiguration.Instance.PronunceQuestionWhenClicked = true;
             AssessmentConfiguration.Instance.PronunceAnswerWhenClicked = true;
-            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager);
+            IAnswerChecker checker          = new DefaultAnswerChecker( context.GetCheckmarkWidget(), audioManager, dialogueManager);
             IDragManager dragManager        = new DefaultDragManager( audioManager, checker);
             IQuestionDecorator questionDecorator = new PronunceQuestionDecorator();
             IQuestionGenerator generator    = new DefaultQuestionGenerator( configuration.Questions, QuestionType.LivingLetter);
@@ -70,7 +71,7 @@ namespace EA4S.Assessment
             gameDescription = Db.LocalizationDataId.Assessment_Select_Words;
 
             return new DefaultAssessment(answerPlacer, questionplacer, generator, injector,
-                                            configuration, context, audioManager, subtitles,
+                                            configuration, context, dialogueManager,
                                             gameDescription);
         }
 
@@ -85,6 +86,7 @@ namespace EA4S.Assessment
             context = configuration.Context;
             audioManager = configuration.Context.GetAudioManager();
             subtitles = configuration.Context.GetSubtitleWidget();
+            dialogueManager = new DialogueManager( audioManager, subtitles);
         }
     }
 }

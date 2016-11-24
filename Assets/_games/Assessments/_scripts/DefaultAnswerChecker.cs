@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -7,11 +8,15 @@ namespace EA4S.Assessment
     {
         private ICheckmarkWidget checkmarkWidget;
         private IAudioManager audioManager;
+        private IDialogueManager dialogueManager;
 
-        public DefaultAnswerChecker( ICheckmarkWidget checkmarkWidget, IAudioManager audioManager)
+        public DefaultAnswerChecker(    ICheckmarkWidget checkmarkWidget, 
+                                        IAudioManager audioManager, 
+                                        IDialogueManager dialogueManager)
         {
             this.checkmarkWidget = checkmarkWidget;
             this.audioManager = audioManager;
+            this.dialogueManager = dialogueManager;
         }
 
         private bool isAnimating = false;
@@ -26,6 +31,14 @@ namespace EA4S.Assessment
             }
 
             return false;
+        }
+
+        YieldInstruction PlayAnswerWrong()
+        {
+            return dialogueManager.Dialogue( Localization.Random(
+                                            Db.LocalizationDataId.Assessment_Wrong_1,
+                                            Db.LocalizationDataId.Assessment_Wrong_2,
+                                            Db.LocalizationDataId.Assessment_Wrong_3 ));
         }
 
 
@@ -72,13 +85,15 @@ namespace EA4S.Assessment
             if (allCorrect)
             {
                 audioManager.PlaySound( Sfx.StampOK);
-                yield return TimeEngine.Wait( 0.4f);
+                yield return TimeEngine.Wait(0.4f);
                 checkmarkWidget.Show( true);
             }
             else
             {
                 checkmarkWidget.Show( false);
                 audioManager.PlaySound( Sfx.KO);
+                yield return TimeEngine.Wait( 0.4f);
+                yield return PlayAnswerWrong();
             }
 
             yield return TimeEngine.Wait( 1.0f);

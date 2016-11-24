@@ -1,13 +1,13 @@
 ﻿/**
  * here we can put all static general config, to be used with Config.name_of_your_costant;
- * 
+ *
  **/
 
 namespace EA4S
 {
     public static class AppConstants
     {
-        public const string AppVersion = "0.11.24";
+        public const string AppVersion = "0.11.28b";
 
 #if UNITY_EDITOR
 
