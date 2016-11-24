@@ -29,6 +29,7 @@ PlayerSettings:
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: 1
   androidShowActivityIndicatorOnLoading: 2
+  tizenShowActivityIndicatorOnLoading: -1
   iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 1
@@ -44,6 +45,7 @@ PlayerSettings:
   runInBackground: 0
   captureSingleScreen: 0
   Override IPod Music: 0
+  muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
   submitAnalytics: 0
   usePlayerLog: 1
@@ -144,6 +146,7 @@ PlayerSettings:
   tvOSSmallIconLayers: []
   tvOSLargeIconLayers: []
   tvOSTopShelfImageLayers: []
+  tvOSTopShelfImageWideLayers: []
   iOSLaunchScreenType: 3
   iOSLaunchScreenPortrait: {fileID: 0}
   iOSLaunchScreenLandscape: {fileID: 0}
@@ -551,7 +554,7 @@ PlayerSettings:
   XboxOne::VR::enabledDevices: []
   iOS::VR::enabledDevices: []
   tvOS::VR::enabledDevices: []
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: ca7a3389-ec6c-44b1-a44d-aa0da4930165
+  projectName: EA4S_Antura
+  organizationId: vgwb
   cloudEnabled: 0
