@@ -33,9 +33,11 @@ namespace EA4S
         public void PlayDialog(Db.LocalizationData data, bool autoClose = true, System.Action _callback = null)
         {
             if (autoClose) {
-                WidgetSubtitles.I.DisplaySentence(data, 2, true, CloseDialog);
+                WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
+                AudioManager.I.PlayDialog(data, CloseDialog);
             } else {
-                WidgetSubtitles.I.DisplaySentence(data, 2, true, _callback);
+                WidgetSubtitles.I.DisplaySentence(data, 2, true, null);
+                AudioManager.I.PlayDialog(data, _callback);
             }
         }
 
