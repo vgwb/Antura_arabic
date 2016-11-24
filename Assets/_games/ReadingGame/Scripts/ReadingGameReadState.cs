@@ -38,7 +38,7 @@ namespace EA4S.ReadingGame
             game.isTimesUp = false;
 
             // Reset game timer
-            gameTime.Reset(ReadingGameGame.TIME_TO_ANSWER);
+            gameTime.Reset(game.TimeToAnswer);
 
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
             {
