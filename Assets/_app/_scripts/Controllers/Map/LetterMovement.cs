@@ -27,17 +27,14 @@ namespace EA4S
         Rope ropeSelected;
         Collider colliderRaycast;
 
-        void Start()
-        {
-            Debug.Log(AppManager.Instance.Player.MaxJourneyPosition.Stage);
-            Debug.Log(AppManager.Instance.Player.MaxJourneyPosition.LearningBlock);
-            Debug.Log(AppManager.Instance.Player.MaxJourneyPosition.PlaySession);
-        }
-
         void Update()
-        {         
+        {
+            /*Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
+            Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
+            Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);*/
+
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+           /* if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -124,7 +121,7 @@ namespace EA4S
                     UpdateCurrenJourneyPosition();
                 }
 
-            }
+            }*/
         }
 
         public void MoveToTheRightDot()
@@ -209,6 +206,7 @@ namespace EA4S
                 posDot = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].transform.position;
                 transform.position = posDot;
                 miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().Dot.GetComponent<Renderer>().material = redPin;
+                pos = miniMapScript.posPines[AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock].GetComponent<MapPin>().posBefore;
             }
             else  //Letter is on a dot
             {
@@ -220,19 +218,33 @@ namespace EA4S
                 miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
             }
         }
+        public void ResetPosLetterAfterChangeStage()
+        {
+            pos = 0;
+            posDot = miniMapScript.posDots[pos].transform.position;
+            transform.position = posDot;
+            miniMapScript.posDots[pos].GetComponent<Renderer>().material = red;
+            AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock = 1;
+            AppManager.Instance.Player.CurrentJourneyPosition.PlaySession = 1;
+            UpdateCurrenJourneyPosition();
+        }
         void UpdateCurrenJourneyPosition()
         {
             AppManager.Instance.Player.SetActualJourneyPosition(new JourneyPosition(AppManager.Instance.Player.CurrentJourneyPosition.Stage,
              AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock,
               AppManager.Instance.Player.CurrentJourneyPosition.PlaySession), true);
         }
-        void ChangeMaterialDotToBlack(GameObject dot)
+        public void ChangeMaterialDotToBlack(GameObject dot)
         {
            dot.GetComponent<Renderer>().material = black;
         }
         void ChangeMaterialDotToRed(GameObject dot)
         {
             dot.GetComponent<Renderer>().material = red;
+        }
+        public void ChangeMaterialPinToBlack(GameObject pin)
+        {
+            pin.GetComponent<Renderer>().material = blackPin;
         }
     }
 }

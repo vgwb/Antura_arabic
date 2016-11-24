@@ -20,14 +20,14 @@
 
             if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_TITLE, delegate ()
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Title, delegate ()
                 {
                     playIntro = true;
                 });
             }
             else
             {
-                game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_WORDS_TITLE, delegate ()
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_words_Title, delegate ()
                 {
                     playIntro = true;
                 });
@@ -59,14 +59,14 @@
 
                 if (ToboganConfiguration.Instance.Variation == ToboganVariation.LetterInAWord)
                 {
-                    game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_INTRO, delegate ()
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Intro, delegate ()
                     {
                         nextState = true;
                     });
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(TextID.TOBOGAN_LETTERS_INTRO, delegate ()
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Tobogan_letters_Intro, delegate ()
                     {
                         nextState = true;
                     });

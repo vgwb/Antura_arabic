@@ -31,6 +31,7 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
+            Debug.Log(" assessment:" + assessment);
             Coroutine.Start( assessment.PlayCoroutine( SetNextState));
         }
 

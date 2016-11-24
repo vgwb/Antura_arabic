@@ -36,7 +36,7 @@ namespace EA4S.SickLetters
         public float vaseWidth = 5.20906f;
         public bool LLCanDance = false, with7arakat;
         public int numerOfWringDDs = 3;
-        public string dotlessLetters = "إ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و";
+        public string dotlessLetters = " إ إ أ ا ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و إ";
 
         public SickLettersDraggableDD[] Draggables;
 
@@ -174,7 +174,7 @@ namespace EA4S.SickLetters
         public void setDifficulty(float diff, int gameDuration, int targetScale, float vaseWidth, bool LLCanDance, bool with7arakat)
         {
             this.gameDuration = gameDuration;
-            Context.GetOverlayWidget().SetClockDuration(gameDuration);
+            //Context.GetOverlayWidget().SetClockDuration(gameDuration);
             this.targetScale = targetScale;
             //Context.GetOverlayWidget().SetStarsThresholds((targetScale / 3), (targetScale * 2 / 3), targetScale);
 

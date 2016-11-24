@@ -48,7 +48,7 @@ namespace EA4S.ReadingGame
                 }
                 else
                 {
-                    game.Context.GetAudioManager().PlayDialogue(TextID.READINGGAME_TUTORIAL);
+                    game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.ReadingGame_Tuto);
                     drawTutorialLineTimer = 0;
                 }
             }

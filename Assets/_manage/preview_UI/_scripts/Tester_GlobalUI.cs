@@ -68,7 +68,16 @@ namespace EA4S.Test
 
         public void Popup_ShowSentence()
         {
-            GlobalUI.WidgetPopupWindow.ShowSentence(()=> GlobalUI.WidgetPopupWindow.Close(), TextID.ASSESSMENT_START_A1.ToString());
+            var answerData = AppManager.Instance.DB.GetWordDataByRandom();
+            LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
+            GlobalUI.WidgetPopupWindow.ShowSentence(()=> GlobalUI.WidgetPopupWindow.Close(), Db.LocalizationDataId.Assessment_Start_2);
+        }
+
+        public void Popup_ShowImage()
+        {
+            var answerData = AppManager.Instance.DB.GetWordDataByRandom();
+            LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
+            GlobalUI.WidgetPopupWindow.ShowStringAndWord(()=> GlobalUI.WidgetPopupWindow.Close(), "Title", randomWord);
         }
 
         #endregion
@@ -85,16 +94,13 @@ namespace EA4S.Test
             GlobalUI.WidgetSubtitles.Close();
         }
 
-        string RandomTextId()
+        Db.LocalizationDataId RandomTextId()
         {
-            int rnd = UnityEngine.Random.Range(0, 5);
-            switch (rnd) {
-            case 0: return TextID.ASSESSMENT_START_A1.ToString();
-            case 1: return TextID.ASSESSMENT_START_A2.ToString();
-            case 2: return TextID.ASSESSMENT_START_A3.ToString();
-            case 3: return TextID.ASSESSMENT_RESULT_GOOD.ToString();
-            default: return TextID.ASSESSMENT_RESULT_INTRO.ToString();
-            }
+            return RandomHelper.GetRandomParams(Db.LocalizationDataId.Assessment_Start_1,
+                Db.LocalizationDataId.Assessment_Start_2,
+                Db.LocalizationDataId.Assessment_Start_3,
+                Db.LocalizationDataId.Assessment_Complete_1,
+                Db.LocalizationDataId.Assessment_Classify_Letters);
         }
 
         #endregion
