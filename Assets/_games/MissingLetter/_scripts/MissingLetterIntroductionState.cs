@@ -9,6 +9,14 @@
 
         public void EnterState()
         {
+            if(m_oGame.m_eGameType == GameType.WORD)
+            {
+                AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Title);
+            }
+            else
+            {
+                AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_phrases_Title);
+            }
         }
 
         public void ExitState()
@@ -30,6 +38,6 @@
         }
 
         MissingLetterGame m_oGame;
-        float m_fTimer = 1;
+        float m_fTimer = 2;
     }
 }
