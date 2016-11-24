@@ -29,12 +29,12 @@ namespace EA4S
 
         void Update()
         {
-           /* Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
+            /*Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.Stage);
             Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.LearningBlock);
             Debug.Log(AppManager.Instance.Player.CurrentJourneyPosition.PlaySession);*/
 
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(posDot.x, transform.position.y, posDot.z), speed * Time.deltaTime);
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+           /* if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -121,7 +121,7 @@ namespace EA4S
                     UpdateCurrenJourneyPosition();
                 }
 
-            }
+            }*/
         }
 
         public void MoveToTheRightDot()
