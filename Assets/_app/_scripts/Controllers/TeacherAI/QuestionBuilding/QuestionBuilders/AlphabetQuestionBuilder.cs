@@ -15,6 +15,11 @@ namespace EA4S
         {
             if (parameters == null) parameters = new QuestionBuilderParameters();
 
+            parameters.letterFilters.excludeLetterVariations = true;
+            parameters.letterFilters.excludeDiacritics = true;
+            parameters.wordFilters.excludeLetterVariations = true;
+            parameters.wordFilters.excludeDiacritics = true;
+
             this.parameters = parameters;
         }
 
