@@ -40,7 +40,7 @@ namespace EA4S
         public bool Equals(ILivingLetterData data)
         {
             StringTestData other = data as StringTestData;
-            if (other != null)
+            if (other == null)
                 return false;
 
             return other.text == text;
