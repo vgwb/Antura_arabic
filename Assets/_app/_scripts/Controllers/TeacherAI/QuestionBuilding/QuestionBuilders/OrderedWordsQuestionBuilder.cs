@@ -37,9 +37,10 @@ namespace EA4S
                  new SelectionParameters(parameters.correctSeverity, getMaxData:true, useJourney:parameters.useJourneyForCorrect) 
                );
 
+            // sort by id
             words.Sort((x, y) =>
                 {
-                    return x.ToString().CompareTo(y.ToString());
+                    return x.Id.CompareTo(y.Id);
                 }
             );
 

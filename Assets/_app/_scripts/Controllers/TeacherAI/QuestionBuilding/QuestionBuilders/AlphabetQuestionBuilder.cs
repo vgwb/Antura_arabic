@@ -37,7 +37,7 @@ namespace EA4S
 
             alphabetLetters.Sort((x, y) =>
                 {
-                    return x.ToString().CompareTo(y.ToString());
+                    return x.Number - y.Number;
                 }
             );
 
