@@ -10,7 +10,7 @@ namespace EA4S
     public class AudioManager : MonoBehaviour
     {
         const string LETTERS_PREFIX = "Letter/";
-        const string WORDS_PREFIX = "VOX_Words_";
+        const string WORDS_PREFIX = "";
 
         public static AudioManager I;
 
