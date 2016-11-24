@@ -1291,7 +1291,7 @@ MonoBehaviour:
       SunMoon: 0
       Sound: a
       SoundZone: 
-      Isolated: "\uFFFD\u0629"
+      Isolated: "\u0629"
       Initial: 
       Medial: 
       Final: "\u0640\u0629"
