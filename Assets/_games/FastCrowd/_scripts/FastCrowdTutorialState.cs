@@ -1,8 +1,13 @@
-﻿namespace EA4S.FastCrowd
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+namespace EA4S.FastCrowd
 {
     public class FastCrowdTutorialState : IGameState
     {
         FastCrowdGame game;
+
+        float tutorialStartTimer;
 
         public FastCrowdTutorialState(FastCrowdGame game)
         {
@@ -18,6 +23,10 @@
                 game.QuestionManager.StartQuestion(game.CurrentChallenge, game.NoiseData);
             else
                 game.QuestionManager.Clean();
+
+            StartTutorial();
+
+            tutorialStartTimer = 3f;
         }
 
         public void ExitState()
@@ -25,44 +34,61 @@
             game.QuestionManager.OnCompleted -= OnQuestionCompleted;
             game.QuestionManager.OnDropped -= OnAnswerDropped;
             game.QuestionManager.Clean();
+
+            game.showTutorial = false;
         }
 
         void OnQuestionCompleted()
         {
-            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling ||
-                  FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
-            {
-                // In spelling and letter, increment score only when the full question is completed
-                game.IncrementScore();
-            }
-
             game.SetCurrentState(game.ResultState);
         }
 
         void OnAnswerDropped(bool result)
         {
+            tutorialStartTimer = 3f;
             game.Context.GetCheckmarkWidget().Show(result);
-
-            if (result &&
-                (FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Spelling &&
-                FastCrowdConfiguration.Instance.Variation != FastCrowdVariation.Letter)
-                )
-            {
-                // In spelling and letter, increment score only when the full question is completed
-                game.IncrementScore();
-            }
-
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
         }
 
         public void Update(float delta)
         {
-            
+            tutorialStartTimer += -delta;
+
+            if (tutorialStartTimer <= 0f)
+            {
+                tutorialStartTimer = 3f;
+
+                StartTutorial();
+            }
         }
 
-        public void UpdatePhysics(float delta)
+        void StartTutorial()
         {
-            
+            if (game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData()) == null)
+                return;
+
+            StrollingLivingLetter tutorialLetter = game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData());
+
+            Vector3 startLine = tutorialLetter.gameObject.GetComponent<LetterObjectView>().contentTransform.position;
+            Vector3 endLine = game.QuestionManager.dropContainer.transform.position;
+
+            List<StrollingLivingLetter> nearLetters = new List<StrollingLivingLetter>();
+
+            game.QuestionManager.crowd.GetNearLetters(nearLetters, startLine, 10f);
+
+            for(int i=0; i< nearLetters.Count; i++)
+            {
+                if(nearLetters[i] != tutorialLetter)
+                {
+                    nearLetters[i].Scare(startLine, 3f);
+                }
+            }
+
+            tutorialLetter.Tutorial();
+
+            TutorialUI.DrawLine(startLine, endLine, TutorialUI.DrawLineMode.Finger);
         }
+
+        public void UpdatePhysics(float delta) { }
     }
 }

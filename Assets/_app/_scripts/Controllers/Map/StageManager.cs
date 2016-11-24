@@ -24,7 +24,8 @@ namespace EA4S
             }
             miniMaps[i].GetComponent<MiniMap>().CalculateSettingsStageMap();
 
-            ChangeCamera(cameras[AppManager.Instance.Player.CurrentJourneyPosition.Stage]);
+            
+            //ChangeCamera(cameras[AppManager.Instance.Player.CurrentJourneyPosition.Stage]);
             stages[AppManager.Instance.Player.CurrentJourneyPosition.Stage].SetActive(true);
             letter.GetComponent<LetterMovement>().miniMapScript = miniMaps[AppManager.Instance.Player.CurrentJourneyPosition.Stage].GetComponent<MiniMap>();
 
@@ -68,8 +69,10 @@ namespace EA4S
         }
         IEnumerator ResetPosLetter()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.2f);
             letter.GetComponent<LetterMovement>().ResetPosLetter();
+            letter.SetActive(true);
+            CameraGameplayController.I.transform.position = cameras[AppManager.Instance.Player.CurrentJourneyPosition.Stage].transform.position;
         }
         void ChangePinDotToBlack()
         {
