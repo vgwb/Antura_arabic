@@ -11,8 +11,15 @@ namespace EA4S.Assessment
 
         public void EnterState()
         {
-            assessmentGame.Context.GetAudioManager().PlayMusic( Music.Relax);
-            assessmentGame.Context.GetAudioManager().PlaySound( Sfx.TickAndWin);
+            var audioManager = assessmentGame.Context.GetAudioManager();
+            IDialogueManager dialogue = new DialogueManager( audioManager, assessmentGame.Context.GetSubtitleWidget());
+            audioManager.PlayMusic( Music.Relax);
+            audioManager.PlaySound( Sfx.TickAndWin);
+            dialogue.Dialogue( Localization.Random(
+                                                    Db.LocalizationDataId.Assessment_Complete_1,
+                                                    Db.LocalizationDataId.Assessment_Complete_2,
+                                                    Db.LocalizationDataId.Assessment_Complete_3 ));
+
             AssessmentResultAntura.Instance .StartAnimation(
                 () => ExitState()
                 );
