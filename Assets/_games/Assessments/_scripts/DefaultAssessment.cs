@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -11,8 +12,7 @@ namespace EA4S.Assessment
                                     ILogicInjector logic_injector,
                                     IAssessmentConfiguration game_conf,
                                     IGameContext game_context,
-                                    IAudioManager audio_manager,
-                                    ISubtitlesWidget subtitles,
+                                    IDialogueManager dialogues,
                                     Db.LocalizationDataId gameDescription)
         {
             AnswerPlacer = answ_placer;
@@ -21,95 +21,68 @@ namespace EA4S.Assessment
             LogicInjector = logic_injector;
             AssessmentConfiguration = game_conf;
             GameContext = game_context;
-            AudioManager = audio_manager;
-            Subtitles = subtitles;
+            Dialogues = dialogues;
             GameDescription = gameDescription;
         }
 
         #region AUDIO
-
-        private void Dialogue( Db.LocalizationDataId ID)
+        private YieldInstruction PlayStartSound()
         {
-            isPlayingAudio = true;
-            Coroutine.Start( PlayDialogueCoroutine( ID));
-        }
-
-        private bool IsAudioPlaying()
-        {
-            return isPlayingAudio;
-        }
-
-        bool isPlayingAudio = false;
-
-        private void StoppedPlaying()
-        {
-            isPlayingAudio = false;
-        }
-        IEnumerator PlayDialogueCoroutine( Db.LocalizationDataId ID)
-        {
-            Subtitles.DisplaySentence( ID, 1, false);
-            AudioManager.PlayDialogue( ID, () => StoppedPlaying() );
-
-            while (isPlayingAudio)
-                yield return null;
-
-            // Clear dialog before 10 seconds
-            Subtitles.Clear();
-        }
-
-        private void PlayStartSound()
-        {
-            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Start_1,
+            return Dialogues.Dialogue(Localization.Random(
+                                        Db.LocalizationDataId.Assessment_Start_1,
                                         Db.LocalizationDataId.Assessment_Start_2,
                                         Db.LocalizationDataId.Assessment_Start_3));
         }
 
-        private void PlayAnturaIsComingSound()
+        private YieldInstruction PlayAnturaIsComingSound()
         {
-            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Upset_2,
+            return Dialogues.Dialogue( Localization.Random(
+                                        Db.LocalizationDataId.Assessment_Upset_2,
                                         Db.LocalizationDataId.Assessment_Upset_3));
         }
 
-        private void PlayPushAnturaSound()
+        private YieldInstruction PlayPushAnturaSound()
         {
-            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Push_Dog_1,
+            return Dialogues.Dialogue( Localization.Random(
+                                        Db.LocalizationDataId.Assessment_Push_Dog_1,
                                         Db.LocalizationDataId.Assessment_Push_Dog_2,
                                         Db.LocalizationDataId.Assessment_Push_Dog_3));
         }
 
-        private void PlayAnturaGoneSound()
+        private YieldInstruction PlayAnturaGoneSound()
         {
-            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Dog_Gone_1,
+            return Dialogues.Dialogue( Localization.Random(
+                                        Db.LocalizationDataId.Assessment_Dog_Gone_1,
                                         Db.LocalizationDataId.Assessment_Dog_Gone_2,
                                         Db.LocalizationDataId.Assessment_Dog_Gone_3));
         }
 
-        private void PlayAssessmentCompleteSound()
+        private YieldInstruction PlayAssessmentCompleteSound()
         {
-            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Complete_1,
+            return Dialogues.Dialogue( Localization.Random(
+                                        Db.LocalizationDataId.Assessment_Complete_1,
                                         Db.LocalizationDataId.Assessment_Complete_2,
                                         Db.LocalizationDataId.Assessment_Complete_3));
         }
 
-        private void PlayAssessmentWrongSound()
+        private YieldInstruction PlayAssessmentWrongSound()
         {
-            Dialogue(Localization.Random(Db.LocalizationDataId.Assessment_Wrong_1,
+            return Dialogues.Dialogue( Localization.Random(
+                                        Db.LocalizationDataId.Assessment_Wrong_1,
                                         Db.LocalizationDataId.Assessment_Wrong_2,
                                         Db.LocalizationDataId.Assessment_Wrong_3));
         }
 
-        private void PlayGameDescription()
+        private YieldInstruction PlayGameDescription()
         {
-            Dialogue( GameDescription);
+            return Dialogues.Dialogue( GameDescription);
         }
 
         #endregion
 
         public IEnumerator PlayCoroutine( Action gameEndedCallback)
         {
-            PlayStartSound();
-            while(IsAudioPlaying())
-                yield return null;
+            yield return PlayStartSound();
 
             bool AnturaShowed = false;
 
@@ -150,22 +123,11 @@ namespace EA4S.Assessment
 
                     anturaController.StartAnimation( ()=> PlayPushAnturaSound());
 
-                    while (anturaController.IsAnimating() || IsAudioPlaying())
+                    while (anturaController.IsAnimating())
                         yield return null;
 
-                    PlayAnturaGoneSound();
-
-                    while (IsAudioPlaying())
-                        yield return null;
-
-                    yield return TimeEngine.Wait( 0.3f);
-
-                    PlayGameDescription();
-
-                    while (IsAudioPlaying())
-                        yield return null;
-
-                    yield return TimeEngine.Wait(0.3f);
+                    yield return PlayAnturaGoneSound();
+                    yield return PlayGameDescription();
                     #endregion
 
                     QuestionPlacer.Place( QuestionGenerator.GetAllQuestions());
@@ -212,9 +174,7 @@ namespace EA4S.Assessment
 
         public IGameContext GameContext { get; private set; }
 
-        public IAudioManager AudioManager { get; private set; }
-
-        public ISubtitlesWidget Subtitles { get; private set; }
+        public IDialogueManager Dialogues { get; private set; }
 
         public Db.LocalizationDataId GameDescription { get; private set; }
     }
