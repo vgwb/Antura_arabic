@@ -11,6 +11,7 @@ namespace EA4S.Assessment
         [Header("Positions")]
         public Transform anturaGoAway;
         public Transform sleepingStart;
+        public Transform anturaStart;
 
         #region Instance
         /////////////////
@@ -35,8 +36,8 @@ namespace EA4S.Assessment
         public AssessmentAnturaController SleepingAntura()
         {
             var antura = 
-                Instantiate(    anturaPrefab, sleepingStart.position, 
-                                sleepingStart.rotation) as AnturaAnimationController;
+                Instantiate(    anturaPrefab, anturaStart.position,
+                                anturaStart.rotation) as AnturaAnimationController;
 
             var go = antura.gameObject;
             var box = go.AddComponent< BoxCollider>();
@@ -49,8 +50,8 @@ namespace EA4S.Assessment
             var controller = go.AddComponent< AssessmentAnturaController>();
             controller.sleepingParticles = sleepingParticles;
             controller.anturaDestination = anturaGoAway;
+            controller.anturaCenter = sleepingStart;
             controller.antura = antura;
-
             return controller;
         }
     }

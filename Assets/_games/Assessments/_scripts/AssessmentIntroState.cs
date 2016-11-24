@@ -9,13 +9,10 @@ namespace EA4S.Assessment
             this.assessmentGame = assessmentGame;
         }
 
-        //AssessmentAnturaController anturaController;
-
         public void EnterState()
         {
             assessmentGame.Context.GetAudioManager().PlayMusic( Music.Theme7);
             TimeEngine.Instance.Clear();
-            SetNextState();
         }
 
         public void ExitState()
@@ -29,9 +26,16 @@ namespace EA4S.Assessment
                    assessmentGame.PlayState);
         }
 
+        float timer = 0.4f;
+
         public void Update( float delta)
         {
             TimeEngine.Instance.Update( delta);
+            timer -= delta;
+            if (timer <= 0)
+            {
+                SetNextState();
+            }
         }
 
         public void UpdatePhysics( float delta)

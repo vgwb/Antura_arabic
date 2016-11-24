@@ -8,6 +8,7 @@ namespace EA4S.Tobogan
 {
     public class QuestionLivingLetter : MonoBehaviour
     {
+        public bool playWhenDragged = true;
         public Transform livingLetterTransform;
         public BoxCollider boxCollider;
 
@@ -186,7 +187,8 @@ namespace EA4S.Tobogan
 
                 var data = letter.Data;
 
-                ToboganConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
+                if (playWhenDragged)
+                    ToboganConfiguration.Instance.Context.GetAudioManager().PlayLetterData(data, true);
 
                 Vector3 mousePosition = new Vector3(pointerPosition.x, pointerPosition.y, cameraDistance);
                 Vector3 world = tubesCamera.ScreenToWorldPoint(mousePosition);

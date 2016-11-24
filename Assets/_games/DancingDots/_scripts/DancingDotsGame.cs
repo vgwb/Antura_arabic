@@ -148,10 +148,8 @@ namespace EA4S.DancingDots
             AppManager.Instance.CurrentGameManagerGO = gameObject;
             SceneTransitioner.Close();
 
-            Debug.Log("Before Music");
             AudioManager.I.PlayMusic(Music.MainTheme);
             //			DancingDotsConfiguration.Instance.Context.GetAudioManager().PlayMusic(Music.MainTheme);
-            Debug.Log("After Music");
 
             questionsManager = new DancingDotsQuestionsManager();
 

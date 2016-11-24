@@ -16,6 +16,11 @@ namespace EA4S
             return list[_random.Next(0, list.Count)];
         }
 
+        public static T GetRandomParams<T>(params T[] ids)
+        {
+            return ids[_random.Next(0, ids.Length)];
+        }
+
         public static T GetRandomEnum<T>()
         {
             var A = Enum.GetValues(typeof(T));
