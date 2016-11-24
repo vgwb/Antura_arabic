@@ -41,6 +41,15 @@ namespace EA4S.MissingLetter {
             m_fDelayTime -= delta;
             if(m_fDelayTime < 0 && !m_bSuggested)
             {
+                if (m_oGame.m_eGameType == GameType.WORD)
+                {
+                    AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_Tuto);
+                }
+                else
+                {
+                    AudioManager.I.PlayDialog(Db.LocalizationDataId.MissingLetter_phrases_Tuto);
+                }
+
                 m_oGame.m_oRoundManager.GetCorrectLLObject().GetComponent<LetterBehaviour>().PlayAnimation(LLAnimationStates.LL_dancing);
                 Vector3 pos = m_oGame.m_oRoundManager.GetCorrectLLObject().transform.position + Vector3.back * 0.8f + Vector3.up * 3;
                 TutorialUI.ClickRepeat(pos, 90, 1.5f);

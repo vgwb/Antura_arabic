@@ -16,6 +16,7 @@ namespace EA4S
         public RectTransform Icon, Logo;
 
         public static bool IsShown { get; private set; }
+        public static bool IsPlaying { get; private set; }
 
         Action onCompleteCallback, onRewindCallback;
         Sequence tween;
@@ -52,6 +53,7 @@ namespace EA4S
                 tween.Restart();
                 this.gameObject.SetActive(true);
                 AudioManager.I.PlaySfx(Sfx.Transition);
+                IsPlaying = true;
             } else {
                 MaskCover.fillClockwise = false;
                 onCompleteCallback = null;
@@ -94,6 +96,7 @@ namespace EA4S
 
         void OnRewind()
         {
+            IsPlaying = false;
             this.gameObject.SetActive(false);
             if (onRewindCallback != null)
                 onRewindCallback();

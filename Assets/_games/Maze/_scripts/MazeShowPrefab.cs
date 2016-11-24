@@ -10,6 +10,7 @@ namespace EA4S.Maze
 		bool movingOut = false;
 
 		public int letterIndex = 0;
+        
 
 		// Use this for initialization
 		void Start () {
@@ -35,6 +36,7 @@ namespace EA4S.Maze
 				
 				transform.position = Vector3.MoveTowards (transform.position, Vector3.zero, Time.deltaTime * 20);
 				if (transform.position.x == 0) {
+
 					AudioManager.I.PlayLetter(AppManager.Instance.Teacher.GetAllTestLetterDataLL()[letterIndex].Id);
 					movingIn = false;
 

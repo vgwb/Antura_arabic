@@ -174,10 +174,10 @@ namespace EA4S.Maze
 
 
 
-				} else if(index > currentFruitIndex){
+				}/* else if(index > currentFruitIndex){
 					//lose?
 					waitAndRestartScene();
-				}
+				}*/
 			}
 		}
 

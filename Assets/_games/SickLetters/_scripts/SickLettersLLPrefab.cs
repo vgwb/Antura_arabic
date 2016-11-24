@@ -130,15 +130,17 @@ namespace EA4S.SickLetters
             game.LLPrefab.GetComponent<LetterObjectView>().Init(newLetter);
             game.LLPrefab.dotlessLetter.text = newLetter.TextForLivingLetter;
 
-            if (game.dotlessLetters.Contains(newLetter.TextForLivingLetter))
+            if (game.dotlessLetters.Contains(newLetter.TextForLivingLetter) || newLetter.TextForLivingLetter.Equals("إ"))
             {
                 correctDot.text = "";
-                correctDotCollider.enabled = false;
+                correctDotCollider.GetComponent<BoxCollider>().enabled = false;
+                //UnityEngine.Debug.Log("dotless");
             }
             else
             {
                 correctDot.text = newLetter.TextForLivingLetter;
-                correctDotCollider.enabled = true;
+                correctDotCollider.GetComponent<BoxCollider>().enabled = true;
+                //UnityEngine.Debug.Log("with Dots "+ newLetter.TextForLivingLetter);
             }
 
 
