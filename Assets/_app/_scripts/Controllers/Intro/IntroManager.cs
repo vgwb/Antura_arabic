@@ -43,8 +43,10 @@ namespace EA4S
             AppManager.Instance.Modules.SceneModule.LoadSceneWithTransition("app_Map");
         }
 
-        void OnDisable() {
-            countDown.onTimesUp -= CountDown_onTimesUp;
+        void OnDisable()
+        {
+            if (countDown != null)
+                countDown.onTimesUp -= CountDown_onTimesUp;
         }
 
         void Update()
