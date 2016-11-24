@@ -56,8 +56,6 @@ namespace EA4S
             // Get letters of that word
             var wordLetters = teacher.wordHelper.GetLettersInWord(question);
 
-            UnityEngine.Debug.Log(question);
-
             bool useJourneyForLetters = parameters.useJourneyForCorrect; 
             if (useAllCorrectLetters) useJourneyForLetters = false;  // @note: we force journey in this case to be off so that all letters can be found
 
