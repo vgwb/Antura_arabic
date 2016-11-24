@@ -140,7 +140,7 @@ namespace EA4S
         public void SetActualJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
         {
             AppManager.Instance.Player.CurrentJourneyPosition = _journeyPosition;
-            if(_save)
+            if (_save)
                 Save();
 
         }
@@ -164,13 +164,16 @@ namespace EA4S
         /// Sets the maximum journey position and save to profile.
         /// @note: check valid data before insert.
         /// </summary>
-        /// <param name="_journeyPosition">The journey position.</param>
+        /// <param name="newJourneyPosition">The journey position.</param>
         /// <param name="_save">if set to <c>true</c> [save] profile at the end.</param>
-        public void SetMaxJourneyPosition(JourneyPosition _journeyPosition, bool _save = true)
+        public void SetMaxJourneyPosition(JourneyPosition newJourneyPosition, bool _save = true)
         {
-            AppManager.Instance.Player.MaxJourneyPosition = _journeyPosition;
-            if (_save)
-                Save();
+            if (AppManager.Instance.Player.MaxJourneyPosition.isMinor(newJourneyPosition)) {
+                AppManager.Instance.Player.MaxJourneyPosition = newJourneyPosition;
+                if (_save) {
+                    Save();
+                }
+            }
         }
         #endregion
 
@@ -229,7 +232,8 @@ namespace EA4S
         /// <summary>
         /// Resets the player profile completion.
         /// </summary>
-        public void ResetPlayerProfileCompletion() {
+        public void ResetPlayerProfileCompletion()
+        {
             ProfileCompletion = 0;
             Save();
         }
@@ -266,13 +270,15 @@ namespace EA4S
         /// <summary>
         /// Nexts the play session minigame.
         /// </summary>
-        public void NextPlaySessionMinigame() {
+        public void NextPlaySessionMinigame()
+        {
             CurrentMiniGameInPlaySession++;
         }
         /// <summary>
         /// Resets position in play session minigame.
         /// </summary>
-        public void ResetPlaySessionMinigame() {
+        public void ResetPlaySessionMinigame()
+        {
             CurrentMiniGameInPlaySession = 0;
         }
         #endregion
