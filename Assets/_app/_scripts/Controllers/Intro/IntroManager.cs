@@ -112,6 +112,7 @@ namespace EA4S
             KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_1, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
+            yield return new WaitForSeconds(m_StateDelay);
 
             Debug.Log("Second Intro Letter");
             KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Letters_2, true, OnCompleted);
@@ -124,6 +125,7 @@ namespace EA4S
             KeeperManager.I.PlayDialog(Db.LocalizationDataId.Intro_Dog, true, OnCompleted);
 
             yield return new WaitUntil(CheckIfCompleted);
+            yield return new WaitForSeconds(m_StateDelay);
 
             DisableAntura();
 
