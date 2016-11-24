@@ -95,7 +95,7 @@ namespace EA4S.Scanner
 
 			Debug.Log("Context: " + context);
 
-			STARS_1_THRESHOLD = 1;
+			STARS_1_THRESHOLD = numberOfRounds/3;
 			STARS_2_THRESHOLD = numberOfRounds/2;
 			STARS_3_THRESHOLD = numberOfRounds;
 
@@ -106,16 +106,16 @@ namespace EA4S.Scanner
 			roundsManager = new ScannerRoundsManager(this);
 //			roundManager.onRoundsFinished += OnResult;
 
-			Context.GetOverlayWidget().Initialize(false, false, false);
+			Context.GetOverlayWidget().Initialize(true, false, false);
 			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
 
 		public void PlayWord(float deltaTime)
 		{
 			Debug.Log("Play word: " + deltaTime);
-//			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
-//			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
-			AudioManager.I.PlayWord(wordData.Id);
+			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
+			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
+//			AudioManager.I.PlayWord(wordData.Id);
 		}
 
 		public void CreatePoof(Vector3 position, float duration, bool withSound)
