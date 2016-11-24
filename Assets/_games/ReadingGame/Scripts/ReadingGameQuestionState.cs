@@ -25,12 +25,10 @@ namespace EA4S.ReadingGame
                 return;
             }
 
-            ++game.CurrentQuestionNumber;
-
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
             {
-                game.Context.GetOverlayWidget().SetClockDuration(ReadingGameGame.TIME_TO_ANSWER);
-                game.Context.GetOverlayWidget().SetClockTime(ReadingGameGame.TIME_TO_ANSWER);
+                game.Context.GetOverlayWidget().SetClockDuration(game.TimeToAnswer);
+                game.Context.GetOverlayWidget().SetClockTime(game.TimeToAnswer);
             }
 
             game.blurredText.SetActive(true);
@@ -79,6 +77,7 @@ namespace EA4S.ReadingGame
             }
             else
             {
+                ++game.CurrentQuestionNumber;
                 completed = true;
                 game.ReadState.TutorialMode = false;
             }
