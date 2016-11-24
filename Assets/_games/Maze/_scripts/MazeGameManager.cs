@@ -327,7 +327,11 @@ namespace EA4S.Maze
                 }
             }
             if (found == -1)
+            {
+                Debug.LogError("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have");
                 found = UnityEngine.Random.Range(0, prefabs.Count);
+            }
+                
 
             currentPrefab = (GameObject)Instantiate(prefabs[found]);
 
