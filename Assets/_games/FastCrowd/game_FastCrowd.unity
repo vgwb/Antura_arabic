@@ -7981,6 +7981,11 @@ MonoBehaviour:
   intensity: 2.5
   color: {r: 0, g: 0, b: 0, a: 1}
   vignetteShader: {fileID: 4800000, guid: 022619c425ba9954fa18d4e5299f1f6c, type: 3}
+--- !u!20 &765296922 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2011846, guid: 0e2cf6572e414465aa24cfe7d5c1710f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1665990024}
 --- !u!1001 &772647711
 Prefab:
   m_ObjectHideFlags: 0
@@ -13983,6 +13988,7 @@ Transform:
   - {fileID: 2134806120}
   - {fileID: 2078648574}
   - {fileID: 962222861}
+  - {fileID: 1689415714}
   m_Father: {fileID: 1642340483}
   m_RootOrder: 4
 --- !u!114 &1411710102
@@ -14008,6 +14014,7 @@ MonoBehaviour:
   - {fileID: 962222860}
   walkingTargets:
   - {fileID: 1910158539}
+  tutorialPosition: {fileID: 1689415714}
 --- !u!1 &1418378439
 GameObject:
   m_ObjectHideFlags: 0
@@ -16610,6 +16617,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1678256047}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1689415713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1689415714}
+  m_Layer: 0
+  m_Name: TutorialLetterPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1689415714
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689415713}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: -0.0107499985, z: -0.03999901}
+  m_LocalScale: {x: 0.001, y: 1, z: 0.0009999999}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1411710101}
+  m_RootOrder: 16
 --- !u!1001 &1696764720
 Prefab:
   m_ObjectHideFlags: 0
@@ -17968,6 +18003,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 33000012812192932, guid: d5826ab7f51b7c549919cf0b6fe83693,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5826ab7f51b7c549919cf0b6fe83693, type: 2}
   m_IsPrefabParent: 0
@@ -18281,9 +18321,9 @@ Canvas:
   m_GameObject: {fileID: 1888513657}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 765296922}
+  m_PlaneDistance: 5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
