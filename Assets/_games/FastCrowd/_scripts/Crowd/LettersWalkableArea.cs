@@ -9,7 +9,8 @@ public class LettersWalkableArea : MonoBehaviour
 
     // Use a different collider for random targets
     public BoxCollider[] walkingTargets;
-    
+
+    public Transform tutorialPosition;
 
     void Awake()
     {

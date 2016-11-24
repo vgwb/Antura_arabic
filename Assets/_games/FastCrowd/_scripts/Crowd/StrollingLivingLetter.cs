@@ -15,6 +15,7 @@ public class StrollingLivingLetter : MonoBehaviour
     public StrollingLetterIdleState IdleState { get; private set; }
     public StrollingLetterFallingState FallingState { get; private set; }
     public StrollingLetterHangingState HangingState { get; private set; }
+    public StrollingLetterTutorialState TutorialState { get; private set; }
 
     // Use Scare() method instead
     private StrollingLetterScaredState ScaredState { get; set; }
@@ -34,6 +35,7 @@ public class StrollingLivingLetter : MonoBehaviour
         ScaredState = new StrollingLetterScaredState(this);
         FallingState = new StrollingLetterFallingState(this);
         HangingState = new StrollingLetterHangingState(this);
+        TutorialState = new StrollingLetterTutorialState(this);
 
         SetCurrentState(FallingState);
     }
@@ -108,6 +110,11 @@ public class StrollingLivingLetter : MonoBehaviour
         if (GetCurrentState() == IdleState ||
             GetCurrentState() == WalkingState)
             SetCurrentState(ScaredState);
+    }
+
+    public void Tutorial()
+    {
+        SetCurrentState(TutorialState);
     }
 
     void OnDestroy()
