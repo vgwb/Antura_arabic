@@ -172,7 +172,7 @@ namespace EA4S.Assessment
         {
             SimultaneosQuestions = 1;
             snag.SetStartingFrom(0.5f);
-            Rounds = snag.Increase( 1, 6);
+            Rounds = snag.Increase( 3, 7);
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.correctChoicesHistory = Teacher.PackListHistory.RepeatWhenFull;
