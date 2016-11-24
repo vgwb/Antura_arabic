@@ -7,7 +7,7 @@
         // Game configuration
         public IGameContext Context { get; set; }
         public IQuestionProvider Questions { get; set; }
-
+        public ILivingLetterDataProvider Letters { get; set; }
         #region Game configurations
         public float Difficulty { get; set; }
         public MazeVariation Variation { get; set; }
@@ -30,7 +30,7 @@
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
             Questions = new SampleQuestionProvider();
-
+            Letters = new MazeLetterProvider();
             Variation = MazeVariation.V_1;
 
             Context = new SampleGameContext();
@@ -49,10 +49,7 @@
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
-            int nCorrect = 5;
-
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect);
+            builder = new RandomLettersQuestionBuilder(7,1);
 
             return builder;
         }

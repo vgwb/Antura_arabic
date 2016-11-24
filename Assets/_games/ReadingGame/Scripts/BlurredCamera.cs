@@ -6,11 +6,10 @@ public class BlurredCamera : PostEffectsBase
 {
     public RenderTexture normalTextureOutput;
 
-    [Range(1, 2)]
+    [Range(1, 4)]
     public int blurIterations = 1;
-
-    [Range(0, 2)]
-    public int downsample = 1;
+    
+    public int textureSize = 512;
 
     [Range(0.0f, 10.0f)]
     public float blurSize = 3.0f;
@@ -46,14 +45,14 @@ public class BlurredCamera : PostEffectsBase
             return;
         }
 
-        float widthMod = 1.0f / (1.0f * (1 << downsample));
+        int rtW = textureSize;
+        int rtH = textureSize >> 1;
+
+        float widthMod = 1;
 
         blurMaterial.SetVector("_Parameter", new Vector4(blurSize * widthMod, -blurSize * widthMod, 0.0f, 0.0f));
         source.filterMode = FilterMode.Bilinear;
-
-        int rtW = source.width >> downsample;
-        int rtH = source.height >> downsample;
-
+        
         // downsample
         RenderTexture rt = RenderTexture.GetTemporary(rtW, rtH, 0, source.format);
 

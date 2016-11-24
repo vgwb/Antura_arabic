@@ -28,12 +28,9 @@ namespace EA4S.Egg
             if (firstQuestion)
             {
                 game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.Egg_Title);
-                //game.Context.GetAudioManager().PlayDialogue(TextID.EGG_TITLE, delegate () { EggEnter(); });
             }
-            //else
-            {
-                EggEnter();
-            }
+
+            EggEnter();
         }
 
         public void ExitState()

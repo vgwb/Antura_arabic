@@ -76,7 +76,14 @@
             if (game.CurrentChallenge.Count > 0) {
                 // Show question
                 if (!game.ShowChallengePopupWidget(false, OnPopupCloseRequested)) {
-                    game.SetCurrentState(game.PlayState);
+                    if (game.showTutorial)
+                    {
+                        game.SetCurrentState(game.TutorialState);
+                    }
+                    else
+                    {
+                        game.SetCurrentState(game.PlayState);
+                    }
                 }
             } else {
                 // no more questions
@@ -87,7 +94,16 @@
         void OnPopupCloseRequested()
         {
             if (game.GetCurrentState() == this)
-                game.SetCurrentState(game.PlayState);
+            {
+                if(game.showTutorial)
+                {
+                    game.SetCurrentState(game.TutorialState);
+                }
+                else
+                {
+                    game.SetCurrentState(game.PlayState);
+                }
+            }
         }
 
         public void ExitState()

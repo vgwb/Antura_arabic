@@ -16,7 +16,7 @@ namespace EA4S.MakeFriends
         public Renderer balloonRenderer;
         public Animator animator;
         [HideInInspector]
-        public LL_LetterData letterData;
+        public ILivingLetterData letterData;
 
         private struct MoveParameters
         {
@@ -33,10 +33,10 @@ namespace EA4S.MakeFriends
         }
             
 
-        public void Init(LL_LetterData _data)
+        public void Init(ILivingLetterData _data)
         {
             letterData = _data;
-            displayedText.text = ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
+            displayedText.text = letterData.TextForLivingLetter;//ArabicAlphabetHelper.GetLetterFromUnicode(letterData.Data.Isolated_Unicode);
         }
 
         public void SetColor(Color color)

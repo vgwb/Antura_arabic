@@ -38,7 +38,7 @@ namespace EA4S {
             DropContain.Aree.Add(this);
             Data = _data;
 
-            LetterLable.text = text;
+            LetterLable.text = GenericUtilities.ReverseText(text);
             DrawText.gameObject.SetActive(false);
 
             AreaState = State.disabled;

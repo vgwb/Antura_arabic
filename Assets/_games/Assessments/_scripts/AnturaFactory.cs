@@ -12,6 +12,7 @@ namespace EA4S.Assessment
         public Transform anturaGoAway;
         public Transform sleepingStart;
         public Transform anturaStart;
+        public Transform particlesPosition;
 
         #region Instance
         /////////////////
@@ -51,6 +52,7 @@ namespace EA4S.Assessment
             controller.sleepingParticles = sleepingParticles;
             controller.anturaDestination = anturaGoAway;
             controller.anturaCenter = sleepingStart;
+            controller.paritclesPos = particlesPosition;
             controller.antura = antura;
             return controller;
         }

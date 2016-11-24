@@ -174,10 +174,10 @@ namespace EA4S.Maze
 
 
 
-				} else if(index > currentFruitIndex){
+				}/* else if(index > currentFruitIndex){
 					//lose?
 					waitAndRestartScene();
-				}
+				}*/
 			}
 		}
 
@@ -291,7 +291,7 @@ namespace EA4S.Maze
 
 
 			setFruitsList ();
-			transform.position = _fruits[0].transform.position;
+			transform.position = _fruits[0].transform.position + new Vector3(0, 0, 1); ;
 
 
 			initialPosition = transform.position;
