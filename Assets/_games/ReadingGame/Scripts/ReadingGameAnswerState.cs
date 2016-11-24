@@ -58,6 +58,7 @@ namespace EA4S.ReadingGame
 
             box.Active = true;
             
+            if (!TutorialMode)
             {
                 game.radialWidget.Show();
                 game.radialWidget.Reset(ReadTime / MaxTime);
