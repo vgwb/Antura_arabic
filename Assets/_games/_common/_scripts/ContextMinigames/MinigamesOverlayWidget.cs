@@ -26,6 +26,13 @@ namespace EA4S
                (showClock ? MinigamesUIElement.Timer : 0));
         }
 
+        public void Reset()
+        {
+            this.showStarsBar = false;
+            this.showClock = false;
+            this.showLives = false;
+        }
+
         public void SetStarsThresholds(int firstStarsScoreThreshold, int secondStarsScoreThreshold, int thirdStarsScoreThreshold)
         {
             if (!showStarsBar)

@@ -129,6 +129,8 @@ namespace EA4S
         /// </summary>
         void OnClick(MenuButton _bt)
         {
+            if (SceneTransitioner.IsPlaying) return;
+
             _bt.AnimateClick();
             if (_bt == BtPause) {
                 OpenMenu(!IsMenuOpen);
