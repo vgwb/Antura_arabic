@@ -1032,11 +1032,16 @@ MonoBehaviour:
   currentTutorial: {fileID: 0}
   prefabs:
   - {fileID: 1000013812135954, guid: 2445187be2c852143a97a9a5cfb2893f, type: 2}
-  - {fileID: 1000013812135954, guid: 2445187be2c852143a97a9a5cfb2893f, type: 2}
-  - {fileID: 1000013812135954, guid: 2445187be2c852143a97a9a5cfb2893f, type: 2}
-  - {fileID: 1000013812135954, guid: 2445187be2c852143a97a9a5cfb2893f, type: 2}
-  - {fileID: 1000013812135954, guid: 2445187be2c852143a97a9a5cfb2893f, type: 2}
-  - {fileID: 1000013812135954, guid: 2445187be2c852143a97a9a5cfb2893f, type: 2}
+  - {fileID: 1000010499926054, guid: ac8ca73d3423a1a43a95d5e0617a3c26, type: 2}
+  - {fileID: 1000012157890860, guid: c30654d80a44a4f4ab01b65420c33ba3, type: 2}
+  - {fileID: 1000014278361032, guid: 5314d2ff95d46aa47bc351e4f0141ecd, type: 2}
+  - {fileID: 1000010912325930, guid: af10f68d11f12254db558ca078150dcd, type: 2}
+  - {fileID: 1000012940502692, guid: 5a95eb9d1dfa36f46b9ef770e6940e26, type: 2}
+  - {fileID: 1000014198925786, guid: 133815a2f0d91fc4ebc3ab578f1313c9, type: 2}
+  - {fileID: 1000013790566996, guid: 00ab2514e90151b4681704e1f0bd43ae, type: 2}
+  - {fileID: 1000014019470872, guid: 753cd3989a3cb4e4287109eba24854db, type: 2}
+  - {fileID: 1000014138953522, guid: 77b52043c55a89048b5133a220912666, type: 2}
+  - {fileID: 1000013192150672, guid: 51a3fb761998f8e498e179973dbc9fb5, type: 2}
   endGameCanvas: {fileID: 1242465281}
   starFlowers: {fileID: 283899644}
   idleTime: 7

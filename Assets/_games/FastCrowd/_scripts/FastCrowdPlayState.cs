@@ -11,6 +11,8 @@ namespace EA4S.FastCrowd
         float anturaTimer;
         bool isAnturaRunning = false;
 
+        bool initializeOveralyWidget;
+
         public FastCrowdPlayState(FastCrowdGame game)
         {
             this.game = game;
@@ -19,6 +21,8 @@ namespace EA4S.FastCrowd
             gameTime.onTimesUp += OnTimesUp;
 
             gameTime.Reset();
+
+            initializeOveralyWidget = true;
         }
 
         public void EnterState()
@@ -46,6 +50,12 @@ namespace EA4S.FastCrowd
 
             // Reset game timer
             gameTime.Start();
+
+            if(initializeOveralyWidget)
+            {
+                initializeOveralyWidget = false;
+                game.InitializeOverlayWidget();
+            }
 
             game.Context.GetOverlayWidget().SetClockDuration(gameTime.Duration);
             game.Context.GetOverlayWidget().SetClockTime(gameTime.Time);

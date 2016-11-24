@@ -11,7 +11,8 @@
 
         public void EnterState()
         {
-            MinigamesUI.Init(MinigamesUIElement.Starbar);
+            MakeFriendsConfiguration.Instance.Context.GetOverlayWidget().Initialize(showStarsBar: true, showClock: false, showLives: false);
+
             game.PlayActiveMusic();
             game.Play();
         }

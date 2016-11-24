@@ -8,10 +8,14 @@ namespace EA4S
     public class LetterFilters
     {
         public bool excludeDiacritics;
+        public bool excludeLetterVariations;
 
-        public LetterFilters(bool excludeDiacritics = true)
+        public LetterFilters(
+            bool excludeDiacritics = true, 
+            bool excludeLetterVariations = true)
         {
             this.excludeDiacritics = excludeDiacritics;
+            this.excludeLetterVariations = excludeLetterVariations;
         }
     }
 
@@ -19,13 +23,18 @@ namespace EA4S
     public class WordFilters
     {
         public bool excludeDiacritics;
+        public bool excludeLetterVariations;
         public bool excludeArticles;
         public bool excludePluralDual;
         public bool excludeNoDrawing;
 
-        public WordFilters(bool excludeDiacritics = true, bool excludeArticles = true, bool excludePluralDual = true, bool excludeNoDrawing = true)
+        public WordFilters(
+            bool excludeDiacritics = true,
+            bool excludeLetterVariations = true,
+            bool excludeArticles = true, bool excludePluralDual = true, bool excludeNoDrawing = true)
         {
             this.excludeDiacritics = excludeDiacritics;
+            this.excludeLetterVariations = excludeLetterVariations;
             this.excludeArticles = excludeArticles;
             this.excludePluralDual = excludePluralDual;
             this.excludeNoDrawing = excludeNoDrawing;
@@ -52,7 +61,9 @@ namespace EA4S.Db
 
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
-            if (filters.excludeDiacritics && !data.IsOfKindCategory(LetterKindCategory.BaseAndVariations)) return false;
+            if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.Combo)) return false;
+            if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.Variation)) return false;
+            if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
             return true;
         }
 
@@ -62,7 +73,7 @@ namespace EA4S.Db
 
         public List<LetterData> GetAllBaseLetters()
         {
-            var p = new LetterFilters(excludeDiacritics: true);
+            var p = new LetterFilters(excludeDiacritics: true, excludeLetterVariations:true);
             return GetAllLetters(p);
         }
 
@@ -202,14 +213,23 @@ namespace EA4S.Db
             if (filters.excludeArticles && data.Article != WordDataArticle.None) return false;
             if (filters.excludeNoDrawing && !data.HasDrawing()) return false;
             if (filters.excludePluralDual && data.Form != WordDataForm.Singular) return false;
-            if (filters.excludeDiacritics && this.WordHasDiacritics(data)) return false;
+            if (filters.excludeDiacritics && this.WordHasLetterVariations(data)) return false;
+            if (filters.excludeLetterVariations && this.WordHasLetterVariations(data)) return false;
             return true;
         }
 
-        private bool WordHasDiacritics(WordData data)
+        private bool WordHasCombo(WordData data)
         {
             foreach (var letter in GetLettersInWord(data))
-                if (!letter.IsOfKindCategory(LetterKindCategory.BaseAndVariations))
+                if (letter.IsOfKindCategory(LetterKindCategory.Combo))
+                    return true;
+            return false;
+        }
+
+        private bool WordHasLetterVariations(WordData data)
+        {
+            foreach (var letter in GetLettersInWord(data))
+                if (letter.IsOfKindCategory(LetterKindCategory.Variation))
                     return true;
             return false;
         }

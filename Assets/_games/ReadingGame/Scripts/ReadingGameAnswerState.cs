@@ -40,8 +40,15 @@ namespace EA4S.ReadingGame
             var wrongs = game.CurrentQuestion.GetWrongAnswers();
 
             var choices = new List<ILivingLetterData>();
-            choices.Add(correct);
+
+            int maxWrongs = Mathf.RoundToInt(2 + 4 * ReadingGameConfiguration.Instance.Difficulty);
+
             choices.AddRange(wrongs);
+
+            for (int i = maxWrongs, count = choices.Count; i < count; ++i)
+                choices.RemoveAt(choices.Count - 1);
+
+            choices.Add(correct);
             choices.Shuffle();
 
             float delay = 0;
@@ -57,7 +64,8 @@ namespace EA4S.ReadingGame
             }
 
             box.Active = true;
-            
+
+            if (!TutorialMode)
             {
                 game.radialWidget.Show();
                 game.radialWidget.Reset(ReadTime / MaxTime);
@@ -118,7 +126,9 @@ namespace EA4S.ReadingGame
             {
                 if (TutorialMode)
                 {
-                    button.SetColor(UnityEngine.Color.red);
+                    //button.SetColor(UnityEngine.Color.red);
+                    if (box.IsReady())
+                        TutorialUI.MarkNo(button.transform.position);
                 }
                 else
                 {
