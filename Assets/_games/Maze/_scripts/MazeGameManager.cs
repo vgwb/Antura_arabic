@@ -67,6 +67,7 @@ namespace EA4S.Maze
             List<LL_LetterData> list = AppManager.Instance.Teacher.GetAllTestLetterDataLL();
             foreach (LL_LetterData ld in list)
             {
+               // Debug.Log(ld.Id);
                 allLetters.Add(ld.Id);
             }
         }
@@ -333,7 +334,7 @@ namespace EA4S.Maze
                 Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have");
                 found = UnityEngine.Random.Range(0, prefabs.Count);
             }
-                
+            //prefabs[found].GetComponent<MazeLetterBuilder>().letterId = ld.Id;
 
             currentPrefab = (GameObject)Instantiate(prefabs[found]);
 

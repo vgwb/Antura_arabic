@@ -990,3 +990,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterDataIndex: 1
+  letterId: beh

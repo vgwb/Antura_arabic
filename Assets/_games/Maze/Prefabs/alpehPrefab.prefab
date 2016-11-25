@@ -5368,6 +5368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterIndex: 0
+  letterId: 
 --- !u!114 &114000011329446946
 MonoBehaviour:
   m_ObjectHideFlags: 1
