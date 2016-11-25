@@ -9,13 +9,16 @@ namespace EA4S
     {
         public bool excludeDiacritics;
         public bool excludeLetterVariations;
+        public bool requireDiacritics;
 
         public LetterFilters(
             bool excludeDiacritics = false, 
-            bool excludeLetterVariations = false)
+            bool excludeLetterVariations = false,
+            bool requireDiacritics = false)
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeLetterVariations = excludeLetterVariations;
+            this.requireDiacritics = requireDiacritics;
         }
     }
 
@@ -66,6 +69,7 @@ namespace EA4S.Db
 
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
+            if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.Combo)) return false;
             if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.Combo)) return false;
             if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.Variation)) return false;
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
