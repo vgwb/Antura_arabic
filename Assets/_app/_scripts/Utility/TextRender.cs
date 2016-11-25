@@ -19,10 +19,10 @@ namespace EA4S
         public bool isUI;
         public bool isArabic;
 
-        void Start()
+        void Awake()
         {
             checkConfiguration();
-            if (text != "") updateText();
+            updateText();
         }
 
         public void setText(string _text, bool arabic = false)
