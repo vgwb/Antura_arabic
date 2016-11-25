@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace EA4S.Assessment
 {
@@ -25,34 +24,12 @@ namespace EA4S.Assessment
             }
             set
             {
-                Debug.Log("AssessmentConfiguration: Injected Provider");
                 questionProvider = value;
             }
         }
 
         private IQuestionProvider GetQuestionProvider()
         {
-            if(questionProvider == null)
-            {
-                switch (assessmentType)
-                {
-                    case AssessmentCode.LetterShape:
-                        Debug.Log( "Created LetterShape_TestProvider");
-                        return questionProvider = new LetterShape_TestProvider( 2, 2, 3);
-
-                    case AssessmentCode.WordsWithLetter:
-                        Debug.Log( "Created WordsWithLetterProvider_Tester");
-                        return questionProvider = new WordsWithLetterProvider_Tester( rounds:2, simultaneos:2, correct:3, wrong:2);
-
-                    case AssessmentCode.MatchLettersToWord:
-                        Debug.Log( "Created WordsWithLetterProvider_Tester");
-                        return questionProvider = new MatchLettersToWordProvider_Tester( rounds: 2, simultaneos: 2, correct: 3, wrong: 2);
-
-                    default:
-                        Debug.LogWarning( "Created SampleQuestionProvider");
-                        return questionProvider = new SampleQuestionProvider();
-                }
-            }
             return questionProvider;
         }
 

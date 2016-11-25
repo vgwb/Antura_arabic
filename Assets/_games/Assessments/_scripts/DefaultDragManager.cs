@@ -15,6 +15,16 @@ namespace EA4S.Assessment
             ResetRound();
         }
 
+        private bool dragOnly = false;
+        public void EnableDragOnly()
+        {
+            dragOnly = true;
+            ticking = true;
+            TimeEngine.AddTickable(this);
+            foreach (var a in answers)
+                a.Enable();
+        }
+
         List< PlaceholderBehaviour> placeholders = null;
         List< DroppableBehaviour> answers = null;
 
@@ -58,10 +68,7 @@ namespace EA4S.Assessment
 
         public void Enable()
         {
-            ticking = true;
-            TimeEngine.AddTickable( this);
-            foreach (var a in answers)
-                a.Enable();
+            dragOnly = false; 
         }
 
         public void ResetRound()
@@ -88,7 +95,8 @@ namespace EA4S.Assessment
             if (this.droppable == droppable)
             {
                 audioManager.PlaySound(Sfx.ThrowObj);
-                CheckCollidedWithPlaceholder();
+                if(dragOnly== false)
+                    CheckCollidedWithPlaceholder();
                 this.droppable.StopDrag();
                 this.droppable = null;
             }

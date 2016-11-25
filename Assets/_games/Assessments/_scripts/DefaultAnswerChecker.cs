@@ -64,10 +64,10 @@ namespace EA4S.Assessment
                 place.LinkAnswer( droppa.GetAnswer().GetAnswerSet());
                 if (place.IsAnswerCorrect() == false)
                 {
-                    // NEED TO FIND QUESTION HERE
+                    // Wrong answers are detached immediatly
                     areAllCorrect = false;
                     p.LinkedDroppable.Detach();
-                    p.Placeholder.LinkAnswer(0);
+                    p.Placeholder.LinkAnswer( 0);
                 }
                 else
                 {
@@ -75,30 +75,48 @@ namespace EA4S.Assessment
                     p.Placeholder.GetQuestion().gameObject
                         .GetComponent< QuestionBehaviour>();
                     behaviour.OnQuestionAnswered();
-                    yield return TimeEngine.Wait(behaviour.TimeToWait());
+
+                    // why the heck was I waiting here? Because LetterShape have to show letters
+                    // So ok to wait. But only for LetterShape! Infact that is already implemented _-_
+                    yield return TimeEngine.Wait( behaviour.TimeToWait());
                 }
             }
 
             allCorrect = areAllCorrect;
-            
+
+            while (wrongAnswerAnimationPlaying)
+                yield return null; // wait only if previous message has not finished
 
             if (allCorrect)
             {
                 audioManager.PlaySound( Sfx.StampOK);
-                yield return TimeEngine.Wait(0.4f);
+                yield return TimeEngine.Wait( 0.4f);
                 checkmarkWidget.Show( true);
+                yield return TimeEngine.Wait( 1.0f);
             }
             else
             {
-                checkmarkWidget.Show( false);
-                audioManager.PlaySound( Sfx.KO);
-                yield return TimeEngine.Wait( 0.4f);
-                yield return PlayAnswerWrong();
+                wrongAnswerAnimationPlaying = true;
+                Coroutine.Start( WrongAnswerCoroutine());
             }
-
-            yield return TimeEngine.Wait( 1.0f);
+            
             coroutineEnded = true;
             dragManager.EnableInput();
+        }
+
+        private bool wrongAnswerAnimationPlaying = false;
+
+        private IEnumerator WrongAnswerCoroutine()
+        {
+            checkmarkWidget.Show( false);
+            audioManager.PlaySound( Sfx.KO);
+            yield return PlayAnswerWrong();
+            wrongAnswerAnimationPlaying = false;
+        }
+
+        private bool WrongAnswerAnimationPlaying()
+        {
+            return wrongAnswerAnimationPlaying;
         }
 
         public bool IsAnimating()
