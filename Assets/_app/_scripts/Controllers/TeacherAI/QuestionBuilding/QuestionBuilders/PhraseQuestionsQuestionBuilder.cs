@@ -45,7 +45,7 @@ namespace EA4S
             // Get a question phrase at random
             int nToUse = 1;
             var usablePhrases = teacher.wordAI.SelectData(
-                () => teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question),
+                () => teacher.wordHelper.GetPhrasesByCategory(Db.PhraseDataCategory.Question, parameters.wordFilters),
                     new SelectionParameters(parameters.correctSeverity, nToUse, useJourney: parameters.useJourneyForCorrect,
                         packListHistory: parameters.correctChoicesHistory, filteringIds: previousPacksIDs));
             var question = usablePhrases[0];
