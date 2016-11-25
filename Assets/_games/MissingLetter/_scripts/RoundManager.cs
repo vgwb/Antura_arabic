@@ -86,7 +86,6 @@ namespace EA4S.MissingLetter
 
         public void OnAnswerClicked(string _key)
         {
-            Debug.Log("Answer: " + _key);
             m_oGame.SetInIdle(false);
 
             //refresh the data (for graphics)
@@ -173,11 +172,11 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i) {
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count()+1; ++i) {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
                 wrongAnsBheaviour.Reset();
-                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i);
+                wrongAnsBheaviour.LetterData = _wrongAnswers.ElementAt(i-1);
                 wrongAnsBheaviour.onLetterBecameInvisible += OnAnswerLetterBecameInvisible;
 
                 if(!m_bTutorialEnabled)
@@ -254,7 +253,7 @@ namespace EA4S.MissingLetter
             m_aoCurrentAnswerScene.Add(_correctAnswerObject);
             m_oCorrectAnswer = _correctAnswerObject;
 
-            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count(); ++i)
+            for (int i = 1; i < m_oGame.m_iNumberOfPossibleAnswers && i < _wrongAnswers.Count() + 1; ++i)
             {
                 GameObject _wrongAnswerObject = m_oAnswerPool.GetElement();
                 LetterBehaviour wrongAnsBheaviour = _wrongAnswerObject.GetComponent<LetterBehaviour>();
