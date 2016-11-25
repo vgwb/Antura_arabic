@@ -181,6 +181,15 @@ namespace EA4S
         }
 
         /// <summary>
+        /// Calculates the unlock item count.
+        /// </summary>
+        /// <returns></returns>
+        public int CalculateUnlockItemCount() {
+            // TODO: logic to calculate
+            return 2;
+        }
+
+        /// <summary>
         /// Called to notify end of playsession (pushed continue button on UI).
         /// </summary>
         /// <param name="_stars">The star.</param>
