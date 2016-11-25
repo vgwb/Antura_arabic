@@ -59,13 +59,15 @@
             int nCorrect = 1;
             int nWrong = 5;
 
+            var builderParams = new Teacher.QuestionBuilderParameters();
+
             switch (Variation)
             {
                 case ToboganVariation.LetterInAWord:
-                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong);
+                    builder = new LettersInWordQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case ToboganVariation.SunMoon:
-                    builder = new WordsBySunMoonQuestionBuilder(nPacks);
+                    builder = new WordsBySunMoonQuestionBuilder(nPacks, parameters: builderParams);
                     break;
             }
 

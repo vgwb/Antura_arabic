@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48906c1c606e3f40af425821b0dd475, type: 3}
+  m_Name: Database_Stage
+  m_EditorClassIdentifier: 
+  table:
+    innerList:
+    - Id: 1
+      Title_En: Mountains
+      Title_Ar: 
+      Description: Mountain and pine forest
+    - Id: 2
+      Title_En: Island
+      Title_Ar: 
+      Description: Atolls and pacific
+    - Id: 3
+      Title_En: Grassland
+      Title_Ar: 
+      Description: Tropical Forest
+    - Id: 4
+      Title_En: Desert
+      Title_Ar: 
+      Description: Desert and savanna
+    - Id: 5
+      Title_En: Forest
+      Title_Ar: 
+      Description: River delta and temperate forest
+    - Id: 6
+      Title_En: Village
+      Title_Ar: 
+      Description: '--- TBD ---'

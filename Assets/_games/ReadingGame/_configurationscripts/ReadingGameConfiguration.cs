@@ -52,13 +52,16 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
             switch (Variation)
             {
                 case ReadingGameVariation.AlphabetSong:
                     builder = new EmptyQuestionBuilder();
                     break;
                 case ReadingGameVariation.ReadAndAnswer:
-                    builder = new WordsInPhraseQuestionBuilder(nPacks: 10, nCorrect: 1, nWrong: 5, usePhraseAnswersIfFound: true);
+                    builderParams.wordFilters.excludeColorWords = true;
+                    builder = new WordsInPhraseQuestionBuilder(nPacks: 10, nCorrect: 1, nWrong: 5, usePhraseAnswersIfFound: true, parameters: builderParams);
                     break;
             } 
             return builder;
