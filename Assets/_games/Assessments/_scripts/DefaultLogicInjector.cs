@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace EA4S.Assessment
@@ -88,6 +89,11 @@ namespace EA4S.Assessment
         {
             // Problem probably here (Readding) EIGEN CALLED 1*N
             dragManager.AddElements( placeholdersList, answersList);
+        }
+
+        public void EnableDragOnly()
+        {
+            dragManager.EnableDragOnly();
         }
     }
 }
