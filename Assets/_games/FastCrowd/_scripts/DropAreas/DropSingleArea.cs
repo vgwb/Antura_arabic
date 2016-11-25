@@ -15,7 +15,6 @@ namespace EA4S {
         #region Api
         public void Init(ILivingLetterData _data, DropContainer _dropContainer, bool asImage) {
             DropContain = _dropContainer;
-            DropContain.Aree.Add(this);
             Data = _data;
             if (asImage && !(_data is LL_LetterData))
             {
@@ -35,10 +34,9 @@ namespace EA4S {
         public void Init(ILivingLetterData _data, string text, DropContainer _dropContainer)
         {
             DropContain = _dropContainer;
-            DropContain.Aree.Add(this);
             Data = _data;
 
-            LetterLable.text = text;
+            LetterLable.text = GenericUtilities.ReverseText(text);
             DrawText.gameObject.SetActive(false);
 
             AreaState = State.disabled;

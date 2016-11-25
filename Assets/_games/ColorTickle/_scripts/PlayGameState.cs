@@ -57,7 +57,7 @@ namespace EA4S.ColorTickle
             //Init the first letter
             m_CurrentLetter = game.myLetters[m_Rounds - 1];
 			m_CurrentLetter.gameObject.SetActive (true);         
-            InitLetter();       
+            InitLetter();
         }
 
         public void ExitState()
@@ -67,11 +67,7 @@ namespace EA4S.ColorTickle
         public void Update(float delta)
         {
             if (m_Rounds <= 0)
-            {
-                /*Debug.Log("Final Stars: " + m_iRoundsSuccessfull);
-                game.m_Stars = Mathf.RoundToInt(m_iRoundsSuccessfull);
-                Debug.Log("Final int Stars: " + m_iRoundsSuccessfull);*/
-               
+            {               
                 game.SetCurrentState(game.ResultState);
             }
             else
@@ -209,6 +205,9 @@ namespace EA4S.ColorTickle
             m_HitStateLLController = m_CurrentLetter.GetComponent<HitStateLLController>();
             m_HitStateLLController.LoseLife += LoseLife;
 
+            m_LLController.OnDestinationReached += delegate () { AudioManager.I.PlayLetter(m_LetterObjectView.Data.Id); };//play audio on destination
+
+
             m_HitStateLLController.EnableAntura += EnableAntura;
             //game.anturaController.targetToLook = m_CurrentLetter.transform; //make antura look at the LL on rotations
 
@@ -255,8 +254,6 @@ namespace EA4S.ColorTickle
 
             m_Lives--;
             
-            //m_Stars -= (3f/(float)game.rounds) / (float)game.lives; //this will subtract points to the score accordingly to number of life(difficulty) and rounds 
-         
             game.gameUI.SetLives(m_Lives);
        
         }

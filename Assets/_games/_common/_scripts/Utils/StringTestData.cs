@@ -36,5 +36,14 @@ namespace EA4S
                 return text;
             }
         }
+
+        public bool Equals(ILivingLetterData data)
+        {
+            StringTestData other = data as StringTestData;
+            if (other == null)
+                return false;
+
+            return other.text == text;
+        }
     }
 }

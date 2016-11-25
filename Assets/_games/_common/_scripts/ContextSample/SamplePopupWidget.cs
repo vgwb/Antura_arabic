@@ -58,7 +58,7 @@ namespace EA4S
 
         public void SetTitle(Db.LocalizationDataId text)
         {
-            WidgetPopupWindow.I.SetTitleSentence(LocalizationManager.GetLocalizationData(text).Arabic);
+            WidgetPopupWindow.I.SetTitleSentence(text);
         }
 
         public void SetMark(bool visible, bool correct)

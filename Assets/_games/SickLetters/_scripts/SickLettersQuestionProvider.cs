@@ -5,7 +5,12 @@ using System;
 
 namespace EA4S.SickLetters
 {
-    public class SickLettersQuestionProvider : MonoBehaviour, IQuestionProvider
+    /*
+    This is a Dummy Provider, used only when the game is started from the Editor, 
+    will be overridden when the game is called from the debugger/Map. 
+    */
+
+    public class SickLettersQuestionProvider :  IQuestionProvider
     {
         string dotlessLetters = "ﻻ لأ ﺉ آ ٶ ى ر س ل ص ع ه ح د م ك ط ئ ء ؤ و �ة - ", prevLetter="", newLetterString="X";
 
@@ -20,51 +25,14 @@ namespace EA4S.SickLetters
             {
                 newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
                 newLetterString = newLetter.TextForLivingLetter;
-
             }
             while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
 
             Debug.Log(newLetterString);
-            //SickLettersQuestionsPack dataPack = new SickLettersQuestionsPack(newLetter);
 
             correctAnswers.Add(newLetter);
             return new SampleQuestionPack(newLetter, wrongAnswers, correctAnswers);
-
-            //return dataPack;
-        }
-
-        public SickLettersQuestionsPack SickLettersGetNextQuestion()
-        {
-            LL_LetterData newLetter;
-
-            prevLetter = newLetterString;
-            do
-            {
-                newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-                newLetterString = newLetter.TextForLivingLetter.ToString();
-
-            }
-            while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
-
-            SickLettersQuestionsPack dataPack = new SickLettersQuestionsPack(newLetter);
-            return dataPack;
-        }
-
-        public ILivingLetterData GetNextQuestion_Temp()
-        {
-            LL_LetterData newLetter;
-
-            prevLetter = newLetterString;
-            do
-            {
-                newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-                newLetterString = newLetter.TextForLivingLetter.ToString();
-
-            }
-            while (newLetterString == "" || dotlessLetters.Contains(newLetterString) || newLetterString == prevLetter);
-
-            SickLettersQuestionsPack dataPack = new SickLettersQuestionsPack(newLetter);
-            return newLetter;
+            
         }
 
     }

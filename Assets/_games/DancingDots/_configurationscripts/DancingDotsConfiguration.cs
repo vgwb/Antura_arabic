@@ -57,12 +57,15 @@
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 6;
+            int nPacks = 7; // extra one for the tutorial
             int nCorrect = 1;
             int nWrong = 0;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.letterFilters.excludeDiacritics = false;
+            builderParams.letterFilters.excludeLetterVariations = false;
             builderParams.wordFilters.excludeDiacritics = false;
+            builderParams.wordFilters.excludeLetterVariations = false;
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
             return builder;

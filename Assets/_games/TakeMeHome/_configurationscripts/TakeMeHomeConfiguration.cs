@@ -31,7 +31,7 @@
 			// Default values
 			Context = new SampleGameContext();
 			Letters = new TakeMeHomeLettersProvider();
-
+            Questions = new SampleQuestionProvider();
             Difficulty = 0;
 		}
 
@@ -46,7 +46,7 @@
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
             
-            builder = new RandomLettersQuestionBuilder(7,7);
+            builder = new RandomLettersQuestionBuilder(1,7);
 
             return builder;
         }
