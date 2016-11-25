@@ -22,15 +22,15 @@ namespace EA4S.Db
 
     public class Database : UnityEngine.Object
     {
-        private StageDatabase stageDb;
-        private PlaySessionDatabase playsessionDb;
-        private LearningBlockDatabase learningblockDb;
-        private MiniGameDatabase minigameDb;
-        private LetterDatabase letterDb;
-        private WordDatabase wordDb;
-        private PhraseDatabase phraseDb;
-        private LocalizationDatabase localizationDb;
-        private RewardDatabase rewardDb;
+        public StageDatabase stageDb;
+        public PlaySessionDatabase playsessionDb;
+        public LearningBlockDatabase learningblockDb;
+        public MiniGameDatabase minigameDb;
+        public LetterDatabase letterDb;
+        public WordDatabase wordDb;
+        public PhraseDatabase phraseDb;
+        public LocalizationDatabase localizationDb;
+        public RewardDatabase rewardDb;
 
         #region Creation
 
