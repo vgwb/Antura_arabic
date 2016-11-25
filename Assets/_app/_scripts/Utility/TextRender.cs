@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using TMPro;
-using ArabicSupport;
 
 namespace EA4S
 {
@@ -59,7 +57,7 @@ namespace EA4S
             } else {
                 if (isArabic) {
                     if (isUI) {
-                        gameObject.GetComponent<Text>().text = ArabicFixer.Fix(m_text);
+                        gameObject.GetComponent<Text>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
                     } else {
                         gameObject.GetComponent<TextMesh>().text = ArabicAlphabetHelper.PrepareArabicStringForDisplay(m_text);
                     }

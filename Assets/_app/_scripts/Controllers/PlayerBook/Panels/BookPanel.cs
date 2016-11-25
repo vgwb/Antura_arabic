@@ -133,7 +133,8 @@ namespace EA4S
             switch (currentWordCategory) {
 
                 case WordDataCategory.None:
-                    list = AppManager.Instance.DB.GetAllWordData();
+                    //list = AppManager.Instance.DB.GetAllWordData();
+                    list = new List<WordData>();
                     break;
                 default:
                     list = AppManager.Instance.DB.FindWordDataByCategory(currentWordCategory);
@@ -148,9 +149,9 @@ namespace EA4S
             }
             Drawing.text = "";
 
-            btnGO = Instantiate(CategoryItemPrefab);
-            btnGO.transform.SetParent(SubmenuContainer.transform, false);
-            btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { Id = WordDataCategory.None.ToString(), Title = "All" });
+            //btnGO = Instantiate(CategoryItemPrefab);
+            //btnGO.transform.SetParent(SubmenuContainer.transform, false);
+            //btnGO.GetComponent<MenuItemCategory>().Init(this, new GenericCategoryData { Id = WordDataCategory.None.ToString(), Title = "All" });
 
             foreach (WordDataCategory cat in GenericUtilities.SortEnums<WordDataCategory>()) {
                 btnGO = Instantiate(CategoryItemPrefab);
