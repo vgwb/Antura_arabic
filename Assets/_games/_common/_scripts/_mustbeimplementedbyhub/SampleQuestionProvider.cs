@@ -35,9 +35,10 @@ namespace EA4S
                 if (newWordData == null)
                     return;
 
-                foreach (var letterData in ArabicAlphabetHelper.LetterDataListFromWord(newWordData.Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()))
+                UnityEngine.Debug.Log(newWordData.Data.Id + " " + newWordData.Data.Arabic);
+                foreach (var letterData in AppManager.Instance.Teacher.wordHelper.GetLettersInWord(newWordData.Data))
                 {
-                    correctAnswers.Add(letterData);
+                    correctAnswers.Add(letterData.ConvertToLivingLetterData());
                 }
 
                 correctAnswers = correctAnswers.Distinct().ToList();
