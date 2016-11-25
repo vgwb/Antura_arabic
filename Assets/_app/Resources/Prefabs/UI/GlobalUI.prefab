@@ -1909,6 +1909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 7
 --- !u!114 &114000010209445030
 MonoBehaviour:
@@ -1930,7 +1931,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u0644\u0639\u0631\u0628\u064A\u0629"
-  m_isRightToLeft: 0
+  m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
   m_sharedMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
     type: 2}
@@ -2103,7 +2104,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u062B\u0645 \u0631\u0627\u0646\u062F\u0648\u0645 \u0648\u0631\u062F \u0625\u0646
     \u0627\u0644\u0639\u0631\u0628\u064A\u0629"
-  m_isRightToLeft: 0
+  m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
   m_sharedMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
     type: 2}
@@ -2228,6 +2229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
 --- !u!114 &114000010792291946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2242,7 +2244,7 @@ MonoBehaviour:
   m_text: 
   isTMPro: 1
   isUI: 1
-  isArabic: 1
+  isArabic: 0
 --- !u!114 &114000010813081642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2351,7 +2353,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\uFECB\uFEF4\uFEE6 \uFEB7\uFECC\uFEAE \uFEBB\uFEAA\u0631 "
-  m_isRightToLeft: 0
+  m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: ec76213212ac2438986d3d12b10f0625, type: 2}
   m_sharedMaterial: {fileID: 21000011752393256, guid: ec76213212ac2438986d3d12b10f0625,
     type: 2}
@@ -2851,6 +2853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 1
 --- !u!114 &114000013430124858
 MonoBehaviour:
@@ -2917,7 +2920,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 51.6
+  m_fontSize: 50
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2954,7 +2957,7 @@ MonoBehaviour:
     spaceCount: 18
     wordCount: 16
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
@@ -2988,6 +2991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.27058825, g: 0.27058825, b: 0.27058825, a: 1}
+  ToggleIconAlpha: 1
   Type: 4
 --- !u!114 &114000013652339624
 MonoBehaviour:
@@ -3001,6 +3005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 2
 --- !u!114 &114000013653754516
 MonoBehaviour:
@@ -3415,6 +3420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 1, g: 1, b: 1, a: 1}
+  ToggleIconAlpha: 1
   Type: 3
 --- !u!114 &114000014190198668
 MonoBehaviour:
@@ -3469,6 +3475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtToggleOffColor: {r: 0.27058825, g: 0.27058825, b: 0.27058825, a: 1}
+  ToggleIconAlpha: 1
   Type: 5
 --- !u!114 &114000014278853110
 MonoBehaviour:

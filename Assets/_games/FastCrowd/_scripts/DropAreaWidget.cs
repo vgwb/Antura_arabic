@@ -32,8 +32,7 @@ namespace EA4S.FastCrowd
         {
             container = GetComponent<DropContainer>();
 
-            // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
-            DropContainer.OnObjectiveBlockCompleted += OnCompleted;
+            container.OnObjectiveBlockCompleted += OnCompleted;
         }
 
         public void SetMatchingOutline(bool active, bool matching)
@@ -67,8 +66,8 @@ namespace EA4S.FastCrowd
 
         void OnDestroy()
         {
-            // TODO: WARNING: THIS SHOULD NOT BE STATIC (possible errors on multiple game sessions, reuse, etc.)
-            DropContainer.OnObjectiveBlockCompleted -= OnCompleted;
+            if (container != null)
+                container.OnObjectiveBlockCompleted -= OnCompleted;
         }
 
         public void AddDropText(ILivingLetterData newElement, string text)
@@ -77,7 +76,8 @@ namespace EA4S.FastCrowd
             dropSingleArea.transform.SetParent(transform, false);
             dropSingleArea.transform.position = Camera.main.transform.position;
             dropSingleArea.Init(newElement, text, container);
-            container.SetupDone(); // not-optimal but simpler to use
+
+            container.AddArea(dropSingleArea);
 
             letters[newElement] = dropSingleArea;
         }
@@ -88,7 +88,8 @@ namespace EA4S.FastCrowd
             dropSingleArea.transform.SetParent(transform, false);
             dropSingleArea.transform.position = Camera.main.transform.position;
             dropSingleArea.Init(newElement, container, asImage);
-            container.SetupDone(); // not-optimal but simpler to use
+
+            container.AddArea(dropSingleArea);
 
             letters[newElement] = dropSingleArea;
         }

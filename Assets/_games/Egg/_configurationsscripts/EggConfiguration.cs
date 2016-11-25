@@ -37,7 +37,8 @@
             int nCorrect = 5;
             int nWrong = 5;
 
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
 
             return builder;
         }

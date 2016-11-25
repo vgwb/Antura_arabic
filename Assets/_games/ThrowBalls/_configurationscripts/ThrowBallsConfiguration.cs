@@ -57,16 +57,17 @@
             int nCorrect = 4;
             int nWrong = 4;
 
+            var builderParams = new Teacher.QuestionBuilderParameters();
             switch (Variation)
             {
                 case ThrowBallsVariation.letters:
-                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+                    builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.words:
-                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
+                    builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true, parameters: builderParams);
                     break;
                 case ThrowBallsVariation.lettersinword:
-                    builder = new LettersInWordQuestionBuilder(nPacks:nPacks, nWrong:nWrong, useAllCorrectLetters:true);
+                    builder = new LettersInWordQuestionBuilder(nPacks:nPacks, nWrong:nWrong, useAllCorrectLetters:true, parameters: builderParams);
                     break;
             }
 

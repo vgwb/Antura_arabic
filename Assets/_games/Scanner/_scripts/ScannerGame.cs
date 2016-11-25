@@ -46,7 +46,7 @@ namespace EA4S.Scanner
 		public ScannerSuitcase[] suitcases;
 
 		[HideInInspector]
-		public LL_WordData wordData;
+		public ILivingLetterData wordData;
 
 		[HideInInspector]
 		public ScannerRoundsManager roundsManager;
@@ -91,11 +91,7 @@ namespace EA4S.Scanner
 		protected override void OnInitialize(IGameContext context)
 		{
 			
-//			instance = this;
-
-			Debug.Log("Context: " + context);
-
-			STARS_1_THRESHOLD = 1;
+			STARS_1_THRESHOLD = numberOfRounds/3;
 			STARS_2_THRESHOLD = numberOfRounds/2;
 			STARS_3_THRESHOLD = numberOfRounds;
 
@@ -104,18 +100,16 @@ namespace EA4S.Scanner
 			ResultState = new ScannerResultState(this);
 
 			roundsManager = new ScannerRoundsManager(this);
-//			roundManager.onRoundsFinished += OnResult;
 
-			Context.GetOverlayWidget().Initialize(false, false, false);
+			Context.GetOverlayWidget().Initialize(true, false, false);
 			Context.GetOverlayWidget().SetStarsThresholds(STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD);
 		}
 
 		public void PlayWord(float deltaTime)
 		{
 			Debug.Log("Play word: " + deltaTime);
-//			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
-//			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
-			AudioManager.I.PlayWord(wordData.Id);
+			IAudioSource wordSound = Context.GetAudioManager().PlayLetterData(wordData, true);
+			wordSound.Pitch = Mathf.Abs(maxPlaySpeed - Mathf.Clamp(deltaTime,minPlaySpeed,maxPlaySpeed + minPlaySpeed));
 		}
 
 		public void CreatePoof(Vector3 position, float duration, bool withSound)
@@ -126,39 +120,11 @@ namespace EA4S.Scanner
 			Destroy(poof, duration);
 		}
 
-        public override Vector3 GetGravity()
-        {
-            return Vector3.up * (-80);
-        }
-
-        //		public void CorrectMove(GameObject GO)
-        //		{
-        //
-        //		}
-        //
-        //		public void WrongMove(GameObject GO)
-        //		{
-        //		}
+//        public override Vector3 GetGravity()
+//        {
+//            return Vector3.up * (-80);
+//        }
 
 
-        //		IEnumerator AnimateAntura()
-        //		{
-        //			yield return new WaitForSeconds(1f);
-        //			//			Vector3 pos = antura.transform.position;
-        //			// Move antura off screen because SetActive is reseting the animation to running
-        //			//			antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-        //			do
-        //			{
-        //				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinDelay, anturaMaxDelay));
-        //				//				CreatePoof(pos, 2f, false);
-        //				yield return new WaitForSeconds(0.4f);
-        //				//				antura.transform.position = pos;
-        //				//
-        //				yield return new WaitForSeconds(UnityEngine.Random.Range(anturaMinScreenTime, anturaMaxScreenTime));
-        //				//				CreatePoof(pos, 2f, false);
-        //				//				antura.transform.position = new Vector3 (-50,pos.y,pos.z);
-        //			} while (isPlaying);
-        //
-        //		}
     }
 }

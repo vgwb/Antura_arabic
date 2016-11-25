@@ -11,6 +11,11 @@
 
         public void EnterState()
         {
+            if (game.showTutorial)
+                game.QuestionManager.crowd.MaxConcurrentLetters = 2;
+            else
+                game.QuestionManager.crowd.MaxConcurrentLetters = UnityEngine.Mathf.RoundToInt(4 + FastCrowdConfiguration.Instance.Difficulty * 4);
+
             game.CurrentChallenge.Clear();
             game.NoiseData.Clear();
 
