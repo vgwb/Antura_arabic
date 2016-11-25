@@ -5,9 +5,9 @@ namespace EA4S.Db
     public enum LetterKindCategory
     {
         Real = 0,   // default: Base + Combo
-        Combo,
+        DiacriticCombo,
         Base,
-        Variation,
+        LetterVariation,
         Symbol,
         BaseAndVariations
     }
@@ -62,13 +62,13 @@ namespace EA4S.Db
                 case LetterKindCategory.Base:
                     isIt = IsBaseLetter();
                     break;
-                case LetterKindCategory.Variation:
+                case LetterKindCategory.LetterVariation:
                     isIt = IsVariationLetter();
                     break;
                 case LetterKindCategory.Symbol:
                     isIt = IsSymbolLetter();
                     break;
-                case LetterKindCategory.Combo:
+                case LetterKindCategory.DiacriticCombo:
                     isIt = IsComboLetter();
                     break;
                 case LetterKindCategory.Real:
@@ -103,7 +103,7 @@ namespace EA4S.Db
 
         private bool IsComboLetter()
         {
-            return this.Kind == LetterDataKind.Combination || this.Kind == LetterDataKind.LetterVariation;
+            return this.Kind == LetterDataKind.DiacriticCombo || this.Kind == LetterDataKind.LetterVariation;
         }
 
         private bool IsBaseOrVariationLetter()

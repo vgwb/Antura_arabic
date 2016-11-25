@@ -44,7 +44,7 @@ namespace EA4S.Db.Management
             // Fields 'BaseLetter' and 'Symbol' are validated with a final validation step, since they are based on this same table
             // Also, Combination letters are validated with their BaseLetter and Symbol.
             foreach (var data in table.GetValuesTyped()) {
-                if (data.Kind == LetterDataKind.Combination) {
+                if (data.Kind == LetterDataKind.DiacriticCombo) {
                     if (data.BaseLetter == "") {
                         LogValidation(data, "LetterData with id  " + data.Id + " is a Combination but does not have a BaseLetter.");
                     }
