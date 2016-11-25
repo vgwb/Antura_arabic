@@ -313,7 +313,9 @@ namespace EA4S.Maze
 
 
             //get a new letter:
-            LL_LetterData ld = (LL_LetterData)MazeConfiguration.Instance.Letters.GetNextData();
+            IQuestionPack newQuestionPack = MazeConfiguration.Instance.Questions.GetNextQuestion();
+            List<ILivingLetterData> ldList =  (List < ILivingLetterData > )newQuestionPack.GetCorrectAnswers();
+            LL_LetterData ld = (LL_LetterData)ldList[0];
             int index = allLetters.IndexOf(ld.Id);
 
             int found = -1;
@@ -327,7 +329,11 @@ namespace EA4S.Maze
                 }
             }
             if (found == -1)
+            {
+                Debug.Log("Letter got from Teacher is: " + ld.Id + " - does not match 11 models we have");
                 found = UnityEngine.Random.Range(0, prefabs.Count);
+            }
+                
 
             currentPrefab = (GameObject)Instantiate(prefabs[found]);
 

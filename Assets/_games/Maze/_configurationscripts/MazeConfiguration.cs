@@ -49,7 +49,7 @@
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
 
-            builder = new RandomLettersQuestionBuilder(7,7);
+            builder = new RandomLettersQuestionBuilder(7,1);
 
             return builder;
         }

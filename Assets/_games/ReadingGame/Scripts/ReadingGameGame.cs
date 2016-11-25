@@ -29,18 +29,28 @@ namespace EA4S.ReadingGame
         public AudioClip alphabetSongAudio;
         public TextAsset alphabetSongSrt;
 
-        public const int TIME_TO_ANSWER = 20;
-        public const int MAX_QUESTIONS = 5;
-        static readonly int[] READING_STARS_THRESHOLDS =
-            new int[] { 8 * MAX_QUESTIONS, 12 * MAX_QUESTIONS, 15 * MAX_QUESTIONS };
+        public int TimeToAnswer
+        {
+            get
+            {
+                return Mathf.RoundToInt(30 - 20 * ReadingGameConfiguration.Instance.Difficulty);
+            }
+        }
 
+        public const int MAX_QUESTIONS = 5;
+        static readonly float[] READING_STARS_THRESHOLDS_RATIOS = new float[] { 0.4f, 0.55f, 0.7f };
 
         public int GetStarsThreshold(int stars)
         {
             if (ReadingGameConfiguration.Instance.Variation == ReadingGameVariation.ReadAndAnswer)
-                return READING_STARS_THRESHOLDS[stars - 1];
+            {
+                return Mathf.FloorToInt(MAX_QUESTIONS * TimeToAnswer * READING_STARS_THRESHOLDS_RATIOS[stars - 1]);
+            }
 
-            var t = (int)(alphabetSong.GetSegmentsLength()/(4 - stars));
+            if (alphabetSong == null)
+                return int.MaxValue;
+
+            var t = (int)(alphabetSong.GetSegmentsLength() / (4 - stars));
             return t;
         }
 

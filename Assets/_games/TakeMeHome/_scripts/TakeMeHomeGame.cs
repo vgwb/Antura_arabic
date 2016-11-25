@@ -15,7 +15,10 @@ namespace EA4S.TakeMeHome
 		public Transform LLSpawnPosition;
 		public GameObject antura;
 
-		[HideInInspector]
+        List<ILivingLetterData> allLetters;
+
+
+        [HideInInspector]
 		public TakeMeHomeLL currentLetter;
 
 		[HideInInspector]
@@ -169,11 +172,13 @@ namespace EA4S.TakeMeHome
 
 		public void spawnLetteAtTube()
 		{
-            LL_LetterData ld= (LL_LetterData) TakeMeHomeConfiguration.Instance.Letters.GetNextData();
+            int index = UnityEngine.Random.Range(0, allLetters.Count);
+            LL_LetterData ld= (LL_LetterData) allLetters[index];
+
+            allLetters.RemoveAt(index);
 
             //check which tube to activate
-            string abcd = "ABCD";
-            currentTube = abcd.IndexOf(ld.Data.SoundZone);
+            currentTube = "ABCD".IndexOf(ld.Data.SoundZone);
             currentLetter = letterManager.spawnLetter(ld);
             currentLetter.MoveBy(new UnityEngine.Vector3(-11, 0, 0), 1.8f);
         }
@@ -228,12 +233,13 @@ namespace EA4S.TakeMeHome
             isTimesUp = false;
 
 
-            List<LL_LetterData> allLetters = ((TakeMeHomeLettersProvider)TakeMeHomeConfiguration.Instance.Letters).letters;
+            IQuestionPack newQuestionPack = TakeMeHomeConfiguration.Instance.Questions.GetNextQuestion();
+            allLetters = (List<ILivingLetterData>)newQuestionPack.GetCorrectAnswers();
             string abcd = "ABCD";
            
             for(int i =0; i < allLetters.Count; ++i)
             {
-                int index = abcd.IndexOf(allLetters[i].Data.SoundZone);
+                int index = abcd.IndexOf(((LL_LetterData)allLetters[i]).Data.SoundZone);
                 if(!allTubes[index].activeSelf)
                 {
                     activeTubes.Add(allTubes[index]);

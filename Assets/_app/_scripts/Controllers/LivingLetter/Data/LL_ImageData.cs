@@ -50,5 +50,13 @@ namespace EA4S
             get { return Resources.Load<Sprite>("Textures/LivingLetters/Drawings/drawing-" + Id); }
         }
 
+        public bool Equals(ILivingLetterData data)
+        {
+            LL_ImageData other = data as LL_ImageData;
+            if (other == null)
+                return false;
+
+            return other.Data.Id == Data.Id;
+        }
     }
 }

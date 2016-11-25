@@ -31,6 +31,9 @@ public class ReadingBarSet : MonoBehaviour
     IAudioSource songSource;
     System.Action onSongCompleted;
 
+    bool showTargets = true;
+    bool showArrows = true;
+
     void Awake()
     {
         barsStartInitialPosition = barsStart.transform.localPosition;
@@ -135,6 +138,7 @@ public class ReadingBarSet : MonoBehaviour
 
     public void SetShowTargets(bool show)
     {
+        showTargets = show;
         for (int i = 0; i < bars.Count; ++i)
         {
             bars[i].showTarget = show;
@@ -143,6 +147,7 @@ public class ReadingBarSet : MonoBehaviour
 
     public void SetShowArrows(bool show)
     {
+        showArrows = show;
         for (int i = 0; i < bars.Count; ++i)
         {
             bars[i].showArrows = show;
@@ -166,6 +171,8 @@ public class ReadingBarSet : MonoBehaviour
         var currentReadingBar = GameObject.Instantiate(readingBarPrefab);
         currentReadingBar.transform.SetParent(barsStart);
         currentReadingBar.transform.localPosition = Vector3.zero;
+        currentReadingBar.showArrows = showArrows;
+        currentReadingBar.showTarget = showTargets;
         currentReadingBar.text.text = words[0];
         currentReadingBar.Id = 0;
         if (!addOffsets)
@@ -195,6 +202,8 @@ public class ReadingBarSet : MonoBehaviour
                 currentReadingBar.text.text = previousText;
 
                 currentReadingBar = GameObject.Instantiate(readingBarPrefab);
+                currentReadingBar.showArrows = showArrows;
+                currentReadingBar.showTarget = showTargets;
                 currentReadingBar.transform.SetParent(barsStart);
                 currentReadingBar.transform.localPosition = Vector3.down * (bars.Count % 2) * distanceBetweenBars;
                 currentReadingBar.text.text = word;

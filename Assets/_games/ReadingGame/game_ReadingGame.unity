@@ -7866,9 +7866,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalTextureOutput: {fileID: 0}
-  blurIterations: 2
-  downsample: 1
-  blurSize: 2.5
+  blurIterations: 3
+  textureSize: 256
+  blurSize: 0.2
   blurShader: {fileID: 4800000, guid: f9d5fa183cd6b45eeb1491f74863cd91, type: 3}
 --- !u!1 &1368533321
 GameObject:
