@@ -12,6 +12,7 @@ namespace EA4S
     public class UIButton : MonoBehaviour
     {
         public Color BtToggleOffColor = Color.white;
+        public bool ToggleIconAlpha = true;
 
         public bool IsToggled { get; private set; }
         public Button Bt { get { if (fooBt == null) fooBt = this.GetComponent<Button>(); return fooBt; } }
@@ -32,7 +33,7 @@ namespace EA4S
                 .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
         }
 
-        void OnDestroy()
+        protected virtual void OnDestroy()
         {
             clickTween.Kill();
             pulseTween.Kill();
@@ -54,7 +55,7 @@ namespace EA4S
             if (ico == null) ico = this.GetOnlyComponentsInChildren<Image>(true)[0];
 
             btImg.color = _activate ? defColor : BtToggleOffColor;
-            ico.SetAlpha(_activate ? 1 : 0.4f);
+            if (ToggleIconAlpha && ico != null) ico.SetAlpha(_activate ? 1 : 0.4f);
 
             if (_animateClick) AnimateClick();
         }
