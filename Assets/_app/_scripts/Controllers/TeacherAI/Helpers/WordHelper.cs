@@ -11,8 +11,8 @@ namespace EA4S
         public bool excludeLetterVariations;
 
         public LetterFilters(
-            bool excludeDiacritics = true, 
-            bool excludeLetterVariations = true)
+            bool excludeDiacritics = false, 
+            bool excludeLetterVariations = false)
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeLetterVariations = excludeLetterVariations;
@@ -30,11 +30,11 @@ namespace EA4S
         public bool excludeColorWords;
 
         public WordFilters(
-            bool excludeDiacritics = true,
-            bool excludeLetterVariations = true,
-            bool excludeArticles = true, 
-            bool excludePluralDual = true, 
-            bool requireDrawings = true,
+            bool excludeDiacritics = false,
+            bool excludeLetterVariations = false,
+            bool excludeArticles = false, 
+            bool excludePluralDual = false, 
+            bool requireDrawings = false,
             bool excludeColorWords = false)
         {
             this.excludeDiacritics = excludeDiacritics;
