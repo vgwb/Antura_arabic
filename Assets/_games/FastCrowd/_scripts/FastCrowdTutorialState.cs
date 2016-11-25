@@ -8,6 +8,7 @@ namespace EA4S.FastCrowd
         FastCrowdGame game;
 
         float tutorialStartTimer;
+        int answerCounter;
 
         public FastCrowdTutorialState(FastCrowdGame game)
         {
@@ -16,6 +17,7 @@ namespace EA4S.FastCrowd
 
         public void EnterState()
         {
+            answerCounter = 2;
             game.QuestionManager.OnCompleted += OnQuestionCompleted;
             game.QuestionManager.OnDropped += OnAnswerDropped;
 
@@ -40,11 +42,26 @@ namespace EA4S.FastCrowd
 
         void OnQuestionCompleted()
         {
-            game.SetCurrentState(game.ResultState);
+            game.SetCurrentState(game.QuestionState);
         }
 
         void OnAnswerDropped(bool result)
         {
+            if (result)
+            {
+                --answerCounter;
+
+                if (answerCounter <= 0 &&
+                    (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet ||
+                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting ||
+                    FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+                    )
+                {
+                    game.SetCurrentState(game.QuestionState);
+                    return;
+                }
+            }
+
             tutorialStartTimer = 3f;
             game.Context.GetCheckmarkWidget().Show(result);
             game.Context.GetAudioManager().PlaySound(result ? Sfx.OK : Sfx.KO);
@@ -76,9 +93,9 @@ namespace EA4S.FastCrowd
 
             game.QuestionManager.crowd.GetNearLetters(nearLetters, startLine, 10f);
 
-            for(int i=0; i< nearLetters.Count; i++)
+            for (int i = 0; i < nearLetters.Count; i++)
             {
-                if(nearLetters[i] != tutorialLetter)
+                if (nearLetters[i] != tutorialLetter)
                 {
                     nearLetters[i].Scare(startLine, 3f);
                 }
