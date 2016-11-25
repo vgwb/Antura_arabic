@@ -836,7 +836,7 @@ MonoBehaviour:
     - Id: alef_maqsura_hamza
       Number: 0
       Title: alef_maqsura_hamza
-      Kind: 3
+      Kind: 4
       BaseLetter: alef_maqsura
       Symbol: hamza
       Type: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
     - Id: yeh_hamza
       Number: 0
       Title: yeh_hamza
-      Kind: 3
+      Kind: 4
       BaseLetter: yeh
       Symbol: hamza
       Type: 0
@@ -896,7 +896,7 @@ MonoBehaviour:
     - Id: lam_alef
       Number: 0
       Title: lam alef
-      Kind: 3
+      Kind: 4
       BaseLetter: lam
       Symbol: alef
       Type: 0
@@ -1796,7 +1796,7 @@ MonoBehaviour:
     - Id: waw_hamza
       Number: 0
       Title: waw_hamza
-      Kind: 3
+      Kind: 4
       BaseLetter: waw
       Symbol: hamza
       Type: 0
