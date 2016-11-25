@@ -10,6 +10,8 @@ namespace EA4S.FastCrowd
         float tutorialStartTimer;
         int answerCounter;
 
+        bool tutorialStarted;
+
         public FastCrowdTutorialState(FastCrowdGame game)
         {
             this.game = game;
@@ -26,9 +28,32 @@ namespace EA4S.FastCrowd
             else
                 game.QuestionManager.Clean();
 
-            StartTutorial();
+            tutorialStarted = false;
 
-            tutorialStartTimer = 3f;
+            if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Alphabet)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_alphabet_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Counting)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_counting_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Letter)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_letter_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Spelling)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_spelling_Tuto, () => { StartTutorial(); });
+            }
+            else if (FastCrowdConfiguration.Instance.Variation == FastCrowdVariation.Words)
+            {
+                game.Context.GetAudioManager().PlayDialogue(Db.LocalizationDataId.FastCrowd_words_Tuto, () => { StartTutorial(); });
+            }
+            else
+            {
+                StartTutorial();
+            }
         }
 
         public void ExitState()
@@ -38,6 +63,15 @@ namespace EA4S.FastCrowd
             game.QuestionManager.Clean();
 
             game.showTutorial = false;
+        }
+
+        void StartTutorial()
+        {
+            DrawTutorial();
+
+            tutorialStartTimer = 3f;
+
+            tutorialStarted = true;
         }
 
         void OnQuestionCompleted()
@@ -69,17 +103,20 @@ namespace EA4S.FastCrowd
 
         public void Update(float delta)
         {
-            tutorialStartTimer += -delta;
-
-            if (tutorialStartTimer <= 0f)
+            if(tutorialStarted)
             {
-                tutorialStartTimer = 3f;
+                tutorialStartTimer += -delta;
 
-                StartTutorial();
+                if (tutorialStartTimer <= 0f)
+                {
+                    tutorialStartTimer = 3f;
+
+                    DrawTutorial();
+                }
             }
         }
 
-        void StartTutorial()
+        void DrawTutorial()
         {
             if (game.QuestionManager.crowd.GetLetter(game.QuestionManager.dropContainer.GetActiveData()) == null)
                 return;

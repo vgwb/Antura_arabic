@@ -72,12 +72,18 @@
             int nCorrect = 3;
             int nWrong = 8;
 
+            var builderParams = new Teacher.QuestionBuilderParameters();
+
             switch (Variation)
             {
                 case BalloonsVariation.Spelling:
-                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, nWrong:nWrong);
+                    builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
+                    builder = new LettersInWordQuestionBuilder(nPacks, useAllCorrectLetters:true, nWrong:nWrong, parameters: builderParams);
                     break;
                 case BalloonsVariation.Words:
+                    builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
                     break;
                 case BalloonsVariation.Letter:
