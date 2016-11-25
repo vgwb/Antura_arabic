@@ -119,7 +119,8 @@ namespace EA4S.MakeFriends
             int nWrong = 5;
             int nWords = 2;
 
-            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builder = new CommonLettersInWordQuestionBuilder(nPacks, nMinCommonLetters, nMaxCommonLetters, nWrong, nWords, parameters: builderParams);
 
             return builder;
         }

@@ -53,6 +53,7 @@
 
             var builderParams = new Teacher.QuestionBuilderParameters();
             builderParams.wordFilters.excludeColorWords = true;
+            builderParams.wordFilters.requireDrawings = true;
             builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
             return builder;

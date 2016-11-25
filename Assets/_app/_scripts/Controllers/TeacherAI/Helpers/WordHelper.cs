@@ -26,7 +26,7 @@ namespace EA4S
         public bool excludeLetterVariations;
         public bool excludeArticles;
         public bool excludePluralDual;
-        public bool excludeNoDrawing;
+        public bool requireDrawings;
         public bool excludeColorWords;
 
         public WordFilters(
@@ -34,14 +34,14 @@ namespace EA4S
             bool excludeLetterVariations = true,
             bool excludeArticles = true, 
             bool excludePluralDual = true, 
-            bool excludeNoDrawing = true,
+            bool requireDrawings = true,
             bool excludeColorWords = false)
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeLetterVariations = excludeLetterVariations;
             this.excludeArticles = excludeArticles;
             this.excludePluralDual = excludePluralDual;
-            this.excludeNoDrawing = excludeNoDrawing;
+            this.requireDrawings = requireDrawings;
             this.excludeColorWords = excludeColorWords;
         }
     }
@@ -216,7 +216,7 @@ namespace EA4S.Db
         private bool CheckFilters(WordFilters filters, WordData data)
         {
             if (filters.excludeArticles && data.Article != WordDataArticle.None) return false;
-            if (filters.excludeNoDrawing && !data.HasDrawing()) return false;
+            if (filters.requireDrawings && !data.HasDrawing()) return false;
             if (filters.excludeColorWords && data.Category == WordDataCategory.Color) return false;
             if (filters.excludePluralDual && data.Form != WordDataForm.Singular) return false;
             if (filters.excludeDiacritics && this.WordHasLetterVariations(data)) return false;

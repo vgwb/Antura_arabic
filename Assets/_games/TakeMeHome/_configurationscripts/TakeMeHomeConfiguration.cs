@@ -45,8 +45,9 @@
 
         public IQuestionBuilder SetupBuilder() {
             IQuestionBuilder builder = null;
-            
-            builder = new RandomLettersQuestionBuilder(1,7);
+
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builder = new RandomLettersQuestionBuilder(1,7, parameters: builderParams);
 
             return builder;
         }

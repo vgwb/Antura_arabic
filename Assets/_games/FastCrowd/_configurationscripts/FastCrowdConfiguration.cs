@@ -90,6 +90,7 @@
                     break;
                 case FastCrowdVariation.Words:
                     builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
             }

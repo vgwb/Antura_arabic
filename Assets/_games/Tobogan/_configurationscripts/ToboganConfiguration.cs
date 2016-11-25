@@ -60,7 +60,6 @@
             int nWrong = 5;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
-
             switch (Variation)
             {
                 case ToboganVariation.LetterInAWord:
