@@ -2,14 +2,15 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace EA4S.Maze
 {
-	
-	public class MazeCharacter: MonoBehaviour {
+    public delegate void VoidDelegate();
+    public class MazeCharacter: MonoBehaviour {
 
 		//for internal use:
-		private delegate void VoidDelegate();
+		
 
 
 		public List<Vector3> characterWayPoints;
@@ -53,7 +54,7 @@ namespace EA4S.Maze
         private Vector3 fleePosition;
 
         public bool isAppearing = false;
-
+        public GameObject rocket;
 		void Start()
 		{
             LL.SetState(LLAnimationStates.LL_rocketing);
@@ -239,11 +240,16 @@ namespace EA4S.Maze
             //if (particles) particles.SetActive(false);
             foreach (GameObject particle in particles) particle.SetActive(false);
             //stop for a second and restart the level:
-            StartCoroutine(waitAndPerformCallback(1,()=>{
+            StartCoroutine(waitAndPerformCallback(3,()=>{
 				MazeGameManager.Instance.showAllCracks();
 				donotHandleBorderCollision = true;
 				characterIsMoving = false;
-               
+                //launchRocket = true;
+                toggleVisibility(true);
+                LL.transform.SetParent(transform, true);
+                LL.SetState(LLAnimationStates.LL_idle);
+                rocket.transform.DOLookAt(Camera.main.transform.position, 0.5f, AxisConstraint.None, Vector3.forward);
+                rocket.transform.DOMove(Camera.main.transform.position + new Vector3(10,10,0), 3);
             },
 				()=>{
 					MazeGameManager.Instance.lostCurrentLetter();//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -291,7 +297,7 @@ namespace EA4S.Maze
 
 
 			setFruitsList ();
-			transform.position = _fruits[0].transform.position + new Vector3(0, 0, 1); ;
+			transform.position = _fruits[0].transform.position + new Vector3(0, 0, 1.5f); 
 
 
 			initialPosition = transform.position;
@@ -408,21 +414,27 @@ namespace EA4S.Maze
             
         }
 
-
-        void moveTowards(Vector3 position)
+        
+        void moveTowards(Vector3 position, float speed = 10, bool useUpVector = true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * 10);
+            transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime * speed);
 
             var dir = transform.position - position;
             var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
 
-            targetRotation = Quaternion.AngleAxis(-angle, Vector3.up);// * initialRotation;
+            targetRotation = Quaternion.AngleAxis(-angle, useUpVector? Vector3.up: Vector3.forward);// * initialRotation;
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 5);
         }
 
 		void Update()
 		{
+            /*if(launchRocket)
+            {
+                //moveTowards(Camera.main.transform.position,20, false);
+               
+                return;
+            }*/
 			if(isAppearing)
             {
                 moveTowards(initialPosition);

@@ -27,7 +27,7 @@ namespace EA4S.Maze
 
 		// Update is called once per frame
 		void Update () {
-            Debug.Log(isInside);
+           
 			if (character.characterIsMoving)
             {
                 anturaSeconds = 0;

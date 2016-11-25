@@ -4660,6 +4660,7 @@ MonoBehaviour:
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   isFleeing: 0
   isAppearing: 0
+  rocket: {fileID: 1000010509039930}
 --- !u!114 &114000011203389262
 MonoBehaviour:
   m_ObjectHideFlags: 1
