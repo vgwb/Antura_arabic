@@ -72,6 +72,8 @@
             int nCorrect = 4;
             int nWrong = 4;
 
+            var builderParams = new Teacher.QuestionBuilderParameters();
+
             switch (Variation)
             {
                 case FastCrowdVariation.Alphabet:
@@ -87,7 +89,8 @@
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong:nWrong, useAllCorrectLetters:true);
                     break;
                 case FastCrowdVariation.Words:
-                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
+                    builderParams.wordFilters.excludeColorWords = true;
+                    builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
             }
 
