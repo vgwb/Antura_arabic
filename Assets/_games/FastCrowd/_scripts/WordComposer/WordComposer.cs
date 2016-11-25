@@ -15,18 +15,22 @@ namespace EA4S.FastCrowd {
             WordLabel = GetComponent<WordFlexibleContainer>();
             UpdateWord();
         }
-        
+
         void UpdateWord()
         {
             if (!isActiveAndEnabled)
                 return;
 
             string word = string.Empty;
-            foreach (LL_LetterData letter in CompletedLetters) {
-                word += letter.Data.Isolated;
+
+            for (int i = 0; i < CompletedLetters.Count; ++i)
+            {
+                LL_LetterData letter = CompletedLetters[i];
+                word += ArabicAlphabetHelper.GetCharFromUnicode(letter.Data.Isolated_Unicode);
             }
-            word = ArabicAlphabetHelper.ParseWord(word, AppManager.Instance.Teacher.GetAllTestLetterDataLL());
-            WordLabel.SetText(word, false);
+
+            //word = ArabicAlphabetHelper.PrepareArabicStringForDisplay(word, false);
+            WordLabel.SetText(word);
         }
 
         public void AddLetter(ILivingLetterData data)
