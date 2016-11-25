@@ -73,7 +73,7 @@ namespace EA4S
 
         public void SetTitle(string text)
         {
-            WidgetPopupWindow.I.SetTitle(text);
+            WidgetPopupWindow.I.SetTitle(text, false);
         }
 
         public void SetMessage(string text)

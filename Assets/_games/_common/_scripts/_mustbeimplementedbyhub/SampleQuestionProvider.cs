@@ -27,6 +27,10 @@ namespace EA4S
                 List<ILivingLetterData> wrongAnswers = new List<ILivingLetterData>();
 
                 LL_WordData newWordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
+                //LL_WordData newWordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL(new WordFilters(requireDiacritics: true));
+
+                //LL_WordData newWordData = new LL_WordData(AppManager.Instance.DB.GetWordDataById("welcome"));
+                
 
                 if (newWordData == null)
                     return;
