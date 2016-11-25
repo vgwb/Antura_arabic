@@ -395,6 +395,29 @@ namespace EA4S.Db
 
         #endregion
 
+        #region Phrase filters
+
+        private bool CheckFilters(WordFilters wordFilters, PhraseData data)
+        {
+            bool allWordsAreOk = true;
+            foreach (var word in GetWordsInPhrase(data))
+            {
+                if (!CheckFilters(wordFilters, word))
+                    allWordsAreOk = false;
+                if (!allWordsAreOk) return false;
+            }
+            allWordsAreOk = true;
+            foreach (var word in GetAnswersToPhrase(data))
+            {
+                if (!CheckFilters(wordFilters, word))
+                    allWordsAreOk = false;
+                if (!allWordsAreOk) return false;
+            }
+            return true;
+        }
+
+        #endregion
+
         #region Phrase -> Phrase
 
         public List<PhraseData> GetAllPhrases()
@@ -407,9 +430,9 @@ namespace EA4S.Db
             return dbManager.FindPhraseData(x => x.Answers.Length > 0);
         }
 
-        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice)
+        public List<PhraseData> GetPhrasesByCategory(PhraseDataCategory choice, WordFilters wordFilters)
         {
-            return dbManager.FindPhraseData(x => x.Category == choice);
+            return dbManager.FindPhraseData(x => x.Category == choice && CheckFilters(wordFilters, x));
         }
 
         public PhraseData GetLinkedPhraseOf(string startPhraseId)
