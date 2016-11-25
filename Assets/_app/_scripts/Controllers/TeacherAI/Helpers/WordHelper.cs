@@ -27,6 +27,7 @@ namespace EA4S
     {
         public bool excludeDiacritics;
         public bool excludeLetterVariations;
+        public bool requireDiacritics;
         public bool excludeArticles;
         public bool excludePluralDual;
         public bool requireDrawings;
@@ -35,6 +36,7 @@ namespace EA4S
         public WordFilters(
             bool excludeDiacritics = false,
             bool excludeLetterVariations = false,
+            bool requireDiacritics = false,
             bool excludeArticles = false, 
             bool excludePluralDual = false, 
             bool requireDrawings = false,
@@ -42,6 +44,7 @@ namespace EA4S
         {
             this.excludeDiacritics = excludeDiacritics;
             this.excludeLetterVariations = excludeLetterVariations;
+            this.requireDiacritics = requireDiacritics;
             this.excludeArticles = excludeArticles;
             this.excludePluralDual = excludePluralDual;
             this.requireDrawings = requireDrawings;
@@ -223,8 +226,9 @@ namespace EA4S.Db
             if (filters.requireDrawings && !data.HasDrawing()) return false;
             if (filters.excludeColorWords && data.Category == WordDataCategory.Color) return false;
             if (filters.excludePluralDual && data.Form != WordDataForm.Singular) return false;
-            if (filters.excludeDiacritics && this.WordHasLetterVariations(data)) return false;
+            if (filters.excludeDiacritics && this.WordHasCombo(data)) return false;
             if (filters.excludeLetterVariations && this.WordHasLetterVariations(data)) return false;
+            if (filters.requireDiacritics && !this.WordHasCombo(data)) return false;
             return true;
         }
 
