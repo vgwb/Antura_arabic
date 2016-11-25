@@ -193,23 +193,48 @@ namespace EA4S.Maze
 
 		}
 
-		public void moveToNext(bool won = false)
+        IEnumerator waitAndPerformCallback(float seconds, VoidDelegate init, VoidDelegate callback)
+        {
+            init();
+
+            yield return new WaitForSeconds(seconds);
+
+            callback();
+        }
+
+
+        public void moveToNext(bool won = false)
 		{
             if (!currentCharacter || currentCharacter.isAppearing || !currentCharacter.gameObject.activeSelf) return;
 
             isShowingAntura = false;
             //check if current letter is complete:
             if (currentCharacter.isComplete ()) {
-				correctLetters++;
+
+                
+
+
+                correctLetters++;
 				currentLetterIndex++;
-				//print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
-				if (currentLetterIndex == 6) { //round is 6
-                    endGame();
-					return;
-				} else {
-					roundNumber.text = "#" + (currentLetterIndex + 1);
-					restartCurrentLetter (won);
-				}
+
+                StartCoroutine(waitAndPerformCallback(2, () =>
+                {
+                    TutorialUI.MarkYes(currentCharacter.transform.position + new Vector3(0,10,0), TutorialUI.MarkSize.Big);
+                },
+                () => {
+                    if (currentLetterIndex == 6)
+                    { //round is 6
+                        endGame();
+                        return;
+                    }
+                    else {
+                        roundNumber.text = "#" + (currentLetterIndex + 1);
+                        restartCurrentLetter(won);
+                    }
+                }));
+
+                //print ("Prefab nbr: " + currentLetterIndex + " / " + prefabs.Count);
+                
 			} else {
 				addLine ();
 				currentCharacter.nextPath ();
