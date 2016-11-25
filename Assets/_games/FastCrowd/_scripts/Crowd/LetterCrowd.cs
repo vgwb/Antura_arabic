@@ -44,7 +44,7 @@ namespace EA4S
             {
                 LetterObjectView lov = letters[i].gameObject.GetComponent<LetterObjectView>();
 
-                if(lov.Data == data)
+                if(lov.Data.Equals(data))
                 {
                     return letters[i];
                 }

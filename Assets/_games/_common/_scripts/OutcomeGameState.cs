@@ -21,7 +21,6 @@ namespace EA4S
 
             game.Context.GetStarsWidget().Show(starsScore);
 
-            /*
             Db.LocalizationDataId text;
 
             if (starsScore < 1)
@@ -33,9 +32,8 @@ namespace EA4S
             else
                 text = (Db.LocalizationDataId.Keeper_Good_1);
             
-            game.Context.GetSubtitleWidget().DisplaySentence(text);
+            //game.Context.GetSubtitleWidget().DisplaySentence(text);
             game.Context.GetAudioManager().PlayDialogue(text);
-            */
         }
 
         public void ExitState()
