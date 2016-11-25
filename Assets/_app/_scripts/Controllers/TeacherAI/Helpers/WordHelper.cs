@@ -72,9 +72,9 @@ namespace EA4S.Db
 
         private bool CheckFilters(LetterFilters filters, LetterData data)
         {
-            if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.Combo)) return false;
-            if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.Combo)) return false;
-            if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.Variation)) return false;
+            if (filters.requireDiacritics && !data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
+            if (filters.excludeDiacritics && data.IsOfKindCategory(LetterKindCategory.DiacriticCombo)) return false;
+            if (filters.excludeLetterVariations && data.IsOfKindCategory(LetterKindCategory.LetterVariation)) return false;
             if (data.IsOfKindCategory(LetterKindCategory.Symbol)) return false; // always skip symbols
             return true;
         }
@@ -226,16 +226,16 @@ namespace EA4S.Db
             if (filters.requireDrawings && !data.HasDrawing()) return false;
             if (filters.excludeColorWords && data.Category == WordDataCategory.Color) return false;
             if (filters.excludePluralDual && data.Form != WordDataForm.Singular) return false;
-            if (filters.excludeDiacritics && this.WordHasCombo(data)) return false;
+            if (filters.excludeDiacritics && this.WordHasDiacriticCombo(data)) return false;
             if (filters.excludeLetterVariations && this.WordHasLetterVariations(data)) return false;
-            if (filters.requireDiacritics && !this.WordHasCombo(data)) return false;
+            if (filters.requireDiacritics && !this.WordHasDiacriticCombo(data)) return false;
             return true;
         }
 
-        private bool WordHasCombo(WordData data)
+        private bool WordHasDiacriticCombo(WordData data)
         {
             foreach (var letter in GetLettersInWord(data))
-                if (letter.IsOfKindCategory(LetterKindCategory.Combo))
+                if (letter.IsOfKindCategory(LetterKindCategory.DiacriticCombo))
                     return true;
             return false;
         }
@@ -243,7 +243,7 @@ namespace EA4S.Db
         private bool WordHasLetterVariations(WordData data)
         {
             foreach (var letter in GetLettersInWord(data))
-                if (letter.IsOfKindCategory(LetterKindCategory.Variation))
+                if (letter.IsOfKindCategory(LetterKindCategory.LetterVariation))
                     return true;
             return false;
         }
