@@ -284,8 +284,8 @@ namespace EA4S.Maze
 			if (currentFruitList == Fruits.Count - 1)
 				return;
 
-
-			currentFruitList++;
+            transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+            currentFruitList++;
 
 
 
@@ -470,10 +470,14 @@ namespace EA4S.Maze
 
 					//reached the end:
 					if (currentCharacterWayPoint == characterWayPoints.Count-1) {
-						//arrived!
-						//transform.rotation = initialRotation;
-						if (currentFruitIndex == _fruits.Count) {
-							print ("Won");
+
+                        transform.parent.Find("MazeLetter").GetComponent<MazeLetter>().isInside = false;
+
+                        //arrived!
+                        //transform.rotation = initialRotation;
+                        if (currentFruitIndex == _fruits.Count) {
+                            
+                            print ("Won");
                            // if (particles) particles.SetActive(false);
                             foreach (GameObject particle in particles) particle.SetActive(false);
                             GetComponent<BoxCollider> ().enabled = false;

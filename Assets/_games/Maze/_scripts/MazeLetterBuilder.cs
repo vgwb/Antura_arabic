@@ -7,6 +7,7 @@ namespace EA4S.Maze
     public class MazeLetterBuilder : MonoBehaviour
     {
         public int letterDataIndex = 0;
+        public string letterId;
 
         private bool isBuild = false;
         private System.Action _callback = null;
@@ -96,6 +97,7 @@ namespace EA4S.Maze
             handTut.linesToShow = lines;
 
             gameObject.AddComponent<MazeShowPrefab>().letterIndex = letterDataIndex;
+            gameObject.GetComponent<MazeShowPrefab>().letterId = letterId;
 
             if (_callback != null) _callback();
         }
