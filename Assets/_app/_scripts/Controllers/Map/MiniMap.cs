@@ -84,8 +84,8 @@ namespace EA4S
         {
             posDots = new GameObject[28];
             for (numLearningBlock = 0; numLearningBlock < (posPines.Length - 1); numLearningBlock++) {
-                pinLeft = posPines[numLearningBlock].position;
-                pinRight = posPines[numLearningBlock + 1].position;
+                pinLeft = posPines[numLearningBlock].transform.position;
+                pinRight = posPines[numLearningBlock + 1].transform.position;
                 CalculateStepsBetweenPines(pinLeft, pinRight);
             }
             pinLeft = posPines[0].position;
@@ -94,12 +94,24 @@ namespace EA4S
             if (!isAvailableTheWholeMap) CalculatePlaySessionAvailables();
             CalculatePin_RopeAvailable();
         }
-
+        int p;
+        Vector3 v;
         void CalculateStepsBetweenPines(Vector3 p1, Vector3 p2)
         {
-            float step = 1f / (numStepsBetweenPines + 1);
-            for (float perc = step; perc < 1f; perc += step) {
-                Vector3 v = Vector3.Lerp(p1, p2, perc);
+            // Debug.Log("DISTANCE "+Vector3.Distance(p1, p2));
+            //float step = 1f / (numStepsBetweenPines + 1);
+            //for (float perc = step; perc < 1f; perc += step) {
+            // Vector3 v = Vector3.Lerp(p1, p2, perc);
+            float d = Vector3.Distance(p1, p2);
+            float x = ((d - 5) - 2) / 3;
+            for (p = 1; p < 3; p++)
+            {
+                if (p == 1)
+                {
+                    v = (x+0.5f+2.5f) * Vector3.Normalize(p2 - p1) + p1;
+                }
+                else v = (2*x+1.5f+2.5f) * Vector3.Normalize(p2 - p1) + p1;
+
 
                 rot.eulerAngles = new Vector3(90, 0, 0);
                 GameObject dotGo;
@@ -110,6 +122,7 @@ namespace EA4S
                     ropes[numLearningBlock].GetComponent<Rope>().dots.Add(dotGo);
                     ropes[numLearningBlock].GetComponent<Rope>().learningBlockRope = numLearningBlock + 1;
                 }
+
                 if (numDot % 2 == 0)
                     dotGo.GetComponent<Dot>().playSessionActual = 1;
                 else
