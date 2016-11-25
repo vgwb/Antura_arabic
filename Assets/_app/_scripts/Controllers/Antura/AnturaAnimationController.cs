@@ -7,8 +7,11 @@ public enum AnturaAnimationStates
     sitting,
     sleeping,
     sheeping,
-    sucking
-
+    sucking,
+    bellyUp,
+    digging,
+    dancing,
+    bitingTail
 }
 
 public class AnturaAnimationController : MonoBehaviour
@@ -195,6 +198,20 @@ public class AnturaAnimationController : MonoBehaviour
         IsAngry = true;
     }
 
+    public void OnSlipStarted()
+    {
+#if UNITY_EDITOR
+        if (state != AnturaAnimationStates.walking)
+            Debug.LogError("You should call on slip started/ended only in walking state");
+#endif
+            animator.SetBool("slipping", true);
+    }
+
+    public void OnSlipEnded()
+    {
+        animator.SetBool("slipping", false);
+    }
+
     void OnCharged()
     {
         State = AnturaAnimationStates.walking;
@@ -231,13 +248,21 @@ public class AnturaAnimationController : MonoBehaviour
 
     void OnStateChanged(AnturaAnimationStates oldState, AnturaAnimationStates newState)
     {
+        if (newState != AnturaAnimationStates.walking)
+            animator.SetBool("slipping", false);
+
         animator.SetBool("idle", false);
         animator.SetBool("walking", false);
         animator.SetBool("sitting", false);
         animator.SetBool("sleeping", false);
         animator.SetBool("sheeping", false);
         animator.SetBool("sucking", false);
-        
+
+        animator.SetBool("bellyingUp", false);
+        animator.SetBool("digging", false);
+        animator.SetBool("dancing", false);
+        animator.SetBool("bitingTail", false);
+
         switch (newState)
         {
             case AnturaAnimationStates.idle:
@@ -257,6 +282,18 @@ public class AnturaAnimationController : MonoBehaviour
                 break;
             case AnturaAnimationStates.sucking:
                 animator.SetBool("sucking", true);
+                break;
+            case AnturaAnimationStates.bellyUp:
+                animator.SetBool("bellyingUp", true);
+                break;
+            case AnturaAnimationStates.bitingTail:
+                animator.SetBool("bitingTail", true);
+                break;
+            case AnturaAnimationStates.dancing:
+                animator.SetBool("dancing", true);
+                break;
+            case AnturaAnimationStates.digging:
+                animator.SetBool("digging", true);
                 break;
             default:
                 // No specific visual behaviour for this state
