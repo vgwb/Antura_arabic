@@ -45,18 +45,15 @@
 
         public IQuestionBuilder SetupBuilder() {
 
-
-
             IQuestionBuilder builder = null;
 
             int nPacks = 6;
             int nCorrect = 1;
             int nWrong = 4;
 
-//			builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
-
-			builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
-
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.wordFilters.excludeColorWords = true;
+            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
             return builder;
         }
