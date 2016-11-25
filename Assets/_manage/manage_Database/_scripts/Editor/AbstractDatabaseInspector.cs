@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 namespace EA4S.Db.Management.Editor
 {
-    [CustomEditor(typeof(Database))]
-    public class DatabaseLoaderInspector : UnityEditor.Editor
+    public class AbstractDatabaseInspector : UnityEditor.Editor
     {
         SerializedObject sobj;
 
