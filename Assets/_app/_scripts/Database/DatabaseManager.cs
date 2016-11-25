@@ -7,20 +7,16 @@ namespace EA4S
 {
     public class DatabaseManager
     {
-        public const string STATIC_DATABASE_NAME = "EA4S.Database";
+        public const string STATIC_DATABASE_NAME = "Database";
         public const string STATIC_DATABASE_NAME_TEST = STATIC_DATABASE_NAME + "_Test";
 
         // DB references
-        private readonly Database staticDb;
+        private Database staticDb;
         private DBService dynamicDb;
 
         public DatabaseManager(bool useTestDatabase, PlayerProfile playerProfile)
         {
-            var staticDbNameToLoad = STATIC_DATABASE_NAME;
-            if (useTestDatabase) {
-                staticDbNameToLoad = STATIC_DATABASE_NAME_TEST;
-            }
-            staticDb = Resources.Load<Database>(staticDbNameToLoad);
+            LoadStaticDB(useTestDatabase);
 
             // SAFE MODE: we need to make sure that the static db has some entires, otherwise there is something wrong
             if (staticDb.GetPlaySessionTable().GetDataCount() == 0) {
@@ -29,6 +25,17 @@ namespace EA4S
 
             // We load the selected player profile
             LoadDynamicDbForPlayerProfile(playerProfile.Id);
+        }
+
+        void LoadStaticDB(bool useTestDatabase)
+        {
+            var dbName = STATIC_DATABASE_NAME;
+            if (useTestDatabase)
+            {
+                dbName = STATIC_DATABASE_NAME_TEST;
+            }
+
+            this.staticDb = Database.LoadDB(dbName);
         }
 
         #region Profile

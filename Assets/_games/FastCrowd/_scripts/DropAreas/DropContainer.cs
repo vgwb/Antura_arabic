@@ -7,8 +7,7 @@ namespace EA4S
 
     public class DropContainer : MonoBehaviour
     {
-
-        public List<DropSingleArea> Aree;
+        List<DropSingleArea> areas = new List<DropSingleArea>();
 
         int actualAreaIndex = 0;
 
@@ -20,22 +19,20 @@ namespace EA4S
 
         }
 
-        /// <summary>
-        /// Setup done. Set first as active.
-        /// </summary>
-        public void SetupDone()
+        public void AddArea(DropSingleArea area)
         {
-            
-            actualAreaIndex = 0;
+            areas.Add(area);
             dropAreaSetPosition();
         }
 
         public void Clean()
         {
-            foreach (var item in Aree) {
+            actualAreaIndex = 0;
+
+            foreach (var item in areas) {
                 GameObject.Destroy(item.gameObject);
             }
-            Aree.Clear();
+            areas.Clear();
         }
 
         /// <summary>
@@ -43,17 +40,15 @@ namespace EA4S
         /// </summary>
         /// <returns></returns>
         public DropSingleArea GetActualDropArea() {
-            if (actualAreaIndex >= Aree.Count)
+            if (actualAreaIndex >= areas.Count)
                 return null;
-            return Aree[actualAreaIndex];
+            return areas[actualAreaIndex];
         }
 
         public void NextArea()
         {
-            if (actualAreaIndex < Aree.Count - 1) { 
+            if (actualAreaIndex < areas.Count - 1) { 
                 actualAreaIndex++;
-                // TODO: move to FastCrowd domain
-                //LoggerEA4S.Log("minigame", "fastcrowd" + FastCrowd.FastCrowd.Instance.VariationPrefix, "newLetter", Aree[actualAreaIndex].Data.Key);
                 DOTween.Sequence().InsertCallback(1, delegate ()
                     {
                         // Todo: move to FastCrowd domain
@@ -91,26 +86,26 @@ namespace EA4S
         /// </summary>
         void dropAreaSetPosition(TweenCallback _callback = null)
         {
-            for (int i = 0; i < Aree.Count; i++) {
+            for (int i = 0; i < areas.Count; i++) {
                 if (actualAreaIndex == i) { 
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.ActivePos);
-                    Aree[i].SetEnabled();
-                } else if (actualAreaIndex > i && i == Aree.Count - 1) { // for final one
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.CompletedPos, delegate ()
+                    positionigAreaDropElement(areas[i], DropAreaPositions.ActivePos);
+                    areas[i].SetEnabled();
+                } else if (actualAreaIndex > i && i == areas.Count - 1) { // for final one
+                    positionigAreaDropElement(areas[i], DropAreaPositions.CompletedPos, delegate ()
                         {
                             if (_callback != null)
                                 _callback();
                         });
-                    Aree[i].SetDisbled();
+                    areas[i].SetDisbled();
                 } else if (actualAreaIndex > i) {
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.CompletedPos);
-                    Aree[i].SetDisbled();
+                    positionigAreaDropElement(areas[i], DropAreaPositions.CompletedPos);
+                    areas[i].SetDisbled();
                 } else if (actualAreaIndex + 1 == i) {
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextPos);
-                    Aree[i].SetDisbled();
+                    positionigAreaDropElement(areas[i], DropAreaPositions.NextPos);
+                    areas[i].SetDisbled();
                 } else {
-                    positionigAreaDropElement(Aree[i], DropAreaPositions.NextsPos);
-                    Aree[i].SetDisbled();
+                    positionigAreaDropElement(areas[i], DropAreaPositions.NextsPos);
+                    areas[i].SetDisbled();
                 }
             }
 
@@ -123,7 +118,7 @@ namespace EA4S
         /// <summary>
         /// Happens when a peace of objective completed. Ex: Word match completed (word is a block objective).
         /// </summary>
-        public static event ObjectiveEvent OnObjectiveBlockCompleted;
+        public event ObjectiveEvent OnObjectiveBlockCompleted;
 
         #endregion
 

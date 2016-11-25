@@ -6,7 +6,7 @@
         public IGameContext Context { get; set; }
         public float Difficulty { get; set; }
         public IQuestionProvider Questions { get; set; }
-        public SickLettersQuestionProvider SickLettersQuestions { get; set; }
+        //public SickLettersQuestionProvider SickLettersQuestions { get; set; }
 
         //public SickLettersConfiguration Questions { get; set; }
 
@@ -30,7 +30,7 @@
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
             Context = new SampleGameContext();
             Questions = new SickLettersQuestionProvider();
-            SickLettersQuestions = new SickLettersQuestionProvider();
+            //SickLettersQuestions = new SickLettersQuestionProvider();
             Difficulty = 0.1f;
             EA4S.Teacher.ConfigAI.verboseTeacher = true;
         }
@@ -42,7 +42,8 @@
             int nCorrect = 1;
             int nWrong = 0;
 
-            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
             
             return builder;
         }

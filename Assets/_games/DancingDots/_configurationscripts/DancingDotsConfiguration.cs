@@ -57,7 +57,7 @@
         {
             IQuestionBuilder builder = null;
 
-            int nPacks = 6;
+            int nPacks = 7; // extra one for the tutorial
             int nCorrect = 1;
             int nWrong = 0;
 

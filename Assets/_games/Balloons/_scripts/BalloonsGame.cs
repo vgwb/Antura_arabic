@@ -246,7 +246,7 @@ namespace EA4S.Balloons
 
                     // Display
                     wordFlexibleContainer.gameObject.SetActive(true);
-                    wordFlexibleContainer.SetText(wordToKeepData.TextForLivingLetter, true);
+                    wordFlexibleContainer.SetText(wordToKeepData.TextForLivingLetter);
 
                     // Debug
                     Debug.Log("[New Round] Word To Keep: " + wordToKeep);
@@ -263,7 +263,7 @@ namespace EA4S.Balloons
 
                     // Display
                     wordFlexibleContainer.gameObject.SetActive(true);
-                    wordFlexibleContainer.SetText(letterToKeep, false);
+                    wordFlexibleContainer.SetText(letterToKeep);
 
                     // Debug
                     Debug.Log("[New Round] Letter To Keep: " + letterToKeep);

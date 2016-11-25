@@ -44,13 +44,17 @@
         #endregion
 
         public IQuestionBuilder SetupBuilder() {
+
             IQuestionBuilder builder = null;
 
-            int nPacks = 10;
-            int nCorrect = 4;
+            int nPacks = 6;
+            int nCorrect = 1;
             int nWrong = 4;
 
-            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong);
+            var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.wordFilters.excludeColorWords = true;
+            builderParams.wordFilters.requireDrawings = true;
+            builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters:builderParams);
 
             return builder;
         }

@@ -42,7 +42,7 @@ namespace EA4S.DancingDots
 
         public static DancingDotsGame instance;
         public Canvas endGameCanvas;
-        public StarFlowers starFlowers;
+//        public StarFlowers starFlowers;
 
         public const string DANCING_DOTS = "DancingDots_DotZone";
         public const string DANCING_DIACRITICS = "DancingDots_Diacritic";
@@ -314,16 +314,11 @@ namespace EA4S.DancingDots
             }
 
             Debug.Log("[Dancing Dots] pedagogicalLevel: " + pedagogicalLevel + " Game Level: " + currentLevel);
-
             SetLevel(currentLevel);
-
             tutorial.doTutorial();
 
         }
-
-
-
-
+			
         private void CreatePoof(Vector3 position, float duration, bool withSound)
         {
             if (withSound) AudioManager.I.PlaySfx(Sfx.BaloonPop);
@@ -382,7 +377,7 @@ namespace EA4S.DancingDots
                 dd.isNeeded = activeDiacritic.diacritic == dd.diacritic;
             }
 
-            // wait for end of frame to ge correct values for meshes
+            // wait for end of frame to get correct values for meshes
             yield return new WaitForEndOfFrame();
             activeDiacritic.CheckPosition();
 
@@ -393,24 +388,7 @@ namespace EA4S.DancingDots
             }
 
         }
-
-
-
-        /*protected override void ReadyForGameplay()
-        {
-            base.ReadyForGameplay();
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-        }
-
-        protected override void OnMinigameQuit()
-        {
-            base.OnMinigameQuit();
-        }
-        */
+			
         IEnumerator CorrectMove(bool roundWon)
         {
             //AudioManager.I.PlayDialog("comment_welldone");
@@ -512,16 +490,14 @@ namespace EA4S.DancingDots
         {
             yield return new WaitForSeconds(0.5f);
             AudioManager.I.PlaySfx(Sfx.Lose);
-            //			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle);
-
 
             StartCoroutine(PoofOthers(dragableDots));
             StartCoroutine(PoofOthers(dragableDiacritics));
             dancingDotsLL.letterObjectView.SetDancingSpeed(1f);
-            dancingDotsLL.letterObjectView.DoDancingLose(); // ("FallAndStand");
+            dancingDotsLL.letterObjectView.DoDancingLose();
             yield return new WaitForSeconds(1.5f);
             dancingDotsLL.letterObjectView.DoSmallJump();
-            dancingDotsLL.letterObjectView.ToggleDance(); //  SetState(LLAnimationStates.LL_dancing);
+            dancingDotsLL.letterObjectView.ToggleDance();
             StartCoroutine(CheckNewRound());
         }
 
@@ -536,9 +512,6 @@ namespace EA4S.DancingDots
             }
 
             yield return new WaitForSeconds(0.25f);
-            //			dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_walking);
-            //			dancingDotsLL.letterObjectView.SetWalkingSpeed(1);
-
             AudioManager.I.PlaySfx(Sfx.Win);
             yield return new WaitForSeconds(1f);
 
@@ -554,62 +527,55 @@ namespace EA4S.DancingDots
             //StartCoroutine(EndGame_Coroutine());
         }
 
-        IEnumerator EndGame_Coroutine()
-        {
-            isPlaying = false;
+		void startUI()
+		{
+			if (numberOfRoundsPlayed != 1)
+				return;
+			Debug.Log("UI Started");
+			Context.GetOverlayWidget().Initialize(true, true, false);
+			Context.GetOverlayWidget().SetClockDuration(gameDuration);
+		}
 
-            dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle); // ("idle");
+//        IEnumerator EndGame_Coroutine()
+//        {
+//            isPlaying = false;
+//
+//            dancingDotsLL.letterObjectView.SetState(LLAnimationStates.LL_idle); // ("idle");
+//
+//            yield return new WaitForSeconds(1f);
+//
+//            endGameCanvas.gameObject.SetActive(true);
+//
+//            int numberOfStars = 0;
+//
+//            if (numberOfRoundsWon <= 0)
+//            {
+//                numberOfStars = 0;
+//                WidgetSubtitles.I.DisplaySentence("game_result_retry");
+//            }
+//            else if ((float)numberOfRoundsWon / numberOfRounds < 0.5f)
+//            {
+//                numberOfStars = 1;
+//                WidgetSubtitles.I.DisplaySentence("game_result_fair");
+//            }
+//            else if (numberOfRoundsWon < numberOfRounds)
+//            {
+//                numberOfStars = 2;
+//                WidgetSubtitles.I.DisplaySentence("game_result_good");
+//            }
+//            else
+//            {
+//                numberOfStars = 3;
+//                WidgetSubtitles.I.DisplaySentence("game_result_great");
+//            }
+//
+//            // LoggerEA4S.Log("minigame", "DancingDots", "correctLetters", numberOfRoundsWon.ToString());
+//            // LoggerEA4S.Log("minigame", "DancingDots", "wrongLetters", (numberOfRounds - numberOfRoundsWon).ToString());
+//            // LoggerEA4S.Save();
+//            // TODO Log Results
+//            
+//            starFlowers.Show(numberOfStars);
+//        }
 
-            yield return new WaitForSeconds(1f);
-
-            endGameCanvas.gameObject.SetActive(true);
-
-            int numberOfStars = 0;
-
-            if (numberOfRoundsWon <= 0)
-            {
-                numberOfStars = 0;
-                WidgetSubtitles.I.DisplaySentence("game_result_retry");
-            }
-            else if ((float)numberOfRoundsWon / numberOfRounds < 0.5f)
-            {
-                numberOfStars = 1;
-                WidgetSubtitles.I.DisplaySentence("game_result_fair");
-            }
-            else if (numberOfRoundsWon < numberOfRounds)
-            {
-                numberOfStars = 2;
-                WidgetSubtitles.I.DisplaySentence("game_result_good");
-            }
-            else
-            {
-                numberOfStars = 3;
-                WidgetSubtitles.I.DisplaySentence("game_result_great");
-            }
-
-            // LoggerEA4S.Log("minigame", "DancingDots", "correctLetters", numberOfRoundsWon.ToString());
-            // LoggerEA4S.Log("minigame", "DancingDots", "wrongLetters", (numberOfRounds - numberOfRoundsWon).ToString());
-            // LoggerEA4S.Save();
-            // TODO Log Results
-            
-            starFlowers.Show(numberOfStars);
-        }
-        void startUI()
-        {
-            if (numberOfRoundsPlayed != 1)
-                return;
-            Debug.Log("UI Started");
-            Context.GetOverlayWidget().Initialize(true, true, false);
-            Context.GetOverlayWidget().SetClockDuration(gameDuration);
-        }
-    }
-
-
-
-    [Serializable]
-    public class DancingDotsGamePlayInfo : AnturaGameplayInfo
-    {
-        [Tooltip("Play session duration in seconds.")]
-        public float PlayTime = 0f;
-    }
+	}
 }

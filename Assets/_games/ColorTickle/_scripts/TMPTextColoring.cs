@@ -98,16 +98,45 @@ namespace EA4S.ColorTickle
         void Start()
         {
 
-            if (s_tBaseLetterFullTexture==null || m_oTextMeshObject.fontMaterial.mainTexture is Texture2D) //if there isn't a copy already
+            if (s_tBaseLetterFullTexture==null && m_oTextMeshObject.fontMaterial.mainTexture is Texture2D) //if there isn't a copy already
             {
-                //m_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D; //old font atlas was readable
+                //assuming the atlas isn't readable, make a copy of the source
+                RenderTexture _tRenderTmp = RenderTexture.GetTemporary(   // Create a temporary RenderTexture of the same size as the texture
+                                    m_oTextMeshObject.fontMaterial.mainTexture.width,
+                                    m_oTextMeshObject.fontMaterial.mainTexture.height,
+                                    0,
+                                    RenderTextureFormat.ARGB32,  //alpha 8 is not an acceptable format, DO NOT use default (it changes with platform)
+                                    RenderTextureReadWrite.Linear);
 
-                //assuming the atlas isn't readable, make a copy of the raw data
+                
+                Graphics.Blit(m_oTextMeshObject.fontMaterial.mainTexture, _tRenderTmp); // Blit the pixels on texture to the RenderTexture
+                
+                RenderTexture _tPreviousActive = RenderTexture.active; // Backup the currently set RenderTexture
+                
+                RenderTexture.active = _tRenderTmp; // Set the current RenderTexture to the temporary one we created
+
+                s_tBaseLetterFullTexture = new Texture2D(m_oTextMeshObject.fontMaterial.mainTexture.width, m_oTextMeshObject.fontMaterial.mainTexture.height); // Create a new readable Texture2D to copy the pixels to it
+                
+                s_tBaseLetterFullTexture.ReadPixels(new Rect(0, 0, _tRenderTmp.width, _tRenderTmp.height), 0, 0); // Copy the pixels from the RenderTexture to the new Texture
+                s_tBaseLetterFullTexture.Apply();
+               
+                RenderTexture.active = _tPreviousActive;  // Reset the active RenderTexture
+                
+                RenderTexture.ReleaseTemporary(_tRenderTmp); // Release the temporary RenderTexture
+
+
+                /*
+                 * VERSION 2, broke on Android Build (GetRawTextureData() from unreadable texture set all alpha to 0.803... losing original data)
+                
                 Texture2D _tTempAtlas = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D;
                 s_tBaseLetterFullTexture = new Texture2D(_tTempAtlas.width, _tTempAtlas.height, TextureFormat.Alpha8,false);
-                s_tBaseLetterFullTexture.LoadRawTextureData(_tTempAtlas.GetRawTextureData());
+                s_tBaseLetterFullTexture.LoadRawTextureData(_tTempAtlas.GetRawTextureData());                
+                */
+
+                //VERSION 1
+                //s_tBaseLetterFullTexture = m_oTextMeshObject.fontMaterial.mainTexture as Texture2D; //old font atlas was readable
             }
-           
+
 
             SetupLetterMeshCollider(); //prepare the letter mesh for the raycast
 
@@ -132,8 +161,8 @@ namespace EA4S.ColorTickle
                 {
                     
                     //Now we find out which color we hitted to check if we are inside the letter outline
-                    //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect)
-                    Vector2 fullUV = TextureUtilities.CombineSubUV(m_oRayHit.textureCoord, m_aUVLetterInMainTexture[0], m_aUVLetterInMainTexture[1].y - m_aUVLetterInMainTexture[0].y, m_aUVLetterInMainTexture[2].x - m_aUVLetterInMainTexture[1].x);
+                    //To do this we must combine the letter uvs from the main texture (the outer rect) with the uvs of the dynamic texture(a sub rect) (NOT NEEDED ANYMORE, NOW WE USE A SEPARATED TEXTURE FOR CHECK)
+                    //Vector2 fullUV = TextureUtilities.CombineSubUV(m_oRayHit.textureCoord, m_aUVLetterInMainTexture[0], m_aUVLetterInMainTexture[1].y - m_aUVLetterInMainTexture[0].y, m_aUVLetterInMainTexture[2].x - m_aUVLetterInMainTexture[1].x);
 
                     //If we are outside the letter
                     //if (m_tBaseLetterTexture.GetPixelBilinear(fullUV.x, fullUV.y).a == 0)//wrong this use the original large face atlas
@@ -303,7 +332,8 @@ namespace EA4S.ColorTickle
             float _fDilateFactorMapped = (m_oTextMeshObject.fontMaterial.GetFloat("_FaceDilate")+1.0f )/2.0f; //map in [0,1]
             m_iTotalShapePixels = 0;
 
-            if(m_fErrorOffsetFactor==0) //if the error relax is actually 0, use the same texture for both (1) and (2) (to save memory)
+           
+            if (m_fErrorOffsetFactor==0) //if the error relax is actually 0, use the same texture for both (1) and (2) (to save memory)
             {
                 for (int idx = 0; idx < _aColorSingleLetterScaled.Length; ++idx)
                 {
@@ -345,6 +375,7 @@ namespace EA4S.ColorTickle
                 m_tSingleLetterAlphaTextureScaledToDynamic.Apply();
 
                 Debug.Log(m_oTextMeshObject.text);
+
             }
 
         }

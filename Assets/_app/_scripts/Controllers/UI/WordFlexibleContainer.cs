@@ -2,18 +2,15 @@
 using System.Collections;
 using TMPro;
 using ArabicSupport;
+using EA4S;
 
 public class WordFlexibleContainer : MonoBehaviour
 {
-    public TextMeshProUGUI Label;
+    public TextRender Label;
 
-    public void SetText(string text, bool useArabicFixer)
+    public void SetText(string text)
     {
-        if (useArabicFixer) {
-            Label.text = ArabicFixer.Fix(text, false, false);
-        } else {
-            Label.text = text;
-        }
+       Label.text = text;
     }
 
     public void Reset()
