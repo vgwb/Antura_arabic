@@ -149,15 +149,7 @@ namespace EA4S
 
         void SetRewardsGos()
         {
-            // Find layer index from LayerMask
-            int layerIndex = 0;
-            int layer = RewardsGosLayer.value;
-            while(layer > 1) {
-                layer = layer >> 1;
-                layerIndex++;
-            }
-
-            foreach (GameObject go in RewardsGos) go.SetLayerRecursive(layerIndex);
+            foreach (GameObject go in RewardsGos) go.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsGosLayer));
             // TODO center
         }
 

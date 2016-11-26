@@ -9,13 +9,14 @@ namespace EA4S
     {
         public enum AnturaSpaceCategory
         {
-            Head,
-            Ears,
-            Nose,
-            Mouth,
-            Neck,
-            Back,
-            Tail,
+            Unset,
+            HEAD,
+            Ears, // Output as EAR_R and EAR_L
+            NOSE,
+            JAW,
+            NECK,
+            BACK,
+            TAIL,
             Texture,
             Decal
         }

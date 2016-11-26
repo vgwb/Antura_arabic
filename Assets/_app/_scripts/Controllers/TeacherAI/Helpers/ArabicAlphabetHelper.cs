@@ -94,7 +94,7 @@ namespace EA4S
         /// <param name="alphabet"></param>
         /// <param name="reverseOrder">Return in list position 0 most right letter in input string and last the most left.</param>
         /// <returns></returns>
-        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Db.Database db, bool separateDiacritics = true)
+        public static List<string> ExtractLettersFromArabicWord(string arabicWord, Db.Database db, bool separateDiacritics = false)
         {
             List<Db.LetterData> allLetterData = new List<Db.LetterData>(db.GetLetterTable().GetValuesTyped());
 
