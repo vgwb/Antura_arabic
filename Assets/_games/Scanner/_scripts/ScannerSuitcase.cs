@@ -15,9 +15,11 @@ namespace EA4S.Scanner
 		private float startX;
 		private float startY;
 		private float startZ;
+		private Collider player;
+		private Transform originalParent;
 
 		public Vector3 fingerOffset;
-		public float depth;
+		public float scale = 0.5f;
 		public bool isCorrectAnswer = false;
 		public TextMeshPro drawing;
 		public GameObject shadow;
@@ -45,7 +47,7 @@ namespace EA4S.Scanner
 
 		void Start()
 		{
-
+			originalParent = transform.parent;
 			startX = transform.position.x;
 			startY = transform.position.y;
 			startZ = transform.position.z;
@@ -54,6 +56,7 @@ namespace EA4S.Scanner
 
 		public void Reset()
 		{
+			transform.parent = originalParent;
 			transform.position = new Vector3(startX, startY, startZ);
 			isDragging = false;
 			transform.localScale = new Vector3(0.25f,0.25f,0.25f);
@@ -72,6 +75,9 @@ namespace EA4S.Scanner
 			offset = gameObject.transform.position - 
 				Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
+			transform.localScale = new Vector3(scale,scale,scale);
+
+
 		}
 
 		void OnMouseDrag()
@@ -80,19 +86,22 @@ namespace EA4S.Scanner
 			{
 				Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-				transform.position = new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, depth);
+				transform.position = 
+					new Vector3 (curPosition.x + fingerOffset.x, curPosition.y + fingerOffset.y, transform.position.z);
 			}
 
 		}
-
+			
 		void OnTriggerEnter(Collider other)
 		{
 			if (other.tag == "Player") overPlayermarker = true;
+			player = other;
 		}
 
 		void OnTriggerStay(Collider other)
 		{
 			if (other.tag == "Player") overPlayermarker = true;
+			player = other;
 		}
 
 		void OnTriggerExit(Collider other)
@@ -107,6 +116,7 @@ namespace EA4S.Scanner
 			{
 				if (isCorrectAnswer)
 				{
+					transform.parent = player.transform;
 					onCorrectDrop(gameObject);
 				}
 				else

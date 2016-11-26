@@ -20,24 +20,24 @@ namespace EA4S.DancingDots
 			return new SampleQuestionPack(newLetter, wrongAnswers, correctAnswers);
 		}
 
-		public DancingDotsQuestionsPack DancingDotsGetNextQuestion()
-		{
-			LL_LetterData newLetter;
-
-			newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-
-			DancingDotsQuestionsPack dataPack = new DancingDotsQuestionsPack(newLetter);
-			return dataPack;
-		}
-
-		public ILivingLetterData GetNextQuestion_Temp()
-		{
-			LL_LetterData newLetter;
-
-			newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
-
-			return newLetter;
-		}
+//		public DancingDotsQuestionsPack DancingDotsGetNextQuestion()
+//		{
+//			LL_LetterData newLetter;
+//
+//			newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+//
+//			DancingDotsQuestionsPack dataPack = new DancingDotsQuestionsPack(newLetter);
+//			return dataPack;
+//		}
+//
+//		public ILivingLetterData GetNextQuestion_Temp()
+//		{
+//			LL_LetterData newLetter;
+//
+//			newLetter = AppManager.Instance.Teacher.GetRandomTestLetterLL();
+//
+//			return newLetter;
+//		}
 
 	}
 }

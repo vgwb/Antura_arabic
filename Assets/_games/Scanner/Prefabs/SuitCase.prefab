@@ -140,8 +140,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013506849580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -3, z: 0}
-  m_LocalScale: {x: 0.99072695, y: 0.99072695, z: 0.99072695}
+  m_LocalPosition: {x: 10, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011546068916}
@@ -288,7 +288,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c24b11789453cb14a820b49af9ef816b, type: 2}
+  - {fileID: 2100000, guid: 0391e9ab86f07f84485b1f2860666709, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -434,8 +434,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9999998, y: 2.9999998, z: 2.9999995}
-  m_Center: {x: 0, y: 0, z: 1.4999998}
+  m_Size: {x: 2.9999998, y: 40, z: 2.9999995}
+  m_Center: {x: 0, y: -20, z: 1.4999998}
 --- !u!114 &114000010062289924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fingerOffset: {x: 0, y: 3, z: 0}
-  depth: -12
+  scale: 0.5
   isCorrectAnswer: 0
   drawing: {fileID: 114000012707875320}
   shadow: {fileID: 1000010773587004}

@@ -54,6 +54,11 @@ namespace EA4S.Scanner
 
 		private void OnLetterPassedMidPoint()
 		{
+			if (!game.trapDoor.GetBool("TrapDown"))
+			{
+				game.trapDoor.SetBool("TrapUp",false);
+				game.trapDoor.SetBool("TrapDown", true);
+			}
 			// Decide if Antura will bark
 			// Antura leaves
 			// Trapdoor drops
@@ -61,11 +66,11 @@ namespace EA4S.Scanner
 
 		private void OnLetterReset()
 		{
-//			do
-//			{
-//				game.wordData = AppManager.Instance.Teacher.GetRandomTestWordDataLL();
-//			} while (game.wordData.Data.Id == lastWordDataId);
-//			lastWordDataId = game.wordData.Data.Id;
+			if (!game.trapDoor.GetBool("TrapUp"))
+			{
+				game.trapDoor.SetBool("TrapDown", false);
+				game.trapDoor.SetBool("TrapUp",true);
+			}
 			game.scannerLL.letterObjectView.Init(correctAnswer);
 			SetupSuitCases();
 		}
@@ -138,7 +143,7 @@ namespace EA4S.Scanner
 				var numberOfLevels = Enum.GetNames(typeof(Level)).Length;
 				currentLevel = (Level) Mathf.Clamp((int) Mathf.Floor(game.pedagogicalLevel * numberOfLevels),0, numberOfLevels - 1);
 			}
-
+				
 			SetLevel(currentLevel);
 		}
 
@@ -214,7 +219,7 @@ namespace EA4S.Scanner
 		{
 			foreach (ScannerSuitcase ss in draggables)
 			{
-				if (ss.gameObject.activeSelf)
+				if (ss.gameObject.activeSelf && !ss.isCorrectAnswer)
 				{
 					yield return new WaitForSeconds(0.25f);
 					ss.gameObject.SetActive(false);
