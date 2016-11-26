@@ -30,7 +30,6 @@ namespace EA4S.ColorTickle
 
         #region PRIVATE MEMBERS
         private Texture2D m_tLetterDynamicTexture; //Generated texture to color by touch
-        //private Texture2D m_tBaseLetterFullTexture; //The texture from wich the letter is rendered (likely an atlas with all the alphabet)
         private Texture2D m_tSingleLetterRenderedTextureScaledToDynamic; //Generated texture for the single letter rendered, scaled to match the one to color
         private Texture2D m_tSingleLetterAlphaTextureScaledToDynamic; //Generated texture for the single letter with relaxed face dilatation, scaled to match the one to color
         private RaycastHit m_oRayHit; //Store the data on the last collision
@@ -43,9 +42,6 @@ namespace EA4S.ColorTickle
         #region STATIC VARIABLES
         private static Texture2D s_tBaseLetterFullTexture; //The texture from wich the letter is rendered (likely an atlas with all the alphabet), needed only for the initialization and most likely the same for all the letters of the same font
         #endregion
-
-        //public Texture2D alphaletter;
-        //public float factor;
 
         #region EVENTS
         public event Action<bool> OnShapeHit; //event launched upon touching the face/letter
@@ -154,8 +150,6 @@ namespace EA4S.ColorTickle
 
                 Ray _mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition); //Ray with direction camera->screenpoint
 
-                //Debug.DrawRay(_mouseRay.origin, _mouseRay.direction * 100, Color.yellow, 10);
-
                 //check for ray collision
                 if (m_oLetterMeshCollider.Raycast(_mouseRay, out m_oRayHit, Mathf.Infinity)) //Populate hit data on the letter texture
                 {
@@ -231,7 +225,7 @@ namespace EA4S.ColorTickle
         /// Clean the base Atlas reference.
         /// Use this when you want to instantiate a new letter from an atlas different from the last one used.
         /// </summary>
-        public static void ClearBaseAtltas()
+        public static void ClearBaseAtlas()
         {
             s_tBaseLetterFullTexture = null;
         }
@@ -302,10 +296,7 @@ namespace EA4S.ColorTickle
 
             //here we setup two textures:
             //(1) - m_tSingleLetterRenderedTextureScaledToDynamic: scale the letter alpha texture to match the size of the dynamic one and having a 1:1 matching on the color coverage
-            //(2) - m_tSingleLetterAlphaTextureScaledToDynamic: scale the letter alpha texture with greater dilatation to match the size of the dynamic one and having a 1:1 matching on the check for the hit
-
-            //m_tBaseLetterTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
-            
+            //(2) - m_tSingleLetterAlphaTextureScaledToDynamic: scale the letter alpha texture with greater dilatation to match the size of the dynamic one and having a 1:1 matching on the check for the hit 
 
             //retrive the letter size and width in pixels on the original texture
             int _iSingleLetterWidthUnscaled = Mathf.FloorToInt(Mathf.Abs(m_aUVLetterInMainTexture[0].x - m_aUVLetterInMainTexture[3].x) * s_tBaseLetterFullTexture.width);
@@ -324,15 +315,13 @@ namespace EA4S.ColorTickle
 
             m_tSingleLetterRenderedTextureScaledToDynamic = new Texture2D(m_tLetterDynamicTexture.width, m_tLetterDynamicTexture.height, TextureFormat.Alpha8, false);
 
-            //----TEMPORARY SOLUTION?
-            //Depending on the face dilate property(but also others like bold, softness,...) of the letter material,
-            //the final letter rendered can be more thin than the original
+            //Depending on the face dilate property(but also others can influence the letter thickness like bold, softness,...) 
+            // of the letter material, the final letter rendered can be more thin than the original
             //To estimate the final outcome we set to 0 all the alpha values under such property's value;
-            //it range from [-1,1], where 1 keeps all alpha values and -1 none
+            //it ranges from [-1,1], where 1 keeps all alpha values and -1 none
             float _fDilateFactorMapped = (m_oTextMeshObject.fontMaterial.GetFloat("_FaceDilate")+1.0f )/2.0f; //map in [0,1]
             m_iTotalShapePixels = 0;
 
-           
             if (m_fErrorOffsetFactor==0) //if the error relax is actually 0, use the same texture for both (1) and (2) (to save memory)
             {
                 for (int idx = 0; idx < _aColorSingleLetterScaled.Length; ++idx)
@@ -373,8 +362,6 @@ namespace EA4S.ColorTickle
 
                 m_tSingleLetterAlphaTextureScaledToDynamic.SetPixels(_aColorSingleLetterScaled_ErrorCheckShape);
                 m_tSingleLetterAlphaTextureScaledToDynamic.Apply();
-
-                Debug.Log(m_oTextMeshObject.text);
 
             }
 
