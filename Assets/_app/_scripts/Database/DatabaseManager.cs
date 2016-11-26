@@ -14,6 +14,13 @@ namespace EA4S
         private Database staticDb;
         private DBService dynamicDb;
 
+        public Database StaticDatabase {
+            get
+            {
+                return staticDb;
+            }
+        }
+
         public DatabaseManager(bool useTestDatabase, PlayerProfile playerProfile)
         {
             LoadStaticDB(useTestDatabase);
