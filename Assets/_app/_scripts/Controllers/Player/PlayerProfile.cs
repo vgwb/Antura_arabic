@@ -170,6 +170,7 @@ namespace EA4S
         {
             if (AppManager.Instance.Player.MaxJourneyPosition.isMinor(newJourneyPosition)) {
                 AppManager.Instance.Player.MaxJourneyPosition = newJourneyPosition;
+                AppManager.Instance.Player.CurrentJourneyPosition = newJourneyPosition;
                 if (_save) {
                     Save();
                 }
