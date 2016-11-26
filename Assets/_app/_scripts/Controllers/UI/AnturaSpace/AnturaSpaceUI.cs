@@ -1,6 +1,7 @@
 ﻿// Author: Daniele Giardini - http://www.demigiant.com
 // Created: 2016/11/24
 
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace EA4S
     public class AnturaSpaceUI : MonoBehaviour
     {
         public int MaxItems = 9;
+        public LayerMask RewardsLayer;
         [Header("References")]
         public UIButton BtOpenModsPanel;
         public RectTransform CategoriesContainer, ItemsContainer, SwatchesContainer;
@@ -18,6 +20,8 @@ namespace EA4S
         AnturaSpaceCategoryButton[] btsCategories;
         AnturaSpaceItemButton[] btsItems;
         AnturaSpaceSwatchButton[] btsSwatches;
+        List<Transform> rewardsContainers;
+        List<RewardItem> currRewardItems;
         Tween showCategoriesTween, showItemsTween, showSwatchesTween;
 
         #region Unity
@@ -26,8 +30,9 @@ namespace EA4S
         {
             btsCategories = CategoriesContainer.GetComponentsInChildren<AnturaSpaceCategoryButton>(true);
             btsSwatches = ItemsContainer.GetComponentsInChildren<AnturaSpaceSwatchButton>(true);
-            SelectCategoryButton(null);
+            SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
             // Create items
+            rewardsContainers = new List<Transform>();
             btsItems = new AnturaSpaceItemButton[MaxItems];
             btsItems[0] = BtItemMain;
             for (int i = 1; i < MaxItems; ++i) {
@@ -35,6 +40,7 @@ namespace EA4S
                 item.transform.SetParent(BtItemMain.transform.parent, false);
                 item.Setup();
                 btsItems[i] = item;
+                rewardsContainers.Add(item.RewardContainer);
             }
             BtItemMain.Setup();
 
@@ -88,18 +94,58 @@ namespace EA4S
                 CategoriesContainer.gameObject.SetActive(true);
                 showCategoriesTween.PlayForward();
             } else {
-                SelectCategoryButton(null);
+                SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset);
                 showCategoriesTween.PlayBackwards();
                 showItemsTween.PlayBackwards();
                 showSwatchesTween.PlayBackwards();
             }
         }
 
-        void SelectCategoryButton(AnturaSpaceCategoryButton _bt)
+        void SelectCategory(AnturaSpaceCategoryButton.AnturaSpaceCategory _category)
         {
+            // Toggle buttons
             foreach (AnturaSpaceCategoryButton bt in btsCategories) {
-                if (_bt == bt) _bt.Toggle(true, true);
+                if (bt.Category == _category) bt.Toggle(true, true);
                 else bt.Toggle(false);
+            }
+            if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Unset) return;
+
+            // Get rewards list
+            switch (_category) {
+            case AnturaSpaceCategoryButton.AnturaSpaceCategory.Texture:
+                currRewardItems = RewardSystemManager.GetRewardItemsByRewardType(RewardTypes.texture, rewardsContainers);
+                break;
+            case AnturaSpaceCategoryButton.AnturaSpaceCategory.Decal:
+                currRewardItems = RewardSystemManager.GetRewardItemsByRewardType(RewardTypes.decal, rewardsContainers);
+                break;
+            default:
+                if (_category == AnturaSpaceCategoryButton.AnturaSpaceCategory.Ears) {
+                    currRewardItems = RewardSystemManager.GetRewardItemsByRewardType(RewardTypes.reward, rewardsContainers, "EAR_L");
+                    currRewardItems.AddRange(RewardSystemManager.GetRewardItemsByRewardType(RewardTypes.reward, rewardsContainers, "EAR_R"));
+                } else currRewardItems = RewardSystemManager.GetRewardItemsByRewardType(RewardTypes.reward, rewardsContainers, _category.ToString());
+                break;
+            }
+            // Hide non-existent items
+            for (int i = currRewardItems.Count - 1; i < btsItems.Length; ++i) btsItems[i].gameObject.SetActive(false);
+            // Setup and show items
+            RewardItem selectedRewardItemData = null;
+            for (int i = 0; i < currRewardItems.Count; ++i) {
+                RewardItem itemData = currRewardItems[i];
+                AnturaSpaceItemButton item = btsItems[i];
+                item.Data = itemData;
+                item.RewardContainer.gameObject.SetLayerRecursive(GenericUtilities.LayerMaskToIndex(RewardsLayer));
+                item.Lock(itemData == null);
+                if (itemData != null) {
+                    item.SetAsNew(itemData.IsNew);
+                    item.Toggle(itemData.IsSelected);
+                    if (itemData.IsSelected) selectedRewardItemData = itemData;
+                }
+            }
+            showItemsTween.PlayForward();
+
+            // Select current reward
+            if (selectedRewardItemData != null) {
+                
             }
         }
 
@@ -118,7 +164,7 @@ namespace EA4S
         {
             _bt.AnimateClick();
 
-            SelectCategoryButton(_bt);
+            SelectCategory(_bt.Category);
         }
 
         void OnClickItem(AnturaSpaceItemButton _bt)

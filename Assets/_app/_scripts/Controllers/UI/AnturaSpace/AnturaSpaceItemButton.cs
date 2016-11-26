@@ -8,6 +8,11 @@ namespace EA4S
 {
     public class AnturaSpaceItemButton : UIButton
     {
+        public GameObject IcoLock;
+        public GameObject IcoNew;
+        public Transform RewardContainer;
+
+        [System.NonSerialized] public RewardItem Data;
         RenderTexture renderTexture;
 
         #region Unity
@@ -33,6 +38,16 @@ namespace EA4S
             renderTexture.Create();
             this.GetComponentInChildren<Camera>(true).targetTexture = renderTexture;
             this.GetComponentInChildren<RawImage>(true).texture = renderTexture;
+        }
+
+        public void Lock(bool _doLock)
+        {
+            IcoLock.SetActive(_doLock);
+        }
+
+        public void SetAsNew(bool _isNew)
+        {
+            IcoNew.SetActive(_isNew);
         }
 
         #endregion
