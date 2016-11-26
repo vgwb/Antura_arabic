@@ -57,6 +57,7 @@ namespace EA4S
             gameObject.AddComponent<NavigationManager>();
             gameObject.AddComponent<KeeperManager>();
 
+            RewardSystemManager.Init();
         }
 
         public void InitDataAI()

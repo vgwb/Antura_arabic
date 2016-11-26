@@ -40,16 +40,16 @@
             // Default values
             // THESE SETTINGS ARE FOR SAMPLE PURPOSES, THESE VALUES MUST BE SET BY GAME CORE
 
-            //Questions = new SampleQuestionProvider();
+            Questions = new SampleQuestionProvider();
             //Variation = FastCrowdVariation.Letter;
             //Variation = FastCrowdVariation.Alphabet;
-            //Variation = FastCrowdVariation.Spelling;
+            Variation = FastCrowdVariation.Spelling;
 
             //Questions = new SampleQuestionWithWordsProvider();
             //Variation = FastCrowdVariation.Counting;
 
-            Questions = new SampleQuestionWordsVariationProvider();
-            Variation = FastCrowdVariation.Words;
+            //Questions = new SampleQuestionWordsVariationProvider();
+            //Variation = FastCrowdVariation.Words;
 
 
             Context = new SampleGameContext();
@@ -86,10 +86,13 @@
                     builder = new RandomLettersQuestionBuilder(nPacks, 1, nWrong, firstCorrectIsQuestion:true);
                     break;
                 case FastCrowdVariation.Spelling:
+                    builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
                     builder = new LettersInWordQuestionBuilder(nPacks, nWrong:nWrong, useAllCorrectLetters:true);
                     break;
                 case FastCrowdVariation.Words:
                     builderParams.wordFilters.excludeColorWords = true;
+                    builderParams.wordFilters.requireDrawings = true;
                     builder = new RandomWordsQuestionBuilder(nPacks, nCorrect, nWrong, parameters: builderParams);
                     break;
             }

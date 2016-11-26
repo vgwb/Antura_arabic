@@ -53,6 +53,8 @@ namespace EA4S.Scanner
 
 		public int CurrentScoreRecord;
 
+		public Animator trapDoor;
+
 		int STARS_1_THRESHOLD, STARS_2_THRESHOLD, STARS_3_THRESHOLD;
 
 		public int CurrentStars
@@ -75,6 +77,7 @@ namespace EA4S.Scanner
 
 		public void ResetScore()
 		{
+			
 			CurrentScoreRecord = 0;
 		}
 

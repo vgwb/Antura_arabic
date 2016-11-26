@@ -30,6 +30,7 @@ namespace EA4S.Scanner
 
 		void OnRoundsFinished(int numberOfRoundsWon)
 		{
+			ScannerConfiguration.Instance.gameActive = false;
 			game.CurrentScoreRecord = numberOfRoundsWon;
 			game.SetCurrentState(game.ResultState);
 			return;

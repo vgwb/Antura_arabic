@@ -9,7 +9,12 @@ namespace EA4S {
             // Navigation manager 
             NavigationManager.I.CurrentScene = AppScene.PlaySessionResult;
 
-            GameObject[] objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(),2);
+            int itemToUnlock = NavigationManager.I.CalculateUnlockItemCount();
+            GameObject[] objs = GameResultUI.ShowEndsessionResult(NavigationManager.I.UseEndSessionResults(),itemToUnlock);
+            
+            foreach (GameObject obj in objs) {
+                ModelsManager.MountModel("reward_punk_hair", obj.transform, RewardSystemManager.GetMaterialPairFromRewardAndColor("reward_punk_hair", "red_dark", "yellow_dark"));
+            }
         }
 
     }

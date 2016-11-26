@@ -64,6 +64,18 @@ namespace EA4S
             return character.ToString();
         }
 
+        public static char GetCharFromUnicode(string hexCode)
+        {
+            if (hexCode == "")
+            {
+                Debug.LogError("Letter requested with an empty hexacode (data is probably missing from the DataBase). Returning - for now.");
+                hexCode = "002D";
+            }
+
+            int unicode = int.Parse(hexCode, System.Globalization.NumberStyles.HexNumber);
+            return (char)unicode;
+        }
+
         /// <summary>
         /// Get char hexa code.
         /// </summary>

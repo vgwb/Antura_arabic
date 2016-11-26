@@ -27,6 +27,9 @@ public class AnturaAnimationTester : MonoBehaviour
     public bool doSpitOpen;
     public bool doSpitClosed;
 
+    public bool onSlipStart;
+    public bool onSlipEnd;
+
     void Start ()
     {
         antura = GetComponent<AnturaAnimationController>();
@@ -106,6 +109,18 @@ public class AnturaAnimationTester : MonoBehaviour
         {
             doSpitClosed = false;
             antura.DoSpit(false);
+        }
+
+        if (onSlipStart)
+        {
+            onSlipStart = false;
+            antura.OnSlipStarted();
+        }
+
+        if (onSlipEnd)
+        {
+            onSlipEnd = false;
+            antura.OnSlipEnded();
         }
     }
 }

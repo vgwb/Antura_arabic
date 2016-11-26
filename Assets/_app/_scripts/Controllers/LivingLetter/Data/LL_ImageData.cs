@@ -35,7 +35,7 @@ namespace EA4S
         /// Living Letter Text To Display.
         /// </summary>
         public string TextForLivingLetter {
-            get { return ArabicAlphabetHelper.ParseWord(Data.Arabic, AppManager.Instance.Teacher.GetAllTestLetterDataLL()); }
+            get { return ArabicAlphabetHelper.PrepareArabicStringForDisplay(Data.Arabic); }
         }
 
         public string DrawingCharForLivingLetter {

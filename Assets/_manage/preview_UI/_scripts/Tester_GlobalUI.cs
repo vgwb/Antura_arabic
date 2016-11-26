@@ -77,7 +77,7 @@ namespace EA4S.Test
         {
             var answerData = AppManager.Instance.DB.GetWordDataByRandom();
             LL_WordData randomWord = new LL_WordData(answerData.Id, answerData);
-            GlobalUI.WidgetPopupWindow.ShowStringAndWord(()=> GlobalUI.WidgetPopupWindow.Close(), "Title", randomWord);
+            //GlobalUI.WidgetPopupWindow.ShowStringAndWord(()=> GlobalUI.WidgetPopupWindow.Close(), "Title", randomWord);
         }
 
         #endregion
