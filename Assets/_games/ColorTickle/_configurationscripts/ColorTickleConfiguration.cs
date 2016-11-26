@@ -36,6 +36,8 @@
             int nCorrect = 1;
 
             var builderParams = new Teacher.QuestionBuilderParameters();
+            builderParams.letterFilters.excludeDiacritics = true;
+            builderParams.wordFilters.excludeDiacritics = true;
             builder = new RandomLettersQuestionBuilder(nPacks, nCorrect, parameters: builderParams);
 
             return builder;
