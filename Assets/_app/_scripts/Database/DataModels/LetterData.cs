@@ -44,6 +44,10 @@ namespace EA4S.Db
         public string Medial_Unicode;
         public string Final_Unicode;
         public string Symbol_Unicode;
+        public string Old_Isolated;
+        public string Old_Initial;
+        public string Old_Medial;
+        public string Old_Final;
 
         public override string ToString()
         {

@@ -34,6 +34,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: beh
       Number: 2
       Title: "b\u0101\u2019"
@@ -55,6 +59,10 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0628\u0640\u200E"
+      Old_Medial: "\u0640\u0628\u0640\u200E"
+      Old_Final: "\u0640\u0628\u200E"
     - Id: teh
       Number: 3
       Title: "t\u0101\u2019"
@@ -76,6 +84,10 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062A\u0640\u200E"
+      Old_Medial: "\u0640\u062A\u0640\u200E"
+      Old_Final: "\u0640\u062A\u200E"
     - Id: theh
       Number: 4
       Title: "th\u0101\u2019"
@@ -97,6 +109,10 @@ MonoBehaviour:
       Medial_Unicode: FE9C
       Final_Unicode: FE9A
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062B\u0640\u200E"
+      Old_Medial: "\u0640\u062B\u0640\u200E"
+      Old_Final: "\u0640\u062B\u200E"
     - Id: jeem
       Number: 5
       Title: "j\u012Bm"
@@ -118,6 +134,10 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062C\u0640\u200E"
+      Old_Medial: "\u0640\u062C\u0640\u200E"
+      Old_Final: "\u0640\u062C\u200E"
     - Id: hah
       Number: 6
       Title: "\u1E25\u0101\u2019"
@@ -139,6 +159,10 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062D\u0640\u200E"
+      Old_Medial: "\u0640\u062D\u0640\u200E"
+      Old_Final: "\u0640\u062D\u200E"
     - Id: khah
       Number: 7
       Title: "kh\u0101\u2019"
@@ -160,6 +184,10 @@ MonoBehaviour:
       Medial_Unicode: FEA8
       Final_Unicode: FEA6
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062E\u0640\u200E"
+      Old_Medial: "\u0640\u062E\u0640\u200E"
+      Old_Final: "\u0640\u062E\u200E"
     - Id: dal
       Number: 8
       Title: "d\u0101l"
@@ -181,6 +209,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u062F\u200E"
+      Old_Medial: "\u0640\u062F\u200E"
+      Old_Final: "\u0640\u062F\u200E"
     - Id: thal
       Number: 9
       Title: "dh\u0101l"
@@ -202,6 +234,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAC
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0630\u200E"
+      Old_Medial: "\u0640\u0630\u200E"
+      Old_Final: "\u0640\u0630\u200E"
     - Id: reh
       Number: 10
       Title: "r\u0101\u2019"
@@ -223,6 +259,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0631\u200E"
+      Old_Medial: "\u0640\u0631\u200E"
+      Old_Final: "\u0640\u0631\u200E"
     - Id: zain
       Number: 11
       Title: "zayn / z\u0101y / z\u0101\u2019"
@@ -244,6 +284,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0632\u200E"
+      Old_Medial: "\u0640\u0632\u200E"
+      Old_Final: "\u0640\u0632\u200E"
     - Id: seen
       Number: 12
       Title: "s\u012Bn"
@@ -265,6 +309,10 @@ MonoBehaviour:
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0633\u0640\u200E"
+      Old_Medial: "\u0640\u0633\u0640\u200E"
+      Old_Final: "\u0640\u0633\u200E"
     - Id: sheen
       Number: 13
       Title: "sh\u012Bn"
@@ -286,6 +334,10 @@ MonoBehaviour:
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0634\u0640\u200E"
+      Old_Medial: "\u0640\u0634\u0640\u200E"
+      Old_Final: "\u0640\u0634\u200E"
     - Id: sad
       Number: 14
       Title: "\u1E63\u0101d"
@@ -307,6 +359,10 @@ MonoBehaviour:
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0635\u0640\u200E"
+      Old_Medial: "\u0640\u0635\u0640\u200E"
+      Old_Final: "\u0640\u0635\u200E"
     - Id: dad
       Number: 15
       Title: "\u1E0D\u0101d"
@@ -328,6 +384,10 @@ MonoBehaviour:
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0636\u0640\u200E"
+      Old_Medial: "\u0640\u0636\u0640\u200E"
+      Old_Final: "\u0640\u0636\u200E"
     - Id: tah
       Number: 16
       Title: "\u1E6D\u0101\u2019"
@@ -349,6 +409,10 @@ MonoBehaviour:
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0637\u0640\u200E"
+      Old_Medial: "\u0640\u0637\u0640\u200E"
+      Old_Final: "\u0640\u0637\u200E"
     - Id: zah
       Number: 17
       Title: "\u1E0Dh\u0101\u2019"
@@ -370,6 +434,10 @@ MonoBehaviour:
       Medial_Unicode: FEC8
       Final_Unicode: FEC6
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0638\u0640\u200E"
+      Old_Medial: "\u0640\u0638\u0640\u200E"
+      Old_Final: "\u0640\u0638\u200E"
     - Id: ain
       Number: 18
       Title: "\u2018ayn"
@@ -391,6 +459,10 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0639\u0640\u200E"
+      Old_Medial: "\u0640\u0639\u0640\u200E"
+      Old_Final: "\u0640\u0639\u200E"
     - Id: ghain
       Number: 19
       Title: ghayn
@@ -412,6 +484,10 @@ MonoBehaviour:
       Medial_Unicode: FED0
       Final_Unicode: FECE
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u063A\u0640\u200E"
+      Old_Medial: "\u0640\u063A\u0640\u200E"
+      Old_Final: "\u0640\u063A\u200E"
     - Id: feh
       Number: 20
       Title: "f\u0101\u2019"
@@ -433,6 +509,10 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0641\u0640\u200E"
+      Old_Medial: "\u0640\u0641\u0640\u200E"
+      Old_Final: "\u0640\u0641\u200E"
     - Id: qaf
       Number: 21
       Title: "q\u0101f"
@@ -454,6 +534,10 @@ MonoBehaviour:
       Medial_Unicode: FED8
       Final_Unicode: FED6
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0642\u0640\u200E"
+      Old_Medial: "\u0640\u0642\u0640\u200E"
+      Old_Final: "\u0640\u0642\u200E"
     - Id: kaf
       Number: 22
       Title: "k\u0101f"
@@ -475,6 +559,10 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0643\u0640\u200E"
+      Old_Medial: "\u0640\u0643\u0640\u200E"
+      Old_Final: "\u0640\u0643\u200E"
     - Id: lam
       Number: 23
       Title: "l\u0101m"
@@ -496,6 +584,10 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0644\u0640\u200E"
+      Old_Medial: "\u0640\u0644\u0640\u200E"
+      Old_Final: "\u0640\u0644\u200E"
     - Id: meem
       Number: 24
       Title: "m\u012Bm"
@@ -517,6 +609,10 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0645\u0640\u200E"
+      Old_Medial: "\u0640\u0645\u0640\u200E"
+      Old_Final: "\u0640\u0645\u200E"
     - Id: noon
       Number: 25
       Title: "n\u016Bn"
@@ -538,6 +634,10 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0646\u0640\u200E"
+      Old_Medial: "\u0640\u0646\u0640\u200E"
+      Old_Final: "\u0640\u0646\u200E"
     - Id: heh
       Number: 26
       Title: "h\u0101\u2019"
@@ -559,6 +659,10 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0647\u0640\u200E"
+      Old_Medial: "\u0640\u0647\u0640\u200E"
+      Old_Final: "\u0640\u0647\u200E"
     - Id: waw
       Number: 27
       Title: "w\u0101w"
@@ -580,6 +684,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEEE
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u0648\u200E"
+      Old_Medial: "\u0640\u0648\u200E"
+      Old_Final: "\u0640\u0648\u200E"
     - Id: yeh
       Number: 28
       Title: "y\u0101\u2019"
@@ -601,6 +709,10 @@ MonoBehaviour:
       Medial_Unicode: FEF4
       Final_Unicode: FEF2
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: "\u064A\u0640\u200E"
+      Old_Medial: "\u0640\u064A\u0640\u200E"
+      Old_Final: "\u0640\u064A"
     - Id: hamza
       Number: 0
       Title: hamza
@@ -622,6 +734,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "\u0621"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: dammah
       Number: 0
       Title: "\u1E0Dammah"
@@ -643,6 +759,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "\u0640\u064F"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: dammah_tanwin
       Number: 0
       Title: dammah tanwin
@@ -664,6 +784,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "-\u064C"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: fathah
       Number: 0
       Title: "fat\u1E25ah"
@@ -685,6 +809,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "\u0640\u064E"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: fathah_tanwin
       Number: 0
       Title: "fat\u1E25ah tanwin"
@@ -706,6 +834,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "-\u064B"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: kasrah
       Number: 0
       Title: kasrah
@@ -727,6 +859,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "\u0640\u0650"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: kasrah_tanwin
       Number: 0
       Title: kasrah tanwin
@@ -748,6 +884,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "-\u064D"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: maddah
       Number: 0
       Title: maddah
@@ -769,6 +909,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "\u0640\u0653"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: shaddah
       Number: 0
       Title: shaddah
@@ -790,6 +934,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "-\u0651"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: sukun
       Number: 0
       Title: sukun
@@ -811,6 +959,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: "-\u0652"
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: alef_hamza_hi
       Number: 0
       Title: alef hamza (hi)
@@ -832,6 +984,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: alef_hamza_low
       Number: 0
       Title: alef hamza (low)
@@ -853,6 +1009,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: alef_maqsura
       Number: 0
       Title: alef maqsura
@@ -874,6 +1034,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEF0
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: alef_maqsura_hamza
       Number: 0
       Title: alef_maqsura_hamza
@@ -895,6 +1059,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: yeh_hamza
       Number: 0
       Title: yeh_hamza
@@ -916,6 +1084,10 @@ MonoBehaviour:
       Medial_Unicode: FE8C
       Final_Unicode: FE8A
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: teh_marbuta
       Number: 0
       Title: teh marbuta
@@ -937,6 +1109,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE94
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: lam_alef
       Number: 0
       Title: lam alef
@@ -958,6 +1134,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEFC
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: waw_hamza
       Number: 0
       Title: waw_hamza
@@ -979,6 +1159,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE86
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: alef_fathah
       Number: 0
       Title: alef_fathah
@@ -1000,6 +1184,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: alef_fathah_tanwin
       Number: 0
       Title: alef_fathah_tanwin
@@ -1021,6 +1209,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FE8E
       Symbol_Unicode: 064B
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: alef_maddah
       Number: 0
       Title: alef_maddah
@@ -1042,6 +1234,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: 
       Symbol_Unicode: 
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: ain_fathah
       Number: 0
       Title: ain_fathah
@@ -1063,6 +1259,10 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: ain_kasrah
       Number: 0
       Title: ain_kasrah
@@ -1084,6 +1284,10 @@ MonoBehaviour:
       Medial_Unicode: FECC
       Final_Unicode: FECA
       Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: beh_dammah
       Number: 0
       Title: beh_dammah
@@ -1105,6 +1309,10 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: beh_fathah
       Number: 0
       Title: beh_fathah
@@ -1126,6 +1334,10 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: beh_kasrah
       Number: 0
       Title: beh_kasrah
@@ -1147,6 +1359,10 @@ MonoBehaviour:
       Medial_Unicode: FE92
       Final_Unicode: FE90
       Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: dad_fathah
       Number: 0
       Title: dad_fathah
@@ -1168,6 +1384,10 @@ MonoBehaviour:
       Medial_Unicode: FEC0
       Final_Unicode: FEBE
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: dal_dammah_tanwin
       Number: 0
       Title: dal_dammah_tanwin
@@ -1189,6 +1409,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 064C
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: dal_fathah
       Number: 0
       Title: dal_fathah
@@ -1210,6 +1434,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAA
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: thal_fathah
       Number: 0
       Title: thal_fathah
@@ -1231,6 +1459,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAC
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: feh_fathah
       Number: 0
       Title: feh_fathah
@@ -1252,6 +1484,10 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: feh_sukun
       Number: 0
       Title: feh_sukun
@@ -1273,6 +1509,10 @@ MonoBehaviour:
       Medial_Unicode: FED4
       Final_Unicode: FED2
       Symbol_Unicode: 0652
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: heh_fathah
       Number: 0
       Title: heh_fathah
@@ -1294,6 +1534,10 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: heh_kasrah
       Number: 0
       Title: heh_kasrah
@@ -1315,6 +1559,10 @@ MonoBehaviour:
       Medial_Unicode: FEEC
       Final_Unicode: FEEA
       Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: hah_fathah
       Number: 0
       Title: hah_fathah
@@ -1336,6 +1584,10 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: hah_kasrah
       Number: 0
       Title: hah_kasrah
@@ -1357,6 +1609,10 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: hah_shaddah
       Number: 0
       Title: hah_shaddah
@@ -1378,6 +1634,10 @@ MonoBehaviour:
       Medial_Unicode: FEA4
       Final_Unicode: FEA2
       Symbol_Unicode: 0651
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: jeem_dammah
       Number: 0
       Title: jeem_dammah
@@ -1399,6 +1659,10 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: jeem_fathah
       Number: 0
       Title: jeem_fathah
@@ -1420,6 +1684,10 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: jeem_shaddah
       Number: 0
       Title: jeem_shaddah
@@ -1441,6 +1709,10 @@ MonoBehaviour:
       Medial_Unicode: FEA0
       Final_Unicode: FE9E
       Symbol_Unicode: 0651
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: kaf_dammah
       Number: 0
       Title: kaf_dammah
@@ -1462,6 +1734,10 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: kaf_fathah
       Number: 0
       Title: kaf_fathah
@@ -1483,6 +1759,10 @@ MonoBehaviour:
       Medial_Unicode: FEDC
       Final_Unicode: FEDA
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: lam_fathah
       Number: 0
       Title: lam_fathah
@@ -1504,6 +1784,10 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: lam_kasrah
       Number: 0
       Title: lam_kasrah
@@ -1525,6 +1809,10 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: lam_kasrah_tanwin
       Number: 0
       Title: lam_kasrah_tanwin
@@ -1546,6 +1834,10 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 064D
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: lam_sukun
       Number: 0
       Title: lam_sukun
@@ -1567,6 +1859,10 @@ MonoBehaviour:
       Medial_Unicode: FEE0
       Final_Unicode: FEDE
       Symbol_Unicode: 0652
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: meem_dammah
       Number: 0
       Title: meem_dammah
@@ -1588,6 +1884,10 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: meem_fathah
       Number: 0
       Title: meem_fathah
@@ -1609,6 +1909,10 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: meem_kasrah
       Number: 0
       Title: meem_kasrah
@@ -1630,6 +1934,10 @@ MonoBehaviour:
       Medial_Unicode: FEE4
       Final_Unicode: FEE2
       Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: noon_fathah
       Number: 0
       Title: noon_fathah
@@ -1651,6 +1959,10 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: noon_kasrah_tanwin
       Number: 0
       Title: noon_kasrah_tanwin
@@ -1672,6 +1984,10 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 064D
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: noon_sukun
       Number: 0
       Title: noon_sukun
@@ -1693,6 +2009,10 @@ MonoBehaviour:
       Medial_Unicode: FEE8
       Final_Unicode: FEE6
       Symbol_Unicode: 0652
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: qaf_fathah
       Number: 0
       Title: qaf_fathah
@@ -1714,6 +2034,10 @@ MonoBehaviour:
       Medial_Unicode: FED8
       Final_Unicode: FED6
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: reh_fathah
       Number: 0
       Title: reh_fathah
@@ -1735,6 +2059,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: reh_kasrah
       Number: 0
       Title: reh_kasrah
@@ -1756,6 +2084,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEAE
       Symbol_Unicode: 0650
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: sad_fathah
       Number: 0
       Title: sad_fathah
@@ -1777,6 +2109,10 @@ MonoBehaviour:
       Medial_Unicode: FEBC
       Final_Unicode: FEBA
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: seen_fathah
       Number: 0
       Title: seen_fathah
@@ -1798,6 +2134,10 @@ MonoBehaviour:
       Medial_Unicode: FEB4
       Final_Unicode: FEB2
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: sheen_fathah
       Number: 0
       Title: sheen_fathah
@@ -1819,6 +2159,10 @@ MonoBehaviour:
       Medial_Unicode: FEB8
       Final_Unicode: FEB6
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: tah_fathah
       Number: 0
       Title: tah_fathah
@@ -1840,6 +2184,10 @@ MonoBehaviour:
       Medial_Unicode: FEC4
       Final_Unicode: FEC2
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: teh_dammah
       Number: 0
       Title: teh_dammah
@@ -1861,6 +2209,10 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: teh_fathah
       Number: 0
       Title: teh_fathah
@@ -1882,6 +2234,10 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: teh_marbuta_dammah_tanwin
       Number: 0
       Title: teh_marbuta_dammah_tanwin
@@ -1903,6 +2259,10 @@ MonoBehaviour:
       Medial_Unicode: FE98
       Final_Unicode: FE96
       Symbol_Unicode: 064C
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: zain_fathah
       Number: 0
       Title: zain_fathah
@@ -1924,6 +2284,10 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 064E
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
     - Id: zain_dammah
       Number: 0
       Title: zain_dammah
@@ -1945,3 +2309,7 @@ MonoBehaviour:
       Medial_Unicode: 
       Final_Unicode: FEB0
       Symbol_Unicode: 064F
+      Old_Isolated: 
+      Old_Initial: 
+      Old_Medial: 
+      Old_Final: 
