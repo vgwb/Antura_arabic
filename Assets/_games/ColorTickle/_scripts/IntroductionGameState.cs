@@ -70,13 +70,11 @@ namespace EA4S.ColorTickle
                 // HACK fix for the automatic reset of the color after update at Unity 5.4.2
                 game.myLetters[i].GetComponent<LetterObjectView>().Label.color = Color.white;
 
-                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement()); //we don't want diacritic letters for our game (default builder)
+                //we don't want diacritic letters for our game 
+                //game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetRandomTestLetterLL(new LetterFilters(excludeDiacritics:true))); //use this for testing
+                game.myLetters[i].GetComponent<LetterObjectView>().Init(AppManager.Instance.Teacher.GetRandomTestLetterLL()); //use this for final game once the provider is setted with filters
 
-                /*LLdata = new LL_LetterData(AppManager.Instance.Teacher.GetAllTestLetterDataLL().GetRandomElement().Data.Id.Split('_')[0]);//old hack to get non-diacritic letters
-                game.myLetters[i].GetComponent<LetterObjectView>().Init(LLdata);
-                */
-
-                game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
+               game.myLetters[i].GetComponent<ColorTickle_LLController>().movingToDestination = false;
             }
         }
 
