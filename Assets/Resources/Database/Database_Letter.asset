@@ -1083,7 +1083,7 @@ MonoBehaviour:
       Initial_Unicode: FE91
       Medial_Unicode: FE92
       Final_Unicode: FE90
-      Combined_Unicode: 064F
+      Combined_Unicode: 
     - Id: beh_fathah
       Number: 0
       Title: beh_fathah
@@ -1167,7 +1167,7 @@ MonoBehaviour:
       Initial_Unicode: FEA9
       Medial_Unicode: FEAA
       Final_Unicode: FEAA
-      Combined_Unicode: 064C
+      Combined_Unicode: 
     - Id: dal_fathah
       Number: 0
       Title: dal_fathah
