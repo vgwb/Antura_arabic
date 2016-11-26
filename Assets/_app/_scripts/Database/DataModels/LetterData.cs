@@ -43,6 +43,7 @@ namespace EA4S.Db
         public string Initial_Unicode;
         public string Medial_Unicode;
         public string Final_Unicode;
+        public string Combined_Unicode;
 
         public override string ToString()
         {
@@ -132,16 +133,37 @@ namespace EA4S.Db
 
         public string GetUnicode(LetterPosition position = LetterPosition.Isolated)
         {
-            switch (position) {
-                case LetterPosition.Initial:
-                    return Initial_Unicode;
-                case LetterPosition.Medial:
-                    return Medial_Unicode;
-                case LetterPosition.Final:
-                    return Final_Unicode;
-                default:
+            switch (Kind) {
+                case LetterDataKind.Symbol:
                     return Isolated_Unicode;
+                default:
+                    switch (position) {
+                        case LetterPosition.Initial:
+                            return Initial_Unicode;
+                        case LetterPosition.Medial:
+                            return Medial_Unicode;
+                        case LetterPosition.Final:
+                            return Final_Unicode;
+                        default:
+                            return Isolated_Unicode;
+                    }
             }
+
+        }
+
+        public string GetCharAlternative(LetterPosition position = LetterPosition.Isolated)
+        {
+            string output;
+            var hexunicode = GetUnicode(position);
+            int unicode = int.Parse(hexunicode, System.Globalization.NumberStyles.HexNumber);
+            output = ((char)unicode).ToString();
+
+            if (Combined_Unicode != "") {
+                int unicode_added = int.Parse(Combined_Unicode, System.Globalization.NumberStyles.HexNumber);
+                output += ((char)unicode_added).ToString();
+            }
+
+            return output;
         }
     }
 }
