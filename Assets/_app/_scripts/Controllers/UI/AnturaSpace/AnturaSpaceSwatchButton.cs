@@ -17,6 +17,7 @@ namespace EA4S
         public void Lock(bool _doLock)
         {
             IcoLock.SetActive(_doLock);
+            Bt.interactable = !_doLock;
         }
 
         public void SetAsNew(bool _isNew)
