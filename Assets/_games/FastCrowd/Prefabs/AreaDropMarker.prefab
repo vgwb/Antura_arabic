@@ -256,6 +256,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 1
+  LocalizationId: 0
 --- !u!114 &114000011895829860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,6 +272,7 @@ MonoBehaviour:
   isTMPro: 1
   isUI: 0
   isArabic: 0
+  LocalizationId: 0
 --- !u!114 &114000012286514502
 MonoBehaviour:
   m_ObjectHideFlags: 1
