@@ -176,6 +176,17 @@ namespace EA4S
                 }
             }
         }
+
+        /// <summary>
+        /// Resets the maximum journey position to 1,1,1.
+        /// </summary>
+        public void ResetMaxJourneyPosition(bool _save = true) {
+            AppManager.Instance.Player.MaxJourneyPosition = new JourneyPosition(1,1,1);
+            AppManager.Instance.Player.CurrentJourneyPosition = new JourneyPosition(1, 1, 1);
+            if (_save) {
+                Save();
+            }
+        }
         #endregion
 
         #region Profile completion
