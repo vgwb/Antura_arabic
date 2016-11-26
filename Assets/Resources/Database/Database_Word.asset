@@ -39,10 +39,8 @@ MonoBehaviour:
       Letters:
       - waw
       - alef
-      - feh
-      - fathah
-      - qaf
-      - fathah
+      - feh_fathah
+      - qaf_fathah
       Difficulty: 0
       Drawing: 
     - Id: al
@@ -123,12 +121,8 @@ MonoBehaviour:
       Arabic: "\u0623\u064E\u0643\u064E\u0644\u064E"
       Value: 
       Letters:
-      - alef_hamza_hi
-      - fathah
-      - kaf
-      - fathah
-      - lam
-      - fathah
+      - kaf_fathah
+      - lam_fathah
       Difficulty: 0
       Drawing: 
     - Id: aunt_father
@@ -288,10 +282,8 @@ MonoBehaviour:
       Arabic: "\u0622\u0645\u064E\u0646\u064E"
       Value: 
       Letters:
-      - meem
-      - fathah
-      - noon
-      - fathah
+      - meem_fathah
+      - noon_fathah
       Difficulty: 0
       Drawing: 
     - Id: belly
@@ -377,10 +369,8 @@ MonoBehaviour:
       Arabic: "\u0643\u064F\u062A\u064F\u0628"
       Value: 
       Letters:
-      - kaf
-      - dammah
-      - teh
-      - dammah
+      - kaf_dammah
+      - teh_dammah
       - beh
       Difficulty: 0
       Drawing: 4F
@@ -540,8 +530,7 @@ MonoBehaviour:
       Letters:
       - jeem
       - meem
-      - lam
-      - kasrah_tanwin
+      - lam_kasrah_tanwin
       Difficulty: 0
       Drawing: 56
     - Id: carpenter
@@ -554,8 +543,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - noon
-      - jeem
-      - shaddah
+      - jeem_shaddah
       - alef
       - reh
       Difficulty: 0
@@ -569,12 +557,9 @@ MonoBehaviour:
       Arabic: "\u062D\u064E\u0645\u064E\u0644\u064E"
       Value: 
       Letters:
-      - hah
-      - fathah
-      - meem
-      - fathah
-      - lam
-      - fathah
+      - hah_fathah
+      - meem_fathah
+      - lam_fathah
       Difficulty: 0
       Drawing: 
     - Id: carrot
@@ -586,10 +571,8 @@ MonoBehaviour:
       Arabic: "\u062C\u064E\u0632\u064E\u0631"
       Value: 
       Letters:
-      - jeem
-      - fathah
-      - zain
-      - fathah
+      - jeem_fathah
+      - zain_fathah
       - reh
       Difficulty: 0
       Drawing: 58
@@ -615,12 +598,9 @@ MonoBehaviour:
       Arabic: "\u0645\u064E\u0633\u064E\u0643\u064E"
       Value: 
       Letters:
-      - meem
-      - fathah
-      - seen
-      - fathah
-      - kaf
-      - fathah
+      - meem_fathah
+      - seen_fathah
+      - kaf_fathah
       Difficulty: 0
       Drawing: 
     - Id: chair
@@ -836,8 +816,7 @@ MonoBehaviour:
       Arabic: "\u0628\u064F\u0646\u064A"
       Value: brown
       Letters:
-      - beh
-      - dammah
+      - beh_dammah
       - noon
       - yeh
       Difficulty: 0
@@ -1024,13 +1003,11 @@ MonoBehaviour:
       Arabic: "\u0644\u0650\u0628\u0627\u0633\u0627\u064B"
       Value: 
       Letters:
-      - lam
-      - kasrah
+      - lam_kasrah
       - beh
       - alef
       - seen
-      - alef
-      - fathah_tanwin
+      - alef_fathah_tanwin
       Difficulty: 0
       Drawing: 67
     - Id: cried
@@ -1252,8 +1229,7 @@ MonoBehaviour:
       Arabic: "\u0637\u064E\u0628\u064A\u0628"
       Value: 
       Letters:
-      - tah
-      - fathah
+      - tah_fathah
       - beh
       - yeh
       - beh
@@ -1296,12 +1272,9 @@ MonoBehaviour:
       Arabic: "\u0634\u064E\u0631\u0650\u0628\u064E"
       Value: 
       Letters:
-      - sheen
-      - fathah
-      - reh
-      - kasrah
-      - beh
-      - fathah
+      - sheen_fathah
+      - reh_kasrah
+      - beh_fathah
       Difficulty: 0
       Drawing: 
     - Id: dual
@@ -1531,8 +1504,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - ain
-      - lam
-      - fathah
+      - lam_fathah
       - meem
       Difficulty: 0
       Drawing: 76
@@ -1545,13 +1517,10 @@ MonoBehaviour:
       Arabic: "\u0631\u064E\u0641\u0652\u0631\u064E\u0641\u064E"
       Value: 
       Letters:
-      - reh
-      - fathah
+      - reh_fathah
       - feh
-      - reh
-      - fathah
-      - feh
-      - fathah
+      - reh_fathah
+      - feh_fathah
       Difficulty: 0
       Drawing: 
     - Id: flew
@@ -1641,8 +1610,7 @@ MonoBehaviour:
       - ghain
       - alef
       - beh
-      - teh_marbuta
-      - dammah_tanwin
+      - teh_marbuta_dammah_tanwin
       Difficulty: 0
       Drawing: 79
     - Id: fridge
@@ -1698,8 +1666,7 @@ MonoBehaviour:
       Arabic: "\u0628\u064F\u0633\u062A\u0627\u0646"
       Value: 
       Letters:
-      - beh
-      - dammah
+      - beh_dammah
       - seen
       - teh
       - alef
@@ -1743,8 +1710,7 @@ MonoBehaviour:
       Arabic: "\u0635\u064E\u0645\u063A"
       Value: 
       Letters:
-      - sad
-      - fathah
+      - sad_fathah
       - meem
       - ghain
       Difficulty: 0
@@ -1919,8 +1885,7 @@ MonoBehaviour:
       - reh
       - hah
       - beh
-      - alef
-      - fathah_tanwin
+      - alef_fathah_tanwin
       Difficulty: 0
       Drawing: 
     - Id: hospital
@@ -2034,12 +1999,9 @@ MonoBehaviour:
       Arabic: "\u0645\u064F\u0644\u0650\u062D\u0651"
       Value: 
       Letters:
-      - meem
-      - dammah
-      - lam
-      - kasrah
-      - hah
-      - shaddah
+      - meem_dammah
+      - lam_kasrah
+      - hah_shaddah
       Difficulty: 0
       Drawing: 
     - Id: islands
@@ -2051,10 +2013,8 @@ MonoBehaviour:
       Arabic: "\u062C\u064F\u0632\u064F\u0631"
       Value: 
       Letters:
-      - jeem
-      - dammah
-      - zain
-      - dammah
+      - jeem_dammah
+      - zain_dammah
       - reh
       Difficulty: 0
       Drawing: CE
@@ -2067,8 +2027,7 @@ MonoBehaviour:
       Arabic: "\u0639\u064E\u0635\u064A\u0631"
       Value: 
       Letters:
-      - ain
-      - fathah
+      - ain_fathah
       - sad
       - yeh
       - reh
@@ -2097,8 +2056,7 @@ MonoBehaviour:
       Arabic: "\u0639\u0650\u0644\u0652\u0645"
       Value: 
       Letters:
-      - ain
-      - kasrah
+      - ain_kasrah
       - lam
       - meem
       Difficulty: 0
@@ -2129,12 +2087,9 @@ MonoBehaviour:
       Arabic: "\u0636\u064E\u062D\u0650\u0643\u064E"
       Value: 
       Letters:
-      - dad
-      - fathah
-      - hah
-      - kasrah
-      - kaf
-      - fathah
+      - dad_fathah
+      - hah_kasrah
+      - kaf_fathah
       Difficulty: 0
       Drawing: 
     - Id: lazy
@@ -2161,8 +2116,7 @@ MonoBehaviour:
       Arabic: "\u0631\u0650\u062C\u0644"
       Value: 
       Letters:
-      - reh
-      - kasrah
+      - reh_kasrah
       - jeem
       - lam
       Difficulty: 0
@@ -2237,8 +2191,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - seen
       - waw
-      - dal
-      - dammah_tanwin
+      - dal_dammah_tanwin
       Difficulty: 0
       Drawing: 203A
     - Id: lips
@@ -2265,12 +2218,9 @@ MonoBehaviour:
       Arabic: "\u0631\u064E\u062C\u064F\u0644\u064D"
       Value: 
       Letters:
-      - reh
-      - fathah
-      - jeem
-      - dammah
-      - lam
-      - kasrah_tanwin
+      - reh_fathah
+      - jeem_dammah
+      - lam_kasrah_tanwin
       Difficulty: 0
       Drawing: 2D
     - Id: market
@@ -2735,8 +2685,7 @@ MonoBehaviour:
       Letters:
       - dal
       - feh
-      - teh
-      - fathah
+      - teh_fathah
       - reh
       Difficulty: 0
       Drawing: DC
@@ -2872,8 +2821,7 @@ MonoBehaviour:
       - seen
       - beh
       - ain
-      - teh_marbuta
-      - dammah_tanwin
+      - teh_marbuta_dammah_tanwin
       Difficulty: 0
       Drawing: 10E
     - Id: number_08
@@ -3320,8 +3268,7 @@ MonoBehaviour:
       - tah
       - beh
       - ain
-      - alef
-      - fathah_tanwin
+      - alef_fathah_tanwin
       Difficulty: 0
       Drawing: 
     - Id: oil
@@ -3390,12 +3337,9 @@ MonoBehaviour:
       Arabic: "\u0641\u064E\u062A\u064E\u062D\u064E"
       Value: 
       Letters:
-      - feh
-      - fathah
-      - teh
-      - fathah
-      - hah
-      - fathah
+      - feh_fathah
+      - teh_fathah
+      - hah_fathah
       Difficulty: 0
       Drawing: 
     - Id: oven
@@ -3525,12 +3469,9 @@ MonoBehaviour:
       Arabic: "\u0644\u064E\u0639\u0650\u0628\u064E"
       Value: 
       Letters:
-      - lam
-      - fathah
-      - ain
-      - kasrah
-      - beh
-      - fathah
+      - lam_fathah
+      - ain_kasrah
+      - beh_fathah
       Difficulty: 0
       Drawing: 
     - Id: player
@@ -3632,8 +3573,7 @@ MonoBehaviour:
       Value: 
       Letters:
       - meem
-      - tah
-      - fathah
+      - tah_fathah
       - reh
       Difficulty: 1
       Drawing: F0
@@ -3661,12 +3601,9 @@ MonoBehaviour:
       Arabic: "\u062A\u064E\u0631\u064E\u0643\u064E"
       Value: 
       Letters:
-      - teh
-      - fathah
-      - reh
-      - fathah
-      - kaf
-      - fathah
+      - teh_fathah
+      - reh_fathah
+      - kaf_fathah
       Difficulty: 0
       Drawing: 
     - Id: restaurant
@@ -3680,8 +3617,7 @@ MonoBehaviour:
       Letters:
       - meem
       - tah
-      - ain
-      - fathah
+      - ain_fathah
       - meem
       Difficulty: 0
       Drawing: 26
@@ -3783,8 +3719,7 @@ MonoBehaviour:
       Arabic: "\u0622\u0645\u0650\u0646\u0652"
       Value: 
       Letters:
-      - meem
-      - kasrah
+      - meem_kasrah
       - noon
       Difficulty: 0
       Drawing: 
@@ -3797,8 +3732,7 @@ MonoBehaviour:
       Arabic: "\u0645\u0650\u0644\u0652\u062D"
       Value: 
       Letters:
-      - meem
-      - kasrah
+      - meem_kasrah
       - lam
       - hah
       Difficulty: 0
@@ -3812,12 +3746,9 @@ MonoBehaviour:
       Arabic: "\u062C\u064E\u0644\u064E\u0633\u064E"
       Value: 
       Letters:
-      - jeem
-      - fathah
-      - lam
-      - fathah
-      - seen
-      - fathah
+      - jeem_fathah
+      - lam_fathah
+      - seen_fathah
       Difficulty: 0
       Drawing: 
     - Id: saw
@@ -3970,8 +3901,7 @@ MonoBehaviour:
       - dal
       - kaf
       - alef
-      - noon
-      - kasrah_tanwin
+      - noon_kasrah_tanwin
       Difficulty: 0
       Drawing: 2198
     - Id: singular
@@ -4115,12 +4045,9 @@ MonoBehaviour:
       Arabic: "\u062F\u064E\u0631\u064E\u0633\u064E"
       Value: 
       Letters:
-      - dal
-      - fathah
-      - reh
-      - fathah
-      - seen
-      - fathah
+      - dal_fathah
+      - reh_fathah
+      - seen_fathah
       Difficulty: 0
       Drawing: 
     - Id: sugar
@@ -4177,8 +4104,7 @@ MonoBehaviour:
       - ain
       - feh
       - waw
-      - alef
-      - fathah_tanwin
+      - alef_fathah_tanwin
       Difficulty: 0
       Drawing: 
     - Id: table
@@ -4254,8 +4180,7 @@ MonoBehaviour:
       - sheen
       - kaf
       - reh
-      - alef
-      - fathah_tanwin
+      - alef_fathah_tanwin
       Difficulty: 0
       Drawing: 
     - Id: the_active
@@ -5010,8 +4935,7 @@ MonoBehaviour:
       Letters:
       - ghain
       - dal
-      - alef
-      - fathah_tanwin
+      - alef_fathah_tanwin
       Difficulty: 0
       Drawing: 
     - Id: tongue
@@ -5137,12 +5061,9 @@ MonoBehaviour:
       Arabic: "\u0641\u064E\u0647\u0650\u0645\u064E"
       Value: 
       Letters:
-      - feh
-      - fathah
-      - heh
-      - kasrah
-      - meem
-      - fathah
+      - feh_fathah
+      - heh_kasrah
+      - meem_fathah
       Difficulty: 0
       Drawing: 
     - Id: vegetables
@@ -5276,8 +5197,7 @@ MonoBehaviour:
       - alef_hamza_hi
       - heh
       - lam
-      - alef
-      - fathah_tanwin
+      - alef_fathah_tanwin
       Difficulty: 0
       Drawing: 
     - Id: went
@@ -5289,12 +5209,9 @@ MonoBehaviour:
       Arabic: "\u0630\u064E\u0647\u064E\u0628\u064E"
       Value: 
       Letters:
-      - thal
-      - fathah
-      - heh
-      - fathah
-      - beh
-      - fathah
+      - thal_fathah
+      - heh_fathah
+      - beh_fathah
       Difficulty: 0
       Drawing: 
     - Id: whale
@@ -5428,12 +5345,9 @@ MonoBehaviour:
       Arabic: "\u0631\u064E\u0628\u0650\u062D\u064E"
       Value: 
       Letters:
-      - reh
-      - fathah
-      - beh
-      - kasrah
-      - hah
-      - fathah
+      - reh_fathah
+      - beh_kasrah
+      - hah_fathah
       Difficulty: 0
       Drawing: 
     - Id: wonderful
@@ -5459,12 +5373,9 @@ MonoBehaviour:
       Arabic: "\u0644\u064E\u0628\u0650\u0633\u064E"
       Value: 
       Letters:
-      - lam
-      - fathah
-      - beh
-      - kasrah
-      - seen
-      - fathah
+      - lam_fathah
+      - beh_kasrah
+      - seen_fathah
       Difficulty: 0
       Drawing: 
     - Id: worker
@@ -5523,12 +5434,9 @@ MonoBehaviour:
       Arabic: "\u0643\u064E\u062A\u064E\u0628\u064E"
       Value: 
       Letters:
-      - kaf
-      - fathah
-      - teh
-      - fathah
-      - beh
-      - fathah
+      - kaf_fathah
+      - teh_fathah
+      - beh_fathah
       Difficulty: 0
       Drawing: 
     - Id: year
