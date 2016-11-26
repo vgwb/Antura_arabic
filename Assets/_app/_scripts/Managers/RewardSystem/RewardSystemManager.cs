@@ -51,10 +51,13 @@ namespace EA4S {
         #region UI Interactions
 
         /// <summary>
-        /// Gets the reward items by category (always 9 items, if not presente item is null).
+        /// Gets the reward items by rewardType (always 9 items, if not presente item in the return list is null).
         /// </summary>
-        /// <param name="_categoryId">The category identifier.</param>
-        public static List<RewardItem> GetRewardItemsByCategory(string _categoryRewardId, RewardTypes _rewardType) {
+        /// <param name="_rewardType">Type of the reward.</param>
+        /// <param name="_parentsTransForModels">The parents trans for models.</param>
+        /// <param name="_categoryRewardId">The category reward identifier.</param>
+        /// <returns></returns>
+        public static List<RewardItem> GetRewardItemsByRewardType(RewardTypes _rewardType, List<Transform> _parentsTransForModels, string _categoryRewardId = "") {
             List<RewardItem> returnList = new List<RewardItem>();
             /// TODO: logic
             /// Charge models
@@ -77,13 +80,15 @@ namespace EA4S {
         /// </summary>
         /// <param name="_rewardItemId">The reward item identifier.</param>
         /// <returns></returns>
-        public static List<RewardColor> GetRewardColorsById(string _rewardItemId, RewardTypes _rewardType) {
-            List<RewardColor> returnList = new List<RewardColor>();
+        public static List<RewardColorItem> GetRewardColorsById(string _rewardItemId, RewardTypes _rewardType) {
+            List<RewardColorItem> returnList = new List<RewardColorItem>();
             // TODO: logic
             return returnList;
         }
-        
+
         #endregion
+
+        #region General
 
         /// <summary>
         /// Gets the reward by identifier.
@@ -107,6 +112,8 @@ namespace EA4S {
             MaterialPair mp = new MaterialPair(_color1, reward.Material1, _color2, reward.Material2);
             return mp;
         }
+
+        #endregion
 
         #endregion
     }
@@ -136,8 +143,8 @@ namespace EA4S {
         public string ID;
         public string Color1Name;
         public string Color2Name;
-        public string Color1RGB;
-        public string Color2RGB;
+        public string Color1RGB; // "rrggbbaa"
+        public string Color2RGB; // "rrggbbaa"
     }
     #endregion
 
